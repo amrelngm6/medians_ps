@@ -24,7 +24,7 @@
         "@fullcalendar/resource-timeline": "^5.11.3",
         "@fullcalendar/timegrid": "^5.11.3",
         "@fullcalendar/vue": "^5.11.3",
-        "axios": "^1.2.2",
+        "axios": "^1.3.4",
         "feather-icons": "^4.26.0",
         "jquery": "^3.6.3",
         "kalendar-vue": "^2.1.3",
