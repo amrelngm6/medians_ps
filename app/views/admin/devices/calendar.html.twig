@@ -1,0 +1,22 @@
+{% include 'views/admin/includes/header.html.twig' %}
+<div class=" w-full overflow-y-auto h-full">
+    <div class="w-full">
+        <div class="px-2">
+            {% if devicesList|length > 0 %}
+            <calendar_component 
+                :settings="{{app.Settings | json_encode}}"
+                :products="{{ products}}"  
+                title="{{title}}" 
+                start-time="{{ '' | date('H:i') }}" 
+                lang_str="en">
+            </calendar_component>
+            {% elseif typesList|length > 0 %}
+            {% include 'views/admin/devices/get_started.html.twig' %}
+            {% else %}
+            {% include 'views/admin/devices/get_started_types.html.twig' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div id="main-forms-container"></div>
+{% include 'views/admin/includes/footer.html.twig' %}

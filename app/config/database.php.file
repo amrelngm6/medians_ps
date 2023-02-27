@@ -1,0 +1,11 @@
+<?php 
+
+
+CONST db_host = 'localhost';
+
+CONST db_name = '';
+
+CONST db_username = '';
+
+CONST db_password = '';
+

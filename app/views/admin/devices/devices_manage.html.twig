@@ -1,0 +1,59 @@
+{% include 'views/admin/includes/header.html.twig' %}
+    <!-- main -->
+    <main style="" class=" flex-1 overflow-x-hidden overflow-y-auto px-2 ">
+        <!-- today tab 1 -->
+        <!-- New releases -->
+        <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
+            <h1 class="font-bold text-lg w-full">{{title}}</h1>
+            <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showAddSide = true;showEditSide = false; ">{{lang.__('Add new')}}</a>
+
+        </div>
+        <hr class="mt-2" />
+
+        <div class="w-full flex gap gap-6">
+            <div class="w-full">
+                    
+                <div class="row ">
+
+                {% for device in devicesList %}
+                    <div class="col-6 col-sm-4 col-lg-2 {% if device.status == 0 %} opacity-50 {% endif %} ">
+                        <div class="album  transform transition duration-400 hover:scale-105">
+                            <div class="album__cover {% if device.playing %} active  {% endif %} ">
+                                <img src="{{app.CONF.url}}assets/img/ps.png" alt="">
+                                    <!-- <a > -->
+                                    <a @click="showEditSide = true; showAddSide = false" data-ajax="true" href="{{app.CONF.url}}devices/edit/{{device.id}}"  >
+                                        <i class="text-gray-200 material-icons-outlined text-base">edit</i>
+
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="album__title">
+                                <h4><a @click="showEditSide = true; showAddSide = false" data-ajax="true" href="{{app.CONF.url}}devices/edit/{{device.id}}" class="text-sm text-red-600 font-bold">{{device.title}}</a></h4>
+                                <span>{{device.playing_time}}{{device.category.name}} </span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="col-md-3" v-if="showAddSide && !showEditSide">
+
+                {% include 'views/admin/forms/add_device.html.twig' %}
+
+            </div>
+            <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 "  v-if="showEditSide && !showAddSide ">
+                <div class="w-full flex">
+                    <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="'{{lang.__('Edit device')}}'"></h1>
+                    <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><i class="fa fa-close"></i></span>
+                </div>
+                <div id="main-forms-container"></div>
+            </div>
+        </div>
+    </div>
+        <!-- END New releases -->
+    </main>
+
+
+
+{% include 'views/admin/includes/footer.html.twig' %}
