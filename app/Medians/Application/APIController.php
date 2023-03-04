@@ -42,6 +42,9 @@ class APIController
 			case 'Devices':
 				return json_encode((new Repo\Devices\DevicesRepository())->getApi());
 				break;
+			case 'Products':
+				$return = (new Repo\Products\ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
+				break;
 			
 		}
 

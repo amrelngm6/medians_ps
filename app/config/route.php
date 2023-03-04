@@ -43,7 +43,7 @@ Macaw::post('/api', apps\APIController::class.'@handle');
 
 Macaw::get('/api/calendar', apps\Devices\DeviceController::class.'@calendar');
 Macaw::get('/api/calendar_events', apps\Devices\DeviceController::class.'@events');
-Macaw::get('/api/(:all)', apps\Devices\DeviceController::class.'@handle');
+Macaw::get('/api/(:all)', apps\APIController::class.'@handle');
 
 Macaw::get('/logout', function () 
 {

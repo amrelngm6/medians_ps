@@ -328,7 +328,7 @@ class DeviceController
 		$event->allow = true;
 		$event->url = 'javascript:;';
 		$event->classNames = $event->status.' ';
-		$event->classNames .= $event->order_code ? '  ' : 'bg-gradient-purple';
+		$event->classNames .= $event->order_code ? 'bg-orange-500' : 'bg-gradient-purple';
 		$event->classes = $event->classNames;
 		$event->games = $repo->getGames($event->device->type);
 

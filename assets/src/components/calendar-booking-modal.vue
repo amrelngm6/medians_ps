@@ -136,6 +136,7 @@ export default {
             if (this.modal)
             {
                 this.activeItem = JSON.parse(JSON.stringify(this.modal));
+                this.loadProducts();
             }
         },
         methods: {
@@ -187,6 +188,19 @@ export default {
                 this.showSelectedProducts = false
                 this.handleRequest(params, '/api').then(response => {
                     this.activeItem = response
+                    this.showSelectedProducts = true
+                })
+            },
+
+            loadProducts()
+            {
+                const params = new URLSearchParams([]);
+                params.append('type', 'Products');
+                params.append('model', 'Products');
+                params.append('id',  this.activeItem.id);
+                this.showSelectedProducts = false
+                this.handleRequest(params, '/api').then(response => {
+                    this.products = response
                     this.showSelectedProducts = true
                 })
             },
