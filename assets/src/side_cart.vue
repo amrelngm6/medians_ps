@@ -4,7 +4,7 @@
         <div v-if="showCart && Items && Items.length ">
             
             <div v-if="showLoader">
-                
+                 
             </div>
             <div v-if="!showLoader" id="side-cart-container" class="pt-20 fixed right-0 top-0 bg-white p-6 h-screen overflow-y-auto w-96 max-w-full" style="z-index:9; max-height: 100vh;" >
             <!-- <div v-if="Items && !showLoader"> -->
@@ -33,7 +33,6 @@
                                             <span class="font-semibold text-sm" > 
                                                 <span v-text="product.product.name"></span><br /> 
                                                 <span class="text-xs text-gray-400 " v-if="product.qty" v-text="'X '+product.qty"></span>
-                                                <!-- <span class="text-xs text-red-400" @click="removeProduct(product, i)">Remove</span> -->
                                             </span>
                                             <span class="font-semibold text-sm"><span v-text="product.price"></span> <small v-if="setting" class="text-xs" v-text="setting.currency"></small> </span>
                                         </div>

@@ -125,11 +125,11 @@ export default {
                 showPopup: true,
                 showMoreProducts: false,
                 activeItem: {},
+                products: [],
             };
         },
         props: [
             'modal',
-            'products'
         ],
         
         mounted() {
