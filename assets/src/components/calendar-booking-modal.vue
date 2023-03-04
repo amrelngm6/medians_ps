@@ -101,7 +101,7 @@
                     </div>
 
                     <div class="w-full flex gap-6 my-2 text-gray-600 pb-6" v-if="!activeItem.order_code && activeItem.status == 'completed'">
-                        <label @click="showPopup = false, addToCart(activeItem) " class="cursor-pointer py-2 w-full mx-2 rounded-2xl text-center font-semibold bg-purple-600 text-white" >
+                        <label @click="addToCart(activeItem) " class="cursor-pointer py-2 w-full mx-2 rounded-2xl text-center font-semibold bg-purple-600 text-white" >
                             <span  v-text="__('pay')" ></span>
                         </label>
                     </div>
