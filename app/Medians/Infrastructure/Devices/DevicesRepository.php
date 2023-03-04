@@ -105,7 +105,7 @@ class DevicesRepository
 		if (!empty($params->get('start')) && !empty($params->get('end')))
 		{
 			$start = date('Y-m-d 00:00:00', strtotime(date($params->get('start'))));
-			$end = date('Y-m-d 23:59:59', strtotime(date($params->get('end'))));
+			$end = date('Y-m-d 00:00:00', strtotime(date($params->get('end'))));
 			$query->whereBetween('start_time', [$start, $end]);
 		}
 
@@ -290,10 +290,11 @@ class DevicesRepository
 		$newData['booking_type'] = isset($data['booking_type']) ? $data['booking_type'] : $Object->booking_type;
 		$newData['device_cost'] = ($newData['booking_type'] == 'multi') ? $Device->prices->multi_price : $Device->price->single_price;
 		$newData['status'] = $data['status'];
+		$newData['date'] = date('Y-m-d');
 		if ($data['status'] == 'completed' && $data['status'] != $Device->status )
 		{
 			$bookingDay = date('Ymd', strtotime($data['startStr']));
-			$newData['end_time'] = (date('Ymd') > $bookingDay) ? date('Y-m-d 23:59:59', strtotime($data['startStr'])) : date('Y-m-d H:i:s');
+			$newData['end_time'] = (date('Ymd') > $bookingDay) ? date('Y-m-d 23:59:59', strtotime($data['startStr'])) : ( date('Hi') > date('Hi', strtotime($data['to'])) ? $data['to'] : date('Y-m-d H:i:s') );
 		}
 
 

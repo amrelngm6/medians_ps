@@ -6,7 +6,7 @@
             <div v-if="showLoader">
                 
             </div>
-            <div v-if="!showLoader" class="pt-20 fixed right-0 top-0 bg-white p-6 h-screen overflow-y-auto w-96 max-w-full" style="z-index:9; max-height: 100vh; ">
+            <div v-if="!showLoader" id="side-cart-container" class="pt-20 fixed right-0 top-0 bg-white p-6 h-screen overflow-y-auto w-96 max-w-full" style="z-index:9; max-height: 100vh;" >
             <!-- <div v-if="Items && !showLoader"> -->
                 
                 <div class="modal-header" v-if="Items">
@@ -24,7 +24,7 @@
                                         <span class="text-xs text-gray-400 " v-if="item.game" v-text="item.game.name"></span>
                                         <span class="text-xs text-red-400" @click="removeFromCart(item)" v-text="__('remove')"></span>
                                     </span>
-                                    <span class="font-semibold text-sm"><span v-text="item.subtotal"></span> <small v-if="setting" class="text-xs" v-text="setting.currency"></small> <br /> <span class="text-xs text-gray-400" v-text="item.duration_time"></span></span>
+                                    <span style="direction:ltr;" class="font-semibold text-sm"><span v-text="item.subtotal"></span> <small v-if="setting" class="text-xs" v-text="setting.currency"></small> <br /> <span class="text-xs text-gray-400" v-text="item.duration_time"></span></span>
                                 </div>
                                 <div v-if="item && item.products">
                                     
@@ -180,14 +180,14 @@ export default
             this.sub_total = 0;
             for (var i = this.Items.length - 1; i >= 0; i--) {
 
+                this.sub_total += this.Items[i] && this.Items[i].subtotal ?  Number(this.Items[i].subtotal) : 0 
                 if (this.Items[i] && this.Items[i].products && this.Items[i].products.length > 0)
                 {
-                    this.sub_total = this.Items[i] ?  (Number(this.sub_total) + Number(this.Items[i].subtotal)) : 0 
                     for (var p = this.Items[i].products.length - 1; p >= 0; p--) 
                     {
-                        this.sub_total = this.Items[i].products[p] ? 
-                        (Number(this.sub_total) + Number(this.Items[i].products[p].price)) 
-                        : this.sub_total; 
+                        this.sub_total += this.Items[i].products[p] ? 
+                        Number(this.Items[i].products[p].price)
+                        : 0; 
                     }
                 }
 
@@ -268,3 +268,10 @@ export default
     }
 };
 </script>
+<style lang="css">
+    .rtl #side-cart-container
+    {
+        right: auto;
+        left:0;
+    }
+</style>

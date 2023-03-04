@@ -27,7 +27,7 @@ class OrderDevicesRepository
 
 			return $q->with('games');
 
-		}])->find($id);
+		}])->find($id)->toArray();
 
 	}
 

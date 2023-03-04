@@ -631,6 +631,8 @@ class Langs
 		,'COMMISSION' => 'نسبة الخصم'
 		,'END_DATE' => 'تاريخ الإنتهاء'
 		,'START_DATE' => 'تاريخ البدء'
+		,'END_TIME' => 'وقت الإنتهاء'
+		,'START_TIME' => 'وقت   البدء'
 		,'ITEMS_PER_CAT' => 'Items per category page'
 		,'UNIT_WHOLESALE_PRICE' => 'Unit Wholesale Price'
 		,'CUR_STOCK' => 'Current stock'
@@ -921,7 +923,6 @@ class Langs
 		,'Terms and Conditions' => 'شروط الاستخدام'
 		,'Total Amount' => 'القيمة الإجمالية'
 		,'Tax' => 'الضريبة'
-		,'Start time' => 'تاريخ البدء'
 		,'Orders list' => 'قائمة الفواتير'
 		,'Time' => 'الوقت'
 		,'actions' => 'تفاصيل'
@@ -955,7 +956,6 @@ class Langs
 		,'Password required' => 'كلمة المور مطلوبة'
 		,'Email required' => 'البريد الإلكتروني مطلوب'
 		,'Name required' => 'الإسم مطلوب'
-		,'END_TIME' => 'تاريخ الانتهاء'
 		,'remove' => 'حذف'
 		,'PROMO CODE' => 'كود الخصم'
 		,'APPLY' => 'تطبيق'
@@ -1029,8 +1029,8 @@ class Langs
 	{
 		$data = [];
 
-		$data['start'] = Langs::__('Start time');
-		$data['end'] = Langs::__('end time');
+		$data['start'] = Langs::__('START_TIME');
+		$data['end'] = Langs::__('END_TIME');
 		$data['date'] = Langs::__('date');
 		$data['pay'] = Langs::__('PAY_NOW');
 		$data['add_cart'] = Langs::__('ADD_CART');

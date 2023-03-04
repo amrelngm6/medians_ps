@@ -56,7 +56,7 @@
                 </div>
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                     <label class="w-full"  v-text="__('date')"></label>
-                    <input disabled class="w-full" type="date" v-model="modal.date">
+                    <input disabled class="w-full" type="date" v-model="activeItem.date">
                 </div>
                 <div class="w-full flex gap-6 my-2 text-gray-600">
                     <label @click="activeItem.booking_type = 'single';  updateInfo(activeItem)" for="single"  class="cursor-pointer py-2 w-full mx-2 rounded-2xl text-center font-semibold" :class="activeItem.booking_type == 'single' ? 'bg-purple-600 text-white' : ''"   >

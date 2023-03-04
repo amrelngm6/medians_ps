@@ -80,7 +80,7 @@ const VueApp = new Vue(
               view_type: 'day',
               cell_height: 20,
               column_minwidth: 220,
-              animation_speed: 500,
+              animation_speed: 200,
               scrollToNow: true,
               start_day: new Date().toISOString(),
               read_only: false,

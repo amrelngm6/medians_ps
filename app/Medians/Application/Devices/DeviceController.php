@@ -320,7 +320,7 @@ class DeviceController
 		$event->end = $event->end_time;
 		$event->to = $event->end_time;
 		$event->end_time = date('H:i', strtotime(date($event->end)));
-		$event->date = date('Y-m-d', strtotime(date($event->created_at)));
+		$event->date = date('Y-m-d', strtotime(date($event->from)));
 		$event->backgroundColor = '#f56954';
 		$event->borderColor = '#000';
 		$event->display = isset($event->display )? $event->display : 'block';
