@@ -11,7 +11,7 @@
                     <div class="w-full flex mt-10">
                         <div @click="$parent.showConfirm = true" v-if="activeItem.id" class="cursor-pointer absolute left-4 top-4 ">
                             <div class="w-full flex gap gap-4">
-                            <span class="text-lg font-semibold text-red-600 border-red-600 border rounded-lg py-2 px-4" v-text="__('finish')"></span>
+                            <span class="text-base font-semibold text-red-600 border-red-600 border rounded-lg py-2 px-4" v-text="__('finish')"></span>
                             </div>
                         </div>
                         <label class="absolute top-4 right-4 " style="" v-if="activeItem.device" v-text="activeItem.device.title"></label>

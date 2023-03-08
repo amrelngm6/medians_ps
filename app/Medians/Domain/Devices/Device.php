@@ -7,6 +7,7 @@ use Medians\Domain\Prices\Prices;
 use Medians\Domain\Games\Game;
 use Medians\Domain\Orders\OrderDevice;
 use Medians\Domain\Categories\Category;
+use Medians\Domain\Products\Product;
 
 
 class Device extends CustomController
@@ -30,7 +31,7 @@ class Device extends CustomController
 	];
 
 
-	public $appends = ['picture', 'price', 'name'];
+	public $appends = ['picture', 'price', 'name', 'products'];
  
 
  	/**
@@ -118,6 +119,13 @@ class Device extends CustomController
 	public function order()
 	{
 		return  $this->hasOne(OrderDevice::class, 'device_id', 'id')->where('status','active')->where('model', Device::class);
+	}
+
+
+
+	public function getProductsAttribute()
+	{
+		return Product::where('stock', '>', '0')->get();
 	}
 
 
