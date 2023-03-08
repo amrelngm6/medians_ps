@@ -42,7 +42,7 @@
 
 
                 <!-- Applicable products -->
-                <div class="w-full block" v-if="activeItem.id && activeItem.device  && activeItem.device.products && activeItem.device.products.length">
+                <div class="w-full block" v-if="activeItem.id && products && products.length">
                     <calendar_products ref="applicable_products" :item="activeItem" :products="products" ></calendar_products>
                 </div>
 
@@ -98,7 +98,6 @@ export default {
         },
         props: [
             'modal',
-            'products',
         ],
         
         mounted() {
@@ -157,6 +156,7 @@ export default {
                     this.activeItem.start = this.$parent.dateTime(response.start_time);
                     this.activeItem.end = this.$parent.dateTime(response.end_time);
                     this.games = response.device.games;
+                    this.products = response.device.products;
                 })
             },
             addProduct(product)
