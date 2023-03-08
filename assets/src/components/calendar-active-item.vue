@@ -154,8 +154,8 @@ export default {
                 params.append('id',  this.activeItem.id);
                 this.handleRequest(params, '/api').then(response => {
                     this.activeItem = response
-                    this.activeItem.start = this.$parent.dateTime(response.start_time);
-                    this.activeItem.end = this.$parent.dateTime(response.end_time);
+                    this.activeItem.start = response.start_time.slice(11, 16);
+                    this.activeItem.end = response.end_time.slice(11, 16);
                     this.games = response.device.games;
                     this.products = response.device.products;
                 })
