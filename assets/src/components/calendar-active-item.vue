@@ -42,7 +42,7 @@
 
 
                 <!-- Applicable products -->
-                <div class="w-full block" v-if="activeItem.id && products && products.length">
+                <div class="w-full block" v-if="activeItem.id && activeItem.device  && activeItem.device.products && activeItem.device.products.length">
                     <calendar_products ref="applicable_products" :item="activeItem" :products="products" ></calendar_products>
                 </div>
 
