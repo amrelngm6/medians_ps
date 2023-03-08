@@ -288,7 +288,7 @@ class DevicesRepository
 		$newData['end_time'] = $data['to'];
 		$newData['game_id'] = isset($data['game_id']) ? $data['game_id'] : $Object->game_id;
 		$newData['booking_type'] = isset($data['booking_type']) ? $data['booking_type'] : $Object->booking_type;
-		$newData['device_cost'] = ($newData['booking_type'] == 'multi') ? $Device->prices->multi_price : $Device->price->single_price;
+		$newData['device_cost'] = ($newData['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price;
 		$newData['status'] = $data['status'];
 		$newData['date'] = date('Y-m-d');
 		if ($data['status'] == 'completed' && $data['status'] != $Device->status )

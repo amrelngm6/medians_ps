@@ -46,6 +46,7 @@ class OrderDevice extends CustomController
 	public $appends = ['duration', 'duration_time', 'currency', 'subtotal', 'products_subtotal', 'duration_hours','date'];
 
 
+
 	public function getDateAttribute()
 	{
 		return substr($this->created_at, 0, 10);

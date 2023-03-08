@@ -125,7 +125,7 @@ class Device extends CustomController
 
 	public function getProductsAttribute()
 	{
-		return Product::where('stock', '>', '0')->get();
+		return Product::where('stock', '>', '0')->where('status', 'on')->get();
 	}
 
 
