@@ -72,7 +72,7 @@
                     <label @click="$parent.storeInfo(activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary block"  v-text="__('start_playing')"></label>
                 </div>
                 <div v-if="activeItem.id && showUpdate" class="mt-10 w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
-                    <label @click="$parent.submit('Event.update')" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary" v-text="__('update')"></label>
+                    <label @click="$parent.submit('Event.update', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary" v-text="__('update')"></label>
                 </div>
             </div>
 
@@ -93,6 +93,7 @@ export default {
                 showMoreProducts: false,
                 activeItem: {},
                 games: [],
+                products: [],
 
             };
         },
