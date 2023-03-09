@@ -1,6 +1,6 @@
 <?php
 
-$libs = ['Core', 'libxml', 'gd', 'mbstring' 'zlib', 'bcmath'];
+$libs = ['Core', 'libxml', 'gd', 'mbstring', 'zlib', 'bcmath'];
 
 $foundLibs = [];
 
