@@ -8,9 +8,7 @@ use \NoahBuscher\Macaw\Macaw;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-use \Medians\Application as apps;
-
-use \Medians\Infrastructure\Settings\SettingsRepository;
+use Medians\Settings\Infrastructure\SettingsRepository;
 
 
 
@@ -33,7 +31,7 @@ class APP
 	{
 		$this->currentPage = $this->request()->getPathInfo();
 
-		$this->CONF = (new apps\Configuration())->getCONFArray();
+		$this->CONF = (new \config\Configuration())->getCONFArray();
 
 		$this->branch = isset($this->auth()->branch) ? $this->auth()->branch : null;
 
@@ -41,7 +39,7 @@ class APP
 
 	public function Settings()
 	{
-		return  (new apps\Settings\SettingsController())->getAll();
+		return  (new \Medians\Settings\Application\SettingsController())->getAll();
 	}
 
 	public function setting($code)
@@ -51,7 +49,7 @@ class APP
 
 	public function auth()
 	{
-		return (new apps\Auth\AuthService( new \Medians\Infrastructure\Users\UserRepository($this), $this ))->checkSession();
+		return (new \Medians\Auth\Application\AuthService( new \Medians\Users\Infrastructure\UserRepository($this), $this ))->checkSession();
 	}
 
 	public static function request()

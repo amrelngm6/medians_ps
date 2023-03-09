@@ -24,9 +24,8 @@ use Illuminate\Database\DatabaseManager;
 
 
 use Shared\dbaser;
-use Medians\Application as apps;
-use Medians\Infrastructure\Users\UserRepository;
-use Medians\Infrastructure\Customers\CustomerRepository;
+use Medians\Users\Infrastructure\UserRepository;
+use Medians\Customers\Infrastructure\CustomerRepository;
 // use Medians\Infrastructure\Providers\ProviderRepository;
 
 $request = Request::createFromGlobals();
