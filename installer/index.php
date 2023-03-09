@@ -24,7 +24,6 @@ foreach ($libs as $i => $ext)
     <title>Medians setup form</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="//gaming.medianssolutions.com/installer/fonts/material-icon/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="//gaming.medianssolutions.com/installer/vendor/nouislider/nouislider.min.css">
 
     <!-- Main css -->
