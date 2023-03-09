@@ -52,7 +52,7 @@
             return form.valid();
         },
         onFinished: function(event, currentIndex) {
-            alert('Submited');
+            jQuery('#signup-form').submit();
         },
         onStepChanged: function(event, currentIndex, priorIndex) {
 

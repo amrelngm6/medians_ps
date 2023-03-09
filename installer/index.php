@@ -35,7 +35,7 @@ foreach ($libs as $i => $ext)
     <div class="main">
 
         <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="#">
+            <form method="POST" id="signup-form" class="signup-form" action="./install.php">
                 <div>
                     <h3>Check requirements</h3>
                     <fieldset>
