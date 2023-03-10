@@ -1,6 +1,5 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
---
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -17,10 +16,16 @@ CREATE TABLE `branches` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `info` text DEFAULT NULL,
-  `status` varchar(191) NOT NULL
+  `status` varchar(191) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
+
+
+INSERT INTO `branches` (`id`, `name`, `info`, `status`) VALUES
+(1, 'Branch 1', '-', 'on');
 
 --
 -- Table structure for table `branch_users`
@@ -336,6 +341,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `phone`, `password`, `profile_image`, `role_id`, `active_branch`, `active`) VALUES
+(1, 'admin@a.com', 'Admin', 'user', '01023366111', '90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad', '/uploads/images/default_profile.png', 1, 1, 1);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -469,7 +481,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `branches`
 --
 ALTER TABLE `branches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `branch_users`
@@ -571,7 +583,7 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

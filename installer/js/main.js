@@ -1,6 +1,27 @@
 (function($) {
 
+    function submitForm(currentIndex)
+    {
+        var actionurl = $("#signup-form").attr('action');
 
+        let request = $("#signup-form").serialize() + '&step='+currentIndex;
+        return  $.ajax({
+            url: actionurl,
+            type: 'post',
+            dataType: 'json',
+            data: request,
+            error: response => {
+                let data = JSON.parse(response.responseText);
+            },
+            success: response => {
+                if (response.error) 
+                    jQuery('#steps-uid-0-t-'+(currentIndex-1)).click(),alert(response.error)
+                else
+                    return response;
+                // body...
+            }
+        });
+    }
 
     var form = $("#signup-form");
     form.validate({
@@ -29,6 +50,9 @@
             current: ''
         },
         onStepChanging: function(event, currentIndex, newIndex) {
+
+            form.validate().settings.ignore = ":disabled,:hidden";
+
             if (currentIndex === 0) {
                 form.parent().parent().parent().append('<div class="footer footer-' + currentIndex + '"></div>');
             }
@@ -41,10 +65,7 @@
             if (currentIndex === 3) {
                 form.parent().parent().parent().find('.footer').removeClass('footer-2').addClass('footer-' + currentIndex + '');
             }
-            // if(currentIndex === 4) {
-            //     form.parent().parent().parent().append('<div class="footer" style="height:752px;"></div>');
-            // }
-            form.validate().settings.ignore = ":disabled,:hidden";
+
             return form.valid();
         },
         onFinishing: function(event, currentIndex) {
@@ -52,9 +73,10 @@
             return form.valid();
         },
         onFinished: function(event, currentIndex) {
-            jQuery('#signup-form').submit();
+            window.location.href = '../';
         },
         onStepChanged: function(event, currentIndex, priorIndex) {
+            (form.valid() && currentIndex > 1) ? submitForm(currentIndex) : null
 
             return true;
         }

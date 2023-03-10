@@ -1,6 +1,6 @@
 <?php
 
-session_start(); error_reporting(-1);
+session_start(); error_reporting(E_ALL);
 date_default_timezone_set('Africa/Cairo');
 
 file_exists(__DIR__.'/app/config/database.php') ?  require_once __DIR__.'/app/config/database.php' : header('Location: ./installer/index.php');

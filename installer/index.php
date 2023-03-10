@@ -35,7 +35,7 @@ foreach ($libs as $i => $ext)
     <div class="main">
 
         <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="./install.php">
+            <form method="POST"  class="signup-form" id="signup-form" action="./install.php">
                 <div>
                     <h3>Check requirements</h3>
                     <fieldset>
@@ -65,20 +65,28 @@ foreach ($libs as $i => $ext)
                                 </div>
                                 <div class="form-group" >
                                     <label for="db_name" class="form-label">Database name</label>
-                                    <input type="text" required name="db_name" id="db_name" />
+                                    <input type="text" required name="db_name" id="db_name" value="" />
                                 </div>
                             </div>
                             <div class="form-flex">
                                 <div class="form-group">
                                     <label for="db_user" class="form-label">Database user</label>
-                                    <input type="text" required name="db_user" id="db_user" />
+                                    <input type="text" required name="db_user" id="db_user"  value="" />
                                 </div>
                                 <div class="form-group">
                                     <label for="db_password" class="form-label">Database password</label>
-                                    <input type="text" name="db_password" id="db_password" />
+                                    <input type="text" name="db_password" id="db_password" value="" />
                                 </div>
                             </div>
-                            <hr />
+                        </div>
+                    </fieldset>
+
+                    <h3>Account information</h3>
+                    <fieldset>
+                        <h2>Business Account information</h2>
+                        <p class="desc">Make sure your installer folder has been deleted from your directory.</p>
+                        <div class="fieldset-content">
+
                             <h4>Administrator info</h4>
                             <div class="form-group">
                                 <label for="user_name" class="form-label">Admin name</label>
@@ -92,24 +100,20 @@ foreach ($libs as $i => $ext)
                                 <label for="user_password" class="form-label">Admin password</label>
                                 <input type="text"  value="123456" required name="user[password]" id="user_password" />
                             </div>
+                            <hr />
+                            <h4>Main Branch info</h4>
+                            <div class="form-group">
+                                <label for="branch_name" class="form-label">Branh name</label>
+                                <input type="text" value="Medians DDD" required name="branch[name]" id="user_name" />
+                            </div>
                         </div>
                     </fieldset>
 
                     <h3>Finish</h3>
                     <fieldset>
                         <h2>We are finished</h2>
-                        <p class="desc">Set up your money limit to reach the future plan</p>
+                        <p class="desc">Make sure your installer folder has been deleted from your directory.</p>
                         <div class="fieldset-content">
-                            <div class="donate-us">
-                                <div class="price_slider ui-slider ui-slider-horizontal">
-                                    <div id="slider-margin"></div>
-                                    <p class="your-money">
-                                        Your money you can spend per month :
-                                        <span class="money" id="value-lower"></span>
-                                        <span class="money" id="value-upper"></span>
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </fieldset>
                 </div>
@@ -126,7 +130,7 @@ foreach ($libs as $i => $ext)
     <script src="//gaming.medianssolutions.com/installer/vendor/minimalist-picker/dobpicker.js"></script>
     <script src="//gaming.medianssolutions.com/installer/vendor/nouislider/nouislider.min.js"></script>
     <script src="//gaming.medianssolutions.com/installer/vendor/wnumb/wNumb.js"></script>
-    <script src="//gaming.medianssolutions.com/installer/js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
