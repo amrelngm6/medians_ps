@@ -1,7 +1,7 @@
 <template>
     <div class="w-full" >
 
-        <div class="relative w-full h-full" v-if="!showLoader && activeItem">
+        <div class="relative w-full h-full" v-if="!showLoader && activeItem && !activeItem.id">
             
             <!-- Event modal -->
             <div class="top-20 relative mx-auto w-full bg-white p-6 rounded-lg overflow-y-auto" style="max-width: 600px; max-height: 500px;" >
@@ -49,10 +49,10 @@
                     </label>
                 </div>
                 <div v-if="!activeItem.id" class="mt-10 w-32 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
-                    <label @click="$parent.storeInfo(activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary block"  v-text="__('start_playing')"></label>
+                    <label @click="submit('Event.create', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary block"  v-text="__('start_playing')"></label>
                 </div>
-                <div v-if="activeItem.id && $parent.showUpdate" class="mt-10 w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
-                    <label @click="$parent.submit('Event.update', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary" v-text="__('update')"></label>
+                <div v-if="activeItem.id && showUpdate" class="mt-10 w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
+                    <label @click="submit('Event.update', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary" v-text="__('update')"></label>
                 </div>
             </div>
 
@@ -84,7 +84,7 @@ export default {
             if (this.modal)
             {
                 this.activeItem = this.modal;
-                this.$parent.log(this.modal);
+                console.log(this.modal);
                 this.query();
             }
         },
@@ -118,7 +118,7 @@ export default {
             updateInfo(activeItem)
             {
                 this.showLoader = true
-                this.$parent.updateInfo(activeItem)
+                // this.updateInfo(activeItem)
                 this.showLoader = false
             },
 
@@ -133,8 +133,8 @@ export default {
                 params.append('id',  this.activeItem.id);
                 this.handleRequest(params, '/api').then(response => {
                     this.activeItem = response
-                    this.activeItem.start_time = this.$parent.dateTime(response.start_time);
-                    this.activeItem.end_time = this.$parent.dateTime(response.end_time);
+                    this.activeItem.start_time = this.$root.$refs.medians_calendar.dateTime(response.start_time);
+                    this.activeItem.end_time = this.$root.$refs.medians_calendar.dateTime(response.end_time);
                 })
             },
             addProduct(product)
@@ -149,6 +149,26 @@ export default {
                     this.$alert(response)
                 })
             },
+
+            /**
+             * Update event data
+             */
+            submit(type, newitem = null) {
+
+                let item = newitem ? newitem : this.activeItem;
+
+                let request_type = item.id ? 'update' : 'create';
+
+                const params = new URLSearchParams([]);
+                item.start_time = this.current_day+ ' ' +item.start
+                item.end_time = this.current_day+ ' ' +item.end
+                params.append('type', type);
+                params.append('params[event]', JSON.stringify(item));
+                this.handleRequest(params, '/api/'+request_type).then(data => { 
+                    this.$root.$refs.medians_calendar.hidePopup();
+                });
+            },
+
             removeProduct(product)
             {
                 const params = new URLSearchParams([]);
@@ -158,6 +178,7 @@ export default {
                     this.query()
                 })
             },
+
 
             async handleRequest(params, url='/') {
 
@@ -177,7 +198,7 @@ export default {
             },
             __(i)
             {
-                return this.$parent.__(i);
+                return this.$root.langs[i];
             }
         }
     }

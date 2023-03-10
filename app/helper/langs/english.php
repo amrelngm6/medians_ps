@@ -978,6 +978,7 @@ class Langs
 		$data['active'] = Langs::__('active');
 		$data['unpaid'] = Langs::__('unpaid');
 		$data['add_new'] = Langs::__('add new');
+		$data['cancel'] = Langs::__('CANCEL');
 
 		return $data;
 	}

@@ -9,12 +9,12 @@
 
                     <div v-if="activeItem.status == 'paid'"  class="bg-red-200 rounded-md py-2 px-4" role="alert">
                         <strong v-text="__('alert')"></strong> <span v-text="__('order_status_is')"></span> <b class="font-semibold" v-text="__(activeItem.status)"></b>. <a target="_blank" href="javascript:;" @click="openURL('/orders/show/'+activeItem.order_code, '_blank')" ><b v-text="__('show_invoice')"></b></a>
-                        <button @click="$parent.hidePopup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button @click="hidePopup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
                     <div v-if="activeItem.status == 'completed'"  class="bg-yellow-200 rounded-md py-2 px-4" role="alert">
                         <strong v-text="__('alert')"></strong> <span v-text="__('order_status_is')"></span> <b class="font-semibold" v-text="__(activeItem.status)"></b>.
-                        <button @click="$parent.hidePopup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button @click="hidePopup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
                     <div class="w-full block gap-4 py-2 border-b  border-gray-200">
@@ -141,9 +141,35 @@ export default {
         },
         methods: {
 
+            hidePopup(type = true)
+            {
+                this.$root.$refs.medians_calendar.hidePopup(type)
+            },
+
+            
             addToCart(activeItem)
             {
-                this.$parent.addToCart(activeItem)
+                let item = {};
+                this.$root.$refs.medians_calendar.showCart = true;
+                if (activeItem)
+                {
+                    item.id = activeItem.id;
+                    item.device = activeItem.device;
+                    item.price = activeItem.price;
+                    item.duration_time = activeItem.duration_time;
+                    item.duration_hours = activeItem.duration_hours;
+                    item.subtotal = activeItem.subtotal;
+                    item.game = activeItem.game;
+                    item.products = activeItem.products;
+                }
+                // this.$refs.side_cart.showCart = true
+                // this.$parent.showSide = false;
+                this.hidePopup(false);
+                var t = this;
+
+                setTimeout(function () {
+                    t.$refs.side_cart ? t.$refs.side_cart.addToCart(item) : null;
+                }, 1000)
             },
             products_subtotal()
             {
@@ -169,7 +195,6 @@ export default {
                 if (this.products_subtotal())
                 {
                     let productsCost = Number(this.products_subtotal()) ; 
-                    console.log(productsCost)
                     subtotal = (productsCost > 0) ? ( subtotal + productsCost ) : subtotal;
                 }
 
@@ -214,7 +239,6 @@ export default {
                 // Demo json data
                 return await axios.post(url, params.toString()).then(response => 
                 {
-                    console.log(response)
                     if (response.data.status)
                         return response.data.result;
                     else 
@@ -223,7 +247,7 @@ export default {
             }, 
             __(i)
             {
-                return this.$parent.__(i);
+                return this.$root.langs[i];
             }
         }
     }

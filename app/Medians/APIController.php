@@ -144,7 +144,12 @@ class APIController
 			case 'Event.update':
 				$params = (array)  json_decode($request->get('params')['event']);
 				$check = (new DevicesRepository())->updateOrder($params);
-				$return = isset($check->id) ? ['result'=>'Updated'] : ['result'=>'Error'];
+				$return = isset($check->id) ? ['result'=>__('Updated')] : ['result'=>'Error'];
+				break;
+			case 'Event.cancel':
+				$params = (array)  json_decode($request->get('params')['event']);
+				$check = (new DevicesRepository())->cancelOrder($params);
+				$return = isset($check->id) ? ['result'=>__('Updated')] : ['result'=>'Error'];
 				break;
             case 'Settings.update':
                 $return = (new Settings\Application\SettingsController())->update(); 

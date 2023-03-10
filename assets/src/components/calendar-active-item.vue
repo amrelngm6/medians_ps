@@ -1,7 +1,7 @@
 <template>
     <div class="w-full" >
 
-        <div class="relative w-full h-full" v-if="!showLoader && activeItem && !$parent.showConfirm && (!activeItem.status || activeItem.status == 'active')">
+        <div class="relative w-full h-full" v-if="!showLoader && activeItem && !showConfirm && (!activeItem.status || activeItem.status == 'active')">
             
             <!-- Event modal -->
             <div class="top-20 relative mx-auto w-full bg-white p-6 rounded-lg overflow-y-auto" style="max-width: 600px; max-height: 500px;" >
@@ -9,7 +9,7 @@
                 <div class="w-full block gap-4 py-2 border-b  border-gray-200">
                     
                     <div class="w-full flex mt-10">
-                        <div @click="$parent.showConfirm = true" v-if="activeItem.id" class="cursor-pointer absolute left-4 top-4 ">
+                        <div @click="setShowConfirm()" v-if="activeItem.id" class="cursor-pointer absolute left-4 top-4 ">
                             <div class="w-full flex gap gap-4">
                             <span class="text-base font-semibold text-red-600 border-red-600 border rounded-lg py-2 px-4" v-text="__('finish')"></span>
                             </div>
@@ -48,11 +48,11 @@
 
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                     <label class="w-full" v-text="__('start')"></label>
-                    <input @change="updateInfo(activeItem)" class="w-full" type="time" v-model="activeItem.start">
+                    <input @change="updateInfo(activeItem)" class="w-full"  step="900" type="time" v-model="activeItem.start">
                 </div>
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                     <label class="w-full"  v-text="__('end')"></label>
-                    <input @change="updateInfo(activeItem)" :min="activeItem.start" class="w-full" type="time" v-model="activeItem.end">
+                    <input @change="updateInfo(activeItem)" :min="activeItem.start"  step="900" class="w-full" type="time" v-model="activeItem.end">
                 </div>
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                     <label class="w-full"  v-text="__('date')"></label>
@@ -98,6 +98,7 @@ export default {
                 activeItem: {},
                 games: [],
                 products: [],
+                showConfirm:false,
 
             };
         },
@@ -114,6 +115,11 @@ export default {
         },
         methods: {
 
+            setShowConfirm()
+            {
+                this.$root.$refs.medians_calendar.showConfirm = true;
+                this.showConfirm = true
+            },
             products_subtotal()
             {
                 let subtotal = 0;
@@ -204,7 +210,7 @@ export default {
             },
             __(i)
             {
-                return this.$parent.__(i);
+                return this.$root.langs[i];
             }
         }
     }

@@ -304,6 +304,29 @@ class DevicesRepository
     } 
 
 
+    /**
+     * Cancel Order Device
+     */
+    public function cancelOrder($data)
+    {
+		$Object = OrderDevice::find($data['id']);
+
+		$newData = [];
+		if ($data['status'] != 'paid' )
+		{
+			$newData['status'] = 'canceled';
+			
+			// Return the FBUserInfo object with the new data
+	    	$Object->update( (array) $newData);
+		}
+
+
+
+    	return $Object;
+
+    } 
+
+
     /** 
     * Start date
     */
