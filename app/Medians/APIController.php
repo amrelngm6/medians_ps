@@ -4,7 +4,7 @@ namespace Medians;
 
 use Medians\Users\Infrastructure\UserRepository;
 
-use Medians\Orders\Infrastructure\OrderDevicesRepository;
+use Medians\Devices\Infrastructure\OrderDevicesRepository;
 
 use Medians\Devices\Infrastructure\DevicesRepository;
 
@@ -178,9 +178,13 @@ class APIController
 					break;
 
 				case 'Category.delete':
-					return (new Categories\Application\CategoryController())->delete();
+					$return = (new Categories\Application\CategoryController())->delete();
 					break;
 
+				case 'Product.delete':
+					$return = (new Products\Application\ProductController())->delete();
+					break;
+					
 				case 'Game.delete':
 					return response((new Games\Application\GameController())->delete());
 					break;
@@ -189,9 +193,10 @@ class APIController
 					return (new Products\Application\StockController())->delete();
 					break;
 
+
 			}
 
-			return response(json_encode(['status'=>true, 'result'=>$return]));
+			return response(json_encode($return));
 
 		} catch (Exception $e) {
 			throw new Exception("Error Processing Request", 1);

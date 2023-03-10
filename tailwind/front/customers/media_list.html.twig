@@ -1,0 +1,13 @@
+
+                                <div class="-space-x-4">
+                                    {% for projectMedia in mediaItemsArray %}
+                                    {% if loop.index < 4 %}
+                                    <img class="relative z-30 inline object-cover w-12 h-12 border-2 border-white rounded-full" src="{{app.CONF.url}}image?src={{projectMedia.path}}&w=100&h=100" alt="Profile image"/>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% if mediaItemsArray|length > 3 %}
+                                    <span class="text-xl text-dark-800 font-bold pt-2 inline-block text-center relative  z-30  object-cover w-12 h-12 border-2 border-white rounded-full" 
+                                    style="background: rgba(255,255,255,.5); color: #111; line-height: 20px; display: inline-block;" 
+                                    > +{{ (mediaItemsArray|length) - 3 }} </span>
+                                    {% endif %}
+                                </div>

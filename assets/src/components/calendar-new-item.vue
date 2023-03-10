@@ -31,7 +31,7 @@
                 </div>
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                     <label class="w-full"  v-text="__('end')"></label>
-                    <input @change="updateInfo(activeItem)"  class="w-full" type="time" v-model="activeItem.end">
+                    <input @change="updateInfo(activeItem)" :min="activeItem.start" class="w-full" type="time" v-model="activeItem.end">
                 </div>
                 
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">

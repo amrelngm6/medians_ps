@@ -31,7 +31,7 @@ class Device extends CustomController
 	];
 
 
-	public $appends = ['picture', 'price', 'name', 'products'];
+	public $appends = ['picture', 'price', 'name'];
  
 
  	/**
@@ -123,9 +123,9 @@ class Device extends CustomController
 
 
 
-	public function getProductsAttribute()
+	public function products()
 	{
-		return Product::where('stock', '>', '0')->where('status', 'on')->get();
+		return $this->hasMany(Product::class , 'branch_id' , 'branch_id');
 	}
 
 

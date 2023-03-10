@@ -60,17 +60,6 @@ class DeviceController
 	    ]);
 	}
 
-	public function index2() 
-	{
-	    return render('views/admin/devices/calendar2.html.twig', [
-	        'title' => __('Devices list'),
-	        'app' => $this->app,
-	        'products' => $this->productsRepo->getItems(['status'=>true, 'stock'=>true]),
-	        'devicesList' => $this->repo->get(50),
-	        'typesList' => $this->CategoryRepo->categories(Device::class),
-	    ]);
-	}
-
 
 	/**
 	 * Admin index orders
@@ -244,7 +233,7 @@ class DeviceController
 
 			$save = $this->repo->removeProduct($params['id']);
 
-        	return array('status'=>success, 'result'=> $save);
+        	return array('status'=>'success', 'result'=> $save);
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());

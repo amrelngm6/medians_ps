@@ -38,9 +38,6 @@
                                     <th>{{lang.__('Name')}}</th>
                                     <th>{{lang.__('Phone')}}</th>
                                     <th>{{lang.__('Email')}}</th>
-                                    <th>Properties</th>
-                                    <th>Stage</th>
-                                    <th>Source</th>
                                     <th>{{lang.__('actions')}}</th>
                                 </tr>
                             </thead>
@@ -56,14 +53,11 @@
                                     <td>
                                         {{item.id}}
                                     </td>
-                                    <td><a  href="javascript:;" @click="viewModal('lead', {{item.id}})">{{item.name()}}</a> </td>
+                                    <td>{{item.name}}</td>
                                     <td>{{item.phone}}</td>
                                     <td>{{item.email}}</td>
-                                    <td>{{item.properties.length}}</td>
-                                    <td>{{item.stage.name}}</td>
-                                    <td>{{item.Source.name}}</td>
                                     <td>
-                                        {% if item.can('edit_lead', app) %}
+                                        {% if item.can('edit_customer', app) %}
                                         <a href="/customers/edit/{{item.id}}" class="font-bold"> Edit</a>
                                         {% endif %}
                                     </td>

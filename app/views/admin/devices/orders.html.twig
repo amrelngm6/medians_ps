@@ -21,6 +21,8 @@
         <a href="{{app.CONF.url}}devices/calendar" class="w-32 px-3 py-2 text-center rounded-lg bg-gradient-primary text-white">{{lang.__('Add new')}} </a>
     </div>
     <div class="w-full">
+
+        {% if events|length %}
         <div class="card mb-0">
             <div class="card-body">
                 <div class="table-responsive">
@@ -57,6 +59,10 @@
                 </div>
             </div>
         </div>
+
+        {% else %}
+        {% include 'views/admin/includes/nodata.html.twig' %}
+        {% endif %}
     </div>
 </div>
 

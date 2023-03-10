@@ -177,13 +177,14 @@ class ProductController
 	*/
 	public function delete() 
 	{
-		$params = $request->get('params');
+		
+		$this->app = new \config\APP;
+
+		$params = $this->app->request()->get('params');
 
         try {
 
-        	$check = $this->getItem($params['id']);
-
-           	$returnData =  (($app->branchSession->id == $check->branchId) && $this->repo->delete($params['id']))
+           	$returnData =  ($this->repo->delete($params['id']))
            	? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
            	: array('error'=>__('Not allowed'));
 

@@ -1,4 +1,5 @@
 {% include 'views/admin/includes/header.html.twig' %}
+
     <!-- main -->
     <main style="" class=" flex-1 overflow-x-hidden overflow-y-auto px-2 ">
         <!-- today tab 1 -->
@@ -15,7 +16,9 @@
                     
                 <div class="row ">
 
-                {% for device in devicesList %}
+                {% if devicesList|length  %}
+    
+                    {% for device in devicesList %}
                     <div class="col-6 col-sm-4 col-lg-2 {% if device.status == 0 %} opacity-50 {% endif %} ">
                         <div class="album  transform transition duration-400 hover:scale-105">
                             <div class="album__cover {% if device.playing %} active  {% endif %} ">
@@ -34,12 +37,16 @@
                         </div>
                     </div>
                     {% endfor %}
+
+                {% else %}
+                {% include 'views/admin/includes/nodata.html.twig' %}
+                {% endif %}
                 </div>
 
             </div>
             <div class="col-md-3" v-if="showAddSide && !showEditSide">
 
-                {% include 'views/admin/forms/add_device.html.twig' %}
+                {% include 'views/admin/devices/add_device.html.twig' %}
 
             </div>
             <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 "  v-if="showEditSide && !showAddSide ">

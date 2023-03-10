@@ -52,7 +52,7 @@
                 </div>
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                     <label class="w-full"  v-text="__('end')"></label>
-                    <input @change="updateInfo(activeItem)"  class="w-full" type="time" v-model="activeItem.end">
+                    <input @change="updateInfo(activeItem)" :min="activeItem.start" class="w-full" type="time" v-model="activeItem.end">
                 </div>
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                     <label class="w-full"  v-text="__('date')"></label>
@@ -73,6 +73,10 @@
                 </div>
                 <div v-if="activeItem.id && showUpdate" class="mt-10 w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
                     <label @click="$parent.submit('Event.update', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary" v-text="__('update')"></label>
+                </div>
+
+                <div v-if="activeItem.id" class="mt-10 w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
+                    <label @click="$parent.submit('Event.cancel', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary" v-text="__('cancel')"></label>
                 </div>
             </div>
 

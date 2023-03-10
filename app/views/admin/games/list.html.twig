@@ -1,137 +1,123 @@
 {% include 'views/admin/includes/header.html.twig' %}
-    <!-- main -->
-    <main style="" class=" flex-1 overflow-x-hidden overflow-y-auto  ">
-        <div class="py-2 mt-1"></div>
-        <!-- today tab 1 -->
-        <!-- New releases -->
-        <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
-            <h1 class="font-bold text-lg w-full">{{title}}</h1>
-            <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showAddSide = true;">{{lang.__('Add new')}}</a>
-
+<!-- main -->
+<main style="" class=" flex-1 overflow-x-hidden overflow-y-auto  ">
+    <div class="py-2 mt-1"></div>
+    <!-- today tab 1 -->
+    <!-- New releases -->
+    <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
+        <h1 class="font-bold text-lg w-full">{{title}}</h1>
+        <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showAddSide = true;">{{lang.__('Add new')}}</a>
+    </div>
+    <hr class="mt-2" />
+    <div class="w-full flex gap gap-6">
+        <div class="w-full">
+            {% if games|length %}
+            <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
+                <table class="table dark:text-gray-400 text-gray-800 border-separate space-y-6 text-sm w-full">
+                    <thead class="mb-10  text-gray-500 pb-10">
+                        <tr class=" ">
+                            <th class="p-2 text-default w-4 ">#</th>
+                            <th class="p-2 text-default ">{{lang.__('name')}}</th>
+                            <th class="p-2 text-center ">{{lang.__('category')}}</th>
+                            <th class="p-2 text-center ">{{lang.__('connected_devices')}}</th>
+                            <th class="p-2 text-center ">{{lang.__('Action')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for game in games %}
+                        <tr class="dark:bg-gray-800 ">
+                            <td class="p-2 border-1 border-t  border-gray-200">
+                                <div class="flex ">
+                                    <div class="ml-3 text-default">
+                                        <div class="font-medium">{{game.id}}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-2  text-default border-1 border-t  border-gray-200">
+                                <img class="w-8 h-8 rounded inline-block " src="{{game.picture}}"> <span class="px-2"> {{game.name}}</span>
+                            </td>
+                            <td class="p-2 border-1 border-t  border-gray-200">
+                                {{game.cat.name}}
+                            </td>
+                            <td class="p-2 border-1 border-t  border-gray-200">
+                                {{game.devices_count}}
+                            </td>
+                            <td class="p-2 border-1 border-t  border-gray-200">
+                                <a @click="activeItem = null;showEditSide = true; showAddSide = false; activeItem = {{game}};  " class="text-gray-400 hover:text-gray-100  mx-2" href="javascript:;">
+                                    <i class="material-icons-outlined text-base">edit</i>
+                                </a>
+                                {% if game.devices_count < 1 %} <a data-ajax="true" data-confirm="true" data-request-id="{{game.id}}" data-request-type="Game.delete" data-type="post" href="{{app.CONF.url}}api/delete" class="text-gray-400 hover:text-gray-100  ml-2" title="{{lang.__('Remove this game')}}"><i class="material-icons-round text-base">delete_outline</i></a>
+                                    {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            {% else %}
+            {% include 'views/admin/includes/nodata.html.twig' %}
+            {% endif %}
         </div>
-            <hr class="mt-2" />
-        <div class="w-full flex gap gap-6">
-                <div class="w-full">
-                    <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
-                        <table class="table dark:text-gray-400 text-gray-800 border-separate space-y-6 text-sm w-full">
-                            <thead class="mb-10  text-gray-500 pb-10">
-                                <tr class=" ">
-                                    <th class="p-2 text-default w-4 ">#</th>
-                                    <th class="p-2 text-default ">{{lang.__('name')}}</th>
-                                    <th class="p-2 text-center ">{{lang.__('category')}}</th>
-                                    <th class="p-2 text-center ">{{lang.__('connected_devices')}}</th>
-                                    <th class="p-2 text-center ">{{lang.__('Action')}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                {% for game in games %}
-                                <tr class="dark:bg-gray-800 ">
-                                    <td class="p-2 border-1 border-t  border-gray-200">
-                                        <div class="flex ">
-                                            <div class="ml-3 text-default">
-                                                <div class="font-medium">{{game.id}}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2  text-default border-1 border-t  border-gray-200">
-                                        {{game.name}}
-                                    </td>
-                                    <td class="p-2 border-1 border-t  border-gray-200">
-                                        {{game.cat.name}}
-                                    </td>
-                                    <td class="p-2 border-1 border-t  border-gray-200">
-                                        {{game.devices_count}}
-                                    </td>
-                                    <td class="p-2 border-1 border-t  border-gray-200">
-                                        <a @click="activeItem = null;showEditSide = true; showAddSide = false; activeItem = {{game}};  " class="text-gray-400 hover:text-gray-100  mx-2" href="javascript:;">
-                                            <i class="material-icons-outlined text-base">edit</i>
-                                        </a>
-                                        {% if game.devices_count < 1 %}
-                                        <a data-ajax="true" data-confirm="true" data-request-id="{{game.id}}" data-request-type="Game.delete" data-type="post" href="{{app.CONF.url}}api/delete" class="text-gray-400 hover:text-gray-100  ml-2" title="{{lang.__('Remove this game')}}"><i class="material-icons-round text-base">delete_outline</i></a>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-3" v-if="showSide && showAddSide">
-
-                    <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
-
-                        <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
-                            <div class="w-full flex">
-                                <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{lang.__('ADD_NEW_game')}}</h1>
-                                <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><i class="fa fa-close"></i></span>
-                            </div>
-                            <input name="type"  type="hidden" value="Game.create" > 
-                            <input name="params[status]"  type="hidden" value="1" > 
-                            <input name="params[branch_id]"  type="hidden" value="{{app.branch.id}}" > 
-
-                            <span class="block mb-2" v-text="">{{lang.__('name')}}</span>
-                            <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="{{lang.__('name')}}"> 
-
-                            <label class="block mt-3">
-                                <span class="block mb-2" v-text="">{{lang.__('category')}}</span>
-                                <select name="params[category]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
-                                    {% for type in typesList %}
-                                    <option value="{{type.id}}"  {% if game.type == type.id %} selected  {% endif %}>{{type.name}}</option>
-                                    {% endfor %}
-                                </select>
-                            </label>
-                            
-                            <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{lang.__('Save')}}</button>
-                        </form>
-                        
-                    </div>
-
-                </div>
-
-                <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 "  v-if="showSide && showEditSide && !showAddSide ">
+        <div class="col-md-3" v-if="showSide && showAddSide">
+            <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
+                <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
                     <div class="w-full flex">
-                        <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="'{{lang.__('edit_game')}}'"></h1>
-                        <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><i class="fa fa-close"></i></span>
+                        <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{lang.__('ADD_NEW_game')}}</h1>
+                        <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><i class="fa fa-close"></i></span>
                     </div>
-                    <div id="main-forms-container" v-if="activeItem">
-                        <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10" v-if="activeItem && activeItem.id">
-
-                            <input name="type"  type="hidden" value="Game.update" > 
-                            <input name="params[id]"  type="hidden" v-model="activeItem.id" > 
-                            <input name="params[picture]"  type="hidden"  :value="activeItem.file ? activeItem.file : activeItem.photo" > 
-
-                            <span class="block mb-2" v-text="">{{lang.__('name')}}</span>
-                            <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="{{lang.__('game')}}" v-model="activeItem.name"> 
-                            <span class="block my-2" v-text="">{{lang.__('picture')}}</span>
-                            <div v-if="activeItem.photo" class="w-full flex gap gap-6">
-                                <img :src="activeItem.photo" class="w-20" >
-                                <span @click="activeItem.photo = null">{{lang.__('change')}}</span>
-                            </div>
-                            <div v-else-if="!activeItem.photo">
-                                <vue-medialibrary-field api_url="{{app.CONF.url}}" v-model="activeItem.file" ></vue-medialibrary-field>
-                            </div>
-
-                            <label class="block mt-3">
-                                <span class="block mb-2" v-text="">{{lang.__('category')}}</span>
-                                <select v-model="activeItem.category" name="params[category]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
-                                    {% for type in typesList %}
-                                    <option value="{{type.id}}"  >{{type.name}}</option>
-                                    {% endfor %}
-                                </select>
-                            </label>
-                            
-                            <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{lang.__('Update')}}</button>
-                        </form>
-                    
-                        <a v-if="activeItem && activeItem.devices_count < 1" data-ajax="true" data-confirm="true" :data-request-id="activeItem.id" data-request-type="Category.delete" data-type="post" href="{{app.CONF.url}}api/delete" class="uppercase block text-center  pb-1 mt-1 text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white">{{lang.__('Remove this game')}}</a>
-                    </div>
-                </div>
+                    <input name="type" type="hidden" value="Game.create">
+                    <input name="params[status]" type="hidden" value="1">
+                    <input name="params[branch_id]" type="hidden" value="{{app.branch.id}}">
+                    <span class="block mb-2" v-text="">{{lang.__('name')}}</span>
+                    <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="{{lang.__('name')}}">
+                    <label class="block mt-3">
+                        <span class="block mb-2" v-text="">{{lang.__('category')}}</span>
+                        <select name="params[category]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                            {% for type in typesList %}
+                            <option value="{{type.id}}" {% if game.type==type.id %} selected {% endif %}>{{type.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{lang.__('Save')}}</button>
+                </form>
             </div>
         </div>
-        <!-- END New releases -->
-    </main>
-
-
-
+        <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showSide && showEditSide && !showAddSide ">
+            <div class="w-full flex">
+                <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="'{{lang.__('edit_game')}}'"></h1>
+                <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><i class="fa fa-close"></i></span>
+            </div>
+            <div id="main-forms-container" v-if="activeItem">
+                <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10" v-if="activeItem && activeItem.id">
+                    <input name="type" type="hidden" value="Game.update">
+                    <input name="params[id]" type="hidden" v-model="activeItem.id">
+                    <input name="params[picture]" type="hidden" :value="activeItem.file ? activeItem.file : activeItem.photo">
+                    <span class="block mb-2" v-text="">{{lang.__('name')}}</span>
+                    <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="{{lang.__('game')}}" v-model="activeItem.name">
+                    <span class="block my-2" v-text="">{{lang.__('picture')}}</span>
+                    <div v-if="activeItem.photo" class="w-full flex gap gap-6">
+                        <img :src="activeItem.photo" class="w-20">
+                        <span @click="activeItem.photo = null">{{lang.__('change')}}</span>
+                    </div>
+                    <div v-else-if="!activeItem.photo">
+                        <vue-medialibrary-field api_url="{{app.CONF.url}}" v-model="activeItem.file"></vue-medialibrary-field>
+                    </div>
+                    <label class="block mt-3">
+                        <span class="block mb-2" v-text="">{{lang.__('category')}}</span>
+                        <select v-model="activeItem.category" name="params[category]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                            {% for type in typesList %}
+                            <option value="{{type.id}}">{{type.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{lang.__('Update')}}</button>
+                </form>
+                <a v-if="activeItem && activeItem.devices_count < 1" data-ajax="true" data-confirm="true" :data-request-id="activeItem.id" data-request-type="Category.delete" data-type="post" href="{{app.CONF.url}}api/delete" class="uppercase block text-center  pb-1 mt-1 text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white">{{lang.__('Remove this game')}}</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- END New releases -->
+</main>
 {% include 'views/admin/includes/footer.html.twig' %}

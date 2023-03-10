@@ -1003,6 +1003,7 @@ class Langs
 		,'connected_devices' => 'الأجهزة  المرتبطة'
 		,'related_items' => 'الأجهزة  المرتبطة'
 		,'CHECK_DATABASE_CONNECTION' => 'تأكد من بيانات قاعدة البيانات'
+		,'this user not found' => 'هذا المستخدم غير موجود'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
@@ -1071,6 +1072,7 @@ class Langs
 		$data['active'] = Langs::__('active');
 		$data['unpaid'] = Langs::__('unpaid');
 		$data['add_new'] = Langs::__('add new');
+		$data['cancel'] = Langs::__('CANCEL');
 
 		return $data;
 	}

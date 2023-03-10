@@ -115,7 +115,7 @@ class CategoryController
 
             if ($this->repo->delete($params['id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1);
             }
             
 

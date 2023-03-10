@@ -1,0 +1,84 @@
+{% include 'views/includes/header.html.twig' %}
+
+<div class="bg-gray-50">
+    <div class="container">
+
+        <!-- END: Top Bar -->
+        <div class="grid grid-cols-12 gap-6" style="direction:rtl;">
+             <!-- BEGIN: Side Menu -->
+            <!-- END: Side Menu -->
+           <div class="col-span-12 lg:col-span-9 2xl:col-span-10" style="direction:ltr;">
+                <a href="{{app.CONF.url}}editor" class="float-right border-2 border-blue-600 rounded-xl mt-10 pt-2 pb-2 px-6">
+                    {{app.Lang.ADD_NEW}}
+                </a>
+                <h2 class="intro-y text-lg font-medium mt-10">{{app.Lang.PROJECTS}}</h2>
+                <div class="w-full  mt-5 grid grid-cols-12 items-center " >
+                <!-- BEGIN: Users Layout -->
+
+                    {% for project in projects %}
+                    <div class="intro-y my-1  col-span-12 lg:col-span-7 2xl:col-span-9 ">
+                        <a href="{{app.CONF.url}}editor?projectId={{project.id}}" class="relative block overflow-hidden bg-center bg-no-repeat bg-cover  rounded-xl" style="background-image: url({{app.CONF.url}}{{project.ProjectMedia[0].path}})">
+                            <span class="absolute z-10 inline-flex items-center px-3 py-1 text-xs font-semibold text-white bg-black rounded-full  right-4 top-4">
+                                {{project.ProjectMedia|length}}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1.5 text-yellow-300" viewBox="0 0 512 512" fill="currentColor">
+                                    <path d="M31.5,34.5v443h449v-443H31.5z M57.5,61.5h399v316.478l-57.26-99.177L323,146.747l-76.24,132.053l-23.813,41.246 l-0.706-1.223L179.5,244.795l-42.741,74.029L98.264,385.5H57.5V61.5z"/>
+                                <circle cx="139" cy="133" r="40.5"/>
+                                </svg>
+                            </span>
+                            <div class="float-right relative p-8 pt-40 text-white  bg-opacity-40">
+                                {% set mediaItemsArray = project.ProjectMedia %}
+                                {% include 'views/front/customers/media_list.html.twig' %}
+                            </div>
+                            <div class="relative p-8 pt-40 text-white bg-black bg-opacity-40">
+                                <h5 class="text-2xl font-bold text-white">{{project.title}}</h5>
+                                {{project.ProjectMedia|length}} {{app.Lang.MED_ITEMS}}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="intro-y col-span-12 lg:col-span-5 2xl:col-span-3 ">
+                        <div class="mx-4 w-full p-4 bg-white rounded-xl rounded">
+                            This projects is:  <span class="font-bold">{{project.Item.lang_content.value}}</span>
+                        </div>
+                        <div class="mx-4 w-full p-3 px-4 bg-white rounded-xl rounded">
+                            Dimentions:  <span class="font-bold">
+                                {{project.Item.withCustomFields().width}}CM * {{project.Item.withCustomFields().height}}CM 
+                            </span>
+                        </div>
+                        <div class="mx-4 w-full p-3 px-4 bg-white rounded-xl rounded flex">
+                            <div class="w-1/2">
+                                {{app.Lang.SHIPPING_FEES}}:  <span class="font-bold">
+                                    {{ app.Setting.shipping_fees }} 
+                                </span>
+                            </div>
+                            <div class="w-1/2">
+                                {{app.Lang.COST}}:  <span class="font-bold">
+                                    {{ project.cost }} 
+                                    {{ app.Setting.currency }} 
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w-full flex">
+                            <form class="flex-1 mt-6 xl:mt-0 front-form" action="{{app.CONF.url}}cart/add" method="POST">
+                                <input type="hidden" name="type" value="add_to_cart">
+                                <input type="hidden" name="projectId" value="{{project.id}}">
+                                <button type="submit"   class="text-center  block px-4 py-2 my-2 mx-auto border-1 border-blue-500 text-gray-600 font-semibold text-base rounded-xl hover:text-blue-800  transition ease-linear duration-500">{{app.Lang.ADD_CART}}</button>
+                            </form>
+
+                            <form class="flex-end mt-6 xl:mt-0 front-form" action="{{app.CONF.url}}editor" method="POST">
+                                <input type="hidden" name="type" value="Editor.destroyProject">
+                                <input type="hidden" name="projectId" value="{{project.id}}">
+                                <button type="submit" onclick="return confirm('are you sure?')"  class="text-center  block px-4 py-2 my-2 mx-auto border-1 border-blue-500 text-red-600 font-semibold text-base rounded-xl hover:text-blue-800  transition ease-linear duration-500">{{app.Lang.DELETE_PROJECT}}</button>
+                            </form> 
+                        </div>
+
+                    </div>
+                    {% endfor%}
+
+                </div>
+            </div>
+            {% include 'views/front/customers/sidemenu.html.twig' %}
+        </div>
+    </div>
+</div>    
+
+{% include 'views/includes/footer.html.twig' %}

@@ -64,7 +64,6 @@ Macaw::get('/devices/device/(:num)', \Medians\Devices\Application\DeviceControll
 Macaw::get('/devices/manage', \Medians\Devices\Application\DeviceController::class.'@manage');
 Macaw::get('/devices/orders', \Medians\Devices\Application\DeviceController::class.'@orders');
 Macaw::get('/devices/calendar', \Medians\Devices\Application\DeviceController::class.'@index');
-Macaw::get('/devices/calendar2', \Medians\Devices\Application\DeviceController::class.'@index2');
 Macaw::get('/devices/index', \Medians\Devices\Application\DeviceController::class.'@index');
 
 Macaw::get('/devices/categories', function ()  {

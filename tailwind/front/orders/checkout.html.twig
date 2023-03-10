@@ -1,0 +1,196 @@
+{% include 'views/includes/header.html.twig' %}
+<div class="bg-gray-50">
+
+<section>
+  <h1 class="sr-only">{{app.Lang.CHECKOUT}}</h1>
+
+  <div class="relative mx-auto max-w-screen-2xl">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="py-12 bg-gray-50 md:py-24">
+        <div class="max-w-lg px-4 mx-auto lg:px-8">
+          <div class="flex items-center">
+            <span class="w-10 h-10 bg-blue-900 rounded-full"></span>
+
+            <h2 class="ml-4 font-medium">{{app.Customer.name}}</h2>
+          </div>
+
+          <div class="mt-12">
+            <div class="flow-root">
+              <ul class="-my-4 divide-y divide-gray-200">
+
+                {% for cartItem in cart %}
+
+                <li class="flex items-center justify-between py-4">
+                  <div class="flex items-start">
+                    <img
+                      class="flex-shrink-0 object-cover w-16 h-16 rounded-lg"
+                      src="{{app.CONF.url}}image?w=200&src={{cartItem.project.ProjectMedia[0].path}}"
+                      alt=""
+                    />
+
+                    <div class="ml-4">
+                      <p class="text-sm">{{cartItem.project.title}}</p>
+                      <p class="text-sm"></p>
+
+                      <dl class="mt-1 space-y-1 text-xs text-gray-500">
+
+                        <div>
+                          <dt class="inline">Size:</dt>
+                          <dd class="inline">{{cartItem.project.Item.width}} *  {{cartItem.project.Item.height}}</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                  <div>
+
+                            {% set mediaItemsArray = cartItem.project.ProjectMedia %}
+                                <div class="flex text-sm dark:text-white leading-none mt-0 text-gray-800">
+                                    {% include 'views/front/customers/media_list.html.twig' %}
+                                </div>
+                  </div>
+                  <div>
+                    <p class="text-sm">
+                      {{app.Setting.currency}}{{cartItem.project.cost}}
+                      <small class="text-gray-500">x{{cartItem.qty}}</small>
+                    </p>
+                  </div>
+                </li>
+
+                {% endfor %}
+              </ul>
+            </div>
+
+
+            <div class="flex justify-center flex-col md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 ">
+                <div class="flex flex-col py-6  w-full bg-gray-50 dark:bg-gray-800 space-y-6">
+                    <h3 class="text-xl dark:text-white font-semibold leading-5 text-gray-800">Summary</h3>
+                    <div class="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
+                        <div class="flex justify-between w-full">
+                            <p class="text-base dark:text-white leading-4 text-gray-800">Subtotal</p>
+                            <p class="text-base dark:text-gray-300 leading-4 text-gray-600">{{(totalCost) - app.Setting.shipping_fees}}{{app.Setting.currency}}</p>
+                        </div>
+                        <div class="flex justify-between items-center w-full">
+                            <p class="text-base dark:text-white leading-4 text-gray-800">Shipping</p>
+                            <p class="text-base dark:text-gray-300 leading-4 text-gray-600">{{app.Setting.shipping_fees}}{{app.Setting.currency}}</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center w-full">
+                        <p class="text-base dark:text-white font-semibold leading-4 text-gray-800">Total</p>
+                        <p class="text-base dark:text-gray-300 font-semibold leading-4 text-gray-600">{{totalCost}}{{app.Setting.currency}}</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-8 bg-white md:py-14">
+        <div class="max-w-lg px-4 mx-auto lg:px-8">
+          <h3 class="block mb-3 text-xl text-gray-600">
+            {{app.Lang.BILL_INFO}}
+          </h3>
+          <form action="{{app.CONF.url}}order" class="grid grid-cols-6 gap-4 front-form" method="POST" >
+            <input type="hidden" name="type" value="submit_order" >
+            <div class="col-span-3">
+              <label class="block mb-1 text-sm text-gray-600" for="first_name">
+                {{app.Lang.FIRST_NAME}}
+              </label>
+
+              <input
+                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                type="text"
+                name="shipping_info[first_name]"
+                id="frst_name"
+              />
+            </div>
+
+            <div class="col-span-3">
+              <label class="block mb-1 text-sm text-gray-600" for="last_name">
+                {{app.Lang.LAST_NAME}}
+              </label>
+
+              <input
+                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                type="text"
+                name="shipping_info[last_name]"
+                id="last_name"
+              />
+            </div>
+
+            <div class="col-span-6">
+              <label class="block mb-1 text-sm text-gray-600" for="email">
+                {{app.Lang.EMAIL}}
+              </label>
+
+              <input
+                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                type="email"
+                name="shipping_info[email]"
+                id="email"
+              />
+            </div>
+
+            <div class="col-span-6">
+              <label class="block mb-1 text-sm text-gray-600" for="phone">
+                {{app.Lang.PHONE}}
+              </label>
+
+              <input
+                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                type="tel"
+                name="shipping_info[phone]"
+                id="phone"
+              />
+            </div>
+
+            <fieldset class="col-span-6">
+
+              <div class="-space-y-px bg-white rounded-lg shadow-sm">
+                <div>
+
+                    <label class="block mb-1 text-sm text-gray-600" for="city">{{app.Lang.CITY}}</label>
+
+                  <select
+                    class="border-gray-200 relative rounded-t-lg w-full focus:z-10 text-sm p-2.5"
+                    id="city"
+                    name="shipping_info[city]"
+                    autocomplete="city-name"
+                  >
+                    {% for city in cities %}
+                    <option>{{city}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              </div>
+            </fieldset>
+
+            <div class="col-span-6">
+
+                <label class="block mb-1 text-sm text-gray-600" for="address">{{app.Lang.ADDRESS}}</label>
+
+                <input
+                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                name="shipping_info[address]"
+                type="text"
+                id="address"
+                />
+            </div>
+
+            <div class="col-span-6">
+              <button
+                class="rounded-lg bg-black text-sm p-2.5 text-white w-full block"
+                type="submit"
+              >
+                Pay Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+{% include 'views/includes/footer.html.twig' %}

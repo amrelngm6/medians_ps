@@ -25,7 +25,7 @@ class OrderDevicesRepository
 
 		return OrderDevice::with('products','game','user')->with(['device'=>function($q){
 
-			return $q->with('games');
+			return $q->with('games')->with('products');
 
 		}])->find($id)->toArray();
 

@@ -141,12 +141,14 @@ class UserController
 		try {
 
 			$params['branch_id'] = isset($this->app->branch->id) ? $this->app->branch->id : 0;
-			$save = $this->repo->update($params);
+			$update = $this->repo->update($params);
 
-        	return array('status'=>true, 'result'=>__('Updated'));
+        	return isset($update->id) 
+        	? array('status'=>true, 'result'=>__('Updated'))
+        	: array('error'=> $update );
 
         } catch (Exception $e) {
-            return  $e->getMessage();
+            return  ['error' => $e->getMessage()];
         }
 	}
 

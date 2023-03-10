@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(0);
 
 $db = mysqli_connect($_POST['db_host'], $_POST['db_user'], $_POST['db_password'], $_POST['db_name']); 
 
@@ -13,6 +13,13 @@ $installStatus = '';
 
 if ($_POST['step'] == 2)
 {
+
+
+  /** 
+   * This below comment 
+   * Remove all tables 
+   * to start new installation
+   */  
   $db->query('DROP TABLE `branches`, `branch_users`, `categories`, `custom_fields`, `devices`, `discounts`, `games`, `orders`, `order_devices`, `order_device_items`, `order_items`, `payments`, `prices`, `products`, `roles`,`settings`,`stock`, `users`');
 
   $query = file_get_contents("./db.sql"); 
@@ -32,7 +39,7 @@ if ($_POST['step'] == 3)
   UPDATE `users` SET 
   `first_name` =  '$name'
   , `password` = '$pass' 
-  , `email` = '$email' WHERE id = 1";
+  , `email` = '$email' WHERE id = 1 ";
 
   if ($db->query($sql) === TRUE) {
       $installStatus = "Success";
@@ -44,12 +51,11 @@ if ($_POST['step'] == 3)
   $sql = "
   UPDATE `branches` SET 
   `name` =  '$branch_name'
-  WHERE id = 1";
+  WHERE id = 1 ";
   
   $sql2 = "
   INSERT INTO  `settings` 
-  (`id`, `code`, `value`, `branch_id`) VALUES  (1, 'title', '$branch_name', 1)
-  ";
+  (`id`, `code`, `value`, `branch_id`) VALUES  (1, 'sitename', '$branch_name', 1) ";
 
   try {
     
@@ -60,6 +66,7 @@ if ($_POST['step'] == 3)
     } else {
         $installStatus = $db->error . $installStatus;
     }
+    
   } catch (\Exception $e) {
       $installStatus = $e->getMessage();
   }

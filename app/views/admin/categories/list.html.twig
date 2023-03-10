@@ -1,100 +1,90 @@
 {% include 'views/admin/includes/header.html.twig' %}
-    <!-- main -->
-    <main style="" class=" flex-1 overflow-x-hidden overflow-y-auto  ">
-        <div class="py-2 mt-1"></div>
-        <!-- today tab 1 -->
-        <!-- New releases -->
-        <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
-            <h1 class="font-bold text-lg w-full">{{title}}</h1>
-            <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showAddSide = true;">{{lang.__('Add new')}}</a>
+<!-- main -->
+<main style="" class=" flex-1 overflow-x-hidden overflow-y-auto  ">
+    <div class="py-2 mt-1"></div>
+    <!-- today tab 1 -->
+    <!-- New releases -->
+    <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
+        <h1 class="font-bold text-lg w-full">{{title}}</h1>
+        <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showAddSide = true;">{{lang.__('Add new')}}</a>
+    </div>
+    <hr class="mt-2" />
+    <div class="w-full flex gap gap-6">
+        <div class="w-full">
+            {% if categories|length %}
+            <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
 
+                <table class="table dark:text-gray-400 text-gray-800 border-separate space-y-6 text-sm w-full">
+                    <thead class="mb-10  text-gray-500 pb-10">
+                        <tr class=" ">
+                            <th class="p-2 text-default w-4 ">#</th>
+                            <th class="p-2 text-default ">{{lang.__('name')}}</th>
+                            <th class="p-2 text-center ">{{lang.__('REL_ITEMS')}}</th>
+                            <th class="p-2 text-center ">{{lang.__('Status')}}</th>
+                            <th class="p-2 text-center ">{{lang.__('Action')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                        <tr class="dark:bg-gray-800 ">
+                            <td class="p-2 border-1 border-t  border-gray-200">
+                                <div class="flex ">
+                                    <div class="ml-3 text-default">
+                                        <div class="font-medium">{{category.id}}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-2  text-default border-1 border-t  border-gray-200">
+                                {{category.name}}
+                            </td>
+                            <td class="p-2   border-1 border-t  border-gray-200">
+                                {{category.devices_count ? category.devices_count : category.products_count}}
+                            </td>
+                            <td class="p-2 border-1 border-t  border-gray-200">
+                                <span class="bg-red-400 {% if category.status %} bg-green-400 {% endif %}  text-gray-50 rounded-md px-2">{{category.status ? 'on' : 'off'}}</span>
+                            </td>
+                            <td class="p-2 border-1 border-t  border-gray-200">
+                                <a @click="showEditSide = true; showAddSide = false" data-ajax="true" href="{{app.CONF.url}}categories/edit/{{category.id}}" class="text-gray-400 hover:text-gray-100  mx-2">
+                                    <i class="material-icons-outlined text-base">edit</i>
+                                </a>
+                                {% if category.devices_count < 1 %} {% if category.products_count < 1 %} <a data-ajax="true" data-confirm="true" data-request-id="{{category.id}}" data-request-type="Category.delete" data-type="post" href="{{app.CONF.url}}api/delete" class="text-gray-400 hover:text-gray-100  ml-2" title="{{lang.__('Remove this category')}}"><i class="material-icons-round text-base">delete_outline</i></a>
+                                    {% endif %}
+                                    {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            {% include 'views/admin/includes/nodata.html.twig' %}
+            {% endif %}
         </div>
-            <hr class="mt-2" />
-        <div class="w-full flex gap gap-6">
-                <div class="w-full">
-                    <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
-                        <table class="table dark:text-gray-400 text-gray-800 border-separate space-y-6 text-sm w-full">
-                            <thead class="mb-10  text-gray-500 pb-10">
-                                <tr class=" ">
-                                    <th class="p-2 text-default w-4 ">#</th>
-                                    <th class="p-2 text-default ">{{lang.__('name')}}</th>
-                                    <th class="p-2 text-center ">{{lang.__('REL_ITEMS')}}</th>
-                                    <th class="p-2 text-center ">{{lang.__('Status')}}</th>
-                                    <th class="p-2 text-center ">{{lang.__('Action')}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                {% for category in categories %}
-                                <tr class="dark:bg-gray-800 ">
-                                    <td class="p-2 border-1 border-t  border-gray-200">
-                                        <div class="flex ">
-                                            <div class="ml-3 text-default">
-                                                <div class="font-medium">{{category.id}}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2  text-default border-1 border-t  border-gray-200">
-                                        {{category.name}}
-                                    </td>
-                                    <td class="p-2   border-1 border-t  border-gray-200">
-                                        {{category.devices_count ? category.devices_count : category.products_count}}
-                                    </td>
-                                    <td class="p-2 border-1 border-t  border-gray-200">
-                                        <span class="bg-red-400 {% if category.status %} bg-green-400 {% endif %}  text-gray-50 rounded-md px-2">{{category.status ? 'on' : 'off'}}</span>
-                                    </td>
-                                    <td class="p-2 border-1 border-t  border-gray-200">
-                                        <a @click="showEditSide = true; showAddSide = false" data-ajax="true"  href="{{app.CONF.url}}categories/edit/{{category.id}}" class="text-gray-400 hover:text-gray-100  mx-2">
-                                            <i class="material-icons-outlined text-base">edit</i>
-                                        </a>
-                                        {% if category.devices_count < 1  %}
-                                        {% if category.products_count < 1  %}
-                                        <a data-ajax="true" data-confirm="true" data-request-id="{{category.id}}" data-request-type="Category.delete" data-type="post" href="{{app.CONF.url}}api/delete" class="text-gray-400 hover:text-gray-100  ml-2" title="{{lang.__('Remove this category')}}"><i class="material-icons-round text-base">delete_outline</i></a>
-                                        {% endif %}
-                                        {% endif %}
-
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-3" v-if="showAddSide">
-
-                    <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
-
-                        <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
-                            <div class="w-full flex">
-                                <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{lang.__('ADD_NEW_category')}}</h1>
-                                <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><i class="fa fa-close"></i></span>
-                            </div>
-                            <input name="type"  type="hidden" value="Category.create" > 
-                            <input name="params[model]"  type="hidden" value="{{model}}" > 
-                            <input name="params[status]"  type="hidden" value="on" > 
-                            <input name="params[branch_id]"  type="hidden" value="{{app.branch.id}}" > 
-
-                            <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="{{lang.__('name')}}"> 
-
-                            <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{lang.__('Save')}}</button>
-                        </form>
-                        
-                    </div>
-
-                </div>
-
-                <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 "  v-if="showEditSide && !showAddSide ">
+        <div class="col-md-3" v-if="showAddSide">
+            <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
+                <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
                     <div class="w-full flex">
-                        <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="'{{lang.__('edit_category')}}'"></h1>
-                        <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><i class="fa fa-close"></i></span>
+                        <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{lang.__('ADD_NEW_category')}}</h1>
+                        <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><i class="fa fa-close"></i></span>
                     </div>
-                    <div id="main-forms-container"></div>
-                </div>
+                    <input name="type" type="hidden" value="Category.create">
+                    <input name="params[model]" type="hidden" value="{{model}}">
+                    <input name="params[status]" type="hidden" value="on">
+                    <input name="params[branch_id]" type="hidden" value="{{app.branch.id}}">
+                    <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="{{lang.__('name')}}">
+                    <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{lang.__('Save')}}</button>
+                </form>
             </div>
         </div>
-        <!-- END New releases -->
-    </main>
-
-
-
+        <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide && !showAddSide ">
+            <div class="w-full flex">
+                <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="'{{lang.__('edit_category')}}'"></h1>
+                <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><i class="fa fa-close"></i></span>
+            </div>
+            <div id="main-forms-container"></div>
+        </div>
+    </div>
+    </div>
+    <!-- END New releases -->
+</main>
 {% include 'views/admin/includes/footer.html.twig' %}

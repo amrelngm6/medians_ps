@@ -1,0 +1,80 @@
+{% include 'views/includes/header.html.twig' %}
+
+
+
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" ></script>
+
+
+
+	<!-- drawer container -->
+	<div class="fixed h-full w-full z-50 left-0 top-0 hidden">
+	    <!-- overlay -->
+	    <div class="fixed h-full w-full left-0 top-0 bg-black bg-opacity-50 z-[-1]"></div>
+	    <!-- end overlay -->
+
+	    <!-- side -->
+	    <div class="fixed h-full w-72 left-0 top-0 bg-white shadow-lg p-4">Left Drawer</div>
+
+	    <!-- end side -->
+	</div>
+	<!-- end drawer container -->
+
+    <!-- feature section -->
+    <section class="bg-gray-50 pb-6 ">
+
+        <div class="text-center  ">
+			<div id="app"  >
+                <my-component 
+                :size="{{Project.info.size ? Project.info.size : '10-10'}}" 
+                :project="{{Project}}" 
+                :items="{{ITEMS}}"
+                ></my-component>
+            </div>
+        </div>
+
+    </section>
+    <!-- feature section //end -->
+
+
+
+            <section class="py-20 bg-blueGray-50" id="how-we-work">
+                <div class="container">
+                    <div class="text-center  items-center justify-between max-w-2xl lg:max-w-full mb-12">
+                        <div class="lg:pl-16 ">
+                        	
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap justify-between items-center -mx-3 -mb-6 text-center">
+                        {% for item in ITEMS %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+    <script>
+        feather.replace()
+    </script>
+
+
+
+    <!-- ***** All jQuery Plugins ***** -->
+
+	<!-- index.html -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.js"></script>
+	<script type="module">
+		import { createApp } from 'vue'
+		import MyComponent from './app/views/my-component.js'
+		
+		createApp({
+          components: {
+            MyComponent
+          },
+        }).mount('#app')
+	</script>
+
+
+</body>
+</html>

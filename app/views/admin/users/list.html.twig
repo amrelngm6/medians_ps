@@ -41,7 +41,7 @@
                                 {% for item in items %}
                                 <tr class="text-center">
                                     <td>{{item.id}}</td>
-                                    <td> <a href="javascript:;" @click="viewModal('user', {{item.id}})">{{item.name()}} </a></td>
+                                    <td> {{item.name}} </td>
                                     <td>{{item.phone}}</td>
                                     <td>{{item.email}}</td>
                                     <td><a href="/orders/index?created_by={{item.id}}">{{lang.__('Show orders')}}</a> </td>

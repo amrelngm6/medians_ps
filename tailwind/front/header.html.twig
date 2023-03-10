@@ -1,0 +1,35 @@
+{% include 'views/includes/head.html.twig' %}
+
+<body>
+
+
+
+    <!-- home section -->
+    <section class="bg-white pt-10 pb-6 pt-4 border-b border-blue-500 ">
+
+        
+        <div class="container max-w-screen-xl mx-auto px-4">
+
+            <nav class="w-full flex items-center" x-data="{navbarOpen:false}">
+                <div class="w-full flex items-center  lg:mb-0">
+                    <a href="{{app.CONF.url}}"><img src="public/storage/logo.svg" class="w-12" alt="Logo"></a>
+                    <a href="{{app.CONF.url}}" class="text-lg font-semibold px-2">{{app.sitename}}</a>
+                    <button class="<!-- lg:hidden -->  hidden w-10 h-10 ml-auto flex items-center justify-center border border-blue-500 text-blue-500 rounded-md" @click="navbarOpen = !navbarOpen">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+                <div class="w-full lg:w-auto lg:flex  md:items-center text-center md:space-x-6 " :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
+                    {% if app.Customer  %}
+                    <a href="{{app.CONF.url}}customer/profile" class="px-4 py-2 pb-2 bg-blue-500 text-white font-semibold text-lg rounded-xl hover:bg-blue-700 transition ease-in-out duration-500 ">Profile</a>
+                    {% else %}
+                    <a href="{{app.CONF.url}}login" class="px-4 py-2 pb-2 bg-blue-500 text-white font-semibold text-lg rounded-xl hover:bg-blue-700 transition ease-in-out duration-500 ">Login</a>
+                    <a href="{{app.CONF.url}}signup" class="px-4 py-1 pb-2  border-1 border-blue-500 text-blue-500 font-semibold text-lg rounded-xl hover:text-blue-800  transition ease-linear duration-500">Join</a>
+                    {% endif %}
+                </div>
+            </nav>
+
+        </div> <!-- container.// -->
+
+    </section>
+    <!-- home section //end -->
+

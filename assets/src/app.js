@@ -5,23 +5,42 @@
  | Import JS components.
 */
 
-const axios = require('axios').default;
-
+/**
+ * Vue JS
+*/
 import Vue from 'vue';
-import VueSimpleAlert from "vue-simple-alert";
-
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
-// import {Kalendar} from 'kalendar-vue';
-import {Kalendar as medians_calendar}  from 'medians-calendar';
-import PortalVue from "portal-vue";
-
 window.Vue = require('vue');
 
+/**
+ * Sweet alert
+ */ 
+import VueSimpleAlert from "vue-simple-alert";
 Vue.use(VueSimpleAlert);
-Vue.use(PortalVue);
-Vue.use(axios);
 
+/** 
+ * Used for calendar Comonent
+ */ 
+import PortalVue from "portal-vue";
+Vue.use(PortalVue);
+
+
+/**
+ * Axios for http requests
+ */ 
+import axios from 'axios';
+Vue.prototype.$http = axios
+
+/**
+ * Custom component 
+ * for main calendar 
+ */ 
+import {MediansCalendar}  from 'medians-calendar';
+
+/**
+ * Date picker
+ */ 
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
 
 
 /**
@@ -32,7 +51,6 @@ Vue.component('calendar_products_selected', () => import('./components/calendar-
 Vue.component('calendar_active_item', () => import('./components/calendar-active-item.vue'));
 Vue.component('calendar_new_item', () => import('./components/calendar-new-item.vue'));
 Vue.component('calendar_modal', () => import('./components/calendar-booking-modal.vue'));
-Vue.component('calendar_component', () => import('./calendar-component.vue'));
 
 
 
@@ -50,11 +68,8 @@ Vue.component('forms', () => import('./forms.vue'));
 Vue.component('vue-medialibrary-manager', () => import('./components/Manager.vue'));
 Vue.component('vue-medialibrary-field', () => import('./components/Field.vue'));
 
-/**
- * Animate CSS
- */ 
-import VAnimateCss from 'v-animate-css';
-Vue.use(VAnimateCss);
+
+
 
 const VueApp = new Vue(
 {
@@ -73,21 +88,19 @@ const VueApp = new Vue(
             showTab:true,
             activeTab:'step1',
 
-
-
+            // Calendar Settings
             calendar_settings: {
               style: 'material_design',
               view_type: 'day',
               cell_height: 20,
               column_minwidth: 220,
-              animation_speed: 200,
+              animation_speed: 100,
               scrollToNow: true,
               start_day: new Date().toISOString(),
               read_only: false,
               day_starts_at: 0,
               day_ends_at: 24,
               overlap: false,
-              // hide_dates: ['2019-10-31'], // Spooky
               hide_days: [],
               past_event_creation: true
             },
@@ -97,7 +110,7 @@ const VueApp = new Vue(
     components: {
         DatePicker,
         axios,
-        medians_calendar
+        MediansCalendar
     },
     beforeCreate: function() {
 
@@ -118,7 +131,11 @@ const VueApp = new Vue(
             setTimeout(function(){
                t.showTab = true; 
            }, 100)
-        } ,
+        },
+
+        /**
+         * Datepicker Change url handler 
+         */ 
         openPageByDate(url, event)
         {
 
@@ -131,6 +148,10 @@ const VueApp = new Vue(
 
             window.location.href = result;
         },
+
+        /**
+         * Display modal 
+         */ 
         viewModal(element, id)
         {
             jQuery('#modal-details').removeClass('hidden')
@@ -181,6 +202,13 @@ const VueApp = new Vue(
             this.showSide = !this.showSide;
         },  
 
+        
+        /**
+         * Handle POST request
+         * @params URLSearchParams()   
+         * @url String 
+         * and return its response
+         */
         async handleRequest(params, url = '/api') {
 
             // Demo json data
@@ -190,7 +218,12 @@ const VueApp = new Vue(
                     return response.data;
             });
         },
-    
+        
+        /**
+         * Handle Get request
+         * @url String 
+         * and return its response
+         */ 
         async handleGetRequest(url) {
 
             // Demo json data
@@ -203,14 +236,28 @@ const VueApp = new Vue(
             });
         },
 
-        setLangs(langs)
-        {
-            this.langs = langs;
-        },
+
+        /**
+         * Debug console.log 
+         * for Vue components
+         */ 
         log(data)
         {
             console.log(data)
         },
+
+        /**
+         * Used inside the twig files 
+         * To set the language array
+         */ 
+        setLangs(langs)
+        {
+            this.langs = langs;
+        },
+
+        /**
+         * Translate function
+         */ 
         __(i)
         {
             return this.langs[i];

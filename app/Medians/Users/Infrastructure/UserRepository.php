@@ -25,10 +25,7 @@ class UserRepository
 
 	public function checkDuplicate($param)
 	{
-		if (User::where('email', $param['email'])->first())
-		{
-			return __('Email already found');
-		}
+		return $this->validateEmail($param['email']);
 	}
 
 
@@ -68,6 +65,11 @@ class UserRepository
 
 		$Model = new User();
 
+		$validateEmail = $this->validateEmail($data['email']);
+		if ($validateEmail) {
+			return $validateEmail;	
+		}
+
 		$Model = $Model->firstOrCreate($data);
 
     	$Model->update($data);
@@ -86,18 +88,46 @@ class UserRepository
 	*/
 	public function update($data) 
 	{
-		$Object = User::find($data['id']);
-		
-		if ($Object)
-		{
+		try {
+			
+			$Object = User::find($data['id']);
+			
+			if (!$Object) {
+				return __('this user not found');	
+			}
+
+			$validateEmail = $this->validateEmail($data['email'], $Object->id);
+			if ($validateEmail) {
+				return $validateEmail;	
+			}
+
 			// Return the FBUserInfo object with the new data
 	    	$Object->update( (array) $data);
 	    	
 	    	$data['id'] = $Object->id;
 	    	$this->checkUpdatePassword($data);
+
+    		return $Object;	
+
+		} catch (\Exception $e) {
+			return $e->getMessage();
+		}
+	}
+
+	/**
+	* validate Email 
+	*/
+	public function validateEmail($email, $id = 0) 
+	{
+		if (!empty($email))
+		{
+			$check = User::where('email', $email)->where('id', '!=', $id)->first();
 		}
 
-    	return $Object;	
+		if (isset($check->id) && $check->id != $id)
+		{
+			return __('EMAIL_FOUND');
+		}
 	}
 
 	/**

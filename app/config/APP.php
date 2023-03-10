@@ -100,7 +100,7 @@ class APP
 			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard'),
 			array('title'=>__('Bookings'),  'icon'=>'fa-calendar', 'link'=>'', 'sub'=>
 				[
-					array('title'=>__('Calendar'),  'icon'=>'fa-dashboard', 'link'=>'devices/calendar2'),
+					array('title'=>__('Calendar'),  'icon'=>'fa-dashboard', 'link'=>'devices/calendar'),
 	                array('title'=>__('All bookings'),  'icon'=>'fa-dashboard', 'link'=>'devices/orders'),
 	                array('title'=>__('Active bookings'),  'icon'=>'fa-dashboard', 'link'=>'devices/orders?status=active'),
 	                array('title'=>__('Completed bookings'),  'icon'=>'fa-dashboard', 'link'=>'devices/orders?status=completed'),

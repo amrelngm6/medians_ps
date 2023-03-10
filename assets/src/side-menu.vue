@@ -36,11 +36,9 @@ export default {
     methods: {
         dropList(i=0)
         {
-            console.log(i)
             this.showMenu = false;
             this.pages[i].show_sub = this.pages[i].show_sub ? false : true;
             this.showMenu = true;
-            // this.checkMenu(i);
         },
         currentMenu(menu, index)
         {
@@ -61,10 +59,6 @@ export default {
             }
             return false
         },
-        checkMenu(i)
-        {
-            // return this.pages[i].show_sub ? true : false;
-        }
     }
 };
 </script>

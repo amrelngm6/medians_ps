@@ -247,8 +247,8 @@ class DevicesRepository
     	// print_r($data);
     	// return null;
 		$Device = Device::with('prices')->find($data['device_id']);
-		$data['start_time'] = $data['date'].' '.$data['start'];
-		$data['end_time'] = $data['date'].' '.(isset($data['end']) ? $data['end'] : '00:00');
+		$data['start_time'] = $this->getStartTime($data);
+		$data['end_time'] = $this->getEndTime($data);
 		$data['game_id'] = isset($data['game_id']) ? $data['game_id'] : 0;
 		$data['branch_id'] = $this->app->branch->id;
 		$data['device_id'] = $Device->id;
@@ -282,8 +282,8 @@ class DevicesRepository
 		$date = date('Y-m-d', strtotime(date($Object->created_at)));
 
 		$newData = [];
-		$newData['start_time'] = $data['from'];
-		$newData['end_time'] = $data['to'];
+		$newData['start_time'] = $this->getStartTime($data);
+		$newData['end_time'] = $this->getEndTime($data);
 		$newData['game_id'] = isset($data['game_id']) ? $data['game_id'] : $Object->game_id;
 		$newData['booking_type'] = isset($data['booking_type']) ? $data['booking_type'] : $Object->booking_type;
 		$newData['device_cost'] = ($newData['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price;
@@ -303,6 +303,29 @@ class DevicesRepository
 
     } 
 
+
+    /** 
+    * Start date
+    */
+    public function getStartTime($params)
+    {
+    	return isset($params['from'])
+    	? $params['from']
+    	: $params['date'].' '.$params['start'];
+
+    } 
+
+
+    /** 
+    * End date
+    */
+    public function getEndTime($params)
+    {
+    	return isset($params['to'])
+    	? $params['to']
+    	: $params['date'].' '.$params['end'];
+
+    } 
 
 
     /**
