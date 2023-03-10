@@ -1,5 +1,5 @@
 <template>
-    <ul   v-if="showMenu">
+    <ul   v-if="showMenu" class="overflow-y-auto" style="max-height: calc(100vh - 170px);">
         <li v-for="(menu, i) in pages">
             <a @click="dropList(i)" class="w-full font-thin uppercase flex items-center p-4 my-2 transition-colors duration-200 justify-start text-gray-500 dark:text-gray-200  dark:from-gray-700 dark:to-gray-800 " :class="currentMenu(menu, i) ? 'hover:text-blue-800 bg-gradient-to-r from-white  text-blue-500  border-blue-500 to-blue-100  border-r-4' : ''" :href="menu.link ? (url + menu.link) : 'javascript:;'">
                 <span class="text-left">
