@@ -1,6 +1,5 @@
 let mix = require('webpack-mix');
 
-
 mix
 .js('assets/src/alertify/alertify.min.js', 'assets/dist/')
 .js('assets/src/app.js', 'assets/dist/')
@@ -10,6 +9,6 @@ mix
 
 mix.webpackConfig({
     output:{
-        chunkFilename:'assets/src/vuejs_code_split/[name].js',
+        chunkFilename:'assets/dist/vuejs_code_split/[name].js',
     }
 })
