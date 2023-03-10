@@ -37,7 +37,38 @@ span > svg {
 {
   height: calc(100vh - 32px);
 }
-
+      
+body .canceled 
+{
+  background: rgba(255,0,10, .5);
+}
+body .event-card {
+  z-index: 99;
+}
+body .event-card.canceled { 
+  z-index: 0;
+}      
+body span,
+body div,
+body tr, body td, body th,
+body h1,  body h2, body h4, body h5,
+body a,
+body p {
+    font-family: 'Cairo' !important;
+}
+body label {
+    font-weight: 600;
+}
+body th, body td { text-align:center }
+.bg-orange{
+  background: #fc5a03;
+}
+.text-orange{
+  color: #fc5a03;
+}
+.border-orange{
+  border-color: #fc5a03;
+}
 
 /*==============================
   Footer Main Player
@@ -607,27 +638,6 @@ body .media-library  {
     right: 0;
     margin: 0 auto;
     top: z0px;
-}
-        body span,
-        body div,
-        body tr, body td, body th,
-        body h1,  body h2, body h4, body h5,
-        body a,
-        body p {
-            font-family: 'Cairo' !important;
-        }
-        body label {
-            font-weight: 600;
-        }
-        body th, body td { text-align:center }
-        .bg-orange{
-  background: #fc5a03;
-}
-.text-orange{
-  color: #fc5a03;
-}
-.border-orange{
-  border-color: #fc5a03;
 }
 
 .ltr .mainmenu-close

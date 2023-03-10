@@ -979,6 +979,7 @@ class Langs
 		$data['unpaid'] = Langs::__('unpaid');
 		$data['add_new'] = Langs::__('add new');
 		$data['cancel'] = Langs::__('CANCEL');
+		$data['this_is_canceled_event'] = Langs::__('This is canceled event');
 
 		return $data;
 	}
