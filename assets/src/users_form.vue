@@ -190,7 +190,7 @@ export default
             params.append('params[user][active]', this.activeItem.active ? this.activeItem.active : 0);
             params.append('params[user][profile_image]', this.activeItem.file ? this.activeItem.file : this.activeItem.profile_image);
             this.handleRequest(params, '/api/'+type).then(data => { 
-                this.$alert(data.result);
+                this.$alert(data.result ? data.result : data.error);
                 if (data.reload)
                 {
                     window.location.reload();
