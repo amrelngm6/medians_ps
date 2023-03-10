@@ -14,7 +14,7 @@
                             <div class="settings-form">
                                 <input name="type" type="hidden" value="Settings.update">
                                 <label class="block py-3" >
-                                    <input name="params[settings][logo]" type="hidden" :value="activeItem.file ? activeItem.file : '{{ app.Settings.logo }}'">
+                                    <input name="params[settings][logo]" type="hidden" :value="activeItem && activeItem.file ? activeItem.file : '{{ app.Settings.logo }}'">
                                     <div class="w-full flex gap gap-2">
                                         <span class="text-gray-700 w-20">{{lang.__('Logo')}} <span class="star-red">*</span></span>
                                         <div v-if="'{{ app.Settings.logo }}' && !activeItem" class="w-full flex gap gap-6">
