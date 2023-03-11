@@ -58,4 +58,9 @@ class Stock extends CustomController
 		return $this->hasOne(User::class, 'id', 'created_by');
 	}
 
+	public function invoice()
+	{
+		return $this->hasOne(\Medians\Orders\Domain\Order::class, 'id', 'model_id');
+	} 
+
 }

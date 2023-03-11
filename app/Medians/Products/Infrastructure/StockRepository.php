@@ -35,7 +35,7 @@ class StockRepository
 	*/
 	public function get($params = null) 
 	{
-		$query =  Stock::with('user', 'product')
+		$query =  Stock::with('user', 'product', 'invoice')
 
 		->where('branch_id', $this->app->branch->id);
 

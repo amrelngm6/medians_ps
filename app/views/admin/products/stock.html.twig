@@ -24,6 +24,7 @@
                                     <th class="p-2 ">{{lang.__('Type')}}</th>
                                     <th class="p-2 ">{{lang.__('date')}}</th>
                                     <th class="p-2 ">{{lang.__('By')}}</th>
+                                    <th class="p-2 ">{{lang.__('Invoice')}}</th>
                                     <th class="p-2 ">{{lang.__('Action')}}</th>
                                 </tr>
                             </thead>
@@ -50,6 +51,9 @@
                                     </td>
                                     <td class="p-2 border-1 border-t  border-gray-200">
                                         {{stock.user.name}}
+                                    </td>
+                                    <td class="p-2 border-1 border-t  border-gray-200">
+                                        <a target="_blank" href="{{app.CONF.url}}orders/show/{{stock.invoice.code}}">{{lang.__('Invoice')}}</a>
                                     </td>
                                     <td class="p-2  border-1 border-t  border-gray-200">
                                         <!-- <a href="{{app.CONF.url}}stock/{{stock.id}}" class="text-gray-400 hover:text-gray-100  mx-2">

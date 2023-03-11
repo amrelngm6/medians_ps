@@ -118,15 +118,11 @@ class APP
 	            [
 	                array('title'=>__('Products list'),  'icon'=>'fa-dashboard', 'link'=>'products/index'),
 	                array('title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'products/categories'),
-	            ]
-	        ),
-	        array('title'=>__('Stock'),  'icon'=>'fa-warehouse', 'link'=>'', 'sub'=>
-	            [
-	                array('title'=>__('Stock log'),  'icon'=>'fa-dashboard', 'link'=>'stock/index'),
 	                array('title'=>__('Stock alert products'),  'icon'=>'fa-dashboard', 'link'=>'products/stock_alert'),
 	                array('title'=>__('Stock out products'),  'icon'=>'fa-dashboard', 'link'=>'products/stock_out'),
 	            ]
 	        ),
+	        array('title'=>__('Stock'),  'icon'=>'fa-warehouse', 'link'=>'stock/index'),
 	        array('title'=>__('Orders'),  'icon'=>'fa-file-invoice', 'link'=>'', 'sub'=>
 	            [
 	                array('title'=>__('Orders'),  'icon'=>'fa-dashboard', 'link'=>'orders/index'),

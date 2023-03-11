@@ -24,14 +24,16 @@ class StockController
 	{	
 		$this->app = new \config\APP;
 
+		$request = $this->app->request();
+
 		$params = [];
-    	$params['start'] = $this->app->request()->get('start') ? date('Y-m-d', strtotime(date($this->app->request()->get('start')))) : date('Y-m-d');
-    	$params['end'] = ($this->app->request()->get('end') && $this->app->request()->get('start')) ? date('Y-m-d', strtotime(date($this->app->request()->get('end')))) : date('Y-m-d');
-    	$params['created_by'] = $this->app->request()->get('created_by') ? $this->app->request()->get('created_by') : null;
-    	$params['status'] = $this->app->request()->get('status') ? $this->app->request()->get('status') : null;
-    	$params['product'] = $this->app->request()->get('product') ? $this->app->request()->get('product') : null;
-    	$params['by'] = $this->app->request()->get('by') ? $this->app->request()->get('by') : null;
-    	$params['type'] = $this->app->request()->get('type') ? $this->app->request()->get('type') : null;
+    	$params['created_by'] = $request->get('created_by');
+    	$params['status'] = $request->get('status');
+    	$params['product'] = $request->get('product');
+    	$params['by'] = $request->get('by');
+    	$params['type'] = $request->get('type');
+    	$params['start'] = $request->get('start') ? date('Y-m-d', strtotime(date($request->get('start')))) : date('Y-m-d');
+    	$params['end'] = ($request->get('end') && $request->get('start')) ? date('Y-m-d',strtotime(date($request->get('end')))) : date('Y-m-d');
 
 	    return render('views/admin/products/stock.html.twig', [
 	        'title' => __('Products Stock'),
