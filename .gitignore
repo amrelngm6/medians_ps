@@ -1,5 +1,7 @@
 /node_modules
 /vendor
+/uploads/images
+/uploads/files
 /app/config/database.php
 .env
 cookie.txt
