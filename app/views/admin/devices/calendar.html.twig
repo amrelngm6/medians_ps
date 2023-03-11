@@ -2,16 +2,13 @@
 <div class=" w-full overflow-y-auto h-full">
     <div class="w-full">
         <div class="px-2">
-            
 
             {% if devicesList|length > 0 %}
-            <medians-calendar
-            ref="medians_calendar"
-            :configuration="calendar_settings"
-            :events="[]"
+            <calendar
+            ref="calendar"
             :settings="{{app.Settings | json_encode}}"
             :devices="{{devicesList|json_encode}}"
-            ></medians-calendar>
+            ></calendar>
 
 
 <!-- 

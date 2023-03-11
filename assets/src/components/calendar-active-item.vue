@@ -76,7 +76,7 @@
                 </div>
 
                 <div v-if="activeItem.id" class="mt-10 w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
-                    <label @click="$parent.submit('Event.cancel', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary" v-text="__('cancel')"></label>
+                    <label @click="$parent.submit('Event.cancel', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-red-600 text-white" v-text="__('cancel')"></label>
                 </div>
             </div>
 
@@ -117,7 +117,7 @@ export default {
 
             setShowConfirm()
             {
-                this.$root.$refs.medians_calendar.showConfirm = true;
+                this.$parent.showConfirm = true;
                 this.showConfirm = true
             },
             products_subtotal()

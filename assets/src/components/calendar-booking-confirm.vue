@@ -1,21 +1,12 @@
 <template>
     <div class="container calendar">
 
-        <div class="relative w-full h-full" v-if="activeItem && activeItem.status && (activeItem.status == 'completed' || activeItem.status == 'paid') ">
+        <div class="relative w-full h-full" v-if="activeItem && activeItem.status == 'active'">
 
-            <div class="top-20 relative mx-auto w-full bg-white p-6 rounded-lg overflow-y-auto" style="max-width: 600px; " v-if="showPopup" >
+            <div class="top-20 relative mx-auto w-full bg-white p-6 rounded-lg overflow-y-auto" style="max-width: 600px;">
 
                 <div class="w-full  mt-2 mb-4 pt-2 pb-6" style="max-height: 500px;" >
 
-                    <div v-if="activeItem.status == 'paid'"  class="bg-red-200 rounded-md py-2 px-4" role="alert">
-                        <strong v-text="__('alert')"></strong> <span v-text="__('order_status_is')"></span> <b class="font-semibold" v-text="__(activeItem.status)"></b>. <a target="_blank" href="javascript:;" @click="openURL('/orders/show/'+activeItem.order_code, '_blank')" ><b v-text="__('show_invoice')"></b></a>
-                        <button @click="hidePopup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    <div v-if="activeItem.status == 'completed'"  class="bg-yellow-200 rounded-md py-2 px-4" role="alert">
-                        <strong v-text="__('alert')"></strong> <span v-text="__('order_status_is')"></span> <b class="font-semibold" v-text="__(activeItem.status)"></b>.
-                        <button @click="hidePopup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
 
                     <div class="w-full block gap-4 py-2 border-b  border-gray-200">
                         <label class="w-full mt-10 " v-text="__('game')"></label>
@@ -64,12 +55,6 @@
                         <calendar_products_selected ref="selected_products" :item="activeItem"  ></calendar_products_selected>
                     </div>
 
-                    <!-- Applicable products -->
-                    <div class="w-full block" v-if="products && products.length">
-                        <calendar_products ref="applicable_products" :item="activeItem" :products="products" ></calendar_products>
-                    </div>
-
-                    <span class=" text-md font-semibold w-full block py-4" v-text="__('duration')"></span>
 
                     <div class="w-full flex gap-4 gap  text-md  pb-2">
                         
@@ -86,7 +71,6 @@
                             <span class="w-full   text-red-600  block" v-text='activeItem.date'></span>
                         </div>
                     </div>
-                    <span class="text-md font-semibold w-full block py-4" v-text="__('information')"></span>
                     <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                         <label class="w-full text-gray-400"  v-text="__('type')"></label>
                         <span class="w-full text-md p-2 text-red-600 font-semibold" v-text="activeItem.booking_type"></span>
@@ -100,11 +84,18 @@
                         </span>
                     </div>
 
-                    <div class="w-full flex gap-6 my-2 text-gray-600 pb-6" v-if="!activeItem.order_code && activeItem.status == 'completed'">
-                        <label @click="addToCart(activeItem) " class="cursor-pointer py-2 w-full mx-2 rounded-2xl text-center font-semibold bg-purple-600 text-white" >
-                            <span  v-text="__('pay')" ></span>
-                        </label>
+                    <!-- Confirm overlay -->
+                    <div class="relative mx-auto w-full bg-white px-6 rounded-lg" style="max-width:600px;z-index:99;">
+                        <div class="bg-blue-200 rounded-md py-2 px-4" role="alert">
+                            <strong v-text="__('confirm')"></strong> <span v-text="__('confirm_complete_booking')"></span> 
+                            <button @click="showConfirm = false" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <div  class="my-2 cursor-pointer w-full text-white  font-semibold py-2 border-b border-gray-200">
+                            <label @click="activeItem.status = 'completed'; $parent.submit('Event.update', activeItem); addToCart(activeItem)" class="w-32 mx-auto py-2 rounded-lg bg-gradient-primary block text-center cursor-pointer" v-text="__('confirm')"></label>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
@@ -180,39 +171,7 @@ export default {
 
                 return subtotal
             },
-            /**
-             * Open url in new tab
-             */
-            openURL(url, type = '_blank')
-            {
-                window.open(url, type)
-            },
 
-            query()
-            {
-                const params = new URLSearchParams([]);
-                params.append('type', 'OrderDevice');
-                params.append('model', 'OrderDevice');
-                params.append('id',  this.activeItem.id);
-                this.showSelectedProducts = false
-                this.handleRequest(params, '/api').then(response => {
-                    this.activeItem = response
-                    this.showSelectedProducts = true
-                })
-            },
-
-            loadProducts()
-            {
-                const params = new URLSearchParams([]);
-                params.append('type', 'Products');
-                params.append('model', 'Products');
-                params.append('id',  this.activeItem.id);
-                this.showSelectedProducts = false
-                this.handleRequest(params, '/api').then(response => {
-                    this.products = response
-                    this.showSelectedProducts = true
-                })
-            },
 
             async handleRequest(params, url='/') {
 

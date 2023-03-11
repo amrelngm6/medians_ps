@@ -145,7 +145,6 @@ export default
          */
         addToCart(item)
         {
-            console.log(item)
             this.checkDuplicate(item);
             this.subtotal()
         } ,
@@ -189,7 +188,6 @@ export default
                         : 0; 
                     }
                 }
-
             }
             return this.sub_total.toFixed(2)
         },
@@ -205,35 +203,11 @@ export default
                 this.$alert(response)
                 this.Items = []
                 this.$parent.reloadEvents()
+                this.$parent.hidePopup()
             });
 
         },
 
-        query(id)
-        {
-
-            const params = new URLSearchParams([]);
-            params.append('type', 'OrderDevice');
-            params.append('model', 'OrderDevice');
-            params.append('id',  id);
-            this.showPopup = false
-            this.handleRequest(params, '/api').then(response => {
-                this.addToCart(response)
-                this.showPopup = true
-            })
-            this.showPopup = true
-        },
-        removeProduct(product, i = 0)
-        {
-            this.showLoader = true;
-            const params = new URLSearchParams([]);
-            params.append('type', 'OrderDevice.removeProduct');
-            params.append('params[product]', JSON.stringify(product));
-            this.handleRequest(params, '/api/delete').then(response => {
-                this.showLoader = false;
-                this.query(this.Items[i].id, i)
-            })
-        },
         async handleRequest(params, url = '/api') {
 
             // Demo json data

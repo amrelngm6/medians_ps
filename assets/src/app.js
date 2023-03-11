@@ -42,6 +42,8 @@ import {MediansCalendar}  from 'medians-calendar';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 
+import moment from 'moment';
+
 
 /**
  * Calendar components
@@ -51,6 +53,8 @@ Vue.component('calendar_products_selected', () => import('./components/calendar-
 Vue.component('calendar_active_item', () => import('./components/calendar-active-item.vue'));
 Vue.component('calendar_new_item', () => import('./components/calendar-new-item.vue'));
 Vue.component('calendar_modal', () => import('./components/calendar-booking-modal.vue'));
+Vue.component('calendar_booking_confirm', () => import('./components/calendar-booking-confirm.vue'));
+Vue.component('calendar', () => import('./components/calendar.vue'));
 
 
 
@@ -88,26 +92,11 @@ const VueApp = new Vue(
             showTab:true,
             activeTab:'step1',
 
-            // Calendar Settings
-            calendar_settings: {
-              style: 'material_design',
-              view_type: 'day',
-              cell_height: 20,
-              column_minwidth: 220,
-              animation_speed: 100,
-              scrollToNow: true,
-              start_day: new Date().toISOString(),
-              read_only: false,
-              day_starts_at: 0,
-              day_ends_at: 24,
-              overlap: false,
-              hide_days: [],
-              past_event_creation: true
-            },
         };
     },
 
     components: {
+        moment,
         DatePicker,
         axios,
         MediansCalendar

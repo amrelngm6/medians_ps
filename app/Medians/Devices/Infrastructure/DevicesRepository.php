@@ -277,7 +277,7 @@ class DevicesRepository
     {
 		$Object = OrderDevice::find($data['id']);
 
-		$Device = Device::with('prices')->find($Object->device_id);
+		$Device = Device::with('prices')->find(isset($data['device_id']) ? $data['device_id']:$Object->device_id);
 
 		$date = date('Y-m-d', strtotime(date($Object->created_at)));
 
@@ -288,12 +288,13 @@ class DevicesRepository
 		$newData['booking_type'] = isset($data['booking_type']) ? $data['booking_type'] : $Object->booking_type;
 		$newData['device_cost'] = ($newData['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price;
 		$newData['status'] = $data['status'];
+		$newData['device_id'] = $data['device_id'];
 		$newData['date'] = date('Y-m-d');
-		if ($data['status'] == 'completed' && $data['status'] != $Device->status )
-		{
-			$bookingDay = date('Ymd', strtotime($data['startStr']));
-			$newData['end_time'] = (date('Ymd') > $bookingDay) ? date('Y-m-d 23:59:59', strtotime($data['startStr'])) : ( date('Hi') > date('Hi', strtotime($data['to'])) ? $data['to'] : date('Y-m-d H:i:s') );
-		}
+		// if ($data['status'] == 'completed' && $data['status'] != $Device->status )
+		// {
+		// 	$bookingDay = date('Ymd', strtotime($data['startStr']));
+		// 	$newData['end_time'] = (date('Ymd') > $bookingDay) ? date('Y-m-d 23:59:59', strtotime($data['startStr'])) : ( date('Hi') > date('Hi', strtotime($data['to'])) ? $data['to'] : date('Y-m-d H:i:s') );
+		// }
 
 
 		// Return the FBUserInfo object with the new data
@@ -315,7 +316,7 @@ class DevicesRepository
 		if ($data['status'] != 'paid' )
 		{
 			$newData['status'] = 'canceled';
-			
+
 			// Return the FBUserInfo object with the new data
 	    	$Object->update( (array) $newData);
 		}

@@ -69,14 +69,12 @@ export default {
         return {
                 
                 showLoader: false,
-                showMoreProducts: false,
                 activeItem: {},
 
             };
         },
         props: [
             'modal',
-            'products',
             'games'
         ],
         
@@ -85,35 +83,9 @@ export default {
             {
                 this.activeItem = this.modal;
                 console.log(this.modal);
-                this.query();
             }
         },
         methods: {
-
-            products_subtotal()
-            {
-                let subtotal = 0;
-
-                if (this.activeItem.products)
-                {
-                    for (var i = this.activeItem.products.length - 1; i >= 0; i--) {
-                        if (this.activeItem.products[i])
-                        {
-                            subtotal =   (Number(this.activeItem.products[i].subtotal) + Number(subtotal));
-                        }
-                    }
-                }
-                return subtotal;
-            },
-
-
-            /**
-             * View more products
-             */
-            viwMoreProducts()
-            {
-                this.showMoreProducts = !this.showMoreProducts;
-            },
 
             updateInfo(activeItem)
             {
@@ -122,33 +94,6 @@ export default {
                 this.showLoader = false
             },
 
-            query()
-            {
-                if (!this.activeItem.id)
-                    return this;
-
-                const params = new URLSearchParams([]);
-                params.append('type', 'OrderDevice');
-                params.append('model', 'OrderDevice');
-                params.append('id',  this.activeItem.id);
-                this.handleRequest(params, '/api').then(response => {
-                    this.activeItem = response
-                    this.activeItem.start_time = this.$root.$refs.medians_calendar.dateTime(response.start_time);
-                    this.activeItem.end_time = this.$root.$refs.medians_calendar.dateTime(response.end_time);
-                })
-            },
-            addProduct(product)
-            {
-                const params = new URLSearchParams([]);
-                params.append('type', 'OrderDevice.addProduct');
-                params.append('model', 'OrderDevice');
-                params.append('params[product]', JSON.stringify(product));
-                params.append('params[device]', JSON.stringify(this.activeItem));
-                this.handleRequest(params, '/api/create').then(response => {
-                    this.query()
-                    this.$alert(response)
-                })
-            },
 
             /**
              * Update event data
@@ -165,19 +110,11 @@ export default {
                 params.append('type', type);
                 params.append('params[event]', JSON.stringify(item));
                 this.handleRequest(params, '/api/'+request_type).then(data => { 
-                    this.$root.$refs.medians_calendar.hidePopup();
+                    this.$parent.reloadEvents();
+                    this.$parent.hidePopup()
                 });
             },
 
-            removeProduct(product)
-            {
-                const params = new URLSearchParams([]);
-                params.append('type', 'OrderDevice.removeProduct');
-                params.append('params[product]', JSON.stringify(product));
-                this.handleRequest(params, '/api/delete').then(response => {
-                    this.query()
-                })
-            },
 
 
             async handleRequest(params, url='/') {
