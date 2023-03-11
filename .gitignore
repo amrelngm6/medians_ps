@@ -3,5 +3,6 @@
 /uploads/images
 /uploads/files
 /app/config/database.php
+/app/config/parameters.yml
 .env
 cookie.txt
