@@ -27,7 +27,7 @@ class StockRepository
 	*/
 	public function find($id) 
 	{
-		return  Stock::with('user', 'product')->find($id);
+		return  Stock::with('user', 'product', 'invoice')->find($id);
 	}
 
 	/**
@@ -78,7 +78,7 @@ class StockRepository
 		->where(
 			'product' , $product
 		)
-		->with('Products')
+		->with('Products', 'invoice')
 		->first();
 	}
 
@@ -118,7 +118,7 @@ class StockRepository
 	{
 	  	return Stock::where('branch_id', $this->app->branch->id)
 	  	->where('type', 'pull')
-	  	->with('product','user')
+	  	->with('product','user', 'invoice')
 	  	->limit($limit)
 	  	->orderBy('id', 'DESC');
 	}

@@ -124,6 +124,7 @@
                                 <th>{{lang.__('Name')}}</th>
                                 <th>{{lang.__('Price')}}</th>
                                 <th>{{lang.__('Date')}}</th>
+                                <th>{{lang.__('Invoice')}}</th>
                                 <th>{{lang.__('By')}}</th>
                             </tr>
                         </thead>
@@ -136,6 +137,7 @@
                                 </td>
                                 <td class="text-red-500">{{item.product.price}} {{app.currency}}</td>
                                 <td>{{item.created_at | date('Y-m-d H:i a')}}</td>
+                                <td><a href="/orders/show/{{item.invoice.code}}">{{item.invoice.code}}</a></td>
                                 <td>{{item.user.name}}</td>
                             </tr>
                             {% endfor %}
