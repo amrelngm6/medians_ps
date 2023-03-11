@@ -21,18 +21,21 @@
         <div v-if="showPopup" class="relative" style="z-index: 999">
             <div class="fixed top-0 left-0 w-full h-full"  style="z-index: 99;">
                 <div class="absolute top-0 left-0 w-full h-full" @click="hidePopup" style="background: rgba(0,0,0,.6);"></div>
-                <div class="left-0 right-0 fixed mx-auto w-full " style="max-width: 600px; z-index: 99;" >
-                    <div v-if="showModal && activeItem && !activeItem.allow"  class="relative h-full ">
+                <div class="absolute top-0 left-0  right-0 bottom-0 m-auto w-full h-full" v-if="!activeItem" ></div>
+                <div class="left-0 right-0 fixed mx-auto w-full " v-if="activeItem" style="max-width: 600px; z-index: 99;" >
+                    
+                    <div v-if="showModal && !activeItem.allow"  class="relative h-full ">
                         <calendar_new_item :modal="activeItem" :games="activeItem.device ? activeItem.device.games : []"></calendar_new_item>
                     </div>
 
-                    <div v-if="showModal && activeItem && activeItem.id > 0 && activeItem.status == 'active'"  class="relative h-full ">
+                    <div v-if="showModal  && activeItem.id > 0 && activeItem.status == 'active'"  class="relative h-full ">
 
                         <calendar_booking_confirm v-if="showConfirm" :modal="activeItem"></calendar_booking_confirm>
                         
                         <calendar_active_item :modal="activeItem"></calendar_active_item>
                     </div>
-                    <div v-if="showBooking && activeItem  && (activeItem.status == 'completed' || activeItem.status == 'paid')" class="relative h-full ">
+
+                    <div v-if="showBooking  && (activeItem.status == 'completed' || activeItem.status == 'paid')" class="relative h-full ">
                         <calendar_modal :modal="activeItem"></calendar_modal>
                     </div>
                 </div>
