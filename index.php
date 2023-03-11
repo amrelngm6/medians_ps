@@ -38,7 +38,6 @@ $capsule->bootEloquent();
 
 
 include('app/helper/methods.php');
-// include('app/controller.php');
 include('app/config/route.php');
 
 
