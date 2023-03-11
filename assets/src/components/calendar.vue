@@ -21,7 +21,9 @@
         <div v-if="showPopup" class="relative" style="z-index: 999">
             <div class="fixed top-0 left-0 w-full h-full"  style="z-index: 99;">
                 <div class="absolute top-0 left-0 w-full h-full" @click="hidePopup" style="background: rgba(0,0,0,.6);"></div>
-                <div class="absolute top-0 left-0  right-0 bottom-0 m-auto w-full h-full" v-if="!activeItem" ></div>
+                <div class="absolute top-0 left-0  right-0 bottom-0 m-auto w-40 h-40" v-if="!activeItem" >
+                    <img src="/uploads/images/loader.gif"  />
+                </div>
                 <div class="left-0 right-0 fixed mx-auto w-full " v-if="activeItem" style="max-width: 600px; z-index: 99;" >
                     
                     <div v-if="showModal && !activeItem.allow"  class="relative h-full ">
