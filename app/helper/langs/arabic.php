@@ -1005,6 +1005,7 @@ class Langs
 		,'CHECK_DATABASE_CONNECTION' => 'تأكد من بيانات قاعدة البيانات'
 		,'this user not found' => 'هذا المستخدم غير موجود'
 		,'This is canceled event' => 'هذا الحجز تم إلغاؤه'
+		,'Canceled bookings' => 'الحجوزات الملغاء'
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	
