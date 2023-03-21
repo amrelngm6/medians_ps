@@ -4,43 +4,11 @@
         <div v-if="lang && !showLoader" class="w-full overflow-y-auto overflow-x-hidden px-2" >
             <div class="mb-6">
                 <div class="row pt-2">
-                    <dashboard_card :value="lang.active_bookings" :title="content.active_order_devices_count"></dashboard_card>
-                    <div class="col-md-3">
-                        <div class="card bg-gradient-danger card-img-holder text-white h-100">
-                            <div class="card-body">
-                                <img src="/assets/img/circle.png" class="card-img-absolute" alt="circle-image">
-                                <h4 class="font-weight-normal mb-3" v-text=""></h4>
-                                <span class="text-2xl" v-text=""></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card bg-gradient-info card-img-holder text-white h-100">
-                            <div class="card-body">
-                                <img src="/assets/img/circle.png" class="card-img-absolute" alt="circle-image">
-                                <h4 class="font-weight-normal mb-3" v-text="lang.today_bookings">  </h4>
-                                <span class="text-2xl" v-text="content.today_order_devices_count"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card bg-gradient-success card-img-holder text-white h-100">
-                            <div class="card-body">
-                                <img src="/assets/img/circle.png" class="card-img-absolute" alt="circle-image">
-                                <h4 class="font-weight-normal mb-3" v-text="lang.today_sold_products"></h4>
-                                <span class="text-2xl" v-text="content.today_order_products_count"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card bg-gradient-danger card-img-holder text-white h-100">
-                            <div class="card-body">
-                                <img src="/assets/img/circle.png" class="card-img-absolute" alt="circle-image">
-                                <h4 class="font-weight-normal mb-3" v-text="lang.today_revenue"></h4>
-                                <span class="text-2xl" v-text="content.today_revenue"></span>
-                            </div>
-                        </div>
-                    </div>
+                    <dashboard_card :title="lang.active_bookings" :value="content.active_order_devices_count"></dashboard_card>
+                    <dashboard_card :title="lang.today_bookings" :value="content.today_order_devices_count"></dashboard_card>
+                    <dashboard_card :title="lang.today_sold_products" :value="content.today_order_products_count"></dashboard_card>
+                    <dashboard_card :title="lang.today_revenue" :value="content.today_revenue"></dashboard_card>
+                    
                 </div>
             </div>
             <div class="w-full lg:flex gap gap-6 ">

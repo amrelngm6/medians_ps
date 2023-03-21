@@ -48,6 +48,29 @@ class PaymentsRepository
 	}
 
 
+	/*
+	// Find all items between two days By BranchId
+	*/
+	public function getByDate($params )
+	{
+
+	  	$check = Payment::where('branch_id' , $this->app->branch->id)
+		->with('user');
+
+	  	if (!empty($params["created_by"]))
+	  	{
+	  		$check = $check->where('created_by', $params['created_by']);
+	  	}
+
+	  	if (!empty($params["start"]))
+	  	{
+	  		$check = $check->whereDate('created_at' , [$params['start'] , $params['end']]);
+	  	}
+  		
+
+  		return $check->orderBy('id', 'DESC');
+	}
+
 
 	/**
 	* Save item to database
