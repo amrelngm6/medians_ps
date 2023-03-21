@@ -28,7 +28,7 @@ class User extends CustomController
     	'active',
 	];
 
-	public $appends = ['name', /*'photo', */'password'];
+	public $appends = ['name', 'photo', 'password'];
 
 	public function getPasswordAttribute() 
 	{

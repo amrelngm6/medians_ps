@@ -138,7 +138,7 @@
                             <span class="d-block">{{setting.sitename}}</span>
                         </div>
                         <div class="w-full">
-                            <qr_code :value="content.order.code" ></qr_code>
+                            <qr_code v-model="content.order.code" ></qr_code>
                         </div>
                     </div>
                 </div>
