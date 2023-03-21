@@ -139,6 +139,10 @@
                         </div>
                         <div class="w-full">
                             <qr_code v-model="content.order.code" ></qr_code>
+                            <div class="hidden">
+                            <qr_code v-model="code" ></qr_code>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -160,7 +164,7 @@ export default
                 title: '',
                 order: {},
             },
-
+            code:'test',
             activeItem:null,
             showAddSide:false,
             showEditSide:false,
