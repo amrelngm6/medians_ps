@@ -5,7 +5,7 @@
             <div class="w-full ">
                 <navbar :setting="setting" :lang="lang" :conf="conf" :auth="auth">
                 </navbar>
-                <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 right-4 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
+                <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-3 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-10 ">
                     <div v-if="auth && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
                         <div class="sidebar-inner slimscroll">
