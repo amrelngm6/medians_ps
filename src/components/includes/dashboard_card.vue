@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div :class="classes" class="card card-img-holder text-white h-100">
             <div class="card-body">
                 <img src="/assets/img/circle.png" class="card-img-absolute" alt="circle-image">

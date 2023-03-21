@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full flex overflow-y-auto" style="height: 85vh; z-index: 9999;">
+                    <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
                         <dashboard v-if="activeTab == 'dashboard'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></dashboard>
                         <games v-if="activeTab == 'games'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></games>
                         <payments v-if="activeTab == 'payments'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></payments>
