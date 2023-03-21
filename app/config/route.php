@@ -24,6 +24,7 @@ Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin')
 } else {
 
 
+Macaw::get('/json/dashboard', \Medians\DashboardController::class.'@json'); 
 Macaw::get('/dashboard', \Medians\DashboardController::class.'@index'); 
 Macaw::get('/', \Medians\DashboardController::class.'@index'); 
 
@@ -63,7 +64,9 @@ Macaw::get('/devices/edit/(:num)', \Medians\Devices\Application\DeviceController
 Macaw::get('/devices/device/(:num)', \Medians\Devices\Application\DeviceController::class.'@edit');
 Macaw::get('/devices/manage', \Medians\Devices\Application\DeviceController::class.'@manage');
 Macaw::get('/devices/orders', \Medians\Devices\Application\DeviceController::class.'@orders');
+Macaw::get('/devices_orders', \Medians\Devices\Application\DeviceController::class.'@orders');
 Macaw::get('/devices/calendar', \Medians\Devices\Application\DeviceController::class.'@index');
+Macaw::get('/calendar', \Medians\Devices\Application\DeviceController::class.'@index');
 Macaw::get('/devices/index', \Medians\Devices\Application\DeviceController::class.'@index');
 
 Macaw::get('/devices/categories', function ()  {
@@ -79,9 +82,19 @@ Macaw::get('/categories/edit/(:num)', \Medians\Categories\Application\CategoryCo
 
 
 
+/**
+* @return Games
+*/
 Macaw::get('/games/edit/(:num)', \Medians\Games\Application\GameController::class.'@edit');
 Macaw::get('/games/index', \Medians\Games\Application\GameController::class.'@index');
 Macaw::get('/games', \Medians\Games\Application\GameController::class.'@index');
+
+/**
+* @return Discounts
+*/
+Macaw::get('/discounts/edit/(:num)', \Medians\Games\Application\GameController::class.'@edit');
+Macaw::get('/discounts/index', \Medians\Games\Application\GameController::class.'@index');
+Macaw::get('/discounts', \Medians\Games\Application\GameController::class.'@index');
 
 
 /**
@@ -93,6 +106,7 @@ Macaw::get('/products/stock_alert', \Medians\Products\Application\ProductControl
 Macaw::get('/products/stock_out', \Medians\Products\Application\ProductController::class.'@stock_out');
 Macaw::get('/products/orders', \Medians\Products\Application\ProductController::class.'@orders');
 Macaw::get('/products/index', \Medians\Products\Application\ProductController::class.'@index');
+Macaw::get('/products', \Medians\Products\Application\ProductController::class.'@index');
 Macaw::get('/products/categories', function ()  {
     return (new \Medians\Categories\Application\CategoryController())->index('Medians\Products\Domain\Product');
 });
@@ -104,6 +118,7 @@ Macaw::get('/products/categories', function ()  {
 Macaw::get('/stock/create', \Medians\Products\Application\StockController::class.'@create');
 Macaw::get('/stock/edit/(:num)', \Medians\Products\Application\StockController::class.'@edit');
 Macaw::get('/stock/index', \Medians\Products\Application\StockController::class.'@index');
+Macaw::get('/stock', \Medians\Products\Application\StockController::class.'@index');
 
 /**
 * @return Payments
@@ -118,8 +133,10 @@ Macaw::get('/payments', \Medians\Payments\Application\PaymentController::class.'
 */
 Macaw::get('/orders/create', \Medians\Orders\Application\OrderController::class.'@create');
 Macaw::get('/orders/edit/(:all)', \Medians\Orders\Application\OrderController::class.'@edit');
-Macaw::get('/orders/show/(:all)', \Medians\Orders\Application\OrderController::class.'@show');
 Macaw::get('/orders/index', \Medians\Orders\Application\OrderController::class.'@index');
+Macaw::get('/invoices/show/(:all)', \Medians\Orders\Application\OrderController::class.'@show');
+Macaw::get('/invoices', \Medians\Orders\Application\OrderController::class.'@index');
+Macaw::get('/orders', \Medians\Orders\Application\OrderController::class.'@index');
 
 
 /**
@@ -144,6 +161,8 @@ Macaw::get('/users/index', \Medians\Users\Application\UserController::class.'@in
 Macaw::get('/users/', \Medians\Users\Application\UserController::class.'@index');
 Macaw::get('/users', \Medians\Users\Application\UserController::class.'@index');
 
+
+// Macaw::get('/(:all)', \Medians\DashboardController::class.'@index');
 
 return $app->run();
 }

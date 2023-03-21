@@ -81,7 +81,7 @@ class Device extends CustomController
 	*/
 	public function games()
 	{
-		return  $this->hasMany(Game::class, 'category', 'type');
+		return  $this->hasMany(DeviceGames::class, 'device_id', 'id');
 	}
 
 	/**

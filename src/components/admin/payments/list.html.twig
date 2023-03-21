@@ -1,0 +1,67 @@
+{% include 'views/admin/includes/header.html.twig' %}
+
+
+
+<div class=" w-full px-4 overflow-y-auto h-full">
+    <div class="crms-title flex bg-white mb-6 gap gap-6">
+        <div class="w-full">
+            <h3 class="gap gap-6 flex page-title m-0">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                    <i class="feather-user"></i>
+                </span> 
+                <span>{{title}}</span> 
+            </h3>
+        </div>
+        <div class="">
+            <ul class="breadcrumb text-right bg-white float-end m-0 ps-0 pe-0 flex gap gap-6">
+                <li class="breadcrumb-item w-20"><a href="{{app.CONF.url}}dashboard">{{lang.__('Dashboard')}}</a></li>
+                <li class="breadcrumb-item w-28 active">{{title}}</li>
+            </ul>
+        </div>
+        <a href="{{app.CONF.url}}payments/create" class="w-28 px-3 py-2 text-center rounded-lg bg-gradient-primary text-white">{{lang.__('Add new')}} </a>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if items|length %}
+            <div class="card mb-0">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-nowrap custom-table mb-0 datatable w-full">
+                            <thead>
+                                <tr>
+                                    <th class="w-10">ID</th>
+                                    <th class="text-default">{{lang.__('Name')}}</th>
+                                    <th>{{lang.__('Amount')}}</th>
+                                    <th>{{lang.__('Invoice Number')}}</th>
+                                    <th>{{lang.__('By')}}</th>
+                                    <th>{{lang.__('actions')}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr class="">
+                                    <td>{{item.id}}</td>
+                                    <td class="text-default">{{item.name}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.invoice_id}}</td>
+                                    <td>{{item.user.name}}</td>
+                                    <td>
+                                        {% if item.can('edit_payment', app) %}
+                                        <a href="/payments/edit/{{item.id}}" class="font-bold"> Edit</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            {% include 'views/admin/includes/nodata.html.twig' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include 'views/admin/includes/footer.html.twig' %}

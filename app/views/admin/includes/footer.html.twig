@@ -1,25 +1,11 @@
-{% if app.ajax_request < 1 %}
 
 
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                 
     <style type="text/css">
         .text-default{ text-align:  {{app.Settings.lang == 'arabic' ? 'right' : 'left'}} }
     </style>
 
-<script type="text/javascript" src="{{app.CONF.url ? app.CONF.url : '/'}}assets/dist/alertify.min.js"></script>
-<script type="text/javascript" src="{{app.CONF.url ? app.CONF.url : '/'}}assets/dist/sweetalert.min.js"></script>
-<script type="text/javascript" src="{{app.CONF.url ? app.CONF.url : '/'}}assets/js/custom.js"></script>
-<script type="text/javascript" src="{{app.CONF.url ? app.CONF.url : '/'}}assets/dist/app.js"></script>
-
-<script type="text/javascript">
-
-</script>
+    <script type="text/javascript" src="/dist/js/app.js"></script>
 
 </body>
-
 </html>
-{% endif %}

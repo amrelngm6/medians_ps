@@ -26,6 +26,37 @@ class DashboardController
 
 		try {
 			
+	        return  render('views/admin/dashboard/index.html.twig', $this->data());
+	        
+		} catch (Exception $e) {
+			return $e->getMessage();
+		}
+	} 
+
+
+	/**
+	 * Model object 
+	 */
+	public function json()
+	{
+
+		try {
+			
+	        echo  json_encode( $this->data());
+	        
+		} catch (Exception $e) {
+			return $e->getMessage();
+		}
+	} 
+
+	/**
+	 * Model object 
+	 */
+	public function data()
+	{
+
+		try {
+			
 			$DevicesRepository = new Devices\Infrastructure\DevicesRepository($this->app);
 
 			$today_revenue = (new Orders\Infrastructure\OrdersRepository($this->app))->getByDate(['start'=>date('Y-m-d'), 'end'=>date('Y-m-d')])->sum('total_cost');
@@ -44,7 +75,7 @@ class DashboardController
 
             $today_order_devices_count = $DevicesRepository->eventsByDate(['start'=>date('Y-m-d'), 'end'=>date('Y-m-d')])->count();
 
-	        return  render('views/admin/dashboard/index.html.twig', [
+	        return [
 	            'title' => 'Dashboard',
 	            'active_order_devices_count' => $active_order_devices_count,
 	            'today_order_devices_count' => $today_order_devices_count,
@@ -56,7 +87,7 @@ class DashboardController
 	            'today_revenue' => round($today_revenue, 2),
 		        'formAction' => '/login',
 	            // 'formAction' => $this->app->CONF['url'],
-	        ]);
+	        ];
 	        
 		} catch (Exception $e) {
 			return $e->getMessage();

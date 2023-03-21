@@ -1,13 +1,12 @@
 <?php
-    
+
 try {
     
     $app = new \config\APP;
-
-    $lng = isset($app->auth()->branch->id) && !empty($app->setting('lang')) ? $app->setting('lang') : 'english';
+    $lng = isset($app->auth()->branch->id) && !empty($app->setting('lang')) ? $app->setting('lang') : 'arabic';
 
     include('app/helper/langs/'.$lng.'.php');
-
+    
 
 } catch (\Exception $e) {
     throw new Exception($e->getMessage(), 1);    
@@ -21,7 +20,7 @@ try {
  * @param String twig file path
  * @param [] List of data
  */
-function render($path, $data)
+function render($path, $data, $responseType = 'html')
 {
 
     try {
@@ -36,6 +35,13 @@ function render($path, $data)
         die();
     }
 
+    if (!empty($app->request()->get('load')) && $app->request()->get('load') == 'json' )
+    {
+        echo json_encode($data);
+        return true;
+    }
+    $path = 'views/admin/page.html.twig';
+
     $app = new \config\APP;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
@@ -46,7 +52,7 @@ function render($path, $data)
     $data['lang'] = new Langs;
     
     echo $app->template()->render($path, $data);
-} 
+ } 
 
 
 

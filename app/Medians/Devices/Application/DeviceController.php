@@ -5,6 +5,7 @@ namespace Medians\Devices\Application;
 use Medians\Devices\Infrastructure\DevicesRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Products\Infrastructure\ProductsRepository;
+use Medians\Games\Infrastructure\GameRepository;
 
 use Medians\Devices\Domain\Device;
 
@@ -33,6 +34,9 @@ class DeviceController
 		$this->app = new \config\APP;
 		
 		$this->repo = new DevicesRepository($this->app);
+
+	    // Set Games
+	    $this->gamesRepo = new GameRepository($this->app);
 
 	    // Set Categories
 	    $this->CategoryRepo = new CategoryRepository($this->app);
@@ -70,13 +74,20 @@ class DeviceController
 	 */ 
 	public function orders() 
 	{
+		$params = $this->app->request()->query->all();
+
 	    return render('views/admin/devices/orders.html.twig', [
 	        'title' => __('Devices bookings'),
 	        'app' => $this->app,
-	        'events' => $this->repo->events($this->app->request(), 10),
+	        'events' => $this->query($params),
 	    ]);
 	}
 
+
+	public function query($params)
+	{
+		return $this->repo->events($params, 10);
+	}
 
 	/**
 	 * Admin manage items
@@ -92,6 +103,7 @@ class DeviceController
 	        'title' => __('Devices list'),
 	        'app' => $this->app,
 	        'devicesList' => $this->repo->getAll(100),
+	        'games' => $this->gamesRepo->get(100),
 	        'typesList' => $this->CategoryRepo->categories(Device::class),
 
 	    ]);
@@ -130,7 +142,7 @@ class DeviceController
 	public function store() 
 	{
 
-		$params = (array) $this->app->request()->get('params')['device'];
+		$params = (array) $this->app->request()->get('params');
 
 		try {
 
@@ -152,7 +164,7 @@ class DeviceController
 	public function update() 
 	{
 
-		$params = (array)  $this->app->request()->get('params')['device'];
+		$params = (array)  $this->app->request()->get('params');
 
 		try {
 
@@ -174,7 +186,7 @@ class DeviceController
 	public function delete() 
 	{	
 
-		$params = (array)  json_decode($this->app->request()->get('params')['device']);
+		$params = (array)  json_decode($this->app->request()->get('params'));
 
 		try {
 
@@ -273,10 +285,11 @@ class DeviceController
 
 	public function events()
 	{
+		$params = $this->app->request()->query->all();
 
 		$repo = new DevicesRepository($this->app);
 
-		$data = $repo->events($this->app->request(), 100);
+		$data = $repo->events($params, 100);
 		
 		$newdata = [];
 		foreach ($data as $key => $value) {

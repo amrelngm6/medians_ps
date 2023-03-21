@@ -1,19 +1,4 @@
-{% if  app.auth.id == null  %}
 {% include 'views/admin/includes/header.html.twig' %}
-
-<div class="w-full">
-
-    <login-dashboard 
-    title="{{title}}"
-    form_action="{{formAction}}"
-    ></login-dashboard>
-
-    <a href="{{facebook_login_url}}" class="uppercase h-12 py-2 text-center my-3 text-white w-full rounded bg-blue-800 hover:bg-red-800">Login with facebook</a>
-
-</div>
-<!-- <meta name="google-signin-client_id" content="860172983359-l76kt9v0ds0sahf15q6cv31qu4pj8g5q.apps.googleusercontent.com"> -->
-<!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 
 
 {% include 'views/admin/includes/footer.html.twig' %}
-{% endif %}

@@ -80,7 +80,6 @@ class SettingsController
 	public function updateSettings($params) 
 	{
 
-		$this->repo->clear();
 		
 		foreach ($params as $code => $value)
 		{

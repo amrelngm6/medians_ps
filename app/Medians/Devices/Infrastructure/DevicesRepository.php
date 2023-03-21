@@ -3,6 +3,7 @@
 namespace Medians\Devices\Infrastructure;
 
 use Medians\Devices\Domain\Device;
+use Medians\Devices\Domain\DeviceGames;
 use Medians\Devices\Domain\OrderDevice;
 use Medians\Games\Domain\Game;
 use Medians\Products\Domain\Product;
@@ -87,23 +88,23 @@ class DevicesRepository
 	{
 		$query = OrderDevice::with('game')->with(['device'=>function($q){
 			return $q->with('prices');
-		}])->with('user')->with('products')
-		->where('branch_id', $this->app->branch->id);
+		}])->with('user')->with('products');
+		// ->where('branch_id', $this->app->branch->id);
 
-		if (!empty($params->get('by')))
+		if (!empty($params['by']))
 		{
-			$query->where('created_by', $params->get('by'));
+			$query->where('created_by', $params['by']);
 		}
 
-		if (!empty($params->get('status')) && in_array($params->get('status'), ['active', 'completed', 'paid', 'canceled']) )
+		if (!empty($params['status']) && in_array($params['status'], ['active', 'completed', 'paid', 'canceled']) )
 		{
-			$query->where('status', $params->get('status'));
+			$query->where('status', $params['status']);
 		}
 
-		if (!empty($params->get('start')) && !empty($params->get('end')))
+		if (!empty($params['start']) && !empty($params['end']))
 		{
-			$start = date('Y-m-d 00:00:00', strtotime(date($params->get('start'))));
-			$end = date('Y-m-d 00:00:00', strtotime(date($params->get('end'))));
+			$start = date('Y-m-d 00:00:00', strtotime(date($params['start'])));
+			$end = date('Y-m-d 00:00:00', strtotime(date($params['end'])));
 			$query->whereBetween('start_time', [$start, $end]);
 		}
 
@@ -172,6 +173,11 @@ class DevicesRepository
     		$this->storePrices($data['prices'], $Object->id);
     	}
 
+    	if (isset($data['selected_games']))
+    	{
+    		$this->storeGames($data['selected_games'], $Object->id);
+    	}
+
     	return $Object;
     }
     	
@@ -186,7 +192,9 @@ class DevicesRepository
 		// Return the FBUserInfo object with the new data
     	$Object->update( (array) $data);
 
-    	$this->storePrices($data['prices'], $Object->id);
+    	isset($data['prices']) ? $this->storePrices($data['prices'], $Object->id) : null;
+
+		$this->storeGames(isset($data['selected_games']) ? $data['selected_games'] : null, $Object->id);
 
     	return $Object;
 
@@ -230,6 +238,30 @@ class DevicesRepository
 				];
 
 				$Model = Prices::create($fields);
+				$Model->update($fields);
+			}
+	
+			return $Model;		
+		}
+	}
+
+
+	/**
+	* Save item to database
+	*/
+	public function storeGames($data, $id) 
+	{
+		DeviceGames::where('device_id', $id)->delete();
+		if ($data)
+		{
+			foreach ($data as $key => $value)
+			{
+				$fields = [
+					'game_id' => $value,
+					'device_id' => $id,
+				];
+
+				$Model = DeviceGames::create($fields);
 				$Model->update($fields);
 			}
 	

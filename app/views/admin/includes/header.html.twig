@@ -4,120 +4,28 @@
 <head>
     <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>{{app.Settings.sitename}}</title>
-    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/tailwind.min.css">
-    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/dist/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/bootstrap-grid.min.css">
-    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/style.css">
-    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/alertify/alertify.min.css">
-    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/theme.css">
-    <!-- External Theem  -->
-    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/theme.min.css">
+    <link href="/dist/css/app.css" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Cairo:wght@300;500;700;900">
-    <script type="text/javascript">
-        var site_url = '{{app.CONF.url ? app.CONF.url : "/"}}';
-    </script>
-    <script type="text/javascript" src="{{app.CONF.url ? app.CONF.url : '/'}}assets/js/jquery-3.5.1.min.js"></script>
 </head>
 
-<body>
-    <div class="{{ lang.__('DIR') }}" style="direction: {{lang.__('DIR')}}">
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-        <!-- component -->
-        {% if app.auth.id %}
-        <nav id="header" class="flex  w-full bg-white shadow-lg border-b border-gray-300 relative" style="z-index:99999">
-            <div class="w-full flex items-center justify-between mt-0 px-6 py-0">
-                <div class=" md:flex flex lg:flex  md:w-auto w-full order-3 md:order-1" id="menu">
-                    <div class="inline-flex mx-4">
-                        <!-- Logo -->
-                        <div class="mx-auto h-16  py-2 w-auto ">
-                            <img style="max-height: 100%" src="{{app.CONF.url ? app.CONF.url : '/'}}{{app.Settings.logo ? app.Settings.logo : 'assets/img/logo.png'}}" height="40">
-                            <!--end logo -->
-                        </div>
-                    </div>
-                    <div class="lg:inline-flex ">
-                        <ul class="md:flex items-center justify-center text-base text-gray-400  pt-4 md:pt-0 lg:pt-0  ">
-                            <li>
-                                <a href="{{app.CONF.url}}" >{{app.Settings.sitename}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- <ul class="nav user-menu w-96 flex"> -->
-            <ul class="nav user-menu w-64 flex">
-                <li class="hidden nav-item dropdown w-20">
-                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                        <i class="fa fa-bell-o"></i> <span class="badge rounded-pill">3</span>
-                    </a>
-                </li>
-                <li class="hidden nav-item dropdown w-20">
-                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                        <i class="fa fa-comment-o"></i> <span class="badge rounded-pill">8</span>
-                    </a>
-                </li>
-                <li class="nav-item  has-arrow main-drop w-full relative">
-                    <a href="#" class="flex w-full gap gap-2" onclick="$('.dropped1').toggleClass('hidden')">
-                        <span class="user-img mt-3 ">
-                            <img src="{{app.auth.photo()}}" alt="">
-                            <span class="status online absolute top-0 right-0"></span>
-                        </span>
-                        <span>{{app.auth.name}}</span>
-                    </a>
-                    <ul class="py-4 px-2 w-full bg-white border border-gray-300 rounded  absolute top-14 left-1 hidden dropped1" style="z-index: 9999;">
-                        <li class="py-2 border-b border-gray-300"><a href="{{app.CONF.url}}users/edit/{{app.auth.id}}">{{lang.__('PROFILE')}} </a>
-                        <li class="py-2 border-b border-gray-300"><a href="{{app.CONF.url}}settings">{{lang.__('SETTING')}} </a>
-                        <li class="py-2"><a href="/logout">{{lang.__('LOGOUT')}} </a>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        {% endif %}
+<body style="direction: {{lang.__('dir')}};" class="{{lang.__('dir')}}">
 
-        <div class="w-full " id="app">
 
-            <a  href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 right-4 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
+<div id="app">
+{% include 'views/admin/includes/nodata.html.twig' %}    
+</div>
 
-            <span :set="langs = {{lang.vueLang()|json_encode}}"></span>
-    
-            <div class="relative modal right fade w-full h-full top-0 " id="modal-details" style="position:fixed; background: rgba(0, 0, 0, .4);" v-if="showModal" >
-                <div class="modal-dialog bg-white" role="document">
-                    <span style="left:-25px"  @click="viewModal('project-details', 0)" class="cursor-pointer absolute  text-gray-800 float-right text-lg" ><i class="fa fa-close"></i></span>
 
-                    <div class="modal-content p-2">
-                        <user_modal
-                        v-if="activeModal == 'user'" 
-                        ref="user">
-                        </user_modal>                
+<div>
+        
+    <div id="root-parent"  
+    data-status="{{app.request().get('load')}}"
+    data-page="{{app.request().requestUri|slice(1)}}"
+    data-menu="{{app.menu()|json_encode}}"
+    data-auth="{{app.auth|json_encode}}"
+    data-lang="{{lang.vueLang()|json_encode}}"
+    data-setting="{{app.Settings|json_encode}}"
+    data-conf="{{app.CONF|json_encode}}"
+    ></div>
 
-                        <lead_modal
-                        v-if="activeModal == 'lead'" 
-                        ref="lead">
-                        </lead_modal>                
-                    </div>
-                </div>
-            </div>
-            <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-10 ">
-                {% if app.auth.id %}    
-                <div class="sidebar" id="sidebar" v-if="showSide" style="z-index:9999">
-                    <div class="sidebar-inner slimscroll">
-                        <div id="sidebar-menu" class="sidebar-menu">
-                            <ul>
-                                <li class="nav-item nav-profile">
-                                    <a href="#" class="nav-link">
-                                        <div class="nav-profile-image">
-                                            <img src="{{app.auth.photo()}}" alt="profile">
-                                        </div>
-                                        <div class="nav-profile-text d-flex flex-column">
-                                            <span class="font-weight-bold mb-2">{{app.auth.name}}</span>
-                                            <span class="text-white text-xs">{{app.auth.Role.name}}</span>
-                                        </div>
-                                        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <side-menu samepage="{{app.request().requestUri}}" url="{{app.CONF.url ? app.CONF.url : '/'}}" :menus="{{app.menu()|json_encode}}"></side-menu>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                <div class="w-full flex" style="height: 85vh; z-index: 999;">
+</div>

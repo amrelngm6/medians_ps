@@ -99,32 +99,26 @@ class OrderController
 
 		$this->app = new \config\APP;
 
-		$params = (array) json_decode($this->app->request()->get('params')['cart']);
+		$request = $this->app->request()->get('params');
+
+		$params = (array) json_decode($request['cart']);
 
 		try {
-
-			$cost = 0;
-
-			foreach ($params as $key => $value) 
-			{
-				$cost += $value->subtotal;
-			}
-
-			$this->subtotal = $this->getSubTotal($params);
 
 			$data = [];
 			$data['branch_id'] = $this->app->branch->id;
 			$data['customer_id'] = '0';
-			$data['tax'] = $this->calculateTax($this->subtotal)->tax_amount();
-			$data['discount'] = '0';
+			$data['tax'] = round((float) str_replace('"', '', $request['tax']), 2); 
+			$data['discount'] = round((float) str_replace('"', '', $request['discount']), 2); 
 			$data['discount_code'] = '';
 			$data['code'] = $this->genrateCode($this->app->branch->id);
-			$data['subtotal'] = $this->subtotal;
-			$data['total_cost'] = $this->calculateTax($this->subtotal)->total_cost();
+			$data['subtotal'] = round((float) str_replace('"', '', $request['subtotal']), 2); 
+			$data['total_cost'] = round((float) str_replace('"', '', $request['total_cost']), 2); 
 			$data['date'] = date('Y-m-d');
 			$data['created_by'] = $this->app->auth()->id;
 			$data['status'] = 'paid';
-			$data['payment_method'] = $this->app->request()->get('params')['payment_method'];
+			$data['payment_method'] = $request['payment_method'];
+
 
 			$save = $this->repo->store($data, $params);
 

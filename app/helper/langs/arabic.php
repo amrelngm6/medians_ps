@@ -16,7 +16,7 @@ class Langs
 				
 		$LANG_ARRAY = array(
 
-			'DIR' => 'rtl'
+		'DIR' => 'rtl'
 		,'HOMEPAGE' => 'الرئيسية'
 		,'HOMEPAGE_TITLE' => 'الصفحة الرئيسية'
 		,'MAINPAGE' => 'الرئيسية'
@@ -213,6 +213,7 @@ class Langs
 		,'SIGNUP_WITH' => 'Sign in with'
 		,'PERS_INFO' => 'البيانات الشخصية'
 		,'BUSS_INFO' => 'Business information'
+		,'information' => 'المعلومات'
 		,'SM_PROFILES' => 'Social profiles'
 		,'ABOUT_U' => 'About you'
 		,'CHA_PIC' => 'Profile picture'
@@ -325,6 +326,7 @@ class Langs
 		,'LEASES' => 'Leases'
 		,'STATS' => 'Stats'
 		,'DISCOUNT_CODE' => 'كود الخصم'
+		,'discount_amount' => 'قيمة الخصم'
 		,'DISCOUNT' => 'الخصم'
 		,'DISCOUNTS' => 'الخصومات'
 		,'NEW_DISCOUNT' => 'خصم جديد'
@@ -393,7 +395,6 @@ class Langs
 		,'PROVIDER' => 'مزود الخدمة'
 		,'PROVIDERS' => 'مزودي الخدمة'
 		,'OUR_PROVIDERS' => 'مزودي الخدمة '
-		,'START_DATE' => 'Start date'
 		,'MOBILE' => 'الموبايل'
 		,'PLUGINS' => 'Plugins'
 		,'CHECK' => 'مراجعة'
@@ -632,7 +633,9 @@ class Langs
 		,'END_DATE' => 'تاريخ الإنتهاء'
 		,'START_DATE' => 'تاريخ البدء'
 		,'END_TIME' => 'وقت الإنتهاء'
+		,'END' => 'وقت الإنتهاء'
 		,'START_TIME' => 'وقت   البدء'
+		,'START' => 'وقت   البدء'
 		,'ITEMS_PER_CAT' => 'Items per category page'
 		,'UNIT_WHOLESALE_PRICE' => 'Unit Wholesale Price'
 		,'CUR_STOCK' => 'Current stock'
@@ -648,7 +651,7 @@ class Langs
 		,'GROUP' => 'Group '
 		,'GROUPS' => 'Groups '
 		,'SORT' => 'Sort '
-		,'BUSS_INFO' => 'Business info'
+		,'BUSS_INFO' => 'بيانات العمل'
 
 
 		,'DIRECTION' => 'Direction'
@@ -960,6 +963,7 @@ class Langs
 		,'PROMO CODE' => 'كود الخصم'
 		,'APPLY' => 'تطبيق'
 		,'Add More Products' => 'إضافة منتجات'
+		,'Add Products' => 'إضافة منتجات'
 		,'finish' => 'إنهاء'
 		,'start_playing' => 'بدء التشغيل'
 		,'Order Summary' => 'ملخص الطلب'
@@ -978,7 +982,9 @@ class Langs
 		,'third Step' => 'الخطوة  الثالثة'
 		,'Alert' => 'تنبيه'
 		,'order_status_is' => 'حالة هذا الطلب'
+		,'confirm_delete' => 'هل أنت متأكد من حذف هذا العنصر'
 		,'Are your sure you want to finish this booking' => 'هل أنت متاكد من إكتمال الحجز'
+		,'confirm_complete_booking' => 'هل أنت متاكد من إكتمال الحجز'
 		,'order created' => 'تم تأكيد الطلب'
 		,'Show orders' => 'عرض الفواتير'
 		,'show_invoice' => 'عرض الفاتورة'
@@ -1007,6 +1013,7 @@ class Langs
 		,'This is canceled event' => 'هذا الحجز تم إلغاؤه'
 		,'Canceled bookings' => 'الحجوزات الملغاء'
 		,'COPYRIGHTS' => 'Copyrights are reserved'
+
 		);
 	
 
@@ -1029,52 +1036,8 @@ class Langs
 
 	public static function vueLang()
 	{
-		$data = [];
 
-		$data['start'] = Langs::__('START_TIME');
-		$data['end'] = Langs::__('END_TIME');
-		$data['date'] = Langs::__('date');
-		$data['pay'] = Langs::__('PAY_NOW');
-		$data['add_cart'] = Langs::__('ADD_CART');
-		$data['checkout'] = Langs::__('checkout');
-		$data['remove'] = Langs::__('remove');
-		$data['add_products'] = Langs::__('Add More Products');
-		$data['type'] = Langs::__('type');
-		$data['apply'] = Langs::__('apply');
-		$data['subtotal'] = Langs::__('Subtotal');
-		$data['total_amount'] = Langs::__('TOTAL');
-		$data['tax'] = Langs::__('Tax');
-		$data['game'] = Langs::__('Game');
-		$data['order_summary'] = Langs::__('Order Summary');
-		$data['start_playing'] = Langs::__('Start Playing');
-		$data['finish'] = Langs::__('finish');
-		$data['login'] = Langs::__('Login');
-		$data['login_page'] = Langs::__('Login page');
-		$data['password'] = Langs::__('password');
-		$data['purchased_products'] = Langs::__('Purchased Products');
-		$data['email'] = Langs::__('Email');
-		$data['single'] = Langs::__('Single');
-		$data['multi'] = Langs::__('Multi');
-		$data['update'] = Langs::__('update');
-		$data['duration'] = Langs::__('duration');
-		$data['information'] = Langs::__('info');
-		$data['price'] = Langs::__('price');
-		$data['cost'] = Langs::__('cost');
-		$data['alert'] = Langs::__('Alert');
-		$data['payment_method'] = Langs::__('PAYMENT_METHOD');
-		$data['order_status_is'] = Langs::__('order_status_is');
-		$data['promo_code'] = Langs::__('DISCOUNT_CODE');
-		$data['confirm_complete_booking'] = Langs::__('Are your sure you want to finish this booking');
-		$data['confirm'] = Langs::__('confirm');
-		$data['confirmation'] = Langs::__('confirmation');
-		$data['show_invoice'] = Langs::__('show_invoice');
-		$data['paid'] = Langs::__('paid');
-		$data['completed'] = Langs::__('completed');
-		$data['active'] = Langs::__('active');
-		$data['unpaid'] = Langs::__('unpaid');
-		$data['add_new'] = Langs::__('add new');
-		$data['cancel'] = Langs::__('CANCEL');
-		$data['this_is_canceled_event'] = Langs::__('This is canceled event');
+		return array_change_key_case(Langs::get(), CASE_LOWER);
 
 		return $data;
 	}

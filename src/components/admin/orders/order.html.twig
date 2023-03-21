@@ -1,0 +1,162 @@
+{% include 'views/admin/includes/header.html.twig' %}
+    <!-- main -->
+    <main style="" class=" flex-1 overflow-x-hidden overflow-y-auto  ">
+        <div class="py-2 mt-1"></div>
+        <!-- today tab 1 -->
+        <!-- New releases -->
+        <div class="px-4 mb-6 py-4 rounded-lg ">
+            <h1 class="font-bold text-lg "></h1>
+            <div class="card invoice-info-card  mx-auto col-md-10">
+                <div class="card-body">
+                    <div class="invoice-item invoice-item-one">
+                        <div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <div class="invoice-logo mx-auto text-center">
+                                    <img src="{{app.CONF.url ? app.CONF.url : '/'}}assets/img/Logo.png" alt="logo">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="invoice-head">
+                                    <h2 class="text-lg">{{title}}</h2>
+                                    <p class="text-sm">{{lang.__('Invoice Number')}} : {{order.code}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-item invoice-item-two">
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="invoice-info">
+                                    <strong class="customer-text-one">{{lang.__('Billed to')}}</strong>
+                                    <h6 class="invoice-name">{{order.customer.name ? order.customer.name : 'Guest'}}</h6>
+                                    <p class="invoice-details invoice-details-two">
+                                        {{order.customer.phone}} <br>
+                                    </p>
+                                </div>
+
+                                <div class="invoice-info invoice-info text-default ">
+                                    <strong class="customer-text-one">{{lang.__('Payment Details')}}</strong>
+                                    <p class=" text-default">
+                                        {{lang.__('Payment method')}}: <b class="text-red-500">{{order.payment_method}}</b>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="invoice-info ">
+                                    <strong class="customer-text-one">{{lang.__('Invoice From')}}</strong>
+                                    <h6 class="invoice-name">{{app.Settings.sitename}}</h6>
+                                    <p class="text-default">
+                                        {{app.Settings.address}}<br>
+                                        {{app.Settings.city}} - {{app.Settings.country}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-issues-box">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <div class="invoice-issues-date">
+                                    <p>{{lang.__('Issue Date')}} : {{order.date}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="invoice-issues-date">
+                                    <p>{{lang.__('Status')}} : {{lang.__(order.status)}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="invoice-issues-date">
+                                    <p>{{lang.__('Subtotal')}} : {{order.subtotal}}{{app.Settings['currency']}} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-item invoice-table-wrap w-full">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="invoice-table  w-full table table-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>{{lang.__('duration')}}</th>
+                                                <th>{{lang.__('Category')}}</th>
+                                                <th>{{lang.__('Rate')}}/{{lang.__('Item')}}</th>
+                                                <th>{{lang.__('Qty')}}/{{lang.__('Duration')}}</th>
+                                                <th class="text-end">{{lang.__('Amount')}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            {% for orderdevice in order.order_devices %}
+                                            <tr>
+                                                <td>{{orderdevice.device.name}}</td>
+                                                <td>{{lang.__('Booking')}}</td>
+                                                <td>{{orderdevice.device_cost}} {{app.Settings['currency']}}</td>
+                                                <td>{{orderdevice.duration_hours}}</td>
+                                                <td class="text-end">{{orderdevice.subtotal}} {{app.Settings['currency']}}</td>
+                                            </tr>
+
+                                            {% if orderdevice.products %}
+                                                {% for device_product in orderdevice.products %}
+                                                <tr>
+                                                    <td>{{device_product.product.name}}</td>
+                                                    <td>{{lang.__('Product')}}</td>
+                                                    <td>{{device_product.price}} {{app.Settings['currency']}}</td>
+                                                    <td>{{device_product.qty}}</td>
+                                                    <td class="text-end">{{device_product.subtotal}} {{app.Settings['currency']}}</td>
+                                                </tr>
+                                                {% endfor %}
+
+                                            {% endif %}
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="invoice-terms">
+                                <h6>{{lang.__('Notes')}}:</h6>
+                                <p class="mb-0">{{app.Settings.invoice_notes}}</p>
+                            </div>
+                            <div class="invoice-terms">
+                                <h6>{{lang.__('Terms and Conditions')}}:</h6>
+                                <p class="mb-0">{{app.Settings.invoice_terms}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="invoice-total-card">
+                                <div class="invoice-total-box">
+                                    <div class="invoice-total-inner w-full">
+                                        <p class="mb-0 w-full flex gap gap-6"> <span class="w-full">{{lang.__('Sub total')}} </span><span class="w-40 text-center">{{order.subtotal}} {{app.Settings['currency']}}</span></p>
+                                        <p class="w-full flex "><span class="w-full">{{lang.__('Tax') }}</span><span class="w-40 text-center">{{order.tax}} {{app.Settings['currency']}}</span></p>
+                                        <p class="w-full flex "><span class="w-full">{{lang.__('Discount')}}</span> <span class="w-40 text-center">{{order.discount}} {{app.Settings['currency']}}</span></p>
+                                    </div>
+                                    <div class="invoice-total-footer">
+                                        <h4 class="w-full flex "><span class="w-full">{{lang.__('Total Amount')}}</span> <span class="w-40 text-center">{{order.total_cost}} {{app.Settings['currency']}}</span></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-sign text-end">
+                        <img  class="img-fluid d-inline-block w-12 h-12" src="{{app.CONF.url ? app.CONF.url : '/'}}assets/img/Logo.png" alt="logo">
+                        <span class="d-block">{{app.Settings.sitename}}</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </main>
+    
+    <!-- end of main -->
+    <div id="main-forms-container">
+    </div>
+
+{% include 'views/admin/includes/footer.html.twig' %}

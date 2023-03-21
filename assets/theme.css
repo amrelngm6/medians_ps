@@ -53,71 +53,8 @@ Version      : 1.0
 ========================================*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
-@font-face {
-	font-family: 'Material Icons';
-	font-style: normal;
-	font-weight: 400;
-	src: url(../fonts/MaterialIcons-Regular.eot);
-	/* For IE6-8 */
-	src: local('Material Icons'), local('MaterialIcons-Regular'), url(../fonts/MaterialIcons-Regular.woff2) format('woff2'), url(../fonts/MaterialIcons-Regular.woff) format('woff'), url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
-}
-
-@font-face {
-	font-family: 'CircularStd';
-	font-style: normal;
-	font-weight: 400;
-	src: local('Circular Std Book'), url('../fonts/CircularStd-Book.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'CircularStd';
-	font-style: italic;
-	font-weight: 400;
-	src: local('Circular Std Book Italic'), url('../fonts/CircularStd-BookItalic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'CircularStd';
-	font-style: normal;
-	font-weight: 500;
-	src: local('Circular Std Medium'), url('../fonts/CircularStd-Medium.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'CircularStd';
-	font-style: italic;
-	font-weight: 500;
-	src: local('Circular Std Medium Italic'), url('../fonts/CircularStd-MediumItalic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'CircularStd';
-	font-style: normal;
-	font-weight: 600;
-	src: local('Circular Std Bold'), url('../fonts/CircularStd-Bold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'CircularStd';
-	font-style: italic;
-	font-weight: 600;
-	src: local('Circular Std Bold Italic'), url('../fonts/CircularStd-BoldItalic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'CircularStd';
-	font-style: normal;
-	font-weight: 800;
-	src: local('Circular Std Black'), url('../fonts/CircularStd-Black.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'CircularStd';
-	font-style: italic;
-	font-weight: 800;
-	src: local('Circular Std Black Italic'), url('../fonts/CircularStd-BlackItalic.woff') format('woff');
-}
 
 
 /*-----------------
@@ -129,7 +66,7 @@ html {
 }
 
 body {
-	font-family: 'Inter', sans-serif;
+	font-family: 'Cairo', sans-serif;
 	font-size: .9375rem;
 	color: #1f1f1f;
 	background-color: #f7f7f7;
@@ -143,7 +80,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Inter', sans-serif;
+	font-family: 'Cairo', sans-serif;
 	margin-top: 0;
 	font-weight: 500;
 }
@@ -1047,12 +984,10 @@ table.dataTable thead>tr>td.sorting {
 .bg-gradient-purple {
 	background: linear-gradient(to right, #8a56e6 0, #6f3cca 100%);
 }
-
-.bg-gradient-purple.active {
-	transition: all .5s ease-in-out;
-	background: linear-gradient(to right, rgba(138, 86, 230, .7) 0, rgba(111, 60, 202, .7) 100%);
+.bg-gradient-to-r {
+	background: linear-gradient(to right, #fff 0, #dbeafa 100%);
+	border-right:4px solid #9a55ff;
 }
-
 
 /*-----------------
   5. Animation
@@ -1704,7 +1639,6 @@ table.dataTable thead>tr>td.sorting {
 	padding: 0 15px;
 }
 
-.sidebar-menu li a.active,
 .sidebar-menu li a:hover {
 	background-color: #9a55ff;
 	color: #fff;
@@ -1748,6 +1682,7 @@ table.dataTable thead>tr>td.sorting {
 .sidebar-menu ul ul a.active {
 	background-color: #9a55ff;
 	color: #fff;
+	text-decoration: underline;
 }
 
 .mobile-user-menu {
@@ -11434,7 +11369,6 @@ table .badge {
     -ms-transform: translateX(-50%) translateY(-50%);
     -o-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(../img/arrow.svg) no-repeat 0 0;
 }
 .cd-timeline-navigation a.prev {
     left: 0;

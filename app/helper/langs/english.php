@@ -909,6 +909,7 @@ class Langs
 			,'Stock alert products' => 'Stock alert products'
 			,'Stock out products' => 'Stock out products'
 			,'invoice_id' => 'Invoice id'
+			,'confirm_delete' => 'Please confirm to delete this item'
 
 			,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
@@ -928,58 +929,14 @@ class Langs
 		// $LANG_ARRAY = Langs::get();
 
 	    $key = strtolower(str_replace([' ', '/', '&', '?','؟' , '@', '#', '$', '%', '(', ')', '-', '='], '_', $langkey)) ;
-
-	    return isset($LANG_ARRAY[$key]) ? $LANG_ARRAY[$key] : ucfirst(str_replace('_', ' ', $langkey));
+		
+	    return isset($LANG_ARRAY[$key]) ? $LANG_ARRAY[$key] : $langkey;
 	} 
 
 	public static function vueLang()
 	{
-		$data = [];
 
-		$data['start'] = Langs::__('Start time');
-		$data['end'] = Langs::__('end time');
-		$data['date'] = Langs::__('date');
-		$data['pay'] = Langs::__('PAY_NOW');
-		$data['add_cart'] = Langs::__('ADD_CART');
-		$data['checkout'] = Langs::__('checkout');
-		$data['remove'] = Langs::__('remove');
-		$data['add_products'] = Langs::__('Add More Products');
-		$data['type'] = Langs::__('type');
-		$data['apply'] = Langs::__('apply');
-		$data['subtotal'] = Langs::__('Subtotal');
-		$data['total_amount'] = Langs::__('TOTAL');
-		$data['tax'] = Langs::__('Tax');
-		$data['game'] = Langs::__('Game');
-		$data['order_summary'] = Langs::__('Order Summary');
-		$data['start_playing'] = Langs::__('Start Playing');
-		$data['finish'] = Langs::__('finish');
-		$data['login'] = Langs::__('Login');
-		$data['login_page'] = Langs::__('Login page');
-		$data['password'] = Langs::__('password');
-		$data['purchased_products'] = Langs::__('Purchased Products');
-		$data['email'] = Langs::__('Email');
-		$data['single'] = Langs::__('Single');
-		$data['multi'] = Langs::__('Multi');
-		$data['update'] = Langs::__('update');
-		$data['duration'] = Langs::__('duration');
-		$data['information'] = Langs::__('info');
-		$data['price'] = Langs::__('price');
-		$data['cost'] = Langs::__('cost');
-		$data['alert'] = Langs::__('Alert');
-		$data['payment_method'] = Langs::__('PAYMENT_METHOD');
-		$data['order_status_is'] = Langs::__('order_status_is');
-		$data['promo_code'] = Langs::__('DISCOUNT_CODE');
-		$data['confirm_complete_booking'] = Langs::__('Are your sure you want to finish this booking');
-		$data['confirm'] = Langs::__('confirm');
-		$data['confirmation'] = Langs::__('confirmation');
-		$data['show_invoice'] = Langs::__('show_invoice');
-		$data['paid'] = Langs::__('paid');
-		$data['completed'] = Langs::__('completed');
-		$data['active'] = Langs::__('active');
-		$data['unpaid'] = Langs::__('unpaid');
-		$data['add_new'] = Langs::__('add new');
-		$data['cancel'] = Langs::__('CANCEL');
-		$data['this_is_canceled_event'] = Langs::__('This is canceled event');
+		return array_change_key_case(Langs::get(), CASE_LOWER);
 
 		return $data;
 	}

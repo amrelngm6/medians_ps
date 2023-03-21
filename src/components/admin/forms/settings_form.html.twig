@@ -1,0 +1,134 @@
+{% include 'views/admin/includes/header.html.twig' %}
+
+<main id="form-page" class="w-full overflow-auto">
+    <div class="content container-fluid">
+        
+        <form action="/api/update" method="POST" data-refresh="1" id="signup-form" class="ajax-form action ">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">{{lang.__('Basic Details')}}</h5>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="settings-form">
+                                <input name="type" type="hidden" value="Settings.update">
+                                <label class="block py-3" >
+                                    <input name="params[settings][logo]" type="hidden" :value="activeItem && activeItem.file ? activeItem.file : '{{ app.Settings.logo }}'">
+                                    <div class="w-full flex gap gap-2">
+                                        <span class="text-gray-700 w-20">{{lang.__('Logo')}} <span class="star-red">*</span></span>
+                                        <div v-if="'{{ app.Settings.logo }}' && !activeItem" class="w-full flex gap gap-6">
+                                            <img src="{{ app.Settings.logo }}" class="w-20" >
+                                            <span @click="activeItem = {file:''}">{{lang.__('change')}}</span>
+                                        </div>
+                                        <div v-else-if="!activeItem">
+                                            <span @click="activeItem = {file:''}">{{lang.__('change')}}</span>
+                                        </div>
+                                        <div v-else-if="activeItem">
+                                            <vue-medialibrary-field api_url="{{app.CONF.url}}" v-model="activeItem.file" ></vue-medialibrary-field>
+                                        </div>
+                                    </div>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">{{lang.__('Basic Details')}}</h5>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="settings-form">
+                                <input name="type" type="hidden" value="Settings.update">
+                                <label class="block py-3">
+                                    <span class="text-gray-700">{{lang.__('Sitename')}} <span class="star-red">*</span></span>
+                                    <input name="params[settings][sitename]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required placeholder="{{lang.__('Sitename')}}" value="{{ app.Settings.sitename }}">
+                                </label>
+                                <label class="block py-3">
+                                    <span class="text-gray-700">{{lang.__('Currency')}} <span class="star-red">*</span></span>
+                                    <input name="params[settings][currency]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="{{lang.__('Currency')}}" required value="{{ app.Settings.currency }}">
+                                </label>
+
+                                <label class="block py-3">
+                                    <span class="text-gray-700">{{lang.__('Language')}} <span class="star-red">*</span></span>
+                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][lang]">
+                                        <option {% if app.Settings.lang == 'english' %} selected {% endif %} value="english">English</option>
+                                        <option {% if app.Settings.lang == 'arabic' %} selected {% endif %} value="arabic">العربية</option>
+                                    </select>
+                                </label>
+
+                                <label class="block py-5">
+                                    <span class="text-gray-700"> {{lang.__('Minimum Stock alert')}} ( {{lang.__('Number')}} ) <span class="star-red">*</span></span>
+                                    <input name="params[settings][stock_alert]" type="number" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="{{lang.__('Stock alert')}}" required value="{{ app.Settings.stock_alert }}">
+                                </label>
+
+                                <label class="block py-5">
+                                    <span class="text-gray-700"> {{lang.__('tax')}}  ( % ) </span>
+                                    <input name="params[settings][tax]" type="number" max="99" min="0" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="{{lang.__('tax')}}" required value="{{ app.Settings.tax }}">
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">{{lang.__('Address Details')}}</h5>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label>{{lang.__('Address')}}  <span class="star-red">*</span></label>
+                                    <input name="params[settings][address]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Enter Address Line 2" required value="{{ app.Settings.address }}">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>{{lang.__('City')}} <span class="star-red">*</span></label>
+                                            <input name="params[settings][city]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required value="{{ app.Settings.city }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>{{lang.__('Country')}} </label>
+                                            <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][country]">
+                                                <option {% if app.Settings.country == 'Egypt' %} selected {% endif %} value="Egypt">Egypt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">{{lang.__('Invoice info')}}</h5>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label>{{lang.__('Invoice notes')}}  </label>
+                                    <textarea name="params[settings][invoice_notes]" rows="4" class="mt-2 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Enter Address Line 2" >{{ app.Settings.invoice_notes }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{lang.__('Invoice terms & conditions')}}  </label>
+                                    <textarea name="params[settings][invoice_terms]" rows="4" class="mt-2 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Enter Address Line 2"  >{{ app.Settings.invoice_terms }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-transparent mb-0 mx-4">
+                    <div class=" text-gray-600">
+                        <button type="submit" class="border-0 btn btn-primary btn-gradient-primary btn-rounded bg-purple-600">{{lang.__('update')}}</button>&nbsp;&nbsp;
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</main>
+{% include 'views/admin/includes/footer.html.twig' %}
