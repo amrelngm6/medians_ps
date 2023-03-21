@@ -7,9 +7,9 @@
                     <dashboard_card  classes="bg-gradient-danger" :title="lang.active_bookings" :value="content.active_order_devices_count"></dashboard_card>
                     <dashboard_card  classes="bg-gradient-info" :title="lang.today_bookings" :value="content.today_order_devices_count"></dashboard_card>
                     <dashboard_card  classes="bg-gradient-warning" :title="lang.today_sold_products" :value="content.today_order_products_count"></dashboard_card>
-                    <dashboard_card  classes="bg-gradient-success" :title="lang.today_revenue" :value="content.today_revenue"></dashboard_card>
+                    <dashboard_card  classes="bg-gradient-success" :title="lang.today_income" :value="content.today_income"></dashboard_card>
                     <dashboard_card  classes="bg-gradient-purple" :title="lang.today_payments" :value="content.today_payments"></dashboard_card>
-                    <dashboard_card  classes="bg-gradient-primary" :title="lang.today_payments" :value="content.today_payments" classes="bg-gradient-danger"></dashboard_card>
+                    <dashboard_card  classes="bg-gradient-primary" :title="lang.today_revenue" :value="content.today_revenue" classes="bg-gradient-danger"></dashboard_card>
 
                 </div>
             </div>

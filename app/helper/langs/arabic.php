@@ -904,6 +904,7 @@ class Langs
 		,'TODAY_REVENUE' => 'أرباح اليوم'
 		,'TODAY_BOOKINGS' => 'حجوزات اليوم'
 		,'TODAY_SOLD_PRODUCTS' => 'مبيعات المنتجات اليوم'
+		,'TODAY_INCOME' => 'إجمالي مبيعات اليوم'
 		
 		,'Latest unpaid Bookings' => 'احدث الحجوزات الغير مدفوعة'
 		,'Latest paid Bookings' => 'احدث الحجوزات مدفوعة'
