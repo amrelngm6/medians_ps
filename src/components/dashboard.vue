@@ -4,11 +4,13 @@
         <div v-if="lang && !showLoader" class="w-full overflow-y-auto overflow-x-hidden px-2" >
             <div class="mb-6">
                 <div class="row pt-2">
-                    <dashboard_card :title="lang.active_bookings" :value="content.active_order_devices_count"></dashboard_card>
-                    <dashboard_card :title="lang.today_bookings" :value="content.today_order_devices_count"></dashboard_card>
-                    <dashboard_card :title="lang.today_sold_products" :value="content.today_order_products_count"></dashboard_card>
-                    <dashboard_card :title="lang.today_revenue" :value="content.today_revenue"></dashboard_card>
-                    
+                    <dashboard_card  classes="bg-gradient-danger" :title="lang.active_bookings" :value="content.active_order_devices_count"></dashboard_card>
+                    <dashboard_card  classes="bg-gradient-info" :title="lang.today_bookings" :value="content.today_order_devices_count"></dashboard_card>
+                    <dashboard_card  classes="bg-gradient-warning" :title="lang.today_sold_products" :value="content.today_order_products_count"></dashboard_card>
+                    <dashboard_card  classes="bg-gradient-success" :title="lang.today_revenue" :value="content.today_revenue"></dashboard_card>
+                    <dashboard_card  classes="bg-gradient-purple" :title="lang.today_payments" :value="content.today_payments"></dashboard_card>
+                    <dashboard_card  classes="bg-gradient-primary" :title="lang.today_payments" :value="content.today_payments" classes="bg-gradient-danger"></dashboard_card>
+
                 </div>
             </div>
             <div class="w-full lg:flex gap gap-6 ">
