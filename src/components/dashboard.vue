@@ -4,12 +4,13 @@
         <div v-if="lang && !showLoader" class="w-full overflow-y-auto overflow-x-hidden px-2" >
             <div class="mb-6">
                 <div class="row pt-2">
+                    <dashboard_card :value="lang.active_bookings" :title="content.active_order_devices_count"></dashboard_card>
                     <div class="col-md-3">
                         <div class="card bg-gradient-danger card-img-holder text-white h-100">
                             <div class="card-body">
                                 <img src="/assets/img/circle.png" class="card-img-absolute" alt="circle-image">
-                                <h4 class="font-weight-normal mb-3" v-text="lang.active_bookings"></h4>
-                                <span class="text-2xl" v-text="content.active_order_devices_count"></span>
+                                <h4 class="font-weight-normal mb-3" v-text=""></h4>
+                                <span class="text-2xl" v-text=""></span>
                             </div>
                         </div>
                     </div>
@@ -146,9 +147,12 @@
     </div>
 </template>
 <script>
-
+import dashboard_card from './includes/dashboard_card';
 export default 
 {
+    components:{
+        dashboard_card
+    },
     name:'categories',
     data() {
         return {
