@@ -49,7 +49,7 @@
                                         <a @click="showEditSide = true; showAddSide = false; activeItem = product" href="javascript:;" class="text-gray-400 hover:text-gray-100  mx-2">
                                             <i class="material-icons-outlined text-base">edit</i>
                                         </a>
-                                        <a href="javascript:;"  @click="$parent.delete(product, 'Products.delete')"   class="text-gray-400 hover:text-gray-100  mx-2">
+                                        <a href="javascript:;"  @click="$parent.delete(product, 'Product.delete')"   class="text-gray-400 hover:text-gray-100  mx-2">
                                             <i class="material-icons-outlined text-base">delete</i>
                                         </a>
                                     </td>
