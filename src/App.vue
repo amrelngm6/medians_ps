@@ -28,7 +28,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+
+                    <div v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
                         <dashboard v-if="activeTab == 'dashboard'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></dashboard>
                         <games v-if="activeTab == 'games'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></games>
                         <payments v-if="activeTab == 'payments'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></payments>
@@ -69,6 +70,10 @@
                             :key="activeTab" 
                             :setting="setting" :lang="lang" :conf="conf" :auth="auth"></devices_orders>
                     </div>
+                    <div v-else class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+                        <login form_action="/" ></login>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -78,6 +83,7 @@
 const axios = require('axios').default;
 
 
+import login from './components/login-dashboard.vue'
 import SideMenu from './components/side-menu.vue'
 import navbar from './components/navbar.vue'
 import dashboard from './components/dashboard.vue'
@@ -96,6 +102,7 @@ import settings from './components/settings.vue'
 export default {
     name: 'app',
     components: {
+        login,
         SideMenu,
         dashboard,
         categories,
@@ -191,6 +198,26 @@ export default {
             })
         },
 
+        /**
+         * Handle login access result 
+         * 
+         */
+        handleAccess(response) 
+        {
+            if (response && response.success == 1)
+            {
+                this.$alert(response.result).then(() => {
+                    location.reload();
+                });
+
+            } else {
+
+                response ? this.$alert(response.error ? response.error : response.result) : '';
+            }
+
+
+        },
+
         submit(element, props)
         {
             let Things = jQuery(element).serializeArray()
@@ -200,7 +227,7 @@ export default {
             });
 
             this.handleRequest(params, jQuery(element).attr('action')).then(response => {
-                this.$alert(response.result)
+                this.handleAccess(response)
             })
         },
         async handleRequest(params, url = '/api') {

@@ -20,6 +20,7 @@ if(empty($app->auth()->id))
 Macaw::get('/', \Medians\Auth\Application\AuthService::class.'@loginPage'); 
 Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
+Macaw::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
 
 } else {
 

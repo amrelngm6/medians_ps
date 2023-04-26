@@ -30,7 +30,7 @@
                     <i class="fa fa-comment-o"></i> <span class="badge rounded-pill">8</span>
                 </a>
             </li>
-            <li class="nav-item  has-arrow main-drop w-full relative">
+            <li v-if="auth && lang"  class="nav-item  has-arrow main-drop w-full relative">
                 <a href="#" class="flex w-full gap gap-2" onclick="$('.dropped1').toggleClass('hidden')">
                     <span class="user-img mt-3 ">
                         <img :src="auth.photo" alt="">
