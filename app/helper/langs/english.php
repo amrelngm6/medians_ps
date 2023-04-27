@@ -1,24 +1,5 @@
 <?php
 
-//======================================================================\\
-
-// Medians PRO CMS			                        			\\
-
-//----------------------------------------------------------------------\\
-
-// Copyright (c) 2017-2018           					    			\\
-
-//----------------------------------------------------------------------\\
-
-// All rights reserved.						 		    				\\
-
-//----------------------------------------------------------------------\\
-
-
-//////////////////////////////
-// Translate second item Only
-//////////////////////////////
-
 /**
  * 
  */
@@ -910,7 +891,30 @@ class Langs
 			,'Stock out products' => 'Stock out products'
 			,'invoice_id' => 'Invoice id'
 			,'confirm_delete' => 'Please confirm to delete this item'
-
+			,'active_bookings' => 'Active bookings'
+			,'TODAY_REVENUE' => 'Today revenue'
+			,'Today orders' => 'Today orders'
+			,'TODAY_BOOKINGS' => 'Today Bookings'
+			,'TODAY_SOLD_PRODUCTS' => 'Today sold products'
+			,'TODAY_INCOME' => 'Today income'
+			,'today_payments' => 'Today payments'
+			,'Latest unpaid Bookings' => 'Latest unpaid Bookings'
+			,'Latest paid Bookings' => 'Latest paid Bookings'
+			,'Latest sold products' => 'Latest sold products'
+			,'connected_devices' => 'Connected devices'
+			,'ADD_NEW_category' => 'Add new category'
+			,'ADD_NEW_game' => 'Add new game'
+			,'ADD_device' => 'Add device'
+			,'Purchase_amount' => 'Purchase amount'
+			,'Last_week_orders' => 'Last week orders'
+			,'Last_30_Days' => 'Last 30 days'
+			,'Invoice_Number' => 'Invoice number'
+			,'Basic_Details' => 'Basic Details'
+			,'Address_Details' => 'Address Details'
+			,'invoice_info' => 'Invoice info'
+			,'Invoice_terms___conditions' => 'Invoice terms & conditions'
+			,'Invoice_notes' => 'Invoice notes'
+		
 			,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	
@@ -930,7 +934,7 @@ class Langs
 
 	    $key = strtolower(str_replace([' ', '/', '&', '?','؟' , '@', '#', '$', '%', '(', ')', '-', '='], '_', $langkey)) ;
 		
-	    return isset($LANG_ARRAY[$key]) ? $LANG_ARRAY[$key] : $langkey;
+	    return !empty($LANG_ARRAY[$key]) ? $LANG_ARRAY[$key] : $langkey;
 	} 
 
 	public static function vueLang()

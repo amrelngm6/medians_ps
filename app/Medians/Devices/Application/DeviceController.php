@@ -86,7 +86,8 @@ class DeviceController
 
 	public function query($params)
 	{
-		return $this->repo->events($params, 10);
+		$params['branch_id'] = $this->app->branch->id;
+		return $this->repo->events($params, 20);
 	}
 
 	/**

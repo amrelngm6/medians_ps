@@ -1,6 +1,8 @@
 <template>
     <div class=" w-full">
+        <calendar_get_started v-if="!content.devicesList.length"></calendar_get_started>
         <main_calendar
+        v-if="content.devicesList.length"
         :key="content.devicesList"
         ref="calendar"
         :settings="setting"
@@ -12,11 +14,13 @@
 const axios = require('axios').default;
 
 import main_calendar from './main-calendar.vue'
+import calendar_get_started from './calendar-get-started.vue'
 
 export default 
 {
     components: {
-        main_calendar
+        main_calendar,
+        calendar_get_started
     },
     name:'categories',
     data() {
