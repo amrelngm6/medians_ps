@@ -37,6 +37,11 @@ global.jQuery = require('jquery');
 var $ = global.jQuery;
 window.$ = $;
 
+Vue.config.errorHandler = function (err, vm, info)  {
+  console.log('[Global Error Handler]: Error in ' + info + ': ' + err);
+};
+
+
 new Vue({
   render: h => h(App),
 }).$mount('#app')
