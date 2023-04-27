@@ -37,18 +37,6 @@
     </style>
 
     <script type="text/javascript" src="/dist/js/app.js"></script>
-    <script>
-const handleErrors = (response) => {
-   if (!response.ok) {
-      let message = 'Could not load the information'
-      document.querySelector('tbody').innerHTML = `
-      <tr><td colspan=3>Error ${message}</td></tr>
-      `;
-      throw Error(response.status + ' ' + response.statusText);
-   }
-   return response;
-};
-handleErrors
-    </script>
+
 </body>
 </html>
