@@ -39,8 +39,8 @@
                     <span v-text="auth.name"></span>
                 </a>
                 <ul class="py-4 px-2 w-full bg-white border border-gray-300 rounded  absolute top-14 left-1 hidden dropped1" style="z-index: 9999;">
-                    <li class="py-2 border-b border-gray-300"><a :href="conf.url+'users/edit/'+auth.id" v-text="lang.profile"></a>
-                    <li class="py-2 border-b border-gray-300"><a :href="conf.urlsettings" v-text="lang.setting"></a></li>
+                    <li class="py-2 border-b border-gray-300"><a :href="'/users/edit/'+auth.id" v-text="lang.profile"></a>
+                    <li class="py-2 border-b border-gray-300"><a href="/settings" v-text="lang.setting"></a></li>
                     <li class="py-2"><a href="/logout" v-text="lang.logout"></a></li>
                 </ul>
             </li>

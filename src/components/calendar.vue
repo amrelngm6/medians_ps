@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <calendar_get_started v-if="!content.devicesList.length"></calendar_get_started>
+        <calendar_get_started :categories="content.typesList" v-if="!content.devicesList.length"></calendar_get_started>
         <main_calendar
         v-if="content.devicesList.length"
         :key="content.devicesList"
@@ -31,6 +31,7 @@ export default
                 title: '',
                 model: '',
                 devicesList: [],
+                typesList: [],
             },
 
             activeItem:null,

@@ -979,6 +979,7 @@ class Langs
 		,'Today orders' => 'فواتير اليوم'
 		,'Products Stock' => 'سجل مخزون المنتجات'
 		,'add device' => 'إضافة جهاز'
+		,'add_device' => 'إضافة جهاز'
 		,'First step' => 'الخطوة الأولي'
 		,'Second step' => 'الخطوة الثانية'
 		,'third Step' => 'الخطوة  الثالثة'
@@ -1014,8 +1015,11 @@ class Langs
 		,'this user not found' => 'هذا المستخدم غير موجود'
 		,'This is canceled event' => 'هذا الحجز تم إلغاؤه'
 		,'Canceled bookings' => 'الحجوزات الملغاء'
-		,'COPYRIGHTS' => 'Copyrights are reserved'
+		,'please_add_your_devices_first' => 'يرجي إضافة الجهاز الأول'
+		,'third_step' => 'الخطوة الثالثة'
 
+		,'COPYRIGHTS' => 'Copyrights are reserved'
+	
 		);
 	
 

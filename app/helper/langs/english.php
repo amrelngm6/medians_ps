@@ -914,6 +914,8 @@ class Langs
 			,'invoice_info' => 'Invoice info'
 			,'Invoice_terms___conditions' => 'Invoice terms & conditions'
 			,'Invoice_notes' => 'Invoice notes'
+			,'third_step' => 'Third step'
+			,'please_add_your_devices_first' => 'Please add your devices first'
 		
 			,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

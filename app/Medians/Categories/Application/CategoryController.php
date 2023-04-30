@@ -61,6 +61,7 @@ class CategoryController
 		$this->app = new \config\APP;
 
 		$params = $this->app->request()->get('params');
+		$params['branch_id'] = $this->app->branch->id;
 
         try {	
 
@@ -71,7 +72,7 @@ class CategoryController
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	return throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
 
 		return $returnData;
@@ -129,7 +130,7 @@ class CategoryController
 	public function validate($params) 
 	{
 
-		if (empty(trim($params['model'])))
+		if (empty($params['model']))
 		{
         	throw new \Exception(json_encode(array('result'=>__('model_required'), 'error'=>1)), 1);
 		}

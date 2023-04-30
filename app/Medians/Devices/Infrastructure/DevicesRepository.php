@@ -91,7 +91,7 @@ class DevicesRepository
 		}])->with('user')->with('products');
 		// ->where('branch_id', $this->app->branch->id);
 
-		$query->where('branch_id', $params['branch_id']);
+		$query->where('branch_id', isset($params['branch_id']) ? $params['branch_id'] : $this->app->branch->id);
 
 		if (!empty($params['by']))
 		{

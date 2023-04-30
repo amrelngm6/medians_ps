@@ -3,6 +3,8 @@
 namespace Medians\Categories\Infrastructure;
 
 use Medians\Categories\Domain\Category;
+use Medians\Devices\Domain\Device;
+use Medians\Products\Domain\Product;
 
 
 class CategoryRepository 
@@ -32,11 +34,11 @@ class CategoryRepository
 	{
 		switch ($model) 
 		{
-			case 'Medians\Products\Domain\Product':
+			case Product::class:
 				return Category::withCount('products')->where('model', $model)->where('branch_id', $this->app->branch->id)->limit($limit)->get();
 				break;
 			
-			case 'Medians\Devices\Domain\Device':
+			case Device::class:
 				return Category::withCount('devices')->where('model', $model)->where('branch_id', $this->app->branch->id)->limit($limit)->get();
 				break;
 		}

@@ -1,10 +1,10 @@
 <template>
     <div class="w-full" >
 
-        <div class="relative w-full h-full" v-if="!showLoader && activeItem && !activeItem.id">
+        <div class="relative w-full h-full  pt-2" v-if="!showLoader && activeItem && !activeItem.id">
             
             <!-- Event modal -->
-            <div class="top-20 relative mx-auto w-full bg-white p-6 rounded-lg overflow-y-auto" style="max-width: 600px; max-height: 500px;" >
+            <div class="pt-8 mt-12 relative mx-auto w-full bg-white p-6 rounded-lg overflow-y-auto" style="max-width: 600px; max-height: 500px;" >
 
                 <div class="w-full block gap-4 py-2 border-b  border-gray-200">
                     <label class="block w-full mt-10" v-text="__('game')"></label>

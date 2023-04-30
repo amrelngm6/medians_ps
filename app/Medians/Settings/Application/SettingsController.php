@@ -80,18 +80,15 @@ class SettingsController
 	public function updateSettings($params) 
 	{
 
-		
 		foreach ($params as $code => $value)
 		{
 
-			$this->updated = isset($this->app->Settings[$code]) ? $this->deleteItem($code) : true;
-
-			if (isset($this->updated))
-			{
-				$this->saveItem($code, $value);
-			}
+			$this->deleteItem($code);
+			$this->saveItem($code, $value);
 		}
 
+		$this->updated = true;
+		
 		return $this;
 	}
 

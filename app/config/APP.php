@@ -111,7 +111,7 @@ class APP
 			array('title'=>__('Devices'),  'icon'=>'fa-desktop', 'link'=>'#devices', 'sub'=>
 				[
 	                array('title'=>__('manage devices'),  'icon'=>'fa-dashboard', 'link'=>'devices/manage'),
-	                array('title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'devices/categories'),
+	                // array('title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'devices/categories'),
 	                array('title'=>__('games'),  'icon'=>'fa-dashboard', 'link'=>'games'),
 				]
 			),

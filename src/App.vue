@@ -3,7 +3,7 @@
         <div v-if="show" class="left-4">
             <!-- component -->
             <div class="w-full ">
-                <navbar :setting="setting" :lang="lang" :conf="conf" :auth="auth">
+                <navbar style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth">
                 </navbar>
                 <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-3 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-10 ">
@@ -33,7 +33,7 @@
                         <dashboard v-if="activeTab == 'dashboard'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></dashboard>
                         <games v-if="activeTab == 'games'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></games>
                         <payments v-if="activeTab == 'payments'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></payments>
-                        <calendar v-if="activeTab == 'calendar'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></calendar>
+                        <calendar v-if="activeTab == 'calendar'" :types-list="typesList" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></calendar>
                         <manage_devices v-if="activeTab == 'devices/manage'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></manage_devices>
                         <stock v-if="activeTab == 'stock'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></stock>
                         <settings v-if="activeTab == 'settings'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></settings>
@@ -133,6 +133,7 @@ export default {
             setting: {},
             conf: {},
             main_menu: [],
+            typesList: [],
             show: false,
             showSide: true,
             showModal: false,
@@ -161,6 +162,7 @@ export default {
             this.setting = props ? JSON.parse(props.setting) : {};
             this.conf = props ? JSON.parse(props.conf) : {};
             this.activeTab = (props && props.page) ? props.page : 'dashboard';
+            this.typesList = (props && props.typesList) ? props.typesList : [];
             this.show = true
 
         },
