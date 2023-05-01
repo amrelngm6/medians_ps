@@ -125,7 +125,7 @@ class Device extends CustomController
 
 	public function products()
 	{
-		return $this->hasMany(Product::class , 'branch_id' , 'branch_id');
+		return $this->hasMany(Product::class , 'branch_id' , 'branch_id')->where('stock', '>', 0);
 	}
 
 
