@@ -53,7 +53,7 @@
                                                 <input name="params[settings][currency]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('Currency')" required :value="setting.currency">
                                             </label>
                                             <label class="block py-5">
-                                                <span class="text-gray-700"> {{__('Minimum Stock alert')}} ( {{__('Number')}} ) <span class="star-red">*</span></span>
+                                                <span class="text-gray-700"> {{__('Minimum_Stock_alert')}} ( {{__('Number')}} ) <span class="star-red">*</span></span>
                                                 <input name="params[settings][stock_alert]" type="number" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('Stock_alert')" required :value="setting.stock_alert">
                                             </label>
 
