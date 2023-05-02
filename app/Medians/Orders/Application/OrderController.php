@@ -73,7 +73,7 @@ class OrderController
 	{	
 		$this->app = new \config\APP;
 		
-		$order = $this->repo->code($code, $this->app->branch->id);
+		$order = $this->repo->codeOnly($code);
 
 		$options = new QROptions([
 			'version'             => 7,
@@ -127,7 +127,7 @@ class OrderController
 
 		$this->app = new \config\APP;
 		
-		$order = $this->repo->code($code, $this->app->branch->id);
+		$order = $this->repo->codeOnly($code);
 
 		if (empty($order->id))
 			return null;

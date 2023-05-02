@@ -54,6 +54,21 @@ class OrdersRepository
 		->first();
 	} 
 	
+
+	/**
+	 * Find by codeOnly
+	 */  
+	public function codeOnly($code)
+	{
+		return Order::with('items')
+		->with(['order_device'=> function ($q)
+		{
+			return $q->with('device')->with('game');
+		}])
+		->where('code', $code)
+		->first();
+	} 
+	
 	/*
 	// Find items by `deviceId` 
 	*/
