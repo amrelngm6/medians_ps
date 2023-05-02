@@ -36,7 +36,7 @@
                                         <span :class="user.active ? 'bg-green-400' : 'bg-red-400'" class="text-gray-50 rounded-md px-2" v-text="user.active ? 'on' : 'off'"></span>
                                     </td>
                                     <td class="p-2 ">
-                                        <a v-if="user.id == auth.id || user.role_id == '1'" @click="showEditSide = true; showAddSide = false; activeItem = user" href="javascript:;" class="text-gray-400 hover:text-gray-100  mx-2">
+                                        <a v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user" href="javascript:;" class="text-gray-400 hover:text-gray-100  mx-2">
                                             <i class="material-icons-outlined text-base">edit</i>
                                         </a>
                                         <!-- <a href="javascript:;"  @click="$parent.delete(user, 'Users.delete')"   class="text-gray-400 hover:text-gray-100  mx-2">
