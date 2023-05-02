@@ -6,6 +6,9 @@ use Medians\APIController;
 use Medians\DashboardController;
 $app = new \config\APP;
 
+
+Macaw::get('/invoices/print/(:all)', \Medians\Orders\Application\OrderController::class.'@print');
+Macaw::get('/invoices/qr_code/(:all)', \Medians\Orders\Application\OrderController::class.'@qr_code');
 /**
 * Return Dashboard 
 */
@@ -136,8 +139,6 @@ Macaw::get('/orders/create', \Medians\Orders\Application\OrderController::class.
 Macaw::get('/orders/edit/(:all)', \Medians\Orders\Application\OrderController::class.'@edit');
 Macaw::get('/orders/index', \Medians\Orders\Application\OrderController::class.'@index');
 Macaw::get('/invoices/show/(:all)', \Medians\Orders\Application\OrderController::class.'@show');
-Macaw::get('/invoices/print/(:all)', \Medians\Orders\Application\OrderController::class.'@print');
-Macaw::get('/invoices/qr_code/(:all)', \Medians\Orders\Application\OrderController::class.'@qr_code');
 Macaw::get('/invoices', \Medians\Orders\Application\OrderController::class.'@index');
 Macaw::get('/orders', \Medians\Orders\Application\OrderController::class.'@index');
 
