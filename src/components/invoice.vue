@@ -32,7 +32,7 @@
                                     </p>
                                 </div>
 
-                                <div class="invoice-info invoice-info text-default ">
+                                <div class="invoice-info text-default ">
                                     <strong class="customer-text-one">{{__('Payment_Details')}}</strong>
                                     <p class=" text-default">
                                         {{__('Payment_method')}}: <b class="text-red-500">{{content.order.payment_method}}</b>
@@ -46,6 +46,13 @@
                                     <p class="text-default">
                                         {{setting.address}}<br>
                                         {{setting.city}} - {{setting.country}}
+                                    </p>
+                                </div>
+
+                                <div class="invoice-info text-default ">
+                                    <strong class="customer-text-one">{{__('Cashier')}}</strong>
+                                    <p class=" text-default">
+                                        : <b class="text-red-500">{{content.order.cashier ? content.order.cashier.name : ''}}</b>
                                     </p>
                                 </div>
                             </div>
@@ -137,12 +144,12 @@
                             <img  class="img-fluid d-inline-block w-12 h-12" :src="conf.url+setting.logo" alt="logo">
                             <span class="d-block">{{setting.sitename}}</span>
                         </div>
-                        <div class="w-full">
-                            <qr_code v-model="content.order.code" ></qr_code>
-                            <div class="hidden">
-                            <qr_code v-model="code" ></qr_code>
-
-                            </div>
+                        <div class="w-full text-center">
+                          <img class="mx-auto" :src="'/invoices/qr_code/'+content.order.code" width="100">
+                        </div>
+                        <div class="w-full text-left">
+                            <a href="javascript:;" @click="printInvoice()" class="w-full font-thin uppercase flex items-center p-4 my-2 transition-colors duration-200 justify-start text-gray-500"><span class="text-left"><i class="fa fa-print"></i></span><span class="text-sm font-semibold">Print</span></a>
+                            <iframe id="printarea" :src="'/invoices/print/'+content.order.code" style="display: none;" width="1" height="1" ></iframe>
                         </div>
                     </div>
                 </div>
@@ -196,6 +203,12 @@ export default
         
         setValues(data) {
             this.content = JSON.parse(JSON.stringify(data)); return this
+        },
+        printInvoice()
+        {
+              var iframe = document.getElementById("printarea");
+              var iframeWindow = iframe.contentWindow;
+              iframeWindow.print();
         },
         __(i)
         {

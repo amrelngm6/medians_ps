@@ -152,6 +152,10 @@ export default {
 
         this.setProps();
 
+        $(window).on('popstate', function(e) {
+            t.switchTab({link:window.location.pathname.replace('/','')})
+        });
+
         jQuery(document).on('submit', 'form',function (e) {
             e.preventDefault();
             t.submit(this, e)
@@ -264,7 +268,7 @@ export default {
         },
         __(i) {
                 
-            let key = i.toLowerCase();
+            let key = i.toLowerCase().replace(' ', '_');
 
             return this.lang[key] ? this.lang[key] : i;
 

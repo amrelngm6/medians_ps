@@ -351,7 +351,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v9.52.4",
+            "version": "v9.52.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -406,7 +406,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v9.52.4",
+            "version": "v9.52.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -452,7 +452,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v9.52.4",
+            "version": "v9.52.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -503,7 +503,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v9.52.4",
+            "version": "v9.52.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -551,16 +551,16 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v9.52.4",
+            "version": "v9.52.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "fc7e9cf5d4c7c4c0a2800c0d345cc9985fb1b040"
+                "reference": "a2d8423c05ef70101b675d4552bd7bb36a6cc890"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/fc7e9cf5d4c7c4c0a2800c0d345cc9985fb1b040",
-                "reference": "fc7e9cf5d4c7c4c0a2800c0d345cc9985fb1b040",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/a2d8423c05ef70101b675d4552bd7bb36a6cc890",
+                "reference": "a2d8423c05ef70101b675d4552bd7bb36a6cc890",
                 "shasum": ""
             },
             "require": {
@@ -617,11 +617,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-02-12T20:16:50+00:00"
+            "time": "2023-03-13T03:00:40+00:00"
         },
         {
             "name": "illuminate/macroable",
-            "version": "v9.52.4",
+            "version": "v9.52.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -667,16 +667,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v9.52.4",
+            "version": "v9.52.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "63dcb4523ccdfc01cdf5be17791f07cc20982a1e"
+                "reference": "5c38d755c5fa767d5b689867888ee4e5f53fc8a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/63dcb4523ccdfc01cdf5be17791f07cc20982a1e",
-                "reference": "63dcb4523ccdfc01cdf5be17791f07cc20982a1e",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/5c38d755c5fa767d5b689867888ee4e5f53fc8a6",
+                "reference": "5c38d755c5fa767d5b689867888ee4e5f53fc8a6",
                 "shasum": ""
             },
             "require": {
@@ -734,7 +734,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-02-13T16:54:43+00:00"
+            "time": "2023-04-04T18:35:58+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -1657,16 +1657,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v5.4.21",
+            "version": "v5.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "39b8a9e6353f8ad95de993ef769295d412991b36"
+                "reference": "ebdc48d54d82b74230a8aed6458c238ec5788e38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/39b8a9e6353f8ad95de993ef769295d412991b36",
-                "reference": "39b8a9e6353f8ad95de993ef769295d412991b36",
+                "url": "https://api.github.com/repos/symfony/form/zipball/ebdc48d54d82b74230a8aed6458c238ec5788e38",
+                "reference": "ebdc48d54d82b74230a8aed6458c238ec5788e38",
                 "shasum": ""
             },
             "require": {
@@ -1740,7 +1740,7 @@
             "description": "Allows to easily create, process and reuse HTML forms",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/form/tree/v5.4.21"
+                "source": "https://github.com/symfony/form/tree/v5.4.23"
             },
             "funding": [
                 {
@@ -1756,7 +1756,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-23T17:08:09+00:00"
+            "time": "2023-04-17T15:04:56+00:00"
         },
         {
             "name": "symfony/http-client",
@@ -3117,16 +3117,16 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v5.4.21",
+            "version": "v5.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "e35b42d69a8b447cc3e6c9b3f98938c596b6c60a"
+                "reference": "545da11697153c24c274b9a68cab550b2c0a9860"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/e35b42d69a8b447cc3e6c9b3f98938c596b6c60a",
-                "reference": "e35b42d69a8b447cc3e6c9b3f98938c596b6c60a",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/545da11697153c24c274b9a68cab550b2c0a9860",
+                "reference": "545da11697153c24c274b9a68cab550b2c0a9860",
                 "shasum": ""
             },
             "require": {
@@ -3138,7 +3138,7 @@
             "conflict": {
                 "doctrine/annotations": "<1.12",
                 "phpdocumentor/reflection-docblock": "<3.2.2",
-                "phpdocumentor/type-resolver": "<1.4.0|>=1.7.0",
+                "phpdocumentor/type-resolver": "<1.4.0",
                 "symfony/dependency-injection": "<4.4",
                 "symfony/property-access": "<5.4",
                 "symfony/property-info": "<5.3.13",
@@ -3200,7 +3200,7 @@
             "description": "Handles serializing and deserializing data structures, including object graphs, into array structures or other formats like XML and JSON.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/serializer/tree/v5.4.21"
+                "source": "https://github.com/symfony/serializer/tree/v5.4.23"
             },
             "funding": [
                 {
@@ -3216,7 +3216,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-21T19:46:44+00:00"
+            "time": "2023-04-17T13:59:16+00:00"
         },
         {
             "name": "symfony/service-contracts",

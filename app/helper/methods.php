@@ -49,7 +49,7 @@ function render($path, $data, $responseType = 'html')
      * Response will be override only
      * In case the system works In Vue APP
      */ 
-    $path = 'views/admin/vue.html.twig';
+    $path = isset($data['override_vue']) ? $path : 'views/admin/vue.html.twig';
 
     $app = new \config\APP;
     $data['app'] = $app;

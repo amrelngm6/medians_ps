@@ -10,6 +10,14 @@ use Medians\Discounts\Application\Discount;
 
 use Medians\Orders\Domain\Tax;
 
+
+
+use chillerlan\QRCode\{QRCode, QROptions};
+use chillerlan\QRCode\Common\EccLevel;
+use chillerlan\QRCode\Data\QRMatrix;
+use chillerlan\QRCode\Output\QROutputInterface;
+
+
 class OrderController
 {
 
@@ -58,9 +66,41 @@ class OrderController
 	/**
 	 * Admin index items
 	 * 
-	 * @param Silex\Application $app
-	 * @param \Twig\Environment $twig
+	 * @param String $code
 	 * 
+	 */ 
+	public function qr_code($code) 
+	{	
+		$this->app = new \config\APP;
+		
+		$order = $this->repo->code($code, $this->app->branch->id);
+
+		$options = new QROptions([
+			'version'             => 7,
+			'scale'               => 20,
+			'imageBase64'         => false,
+			'bgColor'             => [200, 150, 200],
+			'imageTransparent'    => true,
+			'drawCircularModules' => true,
+			'drawLightModules'    => true,
+			'circleRadius'        => 0.4,
+		]);
+
+
+		try{
+			echo (new QRCode($options))->render($this->app->CONF['url'].'invoices/print/'.$order->code);
+		} catch (Throwable $e){
+			exit($e->getMessage());
+		}
+
+	    return true;
+	}
+
+
+	/**
+	 * Admin show item
+	 * 
+	 * @param String $code
 	 */ 
 	public function show($code) 
 	{	
@@ -70,7 +110,32 @@ class OrderController
 
 	    return render('views/admin/orders/order.html.twig', [
 	        'title' => __('Invoice'),
+	        'override_vue', true,
 	        'order' => $order,
+	    ]);
+
+	}
+
+	/**
+	 * Invoice Print 
+	 * 
+	 * @param String $code
+	 */ 
+	public function print($code) 
+	{	
+
+
+		$this->app = new \config\APP;
+		
+		$order = $this->repo->code($code, $this->app->branch->id);
+
+		if (empty($order->id))
+			return null;
+
+	    return render('views/admin/orders/print.html.twig', [
+	        'title' => __('Invoice'),
+	        'order' => $order,
+	        'override_vue' => true,
 	    ]);
 
 	}
