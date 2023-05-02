@@ -129,6 +129,8 @@ class OrderController
 		
 		$order = $this->repo->codeOnly($code);
 
+		$order->branch->settings = array_column($order->branch->with('settings')->first()->settings->toArray(), 'value', 'code');
+
 		if (empty($order->id))
 			return null;
 

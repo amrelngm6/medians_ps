@@ -34,6 +34,12 @@ class Branch extends CustomController
 		);
 	}
 
+	public function setting_data()
+	{
+		return array_column($this->settings, 'value', 'code');
+
+	}
+
 	public function settings()
 	{
 		return $this->hasMany(
