@@ -54,7 +54,7 @@
 <body>
   <div class="invoice">
     <div class="logo">
-      <img src="{{app.settings.logo ? app.settings.logo : '/uploads/images/Logo-63f4998214037.png'}}" alt="Company Logo" width="100">
+      <img src="{{order.branch.settings}}" alt="Company Logo" width="100">
     </div>
     <h3 class="center">Medians PS</h3>
     <br />
@@ -79,39 +79,39 @@
     <div class="invoice-items">
       <div class="item">
         <span>Booking</span>
-        <span>{{order.order_device.subtotal}} {{app.settings.currency ? app.settings.currency : 'egp'}}</span>
+        <span>{{order.order_device.subtotal}} {{order.branch.settings.currency}}</span>
       </div>
       {% for product in order.order_device.products %}
       <div class="item">
         <span>{{product.product_name}}</span>
-        <span>{{product.subtotal}} {{app.settings.currency ? app.settings.currency : 'egp'}}</span>
+        <span>{{product.subtotal}} {{order.branch.settings.currency}}</span>
       </div>
       {% endfor %}
     </div>
     <br />
     <div class="subtotal">
-      Sub-Total: <span>{{order.subtotal}} {{app.settings.currency ? app.settings.currency : 'egp'}}</span>
+      Sub-Total: <span>{{order.subtotal}} {{order.branch.settings.currency}}</span>
     </div>
     <div class="subtotal">
-      Tax: <span>{{order.tax}} {{app.settings.currency ? app.settings.currency : 'egp'}}</span>
+      Tax: <span>{{order.tax}} {{order.branch.settings.currency}}</span>
     </div>
     <div class="subtotal">
-      Discount: <span>{{order.discount}} {{app.settings.currency ? app.settings.currency : 'egp'}}</span>
+      Discount: <span>{{order.discount}} {{order.branch.settings.currency}}</span>
     </div>
     <div class="total">
-      Total due: <span>{{order.total_cost}} {{app.settings.currency ? app.settings.currency : 'egp'}}</span>
+      Total due: <span>{{order.total_cost}} {{order.branch.settings.currency}}</span>
     </div>
     <hr />
     <div class="center">
       <img class="center" src="/invoices/qr_code/{{order.code}}" width="100">
     </div>
     <div class="center">
-      <small>{{app.settings.invoice_notes}}</small>
+      <small>{{order.branch.settings.invoice_notes}}</small>
       <br />
-      <small>{{app.settings.invoice_terms}}</small>
+      <small>{{order.branch.settings.invoice_terms}}</small>
       <br />
-      <small>{{app.settings.address}}, </small>
-      <small> {{app.settings.city}} </small>
+      <small>{{order.branch.settings.address}}, </small>
+      <small> {{order.branch.settings.city}} </small>
     </div>
   </div>
   <script>

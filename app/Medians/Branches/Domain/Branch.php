@@ -2,6 +2,7 @@
 
 namespace Medians\Branches\Domain;
 
+use Medians\Settings\Domain\Settings;
 
 use Shared\dbaser\CustomController;
 
@@ -30,6 +31,13 @@ class Branch extends CustomController
 	{
 		return $this->hasOneThrough(
 			Medians\Users\Domain\User::class, BranchUsers::class, 'userId', 'id', 'id'
+		);
+	}
+
+	public function settings()
+	{
+		return $this->hasMany(
+			Settings::class, 'branch_id', 'id'
 		);
 	}
 }
