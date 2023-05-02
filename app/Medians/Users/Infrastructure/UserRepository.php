@@ -96,10 +96,12 @@ class UserRepository
 				return __('this user not found');	
 			}
 
-			$validateEmail = $this->validateEmail($data['email'], $Object->id);
+			$validateEmail = isset($data['email']) ? $this->validateEmail($data['email'], $Object->id) : null;
 			if ($validateEmail) {
 				return $validateEmail;	
 			}
+
+			$data['active'] = isset($data['active']) ? 1 : 0;
 
 			// Return the FBUserInfo object with the new data
 	    	$Object->update( (array) $data);

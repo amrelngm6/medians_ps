@@ -55,11 +55,11 @@
                 
                 <div class="w-full block pb-2 border-b border-gray-200">
                     <label class="w-full py-2 text-gray-400" v-text="__('start')"></label>
-                    <span class="w-full text-md text-red-600 block" v-text="formatTime(activeItem.end_time)"></span>
+                    <span class="w-full text-md text-red-600 block" v-text="formatTime(activeItem.start_time)"></span>
                 </div>
                 <div class="w-full block  pb-2 border-b border-gray-200">
                     <label class="w-full py-2 text-gray-400" v-text="__('end')"></label>
-                    <span class="w-full text-md  text-red-600  block" v-text="formatTime(activeItem.start_time)"></span>
+                    <span class="w-full text-md  text-red-600  block" v-text="formatTime(activeItem.end_time)"></span>
                 </div>
                 <div class="w-full block  pb-2 border-b border-gray-200">
                     <label class="w-full py-2 text-gray-400 " v-text="__('date')"></label>

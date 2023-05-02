@@ -32,7 +32,7 @@ class UserController
 	public function index()
 	{
 		return render('views/admin/users/list.html.twig', [
-			'items' =>   $this->repo->get(),
+			'users' =>   $this->repo->get(),
 	        'title' => __('Users'),
 	    ]);
 	} 
@@ -108,7 +108,7 @@ class UserController
 
 
 	/**
-	*  Store item
+	*  Validate item store
 	*/
 	public function validate($params) 
 	{
@@ -128,23 +128,49 @@ class UserController
 
 	}
 
+	/**
+	*  Validate item update
+	*/
+	public function validateUpdate($params) 
+	{
+
+		if (empty($params['first_name']))
+			return ['result'=> __('Name required')];
+
+		if (empty($params['email']))
+			return ['result'=> __('Email required')];
+
+		if (empty($params['phone']))
+			return ['result'=> __('Mobile required')];
+		
+		if ($params['id'] != $this->app->auth()->id && $this->app->auth()->id == 1)
+			return ['result'=> __('Not allowed')];
+	}
+
 
 
 	/**
-	*  Store item
+	*  Update item
 	*/
 	public function update() 
 	{
 
-		$params = (array)  $this->app->request()->get('params')['user'];
+		$params = (array)  $this->app->request()->get('params');
 
 		try {
+
+			
+			if ($this->validateUpdate($params))
+			{
+	        	return  $this->validateUpdate($params);
+			}			
+
 
 			$params['branch_id'] = isset($this->app->branch->id) ? $this->app->branch->id : 0;
 			$update = $this->repo->update($params);
 
         	return isset($update->id) 
-        	? array('status'=>true, 'result'=>__('Updated'))
+           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
         	: array('error'=> $update );
 
         } catch (Exception $e) {

@@ -35,12 +35,21 @@ function render($path, $data, $responseType = 'html')
         die();
     }
 
+    /**
+     * Check if response is required in JSON
+     */  
     if (!empty($app->request()->get('load')) && $app->request()->get('load') == 'json' )
     {
         echo json_encode($data);
         return true;
     }
-    $path = 'views/admin/page.html.twig';
+
+    /**
+     * While request is not required in JSON
+     * Response will be override only
+     * In case the system works In Vue APP
+     */ 
+    $path = 'views/admin/vue.html.twig';
 
     $app = new \config\APP;
     $data['app'] = $app;

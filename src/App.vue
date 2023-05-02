@@ -58,6 +58,10 @@
                         || activeTab == 'products/stock_out'" 
                         :key="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></products>
                         
+                        <users :path="activeTab" v-if="
+                        activeTab == 'users'" 
+                        :key="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></users>
+                        
                         <devices_orders v-if="
                                 activeTab == 'devices_orders?status=active' 
                                 || activeTab == 'devices_orders?status=completed'
@@ -98,6 +102,7 @@ import invoices from './components/invoices.vue'
 import invoice from './components/invoice.vue'
 import stock from './components/stock.vue'
 import settings from './components/settings.vue'
+import users from './components/users.vue'
 
 export default {
     name: 'app',
@@ -116,6 +121,7 @@ export default {
         invoice,
         stock,
         settings,
+        users,
         navbar
     },
     data() {

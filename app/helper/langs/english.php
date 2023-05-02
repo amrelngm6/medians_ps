@@ -25,6 +25,8 @@ class Langs
 			,'REGISTER' => 'Register'
 			,'CUR_CUSTOMERS' => 'Registered Customers'
 			,'NAME' => 'Name'
+			,'first_name' => 'First name'
+			,'last_name' => 'Last name'
 			,'ENTER_MAIL' => 'Email'
 			,'ENTER_PASS' => 'Password'
 			,'PASSWORD' => 'Password'

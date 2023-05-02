@@ -155,6 +155,10 @@ class APIController
                 $return = (new Settings\Application\SettingsController())->update(); 
                 break;
 
+            case 'Users.update':
+                $return = (new Users\Application\UserController())->update(); 
+                break;
+
             case 'User.update':
                 $return =  (new Users\Application\UserController())->update(); 
                 break;

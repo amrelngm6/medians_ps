@@ -132,6 +132,7 @@ class APP
 	            ]
 	        ),
 	        array('title'=>__('Payments'),  'icon'=>'fa-credit-card', 'link'=>'payments'),
+	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'users'),
 	        // array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'#users', 'sub'=>
 	        //     [
 	        //         array('title'=>__('Users'),  'icon'=>'fa-dashboard', 'link'=>'users/'),
