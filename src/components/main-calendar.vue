@@ -135,7 +135,7 @@ export default {
         t.checkBookingTotify();
         setInterval(function() {
             t.checkBookingTotify();
-        }, 10000)
+        }, 60000)
     },
     provide() {
     },
