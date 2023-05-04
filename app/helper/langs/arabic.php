@@ -1033,6 +1033,7 @@ class Langs
 		,'booking should start'=> 'يجب أن يبدأ الان'
 		,'Canceled'=> 'ملغي'
 		,'Status options'=> 'عرض حالات الحجز'
+		,'booking completed but unpaid'=> 'الحجز مكتمل وغير مدفوع'
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	

@@ -155,25 +155,41 @@ export default {
         checkEventsNotifications(response)
         {
             this.todayEvents = response;
-
             let diff = '';
             for (var i = response.length - 1; i >= 0; i--) {
-                if (response[i].status == 'active')
-                {
-                    diff = moment().diff(response[i].to, "minutes");
-                    (diff >= 0 && diff < 30) 
-                        ? this.notify(response[i].device, this.__('booking time finished'), this.__('show booking info'), response[i]) 
-                        : '';
-                }
-                if (response[i].status == 'new')
-                {
-                    diff = moment().diff(response[i].from, "minutes");
-                    
-                    (diff >= 0 && diff < 30) 
-                        ? this.notify(response[i].device, this.__('booking should start'), this.__('show booking info'), response[i]) 
-                        : '';
+                this.handleNotificationContent(response[i])
+            }
+        },
+        handleNotificationContent(item)
+        {
+            if (item.status == 'active')
+            {
+                diff = moment().diff(item.to, "minutes");
+                (diff >= 0 && diff < 30) 
+                    ? this.notify(item.device, this.__('booking time finished'), this.__('show booking info'), item) 
+                    : '';
+            }
+            if (item.status == 'new')
+            {
+                if (this.sentNotifications[item.id])
+                    return true;
 
-                }
+                diff = moment().diff(item.from, "minutes");
+                
+                (diff >= 0 && diff < 30) 
+                    ? this.notify(item.device, this.__('booking should start'), this.__('show booking info'), item) 
+                    : '';
+            }
+            if (item.status == 'complete')
+            {
+
+                if (this.sentNotifications[item.id])
+                    return true;
+                
+                diff = moment().diff(item.to, "minutes");
+                (diff >= 0 && diff < 60) 
+                    ? this.notify(item.device, this.__('booking unpaid for awhile'), this.__('show booking info'), item) 
+                    : '';
             }
         },
         notify(device, title, body, data = {})
