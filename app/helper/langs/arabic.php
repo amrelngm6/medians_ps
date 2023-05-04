@@ -1032,6 +1032,7 @@ class Langs
 		,'booking time finished'=> 'فترة الحجز إنتهت'
 		,'booking should start'=> 'يجب أن يبدأ الان'
 		,'Canceled'=> 'ملغي'
+		,'Calendar interval for notifications'=> 'الفترة بين إعادة إرسال التنبيهات للحجوزات'
 		,'Status options'=> 'عرض حالات الحجز'
 		,'booking completed but unpaid'=> 'الحجز مكتمل وغير مدفوع'
 		,'COPYRIGHTS' => 'Copyrights are reserved'
