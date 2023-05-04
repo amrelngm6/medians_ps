@@ -25,29 +25,10 @@
                     </div>
                 </div>
 
-                <div class="w-full flex gap-4 py-2 border-b border-gray-200">
-                    <label class="w-full" v-text="__('start')"></label>
-                    <input @change="updateInfo(activeItem)" class="w-full" type="time" v-model="activeItem.start">
-                </div>
-                <div class="w-full flex gap-4 py-2 border-b border-gray-200">
-                    <label class="w-full"  v-text="__('end')"></label>
-                    <input @change="updateInfo(activeItem)" :min="activeItem.start" class="w-full" type="time" v-model="activeItem.end">
+                <div class="w-full block" v-if="activeItem">
+                    <calendar_booking_info_editable :active-item="activeItem"></calendar_booking_info_editable>
                 </div>
                 
-                <div class="w-full flex gap-4 py-2 border-b border-gray-200">
-                    <label class="w-full"  v-text="__('date')"></label>
-                    <input disabled class="w-full" type="date" v-model="modal.date">
-                </div>
-                <div class="w-full flex gap-6 my-2 text-gray-600">
-                    <label @click="activeItem.booking_type = 'single';  updateInfo(activeItem)" for="single"  class="cursor-pointer py-2 w-full mx-2 rounded-lg text-center font-semibold hover:bg-purple-600 hover:text-white " :class="activeItem.booking_type == 'single' ? 'bg-purple-600 text-white' : ''"   >
-                        <span v-text="__('single')"></span> 
-                        <input id="signle" v-model="activeItem.booking_type" value="single" type="radio" name="booking_type" class="hidden">
-                    </label>
-                    <label @click="activeItem.booking_type = 'multi'; updateInfo(activeItem)"  for="multi" class="cursor-pointer py-2 w-full mx-2 rounded-lg text-center font-semibold hover:bg-purple-600 hover:text-white " :class="activeItem.booking_type == 'multi' ? 'bg-purple-600 text-white' : ''"   > 
-                        <span v-text="__('multi')"></span>
-                        <input id="multi"  v-model="activeItem.booking_type" value="multi" type="radio" name="booking_type"  class="hidden">
-                    </label>
-                </div>
                 <div class="w-full flex">
                     <div class="w-full text-center">
                         <div v-if="!activeItem.id" class="mt-10 w-32 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
@@ -70,7 +51,12 @@
 <script>
 const axios = require('axios').default;
 
+import calendar_booking_info_editable from './calendar-booking-info-editable.vue';
+
 export default {
+    components: {
+        calendar_booking_info_editable
+    },
     data() {
 
         return {
