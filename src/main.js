@@ -39,6 +39,7 @@ window.$ = $;
 
 Vue.config.errorHandler = function (err, vm, info)  {
   console.log('[Global Error Handler]: Error in ' + info + ': ' + err);
+  Vue.$alert('[Global Error Handler]: Error in ' + info + ': ' + err)
 };
 
 

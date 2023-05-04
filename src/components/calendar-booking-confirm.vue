@@ -11,14 +11,21 @@
 
                     <!-- Confirm overlay -->
                     <div class="relative mx-auto w-full bg-white px-6 rounded-lg" style="max-width:600px;z-index:99;">
+
                         <div class="bg-blue-200 rounded-md py-2 px-4" role="alert">
                             <strong v-text="__('confirm')"></strong> <span class="mx-2" v-text="__('confirm_complete_booking')"></span> 
-                            <button @click="showConfirm = false" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
 
-                        <div  class="my-2 cursor-pointer w-full text-white  font-semibold py-2 border-b border-gray-200">
-                            <label @click="activeItem.status = 'completed'; $parent.submit('Event.update', activeItem); addToCart(activeItem)" class="w-32 mx-auto py-2 rounded-lg bg-gradient-primary block text-center cursor-pointer" v-text="__('confirm')"></label>
+
+                        <div class="w-full flex mt-10">
+                            <div @click="activeItem.status = 'completed'; $parent.submit('Event.update', activeItem); addToCart(activeItem)" class="mx-auto cursor-pointer block w-32 py-2">
+                                <span class="text-base font-semibold text-red-600 border-red-600 border rounded-lg py-2 px-4 hover:bg-purple-600 hover:text-white hover:border-purple-600" v-text="__('confirm')"></span>
+                            </div>
+                            <div v-if="activeItem.id" class="w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
+                                <label @click="setHideConfirm()" class="cursor-pointer px-4 py-2 rounded-lg bg-red-600 hover:bg-purple-600 text-white" v-text="__('Back')"></label>
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
@@ -61,6 +68,15 @@ export default {
         methods: {
 
             /**
+             * Hide confirm block
+             * 
+             */
+            setHideConfirm()
+            {
+                this.$parent.showConfirm = false;
+            },  
+
+            /**
              * Handle time at confirm screen
              * with the actual booking time
              */
@@ -79,6 +95,7 @@ export default {
 
                 if (this.activeItem.status == 'active' && duration.asMinutes() > 0)
                 {
+                    this.activeItem.extra_time = this.extraTime();
                     this.activeItem.end_time = now;
                     this.activeItem.duration_hours = (duration.asHours()).toFixed(2);
                     this.activeItem.duration_time = time
@@ -89,6 +106,19 @@ export default {
 
                 console.log(this.activeItem)
             } ,
+
+            extraTime()
+            {
+                let actual_minutes = moment(this.activeItem.date+' '+this.activeItem.end).diff(this.activeItem.start_time, "minutes");
+                console.log(actual_minutes)
+                let current_minutes = moment(now).diff(this.activeItem.start_time, "minutes");
+                console.log(current_minutes)
+
+                var duration = moment.duration(moment(this.activeItem.end_time).diff(moment(this.activeItem.start_time)));
+                console.log(duration.asMinutes())
+                return (actual_minutes - current_minutes).toFixed(2)
+            },
+
             hidePopup(type = true)
             {
                 this.$root.$refs.medians_calendar.hidePopup(type)

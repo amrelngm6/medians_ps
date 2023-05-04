@@ -24,13 +24,13 @@
                         <div class="overflow-x-auto  flex gap gap-6" v-if="games" :style='{"min-width": games.length*35+"%"}' >
                             <label v-for="(game, index) in games"
                                 :key="index"  
-                                @click="activeItem.game_id = game.id;  updateInfo(activeItem)"
+                                @click="activeItem.game_id = game.id;  submit('Event.update')"
                                 :for="'single-'+game.id"  
                                 class="block cursor-pointer py-2 w-40 my-2 rounded-lg text-center font-semibold" 
                                 :class="activeItem.game_id == game.id ? 'bg-purple-600 hover:bg-purple-600 text-white  hover:text-white' : 'border-purple-600 text-purple-800'" >
                                     <img class="mx-auto w-6 h-6 rounded-full my-2" :src="game.picture">
                                     <span v-text="game.name"></span> 
-                                    <input @change="updateInfo(activeItem)"  :id="'id-'+game.id" v-model="activeItem.game_id" :value="game.id" type="radio" name="game_id" class="hidden">
+                                    <input @change="submit('Event.update')"  :id="'id-'+game.id" v-model="activeItem.game_id" :value="game.id" type="radio" name="game_id" class="hidden">
                             </label>
                         </div>
                     </div>
@@ -46,35 +46,14 @@
                     <calendar_products ref="applicable_products" :item="activeItem" :products="products" ></calendar_products>
                 </div>
 
-                <div class="w-full flex gap-4 py-2 border-b border-gray-200">
-                    <label class="w-full" v-text="__('start')"></label>
-                    <input @change="updateInfo(activeItem)" class="w-full"  step="900" type="time" v-model="activeItem.start">
+                <div class="w-full block" v-if="activeItem">
+                    <calendar_booking_info_editable :active-item="activeItem"></calendar_booking_info_editable>
                 </div>
-                <div class="w-full flex gap-4 py-2 border-b border-gray-200">
-                    <label class="w-full"  v-text="__('end')"></label>
-                    <input @change="updateInfo(activeItem)" :min="activeItem.start"  step="900" class="w-full" type="time" v-model="activeItem.end">
-                </div>
-                <div class="w-full flex gap-4 py-2 border-b border-gray-200">
-                    <label class="w-full"  v-text="__('date')"></label>
-                    <input disabled class="w-full" type="date" v-model="activeItem.date">
-                </div>
-                <div class="w-full flex gap-6 my-2 text-gray-600" v-if="activeItem.status != 'new'">
-                    <label @click="activeItem.booking_type = 'single';  updateInfo(activeItem)" for="single"  class="cursor-pointer py-2 w-full mx-2 rounded-lg text-center font-semibold" :class="activeItem.booking_type == 'single' ? 'bg-purple-600 text-white' : ''"   >
-                        <span v-text="__('single')"></span> 
-                        <input id="signle" v-model="activeItem.booking_type" value="single" type="radio" name="booking_type" class="hidden">
-                    </label>
-                    <label @click="activeItem.booking_type = 'multi'; updateInfo(activeItem)"  for="multi" class="cursor-pointer py-2 w-full mx-2 rounded-lg text-center font-semibold" :class="activeItem.booking_type == 'multi' ? 'bg-purple-600 text-white' : ''"   > 
-                        <span v-text="__('multi')"></span>
-                        <input id="multi"  v-model="activeItem.booking_type" value="multi" type="radio" name="booking_type"  class="hidden">
-                    </label>
-                </div>
+
                 <div v-if="!activeItem.id" class="mt-10 w-32 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
                     <label @click="$parent.storeInfo(activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary block"  v-text="__('start_playing')"></label>
                 </div>
                 <div class="w-full flex mt-10">
-                    <div @click="$parent.submit('Event.update', activeItem)" v-if="activeItem.id && showUpdate" class="mx-auto cursor-pointer block w-32 py-2">
-                        <span class="text-base font-semibold text-red-600 border-red-600 border rounded-lg py-2 px-4 hover:bg-purple-600 text-white" v-text="__('update')"></span>
-                    </div>
                     <div @click="startPlaying()" v-if="activeItem.id && activeItem.status == 'new'" class="mx-auto cursor-pointer block w-32 py-2">
                         <span class="text-base font-semibold text-red-600 border-red-600 border rounded-lg py-2 px-4 hover:bg-purple-600 hover:text-white hover:border-purple-600" v-text="__('start_playing')"></span>
                     </div>
@@ -90,8 +69,12 @@
 
 <script>
 const axios = require('axios').default;
+import calendar_booking_info_editable from './calendar-booking-info-editable.vue';
 
 export default {
+    components: {
+        calendar_booking_info_editable
+    },
     data() {
 
         return {
@@ -139,8 +122,14 @@ export default {
             },  
             setShowConfirm()
             {
+                this.$parent.activeItem = this.activeItem;
                 this.$parent.showConfirm = true;
                 this.showConfirm = true
+            },
+            setHideConfirm()
+            {
+                this.$parent.showConfirm = false;
+                this.showConfirm = false
             },
             products_subtotal()
             {
@@ -173,13 +162,32 @@ export default {
                 this.showUpdate = true
                 this.$parent.updateInfo(activeItem)
                 this.showLoader = false
+
+
             },
+
+
+            /**
+             * Update event data
+             */
+            submit(type) {
+
+                const params = new URLSearchParams([]);
+                params.append('type', type);
+                params.append('params[event]', JSON.stringify(this.activeItem));
+                this.handleRequest(params, '/api/update').then(data => { 
+                    console.log(data)
+                });
+            },
+
+
 
             query()
             {
                 if (!this.activeItem.id)
                     return this;
 
+                this.showLoader = true
                 const params = new URLSearchParams([]);
                 params.append('type', 'OrderDevice');
                 params.append('model', 'OrderDevice');
@@ -190,6 +198,8 @@ export default {
                     this.activeItem.end = response.end_time.slice(11, 16);
                     this.games = response.device.games;
                     this.products = response.device.products;
+                    this.showLoader = false
+
                 })
             },
             addProduct(product)
@@ -217,11 +227,11 @@ export default {
             async handleRequest(params, url='/') {
 
                 var t = this;
-                t.showLoader = true
+                // t.showLoader = true
                 // Demo json data
                 return await axios.post(url, params.toString()).then(response => 
                 {
-                    t.showLoader = false
+                    // t.showLoader = false
 
                     if (response.data.status)
                         return response.data.result;

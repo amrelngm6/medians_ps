@@ -53,17 +53,21 @@
             <span class=" text-md font-semibold w-full block py-2" v-text="__('duration')"></span>
             <div class="w-full flex gap-4 gap  text-md  py-2">
                 
+                <div class="w-full block  pb-2 border-b border-gray-200">
+                    <label class="w-full py-2 text-gray-400 " v-text="__('date')"></label>
+                    <span class="w-full   text-purple-600  block" v-text='activeItem.date'></span>
+                </div>
                 <div class="w-full block pb-2 border-b border-gray-200">
                     <label class="w-full py-2 text-gray-400" v-text="__('start')"></label>
-                    <span class="w-full text-md text-red-600 block" v-text="formatTime(activeItem.start_time)"></span>
+                    <span class="w-full text-md text-purple-600 block" v-text="formatTime(activeItem.start_time)"></span>
                 </div>
                 <div class="w-full block  pb-2 border-b border-gray-200">
                     <label class="w-full py-2 text-gray-400" v-text="__('end')"></label>
-                    <span class="w-full text-md  text-red-600  block" v-text="formatTime(activeItem.end_time)"></span>
-                </div>
-                <div class="w-full block  pb-2 border-b border-gray-200">
-                    <label class="w-full py-2 text-gray-400 " v-text="__('date')"></label>
-                    <span class="w-full   text-red-600  block" v-text='activeItem.date'></span>
+                    <span class="w-full text-md  text-purple-600  block" v-text="formatTime(activeItem.end_time)"></span>
+                    <p v-if="activeItem.extra_time">
+                        <span v-text="activeItem.extra_time > 5 ? __('Extra time is') : __('Missing time is')"></span>
+                        <span v-text="activeItem.extra_time"></span>
+                    </p>
                 </div>
             </div>
             <span class="text-md font-semibold w-full block py-2" v-text="__('information')"></span>
@@ -74,7 +78,7 @@
 
             <div class="w-full flex gap-4 py-1 border-b border-gray-200">
                 <label class="w-full text-gray-400"  v-text="__('subtotal')"></label>
-                <span class="w-full text-lg pb-2 text-red-600  gap gap-1" >
+                <span class="w-full text-lg pb-2 text-purple-600  gap gap-1" >
                     <span v-text="subtotal()"></span>
                     <span v-text="activeItem.currency"></span>
                 </span>
@@ -112,7 +116,7 @@ export default {
                     }
                 }
             }
-            return subtotal;
+            return subtotal ? subtotal.toFixed(2) : 0;
         },
         formatTime(time)
         {
