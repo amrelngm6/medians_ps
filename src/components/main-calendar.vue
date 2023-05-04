@@ -160,12 +160,12 @@ export default {
                 if (response[i].status == 'active')
                 {
                     diff = moment().diff(response[i].to, "minutes");
-                    (diff >= 0 || diff < 11) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking time finished'), this.__('show booking info'), response[i]) : '';
+                    (diff >= 0 && diff < 11) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking time finished'), this.__('show booking info'), response[i]) : '';
                 }
                 if (response[i].status == 'new')
                 {
                     diff = moment().diff(response[i].from, "minutes");
-                    (diff >= 0 || diff < 11) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking should start'), this.__('show booking info'), response[i]) : '';
+                    (diff >= 0 && diff < 11) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking should start'), this.__('show booking info'), response[i]) : '';
                 }
             }
         },
