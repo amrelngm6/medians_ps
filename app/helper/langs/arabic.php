@@ -1031,8 +1031,9 @@ class Langs
 		,'show booking info'=> 'عرض  تفاصيل الحجز'
 		,'booking time finished'=> 'فترة الحجز إنتهت'
 		,'booking should start'=> 'يجب أن يبدأ الان'
-		,'COPYRIGHTS' => 'Copyrights are reserved'
 		,'Canceled'=> 'ملغي'
+		,'Status options'=> 'عرض حالات الحجز'
+		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	
 
