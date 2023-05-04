@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <div class="w-full lg:flex gap gap-2" v-if="content.typesList">
+        <div class="w-full lg:flex gap gap-2" v-if="content.typesList" :key="activeCategories">
             <div v-for="category in content.typesList" :key="category.selected" @click="selectCategory(category)" class="cursor-pointer py-2 px-4 rounded" :class="{'font-bold':category.selected}"  >
                 <span v-text="category.name"></span>
             </div>
@@ -12,7 +12,7 @@
 
                 <main_calendar
                 v-if="content.devicesList.length"
-                :key="activeCategories.length"
+                :key="devices"
                 ref="calendar"
                 :settings="setting"
                 :devices="devices"
