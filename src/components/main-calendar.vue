@@ -132,10 +132,46 @@ export default {
 
     },
     mounted() {
+        let t = this;
+        setInterval(function() {
+            t.checkBookingTotify();
+        }, 60000)
     },
     provide() {
     },
     methods: {
+
+        checkBookingTotify()
+        {
+            this.handleGetRequest(this.calendar_settings.events_url).then(response => {
+                for (var i = response.length - 1; i >= 0; i--) {
+                    if (response[i].status == 'active')
+                    {
+                        console.log(response[i])
+                    }
+                }
+            });
+                
+        },
+        notify()
+        {
+            if (Notification.permission === "granted") {
+                const notification = new Notification(title, {
+                    body: body,
+                    icon: this.setting.logo
+                });
+
+                notification.onclick = () => {
+                    alert('clicked')
+                  // Handle click event
+                };
+
+                notification.onclose = () => {
+                    alert('closed')
+                  // Handle close event
+                };
+            }
+        },
         fullwidth()
         {
             return this.devices.length * 250+'px';

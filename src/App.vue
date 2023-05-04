@@ -168,47 +168,22 @@ export default {
         this.notify()
     },
     methods: {
-        notify () {
-              // https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification#Parameters
-            if (this.$notification)
+        notify (title, body) {
+
+            if ("Notification" in window) 
             {
-
-              this.$notification.show('Hello World', {
-                body: 'This is an example!'
-              }, {})
-            }
-
-            if ("Notification" in window) {
-              // The browser supports notifications
-                console.log ('Notifications allowed')
-            } else {
-                console.log ('Notifications allowed')
-            }
-
-            if (Notification.permission !== "granted") {
-              Notification.requestPermission().then(permission => {
-                if (permission === "granted") {
-                  // User has granted permission for notifications
+                if (Notification.permission !== "granted") {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === "granted") {
+                            const notification = new Notification("Thanks & welcome", {
+                                body: "Welcome to " + this.setting.sitename,
+                                icon: this.setting.logo
+                            });
+                        }
+                    });
                 }
-              });
             }
 
-            if (Notification.permission === "granted") {
-                const notification = new Notification("My Notification", {
-                    body: "This is the notification message",
-                    icon: "https://gaming.medianssolutions.com//uploads/images/Logo-63f4998214037.png"
-                });
-
-                notification.onclick = () => {
-                    alert('clicked')
-                  // Handle click event
-                };
-
-                notification.onclose = () => {
-                    alert('closed')
-                  // Handle close event
-                };
-            }
         },
 
         setProps()
