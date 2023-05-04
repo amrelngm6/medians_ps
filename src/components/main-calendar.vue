@@ -160,15 +160,18 @@ export default {
             if (Notification.permission === "granted") {
                 const notification = new Notification(title, {
                     body: body,
+                    param:1,
                     icon: this.setting.logo
                 });
 
-                notification.onclick = () => {
+                notification.onclick = (e) => {
+                    console.log(e)
                     alert('clicked')
                   // Handle click event
                 };
 
-                notification.onclose = () => {
+                notification.onclose = (e) => {
+                    console.log(e)
                     alert('closed')
                   // Handle close event
                 };
