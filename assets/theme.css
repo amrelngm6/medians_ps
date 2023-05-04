@@ -13309,3 +13309,11 @@ body > canvas {
 {
 	opacity: .5;
 }
+.animated.new,
+.animated.active,
+.animated.completed,
+.animated.paid,
+.animated.canceled
+{
+	opacity: 1;
+}
