@@ -135,7 +135,7 @@ export default {
         let t = this;
         setInterval(function() {
             t.checkBookingTotify();
-        }, 10000)
+        }, 30000)
     },
     provide() {
     },
@@ -182,7 +182,6 @@ export default {
                 notification.onclick = (e) => {
                     let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
                     t.show_modal(notificationData)
-                    console.log(notificationData)
                 };
 
                 notification.onclose = (e) => {

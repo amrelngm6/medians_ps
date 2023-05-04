@@ -110,14 +110,11 @@ export default {
             extraTime()
             {
                 let actual_minutes = moment(this.activeItem.date+' '+this.activeItem.end).diff(this.activeItem.start_time, "minutes");
-                console.log(actual_minutes)
 
                 let current_hours = moment().diff(this.activeItem.start_time, "hours");
                 let current_minutes = moment().diff(this.activeItem.start_time, "minutes");
-                console.log(current_minutes)
 
                 let minutes = parseInt((current_minutes - actual_minutes).toFixed(2)) % 60;
-                console.log((current_minutes - actual_minutes))
                 
                 return {text: this.toHoursAndMinutes((current_minutes - actual_minutes).toFixed(0)), value: (current_minutes - actual_minutes)}; 
             },
