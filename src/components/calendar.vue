@@ -1,15 +1,16 @@
 <template>
     <div class=" w-full">
         <calendar_status_list></calendar_status_list>
+
+        <div class="w-full lg:flex gap gap-2" style="float: left;" v-if="content.typesList">
+            <div v-for="category in content.typesList" :key="category.selected" @click="category.selected = !category.selected" class="cursor-pointer py-2 px-4 rounded" :class="{'font-bold':category.selected}"  >
+                <span v-text="category.name"></span>
+            </div>
+        </div>
         <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
             <div class=" w-full">
                 <calendar_get_started :categories="content.typesList" v-if="!content.devicesList.length"></calendar_get_started>
 
-                <div class="w-full lg:flex gap gap-2" v-if="content.typesList">
-                    <div v-for="category in content.typesList" @click="category.selected = !category.selected" class="cursor-pointer py-2 px-4 rounded" :class="{'font-bold':category.selected}"  >
-                        <span v-text="category.name"></span>
-                    </div>
-                </div>
                 <main_calendar
                 v-if="content.devicesList.length"
                 :key="content.devicesList"
