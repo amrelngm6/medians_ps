@@ -148,7 +148,7 @@ export default {
                 for (var i = response.length - 1; i >= 0; i--) {
                     if (response[i].status == 'active')
                     {
-                        diff = moment(response[i].end).diff(response[i].start, "minutes");
+                        diff = moment().diff(response[i].to, "minutes");
                         console.log((diff == 0 || diff == 5  || diff == 10) ? t.notify((response[i].device ? response[i].device.title : '')+__('booking ready')) : '' )
                     }
                 }
