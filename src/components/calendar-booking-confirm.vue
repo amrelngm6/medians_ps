@@ -121,7 +121,7 @@ export default {
 
             toHoursAndMinutes(totalMinutes) {
               const hours = totalMinutes > 59 ? Math.floor(totalMinutes / 60) : 0;
-              const minutes = (totalMinutes > 59 ? totalMinutes % 60 : totalMinutes).replace('-', '');
+              const minutes = (totalMinutes > 59 ? totalMinutes % 60 : (totalMinutes > 0 ? totalMinutes : totalMinutes.replace('-', '')));
               return hours > 9 ? hours : '0'+parseInt(hours) +':'+ (minutes > 9 ? minutes : '0'+minutes) ;
             },
             hidePopup(type = true)
