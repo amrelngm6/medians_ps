@@ -210,6 +210,7 @@ export default {
                 const notification = new Notification(device ? (device.title + ' ' + title) : title, {
                     body: body,
                     data:data,
+                    tag: data.id + data.status,
                     icon: this.settings.logo
                 });
 
