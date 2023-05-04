@@ -600,3 +600,7 @@ body .event-card.canceled {
   color: #444; 
   z-index: 1;
 }
+body .hidden
+{
+  display: none !important;
+}
