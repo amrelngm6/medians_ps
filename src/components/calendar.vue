@@ -11,7 +11,7 @@
                 <calendar_get_started :categories="content.typesList" v-if="content.title && !content.devicesList.length"></calendar_get_started>
 
                 <main_calendar
-                v-if="content.devicesList.length"
+                v-if="content.devicesList.length && !showLoader"
                 :key="activeCategories"
                 ref="calendar"
                 :settings="setting"
@@ -76,6 +76,8 @@ export default
         },
         filterCategories()
         {
+            
+            this.showLoader = true
             if (this.content.typesList)
             {
                 for (var i = this.content.typesList.length - 1; i >= 0; i--) {
@@ -83,6 +85,7 @@ export default
                     this.activeCategories[this.content.typesList[i].id] = (this.content.typesList[i]) ? true : false;
                 }
             }
+            this.showLoader = false
             return this.activeCategories;
         },
         filterDevicesByCategory()
