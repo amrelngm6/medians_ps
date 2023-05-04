@@ -82,7 +82,7 @@ export default {
                 return  Array.isArray(val) || typeof val === 'object';
             },
         },
-        
+        auth: {required: false, type: Array | Object},
         // this provided array will be kept in sync
         settings: {
             required: false,
@@ -149,23 +149,23 @@ export default {
                     if (response[i].status == 'active')
                     {
                         diff = moment().diff(response[i].to, "minutes");
-                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +  this.__('booking finished'), this.__('show booking info')) : '';
+                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +  this.__('booking finished'), this.__('show booking info'), response[i]) : '';
                     }
                     if (response[i].status == 'new')
                     {
                         diff = moment().diff(response[i].from, "minutes");
-                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) + this.__('booking ready'), this.__('show booking info')) : '';
+                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) + this.__('booking ready'), this.__('show booking info'), response[i]) : '';
                     }
                 }
             });
                 
         },
-        notify(title, body)
+        notify(title, body, data = '')
         {
             if (Notification.permission === "granted") {
                 const notification = new Notification(title, {
                     body: body,
-                    param:1,
+                    data:data,
                     icon: this.settings.logo
                 });
 
