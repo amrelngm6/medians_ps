@@ -101,6 +101,7 @@ export default {
             events:[],
             current_day: moment().format('YYYY-MM-DD'),
             sentNotifications:[],
+            checkedNotifications:[],
 
             // Calendar Settings
             calendar_settings: {
@@ -160,25 +161,31 @@ export default {
                 if (response[i].status == 'active')
                 {
                     diff = moment().diff(response[i].to, "minutes");
-                    (diff >= 0 && diff < 30) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking time finished'), this.__('show booking info'), response[i]) : '';
+                    (diff >= 0 && diff < 30) 
+                        ? this.notify(response[i].device, this.__('booking time finished'), this.__('show booking info'), response[i]) 
+                        : '';
                 }
                 if (response[i].status == 'new')
                 {
                     diff = moment().diff(response[i].from, "minutes");
-                    (diff >= 0 && diff < 30) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking should start'), this.__('show booking info'), response[i]) : '';
+                    
+                    (diff >= 0 && diff < 30) 
+                        ? this.notify(response[i].device, this.__('booking should start'), this.__('show booking info'), response[i]) 
+                        : '';
+
                 }
             }
         },
-        notify(title, body, data = {})
+        notify(device, title, body, data = {})
         {
-            
-            if (this.sentNotifications[data.id])
+
+            if (this.checkedNotifications[data.id])
                 return true;
 
             let t = this;
             if (Notification.permission === "granted") 
             {
-                const notification = new Notification(title, {
+                const notification = new Notification(device ? (device.title + ' ' + title) : title, {
                     body: body,
                     data:data,
                     icon: this.settings.logo
@@ -187,12 +194,15 @@ export default {
                 notification.onclick = (e) => {
                     let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
                     t.show_modal(notificationData)
-                    t.sentNotifications[notificationData.id] = true
+                    t.checkedNotifications[notificationData.id] = true
                 };
 
                 notification.onclose = (e) => {
                     alert('closed')
                 };
+                
+                this.sentNotifications[data.id] = true;
+
             }
         },
         fullwidth()
