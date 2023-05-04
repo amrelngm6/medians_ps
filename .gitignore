@@ -2,7 +2,9 @@
 /vendor
 /uploads/images
 /uploads/files
+/uploads/bugs
 /app/config/database.php
 /app/config/parameters.yml
+
 .env
 cookie.txt
