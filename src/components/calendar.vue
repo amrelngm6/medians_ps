@@ -88,6 +88,7 @@ export default
                     this.content.typesList[i].selected = true;
                     this.activeCategories[this.content.typesList[i].id] = (this.content.typesList[i]) ? true : false;
                 }
+                this.filterDevicesByCategory()
             }
             return this.activeCategories;
         },
