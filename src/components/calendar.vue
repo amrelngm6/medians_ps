@@ -70,7 +70,7 @@ export default
     {
         selectCategory(category)
         {
-            let this.devices = [];
+            this.devices = [];
 
             for (var i = this.content.devicesList.length - 1; i >= 0; i--) {
                 if (this.content.devicesList[i] && this.content.devicesList[i].type == category.id)
