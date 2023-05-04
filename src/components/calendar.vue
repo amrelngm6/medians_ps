@@ -64,6 +64,7 @@ export default
     mounted() 
     {
         this.load()
+        this.filterCategories()
     },
 
     methods: 
@@ -71,16 +72,29 @@ export default
         selectCategory(category = {})
         {
             this.activeCategories[category.id] = !this.activeCategories[category.id]
-
+            category.selected = !category.selected
+            this.filterDevicesByCategory()
+        },
+        filterCategories()
+        {
+            if (this.content.typesList)
+            {
+                for (var i = this.content.typesList.length - 1; i >= 0; i--) {
+                    this.activeCategories[this.content.typesList[i].id] = (this.content.typesList[i]) ? true : false;
+                }
+            }
+            return this.activeCategories;
+        },
+        filterDevicesByCategory()
+        {
             this.devices = [];
-
             for (var i = this.content.devicesList.length - 1; i >= 0; i--) {
                 if (this.content.devicesList[i] && this.activeCategories[this.content.devicesList[i].type])
                 {
                     this.devices[i] = this.content.devicesList[i]
                 }
             }
-            category.selected = !category.selected
+            return this.devices;
         },
         load()
         {
