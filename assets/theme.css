@@ -13305,3 +13305,7 @@ body .complete.bg-gradient-purple {
 body > canvas {
 	display: none;
 }
+.opacity-5
+{
+	opacity: .5;
+}

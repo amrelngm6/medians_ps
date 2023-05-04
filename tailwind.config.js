@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./src/*.{vue,js,ts,jsx,tsx,twig}",
     "./src/**/*.{vue,js,ts,jsx,tsx,twig}",
-    "./app/views/admin/**/*.{twig}",
+    // "./app/views/admin/**/*.{twig}",
     "./src/**/**/*.{vue,js,ts,jsx,tsx,twig}",
   ],
   safelist: [
