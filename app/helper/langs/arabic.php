@@ -1032,7 +1032,7 @@ class Langs
 		,'booking time finished'=> 'فترة الحجز إنتهت'
 		,'booking should start'=> 'يجب أن يبدأ الان'
 		,'COPYRIGHTS' => 'Copyrights are reserved'
-	
+		,'Canceled'=> 'ملغي'
 		);
 	
 
