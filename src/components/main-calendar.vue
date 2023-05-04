@@ -149,7 +149,12 @@ export default {
                     if (response[i].status == 'active')
                     {
                         diff = moment().diff(response[i].to, "minutes");
-                        console.log((diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '')+__('booking ready')) : '' )
+                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '')+__('booking finished')) : '';
+                    }
+                    if (response[i].status == 'new')
+                    {
+                        diff = moment().diff(response[i].from, "minutes");
+                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '')+__('booking ready')) : '';
                     }
                 }
             });
