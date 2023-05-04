@@ -166,7 +166,7 @@ export default {
                 const notification = new Notification(title, {
                     body: body,
                     param:1,
-                    icon: this.setting.logo
+                    icon: this.settings.logo
                 });
 
                 notification.onclick = (e) => {
