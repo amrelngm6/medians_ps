@@ -149,7 +149,7 @@ export default {
                     if (response[i].status == 'active')
                     {
                         diff = moment().diff(response[i].to, "minutes");
-                        console.log((diff == 0 || diff == 5  || diff == 10) ? t.notify((response[i].device ? response[i].device.title : '')+__('booking ready')) : '' )
+                        console.log((diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '')+__('booking ready')) : '' )
                     }
                 }
             });
