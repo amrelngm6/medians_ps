@@ -135,7 +135,7 @@ export default {
         let t = this;
         setInterval(function() {
             t.checkBookingTotify();
-        }, 60000)
+        }, 10000)
     },
     provide() {
     },
@@ -144,16 +144,18 @@ export default {
         checkBookingTotify()
         {
             this.handleGetRequest(this.calendar_settings.events_url).then(response => {
+                let diff = '';
                 for (var i = response.length - 1; i >= 0; i--) {
                     if (response[i].status == 'active')
                     {
-                        console.log(response[i])
+                        diff = moment(response[i].end).diff(response[i].start, "minutes");
+                        console.log((diff == 0 || diff == 5  || diff == 10) ? t.notify((response[i].device ? response[i].device.title : '')+__('booking ready')) : '' )
                     }
                 }
             });
                 
         },
-        notify()
+        notify(title, body)
         {
             if (Notification.permission === "granted") {
                 const notification = new Notification(title, {
