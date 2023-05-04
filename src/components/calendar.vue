@@ -1,7 +1,7 @@
 <template>
     <div class=" w-full">
         <div class="w-full lg:flex ">
-            <calendar_categories class="w-full"></calendar_categories>
+            <calendar_categories v-if="content.typesList" :key="activeCategories" :categories="content.typesList"></calendar_categories>
             <calendar_status_list class="w-full"></calendar_status_list>
         </div>
         <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
