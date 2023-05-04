@@ -180,7 +180,7 @@ export default {
                     ? this.notify(item.device, this.__('booking should start'), this.__('show booking info'), item) 
                     : '';
             }
-            if (item.status == 'complete')
+            if (item.status == 'completed')
             {
 
                 if (this.sentNotifications[item.id])
