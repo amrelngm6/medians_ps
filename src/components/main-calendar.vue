@@ -351,7 +351,7 @@ export default {
          * Update event data
          */
         submit(type, newitem = null) {
-
+            this.todayEvents = null
             let item = newitem ? newitem : this.activeItem;
 
             let request_type = type.includes('create') ? 'create' : 'update';
@@ -364,7 +364,7 @@ export default {
             this.handleRequest(params, '/api/'+request_type).then(data => { 
                 this.reloadEvents()
                 this.hidePopup();
-
+                this.checkBookingTotify()
             });
         },
 
