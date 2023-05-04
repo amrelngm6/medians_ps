@@ -107,7 +107,16 @@
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
                                             <div class="form-group">
-                                                <label>{{__('calendar interval for notifications')}}  <span class="star-red">*</span></label>
+
+                                            <label class="block py-3">
+                                                <label>{{__('calendar interval for notifications')}} {{__('in minutes')}} <span class="star-red">*</span></label>
+                                                <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][calendar_notification_interval]" :value="setting.calendar_notification_interval">
+                                                    <option value="60000" >1</option>
+                                                    <option value="300000" >5</option>
+                                                    <option value="600000" >10</option>
+                                                </select>
+                                            </label>
+
                                                 <input name="params[settings][calendar_notification_interval]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Enter Address Line 2" required :value="setting.calendar_notification_interval">
                                             </div>
                                         </div>
