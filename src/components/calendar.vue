@@ -12,7 +12,7 @@
 
                 <main_calendar
                 v-if="content.devicesList.length"
-                :key="activeCategory"
+                :key="activeCategories.length"
                 ref="calendar"
                 :settings="setting"
                 :devices="devices"
@@ -48,7 +48,7 @@ export default
             },
 
             devices:[],
-            activeCategory:0,
+            activeCategories:[],
             activeItem:null,
             showAddSide:false,
             showEditSide:false,
@@ -68,18 +68,19 @@ export default
 
     methods: 
     {
-        selectCategory(category)
+        selectCategory(category = {})
         {
+            this.activeCategories[category.id] = !this.activeCategories[category.id]
+
             this.devices = [];
 
             for (var i = this.content.devicesList.length - 1; i >= 0; i--) {
-                if (this.content.devicesList[i] && this.content.devicesList[i].type == category.id)
+                if (this.content.devicesList[i] && this.activeCategories[this.content.devicesList[i].type])
                 {
                     this.devices[i] = this.content.devicesList[i]
                 }
             }
             category.selected = !category.selected
-            this.activeCategory = category.id
         },
         load()
         {
@@ -103,7 +104,6 @@ export default
         },
         setValues(data) {
             this.content = JSON.parse(JSON.stringify(data)); 
-            this.content.activeCategory
             return this
 
         },
