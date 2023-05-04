@@ -154,7 +154,7 @@ export default {
                     if (response[i].status == 'new')
                     {
                         diff = moment().diff(response[i].from, "minutes");
-                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '')+this.__('booking ready')) : '';
+                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '')+this.__('booking ready'), this.__('show booking info')) : '';
                     }
                 }
             });

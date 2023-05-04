@@ -1028,6 +1028,7 @@ class Langs
 		,'Missing time is' => 'الوقت المتبقي هو '
 		,'confirm_delete_product' => 'تأكيد حذف المنتج من السلة '
 		,'minutes' => 'دقيقة'
+		,'show booking info'=> 'عرض  تفاصيل الحجز'
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 	
 		);
