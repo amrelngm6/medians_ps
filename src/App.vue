@@ -76,10 +76,9 @@
                                 :key="activeTab" 
                                 :setting="setting" :lang="lang" :conf="conf" :auth="auth"></devices_orders>
                         </div>
-                        <div v-else class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
-                            <login form_action="/" ></login>
-                        </div>
-
+                    </div>
+                    <div v-else class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+                        <login form_action="/" ></login>
                     </div>
                 </div>
             </div>
