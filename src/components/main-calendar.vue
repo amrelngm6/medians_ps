@@ -100,7 +100,8 @@ export default {
             activeItem:{},
             events:[],
             current_day: moment().format('YYYY-MM-DD'),
-            
+            sentNotifications:[],
+
             // Calendar Settings
             calendar_settings: {
               style: 'material_design',
@@ -168,8 +169,12 @@ export default {
                 }
             }
         },
-        notify(title, body, data = '')
+        notify(title, body, data = {})
         {
+            
+            if (this.sentNotifications[data.id])
+                return true;
+
             let t = this;
             if (Notification.permission === "granted") 
             {
@@ -182,6 +187,7 @@ export default {
                 notification.onclick = (e) => {
                     let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
                     t.show_modal(notificationData)
+                    t.sentNotifications[notificationData.id] = true
                 };
 
                 notification.onclose = (e) => {
