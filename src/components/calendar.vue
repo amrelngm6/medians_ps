@@ -8,7 +8,7 @@
         <calendar_status_list></calendar_status_list>
         <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
             <div class=" w-full">
-                <calendar_get_started :categories="content.typesList" v-if="!content.devicesList.length"></calendar_get_started>
+                <calendar_get_started :categories="content.typesList" v-if="content.title && !content.devicesList.length"></calendar_get_started>
 
                 <main_calendar
                 v-if="content.devicesList.length"
