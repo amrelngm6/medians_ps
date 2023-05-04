@@ -37,10 +37,10 @@
                                                     {{item.id}}
                                                 </td>
                                                 <td>
-                                                    <a href="/products/calendar" data-bs-toggle="modal" data-bs-target="#leads-details">{{item.device.name}}</a>
+                                                    <a href="/products/calendar" data-bs-toggle="modal" data-bs-target="#leads-details" v-text="item.device ? item.device.name : ''"></a>
                                                 </td>
                                                 <td>{{item.duration_time}}</td>
-                                                <td>{{item.game.name}}</td>
+                                                <td v-text="item.game ? item.game.name : ''"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -72,7 +72,7 @@
                                                     <a href="/products/calendar" data-bs-toggle="modal" data-bs-target="#leads-details">{{item.device.name}}</a>
                                                 </td>
                                                 <td>{{item.duration_time}}</td>
-                                                <td>{{item.game.name}}</td>
+                                                <td v-text="item.game ? item.game.name : ''"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -107,7 +107,7 @@
                                             <td class="text-red-500">{{item.product.price}} {{setting.currency}}</td>
                                             <td>{{item.created_at | date('Y-m-d H:i a')}}</td>
                                             <td><a target="_blank" :href="'/invoices/show/'+item.invoice.code">{{item.invoice.code}}</a></td>
-                                            <td>{{item.user.name}}</td>
+                                            <td v-text="item.user ? item.user.name : ''"></td>
                                         </tr>
                                     </tbody>
                                 </table>
