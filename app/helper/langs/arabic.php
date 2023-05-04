@@ -1021,6 +1021,9 @@ class Langs
 		,'Canceled bookings' => 'الحجوزات الملغاء'
 		,'please_add_your_devices_first' => 'يرجي إضافة الجهاز الأول'
 		,'third_step' => 'الخطوة الثالثة'
+		,'create_booking' => 'إنشاء حجز'
+		,'cancel_booking' => 'إلغاء الحجز'
+		,'confirm_cancel_booking' => 'هل أنت متأكد من إلغاء الحجز'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 	

@@ -31,9 +31,11 @@
                     </div>
 
                     <div v-if="showModal  && activeItem.id > 0 && activeItem.status == 'active'"  class="relative h-full ">
-
                         <calendar_booking_confirm v-if="showConfirm" :modal="activeItem"></calendar_booking_confirm>
-                        
+                        <calendar_active_item :modal="activeItem"></calendar_active_item>
+                    </div>
+
+                    <div v-if="activeItem.id > 0 && activeItem.status == 'new'"  class="relative h-full ">
                         <calendar_active_item :modal="activeItem"></calendar_active_item>
                     </div>
 
@@ -129,6 +131,8 @@ export default {
         this.fullwidth();
 
     },
+    mounted() {
+    },
     provide() {
     },
     methods: {
@@ -180,6 +184,9 @@ export default {
             if (item)
             {
                 if (item.id && item.status && item.status == 'active')
+                    this.setActiveItem(item);
+
+                if (item.id && item.status && item.status == 'new')
                     this.setActiveItem(item);
 
                 if (item.status && item.status == 'completed')
@@ -243,6 +250,8 @@ export default {
             this.activeItem.date = moment(props.from).format('YYYY-MM-DD')
             this.activeItem.subtotal = this.subtotal();
             this.showModal = true
+            console.log(this.activeItem)
+            
             return this;
         },
 

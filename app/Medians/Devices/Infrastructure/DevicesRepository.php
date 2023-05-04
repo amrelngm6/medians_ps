@@ -292,7 +292,7 @@ class DevicesRepository
 		$data['device_cost'] = empty($Device->price) ? 0 : (($data['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price);
 		$data['break_time'] = 0;
 		$data['last_check'] = 0;
-		$data['status'] = 'active';
+		$data['status'] = $data['status'];
 		$data['created_by'] = $this->app->auth()->id;
 
 		$Object = new OrderDevice;
@@ -309,6 +309,9 @@ class DevicesRepository
      */
     public function updateOrder($data)
     {
+
+    	// print_r($data);
+    	// return null;
 		$Object = OrderDevice::find($data['id']);
 
 		$Device = Device::with('prices')->find(isset($data['device_id']) ? $data['device_id']:$Object->device_id);

@@ -1,13 +1,18 @@
 <template>
     <div class=" w-full">
-        <calendar_get_started :categories="content.typesList" v-if="!content.devicesList.length"></calendar_get_started>
-        <main_calendar
-        v-if="content.devicesList.length"
-        :key="content.devicesList"
-        ref="calendar"
-        :settings="setting"
-        :devices="content.devicesList"
-        ></main_calendar>
+        <calendar_status_list></calendar_status_list>
+        <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+            <div class=" w-full">
+                <calendar_get_started :categories="content.typesList" v-if="!content.devicesList.length"></calendar_get_started>
+                <main_calendar
+                v-if="content.devicesList.length"
+                :key="content.devicesList"
+                ref="calendar"
+                :settings="setting"
+                :devices="content.devicesList"
+                ></main_calendar>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -15,11 +20,13 @@ const axios = require('axios').default;
 
 import main_calendar from './main-calendar.vue'
 import calendar_get_started from './calendar-get-started.vue'
+import calendar_status_list from './calendar-status-list.vue'
 
 export default 
 {
     components: {
         main_calendar,
+        calendar_status_list,
         calendar_get_started
     },
     name:'categories',

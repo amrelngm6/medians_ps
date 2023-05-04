@@ -951,6 +951,11 @@ table.dataTable thead>tr>td.sorting {
 
 .bg-gradient-primary {
 	background: linear-gradient(to right, #da8cff, #9a55ff);
+  transition: background 1s;
+}
+.bg-gradient-primary:hover {
+	background: linear-gradient(to left, #da8cff, #9a55ff);
+  transition: background 1s;
 }
 
 .bg-gradient-secondary {
@@ -13289,3 +13294,11 @@ a.comment-btn:hover {
 }
 
 
+body .new.bg-gradient-purple {
+	background: darkcyan;
+}
+
+body .completed.bg-gradient-purple,
+body .complete.bg-gradient-purple {
+	background: rgba(220,38,38,1);
+}

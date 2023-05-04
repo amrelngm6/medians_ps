@@ -39,20 +39,27 @@
                     <input disabled class="w-full" type="date" v-model="modal.date">
                 </div>
                 <div class="w-full flex gap-6 my-2 text-gray-600">
-                    <label @click="activeItem.booking_type = 'single';  updateInfo(activeItem)" for="single"  class="cursor-pointer py-2 w-full mx-2 rounded-lg text-center font-semibold" :class="activeItem.booking_type == 'single' ? 'bg-purple-600 text-white' : ''"   >
+                    <label @click="activeItem.booking_type = 'single';  updateInfo(activeItem)" for="single"  class="cursor-pointer py-2 w-full mx-2 rounded-lg text-center font-semibold hover:bg-purple-600 hover:text-white " :class="activeItem.booking_type == 'single' ? 'bg-purple-600 text-white' : ''"   >
                         <span v-text="__('single')"></span> 
                         <input id="signle" v-model="activeItem.booking_type" value="single" type="radio" name="booking_type" class="hidden">
                     </label>
-                    <label @click="activeItem.booking_type = 'multi'; updateInfo(activeItem)"  for="multi" class="cursor-pointer py-2 w-full mx-2 rounded-lg text-center font-semibold" :class="activeItem.booking_type == 'multi' ? 'bg-purple-600 text-white' : ''"   > 
+                    <label @click="activeItem.booking_type = 'multi'; updateInfo(activeItem)"  for="multi" class="cursor-pointer py-2 w-full mx-2 rounded-lg text-center font-semibold hover:bg-purple-600 hover:text-white " :class="activeItem.booking_type == 'multi' ? 'bg-purple-600 text-white' : ''"   > 
                         <span v-text="__('multi')"></span>
                         <input id="multi"  v-model="activeItem.booking_type" value="multi" type="radio" name="booking_type"  class="hidden">
                     </label>
                 </div>
-                <div v-if="!activeItem.id" class="mt-10 w-32 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
-                    <label @click="submit('Event.create', activeItem)" class="text-center cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary block"  v-text="__('start_playing')"></label>
-                </div>
-                <div v-if="activeItem.id && showUpdate" class="mt-10 w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
-                    <label @click="submit('Event.update', activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary" v-text="__('update')"></label>
+                <div class="w-full flex">
+                    <div class="w-full text-center">
+                        <div v-if="!activeItem.id" class="mt-10 w-32 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
+                            <label @click="submit('Event.create', activeItem, 'active')" class="text-center cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary block hover:bg-purple-600 hover:text-white "  v-text="__('start_playing')"></label>
+                        </div>
+                    </div>
+                    <div class="w-full text-center">
+                        <div v-if="!activeItem.id" class="mt-10 w-32 block mx-auto text-purple  font-semibold py-2 border-b border-gray-200">
+                            <label @click="submit('Event.create', activeItem, 'new')" class="hover:bg-purple-600 hover:text-white text-center cursor-pointer px-4 py-2 rounded-lg  block"  v-text="__('create_booking')"></label>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -97,7 +104,7 @@ export default {
             /**
              * Update event data
              */
-            submit(type, newitem = null) {
+            submit(type, newitem = null,status = 'active') {
 
                 let item = newitem ? newitem : this.activeItem;
 
@@ -106,6 +113,7 @@ export default {
                 const params = new URLSearchParams([]);
                 item.start_time = this.current_day+ ' ' +item.start
                 item.end_time = this.current_day+ ' ' +item.end
+                item.status = status
                 params.append('type', type);
                 params.append('params[event]', JSON.stringify(item));
                 this.handleRequest(params, '/api/'+request_type).then(() => { 

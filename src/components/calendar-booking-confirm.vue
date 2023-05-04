@@ -7,7 +7,7 @@
 
                 <div class="w-full  mt-2 mb-4 pt-2 pb-6" style="max-height: 500px;" >
 
-                    <calendar_booking_info :active-item="activeItem"></calendar_booking_info>
+                    <calendar_booking_info :key="activeItem" :active-item="activeItem"></calendar_booking_info>
 
                     <!-- Confirm overlay -->
                     <div class="relative mx-auto w-full bg-white px-6 rounded-lg" style="max-width:600px;z-index:99;">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 const axios = require('axios').default;
 
 export default {
@@ -54,10 +55,40 @@ export default {
             if (this.modal)
             {
                 this.activeItem = JSON.parse(JSON.stringify(this.modal));
+                this.activeItem.status == 'active' ? this.handleTimes() : '';
             }
         },
         methods: {
 
+            /**
+             * Handle time at confirm screen
+             * with the actual booking time
+             */
+            handleTimes()
+            {
+
+                let now = moment()
+                // var booking_duration = moment(this.activeItem.end_time).duration(moment(this.activeItem.end_time).diff(moment(this.activeItem.start_time)));
+
+
+                var duration = moment.duration(now.diff(moment(this.activeItem.start_time)));
+                let hours = moment(now).diff(this.activeItem.start_time, "hours");
+                let minutes = parseInt(duration.asMinutes()) % 60;
+                let m = minutes > 9 ? minutes : '0'+minutes;
+                let time =  (hours > 9 ? hours : '0'+hours) + ( ':'+m );
+
+                if (this.activeItem.status == 'active' && duration.asMinutes() > 0)
+                {
+                    this.activeItem.end_time = now;
+                    this.activeItem.duration_hours = (duration.asHours()).toFixed(2);
+                    this.activeItem.duration_time = time
+                    this.activeItem.subtotal = (this.activeItem.duration_hours * this.activeItem.device_cost).toFixed(2);
+                    this.activeItem.duration = duration.asMinutes()
+                    this.activeItem.to = moment(this.activeItem.start_time).add(duration.asMinutes(),'minutes').format('YYYY-MM-DD HH:mm:ss')
+                }
+
+                console.log(this.activeItem)
+            } ,
             hidePopup(type = true)
             {
                 this.$root.$refs.medians_calendar.hidePopup(type)
