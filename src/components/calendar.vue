@@ -13,13 +13,15 @@
             <div class=" w-full">
                 <calendar_get_started :categories="content.typesList" v-if="content.title && !content.devicesList.length"></calendar_get_started>
 
-                <main_calendar
-                v-if="content.devicesList.length && !showLoader"
-                :key="activeCategories"
-                ref="calendar"
-                :settings="setting"
-                :devices="devices"
-                ></main_calendar>
+                <div :key="activeCategories.length">
+                    <main_calendar
+                    v-if="content.devicesList.length && !showLoader"
+                    :key="activeCategories"
+                    ref="calendar"
+                    :settings="setting"
+                    :devices="devices"
+                    ></main_calendar>
+                </div>
             </div>
         </div>
     </div>
