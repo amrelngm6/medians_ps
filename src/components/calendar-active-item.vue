@@ -171,12 +171,15 @@ export default {
              * Update event data
              */
             submit(type) {
+                
+                this.$parent.todayEvents = null
 
                 const params = new URLSearchParams([]);
                 params.append('type', type);
                 params.append('params[event]', JSON.stringify(this.activeItem));
                 this.handleRequest(params, '/api/update').then(data => { 
                     console.log(data)
+                    this.$parent.checkBookingTotify()
                 });
             },
 
