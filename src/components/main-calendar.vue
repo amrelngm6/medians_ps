@@ -155,13 +155,13 @@ export default {
         checkEventsNotifications(response)
         {
             this.todayEvents = response;
-            let diff = '';
             for (var i = response.length - 1; i >= 0; i--) {
                 this.handleNotificationContent(response[i])
             }
         },
         handleNotificationContent(item)
         {
+            let diff = '';
             if (item.status == 'active')
             {
                 diff = moment().diff(item.to, "minutes");
@@ -185,7 +185,7 @@ export default {
 
                 if (this.sentNotifications[item.id])
                     return true;
-                
+
                 diff = moment().diff(item.to, "minutes");
                 (diff >= 0 && diff < 60) 
                     ? this.notify(item.device, this.__('booking unpaid for awhile'), this.__('show booking info'), item) 

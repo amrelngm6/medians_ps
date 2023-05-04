@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
         <div >
-            <span class="m-2 py-2 px-4 text-center text-purple font-semibold hover:text-red-600" v-text="__('status_options')" @click="showStatusList = !showStatusList"></span>
+            <span class="cursor-pointer m-2 py-2 px-4 text-center text-purple font-semibold hover:text-red-600" v-text="__('status_options')" @click="showStatusList = !showStatusList"></span>
             
             <div class="flex flex-wrap" v-if="showStatusList">
                 <div class="flex items-center mx-4 mb-2 cursor-pointer " id="active-status" @click="switchClass('active', 'active-status')">
