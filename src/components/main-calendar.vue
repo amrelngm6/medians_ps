@@ -143,26 +143,36 @@ export default {
 
         checkBookingTotify()
         {
+            if (this.todayEvents)
+                return this.checkEventsNotifications(this.todayEvents); 
+
             this.handleGetRequest(this.calendar_settings.events_url).then(response => {
-                let diff = '';
-                for (var i = response.length - 1; i >= 0; i--) {
-                    if (response[i].status == 'active')
-                    {
-                        diff = moment().diff(response[i].to, "minutes");
-                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +  this.__('booking finished'), this.__('show booking info'), response[i]) : '';
-                    }
-                    if (response[i].status == 'new')
-                    {
-                        diff = moment().diff(response[i].from, "minutes");
-                        (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) + this.__('booking ready'), this.__('show booking info'), response[i]) : '';
-                    }
-                }
+                this.checkEventsNotifications(response)
             });
-                
+        },
+        checkEventsNotifications(response)
+        {
+            this.todayEvents = response;
+
+            let diff = '';
+            for (var i = response.length - 1; i >= 0; i--) {
+                if (response[i].status == 'active')
+                {
+                    diff = moment().diff(response[i].to, "minutes");
+                    (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking finished'), this.__('show booking info'), response[i]) : '';
+                }
+                if (response[i].status == 'new')
+                {
+                    diff = moment().diff(response[i].from, "minutes");
+                    (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking ready'), this.__('show booking info'), response[i]) : '';
+                }
+            }
         },
         notify(title, body, data = '')
         {
-            if (Notification.permission === "granted") {
+            let t = this;
+            if (Notification.permission === "granted") 
+            {
                 const notification = new Notification(title, {
                     body: body,
                     data:data,
@@ -170,15 +180,13 @@ export default {
                 });
 
                 notification.onclick = (e) => {
-                    console.log(e)
-                    alert('clicked')
-                  // Handle click event
+                    let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
+                    t.show_modal(notificationData)
+                    console.log(notificationData)
                 };
 
                 notification.onclose = (e) => {
-                    console.log(e)
                     alert('closed')
-                  // Handle close event
                 };
             }
         },
