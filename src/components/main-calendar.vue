@@ -17,14 +17,13 @@
         @show_modal="show_modal"
         ></medians-calendar>
 
-
         <div v-if="showPopup" class="relative" style="z-index: 999">
             <div class="fixed top-0 left-0 w-full h-full"  style="z-index: 99;">
                 <div class="absolute top-0 left-0 w-full h-full" @click="hidePopup" style="background: rgba(0,0,0,.6);"></div>
                 <div class="absolute top-0 left-0  right-0 bottom-0 m-auto w-40 h-40" v-if="!activeItem" >
                     <img :src="conf.url+'uploads/images/loader.gif'"  />
                 </div>
-                <div class="left-0 right-0 fixed mx-auto w-full " v-if="activeItem" style="max-width: 600px; z-index: 99;" >
+                <div class="left-0 right-0 fixed mx-auto w-full " v-if="activeItem" style="max-width: 600px; z-index: 99; top: 30px;" >
                     
                     <div v-if="showModal && !activeItem.allow"  class="relative h-full ">
                         <calendar_new_item :modal="activeItem" :games="activeItem.device ? activeItem.device.games : []"></calendar_new_item>
@@ -48,7 +47,7 @@
 
         <div class="w-full h-full fixed top-0 left-0" v-if="showCart" style="z-index:999">
             <div v-if="showCart" @click="showCart = false ; hidePopup" class="fixed h-full w-full top-0 left-0 bg-gray-800" style="opacity: .6; z-index:9"></div>
-            <side_cart  v-if="showCart" ref="side_cart" :setting="settings" :currency="settings.currency"></side_cart>
+            <side_cart class="pt-8" v-if="showCart" ref="side_cart" :setting="settings" :currency="settings.currency"></side_cart>
         </div>
     </div>
 </template>
@@ -136,7 +135,7 @@ export default {
         t.checkBookingTotify();
         setInterval(function() {
             t.checkBookingTotify();
-        }, 30000)
+        }, 10000)
     },
     provide() {
     },
@@ -160,12 +159,12 @@ export default {
                 if (response[i].status == 'active')
                 {
                     diff = moment().diff(response[i].to, "minutes");
-                    (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking finished'), this.__('show booking info'), response[i]) : '';
+                    (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking time finished'), this.__('show booking info'), response[i]) : '';
                 }
                 if (response[i].status == 'new')
                 {
                     diff = moment().diff(response[i].from, "minutes");
-                    (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking ready'), this.__('show booking info'), response[i]) : '';
+                    (diff == 0 || diff == 5  || diff == 10) ? this.notify((response[i].device ? response[i].device.title : '' ) +' '+ this.__('booking should start'), this.__('show booking info'), response[i]) : '';
                 }
             }
         },
