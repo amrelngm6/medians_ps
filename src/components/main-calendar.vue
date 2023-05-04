@@ -31,7 +31,7 @@
                     </div>
 
                     <div v-if="showModal  && activeItem.id > 0 && activeItem.status == 'active'"  class="relative h-full ">
-                        <calendar_booking_confirm v-if="showConfirm" :modal="activeItem"></calendar_booking_confirm>
+                        <calendar_booking_confirm :key="activeItem" v-if="showConfirm" :modal="activeItem"></calendar_booking_confirm>
                         <calendar_active_item v-if="!showConfirm" :key="showConfirm" :modal="activeItem"></calendar_active_item>
                     </div>
 

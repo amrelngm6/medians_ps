@@ -64,11 +64,13 @@
                 <div class="w-full block  pb-2 border-b border-gray-200">
                     <label class="w-full py-2 text-gray-400" v-text="__('end')"></label>
                     <span class="w-full text-md  text-purple-600  block" v-text="formatTime(activeItem.end_time)"></span>
-                    <p v-if="activeItem.extra_time">
-                        <span v-text="extraTimeText()"></span>
-                        <span v-text="activeItem.extra_time"></span>
-                    </p>
                 </div>
+            </div>
+            <div class="w-full block  pb-2 border-b border-gray-200">
+                <p v-if="activeItem.extra_time && activeItem.extra_time.value" class="font-semibold flex ">
+                    <span v-text="extraTimeText()"></span>
+                    <span class="text-purple-600 px-2" v-if="extraTimeText()" v-text="activeItem.extra_time.text"></span>
+                </p>
             </div>
             <span class="text-md font-semibold w-full block py-2" v-text="__('information')"></span>
             <div class="w-full flex gap-4 py-1 border-b border-gray-200">
@@ -137,7 +139,12 @@ export default {
         },
         extraTimeText()
         {
-            return this.activeItem.extra_time > 5 ? this.__('Extra time is') : this.__('Missing time is')
+            if (this.activeItem.extra_time.value > 5)
+            {
+                return this.__('Extra time is');
+            } else if (this.activeItem.extra_time.value < -5) {
+                return this.__('Missing time is');
+            }
         },
         __(i)
         {

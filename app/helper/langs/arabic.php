@@ -1024,9 +1024,10 @@ class Langs
 		,'create_booking' => 'إنشاء حجز'
 		,'cancel_booking' => 'إلغاء الحجز'
 		,'confirm_cancel_booking' => 'هل أنت متأكد من إلغاء الحجز'
-		,'Extra time is' => 'الوقت الأضافي هو '
+		,'Extra time is' => 'الوقت الإضافي : '
 		,'Missing time is' => 'الوقت المتبقي هو '
 		,'confirm_delete_product' => 'تأكيد حذف المنتج من السلة '
+		,'minutes' => 'دقيقة'
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 	
 		);

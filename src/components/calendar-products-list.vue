@@ -1,6 +1,6 @@
 <template>
     <div class="w-full block" >
-        <div v-if="products && products.length && activeItem && activeItem.status != 'paid'" class=" pb-4">
+        <div v-if="products && products.length && activeItem && activeItem.status != 'paid'" class=" py-4">
 
             <div class="border border-gray-200 w-full flex p-2">
                 <div class="w-auto">
@@ -11,7 +11,7 @@
                 </div>
                 <span @click="viwMoreProducts()" v-text="__('add_products')" class="cursor-pointer text-md font-semibold w-full block px-1 text-purple-600" ></span>
             </div>
-            <div v-if="showMoreProducts">
+            <div v-if="showMoreProducts" class="overflow-y-auto py-6 my-4" style="max-height:180px">
                 <div v-for="(product, index) in products" :key="index" class="">
                     <div v-if="product" class="font-semibold w-full flex gap-4 py-2 border-b border-gray-200">
                         <label class="w-full px-4 " v-text="product.name"></label>
@@ -19,7 +19,7 @@
                             <span v-text="product.price"></span>
                             <span class="px-1 text-sm" v-text="activeItem.currency"></span>
                         </span>
-                        <span class="w-36 text-md py-2 text-red-600 cursor-pointer"   @click="addProduct(product)" v-text="__('add')"></span>
+                        <span class="w-16 text-md py-2 text-red-600 cursor-pointer"   @click="addProduct(product)" v-text="__('add')"></span>
                     </div>
                 </div>
             </div>

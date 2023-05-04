@@ -112,15 +112,21 @@ export default {
                 let actual_minutes = moment(this.activeItem.date+' '+this.activeItem.end).diff(this.activeItem.start_time, "minutes");
                 console.log(actual_minutes)
 
+                let current_hours = moment().diff(this.activeItem.start_time, "hours");
                 let current_minutes = moment().diff(this.activeItem.start_time, "minutes");
                 console.log(current_minutes)
 
-                var duration = moment.duration(moment(this.activeItem.end_time).diff(moment(this.activeItem.start_time)));
-                console.log(duration.asMinutes())
+                let minutes = parseInt((current_minutes - actual_minutes).toFixed(2)) % 60;
+                console.log((current_minutes - actual_minutes))
                 
-                return (current_minutes - actual_minutes).toFixed(2)
+                return {text: this.toHoursAndMinutes((current_minutes - actual_minutes).toFixed(0)), value: (current_minutes - actual_minutes)}; 
             },
 
+            toHoursAndMinutes(totalMinutes) {
+              const hours = totalMinutes > 59 ? Math.floor(totalMinutes / 60) : 0;
+              const minutes = (totalMinutes > 59 ? totalMinutes % 60 : totalMinutes).replace('-', '');
+              return hours > 9 ? hours : '0'+parseInt(hours) +':'+ (minutes > 9 ? minutes : '0'+minutes) ;
+            },
             hidePopup(type = true)
             {
                 this.$root.$refs.medians_calendar.hidePopup(type)

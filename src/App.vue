@@ -165,8 +165,20 @@ export default {
         })
 
         this.showSide =  (window.screen.availWidth > 1000 ) ? true : false;
+        this.notify()
     },
     methods: {
+        notify () {
+              // https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification#Parameters
+            if (this.$notification)
+            {
+                
+              this.$notification.show('Hello World', {
+                body: 'This is an example!'
+              }, {})
+            }
+        },
+
         setProps()
         {
             const mountEl = document.querySelector("#root-parent");
