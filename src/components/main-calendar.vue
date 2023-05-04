@@ -133,6 +133,7 @@ export default {
     },
     mounted() {
         let t = this;
+        t.checkBookingTotify();
         setInterval(function() {
             t.checkBookingTotify();
         }, 30000)

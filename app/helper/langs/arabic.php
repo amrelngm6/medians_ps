@@ -1029,6 +1029,8 @@ class Langs
 		,'confirm_delete_product' => 'تأكيد حذف المنتج من السلة '
 		,'minutes' => 'دقيقة'
 		,'show booking info'=> 'عرض  تفاصيل الحجز'
+		,'booking time finished'=> 'فترة الحجز إنتهت'
+		,'booking should start'=> 'يجب أن يبدأ الان'
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 	
 		);
