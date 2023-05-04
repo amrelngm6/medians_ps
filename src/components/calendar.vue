@@ -64,7 +64,6 @@ export default
     mounted() 
     {
         this.load()
-        this.filterCategories()
     },
 
     methods: 
@@ -100,7 +99,7 @@ export default
         {
             this.showLoader = true;
             this.$parent.handleGetRequest( this.url ).then(response=> {
-                this.setValues(response)
+                this.setValues(response).filterCategories()
                 this.showLoader = false;
                 // this.$alert(response)
             });
