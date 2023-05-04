@@ -221,7 +221,7 @@ export default {
                 };
 
                 notification.onclose = (e) => {
-                    alert('closed')
+                    console.log(e)
                 };
                 
                 this.sentNotifications[data.id] = true;
