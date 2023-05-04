@@ -1,19 +1,18 @@
 <template>
     <div class=" w-full">
-        <calendar_status_list></calendar_status_list>
-
-        <div class="w-full lg:flex gap gap-2" style="float: left;" v-if="content.typesList">
-            <div v-for="category in content.typesList" :key="category.selected" @click="category.selected = !category.selected" class="cursor-pointer py-2 px-4 rounded" :class="{'font-bold':category.selected}"  >
+        <div class="w-full lg:flex gap gap-2" v-if="content.typesList">
+            <div v-for="category in content.typesList" :key="category.selected" @click="selectCategory(category)" class="cursor-pointer py-2 px-4 rounded" :class="{'font-bold':category.selected}"  >
                 <span v-text="category.name"></span>
             </div>
         </div>
+        <calendar_status_list></calendar_status_list>
         <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
             <div class=" w-full">
                 <calendar_get_started :categories="content.typesList" v-if="!content.devicesList.length"></calendar_get_started>
 
                 <main_calendar
                 v-if="content.devicesList.length"
-                :key="content.devicesList"
+                :key="activeCategory"
                 ref="calendar"
                 :settings="setting"
                 :devices="content.devicesList"
@@ -48,6 +47,7 @@ export default
                 typesList: [],
             },
 
+            activeCategory:0,
             activeItem:null,
             showAddSide:false,
             showEditSide:false,
@@ -67,6 +67,16 @@ export default
 
     methods: 
     {
+        selectCategory(category)
+        {
+            for (var i = this.content.devicesList.length - 1; i >= 0; i--) {
+                this.content.devicesList[i] = (this.content.devicesList[i].type == category.id)
+                ? this.content.devicesList[i]
+                : null;
+            }
+            category.selected = !category.selected
+            this.activeCategory = category.id
+        },
         load()
         {
             this.showLoader = true;
@@ -88,7 +98,10 @@ export default
             return await this.$parent.handleGetRequest(url);
         },
         setValues(data) {
-            this.content = JSON.parse(JSON.stringify(data)); return this
+            this.content = JSON.parse(JSON.stringify(data)); 
+            this.content.activeCategory
+            return this
+
         },
         log(i)
         {
