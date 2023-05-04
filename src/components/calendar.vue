@@ -15,7 +15,7 @@
                 :key="activeCategory"
                 ref="calendar"
                 :settings="setting"
-                :devices="content.devicesList"
+                :devices="devices"
                 ></main_calendar>
             </div>
         </div>
@@ -47,6 +47,7 @@ export default
                 typesList: [],
             },
 
+            devices:[],
             activeCategory:0,
             activeItem:null,
             showAddSide:false,
@@ -69,10 +70,13 @@ export default
     {
         selectCategory(category)
         {
+            let this.devices = [];
+
             for (var i = this.content.devicesList.length - 1; i >= 0; i--) {
-                this.content.devicesList[i] = (this.content.devicesList[i] && this.content.devicesList[i].type == category.id)
-                ? this.content.devicesList[i]
-                : null;
+                if (this.content.devicesList[i] && this.content.devicesList[i].type == category.id)
+                {
+                    this.devices[i] = this.content.devicesList[i]
+                }
             }
             category.selected = !category.selected
             this.activeCategory = category.id
