@@ -111,12 +111,14 @@ export default {
             {
                 let actual_minutes = moment(this.activeItem.date+' '+this.activeItem.end).diff(this.activeItem.start_time, "minutes");
                 console.log(actual_minutes)
-                let current_minutes = moment(now).diff(this.activeItem.start_time, "minutes");
+
+                let current_minutes = moment().diff(this.activeItem.start_time, "minutes");
                 console.log(current_minutes)
 
                 var duration = moment.duration(moment(this.activeItem.end_time).diff(moment(this.activeItem.start_time)));
                 console.log(duration.asMinutes())
-                return (actual_minutes - current_minutes).toFixed(2)
+                
+                return (current_minutes - actual_minutes).toFixed(2)
             },
 
             hidePopup(type = true)

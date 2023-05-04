@@ -9,13 +9,13 @@
             <div v-if="!showLoader" id="side-cart-container" class="pt-8 fixed right-0 top-0 bg-white p-6 h-screen overflow-y-auto w-96 max-w-full" style="z-index:9; max-height: 100vh;" >
             <!-- <div v-if="Items && !showLoader"> -->
                 
-                <div class="modal-header" v-if="Items">
-                    <button type="button" class="btn-close xs-close" data-bs-dismiss="modal"></button>
-                </div>
 
-                <div class="modal-body ">
-                    <div class="mx-auto w-full">
-                        <h1 class="font-semibold text-2xl border-b py-4" v-text="__('order_summary')"></h1>
+                <div class="modal-body pt-2">
+                    <div class="mx-auto w-full pt-8">
+                        <div class="w-full flex gap gap-2">
+                            <h1 class="w-full font-semibold text-2xl border-b py-4" v-text="__('order_summary')"></h1>
+                            <button type="button" class="btn-close xs-close text-lg absolute" style="left:auto; right: auto; margin: 5px;" data-bs-dismiss="modal">X</button>
+                        </div>
                         <div v-if="Items" class="w-full">
                             <div v-for="(item, i) in Items" class="w-full block" :key="i" >
                                 <div  class="flex justify-between mt-10 mb-5" v-if="item" >
@@ -40,13 +40,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="py-10">
+                        <!-- <div class="py-10 ">
                             <label for="promo" class="font-semibold inline-block mb-3 text-sm uppercase"  v-text="__('promo_code')"></label>
                             <div class="flex w-full gap gap-1">
                                 <input type="text" id="promo" placeholder="Enter your code" class="p-2 text-sm w-full">
                                 <button class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase"  v-text="__('apply')"></button>
                             </div>
-                        </div>
+                        </div> -->
+                        <hr />
                         <div class="w-full flex gap-1 mt-4">
                             <label class="font-medium inline-block w-full my-3 text-sm uppercase" v-text="__('payment_method')"></label>
                             <select class="block p-2 text-gray-600 w-full text-sm" v-model="payment_method">

@@ -163,6 +163,8 @@ export default {
             e.preventDefault();
             t.submit(this, e)
         })
+
+        this.showSide =  (window.screen.availWidth > 1000 ) ? true : false;
     },
     methods: {
         setProps()

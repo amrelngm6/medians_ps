@@ -99,6 +99,7 @@ export default {
                 this.activeItem = JSON.parse(JSON.stringify(this.modal));
                 this.query();
             }
+            this.query2();
         },
         methods: {
 

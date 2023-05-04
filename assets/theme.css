@@ -13302,3 +13302,6 @@ body .completed.bg-gradient-purple,
 body .complete.bg-gradient-purple {
 	background: rgba(220,38,38,1);
 }
+body > canvas {
+	display: none;
+}

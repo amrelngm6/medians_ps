@@ -65,7 +65,7 @@
                     <label class="w-full py-2 text-gray-400" v-text="__('end')"></label>
                     <span class="w-full text-md  text-purple-600  block" v-text="formatTime(activeItem.end_time)"></span>
                     <p v-if="activeItem.extra_time">
-                        <span v-text="activeItem.extra_time > 5 ? __('Extra time is') : __('Missing time is')"></span>
+                        <span v-text="extraTimeText()"></span>
                         <span v-text="activeItem.extra_time"></span>
                     </p>
                 </div>
@@ -135,7 +135,10 @@ export default {
 
             return subtotal
         },
-
+        extraTimeText()
+        {
+            return this.activeItem.extra_time > 5 ? this.__('Extra time is') : this.__('Missing time is')
+        },
         __(i)
         {
             return this.$parent.__(i);

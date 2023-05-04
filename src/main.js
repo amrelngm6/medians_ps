@@ -37,9 +37,23 @@ global.jQuery = require('jquery');
 var $ = global.jQuery;
 window.$ = $;
 
+
+function pushScreenshotToServer(dataURL, err, info) {  
+    $.ajax({ 
+        url: "/api/bug_report",  
+        type: "POST",  
+        data: {info:info, err: err, image: dataURL},  
+        dataType: "html", 
+        success: function() {}  
+    });  
+}   
 Vue.config.errorHandler = function (err, vm, info)  {
   console.log('[Global Error Handler]: Error in ' + info + ': ' + err);
-  Vue.$alert('[Global Error Handler]: Error in ' + info + ': ' + err)
+  const screenshotTarget = document.body;
+  html2canvas(screenshotTarget).then(canvas => {
+      document.body.appendChild(canvas);  
+      pushScreenshotToServer(canvas.toDataURL(), err, info); 
+  });
 };
 
 
