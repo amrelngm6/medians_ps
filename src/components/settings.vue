@@ -102,6 +102,20 @@
                             </div>
 
 
+                            <div class="w-full flex gap-4" v-if="activeTab == 'calendar'">
+                                <div class="card" >
+                                    <div class="card-body pt-0">
+                                        <div class="settings-form">
+                                            <div class="form-group">
+                                                <label>{{__('calendar interval for notifications')}}  <span class="star-red">*</span></label>
+                                                <input name="params[settings][calendar_notification_interval]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Enter Address Line 2" required :value="setting.calendar_notification_interval">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
 
                             <div class="w-full flex gap-4" v-if="activeTab == 'invoices'">
                                 <div class="card w-full " >
@@ -160,6 +174,7 @@ export default
             },
             setting_tabs: [
                 {title:this.__('Basic_Details'), link:'basic'},
+                {title:this.__('Calendar'), link:'calendar'},
                 {title:this.__('Address_Details'), link:'address'},
                 {title:this.__('invoice_info'), link:'invoices'},
             ],

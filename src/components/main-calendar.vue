@@ -137,7 +137,7 @@ export default {
         t.checkBookingTotify();
         setInterval(function() {
             t.checkBookingTotify();
-        }, 60000)
+        }, this.settings.calendar_notification_interval)
     },
     provide() {
     },
