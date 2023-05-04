@@ -12,7 +12,7 @@
 
                 <main_calendar
                 v-if="content.devicesList.length"
-                :key="devices"
+                :key="activeCategories"
                 ref="calendar"
                 :settings="setting"
                 :devices="devices"
