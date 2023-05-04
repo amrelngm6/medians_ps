@@ -79,6 +79,7 @@ export default
             if (this.content.typesList)
             {
                 for (var i = this.content.typesList.length - 1; i >= 0; i--) {
+                    this.content.typesList[i].selected = true;
                     this.activeCategories[this.content.typesList[i].id] = (this.content.typesList[i]) ? true : false;
                 }
             }
