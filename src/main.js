@@ -7,6 +7,10 @@ Vue.use(VueSimpleAlert);
 import vSelectMenu from 'v-selectmenu';
 Vue.use(vSelectMenu);
 
+import VueNativeNotification from 'vue-native-notification'
+Vue.use(VueNativeNotification, {requestOnNotify: false})
+
+
 Vue.component('moment', () => import ('moment'));
 Vue.component('calendar_booking_info', () => import('./components/calendar-booking-info'));
 Vue.component('calendar_products', () => import('./components/calendar-products-list'));
@@ -49,13 +53,14 @@ function pushScreenshotToServer(dataURL, err, info) {
 }   
 Vue.config.errorHandler = function (err, vm, info)  {
   console.log('[Global Error Handler]: Error in ' + info + ': ' + err);
+  if (!enable_debug)
+    return null;
   const screenshotTarget = document.body;
   html2canvas(screenshotTarget).then(canvas => {
       document.body.appendChild(canvas);  
       pushScreenshotToServer(canvas.toDataURL(), err, info); 
   });
 };
-
 
 new Vue({
   render: h => h(App),

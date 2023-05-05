@@ -6,6 +6,9 @@
     <title>{{app.Settings.sitename}}</title>
     <link href="/dist/css/app.css" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Cairo:wght@300;500;700;900">
+    <script type="text/javascript">
+        var enable_debug = {{app.Settings.enable_debug ? 1 : 0}};
+    </script>
 </head>
 
 <body style="direction: {{lang.__('dir')}};" class="{{lang.__('dir')}}">
