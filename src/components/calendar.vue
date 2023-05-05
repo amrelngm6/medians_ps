@@ -73,6 +73,11 @@ export default
         selectCategory(category = {})
         {
             this.activeCategories[category.id] = !this.activeCategories[category.id]
+            for (var i = this.content.typesList.length - 1; i >= 0; i--) 
+            {
+                if (this.content.typesList[i] && this.content.typesList[i].id == category.id)
+                    this.content.typesList[i].selected = true
+            }
             this.filterDevicesByCategory()
         },
         filterCategories()
