@@ -46,7 +46,7 @@ class CategoryRepository
 
 	public function categories($model)
 	{
-		return Category::where('branch_id', $this->app->branch->id)->where('model', $model)->get();
+		return Category::where('branch_id', $this->app->branch->id)->where('model', $model)->orderBy('id', 'DESC')->get();
 	}
 
 

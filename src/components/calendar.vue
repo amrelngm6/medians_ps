@@ -1,7 +1,7 @@
 <template>
     <div class=" w-full">
         <div class="w-full lg:flex ">
-            <calendar_categories v-if="content.typesList && !switchCat" :categories="content.typesList"></calendar_categories>
+            <calendar_categories v-if="content.typesList" :categories="content.typesList"></calendar_categories>
             <calendar_status_list class="w-full"></calendar_status_list>
         </div>
         <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
@@ -54,7 +54,6 @@ export default
             activeItem:null,
             showAddSide:false,
             showEditSide:false,
-            switchCat: false,
             showLoader: false,
         }
     },
@@ -73,11 +72,9 @@ export default
     {
         selectCategory(category = {})
         {
-            this.switchCat = true
             this.activeCategories[category.id] = !this.activeCategories[category.id]
             this.content.typesList[i].selected = !this.content.typesList[i].selected
             this.filterDevicesByCategory()
-            this.switchCat = false
         },
         filterCategories()
         {
