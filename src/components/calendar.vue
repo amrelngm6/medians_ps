@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <div class="w-full lg:flex ">
+        <div class="w-full lg:flex pb-2">
             <calendar_categories v-if="content.typesList" :categories="content.typesList"></calendar_categories>
             <calendar_status_list class="w-full"></calendar_status_list>
         </div>

@@ -117,6 +117,14 @@
                                             <div class="form-group">
 
                                                 <label class="block py-3">
+                                                    <label>{{__('Enable Notifications')}} <span class="star-red">*</span></label>
+                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][enable_notifications]" :value="setting.enable_notifications">
+                                                        <option value="1" v-text="__('enabled')" ></option>
+                                                        <option value="0" v-text="__('disabled')" ></option>
+                                                    </select>
+                                                </label>
+
+                                                <label class="block py-3">
                                                     <label>{{__('calendar interval for notifications')}} {{__('in minutes')}} <span class="star-red">*</span></label>
                                                     <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][calendar_notification_interval]" :value="setting.calendar_notification_interval">
                                                         <option value="60000" >1</option>
