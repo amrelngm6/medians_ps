@@ -63,6 +63,14 @@
                                                     <input name="params[settings][tax]" type="number" max="99" min="0" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('tax')" required :value="setting.tax">
                                                 </label>
 
+
+                                                <label class="block py-3">
+                                                    <label>{{__('Enable debugging')}} <span class="star-red">*</span></label>
+                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][enable_debug]" :value="setting.enable_debug">
+                                                        <option value="1" v-text="__('enabled')" ></option>
+                                                        <option value="0" v-text="__('disabled')" ></option>
+                                                    </select>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
