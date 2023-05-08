@@ -25,6 +25,35 @@
                     </div>
                 </div>
 
+                <div class="w-full flex gap-4 py-2 border-b border-gray-200 ">
+                    <div class="w-full flex gap gap-6">
+                        <label class="w-full" v-text="__('Customer')"></label> 
+                        <small class="cursor-pointer px-2 font-semibold text-purple w-20" @click="addNewCustomer = true" v-text="__('New cusomter')"></small>
+                    </div>
+                    <div class="w-full relative">
+                        <input type="hidden" v-model="activeItem.customer.mobile">
+                        <input type="hidden" v-model="activeItem.customer_id">
+                        <input v-on:keyup="findCustomer()" class="w-full rounded w-full border border-gray-200 px-4 py-2" type="text" v-model="search_mobile" :placeholder="__('Mobile')" v-if="!addNewCustomer">
+                        <div class="absolute top-0 left-0 mr-2 mt-2 text-lg cursor-pointer" style="height:20px; width: 20px;" @click="customers = false" v-if="customers.length">x</div>
+
+                        <div class="absolute top-0 left-0 w-full block bg-white p-4 border" v-if="customers.length && !addNewCustomer" style="top: 30px;">
+                            <span class="block w-full py-2 border-b-1 border-gray-200 my-2 cursor-pointer" v-for="customer in customers" @click="setCustomer(customer)" >
+                                <span class="block w-full font-semibold" v-text="customer.name"></span>
+                                <span class="block w-full" v-text="customer.mobile"></span>
+                            </span>
+                        </div>
+
+                        <div class="w-full block bg-white p-4 border flex text-center" v-if="addNewCustomer" >
+                            <input class="mb-2 w-full rounded w-full border border-gray-200 px-4 py-2" type="text" v-model="newCustomer.name" :placeholder="__('Name')">
+                            <input class="mb-2 w-full rounded w-full border border-gray-200 px-4 py-2" type="text" v-model="newCustomer.mobile" :placeholder="__('Mobile')">
+                            <div class="w-full flex ">
+                                <span v-text="__('Add')" class="block w-full my-2 cursor-pointer text-red-600 border-red-600 border rounded-lg py-2 px-4 hover:bg-purple-600 hover:text-white hover:border-purple-600"  @click="createCustomer(newCustomer)" ></span>
+                                <span v-text="__('cancel')" class="block w-full my-2 cursor-pointer py-2"  @click="addNewCustomer = false" ></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                     <label class="w-full" v-text="__('start')"></label>
                     <input @change="updateInfo(activeItem)" class="w-full" type="time" v-model="activeItem.start">
@@ -76,7 +105,11 @@ export default {
         return {
                 
                 showLoader: false,
-                activeItem: {},
+                addNewCustomer : false,
+                search_mobile: '',
+                customers: [],
+                newCustomer: {},
+                activeItem: {customer:{}},
 
             };
         },
@@ -89,9 +122,78 @@ export default {
             if (this.modal)
             {
                 this.activeItem = this.modal;
+                this.activeItem.customer = {}
             }
         },
         methods: {
+
+            /**
+             * Foucus out of input
+             */
+            foucusOut()
+            {
+                if (this.activeItem.customer && this.activeItem.customer.mobile)
+                {
+                    this.search_mobile = this.activeItem.customer.mobile + ' - ' + this.activeItem.customer.name; 
+                } else {
+                    this.search_mobile = ''; 
+                    this.customers = []
+                }
+            },  
+
+            /**
+             * Find customer by mobile
+             */
+            findCustomer()
+            {
+                if (this.search_mobile)
+                {
+                    const params = new URLSearchParams([]);
+                    params.append('type', 'Customer');
+                    params.append('search_text', this.search_mobile);
+                    this.handleRequest(params, '/api/search').then((response) => { 
+                        this.customers = response.result;
+                    });
+                }
+                // this.updateInfo(activeItem)
+            },
+
+            /**
+             * create customer by mobile
+             */
+            createCustomer(customer)
+            {
+                if (customer && customer.name && customer.mobile)
+                {
+                    const params = new URLSearchParams([]);
+                    params.append('type', 'Customer.create');
+                    params.append('params[customer]', JSON.stringify(customer));
+                    this.handleRequest(params, '/api/create').then((response) => { 
+                        response.error ? this.$alert(response.result) : '';
+                        if (response.success)
+                        {
+                            this.setCustomer(response.result)
+                            this.addNewCustomer = false
+                            this.customers = []
+                        }
+                    });
+                } else {
+                    this.$alert(this.__('NOT_VALID'))
+                }
+
+                // this.updateInfo(activeItem)
+            },
+
+            /**
+             * Find customer by mobile
+             */
+            setCustomer(customer)
+            {
+                this.activeItem.customer = customer;
+                this.activeItem.customer_id = customer.id
+                this.customers = []
+                this.search_mobile = this.activeItem.customer.name + ' - ' + this.activeItem.customer.mobile
+            },
 
             updateInfo()
             {
@@ -116,7 +218,10 @@ export default {
                 item.status = status
                 params.append('type', type);
                 params.append('params[event]', JSON.stringify(item));
+
+                this.showLoader = true
                 this.handleRequest(params, '/api/'+request_type).then(() => { 
+                    this.showLoader = false
                     this.$parent.reloadEvents();
                     this.$parent.hidePopup()
                 });
@@ -127,11 +232,9 @@ export default {
             async handleRequest(params, url='/') {
 
                 var t = this;
-                t.showLoader = true
                 // Demo json data
                 return await axios.post(url, params.toString()).then(response => 
                 {
-                    t.showLoader = false
 
                     if (response.data.status)
                         return response.data.result;

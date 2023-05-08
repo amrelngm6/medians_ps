@@ -13,26 +13,16 @@ class Customer extends CustomController
 	protected $table = 'customers';
 
 	public $fillable = [
-		'stage_id',
-		'first_name',
-		'last_name',
-		'email',
-		'phone',
-		'business_type',
+		'name',
+		'mobile',
+		'photo',
+		'gender',
 		'created_by',
-		'agent_id',
-		'source_type',
-		'source_id',
 	];
 
 
 
-	public $appends = ['name', 'photo'];
-
-	public function getNameAttribute() : String
-	{
-		return $this->name();
-	}
+	public $appends = [ 'photo'];
 
 	public function getPhotoAttribute() : ?String
 	{
@@ -44,13 +34,6 @@ class Customer extends CustomController
 	{
 		return !empty($this->profile_image) ? $this->profile_image : '/uploads/images/default_profile.jpg';
 	}
-
-	public function name() : String
-	{
-		return $this->first_name.' '.$this->last_name;
-	}
-
-
 
 	public function getFields()
 	{

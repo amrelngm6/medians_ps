@@ -16,7 +16,9 @@
     "v-selectmenu": "^2.0.2",
     "vue": "^2.6.10",
     "vue-native-notification": "^1.1.1",
-    "vue-search-select": "^3.1.0"
+    "vue-search-select": "^3.1.0",
+    "vue3-daterange-picker": "^1.0.1",
+    "vuejs-datepicker": "^1.6.2"
   },
   "peerDependencies": {},
   "devDependencies": {

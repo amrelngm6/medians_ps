@@ -10,6 +10,7 @@ use Medians\Devices\Domain\Device;
 use Medians\Devices\Domain\OrderDevice;
 use Medians\Products\Domain\Product;
 use Medians\Users\Domain\User;
+use Medians\Customers\Domain\Customer;
 
 class Order  extends CustomController
 {
@@ -131,6 +132,15 @@ class Order  extends CustomController
 		return $this->hasMany(Product::class, 'order_code', 'code');
 	}
 	
+	
+	/**
+	 * Relations
+	 */
+	public function customer()
+	{
+		return $this->hasOne(Customer::class, 'id', 'customer_id');
+	}
+
 
 	
 

@@ -14,7 +14,7 @@
                     <div class="mx-auto w-full pt-8">
                         <div class="w-full flex gap gap-2">
                             <h1 class="w-full font-semibold text-2xl border-b py-4" v-text="__('order_summary')"></h1>
-                            <button type="button" class="btn-close xs-close text-lg absolute" style="left:auto; right: auto; margin: 5px;" data-bs-dismiss="modal">X</button>
+                            <!-- <button type="button" class="btn-close xs-close text-lg absolute" style="left:auto; right: auto; margin: 5px;" data-bs-dismiss="modal">X</button> -->
                         </div>
                         <div v-if="Items" class="w-full">
                             <div v-for="(item, i) in Items" class="w-full block" :key="i" >

@@ -46,6 +46,11 @@
                     <calendar_products ref="applicable_products" :item="activeItem" :products="products" ></calendar_products>
                 </div>
 
+                <div class="w-full flex gap-4 py-1 border-b border-gray-200 mb-2" v-if="activeItem.customer">
+                    <span class="text-md font-semibold w-full block py-2" v-text="__('Customer')"></span>
+                    <span class="w-full text-md p-2 text-gray-600 font-semibold"  v-text="activeItem.customer.name +' - '+ activeItem.customer.mobile"></span>
+                </div>
+                
                 <div class="w-full block" v-if="activeItem">
                     <calendar_booking_info_editable :active-item="activeItem"></calendar_booking_info_editable>
                 </div>

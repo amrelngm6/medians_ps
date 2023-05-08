@@ -39,6 +39,7 @@ Macaw::post('/api/delete', \Medians\APIController::class.'@delete');
 Macaw::post('/api/updateStatus', \Medians\APIController::class.'@updateStatus');
 Macaw::post('/api/checkout', \Medians\Orders\Application\OrderController::class.'@checkout');
 Macaw::post('/api/bug_report', \Medians\APIController::class.'@bug_report');
+Macaw::post('/api/search', \Medians\APIController::class.'@search');
 Macaw::post('/api/(:all)', \Medians\APIController::class.'@handle');
 Macaw::post('/api', \Medians\APIController::class.'@handle');
 

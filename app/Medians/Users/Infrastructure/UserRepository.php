@@ -4,8 +4,20 @@ namespace Medians\Users\Infrastructure;
 
 use Medians\Users\Domain\User;
 
+
 class UserRepository 
 {
+
+
+	public $app;
+
+
+
+	function __construct($app = null)
+	{
+		$this->app = $app;
+		// $this->app = new \config\APP;
+	}
 
 
 	public function getModel()
@@ -52,7 +64,7 @@ class UserRepository
 
 	public function get($limit = 100)
 	{
-		return User::with('Role', 'branch')->limit($limit)->get();
+		return User::with('Role', 'branch')->where('active_branch', $this->app->branch->id)->limit($limit)->get();
 	}
 
 

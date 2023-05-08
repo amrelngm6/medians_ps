@@ -674,6 +674,7 @@ class Langs
 		,'LOOK_FOR' => 'البحث عن'
 		,'LOOKING_FOR' => 'البحث عن '
 		,'FIELD_REQUIRED' => 'هذا الحقل مطلوب'
+		,'SOME_FIELDS_REQUIRED' => 'هذه  الحقول مطلوبة'
 		,'REVIEWS' => 'Reviews'
 		,'REVIEWS_LIST' => 'Reviews list'
 		,'ENABLED' => 'Enabled'
@@ -1036,6 +1037,9 @@ class Langs
 		,'Calendar interval for notifications'=> 'الفترة بين إعادة إرسال التنبيهات للحجوزات'
 		,'Status options'=> 'عرض حالات الحجز'
 		,'booking completed but unpaid'=> 'الحجز مكتمل وغير مدفوع'
+		,'New customer'=> 'عميل جديد'
+		,'Guest' => 'عميل زائر'
+
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	

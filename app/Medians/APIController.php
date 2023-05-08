@@ -97,6 +97,9 @@ class APIController
 				case 'Payment.create':
 					$return = (new Payments\Application\PaymentController())->store();
 					break;
+				case 'Customer.create':
+					$return = (new Customers\Application\CustomerController())->store();
+					break;
 				case 'Event.create':
 					$params = (array)  json_decode($request->get('params')['event']);
 					$check = (new DevicesRepository())->storeOrder($params);
@@ -168,6 +171,34 @@ class APIController
 
 		return response(json_encode($return));
 	} 
+
+	/**
+	 * delete model 
+	 * 
+	 */
+	public function search()
+	{
+
+		$app = new \config\APP;
+		$request = $app->request();
+
+		try {
+			
+			$return = [];
+			switch ($request->get('type')) 
+			{
+				case 'Customer':
+					$return = (new Customers\Application\CustomerController())->search($request->get('search_text'));
+					break;
+
+			}
+
+		} catch (Exception $e) {
+			throw new Exception("Error Processing Request", 1);
+					
+		}
+	}
+
 
 	/**
 	 * delete model 

@@ -16,10 +16,12 @@ class CustomerController
 	private $repo;
 
 
-	function __construct($app)
+	function __construct()
 	{
 
-		$this->repo = new Repo\CustomerRepository($app);
+		$this->app = new \config\APP;
+
+		$this->repo = new Repo\CustomerRepository();
 
 
 	}
@@ -59,24 +61,28 @@ class CustomerController
 	/**
 	*  Store item
 	*/
-	public function store($request, $app) 
+	public function store() 
 	{
 
-		$params = (array) json_decode($request->get('params')['customer']);
+
+
+		$params = (array) json_decode($this->app->request()->get('params')['customer']);
 
 		try {	
 
-			if (empty($params['first_name']))
-	        	return array('error'=>1, 'result'=>'First Name is required');
+			if (empty($params['name']))
+	        	return array('error'=>1, 'result'=>'Name is required');
 
-			if (empty($params['phone']))
+			if (empty($params['mobile']))
 	        	return array('error'=>1, 'result'=>'Phone is required');
 
-			$this->repo->app = $app;
-			$params['created_by'] = $app->auth->id;
-			$Property = $this->repo->store($params);
+			if (strlen($params['mobile']) != 11)
+	        	return array('error'=>1, 'result'=> __('MOBILE_ERR') );
 
-        	return array('success'=>1, 'result'=>'Created');
+			$params['created_by'] = $this->app->auth()->id;
+			$Item = $this->repo->store($params);
+
+        	return array('success'=>1, 'result'=> $Item);
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());
@@ -106,5 +112,17 @@ class CustomerController
 	}
 
 
+	/**
+	 * Find customer by mobile
+	 */
+
+	public function search($text)
+	{
+		$data = $this->repo->search($text);
+
+
+		echo json_encode(array('success'=>1, 'result'=> $data->toArray()));
+
+	}  
 
 }

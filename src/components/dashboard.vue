@@ -1,8 +1,11 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
 
+
         <div class="block w-full overflow-x-auto">
-            
+
+            <medians_datepicker :value="date"  @selected="changeLoad" name="uniquename"></medians_datepicker>
+
             <div v-if="lang && !showLoader" class="w-full overflow-y-auto overflow-x-hidden px-2" >
                 <div class="mb-6">
                     <div class="row pt-2">
@@ -121,10 +124,14 @@
 </template>
 <script>
 import dashboard_card from './includes/dashboard_card';
+// import medians_datepicker from 'medians_datepicker';
+
+
 export default 
 {
     components:{
-        dashboard_card
+        dashboard_card,
+        // medians_datepicker,
     },
     name:'categories',
     data() {
@@ -140,6 +147,7 @@ export default
                 latest_paid_bookings: 0,
                 latest_sold_products: 0,
             },
+            date:null,
             showLoader: false,
         }
     },
@@ -151,15 +159,27 @@ export default
     ],
     mounted: function() 
     {
-        this.load()
+        this.load(this.url)
+        // jQuery(document).ready(function(){
+
+            // $('input[name="dates"]').daterangepicker();
+        // })
     },
 
     methods: 
     {
-        load()
+        /**
+         * 
+         */
+        changeLoad()
+        {
+            console.log('changed')
+            // console.log(this.load(this.url+'&start='+))
+        },  
+        load(url)
         {
             this.showLoader = true;
-            this.$parent.handleGetRequest( this.url ).then(response=> {
+            this.$parent.handleGetRequest( url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
                 // this.$alert(response)

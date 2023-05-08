@@ -23,7 +23,7 @@ class OrderDevicesRepository
 	public function find($id)
 	{
 
-		return OrderDevice::with('products','game','user')->with(['device'=>function($q){
+		return OrderDevice::with('products','game','user','customer')->with(['device'=>function($q){
 
 			return $q->with('games')->with('products');
 

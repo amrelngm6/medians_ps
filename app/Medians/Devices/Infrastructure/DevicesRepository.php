@@ -6,6 +6,7 @@ use Medians\Devices\Domain\Device;
 use Medians\Devices\Domain\DeviceGames;
 use Medians\Devices\Domain\OrderDevice;
 use Medians\Games\Domain\Game;
+use Medians\Orders\Domain\Order;
 use Medians\Products\Domain\Product;
 
 use Medians\Prices\Domain\Prices;
@@ -88,7 +89,7 @@ class DevicesRepository
 	{
 		$query = OrderDevice::with('game')->with(['device'=>function($q){
 			return $q->with('prices');
-		}])->with('user')->with('products');
+		}])->with('user')->with('products')->with('customer');
 		// ->where('branch_id', $this->app->branch->id);
 
 		$query->where('branch_id', isset($params['branch_id']) ? $params['branch_id'] : $this->app->branch->id);
@@ -153,6 +154,21 @@ class DevicesRepository
 		return Game::where('category' , $type )->limit($limit)->get();
 	}
 
+
+	/**
+	 * Get sum of field 
+	 * with start & end range
+	 */
+	public function getSumByDate($sumField, $start, $end)
+	{
+		$check = Order::where('branch_id' , $this->app->branch->id)->with(['order_device'=> function ($q)
+		{
+			return $q->with('device')->with('game');
+		}])
+		->with('cashier');
+  		$check = $check->whereBetween('date' , [isset($start) ? $start : date('Y-m-d') , isset($end) ? $end : date('Y-m-d')]);
+  		return $check->orderBy('id', 'DESC')->sum($sumField);
+	} 
 
 
 
@@ -299,6 +315,7 @@ class DevicesRepository
 		$data['device_cost'] = empty($Device->price) ? 0 : (($data['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price);
 		$data['break_time'] = 0;
 		$data['last_check'] = 0;
+		$data['customer_id'] = $data['customer_id'];
 		$data['status'] = $data['status'];
 		$data['created_by'] = $this->app->auth()->id;
 
@@ -334,6 +351,8 @@ class DevicesRepository
 		$newData['status'] = $data['status'];
 		$newData['device_id'] = $data['device_id'];
 		$newData['date'] = date('Y-m-d');
+		$newData['customer_id'] = !empty($data['customer_id']) ? $data['customer_id'] : $Object->customer_id;
+
 		// if ($data['status'] == 'completed' && $data['status'] != $Device->status )
 		// {
 		// 	$bookingDay = date('Ymd', strtotime($data['startStr']));

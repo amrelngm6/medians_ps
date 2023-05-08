@@ -13,7 +13,7 @@
 
                     <div class="row " @click="showDropdown = false">
 
-                        <div :key="index" v-for="(device, index) in content.devicesList" class="col-6 col-sm-4 col-lg-2">
+                        <div :key="index" v-for="(device, index) in content.devicesList" class="col-6 col-sm-4 col-lg-2"  :class="{'opacity-5': !device.status }">
                             <div class="album  transform transition duration-400 hover:scale-105 cursor-pointer">
                                 <div :class="device.playing ? 'active' : ''" class="album__cover ">
                                     <img :src="conf.url+'assets/img/ps.png'" alt="">

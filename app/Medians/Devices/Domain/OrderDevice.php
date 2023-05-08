@@ -9,6 +9,7 @@ use Medians\Devices\Domain\Device;
 use Medians\Games\Domain\Game;
 use Medians\Products\Domain\Product;
 use Medians\Users\Domain\User;
+use Medians\Customers\Domain\Customer;
 
 
 class OrderDevice extends CustomController
@@ -25,6 +26,7 @@ class OrderDevice extends CustomController
 	*/
 	public $fillable = [
 		'branch_id',	
+		'customer_id',	
 		'device_id',	
 		'game_id',	
 		'device_cost',	
@@ -96,6 +98,14 @@ class OrderDevice extends CustomController
 
 
 
+
+	/**
+	 * Relations
+	 */
+	public function customer()
+	{
+		return $this->hasOne(Customer::class, 'id', 'customer_id');
+	}
 
 	/**
 	 * Relations

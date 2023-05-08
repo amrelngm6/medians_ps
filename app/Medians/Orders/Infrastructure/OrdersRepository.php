@@ -44,7 +44,7 @@ class OrdersRepository
 	 */  
 	public function code($code, $branchId = 0)
 	{
-		return Order::with('items','cashier')
+		return Order::with('items','cashier','customer')
 		->with(['order_device'=> function ($q)
 		{
 			return $q->with('device')->with('game');

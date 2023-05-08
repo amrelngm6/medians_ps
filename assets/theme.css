@@ -7592,7 +7592,7 @@ table .progress {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #ccc;
+	background: #c8a2ff;
 	position: absolute;
 	z-index: -1;
 }

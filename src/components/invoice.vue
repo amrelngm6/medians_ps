@@ -2,7 +2,6 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div class=" w-full">
 
-
             <div v-if="content && !showLoader"  class=" w-full px-4 overflow-y-auto h-full">
                 <h1 class="font-bold text-lg "></h1>
                 <div class="card invoice-info-card  mx-auto col-md-10">
@@ -27,7 +26,7 @@
                                 <div class="col-md-6 ">
                                     <div class="invoice-info">
                                         <strong class="customer-text-one">{{__('Billed_to')}}</strong>
-                                        <h6 class="invoice-name">{{content.order.customer ? content.order.customer.name : 'Guest'}}</h6>
+                                        <h6 class="invoice-name">{{content.order.customer ? content.order.customer.name : __('Guest')}}</h6>
                                         <p class="invoice-details invoice-details-two">
                                             {{content.order.customer ? content.order.customer.phone : ''}} <br>
                                         </p>
@@ -53,7 +52,7 @@
                                     <div class="invoice-info text-default " v-if="content.order && content.order.cashier">
                                         <p class=" text-default w-full lg flex">
                                             <strong class="customer-text-one">{{__('Cashier')}}</strong>
-                                            : <b class="text-red-500" v-text="content.order.cashier ? content.order.cashier.name : ''"></b>
+                                            : <b class="text-red-500 p-1 px-4" v-text="content.order.cashier ? content.order.cashier.name : ''"></b>
                                         </p>
                                     </div>
                                 </div>

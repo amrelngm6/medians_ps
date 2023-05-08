@@ -19,7 +19,7 @@ class UserController
 	function __construct()
 	{
 		$this->app = new \config\APP;
-		$this->repo = new UserRepository();
+		$this->repo = new UserRepository($this->app);
 	}
 
 
