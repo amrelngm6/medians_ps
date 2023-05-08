@@ -72,12 +72,13 @@
                     <span class="text-purple-600 px-2" v-if="extraTimeText()" v-text="activeItem.extra_time.text"></span>
                 </p>
             </div>
+            
+            <span class="text-md font-semibold w-full block py-2" v-text="__('information')"></span>
             <div class="w-full flex gap-4 py-1 border-b border-gray-200 mb-2" v-if="activeItem.customer">
-                <span class="text-md font-semibold w-full block py-2" v-text="__('Customer')"></span>
+                <span class="text-md w-full block py-2" v-text="__('Customer')"></span>
                 <span class="w-full text-md p-2 text-gray-600 font-semibold"  v-text="activeItem.customer.name +' - '+ activeItem.customer.mobile"></span>
             </div>
 
-            <span class="text-md font-semibold w-full block py-2" v-text="__('information')"></span>
             <div class="w-full flex gap-4 py-1 border-b border-gray-200">
                 <label class="w-full text-gray-400"  v-text="__('type')"></label>
                 <span class="w-full text-md p-2 text-gray-600 font-semibold" v-text="activeItem.booking_type"></span>
