@@ -10,12 +10,11 @@
                     <calendar_booking_info :key="activeItem" :active-item="activeItem"></calendar_booking_info>
 
                     <!-- Confirm overlay -->
-                    <div class="relative mx-auto w-full bg-white px-6 rounded-lg" style="max-width:600px;z-index:99;">
+                    <div class="relative pb-2  mx-auto w-full bg-white px-6 rounded-lg" style="max-width:600px;z-index:99;">
 
                         <div class="bg-blue-200 rounded-md py-2 px-4" role="alert">
                             <strong v-text="__('confirm')"></strong> <span class="mx-2" v-text="__('confirm_complete_booking')"></span> 
                         </div>
-
 
                         <div class="w-full flex mt-10">
                             <div @click="activeItem.status = 'completed'; $parent.submit('Event.update', activeItem); addToCart(activeItem)" class="mx-auto cursor-pointer block w-32 py-2">
