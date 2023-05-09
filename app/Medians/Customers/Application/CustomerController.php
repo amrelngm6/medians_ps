@@ -21,7 +21,7 @@ class CustomerController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new Repo\CustomerRepository();
+		$this->repo = new Repo\CustomerRepository($this->app);
 
 
 	}
@@ -34,7 +34,7 @@ class CustomerController
 	public function index()
 	{
 		return render('views/admin/customers/list.html.twig', [
-			'items' =>  $this->repo->get(),
+			'customers' =>  $this->repo->get(),
 	        'title' => 'Customers',
 	        'app' => $this->app,
 	    ]);

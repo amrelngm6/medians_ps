@@ -8,6 +8,14 @@ class CustomerRepository
 {
 
 
+	public $app;
+	
+
+	function __construct($app = null)
+	{
+		$this->app = $app;
+	}
+
 	public function getModel()
 	{
 		return new Customer;
@@ -34,9 +42,18 @@ class CustomerRepository
 
 		$Model = new Customer();
 
-		$Model = $Model->firstOrCreate($data);
+		$dataArray = [];
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}	
 
-    	$Model->update($data);
+		$Model = $Model->firstOrCreate($dataArray);
+
+    	$Model->update($dataArray);
     	
 		// Return the FBUserInfo object with the new data
     	return $Model;
@@ -57,8 +74,6 @@ class CustomerRepository
 				return __('this user not found');	
 			}
 
-
-			$data['active'] = isset($data['active']) ? 1 : 0;
 
 			// Return the FBUserInfo object with the new data
 	    	$Object->update( (array) $data);

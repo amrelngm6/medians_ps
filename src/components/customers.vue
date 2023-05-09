@@ -15,28 +15,22 @@
                             <table class="table dark:text-gray-400 text-gray-800 border-separate space-y-6 text-sm w-full">
                                 <thead class="dark:bg-gray-800 bg-white text-gray-500">
                                     <tr>
+                                        <th class="p-2 text-default px-4">{{__('#')}}</th>
                                         <th class="p-2 text-default px-4">{{__('Name')}}</th>
-                                        <th class="p-2 text-center">{{__('phone')}}</th>
-                                        <th class="p-2 text-center">{{__('email')}}</th>
-                                        <th class="p-2 text-center">{{__('Status')}}</th>
+                                        <th class="p-2 text-center">{{__('Mobile')}}</th>
+                                        <th class="p-2 text-center">{{__('bookings_count')}}</th>
                                         <th class="p-2 text-center">{{__('Action')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="(customer, index) in content.customers" class="dark:bg-gray-800 text-center" v-if="customer">
 
+                                        <td class="p-2 text-center" v-text="customer.id"></td>
                                         <td class="p-2 text-default">
                                             <div class="font-medium">{{customer.name}}</div>
                                         </td>
-                                        <td class="p-2 font-bold ">
-                                            {{customer.phone}}
-                                        </td>
-                                        <td class="p-2 font-bold ">
-                                            {{ customer.email }}
-                                        </td>
-                                        <td class="p-2">
-                                            <span :class="customer.active ? 'bg-green-400' : 'bg-red-400'" class="text-gray-50 rounded-md px-2" v-text="customer.active ? 'on' : 'off'"></span>
-                                        </td>
+                                        <td class="p-2 font-bold " v-text="customer.mobile"></td>
+                                        <td class="p-2 font-bold " v-text="customer.bookings_count"></td>
                                         <td class="p-2 ">
                                             <a v-if="customer.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = customer" href="javascript:;" class="text-gray-400 hover:text-gray-100  mx-2">
                                                 <i class="material-icons-outlined text-base">edit</i>
