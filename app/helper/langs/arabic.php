@@ -1040,6 +1040,7 @@ class Langs
 		,'New customer'=> 'عميل جديد'
 		,'Guest' => 'عميل زائر'
 		,'Upcoming bookings' => 'الخحوزات القادمة'
+		,'Customers' => 'العملاء'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
