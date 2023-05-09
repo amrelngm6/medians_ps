@@ -25,7 +25,7 @@
                                 <tbody>
                                     <tr v-for="(customer, index) in content.customers" class="dark:bg-gray-800 text-center">
                                         <td class="p-2 text-default">
-                                            <div class="font-medium">{{customer.first_name}} {{customer.last_name}}</div>
+                                            <div class="font-medium">{{customer.name}}</div>
                                         </td>
                                         <td class="p-2 font-bold ">
                                             {{customer.phone}}
@@ -59,11 +59,8 @@
                                 <input name="type" type="hidden" value="Customers.create">
                                 <input name="params[active]" type="hidden" value="1">
                                 
-                                <span class="block mb-2" v-text="__('first_name')"></span>
-                                <input name="params[first_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('first_name')" v-model="activeItem.first_name">
-
-                                <span class="block mb-2 mt-3" v-text="__('last_name')"></span>
-                                <input name="params[last_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('last_name')" v-model="activeItem.last_name">
+                                <span class="block mb-2" v-text="__('Name')"></span>
+                                <input name="params[name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
 
                                 <span class="block mb-2 mt-3" v-text="__('email')"></span>
                                 <input name="params[email]" required="true" type="email" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('email')" v-model="activeItem.email">
@@ -87,11 +84,8 @@
                                 <input name="type" type="hidden" value="Customers.update">
                                 <input name="params[id]" type="hidden" v-model="activeItem.id">
 
-                                <span class="block mb-2" v-text="__('first_name')"></span>
-                                <input name="params[first_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('first_name')" v-model="activeItem.first_name">
-
-                                <span class="block mb-2 mt-3" v-text="__('last_name')"></span>
-                                <input name="params[last_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('last_name')" v-model="activeItem.last_name">
+                                <span class="block mb-2 mt-3" v-text="__('name')"></span>
+                                <input name="params[name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
 
                                 <span class="block mb-2 mt-3" v-text="__('email')"></span>
                                 <input name="params[email]" required="true" type="email" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('email')" v-model="activeItem.email">
