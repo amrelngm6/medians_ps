@@ -1,6 +1,5 @@
 <template>
     <div>
-        <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <canvas id="myChart" width="400" height="400"></canvas>
         
@@ -18,8 +17,6 @@ export default {
     },
     props:['reports'],
     mounted() {
-        jQuery(document).ready(function()
-        {
                     // Sample data
             this.items = this.reports;
 
@@ -39,7 +36,6 @@ export default {
                 );
             }
 
-        });
 
     // Chart configuration
     // const config = {

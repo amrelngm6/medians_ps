@@ -29,6 +29,8 @@
             </div>
 
         </div>
+        <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
     </div>
 </template>
 <script>
