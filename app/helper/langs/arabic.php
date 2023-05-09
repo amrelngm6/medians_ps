@@ -1043,6 +1043,7 @@ class Langs
 		,'Customers' => 'العملاء'
 		,'bookings_count' => 'عدد الحجوزات'
 		,'last_invoice' => 'اخر فاتورة'
+		,'pay' => 'دفع'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
