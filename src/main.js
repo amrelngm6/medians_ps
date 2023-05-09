@@ -10,6 +10,8 @@ Vue.use(vSelectMenu);
 import VueNativeNotification from 'vue-native-notification'
 Vue.use(VueNativeNotification, {requestOnNotify: false})
 
+import { DonutChart } from 'vue-morris'
+
 
 Vue.component('moment', () => import ('moment'));
 Vue.component('calendar_booking_info', () => import('./components/calendar-booking-info'));
