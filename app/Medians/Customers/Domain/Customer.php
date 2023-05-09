@@ -68,7 +68,7 @@ class Customer extends CustomController
 
 	public function last_invoice()
 	{
-		return $this->hasMany(Order::class, 'customer_id', 'id');
+		return $this->hasOne(Order::class, 'customer_id', 'id');
 	}
 
 

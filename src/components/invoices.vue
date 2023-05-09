@@ -57,7 +57,7 @@
                                                     {{setting.currency}} {{order.total_cost}}   
                                                 </td>
                                                 <td class="p-2">
-                                                    <span>
+                                                    <span v-text="moment(order.created_at).format('YYYY-MM-DD HH:mm A')">
                                                         {{ order.created_at }}
                                                     </span>
                                                 </td>
