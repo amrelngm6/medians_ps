@@ -18,7 +18,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row"> 
                     <div class="col-md-12">
                         <pie :reports="content.reports" :key="content.reports"></pie>
                         <div v-if="content.reports" class="card mb-0">
@@ -30,7 +30,7 @@
 
         </div>
         <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        
+
     </div>
 </template>
 <script>
