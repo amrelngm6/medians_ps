@@ -20,7 +20,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <pie :reports="reports"></pie>
+                        <pie :reports="content.reports" :key="content.reports"></pie>
                         <div v-if="content.reports" class="card mb-0">
 
                         </div>
