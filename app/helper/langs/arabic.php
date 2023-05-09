@@ -1041,6 +1041,8 @@ class Langs
 		,'Guest' => 'عميل زائر'
 		,'Upcoming bookings' => 'الخحوزات القادمة'
 		,'Customers' => 'العملاء'
+		,'bookings_count' => 'عدد الحجوزات'
+		,'last_invoice' => 'اخر فاتورة'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

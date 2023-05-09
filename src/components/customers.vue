@@ -19,6 +19,7 @@
                                         <th class="p-2 text-default px-4">{{__('Name')}}</th>
                                         <th class="p-2 text-center">{{__('Mobile')}}</th>
                                         <th class="p-2 text-center">{{__('bookings_count')}}</th>
+                                        <th class="p-2 text-center">{{__('Last invoice')}}</th>
                                         <th class="p-2 text-center">{{__('Action')}}</th>
                                     </tr>
                                 </thead>
@@ -31,6 +32,9 @@
                                         </td>
                                         <td class="p-2 font-bold " v-text="customer.mobile"></td>
                                         <td class="p-2 font-bold " v-text="customer.bookings_count"></td>
+                                        <td class="p-2 font-bold " >
+                                            <a href="javascript:;" @click="$parent.switchTab({link:'/invoices/show/'+customer.last_invoice})" v-text="customer.last_invoice"></a>
+                                        </td>
                                         <td class="p-2 ">
                                             <a v-if="customer.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = customer" href="javascript:;" class="text-gray-400 hover:text-gray-100  mx-2">
                                                 <i class="material-icons-outlined text-base">edit</i>
