@@ -29,7 +29,7 @@ class CustomerRepository
 
 	public function get($limit = 100)
 	{
-		return Customer::withCount('bookings')->where('created_by', $this->app->auth()->id)->limit($limit)->get();
+		return Customer::withCount('bookings')->with('last_invoice')->where('created_by', $this->app->auth()->id)->limit($limit)->get();
 	}
 
 
