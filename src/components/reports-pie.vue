@@ -30,7 +30,7 @@ export default {
               data: this.items,
             };
 
-            if (Chart)
+            if (Chart && this.reports)
             {
                 // Create the chart
                 this.myChart = new Chart(
