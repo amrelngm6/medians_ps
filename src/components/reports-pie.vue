@@ -1,7 +1,5 @@
 <template>
     <div>
-        <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
         <canvas id="myChart" ref="myChart" width="400" height="400"></canvas>
         
     </div>
@@ -19,8 +17,8 @@ export default {
         };
     },
     props:['reports'],
+    extends: Pie,
     mounted() {
-        jQuery(document).ready(function(){
             console.log(this.reports)
                     // Sample data
             this.items = this.reports;
@@ -43,7 +41,6 @@ export default {
             // Render the chart
             this.renderChart(this.items, this.config);
 
-        });
 
     },
     methods: {
