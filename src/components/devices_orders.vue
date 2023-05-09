@@ -39,7 +39,7 @@
                                         <tbody class="mt-2">
                                             <tr :key="index" v-for="(item, index) in content.events" class="text-center">
                                                 <td>{{item.id}}</td>
-                                                <td class="text-default"><b>{{item.device.name}}</b> <span v-if="item.game" class="block w-full py-1 text-xs">{{item.game.name}}</span></td>
+                                                <td class="text-default"><b>{{item.device.name}}</b> <span v-if="item.game" class="block w-full py-1 text-xs" v-text="item.game ? item.game.name : ''"></span></td>
                                                 <td>{{item.start_time }}</td>
                                                 <td>{{item.duration_time}}</td>
                                                 <td>{{item.status}}</td>
