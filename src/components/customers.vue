@@ -15,7 +15,7 @@
                             <table class="table dark:text-gray-400 text-gray-800 border-separate space-y-6 text-sm w-full">
                                 <thead class="dark:bg-gray-800 bg-white text-gray-500">
                                     <tr>
-                                        <th class="p-2 text-default px-4">{{__('#')}}</th>
+                                        <th class="p-2 text-default ">{{__('#')}}</th>
                                         <th class="p-2 text-default px-4">{{__('Name')}}</th>
                                         <th class="p-2 text-center">{{__('Mobile')}}</th>
                                         <th class="p-2 text-center">{{__('bookings_count')}}</th>
@@ -25,7 +25,7 @@
                                 <tbody>
                                     <tr v-for="(customer, index) in content.customers" class="dark:bg-gray-800 text-center" v-if="customer">
 
-                                        <td class="p-2 text-center" v-text="customer.id"></td>
+                                        <td class="p-2 text-default" v-text="customer.id"></td>
                                         <td class="p-2 text-default">
                                             <div class="font-medium">{{customer.name}}</div>
                                         </td>

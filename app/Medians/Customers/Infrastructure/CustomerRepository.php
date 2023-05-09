@@ -9,7 +9,7 @@ class CustomerRepository
 
 
 	public $app;
-	
+
 
 	function __construct($app = null)
 	{
@@ -29,7 +29,7 @@ class CustomerRepository
 
 	public function get($limit = 100)
 	{
-		return Customer::limit($limit)->get();
+		return Customer::withCount('bookings')->where('created_by', $this->app->auth()->id)->limit($limit)->get();
 	}
 
 

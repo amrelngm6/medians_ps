@@ -4,6 +4,8 @@ namespace Medians\Customers\Domain;
 
 use Shared\dbaser\CustomController;
 
+use Medians\Devices\Domain\OrderDevice;
+
 class Customer extends CustomController
 {
 
@@ -57,6 +59,11 @@ class Customer extends CustomController
 
 	}
 
+
+	public function bookings()
+	{
+		return $this->hasMany(OrderDevice::class, 'customer_id', 'id');
+	}
 
 
 }
