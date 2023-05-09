@@ -20,14 +20,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <donut_chart 
-  id="donut" 
-  :data="donutData" 
-  colors='[ "#FF6384", "#36A2EB", "#FFCE56" ]' 
-  resize="true">
-</donut_chart>
                         <div v-if="content.events" class="card mb-0">
-
+                            
                         </div>
                     </div>
                 </div>
@@ -37,13 +31,8 @@
     </div>
 </template>
 <script>
-import { donut_chart } from 'vue-morris'
-
 export default 
 {
-    components: {
-        donut_chart
-    },
     name:'devices_orders',
     data() {
         return {
@@ -58,11 +47,6 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: false,
-            donutData: [
-              { label: 'Red', value: 300 },
-              { label: 'Blue', value: 50 },
-              { label: 'Yellow', value: 100 }
-            ],
         }
     },
     props: [
