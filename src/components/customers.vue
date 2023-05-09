@@ -11,7 +11,7 @@
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
                     <div class="w-full">
-                        <div v-if="content.users" class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
+                        <div v-if="content.customers" class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
                             <table class="table dark:text-gray-400 text-gray-800 border-separate space-y-6 text-sm w-full">
                                 <thead class="dark:bg-gray-800 bg-white text-gray-500">
                                     <tr>
@@ -23,24 +23,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(user, index) in content.users" class="dark:bg-gray-800 text-center">
+                                    <tr v-for="(customer, index) in content.customers" class="dark:bg-gray-800 text-center">
                                         <td class="p-2 text-default">
-                                            <div class="font-medium">{{user.first_name}} {{user.last_name}}</div>
+                                            <div class="font-medium">{{customer.first_name}} {{customer.last_name}}</div>
                                         </td>
                                         <td class="p-2 font-bold ">
-                                            {{user.phone}}
+                                            {{customer.phone}}
                                         </td>
                                         <td class="p-2 font-bold ">
-                                            {{ user.email }}
+                                            {{ customer.email }}
                                         </td>
                                         <td class="p-2">
-                                            <span :class="user.active ? 'bg-green-400' : 'bg-red-400'" class="text-gray-50 rounded-md px-2" v-text="user.active ? 'on' : 'off'"></span>
+                                            <span :class="customer.active ? 'bg-green-400' : 'bg-red-400'" class="text-gray-50 rounded-md px-2" v-text="customer.active ? 'on' : 'off'"></span>
                                         </td>
                                         <td class="p-2 ">
-                                            <a v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user" href="javascript:;" class="text-gray-400 hover:text-gray-100  mx-2">
+                                            <a v-if="customer.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = customer" href="javascript:;" class="text-gray-400 hover:text-gray-100  mx-2">
                                                 <i class="material-icons-outlined text-base">edit</i>
                                             </a>
-                                            <!-- <a href="javascript:;"  @click="$parent.delete(user, 'Users.delete')"   class="text-gray-400 hover:text-gray-100  mx-2">
+                                            <!-- <a href="javascript:;"  @click="$parent.delete(customer, 'Customers.delete')"   class="text-gray-400 hover:text-gray-100  mx-2">
                                                 <i class="material-icons-outlined text-base">delete</i>
                                             </a> -->
                                         </td>
@@ -56,7 +56,7 @@
                                     <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{__('ADD_new')}}</h1>
                                     <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><close_icon /></span>
                                 </div>
-                                <input name="type" type="hidden" value="Users.create">
+                                <input name="type" type="hidden" value="Customers.create">
                                 <input name="params[active]" type="hidden" value="1">
                                 
                                 <span class="block mb-2" v-text="__('first_name')"></span>
@@ -84,7 +84,7 @@
                         <div >
                             <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
 
-                                <input name="type" type="hidden" value="Users.update">
+                                <input name="type" type="hidden" value="Customers.update">
                                 <input name="params[id]" type="hidden" v-model="activeItem.id">
 
                                 <span class="block mb-2" v-text="__('first_name')"></span>
@@ -118,14 +118,14 @@
 
 export default 
 {
-    name:'Users',
+    name:'Customers',
     data() {
         return {
-            url: this.conf.url+'users?load=json',
+            url: this.conf.url+'customers?load=json',
             content: {
 
-                title: this.__('users'),
-                users: [],
+                title: this.__('customers'),
+                customers: [],
                 typesList: [],
             },
 
