@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div v-if="content.events" class="card mb-0">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ export default
     name:'devices_orders',
     data() {
         return {
-            url: this.conf.url+this.path+'&load=json',
+            url: this.conf.url+this.path+'?load=json',
             content: {
 
                 title: '',
