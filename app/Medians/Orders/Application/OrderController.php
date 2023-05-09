@@ -170,11 +170,12 @@ class OrderController
 
 		$params = (array) json_decode($request['cart']);
 
+
 		try {
 
 			$data = [];
 			$data['branch_id'] = $this->app->branch->id;
-			$data['customer_id'] = '0';
+			$data['customer_id'] = $params[0]->customer_id;
 			$data['tax'] = round((float) str_replace('"', '', $request['tax']), 2); 
 			$data['discount'] = round((float) str_replace('"', '', $request['discount']), 2); 
 			$data['discount_code'] = '';
@@ -186,6 +187,9 @@ class OrderController
 			$data['status'] = 'paid';
 			$data['payment_method'] = $request['payment_method'];
 
+			print_r($params);
+			print_r($data);
+		return true;
 
 			$save = $this->repo->store($data, $params);
 

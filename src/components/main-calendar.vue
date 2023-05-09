@@ -239,6 +239,7 @@ export default {
             if (activeItem)
             {
                 item.id = activeItem.id;
+                item.customer = activeItem.customer;
                 item.device = activeItem.device;
                 item.price = activeItem.price;
                 item.duration_time = activeItem.duration_time;
