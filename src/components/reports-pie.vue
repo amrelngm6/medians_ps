@@ -1,12 +1,12 @@
 <template>
     <div>
-        <canvas id="myChart" ref="myChart" width="400" height="400"></canvas>
+        <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <canvas id="myChart" width="400" height="400"></canvas>
         
     </div>
 </template>
 <script>
-import { Pie } from 'vue-chartjs';
-
 export default {
 
     data() {
@@ -17,31 +17,44 @@ export default {
         };
     },
     props:['reports'],
-    extends: Pie,
     mounted() {
-            console.log(this.reports)
+        jQuery(document).ready(function()
+        {
                     // Sample data
             this.items = this.reports;
 
+
             // Chart configuration
             this.config = {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: 'top',
-                },
-                title: {
-                  display: true,
-                  text: 'My Chart'
-                }
-              }
+              type: 'pie',
+              data: this.items,
             };
 
-            // Render the chart
-            this.renderChart(this.items, this.config);
+            if (Chart)
+            {
+                // Create the chart
+                this.myChart = new Chart(
+                  document.getElementById('myChart'),
+                  this.config
+                );
+            }
 
+        });
 
+    // Chart configuration
+    // const config = {
+    //   responsive: true,
+    //   maintainAspectRatio: false,
+    //   plugins: {
+    //     legend: {
+    //       position: 'top',
+    //     },
+    //     title: {
+    //       display: true,
+    //       text: 'My Chart'
+    //     }
+    //   }
+    // };
     },
     methods: {
 
