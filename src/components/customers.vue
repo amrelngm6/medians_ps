@@ -23,7 +23,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(customer, index) in content.customers" class="dark:bg-gray-800 text-center">
+                                    <tr v-for="(customer, index) in content.customers" class="dark:bg-gray-800 text-center" v-if="customer">
+
                                         <td class="p-2 text-default">
                                             <div class="font-medium">{{customer.name}}</div>
                                         </td>

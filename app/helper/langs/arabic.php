@@ -1039,6 +1039,7 @@ class Langs
 		,'booking completed but unpaid'=> 'الحجز مكتمل وغير مدفوع'
 		,'New customer'=> 'عميل جديد'
 		,'Guest' => 'عميل زائر'
+		,'Upcoming bookings' => 'الخحوزات القادمة'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

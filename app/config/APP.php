@@ -103,6 +103,7 @@ class APP
 					array('title'=>__('Calendar'),  'icon'=>'fa-dashboard', 'link'=>'calendar'),
 	                array('title'=>__('All bookings'),  'icon'=>'fa-dashboard', 'link'=>'devices_orders?all=true'),
 	                array('title'=>__('Active bookings'),  'icon'=>'fa-dashboard', 'link'=>'devices_orders?status=active'),
+	                array('title'=>__('Upcoming bookings'), 'icon'=>'fa-dashboard','link'=>'devices_orders?status=new'),
 	                array('title'=>__('Completed bookings'), 'icon'=>'fa-dashboard','link'=>'devices_orders?status=completed'),
 	                array('title'=>__('Paid bookings'),  'icon'=>'fa-dashboard', 'link'=>'devices_orders?status=paid'),
 	                array('title'=>__('Canceled bookings'), 'icon'=>'fa-dashboard', 'link'=>'devices_orders?status=canceled'),

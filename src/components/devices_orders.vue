@@ -32,6 +32,7 @@
                                                 <th>{{__('Status')}}</th>
                                                 <th>{{__('Order')}}</th>
                                                 <th>{{__('Subtotal')}}</th>
+                                                <th>{{__('Customer')}}</th>
                                                 <th>{{__('By')}}</th>
                                             </tr>
                                         </thead>
@@ -46,6 +47,7 @@
                                                     <a class="text-purple-600" :href="'/invoices/show/'+item.order_code">{{item.order_code}}</a>
                                                 </td>
                                                 <td><b class="text-red-500">{{item.subtotal + item.products_subtotal}} {{item.currency}}</b></td>
+                                                <td>{{item.customer.name}}</td>
                                                 <td>{{item.user.name}}</td>
                                             </tr>
                                         </tbody>
