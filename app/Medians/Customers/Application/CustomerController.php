@@ -71,13 +71,13 @@ class CustomerController
 		try {	
 
 			if (empty($params['name']))
-	        	return array('error'=>1, 'result'=>'Name is required');
+	        	return array('error'=>__('Name is required'), 'result'=>__('Name is required'));
 
 			if (empty($params['mobile']))
-	        	return array('error'=>1, 'result'=>'Phone is required');
+	        	return array('error'=> __('Phone is required'), 'result'=> __('Phone is required'));
 
 			if (strlen($params['mobile']) != 11)
-	        	return array('error'=>1, 'result'=> __('MOBILE_ERR') );
+	        	return array('error'=> __('MOBILE_ERR'), 'result'=> __('MOBILE_ERR') );
 
 			$params['created_by'] = $this->app->auth()->id;
 			$Item = $this->repo->store($params);

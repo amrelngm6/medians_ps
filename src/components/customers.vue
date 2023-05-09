@@ -64,7 +64,7 @@
                                 <input name="params[name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
 
                                 <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
-                                <input name="params[mobile]" required="true" type="tel" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
+                                <input name="params[mobile]" required="true" type="tel" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')+' 01xxx'" v-model="activeItem.phone">
 
                                 <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
                             </form>
@@ -86,7 +86,7 @@
                                 <input name="params[name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
 
                                 <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
-                                <input name="params[mobile]" required="true" type="tel" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
+                                <input name="params[mobile]" required="true" type="tel" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')+' 01xxx'" v-model="activeItem.phone">
 
                                 <label class="inline-flex items-center mt-3">
                                     <input name="params[active]" type="checkbox"  v-model="activeItem.active" class="form-checkbox h-5 w-5 text-orange-600">
