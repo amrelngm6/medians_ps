@@ -4,7 +4,7 @@
         <div class="relative w-full h-full  pt-2" v-if="!showLoader && activeItem && !showConfirm && (!activeItem.status || activeItem.status == 'active' || activeItem.status == 'new')">
             
             <!-- Event modal -->
-            <div class="pt-8 mt-12 relative mx-auto w-full bg-white p-6 rounded-lg overflow-y-auto" style="max-width: 600px; max-height: 500px;" >
+            <div class="pt-8 pb-2 mt-12 relative mx-auto w-full bg-white p-6 rounded-lg overflow-y-auto" style="max-width: 600px; max-height: 500px;" >
 
                 <div class="w-full pt-8 block gap-4 py-2 border-b  border-gray-200">
                     

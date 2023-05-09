@@ -22,7 +22,7 @@
                                 <span class="cursor-pointer px-4 py-2 rounded-lg bg-red-600 hover:bg-purple-600 text-white" v-text="__('confirm')"></span>
                             </div>
                             <div v-if="activeItem.id" class="w-32 block mx-auto text-white text-center font-semibold py-2 border-b border-gray-200">
-                                <label @click="setHideConfirm()" class="text-base font-semibold text-red-600 border-red-600 border rounded-lg py-2 px-4 hover:bg-purple-600 hover:text-white hover:border-purple-600" v-text="__('Back')"></label>
+                                <label @click="setHideConfirm()" class="text-base font-semibold text-red-600 border-red-600 border rounded-lg py-1 px-4 hover:bg-purple-600 hover:text-white hover:border-purple-600" v-text="__('Back')"></label>
                             </div>
                         </div>
 
