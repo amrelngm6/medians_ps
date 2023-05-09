@@ -64,6 +64,10 @@
                             activeTab == 'users'" 
                             :key="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></users>
                             
+                            <customers :path="activeTab" v-if="
+                            activeTab == 'customers'" 
+                            :key="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></customers>
+                            
                             <devices_orders v-if="
                                     activeTab == 'devices_orders?status=active' 
                                     || activeTab == 'devices_orders?status=completed'
@@ -105,6 +109,7 @@ import invoice from './components/invoice.vue'
 import stock from './components/stock.vue'
 import settings from './components/settings.vue'
 import users from './components/users.vue'
+import customers from './components/customers.vue'
 
 export default {
     name: 'app',
@@ -124,6 +129,7 @@ export default {
         stock,
         settings,
         users,
+        customers,
         navbar
     },
     data() {

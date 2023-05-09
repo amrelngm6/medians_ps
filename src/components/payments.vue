@@ -86,7 +86,7 @@
                             <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
                                 <div class="w-full flex">
                                     <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{__('Update')}}</h1>
-                                    <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><close_icon /></span>
+                                    <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
                                 </div>
                                 <input name="type"  type="hidden" value="Payment.create" > 
 

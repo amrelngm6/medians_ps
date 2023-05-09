@@ -31,12 +31,12 @@ class CustomerController
 	 * Index page
 	 * 
 	 */
-	public function index($request, $app)
+	public function index()
 	{
 		return render('views/admin/customers/list.html.twig', [
 			'items' =>  $this->repo->get(),
 	        'title' => 'Customers',
-	        'app' => $app,
+	        'app' => $this->app,
 	    ]);
 	} 
 
@@ -45,12 +45,12 @@ class CustomerController
 	 * Create page
 	 * 
 	 */
-	public function create($request, $app)
+	public function create()
 	{
 		return render('views/admin/customers/create.html.twig', [
 	        'title' => 'Customers',
 	        'Model' => $this->repo->getModel(),
-	        'app' => $app,
+	        'app' => $this->app,
 	    ]);
 	} 
 
@@ -63,7 +63,6 @@ class CustomerController
 	*/
 	public function store() 
 	{
-
 
 
 		$params = (array) json_decode($this->app->request()->get('params')['customer']);

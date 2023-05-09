@@ -158,7 +158,7 @@ Macaw::get('/settings', \Medians\Settings\Application\SettingsController::class.
 
 
 /**
-* @return Branches
+* @return Users
 */
 Macaw::get('/users/create', \Medians\Users\Application\UserController::class.'@create');
 Macaw::get('/users/edit/(:num)', \Medians\Users\Application\UserController::class.'@edit');
@@ -166,6 +166,16 @@ Macaw::get('/users/show/(:num)', \Medians\Users\Application\UserController::clas
 Macaw::get('/users/index', \Medians\Users\Application\UserController::class.'@index');
 Macaw::get('/users/', \Medians\Users\Application\UserController::class.'@index');
 Macaw::get('/users', \Medians\Users\Application\UserController::class.'@index');
+
+/**
+* @return customers
+*/
+Macaw::get('/customers/create', \Medians\Customers\Application\CustomerController::class.'@create');
+Macaw::get('/customers/edit/(:num)', \Medians\Customers\Application\CustomerController::class.'@edit');
+Macaw::get('/customers/show/(:num)', \Medians\Customers\Application\CustomerController::class.'@show');
+Macaw::get('/customers/index', \Medians\Customers\Application\CustomerController::class.'@index');
+Macaw::get('/customers/', \Medians\Customers\Application\CustomerController::class.'@index');
+Macaw::get('/customers', \Medians\Customers\Application\CustomerController::class.'@index');
 
 
 // Macaw::get('/(:all)', \Medians\DashboardController::class.'@index');
