@@ -12,7 +12,55 @@
 </head>
 
 <body style="direction: {{lang.__('dir')}};" class="{{lang.__('dir')}}">
-    
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+  <div class="px-6 py-4">
+    <h2 class="text-lg font-bold mb-2">Customer Profile</h2>
+    <p class="text-gray-600">Booking History</p>
+  </div>
+  <div class="border-t border-gray-200">
+    <ul class="divide-y divide-gray-200">
+      <li class="px-6 py-4">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/150" alt="">
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-medium text-gray-900">Booking #12345</p>
+            <p class="text-sm text-gray-500">Flight to New York</p>
+            <p class="text-sm text-gray-500">Departure Date: Jun 1, 2023</p>
+            <p class="text-sm text-gray-500">Booking Date: May 1, 2023</p>
+          </div>
+        </div>
+      </li>
+      <li class="px-6 py-4">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/150" alt="">
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-medium text-gray-900">Booking #67890</p>
+            <p class="text-sm text-gray-500">Hotel in Paris</p>
+            <p class="text-sm text-gray-500">Check-in Date: May 15, 2023</p>
+            <p class="text-sm text-gray-500">Booking Date: May 8, 2023</p>
+          </div>
+        </div>
+      </li>
+      <li class="px-6 py-4">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/150" alt="">
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-medium text-gray-900">Booking #24680</p>
+            <p class="text-sm text-gray-500">Car Rental in Los Angeles</p>
+            <p class="text-sm text-gray-500">Pick-up Date: Jul 1, 2023</p>
+            <p class="text-sm text-gray-500">Booking Date: Apr 20, 2023</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
     <div id="app">
     {% include 'views/admin/includes/nodata.html.twig' %}    
     </div>

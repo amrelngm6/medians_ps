@@ -98,6 +98,7 @@ class APIController
 					$return = (new Payments\Application\PaymentController())->store();
 					break;
 				case 'Customer.create':
+				case 'Customers.create':
 					$return = (new Customers\Application\CustomerController())->store();
 					break;
 				case 'Event.create':

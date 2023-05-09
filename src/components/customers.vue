@@ -57,14 +57,14 @@
                                     <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{__('ADD_new')}}</h1>
                                     <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><close_icon /></span>
                                 </div>
-                                <input name="type" type="hidden" value="Customers.create">
+                                <input name="type" type="hidden" value="Customer.create">
                                 <input name="params[active]" type="hidden" value="1">
                                 
                                 <span class="block mb-2" v-text="__('Name')"></span>
                                 <input name="params[name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
 
                                 <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
-                                <input name="params[phone]" required="true" type="tel" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
+                                <input name="params[mobile]" required="true" type="tel" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
 
                                 <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
                             </form>
@@ -79,14 +79,14 @@
                         <div >
                             <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
 
-                                <input name="type" type="hidden" value="Customers.update">
+                                <input name="type" type="hidden" value="Customer.update">
                                 <input name="params[id]" type="hidden" v-model="activeItem.id">
 
                                 <span class="block mb-2 mt-3" v-text="__('name')"></span>
                                 <input name="params[name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
 
                                 <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
-                                <input name="params[phone]" required="true" type="tel" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
+                                <input name="params[mobile]" required="true" type="tel" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
 
                                 <label class="inline-flex items-center mt-3">
                                     <input name="params[active]" type="checkbox"  v-model="activeItem.active" class="form-checkbox h-5 w-5 text-orange-600">
