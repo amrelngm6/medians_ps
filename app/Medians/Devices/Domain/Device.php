@@ -5,7 +5,7 @@ namespace Medians\Devices\Domain;
 use Shared\dbaser\CustomController;
 use Medians\Prices\Domain\Prices;
 use Medians\Games\Domain\Game;
-use Medians\Orders\Domain\OrderDevice;
+use Medians\Orders\Domain\Order;
 use Medians\Categories\Domain\Category;
 use Medians\Products\Domain\Product;
 
@@ -90,7 +90,7 @@ class Device extends CustomController
 	*/
 	public function currentOrder()
 	{
-		return  $this->hasOne(DeviceOrder::class, 'deviceId', 'id')->where('status', 'active');
+		return  $this->hasOne(OrderDevice::class, 'device_id', 'id')->where('status', 'active');
 	}
 
 
@@ -112,7 +112,6 @@ class Device extends CustomController
 		return  $this->hasOne(Category::class, 'id', 'type')->where('model', Device::class);
 	}
 
-
 	/**
 	* Relation 
 	*/
@@ -126,6 +125,27 @@ class Device extends CustomController
 	public function products()
 	{
 		return $this->hasMany(Product::class , 'branch_id' , 'branch_id')->where('stock', '>', 0);
+	}
+
+
+
+
+
+	/**
+	* Reports Relation 
+	*/
+	public function bookings()
+	{
+		return  $this->hasMany(OrderDevice::class, 'device_id', 'id');
+	}
+
+
+	/**
+	* Reports Relation 
+	*/
+	public function orders()
+	{
+		return  $this->hasManyThrough(Order::class, OrderDevice::class, 'device_id', 'id', 'id', 'device_id');
 	}
 
 

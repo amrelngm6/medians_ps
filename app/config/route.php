@@ -177,6 +177,11 @@ Macaw::get('/customers/index', \Medians\Customers\Application\CustomerController
 Macaw::get('/customers/', \Medians\Customers\Application\CustomerController::class.'@index');
 Macaw::get('/customers', \Medians\Customers\Application\CustomerController::class.'@index');
 
+/**
+* @return customers
+*/
+Macaw::get('/reports/(:all)', \Medians\Reports\Application\ReportController::class.'@index');
+
 
 // Macaw::get('/(:all)', \Medians\DashboardController::class.'@index');
 

@@ -68,6 +68,16 @@
                             activeTab == 'customers'" 
                             :key="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></customers>
                             
+                            <reports v-if="
+                                    activeTab == 'reports/games' 
+                                    || activeTab == 'reports/orders'
+                                    || activeTab == 'reports/devices'
+                                    || activeTab == 'reports/products'
+                                    " 
+                                :path="activeTab"
+                                :key="activeTab" 
+                                :setting="setting" :lang="lang" :conf="conf" :auth="auth"></reports>
+
                             <devices_orders v-if="
                                     activeTab == 'devices_orders?status=active' 
                                     || activeTab == 'devices_orders?status=completed'
@@ -111,6 +121,7 @@ import stock from './components/stock.vue'
 import settings from './components/settings.vue'
 import users from './components/users.vue'
 import customers from './components/customers.vue'
+import reports from './components/reports.vue'
 
 export default {
     name: 'app',
@@ -131,6 +142,7 @@ export default {
         settings,
         users,
         customers,
+        reports,
         navbar
     },
     data() {
