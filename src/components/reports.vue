@@ -20,6 +20,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        <pie ></pie>
                         <div v-if="content.events" class="card mb-0">
 
                         </div>
@@ -31,8 +32,13 @@
     </div>
 </template>
 <script>
-export default 
-{
+import pie from './reports-pie.vue'
+
+export default {
+
+    components: {
+        pie
+    },
     name:'devices_orders',
     data() {
         return {
