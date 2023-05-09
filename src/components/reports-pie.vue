@@ -2,11 +2,13 @@
     <div>
         <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="myChart" ref="myChart" width="400" height="400"></canvas>
         
     </div>
 </template>
 <script>
+import { Pie } from 'vue-chartjs';
+
 export default {
 
     data() {
@@ -19,25 +21,27 @@ export default {
     props:['reports'],
     mounted() {
         jQuery(document).ready(function(){
-
+            console.log(this.reports)
                     // Sample data
             this.items = this.reports;
 
-
             // Chart configuration
             this.config = {
-              type: 'pie',
-              data: this.items,
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'My Chart'
+                }
+              }
             };
 
-            if (Chart && this.reports)
-            {
-                // Create the chart
-                this.myChart = new Chart(
-                  document.getElementById('myChart'),
-                  this.config
-                );
-            }
+            // Render the chart
+            this.renderChart(this.items, this.config);
 
         });
 
