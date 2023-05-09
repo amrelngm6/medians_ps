@@ -124,7 +124,7 @@ export default
                 typesList: [],
             },
 
-            activeItem:null,
+            activeItem:{},
             showAddSide:false,
             showEditSide:false,
             showLoader: false,
