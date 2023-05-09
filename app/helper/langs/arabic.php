@@ -926,7 +926,7 @@ class Langs
 		,'Billed to' => 'الفاتورة الى'
 		,'Issue Date' => 'تارسخ الإنشاء'
 		,'Issue Date' => 'تارسخ الإنشاء'
-		,'SUBTOTAL' => 'المبلغ الإجالمي'
+		,'SUBTOTAL' => 'التكلفة'
 		,'Rate' => 'القيمة'
 		,'Item' => 'عنصر'
 		,'Terms and Conditions' => 'شروط الاستخدام'
