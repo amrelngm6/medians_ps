@@ -53,4 +53,3 @@ export default {
     },
 };
 </script>
-<style lang="scss" src="./main.scss"></style>
