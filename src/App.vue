@@ -73,6 +73,7 @@
                                     || activeTab == 'devices_orders?status=completed'
                                     || activeTab == 'devices_orders?status=canceled'
                                     || activeTab == 'devices_orders?status=paid'
+                                    || activeTab == 'devices_orders?status=new'
                                     || activeTab == 'devices_orders?all=true'
                                     || activeTab == 'devices_orders'
                                     " 
