@@ -45,16 +45,81 @@ class ReportController
 	 */
 	public function query($report)
 	{
+		$return = '';
+		$title = '';
 		switch ($report) 
 		{
 			case 'orders':
-				return $this->repo->orders_report(5);
+				$return = $this->repo->orders_report(5);
 				break;
 		}
+
+		return  $this->filterReport($return, $title);
 	} 
 
 
 
+
+
+	/**
+	*  Filter report
+	*/
+	public function filterReportLabel($type, $data) 
+	{
+		$list = [];
+		foreach ($data as $key => $value) 
+		{
+			$list[$key] = isset($value->$type) ? $value->$type : null;
+		}
+
+		return $list;
+	}
+
+
+
+	/**
+	*  Filter report
+	*/
+	public function filterReportColors($data) 
+	{
+
+        $colors = ['rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(205, 255, 86)',
+            'rgb(86, 205, 86)',
+            'rgb(54, 162, 235)',
+        ];
+
+		$list = [];
+		foreach ($data as $key => $value) 
+		{
+			$list[$key] = $colors[$key];
+		}
+
+		return $list;
+	}
+
+
+	/**
+	*  Store item
+	*/
+	public function filterReport($data, $title) 
+	{
+		return array(
+			'labels' => $this->filterReportLabel('title', $data),
+			'datasets' => [
+				array(
+					'label'=> $title
+					,'data'=> $this->filterReportLabel('bookings_count', $data)
+					,'backgroundColor'=> $this->filterReportColors($data)
+					,'hoverOffset'=> 4
+				)
+			]
+		);
+	} 
+
+
+	
 
 
 	/**

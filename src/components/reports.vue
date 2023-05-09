@@ -20,8 +20,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <pie ></pie>
-                        <div v-if="content.events" class="card mb-0">
+                        <pie :reports="reports"></pie>
+                        <div v-if="content.reports" class="card mb-0">
 
                         </div>
                     </div>
@@ -46,7 +46,7 @@ export default {
             content: {
 
                 title: '',
-                events: [],
+                reports: [],
             },
 
             activeItem:null,
