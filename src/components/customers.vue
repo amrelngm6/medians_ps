@@ -33,7 +33,7 @@
                                         <td class="p-2 font-bold " v-text="customer.mobile"></td>
                                         <td class="p-2 font-bold " v-text="customer.bookings_count"></td>
                                         <td class="p-2 font-bold " >
-                                            <a v-if="customer.last_invoice" href="javascript:;" @click="$parent.switchTab({link:'/invoices/show/'+customer.last_invoice.code})" v-text="customer.last_invoice.code"></a>
+                                            <a v-if="customer.last_invoice" href="javascript:;" @click="$parent.switchTab({link:'invoices/show/'+customer.last_invoice.code})" v-text="customer.last_invoice.code"></a>
                                         </td>
                                         <td class="p-2 ">
                                             <a v-if="customer.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = customer" href="javascript:;" class="text-gray-400 hover:text-gray-100  mx-2">
