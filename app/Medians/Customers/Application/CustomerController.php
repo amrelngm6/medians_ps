@@ -65,7 +65,8 @@ class CustomerController
 	{
 
 
-		$params = (array) json_decode($this->app->request()->get('params')['customer']);
+		$params_request = $this->app->request()->get('params');
+		$params = isset($params_request['customer']) ? (array) json_decode($params_request['customer']) : $params_request;
 
 		try {	
 
