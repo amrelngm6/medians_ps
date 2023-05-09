@@ -10,7 +10,6 @@ Vue.use(vSelectMenu);
 import VueNativeNotification from 'vue-native-notification'
 Vue.use(VueNativeNotification, {requestOnNotify: false})
 
-import { DonutChart } from 'vue-morris'
 
 
 Vue.component('moment', () => import ('moment'));
@@ -40,6 +39,7 @@ Vue.component('vue-medialibrary-field', () => import('./components/Field'));
 Vue.config.productionTip = false
 
 global.jQuery = require('jquery');
+var jQuery = global.jQuery;
 var $ = global.jQuery;
 window.$ = $;
 
