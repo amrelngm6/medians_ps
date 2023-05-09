@@ -87,12 +87,13 @@
                         </div>
                     </div>
 
-                    <div class="w-full flex gap-4 py-1 border-b border-gray-200 mb-2" v-if="activeItem.customer">
-                        <span class="text-md font-semibold w-full block py-2" v-text="__('Customer')"></span>
+                    <span class="text-md font-semibold w-full block py-4" v-text="__('information')"></span>
+
+                    <div class="w-full flex gap-4 py-2 border-b border-gray-200">
+                        <label class="w-full text-gray-400"  v-text="__('Customer')"></label>
                         <span class="w-full text-md p-2 text-gray-600 font-semibold"  v-text="activeItem.customer.name +' - '+ activeItem.customer.mobile"></span>
                     </div>
-
-                    <span class="text-md font-semibold w-full block py-4" v-text="__('information')"></span>
+                    
                     <div class="w-full flex gap-4 py-2 border-b border-gray-200">
                         <label class="w-full text-gray-400"  v-text="__('type')"></label>
                         <span class="w-full text-md p-2 text-red-600 font-semibold" v-text="activeItem.booking_type"></span>
