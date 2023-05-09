@@ -18,25 +18,28 @@ export default {
     },
     props:['reports'],
     mounted() {
+        jQuery(document).ready(function(){
 
-                // Sample data
-        this.items = this.reports;
+                    // Sample data
+            this.items = this.reports;
 
 
-        // Chart configuration
-        this.config = {
-          type: 'pie',
-          data: this.items,
-        };
+            // Chart configuration
+            this.config = {
+              type: 'pie',
+              data: this.items,
+            };
 
-        if (Chart)
-        {
-            // Create the chart
-            this.myChart = new Chart(
-              document.getElementById('myChart'),
-              this.config
-            );
-        }
+            if (Chart)
+            {
+                // Create the chart
+                this.myChart = new Chart(
+                  document.getElementById('myChart'),
+                  this.config
+                );
+            }
+
+        });
 
     },
     methods: {
