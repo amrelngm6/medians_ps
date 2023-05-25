@@ -1,3 +1,8 @@
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 <IfModule mod_rewrite.c>
     Options -MultiViews
 
@@ -9,7 +14,7 @@
 </IfModule>
 
 # php -- BEGIN cPanel-generated handler, do not edit
-# Set the “ea-php81” package as the default “PHP” programming language.
+# Set the ▒^▒^▒ea-php81▒^▒^▒ package as the default ▒^▒^▒PHP▒^▒^▒ programming language.
 <IfModule mime_module>
   AddHandler application/x-httpd-ea-php81___lsphp .php .php8 .phtml
 </IfModule>
