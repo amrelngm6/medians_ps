@@ -2,6 +2,7 @@
 /vendor
 /uploads/files
 /uploads/bugs
+/src/tailwind
 /app/config/database.php
 /app/config/parameters.yml
 
