@@ -38,7 +38,8 @@ class GameController
 	public function index( ) 
 	{
 		
-	    return render('views/admin/games/list.html.twig', [
+	    return render('games', [
+	        'load_vue' => true,
 	        'title' => __('games'),
 	        'games' => $this->repo->get(),
 	        'typesList' => $this->categoryRepo->get('Medians\Devices\Domain\Device'),

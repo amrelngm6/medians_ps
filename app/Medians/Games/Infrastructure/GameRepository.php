@@ -31,6 +31,12 @@ class GameRepository
 	}
 
 
+	public function mostPlayed($limit = 5)
+	{
+		return Game::withCount('bookings')->where('branch_id', $this->app->branch->id)->orderBy('bookings_count', 'desc')->limit($limit)->get();
+	}
+
+
 
 
 

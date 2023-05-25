@@ -6,90 +6,15 @@
                 <navbar class="w-full"  v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-3 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-10 ">
-                    <div v-if="auth && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
-                        <div class="sidebar-inner slimscroll">
-                            <div id="sidebar-menu" class="sidebar-menu">
-                                <ul>
-                                    <li class="nav-item nav-profile">
-                                        <a href="#" class="nav-link">
-                                            <div class="nav-profile-image">
-                                                <img :src="auth.photo" alt="profile">
-                                            </div>
-                                            <div class="nav-profile-text d-flex flex-column">
-                                                <span class="font-weight-bold mb-2" v-text="auth.name"></span>
-                                                <span class="text-white text-xs" v-text="auth.Role ? auth.Role.name : ''"></span>
-                                            </div>
-                                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <side-menu :samepage="activeTab" :url="conf.url ? conf.url : '/'" :menus="main_menu"></side-menu>
-                            </div>
-                        </div>
-                    </div>
+                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
+                    </side-menu>
 
                     <div v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
                         <div class="w-full">
-                            <dashboard v-if="activeTab == 'dashboard'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></dashboard>
-                            <games v-if="activeTab == 'games'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></games>
-                            <payments v-if="activeTab == 'payments'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></payments>
-                            
-                            <calendar v-if="activeTab == 'calendar'" :types-list="typesList" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></calendar>
+                            <transition   :duration="550">
+                                <component ref="activeTab" :types-list="typesList"  :key="activeTab" :path="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="component"></component>
+                            </transition>
 
-                            <manage_devices v-if="activeTab == 'devices/manage'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></manage_devices>
-                            <stock v-if="activeTab == 'stock'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></stock>
-                            <settings v-if="activeTab == 'settings'" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></settings>
-
-                            <invoices  :path="activeTab" :key="activeTab" v-if="
-                            activeTab == 'invoices?all=true' 
-                            || activeTab == 'invoices?status=paid'
-                            || activeTab == 'invoices?status=refund'" 
-                            :setting="setting" :lang="lang" :conf="conf" :auth="auth"></invoices>
-
-                            <invoice :path="activeTab" :key="activeTab" v-if="checkIsInvoice() === true" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></invoice>
-
-                            <categories :path="activeTab" :key="activeTab" v-if="
-                            activeTab == 'categories' 
-                            || activeTab == 'devices/categories' 
-                            || activeTab == 'products/categories'" 
-                            :setting="setting" :lang="lang" :conf="conf" :auth="auth"></categories>
-                            
-                            <products :path="activeTab" v-if="
-                            activeTab == 'products' 
-                            || activeTab == 'products/stock_alert' 
-                            || activeTab == 'products/stock_out'" 
-                            :key="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></products>
-                            
-                            <users :path="activeTab" v-if="
-                            activeTab == 'users'" 
-                            :key="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></users>
-                            
-                            <customers :path="activeTab" v-if="
-                            activeTab == 'customers'" 
-                            :key="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></customers>
-                            
-                            <reports v-if="
-                                    activeTab == 'reports/games' 
-                                    || activeTab == 'reports/orders'
-                                    || activeTab == 'reports/devices'
-                                    || activeTab == 'reports/products'
-                                    " 
-                                :path="activeTab"
-                                :key="activeTab" 
-                                :setting="setting" :lang="lang" :conf="conf" :auth="auth"></reports>
-
-                            <devices_orders v-if="
-                                    activeTab == 'devices_orders?status=active' 
-                                    || activeTab == 'devices_orders?status=completed'
-                                    || activeTab == 'devices_orders?status=canceled'
-                                    || activeTab == 'devices_orders?status=paid'
-                                    || activeTab == 'devices_orders?status=new'
-                                    || activeTab == 'devices_orders?all=true'
-                                    || activeTab == 'devices_orders'
-                                    " 
-                                :path="activeTab"
-                                :key="activeTab" 
-                                :setting="setting" :lang="lang" :conf="conf" :auth="auth"></devices_orders>
                         </div>
                     </div>
                     <div v-else class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
@@ -153,6 +78,7 @@ export default {
             showAddSide: false,
             showEditSide: false,
             showTab: true,
+            component: {},
             activeTab: 'dashboard',
             status: null,
             lang: {},
@@ -186,6 +112,10 @@ export default {
         this.notify()
     },
     methods: {
+        /**
+         * Check notifications permission
+         * Send welcome notification
+         */ 
         notify (title, body) {
 
             if ("Notification" in window) 
@@ -201,9 +131,12 @@ export default {
                     });
                 }
             }
-
         },
 
+
+        /**
+         * Get the props for App root
+         */
         setProps()
         {
             const mountEl = document.querySelector("#root-parent");
@@ -214,20 +147,26 @@ export default {
             this.setting = props ? JSON.parse(props.setting) : {};
             this.conf = props ? JSON.parse(props.conf) : {};
             this.activeTab = (props && props.page) ? props.page : 'dashboard';
+            this.component = (props && props.component) ? props.component : 'dashboard';
             this.typesList = (props && props.typesList) ? props.typesList : [];
             this.show = true
-
         },
+
+
+        /**
+         * Switch between Tabs
+         */ 
         switchTab(tab) {
             if (!tab.sub)
             {
                 this.show = false
                 this.activeTab = (tab && tab.link) ? tab.link : 'dashboard';
-                this.checkIsInvoice()
+                this.component = (tab && tab.component) ? tab.component : this.activeTab;
                 this.show = true
                 history.pushState({menu: tab}, '', this.conf.url+this.activeTab);
             }
         },
+        
         checkIsInvoice()
         {
             return this.activeTab.includes('invoices/show') ? true : null;
@@ -321,12 +260,11 @@ export default {
 }
 </script>
 <style>
-/*@import './assets/tailwind.min.css';*/
-@import '../assets/webfonts/fontawesome.min.css';
-@import '../assets/bootstrap-grid.min.css';
-@import '../assets/media-library.css';
-@import '../assets/style.css';
-@import '../assets/alertify/alertify.min.css';
-@import '../assets/theme.css';
-@import '../assets/theme.min.css';
+@import './assets/webfonts/fontawesome.min.css';
+@import './assets/bootstrap-grid.min.css';
+@import './assets/media-library.css';
+@import './assets/alertify/alertify.min.css';
+@import './assets/style.css';
+@import './assets/theme.css';
+@import './assets/theme.min.css';
 </style>

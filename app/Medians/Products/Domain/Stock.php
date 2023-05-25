@@ -42,6 +42,24 @@ class Stock extends CustomController
 	// public $timestamps = false;
 
 
+	public $appends = ['description', 'name', 'user_name'];
+
+
+	public function getUserNameAttribute()
+	{
+		return isset($this->user->name) ? $this->user->name : '';
+	}
+
+	public function getNameAttribute()
+	{
+		return isset($this->product->name) ? $this->product->name : '';
+	}
+
+	public function getDescriptionAttribute()
+	{
+		return isset($this->product->description) ? $this->product->description : '';
+	}
+
 
 	public function getFields()
 	{

@@ -22,6 +22,7 @@ class Payment extends CustomController
 	public $fillable = [
 		'branch_id',
 		'name',
+		'date',
 		'notes',
 		'picture',
 		'invoice_id',
@@ -35,6 +36,13 @@ class Payment extends CustomController
 	// public $timestamps = null;
 
 
+	public $appends = ['user_name'];
+
+
+	public function getUserNameAttribute()
+	{
+		return isset($this->user->name) ? $this->user->name : '';
+	}
 
 	public function getFields()
 	{

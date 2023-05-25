@@ -46,7 +46,12 @@ class Order  extends CustomController
 	// public $timestamps = null;
 
 
-	public $appends = ['products_subtotal'];
+	public $appends = ['products_subtotal', 'user_name'];
+
+	public function getUserNameAttribute()
+	{
+		return isset($this->user->name) ? $this->user->name : '--';
+	}
 
 	public function getProductsSubtotalAttribute()
 	{

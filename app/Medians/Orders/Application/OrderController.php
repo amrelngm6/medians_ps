@@ -33,6 +33,59 @@ class OrderController
 	}
 
 
+
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function columns( ) 
+	{
+		return [
+            [
+                'key'=> "id",
+                'title'=> '#',
+            ],
+            [
+                'key'=> "",
+            ],
+            [
+                'key'=> "subtotal",
+                'title'=> __('subtotal'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "tax",
+                'title'=> __('tax'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "discount",
+                'title'=> __('discount'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "total_cost",
+                'title'=> __('total_cost'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "date",
+                'title'=> __('date'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "user_name",
+                'title'=> __('by'),
+                'sortable'=> false,
+            ],
+            [
+                'key'=> "status",
+                'title'=> __('status'),
+                'sortable'=> false,
+            ]
+        ];
+	}
+
 	/**
 	 * Admin index items
 	 * 
@@ -45,14 +98,16 @@ class OrderController
 		$this->app = new \config\APP;
 
 
-    	$params['start'] = $this->app->request()->get('start') ? date('Y-m-d', strtotime(date($this->app->request()->get('start')))) : date('Y-m-d');
-    	$params['end'] = ($this->app->request()->get('end') && $this->app->request()->get('start')) ? date('Y-m-d', strtotime(date($this->app->request()->get('end')))) : date('Y-m-d');
+    	// $params['start'] = $this->app->request()->get('start') ? date('Y-m-d', strtotime(date($this->app->request()->get('start')))) : date('Y-m-d');
+    	// $params['end'] = ($this->app->request()->get('end') && $this->app->request()->get('start')) ? date('Y-m-d', strtotime(date($this->app->request()->get('end')))) : date('Y-m-d');
     	$params['created_by'] = $this->app->request()->get('created_by') ? $this->app->request()->get('created_by') : null;
     	$params['status'] = $this->app->request()->get('status') ? $this->app->request()->get('status') : null;
 
-	    return render('views/admin/orders/orders.html.twig', [
+	    return render('invoices', [
+	    	'load_vue'=> true,
+	        'columns' => $this->columns(),
 	        'title' => __('Orders list'),
-	        'orders' => $this->repo->getByDate($params)->get(),
+	        'items' => $this->repo->getByDate($params)->get(),
 	        'todayOrders' => $this->repo->getByDate(['status' => $params['status'], 'start'=>date('Y-m-d' ), 'end'=>date('Y-m-d', strtotime('+1 day') )])->count(),
 	        'lastWeekOrders' => $this->repo->getByDate(['status' => $params['status'], 'start'=>date('Y-m-d',strtotime('-1 week')), 'end'=>date('Y-m-d', strtotime('+1 day'))])->count(),
 	        'lastMonthOrders' => $this->repo->getByDate(['status' => $params['status'], 'start'=>date('Y-m-01'), 'end'=>date('Y-m-01', strtotime('+1 month'))])->count(),
@@ -108,7 +163,8 @@ class OrderController
 		
 		$order = $this->repo->code($code, $this->app->branch->id);
 
-	    return render('views/admin/orders/order.html.twig', [
+	    return render('invoice', [
+	    	'load_vue'=> true,
 	        'title' => __('Invoice'),
 	        'override_vue', true,
 	        'order' => $order,

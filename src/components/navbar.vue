@@ -5,7 +5,7 @@
                 <div class="inline-flex mx-4">
                     <!-- Logo -->
                     <div class="mx-auto h-16  py-2 w-auto ">
-                        <img style="max-height: 100%" :src="(conf.url ? conf.url : '/') + (setting.logo ? setting.logo : 'assets/img/logo.png')" height="40">
+                        <img style="max-height: 100%" :src="(setting.logo ? setting.logo : '/uploads/img/logo.png')" height="40">
                         <!--end logo -->
                     </div>
                 </div>

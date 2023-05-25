@@ -26,7 +26,7 @@ class DashboardController
 
 		try {
 			
-	        return  render('views/admin/dashboard/index.html.twig', $this->data());
+	        return  render('dashboard', $this->data());
 	        
 		} catch (Exception $e) {
 			return $e->getMessage();
@@ -60,7 +60,9 @@ class DashboardController
 			$start = $this->app->request()->get('start') ? $this->app->request()->get('start') : date('Y-m-d 00:00:00');
 			$end = $this->app->request()->get('start') ? $this->app->request()->get('end') : date('Y-m-d 23:59:59');
 
-			$DevicesRepository = new Devices\Infrastructure\DevicesRepository($this->app);
+			$DevicesRepository = new Devices\Infrastructure\DevicesRepository();
+
+			$GamesRepository = new Games\Infrastructure\GameRepository();
 
 			$PaymentsRepository = new Payments\Infrastructure\PaymentsRepository($this->app);
 
@@ -78,7 +80,7 @@ class DashboardController
             
             $latest_unpaid_order_devices = $DevicesRepository->eventsByDate(['start'=>date('Y-m-d'),'end'=>date('Y-m-d')],5)->where('status','!=','paid')->get();
 
-            $latest_paid_order_devices =  $DevicesRepository->eventsByDate(['start'=>date('Y-m-d'), 'end'=>date('Y-m-d')], 5)->where('status', 'paid')->get();
+            $latest_paid_order_devices =  $DevicesRepository->eventsByDate([], 5)->where('status', 'paid')->get();
 
             $today_orders_count = $DevicesRepository->eventsByDate(['start'=>date('Y-m-d'), 'end'=>date('Y-m-d')])->where('status', 'paid')->groupBy('order_code')->count();
 
@@ -98,7 +100,9 @@ class DashboardController
 	            'today_income' => round($today_income, 2),
 	            'today_revenue' => round(round($today_income, 2) - round($today_payments, 2), 2),
 	            'today_payments' => round($today_payments, 2),
+	            'most_played_games' => $GamesRepository->mostPlayed(),
 		        'formAction' => '/login',
+		        'load_vue' => true,
 	            // 'formAction' => $this->app->CONF['url'],
 	        ];
 	        

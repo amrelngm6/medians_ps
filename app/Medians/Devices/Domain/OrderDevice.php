@@ -45,13 +45,22 @@ class OrderDevice extends CustomController
 	*/
 	// public $timestamps = null;
 
-	public $appends = ['duration', 'duration_time', 'currency', 'subtotal', 'products_subtotal', 'duration_hours','date'];
+	public $appends = ['title', 'duration', 'duration_time', 'currency', 'subtotal', 'products_subtotal', 'total_cost', 'duration_hours','date'];
 
 
 
+	public function getTitleAttribute()
+	{
+		return isset($this->device->title) ? $this->device->title : '';
+	}
 	public function getDateAttribute()
 	{
 		return substr($this->created_at, 0, 10);
+	}
+
+	public function getTotalCostAttribute()
+	{
+		return (isset($this->subtotal) && isset($this->products_subtotal) ) ? ($this->products_subtotal+$this->subtotal) : $this->subtotal;
 	}
 
 	public function getCurrencyAttribute() 

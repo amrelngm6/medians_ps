@@ -34,10 +34,12 @@ class Product extends CustomController
 
 	// public $timestamps = false;
 
+	public $appends = ['category_name'];
 
-	function __construct()
+
+	public function getCategoryNameAttribute()
 	{
-
+		return isset($this->category->name) ? $this->category->name : '';
 	}
 
 	public function getFields()

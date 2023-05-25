@@ -6,63 +6,12 @@
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                    <div class="w- relative" style="z-index:9">
-                        <date_picker @change="openPageByDate($event)" :placeholder="content.startdate+' - '+content.enddate" range format="YYYY-MM-DD"></date_picker>
-                    </div>
-                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,showLoader = false; ">{{__('add_new')}}</a>
+                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
-                    <div class="w-full">
-                        <div v-if="content.stockList" class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
-                            <table class="table dark:text-gray-400 text-gray-800 border-separate space-y-6 text-sm w-full">
-                                <thead class="dark:bg-gray-800 bg-white text-gray-500">
-                                    <tr>
-                                        <th class="p-2 text-default px-4">{{__('Item')}}</th>
-                                        <th class="p-2 ">{{__('Qty')}}</th>
-                                        <th class="p-2 ">{{__('Type')}}</th>
-                                        <th class="p-2 ">{{__('date')}}</th>
-                                        <th class="p-2 ">{{__('By')}}</th>
-                                        <th class="p-2 ">{{__('Invoice')}}</th>
-                                        <th class="p-2 text-center">{{__('Action')}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(stock, index) in content.stockList" class="dark:bg-gray-800 text-center">
-                                        <td class="p-2 border-1 border-t  border-gray-200">
-                                            <div class="flex ">
-                                                <img class="rounded-full h-12 w-12  object-cover" :src="conf.url+'assets/img/cup.jpg'" alt="unsplash image">
-                                                <div class="ml-3 text-default">
-                                                    <div class="font-medium">{{stock.product.name}}</div>
-                                                    <div class="text-gray-500 text-sm">{{stock.product.description}}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="p-2 font-bold border-1 border-t  border-gray-200">
-                                            {{stock.stock}}
-                                        </td>
-                                        <td class="p-2 border-1 border-t  border-gray-200">
-                                            {{__(stock.type)}}
-                                        </td>
-                                        <td class="p-2 border-1 border-t  border-gray-200">
-                                            {{stock.date}}
-                                        </td>
-                                        <td class="p-2 border-1 border-t  border-gray-200">
-                                            {{stock.user.name}}
-                                        </td>
-                                        <td class="p-2 border-1 border-t  border-gray-200">
-                                            <a v-if="stock.invoice" target="_blank" :href="conf.url+'invoices/show/'+stock.invoice.code">{{__('Invoice')}}</a>
-                                        </td>
-                                        <td class="p-2 border-1 border-t  border-gray-200">
-                                            <!-- <a @click="showEditSide = true; showAddSide = false; activeItem = product"  class="text-gray-400 hover:text-gray-100  mx-2"> -->
-                                                <!-- <i class="material-icons-outlined text-base">edit</i> -->
-                                            <!-- </a> -->
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
+
                     <div class="col-md-3" v-if="showAddSide">
                         <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
                             <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
@@ -105,27 +54,56 @@
 
 
 
+import dataTableTitleImg from './includes/data-table-title-img.vue';
+import dataTableActions from './includes/data-table-actions.vue';
+import dataTableLink from './includes/data-table-link.vue';
+
 export default 
 {
     components:{
+        dataTableTitleImg,
+        dataTableActions,
+        dataTableLink,
     },
     name:'products',
     data() {
         return {
             url: this.conf.url+'stock?load=json',
             content: {
-
                 title: '',
-                startdate: '',
-                enddate: '',
-                products: [],
-                stockList: [],
+                items: [],
+                columns: [],
             },
 
-            activeItem:null,
+            activeItem:{},
             showAddSide:false,
             showEditSide:false,
-            showLoader: false,
+            showLoader: true,
+        }
+    },
+
+    computed: {
+        bindings() {
+
+
+            this.content.columns[1]= {
+                    key: this.__("title"),
+                    component: dataTableTitleImg,
+                    sortable: false,
+                };
+
+            this.content.columns.push({
+                    key: this.__("invoice"),
+                    component: dataTableLink,
+                    sortable: false,
+                });
+
+
+            return {
+
+                columns: this.content.columns,
+                data: this.content.items
+            }
         }
     },
     props: [
@@ -142,9 +120,34 @@ export default
 
     methods: 
     {
-        openPageByDate(event)
-        {
+
+        /**
+         * Handle actions from datatable buttons
+         * Called From 'dataTableActions' component
+         * 
+         * @param String actionName 
+         * @param Object data
+         */  
+        handleAction(actionName, data) {
+            switch(actionName) 
+            {
+                case 'view':
+                    // window.open(this.conf.url+data.content.prefix)
+                    break;  
+
+                case 'edit':
+                    this.showEditSide = true; 
+                    this.showAddSide = false; 
+                    this.activeItem = data
+                    break;  
+
+                case 'delete':
+                    this.$parent.delete(data, 'Product.delete');
+                    break;  
+            }
         },
+
+
         load()
         {
             this.showLoader = true;
@@ -165,10 +168,3 @@ export default
     }
 };
 </script>
-<style lang="css">
-    .rtl #side-cart-container
-    {
-        right: auto;
-        left:0;
-    }
-</style>

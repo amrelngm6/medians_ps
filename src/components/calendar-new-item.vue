@@ -98,6 +98,7 @@
 
 <script>
 const axios = require('axios').default;
+// import SSH2Promise from 'ssh2-promise';
 
 export default {
     data() {
@@ -246,7 +247,27 @@ export default {
             __(i)
             {
                 return this.$parent.__(i);
-            }
+            },
+
+
+            async executeCommand() {
+                // const ssh = new SSH2Promise({
+                //   host: '192.168.1.10',
+                //   port: 22,
+                //   username: 'desktop-ddtq7ab\m ewais@192.168.1.10',
+                //   password: '1',
+                // });
+
+                // try {
+                //   await ssh.connect();
+                //   const result = await ssh.exec('"C:/nircmd.exe" standby');
+                //   console.log(result);
+                // } catch (err) {
+                //   console.error(err);
+                // } finally {
+                //   ssh.close();
+                // }
+            },
         }
     }
 </script>

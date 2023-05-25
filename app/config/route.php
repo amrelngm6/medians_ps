@@ -9,6 +9,7 @@ $app = new \config\APP;
 
 Macaw::get('/invoices/print/(:all)', \Medians\Orders\Application\OrderController::class.'@print');
 Macaw::get('/invoices/qr_code/(:all)', \Medians\Orders\Application\OrderController::class.'@qr_code');
+
 /**
 * Return Dashboard 
 */

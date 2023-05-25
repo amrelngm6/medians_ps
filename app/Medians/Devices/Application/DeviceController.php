@@ -55,7 +55,8 @@ class DeviceController
 	 */ 
 	public function index() 
 	{
-	    return render('views/admin/devices/calendar.html.twig', [
+	    return render('calendar', [
+	        'load_vue' => true,
 	        'title' => __('Devices list'),
 	        'app' => $this->app,
 	        'products' => $this->productsRepo->getItems(['status'=>true, 'stock'=>true]),
@@ -65,6 +66,75 @@ class DeviceController
 	}
 
 
+
+
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function ordersColumns( ) 
+	{
+
+		return [
+            [
+                'key'=> "id",
+                'title'=> "#",
+            ],
+            [
+                'key'=> "title",
+                'title'=> __('title'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "booking_type",
+                'title'=> __('booking_type'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "start_time",
+                'title'=> __('start_time'),
+                'sortable'=> true,
+                // 'type'=>'number'
+            ],
+            [
+                'key'=> "end_time",
+                'title'=> __('end_time'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "duration_time",
+                'title'=> __('duration'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "order_code",
+                'title'=> __('Order'),
+                'sortable'=> false,
+            ],
+            [
+                'key'=> "subtotal",
+                'title'=> __('Subtotal'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "products_subtotal",
+                'title'=> __('Products'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "total_cost",
+                'title'=> __('Products'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "status",
+                'title'=> __('status'),
+                'sortable'=> true,
+            ]
+        ];
+	}
+
+                                              
 	/**
 	 * Admin index orders
 	 * 
@@ -74,13 +144,21 @@ class DeviceController
 	 */ 
 	public function orders() 
 	{
-		$params = $this->app->request()->query->all();
 
-	    return render('views/admin/devices/orders.html.twig', [
-	        'title' => __('Devices bookings'),
-	        'app' => $this->app,
-	        'events' => $this->query($params),
-	    ]);
+		try {
+			
+			$params = $this->app->request()->query->all();
+
+		    return render('devices_orders', [
+		        'load_vue' => true,
+		        'title' => __('Devices bookings'),
+		        'app' => $this->app,
+		        'columns' => $this->ordersColumns(),
+		        'items' => $this->query($params),
+		    ]);
+		} catch (Exception $e) {
+			
+		}
 	}
 
 
@@ -100,7 +178,8 @@ class DeviceController
 	public function manage( ) 
 	{
 
-	    return render('views/admin/devices/devices_manage.html.twig', [
+	    return render('manage_devices', [
+	        'load_vue' => true,
 	        'title' => __('Devices list'),
 	        'app' => $this->app,
 	        'devicesList' => $this->repo->getAll(100),

@@ -28,15 +28,52 @@ class CustomerController
 
 
 	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function columns( ) 
+	{
+
+		return [
+            [
+                'key'=> "id",
+                'title'=> '#',
+            ],
+            [
+                'key'=> "name",
+                'title'=> __('name'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "mobile",
+                'title'=> __('mobile'),
+                'sortable'=> true,
+                'type'=> 'number',
+            ],
+            [
+                'key'=> "bookings_count",
+                'title'=> __('bookings_count'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "last_invoice_code",
+                'title'=> __('Last invoice'),
+                'sortable'=> false,
+            ]
+        ];
+	}
+
+	/**
 	 * Index page
 	 * 
 	 */
 	public function index()
 	{
-		return render('views/admin/customers/list.html.twig', [
-			'customers' =>  $this->repo->get(),
-	        'title' => 'Customers',
-	        'app' => $this->app,
+		return render('customers', [
+			'items' =>  $this->repo->get(),
+	        'title' => __('Customers'),
+	        'load_vue' => true,
+			'columns' =>  $this->columns(),
 	    ]);
 	} 
 

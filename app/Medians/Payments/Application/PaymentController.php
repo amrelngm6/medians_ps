@@ -20,6 +20,48 @@ class PaymentController
 	}
 
 
+
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function columns( ) 
+	{
+
+		return [
+            [
+                'key'=> "id",
+                'title'=> '#',
+                'sortable'=> false,
+            ],
+            [
+                'key'=> "name",
+                'title'=> __('name'),
+                'sortable'=> false,
+            ],
+            [
+                'key'=> "amount",
+                'title'=> __('amount'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "invoice_id",
+                'title'=> __('invoice_number'),
+                'sortable'=> false,
+            ],
+            [
+                'key'=> "user_name",
+                'title'=> __('by'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "date",
+                'title'=> __('date'),
+                'sortable'=> true,
+            ]
+        ];
+	}
+
 	/**
 	 * Admin index items
 	 * 
@@ -29,40 +71,11 @@ class PaymentController
 	 */ 
 	public function index() 
 	{
-		return render('views/admin/payments/list.html.twig', [
+		return render('payments', [
+			'load_vue'=> true,
 	        'title' => __('Payments list'),
 	        'items' => $this->repo->get(),
-	    ]);
-	}
-
-
-	/**
-	 * Admin index items
-	 * 
-	 * @param Silex\Application $app
-	 * @param \Twig\Environment $twig
-	 * 
-	 */ 
-	public function create() 
-	{
-		return render('views/admin/payments/create.html.twig', [
-	        'title' => __('New Payment'),
-	    ]);
-	}
-
-
-	/**
-	 * Admin index items
-	 * 
-	 * @param Silex\Application $app
-	 * @param \Twig\Environment $twig
-	 * 
-	 */ 
-	public function edit($id) 
-	{
-		return render('views/admin/payments/payment.html.twig', [
-	        'title' => __('Edit Payment'),
-	        'payment' => $this->repo->find($id),
+	        'columns' => $this->columns(),
 	    ]);
 	}
 

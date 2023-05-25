@@ -21,6 +21,46 @@ class ProductController
 	}
 
 
+
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function columns( ) 
+	{
+
+		return [
+            [
+                'key'=> "id",
+                'title'=> '#',
+            ],
+            [
+                'key'=> "",
+                'title'=> '',
+            ],
+            [
+                'key'=> "category_name",
+                'title'=> __('category'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "price",
+                'title'=> __('price'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "stock",
+                'title'=> __('stock'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "status",
+                'title'=> __('status'),
+                'sortable'=> true,
+            ]
+        ];
+	}
+
 	/**
 	 * Admin index items
 	 * 
@@ -30,9 +70,11 @@ class ProductController
 	 */ 
 	public function index() 
 	{
-		return render('views/admin/products/products.html.twig', [
+		return render('products', [
+	        'load_vue' => true,
 	        'title' => __('Products list'),
-	        'products' => $this->repo->get(),
+	        'items' => $this->repo->get(),
+	        'columns' => $this->columns(),
 	        'typesList' => $this->repo->getModel()->categoriesList(),
 	        'stock' => new StockController(null),
 	    ]);
@@ -49,9 +91,11 @@ class ProductController
 	{
 		$this->app = new \config\APP;
 
-		return render('views/admin/products/products.html.twig', [
+		return render('products', [
+	        'load_vue' => true,
+	        'columns' => $this->columns(),
 	        'title' => __('Stock alert products'),
-	        'products' => $this->repo->getByStock((Int) $this->app->setting('stock_alert')),
+	        'items' => $this->repo->getByStock((Int) $this->app->setting('stock_alert')),
 	        'typesList' => $this->repo->getModel()->categoriesList(),
 	        'stock' => new StockController(null),
 	    ]);
@@ -67,31 +111,16 @@ class ProductController
 	public function stock_out() 
 	{
 
-		return render('views/admin/products/products.html.twig', [
+		return render('products', [
+	        'load_vue' => true,
+	        'columns' => $this->columns(),
 	        'title' => __('Stock out products'),
-	        'products' => $this->repo->getByStockOut(),
+	        'items' => $this->repo->getByStockOut(),
 	        'typesList' => $this->repo->getModel()->categoriesList(),
 	        'stock' => new StockController(null),
 	    ]);
 	}
 
-
-	/**
-	 * Admin index items
-	 * 
-	 * @param Silex\Application $app
-	 * @param \Twig\Environment $twig
-	 * 
-	 */ 
-	public function edit($id) 
-	{
-		return render('views/admin/products/product.html.twig', [
-	        'title' => __('EDIT_PAGE'),
-	        'product' => $this->repo->find($id),
-	        'typesList' => $this->repo->getModel()->categoriesList(),
-	        'stock' => new StockController(null),
-	    ]);
-	}
 
 
 

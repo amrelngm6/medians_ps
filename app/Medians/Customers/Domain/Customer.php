@@ -25,7 +25,17 @@ class Customer extends CustomController
 
 
 
-	public $appends = [ 'photo'];
+	public $appends = [ 'photo', 'last_invoice_code', 'not_removeable'];
+
+	public function getLastInvoiceCodeAttribute() : ?String
+	{
+		return isset($this->last_invoice->code) ? $this->last_invoice->code : '';
+	}
+
+	public function getNotRemoveableAttribute() 
+	{
+		return true;
+	}
 
 	public function getPhotoAttribute() : ?String
 	{

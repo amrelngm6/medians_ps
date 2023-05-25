@@ -32,7 +32,8 @@ class CategoryController
 	public function index( $model ) 
 	{
 
-	    return render('views/admin/categories/list.html.twig', [
+	    return render('categories', [
+	        'load_vue' => true,
 	        'title' => __('categories'),
 	        'model' => $model,
 	        'categories' => $this->repo->get($model),

@@ -13,7 +13,8 @@
         "chillerlan/php-qrcode": "^3.4",
         "tebazil/db-seeder": "^1.0",
         "nikic/fast-route": "^1.3",
-        "symfony/mime": "^6.0"
+        "symfony/mime": "^6.0",
+        "phpseclib/phpseclib": "~3.0"
     },
     "config": {
         "allow-plugins": {

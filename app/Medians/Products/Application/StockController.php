@@ -19,6 +19,46 @@ class StockController
 
 
 
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function columns( ) 
+	{
+
+		return [
+            [
+                'key'=> "id",
+                'title'=> '#',
+            ],
+            [
+                'key'=> "",
+                'title'=> '',
+            ],
+            [
+                'key'=> "stock",
+                'title'=> __('Qty'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "type",
+                'title'=> __('type'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "date",
+                'title'=> __('date'),
+                'sortable'=> true,
+            ],
+            [
+                'key'=> "user_name",
+                'title'=> __('By'),
+                'sortable'=> false,
+            ]
+        ];
+	}
+
+
 
 	public function index() 
 	{	
@@ -32,14 +72,15 @@ class StockController
     	$params['product'] = $request->get('product');
     	$params['by'] = $request->get('by');
     	$params['type'] = $request->get('type');
-    	$params['start'] = $request->get('start') ? date('Y-m-d', strtotime(date($request->get('start')))) : date('Y-m-d');
-    	$params['end'] = ($request->get('end') && $request->get('start')) ? date('Y-m-d',strtotime(date($request->get('end')))) : date('Y-m-d');
+    	// $params['start'] = $request->get('start') ? date('Y-m-d', strtotime(date($request->get('start')))) : date('Y-m-d');
+    	// $params['end'] = ($request->get('end') && $request->get('start')) ? date('Y-m-d',strtotime(date($request->get('end')))) : date('Y-m-d');
 
-	    return render('views/admin/products/stock.html.twig', [
+	    return render('stock', [
 	        'title' => __('Products Stock'),
-
-	        'stockList' => $this->repo->get($params),
+	        'load_vue' => true,
+	        'items' => $this->repo->get($params),
 	        'products' => $this->ProductsRepo->get(),
+	        'columns' => $this->columns(),
 	    ]);
 	}
 

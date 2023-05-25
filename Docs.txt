@@ -1,0 +1,16 @@
+Downloads:
+
+# Install OpenSSH Server
+https://github.com/PowerShell/Win32-OpenSSH/releases/download/v9.2.2.0p1-Beta/OpenSSH-Win64.zip
+
+# Autoplay for sshd
+- sc config sshd start=demand
+
+
+
+
+
+Device A
+
+# Share SSH
+- ssh-copy-id 'remote-username'@remote.ip

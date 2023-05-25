@@ -5,6 +5,7 @@ namespace Medians\Games\Domain;
 use Shared\dbaser\CustomController;
 use Medians\Categories\Domain\Category;
 use Medians\Devices\Domain\Device;
+use Medians\Devices\Domain\OrderDevice;
 use Medians\Devices\Domain\DeviceGames;
 
 
@@ -53,6 +54,11 @@ class Game extends CustomController
 	public function devices()
 	{
 		return $this->hasMany(DeviceGames::class, 'game_id', 'id');
+	}
+
+	public function bookings()
+	{
+		return $this->hasMany(OrderDevice::class, 'game_id', 'id');
 	}
 
 

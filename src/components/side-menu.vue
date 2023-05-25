@@ -1,21 +1,40 @@
 <template>
-    <ul   v-if="showMenu" class="overflow-y-auto" style="max-height: calc(100vh - 170px);">
-        <li v-for="(menu, i) in pages">
-            <a v-on:click.prevent="openPage(menu)" class="w-full font-thin uppercase flex items-center p-4 my-2 transition-colors duration-200 justify-start text-gray-500 " :class="menu.class" :href="url+menu.link">
-                <span class="text-left" >
-                    <i class="fa" :class="menu.icon"></i>
-                </span>
-                <span class=" text-sm font-semibold" v-text="menu.title"></span>
-            </a>
-            <ul v-if="menu.sub && menu.show_sub " class="pb-4" >
-                <li v-for="submenu in menu.sub" >
-                    <a v-on:click.prevent="openPage(submenu)" class=" text-purple-800 hover:text-white"  :class="submenu.class" :href="url+submenu.link">
-                        <span class="mx-2 text-sm font-semibold" v-text="submenu.title"> </span>
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                <li class="nav-item nav-profile">
+                    <a href="#" class="nav-link">
+                        <div class="nav-profile-image">
+                            <img :src="auth.photo" alt="profile">
+                        </div>
+                        <div class="nav-profile-text d-flex flex-column">
+                            <span class="font-weight-bold mb-2" v-text="auth.name"></span>
+                            <span class="text-white text-xs" v-text="auth.Role ? auth.Role.name : ''"></span>
+                        </div>
+                        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                     </a>
                 </li>
             </ul>
-        </li>
-    </ul>
+                    
+            <ul   v-if="showMenu" class="overflow-y-auto" style="max-height: calc(100vh - 170px);">
+                <li v-for="(menu, i) in pages">
+                    <a v-on:click.prevent="openPage(menu)" class="w-full font-thin uppercase flex items-center p-4 my-2 transition-colors duration-200 justify-start text-gray-500 " :class="menu.class" :href="url+menu.link">
+                        <span class="text-left" >
+                            <i class="fa" :class="menu.icon"></i>
+                        </span>
+                        <span class=" text-sm " v-text="menu.title"></span>
+                    </a>
+                    <ul v-if="menu.sub && menu.show_sub " class="pb-4" >
+                        <li v-for="submenu in menu.sub" >
+                            <a v-on:click.prevent="openPage(submenu)" class=" text-purple-800 hover:text-white"  :class="submenu.class" :href="url+submenu.link">
+                                <span class="mx-2 text-sm " v-text="submenu.title"> </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
 </template>
 <script>
 
@@ -29,7 +48,7 @@ export default {
             pages: []
         }
     },
-    props: ['url','menus', 'samepage'],
+    props: ['url','menus', 'samepage', 'auth'],
     created: function() {
         this.pages = this.menus;
         this.activePage = this.samepage;
@@ -68,3 +87,10 @@ export default {
     }
 };
 </script>
+
+<style lang="css">
+    .sidebar-menu
+    {
+        min-height: calc(100vh - 100px);
+    }
+</style>

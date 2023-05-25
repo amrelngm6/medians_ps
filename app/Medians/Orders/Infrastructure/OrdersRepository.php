@@ -84,47 +84,6 @@ class OrdersRepository
 	}
 
 
-	/*
-	// Find all items by month
-	*/
-	public function getTotalByMonth($month, $nextmonth )
-	{
-	  	return  Order::with('device')
-	  			->with('device_orders')
-	  			// ->with('Branch')
-	  			->whereDate( 'endTime' , '>=', date('Y-m-d H:i:s', strtotime(date($month))))
-	  			->whereDate( 'endTime' , '<', date('Y-m-d H:i:s', strtotime(date($nextmonth))))
-	  			->get();
-	}
-	
-	
-	/*
-	// Find total cost by month
-	*/
-	public function getCostByMonth($branchId, $month, $nextmonth )
-	{
-
-	  	return  Order::where('branchId' , $branchId)
-	  			->whereDate('endTime' , '>=', date('Y-m-d H:i:s', strtotime(date($month)))) 
-	  			->whereDate('endTime' , '<', date('Y-m-d H:i:s', strtotime(date($nextmonth))))
-	  			->sum('totalcost');
-	}
-	
-	
-	
-	/*
-	// Find total cost by day
-	*/
-	public function getSalesByDay($day, $nextday )
-	{
-
-	  	return  Order::where('branchId' , $this->app->branch->id)
-			->whereDate('endTime' , '>=', date('Y-m-d H:i:s', strtotime(date($day)))) 
-			->whereDate('endTime' , '<', date('Y-m-d H:i:s', strtotime(date($nextday))))
-  			->sum('totalcost');
-
-	}
-	
 	
 
 	/*

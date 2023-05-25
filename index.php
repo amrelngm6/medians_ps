@@ -13,8 +13,22 @@ spl_autoload_register(function ($name) {
     is_file($name2) ? include ($name2) : '';
 
 });
+// use phpseclib3\Net\SSH2;
 
+// if (isset($_GET['command']))
+// {
 
+// $ssh = new SSH2('41.36.145.38');
+// if (!$ssh->login('desktop-ddtq7ab\m ewais', '1')) {
+//     exit('Login Failed');
+// }
+
+// $ssh->exec('"C:/nircmd.exe" '.$_GET['command']);
+// // $ssh->exec('shutdown /r /t 0');
+// echo $_GET['command'];
+// $ssh->disconnect();
+
+// }
 
 /**
  * Set the database connection using 

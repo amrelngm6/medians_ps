@@ -16,7 +16,7 @@
                         <div :key="index" v-for="(device, index) in content.devicesList" class="col-6 col-sm-4 col-lg-2"  :class="{'opacity-5': device.status != 1 }">
                             <div class="album  transform transition duration-400 hover:scale-105 cursor-pointer">
                                 <div :class="device.playing ? 'active' : ''" class="album__cover ">
-                                    <img :src="conf.url+'assets/img/ps.png'" alt="">
+                                    <img src="/uploads/img/ps.png" alt="">
                                         <!-- <a > -->
                                     <a @click="showEditSide = true; showAddSide = false; activeItem = device">
                                         <i class="text-gray-200 material-icons-outlined text-base">edit</i>
@@ -125,7 +125,7 @@
                                 </div>
 
                                 <label class="flex gap gap-2 items-center mt-3">
-                                    <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status" >
+                                    <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status" :checked="activeItem.status > 0 ? true : false" >
                                     <span class="ml-2 mx-2 text-gray-700">{{__('Status')}}</span>
                                 </label>
                                 

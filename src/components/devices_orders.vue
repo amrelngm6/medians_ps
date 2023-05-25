@@ -1,84 +1,87 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
-        <div class=" w-full">
-            <div v-if="content && !showLoader"  class=" w-full px-4 overflow-y-auto h-full">
-                <div class="crms-title flex bg-white mb-6 gap gap-6">
-                    <div class="w-full">
-                        <h3 class="gap gap-6 flex page-title m-0">
-                            <span class="page-title-icon bg-gradient-primary text-white me-2">
-                                <i class="feather-user"></i>
-                            </span> 
-                            <span>{{content.title}}</span> 
-                        </h3>
-                    </div>
-                    <div class="">
-                        <ul class="breadcrumb text-right bg-white float-end m-0 ps-0 pe-0 flex gap gap-6">
-                            <li class="breadcrumb-item w-20"><a href="javascript:;">{{__('Dashboard')}}</a></li>
-                            <li class="breadcrumb-item w-28 active">{{content.title}}</li>
-                        </ul>
-                    </div>
+        <div class=" w-full relative">
+            <div v-if="showLoader" class="mx-auto mt-10 absolute top-0 left-0 right-0 bottom-0 m-auto w-40 h-40" >
+                <img :src="conf.url+'uploads/images/loader.gif'"  />
+            </div>
+            <main v-if="content && !showLoader" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
+                <!-- Begin -->
+                <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
+                    <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div v-if="content.events" class="card mb-0">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-nowrap custom-table mb-0 datatable w-full">
-                                        <thead>
-                                                <th class="w-10">#</th>
-                                                <th class="text-default">{{__('Device')}}/{{__('Game')}}</th>
-                                                <th>{{__('Start_time')}}</th>
-                                                <th>{{__('duration')}}</th>
-                                                <th>{{__('Status')}}</th>
-                                                <th>{{__('Order')}}</th>
-                                                <th>{{__('Subtotal')}}</th>
-                                                <th>{{__('Customer')}}</th>
-                                                <th>{{__('By')}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="mt-2">
-                                            <tr :key="index" v-for="(item, index) in content.events" class="text-center">
-                                                <td>{{item.id}}</td>
-                                                <td class="text-default"><b>{{item.device.name}}</b> <span v-if="item.game" class="block w-full py-1 text-xs" v-text="item.game ? item.game.name : ''"></span></td>
-                                                <td>{{item.start_time }}</td>
-                                                <td>{{item.duration_time}}</td>
-                                                <td>{{item.status}}</td>
-                                                <td>
-                                                    <a class="text-purple-600" :href="'/invoices/show/'+item.order_code">{{item.order_code}}</a>
-                                                </td>
-                                                <td><b class="text-red-500">{{item.subtotal + item.products_subtotal}} {{item.currency}}</b></td>
-                                                <td>{{item.customer.name}}</td>
-                                                <td>{{item.user.name}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                <hr class="mt-2" />
+                <div class="w-full flex gap gap-6">
+                    <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
+
+                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide">
+
+                        <div class="w-full flex">
+                            <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('edit')"></h1>
+                            <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
+                        </div>
+                        <div >
+                            <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
+                                
+                                
+                                <input name="type" type="hidden" value="Specialization.update">
+                                <input name="params[id]" type="hidden" v-model="activeItem.id">
+
+
+                                <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
+                            </form>
+                        
+                            <a @click="$parent.delete(activeItem, 'Specialization.delete')" href="javascript:;" class=" my-2 py-2 uppercase block text-center  pb-1 mt-1 text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white">{{__('Delete')}}</a>
+
                         </div>
                     </div>
-                </div>
-            </div>
 
+
+                </div>
+                <!-- END  -->
+            </main>
         </div>
     </div>
 </template>
 <script>
+
+import dataTableActions from './includes/data-table-actions.vue';
+
 export default 
 {
+    components:{
+        dataTableActions,
+    },
     name:'devices_orders',
     data() {
         return {
             url: this.conf.url+this.path+'&load=json',
             content: {
-
                 title: '',
-                events: [],
+                items: [],
+                columns: [],
             },
 
-            activeItem:null,
+            activeItem:{},
             showAddSide:false,
             showEditSide:false,
-            showLoader: false,
+            showLoader: true,
+        }
+    },
+
+    computed: {
+        bindings() {
+
+
+            // this.content.columns.push({
+            //         key: this.__("actions"),
+            //         component: dataTableActions,
+            //         sortable: false,
+            //     });
+            return {
+
+                columns: this.content.columns,
+                data: this.content.items
+            }
         }
     },
     props: [
@@ -95,13 +98,32 @@ export default
 
     methods: 
     {
+
+
+        handleAction(actionName, data) {
+            switch(actionName) 
+            {
+                case 'view':
+                    window.open(this.conf.url+data.content.prefix)
+                    break;  
+
+                case 'edit':
+                    window.open(this.conf.url+'builder?prefix='+data.content.prefix)
+                    break;  
+
+                case 'delete':
+                    this.$parent.delete(data, 'DeviceOrder.delete');
+                    break;  
+            }
+            console.log(actionName, data);
+        },
+
         load()
         {
             this.showLoader = true;
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
-                // this.$alert(response)
             });
         },
         

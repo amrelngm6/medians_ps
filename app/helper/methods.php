@@ -1,15 +1,20 @@
 <?php
 
-try {
-    
-    $app = new \config\APP;
-    $lng = isset($app->auth()->branch->id) && !empty($app->setting('lang')) ? $app->setting('lang') : 'arabic';
 
-    include('app/helper/langs/'.$lng.'.php');
-    
+function setLang()
+{
+    try {
+        
+        $app = new \config\APP;
 
-} catch (\Exception $e) {
-    throw new Exception($e->getMessage(), 1);    
+        $_SESSION['site_lang'] = isset($_SESSION['site_lang']) 
+            ? $_SESSION['site_lang'] 
+            : (isset($app->auth()->branch->id) && !empty($app->setting('lang')) ? $app->setting('lang') : 'arabic');
+        return $_SESSION['site_lang'];
+
+    } catch (\Exception $e) {
+        throw new Exception($e->getMessage(), 1);    
+    }
 }
 
 
@@ -20,8 +25,9 @@ try {
  * @param String twig file path
  * @param [] List of data
  */
-function render($path, $data, $responseType = 'html')
+function render($template, $data, $responseType = 'html')
 {
+    !class_exists('Langs') ? setLang() : '';
 
     try {
         
@@ -45,20 +51,20 @@ function render($path, $data, $responseType = 'html')
     }
 
     /**
-     * While request is not required in JSON
      * Response will be override only
      * In case the system works In Vue APP
      */ 
-    $path = isset($data['override_vue']) ? $path : 'views/admin/vue.html.twig';
-
+    $path = isset($data['load_vue']) ? 'views/admin/vue.html.twig' : $template;
     $app = new \config\APP;
+    $data['component'] = $template;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
     $data['app']->branch = $app->branch;
     $data['app']->Settings = $ettings;
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
     $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
-    $data['lang'] = new Langs;
+    $data['lang'] = (new helper\Lang($_SESSION['site_lang']))->load();
+    $data['lang_key'] = __('lang');
     
     echo $app->template()->render($path, $data);
  } 
@@ -117,6 +123,8 @@ function response($response)
 */ 
 function __($langkey = null)
 {
-    return Langs::__($langkey);
+    $Langs = (new helper\Lang(setLang()))->load();
+    return !empty($Langs->__($langkey)) ? $Langs->__($langkey) : ucfirst(str_replace('_', ' ', $langkey));
 }
+
 

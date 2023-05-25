@@ -99,7 +99,7 @@ class DevicesRepository
 			$query->where('created_by', $params['by']);
 		}
 
-		if (!empty($params['status']) && in_array($params['status'], ['active', 'completed', 'paid', 'canceled']) )
+		if (!empty($params['status']) && in_array($params['status'], ['active', 'completed', 'paid', 'canceled', 'new']) )
 		{
 			$query->where('status', $params['status']);
 		}

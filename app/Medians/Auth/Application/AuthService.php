@@ -56,7 +56,8 @@ class AuthService
 		
 		if (isset($this->app->auth()->id)) { return $this->app->redirect('/'); }
 
-	    return  render('views/admin/forms/login.html.twig', [
+	    return  render('login', [
+	    	'load_vue' => true,
 	        'title' => __('Login page'),
 	        'app' => $this->app,
 	        'formAction' => '/login',
