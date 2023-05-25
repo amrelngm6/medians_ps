@@ -902,6 +902,7 @@ class LangsAr
 		,'STOCK' => 'المخزون'
 		,'STOCK_LOG' => 'سجل المخزون'
 		,'TODAY_REVENUE' => 'أرباح اليوم'
+		,'today_expenses' => 'مصروفات اليوم'
 		,'TODAY_BOOKINGS' => 'حجوزات اليوم'
 		,'TODAY_SOLD_PRODUCTS' => 'مبيعات المنتجات اليوم'
 		

@@ -47,11 +47,13 @@ class ProductController
                 'key'=> "price",
                 'title'=> __('price'),
                 'sortable'=> true,
+                'type'=>'number'
             ],
             [
                 'key'=> "stock",
                 'title'=> __('stock'),
                 'sortable'=> true,
+                'type'=>'number'
             ],
             [
                 'key'=> "status",

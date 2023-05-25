@@ -2,8 +2,8 @@
         
     <div class="flex w-full">
         <img class="rounded-full h-12 w-12  object-cover" src="/uploads/img/cup.jpg" alt="unsplash image">
-        <div class="ml-3 text-default ">
-            <div class="font-medium" v-text="data.name"></div>
+        <div class="ml-3 mt-2 text-default ">
+            <div class="font-semibold" v-text="data.name"></div>
             <div class="text-gray-500 text-sm" v-text="data.description"></div>
         </div>
     </div>

@@ -1,10 +1,10 @@
 <?php
 
-namespace Medians\Payments\Application;
+namespace Medians\Expenses\Application;
 
-use Medians\Payments\Infrastructure\PaymentsRepository;
+use Medians\Expenses\Infrastructure\ExpensesRepository;
 
-class PaymentController
+class ExpenseController
 {
 
 	/*
@@ -16,7 +16,7 @@ class PaymentController
 
 	function __construct()
 	{
-		$this->repo = new PaymentsRepository();
+		$this->repo = new ExpensesRepository();
 	}
 
 
@@ -71,9 +71,9 @@ class PaymentController
 	 */ 
 	public function index() 
 	{
-		return render('payments', [
+		return render('expenses', [
 			'load_vue'=> true,
-	        'title' => __('Payments list'),
+	        'title' => __('Expenses list'),
 	        'items' => $this->repo->get(),
 	        'columns' => $this->columns(),
 	    ]);
@@ -91,7 +91,7 @@ class PaymentController
         
         $this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params')['payment'];
+		$params = $this->app->request()->get('params');
 
         try {
         	$params['branch_id'] = $this->app->branch->id;
@@ -119,13 +119,13 @@ class PaymentController
 	{
         $this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params')['payment'];
+		$params = $this->app->request()->get('params');
 
         try {
 
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'redirect'=>$this->app->CONF['url'].'payments/index')
+           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
            	: array('error'=>__('Not allowed'));
 
 

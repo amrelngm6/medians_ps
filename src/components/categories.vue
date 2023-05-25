@@ -89,7 +89,7 @@
                                 <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
                             </form>
                         
-                            <a data-ajax="true" data-confirm="true" :data-request-id="activeItem.id" data-request-type="Category.delete" data-type="post" :href="conf.url+'api/delete'" class="uppercase block text-center  pb-1 mt-1 text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white">{{__('Remove this category')}}</a>
+                            <a data-ajax="true" data-confirm="true" :data-request-id="activeItem.id" data-request-type="Category.delete" data-type="post" :href="conf.url+'api/delete'" class="uppercase block text-center   text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white py-2 mt-2">{{__('Remove this category')}}</a>
 
                         </div>
                     </div>

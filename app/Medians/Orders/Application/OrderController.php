@@ -190,7 +190,7 @@ class OrderController
 		if (empty($order->id))
 			return null;
 
-	    return render('views/admin/orders/print.html.twig', [
+	    return render('views/invoice_print.html.twig', [
 	        'title' => __('Invoice'),
 	        'order' => $order,
 	        'override_vue' => true,

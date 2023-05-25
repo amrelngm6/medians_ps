@@ -76,9 +76,18 @@ class APIController
 			$return = [];
 			switch ($request->get('type')) 
 			{
+				case 'PlanFeature.create':
+					$return = (new Plans\Application\PlanFeatureController())->store();
+					break;
+
+				case 'Plan.create':
+					$return = (new Plans\Application\PlanController())->store();
+					break;
+
 				case 'Device.create':
 					$return = (new Devices\Application\DeviceController())->store();
 					break;
+
 				case 'Category.create':
 					$return = (new Categories\Application\CategoryController())->store();
 					break;
@@ -94,8 +103,8 @@ class APIController
 				case 'Stock.create':
 					$return = (new Products\Application\StockController())->store();
 					break;
-				case 'Payment.create':
-					$return = (new Payments\Application\PaymentController())->store();
+				case 'Expense.create':
+					$return = (new Expenses\Application\ExpenseController())->store();
 					break;
 				case 'Customer.create':
 					$return = (new Customers\Application\CustomerController())->store();
@@ -143,8 +152,8 @@ class APIController
 			case 'Product.update':
 				$return = (new Products\Application\ProductController())->update();
 				break;
-			case 'Payment.update':
-				$return = (new Payments\Application\PaymentController())->update();
+			case 'Expense.update':
+				$return = (new Expenses\Application\ExpenseController())->update();
 				break;
 			case 'Event.update':
 				$params = (array)  json_decode($request->get('params')['event']);

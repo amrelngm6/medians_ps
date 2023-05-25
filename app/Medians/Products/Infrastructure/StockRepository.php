@@ -4,7 +4,7 @@ namespace Medians\Products\Infrastructure;
 
 use Medians\Products\Domain\Product;
 use Medians\Products\Domain\Stock;
-use Medians\Payments\Domain\Payment;
+use Medians\Expenses\Domain\Expense;
 
 /**
  * Stock class database queries
@@ -127,15 +127,15 @@ class StockRepository
 
 
 	/**
-	* Save item to Payments
+	* Save item to Expenses
 	* 
 	* @param Array $data
 	* @return Object 
 	*/
-	public function savePayment($Object, $data) 
+	public function saveExpense($Object, $data) 
 	{	
 
-		$Payment = new Payment;
+		$Expense = new Expense;
 
 		$data =  [
 			'name' => 'Purchase for products Stock',
@@ -145,7 +145,7 @@ class StockRepository
 			'amount' => $data['amount'],
 		];
 
-		return $Payment->addPayment($data);
+		return $Expense->addExpense($data);
 	}	
 
 
@@ -181,7 +181,7 @@ class StockRepository
     	$Object = Stock::create($dataArray);
     	$Object->update($dataArray);
 
-		$this->savePayment($Object, $data['payment']);
+		$this->saveExpense($Object, $data['expense']);
 
 		$this->updateProductStock($Object);
 

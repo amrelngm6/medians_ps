@@ -32,7 +32,10 @@ class BranchController
 	public function index()
 	{
 
-		return render('views/admin/branches/list.html.twig', [
+		return render('branches', [
+
+			'load_vue' => true,
+			// 'columns' => $this->columns(),
 			'items' => $this->getData(),
 	        'title' => __('branches'),
 	    ]);

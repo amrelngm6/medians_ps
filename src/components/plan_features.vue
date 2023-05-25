@@ -19,23 +19,18 @@
                                     <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{__('ADD_new')}}</h1>
                                     <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><close_icon /></span>
                                 </div>
-                                <input type="hidden" name="type" value="Stock.create" > 
-                                <input type="hidden" name="params[type]" value="add" > 
+                                <input name="type" type="hidden" value="PlanFeature.create">
 
-                                <label class="pt-5 block">{{__('Product')}}:</label>
-                                <select name="params[product_id]" required="" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('product')">
-                                    <option v-for="product in content.products" :value="product.id" v-text="product.name"></option>
-                                </select>
+                                <input name="params[code]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_code')">
 
-                                <label class="pt-5 block">{{__('Qty')}}:</label>
-                                <input name="params[stock]"  required="" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Start_stock')"> 
-                                
-                                <label class="pt-5 block">{{__('Purchase_amount')}}:</label>
-                                <input name="params[expense][amount]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Paid_amount')"> 
-                                
-                                <label class="pt-5 block">{{__('Invoice Number')}}:</label>
-                                <input name="params[expense][invoice_id]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Invoice_number')"> 
-                                
+                                <input name="params[access]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_access')">
+
+                                <label class="block mt-3">
+                                    <span class="block mb-2" v-text="__('plan')"></span>
+                                    <select name="params[plan_id]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                                        <option v-for="plan in content.plans" :value="plan.id" v-text="plan.name" ></option>
+                                    </select>
+                                </label>
 
                                 <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
                             </form>
@@ -43,6 +38,31 @@
                     </div>
                     <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide && !showAddSide ">
 
+                        <div class="w-full flex">
+                            <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('update')"></h1>
+                            <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
+                        </div>
+                        <div >
+                            <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
+
+
+                                <input name="type" type="hidden" value="Product.update">
+                                <input name="params[id]" type="hidden" v-model="activeItem.id">
+
+                                <input name="params[code]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_code')" v-model="activeItem.code">
+
+                                <input name="params[access]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_access')" v-model="activeItem.access">
+
+                                <label class="block mt-3">
+                                    <span class="block mb-2" v-text="__('plan')"></span>
+                                    <select name="params[plan_id]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg"  v-model="activeItem.plan_id">
+                                        <option v-for="plan in content.plans" :value="plan.id" v-text="plan.name" ></option>
+                                    </select>
+                                </label>
+
+                                <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <!-- END New releases -->
@@ -52,23 +72,17 @@
 </template>
 <script>
 
-
-
-import dataTableTitleImg from './includes/data-table-title-img.vue';
 import dataTableActions from './includes/data-table-actions.vue';
-import dataTableLink from './includes/data-table-link.vue';
 
 export default 
 {
     components:{
-        dataTableTitleImg,
         dataTableActions,
-        dataTableLink,
     },
-    name:'products',
+    name:'plan_features',
     data() {
         return {
-            url: this.conf.url+'stock?load=json',
+            url: this.conf.url+this.path+'?load=json',
             content: {
                 title: '',
                 items: [],
@@ -85,19 +99,11 @@ export default
     computed: {
         bindings() {
 
-
-            this.content.columns[1]= {
-                    key: this.__("title"),
-                    component: dataTableTitleImg,
-                    sortable: false,
-                };
-
             this.content.columns.push({
-                    key: this.__("invoice"),
-                    component: dataTableLink,
+                    key: this.__("actions"),
+                    component: dataTableActions,
                     sortable: false,
                 });
-
 
             return {
 
@@ -121,13 +127,7 @@ export default
     methods: 
     {
 
-        /**
-         * Handle actions from datatable buttons
-         * Called From 'dataTableActions' component
-         * 
-         * @param String actionName 
-         * @param Object data
-         */  
+
         handleAction(actionName, data) {
             switch(actionName) 
             {
@@ -142,11 +142,10 @@ export default
                     break;  
 
                 case 'delete':
-                    this.$parent.delete(data, 'Product.delete');
+                    this.$parent.delete(data, 'PlanFeature.delete');
                     break;  
             }
         },
-
 
         load()
         {
@@ -168,3 +167,10 @@ export default
     }
 };
 </script>
+<style lang="css">
+    .rtl #side-cart-container
+    {
+        right: auto;
+        left:0;
+    }
+</style>

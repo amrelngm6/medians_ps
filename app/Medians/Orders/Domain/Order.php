@@ -96,10 +96,10 @@ class Order  extends CustomController
 	/**
 	 * Relations
 	 */
-	public function items()
-	{
-		return $this->hasMany(OrderItem::class, 'order_code', 'code');
-	}
+	// public function items()
+	// {
+	// 	return $this->hasMany(OrderItem::class, 'order_code', 'code');
+	// }
 
 	/**
 	 * Relations

@@ -150,10 +150,17 @@ class APP
 			array('title'=>__('Devices'),  'icon'=>'fa-desktop', 'link'=>'#devices', 'sub'=>
 				[
 	                array('title'=>__('manage devices'),  'icon'=>'fa-dashboard', 'link'=>'devices/manage', 'component'=>'manage_devices'),
-	                // array('title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'devices/categories'),
 	                array('title'=>__('games'),  'icon'=>'fa-dashboard', 'link'=>'games'),
+	                array('title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'devices/categories', 'component'=>'categories'),
 				]
 			),
+	        array('title'=>__('Orders'),  'icon'=>'fa-file-invoice', 'link'=>'#invoices', 'sub'=>
+	            [
+	                array('title'=>__('Orders'),  'icon'=>'fa-dashboard', 'link'=>'invoices?all=true', 'component'=>'invoices'),
+	                array('title'=>__('Paid orders'),  'icon'=>'fa-dashboard', 'link'=>'invoices?status=paid', 'component'=>'invoices'),
+	                array('title'=>__('Refund orders'),  'icon'=>'fa-dashboard', 'link'=>'invoices?status=refund', 'component'=>'invoices'),
+	            ]
+	        ),
 	        array('title'=>__('Products'),  'icon'=>'fa-shopping-cart', 'link'=>'#products', 'sub'=>
 	            [
 	                array('title'=>__('Products list'),  'icon'=>'fa-dashboard', 'link'=>'products'),
@@ -163,24 +170,9 @@ class APP
 	            ]
 	        ),
 	        array('title'=>__('Stock'),  'icon'=>'fa-warehouse', 'link'=>'stock' , 'component'=>'stock'),
-	        array('title'=>__('Orders'),  'icon'=>'fa-file-invoice', 'link'=>'#invoices', 'sub'=>
-	            [
-	                array('title'=>__('Orders'),  'icon'=>'fa-dashboard', 'link'=>'invoices?all=true', 'component'=>'invoices'),
-	                array('title'=>__('Paid orders'),  'icon'=>'fa-dashboard', 'link'=>'invoices?status=paid', 'component'=>'invoices'),
-	                array('title'=>__('Refund orders'),  'icon'=>'fa-dashboard', 'link'=>'invoices?status=refund', 'component'=>'invoices'),
-	            ]
-	        ),
-	        array('title'=>__('Payments'),  'icon'=>'fa-credit-card', 'link'=>'payments', 'component'=>'payments'),
+	        array('title'=>__('Expenses'),  'icon'=>'fa-credit-card', 'link'=>'expenses', 'component'=>'expenses'),
 	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'users', 'component'=>'users'),
 	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'customers', 'component'=>'customers'),
-	        // array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'#users', 'sub'=>
-	        //     [
-	        //         array('title'=>__('Users'),  'icon'=>'fa-dashboard', 'link'=>'users/'),
-	        //         array('title'=>__('add_User'),  'icon'=>'fa-dashboard', 'link'=>'users/create'),
-	        //     ]
-	        // ),
-
-
 			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'settings', 'component'=>'settings'),
 			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);

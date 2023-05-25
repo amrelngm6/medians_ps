@@ -34,7 +34,7 @@ import SideMenu from './components/side-menu.vue'
 import navbar from './components/navbar.vue'
 import dashboard from './components/dashboard.vue'
 import categories from './components/categories.vue'
-import payments from './components/payments.vue'
+import expenses from './components/expenses.vue'
 import devices_orders from './components/devices_orders.vue'
 import calendar from './components/calendar.vue'
 import games from './components/games.vue'
@@ -47,6 +47,8 @@ import settings from './components/settings.vue'
 import users from './components/users.vue'
 import customers from './components/customers.vue'
 import reports from './components/reports.vue'
+import plans from './components/plans.vue'
+import plan_features from './components/plan_features.vue'
 
 export default {
     name: 'app',
@@ -55,7 +57,7 @@ export default {
         SideMenu,
         dashboard,
         categories,
-        payments,
+        expenses,
         devices_orders,
         calendar,
         games,
@@ -68,6 +70,8 @@ export default {
         users,
         customers,
         reports,
+        plans,
+        plan_features,
         navbar
     },
     data() {

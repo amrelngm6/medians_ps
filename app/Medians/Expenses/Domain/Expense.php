@@ -1,20 +1,20 @@
 <?php
 
-namespace Medians\Payments\Domain;
+namespace Medians\Expenses\Domain;
 
 
 use Shared\dbaser\CustomController;
 
 use Medians\Users\Domain\User;
 
-class Payment extends CustomController
+class Expense extends CustomController
 {
 
 
 	/**
 	* @var String
 	*/
-	protected $table = 'payments';
+	protected $table = 'expenses';
 
 	/**
 	* @var Array
@@ -55,7 +55,7 @@ class Payment extends CustomController
 	}
 
 
-	public function addPayment(Array $params)
+	public function addExpense(Array $params)
 	{
 		$fields = $this->fillable;
 		$data = [];
@@ -64,9 +64,9 @@ class Payment extends CustomController
 			$data[$field] = isset($params[$field]) ? $params[$field] : null;
 		}
 
-		$payment = Payment::create($data)->update([$data]);
+		$expense = Expense::create($data)->update([$data]);
 
-		return $payment; 
+		return $expense; 
 	}
 
 

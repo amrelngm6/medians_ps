@@ -10,8 +10,8 @@
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
 
-                    <div v-if="content.users" class="w-full grid grid-cols-3 gap gap-6">
-                        <div :key="user" v-for="user in content.users" class="rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
+                    <div v-if="content.users" class="w-full grid lg:grid-cols-3 gap gap-6">
+                        <div :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
                             <div class="flex-shrink-0 w-20">
                                 <div class="relative">
                                     <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
@@ -48,6 +48,10 @@
                                 <input name="params[email]" required="true" type="email" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('email')" >
                                 <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
                                 <input name="params[phone]" required="true" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')">
+
+                                <span class="block my-2" v-text="__('picture')"></span>
+                                <vue-medialibrary-field name="params[profile_image]" :api_url="conf.url" v-model="profile_image"></vue-medialibrary-field>
+
                                 <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
                             </form>
                         </div>
@@ -70,6 +74,10 @@
                                 <input name="params[email]" required="true" type="email" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('email')" v-model="activeItem.email">
                                 <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
                                 <input name="params[phone]" required="true" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
+
+                                <span class="block my-2" v-text="__('picture')"></span>
+                                <vue-medialibrary-field name="params[profile_image]" :key="activeItem.id" :api_url="conf.url" v-model="activeItem.photo"></vue-medialibrary-field>
+
                                 <label class="inline-flex items-center mt-3">
                                     <input name="params[active]" type="checkbox" v-model="activeItem.active" class="form-checkbox h-5 w-5 text-orange-600">
                                     <span class="ml-2 text-gray-700  mx-2">{{__('PUBLISH')}}</span>

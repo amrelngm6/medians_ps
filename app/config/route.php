@@ -66,9 +66,6 @@ Macaw::get('/media-library-api/media', \Medians\Media\Application\MediaControlle
 /**
 * @return devices
 */
-Macaw::get('/devices/create', \Medians\Devices\Application\DeviceController::class.'@create');
-Macaw::get('/devices/edit/(:num)', \Medians\Devices\Application\DeviceController::class.'@edit');
-Macaw::get('/devices/device/(:num)', \Medians\Devices\Application\DeviceController::class.'@edit');
 Macaw::get('/devices/manage', \Medians\Devices\Application\DeviceController::class.'@manage');
 Macaw::get('/devices/orders', \Medians\Devices\Application\DeviceController::class.'@orders');
 Macaw::get('/devices_orders', \Medians\Devices\Application\DeviceController::class.'@orders');
@@ -92,14 +89,12 @@ Macaw::get('/categories/edit/(:num)', \Medians\Categories\Application\CategoryCo
 /**
 * @return Games
 */
-Macaw::get('/games/edit/(:num)', \Medians\Games\Application\GameController::class.'@edit');
 Macaw::get('/games/index', \Medians\Games\Application\GameController::class.'@index');
 Macaw::get('/games', \Medians\Games\Application\GameController::class.'@index');
 
 /**
 * @return Discounts
 */
-Macaw::get('/discounts/edit/(:num)', \Medians\Games\Application\GameController::class.'@edit');
 Macaw::get('/discounts/index', \Medians\Games\Application\GameController::class.'@index');
 Macaw::get('/discounts', \Medians\Games\Application\GameController::class.'@index');
 
@@ -107,8 +102,6 @@ Macaw::get('/discounts', \Medians\Games\Application\GameController::class.'@inde
 /**
 * @return Products
 */
-Macaw::get('/products/create', \Medians\Products\Application\ProductController::class.'@create');
-Macaw::get('/products/edit/(:all)', \Medians\Products\Application\ProductController::class.'@edit');
 Macaw::get('/products/stock_alert', \Medians\Products\Application\ProductController::class.'@stock_alert');
 Macaw::get('/products/stock_out', \Medians\Products\Application\ProductController::class.'@stock_out');
 Macaw::get('/products/orders', \Medians\Products\Application\ProductController::class.'@orders');
@@ -122,24 +115,18 @@ Macaw::get('/products/categories', function ()  {
 /**
 * @return Stock
 */
-Macaw::get('/stock/create', \Medians\Products\Application\StockController::class.'@create');
-Macaw::get('/stock/edit/(:num)', \Medians\Products\Application\StockController::class.'@edit');
 Macaw::get('/stock/index', \Medians\Products\Application\StockController::class.'@index');
 Macaw::get('/stock', \Medians\Products\Application\StockController::class.'@index');
 
 /**
 * @return Payments
 */
-Macaw::get('/payments/create', \Medians\Payments\Application\PaymentController::class.'@create');
-Macaw::get('/payments/edit/(:num)', \Medians\Payments\Application\PaymentController::class.'@edit');
-Macaw::get('/payments/index', \Medians\Payments\Application\PaymentController::class.'@index');
-Macaw::get('/payments', \Medians\Payments\Application\PaymentController::class.'@index');
+Macaw::get('/expenses/index', \Medians\Expenses\Application\ExpenseController::class.'@index');
+Macaw::get('/expenses', \Medians\Expenses\Application\ExpenseController::class.'@index');
 
 /**
 * @return Orders
 */
-Macaw::get('/orders/create', \Medians\Orders\Application\OrderController::class.'@create');
-Macaw::get('/orders/edit/(:all)', \Medians\Orders\Application\OrderController::class.'@edit');
 Macaw::get('/orders/index', \Medians\Orders\Application\OrderController::class.'@index');
 Macaw::get('/invoices/show/(:all)', \Medians\Orders\Application\OrderController::class.'@show');
 Macaw::get('/invoices', \Medians\Orders\Application\OrderController::class.'@index');
@@ -149,9 +136,6 @@ Macaw::get('/orders', \Medians\Orders\Application\OrderController::class.'@index
 /**
 * @return Branches
 */
-Macaw::get('/branches/create', \Medians\Branches\Application\BranchController::class.'@create');
-Macaw::get('/branches/edit/(:num)', \Medians\Branches\Application\BranchController::class.'@edit');
-Macaw::get('/branches/show/(:num)', \Medians\Branches\Application\BranchController::class.'@show');
 Macaw::get('/branches/index', \Medians\Branches\Application\BranchController::class.'@index');
 
 Macaw::get('/settings', \Medians\Settings\Application\SettingsController::class.'@index');
@@ -161,9 +145,6 @@ Macaw::get('/settings', \Medians\Settings\Application\SettingsController::class.
 /**
 * @return Users
 */
-Macaw::get('/users/create', \Medians\Users\Application\UserController::class.'@create');
-Macaw::get('/users/edit/(:num)', \Medians\Users\Application\UserController::class.'@edit');
-Macaw::get('/users/show/(:num)', \Medians\Users\Application\UserController::class.'@show');
 Macaw::get('/users/index', \Medians\Users\Application\UserController::class.'@index');
 Macaw::get('/users/', \Medians\Users\Application\UserController::class.'@index');
 Macaw::get('/users', \Medians\Users\Application\UserController::class.'@index');
@@ -171,9 +152,6 @@ Macaw::get('/users', \Medians\Users\Application\UserController::class.'@index');
 /**
 * @return customers
 */
-Macaw::get('/customers/create', \Medians\Customers\Application\CustomerController::class.'@create');
-Macaw::get('/customers/edit/(:num)', \Medians\Customers\Application\CustomerController::class.'@edit');
-Macaw::get('/customers/show/(:num)', \Medians\Customers\Application\CustomerController::class.'@show');
 Macaw::get('/customers/index', \Medians\Customers\Application\CustomerController::class.'@index');
 Macaw::get('/customers/', \Medians\Customers\Application\CustomerController::class.'@index');
 Macaw::get('/customers', \Medians\Customers\Application\CustomerController::class.'@index');
@@ -182,6 +160,14 @@ Macaw::get('/customers', \Medians\Customers\Application\CustomerController::clas
 * @return customers
 */
 Macaw::get('/reports/(:all)', \Medians\Reports\Application\ReportController::class.'@index');
+
+/**
+* @return Plans
+*/
+Macaw::get('/plans/index', \Medians\Plans\Application\PlanController::class.'@index');
+Macaw::get('/plans', \Medians\Plans\Application\PlanController::class.'@index');
+Macaw::get('/plan_features/index', \Medians\Plans\Application\PlanFeatureController::class.'@index');
+Macaw::get('/plan_features', \Medians\Plans\Application\PlanFeatureController::class.'@index');
 
 
 // Macaw::get('/(:all)', \Medians\DashboardController::class.'@index');

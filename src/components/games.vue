@@ -52,7 +52,7 @@
 
 
                                 <span class="block my-2" v-text="__('picture')"></span>
-                                <vue-medialibrary-field name="params[picture]" :key="activeItem.id" :api_url="conf.url" v-model="activeItem.picture"></vue-medialibrary-field>
+                                <vue-medialibrary-field name="params[picture]" :api_url="conf.url" v-model="picture"></vue-medialibrary-field>
 
                                 <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
                             </form>
@@ -87,7 +87,7 @@
                                 <button class="uppercase py-2 h-10 mt-4 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
                             </form>
                         
-                            <a @click="$parent.delete(activeItem, 'Games.delete')" class="uppercase block text-center   text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white py-2 mt-2">{{__('Remove_this_game')}}</a>
+                            <a @click="$parent.delete(activeItem, 'Game.delete')" class="cursor-pointer uppercase block text-center   text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white py-2 mt-2">{{__('Remove_this_game')}}</a>
 
                         </div>
                     </div>
@@ -116,7 +116,8 @@ export default
                 typesList: [],
             },
 
-            activeItem:null,
+            activeItem:{},
+            picture:null,
             showAddSide:false,
             showEditSide:false,
             showLoader: false,

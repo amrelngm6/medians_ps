@@ -22,12 +22,13 @@
                         <span class="text-left" >
                             <i class="fa" :class="menu.icon"></i>
                         </span>
-                        <span class=" text-sm " v-text="menu.title"></span>
+                        <span class="w-full text-sm " v-text="menu.title"></span>
+                        <i v-if="menu.sub && !menu.show_sub" class="text-sm fa fa-caret-down"></i>
                     </a>
                     <ul v-if="menu.sub && menu.show_sub " class="pb-4" >
                         <li v-for="submenu in menu.sub" >
                             <a v-on:click.prevent="openPage(submenu)" class=" text-purple-800 hover:text-white"  :class="submenu.class" :href="url+submenu.link">
-                                <span class="mx-2 text-sm " v-text="submenu.title"> </span>
+                                <span class="mx-2 text-base " v-text="submenu.title"> </span>
                             </a>
                         </li>
                     </ul>

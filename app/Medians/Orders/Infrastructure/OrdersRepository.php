@@ -35,7 +35,7 @@ class OrdersRepository
 	*/
 	public function find($id) 
 	{
-		return Order::with('items', 'order_devices')
+		return Order::with('order_devices')
 		->find($id);
 	}
 
@@ -44,7 +44,7 @@ class OrdersRepository
 	 */  
 	public function code($code, $branchId = 0)
 	{
-		return Order::with('items','cashier','customer')
+		return Order::with('cashier','customer')
 		->with(['order_device'=> function ($q)
 		{
 			return $q->with('device')->with('game');
@@ -60,8 +60,7 @@ class OrdersRepository
 	 */  
 	public function codeOnly($code)
 	{
-		return Order::with('items')
-		->with(['order_device'=> function ($q)
+		return Order::with(['order_device'=> function ($q)
 		{
 			return $q->with('device')->with('game');
 		}])
@@ -76,7 +75,6 @@ class OrdersRepository
 	{
 
 		return  Order::where('deviceId', $deviceId)
-		->with('items')
 		->with('device')
 		->orderedBy('updated_at','DESC')
 		->get();

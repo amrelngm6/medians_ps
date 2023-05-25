@@ -13,7 +13,7 @@
                         <dashboard_card  classes="bg-gradient-info" :title="__('today_bookings')" :value="content.today_order_devices_count"></dashboard_card>
                         <dashboard_card  classes="bg-gradient-warning" :title="__('today_sold_products')" :value="content.today_order_products_count"></dashboard_card>
                         <dashboard_card  classes="bg-gradient-success" :title="__('today_income')" :value="content.today_income"></dashboard_card>
-                        <dashboard_card  classes="bg-gradient-purple" :title="__('today_payments')" :value="content.today_payments"></dashboard_card>
+                        <dashboard_card  classes="bg-gradient-purple" :title="__('today_expenses')" :value="content.today_expenses"></dashboard_card>
                         <dashboard_card  classes="bg-gradient-primary" :title="__('today_revenue')" :value="content.today_revenue" classes="bg-gradient-danger"></dashboard_card>
 
                     </div>
@@ -106,7 +106,7 @@
                                                 <a :href="'/products/edit/'+item.product.id">{{item.product.name}}</a>
                                             </td>
                                             <td class="text-red-500">{{item.product.price}} {{setting.currency}}</td>
-                                            <td>{{item.created_at | date('Y-m-d H:i a')}}</td>
+                                            <td v-text="dateTimeFormat(item.created_at)"></td>
                                             <td><a target="_blank" :href="'/invoices/show/'+item.invoice.code">{{item.invoice.code}}</a></td>
                                             <td v-text="item.user ? item.user.name : ''"></td>
                                         </tr>
@@ -122,13 +122,14 @@
 </template>
 <script>
 import dashboard_card from './includes/dashboard_card';
-// import medians_datepicker from 'medians_datepicker';
+import moment from 'moment';
 
 
 export default 
 {
     components:{
         dashboard_card,
+        moment
         // medians_datepicker,
     },
     name:'categories',
@@ -166,6 +167,14 @@ export default
 
     methods: 
     {
+        /**
+         * Date Time format 
+         */
+        dateTimeFormat(date)
+        {
+            return moment(date).format('YYYY-MM-DD HH:mm a');
+        },
+
         /**
          * 
          */

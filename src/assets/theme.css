@@ -66,7 +66,7 @@ html {
 }
 
 body {
-	font-family: 'Cairo', sans-serif;
+	font-family: 'Tajawal', sans-serif;
 	font-size: .9375rem;
 	color: #1f1f1f;
 	background-color: #f7f7f7;
@@ -992,9 +992,12 @@ body .btn-primary:focus {
 .bg-gradient-purple {
 	background: linear-gradient(to right, #8a56e6 0, #6f3cca 100%);
 }
-.bg-gradient-to-r {
+body .bg-gradient-to-r {
 	background: linear-gradient(to right, #fff 0, #dbeafa 100%);
 	border-right:4px solid #9a55ff;
+}
+body a.bg-gradient-to-r:hover span {
+	color: #8a56e6; 
 }
 
 /*-----------------
@@ -1879,12 +1882,13 @@ body .btn-primary:focus {
 
 .sidebar-menu ul li a i {
 	display: inline-block;
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 24px;
-	text-align: left;
+	text-align: center;
 	vertical-align: middle;
 	width: 20px;
 	transition: all 0.2s ease-in-out 0s;
+	opacity: .8;
 }
 
 .sidebar-menu ul li.menu-title a i {
@@ -7525,7 +7529,7 @@ table .badge {
 }
 
 table td {
-	font-size: 13px;
+/*	font-size: 13px;*/
 }
 
 .report-img {

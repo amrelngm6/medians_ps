@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Receipt Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .invoice {
+      width: 80mm;
+      margin: 0 auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .invoice-info {
+      display: flex;
+      justify-content: space-between;
+    }
+    .invoice-info span {
+      display: block;
+    }
+    .invoice-items {
+      margin-top: 10px;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .item span {
+      display: block;
+    }
+    .total {
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: right;
+    }
+    .subtotal {
+      margin-top: 10px;
+      font-weight: semibold;
+      text-align: right;
+    }
+    .center {
+      text-align: center;
+      margin: auto auto ;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice">
+    <div class="logo">
+      <img src="{{order.branch.settings.logo}}" alt="Company Logo" width="100">
+    </div>
+    <h3 class="center">Medians PS</h3>
+    <br />
+    <div class="invoice-info">
+      <span>Invoice #{{order.code}}</span>
+      <span>Date: {{order.date}}</span>
+    </div>
+    <br />
+    <!-- {{order.order_device.device_cost}} -->
+    <!-- {{order.cashier.name}} -->
+    <div class="invoice-info">
+      <span>Start: {{order.order_device.start_time|date('H:i A')}}</span>
+      <span>End: {{order.order_device.end_time|date('H:i A')}}</span>
+    </div>
+    <br />
+    <div class="invoice-info">
+      <small>Payment: <b>{{order.payment_method}}</b></small>
+      <small>Cashier: <b>{{order.cashier.first_name}}</b></small>
+    </div>
+    <br />
+    <hr />
+    <div class="invoice-items">
+      <div class="item">
+        <span>Booking</span>
+        <span>{{order.order_device.subtotal}} {{order.branch.settings.currency}}</span>
+      </div>
+      {% for product in order.order_device.products %}
+      <div class="item">
+        <span>{{product.product_name}}</span>
+        <span>{{product.subtotal}} {{order.branch.settings.currency}}</span>
+      </div>
+      {% endfor %}
+    </div>
+    <br />
+    <div class="subtotal">
+      Sub-Total: <span>{{order.subtotal}} {{order.branch.settings.currency}}</span>
+    </div>
+    <div class="subtotal">
+      Tax: <span>{{order.tax}} {{order.branch.settings.currency}}</span>
+    </div>
+    <div class="subtotal">
+      Discount: <span>{{order.discount}} {{order.branch.settings.currency}}</span>
+    </div>
+    <div class="total">
+      Total due: <span>{{order.total_cost}} {{order.branch.settings.currency}}</span>
+    </div>
+    <hr />
+    <div class="center">
+      <img class="center" src="/invoices/qr_code/{{order.code}}" width="100">
+    </div>
+    <div class="center">
+      <small>{{order.branch.settings.invoice_notes}}</small>
+      <br />
+      <small>{{order.branch.settings.invoice_terms}}</small>
+      <br />
+      <small>{{order.branch.settings.address}}, </small>
+      <small> {{order.branch.settings.city}} </small>
+    </div>
+  </div>
+  <script>
+  </script>
+</body>

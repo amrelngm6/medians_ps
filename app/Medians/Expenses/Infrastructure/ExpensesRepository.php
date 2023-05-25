@@ -1,14 +1,14 @@
 <?php
 
-namespace Medians\Payments\Infrastructure;
+namespace Medians\Expenses\Infrastructure;
 
-use Medians\Payments\Domain\Payment;
+use Medians\Expenses\Domain\Expense;
 
 
 /**
- * Payment class database queries
+ * Expense class database queries
  */
-class PaymentsRepository 
+class ExpensesRepository 
 {
 
 
@@ -23,7 +23,7 @@ class PaymentsRepository
 
 	public function getModel()
 	{
-		return new Payment;
+		return new Expense;
 	}
 
 	/*
@@ -32,7 +32,7 @@ class PaymentsRepository
 	public function find($id) 
 	{
 
-		return Payment::find($id);
+		return Expense::find($id);
 	}
 
 	/*
@@ -41,7 +41,7 @@ class PaymentsRepository
 	public function get() 
 	{
 
-		return Payment::with('user')
+		return Expense::with('user')
 		->where('branch_id', $this->app->branch->id)
 		->orderBy('id', 'DESC')
 		->get();
@@ -54,7 +54,7 @@ class PaymentsRepository
 	public function getByDate($params )
 	{
 
-	  	$check = Payment::where('branch_id' , $this->app->branch->id)
+	  	$check = Expense::where('branch_id' , $this->app->branch->id)
 		->with('user');
 
 	  	if (!empty($params["created_by"]))
@@ -78,7 +78,7 @@ class PaymentsRepository
 	 */
 	public function getSumByDate($sumField, $start, $end)
 	{
-		$check = Payment::where('branch_id' , $this->app->branch->id)->with('user');
+		$check = Expense::where('branch_id' , $this->app->branch->id)->with('user');
   		$check = $check->whereBetween('created_at' , [isset($start) ? $start : date('Y-m-d') , isset($end) ? $end : date('Y-m-d')]);
   		return $check->orderBy('id', 'DESC')->sum($sumField);
 	} 
@@ -91,7 +91,7 @@ class PaymentsRepository
 	public function store($data) 
 	{	
 
-		$Model = new Payment();
+		$Model = new Expense();
 		$dataArray = ['branch_id'=>$this->app->branch->id];
 		foreach ($data as $key => $value) 
 		{
@@ -102,7 +102,7 @@ class PaymentsRepository
 		}	
 
 		// Return the FBUserInfo object with the new data
-    	$Object = Payment::create($dataArray);
+    	$Object = Expense::create($dataArray);
     	$Object->update($dataArray);
 
     	return $Object;
@@ -115,7 +115,7 @@ class PaymentsRepository
     public function update($data)
     {
 
-		$Object = Payment::find($data['id']);
+		$Object = Expense::find($data['id']);
 		
 		// Return the FBUserInfo object with the new data
     	$Object->update( (array) $data);
@@ -134,7 +134,7 @@ class PaymentsRepository
 	{
 		try {
 			
-			return Payment::find($id)->delete();
+			return Expense::find($id)->delete();
 
 		} catch (Exception $e) {
 

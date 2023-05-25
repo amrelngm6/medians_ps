@@ -64,13 +64,12 @@ class DashboardController
 
 			$GamesRepository = new Games\Infrastructure\GameRepository();
 
-			$PaymentsRepository = new Payments\Infrastructure\PaymentsRepository($this->app);
+			$ExpensesRepository = new Expenses\Infrastructure\ExpensesRepository($this->app);
 
 			// $today_income = (new Orders\Infrastructure\OrdersRepository($this->app))->getByDate(['start'=>date('Y-m-d 00:00:00'), 'end'=>date('Y-m-d 23:59:59')])->sum('total_cost');
 			$today_income = $DevicesRepository->getSumByDate('total_cost', $start, $end);
 
-			// $today_payments = (new Payments\Infrastructure\PaymentsRepository($this->app))->getByDate(['start'=>date('Y-m-d'), 'end'=>date('Y-m-d')])->sum('amount');
-			$today_payments = $PaymentsRepository->getSumByDate('amount', $start, $end);
+			$today_expenses = $ExpensesRepository->getSumByDate('amount', $start, $end);
 
             
             $latest_order_products =  (new Products\Infrastructure\StockRepository($this->app))->getLatest(5)->get();
@@ -98,8 +97,8 @@ class DashboardController
 	            'latest_order_products' => $latest_order_products,
 	            'today_order_products_count' => $today_order_products_count,
 	            'today_income' => round($today_income, 2),
-	            'today_revenue' => round(round($today_income, 2) - round($today_payments, 2), 2),
-	            'today_payments' => round($today_payments, 2),
+	            'today_revenue' => round(round($today_income, 2) - round($today_expenses, 2), 2),
+	            'today_expenses' => round($today_expenses, 2),
 	            'most_played_games' => $GamesRepository->mostPlayed(),
 		        'formAction' => '/login',
 		        'load_vue' => true,
