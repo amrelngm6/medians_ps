@@ -57,15 +57,18 @@ class AuthService
 	}
 
 
+	/**
+	 * User login request
+	 */ 
 	public function userLogin()
 	{
 		$this->app = new \config\APP;
 		
-        $requestData = $this->app->request()->get('params');
+        $params = $this->app->request()->get('params');
 
         try {
             
-            $checkUser = $this->checkLogin($requestData['email'], $this->encrypt($requestData['password']));
+            $checkUser = $this->checkLogin($params['email'], $this->encrypt($params['password']));
 
             if (!empty($checkUser->id))
             {
@@ -107,6 +110,54 @@ class AuthService
 		return $checkLogin;
 	}
 
+
+	/**
+	 * User login request
+	 */ 
+	public function userSignup()
+	{
+		$this->app = new \config\APP;
+		
+        $params = $this->app->request()->get('params');
+
+        try {
+            
+            $validate = $this->validateSignup($params);
+
+            if ($validate)
+            	return $validate;
+
+
+
+        } catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
+        	
+        }
+	}
+
+	/**
+	 * Validate the password length
+	 * 
+	 */ 
+	public function validateSignup($password)
+	{
+
+        if (empty($this->repo->getByEmail($params['email'])))
+			return json_encode(array('error'=>__('Email already found')))
+
+        if (empty($params['email']))
+			return json_encode(array('error'=>__('Email required')))
+
+        if (empty($params['mobile']))
+			return json_encode(array('error'=>__('MOBILE_ERR')))
+
+        if (empty($params['first_name']))
+			return json_encode(array('error'=>__('Name required')))
+
+		if (strlen($password) < $this->passLen)
+			return __("Password length must be $this->passLen at least ");
+
+	} 
 
 	/**
 	 * Validate the password length
