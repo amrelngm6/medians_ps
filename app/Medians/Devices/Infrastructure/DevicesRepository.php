@@ -138,6 +138,22 @@ class DevicesRepository
 	}
 
 
+	public function device_orders($params,$limit = 10)
+	{
+		$query = OrderDevice::with('game')->with(['device'=>function($q){
+			return $q->with('prices');
+		}])->with('user')->with('products')->with('customer')
+		->where('branch_id', isset($params['branch_id']) ? $params['branch_id'] : $this->app->branch->id);
+
+		if (!empty($params['status']) && in_array($params['status'], ['active', 'completed', 'paid', 'canceled', 'new']) )
+		{
+			$query->where('status', $params['status']);
+		}
+		
+		return $query->limit($limit)->orderBy('id', 'DESC')->get();
+	}
+
+
 
 	public function eventsByDate($params,$limit = 10)
 	{

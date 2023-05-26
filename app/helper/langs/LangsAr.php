@@ -1046,6 +1046,9 @@ class LangsAr
 		,'Most played games' => 'أكثر الألعاب تشغيلا'
 		,'Latest paid order devices' => 'أحدث حجوزات الأجهزة'
 		,'Today income' => 'دخل اليوم'
+		,'Upcoming bookings' => 'الحجوزات القادمة'
+		,'canceled bookings' => 'الحجوزات الملغاة'
+		,'expenses' => 'المصروفات'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

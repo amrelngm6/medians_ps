@@ -78,7 +78,7 @@ class StockController
 	    return render('stock', [
 	        'title' => __('Products Stock'),
 	        'load_vue' => true,
-	        'items' => $this->repo->get($params),
+	        'items' => $this->repo->get($params, 1000),
 	        'products' => $this->ProductsRepo->get(),
 	        'columns' => $this->columns(),
 	    ]);

@@ -37,10 +37,10 @@ class ProductsRepository
 	/*
 	// Find items by `params` 
 	*/
-	public function get($params = null) 
+	public function get($limit = 100 ) 
 	{
 		return Product::with('category')
-		->where('branch_id', $this->app->branch->id)->get();
+		->where('branch_id', $this->app->branch->id)->limit($limit)->get();
 	}
 
 	/**

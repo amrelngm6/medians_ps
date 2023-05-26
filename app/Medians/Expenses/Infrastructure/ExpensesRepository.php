@@ -38,12 +38,13 @@ class ExpensesRepository
 	/*
 	// Find items by `params` 
 	*/
-	public function get() 
+	public function get($limit = 100) 
 	{
 
 		return Expense::with('user')
 		->where('branch_id', $this->app->branch->id)
 		->orderBy('id', 'DESC')
+		->limit($limit)
 		->get();
 	}
 

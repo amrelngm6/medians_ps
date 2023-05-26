@@ -10,18 +10,18 @@ use Medians\Games\Infrastructure\GameRepository;
 class DeviceController 
 {
 
-	/*
-	// @var Object
+	/**
+	* @var Object
 	*/
 	protected $repo;
 
-	/*
-	// @var Device
+	/**
+	* @var Device
 	*/
 	protected $Device;
 
-	/*
-	// @var Array
+	/**
+	* @var Array
 	*/
 	protected $app;
 	
@@ -143,7 +143,7 @@ class DeviceController
 	public function query($params)
 	{
 		$params['branch_id'] = $this->app->branch->id;
-		return $this->repo->events($params, 20);
+		return $this->repo->device_orders($params, 1000);
 	}
 
 	/**

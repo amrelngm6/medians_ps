@@ -33,7 +33,7 @@ class StockRepository
 	/**
 	* Find items by `params` 
 	*/
-	public function get($params = null) 
+	public function get($params = null, $limit = 100) 
 	{
 		$query =  Stock::with('user', 'product', 'invoice')
 
@@ -64,7 +64,7 @@ class StockRepository
 			$query = $query->whereBetween('date', [$params['start'], $params['end']]);
 		}
 
-	  	return $query->orderBy('id', 'DESC')->get();
+	  	return $query->orderBy('id', 'DESC')->limit($limit)->get();
 	}
 
 	/*

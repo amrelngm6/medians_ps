@@ -79,7 +79,7 @@
                 </div>
                 <div class="w-full flex">
                     <div class="w-full text-center">
-                        <div v-if="!activeItem.id" class="mt-10 w-32 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
+                        <div v-if="!activeItem.id" class="mt-10 w-40 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
                             <label @click="submit('Event.create', activeItem, 'active')" class="text-center cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary block hover:bg-purple-600 hover:text-white "  v-text="__('start_playing')"></label>
                         </div>
                     </div>

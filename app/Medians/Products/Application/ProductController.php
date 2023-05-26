@@ -75,7 +75,7 @@ class ProductController
 		return render('products', [
 	        'load_vue' => true,
 	        'title' => __('Products list'),
-	        'items' => $this->repo->get(),
+	        'items' => $this->repo->get(1000),
 	        'columns' => $this->columns(),
 	        'typesList' => $this->repo->getModel()->categoriesList(),
 	        'stock' => new StockController(null),

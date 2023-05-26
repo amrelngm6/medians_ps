@@ -104,7 +104,7 @@ class OrderController
 	    	'load_vue'=> true,
 	        'columns' => $this->columns(),
 	        'title' => __('Orders list'),
-	        'items' => $this->repo->getByDate($params)->get(),
+	        'items' => $this->repo->getByDate($params)->limit(1000)->get(),
 	        'todayOrders' => $this->repo->getByDate(['status' => $params['status'], 'start'=>date('Y-m-d' ), 'end'=>date('Y-m-d', strtotime('+1 day') )])->count(),
 	        'lastWeekOrders' => $this->repo->getByDate(['status' => $params['status'], 'start'=>date('Y-m-d',strtotime('-1 week')), 'end'=>date('Y-m-d', strtotime('+1 day'))])->count(),
 	        'lastMonthOrders' => $this->repo->getByDate(['status' => $params['status'], 'start'=>date('Y-m-01'), 'end'=>date('Y-m-01', strtotime('+1 month'))])->count(),

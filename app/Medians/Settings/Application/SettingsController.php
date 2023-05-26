@@ -54,9 +54,8 @@ class SettingsController
 	}
 
 
-
-	/*
-	// Return the Settings
+	/**
+	* Return the Settings
 	*/
 	public function update() 
 	{
@@ -75,8 +74,8 @@ class SettingsController
 
 
 
-	/*
-	// Return the Settings
+	/**
+	* Return the Settings
 	*/
 	public function updateSettings($params) 
 	{
