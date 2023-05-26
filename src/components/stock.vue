@@ -85,7 +85,6 @@ export default
     computed: {
         bindings() {
 
-
             this.content.columns[1]= {
                     key: this.__("title"),
                     component: dataTableTitleImg,

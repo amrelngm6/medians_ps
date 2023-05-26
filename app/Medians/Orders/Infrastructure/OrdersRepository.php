@@ -115,6 +115,23 @@ class OrdersRepository
 	}
 
 	/*
+	// Find all items between two days By BranchId
+	*/
+	public function getByDateCharts($params )
+	{
+
+	  	$check = Order::where('branch_id' , $this->app->branch->id)->with(['order_device'=> function ($q)
+		{
+			return $q->with('device')->with('game');
+		}])
+		->with('cashier');
+
+  		$check = $check->whereBetween('date' , [$params['start'] , $params['end']])->groupBy('date');
+
+  		return $check->orderBy('id', 'DESC')->selectRaw('SUM(total_cost) as y, date as label', )->get();
+	}
+
+	/*
 	// Find all items between two days
 	*/
 	public function getTotalByDate($date1, $date2 )

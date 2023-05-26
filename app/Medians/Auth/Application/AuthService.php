@@ -12,28 +12,20 @@ use Medians\Auth\Domain\AuthModel;
 class AuthService 
 {
 
-	/*
-	/ @var Int
+	/**
+	 * Minimum length of the user password
+	 * 
+	 * @var Int
 	*/
 	private $passLen = 5;
 
-	/*
-	/ @var String
-	*/
-	private $email;
-
-	/*
-	/ @var String
-	*/
-	private $password ;
-
-	/*
-	/ @var CustomerModel
+	/**
+	* @var Instance AuthModel
 	*/
 	private $AuthModel;
 
-	/*
-	/ @var Instance
+	/**
+	* @var Instance Repo
 	*/
 	private $repo;
 
@@ -91,17 +83,19 @@ class AuthService
         }
 	}
 
+	/**
+	 * Check login credentials
+	 * 
+	 * @return Object / String 
+	 */ 
 	public function checkLogin($email, $password)
 	{
-
 
 		$checkLogin = $this->repo->checkLogin($email, $password);
 
 		if (empty($checkLogin->id))
 		{
             return __("User credentials not valid");
-
-			// throw new \Exception(, 1);
 		}
 
 		if (empty($checkLogin->active))
@@ -114,6 +108,10 @@ class AuthService
 	}
 
 
+	/**
+	 * Validate the password length
+	 * 
+	 */ 
 	public function validatePassword($password)
 	{
 		if (strlen($password) < $this->passLen)
@@ -124,38 +122,51 @@ class AuthService
 	} 
 
 
+	/**
+	 * Check session is valid or not 
+	 * 
+	 * @return ? AuthModel
+	 */ 
 	public function checkSession($code = null) 
 	{
-		$AuthModel = new AuthModel($code);
+		$this->AuthModel = new AuthModel($code);
 
-		if (!empty ( $AuthModel->checkSession($code) ))
+		if (!empty ( $this->AuthModel->checkSession($code) ))
 		{
-			return $this->repo->find($AuthModel->checkSession($code));
+			return $this->repo->find($this->AuthModel->checkSession($code));
 		}
 	}
 
 
 
+	/**
+	 * Set session  
+	 */ 
 	public function setSession($data, $code = null) 
 	{
 
-		$AuthModel = new AuthModel($code);
+		$this->AuthModel = new AuthModel($code);
 
-		if ($AuthModel->setData($data)) 
+		if ($this->AuthModel->setData($data)) 
 		{
-			return $AuthModel->checkSession($code);
+			return $this->AuthModel->checkSession($code);
 		}
 	}
 
 
+	/**
+	 * Clear session after logout
+	 */ 
 	public function unsetSession() 
 	{
 		
-		$AuthModel = new AuthModel();
-		return $AuthModel->unsetSession();
+		$this->AuthModel = new AuthModel();
+		return $this->AuthModel->unsetSession();
 	}
 
-
+	/**
+	 * Encryption algoritm for password storage
+	 */ 
 	public static function encrypt($value) : String 
 	{
 		return sha1(md5($value));

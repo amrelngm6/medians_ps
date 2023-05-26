@@ -27,9 +27,18 @@ class Game extends CustomController
 	];
 
 
-	public $appends = ['photo'];
+	public $appends = ['photo', 'label', 'y'];
 
 
+	public function getLabelAttribute() 
+	{
+		return $this->name;
+	}
+
+	public function getYAttribute() 
+	{
+		return isset($this->bookings_count) ? $this->bookings_count : 0;
+	}
 	public function getPhotoAttribute() : ?String
 	{
 		return $this->photo();

@@ -34,6 +34,8 @@ Macaw::get('/dashboard', \Medians\DashboardController::class.'@index');
 Macaw::get('/', \Medians\DashboardController::class.'@index'); 
 
 
+
+// API POST requests
 Macaw::post('/api/create', \Medians\APIController::class.'@create');
 Macaw::post('/api/update', \Medians\APIController::class.'@update');
 Macaw::post('/api/delete', \Medians\APIController::class.'@delete');
@@ -44,8 +46,9 @@ Macaw::post('/api/search', \Medians\APIController::class.'@search');
 Macaw::post('/api/(:all)', \Medians\APIController::class.'@handle');
 Macaw::post('/api', \Medians\APIController::class.'@handle');
 
-Macaw::get('/api/calendar', \Medians\Devices\Application\DeviceController::class.'@calendar');
-Macaw::get('/api/calendar_events', \Medians\Devices\Application\DeviceController::class.'@events');
+// API GET requests
+Macaw::get('/api/calendar', \Medians\Devices\Application\CalendarController::class.'@calendar');
+Macaw::get('/api/calendar_events', \Medians\Devices\Application\CalendarController::class.'@events');
 Macaw::get('/api/(:all)', \Medians\APIController::class.'@handle');
 
 Macaw::get('/logout', function () 
@@ -56,7 +59,9 @@ Macaw::get('/logout', function ()
 
 
 
-
+/**
+* @return Media Library requests
+*/
 Macaw::post('/media-library-api/delete', \Medians\Media\Application\MediaController::class.'@delete');
 Macaw::post('/media-library-api/(:all)', \Medians\Media\Application\MediaController::class.'@upload');
 Macaw::get('/media-library-api/media', \Medians\Media\Application\MediaController::class.'@media');
@@ -69,9 +74,9 @@ Macaw::get('/media-library-api/media', \Medians\Media\Application\MediaControlle
 Macaw::get('/devices/manage', \Medians\Devices\Application\DeviceController::class.'@manage');
 Macaw::get('/devices/orders', \Medians\Devices\Application\DeviceController::class.'@orders');
 Macaw::get('/devices_orders', \Medians\Devices\Application\DeviceController::class.'@orders');
-Macaw::get('/devices/calendar', \Medians\Devices\Application\DeviceController::class.'@index');
-Macaw::get('/calendar', \Medians\Devices\Application\DeviceController::class.'@index');
 Macaw::get('/devices/index', \Medians\Devices\Application\DeviceController::class.'@index');
+Macaw::get('/devices/calendar', \Medians\Devices\Application\CalendarController::class.'@index');
+Macaw::get('/calendar', \Medians\Devices\Application\CalendarController::class.'@index');
 
 Macaw::get('/devices/categories', function ()  {
     try 
@@ -134,10 +139,8 @@ Macaw::get('/orders', \Medians\Orders\Application\OrderController::class.'@index
 
 
 /**
-* @return Branches
+* @return Settings request
 */
-Macaw::get('/branches/index', \Medians\Branches\Application\BranchController::class.'@index');
-
 Macaw::get('/settings', \Medians\Settings\Application\SettingsController::class.'@index');
 
 
@@ -156,10 +159,24 @@ Macaw::get('/customers/index', \Medians\Customers\Application\CustomerController
 Macaw::get('/customers/', \Medians\Customers\Application\CustomerController::class.'@index');
 Macaw::get('/customers', \Medians\Customers\Application\CustomerController::class.'@index');
 
+
+
+
 /**
-* @return customers
+ * Master requests
+ * The next reuests available only 
+ * if the user is Master 
+ * has role_id = 1
+ */ 
+
+if ($app->auth()->role_id != 1)
+    return $app->run();
+
+/**
+* @return Branches
 */
-Macaw::get('/reports/(:all)', \Medians\Reports\Application\ReportController::class.'@index');
+Macaw::get('/branches/index', \Medians\Branches\Application\BranchController::class.'@index');
+
 
 /**
 * @return Plans

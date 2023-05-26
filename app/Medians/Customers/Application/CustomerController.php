@@ -129,7 +129,7 @@ class CustomerController
 
 
 	/**
-	*  Store item
+	*  Update item
 	*/
 	public function update($request, $app) 
 	{
@@ -151,8 +151,11 @@ class CustomerController
 
 	/**
 	 * Find customer by mobile
+	 * 
+	 * @param String
+	 * 
+	 * @return JSON
 	 */
-
 	public function search($text)
 	{
 		$data = $this->repo->search($text);

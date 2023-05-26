@@ -6,19 +6,23 @@ namespace Medians\Auth\Domain;
 class AuthModel 
 {
 
-	/*
-	/ @var Object
+	/**
+	* @var Object
 	*/
 	private $data;
 
-	/*
-	/ @var String
+	/**
+	* @var String
 	*/
 	private $code = 'CustomerAuth';
 
 
 
-
+	/**
+	 * Custom code as session uniquename
+	 * 
+	 * @param String
+	 */  
 	function __construct($code = null)
 	{
 		if (!empty($code))
@@ -28,7 +32,11 @@ class AuthModel
 	}
 
 
-
+	/**
+	 * Update data to set session
+	 * 
+	 * @param Object
+	 */  
 	public function setData($data) : void
 	{
 		$this->data = $data;
@@ -36,6 +44,11 @@ class AuthModel
 	}
 
 
+	/**
+	 * Set session 
+	 * 
+	 * @param Object
+	 */  
 	protected function setSession($data) : void
 	{
 		$data = (object) $data;

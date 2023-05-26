@@ -43,19 +43,6 @@ class CategoryController
 
 
 
-
-	public function edit(int $id ) 
-	{
-
-		return render('views/admin/forms/edit_device_type.html.twig', [
-	        'title' => __('edit_category'),
-	        'category' => $this->repo->find($id),
-	    ]);
-
-	}
-
-
-
 	public function store() 
 	{
 

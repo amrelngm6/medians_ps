@@ -26,8 +26,18 @@ class DevicesRepository
 	}
 
 
-	/*
-	// Find item by `id` 
+
+
+	/**
+	* Return Device Model  
+	*/
+	public function getModel()
+	{
+		return new Device;
+	}
+
+	/**
+	* Find item by `id` 
 	*/
 	public function find($deviceId)
 	{
@@ -37,8 +47,8 @@ class DevicesRepository
 	}
 
 
-	/*
-	// Find item by `branch` 
+	/**
+	* Find item by `branch` 
 	*/
 	public function getByBranch($branchId)
 	{
@@ -49,8 +59,8 @@ class DevicesRepository
 		->get();
 	}
 
-	/*
-	// Find all items 
+	/**
+	* Find all items 
 	*/
 	public function getAll()
 	{
@@ -61,8 +71,8 @@ class DevicesRepository
 		->get();
 	}
 
-	/*
-	// Find all items 
+	/**
+	* Find all items 
 	*/
 	public function get($limit = 20)
 	{
@@ -74,8 +84,18 @@ class DevicesRepository
 		->get();
 	}
 
-	/*
-	// Find all items 
+	/**
+	 * Get the most used devices
+	 */ 
+	public function mostPlayed($limit = 5)
+	{
+		return Device::withCount('bookings')->where('branch_id', $this->app->branch->id)->orderBy('bookings_count', 'desc')->limit($limit)->get();
+	}
+
+
+
+	/**
+	* Find all items 
 	*/
 	public function getApi($limit = 20)
 	{

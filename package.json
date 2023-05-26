@@ -9,20 +9,17 @@
   },
   "dependencies": {
     "@andresouzaabreu/vue-data-table": "^3.3.3",
+    "@canvasjs/charts": "^3.7.7",
     "@vueform/multiselect": "^2.6.2",
-    "@vuepic/vue-datepicker": "^4.5.1",
+    "apexcharts": "^3.40.0",
     "chart.js": "^4.3.0",
     "core-js": "^2.6.5",
     "qrcode.vue": "^3.4.0",
     "v-dropdown": "^3.0.0-beta.1",
     "v-selectmenu": "^2.0.2",
     "vue": "^2.6.10",
-    "vue-chartjs": "^5.2.0",
-    "vue-morris": "^1.1.0",
     "vue-native-notification": "^1.1.1",
-    "vue-search-select": "^3.1.0",
-    "vue3-daterange-picker": "^1.0.1",
-    "vuejs-datepicker": "^1.6.2"
+    "vue-search-select": "^3.1.0"
   },
   "peerDependencies": {},
   "devDependencies": {

@@ -31,7 +31,19 @@ class Device extends CustomController
 	];
 
 
-	public $appends = ['picture', 'price', 'name'];
+	public $appends = ['picture', 'price', 'name', 'label', 'y'];
+
+
+	public function getLabelAttribute() 
+	{
+		return $this->name;
+	}
+
+	public function getYAttribute() 
+	{
+		return isset($this->bookings_count) ? $this->bookings_count : 0;
+	}
+	
  
 
  	/**

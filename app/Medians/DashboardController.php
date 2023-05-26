@@ -19,7 +19,9 @@ class DashboardController
 	}
 
 	/**
-	 * Model object 
+	 * Load dashboard page
+	 * 
+	 * @return response for Vue  
 	 */
 	public function index()
 	{
@@ -35,7 +37,9 @@ class DashboardController
 
 
 	/**
-	 * Model object 
+	 * Get the response as array and return as JSON
+	 * 
+	 * @return JSON of the response  
 	 */
 	public function json()
 	{
@@ -50,7 +54,9 @@ class DashboardController
 	} 
 
 	/**
-	 * Model object 
+	 * Dashboard response as Array  
+	 * 
+	 * @return Array  
 	 */
 	public function data()
 	{
@@ -87,6 +93,13 @@ class DashboardController
 
             $today_order_devices_count = $DevicesRepository->eventsByDate(['start'=>date('Y-m-d'), 'end'=>date('Y-m-d')])->count();
 
+            /**
+            * Order repository to get
+            * Sales for last ( 20 ) Days
+            */ 
+            $OrderRepo = new Orders\Infrastructure\OrdersRepository;
+            $orders_charts = $OrderRepo->getByDateCharts(['start'=>date('Y-m-d',strtotime('-100 days')), 'end'=>date('Y-m-d')]);
+
 	        return [
 	            'title' => 'Dashboard',
 	            'active_order_devices_count' => $active_order_devices_count,
@@ -100,6 +113,8 @@ class DashboardController
 	            'today_revenue' => round(round($today_income, 2) - round($today_expenses, 2), 2),
 	            'today_expenses' => round($today_expenses, 2),
 	            'most_played_games' => $GamesRepository->mostPlayed(),
+	            'most_played_devices' => $DevicesRepository->mostPlayed(),
+	            'orders_charts' => $orders_charts,
 		        'formAction' => '/login',
 		        'load_vue' => true,
 	            // 'formAction' => $this->app->CONF['url'],
