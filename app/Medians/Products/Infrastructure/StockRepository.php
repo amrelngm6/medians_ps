@@ -67,8 +67,8 @@ class StockRepository
 	  	return $query->orderBy('id', 'DESC')->limit($limit)->get();
 	}
 
-	/*
-	// Find available stock 
+	/**
+	* Find available stock 
 	*/
 	public function getStockObject($product, $qty = 1) 
 	{
@@ -95,8 +95,8 @@ class StockRepository
 
 
 	
-	/*
-	// Find count by month
+	/**
+	* Find count by month
 	*/
 	public function getByMonth($month, $nextmonth )
 	{
@@ -111,8 +111,8 @@ class StockRepository
 	}
 	
 	
-	/*
-	// Find count by month
+	/**
+	* Find count by month
 	*/
 	public function getLatest($limit ) 
 	{

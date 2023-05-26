@@ -25,8 +25,8 @@ class ProductsRepository
 		return new Product;
 	}
 
-	/*
-	// Find item by `id` 
+	/**
+	* Find item by `id` 
 	*/
 	public function find($id) 
 	{
@@ -34,8 +34,8 @@ class ProductsRepository
 		return Product::find($id);
 	}
 
-	/*
-	// Find items by `params` 
+	/**
+	* Find items by `params` 
 	*/
 	public function get($limit = 100 ) 
 	{
@@ -106,8 +106,8 @@ class ProductsRepository
 	}
 
 
-	/*
-	// Update item to database
+	/**
+	* Update item to database
 	*/
     public function update($data)
     {

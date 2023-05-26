@@ -15,8 +15,8 @@ class DevicesTypesRepository
 	}
 
 
-	/*
-	// Find item by `id` 
+	/**
+	* Find item by `id` 
 	*/
 
 	public function find($deviceTypeId)
@@ -24,8 +24,8 @@ class DevicesTypesRepository
 		return DeviceType::find($deviceTypeId);
 	}
 
-	/*
-	// Find all items 
+	/**
+	* Find all items 
 	*/
 	public function getAll()
 	{

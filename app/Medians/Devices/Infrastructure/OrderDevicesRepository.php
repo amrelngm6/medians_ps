@@ -17,8 +17,8 @@ class OrderDevicesRepository
 	}
 
 
-	/*
-	// Find item by `id` 
+	/**
+	* Find item by `id` 
 	*/
 	public function find($id)
 	{

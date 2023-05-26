@@ -68,8 +68,8 @@ class OrdersRepository
 		->first();
 	} 
 	
-	/*
-	// Find items by `deviceId` 
+	/**
+	* Find items by `deviceId` 
 	*/
 	public function getByDevice($deviceId) 
 	{
@@ -84,8 +84,8 @@ class OrdersRepository
 
 	
 
-	/*
-	// Find all items between two days By BranchId
+	/**
+	* Find all items between two days By BranchId
 	*/
 	public function getByDate($params )
 	{
@@ -114,8 +114,8 @@ class OrdersRepository
   		return $check->orderBy('id', 'DESC');
 	}
 
-	/*
-	// Find all items between two days By BranchId
+	/**
+	* Find all items between two days By BranchId
 	*/
 	public function getByDateCharts($params )
 	{
@@ -131,8 +131,8 @@ class OrdersRepository
   		return $check->orderBy('id', 'DESC')->selectRaw('SUM(total_cost) as y, date as label', )->get();
 	}
 
-	/*
-	// Find all items between two days
+	/**
+	* Find all items between two days
 	*/
 	public function getTotalByDate($date1, $date2 )
 	{

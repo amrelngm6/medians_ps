@@ -10,18 +10,18 @@ use Medians\Categories\Infrastructure\CategoryRepository;
 class CalendarController 
 {
 
-	/*
-	// @var Object
+	/**
+	* @var Object
 	*/
 	protected $repo;
 
-	/*
-	// @var Device
+	/**
+	* @var Device
 	*/
 	protected $Device;
 
-	/*
-	// @var Array
+	/**
+	* @var Array
 	*/
 	protected $app;
 	

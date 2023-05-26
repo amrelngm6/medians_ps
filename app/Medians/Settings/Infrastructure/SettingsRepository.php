@@ -17,8 +17,8 @@ class SettingsRepository
 		$this->app = new \config\APP;
 	}
 
-	/*
-	// Find item by `id` 
+	/**
+	* Find item by `id` 
 	*/
 	public function find($id) : ?Settings
 	{
@@ -27,8 +27,8 @@ class SettingsRepository
 
 	}
 
-	/*
-	// Find item by `id` 
+	/**
+	* Find item by `id` 
 	*/
 	public function getByCode($code) : ? String
 	{
@@ -42,8 +42,8 @@ class SettingsRepository
 		}
 	}
 
-	/*
-	// Find all items 
+	/**
+	* Find all items 
 	*/
 	public function getAll()
 	{

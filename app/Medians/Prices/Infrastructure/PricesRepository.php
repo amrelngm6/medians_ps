@@ -12,8 +12,8 @@ class PricesRepository
 
 
 
-	/*
-	// Find item by `id` 
+	/**
+	* Find item by `id` 
 	*/
 	public function find($id)
 	{
@@ -23,8 +23,8 @@ class PricesRepository
 	}
 
 
-	/*
-	// Find item by `branch` 
+	/**
+	* Find item by `branch` 
 	*/
 	public function getByDevice($deviceId)
 	{
@@ -33,8 +33,8 @@ class PricesRepository
 
 
 
-	/*
-	// Save item to database
+	/**
+	* Save item to database
 	*/
 	public function store($data) : Prices
 	{
@@ -44,8 +44,8 @@ class PricesRepository
 	}
 
 
-	/*
-	// Update item to database
+	/**
+	* Update item to database
 	*/
 	public function edit($object) : Prices
 	{
@@ -57,8 +57,8 @@ class PricesRepository
 	}
 	
 
-	/*
-	// Delet item from database
+	/**
+	* Delet item from database
 	*/
 	public function delete($object) 
 	{

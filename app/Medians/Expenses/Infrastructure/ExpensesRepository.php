@@ -26,8 +26,8 @@ class ExpensesRepository
 		return new Expense;
 	}
 
-	/*
-	// Find item by `id` 
+	/**
+	* Find item by `id` 
 	*/
 	public function find($id) 
 	{
@@ -35,8 +35,8 @@ class ExpensesRepository
 		return Expense::find($id);
 	}
 
-	/*
-	// Find items by `params` 
+	/**
+	* Find items by `params` 
 	*/
 	public function get($limit = 100) 
 	{
@@ -110,8 +110,8 @@ class ExpensesRepository
 	}
 
 
-	/*
-	// Update item to database
+	/**
+	* Update item to database
 	*/
     public function update($data)
     {

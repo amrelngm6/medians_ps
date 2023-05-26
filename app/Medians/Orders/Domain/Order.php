@@ -75,8 +75,8 @@ class Order  extends CustomController
 
 
 
-	/*
-	// Genrate unique code 
+	/**
+	* Genrate unique code 
 	*/
 	public function genrateCode() : String
 	{

@@ -7,8 +7,8 @@ use Medians\Expenses\Infrastructure\ExpensesRepository;
 class ExpenseController
 {
 
-	/*
-	// @var Object
+	/**
+	* @var Object
 	*/
 	protected $repo;
 

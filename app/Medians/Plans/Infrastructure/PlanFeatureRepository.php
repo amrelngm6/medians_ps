@@ -26,8 +26,8 @@ class PlanFeatureRepository
 		return new PlanFeature;
 	}
 
-	/*
-	// Find item by `id` 
+	/**
+	* Find item by `id` 
 	*/
 	public function find($id) 
 	{
@@ -35,8 +35,8 @@ class PlanFeatureRepository
 		return PlanFeature::find($id);
 	}
 
-	/*
-	// Find items by `params` 
+	/**
+	* Find items by `params` 
 	*/
 	public function get($params = null) 
 	{
@@ -67,8 +67,8 @@ class PlanFeatureRepository
 	}
 
 
-	/*
-	// Update item to database
+	/**
+	* Update item to database
 	*/
     public function update($data)
     {
