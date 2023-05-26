@@ -16,11 +16,14 @@ import DataTable from "@andresouzaabreu/vue-data-table";
 Vue.component("data-table", DataTable);
 
 Vue.component('moment', () => import ('moment'));
-Vue.component('calendar_booking_info', () => import('./components/calendar-booking-info'));
-Vue.component('calendar_products', () => import('./components/calendar-products-list'));
-Vue.component('calendar_products_selected', () => import('./components/calendar-products-selected'));
-Vue.component('calendar_active_item', () => import('./components/calendar-active-item'));
-Vue.component('calendar_modal', () => import('./components/calendar-booking-modal'));
+Vue.component('calendar_new_item', () => import('./components/calendar/calendar-new-item'));
+Vue.component('calendar_booking_info', () => import('./components/calendar/calendar-booking-info'));
+Vue.component('calendar_booking_info_editable', () => import('./components/calendar/calendar-booking-info-editable'));
+Vue.component('calendar_products', () => import('./components/calendar/calendar-products-list'));
+Vue.component('calendar_products_selected', () => import('./components/calendar/calendar-products-selected'));
+Vue.component('calendar_active_item', () => import('./components/calendar/calendar-active-item'));
+Vue.component('calendar_modal', () => import('./components/calendar/calendar-booking-modal'));
+Vue.component('calendar_booking_confirm', () => import('./components/calendar/calendar-booking-confirm'));
 Vue.component('calendar', () => import('./components/calendar'));
 Vue.component('dataTableActions', () => import('./components/includes/data-table-actions.vue'));
 
@@ -31,8 +34,8 @@ Vue.component('close_icon', () => import('./components/svgs/Close'));
 
 import QrcodeVue from 'qrcode.vue';
 Vue.component('qr_code', QrcodeVue);
-Vue.component('vue-medialibrary-manager', () => import('./components/Manager'));
-Vue.component('vue-medialibrary-field', () => import('./components/Field'));
+Vue.component('vue-medialibrary-manager', () => import('./components/includes/Manager'));
+Vue.component('vue-medialibrary-field', () => import('./components/includes/Field'));
 
 Vue.config.productionTip = false
 

@@ -1042,6 +1042,10 @@ class LangsAr
 		,'story dates' => 'تواريخ هامة'
 		,'Year' => 'العام'
 		,'options' => 'الخيارات'
+		,'Most played devices' => 'أكثر الأجهزة تشغيلا'
+		,'Most played games' => 'أكثر الألعاب تشغيلا'
+		,'Latest paid order devices' => 'أحدث حجوزات الأجهزة'
+		,'Today income' => 'دخل اليوم'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

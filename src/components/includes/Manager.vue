@@ -178,9 +178,9 @@
 <script>
     import Vue from 'vue';
     import Loader from './Loader';
-    import SvgError from './svgs/Error';
-    import SvgMedia from './svgs/Media';
-    import close_icon from './svgs/Close';
+    import SvgError from '../svgs/Error';
+    import SvgMedia from '../svgs/Media';
+    import close_icon from '../svgs/Close';
     import InfiniteLoading from 'vue-infinite-loading';
     import debounce from 'lodash/debounce';
     import axios from 'axios';

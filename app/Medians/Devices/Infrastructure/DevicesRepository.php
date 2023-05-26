@@ -129,13 +129,9 @@ class DevicesRepository
 			$start = date('Y-m-d 00:00:00', strtotime(date($params['start'])));
 			$end = date('Y-m-d 00:00:00', strtotime(date($params['end'])));
 			$query->whereBetween('start_time', [$start, $end]);
-		} 
-
-
-		if (empty($params['start']) && empty($params['end']))
-		{
+		}  else {
 			$query->whereBetween('start_time', [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')]);
-		} 
+		}
 
 
 		return $query->limit($limit)->orderBy('id', 'DESC')->get();

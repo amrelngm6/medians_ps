@@ -28,12 +28,10 @@ class Tax
 		return $this->amount;
 	}
 
-
 	public function percent()
 	{
 		return $this->percent;
 	}
-
 
 	public function tax_amount()
 	{

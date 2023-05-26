@@ -48,17 +48,6 @@ class GameController
 
 
 
-	public function edit(int $id ) 
-	{
-
-		return render('views/admin/games/edit.html.twig', [
-	        'title' => __('edit_game'),
-	        'game' => $this->repo->find($id),
-	        'typesList' => $this->categoryRepo->get('Medians\Devices\Domain\Device'),
-	    ]);
-
-	}
-
 
 	public function store() 
 	{

@@ -24,10 +24,10 @@
 <script>
 const axios = require('axios').default;
 
-import main_calendar from './main-calendar.vue'
-import calendar_get_started from './calendar-get-started.vue'
-import calendar_status_list from './calendar-status-list.vue'
-import calendar_categories from './calendar-categories.vue'
+import main_calendar from './calendar/main-calendar.vue'
+import calendar_get_started from './calendar/calendar-get-started.vue'
+import calendar_status_list from './calendar/calendar-status-list.vue'
+import calendar_categories from './calendar/calendar-categories.vue'
 
 export default 
 {

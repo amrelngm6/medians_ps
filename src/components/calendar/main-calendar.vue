@@ -55,21 +55,9 @@
 import moment from 'moment';
 import {MediansCalendar} from 'medians-calendar-vue3';
 
-import calendar_products from './calendar-products-list.vue';
-import calendar_products_selected from './calendar-products-selected.vue';
-import calendar_active_item from './calendar-active-item.vue';
-import calendar_new_item from './calendar-new-item.vue';
-import calendar_modal from './calendar-booking-modal.vue';
-import calendar_booking_confirm from './calendar-booking-confirm.vue';
 
 export default {
     components: {
-        calendar_products,
-        calendar_products_selected,
-        calendar_active_item,
-        calendar_new_item,
-        calendar_modal,
-        calendar_booking_confirm,
         MediansCalendar,
     },
     props: {

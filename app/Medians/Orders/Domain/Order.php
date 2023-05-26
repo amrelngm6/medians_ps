@@ -92,13 +92,6 @@ class Order  extends CustomController
 		return $this->hasOne(User::class, 'id', 'created_by');
 	}
 
-	/**
-	 * Relations
-	 */
-	// public function items()
-	// {
-	// 	return $this->hasMany(OrderItem::class, 'order_code', 'code');
-	// }
 
 	/**
 	 * Relations

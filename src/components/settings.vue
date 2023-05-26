@@ -176,13 +176,8 @@
     </div>
 </template>
 <script>
-import vue_medialibrary_field from './Field.vue';
-
 export default 
 {
-    components: {
-        vue_medialibrary_field
-    },
     name:'Settings',
     data() {
         return {

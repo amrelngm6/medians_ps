@@ -191,7 +191,6 @@ export default
         },
 
         setValues(data) {
-            this.showCharts = false
             this.content = JSON.parse(JSON.stringify(data)); 
             return this
 
@@ -201,6 +200,8 @@ export default
          * Set charts based on their values type
          */ 
         setCharts(data) {
+            
+            this.showCharts = false
             
             // Pie charts for most played Games
             this.pie_options = JSON.parse(JSON.stringify(this.charts_options));
@@ -229,8 +230,6 @@ export default
                 dataPoints: this.content.orders_charts
             }
 
-            console.log(this.column_options)
-            console.log(this.pie_options)
             this.showCharts = true
         },
 

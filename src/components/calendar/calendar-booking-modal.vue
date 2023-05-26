@@ -89,7 +89,7 @@
 
                     <span class="text-md font-semibold w-full block py-4" v-text="__('information')"></span>
 
-                    <div class="w-full flex gap-4 py-2 border-b border-gray-200">
+                    <div class="w-full flex gap-4 py-2 border-b border-gray-200" v-if="activeItem.customer">
                         <label class="w-full text-gray-400"  v-text="__('Customer')"></label>
                         <span class="w-full text-md p-2 text-gray-600 font-semibold"  v-text="activeItem.customer.name +' - '+ activeItem.customer.mobile"></span>
                     </div>
