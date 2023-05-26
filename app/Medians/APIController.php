@@ -98,7 +98,7 @@ class APIController
 					$return = (new Products\Application\ProductController())->store();
 					break;
 				case 'OrderDevice.addProduct':
-					$return = (new Devices\Application\DeviceController())->addProduct();
+					$return = (new Devices\Application\CalendarController())->addProduct();
 					break;
 				case 'Stock.create':
 					$return = (new Products\Application\StockController())->store();
@@ -225,7 +225,7 @@ class APIController
 			switch ($request->get('type')) 
 			{
 				case 'OrderDevice.removeProduct':
-					$return = (new Devices\Application\DeviceController())->removeProduct();
+					$return = (new Devices\Application\CalendarController())->removeProduct();
 					break;
 
 				case 'Category.delete':
