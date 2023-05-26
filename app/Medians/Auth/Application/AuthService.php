@@ -143,16 +143,16 @@ class AuthService
 	{
 
         if (empty($this->repo->getByEmail($params['email'])))
-			return json_encode(array('error'=>__('Email already found')))
+			return json_encode(array('error'=>__('Email already found')));
 
         if (empty($params['email']))
-			return json_encode(array('error'=>__('Email required')))
+			return json_encode(array('error'=>__('Email required')));
 
         if (empty($params['mobile']))
-			return json_encode(array('error'=>__('MOBILE_ERR')))
+			return json_encode(array('error'=>__('MOBILE_ERR')));
 
         if (empty($params['first_name']))
-			return json_encode(array('error'=>__('Name required')))
+			return json_encode(array('error'=>__('Name required')));
 
 		if (strlen($password) < $this->passLen)
 			return __("Password length must be $this->passLen at least ");
