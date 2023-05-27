@@ -1,10 +1,11 @@
 <?php
 
 namespace Medians\Expenses\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Expenses\Infrastructure\ExpensesRepository;
 
-class ExpenseController
+class ExpenseController extends CustomController
 {
 
 	/**
@@ -16,6 +17,8 @@ class ExpenseController
 
 	function __construct()
 	{
+		$this->checkBranch();
+		
 		$this->repo = new ExpensesRepository();
 	}
 

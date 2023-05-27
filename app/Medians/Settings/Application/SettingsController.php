@@ -1,11 +1,12 @@
 <?php
 
 namespace Medians\Settings\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Settings\Infrastructure as Repo;
 
 
-class SettingsController
+class SettingsController extends CustomController
 {
 
 	/**
@@ -19,6 +20,8 @@ class SettingsController
 
 	function __construct()
 	{
+		$this->checkBranch();
+		
 		$this->app = new \config\APP;
 
 		$this->repo = new Repo\SettingsRepository();

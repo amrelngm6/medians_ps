@@ -1,12 +1,13 @@
 <?php
 
 namespace Medians\Customers\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Customers\Infrastructure as Repo;
 
 
 
-class CustomerController
+class CustomerController extends CustomController
 {
 
 
@@ -19,9 +20,10 @@ class CustomerController
 	function __construct()
 	{
 
+
 		$this->app = new \config\APP;
 
-		$this->repo = new Repo\CustomerRepository($this->app);
+		$this->repo = new Repo\CustomerRepository();
 
 
 	}
@@ -69,6 +71,8 @@ class CustomerController
 	 */
 	public function index()
 	{
+		$this->checkBranch();
+		
 		return render('customers', [
 			'items' =>  $this->repo->get(),
 	        'title' => __('Customers'),

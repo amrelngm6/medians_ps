@@ -1,12 +1,13 @@
 <?php
 
 namespace Medians\Reports\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Reports\Infrastructure as Repo;
 
 
 
-class ReportController
+class ReportController extends CustomController
 {
 
 
@@ -21,7 +22,7 @@ class ReportController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new Repo\ReportRepository($this->app);
+		$this->repo = new Repo\ReportRepository();
 	}
 
 

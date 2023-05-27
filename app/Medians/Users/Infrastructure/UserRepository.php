@@ -3,6 +3,7 @@
 namespace Medians\Users\Infrastructure;
 
 use Medians\Users\Domain\User;
+use Medians\CustomFields\Domain\CustomField;
 
 
 class UserRepository 
@@ -33,6 +34,13 @@ class UserRepository
 	public function findItem($id)
 	{
 		return User::with('Role')->with('branch')->find($id);
+	}
+
+	public function findByActivationCode($code)
+	{
+		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($code) {
+			$q->where('code','activation_token')->where('value',$code);
+		})->first();
 	}
 
 	public function checkDuplicate($param)
@@ -88,6 +96,8 @@ class UserRepository
     	
     	$data['id'] = $Model->id;
     	$this->checkUpdatePassword($data);
+
+    	$this->setToken((object) $data);
 
 		// Return the FBUserInfo object with the new data
     	return $Model;
@@ -162,6 +172,19 @@ class UserRepository
 		}
     	
     	return isset($Object) ? $Object : null;	
+	}
+
+	/**
+	* Set token for activation by User
+	*/
+	public function setToken($data) 
+	{
+
+		$code = User::encrypt(strtotime(date('YmdHis')).$data->id);
+
+		$fillable = ['code'=>'activation_token','item_type'=>User::class, 'item_id'=>$data->id, 'value'=>$code];
+
+		CustomField::firstOrCreate($fillable);
 	}
 
 

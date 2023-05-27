@@ -6,14 +6,14 @@ namespace Medians\Products\Domain;
 use Medians\Products\Domain\Product;
 use Medians\Users\Domain\User;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 
 
 /**
  * Stock class database queries
  */
-class Stock extends CustomController
+class Stock extends CustomModel
 {
 
 

@@ -1,10 +1,11 @@
 <?php
 
 namespace Medians\Plans\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Plans\Infrastructure\PlanRepository;
 
-class PlanController
+class PlanController extends CustomController
 {
 
 	/**

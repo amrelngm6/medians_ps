@@ -4,6 +4,7 @@ namespace Medians\Auth\Application;
 
 
 use Medians\Branches\Application\BranchController;
+use Medians\Mail\Application\MailService;
 
 use Medians\Auth\Domain\AuthModel;
 
@@ -44,16 +45,22 @@ class AuthService
 	public function loginPage()
 	{
 
-		$this->app = new \config\APP;
-		
-		if (isset($this->app->auth()->id)) { return $this->app->redirect('/'); }
+		try {
+				
+			$this->app = new \config\APP;
 
-	    return  render('login', [
-	    	'load_vue' => true,
-	        'title' => __('Login page'),
-	        'app' => $this->app,
-	        'formAction' => '/login',
-	    ]);
+			if (isset($this->app->auth()->id)) { return $this->app->redirect('/'); }
+
+		    return  render('login', [
+		    	'load_vue' => true,
+		        'title' => __('Login page'),
+		        'app' => $this->app,
+		        'formAction' => '/login',
+		    ]);
+		    
+		} catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
+		}
 	}
 
 
@@ -86,6 +93,7 @@ class AuthService
         }
 	}
 
+
 	/**
 	 * Check login credentials
 	 * 
@@ -111,21 +119,60 @@ class AuthService
 	}
 
 
+
+	/**
+	 * Signup page 
+	 * @var Int
+	 */
+	public function signup()
+	{
+
+		$this->app = new \config\APP;
+
+		try {
+
+			if (isset($this->app->auth()->id)) {
+				echo $this->app->redirect('/');
+			}
+
+			return render('views/front/signup.html.twig', []);
+
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	} 
+
 	/**
 	 * User login request
 	 */ 
 	public function userSignup()
 	{
+
 		$this->app = new \config\APP;
-		
+        
         $params = $this->app->request()->get('params');
 
         try {
             
             $validate = $this->validateSignup($params);
 
-            if ($validate)
+            if (!empty($validate)){
+            	echo $validate;
             	return $validate;
+            }
+
+            $params['active'] = '0';
+            $params['role_id'] = 3;
+            $params['active_branch'] = '0';
+
+			$save = $this->repo->store($params);
+
+			if (isset($save->id))
+				$this->observe($save);
+
+        	echo json_encode(isset($save->id) 
+           	? array('success'=>1, 'result'=>__('Created').__('check_email_for_activation'), 'reload'=>1)
+        	: array('error'=> $save ));
 
 
 
@@ -139,22 +186,22 @@ class AuthService
 	 * Validate the password length
 	 * 
 	 */ 
-	public function validateSignup($password)
+	public function validateSignup($params)
 	{
 
-        if (empty($this->repo->getByEmail($params['email'])))
+        if (!empty($this->repo->getByEmail($params['email'])))
 			return json_encode(array('error'=>__('Email already found')));
 
         if (empty($params['email']))
 			return json_encode(array('error'=>__('Email required')));
 
-        if (empty($params['mobile']))
-			return json_encode(array('error'=>__('MOBILE_ERR')));
+        // if (empty($params['mobile']))
+			// return json_encode(array('error'=>__('MOBILE_ERR')));
 
         if (empty($params['first_name']))
 			return json_encode(array('error'=>__('Name required')));
 
-		if (strlen($password) < $this->passLen)
+		if (strlen($params['password']) < $this->passLen)
 			return __("Password length must be $this->passLen at least ");
 
 	} 
@@ -221,6 +268,22 @@ class AuthService
 	public static function encrypt($value) : String 
 	{
 		return sha1(md5($value));
+
+	}
+
+
+	/**
+	 * Observe the new user event
+	 */ 
+	public function observe($user) 
+	{
+
+		$data = [
+			'subject' => __('Activate your account'),
+			'body' => render('views/email/email.html.twig',['user'=>$user, 'app'=>$this->app, 'setting'=>$this->app->settings()])
+		];
+
+		return new Mail($user->email, $user->email, $data['subject'], $data['body']);
 
 	}
 

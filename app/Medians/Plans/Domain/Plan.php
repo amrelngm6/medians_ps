@@ -2,12 +2,12 @@
 
 namespace Medians\Plans\Domain;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 /**
  * Plan class database queries
  */
-class Plan extends CustomController
+class Plan extends CustomModel
 {
 
 	/*

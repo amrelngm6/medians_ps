@@ -2,11 +2,11 @@
 
 namespace Medians\Roles\Domain;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
 
-class Role extends CustomController
+class Role extends CustomModel
 {
 
 

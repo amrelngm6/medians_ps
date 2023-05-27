@@ -2,12 +2,14 @@
 
 namespace Medians\Devices\Application;
 
+use \Shared\dbaser\CustomController;
+
 use Medians\Devices\Infrastructure\DevicesRepository;
 use Medians\Products\Infrastructure\ProductsRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 
 
-class CalendarController 
+class CalendarController extends CustomController 
 {
 
 	/**
@@ -31,13 +33,16 @@ class CalendarController
 
 		$this->app = new \config\APP;
 		
-		$this->repo = new DevicesRepository($this->app);
+		$this->repo = new DevicesRepository();
 
 	    // Set Categories
-	    $this->CategoryRepo = new CategoryRepository($this->app);
+	    $this->CategoryRepo = new CategoryRepository();
 
 	    // Set Categories
-	    $this->productsRepo = new ProductsRepository($this->app);
+	    $this->productsRepo = new ProductsRepository();
+		
+		$this->checkBranch();
+
 	}
 
 

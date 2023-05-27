@@ -3,7 +3,7 @@
 namespace Medians\Orders\Domain;
 
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 use Medians\Branches\Domain\Branch;
 use Medians\Devices\Domain\Device;
@@ -12,7 +12,7 @@ use Medians\Products\Domain\Product;
 use Medians\Users\Domain\User;
 use Medians\Customers\Domain\Customer;
 
-class Order  extends CustomController
+class Order  extends CustomModel
 {
 
 

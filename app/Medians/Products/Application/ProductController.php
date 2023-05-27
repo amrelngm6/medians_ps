@@ -1,11 +1,12 @@
 <?php
 
 namespace Medians\Products\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Products\Infrastructure\ProductsRepository;
 use Medians\Devices\Application\DeviceController;
 
-class ProductController
+class ProductController extends CustomController
 {
 
 	/**
@@ -17,6 +18,8 @@ class ProductController
 
 	function __construct()
 	{
+		$this->checkBranch();
+		
 		$this->repo = new ProductsRepository();
 	}
 

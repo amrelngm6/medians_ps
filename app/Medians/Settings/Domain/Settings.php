@@ -2,11 +2,11 @@
 
 namespace Medians\Settings\Domain;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 
 
-class Settings extends CustomController 
+class Settings extends CustomModel 
 {
 
 	/*

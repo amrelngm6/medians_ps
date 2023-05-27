@@ -1,11 +1,12 @@
 <?php
 
 namespace Medians\Users\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Users\Infrastructure\UserRepository;
 
 
-class UserController
+class UserController extends CustomController
 {
 
 
@@ -19,7 +20,7 @@ class UserController
 	function __construct()
 	{
 		$this->app = new \config\APP;
-		$this->repo = new UserRepository($this->app);
+		$this->repo = new UserRepository();
 	}
 
 
@@ -31,6 +32,8 @@ class UserController
 	 */
 	public function index()
 	{
+		$this->checkBranch();
+		
 		return render('users', [
 			'load_vue'=> true,
 			'users' =>   $this->repo->get(),
@@ -84,7 +87,7 @@ class UserController
 	public function store() 
 	{
 
-		$params = (array)  $this->app->request()->get('params')['user'];
+		$params = (array)  $this->app->request()->get('params');
 
 		try {
 
@@ -99,7 +102,9 @@ class UserController
 
 			$save = $this->repo->store($params);
 
-        	return array('status'=>1, 'result'=>__('Created'), 'reload'=>1);
+        	return isset($save->id) 
+           	? array('success'=>1, 'result'=>__('Created'), 'reload'=>1)
+        	: array('error'=> $save );
 
         } catch (Exception $e) {
             return  $e->getMessage();
@@ -180,6 +185,18 @@ class UserController
 	}
 
 
+
+	public function activate_account($code)
+	{
+		$check = $this->repo->findByActivationCode($code);
+
+		if ($check->id)
+		{
+			$check->update(['active'=>1]);
+			return render('views/front/activate.html.twig',['user'=>$check]);
+		}
+
+	}
 
 
 }

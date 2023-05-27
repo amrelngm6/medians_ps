@@ -1,11 +1,12 @@
 <?php
 
 namespace Medians\Categories\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Categories\Infrastructure\CategoryRepository;
 
 
-class CategoryController
+class CategoryController extends CustomController
 {
 
 	/**
@@ -18,7 +19,10 @@ class CategoryController
 	function __construct()
 	{
 
+		$this->checkBranch();
+
 		$this->repo = new CategoryRepository();
+		
 	}
 
 

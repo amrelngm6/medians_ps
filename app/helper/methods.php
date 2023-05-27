@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * Set the lang based on 
+ * Session / Branch Setting
+ */ 
 function setLang()
 {
     try {
@@ -33,7 +36,7 @@ function render($template, $data, $responseType = 'html')
         
         $app = new \config\APP;
             
-        $ettings = $app->Settings();
+        $ettings = !empty($app->auth()->active_branch) ? $app->Settings() : [];
         
             
     } catch (\Exception $e) {

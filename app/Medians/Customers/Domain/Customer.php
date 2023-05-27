@@ -2,12 +2,12 @@
 
 namespace Medians\Customers\Domain;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 use Medians\Orders\Domain\Order;
 use Medians\Devices\Domain\OrderDevice;
 
-class Customer extends CustomController
+class Customer extends CustomModel
 {
 
 	/*

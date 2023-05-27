@@ -3,11 +3,12 @@
 namespace Medians\Users\Domain;
 
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 use Medians\Roles\Domain\Role;
+use \Medians\CustomFields\Domain\CustomField;
 
-class User extends CustomController
+class User extends CustomModel
 {
 
 
@@ -28,12 +29,15 @@ class User extends CustomController
     	'active',
 	];
 
-	public $appends = ['name', 'photo', 'password'];
+	public $appends = ['name', 'photo', 'password', 'field'];
+
 
 	public function getPasswordAttribute() 
 	{
 		return null;
 	}
+
+
 	public function getNameAttribute() : String
 	{
 		return $this->name();
@@ -44,6 +48,10 @@ class User extends CustomController
 		return $this->photo();
 	}
 
+    public function getFieldAttribute() 
+    {
+        return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+    }
 
 	public function photo() : String
 	{
@@ -101,6 +109,13 @@ class User extends CustomController
 		return $this->hasOne(Role::class, 'id', 'role_id');
 	}
 
+
+    public function custom_fields()
+    {
+        return $this->morphMany(CustomField::class, 'item');
+    }
+
+
 	
 	/**
 	 * Password encryption method
@@ -110,5 +125,7 @@ class User extends CustomController
 	{
 		return sha1(md5($value));
 	}
+
+
 
 }

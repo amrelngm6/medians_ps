@@ -2,12 +2,12 @@
 
 namespace Medians\Categories\Domain;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 use Medians\Devices\Domain\Device;
 use Medians\Products\Domain\Product;
 
-class Category extends CustomController
+class Category extends CustomModel
 {
 
 	/*

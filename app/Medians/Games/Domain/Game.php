@@ -2,14 +2,14 @@
 
 namespace Medians\Games\Domain;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 use Medians\Categories\Domain\Category;
 use Medians\Devices\Domain\Device;
 use Medians\Devices\Domain\OrderDevice;
 use Medians\Devices\Domain\DeviceGames;
 
 
-class Game extends CustomController
+class Game extends CustomModel
 {
 
 	/*

@@ -4,10 +4,10 @@ namespace Medians\Prices\Domain;
 
 use Medians\Devices\Domain\Device;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 
-class Prices extends CustomController
+class Prices extends CustomModel
 {
 
 	/*

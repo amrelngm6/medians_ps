@@ -4,9 +4,9 @@ namespace Medians\Branches\Domain;
 
 use Medians\Settings\Domain\Settings;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
-class Branch extends CustomController
+class Branch extends CustomModel
 {
 
 

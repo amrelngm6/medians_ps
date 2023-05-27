@@ -2,10 +2,12 @@
 
 namespace Medians\Branches\Application;
 
+use \Shared\dbaser\CustomController;
+
 use Medians\Branches\Infrastructure\BranchRepository;
 
 
-class BranchController
+class BranchController extends CustomController
 {
 
 
@@ -20,6 +22,8 @@ class BranchController
 	function __construct()
 	{
 		
+		$this->checkBranch();
+
 		$this->repo = new BranchRepository();
 	}
 

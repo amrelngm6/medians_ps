@@ -1,6 +1,7 @@
 <?php
 
 namespace Medians\Orders\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Orders\Infrastructure\OrdersRepository;
 use Medians\Devices\Application\Device;
@@ -15,7 +16,7 @@ use chillerlan\QRCode\Data\QRMatrix;
 use chillerlan\QRCode\Output\QROutputInterface;
 
 
-class OrderController
+class OrderController extends CustomController
 {
 
 
@@ -26,6 +27,8 @@ class OrderController
 
 	function __construct()
 	{
+		$this->checkBranch();
+		
 		$this->repo = new OrdersRepository();
 	}
 

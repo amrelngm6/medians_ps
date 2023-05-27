@@ -40,14 +40,13 @@
                                 </div>
                                 <input name="type" type="hidden" value="Users.create">
                                 <input name="params[active]" type="hidden" value="1">
-                                <span class="block mb-2" v-text="__('first_name')"></span>
                                 <input name="params[first_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('first_name')" >
-                                <span class="block mb-2 mt-3" v-text="__('last_name')"></span>
-                                <input name="params[last_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('last_name')" >
-                                <span class="block mb-2 mt-3" v-text="__('email')"></span>
+                                <input name="params[last_name]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('last_name')" >
                                 <input name="params[email]" required="true" type="email" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('email')" >
-                                <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
-                                <input name="params[phone]" required="true" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')">
+
+                                <input name="params[phone]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')">
+
+                                <input name="params[password]" required="true" type="password" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('password')">
 
                                 <span class="block my-2" v-text="__('picture')"></span>
                                 <vue-medialibrary-field name="params[profile_image]" :api_url="conf.url" v-model="profile_image"></vue-medialibrary-field>

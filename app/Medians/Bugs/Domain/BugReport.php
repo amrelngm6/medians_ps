@@ -2,9 +2,9 @@
 
 namespace Medians\Bugs\Domain;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
-class BugReport extends CustomController
+class BugReport extends CustomModel
 {
 
 	/*

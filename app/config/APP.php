@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Medians\Settings\Infrastructure\SettingsRepository;
+use Medians\Branches\Infrastructure\BranchRepository;
 
 
 
@@ -38,8 +39,7 @@ class APP
 
 		$this->CONF = (new \config\Configuration())->getCONFArray();
 
-		$this->branch =  (object) array('id'=>1);
-
+		$this->branch = $this->active_branch();
 	}
 
 	public function setLang()
@@ -79,6 +79,15 @@ class APP
 		return (new \Medians\Auth\Application\AuthService( new \Medians\Users\Infrastructure\UserRepository($this), $this ))->checkSession();
 	}
 
+	public function active_branch()
+	{
+		$checkUser = $this->auth();
+
+		return isset($checkUser->active_branch) 
+		? (new BranchRepository)->find($checkUser->active_branch)
+		: null;
+	}
+
 	public static function request()
 	{
 		return Request::createFromGlobals();
@@ -87,7 +96,7 @@ class APP
 
 	public static function redirect($url)
 	{
-		return new RedirectResponse($url);
+		echo new RedirectResponse($url);
 	}
 
 	public function  run()

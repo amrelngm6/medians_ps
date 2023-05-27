@@ -1,6 +1,7 @@
 <?php
 
 namespace Medians\Games\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Games\Infrastructure\GameRepository;
 use Medians\Devices\Infrastructure\DevicesRepository;
@@ -8,7 +9,7 @@ use Medians\Categories\Infrastructure\CategoryRepository;
 
 use Medians\Games\Domain\Game;
 
-class GameController
+class GameController extends CustomController
 {
 
 	/**
@@ -20,6 +21,7 @@ class GameController
 
 	function __construct()
 	{
+		$this->checkBranch();
 
 		$this->app = new \config\APP;
 

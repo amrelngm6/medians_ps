@@ -1,13 +1,14 @@
 <?php
 
 namespace Medians\Devices\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Devices\Infrastructure\DevicesRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Products\Infrastructure\ProductsRepository;
 use Medians\Games\Infrastructure\GameRepository;
 
-class DeviceController 
+class DeviceController extends CustomController 
 {
 
 	/**
@@ -31,16 +32,19 @@ class DeviceController
 
 		$this->app = new \config\APP;
 		
-		$this->repo = new DevicesRepository($this->app);
+		$this->repo = new DevicesRepository();
 
 	    // Set Games
-	    $this->gamesRepo = new GameRepository($this->app);
+	    $this->gamesRepo = new GameRepository();
 
 	    // Set Categories
-	    $this->CategoryRepo = new CategoryRepository($this->app);
+	    $this->CategoryRepo = new CategoryRepository();
 
 	    // Set Categories
-	    $this->productsRepo = new ProductsRepository($this->app);
+	    $this->productsRepo = new ProductsRepository();
+	    
+		$this->checkBranch();
+
 	}
 
 

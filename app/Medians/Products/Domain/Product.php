@@ -3,14 +3,14 @@
 namespace Medians\Products\Domain;
 
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 use Medians\Categories\Domain\Category;
 
 /**
  * Product class database queries
  */
-class Product extends CustomController
+class Product extends CustomModel
 {
 
 	/*

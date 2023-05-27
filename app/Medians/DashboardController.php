@@ -2,8 +2,9 @@
 
 namespace Medians;
 
+use \Shared\dbaser\CustomController;
 
-class DashboardController
+class DashboardController extends CustomController
 {
 
 	/**
@@ -16,6 +17,7 @@ class DashboardController
 	function __construct()
 	{
 		$this->app = new \config\APP;
+		$this->checkBranch();
 	}
 
 	/**
@@ -70,18 +72,18 @@ class DashboardController
 
 			$GamesRepository = new Games\Infrastructure\GameRepository();
 
-			$ExpensesRepository = new Expenses\Infrastructure\ExpensesRepository($this->app);
+			$ExpensesRepository = new Expenses\Infrastructure\ExpensesRepository();
 
-			// $today_income = (new Orders\Infrastructure\OrdersRepository($this->app))->getByDate(['start'=>date('Y-m-d 00:00:00'), 'end'=>date('Y-m-d 23:59:59')])->sum('total_cost');
+			// $today_income = (new Orders\Infrastructure\OrdersRepository())->getByDate(['start'=>date('Y-m-d 00:00:00'), 'end'=>date('Y-m-d 23:59:59')])->sum('total_cost');
 			$today_income = $DevicesRepository->getSumByDate('total_cost', $start, $end);
 
 			$today_expenses = $ExpensesRepository->getSumByDate('amount', $start, $end);
 
             
-            $latest_order_products =  (new Products\Infrastructure\StockRepository($this->app))->getLatest(5)->get();
+            $latest_order_products =  (new Products\Infrastructure\StockRepository())->getLatest(5)->get();
 
 
-            $today_order_products_count =  (new Products\Infrastructure\StockRepository($this->app))->getLatest(1000)->where('type', 'pull')->where('date', date('Y-m-d'))->count();
+            $today_order_products_count =  (new Products\Infrastructure\StockRepository())->getLatest(1000)->where('type', 'pull')->where('date', date('Y-m-d'))->count();
             
             $latest_unpaid_order_devices = $DevicesRepository->eventsByDate(['start'=>date('Y-m-d'),'end'=>date('Y-m-d')],5)->where('status','!=','paid')->get();
 

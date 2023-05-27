@@ -1,16 +1,18 @@
 <?php
 
 namespace Medians\Products\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Products\Application\ProductController;
 
 
-class StockController
+class StockController extends CustomController
 {
 
 
 	function __construct()
 	{
+		$this->checkBranch();
 
 		$this->repo = new \Medians\Products\Infrastructure\StockRepository();
 

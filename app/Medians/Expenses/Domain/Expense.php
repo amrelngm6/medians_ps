@@ -3,11 +3,11 @@
 namespace Medians\Expenses\Domain;
 
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
 
-class Expense extends CustomController
+class Expense extends CustomModel
 {
 
 

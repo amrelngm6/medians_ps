@@ -1,11 +1,12 @@
 <?php
 
 namespace Medians\Media\Application;
+use \Shared\dbaser\CustomController;
 
 use Medians\Media\Infrastructure\MediaRepository;
 
 
-class MediaController
+class MediaController extends CustomController
 {
 
 	function __construct()

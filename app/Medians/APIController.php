@@ -2,6 +2,8 @@
 
 namespace Medians;
 
+use \Shared\dbaser\CustomController;
+
 use Medians\Users\Infrastructure\UserRepository;
 
 use Medians\Devices\Infrastructure\OrderDevicesRepository;
@@ -13,7 +15,7 @@ use Medians\Products\Infrastructure\ProductsRepository;
 use Medians\Bugs\Infrastructure\BugReportRepository;
 
 
-class APIController
+class APIController extends CustomController
 {
 
 	/**
@@ -76,6 +78,10 @@ class APIController
 			$return = [];
 			switch ($request->get('type')) 
 			{
+				case 'Users.create':
+					$return = (new Users\Application\UserController())->store();
+					break;
+
 				case 'PlanFeature.create':
 					$return = (new Plans\Application\PlanFeatureController())->store();
 					break;

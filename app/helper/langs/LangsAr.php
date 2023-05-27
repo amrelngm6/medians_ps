@@ -1049,6 +1049,12 @@ class LangsAr
 		,'Upcoming bookings' => 'الحجوزات القادمة'
 		,'canceled bookings' => 'الحجوزات الملغاة'
 		,'expenses' => 'المصروفات'
+		,'check_email_for_activation' => ' يرجي تفعيل حسابك عبر البريد الإلكتروني '
+		,'Message could not be sent. Mailer Error' => 'لم يتم إرسال الرسالة - السبب : '
+		,'Activate your account' => 'بيانات تفعيل حسابك '
+		,'thanks_for_activating_account' => ', يمكنك الان الاستمتاع بالخدمة'
+		,'Activated your account successfully' => 'تم تفعيل حسابك بنجاح '
+		,'Login to APP' => 'الدخول إلى التطبيق'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
