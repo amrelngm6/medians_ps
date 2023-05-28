@@ -23,6 +23,7 @@ Macaw::get('/switch-lang/(:all)', function ($lang)  {
 
 Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::get('/signup', \Medians\Auth\Application\AuthService::class.'@signup');
+Macaw::get('/google_login_redirect', \Medians\Auth\Application\GoogleService::class.'@verifyLoginWithGoogle');
 
 /**
  * @return  Login page in case if not authorized 

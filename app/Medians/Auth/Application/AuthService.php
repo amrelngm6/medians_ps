@@ -65,6 +65,33 @@ class AuthService
 	}
 
 
+	public function verifyLoginWithGoogle()
+	{
+		$params = $this->app->request()->query->all();
+
+
+		$SystemSettings = new SystemSettingsController;
+
+		$settings = $SystemSettings->getAll();
+
+		$Google = new GoogleService($settings['google_login_key'],$settings['google_login_secret']);
+
+	  	$token = $Google->client->fetchAccessTokenWithAuthCode($_GET['code']);
+
+	  	$token = $Google->client->setAccessToken($token);
+
+	  	if($client->isAccessTokenExpired())
+	  		return false;
+
+
+		$google_oauth = new Google_Service_Oauth2($client);
+		$user_info = $google_oauth->userinfo->get();
+
+		print_r($user_info);
+
+	}
+
+
 	public function loginWithGoogle()
 	{
 		$SystemSettings = new SystemSettingsController;
@@ -73,9 +100,9 @@ class AuthService
 
 		$Google = new GoogleService($settings['google_login_key'],$settings['google_login_secret']);
 
-
 		return $Google->client->createAuthUrl();
 	}
+
 
 	/**
 	 * User login request
