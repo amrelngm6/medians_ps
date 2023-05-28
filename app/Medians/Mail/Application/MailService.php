@@ -68,7 +68,7 @@ class MailService
 		    $mail->Subject = $this->subject;
 		    $mail->Body    = $this->body;
 
-		    $mail->send();
+		    echo $mail->send();
 
 		    return true;
 
