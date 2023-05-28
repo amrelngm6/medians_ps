@@ -68,9 +68,8 @@ class MailService
 		    $mail->Subject = $this->subject;
 		    $mail->Body    = $this->body;
 
-		    echo $mail->send();
+		    $mail->send();
 
-		    print_r($mail);
 		    return true;
 
 		} catch (Exception $e) {
