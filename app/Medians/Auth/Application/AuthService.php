@@ -371,7 +371,9 @@ class AuthService
 			'body' => $this->app->template()->render('views/email/email.html.twig', ['user'=>$user, 'app'=>$this->app, 'setting'=>$this->app->settings()])
 		];
 
-		return new MailService($user->email, $user->email, $data['subject'], $data['body']);
+		$mail = new MailService($user->email, $user->email, $data['subject'], $data['body']);
+		
+		return $mail->sendMail();
 
 	}
 
