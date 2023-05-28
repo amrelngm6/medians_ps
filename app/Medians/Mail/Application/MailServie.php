@@ -7,6 +7,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+use Medians\Settings\Application\SystemSettingsController;
+
 class MailService
 {
 
@@ -35,6 +37,11 @@ class MailService
 	{
 
 
+		// Get system settings for Google Login
+		$SystemSettings = new SystemSettingsController;
+
+		$settings = $SystemSettings->getAll();
+
 		//Create an instance; passing `true` enables exceptions
 		$mail = new PHPMailer(true);
 
@@ -42,18 +49,18 @@ class MailService
 		    //Server settings
 
 		    $mail->isSMTP();                                    //Send using SMTP
-			$mail->Host       = smtp_host;                     //Set the SMTP server to send through
-			$mail->SMTPAuth   = true;                           //Enable SMTP authentication
-			$mail->Username   = smtp_username;                  //SMTP username
-			$mail->Password   = smtp_password;                  //SMTP password
+			$mail->Host       = $settings['smtp_host'];         //Set the SMTP server to send through
+			$mail->SMTPAuth   = !empty($settings['smtp_user']) ? true : false;       //Enable SMTP authentication
+			$mail->Username   = $settings['smtp_user'];         //SMTP username
+			$mail->Password   = $settings['smtp_password'];     //SMTP password
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
 		    $mail->SMTPDebug = SMTP::DEBUG_SERVER;              //Enable verbose debug output
-			$mail->Port       = smtp_port;                      //TCP port to connect to; use 587 if you have set `SMTPSecure = 
+			$mail->Port       = $settings['smtp_port'];         //TCP port to connect to; use 587 if you have set `SMTPSecure = 
 
 		    //Recipients
-		    $mail->setFrom(smtp_sender, $this->app->sitename);
+		    $mail->setFrom($settings['smtp_sender'], $this->app->sitename);
 		    $mail->addAddress($this->email, $this->name);     //Add a recipient
-		    $mail->addReplyTo(smtp_sender, 'no-reply');
+		    $mail->addReplyTo($settings['smtp_sender'], 'no-reply');
 		    // $mail->addBCC('info@medianssolutions.com');
 
 		    //Content
