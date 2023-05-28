@@ -120,7 +120,10 @@ class AuthService
 				return null;
 			}  
 
-			echo $this->app->redirect('./activate-account/'.$user->field['activation_token']);
+			if (isset($user->field['activation_token']))
+				echo $this->app->redirect('./activate-account/'.$user->field['activation_token']);
+			else
+				echo $this->app->redirect('/dashboard');
 
 		} catch (Exception $e) {
 			return array('error'=>$e->getMessage());
