@@ -82,11 +82,11 @@ class AuthService
 
 	  	$token = $Google->client->setAccessToken($token);
 
-	  	if($client->isAccessTokenExpired())
+	  	if($Google->client->isAccessTokenExpired())
 	  		return false;
 
 
-		$google_oauth = new Google_Service_Oauth2($client);
+		$google_oauth = new Google_Service_Oauth2($Google->client);
 		$user_info = $google_oauth->userinfo->get();
 
 		print_r($user_info);
