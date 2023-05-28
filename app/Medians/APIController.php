@@ -86,6 +86,10 @@ class APIController extends CustomController
 					$return = (new Users\Application\GetStartedController())->store_setting();
 					break;
 
+				case 'User.get_started_save_plan':
+					$return = (new Users\Application\GetStartedController())->saveActivePlan();
+					break;
+
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
 					break;

@@ -14,7 +14,7 @@
                             <span class="text-sm  " v-text="step.info"></span>
                         </p>
                     </div>
-                    <div v-if="step.id < 3" class="mb-4">
+                    <div v-if="step.id < 4" class="mb-4">
                         <span class="block w-10 h-8 text-center "><span class="border-l mb-2 mx-auto w-1 h-12 "></span></span>
                     </div>
                 </div>
@@ -102,6 +102,16 @@
                     </div>
                 </div>
 
+                <div class="w-full" id="step3" v-if="activeStep == 4">
+                    <p class="text-lg font-semibold" v-text="__('plan')"></p>
+                    <p class=" font-normal" v-text="__('Subscribe to plan')">  </p>
+                    <hr class="py-2 mt-4" />
+                    <div class="block  w-full">
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
@@ -121,7 +131,8 @@ export default
             steps: [
                 {id:1, title: this.__('Business information'), info:this.__('information about the branch'),active:1},
                 {id:2, title: this.__('Settings'), info:this.__('important required settings'), active:0},
-                {id:3, title: this.__('Review and confirm'), info:this.__('Review your information and confirm'), active:0}
+                {id:3, title: this.__('Plan'), info:this.__('Subscribe to plan'), active:0},
+                {id:4, title: this.__('Review and confirm'), info:this.__('Review your information and confirm'), active:0}
             ],
 
         }

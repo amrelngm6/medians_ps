@@ -52,8 +52,9 @@ class AuthService
 
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
 
-		    return  render('login', [
-		    	'load_vue' => true,
+		    // return  render('login', [
+			return render('views/front/signin.html.twig', [
+		    	// 'load_vue' => true,
 		        'title' => __('Login page'),
 		        'app' => $this->app,
 		        'google_login' => $this->loginWithGoogle(),
@@ -367,7 +368,7 @@ class AuthService
 	{
 
 		$data = [
-			'subject' => __('Activate your account'),
+			'subject' => 'Activate your account',
 			'body' => $this->app->template()->render('views/email/email.html.twig', ['user'=>$user, 'app'=>$this->app, 'setting'=>$this->app->settings()])
 		];
 
@@ -383,10 +384,6 @@ class AuthService
 		}
 
 	}
-
-
-
-
 
 
 
