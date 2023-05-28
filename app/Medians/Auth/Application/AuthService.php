@@ -239,6 +239,11 @@ class AuthService
             
             $validate = $this->validateSignup($params);
 
+
+            /**
+             * Check if data is Validated or 
+             * return the error
+             */  
             if (!empty($validate)){
             	echo $validate;
             	return $validate;
@@ -366,7 +371,7 @@ class AuthService
 			'body' => render('views/email/email.html.twig',['user'=>$user, 'app'=>$this->app, 'setting'=>$this->app->settings()])
 		];
 
-		return new Mail($user->email, $user->email, $data['subject'], $data['body']);
+		return new MailService($user->email, $user->email, $data['subject'], $data['body']);
 
 	}
 
