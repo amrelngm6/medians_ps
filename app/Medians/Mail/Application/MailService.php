@@ -13,15 +13,15 @@ class MailService
 {
 
 
-	private $this->app;
+	private $app;
 
-	private $this->email;
+	private $email;
 
-	private $this->name;
+	private $name;
 
-	private $this->subject;
+	private $subject;
 
-	private $this->body;
+	private $body;
 
 
 	function __construct($email, $name, $subject, $body)
