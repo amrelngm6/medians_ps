@@ -372,8 +372,15 @@ class AuthService
 		];
 
 		$mail = new MailService($user->email, $user->email, $data['subject'], $data['body']);
-		
-		return $mail->sendMail();
+		try {
+
+			$mail->sendMail();
+
+			return true;
+
+		} catch (Exception $e) {
+			throw new Exception("Error Processing Request ". $e->getMessage(), 1);
+		}
 
 	}
 
