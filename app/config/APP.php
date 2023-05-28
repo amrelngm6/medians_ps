@@ -146,7 +146,12 @@ class APP
 	*/
 	public function menu()
 	{
-		if ($this->auth()->role_id === 1)
+		$user = $this->auth();
+
+		if (empty($user))
+			return null;
+
+		if ($user->role_id === 1)
 			return $this->masterMenu();
 		else 
 			return $this->adminMenu();

@@ -93,10 +93,14 @@ class UserRepository
     	$data['id'] = $Model->id;
     	$this->checkUpdatePassword($data);
 
-    	$this->setToken((object) $data);
+    	/**
+		* Set token for activation by User
+		*/
+		$value = User::encrypt(strtotime(date('YmdHis')).$data['id']);
+    	$this->setCustomCode((object) $data, 'activation_token', $value);
 
 		// Return the FBUserInfo object with the new data
-    	return $Model;
+    	return $this->find($Model->id);
 
 	}
 	
@@ -171,14 +175,12 @@ class UserRepository
 	}
 
 	/**
-	* Set token for activation by User
+	* Set Custom field for User
 	*/
-	public function setToken($data) 
+	public function setCustomCode($data, $customCode, $value) 
 	{
 
-		$code = User::encrypt(strtotime(date('YmdHis')).$data->id);
-
-		$fillable = ['code'=>'activation_token','item_type'=>User::class, 'item_id'=>$data->id, 'value'=>$code];
+		$fillable = ['code'=>$customCode,'item_type'=>User::class, 'item_id'=>$data->id, 'value'=>$value];
 
 		CustomField::firstOrCreate($fillable);
 	}

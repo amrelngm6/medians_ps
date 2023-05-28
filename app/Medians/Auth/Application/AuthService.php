@@ -10,6 +10,7 @@ use Medians\Auth\Domain\AuthModel;
 
 use Medians\Settings\Application\SystemSettingsController;
 
+use Google_Service_Oauth2;
 
 class AuthService 
 {
@@ -70,26 +71,61 @@ class AuthService
 
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->query->all();
 
-		$SystemSettings = new SystemSettingsController;
+		try {
+				
+			// Get system settings for Google Login
+			$SystemSettings = new SystemSettingsController;
 
-		$settings = $SystemSettings->getAll();
+			$settings = $SystemSettings->getAll();
 
-		$Google = new GoogleService($settings['google_login_key'],$settings['google_login_secret']);
+			$Google = new GoogleService($settings['google_login_key'], $settings['google_login_secret']);
 
-	  	$token = $Google->client->fetchAccessTokenWithAuthCode($_GET['code']);
+			$code = $this->app->request()->get('code');
 
-	  	$Google->client->setAccessToken($token);
+		  	$Google->client->setAccessToken($Google->client->fetchAccessTokenWithAuthCode($code));
 
-	  	if($Google->client->isAccessTokenExpired())
-	  		return false;
+		  	// Check if code is expired or invalid
+		  	if($Google->client->isAccessTokenExpired())
+		  	{
+		  		echo 1;
+	  			return false;
+		  	}
 
 
-		$google_oauth = new Google_Service_Oauth2($Google->client);
-		$user_info = $google_oauth->userinfo->get();
+	  		// Get user data through API
+			$google_oauth = new Google_Service_Oauth2($Google->client);
+			$user_info = $google_oauth->userinfo->get();
 
-		print_r($user_info);
+			// Prepare user data to store
+			$params['email'] = $user_info['email'];
+			$params['first_name'] = $user_info['givenName'];
+			$params['last_name'] = $user_info['familyName'];
+			$params['profile_image'] = $user_info['picture'];
+
+			// $params['field']['google_id'] = $user_info['id'];
+
+			$user = $this->repo->getByEmail($params['email']);
+
+			if (isset($user->id))
+				$user->update(['profile_image' => $user_info['picture']]);
+			else 
+				$user = $this->repo->store($params);
+
+			// Check if user saved
+			if (isset($user->id)){
+				$this->setSession($user);
+		    	$this->repo->setCustomCode((object) $user, 'google_id', $user_info['id']);
+			} else {
+				return null;
+			}  
+
+			echo $this->app->redirect('./activate-account/'.$user->field['activation_token']);
+
+		} catch (Exception $e) {
+			return array('error'=>$e->getMessage());
+		}
+
 
 	}
 
