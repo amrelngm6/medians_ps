@@ -67,7 +67,7 @@ class AuthService
 
 	public function verifyLoginWithGoogle()
 	{
-		
+
 		$this->app = new \config\APP;
 
 		$params = $this->app->request()->query->all();
@@ -78,9 +78,9 @@ class AuthService
 
 		$Google = new GoogleService($settings['google_login_key'],$settings['google_login_secret']);
 
-	  	$token = $Google->client->fetchAccessTokenWithAuthCode($params['code']);
+	  	$token = $Google->client->fetchAccessTokenWithAuthCode($_GET['code']);
 
-	  	$token = $Google->client->setAccessToken($token);
+	  	$Google->client->setAccessToken($token);
 
 	  	if($Google->client->isAccessTokenExpired())
 	  		return false;
