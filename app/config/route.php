@@ -40,6 +40,8 @@ if(isset($app->auth()->id))
 
     Macaw::get('/json/dashboard', \Medians\DashboardController::class.'@json'); 
     Macaw::get('/dashboard', \Medians\DashboardController::class.'@index'); 
+    Macaw::get('/get-started', \Medians\Users\Application\UserController::class.'@get_started'); 
+    Macaw::get('/get_started', \Medians\Users\Application\UserController::class.'@get_started'); 
 
 
 
@@ -159,6 +161,7 @@ if(isset($app->auth()->id))
     Macaw::get('/users/index', \Medians\Users\Application\UserController::class.'@index');
     Macaw::get('/users/', \Medians\Users\Application\UserController::class.'@index');
     Macaw::get('/users', \Medians\Users\Application\UserController::class.'@index');
+    Macaw::get('/index_users', \Medians\Users\Application\UserController::class.'@index_users');
 
     /**
     * @return customers
@@ -168,6 +171,11 @@ if(isset($app->auth()->id))
     Macaw::get('/customers', \Medians\Customers\Application\CustomerController::class.'@index');
 
 
+    /**
+    * @return Branches
+    */
+    Macaw::get('/branches/index', \Medians\Branches\Application\BranchController::class.'@index');
+    Macaw::get('/branches', \Medians\Branches\Application\BranchController::class.'@index');
 
 
     /**
@@ -176,14 +184,13 @@ if(isset($app->auth()->id))
      * if the user is Master 
      * has role_id = 1
      */ 
-
     if ($app->auth()->role_id != 1)
         return $app->run();
 
     /**
-    * @return Branches
+    * @return System settings
     */
-    Macaw::get('/branches/index', \Medians\Branches\Application\BranchController::class.'@index');
+    Macaw::get('/system_settings', \Medians\Settings\Application\SystemSettingsController::class.'@index');
 
 
     /**

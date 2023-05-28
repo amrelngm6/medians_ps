@@ -366,8 +366,6 @@ class DevicesRepository
     public function updateOrder($data)
     {
 
-    	// print_r($data);
-    	// return null;
 		$Object = OrderDevice::find($data['id']);
 
 		$Device = Device::with('prices')->find(isset($data['device_id']) ? $data['device_id']:$Object->device_id);

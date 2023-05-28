@@ -20,6 +20,7 @@ class Customer extends CustomModel
 		'mobile',
 		'photo',
 		'gender',
+		'active_branch',
 		'created_by',
 	];
 

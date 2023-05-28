@@ -4,6 +4,7 @@ namespace Medians\Users\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Users\Infrastructure\UserRepository;
+use Medians\Branches\Infrastructure\BranchRepository;
 
 
 class UserController extends CustomController
@@ -21,6 +22,7 @@ class UserController extends CustomController
 	{
 		$this->app = new \config\APP;
 		$this->repo = new UserRepository();
+		$this->branchRepo = new BranchRepository();
 	}
 
 
@@ -32,11 +34,30 @@ class UserController extends CustomController
 	 */
 	public function index()
 	{
-		$this->checkBranch();
+		// $this->checkBranch();
 		
+		$query = ($this->app->auth()->role_id > 1) ? $this->repo->get(100, $this->app->branch->id) : $this->repo->getAll();
+
+		$branches = ($this->app->auth()->role_id > 1) ? [$this->branchRepo->find($this->app->branch->id)] : $this->branchRepo->get();
+
 		return render('users', [
 			'load_vue'=> true,
-			'users' =>   $this->repo->get(),
+			'users' =>   $query,
+			'branches' =>   $branches,
+	        'title' => __('Users'),
+	    ]);
+	} 
+
+
+	/**
+	 * Index page
+	 * 
+	 */
+	public function index_users()
+	{
+		return render('users', [
+			'load_vue'=> true,
+			'users' =>   $this->repo->getAll(),
 	        'title' => __('Users'),
 	    ]);
 	} 
@@ -185,7 +206,12 @@ class UserController extends CustomController
 	}
 
 
-
+	/**
+	 * Activate account page
+	 * 
+	 * @param String $code
+	 * @return response
+	 */ 
 	public function activate_account($code)
 	{
 		$check = $this->repo->findByActivationCode($code);
@@ -195,6 +221,22 @@ class UserController extends CustomController
 			$check->update(['active'=>1]);
 			return render('views/front/activate.html.twig',['user'=>$check]);
 		}
+	}
+
+
+	/**
+	 * Get-started page 
+	 * for set configuration
+	 */
+	public function get_started()
+	{
+
+		return render('get_started', [
+			'load_vue'=> true,
+			// 'users' =>   $this->repo->get(),
+	        'title' => __('Users'),
+	    ]);
+		return render('views/admin/get-started.html.twig',['user'=>$this->app->auth()]);
 
 	}
 

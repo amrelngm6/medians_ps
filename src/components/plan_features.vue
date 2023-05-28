@@ -46,7 +46,7 @@
                             <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
 
 
-                                <input name="type" type="hidden" value="Product.update">
+                                <input name="type" type="hidden" value="PlanFeature.update">
                                 <input name="params[id]" type="hidden" v-model="activeItem.id">
 
                                 <input name="params[code]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_code')" v-model="activeItem.code">

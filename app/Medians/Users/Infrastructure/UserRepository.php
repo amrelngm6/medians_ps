@@ -10,15 +10,6 @@ class UserRepository
 {
 
 
-	public $app;
-
-
-
-	function __construct($app = null)
-	{
-		$this->app = $app;
-		// $this->app = new \config\APP;
-	}
 
 
 	public function getModel()
@@ -70,9 +61,14 @@ class UserRepository
 		return User::where('password', $password)->where('email' , $email)->first();
 	}
 
-	public function get($limit = 100)
+	public function get($limit = 100, $branchId = 0)
 	{
-		return User::with('Role', 'branch')->where('active_branch', $this->app->branch->id)->limit($limit)->get();
+		return User::with('Role', 'branch')->where('active_branch', $branchId)->limit($limit)->get();
+	}
+
+	public function getAll()
+	{
+		return User::with('Role', 'branch')->get();
 	}
 
 

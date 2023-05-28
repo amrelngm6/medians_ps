@@ -8,6 +8,7 @@ use Medians\Mail\Application\MailService;
 
 use Medians\Auth\Domain\AuthModel;
 
+use Medians\Settings\Application\SystemSettingsController;
 
 
 class AuthService 
@@ -34,7 +35,6 @@ class AuthService
 
 	function __construct()
 	{
-
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
 	}
 
@@ -49,12 +49,13 @@ class AuthService
 				
 			$this->app = new \config\APP;
 
-			if (isset($this->app->auth()->id)) { return $this->app->redirect('/'); }
+			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
 
 		    return  render('login', [
 		    	'load_vue' => true,
 		        'title' => __('Login page'),
 		        'app' => $this->app,
+		        'google_login' => $this->loginWithGoogle(),
 		        'formAction' => '/login',
 		    ]);
 		    
@@ -63,6 +64,18 @@ class AuthService
 		}
 	}
 
+
+	public function loginWithGoogle()
+	{
+		$SystemSettings = new SystemSettingsController;
+
+		$settings = $SystemSettings->getAll();
+
+		$Google = new GoogleService($settings['google_login_key'],$settings['google_login_secret']);
+
+
+		return $Google->client->createAuthUrl();
+	}
 
 	/**
 	 * User login request
@@ -132,10 +145,12 @@ class AuthService
 		try {
 
 			if (isset($this->app->auth()->id)) {
-				echo $this->app->redirect('/');
+				echo $this->app->redirect('/dashboard');
 			}
 
-			return render('views/front/signup.html.twig', []);
+			return render('views/front/signup.html.twig', [
+		        'google_login' => $this->loginWithGoogle(),
+			]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

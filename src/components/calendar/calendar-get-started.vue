@@ -21,7 +21,7 @@
                                         <div class=" p-8 py-0 mx-auto rounded-lg max-w-xl pb-10">
                                             <label class="block pt-5">{{__('category')}}</label>
                                             <input type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('category')" v-model="new_category" value="Playstation"> 
-                                            <button type="button" @click="addCategory()" class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('next')}}</button>
+                                            <button type="button" @click="saveCategory()" class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('next')}}</button>
                                         </div>
                                     </div>
                                 </li>
@@ -33,16 +33,16 @@
                                             <input name="type" type="hidden" value="Device.create" > 
                                             <input name="params[device][status]"  type="hidden" value="1" > 
                                             <label class="block pt-5">{{__('device_name')}}</label>
-                                            <input name="params[device][title]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="Device Title" value="First device"> 
+                                            <input name="params[device][title]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="Device Title" value="First device" v-model="activeItem.title"> 
 
 
                                             <label class="block pt-5">{{__('type')}}</label>
 
-                                            <select v-if="cats && cats.length > 0" name="params[device][type]" required="" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="">
-                                            <option v-for="type in cats" value="{{type.id}}">{{type.name}}</option>
+                                            <select v-if="cats && cats.length > 0" name="params[device][type]" required="" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"  v-model="activeItem.type">
+                                            <option v-for="type in cats" :value="type.id" v-text="type.name"></option>
                                             </select>
                                             
-                                            <button type="button"  @click="setTab(2)" class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('next')}}</button>
+                                            <button type="button"  @click="setTab(3)" class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('next')}}</button>
                                         </div>
                                     </div>
                                 </li>
@@ -51,18 +51,18 @@
                                     <div class="m-t-40">
                                         
                                         <label class="block pt-5">{{__('single_price')}}</label>
-                                        <input name="params[device][prices][single_price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Single price" required>
+                                        <input name="params[device][prices][single_price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Single price" required  v-model="activeItem.prices.single_price">
 
                                         <label class="block pt-5">{{__('multi_price')}}</label>
-                                        <input name="params[device][prices][multi_price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Multi price" required>
+                                        <input name="params[device][prices][multi_price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Multi price" required v-model="activeItem.prices.multi_price">
 
-                                        <button type="submit"  class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('save')}}</button>
+                                        <button type="button" @click="saveDevice()" class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('save')}}</button>
 
                                     </div>
                                 </li>
                                 <li  :class="(activeTab == 4) ? 'selected' : ''">
                                     <h3> <small>{{__('fourth_step')}}</small></h3>
-                                    <div class="m-t-40">
+                                    <div class="m-t-40 cursor-pointer" @click="complete()">
                                         {{__('start')}}
                                     </div>
                                 </li>
@@ -84,6 +84,7 @@ export default
     name:'Calendar Get started',
     data() {
         return {
+            activeItem: {prices:{}},
             activeTab:1,
             new_category:''
         }
@@ -104,7 +105,7 @@ export default
     methods: 
     {
 
-        addCategory()
+        saveCategory()
         {
             if (!this.new_category)
             {
@@ -115,7 +116,7 @@ export default
             params.append('type', 'Category.create')
             params.append('params[name]', this.new_category)
             params.append('params[model]', "Medians\\Devices\\Domain\\Device")
-            params.append('params[status]', "on")
+            params.append('params[status]', 1)
             this.handleRequest(params, '/api/create').then(response => {
                 t.$alert(response.result)
                 t.handleGetRequest('/calendar?load=json').then(response => {
@@ -125,6 +126,37 @@ export default
             })
 
         },
+
+        saveDevice()
+        {
+            if (!this.activeItem.title)
+            {
+                this.$alert(this.__('name_empty'))
+            }
+            let t = this;
+            var params = new URLSearchParams();
+            params.append('type', 'Device.create')
+            params.append('params[title]', this.activeItem.title)
+            params.append('params[type]', this.activeItem.type)
+            params.append('params[status]', 1)
+            params.append('params[prices][single_price]', this.activeItem.prices.single_price)
+            params.append('params[prices][multi_price]', this.activeItem.prices.multi_price)
+            this.handleRequest(params, '/api/create').then(response => {
+                t.setTab(4)
+            })
+
+        },
+
+        /**
+         * Complete and go start
+         * 
+         */
+        complete()
+        {
+            if (this.activeItem.title)
+                window.location.reload()
+        }, 
+
         setTab(tab)
         {
             this.activeTab = tab;

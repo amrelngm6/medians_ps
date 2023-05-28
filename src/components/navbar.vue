@@ -19,7 +19,7 @@
             </div>
         </div>
         <!-- <ul class="nav user-menu w-96 flex"> -->
-        <ul class="nav user-menu w-64 flex">
+        <ul class="nav user-menu flex">
             <li class="hidden nav-item dropdown w-20">
                 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                     <i class="fa fa-bell-o"></i> <span class="badge rounded-pill">3</span>
@@ -39,8 +39,8 @@
                     <li class="py-2 border-b border-gray-300" :class="lang.lang == 'en' ? 'font-semibold' : ''"><a href="/switch-lang/english">English</a></li>
                 </ul>
             </li>
-            <li v-if="auth && lang"  class="nav-item  has-arrow main-drop w-full relative">
-                <a href="#" class="flex w-full gap gap-2" onclick="$('.dropped1').toggleClass('hidden')">
+            <li v-if="auth && lang"  class=" w-64 nav-item  has-arrow main-drop relative">
+                <a href="#" class="flex w-64 gap gap-2" onclick="$('.dropped1').toggleClass('hidden')">
                     <span class="user-img mt-3 ">
                         <img :src="auth.photo" alt="">
                         <span class="status online absolute top-0 right-0"></span>

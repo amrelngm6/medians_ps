@@ -78,8 +78,20 @@ class APIController extends CustomController
 			$return = [];
 			switch ($request->get('type')) 
 			{
-				case 'Users.create':
+				case 'User.get_started_save_branch':
+					$return = (new Users\Application\GetStartedController())->store_branch();
+					break;
+
+				case 'User.get_started_save_setting':
+					$return = (new Users\Application\GetStartedController())->store_setting();
+					break;
+
+				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
+					break;
+
+				case 'Branch.create':
+					$return = (new Branches\Application\BranchController())->store();
 					break;
 
 				case 'PlanFeature.create':
@@ -146,12 +158,22 @@ class APIController extends CustomController
 		$return = [];
 		switch ($request->get('type')) 
 		{
+			case 'SystemSettings.update':
+                $return =  (new Settings\Application\SystemSettingsController())->update(); 
+				break;
+
+			case 'Branch.update':
+                $return =  (new Branches\Application\BranchController())->update(); 
+				break;
+
 			case 'Device.update':
                 $return =  (new Devices\Application\DeviceController())->update(); 
 				break;
+				
 			case 'Category.update':
 				$return = (new Categories\Application\CategoryController)->update($request);
 				break;
+
 			case 'Game.update':
 				$return = (new Games\Application\GameController())->update($request);
 				break;
@@ -175,12 +197,16 @@ class APIController extends CustomController
                 $return = (new Settings\Application\SettingsController())->update(); 
                 break;
 
-            case 'Users.update':
+            case 'User.update':
                 $return = (new Users\Application\UserController())->update(); 
                 break;
 
             case 'User.update':
                 $return =  (new Users\Application\UserController())->update(); 
+                break;
+
+            case 'Plan.update':
+                $return =  (new Plans\Application\PlanController())->update(); 
                 break;
 		}
 
@@ -238,6 +264,10 @@ class APIController extends CustomController
 					$return = (new Categories\Application\CategoryController())->delete();
 					break;
 
+				case 'Branch.delete':
+					$return = (new Branches\Application\BranchController())->delete();
+					break;
+
 				case 'Product.delete':
 					$return = (new Products\Application\ProductController())->delete();
 					break;
@@ -245,9 +275,25 @@ class APIController extends CustomController
 				case 'Game.delete':
 					return response((new Games\Application\GameController())->delete());
 					break;
+					
+				case 'Device.delete':
+					return response((new Devices\Application\DeviceController())->delete());
+					break;
+
+				case 'User.delete':
+					return response((new Users\Application\UserController())->delete());
+					break;
+
+				case 'Customer.delete':
+					return response((new Customers\Application\CustomerController())->delete());
+					break;
 
 				case 'Stock.delete':
-					return (new Products\Application\StockController())->delete();
+					return response((new Products\Application\StockController())->delete());
+					break;
+
+				case 'Plan.delete':
+					return response((new Plans\Application\PlanController())->delete());
 					break;
 
 

@@ -38,7 +38,7 @@
                                     <span class="cursor-pointer py-1 px-2" @click="showAddSide = false,showEditSide = false">
                                         <close_icon /></span>
                                 </div>
-                                <input name="type" type="hidden" value="Users.create">
+                                <input name="type" type="hidden" value="User.create">
                                 <input name="params[active]" type="hidden" value="1">
                                 <input name="params[first_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('first_name')" >
                                 <input name="params[last_name]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('last_name')" >
@@ -47,6 +47,13 @@
                                 <input name="params[phone]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')">
 
                                 <input name="params[password]" required="true" type="password" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('password')">
+
+                                <label class="block mt-3" v-if="isMaster">
+                                    <span class="block mb-2" v-text="__('branch')"></span>
+                                    <select name="params[active_branch]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                                        <option v-for="branch in content.branches" :value="branch.id" v-text="branch.name"></option>
+                                    </select>
+                                </label>
 
                                 <span class="block my-2" v-text="__('picture')"></span>
                                 <vue-medialibrary-field name="params[profile_image]" :api_url="conf.url" v-model="profile_image"></vue-medialibrary-field>
@@ -63,7 +70,7 @@
                         </div>
                         <div>
                             <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
-                                <input name="type" type="hidden" value="Users.update">
+                                <input name="type" type="hidden" value="User.update">
                                 <input name="params[id]" type="hidden" v-model="activeItem.id">
                                 <span class="block mb-2" v-text="__('first_name')"></span>
                                 <input name="params[first_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('first_name')" v-model="activeItem.first_name">
@@ -73,6 +80,13 @@
                                 <input name="params[email]" required="true" type="email" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('email')" v-model="activeItem.email">
                                 <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
                                 <input name="params[phone]" required="true" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
+
+                                <label class="block mt-3" v-if="isMaster">
+                                    <span class="block mb-2" v-text="__('branch')"></span>
+                                    <select v-model="activeItem.active_branch" name="params[active_branch]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                                        <option v-for="branch in content.branches" :value="branch.id" v-text="branch.name"></option>
+                                    </select>
+                                </label>
 
                                 <span class="block my-2" v-text="__('picture')"></span>
                                 <vue-medialibrary-field name="params[profile_image]" :key="activeItem.id" :api_url="conf.url" v-model="activeItem.photo"></vue-medialibrary-field>
@@ -100,8 +114,8 @@ export default {
             content: {
 
                 title: this.__('users'),
+                branches: [],
                 users: [],
-                typesList: [],
             },
 
             activeItem: null,
@@ -122,6 +136,15 @@ export default {
     },
 
     methods: {
+
+        /**
+         * Check if the user is Master
+         */
+        isMaster()
+        {
+            return (this.auth && this.auth.role_id == 1);
+        } , 
+
         load() {
             this.showLoader = true;
             this.$parent.handleGetRequest(this.url).then(response => {

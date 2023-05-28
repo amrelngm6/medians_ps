@@ -11,9 +11,9 @@ class CustomerRepository
 	public $app;
 
 
-	function __construct($app = null)
+	function __construct()
 	{
-		$this->app = $app;
+		$this->app = new \config\APP;;
 	}
 
 	public function getModel()
@@ -23,13 +23,13 @@ class CustomerRepository
 
 	public function search($mobile)
 	{
-		return Customer::where('mobile', 'LIKE', '%'.$mobile.'%')->limit(10)->get();
+		return Customer::where('mobile', 'LIKE', '%'.$mobile.'%')->where('active_branch', $this->app->branch->id)->limit(10)->get();
 	}
 
 
 	public function get($limit = 100)
 	{
-		return Customer::withCount('bookings')->with('last_invoice')->where('created_by', $this->app->auth()->id)->limit($limit)->get();
+		return Customer::withCount('bookings')->with('last_invoice')->where('active_branch', $this->app->branch->id)->limit($limit)->get();
 	}
 
 

@@ -3,10 +3,10 @@
         <div v-if="show" class="left-4">
             <!-- component -->
             <div class="w-full ">
-                <navbar class="w-full"  v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
+                <navbar  class="w-full  "  v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-3 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-10 ">
-                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
+                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth && auth.active_branch && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
                     </side-menu>
 
                     <div v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
@@ -44,11 +44,15 @@ import invoices from './components/invoices.vue'
 import invoice from './components/invoice.vue'
 import stock from './components/stock.vue'
 import settings from './components/settings.vue'
+import system_settings from './components/system_settings.vue'
 import users from './components/users.vue'
 import customers from './components/customers.vue'
 import reports from './components/reports.vue'
+import get_started from './components/get-started.vue'
 import plans from './components/plans.vue'
 import plan_features from './components/plan_features.vue'
+import branches from './components/branches.vue'
+import plan_subscriptions from './components/plan_subscriptions.vue'
 
 export default {
     name: 'app',
@@ -67,11 +71,15 @@ export default {
         invoice,
         stock,
         settings,
+        system_settings,
         users,
         customers,
         reports,
+        get_started,
         plans,
         plan_features,
+        plan_subscriptions,
+        branches,
         navbar
     },
     data() {
@@ -231,10 +239,7 @@ export default {
 
             // Demo json data
             return await axios.post(url, params.toString()).then(response => {
-                if (response.data.status)
-                    return response.data.result;
-                else
-                    return response.data;
+                return response.data;
             });
         },
 

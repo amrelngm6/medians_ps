@@ -2,7 +2,8 @@
 
 namespace Medians\Branches\Domain;
 
-use Medians\Settings\Domain\Settings;
+use \Medians\Users\Domain\User;
+use \Medians\Settings\Domain\Settings;
 
 use Shared\dbaser\CustomModel;
 
@@ -21,16 +22,29 @@ class Branch extends CustomModel
 	protected $fillable = [
     	'name',
     	'info',
+    	'owner_id',
     	'status'
 	];
 
 	public $timestamps = null;
-		
+	
 
-	public function users()
+	public $appends = ['owner_name'];
+
+	public function getOwnerNameAttribute()
 	{
-		return $this->hasOneThrough(
-			Medians\Users\Domain\User::class, BranchUsers::class, 'userId', 'id', 'id'
+		return isset($this->owner) ?  $this->owner->first_name : '';
+	}
+
+	public function getFields()
+	{
+		return $this->fillable;
+	}	
+
+	public function owner()
+	{
+		return $this->hasOne(
+			User::class, 'id', 'owner_id'
 		);
 	}
 

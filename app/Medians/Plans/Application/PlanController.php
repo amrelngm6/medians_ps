@@ -143,8 +143,8 @@ class PlanController extends CustomController
 
         try {
 
-           	$returnData =  ($this->repo->delete($params['id']))
-           	? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
+           	return  ($this->repo->delete($params['id']))
+            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
            	: array('error'=>__('Not allowed'));
 
 

@@ -6,7 +6,7 @@
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
+                    <a  v-if="isMaster()" href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
@@ -19,22 +19,17 @@
                                     <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{__('ADD_new')}}</h1>
                                     <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><close_icon /></span>
                                 </div>
-                                <input name="type" type="hidden" value="Plan.create">
-
+                                <input name="type" type="hidden" value="Branch.create">
+                                <input name="params[status]" type="hidden" value="1">
                                 <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')">
+                                <textarea name="params[info]" rows="3" class=" mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('info')"></textarea>
 
-                                <input name="params[monthly_cost]" required="" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('monthly_cost')">
-
-                                <input name="params[yearly_cost]" required="" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('yearly_cost')">
-
-                                <label class="block mt-3">
-                                    <span class="block mb-2" v-text="__('is_paid')"></span>
-                                    <select name="params[paid]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
-                                        <option value="0" v-text="__('Free')"></option>
-                                        <option value="1" v-text="__('Paid')"></option>
+                                <label class="block mt-3" v-if="isMaster()">
+                                    <span class="block mb-2" v-text="__('owner')"></span>
+                                    <select name="params[owner_id]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                                        <option v-for="user in content.users" :value="user.id" v-text="user.name"></option>
                                     </select>
                                 </label>
-
 
                                 <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
                             </form>
@@ -50,22 +45,24 @@
                             <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
 
 
-                                <input name="type" type="hidden" value="Plan.update">
+                                <input name="type" type="hidden" value="Branch.update">
                                 <input name="params[id]" type="hidden" v-model="activeItem.id">
 
+                                <span class="block mb-2" v-text="__('name')"></span>
+                                <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
 
-                                <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')"  v-model="activeItem.name">
+                                <textarea name="params[info]" rows="3" class=" mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('info')" v-model="activeItem.info"></textarea>
 
-                                <input name="params[monthly_cost]" required="" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('monthly_cost')"  v-model="activeItem.monthly_cost">
-
-                                <input name="params[yearly_cost]" required="" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('yearly_cost')"  v-model="activeItem.yearly_cost">
-
-                                <label class="block mt-3">
-                                    <span class="block mb-2" v-text="__('is_paid')"></span>
-                                    <select name="params[paid]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg"  v-model="activeItem.paid">
-                                        <option value="0" v-text="__('Free')"></option>
-                                        <option value="1" v-text="__('Paid')"></option>
+                                <label class="block mt-3" v-if="isMaster">
+                                    <span class="block mb-2" v-text="__('owner')"></span>
+                                    <select v-model="activeItem.owner_id" name="params[owner_id]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                                        <option v-for="user in content.users" :value="user.id" v-text="user.name"></option>
                                     </select>
+                                </label>
+
+                                <label class="inline-flex items-center mt-3">
+                                    <input name="params[status]" type="checkbox"  v-model="activeItem.status" class="form-checkbox h-5 w-5 text-orange-600">
+                                    <span class="ml-2 text-gray-700  mx-2" >{{__('PUBLISH')}}</span>
                                 </label>
 
                                 <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
@@ -87,12 +84,13 @@ export default
     components:{
         dataTableActions,
     },
-    name:'plans',
+    name:'Branches',
     data() {
         return {
             url: this.conf.url+this.path+'?load=json',
             content: {
                 title: '',
+                users: [],
                 items: [],
                 columns: [],
             },
@@ -106,6 +104,7 @@ export default
 
     computed: {
         bindings() {
+
 
             this.content.columns.push({
                     key: this.__("actions"),
@@ -134,7 +133,13 @@ export default
 
     methods: 
     {
-
+        /**
+         * Check if the user is Master
+         */
+        isMaster()
+        {
+            return (this.auth && this.auth.role_id == 1);
+        } , 
 
         handleAction(actionName, data) {
             switch(actionName) 
@@ -150,7 +155,7 @@ export default
                     break;  
 
                 case 'delete':
-                    this.$parent.delete(data, 'Plan.delete');
+                    this.$parent.delete(data, 'Branch.delete');
                     break;  
             }
         },
@@ -161,7 +166,6 @@ export default
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
-                // this.$alert(response)
             });
         },
         

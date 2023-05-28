@@ -76,7 +76,10 @@ class APP
 
 	public function auth()
 	{
-		return (new \Medians\Auth\Application\AuthService( new \Medians\Users\Infrastructure\UserRepository($this), $this ))->checkSession();
+
+		$check = (new \Medians\Auth\Application\AuthService())->checkSession();
+		$this->branch = isset($check->branch) ? $check->branch : null; 
+		return $check;
 	}
 
 	public function active_branch()
@@ -138,11 +141,53 @@ class APP
 	
 
 	/**
-	* Return 
+	* Return Administrator menu
 	* List of side menu
 	*/
 	public function menu()
 	{
+		if ($this->auth()->role_id === 1)
+			return $this->masterMenu();
+		else 
+			return $this->adminMenu();
+	}
+
+	
+
+	/**
+	* Return Administrator menu
+	* List of side menu
+	*/
+	public function masterMenu()
+	{
+
+		$data = array(
+			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard'),
+	        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'branches', 'component'=>'branches'),
+			array('title'=>__('Plans'),  'icon'=>'fa-desktop', 'link'=>'#plans', 'sub'=>
+				[
+	                array('title'=>__('plans'),  'icon'=>'', 'link'=>'plans', 'component'=>'plans'),
+	                array('title'=>__('plan_features'),  'icon'=>'', 'link'=>'plan_features', 'component'=>'plan_features'),
+				]
+			),
+
+	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'index_users', 'component'=>'users'),
+	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'customers', 'component'=>'customers'),
+			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'system_settings', 'component'=>'settings'),
+			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
+		);
+
+		return $data;
+	}
+
+
+	/**
+	* Return Administrator menu
+	* List of side menu
+	*/
+	public function adminMenu()
+	{
+
 		$data = array(
 			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard'),
 			array('title'=>__('Bookings'),  'icon'=>'fa-calendar', 'link'=>'#bookings', 'sub'=>
@@ -182,6 +227,7 @@ class APP
 	        array('title'=>__('Expenses'),  'icon'=>'fa-credit-card', 'link'=>'expenses', 'component'=>'expenses'),
 	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'users', 'component'=>'users'),
 	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'customers', 'component'=>'customers'),
+	        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'branches', 'component'=>'branches'),
 			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'settings', 'component'=>'settings'),
 			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
