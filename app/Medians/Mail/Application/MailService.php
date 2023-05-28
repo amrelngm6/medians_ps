@@ -70,6 +70,7 @@ class MailService
 
 		    echo $mail->send();
 
+		    print_r($mail);
 		    return true;
 
 		} catch (Exception $e) {
