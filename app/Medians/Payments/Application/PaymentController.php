@@ -214,6 +214,7 @@ class PaymentController extends CustomController
 
 			if (!$this->app->request()->get('paymentId'))
 				return $this->app->redirect('payment_failed');
+			
 			$payment = new PaymentService;
 
 			$paymentType = $_SESSION['payment_plan_type']; 

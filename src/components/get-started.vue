@@ -98,8 +98,8 @@
                                             <span>Multi-language</span>
                                         </li>
                                     </ul>
-                                    <button type="submit" title="Submit" class="block w-full py-3 px-6 text-center rounded-lg transition bg-purple-600 hover:bg-purple-700 active:bg-purple-800 focus:bg-indigo-600">
-                                        <span class="text-white font-semibold" @click="setActiveStep(4)" v-text="__('Choose plan')"></span>
+                                    <button type="button" title="Submit" @click="setActiveStep(4)"  class="block w-full py-3 px-6 text-center rounded-lg transition bg-purple-600 hover:bg-purple-700 active:bg-purple-800 focus:bg-indigo-600">
+                                        <span class="text-white font-semibold" v-text="__('Choose plan')"></span>
                                     </button>
                                 </div>
                             </div>
