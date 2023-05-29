@@ -73,6 +73,9 @@ class BranchController extends CustomController
 	 */
 	public function index()
 	{
+
+		$this->app = new \config\APP;
+
 		$this->checkBranch();
 
 		return render('branches', [
@@ -91,8 +94,6 @@ class BranchController extends CustomController
 	 */
 	public function getData()
 	{
-		$this->app = new \config\APP;
-
 		return ($this->app->auth()->role_id === 1) ? $this->repo->get() : [$this->repo->find($this->app->branch->id)];
 	} 
 
@@ -102,9 +103,7 @@ class BranchController extends CustomController
 	 */
 	public function getUsers()
 	{
-		$this->app = new \config\APP;
-
-		return ($this->app->auth()->role_id === 1) ? $this->repo->get() : $this->repo->find($this->app->branch->id);
+		return ($this->app->auth()->role_id === 1) ? $this->userRepo->get() : $this->userRepo->find($this->app->auth()->id);
 	} 
 	
 
