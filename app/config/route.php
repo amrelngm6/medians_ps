@@ -208,9 +208,7 @@ if(isset($app->auth()->id))
     /**
     * @return Content editor
     */
-    Macaw::get('/admin/pages', \Medians\Pages\Application\PageController::class.'@index');
     Macaw::get('/admin/editor', \Medians\Pages\Application\PageController::class.'@editor');
-    Macaw::get('/builder', \Medians\Pages\Application\PageController::class.'@editor');
     Macaw::post('/admin/update_section_content', \Medians\Pages\Application\PageController::class.'@updateContent');
 
     /**

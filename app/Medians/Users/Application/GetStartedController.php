@@ -69,7 +69,6 @@ class GetStartedController
 	*/
 	public function store_branch() 
 	{
-		return 1;
 		$params = (array)  $this->app->request()->get('params');
 
 		try {

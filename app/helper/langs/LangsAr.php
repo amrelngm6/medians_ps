@@ -999,6 +999,7 @@ class LangsAr
 		,'cost per month' => 'التكلفة الشهرية'
 		,'cost per year' => 'التكلفة السنوية'
 		,'is paid' => 'مدفوعة'
+		,'branch name required' => 'اسم الفرع مطلوب'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

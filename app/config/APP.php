@@ -177,7 +177,6 @@ class APP
 				]
 			),
 
-	        array('title'=>__('Pages'),  'icon'=>'fa-file', 'link'=>'admin/pages', 'component'=>'pages'),
 	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'index_users', 'component'=>'users'),
 	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'customers', 'component'=>'customers'),
 			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'system_settings', 'component'=>'system_settings'),
