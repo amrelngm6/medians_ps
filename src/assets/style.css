@@ -651,3 +651,8 @@ body .btn
   opacity: 0;
 }
 
+
+body .media-library
+{
+  top: 10px;
+}
