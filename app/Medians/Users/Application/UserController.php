@@ -36,9 +36,9 @@ class UserController extends CustomController
 	{
 		// $this->checkBranch();
 		
-		$query = ($this->app->auth()->role_id > 1) ? $this->repo->get(100, $this->app->branch->id) : $this->repo->getAll();
+		$query = ($this->app->auth()->role_id === 1) ? $this->repo->getAll() : $this->repo->get(100, $this->app->branch->id);
 
-		$branches = ($this->app->auth()->role_id > 1) ? [$this->branchRepo->find($this->app->branch->id)] : $this->branchRepo->get();
+		$branches = ($this->app->auth()->role_id === 1) ? $this->branchRepo->get() : [$this->branchRepo->find($this->app->branch->id)];
 
 		return render('users', [
 			'load_vue'=> true,
