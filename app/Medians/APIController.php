@@ -141,6 +141,10 @@ class APIController extends CustomController
 	                $return =  (new Users\Application\UserController())->store(); 
 	                break;
 
+	            case 'Page.create':
+	                $return =  (new Pages\Application\PageController())->store(); 
+	                break;
+
 			}
 
 			return response(json_encode($return));
@@ -211,6 +215,12 @@ class APIController extends CustomController
 
             case 'Plan.update':
                 $return =  (new Plans\Application\PlanController())->update(); 
+                break;
+            case 'PlanFeature.update':
+                $return =  (new Plans\Application\PlanFeatureController())->update(); 
+                break;
+            case 'Page.update':
+                $return =  (new Pages\Application\PageController())->update(); 
                 break;
 		}
 
@@ -298,6 +308,14 @@ class APIController extends CustomController
 
 				case 'Plan.delete':
 					return response((new Plans\Application\PlanController())->delete());
+					break;
+
+				case 'PlanFeature.delete':
+					return response((new Plans\Application\PlanFeatureController())->delete());
+					break;
+
+				case 'Page.delete':
+					return response((new Pages\Application\PageController())->delete());
 					break;
 
 

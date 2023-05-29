@@ -5,6 +5,8 @@ namespace Medians\Users\Domain;
 
 use Shared\dbaser\CustomModel;
 
+use Medians\Plans\Domain\Plan;
+use Medians\Plans\Domain\PlanSubscription;
 use Medians\Roles\Domain\Role;
 use \Medians\CustomFields\Domain\CustomField;
 
@@ -107,6 +109,11 @@ class User extends CustomModel
 	public function Role() 
 	{
 		return $this->hasOne(Role::class, 'id', 'role_id');
+	}
+
+	public function Plan() 
+	{
+		return $this->hasOneThrough(Plan::class, PlanSubscription::class, 'plan_id', 'id', 'active_branch', 'branch_id')->orderBy('id', 'DESC');
 	}
 
 

@@ -173,12 +173,14 @@ class APP
 				[
 	                array('title'=>__('plans'),  'icon'=>'', 'link'=>'plans', 'component'=>'plans'),
 	                array('title'=>__('plan_features'),  'icon'=>'', 'link'=>'plan_features', 'component'=>'plan_features'),
+			        array('title'=>__('payments'),  'icon'=>'fa-credit-card', 'link'=>'payments', 'component'=>'payments'),
 				]
 			),
 
+	        array('title'=>__('Pages'),  'icon'=>'fa-file', 'link'=>'admin/pages', 'component'=>'pages'),
 	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'index_users', 'component'=>'users'),
 	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'customers', 'component'=>'customers'),
-			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'system_settings', 'component'=>'settings'),
+			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'system_settings', 'component'=>'system_settings'),
 			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
 

@@ -224,21 +224,5 @@ class UserController extends CustomController
 	}
 
 
-	/**
-	 * Get-started page 
-	 * for set configuration
-	 */
-	public function get_started()
-	{
-
-		return render('get_started', [
-			'load_vue'=> true,
-			// 'users' =>   $this->repo->get(),
-	        'title' => __('Users'),
-	    ]);
-		return render('views/admin/get-started.html.twig',['user'=>$this->app->auth()]);
-
-	}
-
 
 }

@@ -30,8 +30,8 @@ module.exports = {
   publicPath: '/dist/',
   configureWebpack: {
     output: {
-      filename: "./js/app.js",
-      chunkFilename: './js/[id].chunk.js',
+      filename: "js/app.js",
+      chunkFilename: 'js/[id].chunk.js',
 
     },
     devtool: 'source-map'

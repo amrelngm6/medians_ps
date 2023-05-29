@@ -1,0 +1,35 @@
+{% include 'views/front/includes/head.html.twig' %}
+<section class="sigin__page bg__white">
+   <div class="container">
+      <div class="signin__wrapper">
+         <div class="row justify-content-center">
+            <div class="col-lg-12">
+               <div class="payment__success__inner">
+                  <div class="payment__success__header">
+                     <div class="icon">
+                        <i class="material-symbols-outlined">
+                           done
+                        </i>
+                     </div>
+                     <h2>{{title}}</h2>
+                     <p class="primary-text">{{message}}</p>
+                  </div>
+                  <div class="payment__success__footer">
+                     <hr />
+                     <div class="dbutton">
+                        <a href="/login" class="cmn--btn"><span>{{lang.__('Login to APP')}}</span></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+        </div>
+      </div>
+   </div>
+</section>
+
+{% include 'views/front/includes/footer-assets.html.twig' %}
+
+
+</body>
+
+</html>

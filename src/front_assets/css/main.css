@@ -9802,7 +9802,7 @@ p {
   color: var(--casedifrent);
 }
 .signin__content__left form .form__grp label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--themetext);
   margin-bottom: 15px;
@@ -9814,7 +9814,7 @@ p {
   background: rgba(69, 47, 244, 0.05);
   border: 1px solid var(--inputborder);
   border-radius: 5px;
-  padding: 12px 20px 14px;
+  padding: 8px 20px 10px;
   font-size: 14px;
 }
 .signin__content__left form .form__grp ::placeholder {
@@ -9826,6 +9826,9 @@ p {
   color: var(--themetext);
   font-weight: 400;
   margin-bottom: 32px;
+  display: flex; 
+  gap: 10px; 
+  width: 100%
 }
 .signin__content__left .accout a {
   color: var(--casedifrent);
@@ -13482,3 +13485,17 @@ p {
       margin-top: 150px;
       z-index: 9;
    }
+
+.google-login-btn
+{
+  float:right;
+  padding: 6px 10px; 
+  display: flex; 
+  gap: 10px; 
+  background: white; 
+  border-radius: 10px; 
+  color: darkblue; 
+  font-size:14px; 
+  width:300px; 
+  border:1px solid #ddd;
+}   

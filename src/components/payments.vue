@@ -8,91 +8,11 @@
                 <!-- Begin -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,showLoader = false; ">{{__('add_new')}}</a>
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-
-                    <div class="col-md-3" v-if="showAddSide">
-                        <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
-                            <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
-                                <div class="w-full flex">
-                                    <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{__('ADD_new')}}</h1>
-                                    <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><close_icon /></span>
-                                </div>
-                                <input name="type"  type="hidden" value="Payment.create" > 
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6 ">{{__('name')}}</label>
-                                    <input name="params[payment][name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" > 
-                                </div>
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6  ">{{__('Amount')}}</label>
-                                    <input required name="params[payment][amount]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"> 
-                                </div>
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6  ">{{__('date')}}</label>
-                                    <input  :value="today" name="params[payment][date]" type="date" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"> 
-                                </div>
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6 ">{{__('invoice_id')}}</label>
-                                    <input name="params[payment][invoice_id]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"> 
-                                </div>
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6 ">{{__('notes')}}</label>
-                                    <textarea name="params[payment][notes]" class="h-40 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Notes')" ></textarea> 
-                                </div>
-
-
-                                <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-3" v-if="showEditSide">
-                        <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
-                            <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
-                                <div class="w-full flex">
-                                    <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{__('Update')}}</h1>
-                                    <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
-                                </div>
-                                <input name="type"  type="hidden" value="Payment.create" > 
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6 ">{{__('name')}}</label>
-                                    <input name="params[payment][name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :value="activeItem.name"> 
-                                </div>
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6  ">{{__('Amount')}}</label>
-                                    <input disabled name="params[payment][amount]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :value="activeItem.amount"> 
-                                </div>
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6  ">{{__('date')}}</label>
-                                    <input disabled name="params[payment][date]" type="date" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :value="activeItem.date"> 
-                                </div>
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6 ">{{__('invoice_id')}}</label>
-                                    <input name="params[payment][invoice_id]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :value="activeItem.name"> 
-                                </div>
-
-                                <div class="w-full flex gap gap-2">
-                                    <label class="w-40 mt-6 ">{{__('notes')}}</label>
-                                    <textarea name="params[payment][notes]" class="h-40 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Notes')" >{{activeItem.notes}}</textarea> 
-                                </div>
-
-
-                                <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('Update')"></button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <!-- END New releases -->
             </main>
@@ -129,11 +49,11 @@ export default
     computed: {
         bindings() {
 
-            this.content.columns.push({
-                    key: this.__("actions"),
-                    component: dataTableActions,
-                    sortable: false,
-                });
+            // this.content.columns.push({
+            //         key: this.__("actions"),
+            //         component: dataTableActions,
+            //         sortable: false,
+            //     });
 
             return {
 

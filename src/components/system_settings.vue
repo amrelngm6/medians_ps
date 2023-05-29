@@ -104,7 +104,7 @@
 
 
                             <div class="w-full flex gap-4" v-if="activeTab == 'google'">
-                                <div class="card" >
+                                <div class="card w-full" >
                                     <div class="card-header pt-0">
                                         <span class="text-gray-700 font-semibold"><span v-text="__('GOOGLE_AUTH')"></span></span> 
                                     </div>
@@ -157,7 +157,6 @@
                                 </div>
 
                             </div>
-
 
                             <button class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Save')}}</button>
                         </form>

@@ -35,6 +35,7 @@ import navbar from './components/navbar.vue'
 import dashboard from './components/dashboard.vue'
 import categories from './components/categories.vue'
 import expenses from './components/expenses.vue'
+import payments from './components/payments.vue'
 import devices_orders from './components/devices_orders.vue'
 import calendar from './components/calendar.vue'
 import games from './components/games.vue'
@@ -53,6 +54,7 @@ import plans from './components/plans.vue'
 import plan_features from './components/plan_features.vue'
 import branches from './components/branches.vue'
 import plan_subscriptions from './components/plan_subscriptions.vue'
+import pages from './components/pages.vue'
 
 export default {
     name: 'app',
@@ -62,6 +64,7 @@ export default {
         dashboard,
         categories,
         expenses,
+        payments,
         devices_orders,
         calendar,
         games,
@@ -80,6 +83,7 @@ export default {
         plan_features,
         plan_subscriptions,
         branches,
+        pages,
         navbar
     },
     data() {

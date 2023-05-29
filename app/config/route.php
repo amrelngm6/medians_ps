@@ -39,10 +39,15 @@ Macaw::get('/activate-account/(:all)', \Medians\Users\Application\UserController
 if(isset($app->auth()->id))
 {
 
+    Macaw::get('/plan_payment', \Medians\Payments\Application\PaymentController::class.'@confirmPlanPayment'); 
+    Macaw::get('/payment_success', \Medians\Payments\Application\PaymentController::class.'@payment_success'); 
+    Macaw::get('/payment_failed', \Medians\Payments\Application\PaymentController::class.'@payment_failed'); 
+
     Macaw::get('/json/dashboard', \Medians\DashboardController::class.'@json'); 
     Macaw::get('/dashboard', \Medians\DashboardController::class.'@index'); 
-    Macaw::get('/get-started', \Medians\Users\Application\UserController::class.'@get_started'); 
-    Macaw::get('/get_started', \Medians\Users\Application\UserController::class.'@get_started'); 
+    Macaw::get('/get-started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
+    Macaw::get('/get_started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
+    Macaw::get('/get_started/plans', \Medians\Users\Application\GetStartedController::class.'@plans'); 
 
 
 
@@ -137,6 +142,12 @@ if(isset($app->auth()->id))
     /**
     * @return Payments
     */
+    Macaw::get('/payments/index', \Medians\Payments\Application\PaymentController::class.'@index');
+    Macaw::get('/payments', \Medians\Payments\Application\PaymentController::class.'@index');
+
+    /**
+    * @return Expenses
+    */
     Macaw::get('/expenses/index', \Medians\Expenses\Application\ExpenseController::class.'@index');
     Macaw::get('/expenses', \Medians\Expenses\Application\ExpenseController::class.'@index');
 
@@ -197,7 +208,9 @@ if(isset($app->auth()->id))
     /**
     * @return Content editor
     */
+    Macaw::get('/admin/pages', \Medians\Pages\Application\PageController::class.'@index');
     Macaw::get('/admin/editor', \Medians\Pages\Application\PageController::class.'@editor');
+    Macaw::get('/builder', \Medians\Pages\Application\PageController::class.'@editor');
     Macaw::post('/admin/update_section_content', \Medians\Pages\Application\PageController::class.'@updateContent');
 
     /**
@@ -207,6 +220,7 @@ if(isset($app->auth()->id))
     Macaw::get('/plans', \Medians\Plans\Application\PlanController::class.'@index');
     Macaw::get('/plan_features/index', \Medians\Plans\Application\PlanFeatureController::class.'@index');
     Macaw::get('/plan_features', \Medians\Plans\Application\PlanFeatureController::class.'@index');
+    Macaw::get('/plan_subscriptions', \Medians\Plans\Application\PlanSubscriptionController::class.'@index');
 
 
 
