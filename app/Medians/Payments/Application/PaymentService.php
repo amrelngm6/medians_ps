@@ -103,7 +103,7 @@ class PaymentService
 		    ->setCancelUrl("{$baseUrl}plan_payment?success=false");
 
 		$payment = new Payment();
-		$payment->setIntent(new PayPalModel)
+		$payment->setIntent("sale")
 		    ->setPayer($payer)
 		    ->setRedirectUrls($redirectUrls)
 		    ->setTransactions(array($transaction));
