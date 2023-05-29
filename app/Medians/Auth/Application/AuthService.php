@@ -259,6 +259,8 @@ class AuthService
            	? array('success'=>1, 'result'=>__('Created').__('check_email_for_activation'), 'reload'=>1)
         	: array('error'=> $save ));
 
+        	if (isset($save->id))
+        		return $this->sendMail($save, "Activate your account", 'activate-account');
 
 
         } catch (Exception $e) {
