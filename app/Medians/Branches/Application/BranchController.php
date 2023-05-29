@@ -80,7 +80,7 @@ class BranchController extends CustomController
 			'load_vue' => true,
 			'columns' => $this->columns(),
 			'items' => $this->getData(),
-			'users' => $this->userRepo->getAll(),
+			'users' => $this->getUsers(),
 	        'title' => __('branches'),
 	    ]);
 	} 
