@@ -89,7 +89,6 @@ class AuthService
 		  	// Check if code is expired or invalid
 		  	if($Google->client->isAccessTokenExpired())
 		  	{
-		  		echo 1;
 	  			return false;
 		  	}
 
@@ -256,9 +255,6 @@ class AuthService
 
 			$save = $this->repo->store($params);
 
-			if (isset($save->id))
-				$this->observe($save);
-
         	echo json_encode(isset($save->id) 
            	? array('success'=>1, 'result'=>__('Created').__('check_email_for_activation'), 'reload'=>1)
         	: array('error'=> $save ));
@@ -362,17 +358,32 @@ class AuthService
 
 
 	/**
-	 * Observe the new user event
+	 * Send the activation email
 	 */ 
-	public function observe($user) 
+	public function activateEmail() 
 	{
+		$this->app = new \config\APP;
 
-		$data = [
-			'subject' => 'Activate your account',
-			'body' => $this->app->template()->render('views/email/email.html.twig', ['user'=>$user, 'app'=>$this->app, 'setting'=>$this->app->settings()])
-		];
+		$user = $this->repo->getByEmail($this->app->request()->get('email'));
 
-		$mail = new MailService($user->email, $user->email, $data['subject'], $data['body']);
+		$send = $this->sendMail($user, "Activate your account", 'activate-account');
+
+
+	}
+
+
+	/**
+	 * Send email to activate the account
+	 */ 
+	public function sendMail($user, $subject, $template) 
+	{
+	
+		$this->app = new \config\APP;
+
+		$body =  $this->app->template()->render('views/email/email.html.twig', ['template'=>$template,'user'=>$user, 'app'=>$this->app]);
+
+		$mail = new MailService($user->email, $user->email, $subject, $body);
+
 		try {
 
 			$mail->sendMail();
@@ -382,9 +393,7 @@ class AuthService
 		} catch (Exception $e) {
 			throw new Exception("Error Processing Request ". $e->getMessage(), 1);
 		}
-
 	}
-
 
 
 

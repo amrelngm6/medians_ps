@@ -201,7 +201,6 @@ table{
 	color: #30e3ca;
 }
 
-
 /*HEADING SECTION*/
 .heading-section{
 }
@@ -325,7 +324,7 @@ ul.social li{
             <table>
             	<tr>
             		<td>
-            			{% include 'views/email/activate-account.html.twig' %}
+            			{% include 'views/email/' ~ template ~ '.html.twig' %}
             			
             			<hr />
             			<div class="text" style="padding: 0 2.5em; text-align: left;">

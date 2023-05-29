@@ -54,7 +54,7 @@ class MailService
 			$mail->Username   = $settings['smtp_user'];         //SMTP username
 			$mail->Password   = $settings['smtp_password'];     //SMTP password
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
-		    $mail->SMTPDebug = SMTP::DEBUG_SERVER;              //Enable verbose debug output
+		    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;              //Enable verbose debug output
 			$mail->Port       = $settings['smtp_port'];         //TCP port to connect to; use 587 if you have set `SMTPSecure = 
 
 		    //Recipients
