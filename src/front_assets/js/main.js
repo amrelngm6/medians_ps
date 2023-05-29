@@ -2,334 +2,6 @@
 
 $(document).ready(function () {
 
-	//--Owl Carousel--//
-	// $(".capabilities__wrap").owlCarousel({
-	// 	loop: true,
-	// 	margin: 24,
-	// 	autoplayTimeout: 1000,
-	// 	autoplay: false,
-	// 	nav: false,
-	// 	dots: true,
-	// 	responsiveClass: true,
-	// 	navText: [
-	// 		'<i class="material-symbols-outlined">chevron_left</i>',
-	// 		'<i class="material-symbols-outlined">chevron_right</i>',
-	// 	],
-	// 	responsive: {
-	// 		0: {
-	// 			items: 1,
-	// 		},
-	// 		500: {
-	// 			items: 1,
-	// 		},
-	// 		767: {
-	// 			items: 2,
-	// 		},
-	// 		991: {
-	// 			items: 3,
-	// 		},
-	// 		1199: {
-	// 			items: 3,
-	// 		},
-	// 		1399: {
-	// 			items: 3,
-	// 		},
-	// 	},
-	// });
-	// $(".testimonial__wrap").owlCarousel({
-	// 	loop: true,
-	// 	margin: 20,
-	// 	autoplayTimeout: 1000,
-	// 	autoplay: false,
-	// 	nav: true,
-	// 	stagePadding: 0,
-	// 	dots: false,
-	// 	responsiveClass: true,
-	// 	navText: [
-	// 		'<i class="material-symbols-outlined">chevron_left</i>',
-	// 		'<i class="material-symbols-outlined">chevron_right</i>',
-	// 	],
-	// 	responsive: {
-	// 		0: {
-	// 			items: 1,
-	// 		},
-	// 		400: {
-	// 			items: 1,
-	// 		},
-	// 		767: {
-	// 			items: 2,
-	// 		},
-	// 		991: {
-	// 			items: 2,
-	// 		},
-	// 		1199: {
-	// 			items: 2,
-	// 		},
-	// 		1399: {
-	// 			items: 2,
-	// 		},
-	// 		1499: {
-	// 			items: 2,
-	// 		},
-	// 		1699: {
-	// 			items: 2,
-	// 		},
-	// 	},
-	// });
-	// $(".testimonial__wrap__two").owlCarousel({
-	// 	loop: true,
-	// 	margin: 20,
-	// 	autoplayTimeout: 1000,
-	// 	autoplay: false,
-	// 	nav: true,
-	// 	stagePadding: 0,
-	// 	dots: false,
-	// 	responsiveClass: true,
-	// 	navText: [
-	// 		'<i class="material-symbols-outlined">chevron_left</i>',
-	// 		'<i class="material-symbols-outlined">chevron_right</i>',
-	// 	],
-	// 	responsive: {
-	// 		0: {
-	// 			items: 1,
-	// 		},
-	// 		400: {
-	// 			items: 1,
-	// 		},
-	// 		767: {
-	// 			items: 1,
-	// 		},
-	// 		991: {
-	// 			items: 1,
-	// 		},
-	// 		1199: {
-	// 			items: 1,
-	// 		},
-	// 		1399: {
-	// 			items: 1,
-	// 		},
-	// 		1499: {
-	// 			items: 1,
-	// 		},
-	// 		1699: {
-	// 			items: 1,
-	// 		},
-	// 	},
-	// });
-	// $(".testimonial__wrap__wided").owlCarousel({
-	// 	loop: true,
-	// 	margin: 20,
-	// 	autoplayTimeout: 1000,
-	// 	autoplay: false,
-	// 	nav: true,
-	// 	stagePadding: 0,
-	// 	dots: false,
-	// 	responsiveClass: true,
-	// 	navText: [
-	// 		'<i class="material-symbols-outlined">chevron_left</i>',
-	// 		'<i class="material-symbols-outlined">chevron_right</i>',
-	// 	],
-	// 	responsive: {
-	// 		0: {
-	// 			items: 1,
-	// 		},
-	// 		400: {
-	// 			items: 1,
-	// 		},
-	// 		767: {
-	// 			items: 1,
-	// 		},
-	// 		991: {
-	// 			items: 1,
-	// 		},
-	// 		1199: {
-	// 			items: 1,
-	// 		},
-	// 		1399: {
-	// 			items: 1,
-	// 		},
-	// 		1499: {
-	// 			items: 1,
-	// 		},
-	// 		1699: {
-	// 			items: 1,
-	// 		},
-	// 	},
-	// });
-	$(".testi__three__wrap").owlCarousel({
-		loop: true,
-		margin: 20,
-		autoplayTimeout: 1000,
-		autoplay: false,
-		nav: false,
-		stagePadding: 0,
-		dots: true,
-		responsiveClass: true,
-		navText: [
-			'<i class="material-symbols-outlined">chevron_left</i>',
-			'<i class="material-symbols-outlined">chevron_right</i>',
-		],
-		responsive: {
-			0: {
-				items: 1,
-			},
-			400: {
-				items: 1,
-			},
-			767: {
-				items: 1,
-			},
-			991: {
-				items: 1,
-			},
-			1199: {
-				items: 1,
-			},
-			1399: {
-				items: 1,
-			},
-			1499: {
-				items: 1,
-			},
-			1699: {
-				items: 1,
-			},
-		},
-	});
-	$(".include__benefits__wrap").owlCarousel({
-		loop: true,
-		margin: 24,
-		autoplayTimeout: 1000,
-		autoplay: false,
-		nav: true,
-		dots: false,
-		responsiveClass: true,
-		navText: [
-			'<i class="material-symbols-outlined">chevron_left</i>',
-			'<i class="material-symbols-outlined">chevron_right</i>',
-		],
-		responsive: {
-			0: {
-				items: 1,
-			},
-			500: {
-				items: 1,
-			},
-			767: {
-				items: 2,
-			},
-			991: {
-				items: 3,
-			},
-			1199: {
-				items: 3,
-			},
-			1399: {
-				items: 3,
-			},
-		},
-	});
-	$(".success__story__wrap").owlCarousel({
-		loop: true,
-		margin: 24,
-		autoplayTimeout: 1000,
-		autoplay: false,
-		nav: true,
-		dots: false,
-		responsiveClass: true,
-		navText: [
-			'<i class="material-symbols-outlined">chevron_left</i>',
-			'<i class="material-symbols-outlined">chevron_right</i>',
-		],
-		responsive: {
-			0: {
-				items: 1,
-			},
-			570: {
-				items: 2,
-			},
-			767: {
-				items: 2,
-			},
-			991: {
-				items: 3,
-			},
-			1199: {
-				items: 3,
-			},
-			1399: {
-				items: 3,
-			},
-		},
-	});
-	$(".blog__details__wrap").owlCarousel({
-		loop: true,
-		margin: 24,
-		autoplayTimeout: 1000,
-		autoplay: false,
-		nav: true,
-		dots: false,
-		responsiveClass: true,
-		navText: [
-			'<i class="material-symbols-outlined">chevron_left</i>',
-			'<i class="material-symbols-outlined">chevron_right</i>',
-		],
-		responsive: {
-			0: {
-				items: 1,
-			},
-			600: {
-				items: 2,
-			},
-			767: {
-				items: 2,
-			},
-			991: {
-				items: 3,
-			},
-			1199: {
-				items: 3,
-			},
-			1399: {
-				items: 3,
-			},
-		},
-	});
-	$(".edu__client").owlCarousel({
-		loop: true,
-		margin: 1,
-		autoplayTimeout: 1000,
-		autoplay: false,
-		nav: true,
-		dots: false,
-		responsiveClass: true,
-		navText: [
-			'<i class="material-symbols-outlined">chevron_left</i>',
-			'<i class="material-symbols-outlined">chevron_right</i>',
-		],
-		responsive: {
-			0: {
-				items: 1,
-			},
-			600: {
-				items: 1,
-			},
-			767: {
-				items: 1,
-			},
-			991: {
-				items: 1,
-			},
-			1199: {
-				items: 1,
-			},
-			1399: {
-				items: 1,
-			},
-		},
-	});
-	//--Owl Carousel--//
-
 	//--Header Menu--//
 	$(".header-bar").on("click", function (e) {
 		$(".main-menu, .header-bar").toggleClass("active");
@@ -602,9 +274,29 @@ progressBar: () => {
 	});
 }
 
+function signupFormResponse(response)
+{
 
+	if (response.success)
+		return (Swal.fire(response.title,response.result,  'success'), form.reset())
+
+	if (response.reload)
+		return window.location.reload()
+}
+
+function loginFormResponse(response)
+{
+
+	if (response.success)
+		return window.location.href = './dashboard'
+	
+	if (response.reload)
+		return window.location.reload()
+}
 
 jQuery(document).on('submit', 'form', function(){
+
+	var formId = jQuery(this).attr('id') ;
 
 	// Get the form and submit button elements
 	const form = document.getElementById(jQuery(this).attr('id'));
@@ -627,9 +319,19 @@ jQuery(document).on('submit', 'form', function(){
 	    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 	      // Handle the successful response
 	    	let res = JSON.parse(xhr.responseText);
-	    	(res.error ) 
-	    		? Swal.fire('Error!',res.error, 'error')
-	    		: (Swal.fire(res.title,res.result,  'success')/*, form.reset()*/);
+
+			if (res.error)
+				return Swal.fire('Error!',res.error, 'error');
+
+	    	if (formId == 'login-form')
+	    		return loginFormResponse(res)
+
+	    	if (formId == 'signup-form')
+	    		return signupFormResponse(res)
+	    	
+	    	Swal.fire(res.title,res.result,  'success')
+
+	    	form.reset();
 
 	    } else {
 	  		Swal.fire('Error!','Connection error','error')

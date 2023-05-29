@@ -93,7 +93,7 @@ class BranchController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		return ($this->app->auth()->role_id == 1) ? $this->repo->get() : [$this->repo->find($this->app->branch->id)];
+		return ($this->app->auth()->role_id === 1) ? $this->repo->get() : [$this->repo->find($this->app->branch->id)];
 	} 
 
 	/**
@@ -104,7 +104,7 @@ class BranchController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		return ($this->app->auth()->role_id == 1) ? $this->repo->get() : $this->repo->find($this->app->branch->id);
+		return ($this->app->auth()->role_id === 1) ? $this->repo->get() : $this->repo->find($this->app->branch->id);
 	} 
 	
 
