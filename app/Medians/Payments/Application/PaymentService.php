@@ -50,10 +50,10 @@ class PaymentService
 
 	    $this->apiContext->setConfig(
 	        array(
-	            'mode' => 'sandbox',
+	            'mode' => strtolower($setting['paypal_mode']),
 	            'log.LogEnabled' => true,
 	            'log.FileName' => '/PayPal.log',
-	            'log.LogLevel' => 'DEBUG', // PLEASE USE `INFO` LEVEL FOR LOGGING IN LIVE ENVIRONMENTS
+	            'log.LogLevel' => 'INFO', // PLEASE USE `INFO` LEVEL FOR LOGGING IN LIVE ENVIRONMENTS
 	            'cache.enabled' => true,
 	        )
 	    );

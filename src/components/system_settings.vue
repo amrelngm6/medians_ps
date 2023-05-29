@@ -22,17 +22,17 @@
                                     <div class="card-body pt-0">
                                         <div class="settings-form mt-2">
                                             <label class="block pb-3">
-                                                <span class="text-gray-700"><span v-text="__('SMTP_SENDER')"></span><span class="star-red">*</span></span>
+                                                <span class="text-gray-700"><span v-text="__('SMTP_SENDER')"></span></span>
                                                 <input name="params[smtp_sender]" type="email" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('SMTP_SENDER')"  :value="content.setting.smtp_sender">
                                             </label>
 
                                             <label class="block py-3">
-                                                <span class="text-gray-700"><span v-text="__('SMTP_USER')"></span><span class="star-red">*</span></span>
+                                                <span class="text-gray-700"><span v-text="__('SMTP_USER')"></span></span>
                                                 <input name="params[smtp_user]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('SMTP_USER')"  :value="content.setting.smtp_user">
                                             </label>
                                             <label class="block py-3">
-                                                <span class="text-gray-700"><span v-text="__('SMTP_PASSWORD')"></span><span class="star-red">*</span></span>
-                                                <input name="params[smtp_password]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('SMTP_PASSWORD')"  :value="content.setting.smtp_password">
+                                                <span class="text-gray-700"><span v-text="__('SMTP_PASSWORD')"></span></span>
+                                                <input name="params[smtp_password]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('SMTP_PASSWORD')">
                                             </label>
 
                                         </div>
@@ -48,16 +48,16 @@
                                             <div class="settings-form">
 
                                                 <label class="block py-3">
-                                                    <span class="text-gray-700"><span v-text="__('SMTP_HOST')"></span><span class="star-red">*</span></span>
+                                                    <span class="text-gray-700"><span v-text="__('SMTP_HOST')"></span></span>
                                                     <input name="params[smtp_host]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('SMTP_HOST')"  :value="content.setting.smtp_host">
                                                 </label>                                                
                                                 <label class="block py-3">
-                                                    <span class="text-gray-700"><span v-text="__('SMTP_PORT')"></span><span class="star-red">*</span></span>
+                                                    <span class="text-gray-700"><span v-text="__('SMTP_PORT')"></span></span>
                                                     <input name="params[smtp_port]" type="number" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('SMTP_USER')"  :value="content.setting.smtp_port">
                                                 </label>
                                                 
                                                 <label class="block py-3">
-                                                    <span class="text-gray-700">{{__('SMTP_AUTH')}} <span class="star-red">*</span></span>
+                                                    <span class="text-gray-700">{{__('SMTP_AUTH')}} </span>
                                                     <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[smtp_auth]" :value="content.setting.smtp_auth">
                                                         <option value="1">True</option>
                                                         <option value="0">False</option>
@@ -71,36 +71,6 @@
                             </div>
 
 
-
-
-                            <div class="w-full flex gap-4" v-if="activeTab == 'address'">
-                                <div class="card" >
-                                    <div class="card-body pt-0">
-                                        <div class="settings-form">
-                                            <div class="form-group">
-                                                <label>{{__('Address')}}  <span class="star-red">*</span></label>
-                                                <input name="params[settings][address]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Enter Address Line 2" required :value="content.setting.address">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>{{__('City')}} <span class="star-red">*</span></label>
-                                                        <input name="params[settings][city]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required :value="content.setting.city">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>{{__('Country')}} </label>
-                                                        <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][country]" :value="content.setting.country">
-                                                            <option value="Egypt">Egypt</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <div class="w-full flex gap-4" v-if="activeTab == 'google'">
@@ -130,6 +100,20 @@
 
 
 
+                            <div class="w-full flex gap-4" v-if="activeTab == 'site_content'">
+                                
+                                <div class="card w-full" >
+                                    <div class="card-header pt-0">
+                                        <span class="text-gray-700 font-semibold"><span v-text="__('site_content')"></span></span> 
+                                    </div>
+                                    <div class="card-body py-6">
+                                        <button class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Open editor')}}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <div class="w-full flex gap-4" v-if="activeTab == 'payment_methods'">
                                 
                                 <div class="card w-full" >
@@ -139,6 +123,15 @@
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
                                             <div class="form-group">
+
+
+                                                <label class="block py-3">
+                                                    <span class="text-gray-700">{{__('paypal_mode')}} <span class="star-red">*</span></span>
+                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[paypal_mode]" :value="content.setting.paypal_mode">
+                                                        <option value="SANDBOX">SANDBOX</option>
+                                                        <option value="LIVE">LIVE</option>
+                                                    </select>
+                                                </label>
 
                                                 <label class="block py-3">
                                                     <span class="text-gray-700"><span v-text="__('PayPal_API_KEY')"></span></span>
@@ -158,7 +151,7 @@
 
                             </div>
 
-                            <button class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Save')}}</button>
+                            <button v-if="activeTab != 'site_content'" class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Save')}}</button>
                         </form>
                     </div>
                     <div class="col-md-3" >
@@ -184,6 +177,7 @@ export default
             },
             setting_tabs: [
                 {title:this.__('Basic_Details'), link:'basic'},
+                {title:this.__('site_content'), link:'site_content'},
                 {title:this.__('payment_methods'), link:'payment_methods'},
                 // {title:this.__('Address_Details'), link:'address'},
                 {title:this.__('GOOGLE_AUTH'), link:'google'},

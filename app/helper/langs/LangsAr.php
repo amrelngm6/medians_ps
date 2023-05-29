@@ -1000,6 +1000,7 @@ class LangsAr
 		,'cost per year' => 'التكلفة السنوية'
 		,'is paid' => 'مدفوعة'
 		,'branch name required' => 'اسم الفرع مطلوب'
+		,'Open editor' => 'فتح المحرر'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
