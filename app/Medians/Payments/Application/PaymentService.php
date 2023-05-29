@@ -19,6 +19,8 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Api\PaymentExecution;
 
+use PayPal\Common\PayPalModel;
+
 class PaymentService
 {
 
@@ -101,7 +103,7 @@ class PaymentService
 		    ->setCancelUrl("{$baseUrl}plan_payment?success=false");
 
 		$payment = new Payment();
-		$payment->setIntent("sale")
+		$payment->setIntent(new PayPalModel)
 		    ->setPayer($payer)
 		    ->setRedirectUrls($redirectUrls)
 		    ->setTransactions(array($transaction));
