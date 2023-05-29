@@ -58,7 +58,7 @@ class MailService
 			$mail->Port       = $settings['smtp_port'];         //TCP port to connect to; use 587 if you have set `SMTPSecure = 
 
 		    //Recipients
-		    $mail->setFrom($settings['smtp_sender'], $this->app->sitename);
+		    $mail->setFrom($settings['smtp_sender'], 'Medians');
 		    $mail->addAddress($this->email, $this->name);     //Add a recipient
 		    $mail->addReplyTo($settings['smtp_sender'], 'no-reply');
 		    // $mail->addBCC('info@medianssolutions.com');
