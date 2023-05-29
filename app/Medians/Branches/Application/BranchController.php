@@ -103,7 +103,7 @@ class BranchController extends CustomController
 	 */
 	public function getUsers()
 	{
-		return ($this->app->auth()->role_id === 1) ? $this->userRepo->get() : $this->userRepo->find($this->app->auth()->id);
+		return ($this->app->auth()->role_id === 1) ? $this->userRepo->getAll() : [$this->userRepo->find($this->app->auth()->id)];
 	} 
 	
 
