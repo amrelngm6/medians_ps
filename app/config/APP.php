@@ -174,7 +174,7 @@ class APP
 				]
 			),
 
-	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/index_users', 'component'=>'users'),
+	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
 	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
 			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
 			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),

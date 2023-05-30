@@ -14,6 +14,15 @@ class User extends CustomModel
 {
 
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->bootIfNotBooted();
+        
+    }
+
+
 	/*
 	/ @var String
 	*/
@@ -134,5 +143,29 @@ class User extends CustomModel
 	}
 
 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($model) {
+            // code to run after a new record is created
+        	Branch::create(['name'=>'created']);
+        });
+
+        static::creating(function ($model) {
+            // code to run before a new record is created
+        	Branch::create(['name'=>'creating']);
+        });
+
+        static::updating(function ($model) {
+            // code to run before a record is updated
+        	Branch::create(['name'=>'updating']);
+        });
+
+        static::deleting(function ($model) {
+            // code to run before a record is deleted
+        });
+    }
 
 }

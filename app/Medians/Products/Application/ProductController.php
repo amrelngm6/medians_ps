@@ -128,27 +128,6 @@ class ProductController extends CustomController
 
 
 
-
-	// /**
-	//  * Get product order page
-	//  * 
-	//  * @param Silex\Application $app
-	//  * @param \Twig\Environment $twig
-	//  * 
-	//  */ 
-	// public function pos(Int $deviceId) 
-	// {
-		
-	//     return render('views/admin/products/pos.html.twig', [
-	//         'title' => __('Products list'),
-	//         'device' => (new DeviceController)->getItem($deviceId),
-	//         'products' => $this->getByBranch($app->branch->id),
-	//         'stock' => new StockController(null),
-	//     ]);
-	// }
-
-
-
 	/**
 	 * Store item to database
 	 * 
@@ -156,6 +135,9 @@ class ProductController extends CustomController
 	*/
 	public function store() 
 	{	
+		
+		$this->checkFeatureAccess('games_count', count($this->repo->get()));
+
 		$this->app = new \config\APP;
         
 		$params = $this->app->request()->get('params');

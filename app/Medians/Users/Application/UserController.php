@@ -36,9 +36,9 @@ class UserController extends CustomController
 	{
 		// $this->checkBranch();
 		
-		$query = ($this->app->auth()->role_id === 1) ? $this->repo->getAll() : $this->repo->get(100, $this->app->branch->id);
+		$query = ($this->app->auth()->role_id == 1) ? $this->repo->getAll() : $this->repo->get(100, $this->app->branch->id);
 
-		$branches = ($this->app->auth()->role_id === 1) ? $this->branchRepo->get() : [$this->branchRepo->find($this->app->branch->id)];
+		$branches = ($this->app->auth()->role_id == 1) ? $this->branchRepo->get() : [$this->branchRepo->find($this->app->branch->id)];
 
 		return render('users', [
 			'load_vue'=> true,
@@ -170,7 +170,7 @@ class UserController extends CustomController
 		if (empty($params['phone']))
 			return ['result'=> __('Mobile required')];
 		
-		if ($params['id'] != $this->app->auth()->id && $this->app->auth()->id == 1)
+		if ($params['id'] != $this->app->auth()->id && $this->app->auth()->id != 1)
 			return ['result'=> __('Not allowed')];
 	}
 
