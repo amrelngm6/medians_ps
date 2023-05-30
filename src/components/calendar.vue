@@ -40,7 +40,7 @@ export default
     name:'categories',
     data() {
         return {
-            url: '/calendar?load=json',
+            url: this.conf.url+this.path+'?load=json',
             content: {
 
                 title: '',

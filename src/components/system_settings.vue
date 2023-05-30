@@ -179,7 +179,7 @@ export default
     name:'Settings',
     data() {
         return {
-            url: this.conf.url+'system_settings?load=json',
+            url: this.conf.url+this.path+'system_settings?load=json',
             content: {
                 setting: {},
             },

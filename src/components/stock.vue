@@ -68,7 +68,7 @@ export default
     name:'products',
     data() {
         return {
-            url: this.conf.url+'stock?load=json',
+            url: this.conf.url+this.path+'stock?load=json',
             content: {
                 title: '',
                 items: [],

@@ -104,7 +104,7 @@ export default
     name:'games',
     data() {
         return {
-            url: this.conf.url+'games?load=json',
+            url: this.conf.url+this.path+'games?load=json',
             content: {
 
                 title: '',
