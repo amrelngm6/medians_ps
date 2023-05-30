@@ -207,7 +207,7 @@ class APP
 			array('title'=>__('Devices'),  'icon'=>'fa-desktop', 'link'=>'#devices', 'sub'=>
 				[
 	                array('title'=>__('manage devices'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices/manage', 'component'=>'manage_devices'),
-	                array('title'=>__('games'),  'icon'=>'fa-dashboard', 'link'=>'admin/games'),
+	                array('title'=>__('games'),  'icon'=>'fa-dashboard', 'link'=>'admin/games', 'component' => 'games'),
 	                array('title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices/categories', 'component'=>'categories'),
 				]
 			),
@@ -234,6 +234,7 @@ class APP
 	            [
 					array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
 			        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
+	                array('title'=>__('plan_subscriptions'), 'icon'=>'', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
 	            ]
 	        ),
 			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
