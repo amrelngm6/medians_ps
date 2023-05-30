@@ -192,7 +192,7 @@ class ProductController extends CustomController
 
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'redirect'=>$this->app->CONF['url'].'products/index')
+           	? array('success'=>1, 'result'=>__('Updated'), 'redirect'=>$this->app->CONF['url'].'admin/products/index')
            	: array('error'=>'Not allowed');
 
 

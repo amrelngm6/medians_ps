@@ -86,11 +86,11 @@
                                         <tbody v-if="content.latest_order_products">
                                             <tr :key="index" v-for="(item, index) in content.latest_order_products" class="text-center">
                                                 <td>
-                                                    <a :href="'/products/edit/'+item.product.id">{{item.product.name}}</a>
+                                                    <a :href="'/admin/products/edit/'+item.product.id">{{item.product.name}}</a>
                                                 </td>
                                                 <td class="text-red-500">{{item.product.price}} {{setting.currency}}</td>
                                                 <td v-text="dateTimeFormat(item.created_at)"></td>
-                                                <td><a target="_blank" :href="'/invoices/show/'+item.invoice.code">{{item.invoice.code}}</a></td>
+                                                <td><a target="_blank" :href="'/admin/invoices/show/'+item.invoice.code">{{item.invoice.code}}</a></td>
                                                 <td v-text="item.user ? item.user.name : ''"></td>
                                             </tr>
                                         </tbody>

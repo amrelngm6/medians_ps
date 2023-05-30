@@ -21,7 +21,6 @@ class GameController extends CustomController
 
 	function __construct()
 	{
-		$this->checkBranch();
 
 		$this->app = new \config\APP;
 
@@ -39,6 +38,7 @@ class GameController extends CustomController
 	 */ 
 	public function index( ) 
 	{
+		$this->checkBranch();
 		
 	    return render('games', [
 	        'load_vue' => true,
@@ -53,6 +53,8 @@ class GameController extends CustomController
 
 	public function store() 
 	{
+
+		$this->checkFeatureAccess('games_count', count($this->repo->get()));
 
 		$params = $this->app->request()->get('params');
 

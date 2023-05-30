@@ -88,7 +88,7 @@ class PaymentController extends CustomController
 	public function index() 
 	{
 		$this->checkBranch();
-		
+
 		return render('payments', [
 			'load_vue'=> true,
 	        'title' => __('Payments list'),
@@ -215,7 +215,7 @@ class PaymentController extends CustomController
 			
 
 			if (!$this->app->request()->get('paymentId'))
-				return $this->app->redirect('payment_failed');
+				return $this->app->redirect('admin/payment_failed');
 			
 			$payment = new PaymentService;
 
@@ -235,12 +235,12 @@ class PaymentController extends CustomController
 			$excutePayment = $payment->confirmPlanPayment($this->app->request()->get('paymentId'), $this->app->request()->get('PayerID'));
 
 			if (empty($excutePayment->id) || $excutePayment->state != 'approved')
-				return $this->app->redirect('payment_failed');
+				return $this->app->redirect('admin/payment_failed');
 
 			$GetStartedController = new GetStartedController;
 			$savePlan = $GetStartedController->savePlan($plan, $paymentType);
 			if (empty($savePlan))
-				return $this->app->redirect('payment_failed');
+				return $this->app->redirect('admin/payment_failed');
 
 			$params = [];
 
@@ -256,10 +256,10 @@ class PaymentController extends CustomController
 	       	$savePayment =  $this->repo->store($params);
 
 	       	if (isset($savePayment->id))
-				return $this->app->redirect('payment_success');
+				return $this->app->redirect('admin/payment_success');
 
 		} catch (Exception $e) {
-			return $this->app->redirect('payment_failed');
+			return $this->app->redirect('admin/payment_failed');
 		}
 	}  
 

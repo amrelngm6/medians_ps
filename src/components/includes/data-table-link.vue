@@ -1,8 +1,8 @@
 <template>
         
     <div class="w-full">
-          <a v-if="data.invoice" target="_blank" :href="'/invoices/show/'+data.invoice.code" v-text="data.invoice.code"></a>
-          <a v-if="data.code" target="_blank" :href="'/invoices/show/'+data.code" v-text="data.code"></a>
+          <a v-if="data.invoice" target="_blank" :href="'/admin/invoices/show/'+data.invoice.code" v-text="data.invoice.code"></a>
+          <a v-if="data.code" target="_blank" :href="'/admin/invoices/show/'+data.code" v-text="data.code"></a>
     </div>
 </template>
 <script>
