@@ -107,7 +107,7 @@
                                         <span class="text-gray-700 font-semibold"><span v-text="__('site_content')"></span></span> 
                                     </div>
                                     <div class="card-body py-6">
-                                        <a href="/admin/editor" class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Open editor')}}</a>
+                                        <a href="/admin/editor" class="pt-2 text-center block uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Open editor')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -127,12 +127,11 @@
                                             </g>
                                         </svg>
                                         <span class="text-gray-700 font-semibold"><span v-text="__('PAYPAL_API')"></span></span> 
-                                        
+
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
                                             <div class="form-group">
-
 
                                                 <label class="block py-3">
                                                     <span class="text-gray-700">{{__('paypal_mode')}} <span class="star-red">*</span></span>
