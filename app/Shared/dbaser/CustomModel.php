@@ -8,15 +8,19 @@ use Medians\Users\Domain\User;
 use Medians\Content\Domain\Content;
 use Medians\Views\Domain\View;
 
+use \config\APP;
+
 class CustomModel extends Model
 {
+
 
 	function __construct()
 	{
 		$this->orderBy('id', 'DESC');
 	}
 
-	function can($permission, $app)
+
+	public function can($permission, $app)
 	{
 	    if (isset($app->auth->role_id))
 	    {
@@ -74,12 +78,8 @@ class CustomModel extends Model
 	public function addView()
 	{
 
-		$add = View::create(['session'=>$this->sessionGuest(), 'item_type'=>get_class($this), 'item_id'=>$this->id]);
+		View::create(['session'=>$this->sessionGuest(), 'item_type'=>get_class($this), 'item_id'=>$this->id]);
 
-		// if (isset($add->times))
-		// 	$add->update(['times' => $add->times+1]);
-		// else
-		// 	$add->update(['times' => 1]);
 	}
 }
 

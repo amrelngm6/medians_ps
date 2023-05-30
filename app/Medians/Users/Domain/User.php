@@ -113,7 +113,7 @@ class User extends CustomModel
 
 	public function Plan() 
 	{
-		return $this->hasOneThrough(Plan::class, PlanSubscription::class, 'plan_id', 'id', 'active_branch', 'branch_id')->orderBy('id', 'DESC');
+		return $this->hasOneThrough(Plan::class, PlanSubscription::class, 'branch_id', 'id', 'active_branch', 'plan_id')->orderBy('id', 'DESC')->with('plan_features');
 	}
 
 

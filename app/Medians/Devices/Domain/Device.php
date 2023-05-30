@@ -51,39 +51,8 @@ class Device extends CustomModel
  	 */ 
 	public function getFields()
 	{
-		return array_filter(array_map(function ($q) 
-		{
-			if (!in_array($q, array('model_type' ,'model_id')))
-			{
-				return $q;
-			}
-		}, $this->fillable));
+		return $this->fillable;
 	}
-
-
-
-	/** 
-	 * Render options values
-	 */ 
-	public function renderOptions($category)
-	{
-		return (object) array_column(
-				array_map(function($q) use ($category) {
-					if ($q->category == $category) { return $q; }
-				}, (array) json_decode($this->SelectedOption))
-			, 'value', 'code');
-
-	}
-
-
-	/** 
-	 * Render options values
-	 */ 
-	public function renderFields($category)
-	{
-		return array_column(Options::where('model', Property::class)->where('category', $category)->get()->toArray(), 'title', 'code');
-	}
-
 
 
 

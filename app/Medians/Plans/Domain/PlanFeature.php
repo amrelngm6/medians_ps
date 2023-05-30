@@ -59,7 +59,7 @@ class PlanFeature extends CustomModel
 
 	public function plan()
 	{
-		return $this->belongsTo(Plan::class, 'plan_id', 'id');
+		return $this->belongsTo(Plan::class)->select('name');
 	}
 
 

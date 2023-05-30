@@ -107,7 +107,7 @@
                                         <span class="text-gray-700 font-semibold"><span v-text="__('site_content')"></span></span> 
                                     </div>
                                     <div class="card-body py-6">
-                                        <button class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Open editor')}}</button>
+                                        <a href="/admin/editor" class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Open editor')}}</a>
                                     </div>
                                 </div>
                             </div>
