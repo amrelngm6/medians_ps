@@ -99,7 +99,7 @@ class User extends CustomModel
 
 	public function branch()
 	{
-		return $this->hasOne(Branch::class , 'id', 'active_branch');
+		return $this->hasOne(Branch::class , 'id', 'active_branch')->with('plan');
 	}
 
 

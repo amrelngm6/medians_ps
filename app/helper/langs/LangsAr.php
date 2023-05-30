@@ -1001,6 +1001,8 @@ class LangsAr
 		,'is paid' => 'مدفوعة'
 		,'branch name required' => 'اسم الفرع مطلوب'
 		,'Open editor' => 'فتح المحرر'
+		,'Plan subscriptions' => 'الإشتراكات'
+		,'Thanks for payment' => 'شكرا لإتمام عملية الدفع'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

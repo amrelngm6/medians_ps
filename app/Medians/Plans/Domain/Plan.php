@@ -26,13 +26,13 @@ class Plan extends CustomModel
 
 	// public $timestamps = false;
 
-	public $appends = ['features'];
+	// public $appends = ['features'];
 
 
-	public function getFeaturesAttribute()
-	{
-		return (object) array_column( $this->plan_features->toArray(), 'access', 'code');
-	}
+	// public function getFeaturesAttribute()
+	// {
+	// 	return (object) array_column( $this->plan_features->toArray(), 'access', 'code');
+	// }
 
 	public function getFields()
 	{

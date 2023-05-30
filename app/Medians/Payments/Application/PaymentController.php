@@ -21,7 +21,7 @@ class PaymentController extends CustomController
 
 	function __construct()
 	{
-		$this->checkBranch();
+        $this->app = new \config\APP;
 		
 		$this->repo = new PaymentsRepository();
 
@@ -87,6 +87,8 @@ class PaymentController extends CustomController
 	 */ 
 	public function index() 
 	{
+		$this->checkBranch();
+		
 		return render('payments', [
 			'load_vue'=> true,
 	        'title' => __('Payments list'),

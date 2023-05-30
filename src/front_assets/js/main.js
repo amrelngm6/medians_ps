@@ -320,16 +320,19 @@ jQuery(document).on('submit', 'form', function(){
 	      // Handle the successful response
 	    	let res = JSON.parse(xhr.responseText);
 
-			if (res.error)
+			if (res.error){
 				return Swal.fire('Error!',res.error, 'error');
+			}
 
-	    	if (formId == 'login-form')
+	    	if (formId == 'login-form'){
 	    		return loginFormResponse(res)
+	    	}
 
-	    	if (formId == 'signup-form')
+	    	if (formId == 'signup-form'){
 	    		return signupFormResponse(res)
+	    	}
 	    	
-	    	Swal.fire(res.title,res.result,  'success')
+	    	// Swal.fire(res.title,res.result,  'success')
 
 	    	form.reset();
 

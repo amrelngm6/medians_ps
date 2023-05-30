@@ -59,7 +59,7 @@ class PlanSubscriptionController extends CustomController
             ],
             [
                 'key'=> "end_date",
-                'title'=> __('branch_name'),
+                'title'=> __('end_date'),
                 'sortable'=> true,
             ]
         ];
@@ -77,12 +77,22 @@ class PlanSubscriptionController extends CustomController
 		return render('plan_subscriptions', [
 	        'load_vue' => true,
 	        'title' => __('plan_subscriptions'),
-	        'items' => $this->repo->get(),
+	        'items' => $this->getData(),
 	        'plans' => $this->planRepo->get(),
 	        'columns' => $this->columns(),
 	    ]);
 	}
 
 
+	public function getData()
+	{
+		$this->app = new \config\APP;
+
+		if ($this->app->auth()->role_id === 1)
+			return $this->repo->get();
+
+		if ($this->app->auth()->role_id === 3)
+			return $this->repo->getByBranch($this->app->branch->id);
+	}
 
 }

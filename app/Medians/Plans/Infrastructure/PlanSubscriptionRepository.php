@@ -43,6 +43,14 @@ class PlanSubscriptionRepository
 		return PlanSubscription::get();
 	}
 
+	/**
+	* Find items by `params` 
+	*/
+	public function getByBranch($branch_id) 
+	{
+		return PlanSubscription::where('branch_id', $branch_id)->get();
+	}
+
 
 	/**
 	* Save item to database

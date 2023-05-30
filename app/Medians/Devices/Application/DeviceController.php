@@ -178,6 +178,8 @@ class DeviceController extends CustomController
 	public function store() 
 	{
 
+		$this->checkFeatureAccess('devices_count', count($this->repo->get()));
+
 		$params = (array) $this->app->request()->get('params');
 
 		try {

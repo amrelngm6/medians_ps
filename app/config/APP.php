@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Medians\Settings\Infrastructure\SettingsRepository;
-use Medians\Branches\Infrastructure\BranchRepository;
 
+use \Medians\Auth\Application\AuthService;
 
 
 class APP 
@@ -19,7 +19,8 @@ class APP
 	public $default_lang = 'arabic';
 
 	public $lang_code = 'en';
-	// public $auth;
+
+	public $auth;
 
 	public $branch;
 
@@ -59,10 +60,6 @@ class APP
 
 	}
 
-	public function specializations()
-	{
-		return  (new \Medians\Specializations\Infrastructure\SpecializationRepository())->get_root();
-	}
 
 	public function Settings()
 	{
@@ -77,18 +74,16 @@ class APP
 	public function auth()
 	{
 
-		$check = (new \Medians\Auth\Application\AuthService())->checkSession();
+		$check = !empty($this->auth) ? $this->auth : (new AuthService())->checkSession();
 		$this->branch = isset($check->branch) ? $check->branch : null; 
 		return $check;
 	}
 
 	public function active_branch()
 	{
-		$checkUser = $this->auth();
+		$this->auth();
 
-		return isset($checkUser->active_branch) 
-		? (new BranchRepository)->find($checkUser->active_branch)
-		: null;
+		return $this->branch;
 	}
 
 	public static function request()
@@ -99,7 +94,8 @@ class APP
 
 	public static function redirect($url)
 	{
-		echo new RedirectResponse($url);
+		echo new RedirectResponse($url) ;
+		die();
 	}
 
 	public function  run()
@@ -173,6 +169,7 @@ class APP
 				[
 	                array('title'=>__('plans'),  'icon'=>'', 'link'=>'plans', 'component'=>'plans'),
 	                array('title'=>__('plan_features'),  'icon'=>'', 'link'=>'plan_features', 'component'=>'plan_features'),
+	                array('title'=>__('plan_subscriptions'), 'icon'=>'', 'link'=>'plan_subscriptions', 'component'=>'plan_subscriptions'),
 			        array('title'=>__('payments'),  'icon'=>'fa-credit-card', 'link'=>'payments', 'component'=>'payments'),
 				]
 			),

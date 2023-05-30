@@ -20,7 +20,6 @@ class SettingsController extends CustomController
 
 	function __construct()
 	{
-		$this->checkBranch();
 		
 		$this->app = new \config\APP;
 
@@ -34,6 +33,7 @@ class SettingsController extends CustomController
 	 */
 	public function index()
 	{
+		$this->checkBranch();
 
 		return render('settings', [
 		        'load_vue' => true,

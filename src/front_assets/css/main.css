@@ -9715,7 +9715,7 @@ p {
 .sigin__page {
   position: relative;
   overflow: hidden;
-  padding: 120px 0 0;
+  padding: 50px 0 0;
 }
 .sigin__page::before {
   position: absolute;
