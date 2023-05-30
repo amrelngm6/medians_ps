@@ -1003,6 +1003,8 @@ class LangsAr
 		,'Open editor' => 'فتح المحرر'
 		,'Plan subscriptions' => 'الإشتراكات'
 		,'Thanks for payment' => 'شكرا لإتمام عملية الدفع'
+		,'Expenses list' => 'قائمة المصروفات'
+		,'account' => 'الحساب'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

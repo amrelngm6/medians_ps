@@ -22,7 +22,7 @@
                         <span class="text-left" >
                             <i class="fa" :class="menu.icon"></i>
                         </span>
-                        <span class="w-full text-sm " v-text="menu.title"></span>
+                        <span class="w-full  " v-text="menu.title"></span>
                         <i v-if="menu.sub && !menu.show_sub" class="text-sm fa fa-caret-down"></i>
                     </a>
                     <ul v-if="menu.sub && menu.show_sub " class="pb-4" >

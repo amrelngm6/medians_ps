@@ -195,7 +195,7 @@ class APP
 			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard'),
 			array('title'=>__('Bookings'),  'icon'=>'fa-calendar', 'link'=>'#bookings', 'sub'=>
 				[
-					array('title'=>__('Calendar'),  'icon'=>'fa-dashboard', 'link'=>'admin/calendar'),
+					array('title'=>__('Calendar'),  'icon'=>'fa-dashboard', 'link'=>'admin/calendar', 'component'=>"calendar"),
 	                array('title'=>__('All bookings'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices_orders?all=true', 'component'=>'devices_orders'),
 	                array('title'=>__('Active bookings'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices_orders?status=active', 'component'=>'devices_orders'),
 	                array('title'=>__('Upcoming bookings'), 'icon'=>'fa-dashboard','link'=>'admin/devices_orders?status=new', 'component'=>'devices_orders'),
@@ -220,7 +220,7 @@ class APP
 	        ),
 	        array('title'=>__('Products'),  'icon'=>'fa-shopping-cart', 'link'=>'#products', 'sub'=>
 	            [
-	                array('title'=>__('Products list'),  'icon'=>'fa-dashboard', 'link'=>'admin/products'),
+	                array('title'=>__('Products list'),  'icon'=>'fa-dashboard', 'link'=>'admin/products', 'component'=>'products'),
 	                array('title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'admin/products/categories', 'component'=>'categories'),
 	                array('title'=>__('Stock alert products'),  'icon'=>'fa-dashboard', 'link'=>'admin/products/stock_alert', 'component'=>'products'),
 	                array('title'=>__('Stock out products'),  'icon'=>'fa-dashboard', 'link'=>'admin/products/stock_out', 'component'=>'products'),
@@ -228,10 +228,14 @@ class APP
 	        ),
 	        array('title'=>__('Stock'),  'icon'=>'fa-warehouse', 'link'=>'admin/stock' , 'component'=>'stock'),
 	        array('title'=>__('Expenses'),  'icon'=>'fa-credit-card', 'link'=>'admin/expenses', 'component'=>'expenses'),
-	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
 	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
-	        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
-			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
+	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
+	        array('title'=>__('Account'),  'icon'=>'fa-cogs', 'link'=>'#account', 'sub'=>
+	            [
+					array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
+			        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
+	            ]
+	        ),
 			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
 
