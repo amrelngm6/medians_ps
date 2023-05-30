@@ -181,7 +181,7 @@ export default
     name:'Settings',
     data() {
         return {
-            url: this.conf.url+this.path+'settings?load=json',
+            url: this.conf.url+this.path+'?load=json',
             content: {
 
                 title: '',

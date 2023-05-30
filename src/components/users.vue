@@ -110,7 +110,7 @@ export default {
     name: 'Users',
     data() {
         return {
-            url: this.conf.url +this.path+ 'users?load=json',
+            url: this.conf.url +this.path+ '?load=json',
             content: {
 
                 title: this.__('users'),

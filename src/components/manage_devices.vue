@@ -150,7 +150,7 @@ export default
     name:'devices/manage',
     data() {
         return {
-            url: this.conf.url+this.path+'devices/manage?load=json',
+            url: this.conf.url+this.path+'?load=json',
             content: {
 
                 title: '',
@@ -168,6 +168,7 @@ export default
         }
     },
     props: [
+        'path',
         'lang',
         'setting',
         'conf',

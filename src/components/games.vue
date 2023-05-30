@@ -104,7 +104,7 @@ export default
     name:'games',
     data() {
         return {
-            url: this.conf.url+this.path+'games?load=json',
+            url: this.conf.url+this.path+'?load=json',
             content: {
 
                 title: '',
@@ -120,6 +120,7 @@ export default
         }
     },
     props: [
+        'path',
         'lang',
         'setting',
         'conf',
