@@ -103,7 +103,7 @@ class CustomModel extends Model
     {
 
     	// Insert activation code 
-    	return (new NotificationEvent)->handleEvent($this);
+    	return (new NotificationEvent)->handleEvent($this, 'create');
     }  
 
     /**
@@ -123,7 +123,7 @@ class CustomModel extends Model
 
 
     	// Insert activation code 
-    	return (new NotificationEvent)->handleEvent($this);
+    	return (new NotificationEvent)->handleEvent($this, 'update');
 
     }  
 

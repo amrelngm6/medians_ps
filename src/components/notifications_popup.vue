@@ -5,8 +5,8 @@
             <notification_icon class="w-6 " ></notification_icon>
         </div>
         <div class="overflow-y-auto h-80 w-80 mx-auto bg-white px-4 py-6 absolute mt-4" v-if="showPopup && content.items">
-            <span v-if="content.items && content.items.length" v-text="__('New notifications')"></span>
-            <div  v-if="notification && notification.status == 'new'" v-if="content.items && content.items.length" v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
+            <span v-if="content.new_count" class="font-semibold pb-4 block " v-if="content.items && content.items.length" v-text="__('New notifications')"></span>
+            <div  v-if="notification && notification.status == 'new'" v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
                 <div v-if="notification" class="hover:text-purple-600 ">
                     <div :class="notification.status == 'new' ? '' : 'text-gray-400'" @click="setRead(notification.id)" class="cursor-pointer w-full flex  gap-6">
                         <span class="border border-gray-100 block w-10 h-10 pt-1 text-center bg-white shadow-lg rounded hover:bg-blue-100" >
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <span v-if="content.items && content.items.length" v-text="__('Read notifications')"></span>
+            <span class="font-semibold pb-4 block " v-if="content.items && content.items.length" v-text="__('Read notifications')"></span>
             <div v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
                 <div v-if="notification && notification.status != 'new'" class="hover:text-purple-600 ">
                     <div @click="setRead(notification.id)" class="cursor-pointer w-full flex  gap-6 text-gray-400">
@@ -96,6 +96,21 @@ export default
 
     methods: 
     {
+        /**
+         * handleNotifications
+         *
+         */
+        handleNotifications(data)
+        {
+            if (data && data.items)
+            {
+                for (var i = data.items.length - 1; i >= 0; i--) 
+                {
+                    this.notify(data.items[i].subject, data.items[i].body)
+                }
+            }
+        },
+
 
         /**
          * Set Notification as read
@@ -106,7 +121,7 @@ export default
             params.append('params[last_id]', this.content.last_id)
             this.$root.$children[0].handleRequest(params, '/admin/check_notification' ).then(response=> {
                 if (response)
-                    this.setValues(response)
+                    this.setValues(response).handleNotifications(response)
 
             });
         } ,
@@ -134,7 +149,7 @@ export default
             if (this.showPopup)
                 this.showPopup = false, this.checkNew()
             else
-                this.showPopup = true
+                this.showPopup = true, this.load()
 
         }, 
 
@@ -146,6 +161,30 @@ export default
             });
         },
         
+        notify(subject, body, data = {})
+        {
+
+            let t = this;
+            if (Notification.permission === "granted") 
+            {
+                const notification = new Notification(subject, {
+                    body: body,
+                    data:data,
+                    tag: data.id + data.status,
+                    icon: this.setting.logo
+                });
+
+                notification.onclick = (e) => {
+                    let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
+                    console.log(notificationData)
+                };
+
+                notification.onclose = (e) => {
+                    console.log(e)
+                };
+                
+            }
+        },
         setValues(data) {
             this.content = JSON.parse(JSON.stringify(data)); return this
         },

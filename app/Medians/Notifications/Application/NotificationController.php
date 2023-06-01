@@ -121,9 +121,10 @@ class NotificationController extends CustomController
 
         try {
 
-           	return  ($this->repo->update(['id'=>$params['id'],'status' => 'read']))
+           	
+           	response($this->repo->update(['id'=>$params['id'],'status' => 'read'])
             ? array('success'=>1, 'result'=>__('updated'))
-           	: array('error'=>__('Not allowed'));
+           	: array('error'=>__('Not allowed')));
 
 
         } catch (Exception $e) {
