@@ -9,6 +9,7 @@ use Medians\Orders\Domain\Order;
 use Medians\Categories\Domain\Category;
 use Medians\Products\Domain\Product;
 
+use Medians\Notifications\Domain\NotificationEvent;
 
 class Device extends CustomModel
 {
@@ -145,5 +146,36 @@ class Device extends CustomModel
 	{
 		return (object) array_column( (array) json_decode($this->prices), 'value', 'code');
 	}
+
+
+
+    /**
+     * Handle the event after new item 
+     * has been stored 
+     * 
+     */
+    public function createdEvent()
+    {
+    }  
+
+
+    /**
+     * Handle the event after an item 
+     * has been updated 
+     * 
+     */
+    public function updatedEvent()
+    {
+
+    	$fields = array_fill_keys($this->fillable,1);
+    	$updatedFields = array_intersect_key($fields, $this->getDirty());
+    	if (empty($updatedFields))
+    		return null;
+
+
+    	// Insert activation code 
+    	return (new NotificationEvent)->handleEvent($this);
+
+    }  
 
 }

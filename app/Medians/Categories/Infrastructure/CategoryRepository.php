@@ -76,9 +76,8 @@ class CategoryRepository
 		}	
 
 		$dataArray['status'] = isset($dataArray['status']) ? 'on' : 0;
-		// Return the FBUserInfo object with the new data
-    	$Object = Category::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Category::firstOrCreate($dataArray);
 
     	return $Object;
     }
@@ -91,7 +90,7 @@ class CategoryRepository
 
 		$Object = Category::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

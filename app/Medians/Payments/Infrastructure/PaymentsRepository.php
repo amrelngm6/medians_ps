@@ -101,9 +101,8 @@ class PaymentsRepository
 			}
 		}	
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Payment::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Payment::firstOrCreate($dataArray);
 
     	return $Object;
 	}
@@ -117,7 +116,7 @@ class PaymentsRepository
 
 		$Object = Payment::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

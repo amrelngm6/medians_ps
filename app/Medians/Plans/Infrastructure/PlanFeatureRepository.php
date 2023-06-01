@@ -59,9 +59,8 @@ class PlanFeatureRepository
 			}
 		}	
 
-		// Return the FBUserInfo object with the new data
-    	$Object = PlanFeature::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = PlanFeature::firstOrCreate($dataArray);
 
     	return $Object;
 	}
@@ -75,7 +74,7 @@ class PlanFeatureRepository
 
 		$Object = PlanFeature::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

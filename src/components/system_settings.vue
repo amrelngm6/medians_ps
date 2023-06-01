@@ -14,7 +14,39 @@
 
                             <input name="type" type="hidden" value="SystemSettings.update">
 
+                            <div class="w-full " v-if="activeTab == 'basic'">
+
+                                <div class="card w-full " >                             
+                                    <div class="card-header pt-0">
+                                        <span class="text-gray-700 font-semibold"><span v-text="__('notifications')"></span></span> 
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="settings-form mt-2">
+                                            <label class="block pb-3">
+                                                <span class="text-gray-700"><span v-text="__('enable_notifications')"></span></span>
+                                                <input name="params[enable_notifications]" type="checkbox" class="h-4 w-4 mx-4 p-2 rounded border px-3 text-gray-400 focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" value="1"  v-model="content.setting.enable_notifications">
+                                            </label>
+                                            <hr />
+
+                                            <label class="block py-3">
+                                                <span class="text-gray-700"><span v-text="__('welcome_message_subject')"></span></span>
+                                                <input name="params[welcome_message_subject]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('welcome_message_subject')"  v-model="content.setting.welcome_message_subject">
+                                            </label>
+                                            <label class="block py-3">
+                                                <span class="text-gray-700"><span v-text="__('welcome_message_icon')"></span></span>
+                                                <input name="params[welcome_message_icon]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('welcome_message_icon')"  v-model="content.setting.welcome_message_icon">
+                                            </label>
+                                            <label class="block py-3">  
+                                                <span class="text-gray-700"><span v-text="__('welcome_message')"></span></span>
+                                                <textarea name="params[notifications_welcome_message]" rows="3" class=" mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('welcome_message')" v-model="content.setting.notifications_welcome_message"></textarea>
+                                            </label>
+
+
+                                    </div>
+                                </div>
+                            </div>
                             <div class="w-full flex gap-4" v-if="activeTab == 'basic'">
+
                                 <div class="card w-full " >                             
                                     <div class="card-header pt-0">
                                         <span class="text-gray-700 font-semibold"><span v-text="__('SMTP_INFO')"></span></span> 

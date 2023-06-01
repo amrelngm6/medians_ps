@@ -98,9 +98,8 @@ class ProductsRepository
 			}
 		}	
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Product::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Product::firstOrCreate($dataArray);
 
     	return $Object;
 	}
@@ -114,7 +113,7 @@ class ProductsRepository
 
 		$Object = Product::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

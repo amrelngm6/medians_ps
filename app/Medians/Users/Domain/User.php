@@ -2,8 +2,9 @@
 
 namespace Medians\Users\Domain;
 
-
 use Shared\dbaser\CustomModel;
+
+use Medians\Mail\Application\MailService;
 
 use Medians\Plans\Domain\Plan;
 use Medians\Plans\Domain\PlanSubscription;
@@ -12,16 +13,6 @@ use \Medians\CustomFields\Domain\CustomField;
 
 class User extends CustomModel
 {
-
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->bootIfNotBooted();
-        
-    }
-
 
 	/*
 	/ @var String
@@ -144,28 +135,42 @@ class User extends CustomModel
 
 
 
-    protected static function boot()
+    /**
+     * Handle the event after new item 
+     * has been stored 
+     * 
+     */
+    public function createdEvent()
     {
-        parent::boot();
+    }  
 
-        static::created(function ($model) {
-            // code to run after a new record is created
-        	Branch::create(['name'=>'created']);
-        });
 
-        static::creating(function ($model) {
-            // code to run before a new record is created
-        	Branch::create(['name'=>'creating']);
-        });
 
-        static::updating(function ($model) {
-            // code to run before a record is updated
-        	Branch::create(['name'=>'updating']);
-        });
+    /**
+     * Handle the event after an item 
+     * has been updated 
+     * 
+     */
+    public function updatedEvent()
+    {
+    	$fields = array_fill_keys($this->fillable,1);
+    	$fields['password'] = 1;
+    	$updatedFields = array_intersect_key($fields, $this->getDirty());
 
-        static::deleting(function ($model) {
-            // code to run before a record is deleted
-        });
-    }
+    	if (empty($updatedFields))
+    		return null;
+
+
+    	// Insert activation code 
+		$fillable = [
+			'code'=>'activation_token',
+			'item_type'=>User::class, 
+			'item_id'=>$this->id, 
+			'value'=>User::encrypt(strtotime(date('YmdHis')).$this->id)
+		];
+
+		CustomField::firstOrCreate($fillable);
+
+    }  
 
 }

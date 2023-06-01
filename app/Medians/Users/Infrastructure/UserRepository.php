@@ -88,7 +88,6 @@ class UserRepository
 
 		$Model = $Model->firstOrCreate($data);
 
-    	$Model->update($data);
     	
     	$data['id'] = $Model->id;
     	$this->checkUpdatePassword($data);
@@ -99,7 +98,7 @@ class UserRepository
 		$value = User::encrypt(strtotime(date('YmdHis')).$data['id']);
     	$this->setCustomCode((object) $data, 'activation_token', $value);
 
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	return $this->find($Model->id);
 
 	}
@@ -125,7 +124,7 @@ class UserRepository
 
 			$data['active'] = isset($data['active']) ? 1 : 0;
 
-			// Return the FBUserInfo object with the new data
+			// Return the Model object with the new data
 	    	$Object->update( (array) $data);
 	    	
 	    	$data['id'] = $Object->id;
@@ -166,7 +165,7 @@ class UserRepository
 
 		if (!empty($data['password']))
 		{
-			// Return the FBUserInfo object with the new data
+			// Return the Model object with the new data
     		$Object->password =  User::encrypt($data['password']);
     		$Object->save();
 		}

@@ -40,15 +40,14 @@ Macaw::get('/activate-account/(:all)', \Medians\Users\Application\UserController
 if(isset($app->auth()->id))
 {
 
-    Macaw::get('/admin/plan_payment', \Medians\Payments\Application\PaymentController::class.'@confirmPlanPayment'); 
-    Macaw::get('/admin/payment_success', \Medians\Payments\Application\PaymentController::class.'@payment_success'); 
-    Macaw::get('/admin/payment_failed', \Medians\Payments\Application\PaymentController::class.'@payment_failed'); 
 
-    Macaw::get('/json/dashboard', \Medians\DashboardController::class.'@json'); 
     Macaw::get('/dashboard', \Medians\DashboardController::class.'@index'); 
     Macaw::get('/get-started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
     Macaw::get('/get_started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
     Macaw::get('/get_started/plans', \Medians\Users\Application\GetStartedController::class.'@plans'); 
+    Macaw::get('/admin/plan_payment', \Medians\Payments\Application\PaymentController::class.'@confirmPlanPayment'); 
+    Macaw::get('/admin/payment_success', \Medians\Payments\Application\PaymentController::class.'@payment_success'); 
+    Macaw::get('/admin/payment_failed', \Medians\Payments\Application\PaymentController::class.'@payment_failed'); 
 
 
 
@@ -195,6 +194,19 @@ if(isset($app->auth()->id))
     */
     Macaw::get('/admin/plan_subscriptions', \Medians\Plans\Application\PlanSubscriptionController::class.'@index');
 
+
+
+    /**
+    * @return Content Notifications 
+    */
+    Macaw::get('/admin/notifications', \Medians\Notifications\Application\NotificationController::class.'@index');
+    Macaw::get('/admin/latest_notifications', \Medians\Notifications\Application\NotificationController::class.'@latest_notifications');
+    Macaw::get('/admin/latest_notifications/', \Medians\Notifications\Application\NotificationController::class.'@latest_notifications');
+    Macaw::get('/admin/latest_notifications/(:all)', \Medians\Notifications\Application\NotificationController::class.'@latest_notifications');
+    Macaw::post('/admin/read_notification', \Medians\Notifications\Application\NotificationController::class.'@read_notification');
+    Macaw::post('/admin/check_notification', \Medians\Notifications\Application\NotificationController::class.'@check_notification');
+
+    
     /**
      * Master requests
      * The next reuests available only 
@@ -215,6 +227,11 @@ if(isset($app->auth()->id))
     */
     Macaw::get('/admin/editor', \Medians\Pages\Application\PageController::class.'@editor');
     Macaw::post('/admin/update_section_content', \Medians\Pages\Application\PageController::class.'@updateContent');
+
+    /**
+    * @return Notifications events 
+    */
+    Macaw::get('/admin/notifications_events', \Medians\Notifications\Application\NotificationEventController::class.'@index');
 
     /**
     * @return Plans

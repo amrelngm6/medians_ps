@@ -185,6 +185,7 @@ class DeviceController extends CustomController
 		try {
 
 			$params['branch_id'] = $this->app->branch->id;
+			$params['status'] = 1;
 			$Property = $this->repo->store($params);
 
         	return array('success'=>1, 'result'=>__('Created'), 'reload'=>2);

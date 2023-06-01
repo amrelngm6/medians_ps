@@ -12,7 +12,7 @@
                     <div v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
                         <div class="w-full">
                             <transition   :duration="550">
-                                <component ref="activeTab" :types-list="typesList"  :key="activeTab" :path="activeTab" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="component"></component>
+                                <component ref="activeTab" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="component"></component>
                             </transition>
 
                         </div>
@@ -55,6 +55,8 @@ import plan_features from './components/plan_features.vue'
 import branches from './components/branches.vue'
 import plan_subscriptions from './components/plan_subscriptions.vue'
 import pages from './components/pages.vue'
+import notifications_events from './components/notifications_events.vue'
+import notifications from './components/notifications.vue'
 
 export default {
     name: 'app',
@@ -84,6 +86,8 @@ export default {
         plan_subscriptions,
         branches,
         pages,
+        notifications,
+        notifications_events,
         navbar
     },
     data() {
@@ -100,6 +104,7 @@ export default {
             lang: {},
             auth: {},
             setting: {},
+            system_setting: {},
             conf: {},
             main_menu: [],
             typesList: [],
@@ -125,23 +130,33 @@ export default {
         })
 
         this.showSide =  (window.screen.availWidth > 1000 ) ? true : false;
-        this.notify()
+
+        // Check if Native notifications enabled  from Master
+        if (this.system_setting && this.system_setting.enable_notifications)
+            this.notify()
+
     },
-    methods: {
+    methods: 
+    {
+
         /**
          * Check notifications permission
          * Send welcome notification
          */ 
-        notify (title, body) {
+        notify (title, body) 
+        {
+
+            if (this.system_setting.notifications_welcome_message)
+                return null;
 
             if ("Notification" in window) 
             {
                 if (Notification.permission !== "granted") {
                     Notification.requestPermission().then(permission => {
                         if (permission === "granted") {
-                            const notification = new Notification("Thanks & welcome", {
-                                body: "Welcome to " + this.setting.sitename,
-                                icon: this.setting.logo
+                            const notification = new Notification(this.system_setting.notifications_welcome_subject, {
+                                body: this.system_setting.notifications_welcome_message,
+                                icon: this.system_setting.notifications_welcome_icon
                             });
                         }
                     });
@@ -161,6 +176,7 @@ export default {
             this.main_menu = props ? JSON.parse(props.menu) : {};
             this.lang = props ? JSON.parse(props.lang) : {};
             this.setting = props ? JSON.parse(props.setting) : {};
+            this.system_setting = props ? JSON.parse(props.system_setting) : {};
             this.conf = props ? JSON.parse(props.conf) : {};
             this.activeTab = (props && props.page) ? props.page : 'dashboard';
             this.component = (props && props.component) ? props.component : 'dashboard';

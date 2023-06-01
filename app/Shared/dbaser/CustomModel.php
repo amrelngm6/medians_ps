@@ -7,6 +7,7 @@ use \Illuminate\Database\Eloquent\Model;
 use Medians\Users\Domain\User;
 use Medians\Content\Domain\Content;
 use Medians\Views\Domain\View;
+use Medians\Notifications\Domain\NotificationEvent;
 
 use \config\APP;
 
@@ -81,6 +82,51 @@ class CustomModel extends Model
 		View::create(['session'=>$this->sessionGuest(), 'item_type'=>get_class($this), 'item_id'=>$this->id]);
 
 	}
+
+
+    protected function finishSave(array $options)
+    {
+
+    	if ($this->wasRecentlyCreated)
+    		return $this->createdEvent();
+
+    	return $this->updatedEvent();
+    }
+
+
+    /**
+     * Handle the event after new item 
+     * has been stored 
+     * 
+     */
+    public function createdEvent()
+    {
+
+    	// Insert activation code 
+    	return (new NotificationEvent)->handleEvent($this);
+    }  
+
+    /**
+     * Handle the event after an item 
+     * has been updated 
+     * 
+     */
+    public function updatedEvent()
+    {
+    	if (empty($this->id))
+    		return null;
+
+    	$fields = array_fill_keys($this->fillable,1);
+    	$updatedFields = array_intersect_key($fields, $this->getDirty());
+    	if (empty($updatedFields))
+    		return null;
+
+
+    	// Insert activation code 
+    	return (new NotificationEvent)->handleEvent($this);
+
+    }  
+
 }
 
 

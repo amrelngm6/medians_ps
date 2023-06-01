@@ -4,7 +4,6 @@ namespace Medians\Auth\Application;
 
 
 use Medians\Branches\Application\BranchController;
-use Medians\Mail\Application\MailService;
 
 use Medians\Auth\Domain\AuthModel;
 
@@ -357,20 +356,6 @@ class AuthService
 
 	}
 
-
-	/**
-	 * Send the activation email
-	 */ 
-	public function activateEmail() 
-	{
-		$this->app = new \config\APP;
-
-		$user = $this->repo->getByEmail($this->app->request()->get('email'));
-
-		$send = $this->sendMail($user, "Activate your account", 'activate-account');
-
-
-	}
 
 
 	/**

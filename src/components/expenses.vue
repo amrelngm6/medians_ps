@@ -24,27 +24,27 @@
                                 </div>
                                 <input name="type"  type="hidden" value="Expense.create" > 
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6 ">{{__('name')}}</label>
                                     <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" > 
                                 </div>
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6  ">{{__('Amount')}}</label>
                                     <input required name="params[amount]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"> 
                                 </div>
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6  ">{{__('date')}}</label>
                                     <input  :value="today" name="params[date]" type="date" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"> 
                                 </div>
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6 ">{{__('invoice_id')}}</label>
                                     <input name="params[invoice_id]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"> 
                                 </div>
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6 ">{{__('notes')}}</label>
                                     <textarea name="params[notes]" class="h-40 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Notes')" ></textarea> 
                                 </div>
@@ -63,27 +63,27 @@
                                 </div>
                                 <input name="type"  type="hidden" value="Expense.create" > 
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6 ">{{__('name')}}</label>
                                     <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :value="activeItem.name"> 
                                 </div>
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6  ">{{__('Amount')}}</label>
                                     <input disabled name="params[amount]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :value="activeItem.amount"> 
                                 </div>
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6  ">{{__('date')}}</label>
                                     <input disabled name="params[date]" type="date" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :value="activeItem.date"> 
                                 </div>
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6 ">{{__('invoice_id')}}</label>
                                     <input name="params[invoice_id]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :value="activeItem.name"> 
                                 </div>
 
-                                <div class="w-full flex gap gap-2">
+                                <div class="w-full py-2">
                                     <label class="w-40 mt-6 ">{{__('notes')}}</label>
                                     <textarea name="params[notes]" class="h-40 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Notes')" >{{activeItem.notes}}</textarea> 
                                 </div>

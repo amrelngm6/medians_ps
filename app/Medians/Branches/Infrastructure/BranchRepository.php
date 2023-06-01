@@ -43,9 +43,8 @@ class BranchRepository
 			}
 		}	
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Branch::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Branch::firstOrCreate($dataArray);
 
     	return $Object;
 	}
@@ -59,7 +58,7 @@ class BranchRepository
 
 		$Object = Branch::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

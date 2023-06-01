@@ -96,9 +96,8 @@ class PageRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Page::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Page::firstOrCreate($dataArray);
 
     	// Store Custom fields
     	$this->storeContent($data['content'], $Object->id);

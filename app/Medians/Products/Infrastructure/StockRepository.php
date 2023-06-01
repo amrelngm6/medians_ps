@@ -177,9 +177,8 @@ class StockRepository
 		$dataArray['created_by'] = $this->app->auth()->id;
 		$dataArray['branch_id'] = $this->app->branch->id;
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Stock::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Stock::firstOrCreate($dataArray);
 
 		$this->saveExpense($Object, $data['expense']);
 

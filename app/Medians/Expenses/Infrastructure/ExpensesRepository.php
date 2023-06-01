@@ -102,9 +102,8 @@ class ExpensesRepository
 			}
 		}	
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Expense::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Expense::firstOrCreate($dataArray);
 
     	return $Object;
 	}
@@ -118,7 +117,7 @@ class ExpensesRepository
 
 		$Object = Expense::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

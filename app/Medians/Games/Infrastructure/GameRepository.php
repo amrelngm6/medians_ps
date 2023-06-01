@@ -56,9 +56,8 @@ class GameRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Game::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Game::firstOrCreate($dataArray);
 
     	return $Object;
     }
@@ -71,7 +70,7 @@ class GameRepository
 
 		$Object = Game::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

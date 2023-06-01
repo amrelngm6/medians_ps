@@ -174,8 +174,9 @@ class LangsAr
 		,'404_PARAGRAPH' => "من الممكن  ان تكون وصلت هنا عن طريق الخطا "
 		,'U_HAVE' => "You have "
 		,'MSGS' => "All messages"
-		,'NOTIFICATIONS' => "Notifications"
-		,'ALL_NOTIFICATIONS' => "All Notifications"
+		,'NOTIFICATIONS' => "التنبيهات"
+		,'ALL_NOTIFICATIONS' => "جميع التنبيهات"
+		,'notifications_log' => "سجل التنبيهات"
 		,'PROFILE' => "الملف الشخصي"
 		,'UPLOAD' => "Upload"
 		,'GRAB_YT' => 'Grab from YouTube'
@@ -1005,6 +1006,7 @@ class LangsAr
 		,'Thanks for payment' => 'شكرا لإتمام عملية الدفع'
 		,'Expenses list' => 'قائمة المصروفات'
 		,'account' => 'الحساب'
+		,'Site content' => 'محتوي الموقع'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

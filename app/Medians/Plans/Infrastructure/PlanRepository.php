@@ -42,21 +42,6 @@ class PlanRepository
 		return Plan::get();
 	}
 
-	/**
-	 * Find items by `params` 
-	*/
-	public function getItems($params = null) 
-	{
-		$query = Plan::with('category');
-
-		$query = isset($params['status']) ? $query->where('status', '!=', '0') : $query;
-
-		$query = isset($params['stock']) ? $query->where('stock','>',0) : $query;
-		
-		return $query->where('branch_id', $this->app->branch->id)->get();
-	}
-
-
 
 	/**
 	* Save item to database
@@ -73,9 +58,8 @@ class PlanRepository
 			}
 		}	
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Plan::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Plan::firstOrCreate($dataArray);
 
     	return $Object;
 	}
@@ -89,7 +73,7 @@ class PlanRepository
 
 		$Object = Plan::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

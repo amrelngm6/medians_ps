@@ -1,0 +1,165 @@
+<template>
+    <div class="w-full relative">
+        <div class="cursor-pointer relative" @click="switchMenu">  
+            <span class="absolute top-0 bg-red-400 text-white text-center w-4 h-4 text-xs rounded-full mt-2" v-if="content.new_count" v-text="content.new_count"></span>
+            <notification_icon class="w-6 " ></notification_icon>
+        </div>
+        <div class="overflow-y-auto h-80 w-80 mx-auto bg-white px-4 py-6 absolute mt-4" v-if="showPopup && content.items">
+            <span v-if="content.items && content.items.length" v-text="__('New notifications')"></span>
+            <div  v-if="notification && notification.status == 'new'" v-if="content.items && content.items.length" v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
+                <div v-if="notification" class="hover:text-purple-600 ">
+                    <div :class="notification.status == 'new' ? '' : 'text-gray-400'" @click="setRead(notification.id)" class="cursor-pointer w-full flex  gap-6">
+                        <span class="border border-gray-100 block w-10 h-10 pt-1 text-center bg-white shadow-lg rounded hover:bg-blue-100" >
+                            <component class="h-auto mx-auto pt-2 w-4" v-if="notification.model_short_name" :is="notification.model_short_name ? notification.model_short_name : notification_icon"></component>
+                        </span>
+                        <p class="block overflow-hidden w-56" :title="notification.body">
+                            <span class="block text-sm w-full font-semibold" v-text="notification.subject"></span>
+                            <span class="text-sm whitespace-nowrap" v-text="notification.body"></span>
+                        </p>
+                    </div>
+                    <div class=" relative">
+                        <small  :class="notification.status == 'new' ? '' : 'text-gray-400'" v-text="notification.date" class="left-0 mx-1 my-0 right-0 top-2 absolute"></small>
+                        <span class="block w-10 h-8 text-center "><span class="border-l mb-2 mx-auto w-1 h-12 "></span></span>
+                    </div>
+                </div>
+            </div>
+            <span v-if="content.items && content.items.length" v-text="__('Read notifications')"></span>
+            <div v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
+                <div v-if="notification && notification.status != 'new'" class="hover:text-purple-600 ">
+                    <div @click="setRead(notification.id)" class="cursor-pointer w-full flex  gap-6 text-gray-400">
+                        <span class="border border-gray-100 block w-10 h-10 pt-1 text-center bg-white shadow-lg rounded hover:bg-blue-100" >
+                            <component class="h-auto mx-auto pt-2 w-4" v-if="notification.model_short_name" :is="notification.model_short_name ? notification.model_short_name : notification_icon"></component>
+                        </span>
+                        <p class="block overflow-hidden w-56" :title="notification.body">
+                            <span class="block text-sm w-full font-semibold" v-text="notification.subject"></span>
+                            <span class="text-sm whitespace-nowrap" v-text="notification.body"></span>
+                        </p>
+                    </div>
+                    <div class=" relative">
+                        <small v-text="notification.date" class="text-gray-400 left-0 mx-1 my-0 right-0 top-2 absolute"></small>
+                        <span class="block w-10 h-8 text-center "><span class="border-l mb-2 mx-auto w-1 h-12 "></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+
+import notification_icon from './svgs/notification.vue'
+import expense from './svgs/expense.vue'
+import device from './svgs/device.vue'
+
+export default 
+{
+    components: {
+        notification_icon,
+        device,
+        expense,
+    },
+    name:'plans',
+    data() {
+        return {
+            url: this.conf.url+'admin/latest_notifications?load=json',
+            content: {
+                title: '',
+                new_count:0,
+                last_id:0,
+                items: [],
+                new_items: [],
+            },
+
+            activeItem:{},
+            showPopup:false,
+            showAddSide:false,
+            showEditSide:false,
+            showLoader: true,
+        }
+    },
+
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+    ],
+    mounted() 
+    {
+        this.load()
+
+        var t = this;
+        setInterval(function(e){
+            t.checkNew()
+        }, 20000)
+    },
+
+    methods: 
+    {
+
+        /**
+         * Set Notification as read
+         */
+        checkNew()
+        {
+            var params = new URLSearchParams();
+            params.append('params[last_id]', this.content.last_id)
+            this.$root.$children[0].handleRequest(params, '/admin/check_notification' ).then(response=> {
+                if (response)
+                    this.setValues(response)
+
+            });
+        } ,
+
+        /**
+         * Set Notification as read
+         */
+        setRead(id)
+        {
+            var params = new URLSearchParams();
+            params.append('params[id]', id)
+            this.$root.$children[0].handleRequest(params, '/admin/read_notification' ).then(response=> {
+                if (response)
+                    this.load()
+            });
+        } ,
+
+        /**
+         * Switch status of showing notifications
+         * 
+         */
+        switchMenu()
+        {   
+
+            if (this.showPopup)
+                this.showPopup = false, this.checkNew()
+            else
+                this.showPopup = true
+
+        }, 
+
+        load()
+        {
+            this.$root.$children[0].handleGetRequest( this.url ).then(response=> {
+                this.setValues(response)
+                // this.$alert(response)
+            });
+        },
+        
+        setValues(data) {
+            this.content = JSON.parse(JSON.stringify(data)); return this
+        },
+        __(i)
+        {
+            return this.$root.$children[0].__(i);
+        }
+    }
+};
+</script>
+<style lang="css">
+    .rtl #side-cart-container
+    {
+        right: auto;
+        left:0;
+    }
+</style>

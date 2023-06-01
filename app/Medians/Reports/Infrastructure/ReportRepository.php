@@ -45,7 +45,7 @@ class ReportRepository
 
     	$Model->update($dataArray);
     	
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	return $Model;
 
 	}
@@ -65,7 +65,7 @@ class ReportRepository
 			}
 
 
-			// Return the FBUserInfo object with the new data
+			// Return the Model object with the new data
 	    	$Object->update( (array) $data);
 	    	
     		return $Object;	

@@ -81,6 +81,9 @@
                                 <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
                                 <input name="params[phone]" required="true" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
 
+                                <span class="block mb-2 mt-3" v-text="__('change password')"></span>
+                                <input name="params[password]" type="password" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('password')">
+
                                 <label class="block mt-3" v-if="isMaster">
                                     <span class="block mb-2" v-text="__('branch')"></span>
                                     <select v-model="activeItem.active_branch" name="params[active_branch]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">

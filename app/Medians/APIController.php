@@ -145,6 +145,10 @@ class APIController extends CustomController
 	                $return =  (new Pages\Application\PageController())->store(); 
 	                break;
 
+	            case 'NotificationEvent.create':
+	                $return =  (new Notifications\Application\NotificationEventController())->store(); 
+	                break;
+
 			}
 
 			return response(json_encode($return));
@@ -222,6 +226,12 @@ class APIController extends CustomController
             case 'Page.update':
                 $return =  (new Pages\Application\PageController())->update(); 
                 break;
+
+            case 'NotificationEvent.update':
+                $return =  (new Notifications\Application\NotificationEventController())->update(); 
+                break;
+
+
 		}
 
 		return response(json_encode($return));

@@ -163,9 +163,8 @@ class OrdersRepository
 				}
 			}	
 
-			// Return the FBUserInfo object with the new data
+			// Return the Model object with the new data
 	    	$Object = Order::create($dataArray);
-	    	$Object->update($dataArray);
 	 	
 	    	$this->updateOrderDevice($Object, $items);
 

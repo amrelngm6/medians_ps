@@ -10,11 +10,16 @@ file_exists(__DIR__.'/app/config/database.php')
 
 require_once __DIR__.'/vendor/autoload.php';
 
-spl_autoload_register(function ($name) {
 
+/**
+ * Load all System Models
+ * The base folder is /app folder
+ * Any Object caould be accesses through its namespace
+ * All Objects inside that folder would be called
+ */ 
+spl_autoload_register(function ($name) {
     $name2 = str_replace('\\', '/', __DIR__.'/app/'.$name.'.php');
     is_file($name2) ? include ($name2) : '';
-
 });
 
 /**

@@ -220,9 +220,8 @@ class DevicesRepository
 			}
 		}	
 
-		// Return the FBUserInfo object with the new data
-    	$Object = Device::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = Device::firstOrCreate($dataArray);
 
 
     	if (isset($data['prices']))
@@ -246,7 +245,7 @@ class DevicesRepository
 
 		$Object = Device::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	isset($data['prices']) ? $this->storePrices($data['prices'], $Object->id) : null;
@@ -266,7 +265,7 @@ class DevicesRepository
 
 		$Object = Device::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->delete();
 
     	return $Object;
@@ -318,8 +317,7 @@ class DevicesRepository
 					'device_id' => $id,
 				];
 
-				$Model = DeviceGames::create($fields);
-				$Model->update($fields);
+				$Model = DeviceGames::firstOrCreate($fields);
 			}
 	
 			return $Model;		
@@ -352,9 +350,8 @@ class DevicesRepository
 		$data['created_by'] = $this->app->auth()->id;
 
 		$Object = new OrderDevice;
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object = $Object->create( (array) $data);
-    	$Object->update( $data);
 
     	return $Object;
     } 
@@ -390,7 +387,7 @@ class DevicesRepository
 		// }
 
 
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $newData);
 
     	return $Object;
@@ -410,7 +407,7 @@ class DevicesRepository
 		{
 			$newData['status'] = 'canceled';
 
-			// Return the FBUserInfo object with the new data
+			// Return the Model object with the new data
 	    	$Object->update( (array) $newData);
 		}
 
@@ -470,8 +467,8 @@ class DevicesRepository
 		$newData['price'] = $data['price'];
 		$newData['created_by'] = $this->app->auth()->id;
 
-		// Return the FBUserInfo object with the new data
-    	OrderDeviceItem::create($newData)->update($newData);
+		// Return the Model object with the new data
+    	OrderDeviceItem::firstOrCreate($newData);
 
     	return $Object;
 

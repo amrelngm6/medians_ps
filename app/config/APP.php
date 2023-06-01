@@ -61,11 +61,28 @@ class APP
 	}
 
 
+	/**
+	 * Load all setting for a branch 
+	 * return as Array
+	 */ 
 	public function Settings()
 	{
 		return  (new \Medians\Settings\Application\SettingsController())->getAll();
 	}
 
+	/**
+	 * Load Sysetem Settings
+	 */ 
+	public function SystemSetting()
+	{
+		return  (new \Medians\Settings\Application\SystemSettingsController())->getAll();
+	}
+
+
+	/**
+	 * Get setting value by code 
+	 * return value
+	 */ 
 	public function setting($code)
 	{
 		return (new SettingsRepository)->getByCode($code);
@@ -127,7 +144,7 @@ class APP
 	/**
 	 * Template for Twig render 
 	 */
-	public function renderTemplate($code, $data=null)
+	public function renderTemplate($code)
 	{
 		$twig = $this->template()->createTemplate($code);
 
@@ -165,12 +182,19 @@ class APP
 		$data = array(
 			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard'),
 	        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
-			array('title'=>__('Plans'),  'icon'=>'fa-desktop', 'link'=>'admin/#plans', 'sub'=>
+			array('title'=>__('Plans'),  'icon'=>'fa-desktop', 'link'=>'#plans', 'sub'=>
 				[
 	                array('title'=>__('plans'),  'icon'=>'', 'link'=>'admin/plans', 'component'=>'plans'),
 	                array('title'=>__('plan_features'),  'icon'=>'', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
 	                array('title'=>__('plan_subscriptions'), 'icon'=>'', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
 			        array('title'=>__('payments'),  'icon'=>'fa-credit-card', 'link'=>'admin/payments', 'component'=>'payments'),
+				]
+			),
+
+			array('title'=>__('notifications'),  'icon'=>'fa-desktop', 'link'=>'#notifications', 'sub'=>
+				[
+	                array('title'=>__('notifications_log'),  'icon'=>'', 'link'=>'admin/notifications', 'component'=>'notifications'),
+	                array('title'=>__('notifications_events'),  'icon'=>'', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				]
 			),
 
@@ -233,6 +257,7 @@ class APP
 	        array('title'=>__('Account'),  'icon'=>'fa-cogs', 'link'=>'#account', 'sub'=>
 	            [
 					array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
+	                array('title'=>__('notifications_log'),  'icon'=>'', 'link'=>'admin/notifications', 'component'=>'notifications'),
 			        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
 	                array('title'=>__('plan_subscriptions'), 'icon'=>'', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
 	            ]

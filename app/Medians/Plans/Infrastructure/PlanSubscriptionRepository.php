@@ -67,9 +67,8 @@ class PlanSubscriptionRepository
 			}
 		}	
 
-		// Return the FBUserInfo object with the new data
-    	$Object = PlanSubscription::create($dataArray);
-    	$Object->update($dataArray);
+		// Return the Model object with the new data
+    	$Object = PlanSubscription::firstOrCreate($dataArray);
 
     	return $Object;
 	}
@@ -83,7 +82,7 @@ class PlanSubscriptionRepository
 
 		$Object = PlanSubscription::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;
