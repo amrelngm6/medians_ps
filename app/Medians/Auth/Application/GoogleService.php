@@ -68,7 +68,7 @@ class GoogleService
 			$params['email'] = $user_info['email'];
 			$params['first_name'] = $user_info['givenName'];
 			$params['last_name'] = $user_info['familyName'];
-			$params['role_id'] = 3;
+			$params['role_id'] = '3';
 			$params['profile_image'] = $user_info['picture'];
 
 			// $params['field']['google_id'] = $user_info['id'];
