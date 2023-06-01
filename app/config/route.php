@@ -34,6 +34,9 @@ Macaw::post('/userSignup', \Medians\Auth\Application\AuthService::class.'@userSi
 Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
 Macaw::get('/activate-account/(:all)', \Medians\Users\Application\UserController::class.'@activate_account');
 
+Macaw::get('/admin/editor', \Medians\Pages\Application\PageController::class.'@editor');
+
+
 /**
 * Restricted access requests 
 */
