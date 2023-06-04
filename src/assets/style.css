@@ -349,7 +349,7 @@ body .main-sidebar.activate.show .player-img img
   position: relative;
   z-index: 2;
   text-transform: uppercase;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   padding: 0 25px;
   margin-top: 15px;
@@ -652,7 +652,21 @@ body .btn
 }
 
 
-body .media-library
+body .sidebar-create-form,
+body .sidebar-edit-form
 {
-  top: 10px;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    padding: 0;
+    z-index: 9;
+    box-shadow: -151px 0 550px rgba(0,0,0,.2);
+    FONT-WEIGHT: 600;
+    height: calc(100vh - 60px);
+    overflow: auto;
+}
+    
+body .sidebar-edit-form
+{
+  padding: 16px;
 }
