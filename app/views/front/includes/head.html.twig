@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{item.title}}</title>
-    <meta name="description" content="{{item.field.seo_desc ? item.field.seo_desc : ''}}">
+    <title>{{item.title ? item.title : 'Medians PS & gaming Cafe Booking System'}}</title>
+    <meta name="description" content="{{item.field.seo_desc ? item.field.seo_desc : 'Medians PS is a solution that manage cyber cafes, gaming & playstation lounges branches witn inventory management and booking system.'}}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="canonical" href="{{app.request.uri}}">
     <!-- Open Graph / Facebook -->
@@ -14,12 +14,12 @@
     <meta property="og:url" content="{{ app.request.uri}}">
     <meta property="og:title" content="{{item.title}}">
     <meta property="og:image" content="https://bedaya.medianssolutions.com/route/image.php?src=1253926083_1828277228_581308477.jpg&img=pic&w=800">
-    <meta property="og:description" content="{{item.field.seo_desc ? item.field.seo_desc : ''}}">
+    <meta property="og:description" content="{{item.field.seo_desc ? item.field.seo_desc : 'Medians PS is a solution that manage cyber cafes, gaming & playstation lounges branches witn inventory management and booking system'}}">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="{{item.title}}">
     <!-- <meta property="twitter:image" content=""> -->
-    <meta property="twitter:description" content="{{item.field.seo_desc ? item.field.seo_desc : ''}}">
+    <meta property="twitter:description" content="{{item.field.seo_desc ? item.field.seo_desc : 'Medians PS is a solution that manage cyber cafes, gaming & playstation lounges branches witn inventory management and booking system'}}">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/uploads/images/favicon.webp">
