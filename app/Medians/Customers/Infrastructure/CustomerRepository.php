@@ -53,8 +53,6 @@ class CustomerRepository
 
 		$Model = $Model->firstOrCreate($dataArray);
 
-    	$Model->update($dataArray);
-    	
 		// Return the Model object with the new data
     	return $Model;
 

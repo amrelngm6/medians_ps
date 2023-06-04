@@ -102,6 +102,9 @@ class CustomModel extends Model
     public function createdEvent()
     {
 
+    	if (!$this->wasRecentlyCreated)
+    		return true;
+    	
     	// Insert activation code 
     	return (new NotificationEvent)->handleEvent($this, 'create');
     }  

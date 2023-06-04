@@ -164,7 +164,7 @@
                             <button class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Save')}}</button>
                         </form>
                     </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-3" >
                         <ul class="bg-white p-4 rounded-lg">
                             <li :class="tab.link == activeTab ? 'font-bold' : ''" class="cursor-pointer py-2 px-1 border-b border-gray-200 py-2" :key="index" v-for="(tab, index) in setting_tabs" @click="switchTab(tab)" v-text="tab.title"></li>
                         </ul>

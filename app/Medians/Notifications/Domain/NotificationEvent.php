@@ -55,7 +55,7 @@ class NotificationEvent extends CustomModel
 	 * handle event and process the Notification
 	 * Body and information
 	 * 
-	 * @param $model Object Event model
+	 * @param $model Object Event related model
 	 * @param $action String action type at CRUD
 	 */ 
 	public function handleEvent($model, $action)
@@ -75,18 +75,25 @@ class NotificationEvent extends CustomModel
 	/**
 	 * Prepare notification content 
 	 * 
+	 * @param $event Object
+	 * @param $model Object Event related model
 	 */
 	public function renderNotification($event, $model)
 	{
 
 		// Get receiver User / Branch
-    	$receiver = (strtolower($event->receiver_model) == 'branch') ? Branch::find($model->branch_id) : Users::find($model->user_id);
+    	$receiver = (strtolower($event->receiver_model) == 'branch') 
+    	? Branch::find(isset($model->branch_id) ? $model->branch_id : $model->active_branch) 
+    	: Users::find($model->user_id);
 
     	$app = new \config\APP;
     	$params = [];
 
-		// Append the model as paramater to render the content
-		// And replace the shortcode
+    	/**
+    	 * Get short name for the class to use as index
+		 * Append the model as paramater to render the content
+		 * And replace the shortcode
+		 */ 
     	$params[strtolower((new \ReflectionClass($model))->getShortName())] = $model;
     	$body = $app->renderTemplate($event->body)->render($params);
 

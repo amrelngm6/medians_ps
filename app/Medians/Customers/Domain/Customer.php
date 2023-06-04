@@ -6,6 +6,7 @@ use Shared\dbaser\CustomModel;
 
 use Medians\Orders\Domain\Order;
 use Medians\Devices\Domain\OrderDevice;
+use Medians\Notifications\Domain\NotificationEvent;
 
 class Customer extends CustomModel
 {
@@ -81,6 +82,7 @@ class Customer extends CustomModel
 	{
 		return $this->hasOne(Order::class, 'customer_id', 'id');
 	}
+
 
 
 }
