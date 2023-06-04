@@ -19,7 +19,8 @@
         "google/apiclient": "^2.15",
         "omnipay/paypal": "*",
         "paypal/rest-api-sdk-php": "*",
-        "php-http/message-factory": "^1.1"
+        "php-http/message-factory": "^1.1",
+        "php-ai/php-ml": "^0.10.0"
     },
     "config": {
         "allow-plugins": {

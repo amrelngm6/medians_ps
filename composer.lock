@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df5e9050261953ca0fb07a10a7bf3ef8",
+    "content-hash": "726eff9de5ee2d65e8e93f424aa37d37",
     "packages": [
         {
             "name": "brick/math",
@@ -549,7 +549,7 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.301.0",
+            "version": "v0.302.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
@@ -587,7 +587,7 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.301.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.302.0"
             },
             "time": "2023-05-16T01:08:12+00:00"
         },
@@ -976,7 +976,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v9.52.7",
+            "version": "v9.52.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -1031,7 +1031,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v9.52.7",
+            "version": "v9.52.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -1077,7 +1077,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v9.52.7",
+            "version": "v9.52.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -1128,7 +1128,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v9.52.7",
+            "version": "v9.52.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -1176,16 +1176,16 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v9.52.7",
+            "version": "v9.52.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "a2d8423c05ef70101b675d4552bd7bb36a6cc890"
+                "reference": "64f570ea10543b6f1777db5615e6386293e05fee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/a2d8423c05ef70101b675d4552bd7bb36a6cc890",
-                "reference": "a2d8423c05ef70101b675d4552bd7bb36a6cc890",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/64f570ea10543b6f1777db5615e6386293e05fee",
+                "reference": "64f570ea10543b6f1777db5615e6386293e05fee",
                 "shasum": ""
             },
             "require": {
@@ -1242,11 +1242,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-03-13T03:00:40+00:00"
+            "time": "2023-05-29T15:05:51+00:00"
         },
         {
             "name": "illuminate/macroable",
-            "version": "v9.52.7",
+            "version": "v9.52.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -1292,7 +1292,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v9.52.7",
+            "version": "v9.52.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -1614,16 +1614,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.66.0",
+            "version": "2.67.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "496712849902241f04902033b0441b269effe001"
+                "reference": "c1001b3bc75039b07f38a79db5237c4c529e04c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/496712849902241f04902033b0441b269effe001",
-                "reference": "496712849902241f04902033b0441b269effe001",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/c1001b3bc75039b07f38a79db5237c4c529e04c8",
+                "reference": "c1001b3bc75039b07f38a79db5237c4c529e04c8",
                 "shasum": ""
             },
             "require": {
@@ -1712,7 +1712,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-29T18:53:47+00:00"
+            "time": "2023-05-25T22:09:47+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1817,16 +1817,16 @@
         },
         {
             "name": "omnipay/common",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/omnipay-common.git",
-                "reference": "e278ff00676c05cd0f4aaaf6189a226f26ae056e"
+                "reference": "80545e9f4faab0efad36cc5f1e11a184dda22baf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/omnipay-common/zipball/e278ff00676c05cd0f4aaaf6189a226f26ae056e",
-                "reference": "e278ff00676c05cd0f4aaaf6189a226f26ae056e",
+                "url": "https://api.github.com/repos/thephpleague/omnipay-common/zipball/80545e9f4faab0efad36cc5f1e11a184dda22baf",
+                "reference": "80545e9f4faab0efad36cc5f1e11a184dda22baf",
                 "shasum": ""
             },
             "require": {
@@ -1835,6 +1835,7 @@
                 "php-http/client-implementation": "^1",
                 "php-http/discovery": "^1.14",
                 "php-http/message": "^1.5",
+                "php-http/message-factory": "^1.1",
                 "symfony/http-foundation": "^2.1|^3|^4|^5|^6"
             },
             "require-dev": {
@@ -1897,7 +1898,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/omnipay-common/issues",
-                "source": "https://github.com/thephpleague/omnipay-common/tree/v3.2.0"
+                "source": "https://github.com/thephpleague/omnipay-common/tree/v3.2.1"
             },
             "funding": [
                 {
@@ -1905,7 +1906,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-12-30T11:32:00+00:00"
+            "time": "2023-05-30T12:44:03+00:00"
         },
         {
             "name": "omnipay/paypal",
@@ -2090,25 +2091,26 @@
         },
         {
             "name": "paypal/rest-api-sdk-php",
-            "version": "v1.6.4",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
-                "reference": "06837d290c4906578cfd92786412dff330a1429c"
+                "reference": "72e2f2466975bf128a31e02b15110180f059fc04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/06837d290c4906578cfd92786412dff330a1429c",
-                "reference": "06837d290c4906578cfd92786412dff330a1429c",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/72e2f2466975bf128a31e02b15110180f059fc04",
+                "reference": "72e2f2466975bf128a31e02b15110180f059fc04",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "php": ">=5.3.0"
+                "php": ">=5.3.0",
+                "psr/log": "^1.0.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "^4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -2118,7 +2120,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache2"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -2136,10 +2138,63 @@
             ],
             "support": {
                 "issues": "https://github.com/paypal/PayPal-PHP-SDK/issues",
-                "source": "https://github.com/paypal/PayPal-PHP-SDK/tree/stable"
+                "source": "https://github.com/paypal/PayPal-PHP-SDK/tree/master"
             },
             "abandoned": true,
-            "time": "2016-01-20T17:45:52+00:00"
+            "time": "2019-01-04T20:04:25+00:00"
+        },
+        {
+            "name": "php-ai/php-ml",
+            "version": "0.10.0",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.com:php-ai/php-ml.git",
+                "reference": "543f11158c57bf64ef8ddecd5bab51d396d39f50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/php-ai%2Fphp-ml/repository/archive.zip?sha=543f11158c57bf64ef8ddecd5bab51d396d39f50",
+                "reference": "543f11158c57bf64ef8ddecd5bab51d396d39f50",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpbench/phpbench": "^1.2",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arkadiusz Kondas",
+                    "email": "arkadiusz.kondas@gmail.com"
+                }
+            ],
+            "description": "PHP-ML - Machine Learning library for PHP",
+            "homepage": "https://gitlab.com/php-ai/php-ml",
+            "keywords": [
+                "Neural network",
+                "artificial intelligence",
+                "computational learning theory",
+                "data science",
+                "feature extraction",
+                "machine learning",
+                "pattern recognition"
+            ],
+            "time": "2022-11-09T09:25:29+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -2847,30 +2902,30 @@
         },
         {
             "name": "psr/log",
-            "version": "3.0.0",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001"
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe5ea303b0887d5caefd3d431c3e61ad47037001",
-                "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.0"
+                "php": ">=5.3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "src"
+                    "Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2891,9 +2946,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/3.0.0"
+                "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
-            "time": "2021-07-14T16:46:02+00:00"
+            "time": "2021-05-03T11:20:27+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -3444,16 +3499,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v5.4.23",
+            "version": "v5.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "ebdc48d54d82b74230a8aed6458c238ec5788e38"
+                "reference": "813b79a34ab9843b5a01a6f809f1e4a009aaea2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/ebdc48d54d82b74230a8aed6458c238ec5788e38",
-                "reference": "ebdc48d54d82b74230a8aed6458c238ec5788e38",
+                "url": "https://api.github.com/repos/symfony/form/zipball/813b79a34ab9843b5a01a6f809f1e4a009aaea2e",
+                "reference": "813b79a34ab9843b5a01a6f809f1e4a009aaea2e",
                 "shasum": ""
             },
             "require": {
@@ -3470,7 +3525,6 @@
                 "symfony/service-contracts": "^1.1|^2|^3"
             },
             "conflict": {
-                "phpunit/phpunit": "<5.4.3",
                 "symfony/console": "<4.4",
                 "symfony/dependency-injection": "<4.4",
                 "symfony/doctrine-bridge": "<5.4.21|>=6,<6.2.7",
@@ -3527,7 +3581,7 @@
             "description": "Allows to easily create, process and reuse HTML forms",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/form/tree/v5.4.23"
+                "source": "https://github.com/symfony/form/tree/v5.4.24"
             },
             "funding": [
                 {
@@ -3543,7 +3597,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-17T15:04:56+00:00"
+            "time": "2023-05-25T13:05:00+00:00"
         },
         {
             "name": "symfony/http-client",
@@ -4904,16 +4958,16 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v5.4.23",
+            "version": "v5.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "545da11697153c24c274b9a68cab550b2c0a9860"
+                "reference": "12535bb7b1d3b53802bf18d61a98bb1145fabcdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/545da11697153c24c274b9a68cab550b2c0a9860",
-                "reference": "545da11697153c24c274b9a68cab550b2c0a9860",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/12535bb7b1d3b53802bf18d61a98bb1145fabcdb",
+                "reference": "12535bb7b1d3b53802bf18d61a98bb1145fabcdb",
                 "shasum": ""
             },
             "require": {
@@ -4987,7 +5041,7 @@
             "description": "Handles serializing and deserializing data structures, including object graphs, into array structures or other formats like XML and JSON.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/serializer/tree/v5.4.23"
+                "source": "https://github.com/symfony/serializer/tree/v5.4.24"
             },
             "funding": [
                 {
@@ -5003,7 +5057,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-17T13:59:16+00:00"
+            "time": "2023-05-12T08:37:35+00:00"
         },
         {
             "name": "symfony/service-contracts",
