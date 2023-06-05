@@ -3,9 +3,9 @@
 
         <div class="relative w-full h-full" v-if="activeItem && activeItem.status == 'active'">
 
-            <div class="mt-10 relative mx-auto w-full bg-white px-6 rounded-lg overflow-y-auto" style="max-width: 600px;">
+            <div class="mt-10 relative mx-auto w-full bg-white px-6 rounded-lg overflow-y-auto" style="max-width:600px;max-height:500px;">
 
-                <div class="w-full  mt-2 mb-4 pt-2 pb-6" style="max-height: 500px;" >
+                <div class="w-full  mt-2 mb-4 pt-2 pb-6" >
 
                     <calendar_booking_info :key="activeItem" :active-item="activeItem"></calendar_booking_info>
 
