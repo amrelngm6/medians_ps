@@ -144,7 +144,21 @@ class OrdersRepository
 	}
 
 	
+	/**
+	 * get Average sales in date range
+	 * 
+	 */
+	public function getAVGSales($params)
+	{
 
+		$check = Order::where('branch_id', $this->app->branch->id)
+		->whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('AVG(total_cost) as avg')
+		->groupBy('date')
+		->first();
+
+		return isset($check->avg) ? round($check->avg, 2) : 0;
+	}  
 
 	/**
 	* Save item to database

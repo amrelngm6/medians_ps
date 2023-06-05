@@ -5,6 +5,8 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx,twig}",
     "./app/views/admin/**/*.{twig}",
     "./app/views/admin/*.{twig}",
+    "./app/views/admin/*.twig",
+    "./app/views/admin/*.html",
     "./src/**/**/*.{vue,js,ts,jsx,tsx,twig}",
   ],
   safelist: [

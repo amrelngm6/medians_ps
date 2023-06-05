@@ -73,6 +73,19 @@ class ExpensesRepository
 	}
 
 
+
+	/**
+	* Find all items between two days By BranchId
+	*/
+	public function getByDateCharts($params )
+	{
+
+	  	$check = Expense::where('branch_id' , $this->app->branch->id);
+  		$check = $check->whereBetween('date' , [$params['start'] , $params['end']])->groupBy('date');
+
+  		return $check->orderBy('id', 'DESC')->selectRaw('SUM(amount) as y, date as label', )->get();
+	}
+
 	/**
 	 * Get sum of field 
 	 * with start & end range

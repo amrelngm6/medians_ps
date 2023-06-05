@@ -89,7 +89,7 @@ class DevicesRepository
 	 */ 
 	public function mostPlayed($limit = 5)
 	{
-		return Device::withCount('bookings')->where('branch_id', $this->app->branch->id)->orderBy('bookings_count', 'desc')->limit($limit)->get();
+		return Device::withCount('bookings')->where('branch_id', $this->app->branch->id)->orderBy('created_at', 'desc')->limit($limit)->get();
 	}
 
 
