@@ -1034,6 +1034,8 @@ class LangsAr
 		,'Some important Stats' => 'إحصائيات  هامة'
 		,'Sales average' => ' متوسط  المبيعات'
 		,'Bookings average' => 'متوسط  ارباح الحجوزات'
+		,'AVG_daily_bookings_count' => 'معدل عدد  الحجوزات اليومية'
+		,'AVG daily products sales' => 'متوسط عدد  بيع  المنتجات اليومية'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

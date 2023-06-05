@@ -1,11 +1,11 @@
 <template>
     
         <div class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 relative w-full border bg-white transition-all duration-300 rounded-md p-6" v-if="content">
-            <div class="mb-6">
+            <div class="mb-10">
                 <h3 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white" v-text="$parent.__('Some important Stats')"></h3>
-                <p class="py-2 text-gray-400" v-text="$parent.__('some important stats about the performance')"></p>
+                <p class="py-2 text-gray-400 mb-10" v-text="$parent.__('some important stats about the performance')"></p>
             </div>
-            <div class="grid gap-4 md:grid-cols-2 mt-10">
+            <div class="grid gap-4 md:grid-cols-2 mt-10 pt-6">
                 <div class="bg-gray-50  flex items-center gap-2 rounded-md p-4">
                     <div class="relative inline-flex shrink-0 items-center justify-center h-12 w-12 rounded-full bg-primary-100 text-primary-500 dark:bg-primary-500/20 dark:text-primary-400 dark:border-primary-500 dark:border-2"><svg data-v-cd102a71="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="icon h-5 w-5" width="1em" height="1em" viewBox="0 0 256 256">
                             <g fill="currentColor">
@@ -38,8 +38,8 @@
                             </g>
                         </svg></div>
                     <div>
-                        <h2 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white"><span>$429.18</span></h2>
-                        <p class="font-alt text-sm font-normal leading-normal leading-normal"><span class="text-muted-500 dark:text-muted-400"> Earned today </span></p>
+                        <h2 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white" v-text="content.avg_bookings_count"></h2>
+                        <p class="font-alt text-sm font-normal leading-normal leading-normal"><span class="text-muted-500 dark:text-muted-400" v-text="$parent.__('AVG_daily_bookings_count')"> </span></p>
                     </div>
                 </div>
                 <div class="bg-gray-50 flex items-center gap-2 rounded-md p-4">
@@ -50,8 +50,8 @@
                             </g>
                         </svg></div>
                     <div>
-                        <h2 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white"><span>$6816.32</span></h2>
-                        <p class="font-alt text-sm font-normal leading-normal leading-normal"><span class="text-muted-500 dark:text-muted-400"> Total balance </span></p>
+                        <h2 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white" v-text="content.avg_products_count"></h2>
+                        <p class="font-alt text-sm font-normal leading-normal leading-normal"><span class="text-muted-500 dark:text-muted-400" v-text="$parent.__('AVG_daily_products_sales')"> </span></p>
                     </div>
                 </div>
             </div>

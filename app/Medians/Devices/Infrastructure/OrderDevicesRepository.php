@@ -69,4 +69,52 @@ class OrderDevicesRepository
 
 
 
+	
+	/**
+	 * get Average sales in date range
+	 * 
+	 */
+	public function getAVGBookingsCount($params)
+	{
+
+		$check = OrderDevice::where('branch_id', $this->app->branch->id)
+		->whereBetween('start_time' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])
+		->selectRaw("count(*) as avg")
+		->selectRaw('DATE(start_time) as date')
+		->where('status', 'paid')
+		->groupBy('date')
+		->get();
+
+		$data = !empty($check) ? array_column(json_decode($check), 'avg') : [];
+
+
+		return !empty($data) ? round(array_sum($data) / count($data), 2) : 0;
+	}  
+
+
+	/**
+	 * get Average sales in date range
+	 * 
+	 */
+	public function getAVGProductsCount($params)
+	{
+
+		$branchId = $this->app->branch->id;
+
+		$check = OrderDeviceItem::whereHas('branch', function($q) use ($branchId){
+			$q->where('branch_id', $branchId);
+		})
+		->whereBetween('created_at' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])
+		->selectRaw("count(*) as avg")
+		->selectRaw('DATE(created_at) as date')
+		// ->where('status', 'paid')
+		->groupBy('date')
+		->get();
+
+		$data = !empty($check) ? array_column(json_decode($check), 'avg') : [];
+
+
+		return !empty($data) ? round(array_sum($data) / count($data), 2) : 0;
+	}  
+
 }

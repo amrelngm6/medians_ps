@@ -8,6 +8,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Devices\Domain\Device;
 use Medians\Games\Domain\Game;
 use Medians\Products\Domain\Product;
+use Medians\Branches\Domain\Branch;
 
 
 class OrderDeviceItem extends CustomModel
@@ -56,6 +57,16 @@ class OrderDeviceItem extends CustomModel
 	public function product()
 	{
 		return $this->hasOne(Product::class, 'id', 'model_id');
+	}
+
+
+	/**
+	 * Relations
+	 */
+	public function branch()
+	{
+		// return $this->hasOneThrough(Plan::class, PlanSubscription::class, 'branch_id', 'id', 'order_device_id', 'plan_id')->orderBy('id', 'DESC')->with('plan_features');
+		return $this->hasOneThrough(Branch::class, OrderDevice::class, 'id', 'id', 'order_device_id', 'branch_id');
 	}
 
 

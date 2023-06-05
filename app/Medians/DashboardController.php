@@ -103,6 +103,8 @@ class DashboardController extends CustomController
 	            'order_devices_count' => $counts['order_devices_count'],
 	            'orders_count' => $counts['orders_count'],
 	            'order_products_count' => $counts['order_products_count'],
+	            'avg_bookings_count' => $counts['avg_bookings_count'],
+	            'avg_products_count' => $counts['avg_products_count'],
 	            'latest_paid_order_devices' => $list['latest_paid_order_devices'],
 	            'latest_unpaid_order_devices' => $list['latest_unpaid_order_devices'],
 	            'latest_order_products' => $list['latest_order_products'],
@@ -145,6 +147,10 @@ class DashboardController extends CustomController
 
         $data['order_products_count'] =  $this->StockRepository->getLatest(1000)->where('type', 'pull')->where('date' ,'>=', $this->start)->count();
 
+		$data['avg_bookings_count'] = $this->OrderDevicesRepository->getAVGBookingsCount(['start'=>$this->start, 'end'=>$this->end]);
+
+		$data['avg_products_count'] = $this->OrderDevicesRepository->getAVGProductsCount(['start'=>$this->start, 'end'=>$this->end]);
+
         return $data;
 
 	}  
@@ -167,7 +173,7 @@ class DashboardController extends CustomController
         $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadItems()->where('created_at', '>=', date('Y-m-d 00:00:00'))->sum('price');
         
 		$data['avg_sales'] = $this->OrderRepository->getAVGSales(['start'=>$this->start, 'end'=>$this->end]);
-		
+
 		$data['avg_bookings'] = $this->OrderDevicesRepository->getAVGBookings(['start'=>$this->start, 'end'=>$this->end]);
 
         return $data;
