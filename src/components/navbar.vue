@@ -1,5 +1,5 @@
 <template>
-    <nav id="header" class="flex  w-full bg-white shadow-lg border-b border-gray-300 relative" >
+    <nav id="header" class="rounded-lg mt-4 mx-4 flex w-auto bg-white shadow-lg border-b border-gray-300 relative " >
         <div class="w-full flex items-center justify-between mt-0 px-6 py-0">
             <div class=" md:flex flex lg:flex  md:w-auto w-full order-3 md:order-1" id="menu">
                 <div class="inline-flex mx-4">

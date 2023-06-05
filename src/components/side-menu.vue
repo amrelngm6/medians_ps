@@ -4,12 +4,9 @@
             <ul>
                 <li class="nav-item nav-profile">
                     <a href="#" class="nav-link">
-                        <div class="nav-profile-image">
-                            <img :src="auth.photo" alt="profile">
-                        </div>
+
                         <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold mb-2" v-text="auth.name"></span>
-                            <span class="text-white text-xs" v-text="auth.Role ? auth.Role.name : ''"></span>
+                            <span class="font-weight-bold  py-2 px-3 block" v-text="$parent.__('Dashboard menu')"></span>
                         </div>
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                     </a>

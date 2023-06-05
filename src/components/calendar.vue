@@ -60,6 +60,7 @@ export default
     },
     props: [
         'lang',
+        'path',
         'setting',
         'conf',
         'auth',

@@ -4,47 +4,49 @@
         <div class="block w-full overflow-x-auto">
         
             <div v-if="lang && !showLoader" class="w-full overflow-y-auto overflow-x-hidden px-2" >
-                <div class="mb-6">
-                    <div class="row pt-2">
-                        <dashboard_card  classes="bg-gradient-danger" :title="__('active_bookings')" :value="content.active_order_devices_count"></dashboard_card>
-                        <dashboard_card  classes="bg-gradient-info" :title="__('today_bookings')" :value="content.today_order_devices_count"></dashboard_card>
-                        <dashboard_card  classes="bg-gradient-warning" :title="__('today_sold_products')" :value="content.today_order_products_count"></dashboard_card>
+                <div class="pb-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_bookings')" :value="content.active_order_devices_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('bookings')" :value="content.order_devices_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('sold_products')" :value="content.order_products_revenue"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('bookings_income')" :value="content.bookings_income"></dashboard_card_white>
                     </div>
-                    <div class="w-full bg-white p-4 mb-4">
+                    <div class="w-full bg-white p-4 mb-4 rounded-lg">
                         <CanvasJSChart v-if="showCharts && content.orders_charts.length" :key="line_options" :options="line_options"/>
                     </div>
-                    <div class="row pt-2">
-                        <dashboard_card classes="bg-gradient-success" :title="__('today_income')" :value="content.today_income"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-purple" :title="__('today_expenses')" :value="content.today_expenses"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-primary" :title="__('today_revenue')" :value="content.today_revenue" ></dashboard_card>
+                    <div class="row pt-4">
+                        <dashboard_card classes="bg-gradient-success" :title="__('income')" :value="content.income"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-purple" :title="__('expenses')" :value="content.expenses"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-primary" :title="__('revenue')" :value="content.revenue" ></dashboard_card>
                     </div>
                 </div>
-                <div class="w-full lg:flex gap gap-6 ">
-                    <div class="card mb-0 w-full">
-                        <h4 class="p-4 ml-4" v-text="__('most_played_devices')"></h4>
-                        <hr />
-                        <div class="card-body w-full">
-                            <div class="col-md-12">
-                                <CanvasJSChart v-if="showCharts && content.most_played_devices.length" :key="column_options" :options="column_options"/>
-                            </div>
-                        </div>
-                    </div>
+                <div class="w-full lg:flex gap gap-6 pb-6">
+                    <dashboard_center_squares :content="content" />
                     <div class="card mb-0 w-full">
                         <h4 class="p-4 ml-4" v-text="__('most_played_games')"></h4>
-                        <hr />
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_games_used_for_playing')"></p>
                         <div class="card-body w-full">
-                            <div class="col-md-12">
+                            <div class="w-full">
                                 <CanvasJSChart v-if="showCharts && content.most_played_games.length" :key="pie_options" :options="pie_options"/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="w-full lg:flex gap gap-6">
-                    <div class="card my-10 w-full lg:w-1/3">
-                        <h4 class="p-4 ml-4" v-text="__('latest_paid_order_devices')"></h4>
-                        <hr />
+                <div class="w-full lg:flex gap gap-6 pb-6">
+                    <div class="card mb-0 w-2/3">
+                        <h4 class="p-4 ml-4" v-text="__('most_played_devices')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_devices_used_for_playing')"></p>
                         <div class="card-body w-full">
-                            <div class="col-md-12 ">
+                            <div class="w-full">
+                                <CanvasJSChart v-if="showCharts && content.most_played_devices.length" :key="column_options" :options="column_options"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-1/3 lg:w-1/3 lg:mb-0">
+                        <h4 class="p-4 ml-4" v-text="__('latest_paid_order_devices')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('latest_5_bookings_has_been_paid')"></p>
+                        <div class="card-body w-full">
+                            <div class="w-full ">
                                 <div class="table-responsive w-full">
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
@@ -66,12 +68,14 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="w-full lg:flex gap gap-6 pb-6">
 
-                    <div class="card my-10 w-full  lg:w-2/3">
+                    <div class="card  w-full  ">
                         <h4 class="p-4 ml-4" v-text="__('latest_sold_products')"></h4>
                         <hr />
                         <div class="card-body w-full">
-                            <div class="col-md-12">
+                            <div class="w-full">
                                 <div class="table-responsive w-full">
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
@@ -106,12 +110,16 @@
 </template>
 <script>
 import dashboard_card from './includes/dashboard_card';
+import dashboard_card_white from './includes/dashboard_card_white';
+import dashboard_center_squares from './includes/dashboard_center_squares';
 import moment from 'moment';
 import CanvasJSChart from './canvasjs/CanvasJSVueComponent.vue';
 
 export default 
 {
     components:{
+        dashboard_center_squares,
+        dashboard_card_white,
         dashboard_card,
         CanvasJSChart
         // medians_datepicker,
@@ -128,7 +136,7 @@ export default
                 most_played_devices: [],
                 latest_paid_order_devices: [],
                 latest_order_products: [],
-                today_revenue: 0,
+                revenue: 0,
                 most_played_games: [],
                 latest_paid_bookings: 0,
                 latest_sold_products: 0,
@@ -222,14 +230,28 @@ export default
 
             // Line charts for sales in last days 
             this.line_options = JSON.parse(JSON.stringify(this.charts_options));
+            this.line_options.theme = 'light2'
             this.line_options.axisY.suffix = this.setting.currency
             this.line_options.axisY.title = this.__('sales')
+            this.line_options.toolTip = {shared: true}
             this.line_options.data[0] = {
                 type: "line",
+                color: '#003c58',
+                showInLegend: true,
                 yValueFormatString: "#,### "+this.__('sales'),
                 dataPoints: this.content.orders_charts
             }
+            
+            this.line_options.data[1] = {
+                type: "line",
+                color: '#ff6361',
+                showInLegend: true,
+                yValueFormatString: "#,### "+this.__('expenses'),
+                dataPoints: this.content.expenses_charts
+            }
 
+            console.log(this.line_options);
+            
             this.showCharts = true
         },
 
