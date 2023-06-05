@@ -166,11 +166,11 @@ class DashboardController extends CustomController
 
 		$data['income'] = $this->DevicesRepository->getSumByDate('total_cost', $this->start, $this->end);
 
-		$data['bookings_income'] = $this->OrderDevicesRepository->loadBookings()->whereDate('start_time' ,'>=', $this->start)->selectRaw('SUM(device_cost * (TIMESTAMPDIFF(SECOND, start_time, end_time))) as device_cost ')->sum('device_cost');
+		$data['bookings_income'] = $this->OrderDevicesRepository->loadBookingsIncome(['start'=>$this->start, 'end'=>$this->end]);
 
 		$data['expenses'] = $this->ExpensesRepository->getSumByDate('amount', $this->start, $this->end);
 
-        $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadItems()->where('created_at', '>=', date('Y-m-d 00:00:00'))->sum('price');
+        $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadProductsIncome(['start'=>$this->start, 'end'=>$this->end]);
         
 		$data['avg_sales'] = $this->OrderRepository->getAVGSales(['start'=>$this->start, 'end'=>$this->end]);
 

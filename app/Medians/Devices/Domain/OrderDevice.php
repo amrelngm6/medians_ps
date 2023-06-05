@@ -10,6 +10,7 @@ use Medians\Games\Domain\Game;
 use Medians\Products\Domain\Product;
 use Medians\Users\Domain\User;
 use Medians\Customers\Domain\Customer;
+use Medians\Branches\Domain\Branch;
 
 
 class OrderDevice extends CustomModel
@@ -148,6 +149,15 @@ class OrderDevice extends CustomModel
 	public function user()
 	{
 		return $this->hasOne(User::class, 'id', 'created_by');
+	}
+
+
+	/**
+	 * Relations
+	 */
+	public function branch()
+	{
+		return $this->hasOne(Branch::class, 'id', 'created_by');
 	}
 
 

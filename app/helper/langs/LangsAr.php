@@ -1036,6 +1036,7 @@ class LangsAr
 		,'Bookings average' => 'متوسط  ارباح الحجوزات'
 		,'AVG_daily_bookings_count' => 'معدل عدد  الحجوزات اليومية'
 		,'AVG daily products sales' => 'متوسط عدد  بيع  المنتجات اليومية'
+		,'Notifications events' => 'أحداث الإشعارات'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

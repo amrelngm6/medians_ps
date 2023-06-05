@@ -37,19 +37,25 @@ class OrderDevicesRepository
 	/**
 	 * Load bookings
 	 */
-	public function loadBookings()
+	public function loadBookingsIncome($params)
 	{
-		return OrderDevice::where('status', 'paid')->where('branch_id', $this->app->branch->id);
+		$check = OrderDevice::where('status', 'paid')->where('branch_id', $this->app->branch->id)->selectRaw('SUM(device_cost * (TIMESTAMPDIFF(HOUR, start_time, end_time))) as cost ')
+		->whereBetween('start_time' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])->first();
+
+		return isset($check->cost) ? $check->cost : 0;
 	}   
 
 
 	/**
 	* Find item by `id` 
 	*/
-	public function loadItems()
+	public function loadProductsIncome($params)
 	{
 
-		return OrderDeviceItem::with('product');
+		return OrderDeviceItem::whereHas('Branch')
+		->whereBetween('created_at' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])
+
+		->sum('price');
 
 	}
 
@@ -62,7 +68,9 @@ class OrderDevicesRepository
 	public function getAVGBookings($params)
 	{
 
-		$check = OrderDevice::whereBetween('start_time' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])->selectRaw('SUM(device_cost * TIMESTAMPDIFF(HOUR, start_time, end_time)) AS total_price')->first();
+		$check = OrderDevice::whereBetween('start_time' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])
+		->selectRaw('SUM(device_cost * TIMESTAMPDIFF(HOUR, start_time, end_time)) AS total_price')
+		->first();
 
 		return isset($check->total_price) ? round($check->total_price, 2) : 0;
 	}  
