@@ -26,7 +26,6 @@ class Branch extends CustomModel
     	'status'
 	];
 
-	public $timestamps = null;
 	
 
 	public $appends = ['owner_name'];
