@@ -1,9 +1,18 @@
 <template>
-    <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+    <div class="w-full overflow-auto" style="height: 85vh; z-index: 9999;">
 
-        <div class="block w-full overflow-x-auto">
-        
-            <div v-if="lang && !showLoader && setting" class="w-full overflow-y-auto overflow-x-hidden px-2" >
+
+        <div class="top-0 py-2 w-full px-2 bg-gray-100 mt-0 sticky" style="z-index:9">
+            <div class="w-full flex gap-6">
+                <h3 class="whitespace-nowrap" v-text="__('Dashboard Reports')"></h3> 
+                <ul class="w-full flex gap-4 mt-2">
+                    <li v-for="item in dates_filters" v-if="item" @click="switchDate(item.value)" :class="(activeDate == item.value) ? 'font-semibold' : ''" class="cursor-pointer" v-text="__(item.title)"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="block w-full overflow-x-auto py-2">
+            <div v-if="lang && !showLoader && setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="pb-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_bookings')" :value="content.active_order_devices_count"></dashboard_card_white>
@@ -21,7 +30,7 @@
                     </div>
                 </div>
                 <div class="w-full lg:flex gap gap-6 pb-6">
-                    <dashboard_center_squares :content="content" />
+                    <dashboard_center_squares :content="content" :setting="setting" />
                     <div class="card mb-0 w-full">
                         <h4 class="p-4 ml-4" v-text="__('most_played_games')"></h4>
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_games_used_for_playing')"></p>
@@ -59,7 +68,7 @@
                                         <tbody v-if="content.latest_paid_order_devices">
                                             <tr :key="index" v-for="(item, index) in content.latest_paid_order_devices" class="text-center">
                                                 <td v-text="item.device ? item.device.name : ''"></td>
-                                                <td>{{item.duration_time}}</td>
+                                                <td style="direction: ltr;">{{item.duration_time}}</td>
                                                 <td v-text="(item.total_cost ? item.total_cost : '') + setting.currency"></td>
                                             </tr>
                                         </tbody>
@@ -141,7 +150,16 @@ export default
                 latest_paid_bookings: 0,
                 latest_sold_products: 0,
             },
+            dates_filters:[
+                {title: this.__('Today'), value: 'today'},
+                {title: this.__('Yesterday'), value: 'yesterday'},
+                {title: this.__('Last week'), value: '-7days'},
+                {title: this.__('Last month'), value: '-30days'},
+                {title: this.__('Last year'), value: '-365days'}
+            ],
+            activeDate:'today',
             date:null,
+            filters:null,
             showLoader: false,
             showCharts: false,
             charts_options:{
@@ -173,6 +191,32 @@ export default
     methods: 
     {
         /**
+         * Switch date filters
+         * 
+         */
+        switchDate(start)
+        {
+            this.filters = '&'
+            this.filters += 'start=' + start 
+            this.filters += '&end=today';
+
+            // Update active date filters
+            this.activeDate = start;
+
+            // Load new data
+            this.load(this.url+this.filters); 
+        },
+
+
+        /**
+         * Date Time format 
+         */
+        dateFormat(date)
+        {
+            return moment(date).format('YYYY-MM-DD');
+        },
+
+        /**
          * Date Time format 
          */
         dateTimeFormat(date)
@@ -190,10 +234,10 @@ export default
         },  
         load(url)
         {
-            this.showLoader = true;
+            // this.showLoader = true;
             this.$parent.handleGetRequest( url ).then(response=> {
                 this.setValues(response).setCharts(response)
-                this.showLoader = false;
+                // this.showLoader = false;
                 // this.$alert(response)
             });
         },
@@ -221,7 +265,7 @@ export default
             
             // Column charts for most played on devices
             this.column_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.column_options.axisY.title = this.__('devices')
+            this.column_options.axisY.title = this.__('bookings_count')
             this.column_options.data[0] = {
                 type: "column",
                 yValueFormatString: "#,### "+this.__('booking'),
@@ -238,18 +282,10 @@ export default
                 type: "line",
                 color: '#003c58',
                 showInLegend: true,
-                yValueFormatString: "#,### "+this.__('sales'),
+                yValueFormatString: this.setting.currency+"#,### "+this.__('sales'),
                 dataPoints: this.content.orders_charts
             }
             
-            this.line_options.data[1] = {
-                type: "line",
-                color: '#ff6361',
-                showInLegend: true,
-                yValueFormatString: "#,### "+this.__('expenses'),
-                dataPoints: this.content.expenses_charts
-            }
-
             console.log(this.line_options);
             
             this.showCharts = true

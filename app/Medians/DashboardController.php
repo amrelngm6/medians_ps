@@ -31,8 +31,9 @@ class DashboardController extends CustomController
 
 		$this->GamesRepository = new Games\Infrastructure\GameRepository();
 
-		$this->start = $this->app->request()->get('start') ? date('Y-m-d', strtotime($this->app->request()->get('start'))) : date('Y-m-d 00:00:00');
-		$this->end = $this->app->request()->get('start') ? date('Y-m-d', strtotime($this->app->request()->get('end'))) : date('Y-m-d 23:59:59');
+		$this->start = $this->app->request()->get('start') ? date('Y-m-d 00:00:00', strtotime($this->app->request()->get('start'))) : date('Y-m-d 00:00:00');
+		$this->end = $this->app->request()->get('start') ? date('Y-m-d 23:59:59', strtotime($this->app->request()->get('end'))) : date('Y-m-d 23:59:59');
+
 
 	}
 
@@ -92,10 +93,14 @@ class DashboardController extends CustomController
             * Order repository to get
             * Sales for last ( 90 ) Days
             */ 
-            $orders_charts = $this->OrderRepository->getByDateCharts(['start'=>date('Y-m-d',strtotime('-90 days')), 'end'=>$this->end]);
+
+            $orders_charts = !$this->app->request()->get('start') || $this->app->request()->get('start') == 'today' 
+            ? $this->OrderRepository->getByDateCharts(['start'=>date('Y-m-d', strtotime('-7 days', strtotime($this->start))), 'end'=>$this->end])
+            : $this->OrderRepository->getByDateCharts(['start'=>$this->start, 'end'=>$this->end])
+            ;
 
             $ExpensesRepo = new Expenses\Infrastructure\ExpensesRepository;
-            $expenses_charts = $ExpensesRepo->getByDateCharts(['start'=>date('Y-m-d',strtotime('-90 days')), 'end'=>$this->end]);
+            $expenses_charts = $ExpensesRepo->getByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 
 	        return [
 	            'title' => 'Dashboard',
@@ -115,9 +120,8 @@ class DashboardController extends CustomController
 	            'bookings_income' => round($values['bookings_income'], 2),
 	            'revenue' => round(round($values['income'], 2) - round($values['expenses'], 2), 2),
 	            'expenses' => round($values['expenses'], 2),
-	            'most_played_games' => $this->GamesRepository->mostPlayed(),
-	            'most_played_devices' => $this->DevicesRepository->mostPlayed(),
-	            'orders_charts' => $orders_charts,
+	            'most_played_games' => $this->GamesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
+	            'most_played_devices' => $this->DevicesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
 	            'orders_charts' => $orders_charts,
 	            'expenses_charts' => $expenses_charts,
 		        'formAction' => '/login',
@@ -164,13 +168,13 @@ class DashboardController extends CustomController
 
 		$data = [];
 
-		$data['income'] = $this->DevicesRepository->getSumByDate('total_cost', $this->start, $this->end);
-
 		$data['bookings_income'] = $this->OrderDevicesRepository->loadBookingsIncome(['start'=>$this->start, 'end'=>$this->end]);
 
-		$data['expenses'] = $this->ExpensesRepository->getSumByDate('amount', $this->start, $this->end);
-
         $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadProductsIncome(['start'=>$this->start, 'end'=>$this->end]);
+
+		$data['income'] = $this->DevicesRepository->getSumByDate('subtotal', $this->start, $this->end);
+
+		$data['expenses'] = $this->ExpensesRepository->getSumByDate('amount', $this->start, $this->end);
         
 		$data['avg_sales'] = $this->OrderRepository->getAVGSales(['start'=>$this->start, 'end'=>$this->end]);
 
@@ -189,9 +193,12 @@ class DashboardController extends CustomController
 
 		$data = [];
 
-        $data['latest_order_products'] =  $this->StockRepository->getLatest(5)->get();
+        $data['latest_order_products'] =  $this->StockRepository->getLatest(5)->whereBetween('date',[$this->start, $this->end])->get();
         
-        $data['latest_paid_order_devices'] =  $this->DevicesRepository->eventsByDate([], 5)->where('status', 'paid')->get();
+        $data['latest_paid_order_devices'] =  $this->DevicesRepository->eventsByDate(['start'=>$this->start,'end'=>$this->end], 5)
+        ->where('status', 'paid')
+		->limit(5)
+		->orderBy('id', 'DESC')->groupBy('device_id')->get();
 
         $data['latest_unpaid_order_devices'] = $this->DevicesRepository->eventsByDate(['start'=>$this->start,'end'=>$this->end],5)->where('status','!=','paid')->get();
 

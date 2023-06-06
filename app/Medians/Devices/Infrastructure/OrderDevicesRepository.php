@@ -39,10 +39,18 @@ class OrderDevicesRepository
 	 */
 	public function loadBookingsIncome($params)
 	{
-		$check = OrderDevice::where('status', 'paid')->where('branch_id', $this->app->branch->id)->selectRaw('SUM(device_cost * (TIMESTAMPDIFF(HOUR, start_time, end_time))) as cost ')
-		->whereBetween('start_time' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])->first();
 
-		return isset($check->cost) ? $check->cost : 0;
+		$check = OrderDevice::where('branch_id' , $this->app->branch->id)
+		->where('status', 'paid')
+		->whereBetween('start_time' ,  [$params['start'] , $params['end']])
+		->get();
+
+		$total = 0;
+		foreach($check as $row)
+		{
+			$total += round($row->subtotal, 2);
+		}
+		return $total;
 	}   
 
 
@@ -53,7 +61,7 @@ class OrderDevicesRepository
 	{
 
 		return OrderDeviceItem::whereHas('Branch')
-		->whereBetween('created_at' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])
+		->whereBetween('created_at' , [$params['start'] , $params['end']])
 
 		->sum('price');
 
@@ -68,11 +76,13 @@ class OrderDevicesRepository
 	public function getAVGBookings($params)
 	{
 
-		$check = OrderDevice::whereBetween('start_time' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])
-		->selectRaw('SUM(device_cost * TIMESTAMPDIFF(HOUR, start_time, end_time)) AS total_price')
-		->first();
+		$check = OrderDevice::where('branch_id', $this->app->branch->id)
+		->whereBetween('start_time' , [$params['start'] , $params['end']])
+		->get();
 
-		return isset($check->total_price) ? round($check->total_price, 2) : 0;
+		$data = !empty($check) ? array_column(json_decode($check), 'subtotal') : [];
+
+		return !empty($data) ? round((array_sum($data) / count($data)), 2) : 0;
 	}  
 
 
@@ -87,13 +97,13 @@ class OrderDevicesRepository
 
 		$check = OrderDevice::where('branch_id', $this->app->branch->id)
 		->whereBetween('start_time' , [date('Y-m-d 00:00:00', strtotime($params['start'])) , date('Y-m-d 23:59:59', strtotime($params['end']))])
-		->selectRaw("count(*) as avg")
+		->selectRaw("count(*) as avg_count")
 		->selectRaw('DATE(start_time) as date')
 		->where('status', 'paid')
 		->groupBy('date')
 		->get();
 
-		$data = !empty($check) ? array_column(json_decode($check), 'avg') : [];
+		$data = !empty($check) ? array_column(json_decode($check), 'avg_count') : [];
 
 
 		return !empty($data) ? round(array_sum($data) / count($data), 2) : 0;

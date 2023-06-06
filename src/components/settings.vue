@@ -80,7 +80,7 @@
 
 
 
-                            <div class="w-full flex gap-4" v-if="activeTab == 'address'">
+                            <div class="w-full block" v-if="activeTab == 'address'">
                                 <div class="card" >
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
@@ -110,7 +110,7 @@
                             </div>
 
 
-                            <div class="w-full flex gap-4" v-if="activeTab == 'calendar'">
+                            <div class="w-full block" v-if="activeTab == 'calendar'">
                                 <div class="card" >
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
@@ -140,7 +140,7 @@
 
 
 
-                            <div class="w-full flex gap-4" v-if="activeTab == 'invoices'">
+                            <div class="w-full block" v-if="activeTab == 'invoices'">
                                 <div class="card w-full " >
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
@@ -157,7 +157,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-full "></div>
                             </div>
 
 

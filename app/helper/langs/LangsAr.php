@@ -1037,6 +1037,17 @@ class LangsAr
 		,'AVG_daily_bookings_count' => 'معدل عدد  الحجوزات اليومية'
 		,'AVG daily products sales' => 'متوسط عدد  بيع  المنتجات اليومية'
 		,'Notifications events' => 'أحداث الإشعارات'
+		,'Dashboard Reports' => 'تقارير لوحة الإدارة'
+		,'yesterday' => 'اخر يومين'
+		,'last week' => 'اخر اسبوع'
+		,'last month' => 'اخر  شهر'
+		,'last year' => 'اخر  سنة'
+		,'editor_help' => 'من أعلي كل قسم  على اليسار  إضط على كلمة Edit  وبعد الإنتهاء من التعديل إضغط علي كلمة SAVE'
+		,'editor notes' => 'لتعديل الروابط و الصور يجب الضغط علي  Right-click على الماوس'
+		,'Enable notifications' => 'تفعيل التنبيهات'
+		,'Welcome message subject' => 'عنوان رسالة الترحيب عند قبول التنبيهات'
+		,'Welcome message icon' => 'ايقونة رسالة الترحيب '
+		,'Welcome message' => 'محتوى رسالة الترحيب'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

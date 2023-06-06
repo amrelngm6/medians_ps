@@ -87,9 +87,18 @@ class DevicesRepository
 	/**
 	 * Get the most used devices
 	 */ 
-	public function mostPlayed($limit = 5)
+	public function mostPlayed($params, $limit = 5)
 	{
-		return Device::withCount('bookings')->where('branch_id', $this->app->branch->id)->orderBy('created_at', 'desc')->limit($limit)->get();
+		return Device::withCount(['bookings'=>function($q)use($params){
+			$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
+		}])
+		->whereHas('bookings', function($q) use ($params){
+			$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
+		})		
+		->where('branch_id', $this->app->branch->id)
+		->orderBy('created_at', 'ASC')
+		->limit($limit)
+		->get();
 	}
 
 
@@ -157,17 +166,12 @@ class DevicesRepository
 
 	public function eventsByDate($params,$limit = 10)
 	{
-		$query = OrderDevice::with('game')->with('device')->with('user')->with('products')
-		->where('branch_id', $this->app->branch->id);
+		$query = OrderDevice::with('game','device','user','products')
+		->where('branch_id', $this->app->branch->id)
+		->whereBetween('start_time', [$params['start'], $params['end']]);
 
-		if (!empty($params['start']) && !empty($params['end']))
-		{
-			$start = date('Y-m-d H:i:s', strtotime(date($params['start'])));
-			$end = date('Y-m-d 23:59:59', strtotime(date($params['end'])));
-			$query->whereBetween('start_time', [$start, $end]);
-		}
 
-		return $query->limit($limit)->orderBy('id', 'DESC');
+		return $query;
 	}
 
 
@@ -193,12 +197,14 @@ class DevicesRepository
 	 */
 	public function getSumByDate($sumField, $start, $end)
 	{
-		$check = Order::where('branch_id' , $this->app->branch->id)->with(['order_device'=> function ($q)
+		$check = Order::where('branch_id' , $this->app->branch->id)
+		->with(['order_device'=> function ($q)
 		{
-			return $q->with('device')->with('game');
+			return $q->with('device')->with('game')->where('status', 'paid');
 		}])
-		->with('cashier');
-  		$check = $check->whereBetween('date' , [isset($start) ? $start : date('Y-m-d') , isset($end) ? $end : date('Y-m-d')]);
+		->with('cashier')
+		->whereBetween('date' , [$start , $end]);
+
   		return $check->orderBy('id', 'DESC')->sum($sumField);
 	} 
 

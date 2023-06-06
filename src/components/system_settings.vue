@@ -41,7 +41,7 @@
                                                 <textarea name="params[notifications_welcome_message]" rows="3" class=" mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('welcome_message')" v-model="content.setting.notifications_welcome_message"></textarea>
                                             </label>
 
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -140,6 +140,17 @@
                                     </div>
                                     <div class="card-body py-6">
                                         <a href="/admin/editor" target="_blank" class="pt-2 text-center block uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Open editor')}}</a>
+
+                                        <hr class="my-4" />
+
+                                        <div class="w-full text-base">
+                                            <p class="my-2 py-2 px-2 flex gap-2 rounded-lg bg-blue-50">
+                                                <i class="fa fa-bell mt-1"></i> <span v-text="__('editor_help')"></span>
+                                            </p>
+                                            <p class="my-2 py-2 px-2 flex gap-2 rounded-lg bg-red-50">
+                                                <i class="fa fa-bell mt-1"></i> <span v-text="__('editor_notes')"></span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

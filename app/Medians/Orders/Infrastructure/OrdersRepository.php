@@ -120,15 +120,16 @@ class OrdersRepository
 	public function getByDateCharts($params )
 	{
 
-	  	$check = Order::where('branch_id' , $this->app->branch->id)->with(['order_device'=> function ($q)
+	  	$check = Order::where('branch_id' , $this->app->branch->id)
+	  	->with(['order_device'=> function ($q)
 		{
 			return $q->with('device')->with('game');
 		}])
-		->with('cashier');
+		->with('cashier')
+		->whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('SUM(total_cost) as y, date as label');
 
-  		$check = $check->whereBetween('date' , [$params['start'] , $params['end']])->groupBy('date');
-
-  		return $check->orderBy('id', 'DESC')->selectRaw('SUM(total_cost) as y, date as label', )->get();
+  		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
 	}
 
 	/**
@@ -153,7 +154,8 @@ class OrdersRepository
 
 		$check = Order::where('branch_id', $this->app->branch->id)
 		->whereBetween('date' , [$params['start'] , $params['end']])
-		->selectRaw('AVG(total_cost) as avg')
+		->selectRaw('AVG(subtotal) as avg')
+		->selectRaw('date')
 		->groupBy('date')
 		->first();
 

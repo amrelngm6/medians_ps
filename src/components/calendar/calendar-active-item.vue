@@ -184,7 +184,6 @@ export default {
                 params.append('params[event]', JSON.stringify(this.activeItem));
                 this.handleRequest(params, '/api/update').then(data => { 
                     console.log(data)
-                    this.$parent.checkBookingTotify()
                 });
             },
 

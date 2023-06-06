@@ -334,10 +334,10 @@ jQuery(document).on('submit', 'form', function(){
 	    	
 	    	// Swal.fire(res.title,res.result,  'success')
 
-	    	form.reset();
+	    	return form.reset();
 
 	    } else {
-	  		Swal.fire('Error!','Connection error','error')
+	  		// Swal.fire('Error!','Connection error','error')
 	    }
 	};
 	xhr.send(new URLSearchParams(formData).toString());

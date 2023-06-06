@@ -5,7 +5,7 @@
             <div class="w-full relative">
                 <navbar v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
-                <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-10 px-4">
+                <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-0 px-4">
                     <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth && auth.active_branch && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
                     </side-menu>
 
@@ -296,4 +296,5 @@ export default {
 @import './assets/style.css';
 @import './assets/theme.css';
 @import './assets/theme.min.css';
+@import './assets/daterangepicker.css';
 </style>

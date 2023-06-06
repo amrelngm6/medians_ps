@@ -111,8 +111,8 @@ class APP
 
 	public static function redirect($url)
 	{
-		echo new RedirectResponse($url) ;
-		die();
+		echo new RedirectResponse($url);
+		exit();
 	}
 
 	public function  run()

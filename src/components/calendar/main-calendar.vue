@@ -122,100 +122,96 @@ export default {
     },
     mounted() {
         let t = this;
-        t.checkBookingTotify();
-        setInterval(function() {
-            t.checkBookingTotify();
-        }, this.handleIntervalSetting())
     },
     provide() {
     },
     methods: {
 
-        handleIntervalSetting()
-        {
-            return this.settings && this.settings.calendar_notification_interval > 10000 
-                ? this.settings.calendar_notification_interval 
-                : 60000;
-        },
-        checkBookingTotify()
-        {
-            if (this.todayEvents)
-                return this.checkEventsNotifications(this.todayEvents); 
+        // handleIntervalSetting()
+        // {
+        //     return this.settings && this.settings.calendar_notification_interval > 10000 
+        //         ? this.settings.calendar_notification_interval 
+        //         : 60000;
+        // },
+        // checkBookingTotify()
+        // {
+        //     if (this.todayEvents)
+        //         return this.checkEventsNotifications(this.todayEvents); 
 
-            this.handleGetRequest(this.calendar_settings.events_url).then(response => {
-                this.checkEventsNotifications(response)
-            });
-        },
-        checkEventsNotifications(response)
-        {
-            this.todayEvents = response;
-            for (var i = response.length - 1; i >= 0; i--) {
-                this.handleNotificationContent(response[i])
-            }
-        },
-        handleNotificationContent(item)
-        {
-            let diff = '';
-            if (item.status == 'active')
-            {
-                diff = moment().diff(item.to, "minutes");
-                (diff >= 0 && diff < 30) 
-                    ? this.notify(item.device, this.__('booking time finished'), this.__('show booking info'), item) 
-                    : '';
-            }
-            if (item.status == 'new')
-            {
-                if (this.sentNotifications[item.id])
-                    return true;
+        //     this.handleGetRequest(this.calendar_settings.events_url).then(response => {
+        //         this.checkEventsNotifications(response)
+        //     });
+        // },
+        // checkEventsNotifications(response)
+        // {
+        //     this.todayEvents = response;
+        //     for (var i = response.length - 1; i >= 0; i--) {
+        //         this.handleNotificationContent(response[i])
+        //     }
+        // },
+        // handleNotificationContent(item)
+        // {
+        //     let diff = '';
+        //     if (item.status == 'active')
+        //     {
+        //         diff = moment().diff(item.to, "minutes");
+        //         (diff >= 0 && diff < 30) 
+        //             ? this.notify(item.device, this.__('booking time finished'), this.__('show booking info'), item) 
+        //             : '';
+        //     }
+        //     if (item.status == 'new')
+        //     {
+        //         if (this.sentNotifications[item.id])
+        //             return true;
 
-                diff = moment().diff(item.from, "minutes");
+        //         diff = moment().diff(item.from, "minutes");
                 
-                (diff >= 0 && diff < 30) 
-                    ? this.notify(item.device, this.__('booking should start'), this.__('show booking info'), item) 
-                    : '';
-            }
-            if (item.status == 'completed')
-            {
+        //         (diff >= 0 && diff < 30) 
+        //             ? this.notify(item.device, this.__('booking should start'), this.__('show booking info'), item) 
+        //             : '';
+        //     }
+        //     if (item.status == 'completed')
+        //     {
 
-                if (this.sentNotifications[item.id])
-                    return true;
+        //         if (this.sentNotifications[item.id])
+        //             return true;
 
-                diff = moment().diff(item.to, "minutes");
-                (diff >= 0 && diff < 60) 
-                    ? this.notify(item.device, this.__('booking unpaid for awhile'), this.__('show booking info'), item) 
-                    : '';
-            }
-        },
-        notify(device, title, body, data = {})
-        {
+        //         diff = moment().diff(item.to, "minutes");
+        //         (diff >= 0 && diff < 60) 
+        //             ? this.notify(item.device, this.__('booking unpaid for awhile'), this.__('show booking info'), item) 
+        //             : '';
+        //     }
+        // },
+        // notify(device, title, body, data = {})
+        // {
 
-            if (this.checkedNotifications[data.id])
-                return true;
+        //     if (this.checkedNotifications[data.id])
+        //         return true;
 
-            let t = this;
-            if (Notification.permission === "granted") 
-            {
-                const notification = new Notification(device ? (device.title + ' ' + title) : title, {
-                    body: body,
-                    data:data,
-                    tag: data.id + data.status,
-                    icon: this.settings.logo
-                });
+        //     let t = this;
+        //     if (Notification.permission === "granted") 
+        //     {
+        //         const notification = new Notification(device ? (device.title + ' ' + title) : title, {
+        //             body: body,
+        //             data:data,
+        //             tag: data.id + data.status,
+        //             icon: this.settings.logo
+        //         });
 
-                notification.onclick = (e) => {
-                    let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
-                    t.show_modal(notificationData)
-                    t.checkedNotifications[notificationData.id] = true
-                };
+        //         notification.onclick = (e) => {
+        //             let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
+        //             t.show_modal(notificationData)
+        //             t.checkedNotifications[notificationData.id] = true
+        //         };
 
-                notification.onclose = (e) => {
-                    console.log(e)
-                };
+        //         notification.onclose = (e) => {
+        //             console.log(e)
+        //         };
                 
-                this.sentNotifications[data.id] = true;
+        //         this.sentNotifications[data.id] = true;
 
-            }
-        },
+        //     }
+        // },
         fullwidth()
         {
             return this.devices.length * 250+'px';
@@ -392,7 +388,6 @@ export default {
             this.handleRequest(params, '/api/'+request_type).then(data => { 
                 this.reloadEvents()
                 this.hidePopup();
-                this.checkBookingTotify()
             });
         },
 
