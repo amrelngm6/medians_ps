@@ -2,20 +2,11 @@
 
 namespace config;
 
-use Shared\dbaser as MysqliDb;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Configuration 
 {
 
-	/* //////////////////////////////////
-	@Params MYSQL data
-	///////////////////////////////////*/
-	public $host;
-	public $user;  
-	public $pass;
-	public $name;
-
-	
 	/* //////////////////////////////////
 	@Params The Installation URL
 	///////////////////////////////////*/
@@ -35,7 +26,7 @@ class Configuration
 	/* //////////////////////////////////
 	@Params Administration Panel path 
 	///////////////////////////////////*/
-	public  $admin_path = 'adminPanel';
+	public  $admin_path = 'admin';
 
 		
 	/* //////////////////////////////////
@@ -97,8 +88,34 @@ class Configuration
 		return (array) $this;
 	}
 
-	public function checkDB() : MysqliDb
+	/**
+	 * Set the database connection using 
+	 * @var Illuminate\Database\Capsule\Manager 
+	 * library for all models
+	 */ 
+	public function checkDB() 
 	{
+
+		$this->capsule = new Capsule;
+		$this->capsule->addConnection([
+		    'driver' => 'mysql',
+		    'host' => db_host,
+		    'database' => db_name,
+		    'username' => db_username,
+		    'password' => db_password,
+		    'charset' => 'utf8',
+		    'collation' => 'utf8_unicode_ci',
+		    'prefix' => '',
+		]);
+
+		$this->capsule->setAsGlobal();
+		$this->capsule->bootEloquent();
+
+		if (empty(Capsule::select("SHOW TABLES")))
+		    return \config\APP::redirect('./installer/index.php');
+
+		return $this->capsule;
 	}
-	
+
+
 }

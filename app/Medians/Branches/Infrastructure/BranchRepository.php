@@ -29,6 +29,31 @@ class BranchRepository
 
 
 	/**
+	* Find latest items
+	*/
+	public function getLatest($params, $limit = 10 ) 
+	{
+	  	return Branch::whereBetween('created_at' , [$params['start'] , $params['end']])
+	  	->limit($limit)
+	  	->orderBy('id', 'DESC');
+	}
+	
+
+	/**
+	* Find all items between two days By BranchId
+	*/
+	public function getByDateCharts($params )
+	{
+
+	  	$check = Branch::selectRaw('count(*) as y, DATE(created_at) as label')
+		->whereBetween('created_at' , [$params['start'] , $params['end']]);
+
+  		return $check->groupBy('label')->orderBy('label', 'ASC')->get();
+	}
+
+
+
+	/**
 	* Save item to database
 	*/
 	public function store($data) 

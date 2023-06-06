@@ -85,6 +85,18 @@ class PaymentsRepository
 
 
 
+
+	/**
+	* Find latest items
+	*/
+	public function getLatest($params, $limit = 10 ) 
+	{
+	  	return Payment::whereBetween('created_at' , [$params['start'] , $params['end']])
+	  	->limit($limit)
+	  	->orderBy('id', 'DESC');
+	}
+	
+
 	/**
 	* Save item to database
 	*/

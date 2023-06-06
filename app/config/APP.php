@@ -35,12 +35,15 @@ class APP
 	function __construct()
 	{
 
-		$this->setLang();
-		$this->currentPage = $this->request()->getPathInfo();
+		$this->setLang(); // Set the active language 
 
-		$this->CONF = (new \config\Configuration())->getCONFArray();
+		$this->currentPage = $this->request()->getPathInfo(); // Filter the request URI to get the current page
 
-		$this->branch = $this->active_branch();
+		$this->CONF = (new \config\Configuration())->getCONFArray();  // Load configuration as Array
+
+		$this->capsule = (new \config\Configuration())->checkDB(); // Check database connection
+
+		$this->auth(); // Check active secttion
 	}
 
 	public function setLang()
@@ -92,7 +95,7 @@ class APP
 	{
 
 		$check = !empty($this->auth) ? $this->auth : (new AuthService())->checkSession();
-		$this->branch = isset($check->branch) ? $check->branch : null; 
+		$this->branch = isset($check->branch) ? $check->branch : (object) ['id'=>0]; 
 		return $check;
 	}
 

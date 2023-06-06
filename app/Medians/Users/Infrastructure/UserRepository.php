@@ -179,7 +179,7 @@ class UserRepository
 	public function setCustomCode($data, $customCode, $value) 
 	{
 
-		$fillable = ['code'=>$customCode,'item_type'=>User::class, 'item_id'=>$data->id, 'value'=>$value];
+		$fillable = ['code'=>$customCode,'model_type'=>User::class, 'model_id'=>$data->id, 'value'=>$value];
 
 		CustomField::firstOrCreate($fillable);
 	}

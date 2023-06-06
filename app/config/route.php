@@ -7,6 +7,7 @@ use Medians\DashboardController;
 $app = new \config\APP;
 
 
+
 Macaw::get('/home', \Medians\Pages\Application\PageController::class.'@page');
 Macaw::get('/arabic', \Medians\Pages\Application\PageController::class.'@page');
 Macaw::get('/', \Medians\Pages\Application\PageController::class.'@page');
@@ -41,8 +42,9 @@ Macaw::get('/activate-account/(:all)', \Medians\Users\Application\UserController
 if(isset($app->auth()->id))
 {
 
+    $roleId = $app->auth()->role_id;
 
-    Macaw::get('/dashboard', \Medians\DashboardController::class.'@index'); 
+    Macaw::get('/dashboard', $roleId === 1 ? \Medians\MasterDashboardController::class.'@index' : \Medians\DashboardController::class.'@index'); 
     Macaw::get('/get-started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
     Macaw::get('/get_started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
     Macaw::get('/get_started/plans', \Medians\Users\Application\GetStartedController::class.'@plans'); 
@@ -247,8 +249,10 @@ if(isset($app->auth()->id))
 }
 
 
-/*
-// Return list of device 
+
+
+/**
+* return list of device 
 */
 
 return $app->run();

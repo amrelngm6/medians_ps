@@ -22,26 +22,6 @@ spl_autoload_register(function ($name) {
     is_file($name2) ? include ($name2) : '';
 });
 
-/**
- * Set the database connection using 
- * @var Illuminate\Database\Capsule\Manager 
- * library for all models
- */ 
-use Illuminate\Database\Capsule\Manager as Capsule;
-$capsule = new Capsule;
-$capsule->addConnection([
-    'driver' => 'mysql',
-    'host' => db_host,
-    'database' => db_name,
-    'username' => db_username,
-    'password' => db_password,
-    'charset' => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix' => '',
-]);
-$capsule->setAsGlobal();
-$capsule->bootEloquent();
-
 
 include('app/helper/methods.php');
 include('app/config/route.php');

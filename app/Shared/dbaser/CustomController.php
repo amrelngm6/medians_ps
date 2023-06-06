@@ -61,6 +61,9 @@ class CustomController
 		$this->app = new \config\APP;
 
 		$checkUser = $this->app->auth();
+		
+		if (isset($checkUser->id) && $checkUser->id === 1)
+			return true;
 
 		if (isset($checkUser->id) && empty($checkUser->active_branch))
 			echo $this->app->redirect('/get-started'); 

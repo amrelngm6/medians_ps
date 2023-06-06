@@ -8,12 +8,3 @@ CONST db_name = '__db_name';
 CONST db_username = '__db_user';
 
 CONST db_password = '__db_password';
-
-CONST smtp_auth = true;
-CONST smtp_host = '';
-CONST smtp_username = '';
-CONST smtp_password = '';
-CONST smtp_port = 465;
-CONST smtp_sender = 'info@medianssolutions.com';
-
-

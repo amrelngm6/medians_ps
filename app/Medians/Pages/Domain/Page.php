@@ -63,7 +63,7 @@ class Page extends CustomModel
 
 	public function custom_fields()
 	{
-		return $this->morphMany(CustomFields::class, 'item')->with('field');
+		return $this->morphMany(CustomFields::class, 'model')->with('field');
 	}
 
 

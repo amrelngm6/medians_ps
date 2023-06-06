@@ -6,7 +6,7 @@
                 <navbar v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-0 px-4">
-                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth && auth.active_branch && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
+                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
                     </side-menu>
 
                     <div v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
@@ -29,10 +29,11 @@
 const axios = require('axios').default;
 
 
-import login from './components/login-dashboard.vue'
+import login from './components/login-dashboard.vue' // Used if sessions expired but needs refresh
 import SideMenu from './components/side-menu.vue'
 import navbar from './components/navbar.vue'
-import dashboard from './components/dashboard.vue'
+import dashboard from './components/dashboard.vue' // Dashboard for branch admin
+import master_dashboard from './components/master_dashboard.vue' // Dashboard for Master
 import categories from './components/categories.vue'
 import expenses from './components/expenses.vue'
 import payments from './components/payments.vue'
@@ -64,6 +65,7 @@ export default {
         login,
         SideMenu,
         dashboard,
+        master_dashboard,
         categories,
         expenses,
         payments,
@@ -296,5 +298,4 @@ export default {
 @import './assets/style.css';
 @import './assets/theme.css';
 @import './assets/theme.min.css';
-@import './assets/daterangepicker.css';
 </style>

@@ -35,6 +35,17 @@ class CustomerRepository
 
 
 	/**
+	* Find latest items
+	*/
+	public function getLatest($params, $limit = 10 ) 
+	{
+	  	return Customer::whereBetween('created_at' , [$params['start'] , $params['end']])
+	  	->limit($limit)
+	  	->orderBy('id', 'DESC');
+	}
+	
+
+	/**
 	* Save item to database
 	*/
 	public function store($data) 

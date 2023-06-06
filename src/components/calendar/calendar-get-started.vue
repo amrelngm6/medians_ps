@@ -13,7 +13,7 @@
                         <div :class="activeTab > 3 ? 'border-gray-600' : 'border-gray-300'" @click="setTab(4)" class="pt-2 w-32 h-10 rounded-full rounded border ">4</div>
                     </div>
                     <div class="cd-horizontal-timeline loaded">
-                        <div class="events-content" >
+                        <div class="events-content text-center" >
                             <ol style="direction:rtl;">
                                 <li  :class="(activeTab == 1) ? 'selected' : ''">
                                     <h3><small v-text="__('add_new_category')"></small></h3>

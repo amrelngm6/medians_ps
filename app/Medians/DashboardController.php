@@ -17,6 +17,7 @@ class DashboardController extends CustomController
 	function __construct()
 	{
 		$this->app = new \config\APP;
+		
 		$this->checkBranch();
 
         $this->OrderRepository = new Orders\Infrastructure\OrdersRepository;
@@ -47,6 +48,7 @@ class DashboardController extends CustomController
 
 		try {
 			
+			// Name of the Vue components
 	        return  render('dashboard', $this->data());
 	        
 		} catch (Exception $e) {
@@ -99,8 +101,8 @@ class DashboardController extends CustomController
             : $this->OrderRepository->getByDateCharts(['start'=>$this->start, 'end'=>$this->end])
             ;
 
-            $ExpensesRepo = new Expenses\Infrastructure\ExpensesRepository;
-            $expenses_charts = $ExpensesRepo->getByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+            // $ExpensesRepo = new Expenses\Infrastructure\ExpensesRepository;
+            // $expenses_charts = $ExpensesRepo->getByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 
 	        return [
 	            'title' => 'Dashboard',
@@ -123,7 +125,7 @@ class DashboardController extends CustomController
 	            'most_played_games' => $this->GamesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
 	            'most_played_devices' => $this->DevicesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
 	            'orders_charts' => $orders_charts,
-	            'expenses_charts' => $expenses_charts,
+	            // 'expenses_charts' => $expenses_charts,
 		        'formAction' => '/login',
 		        'load_vue' => true,
 	            // 'formAction' => $this->app->CONF['url'],

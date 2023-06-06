@@ -96,7 +96,7 @@
                                                 <th v-text="__('by')"></th>
                                             </tr>
                                         </thead>
-                                        <tbody v-if="content.latest_order_products">
+                                        <tbody >
                                             <tr :key="index" v-for="(item, index) in content.latest_order_products" class="text-center">
                                                 <td>
                                                     <a :href="'/admin/products/edit/'+item.product.id">{{item.product.name}}</a>

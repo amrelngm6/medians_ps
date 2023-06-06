@@ -139,6 +139,9 @@ class AuthService
 
 		$settings = $SystemSettings->getAll();
 
+		if (empty($settings['google_login_key']))
+			return null;
+
 		$Google = new GoogleService($settings['google_login_key'],$settings['google_login_secret']);
 
 		return $Google->client->createAuthUrl();

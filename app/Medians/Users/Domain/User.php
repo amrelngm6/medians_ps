@@ -119,7 +119,7 @@ class User extends CustomModel
 
     public function custom_fields()
     {
-        return $this->morphMany(CustomField::class, 'item');
+        return $this->morphMany(CustomField::class, 'model');
     }
 
 
@@ -164,8 +164,8 @@ class User extends CustomModel
     	// Insert activation code 
 		$fillable = [
 			'code'=>'activation_token',
-			'item_type'=>User::class, 
-			'item_id'=>$this->id, 
+			'model_type'=>User::class, 
+			'model_id'=>$this->id, 
 			'value'=>User::encrypt(strtotime(date('YmdHis')).$this->id)
 		];
 

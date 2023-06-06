@@ -52,6 +52,21 @@ class PlanSubscriptionRepository
 	}
 
 
+
+
+	/**
+	* Find latest items
+	*/
+	public function getLatest($params, $limit = 10 ) 
+	{
+	  	return PlanSubscription::whereBetween('start_date' , [date('Y-m-d', strtotime($params['start'])) , date('Y-m-d', strtotime($params['end']))])
+	  	->limit($limit)
+	  	->orderBy('id', 'DESC');
+	}
+	
+
+
+
 	/**
 	* Save item to database
 	*/
