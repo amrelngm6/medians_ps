@@ -13,7 +13,7 @@
 
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang && !showLoader && setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
-                <div class="pb-6">
+                <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_bookings')" :value="content.active_order_devices_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('bookings')" :value="content.order_devices_count"></dashboard_card_white>
@@ -23,7 +23,7 @@
                     <div class="w-full bg-white p-4 mb-4 rounded-lg">
                         <CanvasJSChart v-if="showCharts && content.orders_charts.length" :key="line_options" :options="line_options"/>
                     </div>
-                    <div class="row pt-4">
+                    <div class="row mt-6">
                         <dashboard_card classes="bg-gradient-success" :title="__('income')" :value="setting.currency + content.income"></dashboard_card>
                         <dashboard_card classes="bg-gradient-purple" :title="__('expenses')" :value="setting.currency + content.expenses"></dashboard_card>
                         <dashboard_card classes="bg-gradient-primary" :title="__('revenue')" :value="setting.currency + content.revenue" ></dashboard_card>
