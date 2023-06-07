@@ -12,7 +12,7 @@
                 <div class="w-full flex gap gap-6">
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-                    <div class="col-md-3" v-if="showAddSide">
+                    <div class="col-md-3 sidebar-create-form" v-if="showAddSide">
                         <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
                             <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
                                 <div class="w-full flex">
@@ -37,43 +37,45 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide && !showAddSide ">
+                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700  sidebar-edit-form" v-if="showEditSide && !showAddSide ">
+                        <div class="w-full">
 
-                        <div class="w-full flex">
-                            <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('update')"></h1>
-                            <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
-                        </div>
-                        <div >
-                            <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
+                            <div class="w-full flex">
+                                <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('update')"></h1>
+                                <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
+                            </div>
+                            <div >
+                                <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
 
 
-                                <input name="type" type="hidden" value="Product.update">
-                                <input name="params[id]" type="hidden" v-model="activeItem.id">
+                                    <input name="type" type="hidden" value="Product.update">
+                                    <input name="params[id]" type="hidden" v-model="activeItem.id">
 
-                                <span class="block mb-2" v-text="__('name')"></span>
-                                <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
+                                    <span class="block mb-2" v-text="__('name')"></span>
+                                    <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')" v-model="activeItem.name">
 
-                                <textarea name="params[description]" rows="3" class=" mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('description')" v-model="activeItem.description"></textarea>
+                                    <textarea name="params[description]" rows="3" class=" mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('description')" v-model="activeItem.description"></textarea>
 
-                                <div class="w-full block gap gap-2">
-                                    <label class="w-40 mt-6  ">{{__('price')}}</label>
-                                    <input name="params[price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-model="activeItem.price"> 
-                                </div>
+                                    <div class="w-full block gap gap-2">
+                                        <label class="w-40 mt-6  ">{{__('price')}}</label>
+                                        <input name="params[price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-model="activeItem.price"> 
+                                    </div>
 
-                                <label class="block mt-3">
-                                    <span class="block mb-2" v-text="__('category')"></span>
-                                    <select v-model="activeItem.type" name="params[type]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
-                                        <option v-for="type in content.typesList" :value="type.id" v-text="type.name"></option>
-                                    </select>
-                                </label>
+                                    <label class="block mt-3">
+                                        <span class="block mb-2" v-text="__('category')"></span>
+                                        <select v-model="activeItem.type" name="params[type]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                                            <option v-for="type in content.typesList" :value="type.id" v-text="type.name"></option>
+                                        </select>
+                                    </label>
 
-                                <label class="inline-flex items-center mt-3">
-                                    <input name="params[status]" type="checkbox"  v-model="activeItem.status" class="form-checkbox h-5 w-5 text-orange-600">
-                                    <span class="ml-2 text-gray-700  mx-2" >{{__('PUBLISH')}}</span>
-                                </label>
+                                    <label class="inline-flex items-center mt-3">
+                                        <input name="params[status]" type="checkbox"  v-model="activeItem.status" class="form-checkbox h-5 w-5 text-orange-600">
+                                        <span class="ml-2 text-gray-700  mx-2" >{{__('PUBLISH')}}</span>
+                                    </label>
 
-                                <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
-                            </form>
+                                    <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

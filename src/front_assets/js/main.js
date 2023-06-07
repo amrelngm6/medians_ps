@@ -1,39 +1,106 @@
 "user strict";
 
+/**
+ * Handle the process for Sign up
+ * based on the response
+ * 
+ * @param response
+ */ 
+function signupFormResponse(response)
+{
+
+	if (response.success)
+		return (Swal.fire(response.title,response.result,  'success'), form.reset())
+
+	if (response.reload)
+		return window.location.reload()
+}
+
+
+/**
+ * Handle the process for Login
+ * based on the response
+ * 
+ * @param response
+ */
+function loginFormResponse(response)
+{
+
+	if (response.success)
+		return window.location.href = './dashboard'
+	
+	if (response.reload)
+		return window.location.reload()
+}
+
+
+/**
+ * Handle the process for submitting 
+ * any form at the frontend
+ * based on the response
+ * 
+ * @param response
+ */
+jQuery(document).on('submit', 'form', function(){
+
+	var formId = jQuery(this).attr('id') ;
+
+	// Get the form and submit button elements
+	const form = document.getElementById(jQuery(this).attr('id'));
+
+	if (!form)
+		return null;
+
+	// Prevent the default form submission behavior
+	event.preventDefault();
+
+	// Get the form data as a FormData object
+	const formData = new FormData(form);
+
+	// Send the form data via AJAX
+	const xhr = new XMLHttpRequest();
+	xhr.open('POST', form.action, true);
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+	xhr.onreadystatechange = function() {
+	    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+	      // Handle the successful response
+	    	let res = JSON.parse(xhr.responseText);
+
+			// Show sweetAlert if there is any errors 
+			if (res.error){
+				return Swal.fire('Error!',res.error, 'error');
+			}
+
+			// in case submitting login form 
+	    	if (formId == 'login-form'){
+	    		return loginFormResponse(res)
+	    	}
+
+			// in case submitting Sign-up form 
+	    	if (formId == 'signup-form'){
+	    		return signupFormResponse(res)
+	    	}
+	    	
+	    	// Swal.fire(res.title,res.result,  'success')
+
+	    	return form.reset();
+
+	    } else {
+	  		// Swal.fire('Error!','Connection error','error')
+	    }
+	};
+	xhr.send(new URLSearchParams(formData).toString());
+})
+
+
+
+
+/** 
+ * Some helpful libraries
+ */ 
 $(document).ready(function () {
 
-	//--Header Menu--//
-	$(".header-bar").on("click", function (e) {
-		$(".main-menu, .header-bar").toggleClass("active");
-	});
-	$(".main-menu li a").on("click", function (e) {
-		var element = $(this).parent("li");
-		if (element.hasClass("open")) {
-			element.removeClass("open");
-			element.find("li").removeClass("open");
-			element.find("ul").slideUp(300, "swing");
-		} else {
-			element.addClass("open");
-			element.children("ul").slideDown(300, "swing");
-			element.siblings("li").children("ul").slideUp(300, "swing");
-			element.siblings("li").removeClass("open");
-			element.siblings("li").find("li").removeClass("open");
-			element.siblings("li").find("ul").slideUp(300, "swing");
-		}
-	});
-	//menu top fixed bar
-	// var fixed_top = $(".header-section");
-	// $(window).on("scroll", function () {
-	// 	if ($(this).scrollTop() > 220) {
-	// 		fixed_top.addClass(" animated fadeInDown");
-	// 		fixed_top.removeClass("slideInUp");
-	// 		$("body").addClass("body-padding");
-	// 	} else {
-	// 		fixed_top.removeClass("menu-fixed fadeInDown");
-	// 		fixed_top.addClass("slideInUp");
-	// 		$("body").removeClass("body-padding");
-	// 	}
-	// });
 	//menu top fixed bar
 	$(".scrollToTop").on("click", function () {
 		$("html, body").animate(
@@ -68,42 +135,6 @@ $(document).ready(function () {
 		});
 		});
 	//--Search Popup--//
-
-	// cart popup //
-      // cart
-	  let quantity = 0;
-	  let price = 0;
-	  $(".cart-item-quantity-amount, .product-quant").html(quantity);
-	  $(".total-price, .product-pri").html(price.toFixed(2));
-	  $(".cart-increment, .cart-incre").on("click", function() {
-		  if (quantity <= 4) {
-			  quantity++;
-			  $(".cart-item-quantity-amount, .product-quant").html(quantity);
-			  var basePrice = $(".base-price, .base-pri").text();
-			  $(".total-price, .product-pri").html((basePrice * quantity).toFixed(2));
-		  }
-	  });
-
-	  $(".cart-decrement, .cart-decre").on("click", function() {
-		  if (quantity >= 1) {
-			  quantity--;
-			  $(".cart-item-quantity-amount, .product-quant").html(quantity);
-			  var basePrice = $(".base-price, .base-pri").text();
-			  $(".total-price, .product-pri").html((basePrice * quantity).toFixed(2));
-		  }
-	  });
-
-	  $(".cart-item-remove>a").on("click", function() {
-		  $(this).closest(".cart-item").hide(300);
-	  });
-
-	  // payment method
-	  var paymentMethod = $("input[name='pay-method']:checked").val();
-	  $(".payment").html(paymentMethod);
-	  $(".checkout__radio-single").on("click", function() {
-		  var paymentMethod = $("input[name='pay-method']:checked").val();
-		  $(".payment").html(paymentMethod);
-	  });
 
 	//--Magnifiqpopup--//
 	$('.video-btn').magnificPopup({
@@ -162,186 +193,8 @@ $(document).ready(function () {
 	}, 1000);
 	//--Preloader--//
 
-	//Dark Light Template Area//
-	$(".mode--toggle").on("click", function () {
-		setTheme(localStorage.getItem("theme"));
-	});
-	if (localStorage.getItem("theme") == "light-theme") {
-		localStorage.setItem("theme", "dark-theme");
-	} else {
-		localStorage.setItem("theme", "light-theme");
-	}
-	setTheme(localStorage.getItem("theme"));
-	function setTheme(theme) {
-		if (theme == "dark-theme") {
-			localStorage.setItem("theme", "light-theme");
-			$("html").addClass(theme);
-			$(".mode--toggle").find("img").attr("src", "assets/img/sun.png");
-		} else {
-			localStorage.setItem("theme", "dark-theme");
-			$("html").removeClass("dark-theme");
-			$(".mode--toggle").find("img").attr("src", "assets/img/moon.png");
-		}
-	}
-	//Dark Light Template Area//
-
-	//
-	function getVals(){
-		// Get slider values
-		let parent = this.parentNode;
-		let slides = parent.getElementsByTagName("input");
-		  let slide1 = parseFloat( slides[0].value );
-		  let slide2 = parseFloat( slides[1].value );
-		// Neither slider will clip the other, so make sure we determine which is larger
-		if( slide1 > slide2 ){ let tmp = slide2; slide2 = slide1; slide1 = tmp; }
-		
-		let displayElement = parent.getElementsByClassName("rangeValues")[0];
-			displayElement.innerHTML = "$" + slide1 + " - $" + slide2;
-	}
-	  
-	window.onload = function(){
-	// Initialize Sliders
-	let sliderSections = document.getElementsByClassName("range-slider");
-		for( let x = 0; x < sliderSections.length; x++ ){
-			let sliders = sliderSections[x].getElementsByTagName("input");
-			for( let y = 0; y < sliders.length; y++ ){
-			if( sliders[y].type ==="range" ){
-				sliders[y].oninput = getVals;
-				// Manually trigger event first time to display values
-				sliders[y].oninput();
-			}
-			}
-		}
-	}
 
 	
 
 });
-
-
-progressBar: () => {
-	const pline = document.querySelectorAll(".progressbar.line");
-	const pcircle = document.querySelectorAll(".progressbar.semi-circle");
-	pline.forEach(e => {
-		var line = new ProgressBar.Line(e, {
-			strokeWidth: 6,
-			trailWidth: 6,
-			duration: 3000,
-			easing: 'easeInOut',
-			text: {
-				style: {
-					color: 'inherit',
-					position: 'absolute',
-					right: '0',
-					top: '-30px',
-					padding: 0,
-					margin: 0,
-					transform: null
-				},
-				autoStyleContainer: false
-			},
-			step: (state, line) => {
-				line.setText(Math.round(line.value() * 100) + ' %');
-			}
-		});
-		var value = e.getAttribute('data-value') / 100;
-		new Waypoint({
-			element: e,
-			handler: function() {
-				line.animate(value);
-			},
-			offset: 'bottom-in-view',
-		})
-	});
-	pcircle.forEach(e => {
-		var circle = new ProgressBar.SemiCircle(e, {
-			strokeWidth: 6,
-			trailWidth: 6,
-			duration: 2000,
-			easing: 'easeInOut',
-			step: (state, circle) => {
-				circle.setText(Math.round(circle.value() * 100));
-			}
-		});
-		var value = e.getAttribute('data-value') / 100;
-		new Waypoint({
-			element: e,
-			handler: function() {
-				circle.animate(value);
-			},
-			offset: 'bottom-in-view',
-		})
-	});
-}
-
-function signupFormResponse(response)
-{
-
-	if (response.success)
-		return (Swal.fire(response.title,response.result,  'success'), form.reset())
-
-	if (response.reload)
-		return window.location.reload()
-}
-
-function loginFormResponse(response)
-{
-
-	if (response.success)
-		return window.location.href = './dashboard'
-	
-	if (response.reload)
-		return window.location.reload()
-}
-
-jQuery(document).on('submit', 'form', function(){
-
-	var formId = jQuery(this).attr('id') ;
-
-	// Get the form and submit button elements
-	const form = document.getElementById(jQuery(this).attr('id'));
-
-	if (!form)
-		return null;
-
-	// Prevent the default form submission behavior
-	event.preventDefault();
-
-	// Get the form data as a FormData object
-	const formData = new FormData(form);
-
-	// Send the form data via AJAX
-	const xhr = new XMLHttpRequest();
-	xhr.open('POST', form.action, true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-	xhr.onreadystatechange = function() {
-	    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-	      // Handle the successful response
-	    	let res = JSON.parse(xhr.responseText);
-
-			if (res.error){
-				return Swal.fire('Error!',res.error, 'error');
-			}
-
-	    	if (formId == 'login-form'){
-	    		return loginFormResponse(res)
-	    	}
-
-	    	if (formId == 'signup-form'){
-	    		return signupFormResponse(res)
-	    	}
-	    	
-	    	// Swal.fire(res.title,res.result,  'success')
-
-	    	return form.reset();
-
-	    } else {
-	  		// Swal.fire('Error!','Connection error','error')
-	    }
-	};
-	xhr.send(new URLSearchParams(formData).toString());
-})
-
-
 

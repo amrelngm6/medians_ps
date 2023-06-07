@@ -31,7 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3" v-if="showAddSide">
+                    <div class="col-md-3 sidebar-create-form" v-if="showAddSide">
                         <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
                             <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
                                 <div class="w-full flex">
@@ -65,73 +65,75 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide && !showAddSide ">
+                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700  sidebar-edit-form" v-if="showEditSide && !showAddSide ">
+                        <div class="w-full">
 
 
-                        <div class="w-full flex">
-                            <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('edit_device')"></h1>
-                            <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
-                        </div>
-                        <div >
-                            <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
+                            <div class="w-full flex">
+                                <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('edit_device')"></h1>
+                                <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
+                            </div>
+                            <div >
+                                <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
 
-                                <input name="type" type="hidden" value="Device.update">
-                                <input name="params[id]" type="hidden" v-model="activeItem.id">
-                                <input name="params[picture]" type="hidden" v-model="activeItem.file ? activeItem.file : activeItem.photo">
-                                <span class="block mb-2" v-text="__('Name')"></span>
-                                <input  name="params[title]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="Device Title" v-model="activeItem.title"> 
+                                    <input name="type" type="hidden" value="Device.update">
+                                    <input name="params[id]" type="hidden" v-model="activeItem.id">
+                                    <input name="params[picture]" type="hidden" v-model="activeItem.file ? activeItem.file : activeItem.photo">
+                                    <span class="block mb-2" v-text="__('Name')"></span>
+                                    <input  name="params[title]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" placeholder="Device Title" v-model="activeItem.title"> 
 
-                                <label class="block my-3" >
-                                    <span class="block mb-2" v-text="">{{__('Category')}}</span>
-                                    <select v-model="activeItem.type" name="params[type]" class="form-checkbox p-1 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
-                                        <option v-for="type in content.typesList" :value="type.id" v-text="type.name"></option>
-                                    </select>
-                                </label>
+                                    <label class="block my-3" >
+                                        <span class="block mb-2" v-text="">{{__('Category')}}</span>
+                                        <select v-model="activeItem.type" name="params[type]" class="form-checkbox p-1 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
+                                            <option v-for="type in content.typesList" :value="type.id" v-text="type.name"></option>
+                                        </select>
+                                    </label>
 
-                                <div class="block my-3 relative" v-if="showGames">
+                                    <div class="block my-3 relative" v-if="showGames">
 
-                                    <input type="checkbox" class="hidden" :name="'params[selected_games][]'" :key="activeItem.games" v-for="(game, index) in activeItem.games" v-if="game" checked :value="game.id" >
+                                        <input type="checkbox" class="hidden" :name="'params[selected_games][]'" :key="activeItem.games" v-for="(game, index) in activeItem.games" v-if="game" checked :value="game.id" >
 
-                                    <span class="block mb-2" v-text="">{{__('Games')}}</span>
+                                        <span class="block mb-2" v-text="">{{__('Games')}}</span>
 
-                                    <div class="form-control cursor-pointer  py-3 px-2 w-full lg:w-64 box border rounded-lg h-auto" @click="openDropdown">
-                                        <span class="w-auto inline-block" style="display: inline-block;" v-for="(game, index) in activeItem.games">
-                                            <span v-if="game" class="m-1 bg-gradient-purple text-gray-100 rounded-lg w-auto h-8 py-1 flex gap gap-2 text-xs mx-1" @click="unelectGame(index)" >
-                                                <img :src="conf.url+game.picture" class="w-6 h-6 mx-1  rounded rounded-full" />
-                                                <span class="p-1" v-text="game.name"></span>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <div class="w-full absolute bg-white h-48 overflow-y-auto rounded-lg bg-white" v-if="showDropdown">
-                                        <ul v-if="content.games && content.games.length > 0" class=" p-2 h-40 overflow-auto">
-                                            <li class="" :key="index" v-for="(game, index) in content.games" >
-                                                <span v-if="game" class="w-full block p-2 text-base hover:bg-blue-100 ">
-                                                    <span class="cursor-pointer block w-full" v-if="!activeItem.games || !activeItem.games[index]" @click="selectGame(index)" v-text="game.name"></span>
+                                        <div class="form-control cursor-pointer  py-3 px-2 w-full lg:w-64 box border rounded-lg h-auto" @click="openDropdown">
+                                            <span class="w-auto inline-block" style="display: inline-block;" v-for="(game, index) in activeItem.games">
+                                                <span v-if="game" class="m-1 bg-gradient-purple text-gray-100 rounded-lg w-auto h-8 py-1 flex gap gap-2 text-xs mx-1" @click="unelectGame(index)" >
+                                                    <img :src="conf.url+game.picture" class="w-6 h-6 mx-1  rounded rounded-full" />
+                                                    <span class="p-1" v-text="game.name"></span>
                                                 </span>
-                                            </li>
-                                        </ul>
+                                            </span>
+                                        </div>
+                                        <div class="w-full absolute bg-white h-48 overflow-y-auto rounded-lg bg-white" v-if="showDropdown">
+                                            <ul v-if="content.games && content.games.length > 0" class=" p-2 h-40 overflow-auto">
+                                                <li class="" :key="index" v-for="(game, index) in content.games" >
+                                                    <span v-if="game" class="w-full block p-2 text-base hover:bg-blue-100 ">
+                                                        <span class="cursor-pointer block w-full" v-if="!activeItem.games || !activeItem.games[index]" @click="selectGame(index)" v-text="game.name"></span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="w-full flex gap gap-4 my-3" >
-                                    <div class="w-full">
-                                        <label class="block pt-5">{{__('Single_price')}}</label>
-                                        <input name="params[prices][single_price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Single price" v-model="activeItem.price.single_price">
+                                    <div class="w-full flex gap gap-4 my-3" >
+                                        <div class="w-full">
+                                            <label class="block pt-5">{{__('Single_price')}}</label>
+                                            <input name="params[prices][single_price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Single price" v-model="activeItem.price.single_price">
+                                        </div>
+                                        <div class="w-full">
+                                            <label class="block pt-5">{{__('Multi_price')}}</label>
+                                            <input name="params[prices][multi_price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Multi price" v-model="activeItem.price.multi_price">
+                                        </div>
                                     </div>
-                                    <div class="w-full">
-                                        <label class="block pt-5">{{__('Multi_price')}}</label>
-                                        <input name="params[prices][multi_price]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Multi price" v-model="activeItem.price.multi_price">
-                                    </div>
-                                </div>
 
-                                <label class="flex gap gap-2 items-center mt-3">
-                                    <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status" :checked="activeItem.status > 0 ? true : false" >
-                                    <span class="ml-2 mx-2 text-gray-700">{{__('Status')}}</span>
-                                </label>
-                                
-                                <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
-                            </form>
+                                    <label class="flex gap gap-2 items-center mt-3">
+                                        <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status" :checked="activeItem.status > 0 ? true : false" >
+                                        <span class="ml-2 mx-2 text-gray-700">{{__('Status')}}</span>
+                                    </label>
+                                    
+                                    <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
+                                </form>
 
+                            </div>
                         </div>
                     </div>
                 </div>

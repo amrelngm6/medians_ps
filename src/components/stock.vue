@@ -12,7 +12,7 @@
                 <div class="w-full flex gap gap-6">
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-                    <div class="col-md-3" v-if="showAddSide">
+                    <div class="col-md-3 sidebar-create-form" v-if="showAddSide">
                         <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
                             <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
                                 <div class="w-full flex">
@@ -41,9 +41,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide && !showAddSide ">
-
-                    </div>
+                    
                 </div>
                 <!-- END New releases -->
             </main>

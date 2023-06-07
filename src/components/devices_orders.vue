@@ -13,7 +13,7 @@
                 <div class="w-full flex gap gap-6">
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide">
+                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700  sidebar-edit-form" v-if="showEditSide">
 
                         <div class="w-full flex">
                             <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('edit')"></h1>

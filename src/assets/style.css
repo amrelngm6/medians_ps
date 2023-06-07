@@ -660,13 +660,25 @@ body .sidebar-edit-form
     right: 0;
     padding: 0;
     z-index: 9;
-    box-shadow: -151px 0 550px rgba(0,0,0,.2);
+    box-shadow: -21px 0 150px rgba(0,0,0,.2);
     FONT-WEIGHT: 600;
-    height: calc(100vh - 60px);
     overflow: auto;
 }
     
 body .sidebar-edit-form
 {
   padding: 16px;
+}
+body .sidebar-create-form > div,
+body .sidebar-edit-form  > div
+{
+    height: calc(100vh - 60px);
+}
+body .sidebar-create-form > div
+{
+    padding-top: 40px;
+}
+body .sidebar-edit-form  > div
+{
+    padding-top: 20px;
 }

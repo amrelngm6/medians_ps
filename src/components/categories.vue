@@ -55,7 +55,7 @@
                         <!-- {% include 'views/admin/includes/nodata.html.twig' %} -->
                         </div>
                     </div>
-                    <div class="col-md-3" v-if="showAddSide">
+                    <div class="col-md-3 sidebar-create-form" v-if="showAddSide">
                         <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
                             <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
                                 <div class="w-full flex">
@@ -70,27 +70,30 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide && !showAddSide ">
-                        <div class="w-full flex">
-                            <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('edit_category')"></h1>
-                            <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
-                        </div>
-                        <div >
-                            <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
+                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700  sidebar-edit-form" v-if="showEditSide && !showAddSide ">
+                        <div class="w-full">
+                            
+                            <div class="w-full flex">
+                                <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('edit_category')"></h1>
+                                <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
+                            </div>
+                            <div >
+                                <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
 
-                                <input name="type"  type="hidden" value="Category.update" > 
-                                <input name="params[id]"  type="hidden" :value="activeItem.id" > 
-                                <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Category')" v-model="activeItem.name"> 
+                                    <input name="type"  type="hidden" value="Category.update" > 
+                                    <input name="params[id]"  type="hidden" :value="activeItem.id" > 
+                                    <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Category')" v-model="activeItem.name"> 
 
-                                <label class="inline-flex items-center mt-3">
-                                    <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status"><span class="ml-2 mx-2 text-gray-700">{{__('Status')}}</span>
-                                </label>
-                                
-                                <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
-                            </form>
-                        
-                            <a data-ajax="true" data-confirm="true" :data-request-id="activeItem.id" data-request-type="Category.delete" data-type="post" :href="conf.url+'api/delete'" class="uppercase block text-center   text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white py-2 mt-2">{{__('Remove this category')}}</a>
+                                    <label class="inline-flex items-center mt-3">
+                                        <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status"><span class="ml-2 mx-2 text-gray-700">{{__('Status')}}</span>
+                                    </label>
+                                    
+                                    <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
+                                </form>
+                            
+                                <a data-ajax="true" data-confirm="true" :data-request-id="activeItem.id" data-request-type="Category.delete" data-type="post" :href="conf.url+'api/delete'" class="uppercase block text-center   text-white w-full rounded text-gray-700 hover:bg-red-800 hover:text-white py-2 mt-2">{{__('Remove this category')}}</a>
 
+                            </div>
                         </div>
                     </div>
                 </div>

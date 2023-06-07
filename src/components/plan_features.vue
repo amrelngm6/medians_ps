@@ -12,7 +12,7 @@
                 <div class="w-full flex gap gap-6">
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-                    <div class="col-md-3" v-if="showAddSide">
+                    <div class="col-md-3 sidebar-create-form" v-if="showAddSide">
                         <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
                             <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
                                 <div class="w-full flex">
@@ -36,32 +36,34 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 " v-if="showEditSide && !showAddSide ">
+                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700  sidebar-edit-form" v-if="showEditSide && !showAddSide ">
+                        <div class="w-full">
 
-                        <div class="w-full flex">
-                            <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('update')"></h1>
-                            <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
-                        </div>
-                        <div >
-                            <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
+                            <div class="w-full flex">
+                                <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('update')"></h1>
+                                <span class="cursor-pointer py-1 px-2" @click="showEditSide = false"><close_icon /></span>
+                            </div>
+                            <div >
+                                <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
 
 
-                                <input name="type" type="hidden" value="PlanFeature.update">
-                                <input name="params[id]" type="hidden" v-model="activeItem.id">
+                                    <input name="type" type="hidden" value="PlanFeature.update">
+                                    <input name="params[id]" type="hidden" v-model="activeItem.id">
 
-                                <input name="params[code]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_code')" v-model="activeItem.code">
+                                    <input name="params[code]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_code')" v-model="activeItem.code">
 
-                                <input name="params[access]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_access')" v-model="activeItem.access">
+                                    <input name="params[access]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('feature_access')" v-model="activeItem.access">
 
-                                <label class="block mt-3">
-                                    <span class="block mb-2" v-text="__('plan')"></span>
-                                    <select name="params[plan_id]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg"  v-model="activeItem.plan_id">
-                                        <option v-for="plan in content.plans" :value="plan.id" v-text="plan.name" ></option>
-                                    </select>
-                                </label>
+                                    <label class="block mt-3">
+                                        <span class="block mb-2" v-text="__('plan')"></span>
+                                        <select name="params[plan_id]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg"  v-model="activeItem.plan_id">
+                                            <option v-for="plan in content.plans" :value="plan.id" v-text="plan.name" ></option>
+                                        </select>
+                                    </label>
 
-                                <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
-                            </form>
+                                    <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
