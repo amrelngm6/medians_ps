@@ -4,7 +4,7 @@
 
         <div class="top-0 py-2 w-full px-2 bg-gray-100 mt-0 sticky" style="z-index:9">
             <div class="w-full flex gap-6">
-                <h3 class="whitespace-nowrap" v-text="__('Dashboard Reports')"></h3> 
+                <h3 class="text-base lg:text-lg whitespace-nowrap" v-text="__('Dashboard Reports')"></h3> 
                 <ul class="w-full flex gap-4 mt-2">
                     <li v-for="item in dates_filters" v-if="item" @click="switchDate(item.value)" :class="(activeDate == item.value) ? 'font-semibold' : ''" class="cursor-pointer" v-text="__(item.title)"></li>
                 </ul>
@@ -78,9 +78,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full lg:flex gap gap-6 pb-6">
+                <div class="w-full lg:flex gap gap-6 pb-6 ">
 
-                    <div class="card  w-full  ">
+                    <div class="card  w-full  no-mobile">
                         <h4 class="p-4 ml-4" v-text="__('latest_sold_products')"></h4>
                         <hr />
                         <div class="card-body w-full">

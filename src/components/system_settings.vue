@@ -8,8 +8,8 @@
                     <h1 class="font-bold text-lg w-full" v-text="__('settings')"></h1>
                 </div>
                 <hr class="mt-2" />
-                <div class="w-full flex gap gap-6">
-                    <div class="w-full">
+                <div class="w-full lg:flex gap gap-6">
+                    <div class="w-full mb-6">
                         <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg pb-10" v-if="showForm && content.setting">
 
                             <input name="type" type="hidden" value="SystemSettings.update">
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full flex gap-4" v-if="activeTab == 'basic'">
+                            <div class="w-full lg:flex gap-4" v-if="activeTab == 'basic'">
 
                                 <div class="card w-full " >                             
                                     <div class="card-header pt-0">

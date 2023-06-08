@@ -1,10 +1,10 @@
 <template>
     <div class="w-full relative">
-        <div class="cursor-pointer relative" @click="switchMenu">  
+        <div class="cursor-pointer relative px-4" @click="switchMenu">  
             <span class="absolute top-0 bg-red-400 text-white text-center w-4 h-4 text-xs rounded-full mt-2" v-if="content.new_count" v-text="content.new_count"></span>
-            <notification_icon class="w-6 " ></notification_icon>
+            <notification_icon class="mt-4 mx-2" ></notification_icon>
         </div>
-        <div class="overflow-y-auto h-80 w-80 mx-auto bg-white px-4 py-6 absolute mt-4" v-if="showPopup && content.items">
+        <div class="drop-ul overflow-y-auto h-80 w-80 mx-auto bg-white px-4 py-6 absolute mt-4" v-if="showPopup && content.items">
             <span v-if="content.new_count" class="font-semibold pb-4 block " v-if="content.items && content.items.length" v-text="__('New notifications')"></span>
             <div  v-if="notification && notification.status == 'new'" v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
                 <div v-if="notification" class="hover:text-purple-600 ">

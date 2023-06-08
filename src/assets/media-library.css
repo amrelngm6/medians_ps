@@ -192,6 +192,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 50;
+  padding-top: 80px;
 }
 .media-library * {
   box-sizing: border-box;
