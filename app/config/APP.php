@@ -183,7 +183,7 @@ class APP
 	{
 
 		$data = array(
-			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard'),
+			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'master_dashboard'),
 	        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
 			array('title'=>__('Plans'),  'icon'=>'fa-desktop', 'link'=>'#plans', 'sub'=>
 				[
@@ -219,7 +219,7 @@ class APP
 	{
 
 		$data = array(
-			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard'),
+			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
 			array('title'=>__('Bookings'),  'icon'=>'fa-calendar', 'link'=>'#bookings', 'sub'=>
 				[
 					array('title'=>__('Calendar'),  'icon'=>'fa-dashboard', 'link'=>'admin/calendar', 'component'=>"calendar"),

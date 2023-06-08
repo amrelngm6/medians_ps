@@ -102,11 +102,8 @@ class MediaRepository
 				break;
 			
 			case 'media':
-				return ['png', 'jpg', 'jpeg', 'bmp']; 
-				break;
-			
 			default:
-				return ['png', 'jpg', 'jpeg', 'bmp']; 
+				return ['png', 'jpg', 'jpeg', 'bmp', 'webp']; 
 				break;
 		}
 	}
