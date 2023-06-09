@@ -6,7 +6,6 @@ use \Shared\dbaser\CustomController;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-use Medians\Mail\Application\MailService;
 
 use Medians\Settings\Application\SystemSettingsController;
 
