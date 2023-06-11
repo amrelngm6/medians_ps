@@ -9,14 +9,13 @@
     <script type="text/javascript">
     var enable_debug = {{ app.Settings.enable_debug ? 1 : '0' }};
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body style="direction: {{lang.__('dir')}};" class="{{lang.__('dir')}}">
     
 
     <div id="app">
-        {% include 'views/admin/includes/nodata.html.twig' %}
+        {% include 'views/admin/nodata.html.twig' %}
     </div>
     <div>
         <div id="root-parent"
@@ -35,11 +34,7 @@
     </div>
     <style type="text/css">
     body .text-default {
-        text-align: {
-                {
-                app.Settings.lang=='arabic'? 'right': 'left'
-            }
-        }
+        text-align: {{app.Settings.lang=='arabic'? 'right': 'left'}}
     }
     </style>
     <script type="text/javascript" src="/dist/js/app.js"></script>

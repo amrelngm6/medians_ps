@@ -137,14 +137,14 @@ export default
             // Line charts for sales in last days 
             this.line_options = JSON.parse(JSON.stringify(this.charts_options));
             this.line_options.theme = 'light2'
-            this.line_options.axisY.suffix = this.setting.currency
+            this.line_options.axisY.suffix = ''
             this.line_options.axisY.title = this.__('branches_count')
             this.line_options.toolTip = {shared: true}
             this.line_options.data[0] = {
                 type: "line",
                 color: '#003c58',
                 showInLegend: true,
-                yValueFormatString: this.setting.currency+"#,### "+this.__('branches'),
+                yValueFormatString: "#,### "+this.__('branches'),
                 dataPoints: this.content.branches_charts
             }
             

@@ -27,7 +27,7 @@
 div > svg,
 span > svg {
   vertical-align: sub;
-  fill: rgba(0,0,0,.5);
+  fill: rgba(0,0,0,.7);
 }
 
 .h-screen 
@@ -672,7 +672,7 @@ body .sidebar-edit-form
 body .sidebar-create-form > div,
 body .sidebar-edit-form  > div
 {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 90px);
 }
 body .sidebar-create-form > div
 {
@@ -681,4 +681,16 @@ body .sidebar-create-form > div
 body .sidebar-edit-form  > div
 {
     padding-top: 20px;
+    overflow: auto;
+}
+
+
+.drop-ul 
+{
+  right:0;
+}
+.rtl .drop-ul
+{
+  left:-50px;
+  right: auto;
 }

@@ -180,8 +180,8 @@ export default {
             this.setting = props ? JSON.parse(props.setting) : {};
             this.system_setting = props ? JSON.parse(props.system_setting) : {};
             this.conf = props ? JSON.parse(props.conf) : {};
-            this.activeTab = (props && props.page) ? props.page : 'dashboard';
-            this.component = (props && props.component) ? props.component : 'dashboard';
+            this.activeTab = (props && props.page) ? props.page : this.defaultPage();
+            this.component = (props && props.component) ? props.component : this.defaultPage();
             this.typesList = (props && props.typesList) ? props.typesList : [];
             this.show = true
         },
@@ -194,13 +194,35 @@ export default {
             if (!tab.sub)
             {
                 this.show = false
-                this.activeTab = (tab && tab.link) ? tab.link : 'dashboard';
+                this.activeTab = (tab && tab.link) ? tab.link : this.defaultPage();
                 this.component = (tab && tab.component) ? tab.component : this.activeTab;
                 this.show = true
                 history.pushState({menu: tab}, '', this.conf.url+this.activeTab);
             }
         },
         
+        /**
+         * The default page to load if 
+         * loaded component is not found
+         */
+        defaultPage()
+        {
+            if (this.auth && this.auth.role_id === 1)
+                return 'master_dashboard';
+
+
+            if (this.auth && this.auth.role_id === 3)
+                return 'dashboard';
+
+
+            return 'get_started';
+
+        }, 
+
+        /**
+         * If the route is invoice 
+         * load its custom component
+         */  
         checkIsInvoice()
         {
             return this.activeTab.includes('invoices/show') ? true : null;
@@ -294,8 +316,7 @@ export default {
 @import './assets/webfonts/fontawesome.min.css';
 @import './assets/bootstrap-grid.min.css';
 @import './assets/media-library.css';
-@import './assets/alertify/alertify.min.css';
 @import './assets/style.css';
 @import './assets/theme.css';
-@import './assets/theme.min.css';
+@import './assets/plugins.css';
 </style>

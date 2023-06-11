@@ -1,5 +1,12 @@
 <?php 
 
+/**
+ * Medians PS System
+ * 
+ * Here you can control all routes 
+ * for backend & frontend
+ */ 
+
 use \NoahBuscher\Macaw\Macaw;
 
 use Medians\APIController;
@@ -8,13 +15,32 @@ $app = new \config\APP;
 
 
 
+
+/**
+ * These routes for guests 
+ */ 
 Macaw::get('/home', \Medians\Pages\Application\PageController::class.'@page');
 Macaw::get('/arabic', \Medians\Pages\Application\PageController::class.'@page');
 Macaw::get('/', \Medians\Pages\Application\PageController::class.'@page');
+
+
+/**
+ * Printable layout for the invoice
+ */   
 Macaw::get('/invoices/print/(:all)', \Medians\Orders\Application\OrderController::class.'@print');
+
+/**
+ * Display the invoice through the QR code
+ */
 Macaw::get('/invoices/qr_code/(:all)', \Medians\Orders\Application\OrderController::class.'@qr_code');
 
 
+/**
+ * Switch the language 
+ * 
+ * and redirect to home page
+ * 
+ */ 
 Macaw::get('/switch-lang/(:all)', function ($lang)  {
 
     $_SESSION['site_lang'] = in_array($lang, ['arabic', 'english']) ? $lang : 'arabic';
@@ -25,15 +51,25 @@ Macaw::get('/switch-lang/(:all)', function ($lang)  {
 
 Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::get('/signup', \Medians\Auth\Application\AuthService::class.'@signup');
+
+/**
+ * Activate account after signup
+ */ 
+Macaw::get('/activate-account/(:all)', \Medians\Users\Application\UserController::class.'@activate_account');
+
+/** 
+ * Login with Google redirect page
+ */  
 Macaw::get('/google_login_redirect', \Medians\Auth\Application\AuthService::class.'@verifyLoginWithGoogle');
+
 
 /**
  * @return  Login page in case if not authorized 
+ * Theses routes are POST requests
 */
 Macaw::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
 Macaw::post('/userSignup', \Medians\Auth\Application\AuthService::class.'@userSignup');
 Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
-Macaw::get('/activate-account/(:all)', \Medians\Users\Application\UserController::class.'@activate_account');
 
 
 /**
@@ -44,7 +80,11 @@ if(isset($app->auth()->id))
 
     $roleId = $app->auth()->role_id;
 
-    Macaw::get('/dashboard', $roleId === 1 ? \Medians\MasterDashboardController::class.'@index' : \Medians\DashboardController::class.'@index'); 
+    // Switch dashboard controller based on the user Role 
+    Macaw::get('/dashboard', $roleId === 1 
+        ? \Medians\MasterDashboardController::class.'@index' 
+        : \Medians\DashboardController::class.'@index'); 
+
     Macaw::get('/get-started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
     Macaw::get('/get_started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
     Macaw::get('/get_started/plans', \Medians\Users\Application\GetStartedController::class.'@plans'); 

@@ -12806,7 +12806,8 @@ a.comment-btn:hover {
 		-webkit-transition: all 0.4s ease;
 		-moz-transition: all 0.4s ease;
 		transition: all 0.4s ease;
-		z-index: 1041;
+		z-index: 99999 !important;
+		position: absolute;
 	}
 	.page-wrapper {
 		margin-left: 0;
@@ -12999,7 +13000,10 @@ a.comment-btn:hover {
 	}
 }
 
+.no-mobile{ display: block; }
 @media only screen and (max-width: 575.98px) {
+	.no-mobile{ display: none; }
+
 	.crms-title .col {
 		padding: 0;
 	}
@@ -13009,8 +13013,8 @@ a.comment-btn:hover {
 	.contact-cat {
 		padding-right: 70px;
 	}
-	.flag-nav,
-	.main-drop {
+/*	.flag-nav, .main-drop {*/
+	.flag-nav {
 		display: none;
 	}
 	.user-menu {
@@ -13294,6 +13298,24 @@ a.comment-btn:hover {
 		min-width: auto;
 		padding: 10px;
 	}
+
+	h3.whitespace-nowrap
+	{
+		font-size: 1.1rem;
+	}
+	div.card.w-1\/3, div.card.w-2\/3 
+	{
+		width: 100%;
+	}
+	.drop-ul 
+	{
+	  right:auto;
+	  left: -50px;
+	}
+	li.w-56 {
+		width: 100px;
+	}
+
 }
 
 

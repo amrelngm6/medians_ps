@@ -9,6 +9,8 @@ use Medians\Auth\Domain\AuthModel;
 
 use Medians\Settings\Application\SystemSettingsController;
 
+use Medians\Mail\Application\MailService;
+
 use Google_Service_Oauth2;
 
 class AuthService 
@@ -37,7 +39,7 @@ class AuthService
 	{
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
 	}
-
+ 
 
 	/**
 	 * Display login page 
