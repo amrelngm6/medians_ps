@@ -18,6 +18,15 @@ class BranchRepository
 
 	}
 
+	public function getIds()
+	{
+
+
+		// print_r(Branch::with('owner')->select('id'));
+		return Branch::with('owner')->select('id')->get();
+
+	}
+
 
 	public function find($id)
 	{

@@ -129,7 +129,7 @@ class ReportController extends CustomController
 	 */ 
 	public function handleDailyReports()
 	{
-		foreach ($this->branchRepo->get() as $key => $value) 
+		foreach ($this->branchRepo->getIds() as $key => $value) 
 		{
 			$save = $this->store($value->id);
 		}
