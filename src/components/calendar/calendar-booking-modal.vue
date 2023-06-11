@@ -8,7 +8,7 @@
                 <div class="w-full  mt-2 mb-4 pt-2 pb-6" >
 
                     <div v-if="activeItem.status == 'paid'"  class="bg-red-200 rounded-md py-2 px-4 gap gap-1 flex " role="alert">
-                        <strong v-text="__('alert')"></strong> <span v-text="__('order_status_is')"></span> <b class="font-semibold" v-text="__(activeItem.status)"></b>. <a target="_blank" href="javascript:;" @click="openURL('/invoices/show/'+activeItem.order_code, '_blank')" ><b v-text="__('show_invoice')"></b></a>
+                        <strong v-text="__('alert')"></strong> <span v-text="__('order_status_is')"></span> <b class="font-semibold" v-text="__(activeItem.status)"></b>. <a target="_blank" href="javascript:;" @click="openURL('/admin/invoices/show/'+activeItem.order_code, '_blank')" ><b v-text="__('show_invoice')"></b></a>
                         <button @click="hidePopup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
