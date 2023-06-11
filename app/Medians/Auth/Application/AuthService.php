@@ -39,7 +39,7 @@ class AuthService
 	{
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
 	}
-
+ 
 
 	/**
 	 * Display login page 
