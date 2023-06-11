@@ -23,7 +23,7 @@ class BranchRepository
 
 
 		// print_r(Branch::with('owner')->select('id'));
-		return Branch::with('owner')->select('id')->get();
+		return Branch::select('id')->get();
 
 	}
 
