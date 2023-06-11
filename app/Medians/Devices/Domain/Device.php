@@ -174,7 +174,7 @@ class Device extends CustomModel
 
 
     	// Insert activation code 
-    	return (new NotificationEvent)->handleEvent($this);
+    	return (new NotificationEvent)->handleEvent($this, 'update');
 
     }  
 
