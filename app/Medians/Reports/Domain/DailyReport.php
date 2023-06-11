@@ -61,13 +61,13 @@ class DailyReport extends CustomModel
 	public static function storeDailyReport(Array $filled)
 	{
 
-		$check = DailyReport::where('date',$filled['date'])->where('branch_id',$filled['branch_id'])->first();
+		$checkData = ['date'=>$filled['date'], 'branch_id'=>$filled['branch_id']];
+		
+		$check = DailyReport::firstOrCreate($checkData);
 
     	// Update if exist
 		if (isset($check->id))
 			return $check->update($filled);
 
-    	// Store DailyReport
-    	return DailyReport::firstOrCreate($filled);
 	}  
 }

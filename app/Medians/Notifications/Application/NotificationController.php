@@ -202,12 +202,34 @@ class NotificationController extends CustomController
 	 */ 
 	public function handleBookingsNotifications()
 	{
-		foreach ($this->branchRepo->get() as $key => $value) 
+		foreach ($this->branchRepo->getIds() as $key => $value) 
 		{
 			$this->store($value->id);
 		}
 	}
 
+
+
+	/**
+	*  Store item
+	*/
+	public function store(Int $branchId) 
+	{
+
+		try {	
+	
+
+			$DashboardController = new \Medians\DashboardController;
+			$branch = $this->branchRepo->find($branchId);
+			$a = new \Medians\Auth\Application\AuthService;
+
+			
+
+
+        } catch (Exception $e) {
+
+        }
+	}
 
 	
 }
