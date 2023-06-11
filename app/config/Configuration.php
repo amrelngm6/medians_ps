@@ -111,8 +111,8 @@ class Configuration
 		$this->capsule->setAsGlobal();
 		$this->capsule->bootEloquent();
 
-		if (empty(Capsule::select("SHOW TABLES")))
-		    return \config\APP::redirect('./installer/index.php');
+		// if (empty(Capsule::select("SHOW TABLES")))
+		    // return \config\APP::redirect('./installer/index.php');
 
 		return $this->capsule;
 	}
