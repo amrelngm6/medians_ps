@@ -15,6 +15,11 @@ $app = new \config\APP;
 
 
 
+/**
+ * Store daily reports
+ */ 
+Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\ReportController::class.'@store_report');
+
 
 /**
  * These routes for guests 
@@ -250,6 +255,9 @@ if(isset($app->auth()->id))
     Macaw::post('/admin/check_notification', \Medians\Notifications\Application\NotificationController::class.'@check_notification');
 
     
+
+
+
     /**
      * Master requests
      * The next reuests available only 

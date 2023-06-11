@@ -23,6 +23,8 @@ class ReportController extends CustomController
 		$this->app = new \config\APP;
 
 		$this->repo = new Repo\ReportRepository();
+		$this->userRepo = new \Medians\Users\Infrastructure\UserRepository;
+		$this->branchRepo = new \Medians\Branches\Infrastructure\BranchRepository;
 	}
 
 
@@ -120,37 +122,64 @@ class ReportController extends CustomController
 	} 
 
 
-	
+
+	/**
+	 * Handle the rdaily reports
+	 * for all branches
+	 */ 
+	public function handleDailyReports()
+	{
+		foreach ($this->branchRepo->get() as $key => $value) 
+		{
+			$this->store($value->id);
+		}
+	}
 
 
 	/**
 	*  Store item
 	*/
-	public function store() 
+	public function store(Int $branchId) 
 	{
 
-
-		$params_request = $this->app->request()->get('params');
-		$params = isset($params_request['report']) ? (array) json_decode($params_request['report']) : $params_request;
-
 		try {	
+	
 
-			if (empty($params['name']))
-	        	return array('error'=>__('Name is required'), 'result'=>__('Name is required'));
+			$DashboardController = new \Medians\DashboardController;
+			$branch = $this->branchRepo->find($branchId);
+			$a = new \Medians\Auth\Application\AuthService;
+			// $this->app->setBranch($branch);
 
-			if (empty($params['mobile']))
-	        	return array('error'=> __('Phone is required'), 'result'=> __('Phone is required'));
 
-			if (strlen($params['mobile']) != 11)
-	        	return array('error'=> __('MOBILE_ERR'), 'result'=> __('MOBILE_ERR') );
+			$DashboardController->start = date('Y-m-d') . ' 00:00:00';
+			$DashboardController->end = date('Y-m-d') . ' 23:59:59';
+			// $DashboardController->start = '2023-0-01 00:00:00';
+	        $data['bookings_count'] = $DashboardController->DevicesRepository->eventsByDate(['start'=>$DashboardController->start, 'end'=>$DashboardController->end], $branchId)->where('status', 'paid')->count();
+	        $data['products_count'] = $DashboardController->StockRepository->getLatest(1000, $branchId)->where('type', 'pull')->where('date' ,'>=', $DashboardController->start)->count();
+	        $data['products_sales'] = $DashboardController->OrderDevicesRepository->loadProductsIncome(['start'=>$DashboardController->start, 'end'=>$DashboardController->end], $branchId);
+	        $data['bookings_sales'] = $DashboardController->OrderDevicesRepository->loadBookingsIncome(['start'=>$DashboardController->start, 'end'=>$DashboardController->end], $branchId);
 
-			$params['created_by'] = $this->app->auth()->id;
-			$Item = $this->repo->store($params);
+			$data['expenses'] = $DashboardController->ExpensesRepository->getSumByDate('amount', $DashboardController->start, $DashboardController->end, $branchId);
 
-        	return array('success'=>1, 'result'=> $Item);
+    		$data['tax'] = $DashboardController->DevicesRepository->getSumByDate('tax',$DashboardController->start,$DashboardController->end, $branchId);
+
+    		$data['discounts'] = $DashboardController->DevicesRepository->getSumByDate('discount',$DashboardController->start,$DashboardController->end, $branchId);
+
+    		$revenue = $DashboardController->DevicesRepository->getSumByDate('subtotal',$DashboardController->start,$DashboardController->end, $branchId);
+
+    		$data['revenue'] = $this->getRevenue($revenue, $data);
+
+			foreach ($data as $key => $value) {
+				$data[$key] = $value ? round((float) $value, 2) : 0;
+			}
+
+			$data['branch_id'] = $branchId;
+			$data['date'] = date('Y-m-d');
+
+			$this->repo->store_daily_report($data);
 
         } catch (Exception $e) {
-            return  array('error'=>$e->getMessage());
+
         }
 	}
 
@@ -159,21 +188,20 @@ class ReportController extends CustomController
 	/**
 	*  Store item
 	*/
-	public function update($request, $app) 
+	public function getRevenue($revenue, $data) 
 	{
 
-		$params = (array)  json_decode($request->get('params')['report']);
+		$val = round($revenue, 2);
 
-		try {
+		if (!empty($data['expenses']))
+			$val -= round($data['expenses'], 2);
 
-			$this->repo->app = $app;
-			$Property = $this->repo->update($params);
 
-        	return array('success'=>1, 'result'=>'Updated');
+		if (!empty($data['tax']))
+			$val -= round($data['tax'], 2);
 
-        } catch (Exception $e) {
-            return  array('error'=>$e->getMessage());
-        }
+
+		return $val;
 	}
 
 

@@ -93,10 +93,14 @@ class APP
 
 	public function auth()
 	{
-
 		$check = !empty($this->auth) ? $this->auth : (new AuthService())->checkSession();
-		$this->branch = isset($check->branch) ? $check->branch : (object) ['id'=>0]; 
+		$this->branch = isset($this->branch) ? $this->branch : (isset($check->branch) ? $check->branch : (object) ['id'=>0]); 
 		return $check;
+	}
+
+	public function setBranch($branch)
+	{
+		$this->branch = $branch; 
 	}
 
 	public function active_branch()

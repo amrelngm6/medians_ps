@@ -74,14 +74,14 @@
                     </div>
 
                     <div class="bg-white rounded-t-md rounded-b-md shadow-xs px-8 py-8">
-                        <h5>Order Summary</h5>
+                        <h5  v-text="__('Order Summary')"></h5>
                         <hr class="my-4" />
                         <div class="relative overflow-x-auto ">
                             <table class="w-full text-base text-default text-gray-500">
                                 <tbody>
                                     <tr class="bg-white border-b border-gray6 last:border-0 text-start mx-9">
-                                        <td class="py-3 font-normal text-[#55585B] w-[50%]">
-                                            Order Date
+                                        <td class="py-3 font-normal text-[#55585B] w-[50%]" v-text="__('Order Date')">
+                                            
                                         </td>
                                         <td class="py-3 whitespace-nowrap text-end">
                                             04/05/2023
@@ -89,7 +89,7 @@
                                     </tr>                                                           
                                     <tr class="bg-white border-b border-gray6 last:border-0 text-start mx-9">
                                         <td class="py-3 font-normal text-[#55585B] w-[50%]" v-text="__('Payment_method')">
-                                            Payment Method 
+                                            
                                         </td>
                                         <td class="py-3 text-end" v-text="content.order.payment_method">
                                             Cash
@@ -180,7 +180,7 @@
 
                     <div class="col-span-12 2xl:col-span-4">
                         <div class="bg-white rounded-t-md rounded-b-md shadow-xs py-8 px-8">
-                            <h5>Order Price</h5>
+                            <h5 v-text="__('Order Price')"></h5>
                             <div class="relative overflow-x-auto">
                                 <table class="w-full text-base text-left text-gray-500">
                                     <tbody v-if="content.order">
@@ -189,7 +189,7 @@
                                             <td class="pr-3 py-3 pt-6 font-normal text-[#55585B] text-start" v-text="__('Sub_total')">
                                                 Subtotal
                                             </td>
-                                            <td class="px-3 py-3 pt-6 font-normal text-[#55585B] text-end" v-text="content.order.tax+' '+setting.currency">
+                                            <td class="px-3 py-3 pt-6 font-normal text-[#55585B] text-end" v-text="content.order.subtotal+' '+setting.currency">
                                             </td>
                                         </tr>            
                                                                                  
@@ -197,7 +197,7 @@
                                             <td class="pr-3 py-3 pt-6 font-normal text-[#55585B] text-start" v-text="__('Tax')">
                                                 Tax
                                             </td>
-                                            <td class="px-3 py-3 pt-6 font-normal text-[#55585B] text-end" v-text="content.order.subtotal+' '+setting.currency">
+                                            <td class="px-3 py-3 pt-6 font-normal text-[#55585B] text-end" v-text="content.order.tax+' '+setting.currency">
                                             </td>
                                         </tr>                   
                                                                                  

@@ -114,9 +114,9 @@ class StockRepository
 	/**
 	* Find count by month
 	*/
-	public function getLatest($limit ) 
+	public function getLatest($limit, $branchId = 0 ) 
 	{
-	  	return Stock::where('branch_id', $this->app->branch->id)
+	  	return Stock::where('branch_id', $branchId ? $branchId : $this->app->branch->id)
 	  	->where('type', 'pull')
 	  	->with('product','user', 'invoice')
 	  	->limit($limit)

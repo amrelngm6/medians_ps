@@ -3,6 +3,7 @@
 namespace Medians\Reports\Infrastructure;
 
 use Medians\Devices\Domain\Device;
+use Medians\Reports\Domain\DailyReport;
 
 class ReportRepository 
 {
@@ -16,6 +17,11 @@ class ReportRepository
 		$this->app = $app;
 	}
 
+
+	public function store_daily_report($data)
+	{
+		return DailyReport::storeDailyReport($data);
+	}
 
 	public function orders_report($limit = 100)
 	{

@@ -37,10 +37,10 @@ class OrderDevicesRepository
 	/**
 	 * Load bookings
 	 */
-	public function loadBookingsIncome($params)
+	public function loadBookingsIncome($params, $branchId = 0)
 	{
 
-		$check = OrderDevice::where('branch_id' , $this->app->branch->id)
+		$check = OrderDevice::where('branch_id' , $branchId ? $branchId : $this->app->branch->id)
 		->where('status', 'paid')
 		->whereBetween('start_time' ,  [$params['start'] , $params['end']])
 		->get();
@@ -57,12 +57,16 @@ class OrderDevicesRepository
 	/**
 	* Find item by `id` 
 	*/
-	public function loadProductsIncome($params)
+	public function loadProductsIncome($params, $branchId = 0)
 	{
 
-		return OrderDeviceItem::whereHas('Branch')
-		->whereBetween('created_at' , [$params['start'] , $params['end']])
+		$branchId = $branchId ? $branchId : $this->app->branch->id;
 
+		return OrderDeviceItem::whereHas('Branch', function ($q) use ($branchId)
+		{
+			$q->where('branch_id', $branchId);
+		})
+		->whereBetween('created_at' , [$params['start'] , $params['end']])
 		->sum('price');
 
 	}

@@ -199,7 +199,9 @@ class OrdersRepository
 
     	foreach ($items as $key => $value) 
     	{
-    		$update = OrderDevice::find($value->id)->update(['order_code' => $Object->code, 'status' => 'paid']);
+    		if (!empty($value)) {
+	    		$update = OrderDevice::find($value->id)->update(['order_code' => $Object->code, 'status' => 'paid']);
+    		}
     	}
 
 

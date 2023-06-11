@@ -164,10 +164,10 @@ class DevicesRepository
 
 
 
-	public function eventsByDate($params,$limit = 10)
+	public function eventsByDate($params,$branchId = 0)
 	{
 		$query = OrderDevice::with('game','device','user','products')
-		->where('branch_id', $this->app->branch->id)
+		->where('branch_id', $branchId ? $branchId : $this->app->branch->id)
 		->whereBetween('start_time', [$params['start'], $params['end']]);
 
 
@@ -195,9 +195,9 @@ class DevicesRepository
 	 * Get sum of field 
 	 * with start & end range
 	 */
-	public function getSumByDate($sumField, $start, $end)
+	public function getSumByDate($sumField, $start, $end, $branchId = 0)
 	{
-		$check = Order::where('branch_id' , $this->app->branch->id)
+		$check = Order::where('branch_id' , $branchId ? $branchId : $this->app->branch->id)
 		->with(['order_device'=> function ($q)
 		{
 			return $q->with('device')->with('game')->where('status', 'paid');

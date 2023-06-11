@@ -90,9 +90,9 @@ class ExpensesRepository
 	 * Get sum of field 
 	 * with start & end range
 	 */
-	public function getSumByDate($sumField, $start, $end)
+	public function getSumByDate($sumField, $start, $end, $branchId = 0)
 	{
-		$check = Expense::where('branch_id' , $this->app->branch->id)->with('user');
+		$check = Expense::where('branch_id' , $branchId ? $branchId : $this->app->branch->id)->with('user');
   		$check = $check->whereBetween('created_at' , [isset($start) ? $start : date('Y-m-d') , isset($end) ? $end : date('Y-m-d')]);
   		return $check->orderBy('id', 'DESC')->sum($sumField);
 	} 

@@ -183,8 +183,6 @@ class NotificationController extends CustomController
 	 */
 	public function loadLatestNotifications($items=0)
 	{
-
-
 		return [
 	        'load_vue' => true,
 	        'title' => __('Notifications'),
@@ -195,4 +193,21 @@ class NotificationController extends CustomController
 	    ];
 	}  
 
+
+
+
+	/**
+	 * Handle the bookings notifications
+	 * in background
+	 */ 
+	public function handleBookingsNotifications()
+	{
+		foreach ($this->branchRepo->get() as $key => $value) 
+		{
+			$this->store($value->id);
+		}
+	}
+
+
+	
 }

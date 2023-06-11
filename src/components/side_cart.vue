@@ -118,13 +118,22 @@ export default
         'currency',
         'cart_items'
     ],
+    watch: {
+        Items(newList)
+        {
+            localStorage.cart = JSON.stringify(newList);
+        }
+    },
     mounted: function() 
     {
-        if (this.cart_items)
-        {
-            this.Items = this.cart_items;
+        if (localStorage.cart){
+            this.Items = JSON.parse(localStorage.cart);
+
+            let Ids = this.Items.map(item => item.id);
+            this.ItemsIds = Ids.filter((item, index) => Ids.indexOf(item) === index);
         }
-            this.mapSubtotal().mapTax().mapTotal();
+        console.log(this.Items)
+        console.log(this.ItemsIds)
     },
 
     methods: 
@@ -137,6 +146,7 @@ export default
         calc()
         {
             this.mapSubtotal().mapTax().mapTotal();
+            return this;
         } ,
 
         /**
@@ -158,7 +168,8 @@ export default
                 }
             }
 
-            this.mapSubtotal().mapTax().mapTotal();
+            this.calc();
+            localStorage.cart = JSON.stringify(this.Items)
             this.showLoader = false
         } ,
         /**
@@ -166,8 +177,10 @@ export default
          */
         addToCart(item)
         {
+
             this.checkDuplicate(item);
-            this.mapSubtotal().mapTax().mapTotal();
+            this.calc();
+
         } ,
         /**
          * Check duplicate

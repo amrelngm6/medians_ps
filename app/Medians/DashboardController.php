@@ -18,7 +18,7 @@ class DashboardController extends CustomController
 	{
 		$this->app = new \config\APP;
 		
-		$this->checkBranch();
+		// $this->checkBranch();
 
         $this->OrderRepository = new Orders\Infrastructure\OrdersRepository;
 
@@ -33,7 +33,7 @@ class DashboardController extends CustomController
 		$this->GamesRepository = new Games\Infrastructure\GameRepository();
 
 		$this->start = $this->app->request()->get('start') ? date('Y-m-d 00:00:00', strtotime($this->app->request()->get('start'))) : date('Y-m-d 00:00:00');
-		$this->end = $this->app->request()->get('start') ? date('Y-m-d 23:59:59', strtotime($this->app->request()->get('end'))) : date('Y-m-d 23:59:59');
+		$this->end = $this->app->request()->get('end') ? date('Y-m-d 23:59:59', strtotime($this->app->request()->get('end'))) : date('Y-m-d 23:59:59');
 
 
 	}
@@ -120,8 +120,9 @@ class DashboardController extends CustomController
 	            'avg_bookings' => $values['avg_bookings'],
 	            'income' => round($values['income'], 2),
 	            'bookings_income' => round($values['bookings_income'], 2),
-	            'revenue' => round(round($values['income'], 2) - round($values['expenses'], 2), 2),
+	            'revenue' => round(round($values['income'], 2) - round($values['expenses'], 2) - round($values['tax'], 2), 2),
 	            'expenses' => round($values['expenses'], 2),
+	            'tax' => round($values['tax'], 2),
 	            'most_played_games' => $this->GamesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
 	            'most_played_devices' => $this->DevicesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
 	            'orders_charts' => $orders_charts,
@@ -175,6 +176,8 @@ class DashboardController extends CustomController
         $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadProductsIncome(['start'=>$this->start, 'end'=>$this->end]);
 
 		$data['income'] = $this->DevicesRepository->getSumByDate('subtotal', $this->start, $this->end);
+
+		$data['tax'] = $this->DevicesRepository->getSumByDate('tax', $this->start, $this->end);
 
 		$data['expenses'] = $this->ExpensesRepository->getSumByDate('amount', $this->start, $this->end);
         

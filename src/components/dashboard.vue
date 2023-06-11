@@ -25,8 +25,9 @@
                     </div>
                     <div class="row mt-6">
                         <dashboard_card classes="bg-gradient-success" :title="__('income')" :value="setting.currency + content.income"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-purple" :title="__('expenses')" :value="setting.currency + content.expenses"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-primary" :title="__('revenue')" :value="setting.currency + content.revenue" ></dashboard_card>
+                        <dashboard_card classes="bg-gradient-danger" :title="__('expenses')" :value="setting.currency + content.expenses"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-primary" :title="__('tax')" :value="setting.currency + content.tax"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-purple" :title="__('revenue')" :value="setting.currency + content.revenue" ></dashboard_card>
                     </div>
                 </div>
                 <div class="w-full lg:flex gap gap-6 pb-6">
@@ -198,7 +199,8 @@ export default
         {
             this.filters = '&'
             this.filters += 'start=' + start 
-            this.filters += '&end=today';
+            this.filters += '&end='
+            this.filters += (start == 'yesterday') ? 'yesterday' : 'today';
 
             // Update active date filters
             this.activeDate = start;
