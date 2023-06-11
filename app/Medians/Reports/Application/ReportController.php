@@ -131,8 +131,10 @@ class ReportController extends CustomController
 	{
 		foreach ($this->branchRepo->get() as $key => $value) 
 		{
-			$this->store($value->id);
+			$save = $this->store($value->id);
 		}
+
+		return $this;
 	}
 
 
