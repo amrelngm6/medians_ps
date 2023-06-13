@@ -121,7 +121,7 @@ class OrderDevice extends CustomModel
 
 	public function getSubtotalNowAttribute() 
 	{
-        return round(number_format($this->device_cost) * number_format(round(abs(strtotime(date("Y-m-d H:i:s")) - strtotime($this->start_time)) / 60, 2) / 60, 2), 2) ;
+        return $this->device_cost ? round(number_format($this->device_cost) * number_format(round(abs(strtotime(date("Y-m-d H:i:s")) - strtotime($this->start_time)) / 60, 2) / 60, 2), 2) : 0 ;
 	}
 
 
