@@ -63,7 +63,7 @@
                 </div>
                 <div class="w-full block  pb-2 border-b border-gray-200">
                     <label class="w-full py-2 text-gray-400" v-text="__('end')"></label>
-                    <span class="w-full text-md  text-purple-600  block" v-text="formatTime(activeItem.end_time)"></span>
+                    <span class="w-full text-md  text-purple-600  block" v-text="formatTime(activeItem.end_time_validated)"></span>
                 </div>
             </div>
             <div class="w-full block  pb-2 border-b border-gray-200">
@@ -128,6 +128,7 @@ export default {
         },
         formatTime(time)
         {
+            console.log(time)
             return moment(time).format('hh:mm a')
         },
         subtotal()

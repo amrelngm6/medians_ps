@@ -58,6 +58,7 @@ import plan_subscriptions from './components/plan_subscriptions.vue'
 import pages from './components/pages.vue'
 import notifications_events from './components/notifications_events.vue'
 import notifications from './components/notifications.vue'
+import booking_follow from './components/booking_follow.vue'
 
 export default {
     name: 'app',
@@ -90,6 +91,7 @@ export default {
         pages,
         notifications,
         notifications_events,
+        booking_follow,
         navbar
     },
     data() {
@@ -197,7 +199,7 @@ export default {
                 this.activeTab = (tab && tab.link) ? tab.link : this.defaultPage();
                 this.component = (tab && tab.component) ? tab.component : this.activeTab;
                 this.show = true
-                history.pushState({menu: tab}, '', this.conf.url+this.activeTab);
+                history.pushState({menu: tab}, '', this.conf.url+this.activeTab.replace('admin/', ''));
             }
         },
         

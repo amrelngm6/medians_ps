@@ -46,10 +46,14 @@ class OrderDevice extends CustomModel
 	*/
 	// public $timestamps = null;
 
-	public $appends = ['title', 'duration', 'duration_time', 'currency', 'subtotal', 'products_subtotal', 'total_cost', 'duration_hours','date'];
+	public $appends = ['title', 'duration', 'duration_time', 'currency', 'subtotal', 'products_subtotal', 'total_cost', 'duration_hours','date', 'end_time_validated', 'duration_now', 'subtotal_now'];
 
 
 
+	public function getEndTimeValidatedAttribute()
+	{
+		return ($this->end_time != '0000-00-00 00:00:00') ? $this->end_time : date('Y-m-d H:i:s');
+	}
 	public function getTitleAttribute()
 	{
 		return isset($this->device->title) ? $this->device->title : '';
@@ -71,7 +75,7 @@ class OrderDevice extends CustomModel
 
 	public function getDurationAttribute() 
 	{
-		return round(abs(strtotime($this->end_time) - strtotime($this->start_time)) / 60, 2);
+		return round(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2);
 	}
 
 	public function getDurationHoursAttribute() 
@@ -94,16 +98,30 @@ class OrderDevice extends CustomModel
 	 */ 
 	public function getProductsSubtotalAttribute() 
 	{
-        return round($this->products->sum('price'), 2) ;
+        return round($this->products->sum(function ($model) {
+    return $model->price * $model->qty;
+}), 2) ;
 	}
 
 
 
 	public function getDurationTimeAttribute() 
 	{
-		$interval = (new \DateTime($this->start_time ))->diff(new \DateTime($this->end_time));
-		$hours   = $interval->format('%H : %I'); 
+		$interval = (new \DateTime($this->start_time ))->diff(new \DateTime($this->end_time_validated));
+		$hours   = $interval->format('%H:%I'); 
 		return $hours;
+	}
+
+	public function getDurationNowAttribute() 
+	{
+		$interval =  (new \DateTime($this->start_time ))->diff(new \DateTime());
+		$hours   = $interval->format('%H:%I'); 
+		return $hours;
+	}
+
+	public function getSubtotalNowAttribute() 
+	{
+        return round(number_format($this->device_cost) * number_format(round(abs(strtotime(date("Y-m-d H:i:s")) - strtotime($this->start_time)) / 60, 2) / 60, 2), 2) ;
 	}
 
 

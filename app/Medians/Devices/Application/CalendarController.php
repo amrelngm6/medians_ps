@@ -173,7 +173,7 @@ class CalendarController extends CustomController
 	{
 
 		$product = (array)  json_decode($this->app->request()->get('params')['product']);
-		$params = (array)  json_decode($this->app->request()->get('params')['device']);
+		$params = (array)  json_decode($this->app->request()->get('params')['booking']);
 
 		try {
 

@@ -134,7 +134,12 @@ class APIController extends CustomController
 				case 'Event.create':
 					$params = (array)  json_decode($request->get('params')['event']);
 					$check = (new DevicesRepository())->storeOrder($params);
-					$return = isset($check->id) ? ['result'=>'Created'] : ['result'=>'Error'];
+					$return = isset($check->id) ? ['result'=>__('Created')] : $check;
+					break;
+
+				case 'Booking.create':
+					$params = (array)  json_decode($request->get('params'));
+					$return = (new DevicesRepository())->storeBooking($params);
 					break;
 
 	            case 'User.create':
@@ -200,6 +205,13 @@ class APIController extends CustomController
 				$check = (new DevicesRepository())->updateOrder($params);
 				$return = isset($check->id) ? ['result'=>__('Updated')] : ['result'=>'Error'];
 				break;
+
+			case 'Booking.update':
+				$params = (array)  json_decode($request->get('params'));
+				$return = (new DevicesRepository())->updateBooking($params);
+				break;
+
+
 			case 'Event.cancel':
 				$params = (array)  json_decode($request->get('params')['event']);
 				$check = (new DevicesRepository())->cancelOrder($params);

@@ -12,9 +12,9 @@
 
             <div class="w-full" v-if="showDetails">
                 <div v-for="product in activeItem.products" v-if="product" class="font-semibold w-full flex gap-4 py-2 border-b border-gray-200">
-                    <label class="w-full " v-text="product.product_name"></label>
+                    <label class="w-full " ><span v-text="product.product_name"></span><span v-text="' ( '+product.qty+' ) '"></span></label>
                     <span class="w-20 flex text-md p-2 text-right"> 
-                        <span v-text="product.price"></span>
+                        <span v-text="product.price*product.qty"></span>
                         <span class="px-1 text-sm" v-text="activeItem.currency"></span>
                     </span>
                     <span class="w-16 text-md py-2 text-red-600" v-if="activeItem.status != 'paid'" @click="removeProduct(product)" v-text="__('remove')"></span>

@@ -34,7 +34,7 @@
                                                 <span v-text="product.product.name"></span><br /> 
                                                 <span class="text-xs text-gray-400 " v-if="product.qty" v-text="'X '+product.qty"></span>
                                             </span>
-                                            <span class="font-semibold text-sm"><span v-text="product.price"></span> <small v-if="setting" class="text-xs" v-text="setting.currency"></small> </span>
+                                            <span class="font-semibold text-sm"><span v-text="product.price*product.qty"></span> <small v-if="setting" class="text-xs" v-text="setting.currency"></small> </span>
                                         </div>
                                     </div>
                                 </div>
@@ -126,14 +126,15 @@ export default
     },
     mounted: function() 
     {
-        if (localStorage.cart){
-            this.Items = JSON.parse(localStorage.cart);
+        this.Items = (this.cart_items && this.cart_items.length) 
+        ? this.cart_items 
+        : (localStorage.cart ? JSON.parse(localStorage.cart) : []);
 
-            let Ids = this.Items.map(item => item.id);
-            this.ItemsIds = Ids.filter((item, index) => Ids.indexOf(item) === index);
-        }
+        let Ids = this.Items.map(item => item.id);
+        this.ItemsIds = Ids.filter((item, index) => Ids.indexOf(item) === index);
         console.log(this.Items)
         console.log(this.ItemsIds)
+        this.calc();
     },
 
     methods: 
@@ -215,17 +216,8 @@ export default
         {
             this.subtotal = 0;
             for (var i = this.Items.length - 1; i >= 0; i--) {
-
-                this.subtotal += this.Items[i] && this.Items[i].subtotal ?  Number(this.Items[i].subtotal) : 0 
-                if (this.Items[i] && this.Items[i].products && this.Items[i].products.length > 0)
-                {
-                    for (var p = this.Items[i].products.length - 1; p >= 0; p--) 
-                    {
-                        this.subtotal += this.Items[i].products[p] ? 
-                        Number(this.Items[i].products[p].price)
-                        : 0; 
-                    }
-                }
+                this.subtotal += (this.Items[i] && this.Items[i].subtotal) ?  Number(this.Items[i].subtotal) : 0 
+                this.subtotal += (this.Items[i] && this.Items[i].products_subtotal) ?  Number(this.Items[i].products_subtotal) : 0 
             }
             return this;
         },
@@ -242,10 +234,10 @@ export default
             params.append('params[payment_method]', this.payment_method);
             this.handleRequest(params, '/api/checkout').then(response=> {
                 this.showLoader = false;
-                this.$alert(response)
                 this.Items = []
-                this.$parent.reloadEvents()
-                this.$parent.hidePopup()
+                this.$parent.reloadEvents(response)
+                if (response && response.result)
+                    this.$alert(response.result)
             });
 
         },

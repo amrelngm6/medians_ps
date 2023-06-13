@@ -141,6 +141,7 @@ if(isset($app->auth()->id))
     Macaw::get('/admin/devices/index', \Medians\Devices\Application\DeviceController::class.'@index');
     Macaw::get('/admin/devices/calendar', \Medians\Devices\Application\CalendarController::class.'@index');
     Macaw::get('/admin/calendar', \Medians\Devices\Application\CalendarController::class.'@index');
+    Macaw::get('/admin/devices/booking_follow', \Medians\Devices\Application\BookingController::class.'@index');
 
     Macaw::get('/admin/devices/categories', function ()  {
         try 

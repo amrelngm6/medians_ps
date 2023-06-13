@@ -17,7 +17,7 @@
                         <label class="w-full px-4 " v-text="product.name"></label>
                         <span class="w-16 flex text-md py-2 text-right"> 
                             <span v-text="product.price"></span>
-                            <span class="px-1 text-sm" v-text="activeItem.currency"></span>
+                            <span class="px-1 text-sm" v-text="activeItem.currency ? activeItem.currency : currency"></span>
                         </span>
                         <span class="w-16 text-md py-2 text-red-600 cursor-pointer"   @click="addProduct(product)" v-text="__('add')"></span>
                     </div>
@@ -39,6 +39,7 @@ export default {
         };
     },
     props: [
+        'currency',
         'item',
         'products'
     ],
@@ -61,10 +62,11 @@ export default {
             params.append('type', 'OrderDevice.addProduct');
             params.append('model', 'OrderDevice');
             params.append('params[product]', JSON.stringify(product));
-            params.append('params[device]', JSON.stringify(this.activeItem));
+            params.append('params[booking]', JSON.stringify(this.activeItem));
             this.handleRequest(params, '/api/create').then(response => {
                 this.$parent.query()
                 this.$alert(response)
+                this.$emit('add-product');
             })
         },
 

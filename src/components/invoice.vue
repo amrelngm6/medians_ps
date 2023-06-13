@@ -54,18 +54,14 @@
                                 <tbody>
                                     <tr class="bg-white border-b border-gray6 last:border-0 text-start mx-9">
                                         <td class="py-3 font-normal text-[#55585B] w-[40%]" v-text="__('Customer')">
-                                            Customer
                                         </td>
                                         <td class="py-3 text-end" v-text="content.order.customer ? content.order.customer.name : __('Guest')">
-                                            Amr
                                         </td>                                            
                                     </tr>
                                     <tr class="bg-white border-b border-gray6 last:border-0 text-start mx-9">
                                         <td class="py-3 font-normal text-[#55585B] w-[40%]" v-text="__('mobile')">
-                                            Mobile
                                         </td>
                                         <td class="py-3 whitespace-nowrap text-end" v-text="content.order.customer ? content.order.customer.mobile : '0' ">
-                                            3169 Hamilton Drive
                                         </td>                                            
                                     </tr>                                                           
                                 </tbody>
@@ -161,7 +157,7 @@
                                             </td>
                                             <td class="px-3 py-3 font-normal text-[#55585B] text-end" v-text="orderdevice.duration_hours">
                                             </td>
-                                            <td class="px-3 py-3 font-normal text-[#55585B] text-end" v-text="orderdevice.total_cost">
+                                            <td class="px-3 py-3 font-normal text-[#55585B] text-end" v-text="orderdevice.subtotal">
                                             </td>
                                         </tr>              
 

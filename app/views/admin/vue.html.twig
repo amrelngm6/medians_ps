@@ -14,6 +14,7 @@
 <body style="direction: {{lang.__('dir')}};" class="{{lang.__('dir')}}">
     
 
+
     <div id="app">
         {% include 'views/admin/nodata.html.twig' %}
     </div>
@@ -34,8 +35,29 @@
     </div>
     <style type="text/css">
     body .text-default {
-        text-align: {{app.Settings.lang=='arabic'? 'right': 'left'}}
+        text-align: {{app.lang=='arabic' ? 'right': 'left'}}
     }
+
+.active-booking-flash {
+    -webkit-animation-name: move;
+    animation-name: move;
+    animation-duration:10s;
+    animation-delay:1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes move{
+  0% { opacity: 0;}
+  5% { opacity: 1;}
+  10% { opacity: 0;}
+  15% { opacity: 1;}
+  20% { opacity: 0;}
+  25% { opacity: 1;}
+ }
     </style>
     <script type="text/javascript" src="/dist/js/app.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>

@@ -1053,6 +1053,17 @@ class LangsAr
 		,'Add products' => 'إضافة منتجات'
 		,'Cashier' => 'الكاشير'
 		,'Order Date' => 'تاريخ  الفاتورة'
+		,'Open time' => 'وقت مفتوح'
+		,'Limited time' => 'وقت  محدود'
+		,'One hour' => 'ساعة واحدة'
+		,'2 hours' => 'ساعتين'
+		,'3 hours' => '3 ساعات'
+		,'all' => 'الكل'
+		,'Available devices' => 'الأجهزة المتاحة'
+		,'Unavailable devices' => 'الأجهزة  الغير المتاحة'
+		,'Unpaid bookings' => 'حجوزات غير مدفوعة'
+		,'add new booking' => 'إضافة وقت جديد'
+		,'sideboard' => 'البوفيه'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

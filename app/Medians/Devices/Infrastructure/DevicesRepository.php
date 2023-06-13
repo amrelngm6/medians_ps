@@ -85,6 +85,18 @@ class DevicesRepository
 	}
 
 	/**
+	* Find all items with Category & Active Bookings
+	*/
+	public function getWithBookings($limit = 20)
+	{
+		return  Device::where('branch_id', $this->app->branch->id)
+		->with('prices', 'active_booking', 'pending_bookings', 'category')
+		->where('status', '!=', '0')
+		->limit($limit)
+		->get();
+	}
+
+	/**
 	 * Get the most used devices
 	 */ 
 	public function mostPlayed($params, $limit = 5)
@@ -362,6 +374,49 @@ class DevicesRepository
     	return $Object;
     } 
 
+    /**
+     * Handle End Time for bookings
+     */
+    public function handleEndTime($item)
+    {
+    	if (isset($item['max_time']))
+    		return date('Y-m-d H:i', strtotime('+'.$item['max_time'].' minutes', strtotime(date('Y-m-d H:i:s'))));
+
+    	return 0;
+    }  
+
+    /**
+     * Store Order Device
+     */
+    public function storeBooking($data)
+    {
+
+
+    	// print_r($data);
+    	// return null;
+
+		$Device = Device::with('prices')->find($data['id']);
+		$data['start_time'] = date('Y-m-d H:i:s');
+		$data['end_time'] = $this->handleEndTime($data);
+		$data['game_id'] = isset($data['game_id']) ? $data['game_id'] : 0;
+		$data['branch_id'] = $this->app->branch->id;
+		$data['device_id'] = $Device->id;
+		$data['order_code'] = null;
+		$data['booking_type'] = isset($data['booking_type']) ? $data['booking_type'] : 'single';
+		$data['device_cost'] = empty($Device->price) ? 0 : (($data['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price);
+		$data['break_time'] = 0;
+		$data['last_check'] = 0;
+		$data['customer_id'] = 0;
+		$data['status'] = 'active';
+		$data['created_by'] = $this->app->auth()->id;
+
+		$Object = new OrderDevice;
+		// Return the Model object with the new data
+    	$Object = $Object->create( (array) $data);
+
+    	return $Object;
+    } 
+
 
     /**
      * Update Order Device
@@ -392,6 +447,36 @@ class DevicesRepository
 		// 	$newData['end_time'] = (date('Ymd') > $bookingDay) ? date('Y-m-d 23:59:59', strtotime($data['startStr'])) : ( date('Hi') > date('Hi', strtotime($data['to'])) ? $data['to'] : date('Y-m-d H:i:s') );
 		// }
 
+
+		// Return the Model object with the new data
+    	$Object->update( (array) $newData);
+
+    	return $Object;
+
+    } 
+
+
+    /**
+     * Update Booking information
+     */
+    public function updateBooking($data)
+    {
+
+		$Object = OrderDevice::find($data['id']);
+
+		$Device = Device::with('prices')->find(isset($data['device_id']) ? $data['device_id']:$Object->device_id);
+
+		$date = date('Y-m-d', strtotime(date($Object->created_at)));
+
+		$newData = [];
+		$newData['start_time'] = $data['start_time'];
+		$newData['end_time'] = date('Y-m-d H:i:s');
+		$newData['booking_type'] = isset($data['booking_type']) ? $data['booking_type'] : $Object->booking_type;
+		$newData['device_cost'] = ($newData['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price;
+		$newData['status'] = $data['status'];
+		// $newData['game_id'] = isset($data['game_id']) ? $data['game_id'] : $Object->game_id;
+		// $newData['device_id'] = $data['device_id'];
+		// $newData['customer_id'] = !empty($data['customer_id']) ? $data['customer_id'] : $Object->customer_id;
 
 		// Return the Model object with the new data
     	$Object->update( (array) $newData);
@@ -474,9 +559,15 @@ class DevicesRepository
 		$newData['created_by'] = $this->app->auth()->id;
 
 		// Return the Model object with the new data
-    	OrderDeviceItem::firstOrCreate($newData);
+    	$Object = OrderDeviceItem::firstOrCreate($newData);
 
-    	return $Object;
+    	if ($Object->wasRecentlyCreated){
+    		return $Object;
+    	} else {
+    		$Object->increment('qty');
+    		return $Object;
+    	} 
+
 
     } 
 

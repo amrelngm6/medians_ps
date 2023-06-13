@@ -43,7 +43,7 @@
 
                 <!-- Applicable products -->
                 <div class="w-full block" v-if="activeItem.status != 'new' && activeItem.id && products && products.length">
-                    <calendar_products ref="applicable_products" :item="activeItem" :products="products" ></calendar_products>
+                    <calendar_products @add-product="query()" ref="applicable_products" :item="activeItem" :products="products" ></calendar_products>
                 </div>
 
                 <div class="w-full flex gap-4 py-1 border-b border-gray-200 mb-2" v-if="activeItem.customer">

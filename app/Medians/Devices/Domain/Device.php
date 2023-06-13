@@ -102,6 +102,22 @@ class Device extends CustomModel
 		return  $this->hasOne(OrderDevice::class, 'device_id', 'id')->where('status','active')->where('model', Device::class);
 	}
 
+	/**
+	* Relation 
+	*/
+	public function active_booking()
+	{
+		return  $this->hasOne(OrderDevice::class, 'device_id', 'id')->where('status','active')->with('products');
+	}
+
+	/**
+	* Relation 
+	*/
+	public function pending_bookings()
+	{
+		return  $this->hasMany(OrderDevice::class, 'device_id', 'id')->where('status','completed');
+	}
+
 
 
 	public function products()

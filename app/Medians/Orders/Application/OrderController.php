@@ -227,7 +227,6 @@ class OrderController extends CustomController
 
 		$params = (array) json_decode($request['cart']);
 
-
 		try {
 
 			$data = [];
@@ -245,7 +244,7 @@ class OrderController extends CustomController
 
 			$save = $this->repo->store($data, $params);
 
-        	return isset($save->id) ? response(__('Order Created')) : 'Not found' ;
+        	return isset($save->id) ? response(['result'=> __('Order Created'), 'order' => $save]) : 'Not found' ;
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());
