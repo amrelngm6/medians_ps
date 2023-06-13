@@ -1064,6 +1064,7 @@ class LangsAr
 		,'Unpaid bookings' => 'حجوزات غير مدفوعة'
 		,'add new booking' => 'إضافة وقت جديد'
 		,'sideboard' => 'البوفيه'
+		,'bookings_follow' => 'متابعة احجوزات'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
