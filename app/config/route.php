@@ -26,6 +26,7 @@ Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\Repo
  */ 
 Macaw::get('/home', \Medians\Pages\Application\PageController::class.'@page');
 Macaw::get('/arabic', \Medians\Pages\Application\PageController::class.'@page');
+Macaw::get('/arabic/', \Medians\Pages\Application\PageController::class.'@page');
 Macaw::get('/', \Medians\Pages\Application\PageController::class.'@page');
 
 
