@@ -50,7 +50,7 @@ Macaw::get('/invoices/qr_code/(:all)', \Medians\Orders\Application\OrderControll
 Macaw::get('/switch-lang/(:all)', function ($lang)  {
 
     $_SESSION['site_lang'] = in_array($lang, ['arabic', 'english']) ? $lang : 'arabic';
-    echo (new \config\APP)->redirect('/');
+    echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
     return true;
 });
 

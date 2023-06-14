@@ -122,6 +122,7 @@ class APP
 
 	public static function redirect($url)
 	{
+		echo "<img width='100%' src='/src/assets/img/redirect.gif' /><style>*{margin:0;color:#fff; overflow:hidden}</style>";
 		echo new RedirectResponse($url);
 		exit();
 	}
