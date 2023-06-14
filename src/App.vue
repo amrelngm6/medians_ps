@@ -199,7 +199,7 @@ export default {
                 this.activeTab = (tab && tab.link) ? tab.link : this.defaultPage();
                 this.component = (tab && tab.component) ? tab.component : this.activeTab;
                 this.show = true
-                history.pushState({menu: tab}, '', this.conf.url+this.activeTab.replace('admin/', ''));
+                history.pushState({menu: tab}, '', this.conf.url+this.activeTab);
             }
         },
         

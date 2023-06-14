@@ -228,9 +228,9 @@ class APP
 
 		$data = array(
 			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
+			array('title'=>__('bookings_follow'),  'icon'=>'fa-tv', 'link'=>'admin/devices/booking_follow', 'component'=>"booking_follow"),
 			array('title'=>__('Bookings'),  'icon'=>'fa-calendar', 'link'=>'#bookings', 'sub'=>
 				[
-					// array('title'=>__('bookings_follow'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices/booking_follow', 'component'=>"booking_follow"),
 					array('title'=>__('Calendar'),  'icon'=>'fa-dashboard', 'link'=>'admin/calendar', 'component'=>"calendar"),
 	                array('title'=>__('All bookings'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices_orders?all=true', 'component'=>'devices_orders'),
 	                array('title'=>__('Active bookings'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices_orders?status=active', 'component'=>'devices_orders'),

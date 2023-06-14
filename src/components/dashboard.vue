@@ -5,7 +5,7 @@
         <div class="top-0 py-2 w-full px-2 bg-gray-100 mt-0 sticky" style="z-index:9">
             <div class="w-full flex gap-6">
                 <h3 class="text-base lg:text-lg whitespace-nowrap" v-text="__('Dashboard Reports')"></h3> 
-                <ul class="w-full flex gap-4 mt-2">
+                <ul class="w-full flex gap-4 ">
                     <li v-for="item in dates_filters" v-if="item" @click="switchDate(item.value)" :class="(activeDate == item.value) ? 'font-semibold' : ''" class="cursor-pointer" v-text="__(item.title)"></li>
                 </ul>
             </div>

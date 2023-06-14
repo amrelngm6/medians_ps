@@ -1060,11 +1060,13 @@ class LangsAr
 		,'3 hours' => '3 ساعات'
 		,'all' => 'الكل'
 		,'Available devices' => 'الأجهزة المتاحة'
-		,'Unavailable devices' => 'الأجهزة  الغير المتاحة'
+		,'Busy devices' => 'الأجهزة  المشغولة'
 		,'Unpaid bookings' => 'حجوزات غير مدفوعة'
 		,'add new booking' => 'إضافة وقت جديد'
 		,'sideboard' => 'البوفيه'
 		,'bookings_follow' => 'متابعة احجوزات'
+		,'single' => 'فردي'
+		,'multi' => 'زوجي'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

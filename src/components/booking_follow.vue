@@ -17,8 +17,8 @@
                             <p class="  text-lg font-medium" v-text="device.name"></p>
                             <p class=" mt-2 text-sm font-medium text-gray-400" v-text="device.category ? device.category.name : '' "></p>
                         </div>
-                        <div v-if="device.active_booking">
-                            <users_group_icon v-if="device.active_booking.booking_type == 'multi'" class="w-8 mb-2 mx-auto"></users_group_icon>
+                        <div v-if="device.active_booking"   :title="__(device.active_booking.booking_type)">
+                            <users_group_icon :title="__('Multi')" v-if="device.active_booking.booking_type == 'multi'" class="w-8 mb-2 mx-auto"></users_group_icon>
                             <users_icon v-if="device.active_booking.booking_type == 'single'" class="w-8 mb-2 mx-auto"></users_icon>
                         </div>
                         <div class="transform -rotate-180 w-80 h-0.5 absolute border-gray-300" ></div>
@@ -121,8 +121,8 @@
                         </div>
 
                         <div v-if="!device.active_booking" class="mt-4 cursor-pointer absolute right-0 left-0 mx-auto top-auto bottom-0 w-40" style="bottom: -20px;">
-                            <div class="flex items-center justify-center flex-1 h-full px-11 py-3 bg-white border-2 rounded-md border-pink-900">
-                                <span v-text="__('Pay')" @click="addToCart(device)" class=" active-booking-flash text-xs font-semibold tracking-wide text-center text-pink-900 uppercase "></span>
+                            <div class="flex items-center justify-center flex-1 h-full px-11 py-3 bg-white border-2 rounded-md border-pink-900" @click="addToCart(device)" >
+                                <span v-text="__('Pay')" class=" active-booking-flash text-xs font-semibold tracking-wide text-center text-pink-900 uppercase "></span>
                             </div>
                         </div>
                     </div>
@@ -171,9 +171,9 @@ export default
             showGames: true,
             showDropdown: false,
 
-            activeStatus: 'unavailable',
+            activeStatus: 'all',
             filterList : [
-                {title: this.__('Unavailable devices'), val: 'unavailable'},
+                {title: this.__('Busy devices'), val: 'unavailable'},
                 {title: this.__('Available devices'), val: 'available'},
                 {title: this.__('All'), val: 'all'},
                 // {title: this.__('Unpaid bookings'), val: 'unpaid'},
