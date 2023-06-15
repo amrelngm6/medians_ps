@@ -4,6 +4,8 @@ namespace Medians\Notifications\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Notifications\Infrastructure\NotificationRepository;
+use Medians\Devices\Infrastructure\OrderDevicesRepository;
+use Medians\Branches\Infrastructure\BranchRepository;
 
 class NotificationController extends CustomController
 {
@@ -18,6 +20,8 @@ class NotificationController extends CustomController
 	function __construct()
 	{
 		$this->repo = new NotificationRepository();
+		$this->orderDeviceRepo = new OrderDevicesRepository();
+		$this->branchRepo = new BranchRepository();
 	}
 
 
@@ -120,12 +124,10 @@ class NotificationController extends CustomController
 		$params = $this->app->request()->get('params');
 
         try {
-
            	
            	response($this->repo->update(['id'=>$params['id'],'status' => 'read'])
             ? array('success'=>1, 'result'=>__('updated'))
            	: array('error'=>__('Not allowed')));
-
 
         } catch (Exception $e) {
             return array('error'=>$e->getMessage());
@@ -204,8 +206,27 @@ class NotificationController extends CustomController
 	{
 		foreach ($this->branchRepo->getIds() as $key => $value) 
 		{
-			$this->store($value->id);
+			$save = $this->handleBranchNotifications($value);
 		}
+
+		return true;
+	}
+
+
+
+	/**
+	*  Handle Branch Notifications
+	*/
+	public function handleBranchNotifications($branch) 
+	{
+
+		$items = $this->orderDeviceRepo->getByBranch($branch->id);
+
+		foreach ($items as $key => $value) {
+			$this->store($branch, $value);
+		}
+
+		return $this;
 	}
 
 
@@ -213,17 +234,25 @@ class NotificationController extends CustomController
 	/**
 	*  Store item
 	*/
-	public function store(Int $branchId) 
+	public function store($branch, $model) 
 	{
 
 		try {	
-	
+
 
 			$DashboardController = new \Medians\DashboardController;
-			$branch = $this->branchRepo->find($branchId);
-			$a = new \Medians\Auth\Application\AuthService;
 
-			
+	    	// Store notification
+			$filled['receiver_type'] = get_class($branch);
+			$filled['receiver_id'] = $branch->id;
+			$filled['event_id'] = 0;
+			$filled['model_type'] = get_class($model);
+			$filled['model_id'] = $model->id;
+	    	$filled['subject'] = __('Booking time ended') . (isset($model->title) ? $model->title : $model->id);
+	    	$filled['body'] = __('Booking time ended and requires an action');
+	    	$filled['status'] = 'new';
+
+	    	$this->repo->store($filled);
 
 
         } catch (Exception $e) {

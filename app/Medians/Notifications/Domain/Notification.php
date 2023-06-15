@@ -33,7 +33,7 @@ class Notification extends CustomModel
 	];
 
 
-	public $appends = ['receiver_name', 'date', 'model_short_name', 'short_date'];
+	public $appends = ['receiver_name', 'date', 'model_short_name', 'short_date', 'url'];
 
 	public function getDateAttribute()
 	{
@@ -64,6 +64,24 @@ class Notification extends CustomModel
 			return $this->branch->name;
 	}
 
+	public function getUrlAttribute()
+	{
+		switch ($this->model_short_name) 
+		{
+			case 'device':
+				return '/admin/devices/manage';
+				break;
+			
+			case 'orderdevice':
+				return '/admin/devices/booking_follow';
+				break;
+			
+			case 'expense':
+				return '/admin/expenses/index';
+				break;
+			
+		}
+	}
 
 	public function getFields()
 	{

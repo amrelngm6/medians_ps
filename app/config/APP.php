@@ -16,9 +16,9 @@ use \Medians\Auth\Application\AuthService;
 class APP 
 {
 
-	public $default_lang = 'english';
+	public $default_lang = 'arabic';
 
-	public $lang_code = 'en';
+	public $lang_code = 'ar';
 
 	public $lang;
 

@@ -8,7 +8,7 @@
             <span v-if="content.new_count" class="font-semibold pb-4 block " v-if="content.items && content.items.length" v-text="__('New notifications')"></span>
             <div  v-if="notification && notification.status == 'new'" v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
                 <div v-if="notification" class="hover:text-purple-600 ">
-                    <div :class="notification.status == 'new' ? '' : 'text-gray-400'" @click="setRead(notification.id)" class="cursor-pointer w-full flex  gap-6">
+                    <div :class="notification.status == 'new' ? '' : 'text-gray-400'" @click="setRead(notification)" class="cursor-pointer w-full flex  gap-6">
                         <span class="border border-gray-100 block w-10 h-10 pt-1 text-center bg-white shadow-lg rounded hover:bg-blue-100" >
                             <component class="h-auto mx-auto pt-2 w-4" v-if="notification.model_short_name" :is="notification.model_short_name ? notification.model_short_name : notification_icon"></component>
                         </span>
@@ -26,7 +26,7 @@
             <span class="font-semibold pb-4 block " v-if="content.items && content.items.length" v-text="__('Read notifications')"></span>
             <div v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
                 <div v-if="notification && notification.status != 'new'" class="hover:text-purple-600 ">
-                    <div @click="setRead(notification.id)" class="cursor-pointer w-full flex  gap-6 text-gray-400">
+                    <div @click="setRead(notification)" class="cursor-pointer w-full flex  gap-6 text-gray-400">
                         <span class="border border-gray-100 block w-10 h-10 pt-1 text-center bg-white shadow-lg rounded hover:bg-blue-100" >
                             <component class="h-auto mx-auto pt-2 w-4" v-if="notification.model_short_name" :is="notification.model_short_name ? notification.model_short_name : notification_icon"></component>
                         </span>
@@ -49,10 +49,12 @@
 import notification_icon from './svgs/notification.vue'
 import expense from './svgs/expense.vue'
 import device from './svgs/device.vue'
+import orderdevice from './svgs/orderdevice.vue'
 
 export default 
 {
     components: {
+        orderdevice,
         notification_icon,
         device,
         expense,
@@ -129,13 +131,16 @@ export default
         /**
          * Set Notification as read
          */
-        setRead(id)
+        setRead(notification)
         {
             var params = new URLSearchParams();
-            params.append('params[id]', id)
+            params.append('params[id]', notification.id)
             this.$root.$children[0].handleRequest(params, '/admin/read_notification' ).then(response=> {
                 if (response)
                     this.load()
+
+                if (response && notification.url)
+                    window.open(notification.url)
             });
         } ,
 

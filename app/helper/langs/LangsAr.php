@@ -1067,6 +1067,8 @@ class LangsAr
 		,'bookings_follow' => 'متابعة احجوزات'
 		,'single' => 'فردي'
 		,'multi' => 'زوجي'
+		,'Booking time ended' => 'إنتهت مدة الحجز '
+		,'Booking time ended and requires an action' => 'انتهت مدة الحجز  ولم يتم اتخاذ اي إجراء '
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

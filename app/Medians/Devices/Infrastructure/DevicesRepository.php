@@ -52,7 +52,7 @@ class DevicesRepository
 	*/
 	public function getByBranch($branchId)
 	{
-		return Device::where('branch_id', $this->app->branch->id)
+		return Device::where('branch_id', $branchId)
 		->with('prices')
 		->with('currentOrder')
 		->with('category')

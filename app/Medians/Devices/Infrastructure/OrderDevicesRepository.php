@@ -35,6 +35,21 @@ class OrderDevicesRepository
 
 
 	/**
+	* Find item by `id` 
+	*/
+	public function getByBranch($branchId)
+	{
+
+		return OrderDevice::where('branch_id', $branchId)
+		->with('user', 'customer', 'device')
+		->where('status', 'active')
+		->whereDate('end_time', '<', date('Y-m-d H:i:s'))
+		->get();
+
+	}
+	
+
+	/**
 	 * Load bookings
 	 */
 	public function loadBookingsIncome($params, $branchId = 0)
