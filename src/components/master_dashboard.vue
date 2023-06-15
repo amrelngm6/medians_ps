@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        
+
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang && !showLoader && setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="">
@@ -240,6 +240,25 @@ export default
         setCharts(data) {
             
             this.showCharts = false
+            
+            this.showCharts = false
+            
+            // Pie charts for most played Games
+            this.pie_options = JSON.parse(JSON.stringify(this.charts_options));
+            this.pie_options.data[0] = {
+                type: "pie",
+                yValueFormatString: "#,### "+this.__('booking'),
+                dataPoints: this.content.most_played_games
+            }
+            
+            // Column charts for most played on devices
+            this.column_options = JSON.parse(JSON.stringify(this.charts_options));
+            this.column_options.axisY.title = this.__('bookings_count')
+            this.column_options.data[0] = {
+                type: "column",
+                yValueFormatString: "#,### "+this.__('booking'),
+                dataPoints: this.content.most_played_devices
+            }
             
             // Line charts for sales in last days 
             this.line_options = JSON.parse(JSON.stringify(this.charts_options));

@@ -288,8 +288,6 @@ export default
                 dataPoints: this.content.orders_charts
             }
             
-            console.log(this.line_options);
-            
             this.showCharts = true
         },
 
