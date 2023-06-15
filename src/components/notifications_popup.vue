@@ -49,6 +49,7 @@
 import notification_icon from './svgs/notification.vue'
 import expense from './svgs/expense.vue'
 import device from './svgs/device.vue'
+import customer from './svgs/customer.vue'
 import orderdevice from './svgs/orderdevice.vue'
 
 export default 
@@ -56,6 +57,7 @@ export default
     components: {
         orderdevice,
         notification_icon,
+        customer,
         device,
         expense,
     },
