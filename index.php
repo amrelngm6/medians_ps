@@ -22,11 +22,11 @@ spl_autoload_register(function ($name) {
     is_file($name2) ? include ($name2) : '';
 });
 
-(new \config\APP)->capsule->getConnection()->disconnect();
 
 
 include('app/helper/methods.php');
 include('app/config/route.php');
+(new \config\APP)->capsule->getConnection()->disconnect();
 
 
 
