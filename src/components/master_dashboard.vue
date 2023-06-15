@@ -259,6 +259,22 @@ export default
         },
 
 
+        /**
+         * Date Time format 
+         */
+        dateFormat(date)
+        {
+            return moment(date).format('YYYY-MM-DD');
+        },
+
+        /**
+         * Date Time format 
+         */
+        dateTimeFormat(date)
+        {
+            return moment(date).format('YYYY-MM-DD HH:mm a');
+        },
+
         __(i)
         {
             return this.$parent.__(i);

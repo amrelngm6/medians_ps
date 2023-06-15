@@ -152,9 +152,9 @@ class DashboardController extends CustomController
 
         $data['order_devices_count'] = $this->DevicesRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
 
-        $data['order_products_count'] =  $this->StockRepository->getLatest(1000)->where('type', 'pull')->where('date' ,'>=', $this->start)->count();
+        $data['order_products_count'] =  $this->StockRepository->getByBranch(1000)->where('type', 'pull')->where('date' ,'>=', $this->start)->count();
 
-		$data['avg_bookings_count'] = $this->OrderDevicesRepository->getAVGBookingsCount(['start'=>$this->start, 'end'=>$this->end]);
+		$data['avg_bookings_count'] = $this->OrderDevicesRepository->getAVGBookingsCountByBranch(['start'=>$this->start, 'end'=>$this->end]);
 
 		$data['avg_products_count'] = $this->OrderDevicesRepository->getAVGProductsCount(['start'=>$this->start, 'end'=>$this->end]);
 

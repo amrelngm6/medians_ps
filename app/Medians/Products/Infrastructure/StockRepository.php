@@ -114,10 +114,21 @@ class StockRepository
 	/**
 	* Find count by month
 	*/
-	public function getLatest($limit, $branchId = 0 ) 
+	public function getByBranch($limit, $branchId = 0 ) 
 	{
 	  	return Stock::where('branch_id', $branchId ? $branchId : $this->app->branch->id)
 	  	->where('type', 'pull')
+	  	->with('product','user', 'invoice')
+	  	->limit($limit)
+	  	->orderBy('id', 'DESC');
+	}
+	
+	/**
+	* Find count by month
+	*/
+	public function getLatest($limit, $branchId = 0 ) 
+	{
+	  	return Stock::where('type', 'pull')
 	  	->with('product','user', 'invoice')
 	  	->limit($limit)
 	  	->orderBy('id', 'DESC');

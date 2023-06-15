@@ -187,6 +187,14 @@ class DevicesRepository
 	}
 
 
+
+	public function getLatest($params)
+	{
+		return OrderDevice::with('game','device','user','products')
+		->whereBetween('start_time', [$params['start'], $params['end']]);
+	}
+
+
 	public function orderProducts($params,$limit = 10)
 	{
 		$query = OrderDevice::with('products')->whereHas('products', function($q){
