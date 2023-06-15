@@ -26,6 +26,113 @@
                 </div>
             </div>
         </div>
+
+        
+        <div class="block w-full overflow-x-auto py-2">
+            <div v-if="lang && !showLoader && setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
+                <div class="">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_bookings')" :value="content.active_order_devices_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('bookings')" :value="content.order_devices_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('sold_products')" :value="setting.currency + content.order_products_revenue"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('bookings_income')" :value="setting.currency + content.bookings_income"></dashboard_card_white>
+                    </div>
+                    <div class="w-full bg-white p-4 mb-4 rounded-lg">
+                        <CanvasJSChart v-if="showCharts && content.orders_charts.length" :key="line_options" :options="line_options"/>
+                    </div>
+                    <div class="row mt-6">
+                        <dashboard_card classes="bg-gradient-success" :title="__('income')" :value="setting.currency + content.income"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-danger" :title="__('expenses')" :value="setting.currency + content.expenses"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-primary" :title="__('tax')" :value="setting.currency + content.tax"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-purple" :title="__('revenue')" :value="setting.currency + content.revenue" ></dashboard_card>
+                    </div>
+                </div>
+                <div class="w-full lg:flex gap gap-6 pb-6">
+                    <dashboard_center_squares :content="content" :setting="setting" />
+                    <div class="card mb-0 w-full">
+                        <h4 class="p-4 ml-4" v-text="__('most_played_games')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_games_used_for_playing')"></p>
+                        <div class="card-body w-full">
+                            <div class="w-full">
+                                <CanvasJSChart v-if="showCharts && content.most_played_games.length" :key="pie_options" :options="pie_options"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:flex gap gap-6 pb-6">
+                    <div class="card mb-0 w-2/3">
+                        <h4 class="p-4 ml-4" v-text="__('most_played_devices')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_devices_used_for_playing')"></p>
+                        <div class="card-body w-full">
+                            <div class="w-full">
+                                <CanvasJSChart v-if="showCharts && content.most_played_devices.length" :key="column_options" :options="column_options"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-1/3 lg:w-1/3 lg:mb-0">
+                        <h4 class="p-4 ml-4" v-text="__('latest_paid_order_devices')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('latest_5_bookings_has_been_paid')"></p>
+                        <div class="card-body w-full">
+                            <div class="w-full ">
+                                <div class="table-responsive w-full">
+                                    <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
+                                        <thead>
+                                            <tr>
+                                                <th v-text="__('name')"></th>
+                                                <th v-text="__('duration')"></th>
+                                                <th v-text="__('total_amount')"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody v-if="content.latest_paid_order_devices">
+                                            <tr :key="index" v-for="(item, index) in content.latest_paid_order_devices" class="text-center">
+                                                <td v-text="item.device ? item.device.name : ''"></td>
+                                                <td style="direction: ltr;">{{item.duration_time}}</td>
+                                                <td v-text="(item.total_cost ? item.total_cost : '') + setting.currency"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:flex gap gap-6 pb-6 ">
+
+                    <div class="card  w-full  no-mobile">
+                        <h4 class="p-4 ml-4" v-text="__('latest_sold_products')"></h4>
+                        <hr />
+                        <div class="card-body w-full">
+                            <div class="w-full">
+                                <div class="table-responsive w-full">
+                                    <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
+                                        <thead>
+                                            <tr>
+                                                <th v-text="__('name')"></th>
+                                                <th v-text="__('price')"></th>
+                                                <th v-text="__('date')"></th>
+                                                <th v-text="__('invoice')"></th>
+                                                <th v-text="__('by')"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr :key="index" v-for="(item, index) in content.latest_order_products" class="text-center">
+                                                <td>
+                                                    <a :href="'/admin/products/edit/'+item.product.id">{{item.product.name}}</a>
+                                                </td>
+                                                <td class="text-red-500">{{item.product.price}} {{setting.currency}}</td>
+                                                <td v-text="dateTimeFormat(item.created_at)"></td>
+                                                <td><a target="_blank" :href="'/admin/invoices/show/'+item.invoice.code">{{item.invoice.code}}</a></td>
+                                                <td v-text="item.user ? item.user.name : ''"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>

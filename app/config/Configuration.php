@@ -96,11 +96,8 @@ class Configuration
 	public function checkDB() 
 	{
 
-		if (isset($_SESSION['capsule']))
-		    return $_SESSION['capsule'];
-
-
 		$this->capsule = new Capsule;
+
 		$this->capsule->addConnection([
 		    'driver' => 'mysql',
 		    'host' => db_host,
@@ -115,6 +112,13 @@ class Configuration
 		$this->capsule->setAsGlobal();
 		$this->capsule->bootEloquent();
 
+		// if (isset($_SESSION['db_checked']) && $this->capsule->getConnection())
+		// 	return $this->capsule;
+
+
+
+
+		$_SESSION['db_checked'] = true;
 		return $this->capsule;
 	}
 

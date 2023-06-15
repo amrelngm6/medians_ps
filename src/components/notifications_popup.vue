@@ -183,7 +183,7 @@ export default
 
                 notification.onclick = (e) => {
                     let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
-
+                    window.location.href = '/dashboard';
                     console.log("notificationData")
                     console.log(notificationData)
                 };
