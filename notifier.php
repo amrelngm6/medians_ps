@@ -26,4 +26,5 @@ include('app/helper/methods.php');
 // (new \Medians\Reports\Application\ReportController)->handleDailyReports();
 
 (new \Medians\Notifications\Application\NotificationController)->handleBookingsNotifications();
+(new \config\APP)->capsule->getConnection()->disconnect();
 
