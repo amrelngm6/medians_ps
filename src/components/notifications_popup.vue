@@ -110,7 +110,7 @@ export default
             {
                 for (var i = data.items.length - 1; i >= 0; i--) 
                 {
-                    this.notify(data.items[i].subject, data.items[i].body)
+                    this.notify(data.items[i].subject, data.items[i].body, data.items[i])
                 }
             }
         },
@@ -183,10 +183,13 @@ export default
 
                 notification.onclick = (e) => {
                     let notificationData = e.currentTarget.data ? e.currentTarget.data : {};
+
+                    console.log("notificationData")
                     console.log(notificationData)
                 };
 
                 notification.onclose = (e) => {
+                    console.log("notification onclose")
                     console.log(e)
                 };
                 
