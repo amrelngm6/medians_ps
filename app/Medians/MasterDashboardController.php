@@ -142,7 +142,7 @@ class MasterDashboardController extends CustomController
 	            'most_played_devices' => $this->DevicesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
 	            'orders_charts' => $orders_charts,
 
-	            
+
 		        'formAction' => '/login',
 		        'load_vue' => true,
 	            // 'formAction' => $this->app->CONF['url'],
@@ -222,12 +222,12 @@ class MasterDashboardController extends CustomController
 
         $data['latest_order_products'] =  $this->StockRepository->getLatest(5)->whereBetween('date',[$this->start, $this->end])->get();
         
-        $data['latest_paid_order_devices'] =  $this->DevicesRepository->eventsByDate(['start'=>$this->start,'end'=>$this->end], 5)
+        $data['latest_paid_order_devices'] =  $this->DevicesRepository->getLatest(['start'=>$this->start,'end'=>$this->end], 5)
         ->where('status', 'paid')
 		->limit(5)
 		->orderBy('id', 'DESC')->groupBy('device_id')->get();
 
-        $data['latest_unpaid_order_devices'] = $this->DevicesRepository->eventsByDate(['start'=>$this->start,'end'=>$this->end],5)->where('status','!=','paid')->get();
+        $data['latest_unpaid_order_devices'] = $this->DevicesRepository->getLatest(['start'=>$this->start,'end'=>$this->end],5)->where('status','!=','paid')->get();
 
         return $data;
 
