@@ -281,5 +281,8 @@ class APP
 		return $data;
 	}
 
-	
+	public function __invoke()
+	{
+		$this->capsule->getConnection()->disconnect();
+	}
 }

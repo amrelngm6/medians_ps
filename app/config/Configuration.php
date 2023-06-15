@@ -96,6 +96,10 @@ class Configuration
 	public function checkDB() 
 	{
 
+		if (isset($_SESSION['capsule']))
+		    return $_SESSION['capsule'];
+
+
 		$this->capsule = new Capsule;
 		$this->capsule->addConnection([
 		    'driver' => 'mysql',
@@ -110,9 +114,6 @@ class Configuration
 
 		$this->capsule->setAsGlobal();
 		$this->capsule->bootEloquent();
-
-		// if (empty(Capsule::select("SHOW TABLES")))
-		    // return \config\APP::redirect('./installer/index.php');
 
 		return $this->capsule;
 	}

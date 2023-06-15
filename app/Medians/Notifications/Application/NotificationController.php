@@ -14,6 +14,9 @@ class NotificationController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
+	
+	
+	protected $branchRepo;
 
 
 
@@ -204,6 +207,8 @@ class NotificationController extends CustomController
 	 */ 
 	public function handleBookingsNotifications()
 	{
+		$this->branchRepo = new BranchRepository();
+
 		foreach ($this->branchRepo->getIds() as $key => $value) 
 		{
 			$save = $this->handleBranchNotifications($value);
