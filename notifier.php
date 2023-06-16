@@ -8,6 +8,24 @@ file_exists(__DIR__.'/app/config/database.php')
 
 require_once __DIR__.'/vendor/autoload.php';
 
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver' => 'mysql',
+    'host' => db_host,
+    'database' => db_name,
+    'username' => db_username,
+    'password' => db_password,
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+]);
+
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
+
 
 /**
  * Load all System Models
@@ -26,5 +44,5 @@ include('app/helper/methods.php');
 // (new \Medians\Reports\Application\ReportController)->handleDailyReports();
 
 (new \Medians\Notifications\Application\NotificationController)->handleBookingsNotifications();
-(new \config\APP)->capsule->getConnection()->disconnect();
+$capsule->getConnection()->disconnect();
 

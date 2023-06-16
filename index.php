@@ -1,6 +1,8 @@
 <?php
 
-session_start(); error_reporting(0); date_default_timezone_set('Africa/Cairo');
+error_reporting(0); 
+session_start(); 
+date_default_timezone_set('Africa/Cairo');
 
 
 // Check if installed or redirect to installation 
@@ -10,6 +12,22 @@ file_exists(__DIR__.'/app/config/database.php')
 
 require_once __DIR__.'/vendor/autoload.php';
 
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver' => 'mysql',
+    'host' => db_host,
+    'database' => db_name,
+    'username' => db_username,
+    'password' => db_password,
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+]);
+
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
 
 /**
  * Load all System Models
