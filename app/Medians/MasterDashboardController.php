@@ -138,8 +138,8 @@ class MasterDashboardController extends CustomController
 	            'revenue' => round(round($values['income'], 2) - round($values['expenses'], 2) - round($values['tax'], 2), 2),
 	            'expenses' => round($values['expenses'], 2),
 	            'tax' => round($values['tax'], 2),
-	            'most_played_games' => $this->GamesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
-	            'most_played_devices' => $this->DevicesRepository->mostPlayed(['start'=>$this->start, 'end'=>$this->end]),
+	            'most_played_games' => $this->GamesRepository->allMostPlayed(['start'=>$this->start, 'end'=>$this->end]),
+	            'most_played_devices' => $this->DevicesRepository->allMostPlayed(['start'=>$this->start, 'end'=>$this->end]),
 	            'orders_charts' => $orders_charts,
 
 

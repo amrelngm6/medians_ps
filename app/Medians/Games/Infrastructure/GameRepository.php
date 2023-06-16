@@ -46,6 +46,20 @@ class GameRepository
 		->get();
 	}
 
+	/**
+	 * Get the most used devices
+	 */ 
+	public function allMostPlayed($params, $limit = 5)
+	{
+
+		return  Game::withCount(['bookings'=>function($q)use($params){
+			$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
+		}])
+		->orderBy('bookings_count', 'desc')
+		->limit($limit)
+		->get();
+	}
+
 
 
 

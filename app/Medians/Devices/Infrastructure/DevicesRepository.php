@@ -114,6 +114,23 @@ class DevicesRepository
 	}
 
 
+	/**
+	 * Get the most used devices
+	 */ 
+	public function allMostPlayed($params, $limit = 5)
+	{
+		return Device::withCount(['bookings'=>function($q)use($params){
+			$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
+		}])
+		->whereHas('bookings', function($q) use ($params){
+			$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
+		})		
+		->orderBy('created_at', 'ASC')
+		->limit($limit)
+		->get();
+	}
+
+
 
 	/**
 	* Find all items 
