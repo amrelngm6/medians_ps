@@ -195,9 +195,9 @@ class MasterDashboardController extends CustomController
 
 		$data = [];
 
-		$data['bookings_income'] = $this->OrderDevicesRepository->loadBookingsIncome(['start'=>$this->start, 'end'=>$this->end]);
+		$data['bookings_income'] = $this->OrderDevicesRepository->loadAllBookingsIncome(['start'=>$this->start, 'end'=>$this->end]);
 
-        $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadProductsIncome(['start'=>$this->start, 'end'=>$this->end]);
+        $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadAllProductsIncome(['start'=>$this->start, 'end'=>$this->end]);
 
 		$data['income'] = $this->DevicesRepository->getSumByDate('subtotal', $this->start, $this->end);
 

@@ -68,6 +68,33 @@ class OrderDevicesRepository
 		return $total;
 	}   
 
+	/**
+	 * Load bookings
+	 */
+	public function loadAllBookingsIncome($params)
+	{
+
+		$check = OrderDevice::where('status', 'paid')
+		->whereBetween('start_time' ,  [$params['start'] , $params['end']])
+		->get();
+
+		$total = 0;
+		foreach($check as $row)
+		{
+			$total += round($row->subtotal, 2);
+		}
+		return $total;
+	}   
+
+
+	/**
+	* Find item by `id` 
+	*/
+	public function loadAllProductsIncome($params, $branchId = 0)
+	{
+		return OrderDeviceItem::whereBetween('created_at' , [$params['start'] , $params['end']])
+		->sum('price');
+	}
 
 	/**
 	* Find item by `id` 
