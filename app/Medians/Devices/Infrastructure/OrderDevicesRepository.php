@@ -132,6 +132,22 @@ class OrderDevicesRepository
 	}  
 
 
+	/**
+	 * get Average sales in date range
+	 * 
+	 */
+	public function getAVGAllBookings($params)
+	{
+
+		$check = OrderDevice::whereBetween('start_time' , [$params['start'] , $params['end']])
+		->get();
+
+		$data = !empty($check) ? array_column(json_decode($check), 'subtotal') : [];
+
+		return !empty($data) ? round((array_sum($data) / count($data)), 2) : 0;
+	}  
+
+
 
 	
 	/**

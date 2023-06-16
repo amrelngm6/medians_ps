@@ -163,6 +163,22 @@ class OrdersRepository
 	}  
 
 	/**
+	 * get Average sales in date range
+	 * 
+	 */
+	public function getAVGAllSales($params)
+	{
+
+		$check = Order::whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('AVG(subtotal) as avg')
+		->selectRaw('date')
+		->groupBy('date')
+		->first();
+
+		return isset($check->avg) ? round($check->avg, 2) : 0;
+	}  
+
+	/**
 	* Save item to database
 	*/
 	public function store($data, $items) 

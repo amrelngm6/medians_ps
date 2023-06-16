@@ -231,6 +231,24 @@ class DevicesRepository
 
 
 	/**
+	 * Get sum of field 
+	 * with start & end range
+	 */
+	public function getSumAllByDate($sumField, $start, $end)
+	{
+		$check = Order::with(['order_device'=> function ($q)
+		{
+			return $q->with('device')->with('game')->where('status', 'paid');
+		}])
+		->with('cashier')
+		->whereBetween('date' , [$start , $end]);
+
+  		return $check->orderBy('id', 'DESC')->sum($sumField);
+	} 
+
+
+
+	/**
 	* Save item to database
 	*/
 	public function store($data) 

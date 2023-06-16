@@ -199,15 +199,15 @@ class MasterDashboardController extends CustomController
 
         $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadAllProductsIncome(['start'=>$this->start, 'end'=>$this->end]);
 
-		$data['income'] = $this->DevicesRepository->getSumByDate('subtotal', $this->start, $this->end);
+		$data['income'] = $this->DevicesRepository->getSumAllByDate('subtotal', $this->start, $this->end);
 
-		$data['tax'] = $this->DevicesRepository->getSumByDate('tax', $this->start, $this->end);
+		$data['tax'] = $this->DevicesRepository->getSumAllByDate('tax', $this->start, $this->end);
 
-		$data['expenses'] = $this->ExpensesRepository->getSumByDate('amount', $this->start, $this->end);
+		$data['expenses'] = $this->ExpensesRepository->getSumAllByDate('amount', $this->start, $this->end);
         
-		$data['avg_sales'] = $this->OrderRepository->getAVGSales(['start'=>$this->start, 'end'=>$this->end]);
+		$data['avg_sales'] = $this->OrderRepository->getAVGAllSales(['start'=>$this->start, 'end'=>$this->end]);
 
-		$data['avg_bookings'] = $this->OrderDevicesRepository->getAVGBookings(['start'=>$this->start, 'end'=>$this->end]);
+		$data['avg_bookings'] = $this->OrderDevicesRepository->getAVGAllBookings(['start'=>$this->start, 'end'=>$this->end]);
 
         return $data;
 

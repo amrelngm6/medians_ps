@@ -97,6 +97,17 @@ class ExpensesRepository
   		return $check->orderBy('id', 'DESC')->sum($sumField);
 	} 
 
+	/**
+	 * Get sum of field 
+	 * with start & end range
+	 */
+	public function getSumAllByDate($sumField, $start, $end)
+	{
+		$check = Expense::with('user');
+  		$check = $check->whereBetween('created_at' , [isset($start) ? $start : date('Y-m-d') , isset($end) ? $end : date('Y-m-d')]);
+  		return $check->orderBy('id', 'DESC')->sum($sumField);
+	} 
+
 
 
 	/**
