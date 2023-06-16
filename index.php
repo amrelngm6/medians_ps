@@ -1,6 +1,6 @@
 <?php
 
-session_start(); error_reporting(E_ALL & ~E_DEPRECATED); date_default_timezone_set('Africa/Cairo');
+session_start(); error_reporting(0); date_default_timezone_set('Africa/Cairo');
 
 
 // Check if installed or redirect to installation 
