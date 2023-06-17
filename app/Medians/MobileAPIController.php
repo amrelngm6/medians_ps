@@ -49,7 +49,7 @@ class MobileAPIController extends CustomController
 				$controller = new OrderDevicesRepository();
 				break;
 			case 'Devices':
-				$return = json_encode((new DevicesRepository())->getApi());
+				$return = json_encode((new DevicesRepository())->getModel()->get());
 				break;
 			case 'Products':
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);

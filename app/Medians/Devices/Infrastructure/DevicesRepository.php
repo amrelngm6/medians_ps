@@ -137,8 +137,7 @@ class DevicesRepository
 	*/
 	public function getApi($limit = 20)
 	{
-		return  Device::where('branch_id', $this->app->branch->id)
-		->get();
+		return  Device::where('branch_id', $this->app->branch->id)->get();
 	}
 
 
