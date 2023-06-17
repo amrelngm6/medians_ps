@@ -43,23 +43,20 @@ class MobileAPIController extends CustomController
 		switch ($model) 
 		{
 			case 'User':
-				$controller = new UserRepository();
+				$return = (new UserRepository())->find($this->app->request()->get('id'));
 				break;
 			case 'OrderDevice':
 				$controller = new OrderDevicesRepository();
 				break;
 			case 'Devices':
-				$return = json_encode((new DevicesRepository())->getModel()->get());
+				$return = (new DevicesRepository())->getModel()->get();
 				break;
 			case 'Products':
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
 				break;
-			
 		}
 
-		$return = isset($controller) ? $controller->find($this->app->request()->get('id')) : $return;
-
-		echo json_encode(['status'=>true, 'result'=>$return]);
+		echo json_encode($return);
 	} 
 
 	/**
