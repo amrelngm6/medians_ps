@@ -98,9 +98,22 @@ class APP
 	public function auth()
 	{
 		$check = !empty($this->auth) ? $this->auth : (new AuthService())->checkSession();
-		$this->branch = isset($this->branch) ? $this->branch : (isset($check->branch) ? $check->branch : (object) ['id'=>0]); 
+		$this->branch = isset($this->branch) ? $this->branch : (isset($check->branch) ? $check->branch : $this->checkAPISession()->branch); 
 		return $check;
 	}
+
+	/**
+	 * Check if the request is through mobile
+	 */
+	public function checkAPISession()
+	{
+		if (!empty($this->request()->get('model')))
+		{
+			$check = (new AuthService())->checkAPISession($this->request()->headers->get('token'));
+			return $check;
+		}
+		return (object) ['branch'=>null];
+	}  
 
 	public function setBranch($branch)
 	{

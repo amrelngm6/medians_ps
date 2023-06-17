@@ -76,6 +76,10 @@ Macaw::get('/google_login_redirect', \Medians\Auth\Application\AuthService::clas
 Macaw::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
 Macaw::post('/userSignup', \Medians\Auth\Application\AuthService::class.'@userSignup');
 Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
+Macaw::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
+Macaw::post('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
+Macaw::post('/mobile_api', \Medians\MobileAPIController::class.'@handle');
+
 
 
 /**

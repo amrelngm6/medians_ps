@@ -327,6 +327,18 @@ class AuthService
 	}
 
 
+	/**
+	 * Check session is valid or not 
+	 * for Mobile / API Tokens
+	 * 
+	 * @return ? AuthModel
+	 */ 
+	public function checkAPISession($token = null) 
+	{
+		return $this->repo->findByToken($token);
+	}
+
+
 
 	/**
 	 * Set session  

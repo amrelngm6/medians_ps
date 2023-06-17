@@ -34,6 +34,15 @@ class UserRepository
 		})->first();
 	}
 
+	public function findByToken($token)
+	{
+		return User::with('custom_fields')->first();
+
+		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
+			$q->where('code','token')->where('value',$token);
+		})->first();
+	}
+
 	public function checkDuplicate($param)
 	{
 		return $this->validateEmail($param['email']);
