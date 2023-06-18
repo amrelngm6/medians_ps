@@ -56,6 +56,7 @@ class DevicesRepository
 		->with('prices')
 		->with('currentOrder')
 		->with('pending_bookings')
+		->withCount('pending_bookings')
 		->with('category')
 		->get();
 	}
