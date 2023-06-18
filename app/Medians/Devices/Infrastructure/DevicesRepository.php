@@ -55,6 +55,7 @@ class DevicesRepository
 		return Device::where('branch_id', $branchId)
 		->with('prices')
 		->with('currentOrder')
+		->with('pending_bookings')
 		->with('category')
 		->get();
 	}
