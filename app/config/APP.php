@@ -107,9 +107,9 @@ class APP
 	 */
 	public function checkAPISession()
 	{
-		if (!empty($this->request()->get('model')))
+		if (!empty($this->request()->headers->get('token')))
 		{
-			$check = (new AuthService())->checkAPISession($this->request()->headers->get('token'));
+			$check = (new AuthService())->checkAPISession($this->request()->headers->get('token')[0]);
 			return $check;
 		}
 		return (object) ['branch'=>null];
