@@ -73,6 +73,7 @@ class MobileAPIController extends CustomController
 				$controller = new OrderDevicesRepository();
 				break;
 			case 'Devices':
+				file_put_contents($_SERVER['DOCUMENT_ROOT'].'/c.txt', json_encode($this->app->branch));
 				$return = (new DevicesRepository())->getByBranch($this->app->branch->id);
 				break;
 			case 'Products':
