@@ -38,9 +38,17 @@ class UserRepository
 	{
 		// return User::with('custom_fields')->first();
 
-		return User::with('custom_fields', 'branch')->whereHas('custom_fields', function($q) use ($token) {
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/t.txt', $token);
+
+
+		$output = User::with('custom_fields', 'branch')->whereHas('custom_fields', function($q) use ($token) {
 			$q->where('code','token')->where('value',$token);
 		})->first();
+
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/u.txt', $output);
+
+		return $output;
+
 	}
 
 	public function checkDuplicate($param)
