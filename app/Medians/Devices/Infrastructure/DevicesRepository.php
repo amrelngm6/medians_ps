@@ -431,42 +431,30 @@ class DevicesRepository
     /**
      * Store Order Device
      */
-    public function storeBooking($data)
+    public function storeBooking($params)
     {
 
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/c.txt', json_encode($data));
 
-    	// print_r($data);
-    	// return null;
-
-		$Device = Device::with('prices')->find($data['id']);
+		$Device = Device::with('prices')->find($params['id']);
 		$data['start_time'] = date('Y-m-d H:i:s');
-		$data['end_time'] = $this->handleEndTime($data);
-		$data['game_id'] = isset($data['game_id']) ? $data['game_id'] : 0;
+		$data['end_time'] = $this->handleEndTime($params);
+		$data['game_id'] = isset($params['game_id']) ? $params['game_id'] : 0;
 		$data['branch_id'] = $this->app->branch->id;
 		$data['device_id'] = $Device->id;
 		$data['order_code'] = null;
-		$data['booking_type'] = isset($data['booking_type']) ? $data['booking_type'] : 'single';
-		$data['device_cost'] = empty($Device->price) ? 0 : (($data['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price);
+		$data['booking_type'] = isset($params['booking_type']) ? $params['booking_type'] : 'single';
+		$data['device_cost'] = empty($Device->price) ? 0 : (($params['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price);
 		$data['break_time'] = 0;
 		$data['last_check'] = 0;
 		$data['customer_id'] = 0;
 		$data['status'] = 'active';
 		$data['created_by'] = $this->app->auth()->id;
 
-		try {
-			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m1.txt', json_encode($Object));
-			
-			// Return the Model object with the new data
-	    	$Object = OrderDevice::firstOrCreate( (array) $data);
-			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m2.txt', json_encode($Object));
+		// Return the Model object with the new data
+    	$Object = OrderDevice::firstOrCreate( (array) $data);
 
-	    	return $Object;
+    	return $Object;
 
-		} catch (Exception $e) {
-			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m3.txt', $e->getMessage());
-				
-		}
     } 
 
 
