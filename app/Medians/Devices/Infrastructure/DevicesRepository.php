@@ -453,18 +453,18 @@ class DevicesRepository
 		$data['customer_id'] = 0;
 		$data['status'] = 'active';
 		$data['created_by'] = $this->app->auth()->id;
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co.txt', json_encode($data));
 
 		try {
+			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m1.txt', json_encode($Object));
 			
 			// Return the Model object with the new data
 	    	$Object = OrderDevice::firstOrCreate( (array) $data);
-			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m.txt', json_encode($Object));
+			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m2.txt', json_encode($Object));
 
 	    	return $Object;
 
 		} catch (Exception $e) {
-			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m.txt', $e->getMessage());
+			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m3.txt', $e->getMessage());
 				
 		}
     } 
