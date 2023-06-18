@@ -36,18 +36,9 @@ class UserRepository
 
 	public function findByToken($token)
 	{
-		// return User::with('custom_fields')->first();
-
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/t.txt', $token);
-
-
-		$output = User::with('custom_fields', 'branch')->whereHas('hasToken', function($q) use ($token) {
-			$q->where('code','token')->where('value',$token);
+		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($code) {
+			$q->where('code','API_token')->where('value',$code);
 		})->first();
-
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/u.txt', $output);
-
-		return $output;
 
 	}
 
