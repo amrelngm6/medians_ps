@@ -455,11 +455,17 @@ class DevicesRepository
 		$data['created_by'] = $this->app->auth()->id;
 		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co.txt', json_encode($data));
 
-		$Object = new OrderDevice;
-		// Return the Model object with the new data
-    	$Object = $Object->create( (array) $data);
+		try {
+			
+			// Return the Model object with the new data
+	    	$Object = OrderDevice::firstOrCreate( (array) $data);
 
-    	return $Object;
+	    	return $Object;
+
+		} catch (Exception $e) {
+			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m.txt', $e->getMessage());
+				
+		}
     } 
 
 
