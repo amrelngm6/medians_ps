@@ -57,6 +57,7 @@ class MobileAPIController extends CustomController
 	 */
 	public function handle($model = null)
 	{
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/b.txt', json_encode($request->headers->all()));
 
 		$this->app = new \config\APP;
 		$return = [];
