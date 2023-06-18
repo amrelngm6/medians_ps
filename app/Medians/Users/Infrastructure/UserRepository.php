@@ -36,8 +36,8 @@ class UserRepository
 
 	public function findByToken($token)
 	{
-		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($code) {
-			$q->where('code','API_token')->where('value',$code);
+		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
+			$q->where('code','API_token')->where('value',$token);
 		})->first();
 
 	}
