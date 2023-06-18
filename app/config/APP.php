@@ -99,7 +99,7 @@ class APP
 	{
 		$check = !empty($this->auth) ? $this->auth : (new AuthService())->checkSession();
 		$this->branch = !empty($this->branch) ? $this->branch : (isset($check->branch) ? $check->branch : $this->checkAPISession()->branch);
-		return $check;
+		return $check ? $chech : $this->checkAPISession();
 	}
 
 	/**
