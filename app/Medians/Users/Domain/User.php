@@ -116,6 +116,10 @@ class User extends CustomModel
 		return $this->hasOneThrough(Plan::class, PlanSubscription::class, 'branch_id', 'id', 'active_branch', 'plan_id')->orderBy('id', 'DESC')->with('plan_features');
 	}
 
+	public function hasToken()
+	{
+        return $this->hasOne(CustomField::class, 'model_id', 'id')->where('model_type', User::class);
+	}
 
     public function custom_fields()
     {

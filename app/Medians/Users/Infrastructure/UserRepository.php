@@ -41,7 +41,7 @@ class UserRepository
 		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/t.txt', $token);
 
 
-		$output = User::with('custom_fields', 'branch')->whereHas('custom_fields', function($q) use ($token) {
+		$output = User::with('custom_fields', 'branch')->whereHas('hasToken', function($q) use ($token) {
 			$q->where('code','token')->where('value',$token);
 		})->first();
 
