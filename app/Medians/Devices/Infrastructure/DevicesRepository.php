@@ -459,6 +459,7 @@ class DevicesRepository
 			
 			// Return the Model object with the new data
 	    	$Object = OrderDevice::firstOrCreate( (array) $data);
+			file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co_m.txt', json_encode($Object));
 
 	    	return $Object;
 
