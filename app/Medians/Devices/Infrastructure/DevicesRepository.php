@@ -513,8 +513,8 @@ class DevicesRepository
 		$date = date('Y-m-d', strtotime(date($Object->created_at)));
 
 		$newData = [];
-		$newData['start_time'] = $data['start_time'];
-		$newData['end_time'] = date('Y-m-d H:i:s');
+		$newData['start_time'] = isset($data['start_time']) ? $data['start_time'] : $Object->start_time;
+		$newData['end_time'] = ($data['status'] == 'completed' && $Object->status != 'completed' ) ? date('Y-m-d H:i:s') : $Object->end_time;
 		$newData['booking_type'] = isset($data['booking_type']) ? $data['booking_type'] : $Object->booking_type;
 		$newData['device_cost'] = ($newData['booking_type'] == 'multi') ? $Device->price->multi_price : $Device->price->single_price;
 		$newData['status'] = $data['status'];
