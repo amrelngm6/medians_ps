@@ -434,6 +434,7 @@ class DevicesRepository
     public function storeBooking($data)
     {
 
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/c.txt', json_encode($data));
 
     	// print_r($data);
     	// return null;
@@ -452,6 +453,7 @@ class DevicesRepository
 		$data['customer_id'] = 0;
 		$data['status'] = 'active';
 		$data['created_by'] = $this->app->auth()->id;
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/co.txt', json_encode($data));
 
 		$Object = new OrderDevice;
 		// Return the Model object with the new data

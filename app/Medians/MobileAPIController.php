@@ -89,7 +89,6 @@ class MobileAPIController extends CustomController
 	public function create()
 	{
 	
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/c.txt', json_encode($_POST));
 
 		$app = new \config\APP;
 		$request = $app->request();
