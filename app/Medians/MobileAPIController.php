@@ -70,7 +70,7 @@ class MobileAPIController extends CustomController
 				$controller = new OrderDevicesRepository();
 				break;
 			case 'Devices':
-				$return = (new DevicesRepository())->getModel()->with('category','currentOrder')->get();
+				$return = (new DevicesRepository())->getByBranch($this->app->branch->id);
 				break;
 			case 'Products':
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
