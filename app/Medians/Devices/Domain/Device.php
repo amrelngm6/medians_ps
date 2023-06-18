@@ -32,7 +32,7 @@ class Device extends CustomModel
 	];
 
 
-	public $appends = ['picture', 'price', 'name', 'label', 'y'];
+	public $appends = ['picture', 'price', 'name', 'label', 'y','booking_type'];
 
 
 	public function getLabelAttribute() 
@@ -43,6 +43,12 @@ class Device extends CustomModel
 	public function getYAttribute() 
 	{
 		return isset($this->bookings_count) ? $this->bookings_count : 0;
+	}
+	
+	public function getBookingTypeAttribute() 
+	{
+		return 'multi';
+		// return isset($this->currentOrder->id) ? $this->currentOrder->booking_type : 'ps';
 	}
 	
  

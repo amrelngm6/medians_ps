@@ -32,6 +32,26 @@ class MobileAPIController extends CustomController
 
 
 	/**
+	 * Login through Mobile API
+	 */
+	public function login()
+	{
+		$Auth = new Auth\Application\AuthService;
+
+		$this->app = new \config\APP;
+		$request = $this->app->request();
+		
+		$params = json_decode($request->get('params'));		
+
+		$checkLogin = $Auth->checkLogin($params->email, $Auth->encrypt($params->password));
+
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$this->id);
+		$generateToken = $checkLogin->insertCustomField('API_token', $token);
+
+		echo json_encode(['success'=>true, 'token'=>$generateToken->value]) ;
+	}  
+
+	/**
 	 * Model object 
 	 * 
 	 */
@@ -40,16 +60,17 @@ class MobileAPIController extends CustomController
 
 		$this->app = new \config\APP;
 		$return = [];
+		$model = empty($model) ? $this->app->request()->get('model') : $model;
 		switch ($model) 
 		{
-			case 'User':
-				$return = (new UserRepository())->find($this->app->request()->get('id'));
+			case 'APP':
+				$return = ['app'=>$this->app, 'lang'=>(new \helper\Lang($this->app->default_lang))->load()->vueLang()];
 				break;
 			case 'OrderDevice':
 				$controller = new OrderDevicesRepository();
 				break;
 			case 'Devices':
-				$return = (new DevicesRepository())->getModel()->with('category')->get();
+				$return = (new DevicesRepository())->getModel()->with('category','currentOrder')->get();
 				break;
 			case 'Products':
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
@@ -65,9 +86,12 @@ class MobileAPIController extends CustomController
 	 */
 	public function create()
 	{
-		
+	
+
 		$app = new \config\APP;
 		$request = $app->request();
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/a.txt', json_encode($_POST));
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/b.txt', json_encode($request->headers->all()));
 		
 		try {
 				

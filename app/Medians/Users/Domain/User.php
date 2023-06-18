@@ -134,15 +134,25 @@ class User extends CustomModel
 	}
 
 
+	/**
+	 * Create Custom filed for user
+	 */
+	public function insertCustomField($code, $value)
+	{
 
-    /**
-     * Handle the event after new item 
-     * has been stored 
-     * 
-     */
-    public function createdEvent()
-    {
-    }  
+    	// Insert activation code 
+		$fillable = [
+			'code'=>$code,
+			'model_type'=>User::class, 
+			'model_id'=>$this->id, 
+			'value'=>$value
+		];
+
+		return CustomField::firstOrCreate($fillable);
+
+	}  
+
+
 
 
 
@@ -162,15 +172,7 @@ class User extends CustomModel
 
 
     	// Insert activation code 
-		$fillable = [
-			'code'=>'activation_token',
-			'model_type'=>User::class, 
-			'model_id'=>$this->id, 
-			'value'=>User::encrypt(strtotime(date('YmdHis')).$this->id)
-		];
-
-		CustomField::firstOrCreate($fillable);
-
+		$this->insertCustomField('activation_token', User::encrypt(strtotime(date('YmdHis')).$this->id));
     }  
 
 }

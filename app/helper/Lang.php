@@ -13,11 +13,11 @@ class Lang
 
 	public function load()
 	{
-
 		switch ($this->lang) 
 		{
 			case 'arabic':
 			case 'ar':
+					
 				return new langs\LangsAr();
 				break;
 			
