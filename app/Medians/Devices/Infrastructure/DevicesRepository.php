@@ -504,6 +504,7 @@ class DevicesRepository
      */
     public function updateBooking($data)
     {
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/dd.txt', json_encode($data));
 
 		$Object = OrderDevice::find($data['id']);
 

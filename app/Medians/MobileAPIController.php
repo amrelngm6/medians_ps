@@ -62,7 +62,6 @@ class MobileAPIController extends CustomController
 		$return = [];
 		$model = empty($model) ? $this->app->request()->get('model') : $model;
 
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/b.txt', json_encode($this->app->request()->headers->all()));
 		
 		switch ($model) 
 		{
@@ -73,7 +72,6 @@ class MobileAPIController extends CustomController
 				$controller = new OrderDevicesRepository();
 				break;
 			case 'Devices':
-				file_put_contents($_SERVER['DOCUMENT_ROOT'].'/c.txt', json_encode($this->app->branch));
 				$return = (new DevicesRepository())->getByBranch($this->app->branch->id);
 				break;
 			case 'Products':
@@ -94,8 +92,6 @@ class MobileAPIController extends CustomController
 
 		$app = new \config\APP;
 		$request = $app->request();
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/a.txt', json_encode($_POST));
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/b.txt', json_encode($request->headers->all()));
 		
 		try {
 				
