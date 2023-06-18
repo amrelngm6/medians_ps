@@ -451,7 +451,7 @@ class DevicesRepository
 		$data['created_by'] = $this->app->auth()->id;
 
 		// Return the Model object with the new data
-    	$Object = OrderDevice::firstOrCreate( (array) $data);
+    	$Object = OrderDevice::create( (array) $data);
 
     	return $Object;
 
