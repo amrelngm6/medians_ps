@@ -109,8 +109,8 @@ class APP
 	{
 		if (!empty($this->request()->headers->get('token')))
 		{
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/d.txt', json_encode($this->app->request()->headers->get('token')));
-		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/e.txt', json_encode($this->app->request()->headers->get('token')[0]));
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/d.txt', json_encode($this->request()->headers->get('token')));
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/e.txt', json_encode($this->request()->headers->get('token')[0]));
 
 			$check = (new AuthService())->checkAPISession($this->request()->headers->get('token')[0]);
 			return $check;
