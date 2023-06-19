@@ -45,10 +45,21 @@ class MobileAPIController extends CustomController
 
 		$checkLogin = $Auth->checkLogin($params->email, $Auth->encrypt($params->password));
 
+		if (empty($checkLogin))
+		{
+			echo json_encode('error'=>__('LOGIN_FAIL'));
+			return null;
+		}
+
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$this->id);
 		$generateToken = $checkLogin->insertCustomField('API_token', $token);
 
-		echo json_encode(['success'=>true, 'token'=>$generateToken->value]) ;
+		echo json_encode(
+		[
+			'success'=>true, 
+			'user_id'=>$checkLogin->id, 
+			'token'=>$generateToken->value
+		]);
 	}  
 
 	/**
