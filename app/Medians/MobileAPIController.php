@@ -45,9 +45,9 @@ class MobileAPIController extends CustomController
 
 		$checkLogin = $Auth->checkLogin($params->email, $Auth->encrypt($params->password));
 
-		if (empty($checkLogin))
+		if (empty($checkLogin->id))
 		{
-			echo json_encode(['error'=> __('LOGIN_FAIL')]);
+			echo json_encode(['error'=> $checkLogin]);
 
 			return null;
 		}
