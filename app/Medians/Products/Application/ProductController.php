@@ -136,7 +136,7 @@ class ProductController extends CustomController
 	public function store() 
 	{	
 		
-		$this->checkFeatureAccess('devices_count', count($this->repo->get()));
+		$this->checkFeatureAccess('products_count', count($this->repo->get()));
 
 		$this->app = new \config\APP;
         

@@ -121,7 +121,8 @@ class OrderDevice extends CustomModel
 
 	public function getSubtotalNowAttribute() 
 	{
-        return ($this->status == 'active') ? round(number_format($this->device_cost, 2) * number_format(round(abs(strtotime(date("Y-m-d H:i:s")) - strtotime($this->start_time)) / 60, 2) / 60, 2), 2) : 0 ;
+        return ($this->status == 'active') 
+        ? round(number_format($this->device_cost, 2) * number_format(round(abs(strtotime(date("Y-m-d H:i:s")) - strtotime($this->start_time)) / 60, 2) / 60, 2), 2) : $this->subtotal ;
 	}
 
 
