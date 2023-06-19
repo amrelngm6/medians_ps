@@ -47,7 +47,8 @@ class MobileAPIController extends CustomController
 
 		if (empty($checkLogin))
 		{
-			echo json_encode('error'=>__('LOGIN_FAIL'));
+			echo json_encode(['error'=> __('LOGIN_FAIL')]);
+
 			return null;
 		}
 
