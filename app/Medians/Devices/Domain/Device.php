@@ -47,7 +47,7 @@ class Device extends CustomModel
 	
 	public function getBookingTypeAttribute() 
 	{
-		return 'multi';
+		return 'ps';
 		// return isset($this->currentOrder->id) ? $this->currentOrder->booking_type : 'ps';
 	}
 	
