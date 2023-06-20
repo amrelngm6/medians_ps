@@ -75,7 +75,7 @@ class OrderDevice extends CustomModel
 
 	public function getDurationAttribute() 
 	{
-		return  number_format(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2);
+		return  (int) number_format(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2);
 	}
 
 	public function getDurationHoursAttribute() 
@@ -89,7 +89,7 @@ class OrderDevice extends CustomModel
 	 */ 
 	public function getSubtotalAttribute() 
 	{
-        return round((int) $this->duration_hours) > 0 ?  number_format(round(number_format($this->device_cost) * round((int) $this->duration_hours, 2), 2), 2) : 0 ;
+        return (int)  round((int) $this->duration_hours) > 0 ?  number_format(round(number_format($this->device_cost) * round((int) $this->duration_hours, 2), 2), 2) : 0 ;
 	}
 
 
@@ -98,7 +98,7 @@ class OrderDevice extends CustomModel
 	 */ 
 	public function getProductsSubtotalAttribute() 
 	{
-        return round($this->products->sum(function ($model) {
+        return (int)  round($this->products->sum(function ($model) {
     return $model->price * $model->qty;
 }), 2) ;
 	}
@@ -121,8 +121,9 @@ class OrderDevice extends CustomModel
 
 	public function getSubtotalNowAttribute() 
 	{
-        return ($this->status == 'active') 
-        ? number_format(round(number_format($this->device_cost, 2) * number_format(round(abs(strtotime(date("Y-m-d H:i:s")) - strtotime($this->start_time)) / 60, 2) / 60, 2), 2), 2) : $this->subtotal ;
+        return  ($this->status == 'active') 
+        ? (int)  number_format(round(number_format($this->device_cost, 2) * number_format(round(abs(strtotime(date("Y-m-d H:i:s")) - strtotime($this->start_time)) / 60, 2) / 60, 2), 2), 2) 
+        : $this->subtotal ;
 	}
 
 
