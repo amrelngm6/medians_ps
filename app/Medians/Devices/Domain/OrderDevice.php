@@ -75,7 +75,7 @@ class OrderDevice extends CustomModel
 
 	public function getDurationAttribute() 
 	{
-		return round(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2);
+		return number_format(round(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2), 2);
 	}
 
 	public function getDurationHoursAttribute() 
@@ -89,7 +89,7 @@ class OrderDevice extends CustomModel
 	 */ 
 	public function getSubtotalAttribute() 
 	{
-        return round((int) $this->duration_hours) > 0 ?  round(number_format($this->device_cost) * round((int) $this->duration_hours, 2), 2) : 0 ;
+        return round((int) $this->duration_hours) > 0 ?  number_format(round(number_format($this->device_cost) * round((int) $this->duration_hours, 2), 2), 2) : 0 ;
 	}
 
 

@@ -32,6 +32,8 @@ class APP
 
 	public $Settings;
 
+	public $capsule;
+
 
 
 	function __construct()
