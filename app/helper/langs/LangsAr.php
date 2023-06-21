@@ -1069,6 +1069,7 @@ class LangsAr
 		,'multi' => 'زوجي'
 		,'Booking time ended' => 'إنتهت مدة الحجز '
 		,'Booking time ended and requires an action' => 'انتهت مدة الحجز  ولم يتم اتخاذ اي إجراء '
+		,'confirm_end_booking' => 'تأكيد إنهاء الحجو '
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

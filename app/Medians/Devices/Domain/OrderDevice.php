@@ -89,7 +89,7 @@ class OrderDevice extends CustomModel
 	 */ 
 	public function getSubtotalAttribute() 
 	{
-        return (int)  round((int) $this->duration_hours) > 0 ?  (int) number_format(round(number_format($this->device_cost) * round((int) $this->duration_hours, 2), 2), 2) : 0 ;
+        return  round((int) $this->duration_hours) > 0 ?  (int) number_format(round(number_format($this->device_cost) * round((int) $this->duration_hours, 2), 2), 2) : 0 ;
 	}
 
 
@@ -98,7 +98,7 @@ class OrderDevice extends CustomModel
 	 */ 
 	public function getProductsSubtotalAttribute() 
 	{
-        return (int)  round($this->products->sum(function ($model) {
+        return  round($this->products->sum(function ($model) {
     return $model->price * $model->qty;
 }), 2) ;
 	}
