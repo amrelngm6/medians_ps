@@ -46,7 +46,7 @@ spl_autoload_register(function ($name) {
 
 include('app/helper/methods.php');
 include('app/config/route.php');
-(new \config\APP)->capsule->getConnection()->disconnect();
+$capsule->getConnection()->disconnect();
 
 
 
