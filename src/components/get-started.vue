@@ -103,7 +103,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="relative group w-80">
+                            <div class="relative group lg:w-80">
                                 <div aria-hidden="true" class="absolute top-0 w-full h-full rounded-lg bg-white shadow-lg transition duration-500 group-hover:scale-105"></div>
                                 <div class="relative p-6 pt-16 md:p-8 md:pl-12 md:rounded-r-2xl lg:pl-20 lg:p-16">
                                     <!-- <p class="font-semibold ">Premium features</p> -->
