@@ -11,7 +11,7 @@
             <div class="text-base font-medium tracking-widest text-center mb-4 mx-auto rounded-lg flex gap-6 px-2 py-2" >
                 <p :class="item.val == activeStatus ? 'px-4 bg-white rounded-full' : ''" v-for="item in filterList" class="cursor-pointer py-2"  v-text="item.title" @click="switchStatus(item.val)"></p>
             </div>
-            <div class="w-full grid lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-6">
+            <div class="w-full grid lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-6 pb-10 pb-12">
                 <div class="relative bg-white rounded-lg w-full" style="z-index:9" v-if="checkView(device)"  v-for="device in content.devicesList" >
                     <div class="flex gap-2 w-full p-6">
                         <div>
