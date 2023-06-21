@@ -3,7 +3,7 @@
         <h2 class="text-xl" v-text="__('get_started_setting')"></h2>
         <p class="py-4 " v-text="__('complete_this_settings_to_start')"></p>
         <div class="mx-auto  rounded-lg py-8 px-4 lg:flex gap-6" v-if="steps && !showLoader">
-            <div class="w-1/3 bg-white p-6">
+            <div class="w-1/3 bg-white p-6 no-mobile">
                 <div v-for="step in steps" :key="step.active" class="w-full mb-4">
                     <div :class="step.active ? '' : 'text-gray-300'" @click="setActiveStep(step.id)" class="cursor-pointer w-full flex ">
                         <span :class="step.active ? 'bg-blue-50' : ''" class="block w-10 h-10 pt-2 text-center " v-text="step.id"></span>

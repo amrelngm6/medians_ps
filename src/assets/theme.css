@@ -13304,6 +13304,7 @@ a.comment-btn:hover {
 		font-size: 1.1rem;
 	}
 	div.card.w-1\/3, div.card.w-2\/3 
+	div.w-1\/3, div.w-2\/3 , div.w-1\/2 
 	{
 		width: 100%;
 	}
