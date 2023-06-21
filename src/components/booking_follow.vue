@@ -1,5 +1,9 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+
+        <div class=" w-full" v-if="content.devicesList.length < 1">
+           <calendar_get_started :categories="content.typesList" v-if="content.title && !content.devicesList.length"></calendar_get_started>
+        </div>
         <div class=" w-full" v-if="content.devicesList && lang">
         
             <products_popup v-if="productsPopup" @add-product="load()" ref="applicable_products" :setting="setting" :item="activeItem.active_booking" :products="content.products" ></products_popup>
