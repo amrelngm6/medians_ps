@@ -75,8 +75,7 @@ class OrderDevice extends CustomModel
 
 	public function getDurationAttribute() 
 	{
-		$d = substr(number_format(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2), 0, 6);
-		return  json_decode(json_encode($d));
+		return round(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2);
 	}
 
 	public function getDurationHoursAttribute() 
