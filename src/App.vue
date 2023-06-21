@@ -9,7 +9,7 @@
                     <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
                     </side-menu>
 
-                    <div v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+                    <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
                         <div class="w-full">
                             <transition   :duration="550">
                                 <component ref="activeTab" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="component"></component>
@@ -142,7 +142,19 @@ export default {
     },
     methods: 
     {
+        /**
+         * Close menu at mobile and 
+         * small screen devices
+         */
+        checkMobileMenu()
+        {
+            if (window.innerWidth < 800)
+            {
+                this.showSide = false;
+            }
+        },
 
+          
         /**
          * Check notifications permission
          * Send welcome notification
@@ -200,6 +212,7 @@ export default {
                 this.component = (tab && tab.component) ? tab.component : this.activeTab;
                 this.show = true
                 history.pushState({menu: tab}, '', this.conf.url+this.activeTab);
+                this.checkMobileMenu()
             }
         },
         

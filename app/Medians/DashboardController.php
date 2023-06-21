@@ -18,7 +18,7 @@ class DashboardController extends CustomController
 	{
 		$this->app = new \config\APP;
 		
-		// $this->checkBranch();
+		$this->checkBranch();
 
         $this->OrderRepository = new Orders\Infrastructure\OrdersRepository;
 

@@ -17,17 +17,17 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_bookings')" :value="content.active_order_devices_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('bookings')" :value="content.order_devices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('sold_products')" :value="setting.currency + content.order_products_revenue"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('bookings_income')" :value="setting.currency + content.bookings_income"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('sold_products')" :value="setting.currency +''+ content.order_products_revenue"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('bookings_income')" :value="setting.currency +''+ content.bookings_income"></dashboard_card_white>
                     </div>
                     <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.orders_charts.length">
                         <CanvasJSChart v-if="showCharts && content.orders_charts.length" :key="line_options" :options="line_options"/>
                     </div>
                     <div class="row mt-6">
-                        <dashboard_card classes="bg-gradient-success" :title="__('income')" :value="setting.currency + content.income"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-danger" :title="__('expenses')" :value="setting.currency + content.expenses"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-primary" :title="__('tax')" :value="setting.currency + content.tax"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-purple" :title="__('revenue')" :value="setting.currency + content.revenue" ></dashboard_card>
+                        <dashboard_card classes="bg-gradient-success" :title="__('income')" :value="setting.currency +''+ content.income"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-danger" :title="__('expenses')" :value="setting.currency +''+ content.expenses"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-primary" :title="__('tax')" :value="setting.currency +''+ content.tax"></dashboard_card>
+                        <dashboard_card classes="bg-gradient-purple" :title="__('revenue')" :value="setting.currency +''+ content.revenue" ></dashboard_card>
                     </div>
                 </div>
                 <div class="w-full lg:flex gap gap-6 pb-6">
