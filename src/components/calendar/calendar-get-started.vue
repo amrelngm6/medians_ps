@@ -119,10 +119,10 @@ export default
             params.append('params[status]', 1)
             this.handleRequest(params, '/api/create').then(response => {
                 t.$alert(response.result)
-                t.handleGetRequest('/calendar?load=json').then(response => {
+                t.handleGetRequest('/admin/calendar?load=json').then(response => {
                     t.cats = response.typesList
-                    t.setTab(2)
                 })
+                t.setTab(2)
             })
 
         },
