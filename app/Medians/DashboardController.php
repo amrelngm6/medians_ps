@@ -18,8 +18,6 @@ class DashboardController extends CustomController
 	{
 		$this->app = new \config\APP;
 		
-		$this->checkBranch();
-
         $this->OrderRepository = new Orders\Infrastructure\OrdersRepository;
 
 		$this->DevicesRepository = new Devices\Infrastructure\DevicesRepository();
@@ -45,6 +43,7 @@ class DashboardController extends CustomController
 	 */
 	public function index()
 	{
+		$this->checkBranch();
 
 		try {
 			
