@@ -65,14 +65,28 @@ class CustomController
 		if (isset($checkUser->id) && $checkUser->id === 1)
 			return true;
 
-		if (isset($checkUser->id) && empty($checkUser->active_branch))
-			echo $this->app->redirect('/get-started'); 
+		if ($this->app->request()->get('load') == 'json' && empty($checkUser->active_branch))
+		{
+			echo $this->getStartedPage(); die();
+		}
+			
+		if (isset($checkUser->id) && empty($checkUser->active_branch)) {
+			echo $this->app->redirect('/get-started'); return true; 
+		}
 
-		if (empty($this->app->branch->plan))
-			echo $this->app->redirect('/get-started'); 
+		if (empty($this->app->branch->plan)) {
+
+			echo $this->app->redirect('/get-started'); return true;
+		}
 
 	}
 
+
+	public function getStartedPage()
+	{
+		$page = new \Medians\Users\Application\GetStartedController;
+		return $page->get_started();
+	}
 
 }
 

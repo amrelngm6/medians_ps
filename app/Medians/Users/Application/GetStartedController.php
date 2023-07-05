@@ -20,6 +20,9 @@ class GetStartedController
 
 	public $app;
 
+	public $planRepo;
+	
+	public $planSubscriptionRepo;
 
 	function __construct()
 	{

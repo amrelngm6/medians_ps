@@ -7,6 +7,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 class Configuration 
 {
 
+	public $capsule ;
+
 	/* //////////////////////////////////
 	@Params The Installation URL
 	///////////////////////////////////*/
