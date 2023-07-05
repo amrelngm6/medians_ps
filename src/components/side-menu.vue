@@ -55,10 +55,27 @@ export default {
     },
     methods: {
 
+
+        /**
+         * Check if user has active branch or not
+         */
+         checkBranchLink(link)
+        {
+            return (this.auth && this.auth.active_branch < 1) ? 'get_started' :  link;
+        },  
+        /**
+         * Check if user has active branch or not
+         */
+        checkBranchComponent(component)
+        {
+            return (this.auth && this.auth.active_branch < 1) ? 'get_started' :  component;
+        },  
         openPage(page)
         {
 
             this.showMenu = false
+            page.link = this.checkBranchLink(page.link);
+            page.component = this.checkBranchComponent(page.component);
             this.activePage = page.link;
             page.sub ? null : this.$parent.switchTab(page);
             this.resetClasses() 

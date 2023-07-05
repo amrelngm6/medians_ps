@@ -5,6 +5,7 @@ namespace helper;
 
 class Lang
 {
+	public $lang;
 	
 	function __construct($lang)
 	{

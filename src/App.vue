@@ -139,6 +139,8 @@ export default {
         if (this.system_setting && this.system_setting.enable_notifications)
             this.notify()
 
+        this.checkMobileMenu()    
+
     },
     methods: 
     {

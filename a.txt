@@ -1,1 +1,0 @@
-{"type":"login","params":"{\"email\":\"admin@a.com\",\"password\":\"admin\"}"}

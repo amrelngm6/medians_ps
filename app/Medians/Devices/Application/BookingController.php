@@ -27,6 +27,9 @@ class BookingController extends CustomController
 	*/
 	protected $app;
 	
+	public $productsRepo;
+	
+	public $CategoryRepo;
 
 	function __construct()
 	{
