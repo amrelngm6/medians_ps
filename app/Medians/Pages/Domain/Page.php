@@ -21,7 +21,7 @@ class Page extends CustomModel
 	];
 
 
-	public $appends = ['photo','field','name'];
+	protected $appends = ['photo','field','name'];
 
 
 

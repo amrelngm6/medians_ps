@@ -10,7 +10,7 @@ use Medians\Products\Domain\Product;
 class CategoryRepository 
 {
 
-	public $app;
+	protected $app;
 
 
 

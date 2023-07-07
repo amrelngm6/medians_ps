@@ -6,7 +6,7 @@
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                    <a  v-if="isMaster()" href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
+                    <a  v-if="can('Branch.store')" href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
@@ -20,7 +20,8 @@
                                     <span class="cursor-pointer py-1 px-2" @click="showAddSide = false"><close_icon /></span>
                                 </div>
                                 <input name="type" type="hidden" value="Branch.create">
-                                <input name="params[status]" type="hidden" value="1">
+                                <input name="params[owner_id]" type="hidden" v-if="auth" :value="auth.id">
+                                <input name="params[status]" type="hidden" value="on">
                                 <input name="params[name]" required="" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('name')">
                                 <textarea name="params[info]" rows="3" class=" mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('info')"></textarea>
 
@@ -135,6 +136,11 @@ export default
 
     methods: 
     {
+        can(permission = null)
+        {
+            return this.$root.$children[0].can(permission);
+        },
+        
         /**
          * Check if the user is Master
          */

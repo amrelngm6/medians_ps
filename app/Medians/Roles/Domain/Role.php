@@ -18,15 +18,7 @@ class Role extends CustomModel
 
 	protected $fillable = [
     	'name',
-    	'permissions',
 	];
 
 
-	/**
-	 * Relation with role 
-	 */
-	public function Users() 
-	{
-		return $this->hasOne(User::class, 'role_id');
-	}
 }

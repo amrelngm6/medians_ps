@@ -1,13 +1,17 @@
 <?php
 
 namespace Medians\Media\Application;
-use \Shared\dbaser\CustomController;
+use Shared\dbaser\CustomController;
 
 use Medians\Media\Infrastructure\MediaRepository;
 
 
-class MediaController extends CustomController
+class MediaController extends CustomController 
 {
+
+	protected $app;
+	
+	protected $app;
 
 	function __construct()
 	{
@@ -62,5 +66,46 @@ class MediaController extends CustomController
 	}
 
 
+	public function stream()
+	{
+		$this->app = new \config\APP;
+		$filepath = $this->app->request()->get('image');
+
+		if (strpos($filepath, 'uploads/') && is_file($_SERVER['DOCUMENT_ROOT'].$filepath))
+		{
+			// Set the caching headers
+			$expires = 60 * 60 * 24 * 7; // 1 week (in seconds)
+			header("Cache-Control: public, max-age=$expires");
+			header("Expires: " . gmdate("D, d M Y H:i:s", time() + $expires) . " GMT");
+
+			// Serve the CSS file
+			header("Content-Type: text/css");
+			readfile($_SERVER['DOCUMENT_ROOT'].$filepath);
+
+		} else {
+			echo $_SERVER['DOCUMENT_ROOT'].$filepath;
+		} 
+	}
+
+
+	public function assets()
+	{
+		$this->app = new \config\APP;
+		$filepath = $this->app->request()->get('asset');
+
+		if (!strpos($filepath, '..') && is_file($_SERVER['DOCUMENT_ROOT'].$filepath))
+		{
+			// Set the caching headers
+			$expires = 60 * 60 * 24 * 7; // 1 week (in seconds)
+			header("Cache-Control: public, max-age=$expires");
+			header("Expires: " . gmdate("D, d M Y H:i:s", time() + $expires) . " GMT");
+
+			$type = "text/css";
+
+			// Serve the CSS file
+			header("Content-Type: $type");
+			readfile($_SERVER['DOCUMENT_ROOT'].$filepath);
+		} 
+	}
 
 }

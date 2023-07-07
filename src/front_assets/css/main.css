@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600;700;800&Inter:wght@200;400;600;700;800&display=swap");
 /*CSS Table Of Content Starts Here*/
 /*
 
@@ -551,8 +551,14 @@ p {
   }
 }
 @media (max-width: 767px) {
+  .rtl * {
+    text-align: right;
+  }
   .mb__40 {
     margin-bottom: 20px;
+  }
+  .banner__content .content__box span > span {
+    font-size:3rem !important
   }
 }
 
@@ -13498,4 +13504,18 @@ p {
   font-size:14px; 
   width:300px; 
   border:1px solid #ddd;
-}   
+}
+
+body.rtl, .rtl {direction: rtl;}
+body.rtl a, 
+body.rtl p, 
+body.rtl span, 
+body.rtl div, 
+body.rtl label, 
+body.rtl form, 
+body.rtl button, 
+body.rtl input 
+{
+  font-family: "Cairo";
+}
+body .ltr {direction: ltr;}

@@ -145,6 +145,28 @@ export default {
     methods: 
     {
         /**
+         * Check if the user has access 
+         * to specific permission
+         */
+        can(i)
+        {
+            if (!this.auth )
+                return null;
+
+            if (i && this.auth.permissions)
+                return this.auth.permissions[i]
+                
+            return null;
+        },
+        checkAccess(currentPermissions, permission)
+        {
+            if (currentPermissions)
+                return currentPermissions[permission];
+            
+            return null;
+        },
+
+        /**
          * Close menu at mobile and 
          * small screen devices
          */

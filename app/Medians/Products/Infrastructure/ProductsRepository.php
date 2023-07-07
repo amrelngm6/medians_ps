@@ -12,7 +12,7 @@ use Medians\Products\Domain\Product;
 class ProductsRepository 
 {
 
-	public $app ;
+	protected $app ;
 
 
 	function __construct ()

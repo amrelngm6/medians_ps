@@ -26,7 +26,7 @@ class Plan extends CustomModel
 
 	// public $timestamps = false;
 
-	// public $appends = ['features'];
+	// protected $appends = ['features'];
 
 
 	// public function getFeaturesAttribute()

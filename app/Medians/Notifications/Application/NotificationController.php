@@ -15,9 +15,9 @@ class NotificationController extends CustomController
 	*/
 	protected $repo;
 	
-	
 	protected $branchRepo;
 
+	protected $orderDeviceRepo;
 
 
 	function __construct()

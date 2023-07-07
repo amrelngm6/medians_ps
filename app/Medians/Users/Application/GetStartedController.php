@@ -18,7 +18,7 @@ class GetStartedController
 	*/
 	private $repo;
 
-	public $app;
+	protected $app;
 
 	public $planRepo;
 	

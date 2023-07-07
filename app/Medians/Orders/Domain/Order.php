@@ -45,7 +45,7 @@ class Order  extends CustomModel
 	// public $timestamps = null;
 
 
-	public $appends = ['products_subtotal', 'user_name'];
+	protected $appends = ['products_subtotal', 'user_name'];
 
 	public function getUserNameAttribute()
 	{

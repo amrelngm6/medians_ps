@@ -85,7 +85,7 @@ export default {
             for (var a = this.pages.length - 1; a >= 0; a--) {
                 this.pages[a].class = this.pages[a].link == this.activePage ? 'bg-gradient-to-r' : null;
                 this.pages[a].show_sub = this.pages[a].link == this.activePage ? true : false;
-                if (this.pages[a].sub)
+                if (this.pages[a].sub && this.pages[a].sub.length )
                 {
 
                     for (var i = this.pages[a].sub.length - 1; i >= 0; i--) {

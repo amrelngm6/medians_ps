@@ -14,7 +14,7 @@ class CategoryController extends CustomController
 	*/
 	protected $repo;
 
-	public $app;
+	protected $app;
 	
 
 	

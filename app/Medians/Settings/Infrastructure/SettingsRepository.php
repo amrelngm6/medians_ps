@@ -9,7 +9,7 @@ class SettingsRepository
 {
 
 
-	public $app;
+	protected $app;
 
 
 	function __construct()

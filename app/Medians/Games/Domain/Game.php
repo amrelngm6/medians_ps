@@ -27,7 +27,7 @@ class Game extends CustomModel
 	];
 
 
-	public $appends = ['photo', 'label', 'y'];
+	protected $appends = ['photo', 'label', 'y'];
 
 
 	public function getLabelAttribute() 

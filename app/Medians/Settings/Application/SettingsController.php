@@ -14,7 +14,9 @@ class SettingsController extends CustomController
 	*/
 	protected $repo;
 
-	public $app;
+	protected $app;
+
+	protected $updated;
 
 
 

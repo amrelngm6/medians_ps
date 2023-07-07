@@ -12,6 +12,25 @@ namespace Shared\dbaser;
 class CustomController 
 {
 
+	/**
+	* @var Object
+	*/
+	protected $repo;
+
+	protected $app ;
+
+	public $client ;
+
+	public $blogRepo;
+	public $doctorRepo;
+	public $specsRepo;
+	public $storiesRepo;
+	public $storyDateRepo;
+	public $pagesRepo;
+	public $offersRepo;
+	public $categoryRepo;
+	public $contentRepo;
+	public $storyRepo;
 
 	/**
 	 * Check if the user can Access specific feature
@@ -30,12 +49,17 @@ class CustomController
 
 		$this->app = new \config\APP;
 
+		// Get branch features and convert to Object
 		$branchFeatures = (object) $this->app->branch->features;
 
+		// Check if the branch has this feature
 		if (empty($branchFeatures->$code)){
 			echo json_encode(['error'=>__('plan_limit_exceeded_upgrade_now')]); die();
 		}
 
+		// Check if the branch has this feature
+		// And Usage count is less than the Limit
+		// And Usage limit is not Umlimited
 		if (isset($branchFeatures->$code) && $branchFeatures->$code <= $currentCount && $branchFeatures->$code > -1 ){
 			echo json_encode(['error'=>__('plan_limit_exceeded_upgrade_now')]); die();
 		}
@@ -62,20 +86,24 @@ class CustomController
 
 		$checkUser = $this->app->auth();
 		
+		// Check if the user is Master
 		if (isset($checkUser->id) && $checkUser->id === 1)
 			return true;
 
+		// Check if the request is in JSON
+		// And User has no branch yet 
 		if ($this->app->request()->get('load') == 'json' && empty($checkUser->active_branch))
 		{
 			echo $this->getStartedPage(); die();
 		}
-			
+
+		// Check if the User has no branch yet
 		if (isset($checkUser->id) && empty($checkUser->active_branch)) {
 			echo $this->app->redirect('/get-started'); return true; 
 		}
 
+		// Check if the User has no Plan subscription yet
 		if (empty($this->app->branch->plan)) {
-
 			echo $this->app->redirect('/get-started'); return true;
 		}
 
@@ -87,6 +115,8 @@ class CustomController
 		$page = new \Medians\Users\Application\GetStartedController;
 		return $page->get_started();
 	}
+
+	
 
 }
 

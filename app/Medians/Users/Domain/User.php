@@ -9,6 +9,7 @@ use Medians\Mail\Application\MailService;
 use Medians\Plans\Domain\Plan;
 use Medians\Plans\Domain\PlanSubscription;
 use Medians\Roles\Domain\Role;
+use Medians\Roles\Domain\Permission;
 use \Medians\CustomFields\Domain\CustomField;
 
 class User extends CustomModel
@@ -31,8 +32,13 @@ class User extends CustomModel
     	'active',
 	];
 
-	public $appends = ['name', 'photo', 'password', 'field'];
+	protected $appends = ['name', 'photo', 'password', 'field', 'permissions'];
 
+
+	public function getPermissionsAttribute() 
+	{
+        return !empty($this->RolePermissions) ? array_column($this->RolePermissions->toArray(), 'access', 'code') : [];
+	}
 
 	public function getPasswordAttribute() 
 	{
@@ -102,6 +108,11 @@ class User extends CustomModel
 		return $this->hasOne(Branch::class , 'id', 'active_branch')->with('plan');
 	}
 
+	public function branches()
+	{
+		return $this->hasMany(Branch::class , 'owner_id', 'id');
+	}
+
 
 	/**
 	 * Relation with role 
@@ -124,6 +135,12 @@ class User extends CustomModel
     public function custom_fields()
     {
         return $this->morphMany(CustomField::class, 'model');
+    }
+
+
+    public function RolePermissions()
+    {
+		return $this->hasMany(Permission::class, 'role_id', 'role_id')->selectRaw('CONCAT(model, ".", action) AS code, access ');
     }
 
 
@@ -178,5 +195,7 @@ class User extends CustomModel
     	// Insert activation code 
 		$this->insertCustomField('activation_token', User::encrypt(strtotime(date('YmdHis')).$this->id));
     }  
+
+	
 
 }

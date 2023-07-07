@@ -8,7 +8,7 @@ class CustomerRepository
 {
 
 
-	public $app;
+	protected $app;
 
 
 	function __construct()

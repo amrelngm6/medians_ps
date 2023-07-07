@@ -10,7 +10,7 @@ use Medians\Plans\Domain\PlanSubscription;
 class Branch extends branchModel
 {
 
-	public $appends = ['features'];
+	protected $appends = ['features'];
 
 	public function getFeaturesAttribute()
 	{

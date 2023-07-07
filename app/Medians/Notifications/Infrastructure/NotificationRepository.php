@@ -14,7 +14,7 @@ use Medians\Users\Domain\User;
 class NotificationRepository 
 {
 
-	public $app ;
+	protected $app ;
 
 
 	function __construct ()

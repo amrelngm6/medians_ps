@@ -24,10 +24,11 @@ Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\Repo
 /**
  * These routes for guests 
  */ 
-Macaw::get('/home', \Medians\Pages\Application\PageController::class.'@page');
-Macaw::get('/arabic', \Medians\Pages\Application\PageController::class.'@page');
-Macaw::get('/arabic/', \Medians\Pages\Application\PageController::class.'@page');
-Macaw::get('/', \Medians\Pages\Application\PageController::class.'@page');
+// Macaw::get('/home', \Medians\Pages\Application\PageController::class.'@page');
+// Macaw::get('/arabic', \Medians\Pages\Application\PageController::class.'@page');
+// Macaw::get('/arabic/', \Medians\Pages\Application\PageController::class.'@page');
+Macaw::get('/(:all)', \Medians\Pages\Application\PageController::class.'@pages');
+Macaw::get('', \Medians\Pages\Application\PageController::class.'@home');
 
 
 /**
@@ -52,6 +53,21 @@ Macaw::get('/switch-lang/(:all)', function ($lang)  {
     $_SESSION['site_lang'] = in_array($lang, ['arabic', 'english']) ? $lang : 'arabic';
     echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
     return true;
+});
+
+
+/**
+ * Switch the active branch
+ * and redirect to Dashboard
+ */ 
+Macaw::get('/switch-branch/(:all)', function ($id)  {
+    $app = new \config\App;
+    $user = $app->auth();
+    if (in_array($id, array_column($user->branches->toArray(), 'id')))
+    {
+        $user->update(['active_branch'=>$id]);
+    }
+    echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
 });
 
 
@@ -284,9 +300,16 @@ if(isset($app->auth()->id))
     /**
     * @return Content editor
     */
+    Macaw::get('/admin/pages', \Medians\Pages\Application\PageController::class.'@index');
+    Macaw::get('/builder', \Medians\Builders\Application\BuilderController::class.'@index');
     Macaw::get('/admin/editor', \Medians\Pages\Application\PageController::class.'@editor');
     Macaw::post('/admin/update_section_content', \Medians\Pages\Application\PageController::class.'@updateContent');
 
+    Macaw::get('/builder/load', \Medians\Builders\Application\BuilderController::class.'@load'); 
+    Macaw::get('/builder/meta', \Medians\Builders\Application\BuilderController::class.'@meta'); 
+    Macaw::post('/builder', \Medians\Builders\Application\BuilderController::class.'@submit'); 
+    Macaw::post('/builder/submit', \Medians\Builders\Application\BuilderController::class.'@submit'); 
+    
     /**
     * @return Notifications events 
     */
@@ -304,6 +327,8 @@ if(isset($app->auth()->id))
 
 }
 
+Macaw::get('/assets', \Medians\Media\Application\MediaController::class.'@assets'); 
+Macaw::get('/stream', \Medians\Media\Application\MediaController::class.'@stream'); 
 
 
 

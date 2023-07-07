@@ -12,7 +12,7 @@ use Medians\Notifications\Domain\NotificationEvent;
 class NotificationEventRepository 
 {
 
-	public $app ;
+	protected $app ;
 
 
 	function __construct ()

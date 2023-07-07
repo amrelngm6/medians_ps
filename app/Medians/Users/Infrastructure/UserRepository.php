@@ -19,12 +19,12 @@ class UserRepository
 
 	public function find($id)
 	{
-		return User::with('Role', 'Plan', 'branch')->find($id);
+		return User::with('Role', 'Plan', 'branch', 'branches')->find($id);
 	}
 
 	public function findItem($id)
 	{
-		return User::with('Role', 'Plan', 'branch')->find($id);
+		return User::with('Role', 'Plan', 'branch', 'branches')->find($id);
 	}
 
 	public function findByActivationCode($code)

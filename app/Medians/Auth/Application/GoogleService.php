@@ -17,6 +17,17 @@ use Medians\Settings\Application\SystemSettingsController;
 class GoogleService 
 {
 
+	/**
+	* @var Instance Repo
+	*/
+	protected $repo;
+
+	/**
+	* @var Instance App
+	*/
+	protected $app;
+	
+	public $client;
 
 	function __construct($client_id, $client_secret)
 	{

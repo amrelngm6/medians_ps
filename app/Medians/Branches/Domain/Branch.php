@@ -28,7 +28,7 @@ class Branch extends CustomModel
 
 	
 
-	public $appends = ['owner_name'];
+	protected $appends = ['owner_name'];
 
 	public function getOwnerNameAttribute()
 	{

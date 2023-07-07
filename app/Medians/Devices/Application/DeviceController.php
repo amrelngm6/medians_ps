@@ -27,6 +27,13 @@ class DeviceController extends CustomController
 	protected $app;
 	
 
+	public $productsRepo;
+	
+	public $CategoryRepo;
+
+	public $gamesRepo;
+
+
 	function __construct()
 	{
 

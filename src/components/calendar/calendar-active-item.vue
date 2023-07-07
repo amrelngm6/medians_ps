@@ -55,10 +55,10 @@
                     <calendar_booking_info_editable :active-item="activeItem"></calendar_booking_info_editable>
                 </div>
 
-                <div v-if="!activeItem.id" class="mt-10 w-40 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
+                <div v-if="!activeItem.id" class=" w-40 block mx-auto text-white  font-semibold py-2 border-b border-gray-200">
                     <label @click="$parent.storeInfo(activeItem)" class="cursor-pointer px-4 py-2 rounded-lg bg-gradient-primary block"  v-text="__('start_playing')"></label>
                 </div>
-                <div class="w-full flex mt-10">
+                <div class="w-full flex ">
                     <div @click="startPlaying()" v-if="activeItem.id && activeItem.status == 'new'" class="mx-auto cursor-pointer block w-32 py-2">
                         <span class="text-base font-semibold text-red-600 border-red-600 border rounded-lg py-2 px-4 hover:bg-purple-600 hover:text-white hover:border-purple-600" v-text="__('start_playing')"></span>
                     </div>

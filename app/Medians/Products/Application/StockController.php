@@ -8,7 +8,9 @@ use Medians\Products\Application\ProductController;
 
 class StockController extends CustomController
 {
-
+	public $ProductsRepo;
+	
+	protected $repo;
 
 	function __construct()
 	{

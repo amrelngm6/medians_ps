@@ -9,30 +9,28 @@ class BranchRepository
 {
 
 
+	protected $app;
 
 
 	public function get()
 	{
-
 		return Branch::with('owner')->get();
+	}
 
+	public function branches($owner_id)
+	{
+		return Branch::with('owner')->where('owner_id', $owner_id)->get();
 	}
 
 	public function getIds()
 	{
-
-
-		// print_r(Branch::with('owner')->select('id'));
 		return Branch::select('id')->get();
-
 	}
 
 
 	public function find($id)
 	{
-
 		return Branch::find($id);
-
 	}
 
 

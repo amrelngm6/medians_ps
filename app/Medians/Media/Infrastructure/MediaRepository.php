@@ -19,15 +19,9 @@ class MediaRepository
 
 	public $videos_dir = '/uploads/videos/';
 
-	function __construct()
-	{
-		$this->app = new \config\APP;
-	}
-
 
 	public function getList($type = 'media')
 	{
-
 
 		$this->setDir($type);
 
@@ -60,11 +54,8 @@ class MediaRepository
 
 	public function fetchFolder($type)
 	{
-
-		$branchId = isset($this->app->branch->id) ? $this->app->branch->id : '';
-
 		$data = [];
-		foreach (glob($this->dir.$branchId.'-br-*.*') as $key => $value) 
+		foreach (glob($this->dir.'*.*') as $key => $value) 
 		{
 			$ext = explode('.', $value);
 			if (in_array(end($ext),  $this->getTypes($type)))
@@ -102,8 +93,11 @@ class MediaRepository
 				break;
 			
 			case 'media':
+				return ['png', 'jpg', 'jpeg', 'bmp']; 
+				break;
+			
 			default:
-				return ['png', 'jpg', 'jpeg', 'bmp', 'webp']; 
+				return ['png', 'jpg', 'jpeg', 'bmp']; 
 				break;
 		}
 	}
@@ -138,10 +132,24 @@ class MediaRepository
     	}
     }
 
-    public function slug($value)
+    public function resize($file, $w=null, $h='-1')
     {
-		$branchId = isset($this->app->branch->id) ? $this->app->branch->id : '';
 
-    	return  $branchId.'-br-' . str_replace(['&',' ','@', '!','#','(',')','+','?'], '_', $value);
+    	$filepath = $_SERVER['DOCUMENT_ROOT'].$file;
+    	$output = str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $filepath));
+
+    	if (is_file($filepath))
+    	{
+    		
+			$ffmpeg = enviroment == 'local' ? 'E:\Development\path\ffmpeg\bin\ffmpeg.exe' : 'ffmpeg';
+			shell_exec($ffmpeg.' -i '.$filepath.' -vf scale="'.$w.':'.$h.'" '.$output);
+    	}
     }
+
+    public static function slug($value)
+    {
+    	return str_replace(['&',' ','@', '!','#','(',')','+','?'], '_', $value);
+    }
+
+
 }

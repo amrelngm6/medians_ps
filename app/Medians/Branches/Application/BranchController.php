@@ -15,9 +15,11 @@ class BranchController extends CustomController
 	/*
 	/ @var new CustomerRepository
 	*/
-	private $repo;
+	protected $repo;
 
-	public $app;
+	protected $app;
+	
+	protected $userRepo;
 
 
 	function __construct()
@@ -94,7 +96,7 @@ class BranchController extends CustomController
 	 */
 	public function getData()
 	{
-		return ($this->app->auth()->role_id === 1) ? $this->repo->get() : [$this->repo->find($this->app->branch->id)];
+		return ($this->app->auth()->role_id === 1) ? $this->repo->get() : $this->repo->branches($this->app->auth()->id);
 	} 
 
 	/**

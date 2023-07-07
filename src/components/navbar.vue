@@ -20,7 +20,7 @@
         </div>
         <!-- <ul class="nav user-menu w-96 flex"> -->
         <ul class="nav user-menu flex relative">
-            <li v-if="auth && auth.role_id == 3">
+            <li v-if="auth && auth.role_id > 1">
                 <notifications_popup :auth="auth" :conf="conf" :lang="lang" :setting="setting"></notifications_popup>
             </li>
             <li v-if="auth && lang"  class="nav-item has-arrow main-drop relative ">
@@ -32,17 +32,25 @@
                     <li class="py-2 border-b border-gray-300" :class="lang.lang == 'en' ? 'font-semibold' : ''"><a href="/switch-lang/english">English</a></li>
                 </ul>
             </li>
-            <li v-if="auth && lang"  class="w-56 nav-item  has-arrow main-drop ">
-                <span class="cursor-pointer flex w-56 gap gap-2 mt-1" onclick="$('.dropped1').toggleClass('hidden'); $('.dropped2').addClass('hidden')">
+            <li v-if="auth && lang"  class="nav-item  has-arrow main-drop ">
+                <span class="cursor-pointer flex  gap gap-2 mt-1" onclick="$('.dropped1').toggleClass('hidden'); $('.dropped2').addClass('hidden')">
                     <span class="user-img mt-3 ">
                         <img :src="auth.photo" alt="">
                         <span class="status online absolute top-0 right-0"></span>
                     </span>
                     <span  class="mt-4 no-mobile " v-text="auth.name"></span>
-                </a>
+                </span>
                 <ul class="drop-ul py-4 px-2 w-full bg-white border border-gray-300 rounded  absolute top-14 left-1 hidden dropped1" style="z-index: 9999; top:60px">
                     <li class="py-2 border-b border-gray-300"><a  :href="'/admin/'+ auth.role_id == 3 ? 'settings' : 'system_settings'" v-text="lang.setting"></a></li>
                     <li class="py-2"><a href="/logout" v-text="lang.logout"></a></li>
+                </ul>
+            </li>
+            <li v-if="auth && lang && auth.role_id < 4 && auth.branches && auth.branches.length"  class="nav-item  has-arrow main-drop ">
+                <span class="cursor-pointer flex px-6 gap gap-2 mt-1" onclick="$('.dropped3').toggleClass('hidden'); $('.dropped2').addClass('hidden')">
+                    <span  class="mt-4 no-mobile " v-text="auth.branch.name"></span>
+                </span>
+                <ul class="drop-ul py-4 px-2 w-full bg-white border border-gray-300 rounded  absolute top-14 left-1 hidden dropped3" style="z-index: 9999; top:60px">
+                    <li v-for="branch in auth.branches" class="py-2 border-b border-gray-300"><a  :href="'/switch-branch/'+ branch.id" v-text="branch.name"></a></li>
                 </ul>
             </li>
         </ul>
@@ -65,3 +73,9 @@ export default {
   }
 }
 </script>
+<style lang="css">
+.has-arrow.main-drop
+{
+    width: max-content
+}
+</style>

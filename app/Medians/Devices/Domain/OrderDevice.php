@@ -46,7 +46,7 @@ class OrderDevice extends CustomModel
 	*/
 	// public $timestamps = null;
 
-	public $appends = ['title', 'duration', 'duration_time', 'currency', 'subtotal', 'products_subtotal', 'total_cost', 'duration_hours','date', 'end_time_validated', 'duration_now', 'subtotal_now'];
+	protected $appends = ['title', 'duration', 'duration_time', 'currency', 'subtotal', 'products_subtotal', 'total_cost', 'duration_hours','date', 'end_time_validated', 'duration_now', 'subtotal_now'];
 
 
 
@@ -60,7 +60,7 @@ class OrderDevice extends CustomModel
 	}
 	public function getDateAttribute()
 	{
-		return substr($this->created_at, 0, 10);
+		return $this->created_at ? substr($this->created_at, 0, 10) : ''	;
 	}
 
 	public function getTotalCostAttribute()
@@ -75,7 +75,7 @@ class OrderDevice extends CustomModel
 
 	public function getDurationAttribute() 
 	{
-		return round(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2);
+		return $this->end_time_validated && $this->start_time ? round(abs(strtotime($this->end_time_validated) - strtotime($this->start_time)) / 60, 2) : 0;
 	}
 
 	public function getDurationHoursAttribute() 
@@ -89,7 +89,7 @@ class OrderDevice extends CustomModel
 	 */ 
 	public function getSubtotalAttribute() 
 	{
-        return  round((int) $this->duration_hours) > 0 ?  (int) number_format(round(number_format($this->device_cost) * round((int) $this->duration_hours, 2), 2), 2) : 0 ;
+        return isset($this->device_cost) && round((int) $this->duration_hours) > 0 ?  (int) number_format($this->device_cost) * round((int) $this->duration_hours, 2) : 0 ;
 	}
 
 
@@ -99,14 +99,17 @@ class OrderDevice extends CustomModel
 	public function getProductsSubtotalAttribute() 
 	{
         return  round($this->products->sum(function ($model) {
-    return $model->price * $model->qty;
-}), 2) ;
+			return $model->price * $model->qty;
+		}), 2) ;
 	}
 
 
 
 	public function getDurationTimeAttribute() 
 	{
+		if (!$this->start_time)
+			return 0;
+
 		$interval = (new \DateTime($this->start_time ))->diff(new \DateTime($this->end_time_validated));
 		$hours   = $interval->format('%H:%I'); 
 		return $hours;
@@ -114,6 +117,9 @@ class OrderDevice extends CustomModel
 
 	public function getDurationNowAttribute() 
 	{
+		if (!$this->start_time)
+			return 0;
+			
 		$interval =  (new \DateTime($this->start_time ))->diff(new \DateTime());
 		$hours   = $interval->format('%H:%I'); 
 		return $hours;

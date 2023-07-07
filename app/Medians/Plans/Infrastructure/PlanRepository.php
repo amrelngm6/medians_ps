@@ -12,7 +12,7 @@ use Medians\Plans\Domain\Plan;
 class PlanRepository 
 {
 
-	public $app ;
+	protected $app ;
 
 
 	function __construct ()

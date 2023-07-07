@@ -14,7 +14,9 @@ class CustomerController extends CustomController
 	/*
 	/ @var new CustomerRepository
 	*/
-	private $repo;
+	protected $repo;
+
+	protected $app;
 
 
 	function __construct()

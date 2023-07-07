@@ -37,7 +37,7 @@ class OrderDeviceItem extends CustomModel
 	*/
 	// public $timestamps = null;
 
-	public $appends = ['subtotal', 'product_name'];
+	protected $appends = ['subtotal', 'product_name'];
 
 
 	public function getProductNameAttribute()

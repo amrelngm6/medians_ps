@@ -31,7 +31,12 @@ class AuthService
 	/**
 	* @var Instance Repo
 	*/
-	private $repo;
+	protected $repo;
+
+	/**
+	* @var Instance App
+	*/
+	protected $app;
 
 
 

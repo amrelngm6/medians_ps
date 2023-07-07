@@ -13,7 +13,7 @@ use Medians\Plans\Domain\PlanSubscription;
 class PlanSubscriptionRepository 
 {
 
-	public $app ;
+	protected $app ;
 
 
 	function __construct ()

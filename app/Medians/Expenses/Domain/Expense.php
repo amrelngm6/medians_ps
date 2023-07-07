@@ -36,7 +36,7 @@ class Expense extends CustomModel
 	// public $timestamps = null;
 
 
-	public $appends = ['user_name'];
+	protected $appends = ['user_name'];
 
 
 	public function getUserNameAttribute()

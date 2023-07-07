@@ -9,7 +9,7 @@ class ReportRepository
 {
 
 
-	public $app;
+	protected $app;
 
 
 	function __construct($app = null)

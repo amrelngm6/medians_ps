@@ -13,7 +13,7 @@ use Medians\Plans\Domain\PlanFeature;
 class PlanFeatureRepository 
 {
 
-	public $app ;
+	protected $app ;
 
 
 	function __construct ()

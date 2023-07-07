@@ -41,7 +41,7 @@ class NotificationEvent extends CustomModel
 	*/
 	// public $timestamps = false;
 
-	// public $appends = ['is_expired', 'branch_name', 'user_name', 'plan_name', ];
+	// protected $appends = ['is_expired', 'branch_name', 'user_name', 'plan_name', ];
 
 
 	public function getFields()

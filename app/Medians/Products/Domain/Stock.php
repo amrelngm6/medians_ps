@@ -42,7 +42,7 @@ class Stock extends CustomModel
 	// public $timestamps = false;
 
 
-	public $appends = ['description', 'name', 'user_name'];
+	protected $appends = ['description', 'name', 'user_name'];
 
 
 	public function getUserNameAttribute()

@@ -12,7 +12,7 @@ class DashboardController extends CustomController
 	*/
 	protected $repo;
 
-	public $app;
+	protected $app;
 	public $OrderRepository;
 	public $DevicesRepository;
 	public $OrderDevicesRepository;

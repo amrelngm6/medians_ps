@@ -13,7 +13,7 @@ class StockRepository
 {
 
 
-	public $app;
+	protected $app;
 
 
 

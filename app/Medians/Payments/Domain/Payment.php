@@ -32,7 +32,7 @@ class Payment extends CustomModel
 		'created_by',
 	];
 
-	public $appends = ['user_name', 'branch_name', 'model_name'];
+	protected $appends = ['user_name', 'branch_name', 'model_name'];
 
 
 	public function getModelNameAttribute()

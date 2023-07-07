@@ -1,0 +1,14 @@
+
+    <!-- Template assets -->
+<input type="hidden" id="prefix-page" value="{{app.request.get('prefix')}}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/src/front_assets/css/main.css">
+
+<main class="WxEditableArea" id="contentArea">
+    <div id="contentAreaElement" class="kelement"></div>
+    
+    {{precode|raw}}
+        {{page.content.id ? page.content.content : page.content | raw}}
+    {{postcode|raw}}
+</main>

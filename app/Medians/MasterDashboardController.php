@@ -13,6 +13,21 @@ class MasterDashboardController extends CustomController
 	protected $repo;
 
 
+	protected $app;
+	public $DevicesRepository;
+	public $OrderDevicesRepository;
+	public $PaymentRepository;
+	public $CustomerRepository;
+	public $start;
+	public $end;
+	public $StockRepository;
+	public $ExpensesRepository;
+	public $GamesRepository;
+	public $OrderRepository;
+	public $PlanSubscriptionRepository;
+	public $start_week;
+	public $UserRepository;
+	public $BranchRepository;
 
 	function __construct()
 	{

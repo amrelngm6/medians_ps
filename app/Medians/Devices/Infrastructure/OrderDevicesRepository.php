@@ -10,7 +10,7 @@ class OrderDevicesRepository
  	
 
 
-	public $app ;
+	protected $app ;
 
 
 	function __construct()

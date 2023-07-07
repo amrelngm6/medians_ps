@@ -9,6 +9,14 @@ use Medians\Content\Domain\Content;
 class PageRepository 
 {
 
+	
+	/**
+	 * Load app for Sessions and helpful
+	 * methods for authentication and
+	 * settings for branch
+	 */ 
+	protected $app ;
+
 
 	function __construct()
 	{
@@ -96,8 +104,9 @@ class PageRepository
 			}
 		}		
 
-		// Return the Model object with the new data
-    	$Object = Page::firstOrCreate($dataArray);
+		// Return the FBUserInfo object with the new data
+    	$Object = Page::create($dataArray);
+    	$Object->update($dataArray);
 
     	// Store Custom fields
     	$this->storeContent($data['content'], $Object->id);

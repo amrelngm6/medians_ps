@@ -32,7 +32,7 @@ class Device extends CustomModel
 	];
 
 
-	public $appends = ['picture', 'price', 'name', 'label', 'y','booking_type'];
+	protected $appends = ['picture', 'price', 'name', 'label', 'y','booking_type'];
 
 
 	public function getLabelAttribute() 

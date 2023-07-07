@@ -7,6 +7,7 @@ use Medians\Games\Domain\Game;
 
 class GameRepository 
 {
+	protected $app;
 
 	function __construct()
 	{

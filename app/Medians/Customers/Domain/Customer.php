@@ -27,7 +27,7 @@ class Customer extends CustomModel
 
 
 
-	public $appends = [ 'photo', 'last_invoice_code', 'not_removeable'];
+	protected $appends = [ 'photo', 'last_invoice_code', 'not_removeable'];
 
 	public function getLastInvoiceCodeAttribute() : ?String
 	{

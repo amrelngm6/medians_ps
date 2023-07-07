@@ -34,7 +34,7 @@ class Product extends CustomModel
 
 	// public $timestamps = false;
 
-	public $appends = ['category_name'];
+	protected $appends = ['category_name'];
 
 
 	public function getCategoryNameAttribute()

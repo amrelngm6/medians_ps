@@ -32,7 +32,7 @@ class DeviceGames extends CustomModel
 	*/
 	// public $timestamps = null;
 
-	public $appends = ['name', 'id', 'picture'];
+	protected $appends = ['name', 'id', 'picture'];
 
 
 	public function getIdAttribute()
