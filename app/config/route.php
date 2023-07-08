@@ -324,6 +324,19 @@ if(isset($app->auth()->id))
     Macaw::get('/admin/plan_features', \Medians\Plans\Application\PlanFeatureController::class.'@index');
 
 
+    
+    /**
+    * @return Blog
+    */
+    Macaw::get('/admin/blog', Medians\Blog\Application\BlogController::class.'@index');
+    Macaw::get('/admin/blog/', Medians\Blog\Application\BlogController::class.'@index');
+    Macaw::get('/admin/blog/categories', function ()  {
+        return (new apps\Categories\CategoryController())->index('Medians\Blog\Domain\Blog');
+    });
+
+
+
+
 
 }
 

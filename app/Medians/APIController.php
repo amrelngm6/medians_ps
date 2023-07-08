@@ -14,6 +14,8 @@ use Medians\Products\Infrastructure\ProductsRepository;
 
 use Medians\Bugs\Infrastructure\BugReportRepository;
 
+use Medians\Blog\Infrastructure\BlogRepository;
+
 
 class APIController extends CustomController
 {
@@ -23,7 +25,7 @@ class APIController extends CustomController
 	*/
 	protected $repo;
 	protected $app;
-	
+
 	protected $BugReportRepo;
 
 
@@ -156,6 +158,10 @@ class APIController extends CustomController
 	            case 'NotificationEvent.create':
 	                $return =  (new Notifications\Application\NotificationEventController())->store(); 
 	                break;
+					
+				case 'Blog.create':
+					$return =  (new Blog\Application\BlogController())->store(); 
+					break;
 
 			}
 

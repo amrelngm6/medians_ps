@@ -9,6 +9,6 @@
     <div id="contentAreaElement" class="kelement"></div>
     
     {{precode|raw}}
-        {{page.content.id ? page.content.content : page.content | raw}}
+        {{page.content.id ? page.content.content : (page.content ? page.content.content : '') | raw}}
     {{postcode|raw}}
 </main>

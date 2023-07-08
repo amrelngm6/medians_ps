@@ -56,6 +56,7 @@ import plan_features from './components/plan_features.vue'
 import branches from './components/branches.vue'
 import plan_subscriptions from './components/plan_subscriptions.vue'
 import pages from './components/pages.vue'
+import blog from './components/blog.vue'
 import notifications_events from './components/notifications_events.vue'
 import notifications from './components/notifications.vue'
 import booking_follow from './components/booking_follow.vue'
@@ -89,6 +90,7 @@ export default {
         plan_subscriptions,
         branches,
         pages,
+        blog,
         notifications,
         notifications_events,
         booking_follow,
