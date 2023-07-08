@@ -40,6 +40,14 @@ class Content extends CustomModel
 	public $timestamps = null;
 
 
+	public $appends = ['data'];
+
+	public function getDataAttribute()
+	{
+		return $this->content;
+	}
+
+
 	public static function generatePrefix($text)
 	{
 		$text = str_replace(array(' ', '/', '\\', '"', "'", '&', '@', '#', '$', '(', ')', '=', '+'), '_', $text);

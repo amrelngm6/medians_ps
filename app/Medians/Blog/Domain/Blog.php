@@ -21,18 +21,20 @@ class Blog extends CustomModel
 	];
 
 
-	public $appends = ['title','photo','field','category_name','date'];
+	public $appends = ['title','photo','field','category_name','date', 'data'];
 
-
+	public function data() {
+		return isset($this->content->content) ? $this->content->content : '';
+	}
 
 	public function getTitleAttribute() 
 	{
-		return !empty($this->content->title) ? $this->content->title : '';
+		return isset($this->content->title) ? $this->content->title : '';
 	}
 
 	public function getCategoryNameAttribute() 
 	{
-		return !empty($this->category->name) ? $this->category->name : '';
+		return isset($this->category->name) ? $this->category->name : '';
 	}
 
 	public function getFieldAttribute() 

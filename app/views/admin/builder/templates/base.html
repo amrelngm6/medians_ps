@@ -5,10 +5,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/src/front_assets/css/main.css">
 
-<main class="WxEditableArea" id="contentArea">
-    <div id="contentAreaElement" class="kelement"></div>
-    
-    {{precode|raw}}
-        {{page.content.id ? page.content.content : (page.content ? page.content.content : '') | raw}}
-    {{postcode|raw}}
-</main>
+    <main class="WxEditableArea" id="contentArea">
+        <div id="contentAreaElement" class="kelement"></div>
+        
+        {{precode|raw}}
+            {{page.data ? page.data | raw : page.content.data | raw }}
+        {{postcode|raw}}
+    </main>

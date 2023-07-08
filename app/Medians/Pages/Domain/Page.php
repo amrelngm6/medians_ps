@@ -21,9 +21,14 @@ class Page extends CustomModel
 	];
 
 
-	protected $appends = ['photo','field','name'];
+	protected $appends = ['photo','field','name', 'data'];
 
 
+
+	public function getDataAttribute() 
+	{
+		return isset($this->content->content) ? $this->content->content : ''; 
+	}
 
 	public function getFieldAttribute() 
 	{
