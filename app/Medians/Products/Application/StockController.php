@@ -8,10 +8,13 @@ use Medians\Products\Application\ProductController;
 
 class StockController extends CustomController
 {
-	public $ProductsRepo;
 	
 	protected $repo;
-
+	
+	protected $app;
+	
+	public $ProductsRepo;
+	
 	function __construct()
 	{
 		$this->checkBranch();

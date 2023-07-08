@@ -14,7 +14,9 @@ class PlanSubscriptionController extends CustomController
 	*/
 	protected $repo;
 
+	protected $app;
 
+	protected $planRepo;
 
 	function __construct()
 	{

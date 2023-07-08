@@ -20,6 +20,7 @@ class PageController extends CustomController
 	* @var Object
 	*/
 	protected $app;
+	protected $repo;
 	public $contentRepo;
 	public $categoryRepo;
 	public $blogRepo;

@@ -14,7 +14,9 @@ class PlanFeatureController extends CustomController
 	*/
 	protected $repo;
 
+	protected $app;
 
+	protected $planRepo;
 
 	function __construct()
 	{

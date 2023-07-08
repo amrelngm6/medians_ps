@@ -16,6 +16,8 @@ class PaymentController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
+	protected $app;
+	protected $planRepo;
 
 
 

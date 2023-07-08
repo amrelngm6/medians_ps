@@ -24,6 +24,9 @@ class OrderController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
+	
+	protected $app;
+
 
 	function __construct()
 	{

@@ -22,6 +22,9 @@ class APIController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
+	protected $app;
+	
+	protected $BugReportRepo;
 
 
 
