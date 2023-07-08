@@ -13,7 +13,6 @@ class BuilderController extends CustomController
 	
 	protected $app;
 	public $contentRepo;
-	protected $app ;
 
 	function __construct()
 	{
