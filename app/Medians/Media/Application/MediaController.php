@@ -11,7 +11,7 @@ class MediaController extends CustomController
 
 	protected $app;
 	
-	protected $app;
+	protected $repo;
 
 	function __construct()
 	{

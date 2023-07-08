@@ -13,6 +13,8 @@ class ExpenseController extends CustomController
 	*/
 	protected $repo;
 
+	protected $app;
+
 
 
 	function __construct()

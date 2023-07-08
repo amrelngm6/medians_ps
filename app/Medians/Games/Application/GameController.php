@@ -16,6 +16,8 @@ class GameController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
+	protected $app;
+	protected $categoryRepo;
 
 	
 
