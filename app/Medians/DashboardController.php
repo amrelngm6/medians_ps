@@ -19,6 +19,7 @@ class DashboardController extends CustomController
 	public $StockRepository;
 	public $ExpensesRepository;
 	public $GamesRepository;
+	public $contentRepo;
 	public $start;
 	public $end;
 	
@@ -38,6 +39,8 @@ class DashboardController extends CustomController
 		$this->ExpensesRepository = new Expenses\Infrastructure\ExpensesRepository;
 
 		$this->GamesRepository = new Games\Infrastructure\GameRepository();
+		
+		$this->contentRepo = new Content\Infrastructure\ContentRepository();
 
 		$this->start = $this->app->request()->get('start') ? date('Y-m-d 00:00:00', strtotime($this->app->request()->get('start'))) : date('Y-m-d 00:00:00');
 		$this->end = $this->app->request()->get('end') ? date('Y-m-d 23:59:59', strtotime($this->app->request()->get('end'))) : date('Y-m-d 23:59:59');
@@ -218,4 +221,37 @@ class DashboardController extends CustomController
         return $data;
 
 	}  
+
+	
+	public function switchLang($lang)
+	{
+
+		if (empty($_SERVER['HTTP_REFERER'])) {
+			echo (new \config\APP)->redirect('/');
+			return null;
+		}
+
+		$prefix = str_replace($this->app->CONF['url'], '', $_SERVER['HTTP_REFERER']);
+
+		if (empty($prefix))
+		{
+			echo (new \config\APP)->redirect('/'); 
+			return true;
+		}
+
+		$object = $this->contentRepo->find(urldecode($prefix));
+		if (empty($object)){
+			echo (new \config\APP)->redirect('/'.$prefix); 
+			return true;
+		}
+
+		$item = $this->contentRepo->switch_lang($object);
+
+		echo (new \config\APP)->redirect('/'.$item->prefix); 
+		
+		$_SESSION['site_lang'] = in_array($lang, ['arabic', 'english']) ? $lang : 'arabic';
+
+		// echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
+	}
+
 }

@@ -8,7 +8,10 @@
                <img src="/src/front_assets/img/favicon.webp" alt="logo">
             </a>
          </div>
-         <div style="float:right;">
+         <div class="gap gap-4" style="display:flex ;float:right;">
+            <a href="/switch-lang/{{lang.__('lang') == 'ar' ?  'english' : 'arabic'}}" class="">
+               <img src="/src/front_assets/img/{{lang.__('lang') == 'ar' ?  'english' : 'arabic'}}.png" width="50" height="49" alt="Lang">
+            </a>
             <a href="/login" class="cmn--btn">
                <span>{{lang.__('Go to app')}}</span>
             </a>
