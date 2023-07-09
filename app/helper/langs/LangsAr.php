@@ -1073,6 +1073,7 @@ class LangsAr
 		,'Quick links' => 'روابط سريعة'
 		,'Terms and policy' => 'سياسة الاستخدام'
 		,'how_it_works' => 'طريقة العمل'
+		,'Go to app' => 'اذهب الى التطبيق'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
