@@ -1070,6 +1070,9 @@ class LangsAr
 		,'Booking time ended' => 'إنتهت مدة الحجز '
 		,'Booking time ended and requires an action' => 'انتهت مدة الحجز  ولم يتم اتخاذ اي إجراء '
 		,'confirm_end_booking' => 'تأكيد إنهاء الحجو '
+		,'Quick links' => 'روابط سريعة'
+		,'Terms and policy' => 'سياسة الاستخدام'
+		,'how_it_works' => 'طريقة العمل'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
