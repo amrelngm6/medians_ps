@@ -92,10 +92,8 @@ class MessageController extends MessageService
                 $data['message_text'] = isset($message->image->caption) ? $message->image->caption : '';
                 break;
                 
-                
             case 'sticker':
-                $data['media_id'] = isset($message->image->id) ? $message->image->id : '';
-                $data['message_text'] = isset($message->image->caption) ? $message->image->caption : '';
+                $data['media_id'] = isset($message->sticker->id) ? $message->sticker->id : '';
                 break;
                 
             default:
@@ -105,6 +103,8 @@ class MessageController extends MessageService
 
         return $data;
     }
+
+    
     
 	/**
 	 * Front page 
