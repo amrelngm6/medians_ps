@@ -52,9 +52,9 @@ class MessageController extends MessageService
                     $data['to'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
                     $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
-                    $data['message_text'] = isset($message->text->body) ? $message->text->body : '';
                     $data['message_id'] = isset($message->id) ? $message->id : '';
-                    $data['media_id'] = isset($message->image->id) ? $message->image->id : '';
+                    $data = $this->messageTypeHandler($data, $message);
+                    
                 }
 
                 $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
@@ -63,7 +63,48 @@ class MessageController extends MessageService
         }
 
     }
-    
+
+    /**
+     * Messages type handler
+     * 
+     */
+    public function messageTypeHandler($data, $message)
+    {
+        
+        switch ($message->type) {
+            case 'document':
+                $data['media_id'] = isset($message->document->id) ? $message->document->id : '';
+                $data['message_text'] = isset($message->document->caption) ? $message->document->caption : '';
+                break;
+                
+            case 'audio':
+                $data['media_id'] = isset($message->audio->id) ? $message->audio->id : '';
+                $data['message_text'] = isset($message->audio->caption) ? $message->audio->caption : '';
+                break;
+                
+            case 'video':
+                $data['media_id'] = isset($message->video->id) ? $message->video->id : '';
+                $data['message_text'] = isset($message->video->caption) ? $message->video->caption : '';
+                break;
+                
+            case 'image':
+                $data['media_id'] = isset($message->image->id) ? $message->image->id : '';
+                $data['message_text'] = isset($message->image->caption) ? $message->image->caption : '';
+                break;
+                
+                
+            case 'sticker':
+                $data['media_id'] = isset($message->image->id) ? $message->image->id : '';
+                $data['message_text'] = isset($message->image->caption) ? $message->image->caption : '';
+                break;
+                
+            default:
+                $data['message_text'] = isset($message->text->body) ? $message->text->body : '';
+                break;
+        }
+
+        return $data;
+    }
     
 	/**
 	 * Front page 
