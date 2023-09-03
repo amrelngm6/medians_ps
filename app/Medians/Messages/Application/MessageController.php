@@ -15,7 +15,17 @@ class MessageController
 	 */
 	public function webhook()
 	{
-        
+
+        $app = new \config\APP;
+
+        $challenge = $app->request()->get('hub_challenge');
+        // $verify_token = $app->request()->get('hub_verify_token');
+        if($challenge)
+        {
+            echo $challenge;
+            die();
+        }                
+
         $rawData = file_get_contents('php://input');
         $jsonData = json_decode($rawData, true);
             
