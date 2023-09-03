@@ -126,7 +126,7 @@ class MessageController extends MessageService
                     break;
                 
                case 'send_text':
-                    return $service->sendTextMessage($app->request()->get('hub_challenge'));
+                    return $service->sendTextMessage($app->request()->get('m'));
                     break;
                 
                 default:
