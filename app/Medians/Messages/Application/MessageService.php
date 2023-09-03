@@ -167,17 +167,26 @@ class MessageService
 	{
 		$path = '/v17.0/'.$this->PNID.'/messages';
 
+		
+		$message = $jsonData->entry[0]->changes[0]->value->messages[0];
+		
 		$data = array(
-            'messaging_product' => 'whatsapp',
+			'messaging_product' => 'whatsapp',
             'to' => $receiver,
             'type' => 'text',
 			'text' => ['body'=>$message]
         );
-
+		
 		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-
+		
 		$response = json_decode($this->wp_web_send($path, $data));
-		$data['message_id'] = $response->messages[0]->id;
+		$message = $response->messages[0];
+		$data['conversation_id'] = '';
+		$data['to'] = $receiver;
+		$data['sender_id'] = $this->PNID;
+		$data['message_id'] = $message->id;
+		$data['message_text'] = $message;
+		$data['media_id'] = '';
 		$MessageRepository->saveMessage($data, $this->PNID);
 	}
 	
