@@ -1,13 +1,13 @@
 <?php
 
 namespace Medians\Auth\Application;
+use Shared\dbaser\CustomController;
 
 
 use Medians\Branches\Application\BranchController;
 
 use Medians\Auth\Domain\AuthModel;
 
-use Medians\Settings\Application\SystemSettingsController;
 
 use Medians\Mail\Application\MailService;
 
@@ -31,13 +31,9 @@ class AuthService
 	/**
 	* @var Instance Repo
 	*/
-	protected $repo;
+	private $repo;
 
-	/**
-	* @var Instance App
-	*/
 	protected $app;
-
 
 
 	function __construct()
@@ -59,7 +55,7 @@ class AuthService
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
 
 		    // return  render('login', [
-			return render('views/front/signin.html.twig', [
+			return render('views/admin/login.html.twig', [
 		    	// 'load_vue' => true,
 		        'title' => __('Login page'),
 		        'app' => $this->app,
@@ -81,56 +77,56 @@ class AuthService
 
 		try {
 				
-			// Get system settings for Google Login
-			$SystemSettings = new SystemSettingsController;
+			// // Get system settings for Google Login
+			// $SystemSettings = new SystemSettingsController;
 
-			$settings = $SystemSettings->getAll();
+			// $settings = $SystemSettings->getAll();
 
-			$Google = new GoogleService($settings['google_login_key'], $settings['google_login_secret']);
+			// $Google = new GoogleService($settings['google_login_key'], $settings['google_login_secret']);
 
-			$code = $this->app->request()->get('code');
+			// $code = $this->app->request()->get('code');
 
-		  	$Google->client->setAccessToken($Google->client->fetchAccessTokenWithAuthCode($code));
+		  	// $Google->client->setAccessToken($Google->client->fetchAccessTokenWithAuthCode($code));
 
-		  	// Check if code is expired or invalid
-		  	if($Google->client->isAccessTokenExpired())
-		  	{
-	  			return false;
-		  	}
+		  	// // Check if code is expired or invalid
+		  	// if($Google->client->isAccessTokenExpired())
+		  	// {
+	  		// 	return false;
+		  	// }
 
 
-	  		// Get user data through API
-			$google_oauth = new Google_Service_Oauth2($Google->client);
-			$user_info = $google_oauth->userinfo->get();
+	  		// // Get user data through API
+			// $google_oauth = new Google_Service_Oauth2($Google->client);
+			// $user_info = $google_oauth->userinfo->get();
 
-			// Prepare user data to store
-			$params['email'] = $user_info['email'];
-			$params['first_name'] = $user_info['givenName'];
-			$params['last_name'] = $user_info['familyName'];
-			$params['profile_image'] = $user_info['picture'];
-			$params['role_id'] = 3;
+			// // Prepare user data to store
+			// $params['email'] = $user_info['email'];
+			// $params['first_name'] = $user_info['givenName'];
+			// $params['last_name'] = $user_info['familyName'];
+			// $params['profile_image'] = $user_info['picture'];
+			// $params['role_id'] = 3;
 
-			// $params['field']['google_id'] = $user_info['id'];
+			// // $params['field']['google_id'] = $user_info['id'];
 
-			$user = $this->repo->getByEmail($params['email']);
+			// $user = $this->repo->getByEmail($params['email']);
 
-			if (isset($user->id))
-				$user->update(['profile_image' => $user_info['picture']]);
-			else 
-				$user = $this->repo->store($params);
+			// if (isset($user->id))
+			// 	$user->update(['profile_image' => $user_info['picture']]);
+			// else 
+			// 	$user = $this->repo->store($params);
 
-			// Check if user saved
-			if (isset($user->id)){
-				$this->setSession($user);
-		    	$this->repo->setCustomCode((object) $user, 'google_id', $user_info['id']);
-			} else {
-				return null;
-			}  
+			// // Check if user saved
+			// if (isset($user->id)){
+			// 	$this->setSession($user);
+		    // 	$this->repo->setCustomCode((object) $user, 'google_id', $user_info['id']);
+			// } else {
+			// 	return null;
+			// }  
 
-			if (isset($user->field['activation_token']))
-				echo $this->app->redirect('./activate-account/'.$user->field['activation_token']);
-			else
-				echo $this->app->redirect('/dashboard');
+			// if (isset($user->field['activation_token']))
+			// 	echo $this->app->redirect('./activate-account/'.$user->field['activation_token']);
+			// else
+			// 	echo $this->app->redirect('/dashboard');
 
 		} catch (Exception $e) {
 			return array('error'=>$e->getMessage());
@@ -142,16 +138,16 @@ class AuthService
 
 	public function loginWithGoogle()
 	{
-		$SystemSettings = new SystemSettingsController;
+		// $SystemSettings = new SystemSettingsController;
 
-		$settings = $SystemSettings->getAll();
+		// $settings = $SystemSettings->getAll();
 
-		if (empty($settings['google_login_key']))
-			return null;
+		// if (empty($settings['google_login_key']))
+		// 	return null;
 
-		$Google = new GoogleService($settings['google_login_key'],$settings['google_login_secret']);
+		// $Google = new GoogleService($settings['google_login_key'],$settings['google_login_secret']);
 
-		return $Google->client->createAuthUrl();
+		// return $Google->client->createAuthUrl();
 	}
 
 
@@ -329,18 +325,6 @@ class AuthService
 		{
 			return $this->repo->find($this->AuthModel->checkSession($code));
 		}
-	}
-
-
-	/**
-	 * Check session is valid or not 
-	 * for Mobile / API Tokens
-	 * 
-	 * @return ? AuthModel
-	 */ 
-	public function checkAPISession($token = null) 
-	{
-		return $this->repo->findByToken($token);
 	}
 
 

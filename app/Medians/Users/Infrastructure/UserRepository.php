@@ -3,14 +3,17 @@
 namespace Medians\Users\Infrastructure;
 
 use Medians\Users\Domain\User;
-use Medians\CustomFields\Domain\CustomField;
-
 
 class UserRepository 
 {
 
 
-
+	/**
+	 * Load app for Sessions and helpful
+	 * methods for authentication and
+	 * settings for branch
+	 */ 
+	protected $app ;
 
 	public function getModel()
 	{
@@ -19,27 +22,12 @@ class UserRepository
 
 	public function find($id)
 	{
-		return User::with('Role', 'Plan', 'branch', 'branches')->find($id);
+		return User::with('Role')->with('branch')->find($id);
 	}
 
 	public function findItem($id)
 	{
-		return User::with('Role', 'Plan', 'branch', 'branches')->find($id);
-	}
-
-	public function findByActivationCode($code)
-	{
-		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($code) {
-			$q->where('code','activation_token')->where('value',$code);
-		})->first();
-	}
-
-	public function findByToken($token)
-	{
-		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
-			$q->where('code','API_token')->where('value',$token);
-		})->first();
-
+		return User::with('Role')->with('branch')->find($id);
 	}
 
 	public function checkDuplicate($param)
@@ -69,14 +57,9 @@ class UserRepository
 		return User::where('password', $password)->where('email' , $email)->first();
 	}
 
-	public function get($limit = 100, $branchId = 0)
+	public function get($limit = 100)
 	{
-		return User::with('Role', 'Plan', 'branch')->where('active_branch', $branchId)->limit($limit)->get();
-	}
-
-	public function getAll()
-	{
-		return User::with('Role', 'Plan', 'branch')->get();
+		return User::with('Role', 'branch')->limit($limit)->get();
 	}
 
 
@@ -96,18 +79,13 @@ class UserRepository
 
 		$Model = $Model->firstOrCreate($data);
 
+    	$Model->update($data);
     	
     	$data['id'] = $Model->id;
     	$this->checkUpdatePassword($data);
 
-    	/**
-		* Set token for activation by User
-		*/
-		$value = User::encrypt(strtotime(date('YmdHis')).$data['id']);
-    	$this->setCustomCode((object) $data, 'activation_token', $value);
-
-		// Return the Model object with the new data
-    	return $this->find($Model->id);
+		// Return the FBUserInfo object with the new data
+    	return $Model;
 
 	}
 	
@@ -125,14 +103,12 @@ class UserRepository
 				return __('this user not found');	
 			}
 
-			$validateEmail = isset($data['email']) ? $this->validateEmail($data['email'], $Object->id) : null;
+			$validateEmail = $this->validateEmail($data['email'], $Object->id);
 			if ($validateEmail) {
 				return $validateEmail;	
 			}
 
-			$data['active'] = isset($data['active']) ? 1 : 0;
-
-			// Return the Model object with the new data
+			// Return the FBUserInfo object with the new data
 	    	$Object->update( (array) $data);
 	    	
 	    	$data['id'] = $Object->id;
@@ -173,23 +149,12 @@ class UserRepository
 
 		if (!empty($data['password']))
 		{
-			// Return the Model object with the new data
+			// Return the FBUserInfo object with the new data
     		$Object->password =  User::encrypt($data['password']);
     		$Object->save();
 		}
     	
     	return isset($Object) ? $Object : null;	
-	}
-
-	/**
-	* Set Custom field for User
-	*/
-	public function setCustomCode($data, $customCode, $value) 
-	{
-
-		$fillable = ['code'=>$customCode,'model_type'=>User::class, 'model_id'=>$data->id, 'value'=>$value];
-
-		CustomField::firstOrCreate($fillable);
 	}
 
 

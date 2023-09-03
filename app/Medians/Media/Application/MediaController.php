@@ -9,10 +9,6 @@ use Medians\Media\Infrastructure\MediaRepository;
 class MediaController extends CustomController 
 {
 
-	protected $app;
-	
-	protected $repo;
-
 	function __construct()
 	{
 		$this->repo = new MediaRepository;
@@ -41,7 +37,7 @@ class MediaController extends CustomController
 		foreach ($this->app->request()->files as $key => $value) {
 			$this->repo->upload($value);
 		}
-		return json_encode(['data'=> ['message'=>'Uploaded successfully']]);
+		echo json_encode(['data'=> ['message'=>'Uploaded successfully']]);
 		
 	}
 
@@ -83,7 +79,8 @@ class MediaController extends CustomController
 			readfile($_SERVER['DOCUMENT_ROOT'].$filepath);
 
 		} else {
-			echo $_SERVER['DOCUMENT_ROOT'].$filepath;
+			echo 'Not found';
+			// echo $_SERVER['DOCUMENT_ROOT'].$filepath;
 		} 
 	}
 

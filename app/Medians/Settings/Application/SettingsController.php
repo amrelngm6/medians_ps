@@ -1,12 +1,12 @@
 <?php
 
 namespace Medians\Settings\Application;
-use \Shared\dbaser\CustomController;
+use Shared\dbaser\CustomController;
 
 use Medians\Settings\Infrastructure as Repo;
 
 
-class SettingsController extends CustomController
+class SettingsController extends CustomController 
 {
 
 	/**
@@ -14,15 +14,12 @@ class SettingsController extends CustomController
 	*/
 	protected $repo;
 
-	protected $app;
-
-	protected $updated;
+	public $app;
 
 
 
 	function __construct()
 	{
-		
 		$this->app = new \config\APP;
 
 		$this->repo = new Repo\SettingsRepository();
@@ -35,11 +32,10 @@ class SettingsController extends CustomController
 	 */
 	public function index()
 	{
-		$this->checkBranch();
 
 		return render('settings', [
-		        'load_vue' => true,
-	        	'title' => __('Settings'),
+			'load_vue' => true,
+	        'title' => __('Settings'),
 	    ]);
 	} 
 
@@ -59,8 +55,9 @@ class SettingsController extends CustomController
 	}
 
 
-	/**
-	* Return the Settings
+
+	/*
+	// Return the Settings
 	*/
 	public function update() 
 	{
@@ -79,21 +76,25 @@ class SettingsController extends CustomController
 
 
 
-	/**
-	* Return the Settings
+	/*
+	// Return the Settings
 	*/
 	public function updateSettings($params) 
 	{
 
+		$this->repo->clear();
+		
 		foreach ($params as $code => $value)
 		{
 
-			$this->deleteItem($code);
-			$this->saveItem($code, $value);
+			$this->updated = isset($this->app->Settings[$code]) ? $this->deleteItem($code) : true;
+
+			if (isset($this->updated))
+			{
+				$this->saveItem($code, $value);
+			}
 		}
 
-		$this->updated = true;
-		
 		return $this;
 	}
 

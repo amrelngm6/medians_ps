@@ -3,13 +3,7 @@
 namespace Medians\Pages\Application;
 use Shared\dbaser\CustomController;
 
-use Medians\Specializations\Infrastructure\SpecializationRepository;
 use Medians\Pages\Infrastructure\PageRepository;
-use Medians\Categories\Infrastructure\CategoryRepository;
-use Medians\Blog\Infrastructure\BlogRepository;
-use Medians\Doctors\Infrastructure\DoctorRepository;
-use Medians\StoryDates\Infrastructure\StoryDateRepository;
-use Medians\Stories\Infrastructure\StoryRepository;
 use Medians\Content\Infrastructure\ContentRepository;
 
 
@@ -19,11 +13,7 @@ class PageController extends CustomController
 	/**
 	* @var Object
 	*/
-	protected $app;
 	protected $repo;
-	public $contentRepo;
-	public $categoryRepo;
-	public $blogRepo;
 
 	
 
@@ -34,8 +24,6 @@ class PageController extends CustomController
 
 		$this->repo = new PageRepository();
 		$this->contentRepo = new ContentRepository();
-		$this->categoryRepo = new CategoryRepository();
-		// $this->blogRepo = new BlogRepository();
 	}
 
 
@@ -173,22 +161,8 @@ class PageController extends CustomController
 
 
 	/**
-	 * Home page 
-	 */
-	public function home()
-	{
-		$item = $this->repo->homepage();
-		
-		$item->addView();
-			
-		return render('views/front/page.html.twig', [
-			'item' => $item,
-		]);
-	}
-
-	/**
-	 * Pages view 
-	 * @var Object
+	 * Front page 
+	 * @var Int
 	 */
 	public function page($contentObject)
 	{
@@ -196,11 +170,6 @@ class PageController extends CustomController
 		try {
 			
 			$item = $this->repo->find($contentObject->item_id, $contentObject->prefix);
-			
-			if (isset($item->content))
-				$_SESSION['lang'] = (isset($item->content->lang) && $item->content->lang == 'ar') ? 'arabic' : 'english';
-			
-			$item->addView();
 			
 			return render('views/front/page.html.twig', [
 		        'item' => $item,
@@ -212,103 +181,5 @@ class PageController extends CustomController
 	} 
 
 
-	/**
-	 * Front page 
-	 * @var Int
-	 */
-	public function calculator()
-	{
-
-		try {
-			
-			return render('views/front/includes/calculator.html.twig', [
-				'specializations' => $this->specsRepo->get_root(),
-				'story_dates' => $this->storyDateRepo->get(),
-				'stories' => $this->storyRepo->get(3),
-				'doctors' => $this->doctorRepo->get(3),
-				'blog' => $this->blogRepo->get(3),
-				'blog' => $this->blogRepo->get(3),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-		}
-	} 
-
-
-	/**
-	 * Front Search page 
-	 * @var Int
-	 */
-	public function search()
-	{
-		try {
-			$request = $this->app->request();
-
-			return render('views/front/search_results.html.twig', [
-		        'search_articles' => (!$request->get('for') || $request->get('for') == 'blog') ? $this->blogRepo->search($request, 10) : [],
-		        'search_doctors' => (!$request->get('for') || $request->get('for') == 'doctor') ? $this->doctorRepo->search($request, 10) : [],
-		        'search_specs' => (!$request->get('for') || $request->get('for') == 'specialization') ? $this->specsRepo->search($request, 10) : [],
-		        'search_text' => $request->get('search'),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-		}
-	} 
-
-
-	/**
-	 * Model object 
-	 */
-	public function find($prefix)
-	{
-	
-		$item = $this->contentRepo->find($prefix);
-		if ($item) { return $item;}
-
-		$newPrefix = !empty($_SERVER['SCRIPT_URL']) ? explode('/', $_SERVER['SCRIPT_URL']) : explode('/',  !empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : $_SERVER['REDIRECT_URL']);
-
-		return $this->contentRepo->find($newPrefix[1]);
-	}
-
-
-
-	/**
-	 * Model object 
-	 */
-	public function pages($prefix, $id = 0)
-	{
-		try 
-		{
-			$item = $this->find($prefix);
-
-			if ($prefix && empty($item->home) && empty($_SERVER['HTTP_REFERER']))
-			{
-			    $_SESSION['site_lang'] = (isset($item->lang) && $item->lang == 'ar') ? 'arabic' : 'english';
-			}
-
-			if (isset($item->item_type))
-			{
-
-		        switch ($item->item_type) 
-		        {
-		        	case \Medians\Pages\Domain\Page::class:
-		        		return (new  \Medians\Pages\Application\PageController)->page($item);
-		        		break;
-					
-					case \Medians\Blog\Domain\Blog::class:
-						return (new  \Medians\Blog\Application\BlogController)->page($item);
-						break;
-		        }
-			}
-
-		        
-
-		} catch (\Exception $e) {
-			print_r($e);
-			throw new \Exception( $e->getMessage(), 1);
-		}
-	} 
 
 }

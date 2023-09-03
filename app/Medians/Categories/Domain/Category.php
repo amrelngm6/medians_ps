@@ -4,8 +4,7 @@ namespace Medians\Categories\Domain;
 
 use Shared\dbaser\CustomModel;
 
-use Medians\Devices\Domain\Device;
-use Medians\Products\Domain\Product;
+use Medians\Blog\Domain\Blog;
 
 class Category extends CustomModel
 {
@@ -40,14 +39,10 @@ class Category extends CustomModel
 	}
 
 
-	public function devices()
+	public function blog()
 	{
-		return $this->hasMany(Device::class, 'type', 'id');
+		return $this->hasMany(Blog::class, 'category_id', 'id');
 	}
 
-	public function products()
-	{
-		return $this->hasMany(Product::class, 'type', 'id');
-	}
 
 }

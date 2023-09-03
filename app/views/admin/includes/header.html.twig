@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>{{app.Settings.sitename}}</title>
+    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/tailwind.min.css">
+    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/dist/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/bootstrap-grid.min.css">
+    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/alertify/alertify.min.css">
+    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/chat/bundle.css">
+    <link rel="stylesheet" type="text/css" href="{{app.CONF.url ? app.CONF.url : '/'}}assets/chat/app.css">
+    <!-- External Theem  -->
+    <script type="text/javascript">
+        var site_url = '{{app.CONF.url ? app.CONF.url : "/"}}';
+    </script>
+    <script type="text/javascript" src="{{app.CONF.url ? app.CONF.url : '/'}}assets/js/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+    <div class="{{ lang.__('DIR') }}" style="direction: {{lang.__('DIR')}}">
+        <!-- component -->
+        {% if app.auth.id %}
+        
+        {% endif %}

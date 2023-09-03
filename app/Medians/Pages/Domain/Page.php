@@ -21,14 +21,9 @@ class Page extends CustomModel
 	];
 
 
-	protected $appends = ['photo','field','name', 'data'];
+	public $appends = ['photo','field','name'];
 
 
-
-	public function getDataAttribute() 
-	{
-		return isset($this->content->content) ? $this->content->content : ''; 
-	}
 
 	public function getFieldAttribute() 
 	{
@@ -68,7 +63,7 @@ class Page extends CustomModel
 
 	public function custom_fields()
 	{
-		return $this->morphMany(CustomFields::class, 'model')->with('field');
+		return $this->morphMany(CustomFields::class, 'item')->with('field');
 	}
 
 

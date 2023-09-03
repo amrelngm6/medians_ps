@@ -21,20 +21,18 @@ class Blog extends CustomModel
 	];
 
 
-	public $appends = ['title','photo','field','category_name','date', 'data'];
+	public $appends = ['title','photo','field','category_name','date', 'update_date'];
 
-	public function data() {
-		return isset($this->content->content) ? $this->content->content : '';
-	}
+
 
 	public function getTitleAttribute() 
 	{
-		return isset($this->content->title) ? $this->content->title : '';
+		return !empty($this->content->title) ? $this->content->title : '';
 	}
 
 	public function getCategoryNameAttribute() 
 	{
-		return isset($this->category->name) ? $this->category->name : '';
+		return !empty($this->category->name) ? $this->category->name : '';
 	}
 
 	public function getFieldAttribute() 
@@ -50,6 +48,11 @@ class Blog extends CustomModel
 	public function getDateAttribute() : ?String
 	{
 		return date('Y-m-d', strtotime($this->created_at));
+	}
+	
+	public function getUpdateDateAttribute() 
+	{
+		return isset($this->updated_at) ? date('Y-m-d', strtotime($this->updated_at)) : '';
 	}
 
 
@@ -70,13 +73,20 @@ class Blog extends CustomModel
 
 	public function custom_fields()
 	{
-		return $this->morphMany(CustomFields::class, 'model');
+		return $this->morphMany(CustomFields::class, 'item');
+	}
+
+	public function content()
+	{
+		return $this->morphOne(Content::class, 'item')->where('lang', __('lang'));
 	}
 
 
 	public function thumbnail() 
 	{
-    	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
+		
+    	$return = str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
+    	return is_file($return) ? $return : $this->picture;
 	}
 
 

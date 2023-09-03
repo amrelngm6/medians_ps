@@ -1,13 +1,14 @@
 <?php
 
 namespace Medians\Notifications\Application;
+use Shared\dbaser\CustomController;
 use \Shared\dbaser\CustomController;
 
 use Medians\Notifications\Infrastructure\NotificationRepository;
 use Medians\Devices\Infrastructure\OrderDevicesRepository;
 use Medians\Branches\Infrastructure\BranchRepository;
 
-class NotificationController extends CustomController
+class NotificationController extends CustomController extends CustomController 
 {
 
 	/**
@@ -15,9 +16,9 @@ class NotificationController extends CustomController
 	*/
 	protected $repo;
 	
+	
 	protected $branchRepo;
 
-	protected $orderDeviceRepo;
 
 
 	function __construct()

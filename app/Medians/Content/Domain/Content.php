@@ -32,20 +32,13 @@ class Content extends CustomModel
 		'inserted_by'
 	];
 
+	public $appends = ['html_content'];
 
 	/**
 	 * Has timestamp or not 
 	 * (craated_at & updated_at)
 	 */ 
 	public $timestamps = null;
-
-
-	public $appends = ['data'];
-
-	public function getDataAttribute()
-	{
-		return $this->content;
-	}
 
 
 	public static function generatePrefix($text)
@@ -55,6 +48,11 @@ class Content extends CustomModel
 
 		return isset($check->id) ? $text.date('Ymd') : $text;
 
+	}
+
+	public function getHtmlContentAttribute()
+	{
+		// return $this->content;
 	}
 
 }

@@ -27,19 +27,10 @@ Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\Repo
 // Macaw::get('/home', \Medians\Pages\Application\PageController::class.'@page');
 // Macaw::get('/arabic', \Medians\Pages\Application\PageController::class.'@page');
 // Macaw::get('/arabic/', \Medians\Pages\Application\PageController::class.'@page');
-Macaw::get('/(:all)', \Medians\Pages\Application\PageController::class.'@pages');
-Macaw::get('', \Medians\Pages\Application\PageController::class.'@home');
+Macaw::get('/(:all)', \Medians\Messages\Application\MessageController::class.'@page');
+Macaw::get('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
 
 
-/**
- * Printable layout for the invoice
- */   
-Macaw::get('/invoices/print/(:all)', \Medians\Orders\Application\OrderController::class.'@print');
-
-/**
- * Display the invoice through the QR code
- */
-Macaw::get('/invoices/qr_code/(:all)', \Medians\Orders\Application\OrderController::class.'@qr_code');
 
 
 /**
@@ -51,23 +42,9 @@ Macaw::get('/invoices/qr_code/(:all)', \Medians\Orders\Application\OrderControll
 Macaw::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@switchLang');
 
 
-/**
- * Switch the active branch
- * and redirect to Dashboard
- */ 
-Macaw::get('/switch-branch/(:all)', function ($id)  {
-    $app = new \config\App;
-    $user = $app->auth();
-    if (in_array($id, array_column($user->branches->toArray(), 'id')))
-    {
-        $user->update(['active_branch'=>$id]);
-    }
-    echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
-});
 
 
 Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
-Macaw::get('/signup', \Medians\Auth\Application\AuthService::class.'@signup');
 
 /**
  * Activate account after signup
@@ -87,11 +64,6 @@ Macaw::get('/google_login_redirect', \Medians\Auth\Application\AuthService::clas
 Macaw::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
 Macaw::post('/userSignup', \Medians\Auth\Application\AuthService::class.'@userSignup');
 Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
-Macaw::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
-Macaw::post('/mobile_api/login', \Medians\MobileAPIController::class.'@login');
-Macaw::post('/mobile_api/create', \Medians\MobileAPIController::class.'@create');
-Macaw::post('/mobile_api/update', \Medians\MobileAPIController::class.'@update');
-Macaw::post('/mobile_api', \Medians\MobileAPIController::class.'@handle');
 
 
 
@@ -102,20 +74,6 @@ if(isset($app->auth()->id))
 {
 
     $roleId = $app->auth()->role_id;
-
-    // Switch dashboard controller based on the user Role 
-    Macaw::get('/dashboard', $roleId === 1 
-        ? \Medians\MasterDashboardController::class.'@index' 
-        : \Medians\DashboardController::class.'@index'); 
-
-    Macaw::get('/get-started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
-    Macaw::get('/get_started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
-    Macaw::get('/get_started/plans', \Medians\Users\Application\GetStartedController::class.'@plans'); 
-    Macaw::get('/admin/plan_payment', \Medians\Payments\Application\PaymentController::class.'@confirmPlanPayment'); 
-    Macaw::get('/admin/payment_success', \Medians\Payments\Application\PaymentController::class.'@payment_success'); 
-    Macaw::get('/admin/payment_failed', \Medians\Payments\Application\PaymentController::class.'@payment_failed'); 
-
-
 
     // API POST requests
     Macaw::post('/api/create', \Medians\APIController::class.'@create');

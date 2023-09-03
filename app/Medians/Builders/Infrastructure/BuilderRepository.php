@@ -18,9 +18,7 @@ class BuilderRepository
 	{
 		$save = [];
 
-		foreach (Builder::groupBy('category')->with(['childs'=>function($e){
-			// $e->whereIn('category', ['content', 'columns'])->whereIn('id', [92])->select('id', 'content', 'category');
-		}])->get() as $key => $value) 
+		foreach (Builder::with('childs')->get() as $key => $value) 
 		{
 			if (count($value->childs))
 			{
@@ -43,6 +41,7 @@ class BuilderRepository
 		$check = Content::where('prefix', $request->get('prefix'))->first();
 		$check->prefix = ($request->get('seoName') == $request->get('prefix')) ? $request->get('prefix') : Content::generatePrefix($request->get('seoName'));
 		$check->title = $request->get('title');
+		$check->short = $request->get('short') ;
 		$check->seo_title = $request->get('seo_title');
 		$check->seo_keywords = $request->get('seo_keywords');
 		$check->seo_desc = $request->get('seo_desc');

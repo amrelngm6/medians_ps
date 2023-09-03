@@ -99,6 +99,7 @@ class APP
 
 	public function auth()
 	{
+		// return true;
 		$check = !empty($this->auth) ? $this->auth : (new AuthService())->checkSession();
 		$this->branch = !empty($this->branch) ? $this->branch : (isset($check->branch) ? $check->branch : $this->checkAPISession()->branch);
 		return $check ? $check : $this->checkAPISession();

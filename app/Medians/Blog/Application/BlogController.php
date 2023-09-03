@@ -1,10 +1,14 @@
 <?php
-namespace Medians\Blog\Application;
 
+namespace Medians\Blog\Application;
 use Shared\dbaser\CustomController;
 
+use Medians\Specializations\Infrastructure\SpecializationRepository;
 use Medians\Blog\Infrastructure\BlogRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
+use Medians\Offers\Infrastructure\OfferRepository;
+use Medians\Stories\Infrastructure\StoryRepository;
+
 
 class BlogController extends CustomController 
 {
@@ -14,9 +18,6 @@ class BlogController extends CustomController
 	*/
 	protected $repo;
 
-	protected $app;
-
-	public $categoryRepo;
 	
 
 	function __construct()
@@ -25,7 +26,12 @@ class BlogController extends CustomController
 		$this->app = new \config\APP;
 
 		$this->repo = new BlogRepository();
+		$this->specsRepo = new SpecializationRepository();
 		$this->categoryRepo = new CategoryRepository();
+		$this->offersRepo = new OfferRepository();
+		$this->storiesRepo = new StoryRepository();
+
+
 	}
 
 
@@ -111,6 +117,7 @@ class BlogController extends CustomController
 	{
 		try {
 				
+				// print_r($this->repo->find($id));
 			return render('views/admin/blog/blog.html.twig', [
 		        'title' => __('edit_blog'),
 		        'langs_list' => ['ar','en'],
@@ -217,9 +224,12 @@ class BlogController extends CustomController
 			$item = $this->repo->find($contentObject->item_id);
 			$item->addView();
 
-			return render('views/front/page.html.twig', [
-		        'item' => $item,
+			return render('views/front/article.html.twig', [
+		        'item' => $this->repo->filterShortCode($item),
+		        'similar_items' => $this->specsRepo->similar($item, 3),
 		        'similar_articles' => $this->repo->similar($item, 3),
+		        'offers' => $this->offersRepo->random(1),
+		        'stories' => $this->storiesRepo->random(1),
 		    ]);
 
 		} catch (\Exception $e) {
@@ -241,9 +251,10 @@ class BlogController extends CustomController
 		        'first_item' => $this->repo->getFeatured(1),
 		        'search_items' => $request->get('search') ?  $this->repo->search($request, 10) : [],
 		        'search_text' => $request->get('search'),
-		        'items' => $this->repo->get(4),
+		        'items' => $this->repo->getFront(4),
 		        'cat_her' => $this->repo->getByCategory(6, 4),
 		        'cat_him' => $this->repo->getByCategory(7, 4),
+		        'offers' => $this->offersRepo->random(1),
 		    ]);
 
 		} catch (\Exception $e) {

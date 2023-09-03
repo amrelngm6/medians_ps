@@ -1,85 +1,41 @@
 <?php
 
 namespace Medians\Customers\Application;
-use \Shared\dbaser\CustomController;
+use Shared\dbaser\CustomController;
 
 use Medians\Customers\Infrastructure as Repo;
 
 
 
-class CustomerController extends CustomController
+class CustomerController extends CustomController 
 {
 
 
 	/*
 	/ @var new CustomerRepository
 	*/
-	protected $repo;
-
-	protected $app;
+	private $repo;
 
 
-	function __construct()
+	function __construct($app)
 	{
 
-
-		$this->app = new \config\APP;
-
-		$this->repo = new Repo\CustomerRepository();
+		$this->repo = new Repo\CustomerRepository($app);
 
 
 	}
 
-
-	/**
-	 * Columns list to view at DataTable 
-	 *  
-	 */ 
-	public function columns( ) 
-	{
-
-		return [
-            [
-                'key'=> "id",
-                'title'=> '#',
-            ],
-            [
-                'key'=> "name",
-                'title'=> __('name'),
-                'sortable'=> true,
-            ],
-            [
-                'key'=> "mobile",
-                'title'=> __('mobile'),
-                'sortable'=> true,
-                'type'=> 'number',
-            ],
-            [
-                'key'=> "bookings_count",
-                'title'=> __('bookings_count'),
-                'sortable'=> true,
-            ],
-            [
-                'key'=> "last_invoice_code",
-                'title'=> __('Last invoice'),
-                'sortable'=> false,
-            ]
-        ];
-	}
 
 	/**
 	 * Index page
 	 * 
 	 */
-	public function index()
+	public function index($request, $app)
 	{
-		$this->checkBranch();
-		
-		return render('customers', [
+		return render('views/admin/customers/list.html.twig', [
 			'items' =>  $this->repo->get(),
-	        'title' => __('Customers'),
-	        'load_vue' => true,
-			'columns' =>  $this->columns(),
+	        'title' => 'Customers',
+	        'app' => $app,
 	    ]);
 	} 
 
@@ -88,12 +44,12 @@ class CustomerController extends CustomController
 	 * Create page
 	 * 
 	 */
-	public function create()
+	public function create($request, $app)
 	{
 		return render('views/admin/customers/create.html.twig', [
 	        'title' => 'Customers',
 	        'Model' => $this->repo->getModel(),
-	        'app' => $this->app,
+	        'app' => $app,
 	    ]);
 	} 
 
@@ -104,29 +60,24 @@ class CustomerController extends CustomController
 	/**
 	*  Store item
 	*/
-	public function store() 
+	public function store($request, $app) 
 	{
 
-
-		$params_request = $this->app->request()->get('params');
-		$params = isset($params_request['customer']) ? (array) json_decode($params_request['customer']) : $params_request;
+		$params = (array) json_decode($request->get('params')['customer']);
 
 		try {	
 
-			if (empty($params['name']))
-	        	return array('error'=>__('Name is required'), 'result'=>__('Name is required'));
+			if (empty($params['first_name']))
+	        	return array('error'=>1, 'result'=>'First Name is required');
 
-			if (empty($params['mobile']))
-	        	return array('error'=> __('Phone is required'), 'result'=> __('Phone is required'));
+			if (empty($params['phone']))
+	        	return array('error'=>1, 'result'=>'Phone is required');
 
-			if (strlen($params['mobile']) != 11)
-	        	return array('error'=> __('MOBILE_ERR'), 'result'=> __('MOBILE_ERR') );
+			$this->repo->app = $app;
+			$params['created_by'] = $app->auth->id;
+			$Property = $this->repo->store($params);
 
-			$params['created_by'] = $this->app->auth()->id;
-			$params['active_branch'] = $this->app->branch->id;
-			$Item = $this->repo->store($params);
-
-        	return array('success'=>1, 'result'=> $Item);
+        	return array('success'=>1, 'result'=>'Created');
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());
@@ -136,7 +87,7 @@ class CustomerController extends CustomController
 
 
 	/**
-	*  Update item
+	*  Store item
 	*/
 	public function update($request, $app) 
 	{
@@ -156,20 +107,5 @@ class CustomerController extends CustomController
 	}
 
 
-	/**
-	 * Find customer by mobile
-	 * 
-	 * @param String
-	 * 
-	 * @return JSON
-	 */
-	public function search($text)
-	{
-		$data = $this->repo->search($text);
-
-
-		echo json_encode(array('success'=>1, 'result'=> $data->toArray()));
-
-	}  
 
 }

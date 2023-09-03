@@ -4,10 +4,6 @@ namespace Medians\Customers\Domain;
 
 use Shared\dbaser\CustomModel;
 
-use Medians\Orders\Domain\Order;
-use Medians\Devices\Domain\OrderDevice;
-use Medians\Notifications\Domain\NotificationEvent;
-
 class Customer extends CustomModel
 {
 
@@ -17,26 +13,25 @@ class Customer extends CustomModel
 	protected $table = 'customers';
 
 	public $fillable = [
-		'name',
-		'mobile',
-		'photo',
-		'gender',
-		'active_branch',
+		'stage_id',
+		'first_name',
+		'last_name',
+		'email',
+		'phone',
+		'business_type',
 		'created_by',
+		'agent_id',
+		'source_type',
+		'source_id',
 	];
 
 
 
-	protected $appends = [ 'photo', 'last_invoice_code', 'not_removeable'];
+	public $appends = ['name', 'photo'];
 
-	public function getLastInvoiceCodeAttribute() : ?String
+	public function getNameAttribute() : String
 	{
-		return isset($this->last_invoice->code) ? $this->last_invoice->code : '';
-	}
-
-	public function getNotRemoveableAttribute() 
-	{
-		return true;
+		return $this->name();
 	}
 
 	public function getPhotoAttribute() : ?String
@@ -49,6 +44,13 @@ class Customer extends CustomModel
 	{
 		return !empty($this->profile_image) ? $this->profile_image : '/uploads/images/default_profile.jpg';
 	}
+
+	public function name() : String
+	{
+		return $this->first_name.' '.$this->last_name;
+	}
+
+
 
 	public function getFields()
 	{
@@ -70,17 +72,6 @@ class Customer extends CustomModel
 				}, (array) json_decode($this->SelectedOption))
 			, 'value', 'code');
 
-	}
-
-
-	public function bookings()
-	{
-		return $this->hasMany(OrderDevice::class, 'customer_id', 'id');
-	}
-
-	public function last_invoice()
-	{
-		return $this->hasOne(Order::class, 'customer_id', 'id');
 	}
 
 

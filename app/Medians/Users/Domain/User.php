@@ -2,18 +2,14 @@
 
 namespace Medians\Users\Domain;
 
+
 use Shared\dbaser\CustomModel;
 
-use Medians\Mail\Application\MailService;
-
-use Medians\Plans\Domain\Plan;
-use Medians\Plans\Domain\PlanSubscription;
 use Medians\Roles\Domain\Role;
-use Medians\Roles\Domain\Permission;
-use \Medians\CustomFields\Domain\CustomField;
 
 class User extends CustomModel
 {
+
 
 	/*
 	/ @var String
@@ -32,20 +28,12 @@ class User extends CustomModel
     	'active',
 	];
 
-	protected $appends = ['name', 'photo', 'password', 'field', 'permissions'];
-
-
-	public function getPermissionsAttribute() 
-	{
-        return !empty($this->RolePermissions) ? array_column($this->RolePermissions->toArray(), 'access', 'code') : [];
-	}
+	public $appends = ['name', /*'photo', */'password'];
 
 	public function getPasswordAttribute() 
 	{
 		return null;
 	}
-
-
 	public function getNameAttribute() : String
 	{
 		return $this->name();
@@ -56,10 +44,6 @@ class User extends CustomModel
 		return $this->photo();
 	}
 
-    public function getFieldAttribute() 
-    {
-        return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
-    }
 
 	public function photo() : String
 	{
@@ -105,12 +89,7 @@ class User extends CustomModel
 
 	public function branch()
 	{
-		return $this->hasOne(Branch::class , 'id', 'active_branch')->with('plan');
-	}
-
-	public function branches()
-	{
-		return $this->hasMany(Branch::class , 'owner_id', 'id');
+		return $this->hasOne(Branch::class , 'id', 'active_branch');
 	}
 
 
@@ -122,28 +101,6 @@ class User extends CustomModel
 		return $this->hasOne(Role::class, 'id', 'role_id');
 	}
 
-	public function Plan() 
-	{
-		return $this->hasOneThrough(Plan::class, PlanSubscription::class, 'branch_id', 'id', 'active_branch', 'plan_id')->orderBy('id', 'DESC')->with('plan_features');
-	}
-
-	public function hasToken()
-	{
-        return $this->hasOne(CustomField::class, 'model_id', 'id')->where('model_type', User::class);
-	}
-
-    public function custom_fields()
-    {
-        return $this->morphMany(CustomField::class, 'model');
-    }
-
-
-    public function RolePermissions()
-    {
-		return $this->hasMany(Permission::class, 'role_id', 'role_id')->selectRaw('CONCAT(model, ".", action) AS code, access ');
-    }
-
-
 	
 	/**
 	 * Password encryption method
@@ -153,49 +110,5 @@ class User extends CustomModel
 	{
 		return sha1(md5($value));
 	}
-
-
-	/**
-	 * Create Custom filed for user
-	 */
-	public function insertCustomField($code, $value)
-	{
-
-    	// Insert activation code 
-		$fillable = [
-			'code'=>$code,
-			'model_type'=>User::class, 
-			'model_id'=>$this->id, 
-			'value'=>$value
-		];
-
-		return CustomField::firstOrCreate($fillable);
-
-	}  
-
-
-
-
-
-    /**
-     * Handle the event after an item 
-     * has been updated 
-     * 
-     */
-    public function updatedEvent()
-    {
-    	$fields = array_fill_keys($this->fillable,1);
-    	$fields['password'] = 1;
-    	$updatedFields = array_intersect_key($fields, $this->getDirty());
-
-    	if (empty($updatedFields))
-    		return null;
-
-
-    	// Insert activation code 
-		$this->insertCustomField('activation_token', User::encrypt(strtotime(date('YmdHis')).$this->id));
-    }  
-
-	
 
 }

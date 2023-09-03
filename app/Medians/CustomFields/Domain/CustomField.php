@@ -9,7 +9,7 @@ class CustomField extends CustomModel
 
 	protected $table = 'custom_fields';
 
-	public $fillable = ['title', 'code','model_type', 'model_id', 'value', 'field_id'];
+	public $fillable = ['title', 'code','item_type', 'item_id', 'value', 'field_id'];
 
 	public $timestamps = false;
 

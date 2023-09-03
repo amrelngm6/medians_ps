@@ -12,7 +12,14 @@ use Medians\Notifications\Domain\NotificationEvent;
 class NotificationEventRepository 
 {
 
+	
+	/**
+	 * Load app for Sessions and helpful
+	 * methods for authentication and
+	 * settings for branch
+	 */ 
 	protected $app ;
+
 
 
 	function __construct ()

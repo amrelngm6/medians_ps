@@ -1,11 +1,12 @@
 <?php
 
 namespace Medians\Notifications\Application;
+use Shared\dbaser\CustomController;
 use \Shared\dbaser\CustomController;
 
 use Medians\Notifications\Infrastructure\NotificationEventRepository;
 
-class NotificationEventController extends CustomController
+class NotificationEventController extends CustomController extends CustomController 
 {
 
 	/**

@@ -1,12 +1,12 @@
 <?php
 
 namespace Medians\Categories\Application;
-use \Shared\dbaser\CustomController;
+use Shared\dbaser\CustomController;
 
 use Medians\Categories\Infrastructure\CategoryRepository;
 
 
-class CategoryController extends CustomController
+class CategoryController extends CustomController 
 {
 
 	/**
@@ -14,20 +14,36 @@ class CategoryController extends CustomController
 	*/
 	protected $repo;
 
-	protected $app;
-	
-
 	
 
 	function __construct()
 	{
 
-		$this->checkBranch();
-
 		$this->repo = new CategoryRepository();
-		
 	}
 
+
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function columns( ) 
+	{
+
+		return [
+            [
+                'key'=> "id",
+                'title'=> "#",
+            ],
+            [
+                'key'=> "title",
+                'title'=> __('title'),
+                'sortable'=> true,
+            ]
+        ];
+	}
+
+	
 
 	/**
 	 * Admin index items
@@ -36,18 +52,22 @@ class CategoryController extends CustomController
 	 * @param \Twig\Environment $twig
 	 * 
 	 */ 
-	public function index( $model ) 
+	public function index( ) 
 	{
-
-	    return render('categories', [
-	        'load_vue' => true,
-	        'title' => __('categories'),
-	        'model' => $model,
-	        'categories' => $this->repo->get($model),
-	    ]);
-
+		
+		try {
+			
+		    return render('categories', [
+		        'load_vue' => true,
+		        'title' => __('categories'),
+		        'columns' => $this->columns(),
+		        'items' => $this->repo->get(),
+		    ]);
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+			
+		}
 	}
-
 
 
 	public function store() 
@@ -56,18 +76,18 @@ class CategoryController extends CustomController
 		$this->app = new \config\APP;
 
 		$params = $this->app->request()->get('params');
-		$params['branch_id'] = $this->app->branch->id;
 
         try {	
 
         	$this->validate($params);
 
+        	$params['model'] = 'Medians\Blog\Domain\Blog';
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
-        	return throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
 
 		return $returnData;
@@ -125,12 +145,12 @@ class CategoryController extends CustomController
 	public function validate($params) 
 	{
 
-		if (empty($params['model']))
-		{
-        	throw new \Exception(json_encode(array('result'=>__('model_required'), 'error'=>1)), 1);
-		}
+		// if (empty(trim($params['model'])))
+		// {
+        // 	throw new \Exception(json_encode(array('result'=>__('model_required'), 'error'=>1)), 1);
+		// }
 
-		if (empty($params['name']))
+		if (empty($params['content']['ar']['title']))
 		{
         	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
 		}

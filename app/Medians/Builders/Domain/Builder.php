@@ -19,7 +19,7 @@ class Builder extends CustomModel
 		'created_by'
 	];
 
-	protected $appends = ['html'];
+	public $appends = ['html'];
 
 
 	public function getHtmlAttribute()

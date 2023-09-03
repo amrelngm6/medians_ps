@@ -9,7 +9,14 @@ class SettingsRepository
 {
 
 
-	protected $app;
+	
+	/**
+	 * Load app for Sessions and helpful
+	 * methods for authentication and
+	 * settings for branch
+	 */ 
+	protected $app ;
+
 
 
 	function __construct()
@@ -17,8 +24,8 @@ class SettingsRepository
 		$this->app = new \config\APP;
 	}
 
-	/**
-	* Find item by `id` 
+	/*
+	// Find item by `id` 
 	*/
 	public function find($id) : ?Settings
 	{
@@ -27,14 +34,15 @@ class SettingsRepository
 
 	}
 
-	/**
-	* Find item by `id` 
+	/*
+	// Find item by `id` 
 	*/
 	public function getByCode($code) : ? String
 	{
 		try {
 			
-			$check = Settings::where('branch_id', $this->app->branch->id)->where('code', $code)->first();
+			// $check = Settings::where('branch_id', $this->app->branch->id)->where('code', $code)->first();
+			$check = Settings::where('code', $code)->first();
 			return isset($check->value) ? $check->value : '';
 		} catch (\Exception $e) {
     		throw new \Exception($e->getMessage(), 1);
@@ -42,8 +50,8 @@ class SettingsRepository
 		}
 	}
 
-	/**
-	* Find all items 
+	/*
+	// Find all items 
 	*/
 	public function getAll()
 	{

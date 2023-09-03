@@ -17,10 +17,7 @@
         "phpseclib/phpseclib": "~3.0",
         "phpmailer/phpmailer": "^6.8",
         "google/apiclient": "^2.15",
-        "omnipay/paypal": "*",
-        "paypal/rest-api-sdk-php": "*",
-        "php-http/message-factory": "^1.1",
-        "php-ai/php-ml": "^0.10.0"
+        "php-http/message-factory": "^1.1"
     },
     "config": {
         "allow-plugins": {

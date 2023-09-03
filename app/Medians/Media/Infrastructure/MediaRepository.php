@@ -54,17 +54,37 @@ class MediaRepository
 
 	public function fetchFolder($type)
 	{
-		$data = [];
-		foreach (glob($this->dir.'*.*') as $key => $value) 
-		{
-			$ext = explode('.', $value);
-			if (in_array(end($ext),  $this->getTypes($type)))
-			{
-				$data[] = $this->setMedia($value, ($key+1)); 
-			}
+		// $data = [];
+		// foreach (glob($this->dir.'*.*') as $key => $value) 
+		// {
+		// 	$ext = explode('.', $value);
+		// 	if (in_array(end($ext),  $this->getTypes($type)))
+		// 	{
+		// 		$data[] = $this->setMedia($value, ($key+1)); 
+		// 	}
+		// }
+		
+		$output = array();
+		foreach( new \RecursiveIteratorIterator(
+			new \RecursiveDirectoryIterator( $this->dir, \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS ) ) as $value ) {
+				if ( $value->isFile() ) {
+					$output[] = array( 'k'=>$value->getMTime(), 'v'=>$value->getRealPath() );
+				}
+		}
+		
+		// you can use array_column() instead of the above code
+		$volume  = array_column($output, 'k');
+		$edition = array_column($output, 'v');
+
+		// Sort the data with volume descending, edition ascending
+		// Add $data as the last parameter, to sort by the common key
+		array_multisort($volume, SORT_DESC, $edition, SORT_ASC, $output);
+
+		foreach ($output as $key => $value) {
+			$output[$key] = $this->setMedia($value['v'], $key+1);
 		}
 
-		return $data;
+		return $output;
 	}
 
 

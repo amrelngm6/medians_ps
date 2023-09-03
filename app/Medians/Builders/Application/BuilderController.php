@@ -8,11 +8,7 @@ use Medians\Content\Infrastructure\ContentRepository;
 
 
 class BuilderController extends CustomController 
-{	
-
-	
-	protected $app;
-	public $contentRepo;
+{
 
 	function __construct()
 	{
@@ -35,9 +31,10 @@ class BuilderController extends CustomController
 			$check->switch_lang = $this->contentRepo->switch_lang($check);
 
 			return render('views/admin/builder/index.html.twig', [
+				'content' => $check->content, 
 				'page' => $check, 
-				'precode' => isset($check->content) && (substr(trim($check->content), 0, 8) == '<section') ? '' : '<section id="newKeditItem" class="kedit">', 
-				'postcode' => isset($check->content) && (substr(trim($check->content), 0, 8) == '<section') ? '' : '</section>', 
+				'precode' => ($check->content && substr(trim($check->content), 0, 8) == '<section') ? '' : '<section id="newKeditItem" class="kedit">', 
+				'postcode' => ($check->content && substr(trim($check->content), 0, 8) == '<section') ? '' : '</section>', 
 			]);
 
 		} catch (\Exception $e) {

@@ -33,7 +33,7 @@ class Notification extends CustomModel
 	];
 
 
-	protected $appends = ['receiver_name', 'date', 'model_short_name', 'short_date', 'url'];
+	public $appends = ['receiver_name', 'date', 'model_short_name', 'short_date', 'url'];
 
 	public function getDateAttribute()
 	{
