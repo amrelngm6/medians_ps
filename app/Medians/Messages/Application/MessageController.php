@@ -118,14 +118,15 @@ class MessageController extends MessageService
 		try {
 			
             $service = new MessageService; 
-
+            $app = new \config\APP;
+            
             switch ($item) {
                 case 'chat':
                     return $service->request_code();
                     break;
                 
-               case 'send':
-                    return $service->sendTextMessage();
+               case 'send_text':
+                    return $service->sendTextMessage($app->request()->get('hub_challenge'));
                     break;
                 
                 default:
