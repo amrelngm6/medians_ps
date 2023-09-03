@@ -17,9 +17,9 @@ class MessageRepository
             'message_id' => $data['message_id'],
             'sender_id' => $senderID,
             'receiver_id' => $data['to'],
-            'conversation_id',
-            'message_text' => $data['text']['body'],
-            'media_id'=> '',
+            'conversation_id' => isset($data['conversation_id']) ? $data['conversation_id'] : '',
+            'message_text' => isset($data['text']['body']) ? $data['text']['body'] : '',
+            'media_id'=> isset($data['media_id']) ? $data['mediamedia_id'] : '',
             'sent_at',
         ]);
 

@@ -39,9 +39,8 @@ class MessageController extends MessageService
                 {
                     $data['conversation_id'] = $jsonData->entry[0]->id;
                     $data['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
-                    $data['wa_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
-                    $data['receiver_id'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
-                    $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->metadata->display_phone_number;
+                    $data['to'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
+                    $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
                     $data['message_text'] = isset($message->text->body) ? $message->text->body : '';
                     $data['message_id'] = isset($message->id) ? $message->id : '';
@@ -49,7 +48,7 @@ class MessageController extends MessageService
                 }
 
                 $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-                $MessageRepository->saveMessage($data, $this->PNID);
+                $MessageRepository->saveMessage($data, $data['sender_id']);
             }
         }
 
