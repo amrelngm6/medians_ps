@@ -2,7 +2,7 @@
 
 namespace Medians\Messages\Application;
 
-class MessageController
+class MessageController extends MessageService
 {
 
 
@@ -48,11 +48,11 @@ class MessageController
                     $data['media_id'] = isset($message->image->id) ? $message->image->id : '';
                 }
 
+                $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
+                $MessageRepository->saveMessage($data, $this->PNID);
             }
         }
 
-		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-		$MessageRepository->saveMessage($data, $this->PNID);
     }
     
     
