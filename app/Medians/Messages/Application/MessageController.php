@@ -37,26 +37,21 @@ class MessageController
                 $data = array();
                 if (isset($jsonData->entry[0]->changes[0]->value->messaging_product))
                 {
-                    $jsonData['conversation_id'] = $jsonData->entry[0]->id;
-                    $jsonData['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
-                    $jsonData['wa_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
-                    $jsonData['receiver_id'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
-                    $jsonData['sender_id'] = $jsonData->entry[0]->changes[0]->value->metadata->display_phone_number;
+                    $data['conversation_id'] = $jsonData->entry[0]->id;
+                    $data['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
+                    $data['wa_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
+                    $data['receiver_id'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
+                    $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->metadata->display_phone_number;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
-                    $jsonData['message_text'] = isset($message->text->body) ? $message->text->body : '';
-                    $jsonData['message_id'] = isset($message->id) ? $message->id : '';
-                    $jsonData['media_id'] = isset($message->image->id) ? $message->image->id : '';
+                    $data['message_text'] = isset($message->text->body) ? $message->text->body : '';
+                    $data['message_id'] = isset($message->id) ? $message->id : '';
+                    $data['media_id'] = isset($message->image->id) ? $message->image->id : '';
                 }
 
             }
         }
 
-        
-
 		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-
-		$response = json_decode($this->wp_web_send($path, $data));
-		$data['message_id'] = $response->messages[0]->id;
 		$MessageRepository->saveMessage($data, $this->PNID);
     }
     
