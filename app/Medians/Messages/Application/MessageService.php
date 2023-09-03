@@ -163,22 +163,18 @@ class MessageService
 	}
 
 
-	public function sendTextMessage(String $message = 'Hola', String $receiver = '201096869285')
+	public function sendTextMessage(String $message_text = 'Hola', String $receiver = '201096869285')
 	{
 		$path = '/v17.0/'.$this->PNID.'/messages';
 
-		
-		$message = $jsonData->entry[0]->changes[0]->value->messages[0];
-		
 		$data = array(
 			'messaging_product' => 'whatsapp',
             'to' => $receiver,
             'type' => 'text',
-			'text' => ['body'=>$message]
+			'text' => ['body'=>$message_text]
         );
 		
 		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-		
 		$response = json_decode($this->wp_web_send($path, $data));
 		$message = $response->messages[0];
 		$data['conversation_id'] = '';
