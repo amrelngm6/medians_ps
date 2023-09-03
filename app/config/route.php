@@ -29,6 +29,7 @@ Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\Repo
 // Macaw::get('/arabic/', \Medians\Pages\Application\PageController::class.'@page');
 Macaw::get('/(:all)', \Medians\Messages\Application\MessageController::class.'@page');
 Macaw::get('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
+Macaw::post('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
 
 
 
