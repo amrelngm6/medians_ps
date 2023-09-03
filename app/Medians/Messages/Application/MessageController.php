@@ -99,7 +99,9 @@ class MessageController extends MessageService
             default:
                 $data['message_text'] = isset($message->text->body) ? $message->text->body : '';
                 break;
-        }
+            }
+            
+        $data['message_type'] = isset($message->type) ? $message->type : '';
 
         return $data;
     }

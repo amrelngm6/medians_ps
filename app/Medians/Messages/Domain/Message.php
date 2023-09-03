@@ -21,6 +21,7 @@ class Message extends CustomModel
     	'sender_id',
     	'receiver_id',
     	'message_text',
+    	'message_type',
     	'media_id',
     	'sent_at',
 	];
