@@ -29,6 +29,16 @@ class MessageController extends MessageService
         $rawData = file_get_contents('php://input');
         $jsonData = json_decode($rawData, true);
             
+        
+        if ($jsonData) {
+                  
+            $jsonData = json_decode(json_encode($jsonData, JSON_PRETTY_PRINT));
+            $dataToSave = json_encode($jsonData, JSON_PRETTY_PRINT);
+            file_put_contents(time().'.json', $dataToSave);
+        }
+
+
+
         if ($jsonData) {
                   
             $jsonData = json_decode(json_encode($jsonData, JSON_PRETTY_PRINT));
