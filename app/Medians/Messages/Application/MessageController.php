@@ -67,8 +67,6 @@ class MessageController extends MessageService
         $app = new \Config\APP;
 		$Media = new \Medians\Media\Infrastructure\MediaRepository;
 		foreach ($app->request()->files as $key => $value) {
-            print_r($value);
-            return null;
 			$file = $Media->upload($value);
 		}
         
@@ -76,18 +74,21 @@ class MessageController extends MessageService
         $_fileext = explode('.' , $file);
         $fileext = end($_fileext);
 		$MessageService = new \Medians\Messages\Application\MessageService;
-        $messageSent = $MessageService->uploadMedia($file, 'document/'.$fileext) ;
+        $messageSent = $MessageService->uploadMedia($file, $value->getClientMimeType()) ;
 
-        $data['media_id'] = $messageSent->id;
-        $data['to'] = $messageSent->contacts[0]->wa_id;
-        $data['sender_id'] = $MessageService->PNID;
-        $message = $messageSent->messages[0];
-        $data['message_type'] = 'image';
-        $data['message_id'] = isset($message->id) ? $message->id : '';
-        $data['media_path'] = '/uploads/images/'.$file;
-        
-        $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-        $MessageRepository->saveMessage($data, $data['sender_id']);
+        if ($messageSent)
+        {
+            $data['media_id'] = $messageSent->id;
+            $data['to'] = $messageSent->contacts[0]->wa_id;
+            $data['sender_id'] = $MessageService->PNID;
+            $message = $messageSent->messages[0];
+            $data['message_type'] = 'image';
+            $data['message_id'] = isset($message->id) ? $message->id : '';
+            $data['media_path'] = '/uploads/images/'.$file;
+            
+            $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
+            $MessageRepository->saveMessage($data, $data['sender_id']);
+        }
         
     }
 

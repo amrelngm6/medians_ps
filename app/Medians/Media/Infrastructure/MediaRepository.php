@@ -160,7 +160,6 @@ class MediaRepository
 
     	if (is_file($filepath))
     	{
-    		
 			$ffmpeg = enviroment == 'local' ? 'E:\Development\path\ffmpeg\bin\ffmpeg.exe' : 'ffmpeg';
 			shell_exec($ffmpeg.' -i '.$filepath.' -vf scale="'.$w.':'.$h.'" '.$output);
     	}
