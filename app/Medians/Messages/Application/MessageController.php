@@ -10,6 +10,17 @@ class MessageController extends MessageService
 
 
 
+
+	/**
+	 * Admin index items
+	 * 
+	 */ 
+	public function loadMedia( $mediaid) 
+	{
+        print_r($this->getMedia('/'.$mediaid)) ;
+    }
+
+
 	/**
 	 * Admin index items
 	 * 

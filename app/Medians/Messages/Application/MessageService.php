@@ -65,6 +65,27 @@ class MessageService
 		return $this->executeGet($mediaID);	
 	}
 	
+	/**
+	 * Get media ext
+	 */
+	public function mediaExtension($Media)
+	{
+		switch ($Media->mime_type) 
+		{
+			case 'image/jpeg':
+			case 'image/jpg':
+				return 'jpg';
+				break;
+			
+			case 'image/png':
+				return 'png';
+				break;
+				
+			default:
+				return 'jpg';
+				break;
+		}
+	}
 
 	/**
 	 * Download & Save media file locally
@@ -72,6 +93,8 @@ class MessageService
 	public function saveMedia(String $mediaID)
 	{
 		$Media = json_decode($this->getMedia($mediaID));
+
+		print_r($Media);
 
 		$ua = 'curl/7.64.1';
 		$curl = curl_init();
@@ -92,10 +115,11 @@ class MessageService
 		  ),
 		));
 		
+
 		$response = curl_exec($curl);
 		curl_close($curl);
 
-		$mediaFilePath = rand().'.jpg';
+		$mediaFilePath = './uploads/images/'.rand().'.'.$this->mediaExtension($Media);
 
 		file_put_contents($mediaFilePath, $response);
 		
