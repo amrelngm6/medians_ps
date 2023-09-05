@@ -21,7 +21,7 @@ class MessageController extends MessageService
         echo $repo->loadMessages();
     }
     
-    public function uploadPicture()
+    public function uploadImage()
     {
         
         $app = new \Config\APP;
@@ -38,7 +38,7 @@ class MessageController extends MessageService
         $data['sender_id'] = $MessageService->PNID;
         $message = $messageSent->messages[0];
         $data['message_id'] = isset($message->id) ? $message->id : '';
-        $data['message_type'] = 'picture';
+        $data['message_type'] = 'image';
         
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
         $MessageRepository->saveMessage($data, $data['sender_id']);
