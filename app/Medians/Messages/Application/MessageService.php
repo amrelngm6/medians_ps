@@ -94,7 +94,8 @@ class MessageService
 	 */
 	public function mediaExtension($Media)
 	{
-		switch ($Media->mime_type) 
+		$type = explode('/', $Media->mime_type);
+		switch ($type[0]) 
 		{
 			case 'image/jpeg':
 			case 'image/jpg':
@@ -105,8 +106,22 @@ class MessageService
 				return 'png';
 				break;
 				
+			case 'audio/amr':
+			case 'audio/mpeg':
+			case 'audio/mp4':
+			case 'audio/aac':
+			case 'audio/ogg':
+				return end($type);
+				break;
+				
+			case 'video/mp4':
+			case 'video/3gp':
+				return end($type);
+				break;
+				
+
 			default:
-				return 'jpg';
+				return end($type);
 				break;
 		}
 	}
