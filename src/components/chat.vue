@@ -272,67 +272,19 @@
                                 <div class="tab-pane" id="chat-media-videos" tabindex="0">
                                     <div class="row g-3">
                                         
-                                        <div class="col-6">
-                                            <a href="https://www.youtube.com/watch?v=ag0qTaAKqT8" class="glightbox tyn-video" data-gallery="media-video">
-                                                <img src="/uploads/images/hr-6.jpg" class="tyn-image" alt="">
-                                                <div class="tyn-video-icon">
-                                                    <!-- play-fill -->
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                                                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-                                                    </svg>
-                                                </div>
-                                            </a>
-                                        </div>
+                                        
                                     </div>
                                 </div><!-- .tab-pane -->
                                 <div class="tab-pane" id="chat-media-files" tabindex="0">
                                     <ul class="tyn-media-list gap gap-3">
                                         
-                                        <li>
-                                            <a href="#" class="tyn-file">
-                                                <div class="tyn-media-group">
-                                                    <div class="tyn-media tyn-size-lg text-bg-light">
-                                                        <!-- filetype-mdx -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-mdx" viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM.706 15.849v-2.66h.038l.952 2.159h.516l.946-2.16h.038v2.661h.715V11.85h-.8l-1.14 2.596h-.026L.805 11.85H0v3.999h.706Zm3.559-3.999v3.999h1.459c.402 0 .735-.08.999-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.066-.778-.196-1.075a1.426 1.426 0 0 0-.59-.68c-.263-.156-.598-.234-1.004-.234h-1.46Zm.79.645h.563c.248 0 .451.05.61.152a.89.89 0 0 1 .354.454c.078.201.117.452.117.753 0 .227-.022.424-.067.592a1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.484.082h-.562v-2.707Zm4.787-.645h.894L9.46 13.857l1.254 1.992h-.908l-.85-1.415h-.035l-.852 1.415h-.862l1.24-2.016L7.22 11.85h.932l.832 1.439h.035l.823-1.439Z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="tyn-media-col">
-                                                        <h6 class="name">blog_posts.mdx</h6>
-                                                        <div class="meta">6.19 MB</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </div><!-- .tab-pane -->
                                 <div class="tab-pane" id="chat-media-links" tabindex="0">
                                     <ul class="tyn-media-list gap gap-3">
+                                       
                                         <li>
-                                            <a href="#" class="tyn-links">
-                                                <div class="tyn-media-group">
-                                                    <div class="tyn-media tyn-size-xl">
-                                                        <img src="/uploads/images/thumb-7.jpg" alt="">
-                                                    </div>
-                                                    <div class="tyn-media-col">
-                                                        <h6 class="name">Digital Marketing Guide</h6>
-                                                        <div class="anchor">https://www.envato.com/blog/digital-marketing-guide/</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="tyn-links">
-                                                <div class="tyn-media-group">
-                                                    <div class="tyn-media tyn-size-xl">
-                                                        <img src="/uploads/images/thumb-8.jpg" alt="">
-                                                    </div>
-                                                    <div class="tyn-media-col">
-                                                        <h6 class="name">Atomic power plant engine</h6>
-                                                        <div class="anchor">https://www.envato.com/atomic-power-plant-engine/</div>
-                                                    </div>
-                                                </div>
-                                            </a>
                                         </li>
                                     </ul>
                                 </div><!-- .tab-pane -->
