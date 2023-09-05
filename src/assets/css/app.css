@@ -1167,6 +1167,7 @@ dl {
   font-size: 0.875rem;
   line-height: 1.5rem;
   border-radius: 0.5rem;
+  max-height: 40px;
 }
 .tyn-chat-form-input:focus-visible {
   outline: none;

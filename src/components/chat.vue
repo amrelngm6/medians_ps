@@ -447,7 +447,7 @@ export default {
             let titleElement = jQuery(document.querySelector("#tynChatInput"));
             this.chat_message = titleElement.text()
             
-            jQuery('.tyn-chat-form-input').html('.')
+            jQuery('.tyn-chat-form-input').html(' ')
             this.sendMessage()
         },
 
