@@ -389,7 +389,9 @@ export default {
     },
 
     mounted() {
-        this.load()
+        setInterval(function(){
+            this.load()
+        }, 5000);
     },
 
     methods: {
