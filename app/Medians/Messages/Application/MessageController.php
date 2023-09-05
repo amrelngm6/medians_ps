@@ -33,7 +33,18 @@ class MessageController extends MessageService
 	{
         $repo = new MessageRepository;
         
-        echo $repo->loadMessages();
+        $data =  $repo->loadMessages();
+        echo $data;
+
+        foreach ($data as $key => $value) {
+            if ($value->media_id && !$value->media_path)
+            {
+                $this->loadMedia($value->media_id);
+            }
+        }
+
+        
+        
     }
     
     public function uploadAndSave($file, $type = 'image')
@@ -96,6 +107,7 @@ class MessageController extends MessageService
 		        'load_vue' => true,
 		        'title' => __('messages'),
 		        'messages' => $repo->loadMessages(),
+		        'contacts' => $repo->loadContacts(),
 		        'contacts' => $repo->loadContacts(),
 		    ]);
 		} catch (\Exception $e) {
