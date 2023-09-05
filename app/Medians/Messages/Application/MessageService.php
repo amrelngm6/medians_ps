@@ -175,7 +175,7 @@ class MessageService
         );
 		
 		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-		$response = json_decode($this->wp_web_send($path, $data));
+		$response = $this->wp_web_send($path, $data);
 		$message = $response->messages[0];
 		$data['conversation_id'] = '';
 		$data['to'] = $receiver;
