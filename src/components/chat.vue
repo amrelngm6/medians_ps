@@ -93,7 +93,7 @@
                                         <img :src="message.image_path" class="tyn-image" alt="">
                                     </a>
                                 </div>
-                                <div v-if="message.message_type === 'text'" class="tyn-reply-text"> {{message.message_text}} </div>
+                                <div v-if="!message.message_type || message.message_type === 'text'" class="tyn-reply-text"> {{message.message_text}} </div>
                             </div><!-- .tyn-reply-bubble -->
                         </div><!-- .tyn-reply-group -->
                     </div><!-- .tyn-reply-item -->
