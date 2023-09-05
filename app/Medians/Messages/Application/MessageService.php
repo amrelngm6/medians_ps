@@ -119,7 +119,6 @@ class MessageService
 				return end($type);
 				break;
 				
-
 			default:
 				return end($type);
 				break;
