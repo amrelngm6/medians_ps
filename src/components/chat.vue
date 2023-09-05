@@ -118,9 +118,6 @@
                                             </svg>
                                         </div>
                                     </a>
-                                    <a :title="message.message_text"  :href="message.image_path" class="glightbox tyn-thumb" data-gallery="media-photo">
-                                        <img :src="message.image_path" class="tyn-image" alt="">
-                                    </a>
                                 </div>
                                 <div v-if="!message.message_type || message.message_type === 'text'" class="tyn-reply-text"> 
                                     <a v-if="checkHasLink(message.message_text)"  v-text="message.message_text"></a>
