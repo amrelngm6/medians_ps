@@ -89,11 +89,11 @@
                         <div class="tyn-reply-group">
                             <div class="tyn-reply-bubble">
                                 <div v-if="message.message_type === 'image'" class="tyn-reply-media">
-                                    <a :href="message.image_path" class="glightbox tyn-thumb" data-gallery="media-photo">
+                                    <a :title="message.message_text"  :href="message.image_path" class="glightbox tyn-thumb" data-gallery="media-photo">
                                         <img :src="message.image_path" class="tyn-image" alt="">
                                     </a>
                                 </div>
-                                <div class="tyn-reply-text"> {{message.message_text}} </div>
+                                <div v-if="message.message_type === 'text'" class="tyn-reply-text"> {{message.message_text}} </div>
                             </div><!-- .tyn-reply-bubble -->
                         </div><!-- .tyn-reply-group -->
                     </div><!-- .tyn-reply-item -->

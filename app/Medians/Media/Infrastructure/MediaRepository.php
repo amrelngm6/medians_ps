@@ -138,7 +138,7 @@ class MediaRepository
         	return $e->getMessage();
         }
 
-        return $this->dir.$fileName;
+        return $this->_dir.$fileName;
     }
 
     public function delete($file)

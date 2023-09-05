@@ -22,6 +22,7 @@ class MessageRepository
             'message_text' => isset($data['message_text']) ? $data['message_text'] : '',
             'message_type' => isset($data['message_type']) ? $data['message_type'] : '',
             'media_id'=> isset($data['media_id']) ? $data['media_id'] : '',
+            'media_path'=> isset($data['media_path']) ? $data['media_path'] : '',
             'sent_at',
         ]);
     }
