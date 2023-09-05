@@ -409,11 +409,11 @@ export default {
     methods: {
 
         /**
-         * 
+         * check if the text has link
          */
         checkHasLink(message)
         {
-            return message.indexOf('http') ? true : false;
+            return (message && message.message_text.indexOf('http')) ? true : false;
         },
 
         /**
