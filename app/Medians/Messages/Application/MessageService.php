@@ -40,7 +40,7 @@ class MessageService
 	/**
 	 * @var API System User Token
 	 */
-	protected $DeveloperToken = 'EAANdde82KOYBOZCvY1uyBGTSc3EEONRylyZCUepZBf0DTHCeOEMs68i7Io2UyHX5ZC9PiVIELj7jj7Bcyf8GKbdOY2EpXd3v86OOexLiSc1XuPiQ4nQQwIBiCv994WIfyTqJbA2AmItta4Wp8fNlMUGELXBxuKrhsPLbA4v42XIQ0Q7pAUJagpcrK4IiaV3qeulycHsJUSujgTBrpR8kHKsZCZAL1ZBZAatgrQZDZD';
+	protected $DeveloperToken = 'EAANdde82KOYBOwhuWkI5gyiTnotmh0HTTfEA9jNI9LhMJnvOTQyHu11JHiS7gfsOOF0DkQRcnrsnMdsHyYaqjhHkZALvfh1D5FuS54IVnH636BCd0wxhrcurNUzHemcQeLaFAZB1ejlyzBKGtdE40OsltQ6JZBJAeQ9doEuCjW8KZC1ZBvqjsPceR0TXXstxZBYKz1jomTM90K8SubYLBs0hZCYIByBDLOJZAgZDZD';
 
 
 	function __construct()
@@ -127,7 +127,8 @@ class MessageService
 
 	public function uploadMedia(String $mediapath, $filetype = 'image/jpeg')
 	{
-		echo $filetype;
+		echo $_SERVER['DOCUMENT_ROOT'].$mediapath;
+		
 		try
 		{
 			$url = "https://graph.facebook.com/{$this->PNID}/media";

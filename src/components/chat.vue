@@ -426,10 +426,8 @@ export default {
         validate() {
             let titleElement = jQuery(document.querySelector("#tynChatInput"));
             this.chat_message = titleElement.text()
-            titleElement.empty();
             
-            while (titleElement.firstChild) titleElement.removeChild(titleElement.firstChild);
-
+            jQuery('.tyn-chat-form-input').html('.')
             this.sendMessage()
         },
 
