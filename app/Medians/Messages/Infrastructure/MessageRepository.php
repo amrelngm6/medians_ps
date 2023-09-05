@@ -31,7 +31,7 @@ class MessageRepository
     {
 
         return Message::where('media_id', $mediaId)->update([
-            'media_path'=> isset($data['media_path']) ? $data['media_path'] : '',
+            'media_path'=> $newpath,
         ]);
     }
     // Array ( [messaging_product] => whatsapp [to] => 201096869285 [type] => text [text] => Array ( [body] => test ) [message_id] => wamid.HBgMMjAxMDk2ODY5Mjg1FQIAERgSRjEyNEJFMzA1QTg5REUxODg2AA== )
