@@ -20,7 +20,20 @@ class MessageController extends MessageService
         
         echo $repo->loadMessages();
     }
-            
+    
+    public function uploadFile()
+    {
+        
+		$app = new \Config\APP;
+		$Media = new \Medians\Media\Infrastructure\MediaRepository;
+		foreach ($app->request()->files as $key => $value) {
+			$file = $Media->upload($value);
+		}
+		
+        echo $Media->uploadMedia($file);
+
+
+    }
 
 	/**
 	 * Admin index items

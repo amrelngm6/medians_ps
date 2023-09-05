@@ -108,6 +108,7 @@ if(isset($app->auth()->id))
     */
     Macaw::post('/media-library-api/delete', \Medians\Media\Application\MediaController::class.'@delete');
     Macaw::post('/media-library-api/(:all)', \Medians\Media\Application\MediaController::class.'@upload');
+    Macaw::post('/wp/upload', \Medians\Messages\Application\MessageController::class.'@uploadFile');
     Macaw::get('/media-library-api/media', \Medians\Media\Application\MediaController::class.'@media');
 
 
