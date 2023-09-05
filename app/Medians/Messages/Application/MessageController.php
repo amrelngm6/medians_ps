@@ -36,15 +36,8 @@ class MessageController extends MessageService
         echo $repo->loadMessages();
     }
     
-    public function uploadImage()
+    public function uploadAndSave($file)
     {
-        
-        $app = new \Config\APP;
-		$Media = new \Medians\Media\Infrastructure\MediaRepository;
-		foreach ($app->request()->files as $key => $value) {
-			$file = $Media->upload($value);
-		}
-        
 		$MessageService = new \Medians\Messages\Application\MessageService;
         $messageSent = $MessageService->uploadMedia($file) ;
 
@@ -58,6 +51,20 @@ class MessageController extends MessageService
         
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
         $MessageRepository->saveMessage($data, $data['sender_id']);
+
+        return $MessageRepository;
+    }
+    
+    public function uploadImage()
+    {
+        
+        $app = new \Config\APP;
+		$Media = new \Medians\Media\Infrastructure\MediaRepository;
+		foreach ($app->request()->files as $key => $value) {
+			$file = $Media->upload($value);
+		}
+        
+        $this->uploadAndSave($file);
         
     }
 

@@ -127,7 +127,6 @@ class MessageService
 
 	public function uploadMedia(String $mediapath, $filetype = 'image/jpeg')
 	{
-		echo $mediapath;
 		echo $filetype;
 		try
 		{
@@ -158,10 +157,10 @@ class MessageService
 			print_r($httpCode);
 			print_r($response);
 			print_r($responseObject);
-			// $output = $this->sendMediaMessage($responseObject->id);
-			// $output->id = $responseObject->id;
+			$output = $this->sendMediaMessage($responseObject->id);
+			$output->id = $responseObject->id;
 
-			// return $output;
+			return $output;
 		}
 		catch (Exception $ex)
 		{

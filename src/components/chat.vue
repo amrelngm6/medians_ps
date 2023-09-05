@@ -103,37 +103,10 @@
                     
                 </div><!-- .tyn-reply -->
             </div><!-- .tyn-chat-body -->
-            <div class="tyn-chat-form w-full bg-white px-4 pb-4">
-                <div class="tyn-chat-form-insert">
+            <div class="tyn-chat-form w-full bg-white px-4 ">
+                <div class="tyn-chat-form-insert pb-2">
                     <ul class="tyn-list-inline gap gap-3">
-                        <li class="dropup">
-                            <button class="btn btn-icon btn-light btn-md btn-pill" data-bs-toggle="dropdown" data-bs-offset="0,10">
-                                <!-- plus-lg -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                                </svg>
-                            </button>
-                            <div class="dropdown-menu">
-                                <ul class="tyn-list-links">
-                                    <li><a href="#">
-                                            <!-- person-video2 -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-video2" viewBox="0 0 16 16">
-                                                <path d="M10 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                                                <path d="M2 1a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2ZM1 3a1 1 0 0 1 1-1h2v2H1V3Zm4 10V2h9a1 1 0 0 1 1 1v9c0 .285-.12.543-.31.725C14.15 11.494 12.822 10 10 10c-3.037 0-4.345 1.73-4.798 3H5Zm-4-2h3v2H2a1 1 0 0 1-1-1v-1Zm3-1H1V8h3v2Zm0-3H1V5h3v2Z" />
-                                            </svg>
-                                            <span>New Group</span>
-                                        </a></li>
-                                    <li><a href="#">
-                                            <!-- mic -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
-                                                <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
-                                                <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z" />
-                                            </svg>
-                                            <span>Voice Clip</span>
-                                        </a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        
                         <li class="d-none d-sm-block"><label class="btn btn-icon btn-light btn-md btn-pill">
                                 <!-- card-image -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
@@ -157,13 +130,12 @@
                 <div class="tyn-chat-form-enter">
                     <div class="tyn-chat-form-input" id="tynChatInput" @keydown.enter="validate" contenteditable></div>
                     <ul class="tyn-list-inline me-n2 my-1">
-                        <li><button class="btn btn-icon btn-white btn-md btn-pill">
-                                <!-- mic-fill -->
+                        <!-- <li><button class="btn btn-icon btn-white btn-md btn-pill">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
                                     <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
                                     <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
                                 </svg>
-                            </button></li>
+                            </button></li> -->
                         <li><button class="btn btn-icon btn-white btn-md btn-pill" @click="validate">
                                 <!-- send-fill -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
@@ -470,7 +442,6 @@ export default {
             this.showLoader = true;
             this.$parent.handleRequest( params, '/api/send_message' ).then(response=> {
                 this.load()
-                console.log(response)
             });
         },
 
@@ -482,7 +453,10 @@ export default {
                 this.setValues(response)
                 this.showLoader = false;
                 var objDiv = document.getElementById("tynReply");
-                objDiv.scrollTop = objDiv.scrollHeight;
+                setTimeout(() => {
+                    objDiv.scrollTop = objDiv.scrollHeight;
+                }, 1000);
+
                 // this.$alert(response)
             });
         },
