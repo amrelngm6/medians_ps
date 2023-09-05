@@ -109,7 +109,7 @@
                                     </a>
                                 </div>
                                 <div v-if="message.message_type === 'video'" class="tyn-reply-media">
-                                    <a :href="message.image_path" class="glightbox tyn-video" data-gallery="media-video">
+                                    <a :href="message.media_path" class="glightbox tyn-video" data-gallery="media-video">
                                         <img src="/uploads/images/video.jpg" class="tyn-image" alt="">
                                         <div class="tyn-video-icon">
                                             <!-- play-fill -->

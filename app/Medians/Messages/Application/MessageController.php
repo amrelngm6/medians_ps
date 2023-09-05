@@ -43,8 +43,6 @@ class MessageController extends MessageService
             }
         }
 
-        
-        
     }
     
     public function uploadAndSave($file, $type = 'image')
