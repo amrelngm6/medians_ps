@@ -154,6 +154,7 @@ class MessageService
 			curl_close($ch);
 			
 			$responseObject = json_decode($response);
+			print_r($responseObject);
 			$output = $this->sendMediaMessage($responseObject->id);
 			$output->id = $responseObject->id;
 
