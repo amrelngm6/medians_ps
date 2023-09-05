@@ -464,7 +464,7 @@ export default {
             this.messages = JSON.parse(JSON.stringify(data)); 
             let lastMsg = this.messages[this.messages.length-1];
             if (lastMsg.id > this.lastMessage.id)
-                this.lastMessage = lastMsg
+                this.lastMessage = lastMsg; this.$alert('New message')
     
             console.log(this.lastMessage)
             
