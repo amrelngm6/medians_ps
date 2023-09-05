@@ -1608,6 +1608,7 @@ body .btn-primary:focus {
 -----------------------*/
 .overflow-auto {overflow: auto;}
 .sidebar {
+	min-width: 250px;
 }
 
 .sidebar.opened {
