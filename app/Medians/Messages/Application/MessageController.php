@@ -47,7 +47,7 @@ class MessageController extends MessageService
         $message = $messageSent->messages[0];
         $data['message_type'] = $type;
         $data['message_id'] = isset($message->id) ? $message->id : '';
-        $data['media_path'] = '/uploads/images/'.$file;
+        $data['media_path'] = $file;
         
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
         $MessageRepository->saveMessage($data, $data['sender_id']);
@@ -80,7 +80,7 @@ class MessageController extends MessageService
 		}
     }
 
-    
+
 	/**
 	 * Admin index items
 	 * 
@@ -150,6 +150,7 @@ class MessageController extends MessageService
                     $data = $this->messageTypeHandler($data, $message);
                 }
                 
+                
                 $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
                 
                 $contact = array();
@@ -205,6 +206,7 @@ class MessageController extends MessageService
             }
             
         $data['message_type'] = isset($message->type) ? $message->type : '';
+        $data['media_path'] = isset($data['media_id']) ?  $this->loadMedia($data['media_id']) : '';
 
         return $data;
     }

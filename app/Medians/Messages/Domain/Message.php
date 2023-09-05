@@ -30,7 +30,7 @@ class Message extends CustomModel
 	// public $timestamps = false;
 
 
-	public $appends = ['income', 'image_path'];
+	public $appends = ['income', 'image_path', 'media_title'];
 
 	public function getIncomeAttribute()
 	{
@@ -40,6 +40,12 @@ class Message extends CustomModel
 	public function getImagePathAttribute()
 	{
 		return $this->message_type == 'image' ? $this->media_path : null;
+	}
+
+	public function getMediaTitleAttribute()
+	{
+		$return =  $this->media_path ? explode('/', $this->media_path) : null;
+		return $return ? end($return) : NULL;
 	}
 
 }

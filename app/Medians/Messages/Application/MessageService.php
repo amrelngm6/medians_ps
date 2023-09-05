@@ -76,18 +76,14 @@ class MessageService
 
         switch ($fileTypeFirst[0]) 
         {
+			case 'image':
+			case 'video':
             case 'audio':
-                return 'audio';
-                break;
-            case 'video':
-                return 'video';
-                break;
-            case 'image':
-                return 'video';
+                return $fileTypeFirst[0];
                 break;
             
             default:
-                return $fileTypeFirst[0];
+                return 'document';
                 break;
         }
 	}
