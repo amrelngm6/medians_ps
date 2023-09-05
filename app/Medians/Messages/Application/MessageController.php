@@ -37,8 +37,9 @@ class MessageController extends MessageService
         $data['to'] = $messageSent->contacts[0]->wa_id;
         $data['sender_id'] = $MessageService->PNID;
         $message = $messageSent->messages[0];
-        $data['message_id'] = isset($message->id) ? $message->id : '';
         $data['message_type'] = 'image';
+        $data['message_id'] = isset($message->id) ? $message->id : '';
+        $data['media_path'] = '/uploads/images/'.$file;
         
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
         $MessageRepository->saveMessage($data, $data['sender_id']);

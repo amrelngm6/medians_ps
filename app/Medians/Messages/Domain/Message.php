@@ -23,17 +23,23 @@ class Message extends CustomModel
     	'message_text',
     	'message_type',
     	'media_id',
+    	'media_path',
     	'sent_at',
 	];
 
 	// public $timestamps = false;
 
 
-	public $appends = ['income'];
+	public $appends = ['income', 'image_path'];
 
 	public function getIncomeAttribute()
 	{
 		return $this->sender_id == '201096869285' ? 1 : 0;
+	}
+
+	public function getImagePathAttribute()
+	{
+		return $this->message_type == 'image' ? $this->media_path : null;
 	}
 
 }

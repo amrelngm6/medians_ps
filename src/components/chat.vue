@@ -85,11 +85,10 @@
             <div class="tyn-chat-body js-scroll-to-end" id="tynChatBody">
                 <div class="tyn-reply" id="tynReply">
                     
-                    
                     <div v-for="message in messages" :class="message.income ? 'incoming' : 'outgoing'" class="tyn-reply-item ">
                         <div class="tyn-reply-group">
                             <div class="tyn-reply-bubble">
-                                <div v-if="message.type == 'image'" class="tyn-reply-media">
+                                <div v-if="message.message_type === 'image'" class="tyn-reply-media">
                                     <a :href="message.image_path" class="glightbox tyn-thumb" data-gallery="media-photo">
                                         <img :src="message.image_path" class="tyn-image" alt="">
                                     </a>
