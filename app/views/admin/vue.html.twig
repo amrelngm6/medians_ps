@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="tyn-media-col">
                                             <div class="tyn-media-row">
-                                                <h6 class="name">Marie George</h6>
+                                                <h6 class="name">{{app.auth ? app.auth.name : ''}}</h6>
                                                 <div class="indicator varified">
                                                     <!-- check-circle-fill -->
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -57,7 +57,7 @@
                                                 </div>
                                             </div>
                                             <div class="tyn-media-row has-dot-sap">
-                                                <p class="content">Liked that disco music</p>
+                                                <p class="content">{{app.auth ? app.auth.email : ''}}</p>
                                             </div>
                                         </div>
                                     </div>

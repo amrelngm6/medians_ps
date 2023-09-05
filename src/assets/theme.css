@@ -1608,12 +1608,6 @@ body .btn-primary:focus {
 -----------------------*/
 .overflow-auto {overflow: auto;}
 .sidebar {
-	background-color: #fff;
-	box-shadow: 0px 0px 20px 2px #eaeaea;
-	margin-top: 0;
-	transition: all 0.2s ease-in-out 0s;
-	min-width: 200px;
-	z-index: 1001;
 }
 
 .sidebar.opened {
