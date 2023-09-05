@@ -471,20 +471,20 @@ export default {
 
         load()
         {
-            console.log('Load');
             this.showLoader = true;
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
-                    var objDiv = document.getElementById("tynReply");
-                    objDiv.scrollTop = objDiv.scrollHeight;
 
                 // this.$alert(response)
             });
         },
         
         setValues(data) {
-            this.messages = JSON.parse(JSON.stringify(data)); return this
+            this.messages = JSON.parse(JSON.stringify(data)); 
+            var objDiv = document.getElementById("tynReply");
+            objDiv.scrollTop = objDiv.scrollHeight + 1000;
+            return this
         },
         __(i)
         {
