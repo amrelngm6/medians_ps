@@ -413,7 +413,7 @@ export default {
          */
         checkHasLink(message)
         {
-            return (message && message.message_text && message.message_text.indexOf('http')) ? true : false;
+            return (message && message.indexOf('http')) ? true : false;
         },
 
         /**
