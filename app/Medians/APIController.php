@@ -33,18 +33,31 @@ class APIController
 	public function handle()
 	{
 
-		$this->app = new \config\APP;
+		$app = new \config\APP;
 
 		$return = [];
-		switch ($this->app->request()->get('model')) 
+		switch ($app->request()->get('model')) 
 		{
 			case 'User':
 				$controller = new UserRepository();
 				break;
+		}
+
+		switch ($app->request()->get('type')) 
+		{
+			case 'WP':
+			case 'send_message':
+				echo 1;
+				$repo = new \Medians\Messages\Application\MessageService();
+				$send = $repo->sendTextMessage($app->request()->get('message_text'));
+
+				$repo = new \Medians\Messages\Infrastructure\MessageRepository();
+				return $repo->loadMessages();
+				break;
 			
 		}
 
-		$return = isset($controller) ? $controller->find($this->app->request()->get('id')) : $return;
+		$return = isset($controller) ? $controller->find($app->request()->get('id')) : $return;
 
 		return response(json_encode(['status'=>true, 'result'=>$return]));
 	} 

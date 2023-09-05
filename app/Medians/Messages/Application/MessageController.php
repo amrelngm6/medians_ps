@@ -10,6 +10,41 @@ class MessageController extends MessageService
 
 
 
+	/**
+	 * Admin index items
+	 * 
+	 */ 
+	public function load_messages( ) 
+	{
+        $repo = new MessageRepository;
+        
+        echo $repo->loadMessages();
+    }
+            
+
+	/**
+	 * Admin index items
+	 * 
+	 */ 
+	public function index( ) 
+	{
+        
+        $repo = new MessageRepository;
+        
+		try {
+			
+		    return render('chat', [
+		        'load_vue' => true,
+		        'title' => __('messages'),
+		        'messages' => $repo->loadMessages(),
+		        'contacts' => $repo->loadContacts(),
+		    ]);
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+			
+		}
+	}
+
 
     
 	/**

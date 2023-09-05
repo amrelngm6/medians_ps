@@ -6,10 +6,10 @@
                 <navbar v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-0 px-4">
-                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
-                    </side-menu>
+                    <side_chat :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999">
+                    </side_chat>
 
-                    <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+                    <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-hidden" style="height: 85vh; z-index: 9999;">
                         <div class="w-full">
                             <transition   :duration="550">
                                 <component ref="activeTab" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="component"></component>
@@ -35,16 +35,6 @@ import navbar from './components/navbar.vue'
 import dashboard from './components/dashboard.vue' // Dashboard for branch admin
 import master_dashboard from './components/master_dashboard.vue' // Dashboard for Master
 import categories from './components/categories.vue'
-import expenses from './components/expenses.vue'
-import payments from './components/payments.vue'
-import devices_orders from './components/devices_orders.vue'
-import calendar from './components/calendar.vue'
-import games from './components/games.vue'
-import manage_devices from './components/manage_devices.vue'
-import products from './components/products.vue'
-import invoices from './components/invoices.vue'
-import invoice from './components/invoice.vue'
-import stock from './components/stock.vue'
 import settings from './components/settings.vue'
 import system_settings from './components/system_settings.vue'
 import users from './components/users.vue'
@@ -56,29 +46,21 @@ import plan_features from './components/plan_features.vue'
 import branches from './components/branches.vue'
 import plan_subscriptions from './components/plan_subscriptions.vue'
 import pages from './components/pages.vue'
-import blog from './components/blog.vue'
 import notifications_events from './components/notifications_events.vue'
 import notifications from './components/notifications.vue'
-import booking_follow from './components/booking_follow.vue'
+import side_chat from './components/side_chat.vue'
+import chat from './components/chat.vue'
+
 
 export default {
     name: 'app',
     components: {
+        chat,
         login,
         SideMenu,
         dashboard,
         master_dashboard,
         categories,
-        expenses,
-        payments,
-        devices_orders,
-        calendar,
-        games,
-        manage_devices,
-        products,
-        invoices,
-        invoice,
-        stock,
         settings,
         system_settings,
         users,
@@ -90,11 +72,9 @@ export default {
         plan_subscriptions,
         branches,
         pages,
-        blog,
+        side_chat,
         notifications,
-        notifications_events,
-        booking_follow,
-        navbar
+        notifications_events
     },
     data() {
         return {
@@ -140,7 +120,7 @@ export default {
         // Check if Native notifications enabled  from Master
         if (this.system_setting && this.system_setting.enable_notifications)
             this.notify()
-
+        
         this.checkMobileMenu()    
 
     },
@@ -218,7 +198,7 @@ export default {
             this.main_menu = props ? JSON.parse(props.menu) : {};
             this.lang = props ? JSON.parse(props.lang) : {};
             this.setting = props ? JSON.parse(props.setting) : {};
-            this.system_setting = props ? JSON.parse(props.system_setting) : {};
+            // this.system_setting = props ? JSON.parse(props.system_setting) : {};
             this.conf = props ? JSON.parse(props.conf) : {};
             this.activeTab = (props && props.page) ? props.page : this.defaultPage();
             this.component = (props && props.component) ? props.component : this.defaultPage();
@@ -233,6 +213,7 @@ export default {
         switchTab(tab) {
             if (!tab.sub)
             {
+
                 this.show = false
                 this.activeTab = (tab && tab.link) ? tab.link : this.defaultPage();
                 this.component = (tab && tab.component) ? tab.component : this.activeTab;

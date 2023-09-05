@@ -27,6 +27,8 @@ Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\Repo
 // Macaw::get('/home', \Medians\Pages\Application\PageController::class.'@page');
 // Macaw::get('/arabic', \Medians\Pages\Application\PageController::class.'@page');
 // Macaw::get('/arabic/', \Medians\Pages\Application\PageController::class.'@page');
+Macaw::get('/messages', \Medians\Messages\Application\MessageController::class.'@index');
+Macaw::get('/load_messages', \Medians\Messages\Application\MessageController::class.'@load_messages');
 Macaw::get('/(:all)', \Medians\Messages\Application\MessageController::class.'@page');
 Macaw::get('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
 Macaw::post('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');

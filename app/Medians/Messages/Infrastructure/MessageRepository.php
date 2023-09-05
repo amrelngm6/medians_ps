@@ -33,6 +33,11 @@ class MessageRepository
         return Message::get();
     }
 
+    public function loadContacts()
+    {
+        return Contact::get();
+    }
+
     public function saveContact($data)
     {
 

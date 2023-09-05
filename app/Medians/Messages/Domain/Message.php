@@ -29,5 +29,11 @@ class Message extends CustomModel
 	// public $timestamps = false;
 
 
+	public $appends = ['income'];
+
+	public function getIncomeAttribute()
+	{
+		return $this->sender_id == '201096869285' ? 1 : 0;
+	}
 
 }
