@@ -2,11 +2,11 @@
 
 namespace Medians\Contacts\Domain;
 
-use Shared\dbaser\CustomController;
+use Shared\dbaser\CustomModel;
 
 
 
-class Contact extends CustomController 
+class Contact extends CustomModel 
 {
 
 	/*
@@ -18,6 +18,7 @@ class Contact extends CustomController
 	protected $fillable = [
     	'name',
     	'wa_id',
+    	'phone_number',
     	'picture',
 	];
 

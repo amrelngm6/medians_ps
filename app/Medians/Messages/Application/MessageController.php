@@ -2,6 +2,9 @@
 
 namespace Medians\Messages\Application;
 
+use Medians\Contacts\Infrastructure\ContactRepository;
+use Medians\Messages\Infrastructure\MessageRepository;
+
 class MessageController extends MessageService
 {
 
@@ -28,7 +31,6 @@ class MessageController extends MessageService
 
         $rawData = file_get_contents('php://input');
         $jsonData = json_decode($rawData, true);
-            
         
         if ($jsonData) {
                   
@@ -36,8 +38,6 @@ class MessageController extends MessageService
             $dataToSave = json_encode($jsonData, JSON_PRETTY_PRINT);
             file_put_contents(time().'.json', $dataToSave);
         }
-
-
 
         if ($jsonData) {
                   
@@ -49,20 +49,29 @@ class MessageController extends MessageService
                 {
                     $data['conversation_id'] = $jsonData->entry[0]->id;
                     $data['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
-                    $data['to'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
-                    $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
+                    $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
+                    $data['to'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
                     $data['message_id'] = isset($message->id) ? $message->id : '';
                     $data = $this->messageTypeHandler($data, $message);
-                    
                 }
-
+                
                 $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
+                
+                $contact = array();
+                $contact['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
+                $contact['wa_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
+                $contact['phone_number'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
+                $MessageRepository->saveContact($contact);
+
                 $MessageRepository->saveMessage($data, $data['sender_id']);
+
+                
+
             }
         }
-
     }
+
 
     /**
      * Messages type handler
@@ -129,6 +138,10 @@ class MessageController extends MessageService
                     return $service->sendTextMessage($app->request()->get('m'));
                     break;
                 
+               case 'numbers':
+                    return $this->saveNumber();
+                    break;
+                
                 default:
                     # code...
                     break;
@@ -138,6 +151,22 @@ class MessageController extends MessageService
 			throw new \Exception($e->getMessage(), 1);
 		}
 	} 
+
+
+    public function saveNumber()
+    {
+        $service = new MessageService; 
+        $object = json_decode($service->getPhoneNumbers());
+
+        $data = array();
+        $data['name'] = $object->data[0]->verified_name;
+        $data['phone_number'] = $object->data[0]->display_phone_number;
+        $data['wa_id'] = $object->data[0]->id;
+        
+        $repo = new MessageRepository;
+        return $repo->saveContact($data);
+
+    }
 
 
 }

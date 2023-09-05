@@ -3,6 +3,7 @@
 namespace Medians\Messages\Infrastructure;
 
 use Medians\Messages\Domain\Message;
+use Medians\Contacts\Domain\Contact;
 
 
 class MessageRepository 
@@ -23,8 +24,21 @@ class MessageRepository
             'media_id'=> isset($data['media_id']) ? $data['media_id'] : '',
             'sent_at',
         ]);
-
     }
     // Array ( [messaging_product] => whatsapp [to] => 201096869285 [type] => text [text] => Array ( [body] => test ) [message_id] => wamid.HBgMMjAxMDk2ODY5Mjg1FQIAERgSRjEyNEJFMzA1QTg5REUxODg2AA== )
+
+
+    public function loadMessages()
+    {
+        return Message::get();
+    }
+
+    public function saveContact($data)
+    {
+
+        Contact::create(
+            $data
+        );
+    }
 
 }

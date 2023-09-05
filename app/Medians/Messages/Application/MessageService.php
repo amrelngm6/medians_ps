@@ -55,7 +55,7 @@ class MessageService
      */
 	public function getPhoneNumbers()
 	{
-		return $this->executeGet('/v17.0/'.$this->PNID.'/phone_numbers?access_token='.$this->SystemUserToken);	
+		return $this->executeGet('/v17.0/'.$this->BAID.'/phone_numbers?access_token='.$this->SystemUserToken);	
 	}
 	
 	
@@ -301,7 +301,6 @@ class MessageService
 		
 		curl_close($ch);
 
-		print_r($response);
 		return $response;
 	}
 	

@@ -46,6 +46,7 @@ Macaw::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@switchLa
 
 
 Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
+Macaw::get('/dashboard', \Medians\DashboardController::class.'@index');
 
 /**
  * Activate account after signup

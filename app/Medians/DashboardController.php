@@ -3,7 +3,6 @@
 namespace Medians;
 use \Shared\dbaser\CustomController;
 
-use Medians\Infrastructure as Repo;
 
 class DashboardController extends CustomController 
 {
@@ -30,6 +29,7 @@ class DashboardController extends CustomController
 			
 	        return  render('dashboard', [
 	        	'load_vue'=> true,
+				'messages' => $this->activeMessages(),
 	            'title' => __('Dashboard')
 	        ]);
 	        
@@ -37,6 +37,18 @@ class DashboardController extends CustomController
 			return $e->getMessage();
 		}
 	} 
+
+
+	/**
+	 * Load Active Messages
+	 */
+	public function activeMessages()
+	{
+
+		$app = new \Medians\Messages\Infrastructure\MessageRepository;
+
+		return $app->loadMessages();
+	}
 
 
 }
