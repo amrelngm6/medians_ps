@@ -36,16 +36,16 @@ class MessageController extends MessageService
         echo $repo->loadMessages();
     }
     
-    public function uploadAndSave($file)
+    public function uploadAndSave($file, $type = 'image')
     {
-		$MessageService = new \Medians\Messages\Application\MessageService;
-        $messageSent = $MessageService->uploadMedia($file) ;
-
+		$MessageService = new MessageService;
+        $messageSent = $MessageService->uploadMedia($file);
+        
         $data['media_id'] = $messageSent->id;
         $data['to'] = $messageSent->contacts[0]->wa_id;
         $data['sender_id'] = $MessageService->PNID;
         $message = $messageSent->messages[0];
-        $data['message_type'] = 'image';
+        $data['message_type'] = $type;
         $data['message_id'] = isset($message->id) ? $message->id : '';
         $data['media_path'] = '/uploads/images/'.$file;
         
@@ -72,33 +72,15 @@ class MessageController extends MessageService
     {
         
         $app = new \Config\APP;
+        $MessageService = new MessageService;
 		$Media = new \Medians\Media\Infrastructure\MediaRepository;
 		foreach ($app->request()->files as $key => $value) {
 			$file = $Media->upload($value);
+            $this->uploadAndSave($file, $MessageService->getFileType($value));
 		}
-        
-
-        $_fileext = explode('.' , $file);
-        $fileext = end($_fileext);
-		$MessageService = new \Medians\Messages\Application\MessageService;
-        $messageSent = $MessageService->uploadMedia($file, $value->getClientMimeType()) ;
-
-        if ($messageSent)
-        {
-            $data['media_id'] = $messageSent->id;
-            $data['to'] = $messageSent->contacts[0]->wa_id;
-            $data['sender_id'] = $MessageService->PNID;
-            $message = $messageSent->messages[0];
-            $data['message_type'] = 'image';
-            $data['message_id'] = isset($message->id) ? $message->id : '';
-            $data['media_path'] = '/uploads/images/'.$file;
-            
-            $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-            $MessageRepository->saveMessage($data, $data['sender_id']);
-        }
-        
     }
 
+    
 	/**
 	 * Admin index items
 	 * 

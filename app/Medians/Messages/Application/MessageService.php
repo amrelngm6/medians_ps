@@ -65,6 +65,34 @@ class MessageService
 		return $this->executeGet($mediaID);	
 	}
 	
+
+	/**
+	 * Get file type
+	 */
+	public function getFileType($value)
+	{
+		
+		$fileTypeFirst = explode('/', $value->getClientMimeType());
+
+        switch ($fileTypeFirst[0]) 
+        {
+            case 'audio':
+                return 'audio';
+                break;
+            case 'video':
+                return 'video';
+                break;
+            case 'image':
+                return 'video';
+                break;
+            
+            default:
+                return $fileTypeFirst[0];
+                break;
+        }
+	}
+
+
 	/**
 	 * Get media ext
 	 */
@@ -127,8 +155,6 @@ class MessageService
 
 	public function uploadMedia(String $mediapath, $filetype = 'image/jpeg')
 	{
-		echo $_SERVER['DOCUMENT_ROOT'].$mediapath;
-		
 		try
 		{
 			$url = "https://graph.facebook.com/{$this->PNID}/media";
@@ -138,7 +164,7 @@ class MessageService
 			);
 
 			$data = array(
-				'file' => new \CURLFile($mediapath, $filetype),
+				'file' => new \CURLFile($_SERVER['DOCUMENT_ROOT'].$mediapath, $filetype),
 				'messaging_product' => 'whatsapp'
 			);
 
@@ -155,9 +181,6 @@ class MessageService
 			curl_close($ch);
 			
 			$responseObject = json_decode($response);
-			print_r($httpCode);
-			print_r($response);
-			print_r($responseObject);
 			$output = $this->sendMediaMessage($responseObject->id);
 			$output->id = $responseObject->id;
 
