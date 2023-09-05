@@ -38,6 +38,12 @@ class MediaRepository
 				$this->_dir = $this->files_dir;
 				break;
 			
+			case 'document':
+			case 'audio':
+			case 'video':
+				$this->_dir = '/uploads/'.$type.'s';
+				break;
+			
 			default:
 				$this->_dir = $this->images_dir;
 				break;

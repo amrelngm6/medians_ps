@@ -158,6 +158,7 @@ class MessageController extends MessageService
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
                     $data['message_id'] = isset($message->id) ? $message->id : '';
                     $data = $this->messageTypeHandler($data, $message);
+                    isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
                 }
                 
                 
@@ -213,7 +214,7 @@ class MessageController extends MessageService
             default:
                 $data['message_text'] = isset($message->text->body) ? $message->text->body : '';
                 break;
-            }
+        }
             
         $data['message_type'] = isset($message->type) ? $message->type : '';
         $data['media_path'] = isset($data['media_id']) ?  $this->loadMedia($data['media_id']) : '';
