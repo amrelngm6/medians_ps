@@ -125,7 +125,7 @@ class MessageService
 	}
 
 
-	public function uploadMedia(String $mediapath)
+	public function uploadMedia(String $mediapath, $filetype = 'image/jpeg')
 	{
 		
 		try
@@ -137,7 +137,7 @@ class MessageService
 			);
 
 			$data = array(
-				'file' => new \CURLFile($mediapath, 'image/jpeg'),
+				'file' => new \CURLFile($mediapath, $filetype),
 				'messaging_product' => 'whatsapp'
 			);
 

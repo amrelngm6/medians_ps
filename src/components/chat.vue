@@ -253,9 +253,8 @@
                             <div class="tab-content">
                                 <div class="tab-pane show active" id="chat-media-images" tabindex="0">
                                     <div class="row g-3">
-                                        
                                         <div class="col-4">
-                                            <a href="/uploads/images/6.jpg" class="glightbox tyn-thumb" data-gallery="media-photo">
+                                            <a href="/uploads/images/6.jpg" class="glightbox tyn-thumb" data-gallery="side-media-photo">
                                                 <img src="/uploads/images/thumb-6.jpg" class="tyn-image" alt="">
                                             </a>
                                         </div>
@@ -445,7 +444,7 @@ export default {
             const headers = { 'Content-Type': 'multipart/form-data' };
             
             // Demo json data
-            return axios.post('/wp/send_image', formData, headers).then(response => {
+            return axios.post('/wp/send_file', formData, headers).then(response => {
                 this.load()
             });
 
@@ -482,6 +481,8 @@ export default {
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
+                var objDiv = document.getElementById("tynReply");
+                objDiv.scrollTop = objDiv.scrollHeight;
                 // this.$alert(response)
             });
         },
