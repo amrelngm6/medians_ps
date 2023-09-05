@@ -94,8 +94,6 @@ class MessageService
 	{
 		$Media = json_decode($this->getMedia($mediaID));
 
-		print_r($Media);
-
 		$ua = 'curl/7.64.1';
 		$curl = curl_init();
 		
@@ -123,6 +121,7 @@ class MessageService
 
 		file_put_contents($mediaFilePath, $response);
 		
+		return str_replace('./', '/', $mediaFilePath);
 	}
 
 

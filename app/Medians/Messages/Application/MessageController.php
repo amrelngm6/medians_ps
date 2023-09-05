@@ -17,7 +17,11 @@ class MessageController extends MessageService
 	 */ 
 	public function loadMedia( $mediaid) 
 	{
-        print_r($this->getMedia('/'.$mediaid)) ;
+        // $Media = $this->getMedia('/'.$mediaid);
+        $filename = $this->saveMedia('/'.$mediaid);
+
+        $repo = new MessageRepository;
+        $repo->updateMedia($mediaid, $filename);
     }
 
 

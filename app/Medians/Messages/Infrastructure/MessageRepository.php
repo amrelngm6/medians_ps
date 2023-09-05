@@ -26,6 +26,14 @@ class MessageRepository
             'sent_at',
         ]);
     }
+
+    public function updateMedia(String $mediaId, $newpath = null)
+    {
+
+        return Message::where('media_id', $mediaId)->update([
+            'media_path'=> isset($data['media_path']) ? $data['media_path'] : '',
+        ]);
+    }
     // Array ( [messaging_product] => whatsapp [to] => 201096869285 [type] => text [text] => Array ( [body] => test ) [message_id] => wamid.HBgMMjAxMDk2ODY5Mjg1FQIAERgSRjEyNEJFMzA1QTg5REUxODg2AA== )
 
 
@@ -41,7 +49,6 @@ class MessageRepository
 
     public function saveContact($data)
     {
-
         Contact::create(
             $data
         );
