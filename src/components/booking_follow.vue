@@ -98,7 +98,7 @@
                                 <div class="py-2 text-base font-semibold flex space-x-56 items-end justify-end w-full" v-if="device.active_booking && device.active_booking.products && device.active_booking.products.length" v-for="product in device.active_booking.products">
 
                                     <p class=" tracking-widest text-center text-white uppercase w-full text-default" v-text="product.product_name"></p>
-                                    <p v-if="" class=" tracking-widest text-center text-white uppercase " >
+                                    <p class=" tracking-widest text-center text-white uppercase " >
                                         <span class="text-xs" v-text="setting.currency"></span>
                                         <span v-text="product.subtotal"></span>
                                     </p>
@@ -108,7 +108,7 @@
                             <div v-if="device.pending_bookings" v-for="pending_booking in device.pending_bookings">
                                 <div class="py-2 text-base font-semibold flex space-x-56 items-end justify-end w-full" >
                                     <p class=" tracking-widest text-center text-white uppercase  w-full text-default" v-text="pending_booking.duration_time"></p>
-                                    <p v-if="" class=" tracking-widest text-center text-white uppercase " >
+                                    <p class=" tracking-widest text-center text-white uppercase " >
                                         <span class="text-xs" v-text="setting.currency"></span>
                                         <span v-text="pending_booking.subtotal"></span>
                                     </p>
@@ -116,7 +116,7 @@
                                 <div class="py-2 text-base font-semibold flex space-x-56 items-end justify-end w-full" v-if="pending_booking && pending_booking.products && pending_booking.products.length" v-for="product in pending_booking.products">
 
                                     <p class=" tracking-widest text-center text-white uppercase w-full text-default" v-text="product.product_name"></p>
-                                    <p v-if="" class=" tracking-widest text-center text-white uppercase " >
+                                    <p class=" tracking-widest text-center text-white uppercase " >
                                         <span class="text-xs" v-text="setting.currency"></span>
                                         <span v-text="product.subtotal"></span>
                                     </p>
@@ -135,7 +135,7 @@
         </div>
 
         <div class="w-full h-full fixed top-0 left-0" v-if="showCart" style="z-index:999">
-            <div v-if="showCart" @click="showCart = false ; hideProductsPopup" class="fixed h-full w-full top-0 left-0 bg-gray-800" style="opacity: .6; z-index:9"></div>
+            <div v-if="showCart" @click="showCart = false , hideProductsPopup" class="fixed h-full w-full top-0 left-0 bg-gray-800" style="opacity: .6; z-index:9"></div>
             <side_cart class="pt-8" :key="showCart"  ref="side_cart" :cart_items="cart_items" :setting="setting" :currency="setting.currency"></side_cart>
         </div>
     </div>
