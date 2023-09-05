@@ -463,9 +463,12 @@ export default {
         setValues(data) {
             this.messages = JSON.parse(JSON.stringify(data)); 
             let lastMsg = this.messages[this.messages.length-1];
-            if (lastMsg.id > this.lastMessage.id)
+            if (lastMsg.id > this.lastMessage.id){
                 this.lastMessage = lastMsg; this.$alert('New message' + this.lastMessage.id)
+            }
     
+            console.log(lastMsg.id)
+            console.log(this.lastMessage.id)
             console.log(this.lastMessage)
             
             var objDiv = document.getElementById("tynReply");
