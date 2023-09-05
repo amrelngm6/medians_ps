@@ -130,11 +130,11 @@ class MessageService
 
 			curl_close($ch);
 			
-			$responseArray = json_decode($response);
-			echo $responseArray->id;
-			$this->sendMediaMessage($responseArray->id);
+			$responseObject = json_decode($response);
+			$output = $this->sendMediaMessage($responseObject->id);
+			$output->id = $responseObject->id;
 
-			return $response;
+			return $output;
 		}
 		catch (Exception $ex)
 		{
@@ -327,7 +327,7 @@ class MessageService
         curl_close($ch);
         print_r($response);
 
-		return $response;
+		return json_decode($response);
 	}
 
 

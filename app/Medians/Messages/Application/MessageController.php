@@ -21,18 +21,28 @@ class MessageController extends MessageService
         echo $repo->loadMessages();
     }
     
-    public function uploadFile()
+    public function uploadPicture()
     {
         
-		$app = new \Config\APP;
+        $app = new \Config\APP;
 		$Media = new \Medians\Media\Infrastructure\MediaRepository;
 		foreach ($app->request()->files as $key => $value) {
 			$file = $Media->upload($value);
 		}
-		
-        echo $Media->uploadMedia($file);
+        
+		$MessageService = new \Medians\Messages\Application\MessageService;
+        $messageSent = $MessageService->uploadMedia($file) ;
 
-
+        $data['media_id'] = $messageSent->id;
+        $data['to'] = $messageSent->contacts[0]->wa_id;
+        $data['sender_id'] = $MessageService->PNID;
+        $message = $messageSent->messages[0];
+        $data['message_id'] = isset($message->id) ? $message->id : '';
+        $data['message_type'] = 'picture';
+        
+        $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
+        $MessageRepository->saveMessage($data, $data['sender_id']);
+        
     }
 
 	/**

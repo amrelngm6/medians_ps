@@ -301,10 +301,10 @@ export default {
                 this.handleAccess(response)
             })
         },
-        async handleRequest(params, url = '/api') {
+        async handleRequest(params, url = '/api', headers = {}) {
 
             // Demo json data
-            return await axios.post(url, params.toString()).then(response => {
+            return await axios.post(url, params.toString(), headers).then(response => {
                 return response.data;
             });
         },
