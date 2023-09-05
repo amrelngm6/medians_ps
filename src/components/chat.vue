@@ -389,8 +389,9 @@ export default {
     },
 
     mounted() {
+        var t = this;
         setInterval(function(){
-            this.load()
+            t.load()
         }, 5000);
     },
 
