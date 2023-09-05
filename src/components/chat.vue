@@ -379,7 +379,7 @@ export default {
             same_page: false,
             content:{},
             pages: [],
-            lastMessage: {},
+            lastMessage: {id:0},
             messages: []
         }
     },
@@ -476,8 +476,6 @@ export default {
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
-                var objDiv = document.getElementById("tynReply");
-                objDiv.scrollTop = objDiv.scrollHeight + 1000;
 
                 // this.$alert(response)
             });
@@ -485,8 +483,14 @@ export default {
         
         setValues(data) {
             this.messages = JSON.parse(JSON.stringify(data)); 
-            this.lastMessage = this.messages[this.messages.length-1];
+            let lastMsg = this.messages[this.messages.length-1];
+            if (lastMsg.id > this.lastMessage.id)
+                this.lastMessage = lastMsg
+    
             console.log(this.lastMessage)
+            
+            var objDiv = document.getElementById("tynReply");
+            objDiv.scrollTop = objDiv.scrollHeight + 1000;
             return this
         },
         __(i)
