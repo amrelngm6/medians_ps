@@ -390,6 +390,7 @@ export default {
 
     mounted() {
         var t = this;
+        t.load()
         setInterval(function(){
             t.load()
         }, 5000);
@@ -461,6 +462,13 @@ export default {
             });
         },
 
+        findText(text , div)
+        {
+            var scrollTop = $('#'+div).scrollTop();
+            var pos= $("div:contains('" + text + "'):eq(5)").position();
+            $('#'+div).scrollTop(scrollTop+pos.top);
+        },
+
         load()
         {
             console.log('Load');
@@ -468,10 +476,8 @@ export default {
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
-                var objDiv = document.getElementById("tynReply");
-                setTimeout(() => {
+                    var objDiv = document.getElementById("tynReply");
                     objDiv.scrollTop = objDiv.scrollHeight;
-                }, 1000);
 
                 // this.$alert(response)
             });
