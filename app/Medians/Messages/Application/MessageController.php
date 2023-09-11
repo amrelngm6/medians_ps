@@ -178,7 +178,7 @@ class MessageController extends MessageService
                     $data['to'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
                     $data['message_id'] = isset($message->id) ? $message->id : '';
-                    $data = $this->messageTypeHandler($data, $message);
+                    $data = $this->messageTypeHandler($data, $message, isset($time) ? $time.'.json' : null);
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
                 }
                 
