@@ -291,7 +291,7 @@ class MessageController extends MessageService
         print_r('s');
         foreach (glob($_SERVER['DOCUMENT_ROOT'].'/*.json') as $key => $value) 
         {
-            print_r($value);
+            print_r(json_decode(file_get_contents($value)));
         }
 	} 
 
