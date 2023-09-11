@@ -160,17 +160,14 @@ class MessageController extends MessageService
                   
             $jsonData = json_decode(json_encode($jsonData, JSON_PRETTY_PRINT));
             $dataToSave = json_encode($jsonData, JSON_PRETTY_PRINT);
+            
             if (isset($jsonData->entry[0]->changes[0]->value->messaging_product)){
                 $message = $jsonData->entry[0]->changes[0]->value->messages[0];
             }
 
             $time = isset($message->timestamp) ? $message->timestamp : time();
             file_put_contents($time.'.json', $dataToSave);
-        }
-
-        if ($jsonData) {
                   
-            $jsonData = json_decode(json_encode($jsonData, JSON_PRETTY_PRINT));
             if (isset($jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name))
             {
                 $data = array();
