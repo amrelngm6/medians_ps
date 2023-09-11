@@ -1,16 +1,6 @@
 !(function (TynApp) {
     "use strict";
 
-        // Function to convert emoji code to emoji and display it
-        function convertEmojiCodeToEmoji(emojiCode) {
-          var emojiContainer = document.getElementById("emoji-container");
-          emojiContainer.innerHTML = emojiCode;
-      }
-
-      // Call the function with your emoji code
-      var emojiCode = "\ud83e\udd79";
-      convertEmojiCodeToEmoji(emojiCode);
-      
     TynApp.ActiveLink = function(selector, active){
       let elm = document.querySelectorAll(selector);
       let currentURL = document.location.href,
