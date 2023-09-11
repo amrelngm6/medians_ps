@@ -23,32 +23,15 @@ class MessageRepository
             'message_type' => isset($data['message_type']) ? $data['message_type'] : '',
             'media_id'=> isset($data['media_id']) ? $data['media_id'] : '',
             'media_path'=> isset($data['media_path']) ? $data['media_path'] : '',
+            'time'=> isset($data['time']) ? $data['time'] : '',
             'sent_at',
         ]);
     }
     
-    public function updateMessage(String $conversation_id, $meesage_text = null)
+    public function updateMessage(String $time, $meesage_text = null)
     {
         
-        print_r($message_id);
-        $check = Message::where('conversation_id', $conversation_id)->get();
-        print_r($check);
-        $mysqli = new \mysqli("localhost", "root", "", "wpbot");
-
-        if ($mysqli->connect_error) {
-            die("Connection failed: " . $mysqli->connect_error);
-        }
-
-        // $query = "UPDATE messages SET `message_text` = '$meesage_text' WHERE `message_id` = '$message_id' ";
-        $query = "UPDATE messages SET `message_text` = 'new' WHERE `message_id` = $check->id ";
-
-        if ($mysqli->query($query) === TRUE) {
-            echo "Record inserted successfully.";
-        } else {
-            echo "Error: " . $mysqli->error;
-        }
-
-        $mysqli->close();
+        $check = Message::where('time', $time)->get();
 
     }
 
