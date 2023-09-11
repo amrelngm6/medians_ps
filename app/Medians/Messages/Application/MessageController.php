@@ -235,7 +235,7 @@ class MessageController extends MessageService
                 
             default:
                 $rawData = file_get_contents('php://input');
-                $jsonData = json_decode(json_encode($rawData, JSON_PRETTY_PRINT));
+                $jsonData = json_decode($rawData );
                 $message = $jsonData->entry[0]->changes[0]->value->messages[0];
                 $data['message_text'] = isset($message->text->body) ? json_encode($message->text) : '';
                 break;
