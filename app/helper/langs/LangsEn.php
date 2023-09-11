@@ -825,7 +825,7 @@ class LangsEn
 			,'HISTORY' => 'Log History'
 			,'UPCOMING_APPOINTMENTS' => 'Upcoming appointments'
 			,'HOSTPITAL_STORY' => 'Hospital story'
-			,'OUR_DOCTORS' => 'Our doctors'
+			,'OUR_DOCTORS' => 'Our Doctors'
 			,'INTERNATIONAL_PATIENTS' => 'International patients'
 			,'MEDIA_PRESS' => 'Media and press'
 			,'UPCOMING_EVENTS' => 'Upcoming events'
