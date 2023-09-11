@@ -289,7 +289,7 @@ class MessageController extends MessageService
     public function handle_messages()
     {
         print_r('s');
-        foreach (glob($_SERVER['DOCUMENT_ROOT'].'/169*.json') as $key => $value) 
+        foreach (glob($_SERVER['DOCUMENT_ROOT'].'/*.json') as $key => $value) 
         {
             print_r(json_decode($value));
         }
