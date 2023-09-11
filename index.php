@@ -50,3 +50,9 @@ $capsule->getConnection()->disconnect();
 
 
 
+
+
+$a = json_decode(file_get_contents('./a.json'));
+
+$message = $a->entry[0]->changes[0]->value->messages[0];
+print_r($a);
