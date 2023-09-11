@@ -31,7 +31,7 @@ class MessageRepository
     {
 
         return Message::where('message_id', $message_id)->update([
-            'meesage_text'=> $meesage_text,
+            'message_text'=> $meesage_text,
         ]);
     }
 
