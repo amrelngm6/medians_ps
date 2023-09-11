@@ -206,10 +206,6 @@ class MessageController extends MessageService
      */
     public function messageTypeHandler($data, $message, $messageFile = null)
     {
-        if ($messageFile){
-            $jsonData = json_decode(file_get_contents($messageFile), true);
-            $message = $jsonData->entry[0]->changes[0]->value->messages[0];
-        }
  
             
         switch ($message->type) {
