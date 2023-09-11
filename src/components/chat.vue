@@ -131,8 +131,8 @@
                                     </a>
                                 </div>
                                 <div v-if="!message.message_type || message.message_type === 'text'" class="tyn-reply-text"> 
-                                    <a v-if="checkHasLink(message.message_text)"  v-text="message.message_text"></a>
-                                    <span v-else >{{message.message_text}}</span>
+                                    <a v-if="checkHasLink(message.message_text)"  v-html="message.message_text"></a>
+                                    <span v-else v-html="message.message_text" ></span>
                                 </div>
                             </div><!-- .tyn-reply-bubble -->
                         </div><!-- .tyn-reply-group -->
@@ -471,7 +471,7 @@ export default {
                 var objDiv = document.getElementById("tynReply");
                 objDiv.scrollTop = objDiv.scrollHeight + 1000;
             }
-            
+
             return this
             
         },
