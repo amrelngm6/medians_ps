@@ -27,6 +27,14 @@ class MessageRepository
         ]);
     }
 
+    public function updateMessage(String $message_id, $meesage_text = null)
+    {
+
+        return Message::where('message_id', $message_id)->update([
+            'meesage_text'=> $meesage_text,
+        ]);
+    }
+
     public function updateMedia(String $mediaId, $newpath = null)
     {
 

@@ -263,6 +263,10 @@ class MessageController extends MessageService
                     return $service->request_code();
                     break;
                 
+                case 'handle_messages':
+                    return $this->handle_messages();
+                    break;
+                
                case 'send_text':
                     return $service->sendTextMessage($app->request()->get('m'), $app->request()->get('wa_id'));
                     break;
@@ -279,6 +283,16 @@ class MessageController extends MessageService
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
 		}
+	} 
+
+
+    public function handle_messages()
+    {
+        foreach (glob('169*.json') as $key => $value) 
+        {
+
+            print_r(json_decode($value));
+        }
 	} 
 
 
