@@ -293,7 +293,7 @@ class MessageController extends MessageService
         {
             $jsonData = json_decode(file_get_contents($value));
             $message = $jsonData->entry[0]->changes[0]->value->messages[0];
-            print_r($message);
+            print_r($message->text->body);
         }
 	} 
 
