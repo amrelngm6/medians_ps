@@ -35,7 +35,7 @@ class MessageController extends MessageService
         
         $app = new \config\APP;
         $data =  $repo->loadMessages($app->request()->get('active_contact'));
-        echo $data;
+        echo json_encode($data, JSON_PRETTY_PRINT);
 
         foreach ($data as $key => $value) {
             if ($value->media_id && !$value->media_path)
@@ -304,7 +304,7 @@ class MessageController extends MessageService
             $conversation_id = $jsonData->entry[0]->id;
 
             if ($message->id)
-                $repo->updateMessage($message->time, $message->text->body);
+                $repo->updateMessage($message->timestamp, $message->text->body);
             
         }
 	} 
