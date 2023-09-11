@@ -234,7 +234,7 @@ class MessageController extends MessageService
                 break;
                 
             default:
-                $data['message_text'] = isset($message->text->body) ? str_replace("\\","\\\\", $message->text->body) : '';
+                $data['message_text'] = isset($message->text->body) ? $message->text->body : '';
                 break;
         }
             
