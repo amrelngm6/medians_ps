@@ -103,7 +103,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div v-if="message.message_type === 'image'" class="tyn-reply-media">
+                                <div v-if="message.message_type === 'image' || message.message_type === 'sticker' " class="tyn-reply-media">
                                     <a :title="message.message_text"  :href="message.image_path" class="glightbox tyn-thumb" data-gallery="media-photo">
                                         <img :src="message.image_path" class="tyn-image" alt="">
                                     </a>
