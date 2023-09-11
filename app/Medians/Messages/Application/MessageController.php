@@ -209,22 +209,22 @@ class MessageController extends MessageService
         switch ($message->type) {
             case 'document':
                 $data['media_id'] = isset($message->document->id) ? $message->document->id : '';
-                $data['message_text'] = isset($message->document->caption) ? $message->document->caption : '';
+                $data['message_text'] = isset($message->document->caption) ? str_replace("\\","\\\\", $message->document->caption) : '';
                 break;
                 
             case 'audio':
                 $data['media_id'] = isset($message->audio->id) ? $message->audio->id : '';
-                $data['message_text'] = isset($message->audio->caption) ? $message->audio->caption : '';
+                $data['message_text'] = isset($message->audio->caption) ? str_replace("\\","\\\\", $message->audio->caption) : '';
                 break;
                 
             case 'video':
                 $data['media_id'] = isset($message->video->id) ? $message->video->id : '';
-                $data['message_text'] = isset($message->video->caption) ? $message->video->caption : '';
+                $data['message_text'] = isset($message->video->caption) ? str_replace("\\","\\\\", $message->video->caption) : '';
                 break;
                 
             case 'image':
                 $data['media_id'] = isset($message->image->id) ? $message->image->id : '';
-                $data['message_text'] = isset($message->image->caption) ? $message->image->caption : '';
+                $data['message_text'] = isset($message->image->caption) ? str_replace("\\","\\\\", $message->image->caption) : '';
                 break;
                 
             case 'sticker':
@@ -232,7 +232,7 @@ class MessageController extends MessageService
                 break;
                 
             default:
-                $data['message_text'] = isset($message->text->body) ? $message->text->body : '';
+                $data['message_text'] = isset($message->text->body) ? str_replace("\\","\\\\", $message->text->body) : '';
                 break;
         }
             
