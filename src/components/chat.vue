@@ -467,12 +467,13 @@ export default {
             let lastMsg = this.messages[this.messages.length-1];
             if (lastMsg && lastMsg.id > this.lastMessage.id){
                 this.lastMessage = lastMsg;
+                
+                var objDiv = document.getElementById("tynReply");
+                objDiv.scrollTop = objDiv.scrollHeight + 1000;
             }
-    
             
-            var objDiv = document.getElementById("tynReply");
-            objDiv.scrollTop = objDiv.scrollHeight + 1000;
             return this
+            
         },
         __(i)
         {
