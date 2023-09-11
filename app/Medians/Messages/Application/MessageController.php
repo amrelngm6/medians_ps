@@ -297,7 +297,8 @@ class MessageController extends MessageService
             print_r($message->id);
             print_r($message->text->body);
 
-            $repo->updateMessage($message->id, $message->text->body);
+            if ($message->id)
+                $repo->updateMessage($message->id, $message->text->body);
             
         }
 	} 
