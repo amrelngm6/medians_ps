@@ -176,12 +176,12 @@ class MessageController extends MessageService
                 $data = array();
                 if (isset($jsonData->entry[0]->changes[0]->value->messaging_product))
                 {
+                    $date['message_time'] = $time;
                     $data['conversation_id'] = $jsonData->entry[0]->id;
                     $data['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
                     $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
                     $data['to'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
-                    $date['time'] = $time;
                     $data['message_id'] = isset($message->id) ? $message->id : '';
                     $data = $this->messageTypeHandler($data, $message, isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/'.$time.'.json' : null);
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
@@ -299,13 +299,7 @@ class MessageController extends MessageService
         {
             $filename = explode('.', str_replace($_SERVER['DOCUMENT_ROOT'].'/', '', $value));
             $jsonData = json_decode(file_get_contents($value));
-            // print_r($jsonData);
-            $message = $jsonData->entry[0]->changes[0]->value->messages[0];
-            $conversation_id = $jsonData->entry[0]->id;
-
-            if ($message->id)
-                $repo->updateMessage($message->timestamp, $message->text->body);
-            
+            print_r($jsonData);
         }
 	} 
 
