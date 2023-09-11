@@ -31,7 +31,7 @@ class Message extends CustomModel
 	// public $timestamps = false;
 
 
-	public $appends = ['income', 'image_path', 'media_title'];
+	public $appends = ['income', 'image_path', 'media_title', 'message_emojis'];
 
 	public function getIncomeAttribute()
 	{
@@ -47,6 +47,22 @@ class Message extends CustomModel
 	{
 		$return =  $this->media_path ? explode('/', $this->media_path) : null;
 		return $return ? end($return) : NULL;
+	}
+
+	public function getMessageEmojisAttribute()
+	{
+		if ($this->message_type == 'text' &&  strpos($this->message_text, '????'))
+		{
+			$return =  file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.$this->message_time.'.json');
+            $jsonData = json_decode(json_encode($jsonData, JSON_PRETTY_PRINT));
+			$message = $jsonData->entry[0]->changes[0]->value->messages[0];
+
+			return $message->text->body;
+
+		} else {
+			return $this->message_text;
+		}
+			
 	}
 
 }

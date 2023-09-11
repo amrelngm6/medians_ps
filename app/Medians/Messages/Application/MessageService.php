@@ -245,6 +245,7 @@ class MessageService
 		$data['message_text'] = $message_text;
 		$data['media_id'] = '';
 		$data['message_time'] = '';
+		$data['message_type'] = 'text';
 		return $MessageRepository->saveMessage($data, $this->PNID);
 	}
 	
