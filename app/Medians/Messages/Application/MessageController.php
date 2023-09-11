@@ -160,7 +160,8 @@ class MessageController extends MessageService
                   
             $jsonData = json_decode(json_encode($jsonData, JSON_PRETTY_PRINT));
             $dataToSave = json_encode($jsonData, JSON_PRETTY_PRINT);
-            file_put_contents(time().'.json', $dataToSave);
+            $time = time();
+            file_put_contents($time.'.json', $dataToSave);
         }
 
         if ($jsonData) {
@@ -203,9 +204,14 @@ class MessageController extends MessageService
      * Messages type handler
      * 
      */
-    public function messageTypeHandler($data, $message)
+    public function messageTypeHandler($data, $message, $messageFile = null)
     {
-        
+        if ($messageFile){
+            $jsonData = json_decode(file_get_contents($messageFile), true);
+            $message = $jsonData->entry[0]->changes[0]->value->messages[0];
+        }
+ 
+            
         switch ($message->type) {
             case 'document':
                 $data['media_id'] = isset($message->document->id) ? $message->document->id : '';
