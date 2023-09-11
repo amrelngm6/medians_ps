@@ -6,7 +6,7 @@
                 <navbar v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-0 px-2" >
-                    <side_chat :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1 bg-white px-2" id="sidebar" style="z-index:99999">
+                    <side_chat :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="activeTab == 'messages' && auth  && showSide" class="sidebar mx-1 bg-white px-2" id="sidebar" style="z-index:99999">
                     </side_chat>
 
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-hidden" style="height: 85vh; z-index: 9999;">

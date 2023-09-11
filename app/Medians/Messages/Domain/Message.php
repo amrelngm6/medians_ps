@@ -34,7 +34,7 @@ class Message extends CustomModel
 
 	public function getIncomeAttribute()
 	{
-		return $this->sender_id == '201096869285' ? 1 : 0;
+		return $this->sender_id == '106672422075870' ? 0 : 1;
 	}
 
 	public function getImagePathAttribute()

@@ -224,7 +224,7 @@ class MessageService
 	}
 
 
-	public function sendTextMessage(String $message_text = 'Hola', String $receiver = '201118757571')
+	public function sendTextMessage(String $message_text = 'Hola', String $receiver = '201096869285')
 	{
 		$path = '/v17.0/'.$this->PNID.'/messages';
 

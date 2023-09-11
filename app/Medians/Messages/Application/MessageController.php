@@ -33,7 +33,8 @@ class MessageController extends MessageService
 	{
         $repo = new MessageRepository;
         
-        $data =  $repo->loadMessages();
+        $app = new \config\APP;
+        $data =  $repo->loadMessages($app->request()->get('active_contact'));
         echo $data;
 
         foreach ($data as $key => $value) {
@@ -42,9 +43,28 @@ class MessageController extends MessageService
                 $this->loadMedia($value->media_id);
             }
         }
+    }
+
+	/**
+	 * Load contacts
+	 * 
+	 */ 
+	public function load_contacts( ) 
+	{
+        $repo = new ContactRepository;
+        
+        $data =  $repo->loadContacts();
+        echo json_encode(['contacts'=>$data]);
 
     }
+
     
+    /**
+     * Upload file at WP cloud storage
+     * and seve the sent messge ID 
+     * 
+     * @param $file new APP::request()->files[0]
+     */
     public function uploadAndSave($file, $type = 'image')
     {
 		$MessageService = new MessageService;
@@ -242,7 +262,7 @@ class MessageController extends MessageService
                     break;
                 
                case 'send_text':
-                    return $service->sendTextMessage($app->request()->get('m'));
+                    return $service->sendTextMessage($app->request()->get('m'), $app->request()->get('wa_id'));
                     break;
                 
                case 'numbers':

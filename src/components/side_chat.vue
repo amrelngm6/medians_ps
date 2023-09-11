@@ -1,5 +1,5 @@
 <template>
-    <div class=" ">
+    <div class=" " v-if="!showLoader">
         <div class=" w-full p-2">
             <div class="tyn-aside ">
                 <div class="tyn-aside-head">
@@ -83,6 +83,7 @@
                     </div><!-- .tyn-aside-head-tools -->
                 </div><!-- .tyn-aside-head -->
                 <div class="tyn-aside-body" data-simplebar>
+
                     <div class="tyn-aside-search">
                         <div class="form-group tyn-pill">
                             <div class="form-control-wrap">
@@ -98,19 +99,19 @@
                     </div><!-- .tyn-aside-search -->
                     <div class="tab-content">
                         <div class="tab-pane show active" id="all-chats" tabindex="0" role="tabpanel">
-                            <ul class="tyn-aside-list" v-if="messages">
-                                <li v-for="message in messages" class="tyn-aside-item js-toggle-main ">
+                            <ul class="tyn-aside-list" v-if="content && content.contacts">
+                                <li v-for="contact in content.contacts" @click="selectContact(contact)" class="my-2 tyn-aside-item js-toggle-main ">
                                     <div class="tyn-media-group">
                                         <div class="tyn-media tyn-size-lg">
                                             <img src="/uploads/images/1.jpg" alt="">
                                         </div>
                                         <div class="tyn-media-col">
                                             <div class="tyn-media-row">
-                                                <h6 class="name" v-text="message.name"></h6>
+                                                <h6 class="name" v-text="contact.name"></h6>
                                             </div>
                                             <div class="tyn-media-row has-dot-sap">
-                                                <p class="content" v-text="message.last_message"></p>
-                                                <span class="meta" v-text="message.time_ago"></span>
+                                                <p class="content" v-text="contact.last_message"></p>
+                                                <span class="meta" v-text="contact.time_ago"></span>
                                             </div>
                                         </div>
                                         <div class="tyn-media-option tyn-aside-item-option">
@@ -186,10 +187,10 @@ export default {
     data() {
         return {
 
-            url: '/side_chat',
+            url: '/load_contacts',
             date: '',
             activeItem: null,
-            showAddSide: false,
+            showLoader: false,
             showEditSide: false,
             showTab: true,
             component: {},
@@ -202,6 +203,7 @@ export default {
             conf: {},
             main_menu: [],
             typesList: [],
+            contacts:[],
             show: false,
             showSide: true,
             showModal: false,
@@ -214,32 +216,34 @@ export default {
 
     methods: 
     {
-        selectGame(index)
+        selectContact(contact)
         {
 
-            this.activeItem.messages[index] = this.content.messages[index]
+            this.activeItem = contact
             this.showDropdown = false
-            console.log(this.activeItem.messages)
+            
+            console.log(this.activeItem)
+            this.$parent.$refs.activeTab.active_contact = contact.wa_id
+            this.$parent.$refs.activeTab.load()
+            console.log()
 
         },
         openDropdown()
         {
             this.showDropdown = true
         },
-        unelectGame(index)
+        unelectContact(index)
         {
             this.showLoader = true
-            if (this.activeItem.messages)
+            if (this.content.contacts)
             {
-                this.activeItem.messages[index] = null; 
+                this.content.contacts[index] = null; 
             } 
             this.showLoader = false
-            console.log(this.activeItem.messages)
         },
         
         load()
         {
-            console.log('Load');
             this.showLoader = true;
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
@@ -251,6 +255,7 @@ export default {
         setValues(data) {
             console.log(data)
             this.content = JSON.parse(JSON.stringify(data)); return this
+             
         },
         __(i)
         {

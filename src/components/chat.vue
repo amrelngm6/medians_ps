@@ -353,6 +353,7 @@ export default {
             same_page: false,
             content:{},
             pages: [],
+            active_contact:0,
             lastMessage: {id:0},
             messages: []
         }
@@ -435,6 +436,7 @@ export default {
             var params = new URLSearchParams();
             params.append('type', 'WP')
             params.append('message_text', this.chat_message)
+            params.append('wa_id', this.active_contact)
 
             this.showLoader = true;
             this.$parent.handleRequest( params, '/api/send_message' ).then(response=> {
@@ -452,7 +454,7 @@ export default {
         load()
         {
             this.showLoader = true;
-            this.$parent.handleGetRequest( this.url ).then(response=> {
+            this.$parent.handleGetRequest( this.url+'?active_contact='+this.active_contact ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
 

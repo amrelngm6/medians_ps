@@ -37,9 +37,9 @@ class MessageRepository
     // Array ( [messaging_product] => whatsapp [to] => 201096869285 [type] => text [text] => Array ( [body] => test ) [message_id] => wamid.HBgMMjAxMDk2ODY5Mjg1FQIAERgSRjEyNEJFMzA1QTg5REUxODg2AA== )
 
 
-    public function loadMessages()
+    public function loadMessages(String $id = null)
     {
-        return Message::get();
+        return Message::where('sender_id' , $id)->orWhere('receiver_id' , $id)->get();
     }
 
     public function loadContacts()
@@ -49,7 +49,7 @@ class MessageRepository
 
     public function saveContact($data)
     {
-        Contact::create(
+        Contact::firstOrCreate(
             $data
         );
     }
