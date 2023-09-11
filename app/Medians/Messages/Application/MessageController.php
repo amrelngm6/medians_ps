@@ -160,7 +160,11 @@ class MessageController extends MessageService
                   
             $jsonData = json_decode(json_encode($jsonData, JSON_PRETTY_PRINT));
             $dataToSave = json_encode($jsonData, JSON_PRETTY_PRINT);
-            $time = time();
+            if (isset($jsonData->entry[0]->changes[0]->value->messaging_product)){
+                $message = $jsonData->entry[0]->changes[0]->value->messages[0];
+            }
+
+            $time = isset($message->timestamp) ? $message->timestamp : time();
             file_put_contents($time.'.json', $dataToSave);
         }
 
@@ -177,6 +181,7 @@ class MessageController extends MessageService
                     $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
                     $data['to'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
+                    $message = $message->timestamp;
                     $data['message_id'] = isset($message->id) ? $message->id : '';
                     $data = $this->messageTypeHandler($data, $message, isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/'.$time.'.json' : null);
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
@@ -293,9 +298,7 @@ class MessageController extends MessageService
         foreach (glob($_SERVER['DOCUMENT_ROOT'].'/*.json') as $key => $value) 
         {
             $filename = explode('.', str_replace($_SERVER['DOCUMENT_ROOT'].'/', '', $value));
-            print_r($filename);
             $jsonData = json_decode(file_get_contents($value));
-            print_r($filename[0]);
             // print_r($jsonData);
             $message = $jsonData->entry[0]->changes[0]->value->messages[0];
             $conversation_id = $jsonData->entry[0]->id;

@@ -1,10 +1,10 @@
 <?php
-// echo date('Y-m-d h:i:s', '1694448299');
 
 // error_reporting(0); 
 error_reporting(E_ALL); 
 session_start(); 
 date_default_timezone_set('Africa/Cairo');
+// echo date('Y-m-d h:i:s', '1694448299');
 
 
 // Check if installed or redirect to installation 
