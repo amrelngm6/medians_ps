@@ -181,7 +181,7 @@ class MessageController extends MessageService
                     $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
                     $data['to'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
-                    $message = $message->timestamp;
+                    $date['time'] = $message->timestamp;
                     $data['message_id'] = isset($message->id) ? $message->id : '';
                     $data = $this->messageTypeHandler($data, $message, isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/'.$time.'.json' : null);
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
