@@ -292,13 +292,16 @@ class MessageController extends MessageService
 
         foreach (glob($_SERVER['DOCUMENT_ROOT'].'/*.json') as $key => $value) 
         {
+            $filename = explode('.', str_replace($_SERVER['DOCUMENT_ROOT'].'/', '', $value));
+            print_r($filename);
             $jsonData = json_decode(file_get_contents($value));
+            print_r($filename[0]);
+            // print_r($jsonData);
             $message = $jsonData->entry[0]->changes[0]->value->messages[0];
-            print_r($message->id);
-            print_r($message->text->body);
+            $conversation_id = $jsonData->entry[0]->id;
 
             if ($message->id)
-                $repo->updateMessage($message->id, $message->text->body);
+                $repo->updateMessage($conversation_id, $message->text->body);
             
         }
 	} 

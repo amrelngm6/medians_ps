@@ -1,4 +1,5 @@
 <?php
+echo date('Y-m-d h:i:s', '1694448299');
 
 // error_reporting(0); 
 error_reporting(E_ALL); 
@@ -47,7 +48,6 @@ spl_autoload_register(function ($name) {
 include('app/helper/methods.php');
 include('app/config/route.php');
 $capsule->getConnection()->disconnect();
-
 
 
 
