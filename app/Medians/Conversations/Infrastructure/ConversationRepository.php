@@ -27,7 +27,7 @@ class ConversationRepository
 
     public function saveConversation(Array $data)
     {
-        if ($this->checkOld($data['wa_id']))
+        if (!$this->checkOld($data['wa_id']))
             return Conversation::firstOrCreate($data);
         else 
             return Conversation::where('wa_id', $data['wa_id'])->update($data);
