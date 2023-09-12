@@ -429,7 +429,7 @@ export default {
             // this.chat_message ? jQuery('.tyn-chat-form-input').html(' ') : ''
             this.chat_message ? this.sendMessage() : null
 
-            this.chat_message = null
+            this.chat_message = ''
         },
 
         sendMessage()
