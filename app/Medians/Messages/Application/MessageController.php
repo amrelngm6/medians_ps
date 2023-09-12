@@ -200,7 +200,6 @@ class MessageController extends MessageService
                 $data = array();
                 if (isset($jsonData->entry[0]->changes[0]->value->messaging_product))
                 {
-                    $date['reply_message_id'] = isset($message->context->id) ? $message->context->id : null;
                     $date['message_time'] = $time;
                     $data['conversation_id'] = $jsonData->entry[0]->id;
                     $data['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
@@ -270,6 +269,7 @@ class MessageController extends MessageService
         $data['message_type'] = isset($message->type) ? $message->type : '';
         $data['message_time'] = isset($message->timestamp) ? $message->timestamp : '';
         $data['media_path'] = isset($data['media_id']) ?  $this->loadMedia($data['media_id']) : '';
+        $date['reply_message_id'] = isset($message->context->id) ? $message->context->id : null;
 
         return $data;
     }
