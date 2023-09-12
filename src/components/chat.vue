@@ -164,7 +164,7 @@
                     </ul>
                 </div>
                 <div class="tyn-chat-form-enter">
-                    <div class="tyn-chat-form-input" id="tynChatInput" @keydown.enter.exact="validate(event)" contenteditable></div>
+                    <textarea class="tyn-chat-form-input" id="tynChatInput" @keydown.enter.exact="validate(event)" v-model="chat_message"></textarea>
                     <ul class="tyn-list-inline me-n2 my-1">
                         <!-- <li><button class="btn btn-icon btn-white btn-md btn-pill">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
@@ -421,12 +421,12 @@ export default {
             
             if (event && event.shiftKey===true)
                 return null; 
-
-            let titleElement = jQuery(document.querySelector("#tynChatInput"));
-            let msg =  titleElement.html()
-            this.chat_message = msg.trim() ? msg : null
             
-            this.chat_message ? jQuery('.tyn-chat-form-input').html(' ') : ''
+            // let titleElement = jQuery(document.querySelector("#tynChatInput"));
+            // let msg =  titleElement.html()
+            // this.chat_message = msg.trim() ? msg : null
+            
+            // this.chat_message ? jQuery('.tyn-chat-form-input').html(' ') : ''
             this.chat_message ? this.sendMessage() : null
         },
 
