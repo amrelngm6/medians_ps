@@ -1683,3 +1683,7 @@ div > navbar
 {
   z-index: 9999;
 }
+body .tyn-aside-item:hover, body  .tyn-aside-item.active
+{
+  background-color: #f0f0f0;
+}
