@@ -19,7 +19,7 @@
                     </div>
                     <div class="tyn-media-col">
                         <div class="tyn-media-row">
-                            <h6 class="name">Jasmine <span class="d-none d-sm-inline-block">Thompson</span></h6>
+                            <h6 class="name" v-text="active_contact_name"></h6>
                         </div>
                         <div class="tyn-media-row has-dot-sap">
                             <span class="meta">Active</span>
@@ -353,6 +353,7 @@ export default {
             content:{},
             pages: [],
             active_contact:0,
+            active_contact_name:'',
             lastMessage: {id:0},
             messages: []
         }
