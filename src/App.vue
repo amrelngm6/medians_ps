@@ -139,12 +139,14 @@ export default {
         checkPending()
         {
             this.handleGetRequest( '/get_new_chats' ).then(response=> {
-                jQuery('#new_chats_count').html(response && response.contacts ? response.contacts.length : null)
+                let a = response && response.contacts ? response.contacts.length : null;
+                a ? jQuery('#new_chats_count').html(a) : ''
             });
 
             
             this.handleGetRequest( '/get_new_messages' ).then(response=> {
-                jQuery('#new_messages_count').html(response && response.messages ? response.messages.length : null)
+                let b = response && response.messages ? response.messages.length : null;
+                b ? jQuery('#new_messages_count').html(b) : ''
             });
 
         },
