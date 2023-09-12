@@ -31,15 +31,17 @@ Macaw::get('/getMedia/(:all)', \Medians\Messages\Application\MessageController::
 Macaw::get('/messages', \Medians\Messages\Application\MessageController::class.'@index');
 Macaw::get('/load_messages', \Medians\Messages\Application\MessageController::class.'@load_messages');
 Macaw::get('/load_contacts', \Medians\Messages\Application\MessageController::class.'@load_contacts');
+Macaw::get('/new_chats', \Medians\Conversations\Application\ConversationController::class.'@new_chats');
+
+
 Macaw::get('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
 Macaw::post('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
 Macaw::get('/', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::get('/(:all)', \Medians\Messages\Application\MessageController::class.'@page');
 
+
 Macaw::post('/join_contact/(:all)', \Medians\Conversations\Application\ConversationController::class.'@save');
 Macaw::post('/read_message/(:all)', \Medians\Messages\Application\MessageController::class.'@read_message');
-
-
 
 
 /**

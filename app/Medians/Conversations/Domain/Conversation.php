@@ -3,6 +3,7 @@
 namespace Medians\Conversations\Domain;
 
 use Shared\dbaser\CustomModel;
+use Medians\Contacts\Domain\Contact;
 
 
 
@@ -21,6 +22,12 @@ class Conversation extends CustomModel
     	'wa_id',
 	];
 
+
+	
+	public function contact()
+	{
+		return $this->hasOne(Contact::class, 'wa_id','wa_id');
+	}
 
 
 }

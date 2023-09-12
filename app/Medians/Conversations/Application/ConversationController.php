@@ -37,5 +37,21 @@ class ConversationController
     }
     
 
+    /**
+     * Save conversation 
+     * 
+     */
+    public function new_chats()
+    {
+
+        $app = new \config\APP;
+
+        $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
+
+        echo $ConversationRepository->getNew();
+        return true;
+    }
+    
+
 
 }
