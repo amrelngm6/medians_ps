@@ -83,10 +83,9 @@ class MessageController extends MessageService
      * 
      * @param $file new APP::request()->files[0]
      */
-    public function uploadAndSave($file, $type = 'image')
+    public function uploadAndSave($file, $type = 'image', $app = null)
     {
-		$app = new \config\APP;
-        
+		// $app = new \config\APP;
 		$MessageService = new MessageService;
         $messageSent = $MessageService->uploadMedia($file);
         
@@ -114,7 +113,7 @@ class MessageController extends MessageService
 			$file = $Media->upload($value);
 		}
         
-        $this->uploadAndSave($file);
+        $this->uploadAndSave($file,'media', $app);
         
     }
 
@@ -126,7 +125,7 @@ class MessageController extends MessageService
 		$Media = new \Medians\Media\Infrastructure\MediaRepository;
 		foreach ($app->request()->files as $key => $value) {
 			$file = $Media->upload($value);
-            $this->uploadAndSave($file, $MessageService->getFileType($value));
+            $this->uploadAndSave($file, $MessageService->getFileType($value), $app);
 		}
     }
 

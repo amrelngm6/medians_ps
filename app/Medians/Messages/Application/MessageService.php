@@ -172,7 +172,7 @@ class MessageService
 			$headers = array(
 				'Authorization: Bearer ' . $this->SystemUserToken
 			);
-			echo $_SERVER['DOCUMENT_ROOT'].$mediapath;
+			
 			$data = array(
 				'file' => new \CURLFile($_SERVER['DOCUMENT_ROOT'].$mediapath, $filetype),
 				'messaging_product' => 'whatsapp'

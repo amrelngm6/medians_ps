@@ -131,7 +131,6 @@ class MediaRepository
 
 	public function upload(UploadedFile $file, $type = 'media')
     {
-
 		$this->setDir($type);
 
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -146,6 +145,8 @@ class MediaRepository
 
         return $this->_dir.$fileName;
     }
+
+	
 
     public function delete($file)
     {
@@ -166,7 +167,7 @@ class MediaRepository
 
     	if (is_file($filepath))
     	{
-			$ffmpeg = enviroment == 'local' ? 'E:\Development\path\ffmpeg\bin\ffmpeg.exe' : 'ffmpeg';
+			$ffmpeg = 'ffmpeg';
 			shell_exec($ffmpeg.' -i '.$filepath.' -vf scale="'.$w.':'.$h.'" '.$output);
     	}
     }
