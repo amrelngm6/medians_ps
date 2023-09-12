@@ -46,7 +46,7 @@ export default {
     data() {
         return {
 
-            url: '/new_chats',
+            url: '/get_new_chats',
             date: '',
             activeItem: null,
             showLoader: false,
