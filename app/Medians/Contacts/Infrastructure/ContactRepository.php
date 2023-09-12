@@ -18,11 +18,11 @@ class ContactRepository
         foreach($return as $key => $item)
         {
             if (isset($item->last_sent_message->id) && isset($item->last_message->id)) {
-                $item->last_message = $item->last_sent_message->id > $item->last_message->id  ? $item->last_sent_message : $item->last_message;
+                $item->msg = $item->last_sent_message->id > $item->last_message->id  ? $item->last_sent_message : $item->last_message;
             }
-            print_r($item);
             $return[$key] = $item ;
         }
+
         
         return $return;
     }
