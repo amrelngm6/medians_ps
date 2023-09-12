@@ -13,6 +13,9 @@ class ContactRepository
         $return = Contact::with('last_message')
         ->with('last_sent_message')
         ->with('conversations')
+        ->whereHas('conversations', function($q){
+            
+        })
         ->where('id', '>', '1')
         ->groupBy('wa_id')
         ->get();
