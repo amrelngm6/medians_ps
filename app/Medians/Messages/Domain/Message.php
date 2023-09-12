@@ -61,8 +61,8 @@ class Message extends CustomModel
 	public function getMessageEmojisAttribute()
 	{
 
-		$return = ($this->message_time && is_file($_SERVER['DOCUMENT_ROOT'].'/'.$this->message_time.'.json')) 
-			? file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.$this->message_time.'.json') 
+		$return = ($this->message_time && is_file($_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$this->message_time.'.json')) 
+			? file_get_contents($_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$this->message_time.'.json') 
 			: null;
 
 		if (!$return)
