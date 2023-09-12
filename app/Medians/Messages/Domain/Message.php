@@ -44,7 +44,7 @@ class Message extends CustomModel
 
 	public function reaction()
 	{
-		return $this->hasOne(Message::class, 'reply_message_id', 'message_id')->where('message_type', 'reaction');
+		return $this->hasOne(Message::class, 'message_id', 'reply_message_id')->where('message_type', 'reaction');
 	}
 
 	public function getIncomeAttribute()
