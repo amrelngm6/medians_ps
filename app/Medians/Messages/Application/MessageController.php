@@ -285,8 +285,9 @@ class MessageController extends MessageService
         $repo = new MessageRepository;
         $message = $repo->getMessage($id);
         
-        $repo->readMessage($message->message_id);
-        
+        if ($message->sender_id != '106672422075870')
+            $repo->readMessage($message->message_id);
+
         $service = new MessageService; 
         return $service->markRead($message->message_id);
     }
