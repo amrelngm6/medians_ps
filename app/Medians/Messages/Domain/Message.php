@@ -34,7 +34,7 @@ class Message extends CustomModel
 	// public $timestamps = false;
 
 
-	public $appends = ['income', 'image_path', 'media_title', 'time_ago', 'message_emojis'];
+	public $appends = ['income', 'image_path', 'message_emojis', 'media_title', 'time_ago'];
 
 	public function getIncomeAttribute()
 	{
@@ -64,6 +64,7 @@ class Message extends CustomModel
 		$return = ($this->message_time && is_file($_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$this->message_time.'.json')) 
 			? file_get_contents($_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$this->message_time.'.json') 
 			: null;
+
 
 		if (!$return)
 			return null;
