@@ -129,6 +129,8 @@ export default {
         setInterval(function(){
             t.checkPending()
         }, 10000)
+        t.checkPending()
+
     },
     methods: 
     {
@@ -140,13 +142,13 @@ export default {
         {
             this.handleGetRequest( '/get_new_chats' ).then(response=> {
                 let a = response && response.contacts ? response.contacts.length : null;
-                a ? jQuery('#new_chats_count').html(a) : ''
+                a ? jQuery('#new_chats_count').html(a) :  jQuery('#new_chats_count').empty()
             });
 
             
             this.handleGetRequest( '/get_new_messages' ).then(response=> {
                 let b = response && response.messages ? response.messages.length : null;
-                b ? jQuery('#new_messages_count').html(b) : ''
+                b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
             });
 
         },
