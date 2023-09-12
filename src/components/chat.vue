@@ -87,7 +87,7 @@
                     
                     <div v-for="message in messages" :class="message.income ? 'incoming' : 'outgoing'" class="tyn-reply-item ">
                         <div class="tyn-reply-group">
-                            <div class="tyn-reply-bubble">
+                            <div class="tyn-reply-bubble" @click="setReadMsg(message.id)">
                                 <div v-if="message.message_type === 'document'" class="tyn-reply-file">
                                     <a :href="message.media_path" target="_blank" class="tyn-file">
                                         <div class="tyn-media-group">
@@ -483,12 +483,12 @@ export default {
         },
         
 
-        setReadMsg()
+        setReadMsg(id = null)
         {
             
             var params = new URLSearchParams();
             params.append('type', 'WP')
-            params.append('msg_id', this.lastMessage.id)
+            params.append('msg_id',id ? id : this.lastMessage.id)
             this.$parent.handleRequest( params, '/read_message/'+this.lastMessage.id ).then(response=> {
             });
         },
