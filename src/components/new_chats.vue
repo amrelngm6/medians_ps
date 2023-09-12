@@ -1,25 +1,25 @@
 <template>
-    <div class=" ">
+    <div class=" " v-if="content.contacts && content.contacts.length">
         
-        <section class="text-gray-600 body-font mt-12" v-if="content.contacts && content.contacts.length">
-            <div class="container px-5 py-24 mx-auto ">
+        <section class="text-gray-600 body-font mt-12" v-for="conversation in content.contacts">
+            <div class="container px-5 py-24 mx-auto " v-if="conversation">
                 <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col">
                     <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                        <p class="leading-relaxed text-base" >Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
                         <div class="py-4 "></div>
                         <div class="md:flex font-bold text-gray-800">
                             <div class="w-full md:w-1/2 flex space-x-3">
                                 <div class="w-1/2">
                                     <h2 class="text-gray-500">Name</h2>
-                                    <p >Amr Ewis</p>
+                                    <p v-if="conversation.contact" v-html="conversation.contact.name"></p>
                                 </div>
                                 <div class="w-1/2">
                                     <h2 class="text-gray-500">Number</h2>
-                                    <p>201096869285</p>
+                                    <p v-if="conversation.contact" v-html="conversation.wa_id"></p>
                                 </div>
                                 <div class="w-1/2">
                                     <h2 class="text-gray-500">Waiting time</h2>
-                                    <p>2 minutes </p>
+                                    <p v-if="conversation.last_message" v-html="conversation.last_message.time_ago"></p>
                                 </div>
                             </div>
                         </div>
