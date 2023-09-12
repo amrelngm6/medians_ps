@@ -32,6 +32,7 @@ Macaw::get('/messages', \Medians\Messages\Application\MessageController::class.'
 Macaw::get('/load_messages', \Medians\Messages\Application\MessageController::class.'@load_messages');
 Macaw::get('/load_contacts', \Medians\Messages\Application\MessageController::class.'@load_contacts');
 Macaw::get('/new_chats', \Medians\Conversations\Application\ConversationController::class.'@new_chats');
+Macaw::get('/view_chats', \Medians\Conversations\Application\ConversationController::class.'@index');
 
 Macaw::get('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
 Macaw::post('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
