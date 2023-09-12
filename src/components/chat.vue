@@ -429,7 +429,6 @@ export default {
             // this.chat_message ? jQuery('.tyn-chat-form-input').html(' ') : ''
             this.chat_message ? this.sendMessage() : null
 
-            this.chat_message = ''
         },
 
         sendMessage()
@@ -442,6 +441,8 @@ export default {
             this.showLoader = true;
             this.$parent.handleRequest( params, '/api/send_message' ).then(response=> {
                 this.load()
+                this.chat_message = false
+
             });
         },
 
