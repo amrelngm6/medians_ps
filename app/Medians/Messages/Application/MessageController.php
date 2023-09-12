@@ -35,14 +35,32 @@ class MessageController extends MessageService
         
         $app = new \config\APP;
         $data =  $repo->loadMessages($app->request()->get('active_contact'));
-        echo json_encode($data, JSON_PRETTY_PRINT);
-
+        
         foreach ($data as $key => $value) {
             if ($value->media_id && !$value->media_path)
             {
                 $this->loadMedia($value->media_id);
             }
+            
+            if ($value->message_text)
+            {
+                
+                $return = ($value->message_time && is_file($_SERVER['DOCUMENT_ROOT'].'/'.$value->message_time.'.json')) 
+                ? file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.$value->message_time.'.json') 
+                : null;
+                // $return = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.$value->message_time.'.json') ;
+                
+                if ($return) {
+                    $jsonData = json_decode(json_encode($return, JSON_PRETTY_PRINT));
+                    $msg = (json_decode($jsonData))->entry[0]->changes[0]->value->messages[0]->text->body;
+                    $data[$key]->message_text = $jsonData ? $msg : 'NO';
+                }
+                // $data[$key]->msg = $return;
+                
+            }
         }
+        
+        echo json_encode($data, JSON_PRETTY_PRINT);
     }
 
 	/**
