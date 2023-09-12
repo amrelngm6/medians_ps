@@ -206,6 +206,9 @@ export default {
     },
     mounted() {
         this.load()
+        setInterval(function(){
+            t.load()
+        }, 6000);
     },
 
     methods: 
