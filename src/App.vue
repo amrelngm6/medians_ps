@@ -185,6 +185,7 @@ export default {
                 });
                 notification.onclick = function(event) {
                     event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                    alert(1)
                     t.activeTab = 'messages';
                 }
             }
