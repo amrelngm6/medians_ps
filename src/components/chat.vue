@@ -22,7 +22,7 @@
                             <h6 class="name" v-text="active_contact_name"></h6>
                         </div>
                         <div class="tyn-media-row has-dot-sap">
-                            <span class="meta">Active</span>
+                            <span class="meta"  v-text="active_contact"></span>
                         </div>
                     </div>
                 </div>

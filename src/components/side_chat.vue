@@ -224,6 +224,7 @@ export default {
             
             console.log(this.activeItem)
             this.$parent.$refs.activeTab.active_contact = contact.wa_id
+            this.$parent.$refs.activeTab.active_contact_name = contact.name
             this.$parent.$refs.activeTab.load()
             console.log()
 
