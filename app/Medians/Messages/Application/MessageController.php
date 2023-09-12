@@ -264,7 +264,7 @@ class MessageController extends MessageService
                 break;
                 
             case 'reaction':
-                $data['message_id'] = isset($message->reaction->message_id) ? $message->sticker->id : '';
+                $data['message_id'] = isset($message->reaction->id) ? $message->reaction->id : '';
                 $data['message_text'] = isset($message->reaction->emoji) ? str_replace("\\","\\\\", $message->reaction->emoji) : '';
                 $date['reply_message_id'] = isset($message->reaction->message_id) ? $message->reaction->message_id : null;
                 break;
