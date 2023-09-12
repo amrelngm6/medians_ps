@@ -467,17 +467,17 @@ export default {
         setValues(data) {
             this.messages = JSON.parse(JSON.stringify(data)); 
             let lastMsg = this.messages[this.messages.length-1];
+            console.log('Check last msg')
             console.log(lastMsg)
             console.log(this.lastMessage)
             if (lastMsg && lastMsg.id > this.lastMessage.id){
                 this.lastMessage = lastMsg;
-                setTimeout(() => {
-                    var objDiv = document.getElementById("tynReply");
-                    objDiv.scrollTop = objDiv.scrollHeight + 1000;
-                    jQuery('#tynReply').scrollTop(100000)
-                }, 500);
-
             }
+            setTimeout(() => {
+                // var objDiv = document.getElementById("tynReply");
+                // objDiv.scrollTop = objDiv.scrollHeight + 1000;
+                jQuery('#tynReply').scrollTop(100000)
+            }, 500);
 
             return this
             
