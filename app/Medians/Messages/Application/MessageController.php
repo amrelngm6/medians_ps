@@ -200,6 +200,9 @@ class MessageController extends MessageService
                 $data = array();
                 if (isset($jsonData->entry[0]->changes[0]->value->messaging_product))
                 {
+    
+                    $message = $jsonData->entry[0]->changes[0]->value->messages[0];
+
                     $date['message_time'] = $time;
                     $data['conversation_id'] = $jsonData->entry[0]->id;
                     $data['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
