@@ -266,7 +266,6 @@ class MessageService
 			"message_id"=> $messageID,
         );
 
-		$this->readMessage($messageID);
 		return $this->wp_web_send($path, $data);
 	}
 	
