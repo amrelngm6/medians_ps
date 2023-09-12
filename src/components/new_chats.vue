@@ -1,7 +1,7 @@
 <template>
     <div class=" " v-if="content.contacts && content.contacts.length">
-        <div class="w-full"  v-for="conversation in content.contacts">
-            <section class="text-gray-600 body-font mt-12">
+        <div class="w-full" >
+            <section class="text-gray-600 body-font mt-12"  v-for="conversation in content.contacts">
                 <div class="container px-5 py-24 mx-auto " v-if="conversation">
                     <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col">
                         <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
