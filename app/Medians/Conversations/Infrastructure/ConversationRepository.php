@@ -11,6 +11,13 @@ class ConversationRepository
 
 
 
+    public function checkOld(String $wa_id)
+    {
+        return Conversation::where('wa_id', $wa_id)->whereData('created_at', '>', date('Y-m-d H:i:s', strtotime('-1 day')))->first();
+    }
+    
+ 
+
     public function saveConversation(Array $data)
     {
 

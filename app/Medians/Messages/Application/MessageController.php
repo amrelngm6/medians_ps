@@ -189,6 +189,8 @@ class MessageController extends MessageService
             file_put_contents('uploads/chat/'.$time.'.json', $dataToSave);
             
             $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
+
+            $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
                   
             if (isset($jsonData->entry[0]->changes[0]->value->statuses[0]->status) && $jsonData->entry[0]->changes[0]->value->statuses[0]->status == 'read')
             {
@@ -214,13 +216,24 @@ class MessageController extends MessageService
                     
                     $save = $MessageRepository->saveMessage($data, $data['sender_id']);
 
-                    if ($save && isset($message->context->id))
+                    if ($save && isset($message->context->id)){
                         $MessageRepository->updateReplyId( $message->id, $message->context->id);
+                    }
 
                     if ($save && isset($message->reaction)) {
                         $MessageRepository->updateReplyId( $message->id, $message->reaction->message_id);
                     }
 
+                    if ($save && !$ConversationRepository->checkOld($jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id) )   {
+
+                        $arr = [
+                            'wa_id'=> $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id,
+                            'user_id'=> 0,
+                            'conversation_id'=> $jsonData->entry[0]->id
+                        ];
+                        $ConversationRepository->saveConversation( $arr);
+                    }
+        
                     
                 }
                 
