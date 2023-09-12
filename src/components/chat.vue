@@ -353,6 +353,7 @@
 <script>
 const axios = require('axios').default;
 
+import GLightbox from 'glightbox';
 
 export default {
     computed: {},
@@ -383,6 +384,11 @@ export default {
         setInterval(function(){
             t.load()
         }, 5000);
+        
+        setTimeout(function(){
+            var lightbox = GLightbox();
+            console.log(lightbox)
+        }, 1000);
     },
 
     methods: {
