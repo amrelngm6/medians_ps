@@ -464,6 +464,17 @@ export default {
             });
         },
         
+
+        setReadMsg()
+        {
+            
+            var params = new URLSearchParams();
+            params.append('type', 'WP')
+            params.append('msg_id', this.lastMessage.id)
+            this.$parent.handleRequest( params, '/api/read_message' ).then(response=> {
+            });
+        },
+        
         setValues(data) {
             this.messages = JSON.parse(JSON.stringify(data)); 
             let lastMsg = this.messages[this.messages.length-1];
@@ -472,6 +483,7 @@ export default {
             console.log(this.lastMessage)
             if (lastMsg && lastMsg.id > this.lastMessage.id){
                 this.lastMessage = lastMsg;
+                setReadMsg(this.lastMessage.id)
                 setTimeout(() => {
                     document.getElementById("tynReply").scrollIntoView(false)
                 }, 500);

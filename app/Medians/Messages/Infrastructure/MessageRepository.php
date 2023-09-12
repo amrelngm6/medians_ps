@@ -29,6 +29,10 @@ class MessageRepository
         ]);
     }
     
+    public function getMessage ($id)
+    {
+        return Message::find($id);
+    }
 
     public function updateMedia(String $mediaId, $newpath = null)
     {

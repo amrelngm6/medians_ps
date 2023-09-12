@@ -268,8 +268,22 @@ class MessageController extends MessageService
 
         return $data;
     }
-
     
+    
+    
+	/**
+     * Front page 
+     * @var Int
+	 */
+    public function read_message($id)
+	{
+        $repo = new MessageRepository;
+        
+        $message = $repo->getMessage($id);
+        
+        return $service->markRead($message->message_id);
+
+    }
     
 	/**
 	 * Front page 
@@ -279,7 +293,7 @@ class MessageController extends MessageService
 	{
 
 		try {
-			
+
             $service = new MessageService; 
             $app = new \config\APP;
             
