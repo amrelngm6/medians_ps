@@ -14,7 +14,7 @@ class ConversationRepository
     public function saveConversation(Array $data)
     {
 
-        return Message::firstOrCreate($data);
+        return Conversation::firstOrCreate($data);
     }
     
  
