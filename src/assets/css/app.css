@@ -638,7 +638,7 @@ dl {
 }
 .tyn-media-col .content {
   font-size: 0.75rem;
-  color: var(--media-text);
+  /* color: var(--media-text); */
   margin-bottom: 0;
   max-width: 100%;
   overflow: hidden;
