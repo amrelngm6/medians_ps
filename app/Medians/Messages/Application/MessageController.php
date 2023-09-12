@@ -113,7 +113,7 @@ class MessageController extends MessageService
 			$file = $Media->upload($value);
 		}
         
-        $this->uploadAndSave($file,'media', $app);
+        $this->uploadAndSave($file,'image', $app);
         
     }
 
