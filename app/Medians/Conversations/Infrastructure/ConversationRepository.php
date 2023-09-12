@@ -20,11 +20,6 @@ class ConversationRepository
 
     public function saveConversation(Array $data)
     {
-        $check = Conversation::where('wa_id', $data['wa_id'])->where('user_id', 0)->first();
-
-        if ($check)
-            return $check->update(['user_id'=>$data['user_id']]);
-        
         return Conversation::firstOrCreate($data);
     }
     
