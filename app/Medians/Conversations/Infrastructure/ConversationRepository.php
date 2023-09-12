@@ -23,14 +23,23 @@ class ConversationRepository
         return Conversation::where('wa_id', $wa_id)->whereDate('created_at', '>', date('Y-m-d H:i:s', strtotime('-1 day')))->first();
     }
     
- 
 
     public function saveConversation(Array $data)
     {
-        if (!$this->checkOld($data['wa_id']))
-            return Conversation::firstOrCreate($data);
-        else 
-            return Conversation::where('wa_id', $data['wa_id'])->update($data);
+        return Conversation::firstOrCreate($data);
+    }
+    
+    public function checkIfPending(Array $data)
+    {
+        return Conversation::where('wa_id', $data['wa_id'])->orderBy('id','DESC')->first();
+    }
+    
+    
+    public function joinConversation(Array $data)
+    {
+        return Conversation::where('wa_id', $data['wa_id'])
+        ->where('user_id', null)
+        ->update($data);
     }
     
  

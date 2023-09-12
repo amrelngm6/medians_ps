@@ -51,8 +51,9 @@ class ConversationController
         $data['conversation_id'] = $check->conversation_id;
         $data['wa_id'] = $wa_id;
         $data['user_id'] = $app->auth()->id;
-        
-        $save = $ConversationRepository->saveConversation($data);
+            
+
+        $save =  $ConversationRepository->checkIfPending($data) ? $ConversationRepository->joinConversation($data)  : $ConversationRepository->saveConversation($data);
         
         if ($save)
             echo json_encode(["success"=>true]);
