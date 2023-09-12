@@ -67,7 +67,6 @@ class ConversationController
      */
     public function new_chats()
     {
-
         $app = new \config\APP;
 
         $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;

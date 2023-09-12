@@ -369,6 +369,26 @@ class MessageController extends MessageService
 
 
     
+    /**
+     * Save conversation 
+     * 
+     */
+    public function new_messages()
+    {
+        $app = new \config\APP;
+
+        $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
+
+        echo json_encode(['messages'=>$MessageRepository->getNew()]);
+        return true;
+    }
+    
+
+
+
+
+
+    
 	/**
 	 * Admin index items
 	 * 

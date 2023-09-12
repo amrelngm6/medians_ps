@@ -28,6 +28,18 @@ class MessageRepository
             'inserted_by'=> isset($data['inserted_by']) ? $data['inserted_by'] : 0,
         ]);
     }
+
+    /**
+     * Get unread new messages
+     */
+    public function getNew($user_id)
+    {
+         return Conversation::where('user_id', $user_id)
+         ->whereHas('new_messages')
+         ->with('new_messages')
+         ->get();
+    }
+ 
     
     public function getMessage ($id)
     {
