@@ -167,8 +167,8 @@ class AuthService
             if (!empty($checkUser->id))
             {
                 $this->setSession($checkUser);
-            	echo json_encode(array('success'=>1, 'result'=>__('Logged in'), 'redirect'=>$this->app->CONF['url']));
 				header("Location: /messages");
+            	// echo json_encode(array('success'=>1, 'result'=>__('Logged in'), 'redirect'=>$this->app->CONF['url']));
             } else {
 	            echo json_encode(array('error'=>$checkUser));
             }
