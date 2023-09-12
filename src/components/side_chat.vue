@@ -1,6 +1,6 @@
 <template>
     <div class=" " v-if="!showLoader">
-        <div class=" w-full p-2">
+        <div class=" w-full p-2 h-full">
             <div class="tyn-aside ">
                 <div class="tyn-aside-head">
                     <div class="tyn-aside-head-text">
