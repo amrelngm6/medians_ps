@@ -52,8 +52,8 @@ class MessageController extends MessageService
                 
                 if ($return) {
                     $jsonData = json_decode(json_encode($return, JSON_PRETTY_PRINT));
-                    $msg = (json_decode($jsonData))->entry[0]->changes[0]->value->messages[0]->text->body;
-                    $data[$key]->message_text = $jsonData ? $msg : 'NO';
+                    $msg = (json_decode($jsonData))->entry[0]->changes[0]->value->messages[0];
+                    $data[$key]->message_text = isset($msg->text->body) ? $msg->text->body : $value->message_text;
                 }
                 // $data[$key]->msg = $return;
                 
