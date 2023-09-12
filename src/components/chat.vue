@@ -483,7 +483,7 @@ export default {
             console.log(this.lastMessage)
             if (lastMsg && lastMsg.id > this.lastMessage.id){
                 this.lastMessage = lastMsg;
-                setReadMsg(this.lastMessage.id)
+                this.setReadMsg(this.lastMessage.id)
                 setTimeout(() => {
                     document.getElementById("tynReply").scrollIntoView(false)
                 }, 500);
