@@ -505,6 +505,7 @@ export default {
                 setTimeout(() => {
                     document.getElementById("tynReply").scrollIntoView(false)
                 }, 500);
+                this.$parent.notify('New message', lastMsg.message_text ? lastMsg.message_text : 'New message from '+ lastMsg.sender_id)
             }
 
             return this

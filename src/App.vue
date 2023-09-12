@@ -80,6 +80,7 @@ export default {
         return {
 
             date: '',
+            enable_notifications: true,
             activeItem: null,
             showAddSide: false,
             showEditSide: false,
@@ -118,7 +119,7 @@ export default {
         this.showSide =  (window.screen.availWidth > 1000 ) ? true : false;
 
         // Check if Native notifications enabled  from Master
-        if (this.system_setting && this.system_setting.enable_notifications)
+        if (this.enable_notifications)
             this.notify()
         
         this.checkMobileMenu()    
@@ -165,19 +166,16 @@ export default {
          * Check notifications permission
          * Send welcome notification
          */ 
-        notify (title, body) 
+        notify (title=null, body=null) 
         {
-
-            if (this.system_setting.notifications_welcome_message)
-                return null;
-
+            
             if ("Notification" in window) 
             {
                 if (Notification.permission !== "granted") {
                     Notification.requestPermission().then(permission => {
                         if (permission === "granted") {
-                            const notification = new Notification(this.system_setting.notifications_welcome_subject, {
-                                body: this.system_setting.notifications_welcome_message,
+                            const notification = new Notification(title ? title : '', {
+                                body: body ? body : '',
                                 icon: this.system_setting.notifications_welcome_icon
                             });
                         }
