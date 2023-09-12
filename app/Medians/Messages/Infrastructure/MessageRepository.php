@@ -18,6 +18,7 @@ class MessageRepository
             'message_id' => $data['message_id'],
             'sender_id' => $senderID,
             'receiver_id' => $data['to'],
+            'reply_message_id'=> isset($data['reply_message_id']) ? $data['reply_message_id'] : '',
             'message_time'=> isset($data['message_time']) ? $data['message_time'] : '',
             'conversation_id' => isset($data['conversation_id']) ? $data['conversation_id'] : '',
             'message_text' => isset($data['message_text']) ? $data['message_text'] : '',
