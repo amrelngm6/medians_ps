@@ -36,7 +36,7 @@ class Contact extends CustomModel
 		return $this->hasOne(Message::class, 'receiver_id','wa_id')->orderBy('id', 'DESC');
 	}
 
-	public function conversation()
+	public function conversations()
 	{
 		return $this->hasMany(Conversation::class, 'wa_id','wa_id')->orderBy('id', 'DESC');
 	}
