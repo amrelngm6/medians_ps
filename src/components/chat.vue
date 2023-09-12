@@ -485,11 +485,12 @@ export default {
 
         setReadMsg(id = null)
         {
+            let _id = id ? id : this.lastMessage.id;
             
             var params = new URLSearchParams();
             params.append('type', 'WP')
-            params.append('msg_id',id ? id : this.lastMessage.id)
-            this.$parent.handleRequest( params, '/read_message/'+this.lastMessage.id ).then(response=> {
+            params.append('msg_id',_id)
+            this.$parent.handleRequest( params, '/read_message/'+_id ).then(response=> {
             });
         },
         
