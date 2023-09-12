@@ -113,7 +113,7 @@
                                     </div>
                                     <div v-if="message.reply_message.message_type === 'video' || message.reply_message.is_video" class="tyn-reply-media">
                                         <a :href="message.reply_message.media_path" :title="message.reply_message.message_text" class="glightbox tyn-video cursor-pointer" data-gallery="media-video">
-                                            <img src="/uploads/images/video.jpg" class="tyn-image" alt="">
+                                            <img src="/uploads/images/video.jpg" style="width:40px" class="tyn-image" alt="">
                                             <div class="tyn-video-icon">
                                                 <!-- play-fill -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
@@ -124,7 +124,7 @@
                                     </div>
                                     <div v-if="message.reply_message.message_type === 'audio'" class="tyn-reply-media">
                                         <a :title="message.reply_message.message_text" :href="message.reply_message.media_path" class="glightbox tyn-video cursor-pointer" data-gallery="media-video">
-                                            <img src="/uploads/images/video.jpg" height="80" width="100%" class="tyn-image" alt="">
+                                            <img src="/uploads/images/video.jpg" style="width:40px" height="80" width="100%" class="tyn-image" alt="">
                                             <div class="tyn-video-icon">
                                                 <!-- play-fill -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
