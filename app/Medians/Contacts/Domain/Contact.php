@@ -27,7 +27,7 @@ class Contact extends CustomModel
 
 	public function last_message()
 	{
-		return $this->hasOne(Message::class, 'sender_id','wa_id')->orderBy('id', 'DESC');
+		return $this->hasOne(Message::class, 'receiver_id','wa_id')->orderBy('id', 'DESC');
 	}
 
 
