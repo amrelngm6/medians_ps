@@ -9,6 +9,30 @@ use Medians\Conversations\Infrastructure\ConversationRepository;
 class ConversationController
 {
 
+    
+	/**
+	 * Admin index items
+	 * 
+	 */ 
+	public function index( ) 
+	{
+        
+        $repo = new ConversationRepository;
+        
+		try {
+			
+		    return render('new_chats', [
+		        'load_vue' => true,
+		        'title' => __('conversations'),
+		        'contacts' => $repo->getNew(),
+		    ]);
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+			
+		}
+	}
+
+
 
     /**
      * Save conversation 

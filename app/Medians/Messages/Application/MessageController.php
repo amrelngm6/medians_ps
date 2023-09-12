@@ -130,30 +130,6 @@ class MessageController extends MessageService
     }
 
 
-	/**
-	 * Admin index items
-	 * 
-	 */ 
-	public function index( ) 
-	{
-        
-        $repo = new MessageRepository;
-        
-		try {
-			
-		    return render('chat', [
-		        'load_vue' => true,
-		        'title' => __('messages'),
-		        'messages' => $repo->loadMessages(),
-		        'contacts' => $repo->loadContacts(),
-		        'contacts' => $repo->loadContacts(),
-		    ]);
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
-		}
-	}
-
 
     
 	/**
@@ -391,5 +367,30 @@ class MessageController extends MessageService
 
     }
 
+
+    
+	/**
+	 * Admin index items
+	 * 
+	 */ 
+	public function index( ) 
+	{
+        
+        $repo = new MessageRepository;
+        
+		try {
+			
+		    return render('chat', [
+		        'load_vue' => true,
+		        'title' => __('messages'),
+		        'messages' => $repo->loadMessages(),
+		        'contacts' => $repo->loadContacts(),
+		        'contacts' => $repo->loadContacts(),
+		    ]);
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+			
+		}
+	}
 
 }
