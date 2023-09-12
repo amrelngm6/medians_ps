@@ -467,6 +467,8 @@ export default {
         setValues(data) {
             this.messages = JSON.parse(JSON.stringify(data)); 
             let lastMsg = this.messages[this.messages.length-1];
+            console.log(lastMsg)
+            console.log(this.lastMessage)
             if (lastMsg && lastMsg.id > this.lastMessage.id){
                 this.lastMessage = lastMsg;
                 setTimeout(() => {
