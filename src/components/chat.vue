@@ -108,7 +108,7 @@
                                         <img :src="message.image_path" class="tyn-image" alt="">
                                     </a>
                                 </div>
-                                <div v-if="message.message_type === 'video' && message.is_video" class="tyn-reply-media">
+                                <div v-if="message.message_type === 'video' || message.is_video" class="tyn-reply-media">
                                     <a :href="message.media_path" class="glightbox tyn-video cursor-pointer" data-gallery="media-video">
                                         <img src="/uploads/images/video.jpg" class="tyn-image" alt="">
                                         <div class="tyn-video-icon">
