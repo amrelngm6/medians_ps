@@ -87,8 +87,8 @@
                     
                     <div v-for="message in messages" :class="message.income ? 'incoming' : 'outgoing'" class="tyn-reply-item ">
                         <div class="tyn-reply-group">
-                            <div class="tyn-reply-bubble" @click="setReadMsg(message.id)">
-                                <span v-if="message.reaction && message.reaction.id" class="p-1 bg-white absolute left-0 bottom-0 w-8 h-8 rounded-full" v-html="message.reaction.message_emojis" style="max-width: none;left: -20px;"></span>
+                            <div class="tyn-reply-bubble" :class="(message.reply_message && message.message_type != 'reaction' && message.reply_message.id) ? 'block' : ''" @click="setReadMsg(message.id)">
+                                <span v-if="message.reaction && message.reaction.id" class="p-1 bg-white absolute left-0 bottom-0 w-8 h-8 rounded-full" v-html="message.reaction.message_emojis" style="max-width: none;left: -20px; z-index: 9;"></span>
                                 
                                 <div v-if="message.reply_message && message.message_type != 'reaction' && message.reply_message.id" class="p-1 bg-gray-100 relative left-0 bottom-0 w-auto rounded-full"  style="max-width: none;">
                                     <div v-if="message.reply_message.message_type === 'document' && !message.reply_message.is_video" class="tyn-reply-file">
