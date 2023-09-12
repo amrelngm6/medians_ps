@@ -37,6 +37,11 @@ class Message extends CustomModel
 
 	public $appends = ['income', 'image_path', 'message_emojis', 'media_title', 'is_video', 'time_ago'];
 
+	public function reply_message()
+	{
+		return $this->hasOne(Message::class, 'reply_message_id', 'id');
+	}
+
 	public function getIncomeAttribute()
 	{
 		return $this->sender_id == '106672422075870' ? 0 : 1;
