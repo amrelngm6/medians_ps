@@ -472,12 +472,10 @@ export default {
             console.log(this.lastMessage)
             if (lastMsg && lastMsg.id > this.lastMessage.id){
                 this.lastMessage = lastMsg;
+                setTimeout(() => {
+                    document.getElementById("tynReply").scrollIntoView(false)
+                }, 500);
             }
-            setTimeout(() => {
-                // var objDiv = document.getElementById("tynReply");
-                // objDiv.scrollTop = objDiv.scrollHeight + 1000;
-                document.getElementById("tynReply").scrollIntoView(false)
-            }, 500);
 
             return this
             
