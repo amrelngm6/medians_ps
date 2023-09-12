@@ -269,7 +269,7 @@ export default {
         
         setValues(data) {
             console.log(data)
-            jQuery('#new_chats_count').html(data ? data.length : null)
+            jQuery('#new_chats_count').html(data && data.contacts ? data.contacts.length : null)
             this.content = JSON.parse(JSON.stringify(data)); return this
              
         },
