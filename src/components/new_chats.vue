@@ -140,7 +140,6 @@ export default {
         },
         
         setValues(data) {
-            console.log(data)
             this.content = JSON.parse(JSON.stringify(data)); return this
              
         },
