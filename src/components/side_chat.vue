@@ -100,12 +100,12 @@
                     <div class="tab-content">
                         <div class="tab-pane show active" id="all-chats" tabindex="0" role="tabpanel">
                             <ul class="tyn-aside-list" v-if="content && content.contacts">
-                                <li v-for="contact in content.contacts" @click="selectContact(contact)" class="my-2 tyn-aside-item js-toggle-main ">
+                                <li v-for="contact in content.contacts" class="my-2 tyn-aside-item js-toggle-main ">
                                     <div class="tyn-media-group">
-                                        <div class="tyn-media tyn-size-lg">
+                                        <div @click="selectContact(contact)"  class="tyn-media tyn-size-lg">
                                             <img src="/uploads/images/1.jpg" alt="">
                                         </div>
-                                        <div class="tyn-media-col">
+                                        <div class="tyn-media-col" @click="selectContact(contact)" >
                                             <div class="tyn-media-row">
                                                 <h6 class="name" v-text="contact.name"></h6>
                                             </div>
