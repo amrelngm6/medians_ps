@@ -74,7 +74,7 @@ class Message extends CustomModel
 			? $jsonData->entry[0]->changes[0]->value->messages[0]
 			: null;
 
-		return $message;
+		return isset($message->text->body) ? $message->text->body : null;
 
 			
 	}
