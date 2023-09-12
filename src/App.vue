@@ -120,7 +120,7 @@ export default {
 
         // Check if Native notifications enabled  from Master
         if (this.enable_notifications)
-            this.notify()
+            // this.notify()
         
         this.checkMobileMenu()    
 
