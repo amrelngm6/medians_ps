@@ -209,7 +209,11 @@ class MessageController extends MessageService
                     $data = $this->messageTypeHandler($data, $message, (isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$time.'.json' : null));
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
                     
-                    $MessageRepository->saveMessage($data, $data['sender_id']);
+                    $save = $MessageRepository->saveMessage($data, $data['sender_id']);
+
+                    if ($save && isset($message->context->id))
+                        $MessageRepository->updateReplyId( $message->id, $message->context->id);
+                    
                 }
                 
                 $contact = array();

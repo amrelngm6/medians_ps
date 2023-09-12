@@ -14,7 +14,7 @@ class MessageRepository
     public function saveMessage(Array $data, String $senderID)
     {
 
-        Message::create([
+        return Message::create([
             'message_id' => $data['message_id'],
             'sender_id' => $senderID,
             'receiver_id' => $data['to'],
@@ -26,7 +26,6 @@ class MessageRepository
             'media_id'=> isset($data['media_id']) ? $data['media_id'] : '',
             'media_path'=> isset($data['media_path']) ? $data['media_path'] : '',
             'inserted_by'=> isset($data['inserted_by']) ? $data['inserted_by'] : 0,
-            'sent_at',
         ]);
     }
     
@@ -39,6 +38,13 @@ class MessageRepository
     {
         return Message::where('media_id', $mediaId)->update([
             'media_path'=> $newpath,
+        ]);
+    }
+
+    public function updateReplyId(String $message_id, String $reply_message_id)
+    {
+        return Message::where('message_id', $message_id)->update([
+            'reply_message_id'=> $reply_message_id,
         ]);
     }
 
