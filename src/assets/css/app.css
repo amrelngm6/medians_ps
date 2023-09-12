@@ -1683,7 +1683,15 @@ div > navbar
 {
   z-index: 9999;
 }
+.tyn-aside-item h6 
+{
+  font-weight: normal;
+}
 body .tyn-aside-item:hover, body  .tyn-aside-item.active
 {
   background-color: #f0f0f0;
+}
+.tyn-aside-item.active h6 
+{
+  font-weight: bold;
 }

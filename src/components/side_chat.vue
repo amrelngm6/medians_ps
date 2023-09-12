@@ -110,7 +110,7 @@
                                                 <h6 class="name" v-text="contact.name"></h6>
                                             </div>
                                             <div class="tyn-media-row has-dot-sap">
-                                                <p class="content" v-if="contact.last_message" v-html="contact.last_message.message_text"></p>
+                                                <p class="content" :class="!contact.last_message.read ? 'green' : ''" v-if="contact.last_message" v-html="contact.last_message.message_text"></p>
                                                 <span class="meta" v-if="contact.last_message" v-html="contact.last_message.time_ago"></span>
                                             </div>
                                         </div>
