@@ -500,12 +500,14 @@ export default {
             console.log(lastMsg)
             console.log(this.lastMessage)
             if (lastMsg && lastMsg.id > this.lastMessage.id){
+                if (this.lastMessage.id > 0)
+                    this.$parent.notify('New message', lastMsg.message_text ? lastMsg.message_text : 'New message from '+ lastMsg.sender_id)
+    
                 this.lastMessage = lastMsg;
                 this.setReadMsg(this.lastMessage.id)
                 setTimeout(() => {
                     document.getElementById("tynReply").scrollIntoView(false)
                 }, 500);
-                this.$parent.notify('New message', lastMsg.message_text ? lastMsg.message_text : 'New message from '+ lastMsg.sender_id)
             }
 
             return this
