@@ -144,7 +144,7 @@ export default {
 
             
             this.handleGetRequest( '/get_new_messages' ).then(response=> {
-                jQuery('#new_chats_count').html(response && response.contacts ? response.contacts.length : null)
+                jQuery('#new_messages_count').html(response && response.messages ? response.messages.length : null)
             });
 
         },
