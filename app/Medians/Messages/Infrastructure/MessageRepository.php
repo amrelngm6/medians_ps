@@ -59,7 +59,9 @@ class MessageRepository
 
     public function loadMessages(String $id = null)
     {
-        return Message::with('reply_message')->where('sender_id' , $id)->orWhere('receiver_id' , $id)->get();
+        return Message::with('reply_message')
+        ->with('reaction')
+        ->where('sender_id' , $id)->orWhere('receiver_id' , $id)->get();
     }
 
     public function loadContacts()
