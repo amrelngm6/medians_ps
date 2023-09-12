@@ -200,12 +200,12 @@ class MessageController extends MessageService
                 $data = array();
                 if (isset($jsonData->entry[0]->changes[0]->value->messaging_product))
                 {
+                    $date['reply_message_id'] = isset($message->context->id) ? $message->context->id : null;
                     $date['message_time'] = $time;
                     $data['conversation_id'] = $jsonData->entry[0]->id;
                     $data['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
                     $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
                     $data['to'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
-                    $message = $jsonData->entry[0]->changes[0]->value->messages[0];
                     $data['message_id'] = isset($message->id) ? $message->id : '';
                     $data = $this->messageTypeHandler($data, $message, (isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$time.'.json' : null));
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
