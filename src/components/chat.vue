@@ -386,7 +386,7 @@ export default {
         }, 5000);
         
         setTimeout(function(){
-            var lightbox = GLightbox();
+            var lightbox = GLightbox({selector:".glightbox"});
             console.log(lightbox)
         }, 1000);
     },
