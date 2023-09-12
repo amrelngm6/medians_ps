@@ -59,7 +59,9 @@ class MessageRepository
 
     public function loadMessages(String $id = null)
     {
-        return Message::with('reply_message')
+        return Message::with(['reply_message'=>function($q){
+			return $q->where('message_type', '!=', 'reaction');
+		}])
         ->with('reaction')
         ->where('sender_id' , $id)->orWhere('receiver_id' , $id)->get();
     }
