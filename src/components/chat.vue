@@ -133,7 +133,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <div v-if="!message.reply_message.message_type || message.reply_message.message_type === 'text'" class="tyn-reply-text"> 
+                                    <div v-if="message.reply_message.message_type === 'text'" class="tyn-reply-text"> 
                                         <span  v-html="message.reply_message.message_emojis ? message.reply_message.message_emojis : message.reply_message.message_text" ></span>
                                     </div>
                                 </div>
