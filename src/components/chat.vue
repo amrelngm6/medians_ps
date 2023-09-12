@@ -449,7 +449,7 @@ export default {
          */
         checkHasLink(message)
         {
-            return (message && message.indexOf('http')) ? true : false;
+            return (message && message.indexOf('http') > -1 ) ? true : false;
         },
 
         /**
