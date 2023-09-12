@@ -187,7 +187,14 @@ class MessageController extends MessageService
 
             $time = isset($message->timestamp) ? $message->timestamp : time();
             file_put_contents('uploads/chat/'.$time.'.json', $dataToSave);
+            
+            $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
                   
+            if (isset($jsonData->entry[0]->changes[0]->value->statuses[0]->status))
+            {
+                $MessageRepository->readMessage($jsonData->entry[0]->changes[0]->value->statuses[0]->id);
+            }
+
             if (isset($jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name))
             {
                 $data = array();
@@ -206,7 +213,6 @@ class MessageController extends MessageService
                 }
                 
                 
-                $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
                 
                 $contact = array();
                 $contact['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
