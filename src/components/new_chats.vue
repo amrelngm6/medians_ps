@@ -1,8 +1,8 @@
 <template>
     <div class=" " v-if="content.contacts && content.contacts.length">
-        <div class="w-full row grid overflow-auto" style="max-height: calc(100vh - 90px);" >
+        <div class="container mx-auto w-full row grid overflow-auto" style="max-height: calc(100vh - 90px);" >
             <section class="text-gray-600 body-font mt-12 col-6"  v-for="conversation in content.contacts">
-                <div class="container px-2 py-24 mx-auto w-full" v-if="conversation">
+                <div class="container px-2 py-24 mx-auto " v-if="conversation">
                     <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col">
                         <div class="w-full flex-grow sm:text-left text-center mt-6 sm:mt-0" v-if="conversation.contact">
                             <p class="leading-relaxed text-base" v-html="conversation.contact.message_emojis && conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text" ></p>
