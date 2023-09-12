@@ -4,6 +4,7 @@ namespace Medians\Messages\Infrastructure;
 
 use Medians\Messages\Domain\Message;
 use Medians\Contacts\Domain\Contact;
+use Medians\Conversations\Domain\Conversation;
 
 
 class MessageRepository 
