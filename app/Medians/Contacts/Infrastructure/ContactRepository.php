@@ -12,7 +12,9 @@ class ContactRepository
     {
         $return = Contact::with('last_message')
         ->with('last_sent_message')
-        ->groupBy('wa_id')->where('id', '>', '1')->get();
+        ->where('id', '>', '1')
+        ->groupBy('wa_id')
+        ->get();
 
 
         foreach($return as $key => $item)

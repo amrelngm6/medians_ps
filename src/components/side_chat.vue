@@ -253,6 +253,7 @@ export default {
             params.append('type', 'WP')
             params.append('contact_id',id)
             this.$parent.handleRequest( params, '/join_contact/'+id ).then(response=> {
+                this.load()
             });
         },
         
