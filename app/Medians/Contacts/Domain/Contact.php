@@ -43,7 +43,7 @@ class Contact extends CustomModel
 	
 	public function new_conversation()
 	{
-		return $this->hasOne(Conversation::class, 'wa_id','wa_id')->where('user_id', null);
+		return $this->hasOne(Conversation::class, 'wa_id','wa_id')->where('user_id', '<', 1);
 	}
 
 
