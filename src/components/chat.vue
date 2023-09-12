@@ -335,7 +335,7 @@
             </div><!-- .tyn-chat-content-aside -->
         </div><!-- .tyn-chat-content -->
 
-        <div class="modal fade show" tabindex="-1" v-if="uploading" id="uploading">
+        <div class="modal fade show block" tabindex="-1" v-if="uploading" id="uploading">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content border-0">
                     <div class="modal-body">
