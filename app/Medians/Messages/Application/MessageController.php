@@ -379,7 +379,7 @@ class MessageController extends MessageService
 
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 
-        echo json_encode(['messages'=>$MessageRepository->getNew()]);
+        echo json_encode(['messages'=>$MessageRepository->getNew($app->auth()->id)]);
         return true;
     }
     
