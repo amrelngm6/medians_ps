@@ -190,7 +190,7 @@ class MessageController extends MessageService
             
             $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
                   
-            if (isset($jsonData->entry[0]->changes[0]->value->statuses[0]->status))
+            if (isset($jsonData->entry[0]->changes[0]->value->statuses[0]->status) && $jsonData->entry[0]->changes[0]->value->statuses[0]->status == 'read')
             {
                 $MessageRepository->readMessage($jsonData->entry[0]->changes[0]->value->statuses[0]->id);
             }
