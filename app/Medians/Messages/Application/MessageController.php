@@ -213,6 +213,10 @@ class MessageController extends MessageService
 
                     if ($save && isset($message->context->id))
                         $MessageRepository->updateReplyId( $message->id, $message->context->id);
+
+                    if ($save && isset($message->reaction->id))
+                        $MessageRepository->updateReplyId( $message->id, $message->reaction->message_id);
+
                     
                 }
                 
