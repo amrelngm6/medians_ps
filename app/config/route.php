@@ -33,6 +33,7 @@ Macaw::get('/load_messages', \Medians\Messages\Application\MessageController::cl
 Macaw::get('/load_contacts', \Medians\Messages\Application\MessageController::class.'@load_contacts');
 Macaw::get('/get_new_chats', \Medians\Conversations\Application\ConversationController::class.'@new_chats');
 Macaw::get('/new_chats', \Medians\Conversations\Application\ConversationController::class.'@index');
+Macaw::get('/new_messages', \Medians\Messages\Application\MessageController::class.'@new_messages');
 
 Macaw::get('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
 Macaw::post('/home/central_webhook_callback', \Medians\Messages\Application\MessageController::class.'@webhook');
