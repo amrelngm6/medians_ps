@@ -100,7 +100,7 @@
                     <div class="tab-content">
                         <div class="tab-pane show active" id="all-chats" tabindex="0" role="tabpanel">
                             <ul class="tyn-aside-list" v-if="content && content.contacts">
-                                <li v-for="contact in content.contacts" class="my-2 tyn-aside-item js-toggle-main ">
+                                <li v-for="contact in content.contacts" :id="'contact'+contact.id" class="my-2 tyn-aside-item js-toggle-main ">
                                     <div class="tyn-media-group">
                                         <div @click="selectContact(contact)"  class="tyn-media tyn-size-lg">
                                             <img src="/uploads/images/1.jpg" alt="">
@@ -219,8 +219,9 @@ export default {
             this.$parent.$refs.activeTab.active_contact = contact.wa_id
             this.$parent.$refs.activeTab.active_contact_name = contact.name
             this.$parent.$refs.activeTab.load()
-            console.log()
-
+            
+            jQuery('.tyn-aside-item.js-toggle-main').removeClass('active')
+            jQuery('#contact'+contact.id).addClass('active')
         },
         openDropdown()
         {
