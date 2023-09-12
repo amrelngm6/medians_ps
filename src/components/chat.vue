@@ -131,7 +131,7 @@
                                     </a>
                                 </div>
                                 <div v-if="!message.message_type || message.message_type === 'text'" class="tyn-reply-text"> 
-                                    <span  v-html="message.message_text" ></span>
+                                    <span  v-html="message.message_emojis ? message.message_emojis : message.message_text" ></span>
                                 </div>
                             </div><!-- .tyn-reply-bubble -->
                         </div><!-- .tyn-reply-group -->
