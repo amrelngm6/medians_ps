@@ -32,7 +32,7 @@ class Message extends CustomModel
 	// public $timestamps = false;
 
 
-	public $appends = ['income', 'image_path', 'media_title', 'message_emojis'];
+	public $appends = ['income', 'image_path', 'media_title', 'time_ago'];
 
 	public function getIncomeAttribute()
 	{
@@ -50,6 +50,12 @@ class Message extends CustomModel
 		return $return ? end($return) : NULL;
 	}
 
+	public function getTimeAgoAttribute()
+	{
+		return date('h:i A',strtotime($this->sent_at));	
+	}
+
+
 	public function getMessageEmojisAttribute()
 	{
 
@@ -62,8 +68,6 @@ class Message extends CustomModel
 			if (!$return)
 				return null;
 			
-			print_r('$jsonData');
-
 			$jsonData = json_decode(json_encode($return));
 			$message = $jsonData->entry[0]->changes[0]->value->messages[0];
 
