@@ -98,7 +98,7 @@
                         </div>
                     </div><!-- .tyn-aside-search -->
                     <div class="tab-content">
-                        <div class="tab-pane show active" id="all-chats" tabindex="0" role="tabpanel"  >
+                        <div class="tab-pane show active" id="all-chats" tabindex="0" role="tabpanel"  v-if="content.contacts.length">
                             <ul class="tyn-aside-list" v-if="content && content.contacts">
                                 <li v-for="contact in content.contacts" :id="'contact'+contact.id" class="my-2 tyn-aside-item js-toggle-main ">
                                     <div class="tyn-media-group">
@@ -196,7 +196,7 @@ export default {
             system_setting: {},
             conf: {},
             main_menu: [],
-            typesList: [],
+            content: {contacts:[]},
             contacts:[],
             show: false,
             showSide: true,
