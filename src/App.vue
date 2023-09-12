@@ -50,6 +50,7 @@ import notifications_events from './components/notifications_events.vue'
 import notifications from './components/notifications.vue'
 import side_chat from './components/side_chat.vue'
 import chat from './components/chat.vue'
+import new_chats from './components/new_chats.vue'
 
 
 export default {
@@ -73,6 +74,7 @@ export default {
         branches,
         pages,
         side_chat,
+        new_chats,
         notifications,
         notifications_events
     },
