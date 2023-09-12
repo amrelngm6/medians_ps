@@ -449,7 +449,8 @@ export default {
         findText(text , div)
         {
             var scrollTop = $('#'+div).scrollTop();
-            $('#'+div).scrollTop(1000000);
+            var pos= $("div:contains('" + text + "'):eq(5)").position();
+            $('#'+div).scrollTop(scrollTop+pos.top);
         },
 
         load()
@@ -468,9 +469,12 @@ export default {
             let lastMsg = this.messages[this.messages.length-1];
             if (lastMsg && lastMsg.id > this.lastMessage.id){
                 this.lastMessage = lastMsg;
-                
-                var objDiv = document.getElementById("tynReply");
-                objDiv.scrollTop = objDiv.scrollHeight + 1000;
+                setTimeout(() => {
+                    var objDiv = document.getElementById("tynReply");
+                    objDiv.scrollTop = objDiv.scrollHeight + 1000;
+                    jQuery('#tynReply').scrollTop(100000)
+                }, 500);
+
             }
 
             return this
