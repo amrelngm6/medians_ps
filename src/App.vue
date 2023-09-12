@@ -168,10 +168,15 @@ export default {
          */ 
         notify (title=null, body=null) 
         {
+            console.log('notify')
             
             if ("Notification" in window) 
             {
+            console.log('notify 2')
+
                 if (Notification.permission !== "granted") {
+            console.log('notify 3')
+
                     Notification.requestPermission().then(permission => {
                         if (permission === "granted") {
                             const notification = new Notification(title ? title : '', {
