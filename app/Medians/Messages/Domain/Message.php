@@ -52,7 +52,7 @@ class Message extends CustomModel
 
 	public function getTimeAgoAttribute()
 	{
-		return date('h:i A',strtotime($this->sent_at));	
+		return date('h:i A',strtotime($this->created_at));	
 	}
 
 
