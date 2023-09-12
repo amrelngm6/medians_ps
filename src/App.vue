@@ -141,6 +141,12 @@ export default {
             this.handleGetRequest( '/get_new_chats' ).then(response=> {
                 jQuery('#new_chats_count').html(response && response.contacts ? response.contacts.length : null)
             });
+
+            
+            this.handleGetRequest( '/get_new_messages' ).then(response=> {
+                jQuery('#new_chats_count').html(response && response.contacts ? response.contacts.length : null)
+            });
+
         },
         
         /**
