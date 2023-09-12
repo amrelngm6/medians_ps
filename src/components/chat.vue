@@ -486,7 +486,6 @@ export default {
         setReadMsg(id = null)
         {
             let _id = id ? id : this.lastMessage.id;
-            
             var params = new URLSearchParams();
             params.append('type', 'WP')
             params.append('msg_id',_id)

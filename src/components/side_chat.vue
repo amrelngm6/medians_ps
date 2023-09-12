@@ -217,7 +217,7 @@ export default {
         joinConversation(contact)
         {
             if (contact && contact.last_message)
-                this.$parent.$refs ? this.joinChat(contact.last_message.id) : null;
+                this.$parent.$refs ? this.joinChat(contact.last_message.sender_id) : null;
         },
         selectContact(contact)
         {
@@ -245,6 +245,15 @@ export default {
                 this.content.contacts[index] = null; 
             } 
             this.showLoader = false
+        },
+        
+        joinChat(id = null)
+        {
+            var params = new URLSearchParams();
+            params.append('type', 'WP')
+            params.append('contact_id',id)
+            this.$parent.handleRequest( params, '/join_contact/'+id ).then(response=> {
+            });
         },
         
         load()
