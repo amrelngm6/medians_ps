@@ -175,7 +175,6 @@ export default {
             console.log('notify 2')
 
                 if (Notification.permission !== "granted") {
-            console.log('notify 3')
 
                     Notification.requestPermission().then(permission => {
                         if (permission === "granted") {
