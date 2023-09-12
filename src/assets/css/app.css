@@ -1679,3 +1679,7 @@ div > navbar
   height:70vh;
   overflow: auto;
 }
+.modal-backdrop.fade.show
+{
+  z-index: 9999;
+}
