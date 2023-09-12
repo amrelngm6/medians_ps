@@ -1,0 +1,39 @@
+{
+    "object": "whatsapp_business_account",
+    "entry": [
+        {
+            "id": "111180314953637",
+            "changes": [
+                {
+                    "value": {
+                        "messaging_product": "whatsapp",
+                        "metadata": {
+                            "display_phone_number": "15550998247",
+                            "phone_number_id": "106672422075870"
+                        },
+                        "contacts": [
+                            {
+                                "profile": {
+                                    "name": "Amr Ewis"
+                                },
+                                "wa_id": "201096869285"
+                            }
+                        ],
+                        "messages": [
+                            {
+                                "from": "201096869285",
+                                "id": "wamid.HBgMMjAxMDk2ODY5Mjg1FQIAEhgWM0VCMDQ1MUYxQ0VGMThGRkY4MzVDRgA=",
+                                "timestamp": "1694462166",
+                                "text": {
+                                    "body": "\ud83d\ude03\ud83d\ude01\n\ud83e\udd79\ud83d\ude1c"
+                                },
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    "field": "messages"
+                }
+            ]
+        }
+    ]
+}
