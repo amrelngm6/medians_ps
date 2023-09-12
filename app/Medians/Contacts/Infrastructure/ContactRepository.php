@@ -13,6 +13,7 @@ class ContactRepository
         $return = Contact::with('last_message')
         ->with('last_sent_message')
         ->with('conversations')
+        ->whereHas('conversations')
         ->WhereDoesntHave('new_conversation', function($q){
 
         })
