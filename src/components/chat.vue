@@ -476,7 +476,7 @@ export default {
             setTimeout(() => {
                 // var objDiv = document.getElementById("tynReply");
                 // objDiv.scrollTop = objDiv.scrollHeight + 1000;
-                jQuery('#tynReply').scrollIntoView(false)
+                document.getElementById("tynReply").scrollIntoView(false)
             }, 500);
 
             return this
