@@ -20,7 +20,7 @@ class ConversationController
         $app = new \config\APP;
 
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-        $check = $ConversationRepository->getConversationId(['sender_id'=>$wa_id]);
+        $check = $MessageRepository->getConversationId(['sender_id'=>$wa_id]);
         
         $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
 
