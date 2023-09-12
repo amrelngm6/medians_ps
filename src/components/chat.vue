@@ -104,12 +104,12 @@
                                     </a>
                                 </div>
                                 <div v-if="message.message_type === 'image' || message.message_type === 'sticker' " class="tyn-reply-media">
-                                    <a :title="message.message_text"  :href="message.image_path" class="glightbox tyn-thumb cursor-pointer" data-gallery="media-photo">
+                                    <a :title="message.message_text" :href="message.image_path" class="glightbox tyn-thumb cursor-pointer" data-gallery="media-photo">
                                         <img :src="message.image_path" class="tyn-image" alt="">
                                     </a>
                                 </div>
                                 <div v-if="message.message_type === 'video' || message.is_video" class="tyn-reply-media">
-                                    <a :href="message.media_path" class="glightbox tyn-video cursor-pointer" data-gallery="media-video">
+                                    <a :href="message.media_path" :title="message.message_text" class="glightbox tyn-video cursor-pointer" data-gallery="media-video">
                                         <img src="/uploads/images/video.jpg" class="tyn-image" alt="">
                                         <div class="tyn-video-icon">
                                             <!-- play-fill -->
@@ -120,7 +120,7 @@
                                     </a>
                                 </div>
                                 <div v-if="message.message_type === 'audio'" class="tyn-reply-media">
-                                    <a :href="message.media_path" class="glightbox tyn-video cursor-pointer" data-gallery="media-video">
+                                    <a :title="message.message_text" :href="message.media_path" class="glightbox tyn-video cursor-pointer" data-gallery="media-video">
                                         <img src="/uploads/images/video.jpg" height="80" width="100%" class="tyn-image" alt="">
                                         <div class="tyn-video-icon">
                                             <!-- play-fill -->
