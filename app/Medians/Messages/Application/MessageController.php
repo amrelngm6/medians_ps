@@ -236,7 +236,9 @@ class MessageController extends MessageService
     public function messageTypeHandler($data, $message, $messageFile = null)
     {
  
-        $date['reply_message_id'] = isset($message->context->id) ? $message->context->id : null;
+        $date['reply_message_id'] = isset($message->context->id) 
+            ? $message->context->id 
+            : (isset($message->reaction->message_id) ? $message->reaction->message_id : null);
             
         switch ($message->type) {
             case 'document':
