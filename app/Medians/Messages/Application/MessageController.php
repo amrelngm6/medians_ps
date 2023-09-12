@@ -186,7 +186,7 @@ class MessageController extends MessageService
             }
 
             $time = isset($message->timestamp) ? $message->timestamp : time();
-            file_put_contents($time.'.json', $dataToSave);
+            file_put_contents('uploads/chat/'.$time.'.json', $dataToSave);
                   
             if (isset($jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name))
             {
@@ -200,7 +200,7 @@ class MessageController extends MessageService
                     $data['to'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $message = $jsonData->entry[0]->changes[0]->value->messages[0];
                     $data['message_id'] = isset($message->id) ? $message->id : '';
-                    $data = $this->messageTypeHandler($data, $message, (isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/'.$time.'.json' : null));
+                    $data = $this->messageTypeHandler($data, $message, (isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$time.'.json' : null));
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
                     
                 }
