@@ -172,19 +172,16 @@ export default {
             
             if ("Notification" in window) 
             {
-            console.log('notify 2')
 
-                if (Notification.permission !== "granted") {
+                Notification.requestPermission().then(permission => {
 
-                    Notification.requestPermission().then(permission => {
-                        if (permission === "granted") {
-                            const notification = new Notification(title ? title : '', {
-                                body: body ? body : '',
-                                icon: this.system_setting.notifications_welcome_icon
-                            });
-                        }
-                    });
-                }
+                    if (permission === "granted") {
+                        const notification = new Notification(title ? title : '', {
+                            body: body ? body : '',
+                            icon: this.system_setting.notifications_welcome_icon
+                        });
+                    }
+                });
             }
         },
 
