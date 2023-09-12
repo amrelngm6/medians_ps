@@ -441,7 +441,7 @@ export default {
             this.showLoader = true;
             this.$parent.handleRequest( params, '/api/send_message' ).then(response=> {
                 this.load()
-                this.chat_message = false
+                this.chat_message = ''
 
             });
         },
