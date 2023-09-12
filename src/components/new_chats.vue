@@ -4,8 +4,8 @@
             <section class="text-gray-600 body-font mt-12 col-6"  v-for="conversation in content.contacts">
                 <div class="container px-5 py-24 mx-auto " v-if="conversation">
                     <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col">
-                        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                            <p class="leading-relaxed text-base" >Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0" v-if="conversation.contact">
+                            <p class="leading-relaxed text-base" v-html="conversation.contact.message_emojis ? conversation.contact.message_emojis : conversation.contact.message_text" ></p>
                             <div class="py-4 "></div>
                             <div class="md:flex font-bold text-gray-800">
                                 <div class="w-full md:w-1/2 flex space-x-3">
