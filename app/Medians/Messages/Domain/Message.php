@@ -61,23 +61,18 @@ class Message extends CustomModel
 	public function getMessageEmojisAttribute()
 	{
 
-		if ($this->message_text && strpos($this->message_text, '???'))
-		{
-			$return = ($this->message_time && is_file($_SERVER['DOCUMENT_ROOT'].'/'.$this->message_time.'.json')) 
-				? file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.$this->message_time.'.json') 
-				: null;
+		$return = ($this->message_time && is_file($_SERVER['DOCUMENT_ROOT'].'/'.$this->message_time.'.json')) 
+			? file_get_contents($_SERVER['DOCUMENT_ROOT'].'/'.$this->message_time.'.json') 
+			: null;
 
-			if (!$return)
-				return null;
-			
-			$jsonData = json_decode(json_encode($return));
-			$message = $jsonData->entry[0]->changes[0]->value->messages[0];
+		if (!$return)
+			return null;
+		
+		$jsonData = json_decode(json_encode($return));
+		$message = $jsonData->entry[0]->changes[0]->value->messages[0];
 
-			return $message;
+		return $message;
 
-		} else {
-			return 'test'.$this->message_text;
-		}
 			
 	}
 
