@@ -138,7 +138,7 @@ export default {
          */
         checkPending()
         {
-            this.$parent.handleGetRequest( '/get_new_chats' ).then(response=> {
+            this.handleGetRequest( '/get_new_chats' ).then(response=> {
                 jQuery('#new_chats_count').html(response && response.contacts ? response.contacts.length : null)
             });
         },
