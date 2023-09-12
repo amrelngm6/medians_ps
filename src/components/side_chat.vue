@@ -84,7 +84,7 @@
                 </div><!-- .tyn-aside-head -->
                 <div class="tyn-aside-body" data-simplebar>
 
-                    <div class="tyn-aside-search">
+                    <div class="tyn-aside-search mt-4 hidden">
                         <div class="form-group tyn-pill">
                             <div class="form-control-wrap">
                                 <div class="form-control-icon start">
