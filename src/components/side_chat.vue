@@ -110,8 +110,8 @@
                                                 <h6 class="name" v-text="contact.name"></h6>
                                             </div>
                                             <div class="tyn-media-row has-dot-sap">
-                                                <p class="content" v-text="contact.last_message"></p>
-                                                <span class="meta" v-text="contact.time_ago"></span>
+                                                <p class="content" v-if="contact.last_message" v-text="contact.last_message.message_text"></p>
+                                                <span class="meta" v-if="contact.last_message" v-text="contact.last_message.time_ago"></span>
                                             </div>
                                         </div>
                                         <div class="tyn-media-option tyn-aside-item-option">

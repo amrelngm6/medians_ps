@@ -4,6 +4,7 @@ namespace Medians\Contacts\Domain;
 
 use Shared\dbaser\CustomModel;
 
+use Medians\Messages\Domain\Message;
 
 
 class Contact extends CustomModel 
@@ -24,6 +25,10 @@ class Contact extends CustomModel
 
 	// public $timestamps = false;
 
+	public function last_message()
+	{
+		return $this->hasOne(Message::class, 'sender_id','wa_id');
+	}
 
 
 }
