@@ -36,6 +36,7 @@ Macaw::post('/home/central_webhook_callback', \Medians\Messages\Application\Mess
 Macaw::get('/', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::get('/(:all)', \Medians\Messages\Application\MessageController::class.'@page');
 
+Macaw::post('/join_contact/(:all)', \Medians\Conversations\Application\ConversationController::class.'@save');
 Macaw::post('/read_message/(:all)', \Medians\Messages\Application\MessageController::class.'@read_message');
 
 

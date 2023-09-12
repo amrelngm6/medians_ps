@@ -33,6 +33,11 @@ class MessageRepository
     {
         return Message::find($id);
     }
+    
+    public function getConversationId ($data)
+    {
+        return Message::where($data)->orderBy('id', 'DESC')->first();
+    }
 
     public function updateMedia(String $mediaId, $newpath = null)
     {
