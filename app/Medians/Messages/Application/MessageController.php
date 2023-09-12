@@ -236,6 +236,7 @@ class MessageController extends MessageService
     public function messageTypeHandler($data, $message, $messageFile = null)
     {
  
+        $date['reply_message_id'] = isset($message->context->id) ? $message->context->id : null;
             
         switch ($message->type) {
             case 'document':
@@ -262,6 +263,12 @@ class MessageController extends MessageService
                 $data['media_id'] = isset($message->sticker->id) ? $message->sticker->id : '';
                 break;
                 
+            case 'reaction':
+                $data['message_id'] = isset($message->reaction->message_id) ? $message->sticker->id : '';
+                $data['message_text'] = isset($message->reaction->emoji) ? str_replace("\\","\\\\", $message->reaction->emoji) : '';
+                $date['reply_message_id'] = isset($message->reaction->message_id) ? $message->reaction->message_id : null;
+                break;
+                
             default:
                 $data['message_text'] = isset($message->text->body) ? str_replace("\\","\\\\", $message->text->body) : '';
                 break;
@@ -270,7 +277,6 @@ class MessageController extends MessageService
         $data['message_type'] = isset($message->type) ? $message->type : '';
         $data['message_time'] = isset($message->timestamp) ? $message->timestamp : '';
         $data['media_path'] = isset($data['media_id']) ?  $this->loadMedia($data['media_id']) : '';
-        $date['reply_message_id'] = isset($message->context->id) ? $message->context->id : null;
 
         return $data;
     }
