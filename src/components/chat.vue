@@ -471,7 +471,7 @@ export default {
             var params = new URLSearchParams();
             params.append('type', 'WP')
             params.append('msg_id', this.lastMessage.id)
-            this.$parent.handleRequest( params, '/read_message/'+this.lastMessage ).then(response=> {
+            this.$parent.handleRequest( params, '/read_message/'+this.lastMessage.id ).then(response=> {
             });
         },
         
