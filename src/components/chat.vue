@@ -388,7 +388,7 @@ export default {
         setTimeout(function(){
             var lightbox = GLightbox({selector:".glightbox"});
             console.log(lightbox)
-        }, 1000);
+        }, 5000);
     },
 
     methods: {
