@@ -35,7 +35,7 @@ class Conversation extends CustomModel
 	
 	public function new_messages()
 	{
-		return $this->hasMany(Message::class, 'sender_id','wa_id');
+		return $this->hasMany(Message::class, 'sender_id','wa_id')->where('read', null);
 	}
 
 
