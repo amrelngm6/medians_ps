@@ -69,7 +69,7 @@ class Message extends CustomModel
 		if (!$return)
 			return null;
 		
-		$jsonData = json_decode(json_encode($return));
+		$jsonData = json_decode($return);
 
 		return $jsonData;
 		$message = isset($jsonData->entry[0]->changes[0]->value->messages[0]) 
