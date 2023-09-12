@@ -278,12 +278,12 @@ class MessageController extends MessageService
     public function read_message($id)
 	{
         $repo = new MessageRepository;
-        
         $message = $repo->getMessage($id);
-
+        
+        $service = new MessageService; 
         return $service->markRead($message->message_id);
     }
-    
+
 
     
 	/**
