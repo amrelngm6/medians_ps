@@ -209,9 +209,8 @@ class MessageController extends MessageService
                     $data = $this->messageTypeHandler($data, $message, (isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$time.'.json' : null));
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
                     
+                    $MessageRepository->saveMessage($data, $data['sender_id']);
                 }
-                
-                
                 
                 $contact = array();
                 $contact['name'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->profile->name;
@@ -219,9 +218,7 @@ class MessageController extends MessageService
                 $contact['phone_number'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
                 $MessageRepository->saveContact($contact);
 
-                $MessageRepository->saveMessage($data, $data['sender_id']);
 
-                
 
             }
         }
