@@ -28,11 +28,11 @@ class ConversationController
         $data['wa_id'] = $wa_id;
         $data['user_id'] = $app->auth()->id;
         
-        // print_r($data);
         $save = $ConversationRepository->saveConversation($data);
-
+        
         if ($save)
             echo json_encode(["success"=>true]);
+
         return true;
     }
     
