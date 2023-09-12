@@ -42,6 +42,11 @@ class Message extends CustomModel
 		return $this->hasOne(Message::class, 'reply_message_id', 'id');
 	}
 
+	public function reaction()
+	{
+		return $this->hasOne(Message::class, 'reaction', 'id');
+	}
+
 	public function getIncomeAttribute()
 	{
 		return $this->sender_id == '106672422075870' ? 0 : 1;
@@ -86,7 +91,11 @@ class Message extends CustomModel
 			? $jsonData->entry[0]->changes[0]->value->messages[0]
 			: null;
 
-		return isset($message->text->body) ? $message->text->body : null;
+		if (isset($message->text->body)) 
+			return $message->text->body;
+
+		if (isset($message->reaction->emoji)) 
+			return $message->reaction->emoji;
 
 			
 	}
