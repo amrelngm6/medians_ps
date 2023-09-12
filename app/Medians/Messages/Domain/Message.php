@@ -34,7 +34,7 @@ class Message extends CustomModel
 	// public $timestamps = false;
 
 
-	public $appends = ['income', 'image_path', 'message_emojis', 'media_title', 'time_ago'];
+	public $appends = ['income', 'image_path', 'message_emojis', 'media_title', 'is_video', 'time_ago'];
 
 	public function getIncomeAttribute()
 	{
@@ -55,6 +55,12 @@ class Message extends CustomModel
 	public function getTimeAgoAttribute()
 	{
 		return date('h:i A',strtotime($this->created_at));	
+	}
+
+	public function getIsVideoAttribute()
+	{
+		if ($this->media_path)
+			return strpos($this->media_path, '.mp4') ? 1 : 0;
 	}
 
 

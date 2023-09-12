@@ -88,7 +88,7 @@
                     <div v-for="message in messages" :class="message.income ? 'incoming' : 'outgoing'" class="tyn-reply-item ">
                         <div class="tyn-reply-group">
                             <div class="tyn-reply-bubble" @click="setReadMsg(message.id)">
-                                <div v-if="message.message_type === 'document'" class="tyn-reply-file">
+                                <div v-if="message.message_type === 'document' && !message.is_video" class="tyn-reply-file">
                                     <a :href="message.media_path" target="_blank" class="tyn-file">
                                         <div class="tyn-media-group">
                                             <div class="tyn-media tyn-size-lg text-bg-light">
@@ -108,7 +108,7 @@
                                         <img :src="message.image_path" class="tyn-image" alt="">
                                     </a>
                                 </div>
-                                <div v-if="message.message_type === 'video'" class="tyn-reply-media">
+                                <div v-if="message.message_type === 'video' && message.is_video" class="tyn-reply-media">
                                     <a :href="message.media_path" class="glightbox tyn-video cursor-pointer" data-gallery="media-video">
                                         <img src="/uploads/images/video.jpg" class="tyn-image" alt="">
                                         <div class="tyn-video-icon">
