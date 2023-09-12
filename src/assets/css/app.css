@@ -646,7 +646,7 @@ dl {
   white-space: nowrap;
 }
 .tyn-media-col .meta {
-  font-size: 0.625rem;
+  font-size: 0.8rem;
   color: var(--media-text-light);
 }
 .tyn-media-col .anchor {
