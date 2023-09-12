@@ -1689,7 +1689,8 @@ div > navbar
 }
 body .tyn-aside-item:hover, body  .tyn-aside-item.active
 {
-  background-color: #f0f0f0;
+  background-color: rgba(0,0,0,.3);
+  padding: 3px 5px 4px 0;
 }
 .tyn-aside-item.active h6 
 {
