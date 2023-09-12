@@ -25,6 +25,7 @@ class Message extends CustomModel
     	'media_id',
     	'media_path',
     	'message_time',
+    	'inserted_by',
     	'sent_at',
 	];
 

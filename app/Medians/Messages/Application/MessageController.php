@@ -85,6 +85,8 @@ class MessageController extends MessageService
      */
     public function uploadAndSave($file, $type = 'image')
     {
+		$app = new \config\APP;
+        
 		$MessageService = new MessageService;
         $messageSent = $MessageService->uploadMedia($file);
         
@@ -95,6 +97,7 @@ class MessageController extends MessageService
         $data['message_type'] = $type;
         $data['message_id'] = isset($message->id) ? $message->id : '';
         $data['media_path'] = $file;
+        $data['inserted_by'] = $app->auth()->id;
         
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
         $MessageRepository->saveMessage($data, $data['sender_id']);
@@ -200,6 +203,7 @@ class MessageController extends MessageService
                     $data['message_id'] = isset($message->id) ? $message->id : '';
                     $data = $this->messageTypeHandler($data, $message, (isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/'.$time.'.json' : null));
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
+                    
                 }
                 
                 

@@ -449,8 +449,7 @@ export default {
         findText(text , div)
         {
             var scrollTop = $('#'+div).scrollTop();
-            var pos= $("div:contains('" + text + "'):eq(5)").position();
-            $('#'+div).scrollTop(scrollTop+pos.top);
+            $('#'+div).scrollTop(1000000);
         },
 
         load()

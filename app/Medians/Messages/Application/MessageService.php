@@ -235,6 +235,8 @@ class MessageService
 			'text' => ['body'=>$message_text]
         );
 		
+        $app = new \config\APP;
+
 		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 		$response = $this->wp_web_send($path, $data);
 		$message = $response->messages[0];
@@ -246,6 +248,7 @@ class MessageService
 		$data['media_id'] = '';
 		$data['message_time'] = '';
 		$data['message_type'] = 'text';
+        $data['inserted_by'] = $app->auth()->id;
 		return $MessageRepository->saveMessage($data, $this->PNID);
 	}
 	
