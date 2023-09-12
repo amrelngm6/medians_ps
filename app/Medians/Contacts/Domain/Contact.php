@@ -5,6 +5,7 @@ namespace Medians\Contacts\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Messages\Domain\Message;
+use Medians\Conversations\Domain\Conversation;
 
 
 class Contact extends CustomModel 
@@ -33,6 +34,16 @@ class Contact extends CustomModel
 	public function last_sent_message()
 	{
 		return $this->hasOne(Message::class, 'receiver_id','wa_id')->orderBy('id', 'DESC');
+	}
+
+	public function conversation()
+	{
+		return $this->hasMany(Conversation::class, 'wa_id','wa_id')->orderBy('id', 'DESC');
+	}
+	
+	public function new_conversation()
+	{
+		return $this->hasOne(Conversation::class, 'wa_id','wa_id')->where('user_id', null);
 	}
 
 
