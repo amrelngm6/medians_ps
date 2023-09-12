@@ -8,7 +8,7 @@
                     </div>
                     <div class="tyn-aside-head-tools">
                         <ul class="link-group gap gx-3">
-                            <li class="dropdown">
+                            <li class="dropdown hidden">
                                 <button class="link" data-bs-toggle="modal" data-bs-target="#newChat">
                                     <!-- plus -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
