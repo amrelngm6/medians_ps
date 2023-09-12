@@ -335,7 +335,20 @@
             </div><!-- .tyn-chat-content-aside -->
         </div><!-- .tyn-chat-content -->
 
+        <div class="modal fade show" tabindex="-1" v-if="uploading" id="uploading">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content border-0">
+                    <div class="modal-body">
+                        <div class="py-4 px-4 text-center">
+                            <h3>Uploading ...</h3>
+                        </div>
+                    </div><!-- .modal-body -->
+                </div><!-- .modal-content -->
+            </div><!-- .modal-dialog -->
+        </div><!-- .modal -->
+
     </div>
+    
 </template>
 <script>
 const axios = require('axios').default;
@@ -347,6 +360,7 @@ export default {
         return {
             url: '/load_messages',
             chat_message: '',
+            uploading: true,
             showMenu: true,
             same_page: false,
             content:{},
@@ -391,9 +405,11 @@ export default {
             formData.append('file', file);
             const headers = { 'Content-Type': 'multipart/form-data' };
             
+            this.uploading = true;
             // Demo json data
             return axios.post('/wp/send_image', formData, headers).then(response => {
                 this.load()
+                this.uploading = false;
             });
 
         },
@@ -409,9 +425,11 @@ export default {
             formData.append('file', file);
             const headers = { 'Content-Type': 'multipart/form-data' };
             
+            this.uploading = true;
             // Demo json data
             return axios.post('/wp/send_file', formData, headers).then(response => {
                 this.load()
+                this.uploading = false;
             });
 
         },
