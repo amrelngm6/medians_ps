@@ -360,7 +360,7 @@ export default {
         return {
             url: '/load_messages',
             chat_message: '',
-            uploading: true,
+            uploading: false,
             showMenu: true,
             same_page: false,
             content:{},
