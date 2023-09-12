@@ -211,7 +211,7 @@ export default {
         markRead(contact)
         {
             if (contact && contact.last_message)
-                this.$parent.$refs ? this.$parent.$refs.activeTab.setReadMsg(contact.last_message.id) : null;
+                (this.$parent.$refs && this.$parent.$refs.activeTab) ? this.$parent.$refs.activeTab.setReadMsg(contact.last_message.id) : null;
         },
 
         joinConversation(contact)
