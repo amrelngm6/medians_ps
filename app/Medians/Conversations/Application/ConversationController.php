@@ -29,8 +29,10 @@ class ConversationController
         $data['user_id'] = $app->auth()->id;
         
         // print_r($data);
-        $ConversationRepository->saveConversation($data);
+        $save = $ConversationRepository->saveConversation($data);
 
+        if ($save)
+            echo json_encode(["success"=>true]);
         return true;
     }
     
