@@ -39,7 +39,7 @@ class Message extends CustomModel
 
 	public function reply_message()
 	{
-		return $this->hasOne(Message::class, 'reply_message_id', 'message_id');
+		return $this->hasOne(Message::class, 'reply_message_id', 'message_id')->where('message_type', '!=','reaction');
 	}
 
 	public function reaction()
