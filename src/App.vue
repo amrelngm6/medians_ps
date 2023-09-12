@@ -168,12 +168,13 @@ export default {
          */ 
         notify (title=null, body=null) 
         {
+            var t = this;
             console.log('notify')
             
             if ("Notification" in window) 
             {
 
-                Notification.requestPermission().then(permission => {
+                var notification = Notification.requestPermission().then(permission => {
 
                     if (permission === "granted") {
                         const notification = new Notification(title ? title : '', {
@@ -182,6 +183,10 @@ export default {
                         });
                     }
                 });
+                notification.onclick = function(event) {
+                    event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                    t.activeTab = 'messages';
+                }
             }
         },
 
