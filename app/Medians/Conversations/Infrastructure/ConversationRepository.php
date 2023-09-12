@@ -41,7 +41,7 @@ class ConversationRepository
     {
         echo 'update';
         return Conversation::where('wa_id', $data['wa_id'])
-        ->where('user_id', null)
+        ->where('user_id', '<', 1)
         ->update($data);
     }
     
