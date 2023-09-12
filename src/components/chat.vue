@@ -1,6 +1,6 @@
 <template>
     <div class="tyn-main tyn-chat-content" id="tynMain">
-        <div class="w-full">
+        <div class="w-full" v-if="messages && messages.length">
             <div class="tyn-chat-head bg-white p-2">
                 <ul class="tyn-list-inline d-md-none ms-n1">
                     <li><button class="btn btn-icon btn-md btn-pill btn-transparent js-toggle-main">
