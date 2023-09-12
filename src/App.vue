@@ -126,9 +126,23 @@ export default {
         
         this.checkMobileMenu()    
 
+        setInterval(function(){
+            t.checkPending()
+        }, 10000)
     },
     methods: 
     {
+
+        /** 
+         * Check pending contacts
+         */
+        checkPending()
+        {
+            this.$parent.handleGetRequest( '/get_new_chats' ).then(response=> {
+                jQuery('#new_chats_count').html(response && response.contacts ? response.contacts.length : null)
+            });
+        },
+        
         /**
          * Check if the user has access 
          * to specific permission
