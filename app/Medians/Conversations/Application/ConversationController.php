@@ -25,11 +25,11 @@ class ConversationController
         $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
 
         $data['conversation_id'] = $check->conversation_id;
-        $data['wa_id'] = isset($message->id) ? $message->id : '';
+        $data['wa_id'] = $wa_id;
         $data['user_id'] = $app->auth()->id;
         
-        print_r($data);
-        // $ConversationRepository->saveConversation($data, $data['sender_id']);
+        // print_r($data);
+        $ConversationRepository->saveConversation($data);
 
         return true;
     }
