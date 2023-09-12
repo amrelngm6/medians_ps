@@ -10,7 +10,7 @@ class ContactRepository
 
     public function loadContacts()
     {
-        return Contact::with('last_message')->groupBy('wa_id')->where('id', '>', '1')->get();
+        return Contact::with('last_message')->with('last_sent_message')->groupBy('wa_id')->where('id', '>', '1')->get();
     }
 
 
