@@ -34,7 +34,7 @@ class Message extends CustomModel
 	// public $timestamps = false;
 
 
-	public $appends = ['income', 'image_path', 'media_title', 'time_ago'];
+	public $appends = ['income', 'image_path', 'media_title', 'time_ago', 'message_emojis'];
 
 	public function getIncomeAttribute()
 	{
