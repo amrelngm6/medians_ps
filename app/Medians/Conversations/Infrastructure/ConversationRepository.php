@@ -13,7 +13,9 @@ class ConversationRepository
 
     public function getNew()
     {
-        return Conversation::where('user_id', 0)->with('contact')->get();
+        return Conversation::where('user_id', 0)->with(['contact', function($q){
+            return $q->with('last_message');
+        }])->get();
     }
 
     public function checkOld(String $wa_id)
