@@ -531,7 +531,12 @@ export default {
 
             this.showLoader = true;
             this.$parent.handleRequest(params, '/api/send_message').then(response => {
-                this.load()
+                let val = JSON.parse(JSON.stringify(response));
+
+                if (val.error)
+                    return this.$alert(val.error.message);
+
+                this.load();
                 this.chat_message = ''
 
             });

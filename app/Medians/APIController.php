@@ -47,7 +47,6 @@ class APIController
 		{
 			case 'WP':
 			case 'send_message':
-				echo 1;
 				$repo = new \Medians\Messages\Application\MessageService();
 				$send = $repo->sendTextMessage($app->request()->get('message_text'), $app->request()->get('wa_id'));
 

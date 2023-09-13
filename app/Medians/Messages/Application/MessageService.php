@@ -391,9 +391,12 @@ class MessageService
         }
 
         curl_close($ch);
-        print_r($response);
 
-		return json_decode($response);
+		$output = json_decode($response);
+		if (isset($output->error->message))
+			echo $response; die();
+
+		return $output;
 	}
 
 
