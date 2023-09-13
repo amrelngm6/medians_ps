@@ -146,22 +146,22 @@ class CustomModel extends Model
 				return 'lessthan a minute ago';
 			// minutes
 			case $time >= 60 && $time < 3600;
-				return (round($time/60) == 1) ? 'a minute' : round($time/60).' minutes ago';
+				return (round($time/60) == 1) ? 'a minute' : round($time/60).' m';
 			// hours
 			case $time >= 3600 && $time < 86400;
-				return (round($time/3600) == 1) ? 'a hour ago' : round($time/3600).' hours ago';
+				return (round($time/3600) == 1) ? 'a hour ago' : round($time/3600).' h';
 			// days
 			case $time >= 86400 && $time < 604800;
-				return (round($time/86400) == 1) ? 'a day ago' : round($time/86400).' days ago';
+				return (round($time/86400) == 1) ? 'a day ago' : round($time/86400).' d';
 			// weeks
 			case $time >= 604800 && $time < 2600640;
-				return (round($time/604800) == 1) ? 'a week ago' : round($time/604800).' weeks ago';
+				return (round($time/604800) == 1) ? 'a week ago' : round($time/604800).' w';
 			// months
 			case $time >= 2600640 && $time < 31207680;
-				return (round($time/2600640) == 1) ? 'a month ago' : round($time/2600640).' months ago';
+				return (round($time/2600640) == 1) ? 'a month ago' : round($time/2600640).' M';
 			// years
 			case $time >= 31207680;
-				return (round($time/31207680) == 1) ? 'a year ago' : round($time/31207680).' years ago' ;
+				return (round($time/31207680) == 1) ? 'a year ago' : round($time/31207680).' y' ;
 		}
 	}
 }
