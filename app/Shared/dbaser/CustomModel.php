@@ -142,8 +142,10 @@ class CustomModel extends Model
 		switch($time)
 		{
 			// seconds
+			case $time <= 30;
+				return ' now';
 			case $time <= 60;
-				return 'lessthan a minute ago';
+				return ' minute';
 			// minutes
 			case $time >= 60 && $time < 3600;
 				return (round($time/60) == 1) ? 'a minute' : round($time/60).' m';
