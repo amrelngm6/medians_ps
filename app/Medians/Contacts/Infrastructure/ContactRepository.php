@@ -14,9 +14,9 @@ class ContactRepository
         ->with('last_sent_message')
         ->with('conversations')
         ->whereHas('conversations')
-        ->WhereDoesntHave('new_conversation', function($q){
+        // ->WhereDoesntHave('new_conversation', function($q){
 
-        })
+        // }) 
         ->where('id', '>', '1')
         ->groupBy('wa_id')
         ->get();
