@@ -1,6 +1,6 @@
 <template>
     <div class="tyn-main tyn-chat-content" id="tynMain">
-        <div class="container mx-auto overflow-auto max-h-screen" v-if="this.$parent.contacts && !this.active_contact">
+        <div class="container mx-auto overflow-auto chat-center-list"  v-if="this.$parent.contacts && !this.active_contact">
             <!--Background-->
             <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
                 style="background-image: url(https://tecdn.b-cdn.net/img/Photos/Others/background2.jpg)">
