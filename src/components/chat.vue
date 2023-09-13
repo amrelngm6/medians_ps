@@ -1,7 +1,31 @@
 <template>
     <div class="tyn-main tyn-chat-content" id="tynMain">
         <div v-if="this.$parent.contacts">
-            <div class="tyn-profile-head" v-for="contact in this.$parent.contacts">
+            <!--Background-->
+            <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
+                style="background-image: url(https://tecdn.b-cdn.net/img/Photos/Others/background2.jpg)">
+                <div class="flex justify-center">
+                    <div class="max-w-3xl">
+                        <div class="m-4 block rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800 dark:shadow-black/20">
+                            <!--Testimonial-->
+                            <div class="md:flex md:flex-row">
+                                <div class="mx-auto mb-6 flex w-36 items-center justify-center md:mx-0 md:w-96 lg:mb-0">
+                                    <img src="/uploads/user.svg"
+                                        class="rounded-full shadow-md dark:shadow-black/30" alt="woman avatar" />
+                                </div>
+                                <div class="md:ml-6" v-if="contact.last_message">
+                                    <p v-html="contact.last_message.message_text" class="mb-6 font-light text-neutral-500 dark:text-neutral-300"></p>
+                                    <p class="mb-2 text-xl font-semibold text-neutral-800 dark:text-neutral-200" v-html="contact.name">
+                                    </p>
+                                    <p class="mb-0 font-semibold text-neutral-500 dark:text-neutral-400" v-html="contact.wa_id">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="tyn-profile-head">
                 <div class="tyn-profile-info">
                     <div class="tyn-media-group align-items-start">
                         <div class="tyn-media tyn-media-bordered tyn-size-4xl tyn-profile-avatar">
@@ -9,7 +33,8 @@
                         </div>
                         <div class="tyn-media-col">
                             <div class="tyn-media-row">
-                                <h4 class="name"><span v-html="contact.name"></span> <span class="username" v-html="contact.wa_id"></span></h4>
+                                <h4 class="name"><span v-html="contact.name"></span> <span class="username"
+                                        v-html="contact.wa_id"></span></h4>
                             </div>
                             <div class="tyn-media-row has-dot-sap">
                                 <span class="content">287 Contacts</span>
@@ -60,7 +85,8 @@
                                     d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                             </svg>
                         </button></li>
-                    <li><button class="btn btn-icon btn-light js-toggle-chat-options" v-tooltip="'Show customer info'" @click="switchAside">
+                    <li><button class="btn btn-icon btn-light js-toggle-chat-options" v-tooltip="'Show customer info'"
+                            @click="switchAside">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-layout-sidebar-inset-reverse" viewBox="0 0 16 16">
                                 <path
@@ -417,17 +443,19 @@
             </div><!-- .modal-dialog -->
         </div><!-- .modal -->
 
-            
+
         <div class="modal fade" tabindex="-1" id="endChat" style="background-color:rgba(0,0,0,.5)">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content border-0">
                     <div class="modal-body">
                         <div class="py-4 px-4 text-center">
                             <h3>End conversation</h3>
-                            <p class="small">Once you end this conversation, you will no longer be able to see or reply to this again.</p>
+                            <p class="small">Once you end this conversation, you will no longer be able to see or reply to
+                                this again.</p>
                             <ul class="tyn-list-inline gap gap-3 pt-1 justify-content-center">
                                 <li>
-                                    <button class="btn btn-danger" @click="endConversation(active_contact)" data-bs-dismiss="modal">End</button>
+                                    <button class="btn btn-danger" @click="endConversation(active_contact)"
+                                        data-bs-dismiss="modal">End</button>
                                 </li>
                                 <li>
                                     <button class="btn btn-light" data-bs-dismiss="modal">No</button>
@@ -435,17 +463,20 @@
                             </ul>
                         </div>
                     </div><!-- .modal-body -->
-                    <button class="btn btn-md btn-icon btn-pill btn-white shadow position-absolute top-0 end-0 mt-n3 me-n3" data-bs-dismiss="modal">
+                    <button class="btn btn-md btn-icon btn-pill btn-white shadow position-absolute top-0 end-0 mt-n3 me-n3"
+                        data-bs-dismiss="modal">
                         <!-- x-lg -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path
+                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
                         </svg>
                     </button>
                 </div><!-- .modal-content -->
             </div><!-- .modal-dialog -->
         </div><!-- .modal -->
 
-        
+
     </div>
 </template>
 <script>
@@ -471,7 +502,7 @@ export default {
             active_contact: 0,
             active_contact_name: '',
             lastMessage: { id: 0 },
-            intervalId:0,
+            intervalId: 0,
             messages: []
         }
     },
@@ -497,8 +528,7 @@ export default {
     },
     methods: {
 
-        contacts()
-        {
+        contacts() {
             if (this.$parent.contacts)
                 return this.$parent.contacts;
 
@@ -597,14 +627,14 @@ export default {
             this.showLoader = true;
             this.$parent.handleRequest(params, '/api/send_message').then(response => {
                 let val = JSON.parse(JSON.stringify(response));
-                
+
                 this.chat_message = '';
-                
+
                 if (val.error)
                     return this.$alert(val.error.message);
 
                 this.load();
-                
+
 
             });
         },
@@ -615,20 +645,19 @@ export default {
             $('#' + div).scrollTop(scrollTop + pos.top);
         },
 
-        endConversation(id = null)
-        {
+        endConversation(id = null) {
             var params = new URLSearchParams();
             params.append('type', 'WP')
-            params.append('contact_id',id)
-            this.$parent.handleRequest( params, '/end_chat/'+id ).then(response=> {
+            params.append('contact_id', id)
+            this.$parent.handleRequest(params, '/end_chat/' + id).then(response => {
                 this.$parent.checkPending()
                 window.reload()
             });
         },
-        
-        
+
+
         load() {
-            
+
             if (!this.active_contact)
                 return null;
 
@@ -685,6 +714,8 @@ export default {
 };
 </script>
 
-<style lang="css">.sidebar-menu {
+<style lang="css">
+.sidebar-menu {
     min-height: calc(100vh - 100px);
-}</style>
+}
+</style>
