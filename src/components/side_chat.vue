@@ -283,7 +283,7 @@ export default {
             params.append('type', 'WP')
             params.append('contact_id',id)
             this.$parent.handleRequest( params, '/end_chat/'+id ).then(response=> {
-                this.load()
+                window.reload()
             });
         },
         

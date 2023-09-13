@@ -584,8 +584,7 @@ export default {
             params.append('contact_id',id)
             this.$parent.handleRequest( params, '/end_chat/'+id ).then(response=> {
                 this.$parent.checkPending()
-                this.active_contact = null
-                this.active_contact_name = null
+                window.reload()
             });
         },
         
