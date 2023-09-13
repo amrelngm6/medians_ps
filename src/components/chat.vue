@@ -451,6 +451,7 @@ export default {
             active_contact: 0,
             active_contact_name: '',
             lastMessage: { id: 0 },
+            intervalId:0,
             messages: []
         }
     },
@@ -463,12 +464,17 @@ export default {
     mounted() {
         var t = this;
         t.load()
-        setInterval(function () {
+        this.intervalId = setInterval(function () {
             t.load()
         }, 5000);
 
     },
 
+    beforeDestroy() {
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+        }
+    },
     methods: {
 
         /**
