@@ -98,7 +98,7 @@
                         </div>
                     </div><!-- .tyn-aside-search -->
                     <div class="tab-content">
-                        <div class="tab-pane show active" id="all-chats" tabindex="0" role="tabpanel"  v-if="content.contacts.length">
+                        <div class="tab-pane show active" id="all-chats" tabindex="0" role="tabpanel"  v-if="!showLoader && content.contacts.length">
                             <ul class="tyn-aside-list" v-if="content && content.contacts">
                                 <li v-for="contact in content.contacts" :id="'contact'+contact.id" class="my-2 tyn-aside-item js-toggle-main ">
                                     <div class="tyn-media-group">
@@ -259,17 +259,17 @@ export default {
         
         load()
         {
-            this.showLoader = true;
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
-                this.showLoader = false;
                 // this.$alert(response)
             });
         },
         
         setValues(data) {
             console.log(data)
+            this.showLoader = true;
             this.content = JSON.parse(JSON.stringify(data)); return this
+            this.showLoader = false;
              
         },
         __(i)
