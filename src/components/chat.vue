@@ -294,7 +294,7 @@
                                 <div class="tab-pane show active" id="chat-media-images" tabindex="0">
                                     <div class="row g-3">
                                         <div class="col-4"  v-for="message in messages" v-if="message.message_type == 'image'">
-                                            <a :href="message.media_path" class="glightbox2 tyn-thumb" data-gallery="side-media-photo">
+                                            <a :href="message.media_path" class="glightbox tyn-thumb" data-gallery="side-image-gallery">
                                                 <img :src="message.media_path" class="tyn-image" alt="">
                                             </a>
                                         </div>
@@ -303,7 +303,7 @@
                                 <div class="tab-pane"  id="chat-media-videos" tabindex="0">
                                     <div class="row g-3">
                                         <div class="col-6"  v-for="message in messages" v-if="message.message_type == 'video' || message.is_video ">
-                                            <a :href="message.media_path" class="glightbox2 tyn-video" data-gallery="media-video">
+                                            <a :href="message.media_path" class="glightbox tyn-video" data-gallery="side-video-gallery">
                                                 <img src="/uploads/images/video.jpg" class="tyn-image" alt="">
                                                 <div class="tyn-video-icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
@@ -442,8 +442,7 @@ export default {
         }, 5000);
         
         setTimeout(function(){
-            var lightbox = GLightbox({selector:".glightbox"});
-            var lightbox2 = GLightbox({selector:".side-glightbox"});
+             GLightbox({selector:".glightbox"});
         }, 3000);
     },
 
