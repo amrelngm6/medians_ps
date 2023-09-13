@@ -647,7 +647,7 @@ dl {
 }
 .tyn-media-col .meta {
   font-size: 0.8rem;
-  color: var(--media-text-light);
+  /* color: var(--media-text-light); */
 }
 .tyn-media-col .anchor {
   font-size: 0.625rem;
