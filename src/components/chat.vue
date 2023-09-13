@@ -407,7 +407,7 @@
                             <p class="small">Once you end this conversation, you will no longer be able to see or reply to this again.</p>
                             <ul class="tyn-list-inline gap gap-3 pt-1 justify-content-center">
                                 <li>
-                                    <button class="btn btn-danger" data-bs-dismiss="modal">End</button>
+                                    <button class="btn btn-danger" @click="endConversation(active_contact)" data-bs-dismiss="modal">End</button>
                                 </li>
                                 <li>
                                     <button class="btn btn-light" data-bs-dismiss="modal">No</button>
