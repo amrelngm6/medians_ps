@@ -1699,3 +1699,7 @@ body .tyn-aside-item:hover, body  .tyn-aside-item.active
 {
   font-weight: bold;
 }
+.bg-gray-100 .tyn-reply-text
+{
+  background: transparent;
+}
