@@ -537,7 +537,7 @@ dl {
   height: var(--tyn-size);
   width: var(--tyn-size);
   border-radius: var(--tyn-shape);
-  background: var(--media-bg);
+  /* background: var(--media-bg); */
 }
 [data-bs-theme=dark] .tyn-media {
   --media-bg: var(--bs-gray-800);
