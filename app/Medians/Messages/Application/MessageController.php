@@ -91,10 +91,6 @@ class MessageController extends MessageService
             $MessageService = new MessageService;
             $messageSent = $MessageService->uploadMedia($file);
             
-            print_r('$messageSent');
-            print_r($messageSent);
-            return null;
-            print_r($messageSent);
             $data['media_id'] = $messageSent->id;
             $data['to'] = $messageSent->contacts[0]->wa_id;
             $data['sender_id'] = $MessageService->PNID;
@@ -103,11 +99,9 @@ class MessageController extends MessageService
             $data['message_id'] = isset($message->id) ? $message->id : '';
             $data['media_path'] = $file;
             $data['inserted_by'] = $app->auth()->id;
-            print_r($data);
             
             $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
             $saveMessage = $MessageRepository->saveMessage($data, $data['sender_id']);
-            print_r($saveMessage);
 
             if ($saveMessage)
                 echo json_encode(['success'=>true]);
@@ -115,7 +109,6 @@ class MessageController extends MessageService
             return $MessageRepository;
             
         } catch (\Throwable $th) {
-            print_r($e);
             //throw $th;
         }
     }
