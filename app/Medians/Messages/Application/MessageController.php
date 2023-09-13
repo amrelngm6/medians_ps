@@ -72,7 +72,7 @@ class MessageController extends MessageService
         $repo = new ContactRepository;
         
         $data =  $repo->loadContacts();
-        echo json_encode(['contacts'=>$data]);
+        return ['contacts'=>$data];
 
     }
 
@@ -377,7 +377,8 @@ class MessageController extends MessageService
     {
         echo  json_encode([
             'messages' => $this->new_messages()['messages'],
-            'contacts' => $this->new_chats()['contacts'],
+            'new_contacts' => $this->new_chats()['contacts'],
+            'contacts' => $this->load_contacts()['contacts'],
         ]);
     }
 

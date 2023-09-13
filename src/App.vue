@@ -147,7 +147,7 @@ export default {
 
 
             this.handleGetRequest( '/check_new_notifications' ).then(response=> {
-                let a = response && response.contacts ? response.contacts.length : null;
+                let a = response && response.new_contacts ? response.new_contacts.length : null;
                 a ? jQuery('#new_chats_count').html(a) :  jQuery('#new_chats_count').empty()
                 
                 let b = response && response.messages ? response.messages.length : null;
@@ -157,9 +157,7 @@ export default {
                     t.$refs.side_chat.setValues(response);
                 }
 
-                if (t.$refs && t.$refs.activeTab == 'messages'){
-                    t.$refs.activeTab.load();
-                }
+
                 if (t.$refs && t.$refs.activeTab == 'new_chats'){
                     t.$refs.activeTab.setValues(response);
                 }
