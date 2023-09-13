@@ -5,7 +5,7 @@
             <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
                 style="background-image: url(https://tecdn.b-cdn.net/img/Photos/Others/background2.jpg)">
                 <div class="w-full  flex justify-center">
-                    <div class="w-full ">
+                    <div class="w-full cursor-pointer" @click="selectContact(contact)">
                         <div class="m-4 block rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800 dark:shadow-black/20">
                             <!--Testimonial-->
                             <div class="md:flex md:flex-row gap-6">
@@ -511,6 +511,22 @@ export default {
         }
     },
     methods: {
+
+        /**
+         * Select conversation 
+         * 
+         */
+        selectContact(contact)
+        {
+            
+            this.active_contact = contact.wa_id
+            this.active_contact_name = contact.name
+            this.load()
+            
+            jQuery('.tyn-aside-item.js-toggle-main').removeClass('active')
+            jQuery('#contact'+contact.id).addClass('active')
+
+        },
 
         contacts() {
             if (this.$parent.contacts)
