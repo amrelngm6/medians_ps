@@ -235,11 +235,11 @@
             </div><!-- .tyn-chat-form -->
             <div v-if="showAside" class="tyn-chat-content-aside w-full show-aside bg-white" id="tynChatAside" data-simplebar>
                 <div class="tyn-chat-cover">
-                    <img src="/uploads/images/1.jpg" alt="">
+                    <img src="/uploads/user.svg" alt="">
                 </div>
                 <div class="tyn-media-group tyn-media-vr tyn-media-center mt-n4">
                     <div class="tyn-media tyn-size-xl border border-2 border-white">
-                        <img src="/uploads/images/1.jpg" alt="">
+                        <img src="/uploads/user.svg" alt="">
                     </div>
                     <div class="tyn-media-col">
                         <div class="tyn-media-row">
