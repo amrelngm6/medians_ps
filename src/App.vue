@@ -5,7 +5,7 @@
         <div v-if="show" class="left-4 mt-12">
             <!-- component -->
             <div class="w-full relative mt-12">
-                <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-0 px-2" >
+                <div class="gap gap-6 h-full flex w-full overflow-hidden py-4 pb-0 px-2" style="margin-top: 60px" >
                     <side_chat ref="side_chat" :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="activeTab == 'messages' && auth  && showSide" class="sidebar mx-1 bg-white px-2" id="sidebar" style="z-index:99999">
                     </side_chat>
 
