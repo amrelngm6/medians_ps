@@ -51,6 +51,7 @@ class ConversationController
         $data['conversation_id'] = $check->conversation_id;
         $data['wa_id'] = $wa_id;
         $data['user_id'] = $app->auth()->id;
+        $data['ended'] = '0';
 
         $save = $ConversationRepository->saveConversation($data);
         
