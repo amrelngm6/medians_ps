@@ -454,7 +454,7 @@ export default {
          */
         switchAside()
         {
-            if (this.showAside)
+            if (!this.showAside)
             {
                 jQuery('#tynChatBody').css('width', 'calc(100% - 300px)')
                 jQuery('#tynChatHead').css('width', 'calc(100% - 300px)')
