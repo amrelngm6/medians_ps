@@ -366,9 +366,9 @@ export default {
 
     mounted() {
         var t = this;
-        // t.load()
+        t.load()
         setInterval(function(){
-            // t.load()
+            t.load()
         }, 5000);
         
     },
