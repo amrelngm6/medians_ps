@@ -1,6 +1,6 @@
 <template>
     <div>
-        <navbar v-if="auth" style="z-index: 99999;" ></navbar>
+        <navbar :auth="auth" v-if="auth" style="z-index: 99999;" ></navbar>
         <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
         <div v-if="show" class="left-4 mt-12">
             <!-- component -->
