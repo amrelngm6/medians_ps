@@ -86,12 +86,14 @@ class MessageController extends MessageService
     public function uploadAndSave($file, $type = 'image', $app = null)
     {
         try {
-            //code...
-                
+            
             // $app = new \config\APP;
             $MessageService = new MessageService;
             $messageSent = $MessageService->uploadMedia($file);
             
+            print_r('$messageSent');
+            print_r($messageSent);
+            return null;
             print_r($messageSent);
             $data['media_id'] = $messageSent->id;
             $data['to'] = $messageSent->contacts[0]->wa_id;

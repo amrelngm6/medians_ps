@@ -394,7 +394,7 @@ class MessageService
 
 		$output = json_decode($response);
 		if (isset($output->error->message))
-			echo $response; die();
+			echo $response; return $response;
 
 		return $output;
 	}
