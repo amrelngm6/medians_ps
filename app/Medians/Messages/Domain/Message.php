@@ -65,7 +65,8 @@ class Message extends CustomModel
 
 	public function getTimeAgoAttribute()
 	{
-		return date('h:i A',strtotime($this->created_at));	
+		return $this->timeAgo($this->created_at); 
+		// date('h:i A',strtotime($this->created_at));	
 	}
 
 	public function getIsVideoAttribute()
