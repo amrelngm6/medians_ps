@@ -1,6 +1,6 @@
 <template>
     <div>
-        <navbar :auth="auth" v-if="auth" style="z-index: 99999;" ></navbar>
+        <navbar :lang="lang" :auth="auth" v-if="auth" style="z-index: 99999;" ></navbar>
         <a href="javascript:;" class="mainmenu-close w-6 text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
         <div v-if="show" class="left-4 mt-12">
             <!-- component -->
@@ -121,7 +121,7 @@ export default {
             t.submit(this, e)
         })
 
-        this.showSide =  (window.screen.availWidth > 1000 ) ? true : false;
+        this.showSide =  (window.screen.availWidth > 1000 ) ? true : this.showSide;
 
         // Check if Native notifications enabled  from Master
         if (this.enable_notifications)
