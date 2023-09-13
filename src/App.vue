@@ -153,11 +153,13 @@ export default {
                 let b = response && response.messages ? response.messages.length : null;
                 b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
 
-                if (t.$refs.side_chat)
+                if (t.$refs.side_chat){
                     t.$refs.activeTab.setValues(response);
+                }
 
-                if (t.$refs && t.$refs.activeTab == 'messages')
+                if (t.$refs && t.$refs.activeTab == 'messages'){
                     t.$refs.activeTab.load();
+                }
 
             });
 
