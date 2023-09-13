@@ -4,16 +4,16 @@
             <!--Background-->
             <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
                 style="background-image: url(https://tecdn.b-cdn.net/img/Photos/Others/background2.jpg)">
-                <div class="flex justify-center">
-                    <div class="max-w-3xl">
+                <div class="w-full  flex justify-center">
+                    <div class="w-full ">
                         <div class="m-4 block rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800 dark:shadow-black/20">
                             <!--Testimonial-->
-                            <div class="md:flex md:flex-row">
+                            <div class="md:flex md:flex-row gap-6">
                                 <div class="mx-auto mb-6 flex w-36 items-center justify-center md:mx-0 md:w-96 lg:mb-0">
                                     <img src="/uploads/user.svg"
                                         class="rounded-full shadow-md dark:shadow-black/30" alt="woman avatar" />
                                 </div>
-                                <div class="md:ml-6" v-if="contact.last_message">
+                                <div class="md:ml-6 w-full " v-if="contact.last_message">
                                     <p v-html="contact.last_message.message_text" class="mb-6 font-light text-neutral-500 dark:text-neutral-300"></p>
                                     <p class="mb-2 text-xl font-semibold text-neutral-800 dark:text-neutral-200" v-html="contact.name">
                                     </p>
