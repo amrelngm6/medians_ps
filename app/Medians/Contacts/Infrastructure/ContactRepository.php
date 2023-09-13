@@ -21,6 +21,7 @@ class ContactRepository
         ->groupBy('wa_id')
         ->get();
 
+        $newArr = [];
 
         foreach($return as $key => $item)
         {
@@ -29,13 +30,12 @@ class ContactRepository
                     ? $item->last_sent_message 
                     : $item->last_message;
             } 
-            $return[$key] = $item ;
+            $return[$key] = $newArr[$key] =  $item ;
         }
 
-        
-        return $return;
+        usort($newArr, 'sortByAge');
+
+        return $newArr;
     }
-
-
 
 }

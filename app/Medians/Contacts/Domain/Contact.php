@@ -24,7 +24,15 @@ class Contact extends CustomModel
     	'picture',
 	];
 
+
+	public $appends = ['unread'];
+
 	// public $timestamps = false;
+
+	public function getUnreadAttribute()
+	{
+		return( isset($this->last_message->income) && empty($this->last_message->read)) ? 1 : 0;
+	}
 
 	public function last_message()
 	{

@@ -53,6 +53,10 @@ function render($template, $data, $responseType = 'html')
  } 
 
 
+ function sortByAge($a, $b) {
+    return $b->unread - $a->unread;
+}
+
 
 /**
  * Page not found 
