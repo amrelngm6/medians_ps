@@ -55,5 +55,16 @@ export default
         'message',
     ],
 
+    methods:{
+        
+        /**
+         * check if the text has link
+         */
+         checkHasLink(message)
+        {
+            return (message && message.indexOf('http') > -1 ) ? true : false;
+        },
+
+    }
 };
 </script>
