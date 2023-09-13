@@ -219,7 +219,12 @@ class MessageController extends MessageService
                         ];
                         $ConversationRepository->saveConversation( $arr);
                     }
-        
+                    
+                    if (isset($data['media_id']) )
+                    {
+                        $this->loadMedia($data['media_id']);
+                    }
+            
                     
                 }
                 
@@ -229,7 +234,7 @@ class MessageController extends MessageService
                 $contact['phone_number'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
                 $MessageRepository->saveContact($contact);
 
-
+                
 
             }
         }
@@ -285,10 +290,6 @@ class MessageController extends MessageService
         $data['message_type'] = isset($message->type) ? $message->type : '';
         $data['message_time'] = isset($message->timestamp) ? $message->timestamp : '';
         $data['media_path'] = isset($data['media_id']) ?  $this->loadMedia($data['media_id']) : '';
-        if (isset($data['media_id']) )
-        {
-            $this->loadMedia($data['media_id']);
-        }
 
         return $data;
     }
