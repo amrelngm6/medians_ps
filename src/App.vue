@@ -160,6 +160,9 @@ export default {
                 if (t.$refs && t.$refs.activeTab == 'messages'){
                     t.$refs.activeTab.load();
                 }
+                if (t.$refs && t.$refs.activeTab == 'new_chats'){
+                    t.$refs.activeTab.setValues(response);
+                }
 
             });
 
