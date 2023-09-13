@@ -21,6 +21,7 @@
                                 </div>
                                 <div class="md:ml-6 w-full " v-if="contact.last_message">
                                     <p v-html="contact.last_message.message_text" class="mb-6 text-xl font-light text-neutral-500 dark:text-neutral-300"></p>
+                                    <p class="text-sm font-semibold" v-html="contact.last_message.time_ago"></p>
                                 </div>
                             </div>
                         </div>
