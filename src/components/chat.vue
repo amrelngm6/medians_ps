@@ -1,6 +1,6 @@
 <template>
     <div class="tyn-main tyn-chat-content" id="tynMain">
-        <div v-if="this.$parent.contacts && !this.active_contact">
+        <div class="container mx-auto" v-if="this.$parent.contacts && !this.active_contact">
             <!--Background-->
             <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
                 style="background-image: url(https://tecdn.b-cdn.net/img/Photos/Others/background2.jpg)">
@@ -13,7 +13,7 @@
                                     <img src="/uploads/user.svg"
                                         class="rounded-full shadow-md dark:shadow-black/30" alt="woman avatar" />
                                 </div>
-                                <div class="md:ml-6 " v-if="contact.last_message">
+                                <div class="md:ml-6 py-4" v-if="contact.last_message">
                                     <p class="mb-2 text-xl font-semibold text-neutral-800 dark:text-neutral-200" v-html="contact.name">
                                     </p>
                                     <p class="mb-0 font-semibold text-neutral-500 dark:text-neutral-400" v-html="contact.wa_id">
