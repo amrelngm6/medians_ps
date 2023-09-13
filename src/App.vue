@@ -151,11 +151,11 @@ export default {
 
             this.handleGetRequest( '/check_new_notifications' ).then(response=> {
                 
-                t.new_contacts = response.new_contacts.sort((a, b) => b.msg.income - a.msg.income);
+                t.new_contacts = response.new_contacts;
                 let a = response && response.new_contacts ? response.new_contacts.length : null;
                 a ? jQuery('#new_chats_count').html(a) :  jQuery('#new_chats_count').empty()
                 
-                t.contacts = response.contacts;
+                t.contacts = response.contacts.sort((a, b) => b.msg.income - a.msg.income);
                 let b = response && response.messages ? response.messages.length : null;
                 b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
                 
