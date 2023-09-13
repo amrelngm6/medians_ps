@@ -140,16 +140,39 @@ export default {
          */
         checkPending()
         {
-            this.handleGetRequest( '/get_new_chats' ).then(response=> {
+            var t = this;
+
+
+            console.log(this.$refs);
+
+
+            this.handleGetRequest( '/check_new_notifications' ).then(response=> {
                 let a = response && response.contacts ? response.contacts.length : null;
                 a ? jQuery('#new_chats_count').html(a) :  jQuery('#new_chats_count').empty()
+                
+                let b = response && response.messages ? response.messages.length : null;
+                b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
+
+                if (t.$refs.side_chat)
+                    t.$refs.activeTab.setValues(response);
+
+                if (t.$refs && t.$refs.activeTab == 'messages')
+                    t.$refs.activeTab.load();
+
             });
 
             
-            this.handleGetRequest( '/get_new_messages' ).then(response=> {
-                let b = response && response.messages ? response.messages.length : null;
-                b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
-            });
+            // this.handleGetRequest( '/get_new_chats' ).then(response=> {
+            //     let a = response && response.contacts ? response.contacts.length : null;
+            //     a ? jQuery('#new_chats_count').html(a) :  jQuery('#new_chats_count').empty()
+            // });
+
+            
+            // this.handleGetRequest( '/get_new_messages' ).then(response=> {
+            //     let b = response && response.messages ? response.messages.length : null;
+            //     b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
+            // });
+
 
         },
         

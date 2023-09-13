@@ -198,10 +198,10 @@ export default {
         };
     },
     mounted() {
-        this.load()
+        // this.load()
         var t = this;
         setInterval(function(){
-            t.load()
+            // t.load()
         }, 6000);
     },
 

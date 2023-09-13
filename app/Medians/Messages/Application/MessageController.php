@@ -373,19 +373,35 @@ class MessageController extends MessageService
      * Save conversation 
      * 
      */
+    public function check_new_notifications()
+    {
+        echo  json_encode([
+            'messages' => $this->new_messages(),
+            'contacts' => $this->new_chats(),
+        ]);
+    }
+
     public function new_messages()
     {
         $app = new \config\APP;
 
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 
-        echo json_encode(['messages'=>$MessageRepository->getNew($app->auth()->id)]);
-        return true;
+        return ['messages'=>$MessageRepository->getNew($app->auth()->id)];
     }
     
+    /**
+     * Load conversations 
+     * 
+     */
+    public function new_chats()
+    {
+        $app = new \config\APP;
 
+        $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
 
-
+        return ['contacts'=>$ConversationRepository->getNew()];
+    }
 
 
     
