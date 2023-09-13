@@ -109,6 +109,7 @@ class MessageController extends MessageService
             return $MessageRepository;
             
         } catch (\Throwable $th) {
+            print_r($th);
             //throw $th;
         }
     }
@@ -167,7 +168,7 @@ class MessageController extends MessageService
             $dataToSave = json_encode($jsonData, JSON_PRETTY_PRINT);
             
             if (isset($jsonData->entry[0]->changes[0]->value->messaging_product)){
-                $message = isset($jsonData->entry[0]->changes[0]->value->messages[0]) ? $jsonData->entry[0]->changes[0]->value->messages[0] : null;
+                $message = isset($jsonData->entry[0]->changes[0]->value) ? $jsonData->entry[0]->changes[0]->value->messages[0] : null;
             }
 
             $time = isset($message->timestamp) ? $message->timestamp : time();

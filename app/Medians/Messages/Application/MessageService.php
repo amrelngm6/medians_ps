@@ -193,7 +193,7 @@ class MessageService
 			$responseObject = json_decode($response);
 			$output = $this->sendMediaMessage($responseObject->id);
 			$output->id = $responseObject->id;
-
+			
 			return $output;
 		}
 		catch (Exception $ex)
@@ -393,8 +393,9 @@ class MessageService
         curl_close($ch);
 
 		$output = json_decode($response);
-		if (isset($output->error->message))
-			echo $response; return $response;
+		if (isset($output->error->message)) {
+			echo $response; return null;
+		}
 
 		return $output;
 	}
