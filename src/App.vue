@@ -121,10 +121,10 @@ export default {
             t.submit(this, e)
         })
 
-        this.showSide =  (window.screen.availWidth > 1000 ) ? true : this.showSide;
+        this.showSide =  (window.screen.availWidth > 1000 ) ? this.showSide : false;
 
         // Check if Native notifications enabled  from Master
-        if (this.enable_notifications)
+        // if (this.enable_notifications)
             // this.notify()
         
         this.checkMobileMenu()    
