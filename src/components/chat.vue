@@ -583,7 +583,9 @@ export default {
             params.append('type', 'WP')
             params.append('contact_id',id)
             this.$parent.handleRequest( params, '/end_chat/'+id ).then(response=> {
-                this.load()
+                this.$parent.checkPending()
+                this.active_contact = null
+                this.active_contact_name = null
             });
         },
         
