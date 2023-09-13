@@ -142,6 +142,36 @@
                 </div><!-- .tyn-aside-body -->
             </div><!-- .tyn-aside -->
         </div>
+
+        
+            
+        <div class="modal fade" tabindex="-1" id="endChat" style="background-color:rgba(0,0,0,.5)">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content border-0">
+                    <div class="modal-body">
+                        <div class="py-4 px-4 text-center">
+                            <h3>End conversation</h3>
+                            <p class="small">Once you end this conversation, you will no longer be able to see or reply to this again.</p>
+                            <ul class="tyn-list-inline gap gap-3 pt-1 justify-content-center">
+                                <li>
+                                    <button class="btn btn-danger" @click="endConversation(activeItem.wa_id)" data-bs-dismiss="modal">End</button>
+                                </li>
+                                <li>
+                                    <button class="btn btn-light" data-bs-dismiss="modal">No</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- .modal-body -->
+                    <button class="btn btn-md btn-icon btn-pill btn-white shadow position-absolute top-0 end-0 mt-n3 me-n3" data-bs-dismiss="modal">
+                        <!-- x-lg -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                        </svg>
+                    </button>
+                </div><!-- .modal-content -->
+            </div><!-- .modal-dialog -->
+        </div><!-- .modal -->
+
     </div>
 </template>
 <script>
