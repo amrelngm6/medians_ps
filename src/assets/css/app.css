@@ -1107,6 +1107,7 @@ dl {
   transform: unset;
   max-width: 300px;
   width: 100% ;
+  top: 84px;
 }
 .tyn-chat-head {
   position: relative;
