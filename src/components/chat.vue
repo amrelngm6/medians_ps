@@ -549,6 +549,10 @@ export default {
         },
 
         load() {
+            
+            if (!this.active_contact)
+                return null;
+
             this.showLoader = true;
             this.$parent.handleGetRequest(this.url + '?active_contact=' + this.active_contact).then(response => {
                 this.setValues(response)
