@@ -15,10 +15,9 @@ class ContactRepository
         ->with('last_sent_message')
         ->with('conversations')
         ->whereHas('conversations', function($q) use ($user){
-            $q->where('user_id', $user->id);
+            $q->where('user_id', $user->id)->where('ended', '<', 1);
         })
         ->where('id', '>', '1')
-        ->where('ended', '<', 1)
         ->groupBy('wa_id')
         ->get();
 
