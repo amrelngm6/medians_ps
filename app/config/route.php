@@ -30,7 +30,7 @@ Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\Repo
 Macaw::get('/getMedia/(:all)', \Medians\Messages\Application\MessageController::class.'@loadMedia');
 Macaw::get('/messages', \Medians\Messages\Application\MessageController::class.'@index');
 Macaw::get('/load_messages', \Medians\Messages\Application\MessageController::class.'@load_messages');
-Macaw::get('/load_contacts', \Medians\Messages\Application\MessageController::class.'@load_contacts');
+Macaw::get('/load_contacts', \Medians\Messages\Application\MessageController::class.'@check_new_notifications');
 Macaw::get('/new_chats', \Medians\Conversations\Application\ConversationController::class.'@index');
 Macaw::get('/get_new_chats', \Medians\Conversations\Application\ConversationController::class.'@new_chats');
 Macaw::get('/get_new_messages', \Medians\Messages\Application\MessageController::class.'@new_messages');
