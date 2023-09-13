@@ -106,7 +106,7 @@
                 <div class="tyn-chat-form-insert pb-2">
                     <ul class="tyn-list-inline gap gap-3">
                         
-                        <li class="d-none d-sm-block"><label  v-tooltip="'Upload image'"  class="btn btn-icon btn-light btn-md btn-pill">
+                        <li class="d-none d-sm-block"  v-tooltip="'Upload image'" ><label  class="btn btn-icon btn-light btn-md btn-pill">
                                 <!-- card-image -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
                                     <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
