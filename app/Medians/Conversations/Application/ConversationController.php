@@ -53,7 +53,7 @@ class ConversationController
         $data['user_id'] = $app->auth()->id;
         $data['ended'] = '0';
 
-        $save = $ConversationRepository->saveConversation($data);
+        $save = $ConversationRepository->joinConversation($data);
         
         if ($save)
             echo json_encode(["success"=>true]);

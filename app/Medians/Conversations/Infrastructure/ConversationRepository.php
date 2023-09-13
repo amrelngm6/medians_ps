@@ -38,7 +38,7 @@ class ConversationRepository
     public function joinConversation(Array $data)
     {
         return Conversation::where('wa_id', $data['wa_id'])
-        ->where('user_id', '<', 1)
+        ->where('ended', '0')
         ->update($data);
     }
     
