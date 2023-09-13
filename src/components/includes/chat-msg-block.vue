@@ -43,7 +43,9 @@
             </a>
         </div>
         <div v-if="!message.message_type || message.message_type === 'text'" class="tyn-reply-text"> 
-            <span :class="checkHasLink(message.message_text) ? 'cursor-pointer' : ''" v-html="message.message_emojis ? message.message_emojis : message.message_text" ></span>
+            <b v-if="isreply" v-html="!income ? 'You : ' : 'Customer : '"></b>
+            <a v-if="checkHasLink(message.message_text)" v-html="message.message_text" :href="message.message_text" ></a>
+            <span v-if="!checkHasLink(message.message_text)" v-html="message.message_emojis ? message.message_emojis : message.message_text" ></span>
         </div>
     </div>
 </template>
@@ -53,6 +55,8 @@ export default
 {
     props: [
         'message',
+        'isreply',
+        'income',
     ],
 
     methods:{

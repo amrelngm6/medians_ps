@@ -91,7 +91,7 @@
                                 <span v-if="message.reaction && message.reaction.id" class="p-1 bg-white absolute left-0 bottom-0 w-8 h-8 rounded-full" v-html="message.reaction.message_emojis" style="max-width: none;left: -20px; z-index: 9;"></span>
                                 
                                 <div v-if="message.reply_message && message.message_type != 'reaction' && message.reply_message.id" class="p-1 bg-gray-100 relative left-0 bottom-0 w-auto rounded-full"  style="max-width: none;">
-                                    <chat-msg-block :message="message.reply_message" ></chat-msg-block>
+                                    <chat-msg-block :isreply="1" :income="message.income" :message="message.reply_message" ></chat-msg-block>
                                 </div>
                                 <div v-if="message">
                                     <chat-msg-block :message="message" ></chat-msg-block>
