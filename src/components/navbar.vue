@@ -146,12 +146,10 @@
 </template>
 
 <script>
-import notifications_popup from './notifications_popup.vue'
 
 export default {
   name: 'navbar',
   components: {
-    notifications_popup,
   },
   props: {
     auth:[Object, null],
