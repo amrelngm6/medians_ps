@@ -158,6 +158,9 @@ export default {
     lang:[Object, null],
     setting:[Object, null],
     conf:[Object, null]
+  },
+  mounted(){
+    console.log(this.auth)
   }
 }
 </script>
