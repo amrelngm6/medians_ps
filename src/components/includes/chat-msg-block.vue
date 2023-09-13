@@ -1,5 +1,5 @@
 <template>
-    <div class="widget-item bg-white p-6 flex justify-between rounded-md" v-if="message">
+    <div class="" v-if="message">
         <div v-if="message.message_type === 'document' && !message.is_video" class="tyn-reply-file">
             <a :href="message.media_path" target="_blank" class="tyn-file">
                 <div class="tyn-media-group">
