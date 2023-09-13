@@ -441,7 +441,7 @@ class MessageController extends MessageService
         
 		try {
 			
-		    return render('chat', [
+		    return render('messages', [
 		        'load_vue' => true,
 		        'title' => __('messages'),
 		        'messages' => $repo->loadMessages(),
