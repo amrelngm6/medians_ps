@@ -155,7 +155,9 @@ export default {
                 let a = response && response.new_contacts ? response.new_contacts.length : null;
                 a ? jQuery('#new_chats_count').html(a) :  jQuery('#new_chats_count').empty()
                 
-                t.contacts = response.contacts.sort((a, b) => b.msg.income - a.msg.income);
+                t.contacts = response.contacts;
+                t.contacts.sort((a, b) => b.msg.income - a.msg.income);
+                
                 let b = response && response.messages ? response.messages.length : null;
                 b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
                 
