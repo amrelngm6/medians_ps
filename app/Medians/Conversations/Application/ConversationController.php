@@ -71,7 +71,7 @@ class ConversationController
 
         $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
 
-        return json_encode(['contacts'=>$ConversationRepository->getNew()]);
+        echo json_encode(['contacts'=>$ConversationRepository->getNew()]);
     }
     
 

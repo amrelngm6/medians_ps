@@ -405,6 +405,16 @@ class MessageController extends MessageService
     }
 
 
+    /**
+     * Load conversations 
+     * 
+     */
+    public function get_new_chats()
+    {
+        echo json_encode($this->new_chats());
+    }
+
+
     
 	/**
 	 * Admin index items

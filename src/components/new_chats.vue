@@ -7,9 +7,9 @@
                 <div class="container px-2 py-24 mx-auto " v-if="conversation">
                     <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col">
                         <div class="w-full flex-grow sm:text-left text-center mt-6 sm:mt-0" v-if="conversation.contact">
-                            <p class="leading-relaxed text-base" v-html="conversation.contact.message_emojis && conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text" ></p>
+                            <p class="leading-relaxed text-lg text-gray-600" v-html="conversation.contact.message_emojis && conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text" ></p>
                             <div class="py-4 "></div>
-                            <div class="md:flex font-bold text-gray-800">
+                            <div class="md:flex font-bold text-gray-600">
                                 <div class="w-full md:w-1/2 flex space-x-3">
                                     <div class="w-1/2">
                                         <h2 class="text-gray-500">Name</h2>
