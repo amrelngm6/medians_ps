@@ -1705,3 +1705,8 @@ body .tyn-aside-item:hover, body  .tyn-aside-item.active
 {
   background: transparent;
 }
+.tooltip
+{
+  opacity: 1;
+  transition: all .5s ease-in-out;
+}
