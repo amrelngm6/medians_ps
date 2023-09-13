@@ -56,6 +56,7 @@ import new_chats from './components/new_chats.vue'
 export default {
     name: 'app',
     components: {
+        navbar,
         chat,
         login,
         SideMenu,
