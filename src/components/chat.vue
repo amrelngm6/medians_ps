@@ -20,6 +20,7 @@
                                     </p>
                                 </div>
                                 <div :class="checkUnread(contact) ? 'text-green-400' : ''" class="md:ml-6 w-full pt-4 text-default" v-if="contact.last_message">
+                                    <span v-if="contact.unread" class="inline-block whitespace-nowrap rounded-[0.27rem] bg-danger-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-danger-700">New</span>
                                     <p v-html="contact.last_message.message_text" class="mb-6 text-xl font-light text-neutral-500 dark:text-neutral-300"></p>
                                     <p class="text-sm font-semibold" v-html="contact.last_message.time_ago"></p>
                                 </div>
