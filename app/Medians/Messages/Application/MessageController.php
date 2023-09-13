@@ -39,7 +39,7 @@ class MessageController extends MessageService
         foreach ($data as $key => $value) {
             if ($value->media_id && !$value->media_path)
             {
-                $this->loadMedia($value->media_id);
+                // $this->loadMedia($value->media_id);
             }
             
             if ($value->message_text)
@@ -285,6 +285,10 @@ class MessageController extends MessageService
         $data['message_type'] = isset($message->type) ? $message->type : '';
         $data['message_time'] = isset($message->timestamp) ? $message->timestamp : '';
         $data['media_path'] = isset($data['media_id']) ?  $this->loadMedia($data['media_id']) : '';
+        if (isset($data['media_id']) )
+        {
+            $this->loadMedia($data['media_id']);
+        }
 
         return $data;
     }
@@ -357,7 +361,6 @@ class MessageController extends MessageService
         {
             $filename = explode('.', str_replace($_SERVER['DOCUMENT_ROOT'].'/', '', $value));
             $jsonData = json_decode(file_get_contents($value));
-            print_r($jsonData);
         }
 	} 
 
