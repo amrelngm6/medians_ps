@@ -266,6 +266,7 @@ export default {
         },
         
         setValues(data) {
+            console.log("Side chat")
             console.log(data)
             this.showLoader = true;
             this.content = JSON.parse(JSON.stringify(data)); return this
