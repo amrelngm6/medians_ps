@@ -26,8 +26,6 @@ class ConversationRepository
 
     public function saveConversation(Array $data)
     {
-        echo 'create';
-
         return Conversation::firstOrCreate($data);
     }
     
@@ -39,7 +37,6 @@ class ConversationRepository
     
     public function joinConversation(Array $data)
     {
-        echo 'update';
         return Conversation::where('wa_id', $data['wa_id'])
         ->where('user_id', '<', 1)
         ->update($data);

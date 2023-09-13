@@ -38,6 +38,7 @@ class MessageRepository
          return Conversation::where('user_id', $user_id)
          ->whereHas('new_messages')
          ->with('new_messages')
+         ->groupBy('wa_id')
          ->get();
     }
  
