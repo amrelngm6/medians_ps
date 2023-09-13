@@ -195,6 +195,9 @@
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media-videos" type="button"> Videos </button>
                                 </li>
                                 <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media-audio" type="button"> Audio </button>
+                                </li>
+                                <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media-files" type="button"> Files </button>
                                 </li>
                             </ul>
@@ -222,7 +225,20 @@
                                                 </div>
                                             </a>
                                         </div>
-
+                                    </div>
+                                </div><!-- .tab-pane -->
+                                <div class="tab-pane"  id="chat-media-audio" tabindex="0">
+                                    <div class="row g-3">
+                                        <div class="col-6"  v-for="message in messages" v-if="message.message_type == 'audio' ">
+                                            <a :href="message.media_path" class="glightbox tyn-video" data-gallery="side-video-gallery">
+                                                <img src="/uploads/images/video.jpg" class="tyn-image" alt="">
+                                                <div class="tyn-video-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"></path>
+                                                    </svg>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div><!-- .tab-pane -->
                                 <div class="tab-pane" id="chat-media-files" tabindex="0">
