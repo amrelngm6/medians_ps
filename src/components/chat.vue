@@ -398,7 +398,7 @@
         </div><!-- .modal -->
 
             
-        <div class="modal fade" tabindex="-1" id="endChat">
+        <div class="modal fade" tabindex="-1" id="endChat" style="background-color:rgba(0,0,0,.5)">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content border-0">
                     <div class="modal-body">
