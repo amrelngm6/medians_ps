@@ -208,11 +208,7 @@ export default {
         };
     },
     mounted() {
-        // this.load()
-        var t = this;
-        setInterval(function(){
-            // t.load()
-        }, 6000);
+        this.load()
     },
 
     methods: 
