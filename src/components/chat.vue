@@ -287,18 +287,15 @@
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media-files" type="button"> Files </button>
                                 </li>
-                                <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media-links" type="button"> Links </button>
-                                </li>
                             </ul>
                         </div>
                         <div class="tyn-aside-row">
                             <div class="tab-content">
                                 <div class="tab-pane show active" id="chat-media-images" tabindex="0">
-                                    <div class="row g-3">
-                                        <div class="col-4">
-                                            <a href="/uploads/images/6.jpg" class="glightbox tyn-thumb" data-gallery="side-media-photo">
-                                                <img src="/uploads/images/thumb-6.jpg" class="tyn-image" alt="">
+                                    <div class="row g-3" v-for="message in messages">
+                                        <div class="col-4" v-if="message.message_type == 'image'">
+                                            <a :href="message.message_path" class="glightbox tyn-thumb" data-gallery="side-media-photo">
+                                                <img :src="message.message_path" class="tyn-image" alt="">
                                             </a>
                                         </div>
                                     </div>
