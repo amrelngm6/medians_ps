@@ -162,7 +162,7 @@ class MessageController extends MessageService
             }
 
             $time = isset($message->timestamp) ? $message->timestamp : time();
-            file_put_contents('uploads/chat/'.$time.'.json', $dataToSave);
+            file_put_contents('uploads/chat/'.$time.'.json', isset($message) ? json_encode($message, JSON_PRETTY_PRINT) : $dataToSave);
             
             $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 
