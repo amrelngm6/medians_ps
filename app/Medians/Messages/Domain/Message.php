@@ -88,9 +88,10 @@ class Message extends CustomModel
 			return null;
 		
 		$jsonData = json_decode($return);
-		$message = isset($jsonData->entry[0]->changes[0]->value->messages[0]) 
+		$message = isset($jsonData->from) ? $jsonData : 
+			(isset($jsonData->entry[0]->changes[0]->value->messages[0]) 
 			? $jsonData->entry[0]->changes[0]->value->messages[0]
-			: null;
+			: null);
 
 		if (isset($message->text->body)) 
 			return $message->text->body;
