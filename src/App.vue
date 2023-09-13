@@ -192,7 +192,7 @@ export default {
          * Check notifications permission
          * Send welcome notification
          */ 
-        notify (title=null, body=null) 
+        notify (title=null, body=null, link='/') 
         {
             var t = this;
             console.log('notify')
@@ -205,6 +205,7 @@ export default {
                     if (permission === "granted") {
                         const notification = new Notification(title ? title : '', {
                             body: body ? body : '',
+                            click_action: link ? link : null, 
                             icon: this.system_setting.notifications_welcome_icon
                         });
                     }
