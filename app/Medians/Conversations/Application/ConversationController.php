@@ -75,7 +75,7 @@ class ConversationController
         $data['wa_id'] = $wa_id;
         $data['user_id'] = $app->auth()->id;
 
-        $check = $ConversationRepository->checkIfPending($data);
+        $check = $ConversationRepository->checkIfActive($data);
         
         print_r($check);
         

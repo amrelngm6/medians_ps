@@ -29,9 +29,9 @@ class ConversationRepository
         return Conversation::firstOrCreate($data);
     }
     
-    public function checkIfPending(Array $data)
+    public function checkIfActive(Array $data)
     {
-        return Conversation::where('wa_id', $data['wa_id'])->orderBy('id','DESC')->first();
+        return Conversation::where('ended', '0')->where('wa_id', $data['wa_id'])->orderBy('id','DESC')->first();
     }
     
     
