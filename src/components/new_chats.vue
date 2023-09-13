@@ -70,7 +70,7 @@ export default {
         };
     },
     mounted() {
-        this.load()
+        this.setValues($parent.new_contacts)
         var t = this;
     },
 
