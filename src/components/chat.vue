@@ -1,5 +1,25 @@
 <template>
     <div class="tyn-main tyn-chat-content" id="tynMain">
+        <div v-if="">
+            <div class="tyn-profile-head">
+                <div class="tyn-profile-info">
+                    <div class="tyn-media-group align-items-start">
+                        <div class="tyn-media tyn-media-bordered tyn-size-4xl tyn-profile-avatar">
+                            <img src="images/user.svg" alt="">
+                        </div>
+                        <div class="tyn-media-col">
+                            <div class="tyn-media-row">
+                                <h4 class="name"><span v-html="contact.name"></span> <span class="username" v-html="contact.wa_id"></span></h4>
+                            </div>
+                            <div class="tyn-media-row has-dot-sap">
+                                <span class="content">287 Contacts</span>
+                                <span class="meta">8 Mutual</span>
+                            </div>
+                        </div>
+                    </div><!-- .tyn-media-group -->
+                </div><!-- .tyn-profile-info -->
+            </div>
+        </div>
         <div class="w-full" v-if="messages && messages.length">
             <div class="tyn-chat-head bg-white p-2" id="tynChatHead">
                 <ul class="tyn-list-inline d-md-none ms-n1">
