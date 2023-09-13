@@ -39,7 +39,7 @@
                         <li class="tyn-appbar-item">
                             
                             <a class="d-inline-flex dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" data-bs-offset="0,10">
-                                <span class="text-xs py-3  text-gray-400" v-html="auth ? lang.__('welcome:') : ''"></span>
+                                <span class="text-xs py-3  text-gray-400" v-html="auth ? __('welcome:') : ''"></span>
                                 <span class="text-xs py-3 px-2 font-semibold" v-html="auth ? auth.name : ''"></span>
 
                                 <div class="tyn-media tyn-size-lg tyn-circle">
