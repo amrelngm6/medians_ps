@@ -294,8 +294,8 @@
                                 <div class="tab-pane show active" id="chat-media-images" tabindex="0">
                                     <div class="row g-3">
                                         <div class="col-4"  v-for="message in messages" v-if="message.message_type == 'image'">
-                                            <a :href="message.message_path" class="glightbox tyn-thumb" data-gallery="side-media-photo">
-                                                <img :src="message.message_path" class="tyn-image" alt="">
+                                            <a :href="message.media_path" class="glightbox tyn-thumb" data-gallery="side-media-photo">
+                                                <img :src="message.media_path" class="tyn-image" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -303,7 +303,7 @@
                                 <div class="tab-pane"  id="chat-media-videos" tabindex="0">
                                     <div class="row g-3">
                                         <div class="col-6"  v-for="message in messages" v-if="message.message_type == 'video' || message.is_video ">
-                                            <a :href="message.message_path" class="glightbox tyn-video" data-gallery="media-video">
+                                            <a :href="message.media_path" class="glightbox tyn-video" data-gallery="media-video">
                                                 <img src="/uploads/images/video.jpg" class="tyn-image" alt="">
                                                 <div class="tyn-video-icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
