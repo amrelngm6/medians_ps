@@ -18,6 +18,7 @@ class ContactRepository
             $q->where('user_id', $user->id);
         })
         ->where('id', '>', '1')
+        ->where('ended', '<', 1)
         ->groupBy('wa_id')
         ->get();
 
