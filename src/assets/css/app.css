@@ -1108,6 +1108,8 @@ dl {
   max-width: 300px;
   width: 100% ;
   top: 84px;
+  max-height: calc(100vh - 90px);
+  padding-bottom: 20px;
 }
 .tyn-chat-head {
   position: relative;
