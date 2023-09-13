@@ -31,7 +31,7 @@ class ConversationRepository
     
     public function checkIfActive(Array $data)
     {
-        return Conversation::where('ended', '0')->where('wa_id', $data['wa_id'])->orderBy('id','DESC')->first();
+        return Conversation::where('ended', '0')->where('wa_id', $data['wa_id'])->where('user_id', $data['user_id'])->orderBy('id','DESC')->first();
     }
     
     
