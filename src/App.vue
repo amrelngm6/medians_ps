@@ -97,7 +97,8 @@ export default {
             system_setting: {},
             conf: {},
             main_menu: [],
-            typesList: [],
+            contacts: [],
+            new_contacts: [],
             show: false,
             showSide: true,
             showModal: false,
@@ -148,12 +149,14 @@ export default {
 
 
             this.handleGetRequest( '/check_new_notifications' ).then(response=> {
+                t.new_contacts = response.new_contacts;
                 let a = response && response.new_contacts ? response.new_contacts.length : null;
                 a ? jQuery('#new_chats_count').html(a) :  jQuery('#new_chats_count').empty()
                 
+                t.contacts = response.contacts;
                 let b = response && response.messages ? response.messages.length : null;
                 b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
-
+                
                 if (t.$refs.side_chat){
                     t.$refs.side_chat.setValues(response);
                 }
@@ -261,7 +264,6 @@ export default {
             this.conf = props ? JSON.parse(props.conf) : {};
             this.activeTab = (props && props.page) ? props.page : this.defaultPage();
             this.component = (props && props.component) ? props.component : this.defaultPage();
-            this.typesList = (props && props.typesList) ? props.typesList : [];
             this.show = true
         },
 
