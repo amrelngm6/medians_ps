@@ -966,7 +966,7 @@ dl {
 .tyn-reply-text {
   font-size: 0.833rem;
   padding: 0.75rem 1rem;
-  border-radius: inherit;
+  border-radius: 6px;
   color: var(--reply-text);
   background: var(--reply-bg);
 }
@@ -1009,7 +1009,7 @@ dl {
 .tyn-reply-media {
   color: var(--reply-text);
   background: var(--reply-bg);
-  border-radius: inherit;
+  border-radius: 6px;
   padding: 0.375rem;
   display: flex;
   flex-direction: row-reverse;
@@ -1029,7 +1029,7 @@ dl {
   object-fit: cover;
 }
 .tyn-reply-file {
-  border-radius: inherit;
+  border-radius: 6px;
   color: var(--reply-text);
   background: var(--reply-bg);
 }
