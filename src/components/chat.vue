@@ -12,10 +12,10 @@
                 </ul>
                 <div class="tyn-media-group">
                     <div class="tyn-media tyn-size-lg d-none d-sm-inline-flex">
-                        <img src="/uploads/images/1.jpg" alt="">
+                        <img src="/uploads/user.svg" alt="">
                     </div>
                     <div class="tyn-media tyn-size-rg d-sm-none">
-                        <img src="/uploads/images/1.jpg" alt="">
+                        <img src="/uploads/user.svg" alt="">
                     </div>
                     <div class="tyn-media-col">
                         <div class="tyn-media-row">

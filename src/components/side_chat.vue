@@ -103,7 +103,7 @@
                                 <li v-for="contact in content.contacts" :id="'contact'+contact.id" class="my-2 tyn-aside-item js-toggle-main ">
                                     <div class="tyn-media-group">
                                         <div @click="selectContact(contact)"  class="tyn-media tyn-size-lg">
-                                            <img src="/uploads/images/1.jpg" alt="">
+                                            <img src="/uploads/user.svg" alt="">
                                         </div>
                                         <div class="tyn-media-col" @click="selectContact(contact)" >
                                             <div class="tyn-media-row">
