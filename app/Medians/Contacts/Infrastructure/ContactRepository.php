@@ -10,13 +10,13 @@ class ContactRepository
 
     public function loadContacts()
     {
+        $user = (new \config\APP)->auth();
         $return = Contact::with('last_message')
         ->with('last_sent_message')
         ->with('conversations')
-        ->whereHas('conversations')
-        // ->WhereDoesntHave('new_conversation', function($q){
-
-        // }) 
+        ->whereHas('conversations', function($q) use ($user){
+            $q->where('user_id', $user->id);
+        })
         ->where('id', '>', '1')
         ->groupBy('wa_id')
         ->get();
