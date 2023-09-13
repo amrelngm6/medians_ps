@@ -1,8 +1,8 @@
 <template>
     <div class=" " v-if="content.contacts && content.contacts.length">
         <h1 class="text-xl text-center mx-auto pt-6 ">Pick your customer</h1>
-        <p class=" text-center mx-auto pb-6 pt-2 ">You can pick any customer ASAP to help him </p>
-        <div class="container mx-auto w-full row grid overflow-auto" style="max-height: calc(100vh - 90px);" >
+        <p class=" text-center mx-auto pb-6 pt-2 ">You should pick any customer ASAP to help him </p>
+        <div class="container mx-auto w-full row grid overflow-auto" style="max-height: calc(100vh - 90px); padding-bottom:100px" >
             <section class="text-gray-600 body-font mt-12 col-6"  v-for="conversation in content.contacts">
                 <div class="container px-2 py-24 mx-auto " v-if="conversation">
                     <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col">
