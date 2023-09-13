@@ -317,7 +317,7 @@
                                 </div><!-- .tab-pane -->
                                 <div class="tab-pane" id="chat-media-files" tabindex="0">
                                     <ul class="tyn-media-list gap gap-3">
-                                        <li>
+                                        <li  v-for="message in messages" v-if="message.message_type == 'document'">
                                             <a :href="message.media_path" class="tyn-file">
                                                 <div class="tyn-media-group">
                                                     <div class="tyn-media tyn-size-lg text-bg-light">
