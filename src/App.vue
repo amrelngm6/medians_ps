@@ -150,7 +150,8 @@ export default {
 
 
             this.handleGetRequest( '/check_new_notifications' ).then(response=> {
-                t.new_contacts = response.new_contacts;
+                
+                t.new_contacts = response.new_contacts.sort((a, b) => b.income - a.income);
                 let a = response && response.new_contacts ? response.new_contacts.length : null;
                 a ? jQuery('#new_chats_count').html(a) :  jQuery('#new_chats_count').empty()
                 
