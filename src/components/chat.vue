@@ -534,10 +534,10 @@ export default {
                 let val = JSON.parse(JSON.stringify(response));
 
                 if (val.error)
-                    return this.$alert(val.error.message);
+                    return this.$alert(val.error.message), this.chat_message = '';
 
                 this.load();
-                this.chat_message = ''
+                
 
             });
         },
