@@ -1107,7 +1107,7 @@ dl {
   transform: unset;
   max-width: 300px;
   width: 100% ;
-  top: 84px;
+  top: 24px;
   max-height: calc(100vh - 90px);
   padding-bottom: 20px;
 }
