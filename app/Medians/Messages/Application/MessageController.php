@@ -376,8 +376,8 @@ class MessageController extends MessageService
     public function check_new_notifications()
     {
         echo  json_encode([
-            'messages' => $this->new_messages(),
-            'contacts' => $this->new_chats(),
+            'messages' => $this->new_messages()['messages'],
+            'contacts' => $this->new_chats()['contacts'],
         ]);
     }
 
