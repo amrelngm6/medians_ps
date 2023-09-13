@@ -17,7 +17,7 @@
                                     <span>New</span>
                                 </button>
                             </li><!-- li -->
-                            <li class="dropdown">
+                            <li class="dropdown hidden">
                                 <button class="link dropdown-toggle" data-bs-toggle="dropdown" data-bs-offset="0,10">
                                     <!-- filter -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
