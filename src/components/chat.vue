@@ -1,6 +1,6 @@
 <template>
     <div class="tyn-main tyn-chat-content" id="tynMain">
-        <div v-if="">
+        <div v-if="!messages || messages && messages.length < 1">
             <div class="tyn-profile-head">
                 <div class="tyn-profile-info">
                     <div class="tyn-media-group align-items-start">
