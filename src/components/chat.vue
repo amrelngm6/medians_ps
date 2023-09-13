@@ -19,7 +19,7 @@
                                     <p class="mb-0 font-semibold text-neutral-500 dark:text-neutral-400" v-html="contact.wa_id">
                                     </p>
                                 </div>
-                                <div class="md:ml-6 w-full py-2" v-if="contact.last_message">
+                                <div class="md:ml-6 w-full pt-4 text-default" v-if="contact.last_message">
                                     <p v-html="contact.last_message.message_text" class="mb-6 text-xl font-light text-neutral-500 dark:text-neutral-300"></p>
                                     <p class="text-sm font-semibold" v-html="contact.last_message.time_ago"></p>
                                 </div>
