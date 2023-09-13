@@ -1104,7 +1104,9 @@ dl {
   z-index: 1000;
 }
 .tyn-chat-content-aside.show-aside {
-  transform: none;
+  transform: unset;
+  max-width: 300px;
+  width: 100% ;
 }
 .tyn-chat-head {
   position: relative;

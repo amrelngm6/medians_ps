@@ -233,7 +233,7 @@
                     </ul>
                 </div>
             </div><!-- .tyn-chat-form -->
-            <div class="tyn-chat-content-aside" id="tynChatAside" data-simplebar>
+            <div class="tyn-chat-content-aside w-full show-aside" id="tynChatAside" data-simplebar>
                 <div class="tyn-chat-cover">
                     <img src="/uploads/images/1.jpg" alt="">
                 </div>
