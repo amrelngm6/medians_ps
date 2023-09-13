@@ -21,16 +21,13 @@
                                     </div>
                                     <div class="w-1/2">
                                         <h2 class="text-gray-500">Waiting time</h2>
-                                        <p v-if="conversation.last_message" v-html="conversation.last_message.time_ago"></p>
+                                        <p v-if="conversation.contact && conversation.contact.last_message" v-html="conversation.contact.last_message.time_ago"></p>
                                     </div>
                                 </div>
                             </div>
+                            <hr class="my-4" />
                             <button @click="joinChat(conversation.wa_id)" class="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button>
-                            <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                            </a>
+                            
                         </div>
                     </div>
                 </div>
