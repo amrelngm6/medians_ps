@@ -326,7 +326,7 @@
                                                         </svg>
                                                     </div>
                                                     <div class="tyn-media-col">
-                                                        <h6 class="name" v-html="message.message_text"></h6>
+                                                        <h6 class="name" v-html="message.message_text ? message.message_text : message.media_title"></h6>
                                                         <div class="meta" v-text="message.time_ago"></div>
                                                     </div>
                                                 </div>
