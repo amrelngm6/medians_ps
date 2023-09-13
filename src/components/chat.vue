@@ -233,7 +233,7 @@
                     </ul>
                 </div>
             </div><!-- .tyn-chat-form -->
-            <div class="tyn-chat-content-aside w-full show-aside bg-white" id="tynChatAside" data-simplebar>
+            <div v-if="showAside" class="tyn-chat-content-aside w-full show-aside bg-white" id="tynChatAside" data-simplebar>
                 <div class="tyn-chat-cover">
                     <img src="/uploads/images/1.jpg" alt="">
                 </div>
@@ -418,6 +418,7 @@ export default {
             url: '/load_messages',
             chat_message: '',
             uploading: false,
+            showAside: false,
             showMenu: true,
             same_page: false,
             content:{},
@@ -463,6 +464,7 @@ export default {
                 jQuery('#tynChatHead').css('width', '100%')
                 jQuery('#tynChatForm').css('width', '100%')
             }
+            this.showAside = !this.showAside;
         },
 
         /**
