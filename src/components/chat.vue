@@ -339,7 +339,7 @@
                                 <div class="tab-pane show active" id="chat-options-manage" tabindex="0">
                                     <ul class="tyn-media-list gap gap-3">
                                         <li>
-                                            <a href="#" class="tyn-file">
+                                            <a href="#!" class="tyn-file">
                                                 <div class="tyn-media-group">
                                                     <div class="tyn-media text-bg-light">
                                                         <!-- person-x-fill -->
@@ -351,14 +351,14 @@
                                                         </svg>
                                                     </div>
                                                     <div class="tyn-media-col">
-                                                        <h6 class="name">Block</h6>
-                                                        <div class="meta">Frank will no longer be in your contact.</div>
+                                                        <h6 class="name">Add label</h6>
+                                                        <div class="meta">Mark this conversation with a label.</div>
                                                     </div>
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="tyn-file">
+                                            <a href="#endChat" data-bs-toggle="modal">
                                                 <div class="tyn-media-group">
                                                     <div class="tyn-media text-bg-light">
                                                         <!-- exclamation-triangle-fill -->
@@ -370,8 +370,8 @@
                                                         </svg>
                                                     </div>
                                                     <div class="tyn-media-col">
-                                                        <h6 class="name">Archive chat</h6>
-                                                        <div class="meta">Give feedback on the conversation</div>
+                                                        <h6 class="name">End conversation</h6>
+                                                        <div class="meta">End the conversation with the customer</div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -397,6 +397,35 @@
             </div><!-- .modal-dialog -->
         </div><!-- .modal -->
 
+            
+        <div class="modal fade" tabindex="-1" id="endChat">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content border-0">
+                    <div class="modal-body">
+                        <div class="py-4 px-4 text-center">
+                            <h3>End conversation</h3>
+                            <p class="small">Once you end this conversation, you will no longer be able to see or reply to this again.</p>
+                            <ul class="tyn-list-inline gap gap-3 pt-1 justify-content-center">
+                                <li>
+                                    <button class="btn btn-danger" data-bs-dismiss="modal">End</button>
+                                </li>
+                                <li>
+                                    <button class="btn btn-light" data-bs-dismiss="modal">No</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- .modal-body -->
+                    <button class="btn btn-md btn-icon btn-pill btn-white shadow position-absolute top-0 end-0 mt-n3 me-n3" data-bs-dismiss="modal">
+                        <!-- x-lg -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                        </svg>
+                    </button>
+                </div><!-- .modal-content -->
+            </div><!-- .modal-dialog -->
+        </div><!-- .modal -->
+
+        
     </div>
 </template>
 <script>
@@ -548,6 +577,17 @@ export default {
             $('#' + div).scrollTop(scrollTop + pos.top);
         },
 
+        endConversation(id = null)
+        {
+            var params = new URLSearchParams();
+            params.append('type', 'WP')
+            params.append('contact_id',id)
+            this.$parent.handleRequest( params, '/end_chat/'+id ).then(response=> {
+                this.load()
+            });
+        },
+        
+        
         load() {
             
             if (!this.active_contact)
