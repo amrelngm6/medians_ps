@@ -85,26 +85,34 @@ class MessageController extends MessageService
      */
     public function uploadAndSave($file, $type = 'image', $app = null)
     {
-		// $app = new \config\APP;
-		$MessageService = new MessageService;
-        $messageSent = $MessageService->uploadMedia($file);
-        
-        $data['media_id'] = $messageSent->id;
-        $data['to'] = $messageSent->contacts[0]->wa_id;
-        $data['sender_id'] = $MessageService->PNID;
-        $message = $messageSent->messages[0];
-        $data['message_type'] = $type;
-        $data['message_id'] = isset($message->id) ? $message->id : '';
-        $data['media_path'] = $file;
-        $data['inserted_by'] = $app->auth()->id;
-        
-        $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-        $saveMessage = $MessageRepository->saveMessage($data, $data['sender_id']);
+        try {
+            //code...
+                
+            // $app = new \config\APP;
+            $MessageService = new MessageService;
+            $messageSent = $MessageService->uploadMedia($file);
+            
+            $data['media_id'] = $messageSent->id;
+            $data['to'] = $messageSent->contacts[0]->wa_id;
+            $data['sender_id'] = $MessageService->PNID;
+            $message = $messageSent->messages[0];
+            $data['message_type'] = $type;
+            $data['message_id'] = isset($message->id) ? $message->id : '';
+            $data['media_path'] = $file;
+            $data['inserted_by'] = $app->auth()->id;
+            
+            $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
+            $saveMessage = $MessageRepository->saveMessage($data, $data['sender_id']);
 
-        if ($saveMessage)
-            echo json_encode(['success'=>true]);
+            if ($saveMessage)
+                echo json_encode(['success'=>true]);
 
-        return $MessageRepository;
+            return $MessageRepository;
+            
+        } catch (\Throwable $th) {
+            print_r($e);
+            //throw $th;
+        }
     }
     
     public function uploadImage()
