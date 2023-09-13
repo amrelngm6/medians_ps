@@ -443,7 +443,8 @@ export default {
         }, 5000);
         
         setTimeout(function(){
-             GLightbox({selector:".glightbox"});
+            var lightbox = GLightbox({selector:".glightbox"});
+            console.log(lightbox)
         }, 3000);
     },
 
