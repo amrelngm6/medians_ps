@@ -1708,5 +1708,6 @@ body .tyn-aside-item:hover, body  .tyn-aside-item.active
 .tooltip
 {
   opacity: 1;
-  transition: all .5s ease-in-out;
+  /* transition: all .5s ease-in-out; */
+  z-index: 999999999;
 }
