@@ -39,8 +39,8 @@
                         <li class="tyn-appbar-item">
                             
                             <a class="d-inline-flex dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" data-bs-offset="0,10">
-                                <span class="text-xs py-3  text-gray-400">{{app.auth ? lang.__('welcome:') : ''}}</span>
-                                <span class="text-xs py-3 px-2 font-semibold">{{app.auth ? app.auth.name : ''}}</span>
+                                <span class="text-xs py-3  text-gray-400" v-html="auth ? lang.__('welcome:') : ''"></span>
+                                <span class="text-xs py-3 px-2 font-semibold" v-html="auth ? auth.name : ''"></span>
 
                                 <div class="tyn-media tyn-size-lg tyn-circle">
                                     <img src="/uploads/images/3.jpg" alt="">
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="tyn-media-col">
                                             <div class="tyn-media-row">
-                                                <h6 class="name">{{app.auth ? app.auth.name : ''}}</h6>
+                                                <h6 class="name" v-html="auth ? auth.name : ''"></h6>
                                                 <div class="indicator varified">
                                                     <!-- check-circle-fill -->
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                                             <div class="tyn-media-row has-dot-sap">
-                                                <p class="content">{{app.auth ? app.auth.email : ''}}</p>
+                                                <p class="content" v-html="auth ? auth.email : ''"></p>
                                             </div>
                                         </div>
                                     </div>
