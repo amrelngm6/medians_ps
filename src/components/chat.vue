@@ -499,8 +499,8 @@ export default {
 
         contacts()
         {
-            if (this.$parent.$refs && this.$parent.$refs.content  && this.$parent.$refs.content.contacts)
-                return this.$parent.$refs.content.contacts;
+            if (this.$parent.contacts)
+                return this.$parent.contacts;
 
             return [];
 
