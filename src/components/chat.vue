@@ -243,7 +243,7 @@
                     </div>
                     <div class="tyn-media-col">
                         <div class="tyn-media-row">
-                            <h6 class="name">Konstantin Frank</h6>
+                            <h6 class="name" v-html="active_contact_name"></h6>
                         </div>
                         <div class="tyn-media-row has-dot-sap">
                             <span class="meta">Active Now</span>
