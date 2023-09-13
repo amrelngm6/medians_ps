@@ -12,7 +12,7 @@
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-hidden" style="height: 85vh; z-index: 9999;">
                         <div class="w-full">
                             <transition   :duration="550">
-                                <component ref="activeTab" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="component"></component>
+                                <component class="active-component" id="active-component" ref="activeTab" :key="activeTab" :path="activeTab"  :lang="lang" :auth="auth" :is="component"></component>
                             </transition>
 
                         </div>
