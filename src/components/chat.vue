@@ -14,13 +14,13 @@
                                         class="rounded-full shadow-md dark:shadow-black/30" alt="woman avatar" />
                                 </div>
                                 <div class="md:ml-6 py-4" v-if="contact.last_message">
-                                    <p class="mb-2 text-xl font-semibold text-neutral-800 dark:text-neutral-200" v-html="contact.name">
+                                    <p class="mb-2 text-base font-semibold text-neutral-800 dark:text-neutral-200" v-html="contact.name">
                                     </p>
                                     <p class="mb-0 font-semibold text-neutral-500 dark:text-neutral-400" v-html="contact.wa_id">
                                     </p>
                                 </div>
                                 <div class="md:ml-6 w-full " v-if="contact.last_message">
-                                    <p v-html="contact.last_message.message_text" class="mb-6 font-light text-neutral-500 dark:text-neutral-300"></p>
+                                    <p v-html="contact.last_message.message_text" class="mb-6 text-xl font-light text-neutral-500 dark:text-neutral-300"></p>
                                 </div>
                             </div>
                         </div>
