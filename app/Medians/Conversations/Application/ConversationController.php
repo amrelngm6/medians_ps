@@ -62,6 +62,32 @@ class ConversationController
     
 
     /**
+     * End conversation 
+     * 
+     */
+    public function end_chat(String $wa_id)
+    {
+
+        $app = new \config\APP;
+
+        $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
+
+        $data['wa_id'] = $wa_id;
+        $data['user_id'] = $app->auth()->id;
+
+        $check = $ConversationRepository->checkIfPending($data);
+        
+        print_r($check);
+        
+        if (isset($check->id) && empty($check->ended))
+            return null;
+        
+
+        return true;
+    }
+    
+
+    /**
      * Save conversation 
      * 
      */

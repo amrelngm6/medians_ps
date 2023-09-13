@@ -22,6 +22,7 @@ class Conversation extends CustomModel
     	'conversation_id',
     	'user_id',
     	'wa_id',
+    	'ended',
 	];
 
 

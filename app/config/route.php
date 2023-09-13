@@ -43,6 +43,7 @@ Macaw::get('/(:all)', \Medians\Messages\Application\MessageController::class.'@p
 
 
 Macaw::post('/join_contact/(:all)', \Medians\Conversations\Application\ConversationController::class.'@save');
+Macaw::post('/end_chat/(:all)', \Medians\Conversations\Application\ConversationController::class.'@end_chat');
 Macaw::post('/read_message/(:all)', \Medians\Messages\Application\MessageController::class.'@read_message');
 
 
