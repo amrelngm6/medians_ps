@@ -1,7 +1,7 @@
 <template>
     <div class="tyn-main tyn-chat-content" id="tynMain">
         <div class="w-full" v-if="messages && messages.length">
-            <div class="tyn-chat-head bg-white p-2">
+            <div class="tyn-chat-head bg-white p-2" id="tynChatHead">
                 <ul class="tyn-list-inline d-md-none ms-n1">
                     <li><button class="btn btn-icon btn-md btn-pill btn-transparent js-toggle-main">
                             <!-- arrow-left -->
@@ -26,15 +26,15 @@
                         </div>
                     </div>
                 </div>
-                <ul class="tyn-list-inline gap gap-3 ms-auto hidden">
+                <ul class="tyn-list-inline gap gap-3 ms-auto ">
                     
-                    <li class="d-none d-sm-block"><button class="btn btn-icon btn-light js-toggle-chat-search ">
+                    <li class="hidden "><button class="btn btn-icon btn-light js-toggle-chat-search ">
                             <!-- search -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                             </svg>
                         </button></li>
-                    <li><button class="btn btn-icon btn-light js-toggle-chat-options">
+                    <li><button class="btn btn-icon btn-light js-toggle-chat-options" @click="switchAside">
                             <!-- layout-sidebar-inset-reverse -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-sidebar-inset-reverse" viewBox="0 0 16 16">
                                 <path d="M2 2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h12z" />
@@ -192,7 +192,7 @@
                     
                 </div><!-- .tyn-reply -->
             </div><!-- .tyn-chat-body -->
-            <div class="tyn-chat-form w-full bg-white px-4 ">
+            <div class="tyn-chat-form w-full bg-white px-4 " id="tynChatForm">
                 <div class="tyn-chat-form-insert pb-2">
                     <ul class="tyn-list-inline gap gap-3">
                         
@@ -447,6 +447,23 @@ export default {
     },
 
     methods: {
+
+        /**
+         * Show sidebar
+         */
+        switchAside()
+        {
+            if (this.showAside)
+            {
+                jQuery('#tynChatBody').css('width', 'calc(100% - 300px)')
+                jQuery('#tynChatHead').css('width', 'calc(100% - 300px)')
+                jQuery('#tynChatForm').css('width', 'calc(100% - 300px)')
+            } else {
+                jQuery('#tynChatBody').css('width', '100%')
+                jQuery('#tynChatHead').css('width', '100%')
+                jQuery('#tynChatForm').css('width', '100%')
+            }
+        },
 
         /**
          * check if the text has link
