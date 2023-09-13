@@ -1716,4 +1716,5 @@ body .tyn-aside-item:hover, body  .tyn-aside-item.active
 }
 .active-component
 {
-  transition: all 1s ease-in
+  transition: all 1s ease-in-out;
+}
