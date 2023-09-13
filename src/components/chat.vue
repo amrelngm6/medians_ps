@@ -376,7 +376,7 @@
                                                         </svg>
                                                     </div>
                                                     <div class="tyn-media-col">
-                                                        <h6 class="name">Report</h6>
+                                                        <h6 class="name">Archive chat</h6>
                                                         <div class="meta">Give feedback on the conversation</div>
                                                     </div>
                                                 </div>
@@ -442,10 +442,6 @@ export default {
             t.load()
         }, 5000);
         
-        setTimeout(function(){
-            var lightbox = GLightbox({selector:".glightbox"});
-            console.log(lightbox)
-        }, 3000);
     },
 
     methods: {
@@ -460,12 +456,17 @@ export default {
                 jQuery('#tynChatBody').css('width', 'calc(100% - 300px)')
                 jQuery('#tynChatHead').css('width', 'calc(100% - 300px)')
                 jQuery('#tynChatForm').css('width', 'calc(100% - 300px)')
+                setTimeout(function(){
+                    var lightbox = GLightbox({selector:".glightbox"});
+                    console.log(lightbox)
+                }, 1000);
             } else {
                 jQuery('#tynChatBody').css('width', '100%')
                 jQuery('#tynChatHead').css('width', '100%')
                 jQuery('#tynChatForm').css('width', '100%')
             }
             this.showAside = !this.showAside;
+            
         },
 
         /**
@@ -590,6 +591,12 @@ export default {
                     document.getElementById("tynReply").scrollIntoView(false)
                 }, 500);
             }
+
+            
+            setTimeout(function(){
+                var lightbox = GLightbox({selector:".glightbox"});
+                console.log(lightbox)
+            }, 1000);
 
             return this
             
