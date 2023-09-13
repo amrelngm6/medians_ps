@@ -154,7 +154,7 @@ export default {
                 b ? jQuery('#new_messages_count').html(b) : jQuery('#new_messages_count').empty()
 
                 if (t.$refs.side_chat){
-                    t.$refs.activeTab.setValues(response);
+                    t.$refs.side_chat.setValues(response);
                 }
 
                 if (t.$refs && t.$refs.activeTab == 'messages'){
