@@ -94,7 +94,7 @@
                                     <chat-msg-block :message="message.reply_message" ></chat-msg-block>
                                 </div>
                                 <div v-if="message">
-                                    <chat-msg-block class="widget-item bg-white p-6 flex justify-between rounded-md" :message="message" ></chat-msg-block>
+                                    <chat-msg-block :message="message" ></chat-msg-block>
                                 </div>
                             </div><!-- .tyn-reply-bubble -->
                         </div><!-- .tyn-reply-group -->
