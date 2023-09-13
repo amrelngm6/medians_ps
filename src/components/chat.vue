@@ -1,7 +1,7 @@
 <template>
     <div class="tyn-main tyn-chat-content" id="tynMain">
-        <div v-if="!messages || messages && messages.length < 1">
-            <div class="tyn-profile-head" v-for="contact in contacts()">
+        <div v-if="this.$parent.contacts">
+            <div class="tyn-profile-head" v-for="contact in this.$parent.contacts">
                 <div class="tyn-profile-info">
                     <div class="tyn-media-group align-items-start">
                         <div class="tyn-media tyn-media-bordered tyn-size-4xl tyn-profile-avatar">
