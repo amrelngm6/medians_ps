@@ -99,7 +99,10 @@ class MessageController extends MessageService
         $data['inserted_by'] = $app->auth()->id;
         
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
-        $MessageRepository->saveMessage($data, $data['sender_id']);
+        $saveMessage = $MessageRepository->saveMessage($data, $data['sender_id']);
+
+        if ($saveMessage)
+            echo json_encode(['success'=>true]);
 
         return $MessageRepository;
     }
