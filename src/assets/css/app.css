@@ -1711,3 +1711,6 @@ body .tyn-aside-item:hover, body  .tyn-aside-item.active
   /* transition: all .5s ease-in-out; */
   z-index: 999999999;
 }
+[data-bs-theme=dark] .bg-gray-100 {
+  background-color: rgba(0,0,0,.3);
+}
