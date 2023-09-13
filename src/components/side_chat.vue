@@ -269,8 +269,10 @@ export default {
             console.log("Side chat")
             console.log(data)
             this.showLoader = true;
-            this.content = JSON.parse(JSON.stringify(data)); return this
+            this.content = JSON.parse(JSON.stringify(data)); 
             this.showLoader = false;
+            return this
+            
              
         },
         __(i)
