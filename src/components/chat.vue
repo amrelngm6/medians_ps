@@ -164,7 +164,7 @@
                     <ul class="nav nav-btns nav-btns-stretch nav-btns-light">
                         
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media" type="button">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#chat-media" type="button">
                                 <!-- images -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
                                     <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
@@ -174,7 +174,7 @@
                             </button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#chat-options" type="button">
+                            <button class="nav-link " data-bs-toggle="tab" data-bs-target="#chat-options" type="button">
                                 <!-- sliders -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
@@ -185,7 +185,7 @@
                     </ul>
                 </div>
                 <div class="tab-content px-2">
-                    <div class="tab-pane" id="chat-media" tabindex="0">
+                    <div class="tab-pane  show active" id="chat-media" tabindex="0">
                         <div class="tyn-aside-row py-0">
                             <ul class="nav nav-tabs nav-tabs-line">
                                 <li class="nav-item">
@@ -255,7 +255,7 @@
                             </div>
                         </div>
                     </div><!-- .tab-pane -->
-                    <div class="tab-pane show active" id="chat-options" tabindex="0">
+                    <div class="tab-pane " id="chat-options" tabindex="0">
                         <div class="tyn-aside-row">
                             <div class="tab-content">
                                 <div class="tab-pane show active" id="chat-options-manage" tabindex="0">
