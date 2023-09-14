@@ -708,15 +708,15 @@ export default {
             console.log('Check last msg')
             console.log(lastMsg)
             console.log(this.lastMessage)
-            if (lastMsg && lastMsg.id > this.lastMessage.id) {
-                if (this.lastMessage.income && this.lastMessage.id > 0)
-                    this.$parent.notify('.', lastMsg.message_text ? lastMsg.message_text : 'New message from ' + lastMsg.sender_id)
+            if (lastMsg && lastMsg.id > this.lastMessage.id) 
+            {
+                if (this.lastMessage.income && this.lastMessage.id > 0){
+                    this.$parent.notify('.', lastMsg.message_text ? lastMsg.message_text : 'New message from ' + lastMsg.sender_id);
+                }
 
                 this.lastMessage = lastMsg;
                 this.setReadMsg(this.lastMessage.id)
-                setTimeout(() => {
-                    t.scrollToLastChat()
-                }, 500);
+                t.scrollToLastChat()
             }
 
 
