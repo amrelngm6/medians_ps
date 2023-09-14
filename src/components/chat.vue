@@ -129,7 +129,7 @@
                 </div>
             </div><!-- .tyn-chat-head -->
             <div class="tyn-chat-body js-scroll-to-end" id="tynChatBody">
-                <div class="tyn-reply" id="tynReply">
+                <div class="tyn-reply" id="tynReply" ref="tynReply">
 
                     <div v-for="message in messages" :class="message.income ? 'incoming' : 'outgoing'"
                         class="tyn-reply-item ">
@@ -511,7 +511,16 @@ export default {
         }
     },
     methods: {
-
+        /** 
+         * Scroll to div bottom 
+         * 
+         */
+         scrollToLastChat() {
+            const lastChildElement = this.$refs.tynReply.lastElementChild;
+            lastChildElement?.scrollIntoView({
+                behavior: 'smooth',
+            });
+        },
         /**
          * Check if its unread 
          */
@@ -693,6 +702,7 @@ export default {
         },
 
         setValues(data) {
+            var t = this;
             this.messages = JSON.parse(JSON.stringify(data));
             let lastMsg = this.messages[this.messages.length - 1];
             console.log('Check last msg')
@@ -705,7 +715,7 @@ export default {
                 this.lastMessage = lastMsg;
                 this.setReadMsg(this.lastMessage.id)
                 setTimeout(() => {
-                    document.getElementById("tynReply").scrollIntoView(false)
+                    t.scrollToLastChat()
                 }, 500);
             }
 
