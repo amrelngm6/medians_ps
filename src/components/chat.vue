@@ -717,7 +717,9 @@ export default {
 
                 this.lastMessage = lastMsg;
                 this.setReadMsg(this.lastMessage.id)
-                t.scrollToLastChat()
+                setTimeout(function(){
+                    t.scrollToLastChat()
+                }, 1000)
             }
 
 
