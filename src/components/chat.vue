@@ -515,9 +515,10 @@ export default {
          * Scroll to div bottom 
          * 
          */
-         scrollToLastChat() {
+        scrollToLastChat() {
             const lastChildElement = this.$refs.tynReply.lastElementChild;
-            lastChildElement?.scrollIntoView({
+            console.log(lastChildElement)
+            lastChildElement.scrollIntoView({
                 behavior: 'smooth',
             });
         },
