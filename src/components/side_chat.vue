@@ -255,6 +255,11 @@ export default {
             this.$parent.$refs.activeTab.active_contact_name = contact.name
             this.$parent.$refs.activeTab.load()
             
+            var t = this;
+            setTimeout(function(){
+                t.$parent.$refs.activeTab.scrollToLastChat()
+            })
+
             jQuery('.tyn-aside-item.js-toggle-main').removeClass('active')
             jQuery('#contact'+contact.id).addClass('active')
         },
