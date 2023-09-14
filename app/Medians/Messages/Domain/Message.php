@@ -36,7 +36,7 @@ class Message extends CustomModel
 	// public $timestamps = false;
 
 
-	public $appends = ['income', 'image_path', 'message_emojis', 'media_title', 'is_video', 'time_ago'];
+	public $appends = ['income', 'image_path', 'message_emojis', 'media_title', 'content_json', 'is_video', 'time_ago'];
 
 	public function reply_message()
 	{
@@ -51,6 +51,11 @@ class Message extends CustomModel
 	public function getIncomeAttribute()
 	{
 		return $this->sender_id == '106672422075870' ? 0 : 1;
+	}
+
+	public function getContentJsonAttribute()
+	{
+		return empty($this->message_json) ? null : unserialize($this->message_json);
 	}
 
 	public function getImagePathAttribute()
