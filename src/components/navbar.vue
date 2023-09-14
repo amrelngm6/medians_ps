@@ -30,7 +30,7 @@
                             <span class="d-none">Chats</span>
                         </a>
                     </li>
-                    <li class="tyn-appbar-item d-none d-sm-inline-flex">
+                    <li class="tyn-appbar-item d-sm-inline-flex">
                         <a class="tyn-appbar-link position-relative" href="javascript:;"
                             @click='$parent.switchTab({ link: "new_chats" })'>
                             <!-- person-bounding-box -->
