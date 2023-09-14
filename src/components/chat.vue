@@ -33,7 +33,7 @@
             <div class="tyn-chat-head bg-white p-2" id="tynChatHead">
                 <ul class="tyn-list-inline d-md-none ms-n1">
                     <li>
-                        <button class="btn btn-icon btn-md btn-pill btn-transparent js-toggle-main">
+                        <button @click="switchAside" class="btn btn-icon btn-md btn-pill btn-transparent js-toggle-main">
                             <!-- arrow-left -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-arrow-left" viewBox="0 0 16 16">
