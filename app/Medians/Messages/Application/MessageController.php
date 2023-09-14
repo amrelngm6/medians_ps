@@ -172,7 +172,8 @@ class MessageController extends MessageService
             }
 
             $time = isset($message->timestamp) ? $message->timestamp : time();
-            file_put_contents('uploads/chat/'.$time.'.json', isset($message) ? json_encode($message, JSON_PRETTY_PRINT) : $dataToSave);
+            $jsonFileData = isset($message) ? json_encode($message, JSON_PRETTY_PRINT) : $dataToSave;
+            file_put_contents('uploads/chat/'.$time.'.json', $jsonFileData);
             
             $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 
@@ -197,6 +198,7 @@ class MessageController extends MessageService
                     $data['sender_id'] = $jsonData->entry[0]->changes[0]->value->contacts[0]->wa_id;
                     $data['to'] = $jsonData->entry[0]->changes[0]->value->metadata->phone_number_id;
                     $data['message_id'] = isset($message->id) ? $message->id : '';
+                    $data['message_json'] = isset($message->id) ? $message->id : serialize($jsonFileData);
                     $data = $this->messageTypeHandler($data, $message, (isset($time) ? $_SERVER['DOCUMENT_ROOT'].'/uploads/chat/'.$time.'.json' : null));
                     isset($data['media_id']) ? $this->loadMedia( $data['media_id']) : '';
                     
