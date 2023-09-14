@@ -55,7 +55,7 @@ class Message extends CustomModel
 
 	public function getContentJsonAttribute()
 	{
-		return empty($this->message_json) ? null : unserialize($this->message_json);
+		return empty($this->message_json) ? null : json_decode(unserialize($this->message_json));
 	}
 
 	public function getImagePathAttribute()
