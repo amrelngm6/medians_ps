@@ -43,7 +43,7 @@
                         </button>
                     </li>
                 </ul>
-                <div class="tyn-media-group">
+                <div class="tyn-media-group" @click="switchAside">
                     <div class="tyn-media tyn-size-lg d-none d-sm-inline-flex">
                         <img src="/uploads/user.svg" alt="">
                     </div>
