@@ -99,7 +99,7 @@ export default {
         };
     },
     mounted() {
-        this.setValues($parent.new_contacts)
+        this.setValues(this.$parent.new_contacts)
         var t = this;
     },
 
