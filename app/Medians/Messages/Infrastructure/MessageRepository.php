@@ -11,10 +11,13 @@ class MessageRepository
 {
 
 
-    public function messagesCount($dateStart = '-1days')
+    public function messagesCount($dateStart = '-1days', $userId = 0)
     {
-        return Message::whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)))
-        ->count();
+        $check =  Message::whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
+        if ($userId)
+            $check = $check->where('inserted_by', $userId);
+
+        return $check->count();
     }
 
     public function messagesCharts($params)
