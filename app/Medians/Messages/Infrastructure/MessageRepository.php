@@ -11,9 +11,9 @@ class MessageRepository
 {
 
 
-    public function messagesCount($days = 1)
+    public function messagesCount($dateStart = '-1days')
     {
-        return Message::whereDate('created_at', '>', date('Y-m-d', strtotime('-'.$days.' days')))
+        return Message::whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)))
         ->count();
     }
 
