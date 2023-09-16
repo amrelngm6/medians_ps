@@ -5,6 +5,8 @@
             
             <h1 class="text-xl  mx-auto pt-6 " v-text="__('Active chats')"></h1>
             <p class=" mx-auto pb-6 pt-2 " v-text="__('active chats note')"> </p>
+    
+            <emptydata v-if="!$parent.contacts.length && !this.active_contact"></emptydata>
             
             <div v-for="contact in this.$parent.contacts" class="w-full my-4 " >
                 <div id="tynChatHead" class="tyn-chat-head bg-white p-2 cursor-pointer" v-if="contact" @click="selectContact(contact)">
@@ -27,8 +29,7 @@
                 <p  v-if="contact" @click="selectContact(contact)" :class="checkUnread(contact) ? 'text-green-400' : ''" class=" bg-white px-4 rounded-full py-2 mt-3 mb-4 chat-list-msg-mobile font-bold text-base " v-html="contact.last_message.message_emojis ? contact.last_message.message_emojis : contact.last_message.message_text"></p>
             </div>
 
-<!-- 
-            <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
+            <!-- <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
                 style="background-image: url(https://tecdn.b-cdn.net/img/Photos/Others/background2.jpg)">
                 <div class="w-full  flex justify-center">
                     <div class="w-full cursor-pointer" @click="selectContact(contact)">
@@ -55,7 +56,6 @@
                 </div>
             </section> -->
         </div>
-        <emptydata v-if="!$parent.contacts.length && !this.active_contact"></emptydata>
 
         <div class="w-full" v-if="messages && messages.length && this.active_contact" >
             <div class="tyn-chat-head bg-white p-2" id="tynChatHead">
