@@ -26,6 +26,8 @@
                 </div>
                 <p  v-if="contact" @click="selectContact(contact)" :class="checkUnread(contact) ? 'text-green-400' : ''" class=" bg-white px-4 rounded-full py-2 mt-3 mb-4 chat-list-msg-mobile font-bold text-base " v-html="contact.last_message.message_emojis ? contact.last_message.message_emojis : contact.last_message.message_text"></p>
             </div>
+            <emptydata v-if="!$parent.contacts.length"></emptydata>
+
 <!-- 
             <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
                 style="background-image: url(https://tecdn.b-cdn.net/img/Photos/Others/background2.jpg)">
