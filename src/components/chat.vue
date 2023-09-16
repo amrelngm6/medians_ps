@@ -665,7 +665,7 @@ export default {
                 let val = JSON.parse(JSON.stringify(response));
 
                 this.chat_message = '';
-
+                console.log(response)
                 if (response.error) {
                     return this.$alert(response.error.message);
                 }
