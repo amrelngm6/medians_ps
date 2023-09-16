@@ -35,6 +35,7 @@ class DashboardController extends CustomController
 				'pending_conversations_count' => $ConversationRepository->pendingConversationsCount(),
 				'ended_conversations_count' => $ConversationRepository->endedConversationsCount(),
 				'messages_count' => $MessageRepository->messagesCount(),
+				'messages_charts' => $MessageRepository->messagesCharts(['end'=>date('Y-m-d'), 'start'=>date('Y-m-d', strtotime('-7 days'))]),
 	            'title' => __('Dashboard')
 	        ]);
 	        

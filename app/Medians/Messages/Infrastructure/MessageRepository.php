@@ -17,6 +17,15 @@ class MessageRepository
         ->count();
     }
 
+    public function messagesCharts($params)
+    {
+       
+	  	$check = Message::whereBetween('created_at' , [$params['start'] , $params['end']])
+		->selectRaw("*, COUNT(*) as y, DATE_FORMAT(created_at, '%Y-%m-%d') as label");
+
+  		return $check->groupBy('label')->orderBy('label', 'ASC')->get();
+    }
+
 
 
     public function saveMessage(Array $data, String $senderID)
