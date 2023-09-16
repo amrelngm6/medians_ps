@@ -660,7 +660,7 @@ export default {
             params.append('message_text', this.chat_message)
             params.append('wa_id', this.active_contact)
 
-            t = this;
+            var t = this;
             this.showLoader = true;
             this.$parent.handleRequest(params, '/api/send_message').then(response => {
                 let val = JSON.parse(JSON.stringify(response));

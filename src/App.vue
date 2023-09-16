@@ -131,7 +131,7 @@ export default {
 
         setInterval(function(){
             t.checkPending()
-        }, 6000)
+        }, 10000)
         t.checkPending()
 
     },
