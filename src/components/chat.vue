@@ -1,5 +1,5 @@
 <template>
-    <div class="tyn-main tyn-chat-content overflow-auto" id="tynMain">
+    <div class="tyn-main tyn-chat-content overflow-y-auto overflow-x-hidden" id="tynMain">
         <div class="container mx-auto  chat-center-list"  v-if="this.$parent.contacts && !this.active_contact">
             <!--Background-->
             
