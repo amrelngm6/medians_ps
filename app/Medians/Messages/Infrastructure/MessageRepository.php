@@ -21,11 +21,15 @@ class MessageRepository
         return $check->count();
     }
 
-    public function messagesCharts($params)
+    public function messagesCharts($params, $userId = 0)
     {
        
 	  	$check = Message::whereBetween('created_at' , [$params['start'] , $params['end']])
 		->selectRaw("*, COUNT(*) as y, DATE_FORMAT(created_at, '%Y-%m-%d') as label");
+
+        if ($userId)
+            $check = $check->where('inserted_by', $userId);
+
 
   		return $check->groupBy('label')->orderBy('label', 'ASC')->get();
     }
