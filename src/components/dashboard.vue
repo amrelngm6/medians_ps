@@ -12,108 +12,46 @@
         </div>
 
         <div class="block w-full overflow-x-auto py-2">
-            <div v-if="lang && !showLoader && setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
+            <div v-if="lang && !showLoader && content" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
-                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_bookings')" :value="content.active_order_devices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('bookings')" :value="content.order_devices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('sold_products')" :value="setting.currency +''+ content.order_products_revenue"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('bookings_income')" :value="setting.currency +''+ content.bookings_income"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_conversations')" :value="content.active_conversations_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('Ended conversation')" :value="content.ended_conversation_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('Ended conversation')" :value="content.ended_conversation_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('messages count')" :value="content.messages_count"></dashboard_card_white>
                     </div>
-                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.orders_charts.length">
-                        <CanvasJSChart v-if="showCharts && content.orders_charts.length" :key="line_options" :options="line_options"/>
+                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.messages_charts.length">
+                        <CanvasJSChart v-if="showCharts && content.messages_charts.length" :key="line_options" :options="line_options"/>
                     </div>
                     <div class="row mt-6">
+                        <div class="bg-gray-100 w-full h-screen grid justify-center content-center">
+                            <div class="w-fit rounded-[25px] bg-white p-8 aspect">
+                                <div class="h-12">
+                                    <svg class="h-6 w-6 h-full fill-white stroke-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                    </svg>
+                                </div>
+                                <div class="my-2">
+                                    <h2 class="text-4xl font-bold"><span v-text="content.messages_count"></span> +</h2>
+                                </div>
+
+                                <div>
+                                    <p class="mt-2 font-sans text-base font-medium text-gray-500" v-text="__('Messages count')"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row mt-6">
                         <dashboard_card classes="bg-gradient-success" :title="__('income')" :value="setting.currency +''+ content.income"></dashboard_card>
                         <dashboard_card classes="bg-gradient-danger" :title="__('expenses')" :value="setting.currency +''+ content.expenses"></dashboard_card>
                         <dashboard_card classes="bg-gradient-primary" :title="__('tax')" :value="setting.currency +''+ content.tax"></dashboard_card>
                         <dashboard_card classes="bg-gradient-purple" :title="__('revenue')" :value="setting.currency +''+ content.revenue" ></dashboard_card>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="w-full lg:flex gap gap-6 pb-6">
-                    <dashboard_center_squares :content="content" :setting="setting" />
-                    <div class="card mb-0 w-full">
-                        <h4 class="p-4 ml-4" v-text="__('most_played_games')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_games_used_for_playing')"></p>
-                        <div class="card-body w-full">
-                            <div class="w-full">
-                                <CanvasJSChart v-if="showCharts && content.most_played_games.length" :key="pie_options" :options="pie_options"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full lg:flex gap gap-6 pb-6">
-                    <div class="card mb-0 w-2/3">
-                        <h4 class="p-4 ml-4" v-text="__('most_played_devices')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_devices_used_for_playing')"></p>
-                        <div class="card-body w-full">
-                            <div class="w-full">
-                                <CanvasJSChart v-if="showCharts && content.most_played_devices.length" :key="column_options" :options="column_options"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card w-1/3 lg:w-1/3 lg:mb-0">
-                        <h4 class="p-4 ml-4" v-text="__('latest_paid_order_devices')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('latest_5_bookings_has_been_paid')"></p>
-                        <div class="card-body w-full">
-                            <div class="w-full ">
-                                <div class="table-responsive w-full">
-                                    <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
-                                        <thead>
-                                            <tr>
-                                                <th v-text="__('name')"></th>
-                                                <th v-text="__('duration')"></th>
-                                                <th v-text="__('total_amount')"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody v-if="content.latest_paid_order_devices">
-                                            <tr :key="index" v-for="(item, index) in content.latest_paid_order_devices" class="text-center">
-                                                <td v-text="item.device ? item.device.name : ''"></td>
-                                                <td style="direction: ltr;">{{item.duration_time}}</td>
-                                                <td v-text="(item.total_cost ? item.total_cost : '') + setting.currency"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full lg:flex gap gap-6 pb-6 ">
-
-                    <div class="card  w-full  no-mobile">
-                        <h4 class="p-4 ml-4" v-text="__('latest_sold_products')"></h4>
-                        <hr />
-                        <div class="card-body w-full">
-                            <div class="w-full">
-                                <div class="table-responsive w-full">
-                                    <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
-                                        <thead>
-                                            <tr>
-                                                <th v-text="__('name')"></th>
-                                                <th v-text="__('price')"></th>
-                                                <th v-text="__('date')"></th>
-                                                <th v-text="__('invoice')"></th>
-                                                <th v-text="__('by')"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody >
-                                            <tr :key="index" v-for="(item, index) in content.latest_order_products" class="text-center">
-                                                <td>
-                                                    <a :href="'/admin/products/edit/'+item.product.id">{{item.product.name}}</a>
-                                                </td>
-                                                <td class="text-red-500">{{item.product.price}} {{setting.currency}}</td>
-                                                <td v-text="dateTimeFormat(item.created_at)"></td>
-                                                <td><a target="_blank" :href="'/admin/invoices/show/'+item.invoice.code">{{item.invoice.code}}</a></td>
-                                                <td v-text="item.user ? item.user.name : ''"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                
+                
             </div>
         </div>
     </div>
