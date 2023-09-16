@@ -15,7 +15,7 @@ class ConversationRepository
     {
         $check = Conversation::where('user_id', '>', '0')
         ->where('ended', '0')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)))
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
 
         if ($userId)
             $check = $check->where('inserted_by', $userId);
@@ -28,7 +28,7 @@ class ConversationRepository
         
         $check = Conversation::where('user_id', '<', 1)
         ->where('ended', '0')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)))
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
         
         if ($userId)
             $check = $check->where('inserted_by', $userId);
@@ -40,7 +40,7 @@ class ConversationRepository
     {
         
         $check = Conversation::where('ended', '1')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)))
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
         
         if ($userId)
             $check = $check->where('inserted_by', $userId);
