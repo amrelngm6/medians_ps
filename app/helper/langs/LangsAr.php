@@ -1082,6 +1082,8 @@ class LangsAr
 		,'Ended conversations' => 'المحادثات المكتملة'
 		,'pending conversations' => 'محادثات قيد الإنتظار'
 		,'End conversation' => 'إنهاء المحادثة'
+		,'End conversation note' => 'إنهاء المحادثة مع العميل'
+		,'End conversation confirm msg' => 'عند إنهاء المحادثة لن تتمكن من الرد علي هذا العميل ؟'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

@@ -430,7 +430,7 @@
                                                     </div>
                                                     <div class="tyn-media-col">
                                                         <h6 class="name" v-text="__('End conversation')"></h6>
-                                                        <div class="meta">End the conversation with the customer</div>
+                                                        <div class="meta" v-text="__('End conversation note')"></div>
                                                     </div>
                                                 </div>
                                             </a>
@@ -463,8 +463,7 @@
                     <div class="modal-body">
                         <div class="py-4 px-4 text-center">
                             <h3>End conversation</h3>
-                            <p class="small">Once you end this conversation, you will no longer be able to see or reply to
-                                this again.</p>
+                            <p class="small" v-text="__('end_conversation_confirm_msg')"></p>
                             <ul class="tyn-list-inline gap gap-3 pt-1 justify-content-center">
                                 <li>
                                     <button class="btn btn-danger" @click="endConversation(active_contact)"

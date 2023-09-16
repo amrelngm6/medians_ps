@@ -925,6 +925,8 @@ class LangsEn
 			,'editor notes' => 'To edit Links or Images ( <a> / <img> ) tags use right-click at your mouse'
 			,'active chats note' => 'This is the list of your active conversations'
 			,'new chats note' => 'You should join any conversation ASAP to reply to customer message'
+			,'End conversation note' => 'End the conversation with the customer'
+			,'End conversation confirm msg' => 'Once you end this conversation, you will no longer be able to see or reply to it again.'
 
 		
 			,'COPYRIGHTS' => 'Copyrights are reserved'
