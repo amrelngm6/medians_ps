@@ -285,7 +285,7 @@ export default {
                 this.checkMobileMenu()
 
                 if (tab.link == 'messages'){
-                    this.activeTab.reset();
+                    this.$refs.activeTab.reset();
                 }
             }
 

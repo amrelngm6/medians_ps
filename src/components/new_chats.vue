@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto " v-if="$parent.new_contacts && $parent.new_contacts.length">
+    <div class="container mx-auto mt-4 " v-if="$parent.new_contacts && $parent.new_contacts.length">
         <h1 class="text-xl  mx-auto pt-6 " v-text="__('new chats')"></h1>
         <p class="mx-auto pb-6 pt-2 " v-text="__('new chats note')"> </p>
         <div class="container mx-auto w-full overflow-auto" style="max-height: calc(100vh - 90px); padding-bottom:100px">
