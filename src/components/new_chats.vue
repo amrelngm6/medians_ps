@@ -21,7 +21,7 @@
                         <li><button @click="joinChat(conversation.wa_id)" class="hover:bg-gray-600  text-sm block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
                     </ul>
                 </div>
-                <p class="py-3 mb-4  chat-list-msg-mobile font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
+                <p class=" bg-white px-4 rounded-full py-2 mt-3 mb-4 chat-list-msg-mobile font-bold text-base " v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
             </div>
         </div>
         <!-- <div class="container mx-auto w-full row grid overflow-auto"
