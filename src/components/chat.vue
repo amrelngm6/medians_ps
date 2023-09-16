@@ -2,6 +2,10 @@
     <div class="tyn-main tyn-chat-content" id="tynMain">
         <div class="container mx-auto overflow-auto chat-center-list"  v-if="this.$parent.contacts && !this.active_contact">
             <!--Background-->
+            
+            <h1 class="text-xl  mx-auto pt-6 ">Active chats</h1>
+            <p class=" mx-auto pb-6 pt-2 ">This is the list of your active conversations </p>
+            
             <div v-for="conversation in $parent.new_contacts" class="w-full my-4 ">
                 <div id="tynChatHead" class="tyn-chat-head bg-white p-2">
 
