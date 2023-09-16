@@ -27,7 +27,8 @@ class DashboardController extends CustomController
 		$ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
 		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 
-		$dateStart = (new \config\APP)->request()->get('start');
+		$request = (new \config\APP)->request();
+		$dateStart = $request->get('start') ? $request->get('start') : '-1days';
 
 		try {
 			
