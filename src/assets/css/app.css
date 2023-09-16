@@ -1782,3 +1782,22 @@ body .tyn-aside-item:hover, body  .tyn-aside-item.active
   height: calc(100vh - 100px);
   padding: 20px 50px;
 }
+.chat-list-msg-web
+{
+  display: block;
+}
+.chat-list-msg-mobile
+{
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .chat-list-msg-web
+  {
+    display: none;
+  }
+  .chat-list-msg-mobile
+  {
+    display: block;
+  }
+}
