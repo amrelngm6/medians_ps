@@ -11,6 +11,31 @@ class ConversationRepository
 
 
 
+    public function activeConversationsCount($days = 1)
+    {
+        return Conversation::where('user_id', '>', '0')
+        ->where('ended', '0')
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime('-'.$days.' days')))
+        ->count();
+    }
+
+    public function pendingConversationsCount($days = 1)
+    {
+        
+        return Conversation::where('user_id', '<', 1)
+        ->where('ended', '0')
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime('-'.$days.' days')))
+        ->count();
+    }
+
+    public function endedConversationsCount($days = 1)
+    {
+        
+        return Conversation::where('ended', '1')
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime('-'.$days.' days')))
+        ->count();
+    }
+
     public function getNew()
     {
         return Conversation::where('user_id', 0)->with(['contact' => function($q){

@@ -11,6 +11,13 @@ class MessageRepository
 {
 
 
+    public function messagesCount($days = 1)
+    {
+        return Message::whereDate('created_at', '>', date('Y-m-d', strtotime('-'.$days.' days')))
+        ->count();
+    }
+
+
 
     public function saveMessage(Array $data, String $senderID)
     {

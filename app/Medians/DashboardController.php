@@ -24,12 +24,17 @@ class DashboardController extends CustomController
 	 */
 	public function index()
 	{
+		$ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
+		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 
 		try {
 			
 	        return  render('dashboard', [
 	        	'load_vue'=> true,
-				'messages' => $this->activeMessages(),
+				'active_conversations_count' => $ConversationRepository->activeConversationsCount(),
+				'pending_conversations_count' => $ConversationRepository->pendingConversationsCount(),
+				'ended_conversations_count' => $ConversationRepository->endedConversationsCount(),
+				'messages_count' => $MessageRepository->messagesCount(),
 	            'title' => __('Dashboard')
 	        ]);
 	        
@@ -44,11 +49,10 @@ class DashboardController extends CustomController
 	 */
 	public function activeMessages()
 	{
-
-		$app = new \Medians\Messages\Infrastructure\MessageRepository;
-
 		return $app->loadMessages();
 	}
+
+
 
 
 }
