@@ -3,7 +3,7 @@
         <h1 class="text-xl text-center mx-auto pt-6 ">Pick your customer</h1>
         <p class=" text-center mx-auto pb-6 pt-2 ">You should pick any customer ASAP to help him </p>
         <div class="container mx-auto w-full overflow-auto" style="max-height: calc(100vh - 90px); padding-bottom:100px">
-            <div v-for="conversation in $parent.new_contacts" id="tynChatHead" class="my-2 tyn-chat-head bg-white p-2">
+            <div v-for="conversation in $parent.new_contacts" id="tynChatHead" class="my-4 tyn-chat-head bg-white p-2">
                 <ul class="tyn-list-inline d-md-none ms-n1">
                     <li><button class="btn btn-icon btn-md btn-pill btn-transparent js-toggle-main"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
