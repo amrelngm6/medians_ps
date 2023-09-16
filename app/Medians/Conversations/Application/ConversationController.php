@@ -58,7 +58,7 @@ class ConversationController
         $save = $ConversationRepository->joinConversation($data);
         
         if ($save)
-            echo json_encode($ContactRepository->find($wa_id));
+            echo json_encode(['contact'=>$ContactRepository->find($wa_id)]);
 
         return true;
     }
