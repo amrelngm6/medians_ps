@@ -1,7 +1,7 @@
 <template>
     <div class=" " v-if="$parent.new_contacts && $parent.new_contacts.length">
-        <h1 class="text-xl text-center mx-auto pt-6 ">Pick your customer</h1>
-        <p class=" text-center mx-auto pb-6 pt-2 ">You should join any conversation ASAP to reply to customer message </p>
+        <h1 class="text-xl  mx-auto pt-6 ">Pick your customer</h1>
+        <p class="mx-auto pb-6 pt-2 ">You should join any conversation ASAP to reply to customer message </p>
         <div class="container mx-auto w-full overflow-auto" style="max-height: calc(100vh - 90px); padding-bottom:100px">
             <div v-for="conversation in $parent.new_contacts" class="w-full my-4 ">
                 <div id="tynChatHead" class="tyn-chat-head bg-white p-2">
