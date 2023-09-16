@@ -650,6 +650,8 @@ export default {
             return axios.post('/wp/send_file', formData, headers).then(response => {
                 this.load()
                 this.uploading = false;
+            }).error(e=> {
+                this.uploading = false;
             });
 
         },
@@ -669,8 +671,6 @@ export default {
                 }
 
                 this.load();
-
-
             });
         },
 
