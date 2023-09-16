@@ -79,10 +79,12 @@ class ConversationController
         $check = $ConversationRepository->checkIfActive($data);
         
         print_r($check);
-        
+
         if (isset($check->id) && empty($check->ended))
-            return $check->update(['ended'=>1]);
-        
+        {
+            $update = $check->update(['ended'=>1]);
+        }
+
 
         echo 'Error';
 

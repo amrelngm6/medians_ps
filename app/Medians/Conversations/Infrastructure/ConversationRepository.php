@@ -29,6 +29,12 @@ class ConversationRepository
         return Conversation::firstOrCreate($data);
     }
     
+
+    public function endConversation(String $id)
+    {
+        return Conversation::where('id', $id)->update(['ended' => 1]);
+    }
+    
     public function checkIfActive(Array $data)
     {
         return Conversation::where('ended', '0')->where('wa_id', $data['wa_id'])->where('user_id', $data['user_id'])->orderBy('id','DESC')->first();
