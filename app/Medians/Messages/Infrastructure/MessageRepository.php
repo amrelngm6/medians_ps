@@ -13,7 +13,7 @@ class MessageRepository
 
     public function messagesCount($dateStart = '-1days', $dateEnd = '-0days', $userId = 0)
     {
-        $check =  Message::whereBetween('created_at', [date('Y-m-d', strtotime($dateStart)), date('Y-m-d 23:59:00', strtotime($dateEnd)) ]);
+        $check =  Message::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($dateStart)), date('Y-m-d 23:59:00', strtotime($dateEnd)) ]);
 
         if ($userId)
             $check = $check->where('inserted_by', $userId);
