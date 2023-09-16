@@ -678,6 +678,7 @@ export default {
 
         reset()
         {
+            this.$parent.checkPending()
             this.active_contact = null
             this.active_contact_name = null
         },  
@@ -703,6 +704,7 @@ export default {
             params.append('type', 'WP')
             params.append('msg_id', _id)
             this.$parent.handleRequest(params, '/read_message/' + _id).then(response => {
+                this.$parent.checkPending()
             });
         },
 
