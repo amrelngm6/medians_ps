@@ -108,8 +108,8 @@ if(isset($app->auth()->id))
 
     Macaw::get('/logout', function () 
     {
-        (new \Medians\Auth\Application\AuthService)->unsetSession();
-        echo (new \config\APP)->redirect('./');
+        $end = (new \Medians\Auth\Application\AuthService)->unsetSession();
+        echo $end ? (new \config\APP)->redirect('./') : '';
     });
 
 
