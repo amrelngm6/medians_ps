@@ -503,7 +503,7 @@ export default {
             url: '/load_messages',
             chat_message: '',
             uploading: false,
-            showAside: true,
+            showAside: false,
             showMenu: true,
             same_page: false,
             content: {},

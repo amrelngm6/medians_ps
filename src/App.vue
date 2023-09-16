@@ -101,7 +101,7 @@ export default {
             contacts: [],
             new_contacts: [],
             show: false,
-            showSide: false,
+            showSide: true,
             showModal: false,
             activeModal: null,
         };
