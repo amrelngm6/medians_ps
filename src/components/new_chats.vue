@@ -70,7 +70,7 @@
 
 <script>
 const axios = require('axios').default;
-import emptydata from './components/includes/emptydata.vue'
+import emptydata from './includes/emptydata.vue'
 
 export default {
     name: 'app',
