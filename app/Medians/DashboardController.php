@@ -27,6 +27,8 @@ class DashboardController extends CustomController
 		$ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
 		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 
+		$dateStart = (new \config\APP)->request()->get('start');
+
 		try {
 			
 	        return  render('dashboard', [
@@ -35,7 +37,7 @@ class DashboardController extends CustomController
 				'pending_conversations_count' => $ConversationRepository->pendingConversationsCount(),
 				'ended_conversations_count' => $ConversationRepository->endedConversationsCount(),
 				'messages_count' => $MessageRepository->messagesCount(),
-				'messages_charts' => $MessageRepository->messagesCharts(['end'=>date('Y-m-d'), 'start'=>date('Y-m-d', strtotime('-7 days'))]),
+				'messages_charts' => $MessageRepository->messagesCharts(['end'=>date('Y-m-d'), 'start'=>date('Y-m-d', strtotime($dateStart))]),
 	            'title' => __('Dashboard')
 	        ]);
 	        
