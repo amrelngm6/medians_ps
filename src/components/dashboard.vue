@@ -195,35 +195,35 @@ export default
             
             this.showCharts = false
             
-            // Pie charts for most played Games
-            this.pie_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.pie_options.data[0] = {
-                type: "pie",
-                yValueFormatString: "#,### "+this.__('booking'),
-                dataPoints: this.content.most_played_games
-            }
+            // // Pie charts for most played Games
+            // this.pie_options = JSON.parse(JSON.stringify(this.charts_options));
+            // this.pie_options.data[0] = {
+            //     type: "pie",
+            //     yValueFormatString: "#,### "+this.__('booking'),
+            //     dataPoints: this.content.most_played_games
+            // }
             
-            // Column charts for most played on devices
-            this.column_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.column_options.axisY.title = this.__('bookings_count')
-            this.column_options.data[0] = {
-                type: "column",
-                yValueFormatString: "#,### "+this.__('booking'),
-                dataPoints: this.content.most_played_devices
-            }
+            // // Column charts for most played on devices
+            // this.column_options = JSON.parse(JSON.stringify(this.charts_options));
+            // this.column_options.axisY.title = this.__('bookings_count')
+            // this.column_options.data[0] = {
+            //     type: "column",
+            //     yValueFormatString: "#,### "+this.__('booking'),
+            //     dataPoints: this.content.most_played_devices
+            // }
 
             // Line charts for sales in last days 
             this.line_options = JSON.parse(JSON.stringify(this.charts_options));
             this.line_options.theme = 'light2'
             this.line_options.axisY.suffix = '#'
-            this.line_options.axisY.title = this.__('sales')
+            this.line_options.axisY.title = this.__('Messages')
             this.line_options.toolTip = {shared: true}
             this.line_options.data[0] = {
                 type: "line",
                 color: '#003c58',
                 showInLegend: true,
-                yValueFormatString: "#,### "+this.__('sales'),
-                dataPoints: this.content.orders_charts
+                yValueFormatString: "#,### "+this.__('Messages'),
+                dataPoints: this.content.messages_charts
             }
             
             this.showCharts = true
