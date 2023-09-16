@@ -283,11 +283,6 @@ export default {
                 this.show = true
                 history.pushState({menu: tab}, '', this.conf.url+this.activeTab);
                 this.checkMobileMenu()
-
-                if (tab.link == 'messages' && this.$refs && this.$refs.activeTab){
-                    console.log(this.$refs)
-                    this.$refs.activeTab.reset();
-                }
             }
 
             return this;
