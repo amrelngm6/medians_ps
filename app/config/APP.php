@@ -114,7 +114,7 @@ class APP
 			$check = (new AuthService())->checkAPISession($this->request()->headers->get('token'));
 			return $check;
 		}
-		// return (object) ['branch'=>null];
+		return (object) ['branch'=>null];
 	}  
 
 	public function setBranch($branch)
