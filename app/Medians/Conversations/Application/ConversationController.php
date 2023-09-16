@@ -46,6 +46,8 @@ class ConversationController
         $MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
         $check = $MessageRepository->getConversationId(['sender_id'=>$wa_id]);
         
+        $ContactRepository = new \Medians\Contacts\Infrastructure\ContactRepository;
+        
         $ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
 
         $data['conversation_id'] = $check->conversation_id;
@@ -56,7 +58,7 @@ class ConversationController
         $save = $ConversationRepository->joinConversation($data);
         
         if ($save)
-            echo json_encode(["success"=>true]);
+            echo json_encode($ContactRepository->find($wa_id));
 
         return true;
     }

@@ -8,6 +8,12 @@ use Medians\Contacts\Domain\Contact;
 class ContactRepository 
 {
 
+
+    public function find($id)
+    {
+        return Contact::find($id);
+    }
+
     public function loadContacts()
     {
         $user = (new \config\APP)->auth();
