@@ -19,12 +19,12 @@
                             <div class="tyn-media-row has-dot-sap"><span class="meta" v-text="contact.wa_id" ></span></div>
                         </div>
                     </div>
-                    <p  :class="checkUnread(contact) ? 'text-green-400' : ''" class=" px-4 chat-list-msg-web font-bold text-base" v-html="contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
+                    <p  :class="checkUnread(contact) ? 'text-green-400' : ''" class=" px-4 chat-list-msg-web font-bold text-base" v-html="contact.last_message.message_emojis ? contact.last_message.message_emojis : contact.last_message.message_text"></p>
                     <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="contact.last_message">
                         <li><span  :class="checkUnread(contact) ? 'text-green-400' : ''" v-html="contact.last_message.time_ago"></span></li>
                     </ul>
                 </div>
-                <p  v-if="contact" @click="selectContact(contact)" :class="checkUnread(contact) ? 'text-green-400' : ''" class=" bg-white px-4 rounded-full py-2 mt-3 mb-4 chat-list-msg-mobile font-bold text-base " v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
+                <p  v-if="contact" @click="selectContact(contact)" :class="checkUnread(contact) ? 'text-green-400' : ''" class=" bg-white px-4 rounded-full py-2 mt-3 mb-4 chat-list-msg-mobile font-bold text-base " v-html="contact.last_message.message_emojis ? contact.last_message.message_emojis : contact.last_message.message_text"></p>
             </div>
 <!-- 
             <section v-for="contact in this.$parent.contacts" class="my-6 rounded-md p-6 text-center shadow-lg md:p-12 md:text-left"
