@@ -99,13 +99,35 @@
    <!--Bootstrap bundle Js-->
    <script src="/src/builder/assets/js/bootstrap.bundle.min.js"></script>
    
-   <!--Sweetalert2 Js-->
-   <script src="/src/front/js/sweetalert2@11.js"></script>
+   <script>
+   
+      jQuery(document).on('submit','form', function(e){
+         e.preventDefault();
 
-   <!--main Js-->
-   <script src="/src/front/main.js"></script>
+         let action = $(this).attr('action');
 
-   <style>
+         $.ajax({
+               url: action,
+               type: "POST",             
+               data: new FormData(this),
+               dataType: "json",
+               contentType: false,       
+               cache: false,             
+               processData:false, 
+               success: function(html) 
+               {
+                  if (html && html.error)
+                  {
+                     alert(html.error)
+                  } else {
+                     window.location.href = '/dashboard';
+                  }
+
+               }
+         });
+      });
+
+   </script>
    </style>
 
 </body>
