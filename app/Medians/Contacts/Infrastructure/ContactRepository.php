@@ -11,7 +11,7 @@ class ContactRepository
 
     public function find($id)
     {
-        return Contact::find($id);
+        return Contact::where('wa_id', $id)->first();
     }
 
     public function loadContacts()
