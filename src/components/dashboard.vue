@@ -72,7 +72,7 @@ export default
                 latest_sold_products: 0,
             },
             dates_filters:[
-                {title: this.__('Today'), value: 'yesterday'},
+                {title: this.__('Today'), value: '-1days'},
                 {title: this.__('Yesterday'), value: '-2days'},
                 {title: this.__('Last week'), value: '-7days'},
                 {title: this.__('Last month'), value: '-30days'},
