@@ -29,7 +29,7 @@
                 </div>
             </section>
         </div>
-        <div class="w-full" v-if="messages && messages.length">
+        <div class="w-full" v-if="messages && messages.length && this.active_contact" >
             <div class="tyn-chat-head bg-white p-2" id="tynChatHead">
                 <ul class="tyn-list-inline d-md-none ms-n1">
                     <li>
@@ -672,11 +672,15 @@ export default {
             params.append('type', 'WP')
             params.append('contact_id', id)
             this.$parent.handleRequest(params, '/end_chat/' + id).then(response => {
-                this.$parent.checkPending()
-                window.reload()
+                
             });
         },
 
+        reset()
+        {
+            this.active_contact = null
+            this.active_contact_name = null
+        },  
 
         load() {
 
