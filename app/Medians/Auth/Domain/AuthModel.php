@@ -57,10 +57,11 @@ class AuthModel
 	}
 
 
-	public function unsetSession() : void
+	public function unsetSession() 
 	{
         setcookie($this->getCode(), 0, time() + (10), "/");
 		unset($this->code); 
+		return true;
 	}
 
 
