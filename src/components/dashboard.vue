@@ -20,7 +20,7 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('Ended conversation')" :value="content.ended_conversation_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('messages count')" :value="content.messages_count"></dashboard_card_white>
                     </div>
-                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.messages_charts.length">
+                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.messages_charts && content.messages_charts.length">
                         <CanvasJSChart v-if="showCharts && content.messages_charts.length" :key="line_options" :options="line_options"/>
                     </div>
                     <div class="row mt-6">
@@ -222,7 +222,7 @@ export default
                 type: "line",
                 color: '#003c58',
                 showInLegend: true,
-                yValueFormatString: this.setting.currency+"#,### "+this.__('sales'),
+                yValueFormatString: "#,### "+this.__('sales'),
                 dataPoints: this.content.orders_charts
             }
             
