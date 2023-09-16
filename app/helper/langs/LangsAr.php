@@ -1081,6 +1081,7 @@ class LangsAr
 		,'new chats note' => 'قائمة محادثات العملا الجديدة - يجب اختيار المحادثة باقرب وقت للرد علي العميل'
 		,'Ended conversations' => 'المحادثات المكتملة'
 		,'pending conversations' => 'محادثات قيد الإنتظار'
+		,'End conversation' => 'إنهاء المحادثة'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
