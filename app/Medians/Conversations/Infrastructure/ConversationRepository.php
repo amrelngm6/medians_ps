@@ -11,28 +11,28 @@ class ConversationRepository
 
 
 
-    public function activeConversationsCount($days = 1)
+    public function activeConversationsCount($dateStart = '-1days')
     {
         return Conversation::where('user_id', '>', '0')
         ->where('ended', '0')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime('-'.$days.' days')))
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)))
         ->count();
     }
 
-    public function pendingConversationsCount($days = 1)
+    public function pendingConversationsCount($dateStart = '-1days')
     {
         
         return Conversation::where('user_id', '<', 1)
         ->where('ended', '0')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime('-'.$days.' days')))
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)))
         ->count();
     }
 
-    public function endedConversationsCount($days = 1)
+    public function endedConversationsCount($days = '-1days')
     {
         
         return Conversation::where('ended', '1')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime('-'.$days.' days')))
+        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)))
         ->count();
     }
 
