@@ -654,6 +654,28 @@ export default {
 
         },
 
+        sendMessage() {
+            var params = new URLSearchParams();
+            params.append('type', 'WP')
+            params.append('message_text', this.chat_message)
+            params.append('wa_id', this.active_contact)
+
+            this.showLoader = true;
+            this.$parent.handleRequest(params, '/api/send_message').then(response => {
+                let val = JSON.parse(JSON.stringify(response));
+
+                this.chat_message = '';
+
+                if (response.error) {
+                    return this.$alert(response.error.message);
+                }
+
+                this.load();
+
+
+            });
+        },
+
 
         validate(event = null) {
 
@@ -667,27 +689,6 @@ export default {
             // this.chat_message ? jQuery('.tyn-chat-form-input').html(' ') : ''
             this.chat_message ? this.sendMessage() : null
 
-        },
-
-        sendMessage() {
-            var params = new URLSearchParams();
-            params.append('type', 'WP')
-            params.append('message_text', this.chat_message)
-            params.append('wa_id', this.active_contact)
-
-            this.showLoader = true;
-            this.$parent.handleRequest(params, '/api/send_message').then(response => {
-                let val = JSON.parse(JSON.stringify(response));
-
-                this.chat_message = '';
-
-                if (val.error)
-                    return this.$alert(val.error.message);
-
-                this.load();
-
-
-            });
         },
 
         findText(text, div) {
