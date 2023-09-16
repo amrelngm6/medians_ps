@@ -29,6 +29,7 @@ class DashboardController extends CustomController
 
 		$app = (new \config\APP);
 		$dateStart = $app->request()->get('start') ? $app->request()->get('start') : '-1days';	
+		$dateEnd = $app->request()->get('end') ? $app->request()->get('end') : '-0days';	
 
 		$userId = $app->auth()->id;
 
