@@ -37,10 +37,10 @@ class DashboardController extends CustomController
 			
 	        return  render('dashboard', [
 	        	'load_vue'=> true,
-				'active_conversations_count' => $ConversationRepository->activeConversationsCount($dateStart, $userId),
-				'pending_conversations_count' => $ConversationRepository->pendingConversationsCount($dateStart, $userId),
-				'ended_conversations_count' => $ConversationRepository->endedConversationsCount($dateStart, $userId),
-				'messages_count' => $MessageRepository->messagesCount($dateStart, $userId),
+				'active_conversations_count' => $ConversationRepository->activeConversationsCount($dateStart, $dateEnd, $userId),
+				'pending_conversations_count' => $ConversationRepository->pendingConversationsCount($dateStart, $dateEnd, $userId),
+				'ended_conversations_count' => $ConversationRepository->endedConversationsCount($dateStart, $dateEnd, $userId),
+				'messages_count' => $MessageRepository->messagesCount($dateStart, $dateEnd, $userId),
 				'messages_charts' => $MessageRepository->messagesCharts(['end'=>date('Y-m-d'), 'start'=>date('Y-m-d', strtotime($dateStart))]),
 	            'title' => __('Dashboard')
 	        ]);
