@@ -13,26 +13,19 @@
                                 </path>
                             </svg></button></li>
                 </ul>
-                <div class="tyn-media-group">
+                <div class="tyn-media-group" v-if="conversation.contact">
                     <div class="tyn-media tyn-size-lg d-none d-sm-inline-flex"><img src="/uploads/user.svg" alt=""></div>
                     <div class="tyn-media tyn-size-rg d-sm-none"><img src="/uploads/user.svg" alt=""></div>
                     <div class="tyn-media-col">
                         <div class="tyn-media-row">
-                            <h6 class="name">Daralteb</h6>
+                            <h6 class="name" v-text="conversation.contact.name"></h6>
                         </div>
                         <div class="tyn-media-row has-dot-sap"><span class="meta" v-text="conversation.wa_id" ></span></div>
                     </div>
                 </div>
-                <ul class="tyn-list-inline gap gap-3 ms-auto">
-                    <li><p class="font-bold text-base" v-html="conversation.message_emojis ? conversation.message_emojis : conversation.message_text"></p></li>
-                    <li><button class="btn btn-icon btn-light  has-tooltip" @click="joinChat(conversation.wa_id)" 
-                            data-original-title="null"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" viewBox="0 0 16 16" class="bi bi-layout-sidebar-inset-reverse">
-                                <path
-                                    d="M2 2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h12z">
-                                </path>
-                                <path d="M13 4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V4z"></path>
-                            </svg></button></li>
+                <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="conversation.contact.last_message">
+                    <li><p class="font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p></li>
+                    <li><button @click="joinChat(conversation.wa_id)" class=" block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
                 </ul>
             </div>
         </div>
