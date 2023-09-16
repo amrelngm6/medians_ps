@@ -1,6 +1,6 @@
 <template>
-    <div class="tyn-main tyn-chat-content" id="tynMain">
-        <div class="container mx-auto overflow-auto chat-center-list"  v-if="this.$parent.contacts && !this.active_contact">
+    <div class="tyn-main tyn-chat-content overflow-auto" id="tynMain">
+        <div class="container mx-auto  chat-center-list"  v-if="this.$parent.contacts && !this.active_contact">
             <!--Background-->
             
             <h1 class="text-xl  mx-auto pt-6 " v-text="__('Active chats')"></h1>
