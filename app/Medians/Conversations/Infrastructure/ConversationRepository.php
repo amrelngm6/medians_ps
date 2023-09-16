@@ -18,7 +18,7 @@ class ConversationRepository
         ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
 
         if ($userId)
-            $check = $check->where('inserted_by', $userId);
+            $check = $check->where('user_id', $userId);
 
         return $check->count();
     }
@@ -31,7 +31,7 @@ class ConversationRepository
         ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
         
         if ($userId)
-            $check = $check->where('inserted_by', $userId);
+            $check = $check->where('user_id', $userId);
 
         return $check->count();
     }
@@ -43,7 +43,7 @@ class ConversationRepository
         ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
         
         if ($userId)
-            $check = $check->where('inserted_by', $userId);
+            $check = $check->where('user_id', $userId);
 
         return $check->count();
     }

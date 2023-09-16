@@ -14,6 +14,7 @@ class MessageRepository
     public function messagesCount($dateStart = '-1days', $userId = 0)
     {
         $check =  Message::whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
+
         if ($userId)
             $check = $check->where('inserted_by', $userId);
 

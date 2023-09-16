@@ -27,17 +27,19 @@ class DashboardController extends CustomController
 		$ConversationRepository = new \Medians\Conversations\Infrastructure\ConversationRepository;
 		$MessageRepository = new \Medians\Messages\Infrastructure\MessageRepository;
 
-		$request = (new \config\APP)->request();
-		$dateStart = $request->get('start') ? $request->get('start') : '-1days';
+		$app = (new \config\APP);
+		$dateStart = $app->request()->get('start') ? $app->request()->get('start') : '-1days';	
+
+		$userId = $app->auth()->id;
 
 		try {
 			
 	        return  render('dashboard', [
 	        	'load_vue'=> true,
-				'active_conversations_count' => $ConversationRepository->activeConversationsCount($dateStart),
-				'pending_conversations_count' => $ConversationRepository->pendingConversationsCount($dateStart),
-				'ended_conversations_count' => $ConversationRepository->endedConversationsCount($dateStart),
-				'messages_count' => $MessageRepository->messagesCount($dateStart),
+				'active_conversations_count' => $ConversationRepository->activeConversationsCount($dateStart, $userId),
+				'pending_conversations_count' => $ConversationRepository->pendingConversationsCount($dateStart, $userId),
+				'ended_conversations_count' => $ConversationRepository->endedConversationsCount($dateStart, $userId),
+				'messages_count' => $MessageRepository->messagesCount($dateStart, $userId),
 				'messages_charts' => $MessageRepository->messagesCharts(['end'=>date('Y-m-d'), 'start'=>date('Y-m-d', strtotime($dateStart))]),
 	            'title' => __('Dashboard')
 	        ]);
