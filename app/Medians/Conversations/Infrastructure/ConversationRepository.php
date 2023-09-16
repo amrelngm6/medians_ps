@@ -28,7 +28,7 @@ class ConversationRepository
         ->count();
     }
 
-    public function endedConversationsCount($days = '-1days')
+    public function endedConversationsCount($dateStart = '-1days')
     {
         
         return Conversation::where('ended', '1')
