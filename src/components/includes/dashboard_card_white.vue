@@ -1,7 +1,7 @@
 <template>
     <div class="widget-item bg-white p-6 flex justify-between rounded-md">
         <div>
-            <h4 class="text-xl font-semibold text-slate-700 mb-1 leading-none" v-text="value"></h4>
+            <h4 class="text-xl font-semibold  mb-1 leading-none" v-text="value"></h4>
             <p class="text-tiny leading-4" v-text="title"></p>
         </div>
         <div>
