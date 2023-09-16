@@ -16,8 +16,8 @@
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_conversations')" :value="content.active_conversations_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('Ended conversation')" :value="content.ended_conversation_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('Ended conversation')" :value="content.ended_conversation_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('pending conversations')" :value="content.pending_conversation_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('Ended conversations')" :value="content.ended_conversation_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('messages count')" :value="content.messages_count"></dashboard_card_white>
                     </div>
                     <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.messages_charts && content.messages_charts.length">
