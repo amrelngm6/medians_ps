@@ -4,15 +4,7 @@
         <p class=" text-center mx-auto pb-6 pt-2 ">You should pick any customer ASAP to help him </p>
         <div class="container mx-auto w-full overflow-auto" style="max-height: calc(100vh - 90px); padding-bottom:100px">
             <div v-for="conversation in $parent.new_contacts" id="tynChatHead" class="my-4 tyn-chat-head bg-white p-2">
-                <ul class="tyn-list-inline d-md-none ms-n1">
-                    <li><button class="btn btn-icon btn-md btn-pill btn-transparent js-toggle-main"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                viewBox="0 0 16 16" class="bi bi-arrow-left">
-                                <path fill-rule="evenodd"
-                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
-                                </path>
-                            </svg></button></li>
-                </ul>
+
                 <div class="tyn-media-group" v-if="conversation.contact">
                     <div class="tyn-media tyn-size-lg d-none d-sm-inline-flex"><img src="/uploads/user.svg" alt=""></div>
                     <div class="tyn-media tyn-size-rg d-sm-none"><img src="/uploads/user.svg" alt=""></div>
@@ -23,8 +15,8 @@
                         <div class="tyn-media-row has-dot-sap"><span class="meta" v-text="conversation.wa_id" ></span></div>
                     </div>
                 </div>
+                <li class="hidden lg:block"><p class="font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p></li>
                 <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="conversation.contact.last_message">
-                    <li><p class="font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p></li>
                     <li><button @click="joinChat(conversation.wa_id)" class="hover:bg-gray-600  text-sm block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
                 </ul>
             </div>
