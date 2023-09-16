@@ -660,6 +660,7 @@ export default {
             params.append('message_text', this.chat_message)
             params.append('wa_id', this.active_contact)
 
+            t = this;
             this.showLoader = true;
             this.$parent.handleRequest(params, '/api/send_message').then(response => {
                 let val = JSON.parse(JSON.stringify(response));
@@ -667,7 +668,11 @@ export default {
                 this.chat_message = '';
                 console.log(response)
                 if (response.error) {
-                    return this.$alert(response.error.message);
+                    console.log('Hs error')
+                    return t.$alert(response.error.message);
+                } else {
+                    console.log('No errors')
+
                 }
 
                 this.load();
