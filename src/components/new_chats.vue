@@ -3,22 +3,24 @@
         <h1 class="text-xl text-center mx-auto pt-6 ">Pick your customer</h1>
         <p class=" text-center mx-auto pb-6 pt-2 ">You should pick any customer ASAP to help him </p>
         <div class="container mx-auto w-full overflow-auto" style="max-height: calc(100vh - 90px); padding-bottom:100px">
-            <div v-for="conversation in $parent.new_contacts" id="tynChatHead" class="my-4 tyn-chat-head bg-white p-2">
+            <div v-for="conversation in $parent.new_contacts" class="w-full my-4 ">
+                <div id="tynChatHead" class="tyn-chat-head bg-white p-2">
 
-                <div class="tyn-media-group" v-if="conversation.contact">
-                    <div class="tyn-media tyn-size-lg d-none d-sm-inline-flex"><img src="/uploads/user.svg" alt=""></div>
-                    <div class="tyn-media tyn-size-rg d-sm-none"><img src="/uploads/user.svg" alt=""></div>
-                    <div class="tyn-media-col">
-                        <div class="tyn-media-row">
-                            <h6 class="name" v-text="conversation.contact.name"></h6>
+                    <div class="tyn-media-group" v-if="conversation.contact">
+                        <div class="tyn-media tyn-size-lg d-none d-sm-inline-flex"><img src="/uploads/user.svg" alt=""></div>
+                        <div class="tyn-media tyn-size-rg d-sm-none"><img src="/uploads/user.svg" alt=""></div>
+                        <div class="tyn-media-col">
+                            <div class="tyn-media-row">
+                                <h6 class="name" v-text="conversation.contact.name"></h6>
+                            </div>
+                            <div class="tyn-media-row has-dot-sap"><span class="meta" v-text="conversation.wa_id" ></span></div>
                         </div>
-                        <div class="tyn-media-row has-dot-sap"><span class="meta" v-text="conversation.wa_id" ></span></div>
                     </div>
+                    <p class="chat-list-msg-web font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
+                    <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="conversation.contact.last_message">
+                        <li><button @click="joinChat(conversation.wa_id)" class="hover:bg-gray-600  text-sm block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
+                    </ul>
                 </div>
-                <p class="chat-list-msg-web font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
-                <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="conversation.contact.last_message">
-                    <li><button @click="joinChat(conversation.wa_id)" class="hover:bg-gray-600  text-sm block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
-                </ul>
                 <p class="chat-list-msg-mobile font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
             </div>
         </div>
