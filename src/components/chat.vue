@@ -266,9 +266,10 @@
                                     <path
                                         d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z" />
                                 </svg>
-                                <span>Media</span>
+                                <span v-text="__('Media')"></span>
                             </button>
                         </li>
+                        
                         <li class="nav-item">
                             <button class="nav-link " data-bs-toggle="tab" data-bs-target="#chat-options" type="button">
                                 <!-- sliders -->
@@ -288,19 +289,19 @@
                             <ul class="nav nav-tabs nav-tabs-line">
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#chat-media-images"
-                                        type="button"> Images </button>
+                                        type="button" v-text="__('Images')">  </button>
                                 </li>
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media-videos"
-                                        type="button"> Videos </button>
+                                        type="button" v-text="__('Videos')">  </button>
                                 </li>
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media-audio"
-                                        type="button"> Audio </button>
+                                        type="button" v-text="__('Audio')">  </button>
                                 </li>
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#chat-media-files"
-                                        type="button"> Files </button>
+                                        type="button" v-text="__('Files')">  </button>
                                 </li>
                             </ul>
                         </div>
@@ -396,7 +397,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane show active" id="chat-options-manage" tabindex="0">
                                     <ul class="tyn-media-list gap gap-3">
-                                        <li>
+                                        <li class="hidden">
                                             <a href="#!" class="tyn-file">
                                                 <div class="tyn-media-group">
                                                     <div class="tyn-media text-bg-light">
@@ -428,7 +429,7 @@
                                                         </svg>
                                                     </div>
                                                     <div class="tyn-media-col">
-                                                        <h6 class="name">End conversation</h6>
+                                                        <h6 class="name" v-text="__('End conversation')"></h6>
                                                         <div class="meta">End the conversation with the customer</div>
                                                     </div>
                                                 </div>
@@ -497,9 +498,10 @@ const axios = require('axios').default;
 import GLightbox from 'glightbox';
 
 import chatMsgBlock from './includes/chat-msg-block.vue';
+import emptydata from './includes/emptydata.vue'
 
 export default {
-    components: { chatMsgBlock },
+    components: { chatMsgBlock, emptydata },
     computed: {},
     data() {
         return {
