@@ -663,16 +663,9 @@ export default {
             var t = this;
             this.showLoader = true;
             this.$parent.handleRequest(params, '/api/send_message').then(response => {
-                let val = JSON.parse(JSON.stringify(response));
-
                 this.chat_message = '';
-                console.log(response)
                 if (response.error) {
-                    console.log('Hs error')
-                    return t.$alert(response.error.message);
-                } else {
-                    console.log('No errors')
-
+                    return alert(response.error.message);
                 }
 
                 this.load();
