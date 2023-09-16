@@ -15,10 +15,11 @@
                         <div class="tyn-media-row has-dot-sap"><span class="meta" v-text="conversation.wa_id" ></span></div>
                     </div>
                 </div>
-                <li class="hidden lg:block"><p class="font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p></li>
+                <p class="chat-list-msg-web font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
                 <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="conversation.contact.last_message">
                     <li><button @click="joinChat(conversation.wa_id)" class="hover:bg-gray-600  text-sm block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
                 </ul>
+                <p class="chat-list-msg-mobile font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
             </div>
         </div>
         <div class="container mx-auto w-full row grid overflow-auto"
