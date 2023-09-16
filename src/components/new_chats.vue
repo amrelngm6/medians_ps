@@ -117,14 +117,16 @@ export default {
         },
         selectContact(contact) {
 
+            this.$parent.switchTab({link: "messages"});
             this.activeItem = contact
             this.showDropdown = false
 
-            console.log(this.activeItem)
             this.$parent.$refs.activeTab.active_contact = contact.wa_id
             this.$parent.$refs.activeTab.active_contact_name = contact.name
             this.$parent.$refs.activeTab.load()
-
+            
+            console.log('Select contact')
+            
             jQuery('.tyn-aside-item.js-toggle-main').removeClass('active')
             jQuery('#contact' + contact.id).addClass('active')
         },
