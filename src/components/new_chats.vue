@@ -24,7 +24,7 @@
                 <p class="py-3 mb-4  chat-list-msg-mobile font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
             </div>
         </div>
-        <div class="container mx-auto w-full row grid overflow-auto"
+        <!-- <div class="container mx-auto w-full row grid overflow-auto"
             style="max-height: calc(100vh - 90px); padding-bottom:100px">
             <section class="text-gray-600 body-font mt-12 col-6" v-for="conversation in $parent.new_contacts">
                 <div class="container px-2 py-24 mx-auto " v-if="conversation">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </section>
-        </div>
+        </div> -->
     </div>
 </template>
 
