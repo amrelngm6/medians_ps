@@ -1,10 +1,9 @@
 <template>
     <div class="w-full" >
-        <emptydata v-if="!$parent.new_contacts.length"></emptydata>
-        <div class="container mx-auto mt-4 " v-if="$parent.new_contacts && $parent.new_contacts.length">
+        <div class="container mx-auto mt-4 " >
             <h1 class="text-xl  mx-auto pt-6 " v-text="__('new chats')"></h1>
             <p class="mx-auto pb-6 pt-2 " v-text="__('new chats note')"> </p>
-            <div class="container mx-auto w-full overflow-auto" style="max-height: calc(100vh - 90px); padding-bottom:100px">
+            <div class="container mx-auto w-full overflow-auto" v-if="$parent.new_contacts && $parent.new_contacts.length" style="max-height: calc(100vh - 90px); padding-bottom:100px">
                 <div v-for="conversation in $parent.new_contacts" class="w-full my-4 ">
                     <div id="tynChatHead" class="tyn-chat-head bg-white p-2">
 
@@ -26,6 +25,8 @@
                     <p class=" bg-white px-4 rounded-full py-2 mt-3 mb-4 chat-list-msg-mobile font-bold text-base " v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
                 </div>
             </div>
+            <emptydata v-if="!$parent.new_contacts.length"></emptydata>
+
             <!-- <div class="container mx-auto w-full row grid overflow-auto"
                 style="max-height: calc(100vh - 90px); padding-bottom:100px">
                 <section class="text-gray-600 body-font mt-12 col-6" v-for="conversation in $parent.new_contacts">
