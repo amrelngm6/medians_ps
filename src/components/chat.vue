@@ -449,7 +449,7 @@
                 <div class="modal-content border-0">
                     <div class="modal-body">
                         <div class="py-4 px-4 text-center">
-                            <h3>Uploading ...</h3>
+                            <h3><span v-text="__('Uploading')"></span> <span>...</span></h3>
                         </div>
                     </div><!-- .modal-body -->
                 </div><!-- .modal-content -->
@@ -462,15 +462,15 @@
                 <div class="modal-content border-0">
                     <div class="modal-body">
                         <div class="py-4 px-4 text-center">
-                            <h3>End conversation</h3>
+                            <h3 v-text="__('End conversation')"></h3>
                             <p class="small" v-text="__('end_conversation_confirm_msg')"></p>
                             <ul class="tyn-list-inline gap gap-3 pt-1 justify-content-center">
                                 <li>
                                     <button class="btn btn-danger" @click="endConversation(active_contact)"
-                                        data-bs-dismiss="modal">End</button>
+                                        data-bs-dismiss="modal" v-text="__('End')"></button>
                                 </li>
                                 <li>
-                                    <button class="btn btn-light" data-bs-dismiss="modal">No</button>
+                                    <button class="btn btn-light" data-bs-dismiss="modal" v-text="__('No')"></button>
                                 </li>
                             </ul>
                         </div>
