@@ -25,7 +25,7 @@
                 </div>
                 <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="conversation.contact.last_message">
                     <li><p class="font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p></li>
-                    <li><button @click="joinChat(conversation.wa_id)" class=" block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
+                    <li><button @click="joinChat(conversation.wa_id)" class="hover:bg-gray-600  text-sm block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
                 </ul>
             </div>
         </div>
