@@ -7,7 +7,7 @@
             <p class=" mx-auto pb-6 pt-2 " v-text="__('active chats note')"> </p>
             
             <div v-for="contact in this.$parent.contacts" class="w-full my-4 " >
-                <div id="tynChatHead" class="tyn-chat-head bg-white p-2" v-if="contact" @click="selectContact(contact)">
+                <div id="tynChatHead" class="tyn-chat-head bg-white p-2 cursor-pointer" v-if="contact" @click="selectContact(contact)">
 
                     <div class="tyn-media-group" v-if="contact">
                         <div class="tyn-media tyn-size-lg d-none d-sm-inline-flex"><img src="/uploads/user.svg" alt=""></div>
