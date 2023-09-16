@@ -923,6 +923,8 @@ class LangsEn
 			,'please_add_your_devices_first' => 'Please add your devices first'
 			,'editor_help' => 'At the top left of each section click on EDIT button and after editing click on SAVE'
 			,'editor notes' => 'To edit Links or Images ( <a> / <img> ) tags use right-click at your mouse'
+			,'active chats note' => 'This is the list of your active conversations'
+			,'new chats note' => 'You should join any conversation ASAP to reply to customer message'
 
 		
 			,'COPYRIGHTS' => 'Copyrights are reserved'

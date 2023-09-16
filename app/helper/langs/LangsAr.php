@@ -1074,6 +1074,11 @@ class LangsAr
 		,'Terms and policy' => 'سياسة الاستخدام'
 		,'how_it_works' => 'طريقة العمل'
 		,'Go to app' => 'اذهب الى التطبيق'
+		,'active chats note' => 'قائمة المحادثات النشطة حاليا لديك'
+		,'active chats' => 'المحادثات النشطة'
+
+		,'new chats' => 'المحادثات الجديدة'
+		,'new chats note' => 'قائمة محادثات العملا الجديدة - يجب اختيار المحادثة باقرب وقت للرد علي العميل'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
