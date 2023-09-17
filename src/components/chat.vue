@@ -3,7 +3,7 @@
         <div class="container mx-auto  chat-center-list"  v-if="this.$parent.contacts && !this.active_contact">
             <!--Background-->
             
-            <h1 class="text-xl  mx-auto pt-6 " v-text="__('Active chats')"></h1>
+            <h1 class="text-xl  mx-auto pt-6 " v-text="__('Active conversations')"></h1>
             <p class=" mx-auto pb-6 pt-2 " v-text="__('active chats note')"> </p>
     
             <emptydata v-if="!$parent.contacts.length && !this.active_contact"></emptydata>

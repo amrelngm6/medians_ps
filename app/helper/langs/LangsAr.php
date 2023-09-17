@@ -1076,8 +1076,10 @@ class LangsAr
 		,'Go to app' => 'اذهب الى التطبيق'
 		,'active chats note' => 'قائمة المحادثات النشطة حاليا لديك'
 		,'active chats' => 'المحادثات النشطة'
+		,'active conversations' => 'المحادثات النشطة'
 
 		,'new chats' => 'المحادثات الجديدة'
+		,'new conversations' => 'المحادثات الجديدة'
 		,'new chats note' => 'قائمة محادثات العملا الجديدة - يجب اختيار المحادثة باقرب وقت للرد علي العميل'
 		,'Ended conversations' => 'المحادثات المكتملة'
 		,'pending conversations' => 'محادثات قيد الإنتظار'
