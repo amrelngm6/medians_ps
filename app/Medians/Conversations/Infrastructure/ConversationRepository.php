@@ -11,24 +11,24 @@ class ConversationRepository
 
 
 
-    public function activeConversationsCount($dateStart = '-1days', $userId = 0)
+    public function activeConversationsCount($dateStart = '-1days', $dateEnd = '-1days', $userId = 0)
     {
         $check = Conversation::where('user_id', '>', '0')
         ->where('ended', '0')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
-
+        ->whereBetween('created_at', [date('Y-m-d', strtotime($dateStart)) , date('Y-m-d', strtotime($dateEnd)) ] );
+        
         if ($userId)
-            $check = $check->where('user_id', $userId);
+        $check = $check->where('user_id', $userId);
+    
+    return $check->count();
+}
 
-        return $check->count();
-    }
-
-    public function pendingConversationsCount($dateStart = '-1days', $userId = 0)
+    public function pendingConversationsCount($dateStart = '-1days', $dateEnd = '-1days', $userId = 0)
     {
         
         $check = Conversation::where('user_id', '<', 1)
         ->where('ended', '0')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
+        ->whereBetween('created_at', [date('Y-m-d', strtotime($dateStart)) , date('Y-m-d', strtotime($dateEnd)) ] );
         
         if ($userId)
             $check = $check->where('user_id', $userId);
@@ -36,11 +36,11 @@ class ConversationRepository
         return $check->count();
     }
 
-    public function endedConversationsCount($dateStart = '-1days', $userId = 0)
+    public function endedConversationsCount($dateStart = '-1days', $dateEnd = '-1days', $userId = 0)
     {
         
         $check = Conversation::where('ended', '1')
-        ->whereDate('created_at', '>', date('Y-m-d', strtotime($dateStart)));
+        ->whereBetween('created_at', [date('Y-m-d', strtotime($dateStart)) , date('Y-m-d', strtotime($dateEnd)) ] );
         
         if ($userId)
             $check = $check->where('user_id', $userId);
