@@ -20,17 +20,14 @@ class MessageService
 	/**
 	 * @var API Business Account ID
 	 */
-	protected $BAID = '111180314953637';
+	// protected $BAID = '111180314953637';
+	protected $BAID = '143987115453131';
 
 	/**
 	 * @var API Phone Number ID
 	 */
-	protected $PNID = '106672422075870';
-
-	/**
-	 * @var API Phone Number ID
-	 */
-	protected $PNID2 = '107712392430422';
+	// protected $PNID = '106672422075870';
+	protected $PNID = '131766980016755';
 
 	/**
 	 * @var API System User Token
