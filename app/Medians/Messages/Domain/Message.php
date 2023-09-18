@@ -35,6 +35,7 @@ class Message extends CustomModel
 
 	// public $timestamps = false;
 
+	protected $PNID = ['131766980016755', '106672422075870'];
 
 	public $appends = ['income', 'image_path', 'message_emojis', 'media_title', 'content_json', 'is_video', 'time_ago'];
 
@@ -50,7 +51,8 @@ class Message extends CustomModel
 
 	public function getIncomeAttribute()
 	{
-		return $this->sender_id == '106672422075870' ? 0 : 1;
+		
+		return in_array($this->sender_id, $this->PNID) ? 0 : 1;
 	}
 
 	public function getContentJsonAttribute()
