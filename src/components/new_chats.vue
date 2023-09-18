@@ -17,12 +17,12 @@
                                 <div class="tyn-media-row has-dot-sap"><span class="meta" v-text="conversation.wa_id" ></span></div>
                             </div>
                         </div>
-                        <p class=" px-4 chat-list-msg-web font-bold text-base" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
-                        <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="conversation.contact.last_message">
+                        <p class=" px-4 chat-list-msg-web font-bold text-base" v-if="conversation.contact" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
+                        <ul class="tyn-list-inline gap gap-3 ms-auto" v-if="conversation.contact && conversation.contact.last_message">
                             <li><button @click="joinChat(conversation.wa_id)" class="hover:bg-gray-600  text-sm block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Join Chat</button></li>
                         </ul>
                     </div>
-                    <p class=" bg-white px-4 rounded-full py-2 mt-3 mb-4 chat-list-msg-mobile font-bold text-base " v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
+                    <p class=" bg-white px-4 rounded-full py-2 mt-3 mb-4 chat-list-msg-mobile font-bold text-base " v-if="conversation.contact" v-html="conversation.contact.last_message.message_emojis ? conversation.contact.last_message.message_emojis : conversation.contact.last_message.message_text"></p>
                 </div>
             </div>
             <emptydata v-if="!$parent.new_contacts.length"></emptydata>
