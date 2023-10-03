@@ -24,7 +24,6 @@ class MasterDashboardController extends CustomController
 	public $ExpensesRepository;
 	public $GamesRepository;
 	public $OrderRepository;
-	public $PlanSubscriptionRepository;
 	public $start_week;
 	public $UserRepository;
 	public $BranchRepository;
@@ -33,34 +32,10 @@ class MasterDashboardController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-        $this->BranchRepository = new Branches\Infrastructure\BranchRepository;
-
 		$this->UserRepository = new Users\Infrastructure\UserRepository();
 
 		$this->CustomerRepository = new Customers\Infrastructure\CustomerRepository;
 
-		$this->PaymentRepository = new Payments\Infrastructure\PaymentsRepository;
-
-		$this->PlanSubscriptionRepository = new Plans\Infrastructure\PlanSubscriptionRepository;
-
-        $this->OrderRepository = new Orders\Infrastructure\OrdersRepository;
-
-		$this->DevicesRepository = new Devices\Infrastructure\DevicesRepository();
-
-		$this->OrderDevicesRepository = new Devices\Infrastructure\OrderDevicesRepository;
-
-		$this->StockRepository = new Products\Infrastructure\StockRepository;
-
-		$this->ExpensesRepository = new Expenses\Infrastructure\ExpensesRepository;
-
-		$this->GamesRepository = new Games\Infrastructure\GameRepository();
-
-		$this->start = $this->app->request()->get('start') ? date('Y-m-d 00:00:00', strtotime($this->app->request()->get('start'))) : date('Y-m-d 00:00:00');
-		$this->end = $this->app->request()->get('start') ? date('Y-m-d 23:59:59', strtotime($this->app->request()->get('end'))) : date('Y-m-d 23:59:59');
-
-		$this->start_week = !$this->app->request()->get('start') || $this->app->request()->get('start') == 'today' 
-            ? date('Y-m-d', strtotime('-7 days', strtotime($this->start)))
-            : $this->start;
 	}
 
 	/**
@@ -119,45 +94,9 @@ class MasterDashboardController extends CustomController
             * By default get last 7 days 
             * for charts for better analysis
             */ 
-            $branches_charts = $this->BranchRepository->getByDateCharts(['start'=>$this->start_week, 'end'=>$this->end]);
-
-
-            $orders_charts = !$this->app->request()->get('start') || $this->app->request()->get('start') == 'today' 
-            ? $this->OrderRepository->getByDateCharts(['start'=>date('Y-m-d', strtotime('-7 days', strtotime($this->start))), 'end'=>$this->end])
-            : $this->OrderRepository->getByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 
 	        return [
 	            'title' => 'Dashboard',
-	            'new_branches' => $counts['new_branches'],
-	            'new_subscribers' => $counts['new_subscribers'],
-	            'new_customers' => $counts['new_customers'],
-	            'total_payments' => $counts['total_payments'],
-	            'branches_charts' => $branches_charts,
-
-
-
-	            'active_order_devices_count' => $counts['active_order_devices_count'],
-	            'order_devices_count' => $counts['order_devices_count'],
-	            'orders_count' => $counts['orders_count'],
-	            'order_products_count' => $counts['order_products_count'],
-	            'avg_bookings_count' => $counts['avg_bookings_count'],
-	            'avg_products_count' => $counts['avg_products_count'],
-	            'latest_paid_order_devices' => $list['latest_paid_order_devices'],
-	            'latest_unpaid_order_devices' => $list['latest_unpaid_order_devices'],
-	            'latest_order_products' => $list['latest_order_products'],
-	            'order_products_revenue' => $values['order_products_revenue'],
-	            'avg_sales' => $values['avg_sales'],
-	            'avg_bookings' => $values['avg_bookings'],
-	            'income' => round($values['income'], 2),
-	            'bookings_income' => round($values['bookings_income'], 2),
-	            'revenue' => round(round($values['income'], 2) - round($values['expenses'], 2) - round($values['tax'], 2), 2),
-	            'expenses' => round($values['expenses'], 2),
-	            'tax' => round($values['tax'], 2),
-	            'most_played_games' => $this->GamesRepository->allMostPlayed(['start'=>$this->start, 'end'=>$this->end]),
-	            'most_played_devices' => $this->DevicesRepository->allMostPlayed(['start'=>$this->start, 'end'=>$this->end]),
-	            'orders_charts' => $orders_charts,
-
-
 		        'formAction' => '/login',
 		        'load_vue' => true,
 	            // 'formAction' => $this->app->CONF['url'],
@@ -177,25 +116,6 @@ class MasterDashboardController extends CustomController
 	{
 		$data = [];
 
-		$data['new_branches'] = $this->BranchRepository->getLatest(['start'=>$this->start,'end'=>$this->end])->count();
-
-		$data['new_subscribers'] = $this->PlanSubscriptionRepository->getLatest(['start'=>$this->start,'end'=>$this->end])->count();
-
-		$data['new_customers'] = $this->CustomerRepository->getLatest(['start'=>$this->start,'end'=>$this->end])->count();
-
-		$data['total_payments'] = $this->PaymentRepository->getLatest(['start'=>$this->start,'end'=>$this->end])->sum('amount');
-        
-        $data['orders_count'] = $this->DevicesRepository->getLatest(['start'=>$this->start, 'end'=>$this->end])->where('status', 'paid')->groupBy('order_code')->count();
-
-        $data['active_order_devices_count'] = $this->DevicesRepository->getLatest(['start'=>$this->start, 'end'=>$this->end])->where('status', 'active')->count();
-
-        $data['order_devices_count'] = $this->DevicesRepository->getLatest(['start'=>$this->start, 'end'=>$this->end])->count();
-
-        $data['order_products_count'] =  $this->StockRepository->getLatest(1000)->where('type', 'pull')->where('date' ,'>=', $this->start)->count();
-
-		$data['avg_bookings_count'] = $this->OrderDevicesRepository->getAVGBookingsCount(['start'=>$this->start, 'end'=>$this->end]);
-
-		$data['avg_products_count'] = $this->OrderDevicesRepository->getAVGProductsCount(['start'=>$this->start, 'end'=>$this->end]);
 
         return $data;
 
@@ -210,20 +130,6 @@ class MasterDashboardController extends CustomController
 
 		$data = [];
 
-		$data['bookings_income'] = $this->OrderDevicesRepository->loadAllBookingsIncome(['start'=>$this->start, 'end'=>$this->end]);
-
-        $data['order_products_revenue'] =  $this->OrderDevicesRepository->loadAllProductsIncome(['start'=>$this->start, 'end'=>$this->end]);
-
-		$data['income'] = $this->DevicesRepository->getSumAllByDate('subtotal', $this->start, $this->end);
-
-		$data['tax'] = $this->DevicesRepository->getSumAllByDate('tax', $this->start, $this->end);
-
-		$data['expenses'] = $this->ExpensesRepository->getSumAllByDate('amount', $this->start, $this->end);
-        
-		$data['avg_sales'] = $this->OrderRepository->getAVGAllSales(['start'=>$this->start, 'end'=>$this->end]);
-
-		$data['avg_bookings'] = $this->OrderDevicesRepository->getAVGAllBookings(['start'=>$this->start, 'end'=>$this->end]);
-
         return $data;
 
 	}  
@@ -234,17 +140,6 @@ class MasterDashboardController extends CustomController
 	 */
 	public function loadList()
 	{
-
-        $data['latest_order_products'] =  $this->StockRepository->getLatest(5)->whereBetween('date',[$this->start, $this->end])->get();
-        
-        $data['latest_paid_order_devices'] =  $this->DevicesRepository->getLatest(['start'=>$this->start,'end'=>$this->end], 5)
-        ->where('status', 'paid')
-		->limit(5)
-		->orderBy('id', 'DESC')->groupBy('device_id')->get();
-
-        $data['latest_unpaid_order_devices'] = $this->DevicesRepository->getLatest(['start'=>$this->start,'end'=>$this->end],5)->where('status','!=','paid')->get();
-
-        return $data;
 
 	}  
 }

@@ -179,7 +179,8 @@ class PageController extends CustomController
 	{
 		$item = $this->repo->homepage();
 		
-		$item->addView();
+		if ($item)
+			$item->addView();
 			
 		return render('views/front/page.html.twig', [
 			'item' => $item,

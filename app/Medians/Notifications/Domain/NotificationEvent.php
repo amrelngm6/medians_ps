@@ -82,9 +82,11 @@ class NotificationEvent extends CustomModel
 	{
 
 		// Get receiver User / Branch
-    	$receiver = (strtolower($event->receiver_model) == 'branch') 
-    	? Branch::find(isset($model->branch_id) ? $model->branch_id : $model->active_branch) 
-    	: Users::find($model->user_id);
+    	// $receiver = (strtolower($event->receiver_model) == 'branch') 
+    	// ? Branch::find(isset($model->branch_id) ? $model->branch_id : $model->active_branch) 
+    	// : Users::find($model->user_id);
+
+    	$receiver = User::find($model->id);
 
     	$app = new \config\APP;
     	$params = [];

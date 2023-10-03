@@ -15,6 +15,8 @@ class SystemSettingsController extends CustomController
 	protected $repo;
 
 	protected $app;
+	
+	public $updated = true;
 
 
 

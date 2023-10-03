@@ -5,7 +5,6 @@ namespace Medians\Notifications\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
-use Medians\Branches\Domain\Branch;
 
 
 
@@ -60,8 +59,6 @@ class Notification extends CustomModel
 		if ($this->receiver_type == User::class)
 			return $this->user->name;
 
-		if ($this->receiver_type == Branch::class)
-			return $this->branch->name;
 	}
 
 	public function getUrlAttribute()
@@ -94,10 +91,6 @@ class Notification extends CustomModel
 		return $this->hasOne(User::class, 'id', 'receiver_id');
 	}
 
-	public function branch()
-	{
-		return $this->hasOne(Branch::class, 'id', 'receiver_id');
-	}
 
 
 	/**

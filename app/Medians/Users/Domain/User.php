@@ -6,8 +6,6 @@ use Shared\dbaser\CustomModel;
 
 use Medians\Mail\Application\MailService;
 
-use Medians\Plans\Domain\Plan;
-use Medians\Plans\Domain\PlanSubscription;
 use Medians\Roles\Domain\Role;
 use Medians\Roles\Domain\Permission;
 use \Medians\CustomFields\Domain\CustomField;
@@ -103,16 +101,6 @@ class User extends CustomModel
 	}
 
 
-	public function branch()
-	{
-		return $this->hasOne(Branch::class , 'id', 'active_branch')->with('plan');
-	}
-
-	public function branches()
-	{
-		return $this->hasMany(Branch::class , 'owner_id', 'id');
-	}
-
 
 	/**
 	 * Relation with role 
@@ -120,11 +108,6 @@ class User extends CustomModel
 	public function Role() 
 	{
 		return $this->hasOne(Role::class, 'id', 'role_id');
-	}
-
-	public function Plan() 
-	{
-		return $this->hasOneThrough(Plan::class, PlanSubscription::class, 'branch_id', 'id', 'active_branch', 'plan_id')->orderBy('id', 'DESC')->with('plan_features');
 	}
 
 	public function hasToken()

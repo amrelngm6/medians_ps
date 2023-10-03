@@ -4,7 +4,6 @@ namespace Medians\Users\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Users\Infrastructure\UserRepository;
-use Medians\Branches\Infrastructure\BranchRepository;
 
 
 class UserController extends CustomController
@@ -18,13 +17,11 @@ class UserController extends CustomController
 
 	protected $app;
 
-	protected $branchRepo;
 
 	function __construct()
 	{
 		$this->app = new \config\APP;
 		$this->repo = new UserRepository();
-		$this->branchRepo = new BranchRepository();
 	}
 
 
@@ -36,16 +33,12 @@ class UserController extends CustomController
 	 */
 	public function index()
 	{
-		// $this->checkBranch();
 		
-		$query = ($this->app->auth()->role_id == 1) ? $this->repo->getAll() : $this->repo->get(100, $this->app->branch->id);
-
-		$branches = ($this->app->auth()->role_id == 1) ? $this->branchRepo->get() : [$this->branchRepo->find($this->app->branch->id)];
+		$query = ($this->app->auth()->role_id == 1) ? $this->repo->getAll() : $this->repo->get();
 
 		return render('users', [
 			'load_vue'=> true,
 			'users' =>   $query,
-			'branches' =>   $branches,
 	        'title' => __('Users'),
 	    ]);
 	} 
@@ -121,7 +114,6 @@ class UserController extends CustomController
 				return __('ERR');
 
 			$params['role_id'] = !empty($params['role_id']) ? $params['role_id'] : 3;
-			$params['active_branch'] = isset($this->app->branch->id) ? $this->app->branch->id : 0;
 
 			$save = $this->repo->store($params);
 
@@ -195,7 +187,6 @@ class UserController extends CustomController
 			}			
 
 
-			$params['branch_id'] = isset($this->app->branch->id) ? $this->app->branch->id : 0;
 			$update = $this->repo->update($params);
 
         	return isset($update->id) 

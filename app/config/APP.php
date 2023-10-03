@@ -26,6 +26,8 @@ class APP
 
 	public $branch;
 
+	public $hasBranches = false;
+
 	public $CONF;
 
 	public $currentPage;
@@ -100,7 +102,12 @@ class APP
 	public function auth()
 	{
 		$check = !empty($this->auth) ? $this->auth : (new AuthService())->checkSession();
-		$this->branch = !empty($this->branch) ? $this->branch : (isset($check->branch) ? $check->branch : $this->checkAPISession()->branch);
+		
+		$this->branch = (object) ['id'=>0];
+
+		if ($this->hasBranches)
+			$this->branch = !empty($this->branch) ? $this->branch : (isset($check->branch) ? $check->branch : $this->checkAPISession()->branch);
+
 		return $check ? $check : $this->checkAPISession();
 	}
 
@@ -210,15 +217,6 @@ class APP
 
 		$data = array(
 			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'master_dashboard'),
-	        array('title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
-			array('title'=>__('Plans'),  'icon'=>'fa-desktop', 'link'=>'#plans', 'sub'=>
-				[
-	                array('title'=>__('plans'),  'icon'=>'', 'link'=>'admin/plans', 'component'=>'plans'),
-	                array('title'=>__('plan_features'),  'icon'=>'', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
-	                array('title'=>__('plan_subscriptions'), 'icon'=>'', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
-			        array('title'=>__('payments'),  'icon'=>'fa-credit-card', 'link'=>'admin/payments', 'component'=>'payments'),
-				]
-			),
 
 			array('title'=>__('notifications'),  'icon'=>'fa-desktop', 'link'=>'#notifications', 'sub'=>
 				[
@@ -227,8 +225,8 @@ class APP
 				]
 			),
 
-	        array('title'=>__('Pages'),  'icon'=>'fa-pages', 'link'=>'admin/pages', 'component'=>'pages'),
-	        array('title'=>__('Blog'),  'icon'=>'fa-article', 'link'=>'admin/blog', 'component'=>'blog'),
+	        array('title'=>__('Pages'),  'icon'=>'fa-file', 'link'=>'admin/pages', 'component'=>'pages'),
+	        array('title'=>__('Blog'),  'icon'=>'fa-newspaper', 'link'=>'admin/blog', 'component'=>'blog'),
 	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
 	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
 			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
@@ -291,7 +289,6 @@ class APP
 					array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
 	                array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'', 'link'=>'admin/notifications', 'component'=>'notifications'),
 			        array('permission'=>'Branch.index', 'title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
-	                array('permission'=>'PlanSubscription.index', 'title'=>__('plan_subscriptions'), 'icon'=>'', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
 	            ]
 	        ),
 			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),

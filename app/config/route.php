@@ -108,10 +108,6 @@ if(isset($app->auth()->id))
         ? \Medians\MasterDashboardController::class.'@index' 
         : \Medians\DashboardController::class.'@index'); 
 
-    Macaw::get('/get-started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
-    Macaw::get('/get_started', \Medians\Users\Application\GetStartedController::class.'@get_started'); 
-    Macaw::get('/get_started/plans', \Medians\Users\Application\GetStartedController::class.'@plans'); 
-    Macaw::get('/admin/plan_payment', \Medians\Payments\Application\PaymentController::class.'@confirmPlanPayment'); 
     Macaw::get('/admin/payment_success', \Medians\Payments\Application\PaymentController::class.'@payment_success'); 
     Macaw::get('/admin/payment_failed', \Medians\Payments\Application\PaymentController::class.'@payment_failed'); 
 
@@ -256,12 +252,6 @@ if(isset($app->auth()->id))
     Macaw::get('/admin/branches', \Medians\Branches\Application\BranchController::class.'@index');
 
 
-    /**
-    * @return Plans subscriptions
-    */
-    Macaw::get('/admin/plan_subscriptions', \Medians\Plans\Application\PlanSubscriptionController::class.'@index');
-
-
 
     /**
     * @return Content Notifications 
@@ -309,14 +299,6 @@ if(isset($app->auth()->id))
     * @return Notifications events 
     */
     Macaw::get('/admin/notifications_events', \Medians\Notifications\Application\NotificationEventController::class.'@index');
-
-    /**
-    * @return Plans
-    */
-    Macaw::get('/admin/plans/index', \Medians\Plans\Application\PlanController::class.'@index');
-    Macaw::get('/admin/plans', \Medians\Plans\Application\PlanController::class.'@index');
-    Macaw::get('/admin/plan_features/index', \Medians\Plans\Application\PlanFeatureController::class.'@index');
-    Macaw::get('/admin/plan_features', \Medians\Plans\Application\PlanFeatureController::class.'@index');
 
 
     

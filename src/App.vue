@@ -35,31 +35,14 @@ import navbar from './components/navbar.vue'
 import dashboard from './components/dashboard.vue' // Dashboard for branch admin
 import master_dashboard from './components/master_dashboard.vue' // Dashboard for Master
 import categories from './components/categories.vue'
-import expenses from './components/expenses.vue'
-import payments from './components/payments.vue'
-import devices_orders from './components/devices_orders.vue'
-import calendar from './components/calendar.vue'
-import games from './components/games.vue'
-import manage_devices from './components/manage_devices.vue'
-import products from './components/products.vue'
-import invoices from './components/invoices.vue'
-import invoice from './components/invoice.vue'
-import stock from './components/stock.vue'
 import settings from './components/settings.vue'
 import system_settings from './components/system_settings.vue'
 import users from './components/users.vue'
 import customers from './components/customers.vue'
-import reports from './components/reports.vue'
-import get_started from './components/get-started.vue'
-import plans from './components/plans.vue'
-import plan_features from './components/plan_features.vue'
-import branches from './components/branches.vue'
-import plan_subscriptions from './components/plan_subscriptions.vue'
 import pages from './components/pages.vue'
 import blog from './components/blog.vue'
 import notifications_events from './components/notifications_events.vue'
 import notifications from './components/notifications.vue'
-import booking_follow from './components/booking_follow.vue'
 
 export default {
     name: 'app',
@@ -69,31 +52,14 @@ export default {
         dashboard,
         master_dashboard,
         categories,
-        expenses,
-        payments,
-        devices_orders,
-        calendar,
-        games,
-        manage_devices,
-        products,
-        invoices,
-        invoice,
-        stock,
         settings,
         system_settings,
         users,
         customers,
-        reports,
-        get_started,
-        plans,
-        plan_features,
-        plan_subscriptions,
-        branches,
         pages,
         blog,
         notifications,
         notifications_events,
-        booking_follow,
         navbar
     },
     data() {
@@ -248,14 +214,17 @@ export default {
          */
         defaultPage()
         {
-            if (this.auth && this.auth.role_id === 1)
+            if (this.auth && this.auth.role_id === 1) {
                 return 'master_dashboard';
+            }
 
 
-            if (this.auth && this.auth.role_id === 3)
+            if (this.auth && this.auth.role_id > 1) {
                 return 'dashboard';
+            }
 
-
+            console.log(this.auth);
+            
             return 'get_started';
 
         }, 

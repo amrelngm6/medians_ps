@@ -29,7 +29,7 @@ class CustomerRepository
 
 	public function get($limit = 100)
 	{
-		return Customer::withCount('bookings')->with('last_invoice')->where('active_branch', $this->app->branch->id)->limit($limit)->get();
+		return Customer::where('active_branch', $this->app->branch->id)->limit($limit)->get();
 	}
 
 

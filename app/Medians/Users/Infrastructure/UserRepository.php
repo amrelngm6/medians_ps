@@ -19,12 +19,12 @@ class UserRepository
 
 	public function find($id)
 	{
-		return User::with('Role', 'Plan', 'branch', 'branches')->find($id);
+		return User::with('Role')->find($id);
 	}
 
 	public function findItem($id)
 	{
-		return User::with('Role', 'Plan', 'branch', 'branches')->find($id);
+		return User::with('Role')->find($id);
 	}
 
 	public function findByActivationCode($code)
@@ -69,14 +69,14 @@ class UserRepository
 		return User::where('password', $password)->where('email' , $email)->first();
 	}
 
-	public function get($limit = 100, $branchId = 0)
+	public function get($limit = 100)
 	{
-		return User::with('Role', 'Plan', 'branch')->where('active_branch', $branchId)->limit($limit)->get();
+		return User::with('Role')->limit($limit)->get();
 	}
 
 	public function getAll()
 	{
-		return User::with('Role', 'Plan', 'branch')->get();
+		return User::with('Role')->get();
 	}
 
 

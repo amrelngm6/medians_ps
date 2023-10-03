@@ -4,8 +4,6 @@ namespace Medians\Notifications\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Notifications\Infrastructure\NotificationRepository;
-use Medians\Devices\Infrastructure\OrderDevicesRepository;
-use Medians\Branches\Infrastructure\BranchRepository;
 
 class NotificationController extends CustomController
 {
@@ -17,14 +15,11 @@ class NotificationController extends CustomController
 	
 	protected $branchRepo;
 
-	protected $orderDeviceRepo;
 
 
 	function __construct()
 	{
 		$this->repo = new NotificationRepository();
-		$this->orderDeviceRepo = new OrderDevicesRepository();
-		$this->branchRepo = new BranchRepository();
 	}
 
 
@@ -201,38 +196,8 @@ class NotificationController extends CustomController
 
 
 
-	/**
-	 * Handle the bookings notifications
-	 * in background
-	 */ 
-	public function handleBookingsNotifications()
-	{
-		$this->branchRepo = new BranchRepository();
-
-		foreach ($this->branchRepo->getIds() as $key => $value) 
-		{
-			$save = $this->handleBranchNotifications($value);
-		}
-
-		return true;
-	}
 
 
-
-	/**
-	*  Handle Branch Notifications
-	*/
-	public function handleBranchNotifications($branch) 
-	{
-
-		$items = $this->orderDeviceRepo->getByBranch($branch->id);
-
-		foreach ($items as $key => $value) {
-			$this->store($branch, $value);
-		}
-
-		return $this;
-	}
 
 
 

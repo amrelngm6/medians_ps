@@ -27,12 +27,7 @@ class Customer extends CustomModel
 
 
 
-	protected $appends = [ 'photo', 'last_invoice_code', 'not_removeable'];
-
-	public function getLastInvoiceCodeAttribute() : ?String
-	{
-		return isset($this->last_invoice->code) ? $this->last_invoice->code : '';
-	}
+	protected $appends = [ 'photo', 'not_removeable'];
 
 	public function getNotRemoveableAttribute() 
 	{
@@ -70,17 +65,6 @@ class Customer extends CustomModel
 				}, (array) json_decode($this->SelectedOption))
 			, 'value', 'code');
 
-	}
-
-
-	public function bookings()
-	{
-		return $this->hasMany(OrderDevice::class, 'customer_id', 'id');
-	}
-
-	public function last_invoice()
-	{
-		return $this->hasOne(Order::class, 'customer_id', 'id');
 	}
 
 

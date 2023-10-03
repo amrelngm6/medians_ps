@@ -16,7 +16,6 @@ class Settings extends CustomModel
 
 
 	protected $fillable = [
-    	'branch_id',
     	'code',
     	'value',
     	'model',

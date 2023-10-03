@@ -3,7 +3,6 @@
 namespace Medians\Auth\Application;
 
 
-use Medians\Branches\Application\BranchController;
 use Medians\Mail\Application\MailService;
 
 use Google\Client;

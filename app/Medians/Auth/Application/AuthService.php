@@ -3,7 +3,6 @@
 namespace Medians\Auth\Application;
 
 
-use Medians\Branches\Application\BranchController;
 
 use Medians\Auth\Domain\AuthModel;
 

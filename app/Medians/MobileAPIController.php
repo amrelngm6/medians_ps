@@ -118,9 +118,6 @@ class MobileAPIController extends CustomController
 					$return = (new Users\Application\GetStartedController())->store_setting();
 					break;
 
-				case 'User.get_started_save_plan':
-					$return = (new Users\Application\GetStartedController())->saveActivePlan();
-					break;
 
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
@@ -130,13 +127,6 @@ class MobileAPIController extends CustomController
 					$return = (new Branches\Application\BranchController())->store();
 					break;
 
-				case 'PlanFeature.create':
-					$return = (new Plans\Application\PlanFeatureController())->store();
-					break;
-
-				case 'Plan.create':
-					$return = (new Plans\Application\PlanController())->store();
-					break;
 
 				case 'Device.create':
 					$return = (new Devices\Application\DeviceController())->store();
@@ -261,12 +251,6 @@ class MobileAPIController extends CustomController
                 $return =  (new Users\Application\UserController())->update(); 
                 break;
 
-            case 'Plan.update':
-                $return =  (new Plans\Application\PlanController())->update(); 
-                break;
-            case 'PlanFeature.update':
-                $return =  (new Plans\Application\PlanFeatureController())->update(); 
-                break;
             case 'Page.update':
                 $return =  (new Pages\Application\PageController())->update(); 
                 break;
@@ -358,14 +342,6 @@ class MobileAPIController extends CustomController
 
 				case 'Stock.delete':
 					return response((new Products\Application\StockController())->delete());
-					break;
-
-				case 'Plan.delete':
-					return response((new Plans\Application\PlanController())->delete());
-					break;
-
-				case 'PlanFeature.delete':
-					return response((new Plans\Application\PlanFeatureController())->delete());
 					break;
 
 				case 'Page.delete':

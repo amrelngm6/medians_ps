@@ -74,8 +74,8 @@ export default {
         {
 
             this.showMenu = false
-            page.link = this.checkBranchLink(page.link);
-            page.component = this.checkBranchComponent(page.component);
+            // page.link = this.checkBranchLink(page.link);
+            // page.component = this.checkBranchComponent(page.component);
             this.activePage = page.link;
             page.sub ? null : this.$parent.switchTab(page);
             this.resetClasses() 
