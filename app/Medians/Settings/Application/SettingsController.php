@@ -35,10 +35,10 @@ class SettingsController extends CustomController
 	 */
 	public function index()
 	{
-		$this->checkBranch();
 
 		return render('settings', [
 		        'load_vue' => true,
+		        'setting' => $this->getAll(),
 	        	'title' => __('Settings'),
 	    ]);
 	} 

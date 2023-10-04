@@ -248,7 +248,7 @@ class APP
 			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
 			array('permission'=>'Customer.index', 'title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
-			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'', 'link'=>'admin/notifications', 'component'=>'notifications'),
+			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
 			array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
 			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);

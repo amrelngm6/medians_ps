@@ -34,7 +34,7 @@ class SettingsRepository
 	{
 		try {
 			
-			$check = Settings::where('branch_id', $this->app->branch->id)->where('code', $code)->first();
+			$check = Settings::where('code', $code)->first();
 			return isset($check->value) ? $check->value : '';
 		} catch (\Exception $e) {
     		throw new \Exception($e->getMessage(), 1);
@@ -48,10 +48,7 @@ class SettingsRepository
 	public function getAll()
 	{
 		try {
-
-			$nramchId = isset($this->app->branch->id) ? $this->app->branch->id : 0;
-			
-			return Settings::where('branch_id', $nramchId)->get();
+			return Settings::get();
 
 		} catch (\Exception $e) {
     		throw new \Exception($e->getMessage(), 1);
@@ -79,7 +76,7 @@ class SettingsRepository
 	*/
 	public function delete($code) 
 	{
-		return Settings::where('branch_id', $this->app->branch->id)->where('code', $code)->delete();
+		return Settings::where('code', $code)->delete();
 	}
 
 
@@ -88,7 +85,7 @@ class SettingsRepository
 	*/
 	public function clear() 
 	{
-		Settings::where('branch_id', $this->app->branch->id)->delete();
+		Settings::delete();
 		
 		return $this;
 	}
