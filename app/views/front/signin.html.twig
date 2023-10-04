@@ -1,64 +1,106 @@
 {% include 'views/front/includes/head.html.twig' %}
-<section class="sigin__page bg__white">
-   <div class="container">
-      <div class="signin__wrapper">
-         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-6">
-               <div class="signin__content__left">
-                  <div class="signin__head">
-                     <h3>
-                        {{lang.__('Lets Get Started!')}}
-                     </h3>
-                     <p class="accout" >
-                        <span class="block " style="width: 100%;">{{lang.__('Create new account')}}? <a href="/signup"><b>{{lang.__('Signup')}}</b></a></span>
 
-                        <a href="{{google_login}}" class="google-login-btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="inline w-4 h-4 mr-3 text-gray-900 fill-current" viewBox="0 0 48 48" width="28px" height="28px"><path fill="#fbc02d" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12 s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20 s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#e53935" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039 l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path><path fill="#4caf50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36 c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path><path fill="#1565c0" d="M43.611,20.083L43.595,20L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571 c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path></svg>
-                           <span>{{lang.__('Login with Google')}}</span>
-                        </a>
-                     </p>
-                  </div>
-                  <form action="/login" method="POST" id="login-form">
-                     <div class="row g-4">
-                        <div class="col-lg-12">
-                           <div class="form__grp">
-                              <label for="emailid">{{lang.__('Email')}}</label>
-                              <input name="params[email]"  type="email" id="emailid" placeholder="Enter Your Email..." required>
-                           </div>
-                        </div>
-                        <div class="col-lg-12">
-                           <div class="form__grp">
-                              <label for="paswords">{{lang.__('Password')}}</label>
-                              <input name="params[password]" minlength="5" type="password" id="paswords" placeholder="Enter Your Password..." required>
-                           </div>
-                        </div>
-                     </div>
-                     <p style="padding-top: 15px;">
-                        <button type="submit" class="cmn--btn">
-                           <span>
-                              {{lang.__('Login')}}
-                           </span>
-                        </button>
-                        <a href="/" class="danger" style="padding: 10px; ">
-                           <span>{{lang.__('Back home')}}</span>
-                        </a>
-                     </p>
+   <link rel="stylesheet" href="/dist/css/app.css">
 
-                  </form>
-               </div>
-            </div>
-            <div class="col-lg-5">
-               <div class="signin__thumb">
-                  <img src="/src/front_assets/img/wepik-export-20230526231330BFpe.webp" alt="signin">
-               </div>
-            </div>
-         </div>
+<section class="">
+   <div class="container mx-auto">
+
+   <section class="h-screen">
+  <div class="h-full">
+    <!-- Left column container with background-->
+    <div
+      class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+      <div
+        class="shrink-1 mb-12 grow-0 basis-auto md:mb-0 w-2/4">
+        <img
+          src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="w-full"
+          alt="Sample image" />
       </div>
+
+      <!-- Right column container -->
+      <div class="mb-12 md:mb-0 w-1/4">
+         <form action="/login" method="POST" id="login-form">
+                     
+          <!-- Email input -->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <input
+              type="text"
+              class="peer bg-white block w-full rounded border-0 bg-transparent px-4  py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleFormControlInput2"
+              placeholder="Email address" name="params[email]"  />
+          </div>
+
+          <!-- Password input -->
+          <div class="relative mb-6" data-te-input-wrapper-init>
+            <input
+              type="password"
+              class="peer bg-white w-full rounded border-0 bg-transparent px-4  py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+              id="exampleFormControlInput22"
+              placeholder="Password" name="params[password]"  />
+          </div>
+
+
+          <!-- Login button -->
+          <div class="text-center lg:text-left">
+            <button
+              type="submit"
+              class="inline-block rounded bg-primary px-4 py-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+              data-te-ripple-init
+              data-te-ripple-color="light">
+              Login
+            </button>
+
+          </div>
+        </form>
+         <p class="py-4 text-center "><a class="underline font-semibold" href="/signup">Back to signup</a></p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
    </div>
 </section>
 
    
-{% include 'views/front/includes/footer-assets.html.twig' %}
+
+
+   <!--Jquery 3 6 0 Min Js-->
+   <script src="/src/builder/js/jquery.min.js"></script>
+   <!--Bootstrap bundle Js-->
+   <script src="/src/builder/assets/js/bootstrap.bundle.min.js"></script>
+   
+   <script>
+   
+      jQuery(document).on('submit','form', function(e){
+         e.preventDefault();
+
+         let action = $(this).attr('action');
+
+         $.ajax({
+               url: action,
+               type: "POST",             
+               data: new FormData(this),
+               dataType: "json",
+               contentType: false,       
+               cache: false,             
+               processData:false, 
+               success: function(html) 
+               {
+                  if (html && html.error)
+                  {
+                     alert(html.error)
+                  } else {
+                     window.location.href = '/dashboard';
+                  }
+
+               }
+         });
+      });
+
+   </script>
+   </style>
 
 </body>
 
