@@ -225,8 +225,8 @@ class APP
 				]
 			),
 
-	        array('title'=>__('Pages'),  'icon'=>'fa-file', 'link'=>'admin/pages', 'component'=>'pages'),
-	        array('title'=>__('Blog'),  'icon'=>'fa-newspaper', 'link'=>'admin/blog', 'component'=>'blog'),
+	        // array('title'=>__('Pages'),  'icon'=>'fa-file', 'link'=>'admin/pages', 'component'=>'pages'),
+	        // array('title'=>__('Blog'),  'icon'=>'fa-newspaper', 'link'=>'admin/blog', 'component'=>'blog'),
 	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
 	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
 			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
@@ -246,51 +246,10 @@ class APP
 
 		$data = array(
 			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
-			array('permission'=>'OrderDevice.follow', 'title'=>__('bookings_follow'),  'icon'=>'fa-tv', 'link'=>'admin/devices/booking_follow', 'component'=>"booking_follow"),
-			array('title'=>__('Bookings'),  'icon'=>'fa-calendar', 'link'=>'#bookings', 'sub'=>
-				[
-					array('permission'=>'OrderDevice.calendar', 'title'=>__('Calendar'),  'icon'=>'fa-dashboard', 'link'=>'admin/calendar', 'component'=>"calendar"),
-	                array('permission'=>'OrderDevice.index', 'title'=>__('All bookings'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices_orders?all=true', 'component'=>'devices_orders'),
-	                array('permission'=>'OrderDevice.active', 'title'=>__('Active bookings'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices_orders?status=active', 'component'=>'devices_orders'),
-	                array('permission'=>'OrderDevice.upcoming', 'title'=>__('Upcoming bookings'), 'icon'=>'fa-dashboard','link'=>'admin/devices_orders?status=new', 'component'=>'devices_orders'),
-	                array('permission'=>'OrderDevice.completed', 'title'=>__('Completed bookings'), 'icon'=>'fa-dashboard','link'=>'admin/devices_orders?status=completed', 'component'=>'devices_orders'),
-	                array('permission'=>'OrderDevice.paid', 'title'=>__('Paid bookings'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices_orders?status=paid', 'component'=>'devices_orders'),
-	                array('permission'=>'OrderDevice.canceled', 'title'=>__('Canceled bookings'), 'icon'=>'fa-dashboard', 'link'=>'admin/devices_orders?status=canceled', 'component'=>'devices_orders'),
-				]
-			),
-			array('title'=>__('Devices'),  'icon'=>'fa-desktop', 'link'=>'#devices', 'sub'=>
-				[
-	                array('permission'=>'Device.manage', 'title'=>__('manage devices'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices/manage', 'component'=>'manage_devices'),
-	                array('permission'=>'Game.index', 'title'=>__('games'),  'icon'=>'fa-dashboard', 'link'=>'admin/games', 'component' => 'games'),
-	                array('permission'=>'Category.devices', 'title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'admin/devices/categories', 'component'=>'categories'),
-				]
-			),
-	        array('title'=>__('Orders'),  'icon'=>'fa-file-invoice', 'link'=>'#invoices', 'sub'=>
-	            [
-	                array('permission'=>'Order.index', 'title'=>__('Orders'),  'icon'=>'fa-dashboard', 'link'=>'admin/invoices?all=true', 'component'=>'invoices'),
-	                array('permission'=>'Order.paid', 'title'=>__('Paid orders'),  'icon'=>'fa-dashboard', 'link'=>'admin/invoices?status=paid', 'component'=>'invoices'),
-	                array('permission'=>'Order.refund', 'title'=>__('Refund orders'),  'icon'=>'fa-dashboard', 'link'=>'admin/invoices?status=refund', 'component'=>'invoices'),
-	            ]
-	        ),
-	        array('title'=>__('Products'),  'icon'=>'fa-shopping-cart', 'link'=>'#products', 'sub'=>
-	            [
-	                array('permission'=>'Product.index', 'title'=>__('Products list'),  'icon'=>'fa-dashboard', 'link'=>'admin/products', 'component'=>'products'),
-	                array('permission'=>'Category.products', 'title'=>__('categories'),  'icon'=>'fa-dashboard', 'link'=>'admin/products/categories', 'component'=>'categories'),
-	                array('permission'=>'Product.stock_alert', 'title'=>__('Stock alert products'),  'icon'=>'fa-dashboard', 'link'=>'admin/products/stock_alert', 'component'=>'products'),
-	                array('permission'=>'Product.stock_out', 'title'=>__('Stock out products'),  'icon'=>'fa-dashboard', 'link'=>'admin/products/stock_out', 'component'=>'products'),
-	            ]
-	        ),
-	        array('permission'=>'Stock.index', 'title'=>__('Stock'),  'icon'=>'fa-warehouse', 'link'=>'admin/stock' , 'component'=>'stock'),
-	        array('permission'=>'Expense.index', 'title'=>__('Expenses'),  'icon'=>'fa-credit-card', 'link'=>'admin/expenses', 'component'=>'expenses'),
-	        array('permission'=>'Customer.index', 'title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
+			array('permission'=>'Customer.index', 'title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
-	        array('title'=>__('Account'),  'icon'=>'fa-cogs', 'link'=>'#account', 'sub'=>
-	            [
-					array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
-	                array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'', 'link'=>'admin/notifications', 'component'=>'notifications'),
-			        array('permission'=>'Branch.index', 'title'=>__('Branches'),  'icon'=>'fa-users', 'link'=>'admin/branches', 'component'=>'branches'),
-	            ]
-	        ),
+			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'', 'link'=>'admin/notifications', 'component'=>'notifications'),
+			array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
 			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
 
