@@ -26,6 +26,26 @@ import QrcodeVue from 'qrcode.vue';
 Vue.component('qr_code', QrcodeVue);
 Vue.component('vue-medialibrary-manager', () => import('./components/includes/Manager'));
 Vue.component('vue-medialibrary-field', () => import('./components/includes/Field'));
+Vue.component('notifications_events', () => import('./components/notifications_events'));
+Vue.component('notifications', () => import('./components/notifications'));
+Vue.component('login', () => import('./components/login-dashboard')); // Used if sessions expired but needs refresh
+Vue.component('SideMenu', () => import('./components/side-menu'));
+Vue.component('navbar', () => import('./components/navbar'));
+Vue.component('dashboard', () => import('./components/dashboard')); // Dashboard for branch admin
+Vue.component('master_dashboard', () => import('./components/master_dashboard')); // Dashboard for Master
+Vue.component('categories', () => import('./components/categories'));
+Vue.component('settings', () => import('./components/settings'));
+Vue.component('system_settings', () => import('./components/system_settings'));
+Vue.component('users', () => import('./components/users'));
+Vue.component('customers', () => import('./components/customers'));
+Vue.component('pages', () => import('./components/pages'));
+Vue.component('blog', () => import('./components/blog'));
+Vue.component('students', () => import('./components/students'));
+Vue.component('drivers', () => import('./components/drivers'));
+Vue.component('routes', () => import('./components/routes'));
+Vue.component('vehicles', () => import('./components/vehicles'));
+
+
 
 Vue.config.productionTip = false
 

@@ -96,45 +96,32 @@ class APIController extends CustomController
 					$return = (new Users\Application\UserController())->store();
 					break;
 
-				case 'Branch.create':
-					$return = (new Branches\Application\BranchController())->store();
+				case 'Student.create':
+					$return = (new Students\Application\StudentController())->store();
 					break;
 
-				case 'Device.create':
-					$return = (new Devices\Application\DeviceController())->store();
+				case 'Driver.create':
+					$return = (new Drivers\Application\DriverController())->store();
+					break;
+
+				case 'Routes.create':
+					$return = (new Routes\Application\RouteController())->store();
+					break;
+
+				case 'Vehicle.create':
+					$return = (new Vehicles\Application\VehicleController())->store();
 					break;
 
 				case 'Category.create':
 					$return = (new Categories\Application\CategoryController())->store();
 					break;
-				case 'Game.create':
-					$return = (new Games\Application\GameController())->store();
-					break;
-				case 'Product.create':
-					$return = (new Products\Application\ProductController())->store();
-					break;
-				case 'OrderDevice.addProduct':
-					$return = (new Devices\Application\CalendarController())->addProduct();
-					break;
-				case 'Stock.create':
-					$return = (new Products\Application\StockController())->store();
-					break;
-				case 'Expense.create':
-					$return = (new Expenses\Application\ExpenseController())->store();
-					break;
-				case 'Customer.create':
-					$return = (new Customers\Application\CustomerController())->store();
-					break;
+
 				case 'Event.create':
 					$params = (array)  json_decode($request->get('params')['event']);
 					$check = (new DevicesRepository())->storeOrder($params);
 					$return = isset($check->id) ? ['result'=>__('Created')] : $check;
 					break;
 
-				case 'Booking.create':
-					$params = (array)  json_decode($request->get('params'));
-					$return = (new DevicesRepository())->storeBooking($params);
-					break;
 
 	            case 'User.create':
 	                $return =  (new Users\Application\UserController())->store(); 
@@ -189,32 +176,23 @@ class APIController extends CustomController
 				$return = (new Categories\Application\CategoryController)->update($request);
 				break;
 
-			case 'Game.update':
-				$return = (new Games\Application\GameController())->update($request);
-				break;
-			case 'Product.update':
-				$return = (new Products\Application\ProductController())->update();
-				break;
-			case 'Expense.update':
-				$return = (new Expenses\Application\ExpenseController())->update();
-				break;
-			case 'Event.update':
-				$params = (array)  json_decode($request->get('params')['event']);
-				$check = (new DevicesRepository())->updateOrder($params);
-				$return = isset($check->id) ? ['result'=>__('Updated')] : ['result'=>'Error'];
+			case 'Student.update':
+				$return = (new Students\Application\StudentController())->update();
 				break;
 
-			case 'Booking.update':
-				$params = (array)  json_decode($request->get('params'));
-				$return = (new DevicesRepository())->updateBooking($params);
+			case 'Driver.update':
+				$return = (new Drivers\Application\DriverController())->update();
+				break;
+
+			case 'Routes.update':
+				$return = (new Routes\Application\RouteController())->update();
+				break;
+
+			case 'Vehicle.update':
+				$return = (new Vehicles\Application\VehicleController())->update();
 				break;
 
 
-			case 'Event.cancel':
-				$params = (array)  json_decode($request->get('params')['event']);
-				$check = (new DevicesRepository())->cancelOrder($params);
-				$return = isset($check->id) ? ['result'=>__('Updated')] : ['result'=>'Error'];
-				break;
             case 'Settings.update':
                 $return = (new Settings\Application\SettingsController())->update(); 
                 break;
@@ -300,12 +278,20 @@ class APIController extends CustomController
 					$return = (new Products\Application\ProductController())->delete();
 					break;
 					
-				case 'Game.delete':
-					return response((new Games\Application\GameController())->delete());
+				case 'Student.delete':
+					return response((new Students\Application\StudentController())->delete());
 					break;
 					
-				case 'Device.delete':
-					return response((new Devices\Application\DeviceController())->delete());
+				case 'Driver.delete':
+					return response((new Drivers\Application\DriverController())->delete());
+					break;
+					
+				case 'Routes.delete':
+					return response((new Routes\Application\RouteController())->delete());
+					break;
+
+				case 'Vehicle.delete':
+					return response((new Vehicles\Application\VehicleController())->delete());
 					break;
 
 				case 'User.delete':

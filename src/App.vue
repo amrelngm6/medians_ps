@@ -29,38 +29,10 @@
 const axios = require('axios').default;
 
 
-import login from './components/login-dashboard.vue' // Used if sessions expired but needs refresh
-import SideMenu from './components/side-menu.vue'
-import navbar from './components/navbar.vue'
-import dashboard from './components/dashboard.vue' // Dashboard for branch admin
-import master_dashboard from './components/master_dashboard.vue' // Dashboard for Master
-import categories from './components/categories.vue'
-import settings from './components/settings.vue'
-import system_settings from './components/system_settings.vue'
-import users from './components/users.vue'
-import customers from './components/customers.vue'
-import pages from './components/pages.vue'
-import blog from './components/blog.vue'
-import notifications_events from './components/notifications_events.vue'
-import notifications from './components/notifications.vue'
 
 export default {
     name: 'app',
     components: {
-        login,
-        SideMenu,
-        dashboard,
-        master_dashboard,
-        categories,
-        settings,
-        system_settings,
-        users,
-        customers,
-        pages,
-        blog,
-        notifications,
-        notifications_events,
-        navbar
     },
     data() {
         return {
@@ -224,7 +196,7 @@ export default {
             }
 
             console.log(this.auth);
-            
+
             return 'get_started';
 
         }, 
@@ -252,6 +224,21 @@ export default {
             var params = new URLSearchParams();
             params.append('type', type)
             params.append('params[id]', item.id)
+            this.handleRequest(params, '/api/delete').then(response => {
+                this.$alert(response.result)
+            })
+        },
+
+        deleteByKey(itemKey, itemValue, type) {
+            
+            if (!window.confirm(this.__('confirm_delete')))
+            {
+                return null;
+            }
+
+            var params = new URLSearchParams();
+            params.append('type', type)
+            params.append('params['+itemKey+']', itemValue)
             this.handleRequest(params, '/api/delete').then(response => {
                 this.$alert(response.result)
             })

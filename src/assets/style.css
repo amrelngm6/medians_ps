@@ -657,6 +657,7 @@ body .sidebar-edit-form
 {
     position: fixed;
     top: 60px;
+    height: calc(100vh - 60px);
     right: 0;
     padding: 0;
     z-index: 9;
@@ -669,14 +670,11 @@ body .sidebar-edit-form
 {
   padding: 16px;
 }
-body .sidebar-create-form > div,
-body .sidebar-edit-form  > div
-{
-    height: calc(100vh - 90px);
-}
+
 body .sidebar-create-form > div
 {
     padding-top: 40px;
+    height: 100%;
 }
 body .sidebar-edit-form  > div
 {

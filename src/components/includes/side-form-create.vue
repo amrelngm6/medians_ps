@@ -1,0 +1,33 @@
+<template>
+    <div class="sidebar-create-form" >
+        <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
+            <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
+                <div class="w-full flex">
+                    <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="$parent.__('ADD_new')"></h1>
+                    <span class="cursor-pointer py-1 px-2" @click="$parent.showAddSide = false"><close_icon /></span>
+                </div>
+                <input name="type" type="hidden" :value="model">
+                <input name="params[active]" type="hidden" value="1">
+                
+                <div class="py-1 w-full" v-for="column in columns" v-if="columns">
+                    <div class="w-full" v-if="column && columns">
+                        <input :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-if="column.fillable"  :placeholder="column.title">
+                    </div>
+                </div>
+
+                <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="$parent.__('save')"></button>
+            </form>
+        </div>
+    </div>
+</template>
+<script>
+
+export default 
+{
+    props: [
+        'columns',
+        'model',
+    ],
+
+};
+</script>

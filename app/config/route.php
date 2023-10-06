@@ -24,9 +24,6 @@ Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\Repo
 /**
  * These routes for guests 
  */ 
-// Macaw::get('/home', \Medians\Pages\Application\PageController::class.'@page');
-// Macaw::get('/arabic', \Medians\Pages\Application\PageController::class.'@page');
-// Macaw::get('/arabic/', \Medians\Pages\Application\PageController::class.'@page');
 Macaw::get('/(:all)', \Medians\Pages\Application\PageController::class.'@pages');
 Macaw::get('', \Medians\Pages\Application\PageController::class.'@home');
 
@@ -146,17 +143,6 @@ if(isset($app->auth()->id))
 
 
 
-    /**
-    * @return devices
-    */
-    Macaw::get('/admin/devices/manage', \Medians\Devices\Application\DeviceController::class.'@manage');
-    Macaw::get('/admin/devices/orders', \Medians\Devices\Application\DeviceController::class.'@orders');
-    Macaw::get('/admin/devices_orders', \Medians\Devices\Application\DeviceController::class.'@orders');
-    Macaw::get('/admin/devices/index', \Medians\Devices\Application\DeviceController::class.'@index');
-    Macaw::get('/admin/devices/calendar', \Medians\Devices\Application\CalendarController::class.'@index');
-    Macaw::get('/admin/calendar', \Medians\Devices\Application\CalendarController::class.'@index');
-    Macaw::get('/admin/devices/booking_follow', \Medians\Devices\Application\BookingController::class.'@index');
-
     Macaw::get('/admin/devices/categories', function ()  {
         try 
         {
@@ -170,59 +156,6 @@ if(isset($app->auth()->id))
 
 
     /**
-    * @return Games
-    */
-    Macaw::get('/admin/games/index', \Medians\Games\Application\GameController::class.'@index');
-    Macaw::get('/admin/games', \Medians\Games\Application\GameController::class.'@index');
-
-    /**
-    * @return Discounts
-    */
-    Macaw::get('/admin/discounts/index', \Medians\Games\Application\GameController::class.'@index');
-    Macaw::get('/admin/discounts', \Medians\Games\Application\GameController::class.'@index');
-
-
-    /**
-    * @return Products
-    */
-    Macaw::get('/admin/products/stock_alert', \Medians\Products\Application\ProductController::class.'@stock_alert');
-    Macaw::get('/admin/products/stock_out', \Medians\Products\Application\ProductController::class.'@stock_out');
-    Macaw::get('/admin/products/orders', \Medians\Products\Application\ProductController::class.'@orders');
-    Macaw::get('/admin/products/index', \Medians\Products\Application\ProductController::class.'@index');
-    Macaw::get('/admin/products', \Medians\Products\Application\ProductController::class.'@index');
-    Macaw::get('/admin/products/categories', function ()  {
-        return (new \Medians\Categories\Application\CategoryController())->index('Medians\Products\Domain\Product');
-    });
-
-
-    /**
-    * @return Stock
-    */
-    Macaw::get('/admin/stock/index', \Medians\Products\Application\StockController::class.'@index');
-    Macaw::get('/admin/stock', \Medians\Products\Application\StockController::class.'@index');
-
-    /**
-    * @return Payments
-    */
-    Macaw::get('/admin/payments/index', \Medians\Payments\Application\PaymentController::class.'@index');
-    Macaw::get('/admin/payments', \Medians\Payments\Application\PaymentController::class.'@index');
-
-    /**
-    * @return Expenses
-    */
-    Macaw::get('/admin/expenses/index', \Medians\Expenses\Application\ExpenseController::class.'@index');
-    Macaw::get('/admin/expenses', \Medians\Expenses\Application\ExpenseController::class.'@index');
-
-    /**
-    * @return Orders
-    */
-    Macaw::get('/admin/orders/index', \Medians\Orders\Application\OrderController::class.'@index');
-    Macaw::get('/admin/invoices/show/(:all)', \Medians\Orders\Application\OrderController::class.'@show');
-    Macaw::get('/admin/invoices', \Medians\Orders\Application\OrderController::class.'@index');
-    Macaw::get('/admin/orders', \Medians\Orders\Application\OrderController::class.'@index');
-
-
-    /**
     * @return Settings request
     */
     Macaw::get('/admin/settings', \Medians\Settings\Application\SettingsController::class.'@index');
@@ -233,7 +166,6 @@ if(isset($app->auth()->id))
     * @return Users
     */
     Macaw::get('/admin/users/index', \Medians\Users\Application\UserController::class.'@index');
-    Macaw::get('/admin/users/', \Medians\Users\Application\UserController::class.'@index');
     Macaw::get('/admin/users', \Medians\Users\Application\UserController::class.'@index');
     Macaw::get('/admin/index_users', \Medians\Users\Application\UserController::class.'@index_users');
 
@@ -241,29 +173,37 @@ if(isset($app->auth()->id))
     * @return customers
     */
     Macaw::get('/admin/customers/index', \Medians\Customers\Application\CustomerController::class.'@index');
-    Macaw::get('/admin/customers/', \Medians\Customers\Application\CustomerController::class.'@index');
     Macaw::get('/admin/customers', \Medians\Customers\Application\CustomerController::class.'@index');
 
 
-    /**
-    * @return Branches
-    */
-    Macaw::get('/admin/branches/index', \Medians\Branches\Application\BranchController::class.'@index');
-    Macaw::get('/admin/branches', \Medians\Branches\Application\BranchController::class.'@index');
-
 
 
     /**
-    * @return Content Notifications 
+    * @return  Notifications 
     */
     Macaw::get('/admin/notifications', \Medians\Notifications\Application\NotificationController::class.'@index');
     Macaw::get('/admin/latest_notifications', \Medians\Notifications\Application\NotificationController::class.'@latest_notifications');
-    Macaw::get('/admin/latest_notifications/', \Medians\Notifications\Application\NotificationController::class.'@latest_notifications');
     Macaw::get('/admin/latest_notifications/(:all)', \Medians\Notifications\Application\NotificationController::class.'@latest_notifications');
     Macaw::post('/admin/read_notification', \Medians\Notifications\Application\NotificationController::class.'@read_notification');
     Macaw::post('/admin/check_notification', \Medians\Notifications\Application\NotificationController::class.'@check_notification');
 
     
+
+    /**
+    * @return Students
+    */
+    Macaw::get('/admin/students', Medians\Students\Application\StudentController::class.'@index');
+
+    /**
+    * @return Drivers
+    */
+    Macaw::get('/admin/drivers', Medians\Drivers\Application\DriverController::class.'@index');
+
+    /** @return Routes */
+    Macaw::get('/admin/routes', Medians\Routes\Application\RouteController::class.'@index');
+
+    /** @return Vehicles */
+    Macaw::get('/admin/vehicles', Medians\Vehicles\Application\VehicleController::class.'@index');
 
 
 
@@ -306,11 +246,11 @@ if(isset($app->auth()->id))
     * @return Blog
     */
     Macaw::get('/admin/blog', Medians\Blog\Application\BlogController::class.'@index');
-    Macaw::get('/admin/blog/', Medians\Blog\Application\BlogController::class.'@index');
     Macaw::get('/admin/blog/categories', function ()  {
         return (new apps\Categories\CategoryController())->index('Medians\Blog\Domain\Blog');
     });
 
+    
 
 
 
