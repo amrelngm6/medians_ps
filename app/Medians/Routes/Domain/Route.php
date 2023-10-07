@@ -43,7 +43,7 @@ class Route extends CustomModel
 
 	public function pickup_locations() 
 	{
-		return $this->hasOne(PickupLocation::class, 'route_id', 'route_id');	
+		return $this->hasMany(PickupLocation::class, 'route_id', 'route_id');	
 	}
 
 }
