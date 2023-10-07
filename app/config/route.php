@@ -29,17 +29,6 @@ Macaw::get('', \Medians\Pages\Application\PageController::class.'@home');
 
 
 /**
- * Printable layout for the invoice
- */   
-Macaw::get('/invoices/print/(:all)', \Medians\Orders\Application\OrderController::class.'@print');
-
-/**
- * Display the invoice through the QR code
- */
-Macaw::get('/invoices/qr_code/(:all)', \Medians\Orders\Application\OrderController::class.'@qr_code');
-
-
-/**
  * Switch the language 
  * 
  * and redirect to home page
@@ -89,6 +78,7 @@ Macaw::post('/mobile_api/login', \Medians\MobileAPIController::class.'@login');
 Macaw::post('/mobile_api/create', \Medians\MobileAPIController::class.'@create');
 Macaw::post('/mobile_api/update', \Medians\MobileAPIController::class.'@update');
 Macaw::post('/mobile_api', \Medians\MobileAPIController::class.'@handle');
+Macaw::get('/route/(:all)', \Medians\Routes\Application\RouteController::class.'@getRoute');
 
 
 

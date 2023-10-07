@@ -1,25 +1,25 @@
 <?php
 
-namespace Medians\Routes\Domain;
+namespace Medians\Locations\Domain;
 
-use Medians\Locations\Domain\PickupLocation;
 use Shared\dbaser\CustomModel;
 
 
-class Route extends CustomModel
+class PickupLocation extends CustomModel
 {
 
 	/*
 	/ @var String
 	*/
-	protected $table = 'routes';
+	protected $table = 'pickup_locations';
 
-    protected $primaryKey = 'route_id';
+    protected $primaryKey = 'pickup_id';
 	
 	public $fillable = [
-		'route_name',
-		'description',
-		'created_by'
+		'location_name',
+		'latitude',
+		'longtude',
+		'address',
 	];
 
 
@@ -41,9 +41,5 @@ class Route extends CustomModel
     	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
 	}
 
-	public function pickup_locations() 
-	{
-		return $this->hasOne(PickupLocation::class, 'route_id', 'route_id');	
-	}
 
 }

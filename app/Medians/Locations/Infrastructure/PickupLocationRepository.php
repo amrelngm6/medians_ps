@@ -1,13 +1,12 @@
 <?php
 
-namespace Medians\Routes\Infrastructure;
+namespace Medians\Locations\Infrastructure;
 
-use Medians\Routes\Domain\Route;
-use Medians\Routes\Domain\Content;
+use Medians\Locations\Domain\PickupLocation;
 use Medians\CustomFields\Domain\CustomField;
 
 
-class RouteRepository 
+class PickupLocationRepository 
 {
 
 
@@ -27,24 +26,24 @@ class RouteRepository
 
 	public static function getModel()
 	{
-		return new Route();
+		return new PickupLocation();
 	}
 
 
 	public function find($id)
 	{
-		return Route::with('pickup_locations')->find($id);
+		return PickupLocation::with('pickup_locations')->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Route::limit($limit)->get();
+		return PickupLocation::limit($limit)->get();
 	}
 
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['route_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
+		$arr =  json_decode(json_encode(['pickup_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
 
 		return $this->similar( $arr, $limit);
 	}
@@ -54,7 +53,7 @@ class RouteRepository
 	{
 		$title = str_replace([' ','-'], '%', $item->content->title);
 
-		return Route::whereHas('content', function($q) use ($title){
+		return PickupLocation::whereHas('content', function($q) use ($title){
 			foreach (explode('%', $title) as $i) {
 				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
 			}
@@ -71,7 +70,7 @@ class RouteRepository
 	public function store($data) 
 	{
 
-		$Model = new Route();
+		$Model = new PickupLocation();
 		
 		foreach ($data as $key => $value) 
 		{
@@ -82,7 +81,7 @@ class RouteRepository
 		}		
 
 		// Return the FBUserInfo object with the new data
-    	$Object = Route::create($dataArray);
+    	$Object = PickupLocation::create($dataArray);
     	$Object->update($dataArray);
 
     	// Store Custom fields
@@ -98,13 +97,13 @@ class RouteRepository
     public function update($data)
     {
 
-		$Object = Route::find($data['route_id']);
+		$Object = PickupLocation::find($data['pickup_id']);
 		
 		// Return the FBUserInfo object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['route_id']) : '';
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['pickup_id']) : '';
 
     	return $Object;
 
@@ -120,7 +119,7 @@ class RouteRepository
 	{
 		try {
 			
-			$delete = Route::find($id)->delete();
+			$delete = PickupLocation::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);
@@ -142,13 +141,13 @@ class RouteRepository
 	*/
 	public function storeCustomFields($data, $id) 
 	{
-		CustomField::where('model_type', Route::class)->where('model_id', $id)->delete();
+		CustomField::where('model_type', PickupLocation::class)->where('model_id', $id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
 				$fields = [];
-				$fields['model_type'] = Route::class;	
+				$fields['model_type'] = PickupLocation::class;	
 				$fields['model_id'] = $id;	
 				$fields['code'] = $key;	
 				$fields['value'] = $value;

@@ -1,12 +1,12 @@
 <?php
-namespace Medians\Routes\Application;
+namespace Medians\PickupLocations\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Routes\Infrastructure\RouteRepository;
+use Medians\PickupLocations\Infrastructure\PickupLocationRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 
-class RouteController extends CustomController 
+class PickupLocationController extends CustomController 
 {
 
 	/**
@@ -24,7 +24,7 @@ class RouteController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new RouteRepository();
+		$this->repo = new PickupLocationRepository();
 		$this->categoryRepo = new CategoryRepository();
 	}
 
@@ -39,8 +39,10 @@ class RouteController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "route_id", 'title'=> "#"],
-            [ 'key'=> "route_name", 'title'=> __('route_name'), 'sortable'=> true ],
+            [ 'key'=> "pickup_id", 'title'=> "#"],
+            [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true ],
+            [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true ],
+            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true ],
         ];
 	}
 
@@ -54,9 +56,11 @@ class RouteController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "route_id", 'title'=> "#"],
-            [ 'key'=> "route_name", 'title'=> __('route_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "description", 'title'=> __('description'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "pickup_id", 'title'=> "#"],
+            [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "address", 'title'=> __('address'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
         ];
 	}
 
@@ -74,13 +78,13 @@ class RouteController extends CustomController
 		
 		try {
 			
-		    return render('routes', [
+		    return render('pickup_location', [
 		        'load_vue' => true,
-		        'title' => __('Routes'),
+		        'title' => __('PickupLocations'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-		        'categories' => $this->categoryRepo->get('Medians\Routes\Domain\Route'),
+		        'categories' => $this->categoryRepo->get('Medians\PickupLocations\Domain\PickupLocation'),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -90,9 +94,9 @@ class RouteController extends CustomController
 
 
 	/**
-	 * getRoute
+	 * getPickupLocation
 	 */
-	public function getRoute($id)
+	public function getPickupLocation($id)
 	{
 		$data =  $this->repo->find($id);
 
@@ -106,10 +110,10 @@ class RouteController extends CustomController
 	public function create() 
 	{
 
-		return render('views/admin/Route/create.html.twig', [
+		return render('views/admin/PickupLocation/create.html.twig', [
 	        'title' => __('add_new'),
 	        'langs_list' => ['ar','en'],
-	        'categories' => $this->categoryRepo->get('Medians\Routes\Domain\Route'),
+	        'categories' => $this->categoryRepo->get('Medians\PickupLocations\Domain\PickupLocation'),
 	    ]);
 
 	}
@@ -120,11 +124,11 @@ class RouteController extends CustomController
 	{
 		try {
 				
-			return render('views/admin/Route/Route.html.twig', [
-		        'title' => __('edit_Route'),
+			return render('views/admin/PickupLocation/PickupLocation.html.twig', [
+		        'title' => __('edit_PickupLocation'),
 		        'langs_list' => ['ar','en'],
 		        'item' => $this->repo->find($id),
-		        'categories' => $this->categoryRepo->get('Medians\Routes\Domain\Route'),
+		        'categories' => $this->categoryRepo->get('Medians\PickupLocations\Domain\PickupLocation'),
 		    ]);
 
 		} catch (\Exception $e) {
@@ -186,10 +190,10 @@ class RouteController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['route_id']);
+        	$check = $this->repo->find($params['pickup_id']);
 
 
-            if ($this->repo->delete($params['route_id']))
+            if ($this->repo->delete($params['pickup_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }
@@ -245,7 +249,7 @@ class RouteController extends CustomController
 
 		try {
 				
-			return render('views/front/Route.html.twig', [
+			return render('views/front/PickupLocation.html.twig', [
 		        'first_item' => $this->repo->getFeatured(1),
 		        'search_items' => $request->get('search') ?  $this->repo->search($request, 10) : [],
 		        'search_text' => $request->get('search'),
