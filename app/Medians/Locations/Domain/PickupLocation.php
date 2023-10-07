@@ -23,13 +23,8 @@ class PickupLocation extends CustomModel
 	];
 
 
-	public $appends = ['latitude'];
+	// public $appends = ['latitude'];
 
-
-	public function getLatitudeAttribute()
-	{
-		return  floatval($this->latitude);
-	}
 
 	public function photo() : String
 	{
