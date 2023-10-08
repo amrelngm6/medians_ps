@@ -38,7 +38,7 @@ class DriverRepository
 
 	public function getDriver($id)
 	{
-		return Driver::with('route', 'vehicle')->find($id);
+		return Driver::with('vehicle')->find($id);
 	}
 
 	public function get($limit = 100)

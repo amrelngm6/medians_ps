@@ -48,15 +48,10 @@ class Driver extends CustomModel
     	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
 	}
 
-	public function route() 
-	{
-		return $this->hasOneThrough(Route::class, Vehicle::class, 'route_id', 'route_id', 'driver_id', 'driver_id');	
-	}
-
 
 	public function vehicle() 
 	{
-		return $this->hasOne(Vehicle::class, 'driver_id', 'driver_id');	
+		return $this->hasOne(Vehicle::class, 'driver_id', 'driver_id')->with('route');	
 	}
 
 
