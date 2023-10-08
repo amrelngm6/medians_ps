@@ -22,6 +22,9 @@ class Vehicle extends CustomModel
 		'picture',
 		'plate_number',
 		'vehicle_type',
+		'driver_id',
+		'last_latitude',
+		'last_longitude',
 		'created_by'
 	];
 
