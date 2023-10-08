@@ -4,6 +4,7 @@ namespace Medians\Routes\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Routes\Infrastructure\RouteRepository;
+use Medians\Vehicles\Infrastructure\VehicleRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 
 class RouteController extends CustomController 
@@ -17,6 +18,7 @@ class RouteController extends CustomController
 	protected $app;
 
 	public $categoryRepo;
+	public $vehicleRepository;
 	
 
 	function __construct()
@@ -26,6 +28,7 @@ class RouteController extends CustomController
 
 		$this->repo = new RouteRepository();
 		$this->categoryRepo = new CategoryRepository();
+		$this->vehicleRepository = new VehicleRepository();
 	}
 
 

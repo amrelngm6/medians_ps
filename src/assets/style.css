@@ -674,7 +674,7 @@ body .sidebar-edit-form
 body .sidebar-create-form > div
 {
     padding-top: 40px;
-    height: 100%;
+    min-height: 100%;
 }
 body .sidebar-edit-form  > div
 {

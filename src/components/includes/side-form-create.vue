@@ -10,8 +10,14 @@
                 <input name="params[active]" type="hidden" value="1">
                 
                 <div class="py-1 w-full" v-for="column in columns" v-if="columns">
-                    <div class="w-full" v-if="column && columns">
+                    <div class="w-full" v-if="column && isInput(column.column_type) ">
                         <input :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-if="column.fillable"  :placeholder="column.title">
+                    </div>
+                    <div class="w-full" v-if="column && column.data && column.column_type == 'select' ">
+                        <select :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-if="column.fillable"  :placeholder="column.title">
+                            <option v-if="!column.required" v-text="$parent.__('select')"></option>
+                            <option v-for="option in column.data" :value="option[column.key]" v-text="option[column.text_key]"></option>
+                        </select>
                     </div>
                 </div>
 
@@ -28,6 +34,26 @@ export default
         'columns',
         'model',
     ],
+
+    methods: {
+        
+        isInput(val)
+        {
+            switch (val) 
+            {
+                case 'text':
+                case 'number':
+                case 'email':
+                case 'time':
+                case 'date':
+                case 'phone':
+                case '':
+                    return true;
+                    break;
+            }
+            return false;
+        },        
+    }
 
 };
 </script>

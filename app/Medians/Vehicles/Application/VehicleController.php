@@ -4,6 +4,8 @@ namespace Medians\Vehicles\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Vehicles\Infrastructure\VehicleRepository;
+use Medians\Routes\Infrastructure\RouteRepository;
+use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 
 class VehicleController extends CustomController 
@@ -17,6 +19,8 @@ class VehicleController extends CustomController
 	protected $app;
 
 	public $categoryRepo;
+	public $routeRepo;
+	public $driverRepo;
 	
 
 	function __construct()
@@ -26,6 +30,8 @@ class VehicleController extends CustomController
 
 		$this->repo = new VehicleRepository();
 		$this->categoryRepo = new CategoryRepository();
+		$this->routeRepo = new RouteRepository();
+		$this->driverRepo = new DriverRepository();
 	}
 
 
@@ -59,6 +65,14 @@ class VehicleController extends CustomController
             [ 'key'=> "vehicle_id", 'title'=> "#"],
             [ 'key'=> "vehicle_name", 'title'=> __('vehicle_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "maintenance_status", 'title'=> __('maintenance_status'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "route_id", 'title'=> __('Route'), 
+				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'route_name', 
+				'data' => $this->routeRepo->get()
+			],
+            [ 'key'=> "driver_id", 'title'=> __('Driver'), 
+				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'first_name', 
+				'data' => $this->driverRepo->get()
+			],
             [ 'key'=> "plate_number", 'title'=> __('plate_number'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "capacity", 'title'=> __('capacity'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
         ];
