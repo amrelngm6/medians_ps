@@ -3,6 +3,7 @@
 namespace Medians\Vehicles\Domain;
 
 use Shared\dbaser\CustomModel;
+use Medians\Routes\Domain\Route;
 
 
 class Vehicle extends CustomModel
@@ -49,5 +50,9 @@ class Vehicle extends CustomModel
 	}
 
 
+	public function route() 
+	{
+		return $this->hasOne(Route::class, 'route_id', 'route_id');	
+	}
 
 }

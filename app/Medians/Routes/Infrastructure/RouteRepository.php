@@ -33,7 +33,7 @@ class RouteRepository
 
 	public function find($id)
 	{
-		return Route::with('pickup_locations')->find($id);
+		return Route::with('pickup_locations', 'driver')->find($id);
 	}
 
 	public function get($limit = 100)
