@@ -21,4 +21,12 @@ class Role extends CustomModel
 	];
 
 
+	public $appends = ['role_id'];
+
+
+	public function getRoleIdAttribute()
+	{
+		return $this->id;
+	}
+	
 }
