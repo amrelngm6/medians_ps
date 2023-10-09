@@ -49,7 +49,7 @@ class DriverRepository
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
+		$arr =  json_decode(json_encode(['driver_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
 
 		return $this->similar( $arr, $limit);
 	}
@@ -103,13 +103,13 @@ class DriverRepository
     public function update($data)
     {
 
-		$Object = Driver::find($data['id']);
+		$Object = Driver::find($data['driver_id']);
 		
 		// Return the FBUserInfo object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['id']) : '';
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['driver_id']) : '';
 
     	return $Object;
 
