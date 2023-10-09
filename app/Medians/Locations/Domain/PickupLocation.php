@@ -27,8 +27,11 @@ class PickupLocation extends CustomModel
 	];
 
 
-	// public $appends = ['latitude'];
+	public $appends = ['contact_number'];
 
+	public function getContactNumberAttribute() {
+		return isset($this->student->contact_number) ? $this->student->contact_number : '0';
+	}
 
 	public function photo() : String
 	{
