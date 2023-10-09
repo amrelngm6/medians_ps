@@ -111,6 +111,11 @@ class APIController extends CustomController
 				case 'Vehicle.create':
 					$return = (new Vehicles\Application\VehicleController())->store();
 					break;
+					break;
+
+				case 'PickupLocation.create':
+					$return = (new Locations\Application\PickupLocationController())->store();
+					break;
 
 				case 'Category.create':
 					$return = (new Categories\Application\CategoryController())->store();
@@ -190,6 +195,10 @@ class APIController extends CustomController
 
 			case 'Vehicle.update':
 				$return = (new Vehicles\Application\VehicleController())->update();
+				break;
+
+			case 'PickupLocation.update':
+				$return = (new Locations\Application\PickupLocationController())->update();
 				break;
 
 
@@ -292,6 +301,10 @@ class APIController extends CustomController
 
 				case 'Vehicle.delete':
 					return response((new Vehicles\Application\VehicleController())->delete());
+					break;
+
+				case 'PickupLocation.delete':
+					return response((new Locations\Application\PickupLocationController())->delete());
 					break;
 
 				case 'User.delete':

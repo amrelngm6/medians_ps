@@ -1,10 +1,11 @@
 <?php
-namespace Medians\PickupLocations\Application;
+namespace Medians\Locations\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\PickupLocations\Infrastructure\PickupLocationRepository;
+use Medians\Locations\Infrastructure\PickupLocationRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
+use Medians\Students\Infrastructure\StudentRepository;
 
 class PickupLocationController extends CustomController 
 {
@@ -18,6 +19,8 @@ class PickupLocationController extends CustomController
 
 	public $categoryRepo;
 	
+	public $studentRepo;
+	
 
 	function __construct()
 	{
@@ -26,6 +29,7 @@ class PickupLocationController extends CustomController
 
 		$this->repo = new PickupLocationRepository();
 		$this->categoryRepo = new CategoryRepository();
+		$this->studentRepo = new StudentRepository();
 	}
 
 
@@ -41,6 +45,7 @@ class PickupLocationController extends CustomController
 		return [
             [ 'key'=> "pickup_id", 'title'=> "#"],
             [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true ],
+            [ 'key'=> "student_name", 'title'=> __('student_name'), 'sortable'=> true ],
             [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true ],
             [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true ],
         ];
@@ -56,7 +61,11 @@ class PickupLocationController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "pickup_id", 'title'=> "#"],
+            [ 'key'=> "pickup_id", 'title'=> "#", 'column_type'=>'hidden'],
+			[ 'key'=> "student_id", 'title'=> __('Student'), 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'first_name', 
+				'data' => $this->studentRepo->get()
+			],
             [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "address", 'title'=> __('address'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
@@ -78,7 +87,7 @@ class PickupLocationController extends CustomController
 		
 		try {
 			
-		    return render('pickup_location', [
+		    return render('locations', [
 		        'load_vue' => true,
 		        'title' => __('PickupLocations'),
 		        'columns' => $this->columns(),

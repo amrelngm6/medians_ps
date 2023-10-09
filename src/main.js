@@ -46,6 +46,7 @@ Vue.component('students', () => import('./components/students'));
 Vue.component('drivers', () => import('./components/drivers'));
 Vue.component('routes', () => import('./components/routes'));
 Vue.component('vehicles', () => import('./components/vehicles'));
+Vue.component('locations', () => import('./components/locations'));
 
 
 Vue.config.productionTip = false

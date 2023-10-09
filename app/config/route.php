@@ -196,6 +196,9 @@ if(isset($app->auth()->id))
     /** @return Vehicles */
     Macaw::get('/admin/vehicles', Medians\Vehicles\Application\VehicleController::class.'@index');
 
+    /** @return PickupLocations */
+    Macaw::get('/admin/locations', Medians\Locations\Application\PickupLocationController::class.'@index');
+
 
 
     /**

@@ -22,15 +22,19 @@ class PickupLocation extends CustomModel
 		'location_name',
 		'location_name',
 		'latitude',
-		'longtude',
+		'longitude',
 		'address',
 	];
 
 
-	public $appends = ['contact_number'];
+	public $appends = ['contact_number', 'student_name'];
 
 	public function getContactNumberAttribute() {
 		return isset($this->student->contact_number) ? $this->student->contact_number : '0';
+	}
+
+	public function getStudentNameAttribute() {
+		return isset($this->student->first_name) ? $this->student->first_name.' '. $this->student->last_name : '0';
 	}
 
 	public function photo() : String

@@ -9,12 +9,12 @@
                     <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
                 </div>
                 <hr class="mt-2" />
-                <div class="w-full flex gap gap-6">
+                <div class="w-full flex gap gap-6" >
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-                    <side-form-create :conf="conf" model="Student.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
+                    <side-form-create :conf="conf" model="PickupLocation.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
 
-                    <side-form-update :conf="conf" model="Student.update" :item="activeItem" :model_id="activeItem.student_id" index="student_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
+                    <side-form-update :conf="conf" model="PickupLocation.update" :item="activeItem" :model_id="activeItem.pickup_id" index="pickup_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
 
                 </div>
                 <!-- END New releases -->
@@ -30,7 +30,7 @@ export default
     components:{
         dataTableActions,
     },
-    name:'Students',
+    name:'Locations',
     data() {
         return {
             url: this.conf.url+this.path+'?load=json',
@@ -100,7 +100,7 @@ export default
                     break;  
 
                 case 'delete':
-                    this.$parent.delete(data, 'Student.delete');
+                    this.$parent.deleteByKey('vehicle_id', data.vehicle_id, 'Vehicle.delete');
                     break;  
             }
         },
