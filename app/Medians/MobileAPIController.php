@@ -59,6 +59,7 @@ class MobileAPIController extends CustomController
 		[
 			'success'=>true, 
 			'user_id'=>$checkLogin->id, 
+			'driver'=>$checkLogin->driver, 
 			'token'=>$generateToken->value
 		]);
 	}  

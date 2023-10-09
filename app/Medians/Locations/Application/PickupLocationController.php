@@ -6,6 +6,7 @@ use Shared\dbaser\CustomController;
 use Medians\Locations\Infrastructure\PickupLocationRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Students\Infrastructure\StudentRepository;
+use Medians\Routes\Infrastructure\RouteRepository;
 
 class PickupLocationController extends CustomController 
 {
@@ -20,6 +21,8 @@ class PickupLocationController extends CustomController
 	public $categoryRepo;
 	
 	public $studentRepo;
+
+	public $routeRepo;
 	
 
 	function __construct()
@@ -30,6 +33,7 @@ class PickupLocationController extends CustomController
 		$this->repo = new PickupLocationRepository();
 		$this->categoryRepo = new CategoryRepository();
 		$this->studentRepo = new StudentRepository();
+		$this->routeRepo = new RouteRepository();
 	}
 
 
@@ -66,10 +70,14 @@ class PickupLocationController extends CustomController
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'first_name', 
 				'data' => $this->studentRepo->get()
 			],
+			[ 'key'=> "route_id", 'title'=> __('Route'), 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'route_name', 
+				'data' => $this->routeRepo->get()
+			],
             [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "address", 'title'=> __('address'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
         ];
 	}
 

@@ -247,10 +247,16 @@ class APP
 		$data = array(
 			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
 			array('permission'=>'Student.index', 'title'=>__('Students'),  'icon'=>'fa-user', 'link'=>'admin/students', 'component'=>'students'),
-			array('permission'=>'Route.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'admin/routes', 'component'=>'routes'),
+			
+			array('title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'#route', 'sub'=>
+				[
+					array('permission'=>'Route.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'admin/routes', 'component'=>'routes'),
+					array('permission'=>'Pickup.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
+				]
+			),
+
 			array('permission'=>'Driver.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
 			array('permission'=>'Cars.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
-			array('permission'=>'Pickup.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
 			array('permission'=>'Customer.index', 'title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
 			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
