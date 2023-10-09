@@ -45,7 +45,7 @@ class Route extends CustomModel
 
 	public function pickup_locations() 
 	{
-		return $this->hasMany(PickupLocation::class, 'route_id', 'route_id');	
+		return $this->hasMany(PickupLocation::class, 'route_id', 'route_id')->with('student');	
 	}
 
 	public function driver() 

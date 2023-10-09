@@ -3,6 +3,7 @@
 namespace Medians\Locations\Domain;
 
 use Shared\dbaser\CustomModel;
+use Medians\Students\Domain\Student;
 
 
 class PickupLocation extends CustomModel
@@ -16,6 +17,9 @@ class PickupLocation extends CustomModel
     protected $primaryKey = 'pickup_id';
 	
 	public $fillable = [
+		'student_id',
+		'route_id',
+		'location_name',
 		'location_name',
 		'latitude',
 		'longtude',
@@ -41,5 +45,12 @@ class PickupLocation extends CustomModel
     	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
 	}
 
+	
+	public function student() 
+	{
+    	return $this->hasOne(Student::class, 'student_id', 'student_id');
+	}
 
+	
+	
 }
