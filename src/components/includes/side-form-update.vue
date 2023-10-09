@@ -8,9 +8,9 @@
                 </div>
                 <input name="type" type="hidden" :value="model">
                 <input name="params[active]" type="hidden" value="1">
-                <input v-if="model_id" :name="'params['+index+']'" type="hidden" v-model="model_id">
                 
                 <div class="py-1 w-full" v-for="column in columns" v-if="columns ">
+                    <input v-if="model_id && column && column.column_type == 'hidden'" :name="'params['+column.key+']'" type="hidden" v-model="item[column.key]">
                     <div class="w-full" v-if="column && column.fillable" >
                         <span class="block mb-2" v-text="column.title"></span>
 
