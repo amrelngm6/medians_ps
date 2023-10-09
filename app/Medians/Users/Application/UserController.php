@@ -4,6 +4,7 @@ namespace Medians\Users\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Users\Infrastructure\UserRepository;
+use Medians\Roles\Infrastructure\RoleRepository;
 
 
 class UserController extends CustomController
@@ -16,16 +17,43 @@ class UserController extends CustomController
 	protected $repo;
 
 	protected $app;
+	protected $rolesRepo;
 
 
 	function __construct()
 	{
 		$this->app = new \config\APP;
 		$this->repo = new UserRepository();
+		$this->rolesRepo = new RoleRepository();
 	}
 
 
 
+
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function fillable( ) 
+	{
+
+		return [
+            [ 'key'=> "vehicle_id", 'title'=> "#"],
+            [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "last_name", 'title'=> __('last_name'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "email", 'title'=> __('email'), 'fillable'=> true, 'column_type'=>'email' ],
+            [ 'key'=> "phone", 'title'=> __('phone'), 'fillable'=> true, 'column_type'=>'phone' ],
+            [ 'key'=> "password", 'title'=> __('password'), 'fillable'=> true, 'column_type'=>'password' ],
+			[ 'key'=> "role_id", 'title'=> __('Role'), 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
+				'data' => $this->rolesRepo->get()
+			],
+            [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
+
+        ];
+	}
+
+	
 
 	/**
 	 * Index page
@@ -40,6 +68,7 @@ class UserController extends CustomController
 			'load_vue'=> true,
 			'users' =>   $query,
 	        'title' => __('Users'),
+	        'fillable' => $this->fillable(),
 	    ]);
 	} 
 

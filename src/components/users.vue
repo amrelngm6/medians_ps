@@ -30,80 +30,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 sidebar-create-form" v-if="showAddSide">
-                        <div class="mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 ">
-                            <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  py-0 m-auto rounded-lg max-w-xl pb-10">
-                                <div class="w-full flex">
-                                    <h1 class="w-full m-auto max-w-xl text-base mb-10 ">{{__('ADD_new')}}</h1>
-                                    <span class="cursor-pointer py-1 px-2" @click="showAddSide = false,showEditSide = false">
-                                        <close_icon /></span>
-                                </div>
-                                <input name="type" type="hidden" value="User.create">
-                                <input name="params[active]" type="hidden" value="1">
-                                <input name="params[first_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('first_name')" >
-                                <input name="params[last_name]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('last_name')" >
-                                <input name="params[email]" required="true" type="email" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('email')" >
+                    
+                    <side-form-create :conf="conf" model="User.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
 
-                                <input name="params[phone]" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')">
+                    <side-form-update :conf="conf" model="User.update" :item="activeItem" :model_id="activeItem.id" index="id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
 
-                                <input name="params[password]" required="true" type="password" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('password')">
-
-                                <label class="block mt-3" v-if="isMaster">
-                                    <span class="block mb-2" v-text="__('branch')"></span>
-                                    <select name="params[active_branch]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
-                                        <option v-for="branch in content.branches" :value="branch.id" v-text="branch.name"></option>
-                                    </select>
-                                </label>
-
-                                <span class="block my-2" v-text="__('picture')"></span>
-                                <vue-medialibrary-field name="params[profile_image]" :api_url="conf.url" v-model="profile_image"></vue-medialibrary-field>
-
-                                <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-6 p-4 rounded-lg shadow-lg bg-white dark:bg-gray-700  sidebar-edit-form" v-if="showEditSide && !showAddSide ">
-                        <div class="w-full">
-                            <div class="w-full flex">
-                                <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('update')"></h1>
-                                <span class="cursor-pointer py-1 px-2" @click="showEditSide = false">
-                                    <close_icon /></span>
-                            </div>
-                            <div>
-                                <form action="/api/update" method="POST" data-refresh="1" id="add-device-form" class="action py-0 m-auto rounded-lg max-w-xl pb-10">
-                                    <input name="type" type="hidden" value="User.update">
-                                    <input name="params[id]" type="hidden" v-model="activeItem.id">
-                                    <span class="block mb-2" v-text="__('first_name')"></span>
-                                    <input name="params[first_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('first_name')" v-model="activeItem.first_name">
-                                    <span class="block mb-2 mt-3" v-text="__('last_name')"></span>
-                                    <input name="params[last_name]" required="true" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('last_name')" v-model="activeItem.last_name">
-                                    <span class="block mb-2 mt-3" v-text="__('email')"></span>
-                                    <input name="params[email]" required="true" type="email" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('email')" v-model="activeItem.email">
-                                    <span class="block mb-2 mt-3" v-text="__('mobile')"></span>
-                                    <input name="params[phone]" required="true" type="number" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('mobile')" v-model="activeItem.phone">
-
-                                    <span class="block mb-2 mt-3" v-text="__('change password')"></span>
-                                    <input name="params[password]" type="password" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('password')">
-
-                                    <label class="block mt-3" v-if="isMaster">
-                                        <span class="block mb-2" v-text="__('branch')"></span>
-                                        <select v-model="activeItem.active_branch" name="params[active_branch]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
-                                            <option v-for="branch in content.branches" :value="branch.id" v-text="branch.name"></option>
-                                        </select>
-                                    </label>
-
-                                    <span class="block my-2" v-text="__('picture')"></span>
-                                    <vue-medialibrary-field name="params[profile_image]" :key="activeItem.id" :api_url="conf.url" v-model="activeItem.photo"></vue-medialibrary-field>
-
-                                    <label class="inline-flex items-center mt-3">
-                                        <input name="params[active]" type="checkbox" v-model="activeItem.active" class="form-checkbox h-5 w-5 text-orange-600">
-                                        <span class="ml-2 text-gray-700  mx-2">{{__('PUBLISH')}}</span>
-                                    </label>
-                                    <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- END New releases -->
             </main>

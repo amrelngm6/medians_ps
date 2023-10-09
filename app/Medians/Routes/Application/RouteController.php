@@ -58,8 +58,8 @@ class RouteController extends CustomController
 
 		return [
             [ 'key'=> "route_id", 'title'=> "#"],
-            [ 'key'=> "route_name", 'title'=> __('route_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "description", 'title'=> __('description'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "route_name", 'title'=> __('route_name'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "description", 'title'=> __('description'), 'fillable'=>true, 'column_type'=>'text' ],
         ];
 	}
 

@@ -12,9 +12,9 @@
                 <div class="w-full flex gap gap-6" >
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-                    <side-form-create model="Vehicle.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
+                    <side-form-create :conf="conf" model="Vehicle.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
 
-                    <side-form-update model="Vehicle.update" :item="activeItem" :model_id="activeItem.vehicle_id" index="vehicle_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
+                    <side-form-update :conf="conf" model="Vehicle.update" :item="activeItem" :model_id="activeItem.vehicle_id" index="vehicle_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
 
                 </div>
                 <!-- END New releases -->
@@ -24,15 +24,11 @@
 </template>
 <script>
 import dataTableActions from './includes/data-table-actions.vue';
-import sideFormCreate from './includes/side-form-create.vue';
-import sideFormUpdate from './includes/side-form-update.vue';
 
 export default 
 {
     components:{
         dataTableActions,
-        sideFormCreate,
-        sideFormUpdate,
     },
     name:'Vehicles',
     data() {

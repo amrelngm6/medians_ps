@@ -10,18 +10,20 @@
                 <input name="params[active]" type="hidden" value="1">
                 <input v-if="model_id" :name="'params['+index+']'" type="hidden" v-model="model_id">
                 
-                <div class="py-1 w-full" v-for="column in columns" v-if="columns">
-                    <div class="w-full" v-if="column && isInput(column.column_type) && column.fillable" >
+                <div class="py-1 w-full" v-for="column in columns" v-if="columns ">
+                    <div class="w-full" v-if="column && column.fillable" >
                         <span class="block mb-2" v-text="column.title"></span>
-                        <input :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title" v-model="item[column.key]">
-                    </div>
+
+                        <input v-if="isInput(column.column_type)" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title" v-model="item[column.key]">
                     
-                    <div class="w-full" v-if="column && column.data && column.column_type == 'select' ">
-                        <span class="block mb-2" v-text="column.title"></span>
-                        <select v-model="item[column.key]" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-if="column.fillable"  :placeholder="column.title">
+                        <input v-if="column.column_type == 'password'" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
+                    
+                        <select v-if="column.data && column.column_type == 'select'" v-model="item[column.key]" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"   :placeholder="column.title">
                             <option v-if="!column.required" v-text="$parent.__('select')"></option>
                             <option v-for="option in column.data" :value="option[column.key]" v-text="option[column.text_key]"></option>
                         </select>
+                        
+                        <vue-medialibrary-field v-if="column.column_type == 'file'" name="params[picture]" key="upload-file" v-model="item.picture" :api_url="conf.url"></vue-medialibrary-field>
                     </div>
                 </div>
 
@@ -40,9 +42,15 @@ export default
         'model_id',
         'item',
         'index',
+        'conf',
     ],
 
 
+    data() {
+        return {
+            file: ''
+        }
+    },
     methods: {
         
         isInput(val)

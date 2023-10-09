@@ -75,6 +75,8 @@ class VehicleController extends CustomController
 			],
             [ 'key'=> "plate_number", 'title'=> __('plate_number'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "capacity", 'title'=> __('capacity'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
+            [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
+
         ];
 	}
 

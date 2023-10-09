@@ -12,9 +12,9 @@
                 <div class="w-full flex gap gap-6" >
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-                    <side-form-create model="Routes.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
+                    <side-form-create :conf="conf" model="Routes.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
 
-                    <side-form-update model="Routes.update" :item="activeItem" :model_id="activeItem.route_id" index="route_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
+                    <side-form-update :conf="conf" model="Routes.update" :item="activeItem" :model_id="activeItem.route_id" index="route_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
 
                 </div>
                 <!-- END New releases -->

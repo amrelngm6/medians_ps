@@ -19,6 +19,13 @@
                             <option v-for="option in column.data" :value="option[column.key]" v-text="option[column.text_key]"></option>
                         </select>
                     </div>
+                    <div class="w-full" v-if="column && column.column_type == 'file' ">
+                        <span class="block my-2" v-text="$parent.__('picture')"></span>
+                        <vue-medialibrary-field name="params[picture]" key="upload-file" v-model="file" :api_url="conf.url"></vue-medialibrary-field>
+
+                    </div>
+                    
+
                 </div>
 
                 <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="$parent.__('save')"></button>
@@ -31,10 +38,15 @@
 export default 
 {
     props: [
+        'conf',
         'columns',
         'model',
     ],
-
+    data() {
+        return {
+            file: ''
+        }
+    },
     methods: {
         
         isInput(val)

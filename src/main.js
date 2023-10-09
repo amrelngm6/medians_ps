@@ -36,6 +36,8 @@ Vue.component('master_dashboard', () => import('./components/master_dashboard'))
 Vue.component('categories', () => import('./components/categories'));
 Vue.component('settings', () => import('./components/settings'));
 Vue.component('system_settings', () => import('./components/system_settings'));
+Vue.component('side-form-update', () => import('./components/includes/side-form-update'));
+Vue.component('side-form-create', () => import('./components/includes/side-form-create'));
 Vue.component('users', () => import('./components/users'));
 Vue.component('customers', () => import('./components/customers'));
 Vue.component('pages', () => import('./components/pages'));
@@ -44,7 +46,6 @@ Vue.component('students', () => import('./components/students'));
 Vue.component('drivers', () => import('./components/drivers'));
 Vue.component('routes', () => import('./components/routes'));
 Vue.component('vehicles', () => import('./components/vehicles'));
-
 
 
 Vue.config.productionTip = false
