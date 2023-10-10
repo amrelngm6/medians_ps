@@ -52,7 +52,7 @@ class MobileAPIController extends CustomController
 			return null;
 		}
 
-		$token = $Auth->encrypt(strtotime(date('YmdHis')).$this->id);
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->id);
 		$generateToken = $checkLogin->insertCustomField('API_token', $token);
 
 		echo json_encode(
