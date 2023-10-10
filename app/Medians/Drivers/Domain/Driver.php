@@ -25,6 +25,7 @@ class Driver extends CustomModel
 		'driver_license_number',
 		'vehicle_plate_number',
 		'email',
+		'user_id',
 		'contact_number',
 		'created_by'
 	];

@@ -110,6 +110,14 @@ class User extends CustomModel
 		return $this->hasOne(Role::class, 'id', 'role_id');
 	}
 
+	/**
+	 * Relation with role 
+	 */
+	public function driver() 
+	{
+		return $this->hasOne(Driver::class, 'user_id', 'id');
+	}
+
 	public function hasToken()
 	{
         return $this->hasOne(CustomField::class, 'model_id', 'id')->where('model_type', User::class);
