@@ -199,6 +199,9 @@ if(isset($app->auth()->id))
     /** @return PickupLocations */
     Macaw::get('/admin/locations', Medians\Locations\Application\PickupLocationController::class.'@index');
 
+    /** @return help messages */
+    Macaw::get('/admin/help_messages', Medians\Help\Application\HelpMessagesController::class.'@index');
+
     /** @return send_message */
     Macaw::post('/send_message', Medians\Help\Application\HelpMessageController::class.'@index');
 

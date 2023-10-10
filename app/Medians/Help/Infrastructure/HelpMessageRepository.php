@@ -1,12 +1,12 @@
 <?php
 
-namespace Medians\Locations\Infrastructure;
+namespace Medians\Help\Infrastructure;
 
-use Medians\Locations\Domain\PickupLocation;
+use Medians\Help\Domain\HelpMessage;
 use Medians\CustomFields\Domain\CustomField;
 
 
-class PickupLocationRepository 
+class HelpMessageRepository 
 {
 
 
@@ -26,18 +26,18 @@ class PickupLocationRepository
 
 	public static function getModel()
 	{
-		return new PickupLocation();
+		return new HelpMessage();
 	}
 
 
 	public function find($id)
 	{
-		return PickupLocation::with('pickup_locations')->find($id);
+		return HelpMessage::with('pickup_locations')->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return PickupLocation::limit($limit)->get();
+		return HelpMessage::limit($limit)->get();
 	}
 
 	public function search($request, $limit = 20)
@@ -53,7 +53,7 @@ class PickupLocationRepository
 	{
 		$title = str_replace([' ','-'], '%', $item->content->title);
 
-		return PickupLocation::whereHas('content', function($q) use ($title){
+		return HelpMessage::whereHas('content', function($q) use ($title){
 			foreach (explode('%', $title) as $i) {
 				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
 			}
@@ -70,7 +70,7 @@ class PickupLocationRepository
 	public function store($data) 
 	{
 
-		$Model = new PickupLocation();
+		$Model = new HelpMessage();
 		
 		foreach ($data as $key => $value) 
 		{
@@ -81,7 +81,7 @@ class PickupLocationRepository
 		}		
 
 		// Return the FBUserInfo object with the new data
-    	$Object = PickupLocation::create($dataArray);
+    	$Object = HelpMessage::create($dataArray);
     	$Object->update($dataArray);
 
     	// Store Custom fields
@@ -97,7 +97,7 @@ class PickupLocationRepository
     public function update($data)
     {
 
-		$Object = PickupLocation::find($data['pickup_id']);
+		$Object = HelpMessage::find($data['pickup_id']);
 		
 		// Return the FBUserInfo object with the new data
     	$Object->update( (array) $data);
@@ -119,7 +119,7 @@ class PickupLocationRepository
 	{
 		try {
 			
-			$delete = PickupLocation::find($id)->delete();
+			$delete = HelpMessage::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);
@@ -141,13 +141,13 @@ class PickupLocationRepository
 	*/
 	public function storeCustomFields($data, $id) 
 	{
-		CustomField::where('model_type', PickupLocation::class)->where('model_id', $id)->delete();
+		CustomField::where('model_type', HelpMessage::class)->where('model_id', $id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
 				$fields = [];
-				$fields['model_type'] = PickupLocation::class;	
+				$fields['model_type'] = HelpMessage::class;	
 				$fields['model_id'] = $id;	
 				$fields['code'] = $key;	
 				$fields['value'] = $value;

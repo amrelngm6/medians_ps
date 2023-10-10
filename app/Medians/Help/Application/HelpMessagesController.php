@@ -1,14 +1,11 @@
 <?php
-namespace Medians\Locations\Application;
+namespace Medians\Help\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Locations\Infrastructure\PickupLocationRepository;
-use Medians\Categories\Infrastructure\CategoryRepository;
-use Medians\Students\Infrastructure\StudentRepository;
-use Medians\Routes\Infrastructure\RouteRepository;
+use Medians\Help\Infrastructure\HelpMessageRepository;
 
-class PickupLocationController extends CustomController 
+class HelpMessagesController extends CustomController 
 {
 
 	/**
@@ -18,11 +15,6 @@ class PickupLocationController extends CustomController
 
 	protected $app;
 
-	public $categoryRepo;
-	
-	public $studentRepo;
-
-	public $routeRepo;
 	
 
 	function __construct()
@@ -30,10 +22,7 @@ class PickupLocationController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new PickupLocationRepository();
-		$this->categoryRepo = new CategoryRepository();
-		$this->studentRepo = new StudentRepository();
-		$this->routeRepo = new RouteRepository();
+		$this->repo = new HelpMessageRepository	();
 	}
 
 
@@ -47,11 +36,9 @@ class PickupLocationController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "pickup_id", 'title'=> "#"],
-            [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true ],
-            [ 'key'=> "student_name", 'title'=> __('student_name'), 'sortable'=> true ],
-            [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true ],
-            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true ],
+            [ 'key'=> "message_id", 'title'=> "#"],
+            [ 'key'=> "subject", 'title'=> __('subject'), 'sortable'=> true ],
+            [ 'key'=> "message", 'title'=> __('message'), 'sortable'=> true ],
         ];
 	}
 
@@ -65,19 +52,10 @@ class PickupLocationController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "pickup_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "student_id", 'title'=> __('Student'), 
-				'fillable'=> true, 'column_type'=>'select','text_key'=>'first_name', 
-				'data' => $this->studentRepo->get()
-			],
-			[ 'key'=> "route_id", 'title'=> __('Route'), 
-				'fillable'=> true, 'column_type'=>'select','text_key'=>'route_name', 
-				'data' => $this->routeRepo->get()
-			],
-            [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "address", 'title'=> __('address'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "message_id", 'title'=> "#", 'column_type'=>'hidden'],
+            [ 'key'=> "subject", 'title'=> __('subject'),  'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "message", 'title'=> __('message'),  'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "user_name", 'title'=> __('user_name'),  ],
         ];
 	}
 
@@ -95,13 +73,12 @@ class PickupLocationController extends CustomController
 		
 		try {
 			
-		    return render('locations', [
+		    return render('help_messages', [
 		        'load_vue' => true,
-		        'title' => __('PickupLocations'),
+		        'title' => __('Help Messages'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-		        'categories' => $this->categoryRepo->get('Medians\PickupLocations\Domain\PickupLocation'),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -130,7 +107,7 @@ class PickupLocationController extends CustomController
 		return render('views/admin/PickupLocation/create.html.twig', [
 	        'title' => __('add_new'),
 	        'langs_list' => ['ar','en'],
-	        'categories' => $this->categoryRepo->get('Medians\PickupLocations\Domain\PickupLocation'),
+	        'categories' => $this->categoryRepo->get('Medians\HelpMessages\Domain\PickupLocation'),
 	    ]);
 
 	}
@@ -145,7 +122,7 @@ class PickupLocationController extends CustomController
 		        'title' => __('edit_PickupLocation'),
 		        'langs_list' => ['ar','en'],
 		        'item' => $this->repo->find($id),
-		        'categories' => $this->categoryRepo->get('Medians\PickupLocations\Domain\PickupLocation'),
+		        'categories' => $this->categoryRepo->get('Medians\HelpMessages\Domain\PickupLocation'),
 		    ]);
 
 		} catch (\Exception $e) {

@@ -117,6 +117,10 @@ class APIController extends CustomController
 					$return = (new Locations\Application\PickupLocationController())->store();
 					break;
 
+				case 'HelpMessage.create':
+					return response((new Help\Application\HelpMessageController())->store());
+					break;
+		
 				case 'Category.create':
 					$return = (new Categories\Application\CategoryController())->store();
 					break;
@@ -199,6 +203,10 @@ class APIController extends CustomController
 
 			case 'PickupLocation.update':
 				$return = (new Locations\Application\PickupLocationController())->update();
+				break;
+
+			case 'HelpMessage.update':
+				return response((new Help\Application\HelpMessageController())->update());
 				break;
 
 
@@ -305,6 +313,10 @@ class APIController extends CustomController
 
 				case 'PickupLocation.delete':
 					return response((new Locations\Application\PickupLocationController())->delete());
+					break;
+
+				case 'HelpMessage.delete':
+					return response((new Help\Application\HelpMessageController())->delete());
 					break;
 
 				case 'User.delete':
