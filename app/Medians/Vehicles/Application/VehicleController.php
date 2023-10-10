@@ -62,7 +62,7 @@ class VehicleController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "vehicle_id", 'title'=> "#"],
+            [ 'key'=> "vehicle_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "vehicle_name", 'title'=> __('vehicle_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "maintenance_status", 'title'=> __('maintenance_status'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "route_id", 'title'=> __('Route'), 
