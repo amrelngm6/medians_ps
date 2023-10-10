@@ -5,6 +5,7 @@ use Shared\dbaser\CustomController;
 
 use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
+use Medians\Users\Infrastructure\UserRepository;
 
 class DriverController extends CustomController 
 {
@@ -17,6 +18,8 @@ class DriverController extends CustomController
 	protected $app;
 
 	public $categoryRepo;
+
+	public $userRepo;
 	
 
 	function __construct()
@@ -26,6 +29,7 @@ class DriverController extends CustomController
 
 		$this->repo = new DriverRepository();
 		$this->categoryRepo = new CategoryRepository();
+		$this->userRepo = new UserRepository();
 	}
 
 
@@ -60,6 +64,10 @@ class DriverController extends CustomController
 
 		return [
             [ 'key'=> "driver_id", 'title'=> "#", 'fillable'=>true, 'column_type'=>'hidden'],
+			[ 'key'=> "user_id", 'title'=> __('Session User'), 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
+				'data' => $this->userRepo->get()
+			],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'mobile' ],
