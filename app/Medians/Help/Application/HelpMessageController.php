@@ -5,7 +5,7 @@ use Shared\dbaser\CustomController;
 
 use Medians\Help\Infrastructure\HelpMessageRepository;
 
-class HelpMessagesController extends CustomController 
+class HelpMessageController extends CustomController 
 {
 
 	/**

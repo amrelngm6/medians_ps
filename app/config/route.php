@@ -27,6 +27,10 @@ Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\Repo
 Macaw::get('/(:all)', \Medians\Pages\Application\PageController::class.'@pages');
 Macaw::get('', \Medians\Pages\Application\PageController::class.'@home');
 
+/** @return send_message */
+Macaw::post('/send_message', Medians\Help\Application\HelpMessageController::class.'@store');
+
+
 
 /**
  * Switch the language 
@@ -201,9 +205,6 @@ if(isset($app->auth()->id))
 
     /** @return help messages */
     Macaw::get('/admin/help_messages', Medians\Help\Application\HelpMessagesController::class.'@index');
-
-    /** @return send_message */
-    Macaw::post('/send_message', Medians\Help\Application\HelpMessageController::class.'@index');
 
 
 
