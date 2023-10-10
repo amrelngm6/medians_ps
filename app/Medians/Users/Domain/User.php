@@ -6,9 +6,10 @@ use Shared\dbaser\CustomModel;
 
 use Medians\Mail\Application\MailService;
 
+use Medians\Drivers\Domain\Driver;
 use Medians\Roles\Domain\Role;
 use Medians\Roles\Domain\Permission;
-use \Medians\CustomFields\Domain\CustomField;
+use Medians\CustomFields\Domain\CustomField;
 
 class User extends CustomModel
 {
