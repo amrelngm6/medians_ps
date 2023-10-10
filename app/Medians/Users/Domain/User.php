@@ -31,8 +31,13 @@ class User extends CustomModel
     	'active',
 	];
 
-	protected $appends = ['name', 'photo', 'password', 'field', 'permissions'];
+	protected $appends = ['name', 'photo', 'password', 'field', 'permissions', 'user_id'];
 
+
+	public function getUserIdAttribute() 
+	{
+        return $this->id;
+	}
 
 	public function getPermissionsAttribute() 
 	{
