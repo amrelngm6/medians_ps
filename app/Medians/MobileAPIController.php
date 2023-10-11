@@ -75,7 +75,8 @@ class MobileAPIController extends CustomController
 		$return = [];
 		$model = empty($model) ? $this->app->request()->get('model') : $model;
 
-		
+		$params = (array)  json_decode($request->get('params'));
+
 		switch ($model) 
 		{
 			case 'APP':
@@ -89,6 +90,9 @@ class MobileAPIController extends CustomController
 				break;
 			case 'Products':
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
+				break;
+			case 'help_message':
+				$return = (new \Medians\Help\Infrastructure\HelpMessageRepository())->store($params);
 				break;
 		}
 

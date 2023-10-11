@@ -15,12 +15,21 @@ Vue.use(VueNativeNotification, {requestOnNotify: false})
 import DataTable from "@andresouzaabreu/vue-data-table";
 Vue.component("data-table", DataTable);
 
+import * as VueGoogleMaps from 'vue2-google-maps';
+Vue.use(VueGoogleMaps, {
+    load: {key: 'AIzaSyDL0vscd-iCbsPOhokIhMBXtujAkLShlME',
+    libraries: 'places,routes'
+    }
+});
+
+
 Vue.component('moment', () => import ('moment'));
 Vue.component('dataTableActions', () => import('./components/includes/data-table-actions.vue'));
 
 Vue.component('login-dashboard', () => import('./components/login-dashboard'));
 Vue.component('side-menu', () => import('./components/side-menu'));
 Vue.component('close_icon', () => import('./components/svgs/Close'));
+
 
 import QrcodeVue from 'qrcode.vue';
 Vue.component('qr_code', QrcodeVue);
@@ -47,7 +56,9 @@ Vue.component('drivers', () => import('./components/drivers'));
 Vue.component('routes', () => import('./components/routes'));
 Vue.component('vehicles', () => import('./components/vehicles'));
 Vue.component('locations', () => import('./components/locations'));
+Vue.component('trips', () => import('./components/trips'));
 Vue.component('help_messages', () => import('./components/help_messages'));
+Vue.component('maps', () => import('./components/includes/map'));
 
 
 Vue.config.productionTip = false

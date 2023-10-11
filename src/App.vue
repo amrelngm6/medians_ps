@@ -1,5 +1,7 @@
 <template>
     <div>
+
+        <maps></maps>
         <div v-if="show" class="left-4">
             <!-- component -->
             <div class="w-full relative">
@@ -36,7 +38,6 @@ export default {
     },
     data() {
         return {
-
             date: '',
             activeItem: null,
             showAddSide: false,

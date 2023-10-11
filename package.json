@@ -16,9 +16,9 @@
     "v-dropdown": "^3.0.0-beta.1",
     "v-selectmenu": "^2.0.2",
     "vue": "^2.6.10",
-    "vue-native-notification": "^1.1.1"
+    "vue-native-notification": "^1.1.1",
+    "vue2-google-maps": "^0.10.7"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
