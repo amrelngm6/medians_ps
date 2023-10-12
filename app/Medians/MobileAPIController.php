@@ -265,7 +265,7 @@ class MobileAPIController extends CustomController
                 break;
 
             case 'Vehicle.update':
-                $return =  (new Vehicles\Application\VehicleEventController())->update(); 
+                $return =  (new Vehicles\Application\VehicleController())->update(); 
                 break;
 
 
