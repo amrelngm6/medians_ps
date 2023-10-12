@@ -21,7 +21,6 @@ class Trip extends CustomModel
 		'driver_id',
 		'route_id',
 		'supervisor_id',
-		'student_id',
 		'trip_date',
 		'trip_status',
 		'created_by'

@@ -17,7 +17,8 @@ class PickupLocation extends CustomModel
     protected $primaryKey = 'pickup_id';
 	
 	public $fillable = [
-		'student_id',
+		'model_type',
+		'model_id',
 		'route_id',
 		'location_name',
 		'location_name',
@@ -55,7 +56,7 @@ class PickupLocation extends CustomModel
 	
 	public function student() 
 	{
-    	return $this->hasOne(Student::class, 'student_id', 'student_id');
+    	return $this->hasOne(Student::class, 'student_id', 'model_id');
 	}
 
 	

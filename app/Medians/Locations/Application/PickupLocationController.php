@@ -66,8 +66,9 @@ class PickupLocationController extends CustomController
 
 		return [
             [ 'key'=> "pickup_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "student_id", 'title'=> __('Student'), 
-				'fillable'=> true, 'column_type'=>'select','text_key'=>'first_name', 
+            [ 'key'=> "model_type", 'title'=> "#", 'default'=> ($this->studentRepo->getModel())::class, 'column_type'=>'hidden'],
+			[ 'key'=> "model_id", 'title'=> __('Student'), 
+				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'student_id', 'text_key'=>'student_name', 
 				'data' => $this->studentRepo->get()
 			],
 			[ 'key'=> "route_id", 'title'=> __('Route'), 

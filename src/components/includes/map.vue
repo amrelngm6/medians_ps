@@ -5,7 +5,7 @@
       :center="center"
       :key="reload"
       :zoom="zoom"
-      style="width: 100%; height: 400px"
+      style="width: 100%; height: calc(100vh -  100px)"
     >
       <DirectionsRenderer
         v-for="(waypoint, index) in waypoints"
@@ -13,6 +13,7 @@
         :destination="waypoint.destination"
         :key="waypoint"
         :travelMode="travelMode"
+        v-if="showRoute"
         />
         <GmapMarker
         v-for="(marker, index) in waypoints"
@@ -20,7 +21,7 @@
         :position="marker.destination"
         :clickable="true"
         :draggable="true"
-        :icon="'http://192.168.1.99:81/uploads/images/pin.png'"
+        :icon="marker.icon ? marker.icon : null"
         @click="checkMarker(index)"
         @drag="activeMarkerIndex = index"
         @dragend="updateMarker"
@@ -43,17 +44,22 @@ export default
     name:'Vehicles',
     data() {
         return {
+            imageUrl: 'http://192.168.1.99:81/uploads/images/',
             modes: ['DRIVING', 'WALKING'],
             activeMarkerIndex: 0,
             reload:true,
             render:true,
+            showRoute:false,
             travelMode: 'DRIVING',
             origin: {lat: 30.093048, lng: 31.152120}, // Replace with your origin location
             destination: {lat: 30.073048, lng: 31.142120}, // Replace with your destination location
 
-            zoom:10,
+            zoom:14,
             center: {lat: 30.058122734715376, lng: 31.219219598388676},
             markers: [
+                { position: {
+                    lat: 30.0581227357153761, lng: 31.21921983886761 } 
+                } ,
                 { position: {
                     lat: 30.058122734715376, lng: 31.219219598388676 } 
                 } ,
@@ -67,11 +73,7 @@ export default
                     lat: 30.05930379083195, lng: 31.22166653358458 } 
                 } 
             ],
-            waypoints: [
-            { origin: {lat: 30.058122734715376, lng: 31.219219598388676}, destination: {lat: 30.057544505767098, lng: 31.22335947143557 } },
-            { origin: {lat: 30.057544505767098, lng: 31.22335947143557 }, destination: {lat: 30.062368086177194, lng: 31.221097905273425} },
-            { origin: {lat: 30.062368086177194, lng: 31.221097905273425 }, destination: {lat: 30.05930379083195, lng: 31.22166653358458} },
-            ],
+            
         }
     },
 
@@ -84,11 +86,14 @@ export default
         'setting',
         'conf',
         'auth',
+        'waypoints'
     ],
     mounted() 
     {
-        this.calculateAndDisplayRoute();
+        if (this.waypoints && this.waypoints.length)
+            this.calculateAndDisplayRoute();
 
+        console.log(this.waypoints)
     },
 
     methods: 
@@ -109,13 +114,14 @@ export default
             this.waypoints[this.activeMarkerIndex].destination = {
                 lat: event.latLng.lat(), lng: event.latLng.lng()
             };
-            console.log(event.latLng.lat())
-            console.log(event.latLng.lng())
-            // return (this.activeMarkerIndex) ?  this.updateOrigin(event) : this.updateDestination(event);
+
+            this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], this.activeMarkerIndex);
         },
         checkMarker(i)
         {
-            console.log(this.markers[i]);
+            console.log(this.waypoints[i]);
+            this.$emit('click-marker', this.waypoints[i], i);
+
         },
         addMarker()
         {
@@ -165,7 +171,7 @@ export default
 
         sortWaypointsByDistance() 
         {
-
+            
             const waypointsWithDistances = this.waypoints.map((waypoint) => {
                 const originLatLng = new google.maps.LatLng(this.origin);
                 const destinationLatLng = new google.maps.LatLng(this.destination);

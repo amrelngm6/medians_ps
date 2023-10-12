@@ -1074,7 +1074,9 @@ class LangsAr
 		,'Terms and policy' => 'سياسة الاستخدام'
 		,'how_it_works' => 'طريقة العمل'
 		,'Go to app' => 'اذهب الى التطبيق'
+		,'Pickup locations description' => 'هذه القائمة تشمل جميع نقاط التوقف '
 
+		
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	

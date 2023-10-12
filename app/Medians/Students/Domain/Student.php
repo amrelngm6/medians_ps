@@ -4,6 +4,7 @@ namespace Medians\Students\Domain;
 
 use Shared\dbaser\CustomModel;
 
+use Medians\Locations\Domain\PickupLocation;
 
 class Student extends CustomModel
 {
@@ -30,8 +31,13 @@ class Student extends CustomModel
 	];
 
 
-	// public $appends = [];
+	public $appends = ['student_name'];
 
+
+	public function getStudentNameAttribute() : String
+	{
+		return $this->first_name .' '.$this->last_name;
+	}
 
 	public function photo() : String
 	{
@@ -49,5 +55,11 @@ class Student extends CustomModel
 	}
 
 
+	public function pickup_location() 
+	{
+    	return $this->hasOne(PickupLocation::class, 'model_id', 'student_id')->where('model_type', Student::class);
+	}
+
+	
 
 }
