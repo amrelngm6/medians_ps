@@ -11,10 +11,6 @@
                 <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
                     <div v-for="(route, index) in content.items" class="py-1 w-full self-stretch justify-start items-center inline-flex">
                         <div class="grow shrink basis-0 gap-4 justify-start items-center flex">
-                            <div class="justify-start items-center flex">
-                                <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
-                                    src="https://via.placeholder.com/60x60" />
-                            </div>
                             <div @click="setLocationsMarkers(route, index)"  class="grow shrink basis-0 flex-col justify-center items-start inline-flex cursor-pointer">
                                 <div :class="route.selected ? 'text-fuchsia-600' : 'text-black'" class=" font-semibold text-base " v-text="route.route_name"></div>
                                 <div class="self-stretch text-slate-500 text-base font-normal "><i class="fa fa-map-pin text-sm"></i> <span class="px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span> - <span v-if="route.vehicle" class="text-sm" v-text="route.vehicle.plate_number"></span></div>
