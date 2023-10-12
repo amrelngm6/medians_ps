@@ -11,6 +11,8 @@ Vue.use(vSelectMenu);
 import VueNativeNotification from 'vue-native-notification'
 Vue.use(VueNativeNotification, {requestOnNotify: false})
 
+import VTooltip from 'v-tooltip'
+Vue.use(VTooltip)
 
 import DataTable from "@andresouzaabreu/vue-data-table";
 Vue.component("data-table", DataTable);
