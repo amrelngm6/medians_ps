@@ -254,9 +254,14 @@ class APP
 					array('permission'=>'Pickup.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
 				]
 			),
+			
+			array('title'=>__('Vehicles'),  'icon'=>'fa-car', 'link'=>'#vehicles', 'sub'=>
+				[
+					array('permission'=>'Driver.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
+					array('permission'=>'Cars.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
+				]
+			),
 
-			array('permission'=>'Driver.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
-			array('permission'=>'Cars.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
 			array('permission'=>'Trips.index', 'title'=>__('trips'),  'icon'=>'fa-suitcase-rolling', 'link'=>'admin/trips', 'component'=>'trips'),
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'fa-circle-info', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array('permission'=>'Customer.index', 'title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),

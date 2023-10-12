@@ -9,7 +9,7 @@
                     <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Routes description')"></div>
                 </div>
                 <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
-                    <div v-for="(route, index) in content.items" class="py-1 w-full self-stretch justify-start items-center inline-flex">
+                    <div v-for="(route, index) in content.items" class="py-2 w-full self-stretch justify-start items-center inline-flex">
                         <div class="grow shrink basis-0 gap-4 justify-start items-center flex">
                             <div @click="setLocationsMarkers(route, index)"  class="grow shrink basis-0 flex-col justify-center items-start inline-flex cursor-pointer">
                                 <div :class="route.selected ? 'text-fuchsia-600' : 'text-black'" class=" font-semibold text-base " v-text="route.route_name"></div>
