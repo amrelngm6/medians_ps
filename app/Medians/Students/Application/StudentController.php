@@ -61,7 +61,7 @@ class StudentController extends CustomController
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "parent_guardian_name", 'title'=> __('parent_guardian_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'mobile' ],
+            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
             [ 'key'=> "date_of_birth", 'title'=> __('date_of_birth'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'date' ],
         ];
 	}
