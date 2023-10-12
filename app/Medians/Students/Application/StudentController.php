@@ -183,10 +183,10 @@ class StudentController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['id']);
+        	$check = $this->repo->find($params['student_id']);
 
 
-            if ($this->repo->delete($params['id']))
+            if ($this->repo->delete($params['student_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }

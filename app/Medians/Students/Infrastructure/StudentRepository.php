@@ -98,13 +98,10 @@ class StudentRepository
     public function update($data)
     {
 
-		$Object = Student::find($data['id']);
+		$Object = Student::find($data['student_id']);
 		
 		// Return the FBUserInfo object with the new data
     	$Object->update( (array) $data);
-
-    	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['id']) : '';
 
     	return $Object;
 
