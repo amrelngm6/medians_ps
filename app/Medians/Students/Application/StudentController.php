@@ -57,7 +57,7 @@ class StudentController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "student_id", 'title'=> "#"],
+            [ 'key'=> "student_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "parent_guardian_name", 'title'=> __('parent_guardian_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
