@@ -13,7 +13,7 @@
                         <div class="grow shrink basis-0 gap-4 justify-start items-center flex">
                             <div @click="setLocationsMarkers(route, index)"  class="grow shrink basis-0 flex-col justify-center items-start inline-flex cursor-pointer">
                                 <div :class="route.selected ? 'text-fuchsia-600' : 'text-black'" class=" font-semibold text-base " v-text="route.route_name"></div>
-                                <div class="self-stretch text-slate-500 text-base font-normal "><i class="fa fa-map-pin text-sm"></i> <span class="px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span> - <span v-if="route.vehicle" class="text-sm" v-text="route.vehicle.plate_number"></span></div>
+                                <div class="self-stretch text-slate-500 text-base font-normal "><i class="fa fa-map-pin text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span> - <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
                             </div>
                         </div>
                         <div class="justify-center items-center flex">
