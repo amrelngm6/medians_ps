@@ -264,6 +264,10 @@ class MobileAPIController extends CustomController
                 $return =  (new Notifications\Application\NotificationEventController())->update(); 
                 break;
 
+            case 'Vehicle.update':
+                $return =  (new Vehicles\Application\VehicleEventController())->update(); 
+                break;
+
 
 		}
 
