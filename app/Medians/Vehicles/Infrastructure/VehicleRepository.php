@@ -100,7 +100,7 @@ class VehicleRepository
 		$Object = Vehicle::find($data['vehicle_id']);
 		
 		// Return the FBUserInfo object with the new data
-    	$Object->update( (array) $data);
+    	$update = $Object->update( (array) $data);
 
     	// Store Custom fields
     	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['vehicle_id']) : '';
