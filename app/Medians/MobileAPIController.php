@@ -94,6 +94,11 @@ class MobileAPIController extends CustomController
 			case 'help_message':
 				$return = (new \Medians\Help\Infrastructure\HelpMessageRepository())->store($params);
 				break;
+
+			case 'Vehicle.update':
+				$return =  (new Vehicles\Application\VehicleController())->updateLocation($params); 
+				break;
+				
 		}
 
 		echo json_encode($return);
@@ -264,9 +269,6 @@ class MobileAPIController extends CustomController
                 $return =  (new Notifications\Application\NotificationEventController())->update(); 
                 break;
 
-            case 'Vehicle.update':
-                $return =  (new Vehicles\Application\VehicleController())->update(); 
-                break;
 
 
 		}
