@@ -196,7 +196,7 @@ class VehicleController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'p'=>$params, 'result'=>__('Updated'), 'reload'=>1);
             }
         
 
