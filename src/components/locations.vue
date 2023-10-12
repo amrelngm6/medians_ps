@@ -10,7 +10,7 @@
                         <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Pickup locations description')"></div>
                     </div>
                     <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
-                        <div v-for="location in content.items" class="w-full self-stretch justify-start items-center inline-flex py-1">
+                        <div v-for="location in content.items" class="py-1 w-full self-stretch justify-start items-center inline-flex py-1">
                             <div class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
                                     <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
