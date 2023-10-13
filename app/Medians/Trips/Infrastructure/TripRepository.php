@@ -151,7 +151,7 @@ class TripRepository
 		$data['trip_date'] =  date('Y-m-d');
 		$save = Trip::firstOrCreate($data);
 
-		if (isset($save->wasRecentlyCreated))
+		if (empty($save->wasRecentlyCreated))
 			return $save;
 
 		$check = PickupLocation::where('route_id', $data['route_id'])->get();
