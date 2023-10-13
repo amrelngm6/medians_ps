@@ -122,7 +122,7 @@ export default
             searchTextChanged()
             {
                 this.showList = false;
-                console.log(this.searchText);
+                console.log(this.searchText.trim().length);
                 for (let i = 0; i < this.content.items.length; i++) {
                     if (this.content.items[i])
                     {
