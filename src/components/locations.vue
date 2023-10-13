@@ -14,6 +14,25 @@
                     </div>
                     <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
                         <div v-for="location in content.items" :key="location.active" v-if="showList && location.active"  class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
+                            <div class="w-full bg-white rounded-[20px] justify-start items-center inline-flex">
+  <div class="grow shrink basis-0 p-7 flex-col justify-center items-start gap-4 inline-flex">
+    <div class="self-stretch justify-start items-start inline-flex">
+      <div class="grow shrink basis-0 flex-col justify-start items-start inline-flex">
+        <div class="self-stretch text-black text-lg font-medium font-['Roboto'] tracking-tight">New plan started</div>
+        <div class="self-stretch text-slate-500 text-base font-normal font-['Roboto'] leading-relaxed tracking-wide">Engineering</div>
+      </div>
+      <div class="p-2.5 flex-col justify-start items-start gap-2.5 inline-flex"></div>
+    </div>
+    <div class="w-full h-20 relative">
+      <img class="w-20 h-20 left-0 top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
+      <img class="w-20 h-20 left-[25.24px] top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
+      <img class="w-20 h-20 left-[50.49px] top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
+      <img class="w-20 h-20 left-[75.73px] top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
+      <img class="w-20 h-20 left-[100.98px] top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
+    </div>
+  </div>
+</div>
+                            
                             <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
                                     <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
