@@ -58,7 +58,7 @@ class Driver extends CustomModel
 
 	public function trip() 
 	{
-		return $this->hasOne(Trip::class, 'driver_id', 'driver_id')->where('trip_status', '!=', 'Completed')->where('trip_date', date('Y-m-d'))->with('pickup_locations');	
+		return $this->hasOne(Trip::class, 'driver_id', 'driver_id')->with('pickup_locations')->where('trip_status', '!=', 'Completed')->where('trip_date', date('Y-m-d'));	
 	}
 
 
