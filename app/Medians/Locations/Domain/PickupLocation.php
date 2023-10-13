@@ -28,7 +28,7 @@ class PickupLocation extends CustomModel
 	];
 
 
-	public $appends = ['contact_number', 'student_name'];
+	public $appends = ['contact_number', 'student_name', 'picture'];
 
 	public function getContactNumberAttribute() {
 		return isset($this->student->contact_number) ? $this->student->contact_number : '0';
@@ -41,6 +41,11 @@ class PickupLocation extends CustomModel
 	public function photo() : String
 	{
 		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.jpg';
+	}
+
+	public function picture() : String
+	{
+		return !empty($this->student->picture) ? $this->student->picture : '/uploads/images/default_profile.jpg';
 	}
 
 	public function getFields()
