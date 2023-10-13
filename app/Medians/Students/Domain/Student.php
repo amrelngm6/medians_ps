@@ -17,9 +17,9 @@ class Student extends CustomModel
     protected $primaryKey = 'student_id';
 	
 	public $fillable = [
-		// 'student_id',
 		'first_name',
 		'last_name',
+		'picture',
 		'date_of_birth',
 		'address',
 		'parent_guardian_name',
