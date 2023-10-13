@@ -17,7 +17,7 @@
                                     <div class="self-stretch text-black text-lg font-medium font-['Roboto'] tracking-tight">New plan started</div>
                                     <div class="self-stretch text-slate-500 text-base font-normal font-['Roboto'] leading-relaxed tracking-wide">Engineering</div>
                                 </div>
-                                <div class="p-2.5 flex-col justify-start items-start gap-2.5 inline-flex">
+                                <div class="p-1 flex-col justify-start items-start gap-2.5 inline-flex">
                                     <open-icon></open-icon>
                                 </div>
                             </div>
