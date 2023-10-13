@@ -158,7 +158,7 @@ class HelpMessageController extends CustomController
 
 		// $params = json_decode($this->app->request()->get('type'));
 
-		$params = json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->request()->get('params'));
 
         try {	
 
