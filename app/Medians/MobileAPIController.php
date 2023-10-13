@@ -92,7 +92,7 @@ class MobileAPIController extends CustomController
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
 				break;
 			case 'help_message':
-				$return = (new \Medians\Help\Infrastructure\HelpMessageRepository())->store($params);
+				$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
 				break;
 
 			case 'Vehicle.update':
