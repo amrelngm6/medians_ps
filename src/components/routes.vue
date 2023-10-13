@@ -32,7 +32,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr class="my-2" />
+                                <hr class="my-1 w-full" />
                                 <div class="w-full h-8 relative flex">
                                     <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
                                     <span class="relative pt-2" :style="'left: '+((20 * route.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span></span>
