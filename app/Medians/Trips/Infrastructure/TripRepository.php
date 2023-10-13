@@ -154,6 +154,7 @@ class TripRepository
 
 		foreach ($check as $key => $value) 
 		{
+			$value['trip_id'] = $save->trip_id;
 			$savePickups = $this->savePickup($value);
 		}
 
