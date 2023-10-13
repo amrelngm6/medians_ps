@@ -17,7 +17,9 @@
                                     <div class="self-stretch text-black text-lg font-medium font-['Roboto'] tracking-tight">New plan started</div>
                                     <div class="self-stretch text-slate-500 text-base font-normal font-['Roboto'] leading-relaxed tracking-wide">Engineering</div>
                                 </div>
-                                <div class="p-2.5 flex-col justify-start items-start gap-2.5 inline-flex"></div>
+                                <div class="p-2.5 flex-col justify-start items-start gap-2.5 inline-flex">
+                                    <open-icon></open-icon>
+                                </div>
                             </div>
                             <div class="w-full h-8 relative flex">
                                 <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />

@@ -31,6 +31,7 @@ Vue.component('dataTableActions', () => import('./components/includes/data-table
 Vue.component('login-dashboard', () => import('./components/login-dashboard'));
 Vue.component('side-menu', () => import('./components/side-menu'));
 Vue.component('close_icon', () => import('./components/svgs/Close'));
+Vue.component('open-icon', () => import('./components/svgs/open-icon'));
 
 
 import QrcodeVue from 'qrcode.vue';
