@@ -23,6 +23,11 @@ class HelpMessage extends CustomModel
 	];
 
 
+	public function getFields()
+	{
+		return $this->fillable;
+	}
+	
 	public function user() 
 	{
     	return $this->hasOne(User::class, 'id', 'user_id') ;
