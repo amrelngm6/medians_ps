@@ -18,8 +18,8 @@
                             <div class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
                                     <div @click="setLocationsMarkers(route, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
-                                        <div :class="route.selected ? 'text-fuchsia-600' : 'text-gray-800'" class="self-stretch text-lg font-medium font-['Roboto'] tracking-tight">New plan started</div>
-                                        <div class="self-stretch text-slate-500 text-base font-normal font-['Roboto'] leading-relaxed tracking-wide">Engineering</div>
+                                        <div :class="route.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-text="route.route_name" class="self-stretch text-base font-semibold  tracking-tight"></div>
+                                        <div class="self-stretch text-slate-500 text-sm font-semibold leading-relaxed tracking-wide"  v-text="route.description"></div>
                                     </div>
                                     <div @click="setLocationsMarkers(route, index)"  class="p-1 flex-col justify-start items-start gap-2.5 inline-flex">
                                         <open-icon></open-icon>
