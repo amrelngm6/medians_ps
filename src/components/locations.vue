@@ -122,22 +122,16 @@ export default
             searchTextChanged()
             {
                 this.showList = false;
-                console.log(this.searchText.trim().length);
                 for (let i = 0; i < this.content.items.length; i++) {
-                    if (this.content.items[i])
-                    {
-                        this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
-                    }
+                    this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
                 }
-                console.log(this.content.items);
                 this.showList = true;
             },
 
             checkSimilar(item)
             {
-                let title = (item.student_name).toLowerCase();
-                let text = this.searchText.toLowerCase();
-                return (title).includes(text) ? true : false;
+                let a = (item.student_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
+                return a ? a : ((item.location_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
             },
 
             updatedLocation(item, index)
