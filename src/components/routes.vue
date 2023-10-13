@@ -10,21 +10,23 @@
                 </div>
                 <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
 
-                    <div v-for="(route, index) in content.items" class="mb-4 w-full bg-gray-100 rounded-lg justify-start items-center inline-flex">
-                        <div class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
-                            <div class="w-full self-stretch justify-start items-start inline-flex">
-                                <div class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
-                                    <div class="self-stretch text-black text-lg font-medium font-['Roboto'] tracking-tight">New plan started</div>
-                                    <div class="self-stretch text-slate-500 text-base font-normal font-['Roboto'] leading-relaxed tracking-wide">Engineering</div>
+                    <div v-for="(route, index) in content.items" class="w-full">
+                        <div :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-100'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
+                            <div class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
+                                <div class="w-full self-stretch justify-start items-start inline-flex">
+                                    <div @click="setLocationsMarkers(route, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
+                                        <div class="self-stretch text-black text-lg font-medium font-['Roboto'] tracking-tight">New plan started</div>
+                                        <div class="self-stretch text-slate-500 text-base font-normal font-['Roboto'] leading-relaxed tracking-wide">Engineering</div>
+                                    </div>
+                                    <div @click="setLocationsMarkers(route, index)"  class="p-1 flex-col justify-start items-start gap-2.5 inline-flex">
+                                        <open-icon></open-icon>
+                                    </div>
                                 </div>
-                                <div class="p-1 flex-col justify-start items-start gap-2.5 inline-flex">
-                                    <open-icon></open-icon>
+                                <div class="w-full h-8 relative flex">
+                                    <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
+                                    <span :style="'left: '+(20 * route.pickup_locations.length)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span></span>
+                                    <div class="right-0 absolute  self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
                                 </div>
-                            </div>
-                            <div class="w-full h-8 relative flex">
-                                <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
-                                <span :style="'left: '+(20 * route.pickup_locations.length)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span></span>
-                                <div class="right-0 absolute  self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
                             </div>
                         </div>
                     </div>
@@ -32,7 +34,7 @@
                     <div v-for="(route, index) in content.items" class="py-2 w-full self-stretch justify-start items-center inline-flex">
                         <div class="grow shrink basis-0 gap-4 justify-start items-center flex">
                             <div @click="setLocationsMarkers(route, index)"  class="py-1 grow shrink basis-0 flex-col justify-center items-start inline-flex cursor-pointer">
-                                <div :class="route.selected ? 'text-fuchsia-600' : 'text-black'" class=" font-semibold text-base " v-text="route.route_name"></div>
+                                <div class=" font-semibold text-base " v-text="route.route_name"></div>
                                 <div class="self-stretch text-slate-500 text-base font-normal "><i class="fa fa-map-pin text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span> - <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
                             </div>
                         </div>
