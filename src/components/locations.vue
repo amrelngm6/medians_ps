@@ -17,7 +17,7 @@
                             <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
                                     <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
-                                        :src="location.student ? location.student.picture : 'https://via.placeholder.com/60x6'" />
+                                        :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/60x6'" />
                                 </div>
                                 <div @click="setLocationsMarkers(location)" class="grow shrink basis-0 flex-col justify-center items-start gap-[3px] inline-flex cursor-pointer">
                                     <div class="text-black font-semibold text-base " v-text="location.student_name"></div>
