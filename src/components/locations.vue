@@ -14,7 +14,7 @@
                     </div>
                     <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
                         <div v-for="location in content.items" class="py-1 w-full self-stretch justify-start items-center inline-flex py-1">
-                            <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
+                            <div v-if="showList && location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
                                     <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
                                         src="https://via.placeholder.com/60x60" />
@@ -121,6 +121,7 @@ export default
 
             searchTextChanged()
             {
+                this.showList = false;
                 console.log(this.searchText);
                 for (let i = 0; i < this.content.items.length; i++) {
                     if (this.content.items[i])
@@ -128,6 +129,7 @@ export default
                         this.content.items[i].active = this.searchText ? this.checkSimilar(this.content.items[i]) : 1;
                     }
                 }
+                this.showList = true;
             },
 
             checkSimilar(item)
