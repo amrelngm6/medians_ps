@@ -7,7 +7,7 @@ use Medians\Vehicles\Domain\Vehicle;
 use Shared\dbaser\CustomModel;
 
 
-class Trip extends CustomModel
+class TripPickup extends CustomModel
 {
 
 	/*
