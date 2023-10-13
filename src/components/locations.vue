@@ -13,7 +13,7 @@
                         <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
                     <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
-                        <div v-for="location in content.items" :key="location.active" v-if="showList && location.active"  class="py-1 w-full self-stretch justify-start items-center inline-flex py-1">
+                        <div v-for="location in content.items" :key="location.active" v-if="showList && location.active"  class="py-2 w-full self-stretch justify-start items-center inline-flex py-1">
                             <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
                                     <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
