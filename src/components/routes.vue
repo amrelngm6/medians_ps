@@ -168,7 +168,7 @@ export default
                 a = route.pickup_locations[i];
                 locations[i] = {icon: this.conf.url+'uploads/images/blue_pin.gif', origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
-            locations[locations.length] = {icon: this.conf.url+'uploads/images/car.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_latitude) } }
+            locations[locations.length] = {icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
             console.log(route.vehicle)
             return locations;
         },  
@@ -214,12 +214,6 @@ export default
         setValues(data) {
             
             this.content = JSON.parse(JSON.stringify(data));
-            let a;
-            for (let i = 0; i < this.content.items.length; i++) {
-                a = this.content.items[i];
-                this.locations[i] = {icon: this.conf.url+'uploads/images/blue_pin.gif', origin: { lat: 30.0581227357153761, lng: 31.21921983886761 }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
-            }
-            
             return this
         },
         __(i)
