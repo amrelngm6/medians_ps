@@ -29,6 +29,8 @@ class LangsAr
 		,'REGISTER' => 'تسجيل'
 		,'CUR_CUSTOMERS' => 'الاعضاء المسجلين'
 		,'NAME' => 'الاسم'
+		,'first NAME' => 'الاسم الأول'
+		,'last NAME' => 'الإسم الاخير'
 		,'ENTER_MAIL' => 'البريد الالكتروني'
 		,'ENTER_PASS' => 'كلمة المرور'
 		,'PASSWORD' => 'كلمة المرور'
@@ -178,6 +180,7 @@ class LangsAr
 		,'404_PARAGRAPH' => "من الممكن  ان تكون وصلت هنا عن طريق الخطا "
 		,'U_HAVE' => "You have "
 		,'MSGS' => "All messages"
+		,'message' => "الرسالة"
 		,'NOTIFICATIONS' => "التنبيهات"
 		,'ALL_NOTIFICATIONS' => "جميع التنبيهات"
 		,'notifications_log' => "سجل التنبيهات"
@@ -1075,10 +1078,25 @@ class LangsAr
 		,'how_it_works' => 'طريقة العمل'
 		,'Go to app' => 'اذهب الى التطبيق'
 		,'Pickup locations' => 'أماكن التوقف'
+		,'PickupLocations' => 'أماكن التوقف'
 		,'Locations' => 'أماكن التوقف'
 		,'Routes' => 'خطوط السير'
-		,'Students' => 'العملاء'
-		,'Student' => 'العملاء'
+		,'Students' => 'الطلاب'
+		,'Student' => 'الطلاب'
+		,'vehicles' => 'السيارات'
+		,'drivers' => 'السائقين'
+		,'cars' => 'السيارات'
+		,'trips' => 'الرحلات'
+		,'trip date' => 'تاريخ الرحلة'
+		,'trip status' => 'حالة الرحلة'
+		,'vehicle name' => 'اسم السيارة'
+		,'plate number' => 'لوحة السيارة'
+		,'help messages' => 'رسائل المساعدة'
+		,'maintenance status' => 'حالة الصيانة'
+		,'parent guardian name' => 'إسم ولي الأمر'
+		,'contact number' => 'إسم التواصل'
+		,'license number' => 'رقم الرخصة'
+		,'find by name and address' => 'ابحث عن طريق الإسم او التفاصيل'
 		,'Routes description' => 'هذه القائمة تشمل خطوط السير وأماكن التوقف الخاصة بهم'
 
 		,'Pickup locations description' => 'هذه القائمة تشمل جميع نقاط التوقف '

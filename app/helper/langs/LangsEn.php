@@ -925,6 +925,8 @@ class LangsEn
 			,'editor notes' => 'To edit Links or Images ( <a> / <img> ) tags use right-click at your mouse'
 			,'Pickup locations description' => 'This list includes all pickup locations'
 			,'Routes description' => 'This list includes routes with its pickup locations'
+			,'PickupLocations' => 'Pickup Locations'
+
 
 		
 			,'COPYRIGHTS' => 'Copyrights are reserved'
