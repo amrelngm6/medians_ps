@@ -38,7 +38,7 @@ class Trip extends CustomModel
 
 	public function pickup_locations() 
 	{
-		return $this->hasMany(TripPickup::class, 'pickup_id', 'pickup_id')->with('location');	
+		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->with('location');	
 	}
 
 
