@@ -23,6 +23,9 @@
                                     </div>
                                     <div @click="setLocationsMarkers(route, index)"  class="p-1 flex-col justify-start items-start gap-2.5 inline-flex">
                                         <open-icon></open-icon>
+                                        <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex mr-2 cursor-pointer"  @click="handleAction('edit', route)">
+                                            <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-edit"></i></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="w-full h-8 relative flex">
@@ -33,20 +36,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div v-for="(route, index) in content.items" class="py-2 w-full self-stretch justify-start items-center inline-flex">
-                        <div class="grow shrink basis-0 gap-4 justify-start items-center flex">
-                            <div @click="setLocationsMarkers(route, index)"  class="py-1 grow shrink basis-0 flex-col justify-center items-start inline-flex cursor-pointer">
-                                <div class=" font-semibold text-base " v-text="route.route_name"></div>
-                                <div class="self-stretch text-slate-500 text-base font-normal "><i class="fa fa-map-pin text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span> - <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
-                            </div>
-                        </div>
-                        <div class="justify-center items-center flex">
-                            <div class="px-3 py-2 bg-fuchsia-600 rounded justify-center items-center flex mr-2 cursor-pointer"  @click="handleAction('edit', route)">
-                                <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-edit"></i></div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div
                     class="self-stretch grow shrink basis-0 p-[25px] bg-neutral-50 justify-between items-center inline-flex">
