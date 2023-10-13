@@ -20,7 +20,7 @@
                                 <div class="p-2.5 flex-col justify-start items-start gap-2.5 inline-flex"></div>
                             </div>
                             <div class="w-full h-20 relative">
-                                <img :style="{left: (20 * i)}" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
+                                <img :style="'left: '=(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
                             </div>
                         </div>
                     </div>
