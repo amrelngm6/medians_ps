@@ -129,6 +129,7 @@ export default
                         this.content.items[i].active = this.searchText ? this.checkSimilar(this.content.items[i]) : 1;
                     }
                 }
+                console.log(this.content.items);
                 this.showList = true;
             },
 
