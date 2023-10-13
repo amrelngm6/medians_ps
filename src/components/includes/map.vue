@@ -15,7 +15,7 @@
                 :key="waypoints" 
                 :position="marker.destination"
                 :clickable="true" 
-                :draggable="true" 
+                :draggable="marker.drag ? true : false" 
                 :icon="marker.icon ? marker.icon : null" 
                 @click="checkMarker(index)"
                 @drag="activeMarkerIndex = index" 
