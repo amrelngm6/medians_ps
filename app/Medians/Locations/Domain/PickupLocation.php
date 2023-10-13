@@ -43,7 +43,7 @@ class PickupLocation extends CustomModel
 		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.jpg';
 	}
 
-	public function picture() : String
+	public function getPictureAttribute() : String
 	{
 		return !empty($this->student->picture) ? $this->student->picture : '/uploads/images/default_profile.jpg';
 	}
