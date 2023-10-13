@@ -143,7 +143,6 @@ export default
                     var directionsService = new window.google.maps.DirectionsService();
                     var directionsRenderer = new window.google.maps.DirectionsRenderer();
 
-                    console.log(this.$refs)
                     var map = this.$refs.gmap.$mapObject;
 
                     directionsRenderer.setMap(map);
@@ -167,7 +166,6 @@ export default
                     );
                     this.render = true
                 }
-                console.log(window)
             },
 
             sortWaypointsByDistance() {
