@@ -1,6 +1,6 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
-        <div class=" w-full relative">
+        <div  v-if="content && !showLoader" class=" w-full relative">
 
             <maps :key="locations" :waypoints="locations"></maps>
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
@@ -50,14 +50,14 @@
                 </div>
                 <div
                     class="self-stretch grow shrink basis-0 p-[25px] bg-neutral-50 justify-between items-center inline-flex">
-                    <div @click="showAddSide = true" class="bg-fuchsia-600 rounded-lg text-white text-xs font-medium px-3 py-2 uppercase cursor-pointer" >Add new student</div>
+                    <div class="bg-fuchsia-600 rounded-lg text-white text-xs font-medium px-3 py-2 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
                 </div>
             </div>
 
             <hr class="mt-2" />
 
             
-            <main v-if="content && !showLoader" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full relative">
+            <main class=" flex-1 overflow-x-hidden overflow-y-auto  w-full relative">
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
