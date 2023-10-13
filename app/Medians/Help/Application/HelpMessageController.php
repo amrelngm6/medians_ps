@@ -166,7 +166,7 @@ class HelpMessageController extends CustomController
         	
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>__('THNKS_MSG'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
