@@ -14,7 +14,7 @@
                 <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
 
                     <div v-for="(route, index) in content.items" class="w-full">
-                        <div  v-if="location.active" :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
+                        <div  v-if="route.active" :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
                             <div class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
                                     <div @click="setLocationsMarkers(route, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
