@@ -10,7 +10,7 @@
                 </div>
                 <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
 
-                    <div v-for="(route, index) in content.items" class="w-full bg-white rounded-lg justify-start items-center inline-flex">
+                    <div v-for="(route, index) in content.items" class="w-full bg-gray-100 rounded-lg justify-start items-center inline-flex">
                         <div class="grow shrink basis-0 p-6 flex-col justify-center items-start gap-4 inline-flex">
                             <div class="self-stretch justify-start items-start inline-flex">
                                 <div class="grow shrink basis-0 flex-col justify-start items-start inline-flex">
@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="p-2.5 flex-col justify-start items-start gap-2.5 inline-flex"></div>
                             </div>
-                            <div class="w-full h-20 relative">
+                            <div class="w-full h-8 relative">
                                 <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
                             </div>
                         </div>
