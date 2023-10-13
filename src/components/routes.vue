@@ -21,8 +21,8 @@
                                         <div :class="route.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-text="route.route_name" class="self-stretch text-base font-semibold  tracking-tight"></div>
                                         <div class="py-1 self-stretch text-slate-500 text-sm font-semibold leading-relaxed tracking-wide"  v-text="route.description"></div>
                                     </div>
-                                    <div @click="setLocationsMarkers(route, index)"  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
-                                        <div class="px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
+                                    <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
+                                        <div class="px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(route, index)" >
                                             <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-location-dot"></i></div>
                                         </div>
                                         <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
