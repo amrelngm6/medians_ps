@@ -8,10 +8,13 @@
                     <div class="text-black text-lg font-semibold" v-text="__('Routes')"></div>
                     <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Routes description')"></div>
                 </div>
+                <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
+                    <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
+                </div>
                 <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
 
                     <div v-for="(route, index) in content.items" class="w-full">
-                        <div :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
+                        <div  v-if="location.active" :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
                             <div class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
                                     <div @click="setLocationsMarkers(route, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
@@ -100,6 +103,7 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
+            searchText: '',
         }
     },
 
@@ -136,6 +140,20 @@ export default
     {
 
         
+        searchTextChanged()
+        {
+            this.showList = false;
+            for (let i = 0; i < this.content.items.length; i++) {
+                this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
+            }
+            this.showList = true;
+        },
+
+        checkSimilar(item)
+        {
+            let a = (item.student_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
+            return a ? a : ((item.location_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
+        },
         setLocationsMarkers(route, i)
         {   
 
