@@ -58,7 +58,7 @@ class PickupLocation extends CustomModel
 	{
     	return $this->hasOne(Student::class, 'student_id', 'model_id');
 	}
-
+	
 	
 	
 }

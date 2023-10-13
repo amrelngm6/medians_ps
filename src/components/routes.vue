@@ -155,19 +155,20 @@ export default
                 this.content.items[a].selected = false;
                 
             this.content.items[i].selected = true; 
-            this.locations = this.setLocationsPickups(route.pickup_locations);
+            this.locations = this.setLocationsPickups(route);
         },  
         
-        setLocationsPickups(pickup_locations)
+        setLocationsPickups(route)
         {
             
             let a;
             let locations = [];
             // = parseFloat(location.latitude);
-            for (let i = 0; i < pickup_locations.length; i++) {
-                a = pickup_locations[i];
+            for (let i = 0; i < route.pickup_locations.length; i++) {
+                a = route.pickup_locations[i];
                 locations[i] = {icon: this.conf.url+'uploads/images/blue_pin.gif', origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
+            locations[locations.length] = {icon: this.conf.url+'uploads/images/car.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_latitude) } }
 
             return locations;
         },  
