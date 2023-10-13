@@ -126,7 +126,7 @@ export default
                 for (let i = 0; i < this.content.items.length; i++) {
                     if (this.content.items[i])
                     {
-                        this.content.items[i].active = this.searchText ? this.checkSimilar(this.content.items[i]) : 1;
+                        this.content.items[i].active = this.searchText != '' ? this.checkSimilar(this.content.items[i]) : 1;
                     }
                 }
                 console.log(this.content.items);
