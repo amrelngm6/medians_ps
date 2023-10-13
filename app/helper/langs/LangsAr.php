@@ -1074,6 +1074,13 @@ class LangsAr
 		,'Terms and policy' => 'سياسة الاستخدام'
 		,'how_it_works' => 'طريقة العمل'
 		,'Go to app' => 'اذهب الى التطبيق'
+		,'Pickup locations' => 'أماكن التوقف'
+		,'Locations' => 'أماكن التوقف'
+		,'Routes' => 'خطوط السير'
+		,'Students' => 'العملاء'
+		,'Student' => 'العملاء'
+		,'Routes description' => 'هذه القائمة تشمل خطوط السير وأماكن التوقف الخاصة بهم'
+
 		,'Pickup locations description' => 'هذه القائمة تشمل جميع نقاط التوقف '
 
 		
