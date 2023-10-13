@@ -21,11 +21,10 @@
                             </div>
                             <div class="w-full h-8 relative flex">
                                 <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-white" src="https://via.placeholder.com/37x37" />
-                                <div class="float-right self-stretch text-slate-500 text-base font-normal "><i class="fa fa-map-pin text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span> - <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
+                                <div class="right-0 absolute  self-stretch text-slate-500 text-base font-normal "><i class="fa fa-map-pin text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span> - <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
                             </div>
                         </div>
                     </div>
-
 
                     <div v-for="(route, index) in content.items" class="py-2 w-full self-stretch justify-start items-center inline-flex">
                         <div class="grow shrink basis-0 gap-4 justify-start items-center flex">
