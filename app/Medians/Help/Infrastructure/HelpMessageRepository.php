@@ -74,7 +74,7 @@ class HelpMessageRepository
 		
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}
@@ -83,10 +83,6 @@ class HelpMessageRepository
 		// Return the FBUserInfo object with the new data
     	$Object = HelpMessage::create($dataArray);
     	$Object->update($dataArray);
-
-    	// Store Custom fields
-		if (isset($data['field']))
-	    	$this->storeCustomFields($data['field'], $Object->id);
 
     	return $Object;
     }
