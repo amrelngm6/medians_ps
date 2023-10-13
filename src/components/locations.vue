@@ -9,7 +9,7 @@
                         <div class="text-black text-lg font-semibold" v-text="__('Pickup locations')"></div>
                         <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Pickup locations description')"></div>
                     </div>
-                    <div class="w-full self-stretch py-4 flex-col justify-center items-start flex">
+                    <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                         <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
                     <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
