@@ -3,6 +3,7 @@
 namespace Medians\Trips\Infrastructure;
 
 use Medians\Trips\Domain\Trip;
+use Medians\Locations\Domain\PickupLocation;
 use Medians\Trips\Domain\TripPickup;
 use Medians\Trips\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
