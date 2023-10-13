@@ -170,8 +170,9 @@ class TripRepository
 
 		$fieldsData = [
 			'trip_id' => $data['trip_id'],
-			'pickup_type' => $data['model_type'],
-			'pickup_id' => $data['model_id'],
+			'model_type' => $data['model_type'],
+			'model_id' => $data['model_id'],
+			'pickup_id' => $data['pickup_id'],
 			'status' => $data['status'],
 			'trip_date' => date('Y-m-d'),
 		];
