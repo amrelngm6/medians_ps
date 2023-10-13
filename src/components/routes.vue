@@ -23,6 +23,10 @@
                                     </div>
                                     <div @click="setLocationsMarkers(route, index)"  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
                                         <open-icon></open-icon>
+
+                                        <div class="px-3 py-2 bg-purple rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
+                                            <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-location-dot"></i></div>
+                                        </div>
                                         <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
                                             <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-edit"></i></div>
                                         </div>
