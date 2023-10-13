@@ -13,7 +13,7 @@
                     <div v-for="(route, index) in content.items" class="mb-4 w-full bg-gray-100 rounded-lg justify-start items-center inline-flex">
                         <div class="grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
                             <div class="self-stretch justify-start items-start inline-flex">
-                                <div class="grow shrink basis-0 flex-col justify-start items-start inline-flex">
+                                <div class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
                                     <div class="self-stretch text-black text-lg font-medium font-['Roboto'] tracking-tight">New plan started</div>
                                     <div class="self-stretch text-slate-500 text-base font-normal font-['Roboto'] leading-relaxed tracking-wide">Engineering</div>
                                 </div>
