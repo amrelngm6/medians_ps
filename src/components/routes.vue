@@ -13,8 +13,8 @@
                 </div>
                 <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
 
-                    <div v-for="(route, index) in content.items" class="w-full">
-                        <div  v-if="route.active" :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
+                    <div v-for="(route, index) in content.items" :key="location.active" class="w-full">
+                        <div  v-if="showList && route.active" :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
                             <div class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
                                     <div @click="setLocationsMarkers(route, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
@@ -103,6 +103,7 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
+            showList: true,
             searchText: '',
         }
     },
@@ -151,8 +152,8 @@ export default
 
         checkSimilar(item)
         {
-            let a = (item.student_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
-            return a ? a : ((item.location_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
+            let a = (item.route_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
+            return a ? a : ((item.description).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
         },
         setLocationsMarkers(route, i)
         {   
