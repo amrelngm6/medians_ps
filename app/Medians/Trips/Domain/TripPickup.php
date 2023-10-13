@@ -19,7 +19,8 @@ class TripPickup extends CustomModel
 	
 	public $fillable = [
 		'trip_id',
-		'pickup_type',
+		'model_type',
+		'model_id',
 		'pickup_id',
 		'status',
 		'boarding_time',
