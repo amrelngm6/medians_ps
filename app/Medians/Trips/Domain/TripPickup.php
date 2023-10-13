@@ -3,6 +3,7 @@
 namespace Medians\Trips\Domain;
 
 use Medians\Routes\Domain\Route;
+use Medians\Locations\Domain\PickupLocation;
 use Medians\Vehicles\Domain\Vehicle;
 use Shared\dbaser\CustomModel;
 
@@ -32,6 +33,12 @@ class TripPickup extends CustomModel
 	// public $appends = [];
 
 
+
+
+	public function location() 
+	{
+		return $this->hasOne(PickupLocation::class, 'pickup_id', 'pickup_id');	
+	}
 
 
 

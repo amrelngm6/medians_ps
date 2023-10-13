@@ -36,6 +36,10 @@ class Trip extends CustomModel
 		return $this->hasOne(Route::class, 'route_id', 'route_id')->with('pickup_locations');	
 	}
 
+	public function pickup_locations() 
+	{
+		return $this->hasOne(TripPickup::class, 'pickup_id', 'pickup_id')->with('location');	
+	}
 
 
 }

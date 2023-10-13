@@ -4,6 +4,7 @@ namespace Medians\Drivers\Domain;
 
 use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
+use Medians\Trips\Domain\Trip;
 use Shared\dbaser\CustomModel;
 
 
@@ -55,6 +56,10 @@ class Driver extends CustomModel
 		return $this->hasOne(Vehicle::class, 'driver_id', 'driver_id')->with('route');	
 	}
 
+	public function trip() 
+	{
+		return $this->hasOne(Trip::class, 'driver_id', 'driver_id')->with('pickup_locations');	
+	}
 
 
 }
