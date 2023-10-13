@@ -172,6 +172,7 @@ class TripRepository
 			'pickup_type' => $data['model_type'],
 			'pickup_id' => $data['model_id'],
 			'status' => $data['status'],
+			'trip_date' => date('Y-m-d'),
 		];
 
 		$check = TripPickup::create($fieldsData);
