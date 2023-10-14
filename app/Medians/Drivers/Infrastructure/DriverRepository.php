@@ -43,7 +43,7 @@ class DriverRepository
 
 	public function get($limit = 100)
 	{
-		return Driver::limit($limit)->get();
+		return Driver::limit($limit)->orderBy('id', 'DESC')->get();
 	}
 
 	public function search($request, $limit = 20)
