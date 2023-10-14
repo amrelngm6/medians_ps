@@ -45,7 +45,7 @@ class TripRepository
 
 	public function getDriverTrips($id)
 	{
-		return Trip::with('pickup_locations', 'driver', 'vehicle')->where('driver_id', $id)->get();
+		return Trip::with('pickup_locations', 'driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->get();
 	}
 
 	public function get($limit = 100)
