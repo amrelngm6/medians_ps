@@ -13,28 +13,28 @@
                 </div>
                 <div v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
 
-                    <div v-for="(route, index) in content.items" :key="route.active" class="w-full">
-                        <div  v-if="showList  && route.active" :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
-                            <div class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
+                    <div v-for="(trip, index) in content.items" :key="trip.active" class="w-full">
+                        <div  v-if="showList  && trip.active" :class="trip.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
+                            <div  class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex" v-if="trip.vehicle">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
-                                    <div @click="setLocationsMarkers(route, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
-                                        <div :class="route.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-text="route.route_name" class="self-stretch text-base font-semibold  tracking-tight"></div>
-                                        <div class="py-1 self-stretch text-slate-500 text-sm font-semibold leading-relaxed tracking-wide"  v-text="route.description"></div>
+                                    <div @click="setLocationsMarkers(trip, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
+                                        <div :class="trip.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-text="trip.vehicle.plate_number" v-if="trip.vehicle.plate_number" class="self-stretch text-base font-semibold  tracking-tight"></div>
+                                        <div class="py-1 self-stretch text-slate-500 text-sm font-semibold leading-relaxed tracking-wide" v-if="trip.description"  v-text="trip.description"></div>
                                     </div>
                                     <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
-                                        <div class="px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(route, index)" >
+                                        <div class="px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(trip, index)" >
                                             <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-location-dot"></i></div>
                                         </div>
-                                        <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
+                                        <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', trip)">
                                             <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-edit"></i></div>
                                         </div>
                                     </div>
                                 </div>
                                 <hr class="w-full" />
                                 <div class="w-full h-8 relative flex">
-                                    <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
-                                    <span class="absolute pt-2" :style="'left: '+((20 * route.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span></span>
-                                    <div class="right-0 absolute  self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
+                                    <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in trip.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
+                                    <span class="absolute pt-2" :style="'left: '+((20 * trip.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="trip.pickup_locations" v-text="trip.pickup_locations.length"></span></span>
+                                    <div class="right-0 absolute  self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="trip.vehicle" class="font-semibold text-sm" v-text="trip.vehicle.plate_number"></span></div>
                                 </div>
                             </div>
                         </div>
