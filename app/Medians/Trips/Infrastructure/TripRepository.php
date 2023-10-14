@@ -182,6 +182,20 @@ class TripRepository
 		return $update ? true : false;
 	}
 	
+
+	/**
+	 * End trip
+	 */
+	public function endTrip($data)
+	{
+		
+		$trip = Trip::find($data['trip_id']);
+
+		$update = $trip->update($data);
+
+		return $update ? true : false;
+	}
+	
     	
 	/**
 	 * Create Trip Pickup
