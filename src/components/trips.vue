@@ -14,7 +14,7 @@
                 <div v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
 
                     <div v-for="(trip, index) in content.items" :key="trip.active" class="w-full">
-                        <div  v-if="showList  && trip.active  && trip.status == 'Scheduled'" :class="trip.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
+                        <div  v-if="showList  && trip.active  && trip.trip_status == 'Scheduled'" :class="trip.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
                             <div  class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex" v-if="trip.vehicle">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
                                     <div @click="setLocationsMarkers(trip, index)"  class="w-full grow shrink basis-0 justify-start items-start flex gap-4">
