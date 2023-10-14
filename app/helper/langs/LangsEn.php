@@ -926,7 +926,7 @@ class LangsEn
 			,'Pickup locations description' => 'This list includes all pickup locations'
 			,'Routes description' => 'This list includes routes with its pickup locations'
 			,'PickupLocations' => 'Pickup Locations'
-
+			,'Trips description' => 'List of the active Trips list.'
 
 		
 			,'COPYRIGHTS' => 'Copyrights are reserved'
