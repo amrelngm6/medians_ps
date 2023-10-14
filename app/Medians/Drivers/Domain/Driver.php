@@ -65,5 +65,10 @@ class Driver extends CustomModel
 		return $this->hasOne(Trip::class, 'driver_id', 'driver_id')->withCount('waiting_locations','moving_locations')->with('pickup_locations')->where('trip_status', '!=', 'Completed')->where('trip_date', date('Y-m-d'));	
 	}
 
+	public function last_trips() 
+	{
+		return $this->hasMany(Trip::class, 'driver_id', 'driver_id')->with('pickup_locations')->where('trip_status', '!=', 'Completed');	
+	}
+
 
 }
