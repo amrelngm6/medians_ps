@@ -176,7 +176,7 @@ class TripRepository
 		
 		$trip = Trip::find($data['trip_id']);
 
-		$pickup = TripPickup::find($data['pickup_id']);
+		$pickup = TripPickup::find($data['trip_pickup_id']);
 		$update = $pickup->update($data);
 
 		return $update ? true : false;
