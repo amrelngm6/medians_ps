@@ -174,8 +174,9 @@ class TripRepository
 	public function updateTrip($data)
 	{
 		
-		$update = Trip::update($data);
+		$trip = Trip::find($data['trip_id']);
 
+		$update = $trip->update($data);
 
 		return $update ? true : false;
 	}
