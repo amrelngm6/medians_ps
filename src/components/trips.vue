@@ -36,7 +36,7 @@
                                 <hr class="w-full" />
                                 <div class="w-full h-8 relative flex">
                                     <img :style="(lang.dir == 'rtl' ? 'left: ' : 'right: ') +(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" v-if="tripLocation.status == 'waiting'" v-for="(tripLocation, i) in trip.pickup_locations" :src="(tripLocation && tripLocation.location && tripLocation.location.picture) ? tripLocation.location.picture : 'https://via.placeholder.com/37x37'" /> 
-                                    <span class="absolute pt-2" :style="(lang.dir == 'rtl' ? 'left: ' : 'right: ') +((20 * trip.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="trip.pickup_locations" v-text="trip.pickup_locations.length"></span></span>
+                                    <span class="absolute pt-2" :style="(lang.dir == 'rtl' ? 'right: ' : 'left: ') +((20 * trip.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="trip.pickup_locations" v-text="trip.pickup_locations.length"></span></span>
                                 </div>
                             </div>
                         </div>
@@ -126,6 +126,7 @@ export default
     mounted() 
     {
         this.load()
+        console.log(this.lang)
     },
 
     methods: 
