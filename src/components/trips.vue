@@ -91,6 +91,9 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
+            locations: [],
+            showList: true,
+            searchText: '',
         }
     },
 
@@ -126,6 +129,44 @@ export default
     methods: 
     {
 
+        searchTextChanged()
+        {
+            this.showList = false;
+            for (let i = 0; i < this.content.items.length; i++) {
+                this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
+            }
+            this.showList = true;
+        },
+
+        checkSimilar(item)
+        {
+            let a = (item.route_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
+            return a ? a : ((item.description).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
+        },
+        setLocationsMarkers(route, i)
+        {   
+
+            for (let a = 0; a < this.content.items.length; a++) 
+                this.content.items[a].selected = false;
+                
+            this.content.items[i].selected = true; 
+            this.locations = this.setLocationsPickups(route);
+        },  
+        
+        setLocationsPickups(route)
+        {
+            
+            let a;
+            let locations = [];
+            // = parseFloat(location.latitude);
+            for (let i = 0; i < route.pickup_locations.length; i++) {
+                a = route.pickup_locations[i];
+                locations[i] = {icon: this.conf.url+'uploads/images/blue_pin.gif', origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+            }
+            locations[locations.length] = {icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
+            return locations;
+        },  
+
         /**
          * Handle actions from datatable buttons
          * Called From 'dataTableActions' component
@@ -158,6 +199,8 @@ export default
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
+                this.searchTextChanged()
+
                 // this.$alert(response)
             });
         },

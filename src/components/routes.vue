@@ -91,11 +91,11 @@ export default
                 items: [],
                 columns: [],
             },
-            locations: [],
             activeItem:{},
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
+            locations: [],
             showList: true,
             searchText: '',
         }
