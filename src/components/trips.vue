@@ -19,9 +19,9 @@
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
                                     <div @click="setLocationsMarkers(trip, index)"  class="w-full grow shrink basis-0 justify-start items-start flex gap-4">
                                         <img :src="trip.driver.picture" class="w-10 h-10" />
-                                        <div :class="trip.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-if="trip.driver.name" class="pt-2 self-stretch text-base font-semibold  tracking-tight">
+                                        <div :class="trip.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-if="trip.driver.name" class="self-stretch text-base font-semibold  tracking-tight">
                                             <span  v-text="trip.driver.name" ></span>
-                                            <div class="pt-2 self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="trip.vehicle" class="font-semibold text-sm" v-text="trip.vehicle.plate_number"></span></div>
+                                            <div class="self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car "></i><span v-if="trip.vehicle" class="font-semibold text-sm px-2" v-text="trip.vehicle.plate_number"></span></div>
                                         </div>
                                     </div>
                                     <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
