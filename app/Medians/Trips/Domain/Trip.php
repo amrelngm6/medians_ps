@@ -4,6 +4,7 @@ namespace Medians\Trips\Domain;
 
 use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
+use Medians\Drivers\Domain\Driver;
 use Shared\dbaser\CustomModel;
 
 
