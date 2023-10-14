@@ -19,7 +19,10 @@
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
                                     <div @click="setLocationsMarkers(trip, index)"  class="w-full grow shrink basis-0 justify-start items-start flex gap-4">
                                         <img :src="trip.driver.picture" class="w-10 h-10" />
-                                        <div :class="trip.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-text="trip.driver.name" v-if="trip.driver.name" class="pt-2 self-stretch text-base font-semibold  tracking-tight"></div>
+                                        <div :class="trip.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-if="trip.driver.name" class="pt-2 self-stretch text-base font-semibold  tracking-tight">
+                                            <span  v-text="trip.driver.name" ></span>
+                                            <div class="pt-2 self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="trip.vehicle" class="font-semibold text-sm" v-text="trip.vehicle.plate_number"></span></div>
+                                        </div>
                                     </div>
                                     <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
                                         <div class="px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(trip, index)" >
@@ -34,7 +37,6 @@
                                 <div class="w-full h-8 relative flex">
                                     <img :style="'left: '+(20 * i)+'px'" v-for="(tripLocation, i) in trip.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" :src="(tripLocation && tripLocation.location && tripLocation.location.picture) ? tripLocation.location.picture : 'https://via.placeholder.com/37x37'" /> 
                                     <span class="absolute pt-2" :style="'left: '+((20 * trip.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="trip.pickup_locations" v-text="trip.pickup_locations.length"></span></span>
-                                    <div class="right-0 absolute  self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="trip.vehicle" class="font-semibold text-sm" v-text="trip.vehicle.plate_number"></span></div>
                                 </div>
                             </div>
                         </div>
