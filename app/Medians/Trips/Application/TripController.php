@@ -190,6 +190,7 @@ class TripController extends CustomController
 		$data =  $this->repo->getDriverTrips($params['driverId']);
 
 		echo  json_encode($data);
+		
 	}
 
 	
