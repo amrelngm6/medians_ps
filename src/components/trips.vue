@@ -5,8 +5,8 @@
             <maps :key="locations" :waypoints="locations"></maps>
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch p-10 flex-col justify-center items-start flex">
-                    <div class="text-black text-lg font-semibold" v-text="__('Routes')"></div>
-                    <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Routes description')"></div>
+                    <div class="text-black text-lg font-semibold" v-text="__('Trips')"></div>
+                    <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Trips description')"></div>
                 </div>
                 <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                     <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />

@@ -1096,6 +1096,8 @@ class LangsAr
 		,'parent guardian name' => 'إسم ولي الأمر'
 		,'contact number' => 'إسم التواصل'
 		,'license number' => 'رقم الرخصة'
+		,'Trips' => 'الرحلات'
+		,'Trips description' => 'قائمة بالرحلات النشطة حاليا'
 		,'find by name and address' => 'ابحث عن طريق الإسم او التفاصيل'
 		,'Routes description' => 'هذه القائمة تشمل خطوط السير وأماكن التوقف الخاصة بهم'
 
