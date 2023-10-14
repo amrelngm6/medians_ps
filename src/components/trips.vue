@@ -1,6 +1,53 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
-        <div class=" w-full">
+        <div  v-if="content && !showLoader" class=" w-full relative">
+
+            <maps :key="locations" :waypoints="locations"></maps>
+            <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
+                <div class="self-stretch p-10 flex-col justify-center items-start flex">
+                    <div class="text-black text-lg font-semibold" v-text="__('Routes')"></div>
+                    <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Routes description')"></div>
+                </div>
+                <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
+                    <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
+                </div>
+                <div v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
+
+                    <div v-for="(route, index) in content.items" :key="route.active" class="w-full">
+                        <div  v-if="showList  && route.active" :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
+                            <div class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex">
+                                <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
+                                    <div @click="setLocationsMarkers(route, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
+                                        <div :class="route.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-text="route.route_name" class="self-stretch text-base font-semibold  tracking-tight"></div>
+                                        <div class="py-1 self-stretch text-slate-500 text-sm font-semibold leading-relaxed tracking-wide"  v-text="route.description"></div>
+                                    </div>
+                                    <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
+                                        <div class="px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(route, index)" >
+                                            <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-location-dot"></i></div>
+                                        </div>
+                                        <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
+                                            <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-edit"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="w-full" />
+                                <div class="w-full h-8 relative flex">
+                                    <img :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
+                                    <span class="absolute pt-2" :style="'left: '+((20 * route.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span></span>
+                                    <div class="right-0 absolute  self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div
+                    class="self-stretch grow shrink basis-0 p-[25px] bg-neutral-50 justify-between items-center inline-flex">
+                    <div class="bg-fuchsia-600 rounded-lg text-white text-xs font-medium px-3 py-2 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
+                </div>
+            </div>
+
+            <hr class="mt-2" />
 
             <main v-if="content && !showLoader" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->
