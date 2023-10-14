@@ -180,4 +180,18 @@ class TripController extends CustomController
 		echo  json_encode($data);
 	}
 
+	
+
+	/**
+	 * Load Trips of driver
+	 */
+	public function loadTrips($params)
+	{
+		$data =  $this->repo->getTrip($id);
+
+		echo  json_encode($data);
+	}
+
+	
+
 }
