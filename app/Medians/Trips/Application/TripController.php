@@ -187,7 +187,7 @@ class TripController extends CustomController
 	 */
 	public function loadTrips($params)
 	{
-		$data =  $this->repo->getTrip($id);
+		$data =  $this->repo->getDriverTrips($params['driverId']);
 
 		echo  json_encode($data);
 	}
