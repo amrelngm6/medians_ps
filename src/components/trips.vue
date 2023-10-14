@@ -140,7 +140,7 @@ export default
 
         checkSimilar(item)
         {
-            let a = (item.route_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
+            let a = (item.driver.name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
             return a ? a : ((item.description).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
         },
         setLocationsMarkers(route, i)
