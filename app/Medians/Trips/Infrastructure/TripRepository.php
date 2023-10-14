@@ -166,6 +166,20 @@ class TripRepository
 		return $save;
 	}
 	
+
+
+	/**
+	 * update trip
+	 */
+	public function updateTrip($data)
+	{
+		
+		$update = Trip::update($data);
+
+
+		return $update ? true : false;
+	}
+	
     	
 	/**
 	 * Create Trip Pickup
