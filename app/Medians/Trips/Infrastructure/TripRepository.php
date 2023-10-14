@@ -40,12 +40,12 @@ class TripRepository
 
 	public function getTrip($id)
 	{
-		return Trip::with('pickup_locations')->with('vehicle')->find($id);
+		return Trip::with('pickup_locations', 'driver', 'vehicle')->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Trip::with('pickup_locations', 'vehicle')->limit($limit)->get();
+		return Trip::with('pickup_locations', 'driver', 'vehicle')->limit($limit)->get();
 	}
 
 	public function search($request, $limit = 20)

@@ -43,6 +43,11 @@ class Trip extends CustomModel
 		return $this->hasOne(Vehicle::class, 'vehicle_id', 'vehicle_id');	
 	}
 
+	public function driver() 
+	{
+		return $this->hasOne(Driver::class, 'driver_id', 'driver_id');	
+	}
+
 
 	public function pickup_locations() 
 	{
