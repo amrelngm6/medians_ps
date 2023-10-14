@@ -67,7 +67,7 @@ class Driver extends CustomModel
 
 	public function last_trips() 
 	{
-		return $this->hasMany(Trip::class, 'driver_id', 'driver_id')->with('pickup_locations')->orderBy('id', 'DESC');	
+		return $this->hasMany(Trip::class, 'driver_id', 'driver_id')->with('pickup_locations')->orderBy('trip_id', 'DESC');	
 	}
 
 
