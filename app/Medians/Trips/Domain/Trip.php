@@ -19,6 +19,7 @@ class Trip extends CustomModel
 	
 	public $fillable = [
 		'driver_id',
+		'vehicle_id',
 		'route_id',
 		'supervisor_id',
 		'trip_date',
