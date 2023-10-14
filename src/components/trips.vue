@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <hr class="w-full" />
-                                <div class="w-full h-8 relative flex">
+                                <div class="w-full relative flex">
                                     <div class="w-full relative">
                                         <h3 class="py-2 text-base" v-text="__('Waiting pickups')"></h3>
                                         <img :style="(lang.lang == 'en' ? 'left: ' : 'right: ') +(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute rounded-[50px] border-2 border-purple-800" v-if="tripLocation.status == 'waiting'" v-for="(tripLocation, i) in trip.pickup_locations" :src="(tripLocation && tripLocation.location && tripLocation.location.picture) ? tripLocation.location.picture : 'https://via.placeholder.com/37x37'" /> 
