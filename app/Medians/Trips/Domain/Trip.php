@@ -55,5 +55,15 @@ class Trip extends CustomModel
 		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->with('location');	
 	}
 
+	public function waiting_locations() 
+	{
+		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->where('status', 'waiting');	
+	}
+
+	public function moving_locations() 
+	{
+		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->where('status', 'moving');	
+	}
+
 
 }
