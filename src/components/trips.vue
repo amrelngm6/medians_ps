@@ -38,12 +38,12 @@
                                     <div class="w-full relative">
                                         <h3 class="py-2 text-base mb-10" v-text="__('Waiting pickups')"></h3>
                                         <img :style="(lang.lang == 'en' ? 'left: ' : 'right: ') +(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 bottom-1 absolute rounded-[50px] border-2 border-purple-800" v-if="tripLocation.status == 'waiting'" v-for="(tripLocation, i) in filterLocations(trip.pickup_locations, 'waiting')" :src="(tripLocation && tripLocation.location && tripLocation.location.picture) ? tripLocation.location.picture : 'https://via.placeholder.com/37x37'" /> 
-                                        <span class="bottom-2 absolute pt-2" :style="(lang.lang == 'en' ? 'left: ' : 'right: ') +((20 * trip.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="trip.pickup_locations" v-text="trip.pickup_locations.length"></span></span>
+                                        <span class="bottom-2 absolute pt-2" :style="(lang.lang == 'en' ? 'left: ' : 'right: ') +((20 * trip.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="trip.pickup_locations" v-text="filterLocations(trip.pickup_locations, 'waiting')"></span></span>
                                     </div>
                                     <div class="w-full relative">
                                         <h3 class="py-2 text-base mb-10" v-text="__('Active pickups')"></h3>
                                         <img :style="(lang.lang == 'en' ? 'left: ' : 'right: ') +(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 bottom-1 absolute rounded-[50px] border-2 border-purple-800" v-if="tripLocation.status == 'moving'" v-for="(tripLocation, i) in filterLocations(trip.pickup_locations, 'moving')" :src="(tripLocation && tripLocation.location && tripLocation.location.picture) ? tripLocation.location.picture : 'https://via.placeholder.com/37x37'" /> 
-                                        <span class="bottom-2 absolute pt-2" :style="(lang.lang == 'en' ? 'left: ' : 'right: ') +((20 * trip.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="trip.pickup_locations" v-text="trip.pickup_locations.length"></span></span>
+                                        <span class="bottom-2 absolute pt-2" :style="(lang.lang == 'en' ? 'left: ' : 'right: ') +((20 * trip.pickup_locations.length) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="trip.pickup_locations" v-text="filterLocations(trip.pickup_locations, 'moving')"></span></span>
                                     </div>
 
                                 </div>
