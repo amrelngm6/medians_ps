@@ -216,6 +216,17 @@ export default
                 // this.$alert(response)
             });
         },
+
+        filterKeys(object)
+        {
+            let filledData = Object.keys(object).reduce((acc, curr) => {
+                if (object[curr]) {
+                    acc[curr] = object[curr];
+                }
+                return acc;
+            }, {});
+            return filledData;
+        },
         
         setValues(data) {
             this.content = JSON.parse(JSON.stringify(data)); return this
