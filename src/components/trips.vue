@@ -17,9 +17,9 @@
                         <div  v-if="showList  && trip.active" :class="trip.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
                             <div  class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex" v-if="trip.vehicle">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
-                                    <div @click="setLocationsMarkers(trip, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start inline-flex">
-                                        <div :class="trip.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-text="trip.driver.name" v-if="trip.driver.name" class="self-stretch text-base font-semibold  tracking-tight"></div>
-                                        <div class="py-1 self-stretch text-slate-500 text-sm font-semibold leading-relaxed tracking-wide" v-if="trip.description"  v-text="trip.description"></div>
+                                    <div @click="setLocationsMarkers(trip, index)"  class="w-full grow shrink basis-0 flex-col justify-start items-start flex gap-4">
+                                        <img :src="trip.driver.picture" class="w-10 h-10" />
+                                        <div :class="trip.selected ? 'text-fuchsia-600' : 'text-gray-800'" v-text="trip.driver.name" v-if="trip.driver.name" class="pt-2 self-stretch text-base font-semibold  tracking-tight"></div>
                                     </div>
                                     <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
                                         <div class="px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(trip, index)" >
