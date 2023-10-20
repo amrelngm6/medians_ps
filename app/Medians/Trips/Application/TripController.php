@@ -179,7 +179,6 @@ class TripController extends CustomController
 
 		$data = [];
 		foreach ($trip->pickup_locations as $key => $value) {
-			print_r($value);
 			$value->distance = $this->haversineDistance($value->latitude, $value->longitude);
 			$data[$key] = $value;
 		}
