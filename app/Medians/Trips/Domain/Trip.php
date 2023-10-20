@@ -40,7 +40,7 @@ class Trip extends CustomModel
 
 	public function getCarPlateAttribute() 
 	{
-		return isset($this->car->plate_number) ? $this->car->plate_number : '';	
+		return isset($this->vehicle->plate_number) ? $this->vehicle->plate_number : '';	
 	}
 
 	public function route() 
