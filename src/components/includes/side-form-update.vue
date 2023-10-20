@@ -13,14 +13,14 @@
                     
                     <input v-if="model_id && column && column.column_type == 'hidden'" :name="'params['+column.key+']'" type="hidden" v-model="item[column.key]">
 
-                    <div class="w-full" v-if="column && column.fillable" >
+                    <div class="w-full" v-if="column " >
                         <span class="block mb-2" v-text="column.title" v-if="column.column_type != 'hidden'"></span>
 
-                        <input v-if="isInput(column.column_type)" :name="'params['+column.key+']'"  :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title" v-model="item[column.key]">
+                        <input v-if="isInput(column.column_type)" :name="'params['+column.key+']'" :disabled="column.fillable" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title" v-model="item[column.key]">
                     
-                        <input v-if="column.column_type == 'password'" autocomplete="false" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
+                        <input v-if="column.column_type == 'password'" :disabled="column.fillable" autocomplete="false" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
 
-                        <input :name="'params['+column.key+']'" :type="column.column_type" class="mb-3 rounded border text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" >
+                        <input :disabled="column.fillable" :name="'params['+column.key+']'" :type="column.column_type" class="mb-3 rounded border text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" >
                         
                         <select v-if="column.data && column.column_type == 'select'" v-model="item[column.key]" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"   :placeholder="column.title">
                             <option v-if="!column.required" v-text="$parent.__('select') +' '+ column.title"></option>
