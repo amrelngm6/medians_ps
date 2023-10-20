@@ -50,7 +50,7 @@ class TripRepository
 
 	public function get($limit = 100)
 	{
-		return Trip::withCount('moving_locations')->with('pickup_locations', 'waiting_locations', 'driver', 'vehicle')->limit($limit)->get();
+		return Trip::withCount('moving_locations')->withCount('pickup_locations')->with('pickup_locations', 'waiting_locations', 'driver', 'vehicle')->limit($limit)->get();
 	}
 
 	public function search($request, $limit = 20)

@@ -46,6 +46,7 @@ class TripController extends CustomController
             [ 'key'=> "trip_id", 'title'=> "#"],
             [ 'key'=> "trip_date", 'title'=> __('trip_date'), 'sortable'=> true ],
             [ 'key'=> "trip_status", 'title'=> __('trip_status'), 'sortable'=> true ],
+			[ 'key'=> "pickup_locations_count", 'title'=> __('pickup Locations'), 'sortable'=> true],
         ];
 	}
 
@@ -60,7 +61,7 @@ class TripController extends CustomController
 		return [
             [ 'key'=> "trip_id", 'title'=> "#", 'fillable'=>true, 'column_type'=>'hidden'],
             [ 'key'=> "trip_date", 'title'=> __('trip_date'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'date' ],
-            [ 'key'=> "trip_status", 'title'=> __('trip_status'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'date' ],
+            [ 'key'=> "trip_status", 'title'=> __('trip_status'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
 
