@@ -49,10 +49,6 @@
                     </div>
                     
                 </div>
-                <div
-                    class="self-stretch grow shrink basis-0 p-[25px] bg-neutral-50 justify-between items-center inline-flex">
-                    <div class="bg-fuchsia-600 rounded-lg text-white text-xs font-medium px-3 py-2 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
-                </div>
             </div>
 
             <hr class="mt-2" />
@@ -61,18 +57,11 @@
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6" >
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
-
-                    <side-form-create :conf="conf" model="Trip.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
-
-                    <side-form-update :conf="conf" model="Trip.update" :item="activeItem" :model_id="activeItem.trip_id" index="trip_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
-
                 </div>
-                <!-- END New releases -->
             </main>
         </div>
     </div>
