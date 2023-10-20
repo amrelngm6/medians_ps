@@ -183,8 +183,7 @@ class TripController extends CustomController
 			$data[$key] = $value;
 		}
 		
-		// Sort the locations based on distance in ascending order
-		usort($data, function($a, $b) {
+		sort($data, function($a, $b) {
 			return $a->distance - $b->distance;
 		});
 
