@@ -214,7 +214,7 @@ class TripController extends CustomController
 	
 		$distance = $earthRadius * $c; // The distance in kilometers
 	
-		return $distance*100;
+		return $distance*1000;
 	}
 	
 
