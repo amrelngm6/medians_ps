@@ -61,7 +61,7 @@ class TripController extends CustomController
 		return [
             [ 'key'=> "trip_id", 'title'=> "#", 'fillable'=>true, 'column_type'=>'hidden'],
             [ 'key'=> "trip_date", 'title'=> __('trip_date'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'date' ],
-            [ 'key'=> "trip_status", 'title'=> __('trip_status'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "trip_status", 'title'=> __('trip_status'), 'sortable'=> true, 'column_type'=>'text' ],
         ];
 	}
 
