@@ -33,12 +33,12 @@ class Trip extends CustomModel
 
 
 
-	public function getDriverNameAtribute() 
+	public function getDriverNameAttribute() 
 	{
 		return isset($this->driver->first_name) ? $this->driver->first_name. ' ' .$this->driver->last_name : '';	
 	}
 
-	public function getCarPlateAtribute() 
+	public function getCarPlateAttribute() 
 	{
 		return isset($this->car->plate_number) ? $this->car->plate_number : '';	
 	}
