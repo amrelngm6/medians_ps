@@ -184,7 +184,7 @@ class TripController extends CustomController
 		}
 		
 		usort($data, function($a, $b) {
-			return $a->distance - $b->distance;
+			return $b->distance - $a->distance;
 		});
 
 		echo  json_encode( $data );
