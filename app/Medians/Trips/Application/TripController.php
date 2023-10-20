@@ -175,9 +175,20 @@ class TripController extends CustomController
 	 */
 	public function getTrip($id)
 	{
-		$data =  $this->repo->getTrip($id);
+		$items =  $this->repo->getTrip($id);
 
-		echo  json_encode($data);
+		$data = [];
+		foreach ($items as $key => $value) {
+			$value->distance = $this->haversineDistance($value->latitude, $value->longitude);
+			$data[$key] = $value;
+		}
+		
+		// Sort the locations based on distance in ascending order
+		usort($data, function($a, $b) {
+			return $a->distance - $b->distance;
+		});
+
+		echo  json_encode( $data );
 	}
 
 	
@@ -193,6 +204,19 @@ class TripController extends CustomController
 		
 	}
 
+	function haversineDistance($lat1, $lon1, $lat2 = 30.050765, $lon2 = 31.221556)  {
+		$earthRadius = 6371; // Radius of the Earth in kilometers
+	
+		$dlat = deg2rad($lat2 - $lat1);
+		$dlon = deg2rad($lon2 - $lon1);
+	
+		$a = sin($dlat/2) * sin($dlat/2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dlon/2) * sin($dlon/2);
+		$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+	
+		$distance = $earthRadius * $c; // The distance in kilometers
+	
+		return $distance;
+	}
 	
 
 }
