@@ -108,12 +108,6 @@ export default
     computed: {
         bindings() {
 
-            this.content.columns.push({
-                    key: this.__("actions"),
-                    component: dataTableActions,
-                    sortable: false,
-                });
-
             return {
 
                 columns: this.content.columns,
