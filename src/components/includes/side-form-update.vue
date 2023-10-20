@@ -20,7 +20,7 @@
                     
                         <input v-if="column.column_type == 'password'" autocomplete="false" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
                         
-                        <label v-if="column.column_type == 'checbox'" class="inline-flex items-center mt-3">
+                        <label v-if="column.column_type == 'checkbox'" class="inline-flex items-center mt-3">
                             <input :name="'params['+column.key+']'" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="item[column.key]"><span class="ml-2 mx-2 text-gray-700" v-text="__('Checked')"></span>
                         </label>
 
