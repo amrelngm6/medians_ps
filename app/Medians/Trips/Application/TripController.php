@@ -183,7 +183,7 @@ class TripController extends CustomController
 			$data[$key] = $value;
 		}
 		
-		sort($data, function($a, $b) {
+		usort($data, function($a, $b) {
 			return $a->distance - $b->distance;
 		});
 
