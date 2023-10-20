@@ -204,7 +204,7 @@ class TripController extends CustomController
 		
 	}
 
-	function haversineDistance($lat1, $lon1, $lat2 = 30.050765, $lon2 = 31.221556)  {
+	function haversineDistance($lat1, $lon1, $lat2 = 30.950765, $lon2 = 31.921556)  {
 		$earthRadius = 6371; // Radius of the Earth in kilometers
 	
 		$dlat = deg2rad($lat2 - $lat1);
