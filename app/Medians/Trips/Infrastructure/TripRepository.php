@@ -168,7 +168,7 @@ class TripRepository
 			$savePickups = $this->savePickup($value);
 		}
 
-		return $this->getTrip($save->id);
+		return $this->getTrip($save->trip_id);
 	}
 	
 
