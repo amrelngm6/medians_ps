@@ -19,7 +19,13 @@
                         <input v-if="isInput(column.column_type)" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title" v-model="item[column.key]">
                     
                         <input v-if="column.column_type == 'password'" autocomplete="false" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
-                    
+                        
+                        <label v-if="column.column_type == 'checbox'" class="inline-flex items-center mt-3">
+                            <input :name="'params['+column.key+']'" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="item[column.key]"><span class="ml-2 mx-2 text-gray-700" v-text="__('Checked')"></span>
+                        </label>
+
+                        <input :name="'params['+column.key+']'" :type="column.column_type" class="mb-3 rounded border text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" >
+                        
                         <select v-if="column.data && column.column_type == 'select'" v-model="item[column.key]" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"   :placeholder="column.title">
                             <option v-if="!column.required" v-text="$parent.__('select') +' '+ column.title"></option>
                             <option v-for="option in column.data" :value="option[ column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
@@ -65,6 +71,7 @@ export default
                 case 'time':
                 case 'date':
                 case 'phone':
+                case 'number':
                 case '':
                     return true;
                     break;
