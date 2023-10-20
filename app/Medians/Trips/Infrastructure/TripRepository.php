@@ -182,6 +182,7 @@ class TripRepository
 		$trip = Trip::find($data['trip_id']);
 
 		$pickup = TripPickup::find($data['trip_pickup_id']);
+		$data['boarding_time'] = date('Y-m-d h:i:s');
 		$update = $pickup->update($data);
 
 		return $update ? true : false;
