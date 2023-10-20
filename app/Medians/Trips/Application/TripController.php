@@ -177,17 +177,17 @@ class TripController extends CustomController
 	{
 		$trip =  $this->repo->getTrip($id);
 
-		$data = [];
-		foreach ($trip->pickup_locations as $key => $value) {
-			$value->distance = $this->haversineDistance($value->latitude, $value->longitude);
-			$data[$key] = $value;
-		}
+		// $data = [];
+		// foreach ($trip->pickup_locations as $key => $value) {
+		// 	$value->distance = $this->haversineDistance($value->latitude, $value->longitude);
+		// 	$data[$key] = $value;
+		// }
 		
-		usort($data, function($a, $b) {
-			return $b->distance - $a->distance;
-		});
+		// usort($data, function($a, $b) {
+		// 	return $b->distance - $a->distance;
+		// });
 		
-		$trip->pickup_locations = $data;
+		// $trip->pickup_locations = $data;
 
 		echo  json_encode( $trip );
 	}
