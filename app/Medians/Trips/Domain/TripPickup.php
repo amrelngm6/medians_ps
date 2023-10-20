@@ -30,10 +30,18 @@ class TripPickup extends CustomModel
 	];
 
 
-	// public $appends = [];
+	public $appends = ['latitude', 'longitude'];
 
 
+	public function getLatitudeAttribute()
+	{
+		return isset($this->location->latitude) ? $this->location->latitude : 0;
+	}
 
+	public function getLongitudeAttribute()
+	{
+		return isset($this->location->longitude) ? $this->location->longitude : 0;
+	}
 
 	public function location() 
 	{
