@@ -175,10 +175,11 @@ class TripController extends CustomController
 	 */
 	public function getTrip($id)
 	{
-		$items =  $this->repo->getTrip($id);
+		$trip =  $this->repo->getTrip($id);
 
 		$data = [];
-		foreach ($items as $key => $value) {
+		foreach ($trip->pickup_locations as $key => $value) {
+			print_r($value);
 			$value->distance = $this->haversineDistance($value->latitude, $value->longitude);
 			$data[$key] = $value;
 		}
