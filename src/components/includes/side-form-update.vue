@@ -20,6 +20,7 @@
                     
                         <input v-if="column.column_type == 'password'" autocomplete="false" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
 
+                        <input type="checkbox" :name="'params['+column.key+']'" v-model="item[column.key]" />
                         <input :name="'params['+column.key+']'" :type="column.column_type" class="mb-3 rounded border text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" >
                         
                         <select v-if="column.data && column.column_type == 'select'" v-model="item[column.key]" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"   :placeholder="column.title">
