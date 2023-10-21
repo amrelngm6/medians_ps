@@ -7,7 +7,6 @@
                     <span class="cursor-pointer py-1 px-2" @click="$parent.showEditSide = false"><close_icon /></span>
                 </div>
                 <input name="type" type="hidden" :value="model">
-                <input name="params[active]" type="hidden" value="1">
                 
                 <div class="py-1 w-full" v-for="column in columns" v-if="columns">
                     
@@ -26,7 +25,6 @@
                             <option v-if="!column.required" v-text="$parent.__('select') +' '+ column.title"></option>
                             <option v-for="option in column.data" :value="option[ column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
                         </select>
-                        
                         <vue-medialibrary-field v-if="column.column_type == 'file'" :name="'params['+column.key+']'" key="upload-file" v-model="item.picture" :api_url="conf.url"></vue-medialibrary-field>
                     </div>
                 </div>
