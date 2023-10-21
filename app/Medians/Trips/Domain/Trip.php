@@ -29,7 +29,7 @@ class Trip extends CustomModel
 	];
 
 
-	public $appends = ['driver_name', 'car_plate'];
+	public $appends = ['driver_name', 'car_plate', 'distance'];
 
 
 
@@ -75,5 +75,28 @@ class Trip extends CustomModel
 		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->where('status', 'moving');	
 	}
 
+
+	public function haversineDistance($lat1, $lon1, $lat2, $lon2) {
+		$earthRadius = 6371; // Radius of the Earth in kilometers
+	
+		$dlat = deg2rad($lat2 - $lat1);
+		$dlon = deg2rad($lon2 - $lon1);
+	
+		$a = sin($dlat / 2) * sin($dlat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dlon / 2) * sin($dlon / 2);
+		$c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+	
+		$distance = $earthRadius * $c; // The distance in kilometers
+	
+		return $distance;
+	}
+	
+	public function getDistanceAttribute() {
+		$locations = $this->pickup_locations;
+		$totalDistance = 0;
+		for ($i = 0; $i < count($locations); $i++) {
+			$totalDistance += $this->haversineDistance($locations[$i]['latitude'], $locations[$i]['longitude'], $locations[($i + 1) % count($locations)]['latitude'], $locations[($i + 1) % count($locations)]['longitude']);
+		}
+		return $totalDistance;
+	}
 
 }
