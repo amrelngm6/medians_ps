@@ -87,7 +87,7 @@ class Trip extends CustomModel
 	
 		$distance = $earthRadius * $c; // The distance in kilometers
 	
-		return $distance;
+		return $distance / 2;
 	}
 	
 	public function getDistanceAttribute() {
@@ -96,7 +96,7 @@ class Trip extends CustomModel
 		for ($i = 0; $i < count($locations); $i++) {
 			$totalDistance += $this->haversineDistance($locations[$i]['latitude'], $locations[$i]['longitude'], $locations[($i + 1) % count($locations)]['latitude'], $locations[($i + 1) % count($locations)]['longitude']);
 		}
-		return number_format($totalDistance/2, 4);
+		return number_format($totalDistance, 4);
 	}
 
 }
