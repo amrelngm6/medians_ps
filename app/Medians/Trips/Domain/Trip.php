@@ -92,8 +92,8 @@ class Trip extends CustomModel
 	
 	public function getDurationAttribute() {
 		
-		$datetime1 = new DateTime($this->created_at);
-		$datetime2 = new DateTime($this->updated_at);  // change the millennium to see output difference
+		$datetime1 = new \DateTime($this->created_at);
+		$datetime2 = new \DateTime($this->updated_at);  // change the millennium to see output difference
 		$diff = $datetime1->diff($datetime2);
 
 		return $this->trip_status == 'Completed' ? ($diff->h.':'.$diff->i.':'.$diff->s) : '';
