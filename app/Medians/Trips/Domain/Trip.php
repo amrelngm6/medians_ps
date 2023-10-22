@@ -29,7 +29,7 @@ class Trip extends CustomModel
 	];
 
 
-	public $appends = ['driver_name', 'car_plate', 'distance'];
+	public $appends = ['driver_name', 'car_plate', 'distance', 'duration'];
 
 
 
@@ -88,6 +88,15 @@ class Trip extends CustomModel
 		$distance = $earthRadius * $c; // The distance in kilometers
 	
 		return $distance / 2;
+	}
+	
+	public function getDurationAttribute() {
+		
+		$datetime1 = new DateTime($this->created_at);
+		$datetime2 = new DateTime($this->updated_at);  // change the millennium to see output difference
+		$diff = $datetime1->diff($datetime2);
+
+		return $this->trip_status == 'Completed' ? ($diff->h.':'.$diff->i.':'.$diff->s) : '';
 	}
 	
 	public function getDistanceAttribute() {
