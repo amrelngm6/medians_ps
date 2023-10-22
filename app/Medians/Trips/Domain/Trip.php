@@ -105,7 +105,7 @@ class Trip extends CustomModel
 		for ($i = 0; $i < count($locations); $i++) {
 			$totalDistance += $this->haversineDistance($locations[$i]['latitude'], $locations[$i]['longitude'], $locations[($i + 1) % count($locations)]['latitude'], $locations[($i + 1) % count($locations)]['longitude']);
 		}
-		return number_format($totalDistance, 4);
+		return number_format($totalDistance, 3);
 	}
 
 }
