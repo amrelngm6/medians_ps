@@ -96,7 +96,7 @@ class Trip extends CustomModel
 		$datetime2 = new \DateTime($this->updated_at);  // change the millennium to see output difference
 		$diff = $datetime1->diff($datetime2);
 
-		return $this->trip_status == 'Completed' ? ('0'.$diff->h.':'.($diff->i < 10 ? '0'.$diff->i : $diff->i).':'.$diff->s) : 0;
+		return $this->trip_status == 'Completed' ? ('0'.$diff->h.':'.($diff->i < 10 ? '0'.$diff->i : $diff->i).':'.$diff->s) : 0.0;
 	}
 	
 	public function getDistanceAttribute() {
