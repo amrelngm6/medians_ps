@@ -214,7 +214,7 @@ export default {
             this.content = JSON.parse(JSON.stringify(data)); return this
         },
 
-        delete(item, type) {
+        delete(item, type, key = 'id') {
             
             if (!window.confirm(this.__('confirm_delete')))
             {
@@ -223,7 +223,7 @@ export default {
 
             var params = new URLSearchParams();
             params.append('type', type)
-            params.append('params[id]', item.id)
+            params.append('params['+key+']', item[key])
             this.handleRequest(params, '/api/delete').then(response => {
                 this.$alert(response.result)
             })

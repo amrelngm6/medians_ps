@@ -100,7 +100,7 @@ export default
                     break;  
 
                 case 'delete':
-                    this.$parent.delete(data, 'Driver.delete');
+                    this.$parent.delete(data, 'Driver.delete', 'driver_id');
                     break;  
             }
         },
