@@ -183,17 +183,11 @@ export default
 
             setValues(data) {
 
-
                 this.content = JSON.parse(JSON.stringify(data));
                 for (let i = 0; i < this.content.items.length; i++) {
                     this.locations[i] = this.handleObject(this.content.items[i]);
                 }
-                // this.locations =             [
-                //     { origin: {lat: 30.0581227357153761, lng: 31.21921983886761}, destination: {lat: 30.058122734715376, lng: 31.219219598388676 } },
-                //     { origin: {lat: 30.058122734715376, lng: 31.219219598388676}, destination: {lat: 30.057544505767098, lng: 31.22335947143557 } },
-                //     { origin: {lat: 30.057544505767098, lng: 31.22335947143557 }, destination: {lat: 30.062368086177194, lng: 31.221097905273425} },
-                //     { origin: {lat: 30.062368086177194, lng: 31.221097905273425 }, destination: {lat: 30.05930379083195, lng: 31.22166653358458} },
-                // ]
+                
                 return this
             },
 
