@@ -12,9 +12,9 @@
                 <div class="w-full flex gap gap-6">
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
 
-                    <side-form-create :conf="conf" model="HelpMessage.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
+                    <side-form-create :conf="conf" :model="object_name+'.create'" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
 
-                    <side-form-update :conf="conf" model="HelpMessage.update" :item="activeItem" :model_id="activeItem.message_id" index="message_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
+                    <side-form-update :conf="conf" :model="object_name+'.update'" :item="activeItem" :model_id="activeItem[object_key]" :index="object_key" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
 
                 </div>
                 <!-- END New releases -->
@@ -30,7 +30,6 @@ export default
     components:{
         dataTableActions,
     },
-    name:'Help messages',
     data() {
         return {
             url: this.conf.url+this.path+'?load=json',
@@ -44,7 +43,6 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
-            main_key: 'message_id',
         }
     },
 
@@ -71,6 +69,8 @@ export default
         'setting',
         'conf',
         'auth',
+        'object_name',
+        'object_key',
     ],
     mounted() 
     {
@@ -101,7 +101,7 @@ export default
                     break;  
 
                 case 'delete':
-                    this.$parent.deleteByKey(main_key, data, 'HelpMessage.delete');
+                    this.$root.$children[0].deleteByKey(object_key, data, this.object_name + '.delete');
                     break;  
             }
         },
@@ -109,10 +109,9 @@ export default
         load()
         {
             this.showLoader = true;
-            this.$parent.handleGetRequest( this.url ).then(response=> {
+            this.$root.$children[0].handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.showLoader = false;
-                // this.$alert(response)
             });
         },
         
