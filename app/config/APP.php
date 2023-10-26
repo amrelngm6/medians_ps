@@ -246,7 +246,13 @@ class APP
 
 		$data = array(
 			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
-			array('permission'=>'Student.index', 'title'=>__('Students'),  'icon'=>'fa-user', 'link'=>'admin/students', 'component'=>'students'),
+			
+			array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'#customers', 'sub'=>
+			[
+				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'fa-user', 'link'=>'admin/parents', 'component'=>'parents'),
+				array('permission'=>'Student.index', 'title'=>__('Students'),  'icon'=>'fa-user', 'link'=>'admin/students', 'component'=>'students'),
+			]
+			),
 			
 			array('title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'#route', 'sub'=>
 				[
