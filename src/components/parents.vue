@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <data_table_page :conf="conf" :setting="setting" :auth="auth" object_name="Parents" object_key="parent_id" ></data_table_page>
+        <data_table_page :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Parents" object_key="parent_id" ></data_table_page>
     </div>
 </template>
 <script>
