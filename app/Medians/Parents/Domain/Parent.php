@@ -12,26 +12,22 @@ class Parents extends CustomModel
 	/*
 	/ @var String
 	*/
-	protected $table = 'students';
+	protected $table = 'parents';
 
-    protected $primaryKey = 'student_id';
+    protected $primaryKey = 'parent_id';
 	
 	public $fillable = [
 		'first_name',
 		'last_name',
 		'picture',
-		'date_of_birth',
-		'address',
-		'parent_guardian_name',
-		'contact_number',
-		'current_school',
-		'grade_level',
-		'transfer_status',
-		'created_by'
+		'mobile',
+		'email',
+		'password',
+		'status',
 	];
 
 
-	public $appends = ['student_name'];
+	public $appends = ['parent_name'];
 
 
 	public function getParentNameAttribute() : String

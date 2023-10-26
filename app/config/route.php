@@ -210,6 +210,9 @@ if(isset($app->auth()->id))
     /** @return trips */
     Macaw::get('/admin/trips', Medians\Trips\Application\TripController::class.'@index');
 
+    /** @return trips */
+    Macaw::get('/admin/parents', Medians\Parents\Application\ParentController::class.'@index');
+
 
 
     /**

@@ -22,7 +22,7 @@ class Student extends CustomModel
 		'picture',
 		'date_of_birth',
 		'address',
-		'parent_guardian_name',
+		'parent_id',
 		'contact_number',
 		'current_school',
 		'grade_level',
