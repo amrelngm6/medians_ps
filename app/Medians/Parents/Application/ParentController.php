@@ -40,10 +40,9 @@ class ParentController extends CustomController
 
 		return [
             [ 'key'=> "parent_id", 'title'=> "#"],
-            [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true ],
-            [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true ],
-            [ 'key'=> "parent_guardian_name", 'title'=> __('parent_guardian_name'), 'sortable'=> true ],
-            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true ],
+            [ 'key'=> "name", 'title'=> __('Name'), 'sortable'=> true ],
+            [ 'key'=> "email", 'title'=> __('Email'), 'sortable'=> true ],
+            [ 'key'=> "mobile", 'title'=> __('Mobile'), 'sortable'=> false ],
         ];
 	}
 
