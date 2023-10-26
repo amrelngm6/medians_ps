@@ -1096,7 +1096,7 @@ class LangsAr
 		,'help messages' => 'رسائل المساعدة'
 		,'maintenance status' => 'حالة الصيانة'
 		,'parent guardian name' => 'إسم ولي الأمر'
-		,'contact number' => 'إسم التواصل'
+		,'contact number' => 'رقم التواصل'
 		,'license number' => 'رقم الرخصة'
 		,'Waiting pickups' => 'مواقع قيد الإنتظار'
 		,'active pickups' => 'مواقع مكتملة'

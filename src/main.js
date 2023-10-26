@@ -55,6 +55,7 @@ Vue.component('customers', () => import('./components/customers'));
 Vue.component('pages', () => import('./components/pages'));
 Vue.component('blog', () => import('./components/blog'));
 Vue.component('students', () => import('./components/students'));
+Vue.component('parents', () => import('./components/parents'));
 Vue.component('drivers', () => import('./components/drivers'));
 Vue.component('routes', () => import('./components/routes'));
 Vue.component('vehicles', () => import('./components/vehicles'));
