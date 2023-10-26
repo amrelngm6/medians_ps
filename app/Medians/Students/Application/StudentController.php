@@ -87,7 +87,6 @@ class StudentController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-		        'categories' => $this->categoryRepo->get('Medians\Students\Domain\Student'),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

@@ -1,12 +1,12 @@
 <?php
-namespace Medians\Students\Application;
+namespace Medians\Parents\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Students\Infrastructure\StudentRepository;
+use Medians\Parents\Infrastructure\ParentRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 
-class StudentController extends CustomController 
+class ParentController extends CustomController 
 {
 
 	/**
@@ -24,7 +24,7 @@ class StudentController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new StudentRepository();
+		$this->repo = new ParentRepository();
 		$this->categoryRepo = new CategoryRepository();
 	}
 
@@ -39,7 +39,7 @@ class StudentController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "student_id", 'title'=> "#"],
+            [ 'key'=> "parent_id", 'title'=> "#"],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true ],
             [ 'key'=> "parent_guardian_name", 'title'=> __('parent_guardian_name'), 'sortable'=> true ],
@@ -57,7 +57,7 @@ class StudentController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "student_id", 'title'=> "#", 'column_type'=>'hidden'],
+            [ 'key'=> "parent_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "picture", 'title'=> __('picture'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'file' ],
@@ -81,13 +81,12 @@ class StudentController extends CustomController
 		
 		try {
 			
-		    return render('students', [
+		    return render('parents', [
 		        'load_vue' => true,
-		        'title' => __('Student'),
+		        'title' => __('Parent'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-		        'categories' => $this->categoryRepo->get('Medians\Students\Domain\Student'),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -107,7 +106,7 @@ class StudentController extends CustomController
 		return render('views/admin/Student/create.html.twig', [
 	        'title' => __('add_new'),
 	        'langs_list' => ['ar','en'],
-	        'categories' => $this->categoryRepo->get('Medians\Students\Domain\Student'),
+	        'categories' => $this->categoryRepo->get('Medians\Parents\Domain\Student'),
 	    ]);
 
 	}
@@ -122,7 +121,7 @@ class StudentController extends CustomController
 		        'title' => __('edit_Student'),
 		        'langs_list' => ['ar','en'],
 		        'item' => $this->repo->find($id),
-		        'categories' => $this->categoryRepo->get('Medians\Students\Domain\Student'),
+		        'categories' => $this->categoryRepo->get('Medians\Parents\Domain\Student'),
 		    ]);
 
 		} catch (\Exception $e) {
@@ -184,10 +183,10 @@ class StudentController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['student_id']);
+        	$check = $this->repo->find($params['parent_id']);
 
 
-            if ($this->repo->delete($params['student_id']))
+            if ($this->repo->delete($params['parent_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }
