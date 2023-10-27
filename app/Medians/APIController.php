@@ -117,6 +117,10 @@ class APIController extends CustomController
 					$return = (new Locations\Application\PickupLocationController())->store();
 					break;
 
+				case 'Parents.create':
+					return response((new Parents\Application\ParentController())->store());
+					break;
+
 				case 'HelpMessage.create':
 					return response((new Help\Application\HelpMessageController())->store());
 					break;
@@ -166,74 +170,72 @@ class APIController extends CustomController
 		$app = new \config\APP;
 		$request = $app->request();
 
-		$return = [];
 		switch ($request->get('type')) 
 		{
 			case 'SystemSettings.update':
-                $return =  (new Settings\Application\SystemSettingsController())->update(); 
+                $controller =  new Settings\Application\SystemSettingsController; 
 				break;
 
 			case 'Branch.update':
-                $return =  (new Branches\Application\BranchController())->update(); 
+                $controller =  new Branches\Application\BranchController; 
 				break;
 
 			case 'Device.update':
-                $return =  (new Devices\Application\DeviceController())->update(); 
+                $controller =  new Devices\Application\DeviceController; 
 				break;
 				
 			case 'Category.update':
-				$return = (new Categories\Application\CategoryController)->update($request);
+				$controller = new Categories\Application\CategoryController;
 				break;
 
 			case 'Student.update':
-				$return = (new Students\Application\StudentController())->update();
+				$controller = new Students\Application\StudentController;
 				break;
 
 			case 'Driver.update':
-				$return = (new Drivers\Application\DriverController())->update();
+				$controller = new Drivers\Application\DriverController;
 				break;
 
 			case 'Routes.update':
-				$return = (new Routes\Application\RouteController())->update();
+				$controller = new Routes\Application\RouteController;
 				break;
 
 			case 'Vehicle.update':
-				$return = (new Vehicles\Application\VehicleController())->update();
+				$controller = new Vehicles\Application\VehicleController;
 				break;
 
 			case 'PickupLocation.update':
-				$return = (new Locations\Application\PickupLocationController())->update();
+				$controller = new Locations\Application\PickupLocationController;
 				break;
 
 			case 'HelpMessage.update':
-				return response((new Help\Application\HelpMessageController())->update());
+				$controller =  new Help\Application\HelpMessageController;
 				break;
 
 
+			case 'Parents.update':
+				$controller = new Parents\Application\ParentController;
+				break;
+
             case 'Settings.update':
-                $return = (new Settings\Application\SettingsController())->update(); 
+                $controller = new Settings\Application\SettingsController; 
                 break;
 
             case 'User.update':
-                $return = (new Users\Application\UserController())->update(); 
-                break;
-
-            case 'User.update':
-                $return =  (new Users\Application\UserController())->update(); 
+                $controller = new Users\Application\UserController; 
                 break;
 
             case 'Page.update':
-                $return =  (new Pages\Application\PageController())->update(); 
+                $controller =  new Pages\Application\PageController; 
                 break;
 
             case 'NotificationEvent.update':
-                $return =  (new Notifications\Application\NotificationEventController())->update(); 
+                $controller =  new Notifications\Application\NotificationEventController; 
                 break;
-
 
 		}
 
-		return response(json_encode($return));
+		return response(isset($controller) ? json_encode($controller->update()) : []);
 	} 
 
 	/**

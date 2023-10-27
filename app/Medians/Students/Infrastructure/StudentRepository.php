@@ -38,7 +38,7 @@ class StudentRepository
 
 	public function get($limit = 100)
 	{
-		return Student::with('pickup_location')->limit($limit)->get();
+		return Student::with('pickup_location','parent')->limit($limit)->select('students.*')->get();
 	}
 
 	public function search($request, $limit = 20)
