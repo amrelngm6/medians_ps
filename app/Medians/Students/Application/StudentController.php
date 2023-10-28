@@ -60,7 +60,7 @@ class StudentController extends CustomController
             [ 'key'=> "student_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "parent_id", 'title'=> __('Parent'), 
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'parent_name', 
-				'data' => $this->parentRepo->get()
+				'data' => $this->parentRepo->get()  
 			],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],

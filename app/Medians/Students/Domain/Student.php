@@ -66,6 +66,11 @@ class Student extends CustomModel
 		return $this->belongsTo(Parents::class, 'parent_id', 'parent_id');
 	}
 
+	public function parent_name() 
+	{
+		return $this->belongsTo(Parents::class, 'parent_id', 'parent_id');
+	}
+
 	
 
 }
