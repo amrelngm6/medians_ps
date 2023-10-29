@@ -445,8 +445,8 @@
   display: block;
   width: 100%;
   min-height: 100%;
-  max-height: 515px;
-  overflow-y: auto;
+  /* max-height: 515px; */
+  overflow-y: hidden;
 }
 .media-library__manager__nav {
   display: flex;
