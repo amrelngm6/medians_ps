@@ -259,6 +259,7 @@
   flex-grow: 1;
   flex-direction: column;
   flex-wrap: nowrap;
+  overflow: auto;
 }
 .media-library__manager__upload {
   width: 100%;
