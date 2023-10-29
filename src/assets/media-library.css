@@ -542,14 +542,14 @@
 }
 @media screen and (min-width: 1200px) {
   .grid-item {
-    width: 20%;
-    padding-bottom: 20%;
+    width: 16.6666666667%;
+    padding-bottom: 16.6666666667%;
   }
 }
 @media screen and (min-width: 1400px) {
   .grid-item {
-    width: 16.6666666667%;
-    padding-bottom: 16.6666666667%;
+    width: 20%;
+    padding-bottom: 20%;
   }
 }
 @media screen and (min-width: 1600px) {
