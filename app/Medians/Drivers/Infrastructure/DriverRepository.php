@@ -97,7 +97,7 @@ class DriverRepository
 
 		$Model = new Driver();
 		
-		$Auth = new Medians\Auth\Application\AuthService;
+		$Auth = new \Medians\Auth\Application\AuthService;
 		$data['generated_password'] = $this->randomPassword();
 		$data['password'] = $Auth->encrypt($data['generated_password']);
 		foreach ($data as $key => $value) 
