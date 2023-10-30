@@ -44,6 +44,10 @@ class User extends CustomModel
         return !empty($this->RolePermissions) ? array_column($this->RolePermissions->toArray(), 'access', 'code') : [];
 	}
 
+	/**
+	 * Override password filed data 
+	 * for queries security
+	 */
 	public function getPasswordAttribute() 
 	{
 		return null;
@@ -73,16 +77,6 @@ class User extends CustomModel
 	public function name() : String
 	{
 		return $this->first_name.' '.$this->last_name;
-	}
-
-	public function email() : String
-	{
-		return $this->email;
-	}
-
-	public function publish() : ?String
-	{
-		return $this->publish;
 	}
 
 
