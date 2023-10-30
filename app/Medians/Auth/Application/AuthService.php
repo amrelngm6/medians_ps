@@ -33,6 +33,11 @@ class AuthService
 	protected $repo;
 
 	/**
+	* @var Instance Driver Repo
+	*/
+	protected $driverRepo;
+
+	/**
 	* @var Instance App
 	*/
 	protected $app;
@@ -42,6 +47,7 @@ class AuthService
 	function __construct()
 	{
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
+		$this->driverRepo = new \Medians\Users\Infrastructure\UserRepository();
 	}
  
 
@@ -191,7 +197,6 @@ class AuthService
 	 */ 
 	public function checkLogin($email, $password)
 	{
-
 		$checkLogin = $this->repo->checkLogin($email, $password);
 
 		if (empty($checkLogin->id))
@@ -202,10 +207,32 @@ class AuthService
 		if (empty($checkLogin->active))
 		{
 			return __("User account is not active");
-			
 		}
 
 		return $checkLogin;
+	}
+
+
+	/**
+	 * Check login credentials
+	 * 
+	 * @return Object / String 
+	 */ 
+	public function checkDriverLogin($email, $password)
+	{
+		$checkDriverLogin = $this->driverRepo->checkLogin($email, $password);
+
+		if (empty($checkDriverLogin->id))
+		{
+            return __("User credentials not valid");
+		}
+
+		if (empty($checkDriverLogin->active))
+		{
+			return __("User account is not active");
+		}
+
+		return $checkDriverLogin;
 	}
 
 

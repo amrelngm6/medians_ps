@@ -23,12 +23,7 @@ class MobileAPIController extends CustomController
 	*/
 	protected $repo;
 
-
-
-	function __construct()
-	{
-	
-	}
+	protected $app;
 
 
 	/**
