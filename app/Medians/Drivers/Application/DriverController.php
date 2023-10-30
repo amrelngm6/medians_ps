@@ -146,6 +146,9 @@ class DriverController extends CustomController
 
         try {	
 
+			if ($this->validate($params)) 
+				return $this->validate($params);
+
         	$params['created_by'] = $this->app->auth()->id;
         	
 
@@ -207,13 +210,23 @@ class DriverController extends CustomController
 
 	}
 
+
+	/**
+	*  Validate item store
+	*/
 	public function validate($params) 
 	{
+		$check = $this->repo->validateEmail($params);
 
-		if (empty($params['content']['ar']['title']))
-		{
-        	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
-		}
+		if (empty($params['first_name']))
+			return ['result'=> __('Name required')];
+
+		if (empty($params['email']))
+			return ['result'=> __('Email required')];
+
+		if ($check)
+			return ['result'=>$check];
+
 
 	}
 
