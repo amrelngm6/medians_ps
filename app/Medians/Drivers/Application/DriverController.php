@@ -216,7 +216,7 @@ class DriverController extends CustomController
 	*/
 	public function validate($params) 
 	{
-		$check = $this->repo->validateEmail($params);
+		$check = $this->repo->validateEmail($params['email'], isset($params['driver_id']) ? $params['driver_id'] : 0);
 
 		if (empty($params['first_name']))
 			return ['result'=> __('Name required')];
