@@ -1086,7 +1086,7 @@ class LangsAr
 		,'Student' => 'الطلاب'
 		,'vehicles' => 'السيارات'
 		,'drivers' => 'السائقين'
-		,'drivers' => 'السائق'
+		,'driver' => 'السائق'
 		,'cars' => 'السيارات'
 		,'trips' => 'الرحلات'
 		,'trip date' => 'تاريخ الرحلة'
