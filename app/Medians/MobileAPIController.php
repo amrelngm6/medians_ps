@@ -59,6 +59,42 @@ class MobileAPIController extends CustomController
 		]);
 	}  
 
+
+	/**
+	 * Driver Login through Mobile API
+	 */
+	public function driver_login()
+	{
+		$Auth = new Auth\Application\AuthService;
+		$repo = new Drivers\Infrastructure\DriverRepository;
+
+		$this->app = new \config\APP;
+		$request = $this->app->request();
+		
+		$params = json_decode($request->get('params'));		
+
+		$checkLogin = $repo->checkLogin($params->email, $Auth->encrypt($params->password));
+
+		if (empty($checkLogin->id))
+		{
+			echo json_encode(['error'=> $checkLogin]);
+
+			return null;
+		}
+
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->id);
+		$generateToken = $checkLogin->insertCustomField('API_token', $token);
+
+		echo json_encode(
+		[
+			'success'=>true, 
+			'driver_id'=> isset($checkLogin->driver_id) ? $checkLogin->driver_id : null, 
+			'token'=>$generateToken->value
+		]);
+	}  
+
+
+
 	/**
 	 * Model object 
 	 * 
