@@ -121,7 +121,7 @@ class Notification extends CustomModel
 
     	$notification = Notification::create($filled);
 
-		(new Notification)->sendNotification($notification, $receiver);
+		return (new Notification)->sendNotification($notification, $receiver);
 		
 	}  
 
@@ -131,9 +131,8 @@ class Notification extends CustomModel
 	 */
 	public function sendNotification(Notification $notification, $receiver)
 	{
-		error_log(json_encode($notification), 3, "./error_log.log");
 		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
 
-		return $sendMail;
+		return $sendMail->sendMail();
 	}
 }
