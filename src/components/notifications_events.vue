@@ -109,13 +109,14 @@
                                     <label class="block mt-3">
                                         <span class="block mb-2" v-text="__('receiver_model')"></span>
                                         <select name="params[receiver_model]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg"  v-model="activeItem.receiver_model">
-                                            <option value="Branch" v-text="__('Branch')"></option>
+                                            <option value="Driver" v-text="__('Driver')"></option>
                                             <option value="User" v-text="__('User')"></option>
+                                            <option value="Parents" v-text="__('Parent')"></option>
                                         </select>
                                     </label>
                                     
                                     <label class="flex gap gap-2 items-center mt-3">
-                                        <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status" :checked="activeItem.status == 1 ? true : false"  v-model="activeItem.status">
+                                        <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status" :checked="activeItem.status == 1 ? true : false"  >
                                         <span class="ml-2 mx-2 text-gray-700">{{__('Status')}}</span>
                                     </label>
                                     
