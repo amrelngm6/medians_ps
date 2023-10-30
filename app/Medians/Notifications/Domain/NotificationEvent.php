@@ -5,7 +5,8 @@ namespace Medians\Notifications\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
-use Medians\Branches\Domain\Branch;
+use Medians\Drivers\Domain\Driver;
+use Medians\Trips\Domain\Trip;
 
 /**
  * NotificationEvent class database queries
@@ -41,7 +42,6 @@ class NotificationEvent extends CustomModel
 	*/
 	// public $timestamps = false;
 
-	// protected $appends = ['is_expired', 'branch_name', 'user_name', 'plan_name', ];
 
 
 	public function getFields()
@@ -78,15 +78,32 @@ class NotificationEvent extends CustomModel
 	 * @param $event Object
 	 * @param $model Object Event related model
 	 */
+	public function filterReceiver($model)
+	{
+		switch (get_class($model)) 
+		{
+			case Trip::class:
+				return Driver::find($model->driver_id)->driver_id;
+				break;
+				
+			default:
+				return $model;
+				break;
+			
+		}
+	}
+
+
+	/**
+	 * Prepare notification content 
+	 * 
+	 * @param $event Object
+	 * @param $model Object Event related model
+	 */
 	public function renderNotification($event, $model)
 	{
 
-		// Get receiver User / Branch
-    	// $receiver = (strtolower($event->receiver_model) == 'branch') 
-    	// ? Branch::find(isset($model->branch_id) ? $model->branch_id : $model->active_branch) 
-    	// : Users::find($model->user_id);
-
-    	$receiver = User::find($model->id);
+    	$receiver = $this->filterReceiver($model);
 
     	$app = new \config\APP;
     	$params = [];

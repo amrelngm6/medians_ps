@@ -95,7 +95,6 @@ class DriverRepository
 
 		// Return the FBUserInfo object with the new data
     	$Object = Driver::create($dataArray);
-    	$Object->update($dataArray);
 
     	// Store Custom fields
 		if (isset($data['field']))

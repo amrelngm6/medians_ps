@@ -105,13 +105,15 @@ class Notification extends CustomModel
 	public static function storeEventNotification(Int $event_id, String $subject,String $body, $model, $receiver)
 	{
 
+		$receiverPK = $receiver->getPrimaryKey();
+		$modelPK = $model->getPrimaryKey();
 
     	// Store notification
 		$filled['receiver_type'] = get_class($receiver);
-		$filled['receiver_id'] = $receiver->id;
+		$filled['receiver_id'] = $receiver->$receiverPK;
 		$filled['event_id'] = $event_id;
 		$filled['model_type'] = get_class($model);
-		$filled['model_id'] = $model->id;
+		$filled['model_id'] = $model->$modelPK;
     	$filled['subject'] = $subject;
     	$filled['body'] = $body;
     	$filled['status'] = 'new';

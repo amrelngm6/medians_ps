@@ -238,7 +238,7 @@ export default {
 
             var params = new URLSearchParams();
             params.append('type', type)
-            params.append('params['+itemKey+']', itemValue)
+            params.append('params['+itemKey+']', itemValue[itemKey])
             this.handleRequest(params, '/api/delete').then(response => {
                 this.$alert(response.result)
             })
