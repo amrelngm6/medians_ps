@@ -85,7 +85,7 @@ class Driver extends CustomModel
 		$fillable = [
 			'code'=>$code,
 			'model_type'=>Driver::class, 
-			'model_id'=>$this->id, 
+			'model_id'=>$this->driver_id, 
 			'value'=>$value
 		];
 
