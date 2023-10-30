@@ -66,7 +66,7 @@ class UserRepository
 	public function checkLogin($email, $password)
 	{
 
-		return User::with('driver')->where('password', $password)->where('email' , $email)->first();
+		return User::where('password', $password)->where('email' , $email)->first();
 	}
 
 	public function get($limit = 100)
