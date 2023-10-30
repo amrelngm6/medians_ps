@@ -5,6 +5,7 @@ namespace Medians\Notifications\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
+use Medians\Mail\Application\MailService;
 
 
 
@@ -118,6 +119,20 @@ class Notification extends CustomModel
     	$filled['body'] = $body;
     	$filled['status'] = 'new';
 
-    	Notification::create($filled);
+    	$notification = Notification::create($filled);
+
+		$this->sendNotification($notification);
+		
 	}  
+
+
+	/**
+	 * Send notification
+	 */
+	public function sendNotification(Notification $notification, $receiver)
+	{
+		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
+
+		return $sendMail;
+	}
 }
