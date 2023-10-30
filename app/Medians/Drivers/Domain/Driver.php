@@ -2,10 +2,12 @@
 
 namespace Medians\Drivers\Domain;
 
+use Shared\dbaser\CustomModel;
+
 use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Trips\Domain\Trip;
-use Shared\dbaser\CustomModel;
+use Medians\CustomFields\Domain\CustomField;
 
 
 class Driver extends CustomModel
@@ -70,6 +72,27 @@ class Driver extends CustomModel
 	{
 		return $this->hasMany(Trip::class, 'driver_id', 'driver_id')->with('pickup_locations')->orderBy('trip_id', 'DESC');	
 	}
+
+
+
+	/**
+	 * Create Custom filed for Session of driver
+	 */
+	public function insertCustomField($code, $value)
+	{
+
+    	// Insert activation code 
+		$fillable = [
+			'code'=>$code,
+			'model_type'=>Driver::class, 
+			'model_id'=>$this->id, 
+			'value'=>$value
+		];
+
+		return CustomField::firstOrCreate($fillable);
+
+	}  
+
 
 
 }
