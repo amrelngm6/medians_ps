@@ -4,6 +4,7 @@ namespace Medians\Help\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
+use Medians\Drivers\Domain\Driver;
 
 class HelpMessage extends CustomModel
 {
@@ -22,15 +23,22 @@ class HelpMessage extends CustomModel
 		'message',
 	];
 
+	public $appends = ['name'];
+
+	public function getNameAttribute()
+	{
+		return ($this->user_type == Driver::class && isset($this->driver->first_name)) ? $this->driver->first_name : '';
+	}
+
 
 	public function getFields()
 	{
 		return $this->fillable;
 	}
 	
-	public function user() 
+	public function driver() 
 	{
-    	return $this->hasOne(User::class, 'id', 'user_id') ;
+    	return $this->hasOne(Driver::class, 'driver_id', 'user_id');
 	}
 
 	

@@ -97,39 +97,6 @@ class HelpMessageController extends CustomController
 		echo  json_encode($data);
 	}
 
-	/**
-	 * Create new item
-	 * 
-	 */ 
-	public function create() 
-	{
-
-		return render('views/admin/PickupLocation/create.html.twig', [
-	        'title' => __('add_new'),
-	        'langs_list' => ['ar','en'],
-	        'categories' => $this->categoryRepo->get('Medians\HelpMessages\Domain\PickupLocation'),
-	    ]);
-
-	}
-
-
-
-	public function edit($id ) 
-	{
-		try {
-				
-			return render('views/admin/PickupLocation/PickupLocation.html.twig', [
-		        'title' => __('edit_PickupLocation'),
-		        'langs_list' => ['ar','en'],
-		        'item' => $this->repo->find($id),
-		        'categories' => $this->categoryRepo->get('Medians\HelpMessages\Domain\PickupLocation'),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
-		}
-	}
 
 
 	public function store() 
@@ -139,8 +106,7 @@ class HelpMessageController extends CustomController
 
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;
-        	
+        	$params['created_by'] = $this->app->auth()->id;        	
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)

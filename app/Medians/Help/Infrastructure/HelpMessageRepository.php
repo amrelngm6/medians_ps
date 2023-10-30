@@ -4,6 +4,7 @@ namespace Medians\Help\Infrastructure;
 
 use Medians\Help\Domain\HelpMessage;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Drivers\Domain\Driver;
 
 
 class HelpMessageRepository 
@@ -32,7 +33,7 @@ class HelpMessageRepository
 
 	public function find($id)
 	{
-		return HelpMessage::with('pickup_locations')->find($id);
+		return HelpMessage::find($id);
 	}
 
 	public function get($limit = 100)
@@ -47,7 +48,6 @@ class HelpMessageRepository
 
 		return $this->similar( $arr, $limit);
 	}
-
 
 	public function similar($item, $limit = 3)
 	{
@@ -71,6 +71,8 @@ class HelpMessageRepository
 	{
 
 		$Model = new HelpMessage();
+
+		$data['user_type'] = Driver::class;
 		
 		foreach ($data as $key => $value) 
 		{
@@ -82,7 +84,6 @@ class HelpMessageRepository
 
 		// Return the FBUserInfo object with the new data
     	$Object = HelpMessage::create($dataArray);
-    	$Object->update($dataArray);
 
     	return $Object;
     }
