@@ -121,7 +121,7 @@ class Notification extends CustomModel
 
     	$notification = Notification::create($filled);
 
-		$this->sendNotification($notification);
+		(new Notification)->sendNotification($notification, $receiver);
 		
 	}  
 
