@@ -164,6 +164,22 @@ class DriverRepository
 
 
 	/**
+	* validate Email 
+	*/
+	public function validateEmail($email, $id = 0) 
+	{
+		if (!empty($email))
+		{
+			$check = User::where('email', $email)->where('id', '!=', $id)->first();
+		}
+
+		if (isset($check->id) && $check->id != $id)
+		{
+			return __('EMAIL_FOUND');
+		}
+	}
+
+	/**
 	* Save related items to database
 	*/
 	public function storeCustomFields($data, $id) 
