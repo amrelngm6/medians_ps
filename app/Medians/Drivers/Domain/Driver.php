@@ -27,6 +27,7 @@ class Driver extends CustomModel
 		'vehicle_plate_number',
 		'email',
 		'password',
+		'generated_password',
 		'contact_number',
 		'created_by'
 	];

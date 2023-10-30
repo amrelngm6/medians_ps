@@ -402,7 +402,6 @@ class AuthService
 	public static function encrypt($value) : String 
 	{
 		return sha1(md5($value));
-
 	}
 
 

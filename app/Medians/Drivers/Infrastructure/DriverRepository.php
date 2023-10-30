@@ -75,7 +75,19 @@ class DriverRepository
 	}
 
 
-
+	/**
+	 * Generate random password
+	 */
+	public function randomPassword() {
+		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+		$pass = array(); //remember to declare $pass as an array
+		$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+		for ($i = 0; $i < 8; $i++) {
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return implode($pass); //turn the array into a string
+	}
 
 	/**
 	* Save item to database
@@ -85,6 +97,9 @@ class DriverRepository
 
 		$Model = new Driver();
 		
+		$Auth = new Medians\Auth\Application\AuthService;
+		$data['generated_password'] = $this->randomPassword();
+		$data['password'] = $Auth->encrypt($data['generated_password']);
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $this->getModel()->getFields()))
