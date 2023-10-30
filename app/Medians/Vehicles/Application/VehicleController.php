@@ -70,7 +70,7 @@ class VehicleController extends CustomController
 				'data' => $this->routeRepo->get()
 			],
             [ 'key'=> "driver_id", 'title'=> __('Driver'), 
-				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'first_name', 
+				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->driverRepo->get()
 			],
             [ 'key'=> "plate_number", 'title'=> __('plate_number'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
