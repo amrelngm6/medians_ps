@@ -109,13 +109,11 @@ class NotificationEventRepository
 	public function loadModels()
 	{
 		return [
-			'Orders' => \Medians\Orders\Domain\Order::class,
-			'Devices' => \Medians\Devices\Domain\Device::class,
-			'Bookings' => \Medians\Devices\Domain\OrderDevice::class,
-			'Users' => \Medians\Users\Domain\User::class,
-			'Customers' => \Medians\Customers\Domain\Customer::class,
-			'Games' => \Medians\Games\Domain\Game::class,
-			'Expenses' => \Medians\Expenses\Domain\Expense::class,
+			'Vehicle' => \Medians\Vehicles\Domain\Vehicle::class,
+			'Driver' => \Medians\Drivers\Domain\Driver::class,
+			'User' => \Medians\Users\Domain\User::class,
+			'Student' => \Medians\Students\Domain\Student::class,
+			'Parents' => \Medians\Parents\Domain\Parents::class,
 		];
 	}   
 }
