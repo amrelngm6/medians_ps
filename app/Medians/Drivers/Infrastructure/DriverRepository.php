@@ -50,6 +50,8 @@ class DriverRepository
 
 	public function checkLogin($email, $password)
 	{
+		error_log($email .' '. $password, 3, "./error_log.log");
+
 		return Driver::where('password', $password)->where('email' , $email)->first();
 	}
 
