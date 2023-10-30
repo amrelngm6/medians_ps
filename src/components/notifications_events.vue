@@ -50,8 +50,9 @@
                                 <label class="block mt-3">
                                     <span class="block mb-2" v-text="__('receiver_model')"></span>
                                     <select name="params[receiver_model]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
-                                        <option value="Branch" v-text="__('Branch')"></option>
-                                        <option value="User" v-text="__('User')"></option>
+                                        <option value="Medians\Drivers\Domain\Driver" v-text="__('Driver')"></option>
+                                        <option value="Medians\Parents\Domain\Parents" v-text="__('Parent')"></option>
+                                        <option value="Medians\Users\Domain\User" v-text="__('User')"></option>
                                     </select>
                                 </label>
                                 
@@ -109,9 +110,9 @@
                                     <label class="block mt-3">
                                         <span class="block mb-2" v-text="__('receiver_model')"></span>
                                         <select name="params[receiver_model]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg"  v-model="activeItem.receiver_model">
-                                            <option value="Driver" v-text="__('Driver')"></option>
-                                            <option value="User" v-text="__('User')"></option>
-                                            <option value="Parents" v-text="__('Parent')"></option>
+                                            <option value="Medians\Drivers\Domain\Driver" v-text="__('Driver')"></option>
+                                            <option value="Medians\Parents\Domain\Parents" v-text="__('Parent')"></option>
+                                            <option value="Medians\Users\Domain\User" v-text="__('User')"></option>
                                         </select>
                                     </label>
                                     
