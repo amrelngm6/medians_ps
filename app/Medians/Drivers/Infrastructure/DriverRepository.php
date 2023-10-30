@@ -173,10 +173,7 @@ class DriverRepository
 			$check = Driver::where('email', $email)->where('driver_id', '!=', $id)->first();
 		}
 
-		if (isset($check->id) && $check->id != $id)
-		{
-			return __('EMAIL_FOUND');
-		}
+		return  (empty($check)) ? null : __('EMAIL_FOUND');
 	}
 
 	/**
