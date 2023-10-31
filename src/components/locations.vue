@@ -33,7 +33,7 @@
                     </div>
                     <div
                         class="self-stretch grow shrink basis-0 p-[25px] bg-neutral-50 justify-between items-center inline-flex">
-                        <div @click="showAddSide = true" class="bg-fuchsia-600 rounded-lg text-white text-xs font-medium px-3 py-2 uppercase cursor-pointer" v-text="__('add new')"></div>
+                        <div class="dark-menu rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
                     </div>
                 </div>
 
