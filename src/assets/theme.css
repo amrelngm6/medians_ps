@@ -1684,9 +1684,9 @@ body .btn-primary:focus {
 }
 
 .sidebar-menu ul ul a.active {
-	background-color: #7113E9;
+	background-color: #1f2937;
 	color: #fff;
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 
 .mobile-user-menu {
