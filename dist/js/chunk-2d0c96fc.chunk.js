@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0c96fc"],{"58ad":function(t,a,e){"use strict";e.r(a);var n=function(){var t=this,a=t._self._c;return a("div",{staticClass:"w-full"},[a("data_table_page",{attrs:{conf:t.conf,path:t.path,setting:t.setting,auth:t.auth,object_name:"HelpMessage",object_key:"message_id"}})],1)},s=[],c={props:["path","lang","setting","conf","auth"]},l=c,u=e("2877"),o=Object(u["a"])(l,n,s,!1,null,null,null);a["default"]=o.exports}}]);
+//# sourceMappingURL=chunk-2d0c96fc.chunk.js.map
