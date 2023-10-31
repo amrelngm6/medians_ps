@@ -75,12 +75,14 @@ class MobileAPIController extends CustomController
 
 		$checkLogin = $repo->checkLogin($params->email, $Auth->encrypt($params->password));
 
-		if (empty($checkLogin->driver_id))
-		{
-			echo json_encode(['error'=> $checkLogin]);
-
-			return null;
+		
+		if (empty($checkLogin->driver_id)) {
+			echo json_encode(['error'=> __("User credentials not valid")]); return null;
 		}
+		
+		// if (empty($checkLogin->status)) {
+		// 	echo json_encode(['error'=> __("User account is not active")]); return null;
+		// }
 
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->driver_id);
 		$generateToken = $checkLogin->insertCustomField('API_token', $token);
