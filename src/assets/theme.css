@@ -988,9 +988,13 @@ body .btn-primary:focus {
 .bg-gradient-purple {
 	background: linear-gradient(to right, #8a56e6 0, #6f3cca 100%);
 }
-.bg-gradient-to-r {
+.bg-purple-gradient-to-r {
 	background: linear-gradient(to right, #fff 0, #dbeafa 100%);
 	border-right:4px solid #7113E9;
+}
+.bg-gradient-to-r {
+	background: linear-gradient(to right, #fff 0, #dbeafa 100%);
+	border-right:4px solid #1f2937;
 }
 
 /*-----------------
