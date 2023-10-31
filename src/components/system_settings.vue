@@ -62,7 +62,9 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="w-full " v-if="activeTab == 'notifications'">
                                 <div class="card w-full " >                             
                                     <div class="card-header pt-0">
                                         <span class="text-gray-700 font-semibold"><span v-text="__('notifications')"></span></span> 
@@ -92,7 +94,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full lg:flex gap-4" v-if="activeTab == 'basic'">
+                            <div class="w-full lg:flex gap-4" v-if="activeTab == 'smtp'">
 
                                 <div class="card w-full " >                             
                                     <div class="card-header pt-0">
@@ -274,9 +276,11 @@ export default
                 setting: {},
             },
             setting_tabs: [
-                {title:this.__('Basic_Details'), link:'basic'},
-                {title:this.__('site_content'), link:'site_content'},
-                {title:this.__('payment_methods'), link:'payment_methods'},
+                {title:this.__('Basic Details'), link:'basic'},
+                {title:this.__('Notifications'), link:'notifications'},
+                {title:this.__('SMTP setting'), link:'smtp'},
+                {title:this.__('site content'), link:'site_content'},
+                {title:this.__('payment methods'), link:'payment_methods'},
                 // {title:this.__('Address_Details'), link:'address'},
                 {title:this.__('GOOGLE_AUTH'), link:'google'},
             ],
