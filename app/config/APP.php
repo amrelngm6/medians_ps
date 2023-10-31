@@ -217,7 +217,6 @@ class APP
 
 		$data = array(
 			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'master_dashboard'),
-
 			array('title'=>__('notifications'),  'icon'=>'fa-desktop', 'link'=>'#notifications', 'sub'=>
 				[
 	                array('title'=>__('notifications_log'),  'icon'=>'', 'link'=>'admin/notifications', 'component'=>'notifications'),
@@ -226,9 +225,7 @@ class APP
 			),
 
 	        // array('title'=>__('Pages'),  'icon'=>'fa-file', 'link'=>'admin/pages', 'component'=>'pages'),
-	        // array('title'=>__('Blog'),  'icon'=>'fa-newspaper', 'link'=>'admin/blog', 'component'=>'blog'),
 	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
-	        array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'admin/customers', 'component'=>'customers'),
 			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
 			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
