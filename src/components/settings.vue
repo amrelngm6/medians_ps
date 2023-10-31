@@ -22,7 +22,7 @@
                                             
                                             <label class="block pb-3">
                                                 <span class="text-gray-700"><span v-text="__('enable_notifications')"></span></span>
-                                                <input name="params[enable_notifications]" type="checkbox" class="h-4 w-4 mx-4 p-2 rounded border px-3 text-gray-400 focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" value="1"  v-model="content.setting.enable_notifications">
+                                                <input name="params[enable_notifications]" type="checkbox" class="h-4 w-4 mx-4 p-2 rounded border px-3 text-gray-400 focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" value="1"  v-model="setting.enable_notifications">
                                             </label>
                                             <hr />
                                         </div>
