@@ -34,85 +34,6 @@
 
 
 
-                            <div class="w-full block" v-if="activeTab == 'address'">
-                                <div class="card" >
-                                    <div class="card-body pt-0">
-                                        <div class="settings-form">
-                                            <div class="form-group">
-                                                <label>{{__('Address')}}  <span class="star-red">*</span></label>
-                                                <input name="params[settings][address]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" placeholder="Enter Address Line 2" required :value="setting.address">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>{{__('City')}} <span class="star-red">*</span></label>
-                                                        <input name="params[settings][city]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required :value="setting.city">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>{{__('Country')}} </label>
-                                                        <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][country]" :value="setting.country">
-                                                            <option value="Egypt">Egypt</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="w-full block" v-if="activeTab == 'calendar'">
-                                <div class="card" >
-                                    <div class="card-body pt-0">
-                                        <div class="settings-form">
-                                            <div class="form-group">
-
-                                                <label class="block py-3">
-                                                    <label>{{__('Enable Notifications')}} <span class="star-red">*</span></label>
-                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][enable_notifications]" :value="setting.enable_notifications">
-                                                        <option value="1" v-text="__('enabled')" ></option>
-                                                        <option value="0" v-text="__('disabled')" ></option>
-                                                    </select>
-                                                </label>
-
-                                                <label class="block py-3">
-                                                    <label>{{__('calendar interval for notifications')}} {{__('in minutes')}} <span class="star-red">*</span></label>
-                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][calendar_notification_interval]" :value="setting.calendar_notification_interval">
-                                                        <option value="60000" >1</option>
-                                                        <option value="300000" >5</option>
-                                                        <option value="600000" >10</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="w-full block" v-if="activeTab == 'invoices'">
-                                <div class="card w-full " >
-                                    <div class="card-body pt-0">
-                                        <div class="settings-form">
-                                            
-                                            <div class="form-group">
-                                                <label>{{__('Invoice_notes')}}  </label>
-                                                <textarea name="params[settings][invoice_notes]" rows="4" class="mt-2 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('Invoice_notes')"  v-model="setting.invoice_notes"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{__('Invoice_terms___conditions')}}  </label>
-                                                <textarea name="params[settings][invoice_terms]" rows="4" class="mt-2 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="Invoice_terms___conditions" v-model="setting.invoice_terms" ></textarea>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
 
                             <button class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Save')}}</button>
                         </form>
@@ -145,9 +66,6 @@ export default
             },
             setting_tabs: [
                 {title:this.__('Basic_Details'), link:'basic'},
-                {title:this.__('Calendar'), link:'calendar'},
-                {title:this.__('Address_Details'), link:'address'},
-                {title:this.__('invoice_info'), link:'invoices'},
             ],
             activeItem:null,
             activeTab:'basic',
