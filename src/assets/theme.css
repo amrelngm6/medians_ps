@@ -1644,13 +1644,13 @@ body .btn-primary:focus {
 }
 
 .sidebar-menu li a:hover {
-	background-color: #7113E9;
+	background-color: #1f2937;
 	color: #fff;
 }
 
 .sidebar-menu li.active a {
 	color: #fff;
-	background-color: #7113E9;
+	background-color: #1f2937;
 }
 
 .menu-title {
