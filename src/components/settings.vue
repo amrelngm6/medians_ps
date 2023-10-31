@@ -15,52 +15,20 @@
                             <input name="type" type="hidden" value="Settings.update">
 
                             <div class="w-full flex gap-4" v-if="activeTab == 'basic'">
-                                <div class="card w-full " >
+                                
+                                <div class="card" >
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
-                                            <label class="block py-3" >
-                                                <input name="params[settings][logo]" type="hidden" :value="setting.logo">
-                                                <div class="w-full block  cursor-pointer">
-                                                    <span class="text-gray-700 w-20">{{__('Logo')}} <span class="star-red">*</span></span>
-                                                    <vue-medialibrary-field name="params[settings][logo]" :api_url="conf.url" v-model="setting.logo"></vue-medialibrary-field>
-                                                </div>
-
+                                            
+                                            <label class="block pb-3">
+                                                <span class="text-gray-700"><span v-text="__('enable_notifications')"></span></span>
+                                                <input name="params[enable_notifications]" type="checkbox" class="h-4 w-4 mx-4 p-2 rounded border px-3 text-gray-400 focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" value="1"  v-model="content.setting.enable_notifications">
                                             </label>
-
-
-                                            <label class="block py-3">
-                                                <span class="text-gray-700">{{__('Sitename')}} <span class="star-red">*</span></span>
-                                                <input name="params[settings][sitename]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required :placeholder="__('Sitename')" :value="setting.sitename">
-                                            </label>
-
-                                            <label class="block py-3">
-                                                <span class="text-gray-700">{{__('Language')}} <span class="star-red">*</span></span>
-                                                <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][lang]" :value="setting.lang">
-                                                    <option value="english">English</option>
-                                                    <option value="arabic">العربية</option>
-                                                </select>
-                                            </label>
-
+                                            <hr />
                                         </div>
-                                    </div>
-                                </div>
+                                    </div>    
+                                </div>    
 
-                                <div class="w-full ">                               
-                                    <div class="card">
-                                        <div class="card-body pt-0">
-                                            <div class="settings-form">
-
-                                                <label class="block py-3">
-                                                    <label>{{__('Enable debugging')}} <span class="star-red">*</span></label>
-                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][enable_debug]" :value="setting.enable_debug">
-                                                        <option value="1" v-text="__('enabled')" ></option>
-                                                        <option value="0" v-text="__('disabled')" ></option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
 

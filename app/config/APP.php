@@ -262,12 +262,7 @@ class APP
 			),
 			
 			array('permission'=>'Driver.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
-			array('permission'=>'Cars.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
-			// array('title'=>__('Vehicles'),  'icon'=>'fa-car', 'link'=>'#vehicles', 'sub'=>
-			// 	[
-			// 	]
-			// ),
-
+			array('permission'=>'Vehicles.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
 			array('permission'=>'Trips.index', 'title'=>__('trips'),  'icon'=>'fa-suitcase-rolling', 'link'=>'admin/trips', 'component'=>'trips'),
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'fa-circle-info', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),

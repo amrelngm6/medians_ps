@@ -20,10 +20,10 @@
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
                                             <label class="block py-3" >
-                                                <input name="params[settings][logo]" type="hidden" :value="setting.logo">
+                                                <input name="params[settings][logo]" type="hidden" :value="content.setting.logo">
                                                 <div class="w-full block  cursor-pointer">
                                                     <span class="text-gray-700 w-20">{{__('Logo')}} <span class="star-red">*</span></span>
-                                                    <vue-medialibrary-field name="params[settings][logo]" :api_url="conf.url" v-model="setting.logo"></vue-medialibrary-field>
+                                                    <vue-medialibrary-field name="params[settings][logo]" :api_url="conf.url" v-model="content.setting.logo"></vue-medialibrary-field>
                                                 </div>
 
                                             </label>
@@ -31,12 +31,12 @@
 
                                             <label class="block py-3">
                                                 <span class="text-gray-700">{{__('Sitename')}} <span class="star-red">*</span></span>
-                                                <input name="params[settings][sitename]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required :placeholder="__('Sitename')" :value="setting.sitename">
+                                                <input name="params[settings][sitename]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required :placeholder="__('Sitename')" :value="content.setting.sitename">
                                             </label>
 
                                             <label class="block py-3">
                                                 <span class="text-gray-700">{{__('Language')}} <span class="star-red">*</span></span>
-                                                <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][lang]" :value="setting.lang">
+                                                <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][lang]" :value="content.setting.lang">
                                                     <option value="english">English</option>
                                                     <option value="arabic">العربية</option>
                                                 </select>
@@ -53,7 +53,7 @@
 
                                                 <label class="block py-3">
                                                     <label>{{__('Enable debugging')}} <span class="star-red">*</span></label>
-                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][enable_debug]" :value="setting.enable_debug">
+                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][enable_debug]" :value="content.setting.enable_debug">
                                                         <option value="1" v-text="__('enabled')" ></option>
                                                         <option value="0" v-text="__('disabled')" ></option>
                                                     </select>
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="card w-full " >                             
                                     <div class="card-header pt-0">
                                         <span class="text-gray-700 font-semibold"><span v-text="__('notifications')"></span></span> 
