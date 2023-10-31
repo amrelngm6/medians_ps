@@ -559,8 +559,8 @@ table.dataTable thead>tr>td.sorting {
 
 body .page-item.active .page-link,
 body .btn-primary {
-	background-color: #7113E9;
-	border: 1px solid #7113E9;
+	background-color: #1f2937;
+	border: 1px solid #1f2937;
 }
 body .btn-primary:focus {
 	background-color: #7113E9;
@@ -570,8 +570,8 @@ body .btn-primary:focus {
 .btn-primary.active,
 .btn-primary:active,
 .open>.dropdown-toggle.btn-primary {
-	background-color: #6e3eb6;
-	border: 1px solid #6e3eb6;
+	background-color: #1f2937;
+	border: 1px solid #1f2937;
 }
 
 .btn-primary.active.focus,
