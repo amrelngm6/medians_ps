@@ -52,6 +52,10 @@
             </div>
         </div>
 
+        <side-form-create :conf="conf" model="Driver.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
+
+        <side-form-update :conf="conf" model="Driver.update" :item="activeItem" :model_id="activeItem.driver_id" :index="activeItem.driver_id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
+
 
         <!-- <data_table_page ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Driver" -->
             <!-- object_key="driver_id"></data_table_page> -->
@@ -68,7 +72,8 @@ export default
             url: this.conf.url+this.path+'?load=json',
             content: {
                 items:[]
-            } 
+            },
+            activeItem: {},
         }
     },
 
