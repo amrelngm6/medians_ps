@@ -43,6 +43,11 @@ class HelpMessageRepository
 		return HelpMessage::with('comments')->with('user')->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 
+	public function load($limit = 100)
+	{
+		return HelpMessage::limit($limit)->orderBy('message_id', 'DESC')->get();
+	}
+
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');
