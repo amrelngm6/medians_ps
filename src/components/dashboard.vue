@@ -1,6 +1,7 @@
 <template>
     <div class="w-full overflow-auto" style="height: 85vh; z-index: 9999;">
 
+        <test />
 
         <div class="top-0 py-2 w-full px-2 bg-gray-100 mt-0 sticky" style="z-index:9">
             <div class="w-full flex gap-6">
