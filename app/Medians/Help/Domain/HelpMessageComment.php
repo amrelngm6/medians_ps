@@ -23,7 +23,14 @@ class HelpMessageComment extends CustomModel
 		'comment',
 	];
 	
+	public $appends = ['date'];
+	
 
+	public function getDateAttribute()
+	{
+		return date('Y-m-d H:i', strtotime($this->created_at));
+	}
+	
     public function user() {
         return $this->morphTo();
     }
