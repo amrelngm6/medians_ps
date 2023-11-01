@@ -28,8 +28,8 @@ class HelpMessageComment extends CustomModel
 
 	public function getReceiverAttribute()
 	{
-		return null;
-		// return $this->message->user;
+		// return null;
+		return $this->message->user;
 	}
 
 	public function getDateAttribute()
