@@ -40,27 +40,6 @@
                                     <!--end row-->
                                 </div>
                                 <!--end col-->
-                                <div class="col-md-auto mt-md-0 mt-4">
-                                    <div class="hstack gap-1 flex-wrap">
-                                        <button @click="showI = false, showoptions = !showoptions, showI = true"
-                                            type="button" class="btn py-0 fs-16 text-body" id="settingDropdown"
-                                            data-bs-toggle="dropdown">
-                                            <i class="fa fa-ellipsis"></i>
-                                        </button>
-                                        <ul v-if="showI && showoptions" class="dropdown-menu"
-                                            aria-labelledby="settingDropdown">
-                                            <li><a class="dropdown-item" href="#"><i
-                                                        class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                            <li><a class="dropdown-item" href="#"><i
-                                                        class="ri-share-forward-fill align-bottom me-2 text-muted"></i>
-                                                    Share with</a></li>
-                                            <li><a class="dropdown-item" href="#"><i
-                                                        class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                    Delete</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!--end col-->
                             </div>
                             <!--end row-->
                         </div>
