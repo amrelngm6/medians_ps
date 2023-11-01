@@ -25,8 +25,8 @@ class DashboardController extends CustomController
 		$this->contentRepo = new Content\Infrastructure\ContentRepository();
 		$this->TripRepository = new Trips\Infrastructure\TripRepository();
 
-		$this->start = $this->app->request()->get('start') ? date('Y-m-d 00:00:00', strtotime($this->app->request()->get('start'))) : date('Y-m-d 00:00:00');
-		$this->end = $this->app->request()->get('end') ? date('Y-m-d 23:59:59', strtotime($this->app->request()->get('end'))) : date('Y-m-d 23:59:59');
+		$this->start = $this->app->request()->get('start') ? date('Y-m-d', strtotime($this->app->request()->get('start'))) : date('Y-m-d');
+		$this->end = $this->app->request()->get('end') ? date('Y-m-d', strtotime($this->app->request()->get('end'))) : date('Y-m-d');
 
 
 	}

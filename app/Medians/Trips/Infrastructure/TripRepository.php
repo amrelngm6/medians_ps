@@ -55,7 +55,7 @@ class TripRepository
 
 	public function eventsByDate($params)
 	{
-		$query = Trip::whereBetween('created_at', [$params['start'], $params['end']]);
+		$query = Trip::whereBetween('trip_date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
