@@ -35,14 +35,14 @@ class Driver extends CustomModel
 	];
 
 
-	public $appends = ['name'];
+	public $appends = ['name', 'photo'];
 
 	public function getNameAttribute()
 	{
 		return $this->first_name. ' '.$this->last_name;
 	}
-
-	public function photo() : String
+	
+	public function getPhotoAttribute()
 	{
 		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.jpg';
 	}
