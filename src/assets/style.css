@@ -692,3 +692,21 @@ body .sidebar-edit-form  > div
   left:-50px;
   right: auto;
 }
+
+.ribbon-box .ribbon.round-shape {
+  border-radius: 0 30px 30px 0;
+}
+.ribbon-box .ribbon-primary {
+  background: #8c68cd;
+}
+.ribbon-box .ribbon {
+  padding: 5px 12px;
+  -webkit-box-shadow: 2px 5px 10px rgba(33,37,41,.15);
+  box-shadow: 2px 5px 10px rgba(33,37,41,.15);
+  color: #fff;
+  font-size: .8512rem;
+  font-weight: 600;
+  position: absolute;
+  left: -1px;
+  top: 5px;
+}
