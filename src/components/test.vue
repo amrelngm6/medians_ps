@@ -6,63 +6,60 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mt-n4 mx-n4 card-border-effect-none mb-n5 border-bottom-0 border-start-0 rounded-0">
-                        <div>
-                            <div class="card-body pb-4 mb-5">
-                                <div class="row">
-                                    <div class="col-md">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-auto">
-                                                <div class="avatar-md mb-md-0 mb-4">
-                                                    <div class="avatar-title bg-white rounded-circle">
-                                                        <img v-if="item" :src="item.user.picture" alt="" class="avatar-sm">
-                                                    </div>
+                        <div class="card-body pb-4 mb-5">
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-auto">
+                                            <div class="avatar-md mb-md-0 mb-4">
+                                                <div class="avatar-title bg-white rounded-circle">
+                                                    <img v-if="item" :src="item.user.picture" alt="" class="avatar-sm">
                                                 </div>
                                             </div>
-                                            <!--end col-->
-                                            <div class="col-md">
-                                                <h4 class="fw-semibold" id="ticket-title" v-text="item.subject"></h4>
-                                                <div class="hstack gap-3 flex">
-                                                    <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client" v-text="item.user.name"></span></div>
-                                                    <div class="vr"></div>
-                                                    <div class="text-muted"><span v-text="__('Created at')"></span> <span class="fw-medium " id="create-date" v-text="item.created_at"></span></div>
-                                                    <div class="vr"></div>
-                                                    <div class="badge rounded-pill bg-info fs-12" id="ticket-status"  v-if="item.status" v-text="item.status"></div>
-                                                    <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority" v-if="item.priority" v-text="item.priority"></div>
-                                                </div>
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-md">
+                                            <h4 class="fw-semibold" id="ticket-title" v-text="item.subject"></h4>
+                                            <div class="hstack gap-3 flex">
+                                                <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client" v-text="item.user.name"></span></div>
+                                                <div class="vr"></div>
+                                                <div class="text-muted"><span v-text="__('Created at')"></span> <span class="fw-medium " id="create-date" v-text="item.created_at"></span></div>
+                                                <div class="vr"></div>
+                                                <div class="badge rounded-pill bg-info fs-12" id="ticket-status"  v-if="item.status" v-text="item.status"></div>
+                                                <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority" v-if="item.priority" v-text="item.priority"></div>
                                             </div>
-                                            <!--end col-->
                                         </div>
-                                        <!--end row-->
+                                        <!--end col-->
                                     </div>
-                                    <!--end col-->
-                                    <div class="col-md-auto mt-md-0 mt-4">
-                                        <div class="hstack gap-1 flex-wrap">
-                                            <button @click="showI = false,showoptions = !showoptions, showI = true" type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
-                                                <i class="fa fa-ellipsis"></i>
-                                            </button>
-                                            <ul v-if="showI && showoptions" class="dropdown-menu" aria-labelledby="settingDropdown">
-                                                <li><a class="dropdown-item" href="#"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                                <li><a class="dropdown-item" href="#"><i class="ri-share-forward-fill align-bottom me-2 text-muted"></i> Share with</a></li>
-                                                <li><a class="dropdown-item" href="#"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
+                                    <!--end row-->
                                 </div>
-                                <!--end row-->
-                            </div><!-- end card body -->
+                                <!--end col-->
+                                <div class="col-md-auto mt-md-0 mt-4">
+                                    <div class="hstack gap-1 flex-wrap">
+                                        <button @click="showI = false,showoptions = !showoptions, showI = true" type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
+                                            <i class="fa fa-ellipsis"></i>
+                                        </button>
+                                        <ul v-if="showI && showoptions" class="dropdown-menu" aria-labelledby="settingDropdown">
+                                            <li><a class="dropdown-item" href="#"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="ri-share-forward-fill align-bottom me-2 text-muted"></i> Share with</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
                         </div>
                     </div><!-- end card -->
                 </div><!-- end col -->
             </div><!-- end row -->
 
             <div class="lg:flex gap-6">
-                <div class="col-xxl-9 ">
+                <div class="col-xxl-9 w-full">
                     <div class="card">
                         <div class="card-body p-4">
                             <h6 class="fw-semibold text-uppercase mb-3" v-text="__('Ticket Discripation')"></h6>
                             <p class="text-muted" v-text="item.message"></p>
-                            
                         </div>
                         <!--end card-body-->
                         <div class="card-body p-4">
@@ -102,7 +99,7 @@
         <!--end card-->
     </div>
     <!--end col-->
-    <div class="col-xxl-3 w-full">
+    <div class="col-xxl-3 ">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0" v-text="__('Ticket Details')"></h5>
