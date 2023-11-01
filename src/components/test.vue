@@ -87,12 +87,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="javascript:void(0);" class="mt-3">
+                            <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action my-2 rounded-lg  pb-2">
+                                <input name="type" type="hidden" value="HelpMessageComment.create">
+                                <input name="params[message_id]" type="hidden" :value="item.message_id">
+                                
+                                <input v-if="model_id && column && column.column_type == 'hidden'" :name="'params['+column.key+']'" type="hidden" v-model="column.default">
+                                
                                 <div class="row g-3">
                                     <div class="col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label"
                                             v-text="__('WRITE_COMMENT')"></label>
-                                        <textarea class="form-control bg-light border-light"
+                                        <textarea name="params[comment]" class="form-control bg-light border-light"
                                             id="exampleFormControlTextarea1" rows="3"
                                             placeholder="Enter comments"></textarea>
                                     </div>
