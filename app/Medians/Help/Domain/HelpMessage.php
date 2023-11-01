@@ -51,7 +51,7 @@ class HelpMessage extends CustomModel
 	
 	public function comments() 
 	{
-    	return $this->hasMany(HelpMessageComment::class, 'message_id', 'message_id')->with('user');
+    	return $this->hasMany(HelpMessageComment::class, 'message_id', 'message_id');
 	}
 
 	

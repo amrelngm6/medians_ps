@@ -23,8 +23,13 @@ class HelpMessageComment extends CustomModel
 		'comment',
 	];
 	
-	public $appends = ['date'];
+	public $appends = ['date', 'user'];
 	
+
+	public function getUserAttribute()
+	{
+		return $this->message->user;
+	}
 
 	public function getDateAttribute()
 	{
