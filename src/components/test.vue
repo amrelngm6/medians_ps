@@ -98,54 +98,28 @@
                 </form>
             </div>
             <!-- end card body -->
-        </div>
+        </div> 
         <!--end card-->
     </div>
     <!--end col-->
     <div class="col-xxl-3 w-full">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Ticket Details</h5>
+                <h5 class="card-title mb-0" v-text="__('Ticket Details')"></h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive table-card">
                     <table class="table table-borderless align-middle mb-0">
                         <tbody>
                             <tr>
-                                <td class="fw-medium">Ticket</td>
-                                <td>#VLZ<span id="t-no">135</span> </td>
+                                <td class="fw-medium" v-text="__('Ticket')"></td>
+                                <td>#<span id="t-no" v-text="item.message_id"></span> </td>
                             </tr>
                             <tr>
-                                <td class="fw-medium">Client</td>
-                                <td id="t-client">Themesbrand</td>
+                                <td class="fw-medium" v-text="__('User')"></td>
+                                <td id="t-client" v-text="item.user.name"></td>
                             </tr>
-                            <tr>
-                                <td class="fw-medium">Project</td>
-                                <td>Velzon - Admin Dashboard</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-medium">Assigned To:</td>
-                                <td>
-                                    <div class="avatar-group">
-                                        <a href="javascript:void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" data-bs-original-title="Erica Kernan">
-                                            <img src="assets/images/users/avatar-4.jpg" alt="" class="rounded-circle avatar-xs">
-                                        </a>
-                                        <a href="javascript:void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" data-bs-original-title="Alexis Clarke">
-                                            <img src="assets/images/users/avatar-10.jpg" alt="" class="rounded-circle avatar-xs">
-                                        </a>
-                                        <a href="javascript:void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" data-bs-original-title="James Price">
-                                            <img src="assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-xs">
-                                        </a>
-                                        <a href="javascript: void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" data-bs-original-title="Add Members">
-                                            <div class="avatar-xs">
-                                                <div class="avatar-title fs-16 rounded-circle bg-light border-dashed border text-white">
-                                                    +
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td class="fw-medium" v-text="__('Status')"></td>
                                 <td>
