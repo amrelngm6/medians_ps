@@ -39,8 +39,8 @@
                                 <div class="w-auto">
                                     <div class="d-flex">
                                         <div class="search-box me-2">
-                                            <input type="text" class="form-control" placeholder="Search member...">
-                                            <i class="ri-search-line search-icon"></i>
+                                            <!-- <input type="text" class="form-control" placeholder="Search member..."> -->
+                                            <!-- <i class="ri-search-line search-icon"></i> -->
                                         </div>
                                     </div>
                                 </div>
