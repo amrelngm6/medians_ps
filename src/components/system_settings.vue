@@ -251,7 +251,7 @@
 
                             </div>
 
-                            <button v-if="activeTab != 'site_content'" class="uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Save')}}</button>
+                            <button v-if="activeTab != 'site_content'" class="uppercase mt-3 text-white mx-auto rounded-lg bg-purple-800 hover:bg-red-800 px-4 py-2">{{__('Save')}}</button>
                         </form>
                     </div>
                     <div class="col-md-3" >
