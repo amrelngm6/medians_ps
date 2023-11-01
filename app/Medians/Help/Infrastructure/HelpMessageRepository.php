@@ -38,7 +38,7 @@ class HelpMessageRepository
 
 	public function get($limit = 100)
 	{
-		return HelpMessage::limit($limit)->get();
+		return HelpMessage::with('comments')->limit($limit)->get();
 	}
 
 	public function search($request, $limit = 20)

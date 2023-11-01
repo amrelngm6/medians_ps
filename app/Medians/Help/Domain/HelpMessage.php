@@ -42,6 +42,11 @@ class HelpMessage extends CustomModel
 	{
     	return $this->hasOne(Driver::class, 'driver_id', 'user_id');
 	}
+	
+	public function comments() 
+	{
+    	return $this->hasMany(HelpMessageComment::class, 'message_id', 'message_id');
+	}
 
 	
 	
