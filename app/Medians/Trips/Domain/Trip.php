@@ -92,11 +92,14 @@ class Trip extends CustomModel
 	
 	public function getDurationAttribute() {
 		
-		$datetime1 = new \DateTime($this->created_at);
-		$datetime2 = new \DateTime($this->updated_at);  // change the millennium to see output difference
-		$diff = $datetime1->diff($datetime2);
-
-		return '(0'.$diff->h.':'.($diff->i < 10 ? '0'.$diff->i : $diff->i).':'.$diff->s.')';
+		if ($this->created_at)
+		{
+			$datetime1 = new \DateTime($this->created_at);
+			$datetime2 = new \DateTime($this->updated_at);  // change the millennium to see output difference
+			$diff = $datetime1->diff($datetime2);
+	
+			return '(0'.$diff->h.':'.($diff->i < 10 ? '0'.$diff->i : $diff->i).':'.$diff->s.')';
+		}
 	}
 	
 	public function getDistanceAttribute() {
