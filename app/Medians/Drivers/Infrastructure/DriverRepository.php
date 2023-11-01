@@ -66,6 +66,7 @@ class DriverRepository
 				$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
 			}
 		}])
+		->selectRaw('first_name as label')
 		->having('y', '>', 0)
 		->orderBy('y', 'desc')
 		->limit($limit)
