@@ -70,7 +70,7 @@
                                                 <div class="simplebar-content" style="padding: 0px 16px;">
                                                     <div class="d-flex mb-4" v-for="comment in item.comments">
                                                         <div class="flex-shrink-0" v-if="comment.user">
-                                                            <img :src="comment.user.picture" alt=""
+                                                            <img :src="comment.user.photo" alt=""
                                                                 class="avatar-xs rounded-circle">
                                                         </div>
                                                         <div class="flex-grow-1 ms-3" v-if="comment.user">
