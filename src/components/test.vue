@@ -102,7 +102,7 @@
                                             placeholder="Enter comments"></textarea>
                                     </div>
                                     <div class="col-lg-12 text-end mt-4">
-                                        <a href="javascript:void(0);" class="btn btn-primary" v-text="__('Send')"></a>
+                                        <button type="submit" href="javascript:void(0);" class="btn btn-primary" v-text="__('Send')"></button>
                                     </div>
                                 </div>
                             </form>
