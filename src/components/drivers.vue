@@ -1,7 +1,7 @@
 <template>
     <div class=" w-full">
         <!-- Rounded Ribbon -->
-        <div class="card ribbon-box border shadow-none mb-lg-0">
+        <div class="relative card ribbon-box border shadow-none mb-lg-0">
             <div class="card-body">
                 <div class="ribbon ribbon-primary round-shape">Important</div>
                 <h5 class="fs-14 text-end">Add new driver</h5>
