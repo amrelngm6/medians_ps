@@ -312,6 +312,7 @@ export default {
 <style>
 @import './assets/webfonts/fontawesome.min.css';
 @import './assets/bootstrap-grid.min.css';
+@import './assets/tailwind.min.css';
 @import './assets/media-library.css';
 @import './assets/style.css';
 @import './assets/theme.css';
