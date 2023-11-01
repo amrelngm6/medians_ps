@@ -30,18 +30,7 @@
                         <dashboard_card classes="bg-gradient-purple" :title="__('Pickup locations')" :value="content.pickup_locations_count" ></dashboard_card>
                     </div>
                 </div>
-                <div class="w-full lg:flex gap gap-6 pb-6">
-                    <dashboard_center_squares :content="content" :setting="setting" />
-                    <div class="card mb-0 w-full">
-                        <h4 class="p-4 ml-4" v-text="__('most_played_games')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_games_used_for_playing')"></p>
-                        <div class="card-body w-full">
-                            <div class="w-full">
-                                <CanvasJSChart v-if="content.most_played_games && showCharts && content.most_played_games.length" :key="pie_options" :options="pie_options"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="w-full lg:flex gap gap-6 pb-6">
                     <div class="card mb-0 w-2/3">
                         <h4 class="p-4 ml-4" v-text="__('Top drivers')"></h4>
