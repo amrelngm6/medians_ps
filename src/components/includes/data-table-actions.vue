@@ -14,7 +14,12 @@ export default {
     methods: {
         handleAction(actionName) {
             
-            this.$root.$children[0].$refs.activeTab.$refs.data_table.handleAction(actionName, this.data);
+            if (this.$root.$children[0].$refs.activeTab.$refs.data_table)
+            {
+                this.$root.$children[0].$refs.activeTab.$refs.data_table.handleAction(actionName, this.data);
+            } else {
+                this.$root.$children[0].$refs.activeTab.handleAction(actionName, this.data);
+            }
         }
 
     },
