@@ -20,8 +20,8 @@
                         <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('total_trips')" :value="content.total_trips_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('help_messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
-                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.orders_charts && content.orders_charts.length">
-                        <CanvasJSChart v-if="showCharts && content.orders_charts.length" :key="line_options" :options="line_options"/>
+                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts && content.trips_charts.length">
+                        <CanvasJSChart v-if="showCharts && content.trips_charts.length" :key="line_options" :options="line_options"/>
                     </div>
                     <div class="row mt-6">
                         <dashboard_card classes="bg-gradient-success" :title="__('Vehciles')" :value="content.vehicles_count"></dashboard_card>
@@ -146,7 +146,7 @@ export default
                 most_played_devices: [],
                 latest_paid_order_devices: [],
                 latest_order_products: [],
-                orders_charts: [],
+                trips_charts: [],
                 revenue: 0,
                 most_played_games: [],
                 latest_paid_bookings: 0,
@@ -172,7 +172,7 @@ export default
                 },
 
                 axisY: {
-                  title: this.__('bookings_count'),
+                  title: this.__('trips_count'),
                   suffix: ""
                 },
                 data: [{}]
@@ -286,7 +286,7 @@ export default
                 color: '#003c58',
                 showInLegend: true,
                 yValueFormatString: this.setting.currency+"#,### "+this.__('sales'),
-                dataPoints: this.content.orders_charts
+                dataPoints: this.content.trips_charts
             }
             
             this.showCharts = true
