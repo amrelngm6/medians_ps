@@ -70,7 +70,7 @@
                 <div class="w-full lg:flex gap gap-6 pb-6 ">
 
                     <div class="card  w-full  no-mobile">
-                        <h4 class="p-4 ml-4" v-text="__('latest_sold_products')"></h4>
+                        <h4 class="p-4 ml-4" v-text="__('Latest help messages')"></h4>
                         <hr />
                         <div class="card-body w-full">
                             <div class="w-full">
@@ -79,21 +79,22 @@
                                         <thead>
                                             <tr>
                                                 <th v-text="__('name')"></th>
-                                                <th v-text="__('price')"></th>
+                                                <th v-text="__('subject')"></th>
+                                                <th v-text="__('message')"></th>
                                                 <th v-text="__('date')"></th>
-                                                <th v-text="__('invoice')"></th>
-                                                <th v-text="__('by')"></th>
+                                                <th v-text="__('status')"></th>
                                             </tr>
                                         </thead>
                                         <tbody >
-                                            <tr :key="index" v-for="(item, index) in content.latest_order_products" class="text-center">
+                                            <tr :key="index" v-for="(message, index) in content.latest_help_messages" class="text-center">
                                                 <td>
-                                                    <a :href="'/admin/products/edit/'+item.product.id">{{item.product.name}}</a>
+                                                    <span v-if="message.user" v-text="message.user.name"></span>
                                                 </td>
-                                                <td class="text-red-500">{{item.product.price}} {{setting.currency}}</td>
+                                                <td v-text="message.subject"></td>
+                                                <td class="text-red-500" v-text="message.message"></td>
                                                 <td v-text="dateTimeFormat(item.created_at)"></td>
-                                                <td><a target="_blank" :href="'/admin/invoices/show/'+item.invoice.code">{{item.invoice.code}}</a></td>
-                                                <td v-text="item.user ? item.user.name : ''"></td>
+                                                <td v-text="message.date"></td>
+                                                <td v-text="message.status"></td>
                                             </tr>
                                         </tbody>
                                     </table>
