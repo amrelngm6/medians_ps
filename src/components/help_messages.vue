@@ -7,13 +7,7 @@
     <div class="col-lg-12">
         <div class="card mt-n4 mx-n4 card-border-effect-none">
             <div class="bg-primary-subtle" v-if="!showLoader">
-                <div class="card-body pb-0 px-4">
-                    <ul class="gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
-                        <li v-for="option in statusList"  class="nav-item" role="presentation">
-                            <a @click="switchStatus(option)" :class="option.status == activeStatus ? 'font-bold' : ''" v-text="option.text" class="nav-link fw-semibold" data-bs-toggle="tab" href="#project-overview" role="tab" aria-selected="false" tabindex="-1"></a>
-                        </li>
-                    </ul>
-                </div>
+               
                 <div class="card-body pb-0 px-4">
                     <span v-text="content.title" class="text-lg font-semibold "></span>
                 </div>
@@ -39,11 +33,6 @@
                                 <input type="text" class="form-control" placeholder="Search member...">
                                 <i class="ri-search-line search-icon"></i>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-auto">
-                        <div>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#inviteMembersModal"><i class="ri-share-line me-1 align-bottom"></i> Invite Member</button>
                         </div>
                     </div>
                 </div>
