@@ -13,7 +13,8 @@ export default {
     name: "ActionButtons",
     methods: {
         handleAction(actionName) {
-            this.$root.$children[0].$refs.activeTab.handleAction(actionName, this.data);
+            
+            this.$root.$children[0].$refs.activeTab.$refs.data_table.handleAction(actionName, this.data);
         }
 
     },
