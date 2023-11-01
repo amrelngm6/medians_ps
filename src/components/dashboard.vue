@@ -44,11 +44,11 @@
                 </div>
                 <div class="w-full lg:flex gap gap-6 pb-6">
                     <div class="card mb-0 w-2/3">
-                        <h4 class="p-4 ml-4" v-text="__('most_played_devices')"></h4>
+                        <h4 class="p-4 ml-4" v-text="__('top_drivers')"></h4>
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_devices_used_for_playing')"></p>
                         <div class="card-body w-full">
                             <div class="w-full">
-                                <CanvasJSChart v-if="showCharts && content.most_played_devices && content.most_played_devices.length" :key="column_options" :options="column_options"/>
+                                <CanvasJSChart v-if="showCharts && content.top_drivers && content.top_drivers.length" :key="column_options" :options="column_options"/>
                             </div>
                         </div>
                     </div>
