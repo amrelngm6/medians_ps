@@ -6,7 +6,7 @@
                 <div class="ribbon ribbon-primary round-shape" v-text="__('Important')"></div>
                 <h5 class="fs-14 text-end" v-text="__('Before Create Account')"></h5>
                 <div class="ribbon-content mt-4 text-muted">
-                    <p class="mb-0" v-text="__('Before Create driver note')"></p>
+                    <div class="mb-0" v-html="__('Before Create driver note')"></div>
                 </div>
             </div>
         </div>
