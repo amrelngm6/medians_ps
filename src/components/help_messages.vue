@@ -113,7 +113,7 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
-            activeStatus: true,
+            activeStatus: 'new',
             statusList: [{text:this.__('New'),status:'new'},{text:this.__('Active'),status:'active'},{text:this.__('Completed'),status:'completed'},{text:this.__('Closed'),status:'closed'}],
         }
     },
