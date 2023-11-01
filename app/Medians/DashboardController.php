@@ -16,6 +16,7 @@ class DashboardController extends CustomController
 	public  $DriverRepository;
 	public  $PickupLocationRepository;
 	public  $VehicleRepository;
+	public  $StudentRepository;
 
 	protected $app;
 	public $start;
@@ -32,6 +33,7 @@ class DashboardController extends CustomController
 		$this->RouteRepository = new Routes\Infrastructure\RouteRepository();
 		$this->DriverRepository = new Drivers\Infrastructure\DriverRepository();
 		$this->PickupLocationRepository = new Locations\Infrastructure\PickupLocationRepository();
+		$this->StudentRepository = new Students\Infrastructure\StudentRepository();
 
 		$this->start = $this->app->request()->get('start') ? date('Y-m-d', strtotime($this->app->request()->get('start'))) : date('Y-m-d');
 		$this->end = $this->app->request()->get('end') ? date('Y-m-d', strtotime($this->app->request()->get('end'))) : date('Y-m-d');
@@ -125,6 +127,7 @@ class DashboardController extends CustomController
         $data['vehicles_count'] = $this->VehicleRepository->get()->count();
         $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
         $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
+        $data['latest_students'] = $this->StudentRepository->get(5);
 
         return $data;
 
