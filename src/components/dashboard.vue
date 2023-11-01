@@ -65,11 +65,11 @@
                                                 <th v-text="__('Trips')"></th>
                                             </tr>
                                         </thead>
-                                        <tbody v-if="content.top_drivers">
-                                            <tr :key="index" v-for="(driver, index) in content.top_drivers" class="text-center" v-if="driver">
+                                        <tbody v-if="content.top_drivers_list">
+                                            <tr :key="index" v-for="(driver, index) in content.top_drivers_list" class="text-center" v-if="driver">
                                                 <td><img :src="driver.picture" /></td>
                                                 <td v-text="driver.name"></td>
-                                                <td  v-text="driver.last_trips_count"></td>
+                                                <td  v-text="driver.y"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -270,7 +270,7 @@ export default
             this.column_options.axisY.title = this.__('Trips count')
             this.column_options.data[0] = {
                 type: "column",
-                yValueFormatString: "#,### "+this.__('Drivers'),
+                yValueFormatString: "#,### "+this.__('Trips count'),
                 dataPoints: this.content.top_drivers
             }
 
