@@ -1,0 +1,1343 @@
+<template>
+    <div class=" w-full">
+        <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6">
+                    <div class="xl:col-span-3 lg:col-span-5">
+                        <div class="card text-center p-6 mb-6">
+                            <img src="assets/images/users/avatar-7.jpg" alt="" class="h-20 rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
+                            <h4 class="mb-1 mt-3 text-lg dark:text-gray-300">Shreyu N</h4>
+                            <p class="text-gray-400 mb-4 dark:text-gray-400">User Experience Specialist <br> San Francisco, CA</p>
+
+                            <div class="flex w-full h-4 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-600 mb-6">
+                                <div class="flex flex-col justify-center overflow-hidden bg-success text-xs text-white text-center" role="progressbar" style="width: 60%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100">Your Profile is 25% completed</div>
+                            </div>
+
+                            <button type="button" class="btn bg-primary/90 hover:bg-primary rounded btn-sm text-white mb-3">Follow</button>
+                            <button type="button" class="btn border border-gray-200 hover:bg-light btn-sm hover:border-transparent rounded mb-3 dark:border-gray-600 dark:hover:bg-gray-600/50">Message</button>
+
+                            <hr class="mt-5 dark:border-gray-600">
+
+                            <div class="text-start mt-6">
+                                <h4 class="text-sm mb-2.5 dark:text-gray-300">About</h4>
+                                <p class="text-gray-400 mb-6 dark:text-gray-400">
+                                    Hi I'm Tosha Minner,has been the industry's standard dummy text ever since the
+                                    1500s, when an unknown printer took a galley of type.
+                                </p>
+                                <hr class="mb-5 dark:border-gray-600">
+                                <div class="space-y-7">
+                                    <p class="text-zinc-400 dark:text-gray-400"><strong>Email :</strong> <span class="ms-2">xyz123@gmail.com</span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400"><strong>Phone :</strong> <span class="ms-2"> (123) 123 1234</span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex items-start"><strong class="flex-shrink">Address:</strong> <span class="ms-2">1975 Boring Lane, San Francisco, California, United States - 94108</span></p>
+                                </div>
+                            </div>
+                            <hr class="my-5 dark:border-gray-600">
+
+                            <h2 class="text-start mb-5 dark:text-gray-300">Skills</h2>
+                            <div class="flex flex-wrap items-end gap-2">
+                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">UI design</span>
+                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">UX</span>
+                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">Sketch</span>
+                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">Photoshop</span>
+                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">Frontend</span>
+                            </div>
+                        </div> <!-- end card -->
+                    </div>
+
+                    <div class="xl:col-span-9 lg:col-span-7">
+                        <div class="card">
+                            <div class="p-6">
+
+                                <div class="flex justify-between items-center">
+                                    <h4 class="uppercase mb-1 dark:text-gray-300">Nav Pills</h4>
+                                </div> <!-- card-title end -->
+
+                                <div class="pt-5">
+                                    <nav class="flex sm:flex-nowrap flex-wrap items-center justify-around rounded space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30" aria-label="Tabs" role="tablist">
+                                        <button type="button" class="hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white active" id="basic-tabs-item-1" data-hs-tab="#basic-tabs-1" aria-controls="basic-tabs-1" role="tab">
+                                            Activity
+                                        </button> <!-- button-end -->
+                                        <button type="button" class="hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-2" data-hs-tab="#basic-tabs-2" aria-controls="basic-tabs-2" role="tab">
+                                            Messages
+                                        </button> <!-- button-end -->
+                                        <button type="button" class="hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-3" data-hs-tab="#basic-tabs-3" aria-controls="basic-tabs-3" role="tab">
+                                            Projects
+                                        </button> <!-- button-end -->
+                                        <button type="button" class="hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-4" data-hs-tab="#basic-tabs-4" aria-controls="basic-tabs-4" role="tab">
+                                            Tasks
+                                        </button> <!-- button-end -->
+                                        <button type="button" class="hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-5" data-hs-tab="#basic-tabs-5" aria-controls="basic-tabs-5" role="tab">
+                                            Files
+                                        </button> <!-- button-end -->
+                                    </nav> <!-- nav-end -->
+
+                                    <div class="mt-3 overflow-hidden">
+                                        <div id="basic-tabs-1" role="tabpanel" aria-labelledby="basic-tabs-item-1" class="transition-all duration-300 transform">
+                                            <div class="space-y-7">
+                                                <div class="relative overflow-hidden">
+                                                    <!-- Center Border Line -->
+                                                    <div class="absolute border-s-2 border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10"></div>
+
+                                                    <div class="md:text-start mb-5 mt-5">
+                                                        <h5 class="bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded px-2">
+                                                            This Week
+                                                        </h5>
+                                                    </div>
+
+                                                    <!--  -->
+                                                    <div class="space-y-4">
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">02 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">Designing Shreyu Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">21 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">UX and UI for Ubold Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Ubold Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">22 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">UX and UI for Shreyu Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="relative overflow-hidden">
+                                                    <!-- Center Border Line -->
+                                                    <div class="absolute border-s-2 border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10"></div>
+
+                                                    <div class="md:text-start mb-5 mt-5">
+                                                        <h5 class="bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded px-2">
+                                                            Last Week
+                                                        </h5>
+                                                    </div>
+
+                                                    <!--  -->
+                                                    <div class="space-y-4">
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">02 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">Designing Shreyu Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">21 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">UX and UI for Ubold Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Ubold Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">22 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">UX and UI for Shreyu Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="relative overflow-hidden">
+                                                    <!-- Center Border Line -->
+                                                    <div class="absolute border-s-2 border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10"></div>
+
+                                                    <div class="md:text-start mb-5 mt-5">
+                                                        <h5 class="bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded px-2">
+                                                            Last Month
+                                                        </h5>
+                                                    </div>
+
+                                                    <!--  -->
+                                                    <div class="space-y-4">
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">02 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">Designing Shreyu Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">21 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">UX and UI for Ubold Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Ubold Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-start">
+                                                            <div class="absolute start-7 mt-7">
+                                                                <div class="relative">
+                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                        <i class="uil uil-record-audio"></i>
+                                                                    </div>
+                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid grid-cols-1">
+                                                                <div class="md:col-start-1 col-span-2">
+                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
+                                                                        <div class="ms-10">
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">22 hours ago</h2>
+                                                                        </div>
+                                                                        <div class="relative me-5 md:ps-0 ps-10">
+                                                                            <div class="pt-3">
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">UX and UI for Shreyu Admin</h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- tabs-with-underline-1 end -->
+
+                                        <div id="basic-tabs-2" role="tabpanel" aria-labelledby="basic-tabs-item-2" class="transition-all duration-300 transform hidden">
+                                            <h2 class="uppercase my-3 dark:text-gray-300">Messages</h2>
+                                            <div class="divide-y dark:divide-gray-600">
+                                                <div class="overflow-hidden py-2.5 relative">
+                                                    <div class="block float-left me-3.5"><img src="assets/images/users/avatar-2.jpg" class="h-14 rounded-full" alt=""></div>
+                                                    <p class="text-gray-700 block mb-0.5 font-semibold dark:text-gray-300">John Jack</p>
+                                                    <p class="text-gray-400">The languages only differ in their grammar</p>
+                                                </div>
+                                                <div class="overflow-hidden py-2.5 relative">
+                                                    <div class="block float-left me-3.5"><img src="assets/images/users/avatar-3.jpg" class="h-14 rounded-full" alt=""></div>
+                                                    <p class="text-gray-700 block mb-0.5 font-semibold dark:text-gray-300">Theodore</p>
+                                                    <p class="text-gray-400">Everyone realizes why a new common language</p>
+                                                </div>
+                                                <div class="overflow-hidden py-2.5 relative">
+                                                    <div class="block float-left me-3.5">
+                                                        <h2 class="h-14 w-14 rounded-full text-xl flex items-center justify-center text-primary bg-primary/20">M</h2>
+                                                    </div>
+                                                    <p class="text-gray-700 block mb-0.5 font-semibold dark:text-gray-300">Michael</p>
+                                                    <p class="text-gray-400">To an English person, it will seem like simplified</p>
+                                                </div>
+                                                <div class="overflow-hidden py-2.5 relative">
+                                                    <div class="block float-left me-3.5"><img src="assets/images/users/avatar-5.jpg" class="h-14 rounded-full" alt=""></div>
+                                                    <p class="text-gray-700 block mb-0.5 font-semibold dark:text-gray-300">Tony Lindsey</p>
+                                                    <p class="text-gray-400">If several languages coalesce the grammar</p>
+                                                </div>
+                                                <div class="overflow-hidden py-2.5 relative">
+                                                    <div class="block float-left me-3.5">
+                                                        <h2 class="h-14 w-14 rounded-full text-xl flex items-center justify-center text-primary bg-primary/20">R</h2>
+                                                    </div>
+                                                    <p class="text-gray-700 block mb-0.5 font-semibold dark:text-gray-300">Robert Wilke</p>
+                                                    <p class="text-gray-400">Their separate existence is a myth</p>
+                                                </div>
+                                                <div class="overflow-hidden py-2.5 relative">
+                                                    <div class="block float-left me-3.5"><img src="assets/images/users/avatar-7.jpg" class="h-14 rounded-full" alt=""></div>
+                                                    <p class="text-gray-700 block mb-0.5 font-semibold dark:text-gray-300">James</p>
+                                                    <p class="text-gray-400">The European languages are members.</p>
+                                                </div>
+                                                <div class="overflow-hidden py-2.5 relative">
+                                                    <div class="block float-left me-3.5">
+                                                        <h2 class="h-14 w-14 rounded-full text-xl flex items-center justify-center text-primary bg-primary/20">B</h2>
+                                                    </div>
+                                                    <p class="text-gray-700 block mb-0.5 font-semibold dark:text-gray-300">Brian</p>
+                                                    <p class="text-gray-400">At vero eos et accusamus et iusto odio</p>
+                                                </div>
+                                                <div class="overflow-hidden py-2.5 relative">
+                                                    <div class="block float-left me-3.5"><img src="assets/images/users/avatar-5.jpg" class="h-14 rounded-full" alt=""></div>
+                                                    <p class="text-gray-700 block mb-0.5 font-semibold dark:text-gray-300">Aaron Nickel</p>
+                                                    <p class="text-gray-400">Itaque earum rerum hic tenetur a sapiente</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <a href="#" class="btn bg-primary text-white btn-sm rounded">Load more</a>
+                                            </div>
+
+                                        </div> <!-- tabs-with-underline-2 end -->
+
+                                        <div id="basic-tabs-3" role="tabpanel" aria-labelledby="basic-tabs-item-3" class="transition-all duration-300 transform active hidden">
+                                            <h2 class="uppercase text-lg mb-5 dark:text-gray-300">Projects</h2>
+                                            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                                                <div class="card dark:border-gray-600">
+                                                    <div class="p-5">
+                                                        <div>
+                                                            <div class="flex justify-between items-center">
+                                                                <h5 class="text-xs text-success">Web Design</h5>
+                                                                <div class="bg-success text-xs text-white rounded py-px px-1.5 font-medium" role="alert">
+                                                                    <span>Complated</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                            <div class="py-3">
+                                                                <h5 class="my-2"><a href="apps-project-detail.html" class="text-base text-dark dark:text-gray-300">Landing page Design</a></h5>
+                                                                <p class="text-gray-500 text-sm mb-5 dark:text-gray-400">If several languages coalesce, the grammar of the resulting language is more regular.</p>
+
+                                                                <div class="flex items-center gap-3">
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-2.jpg" alt="Image Description">
+                                                                    </a>
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-3.jpg" alt="Image Description">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-t dark:border-gray-600">
+                                                        <div class="p-5">
+                                                            <div class="flex items-center gap-4 mb-5">
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-calender text-lg me-1"></i> <span class="align-text-bottom">15 Dec</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Due date
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-bars text-lg me-1"></i><span class="align-text-bottom">56</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Tasks
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-comments-alt text-lg me-1"></i><span class="align-text-bottom">224</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Comments
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hs-tooltip [--placement:bottom] pb-2">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <div class="flex w-80 h-[6px] bg-light rounded-full overflow-hidden dark:bg-gray-700">
+                                                                        <div class="flex flex-col justify-center overflow-hidden bg-success" role="progressbar" style="width: 100%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                        100% Completed
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card dark:border-gray-600">
+                                                    <div class="p-5">
+                                                        <div>
+                                                            <div class="flex justify-between items-center">
+                                                                <h5 class="text-xs text-warning">Android</h5>
+                                                                <div class="bg-warning text-xs text-white rounded py-px px-1.5 font-medium" role="alert">
+                                                                    <span>Pending</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                            <div class="py-3">
+                                                                <h5 class="my-2"><a href="apps-project-detail.html" class="text-base text-dark dark:text-gray-300">App Design and Develop</a></h5>
+                                                                <p class="text-gray-500 text-sm mb-5 dark:text-gray-400">To achieve this, it would be necessary to have uniform grammar and more common words.</p>
+
+                                                                <div class="flex items-center gap-3">
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-4.jpg" alt="Image Description">
+                                                                    </a>
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-5.jpg" alt="Image Description">
+                                                                    </a>
+                                                                    <a href="javascript: void(0);">
+                                                                        <div class="relative inline-flex">
+                                                                            <button class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-warning/20 border-2 border-white font-medium text-warning shadow-sm align-middle dark:border-gray-600 transition-all text-sm">
+                                                                                <span class="font-medium leading-none">2+</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-t dark:border-gray-600">
+                                                        <div class="p-5">
+                                                            <div class="flex items-center gap-4 mb-5">
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-calender text-lg me-1"></i> <span class="align-text-bottom">28 Nov</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Due date
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-bars text-lg me-1"></i><span class="align-text-bottom">62</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Tasks
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-comments-alt text-lg me-1"></i><span class="align-text-bottom">196</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Comments
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hs-tooltip [--placement:bottom] pb-2">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <div class="flex w-80 h-[6px] bg-light rounded-full overflow-hidden dark:bg-gray-700">
+                                                                        <div class="flex flex-col justify-center overflow-hidden bg-warning" role="progressbar" style="width: 66%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                        100% Completed
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card dark:border-gray-600">
+                                                    <div class="p-5">
+                                                        <div>
+                                                            <div class="flex justify-between items-center">
+                                                                <h5 class="text-xs text-success">Web Design</h5>
+                                                                <div class="bg-success text-xs text-white rounded py-px px-1.5 font-medium" role="alert">
+                                                                    <span>Complated</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                            <div class="py-3">
+                                                                <h5 class="my-2"><a href="apps-project-detail.html" class="text-base text-dark dark:text-gray-300">New Admin Design</a></h5>
+                                                                <p class="text-gray-500 text-sm mb-5 dark:text-gray-400">To an English person, it will seem like simplified english, as a skeptical Cambridge.</p>
+
+                                                                <div class="flex items-center gap-3">
+                                                                    <a href="javascript: void(0);">
+                                                                        <div class="relative inline-flex">
+                                                                            <button class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-primary/20 border-2font-medium text-primary shadow-sm align-middle transition-all text-sm">
+                                                                                <span class="font-semibold text-base leading-none">H</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-7.jpg" alt="Image Description">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-t dark:border-gray-600">
+                                                        <div class="p-5">
+                                                            <div class="flex items-center gap-4 mb-5">
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-calender text-lg me-1"></i> <span class="align-text-bottom">19 Nov</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Due date
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-bars text-lg me-1"></i><span class="align-text-bottom">69</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Tasks
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-comments-alt text-lg me-1"></i><span class="align-text-bottom">201</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Comments
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hs-tooltip [--placement:bottom] pb-2">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <div class="flex w-80 h-[6px] bg-light rounded-full overflow-hidden dark:bg-gray-700">
+                                                                        <div class="flex flex-col justify-center overflow-hidden bg-success" role="progressbar" style="width: 100%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                        100% Completed
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card dark:border-gray-600">
+                                                    <div class="p-5">
+                                                        <div>
+                                                            <div class="flex justify-between items-center">
+                                                                <h5 class="text-xs text-warning">Android</h5>
+                                                                <div class="bg-warning text-xs text-white rounded py-px px-1.5 font-medium" role="alert">
+                                                                    <span>Pending</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                            <div class="py-3">
+                                                                <h5 class="my-2"><a href="apps-project-detail.html" class="text-base text-dark dark:text-gray-300">Custom Software Development</a></h5>
+                                                                <p class="text-gray-500 text-sm mb-5 dark:text-gray-400">Their separate existence is a myth. For science, music, sport, etc uses the vocabulary</p>
+
+                                                                <div class="flex items-center gap-3">
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-6.jpg" alt="Image Description">
+                                                                    </a>
+                                                                    <a href="javascript: void(0);">
+                                                                        <div class="relative inline-flex">
+                                                                            <button class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-danger/20 font-medium text-danger shadow-sm align-middle transition-all text-sm">
+                                                                                <span class="font-semibold leading-none">K</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-7.jpg" alt="Image Description">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-t dark:border-gray-600">
+                                                        <div class="p-5">
+                                                            <div class="flex items-center gap-4 mb-5">
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-calender text-lg me-1"></i> <span class="align-text-bottom">02 Nov</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Due date
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-bars text-lg me-1"></i><span class="align-text-bottom">72</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Tasks
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-comments-alt text-lg me-1"></i><span class="align-text-bottom">184</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Comments
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hs-tooltip [--placement:bottom] pb-2">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <div class="flex w-80 h-[6px] bg-light rounded-full overflow-hidden dark:bg-gray-700">
+                                                                        <div class="flex flex-col justify-center overflow-hidden bg-warning" role="progressbar" style="width: 66%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                        100% Completed
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card dark:border-gray-600">
+                                                    <div class="p-5">
+                                                        <div>
+                                                            <div class="flex justify-between items-center">
+                                                                <h5 class="text-xs text-success">Web Design</h5>
+                                                                <div class="bg-success text-xs text-white rounded py-px px-1.5 font-medium" role="alert">
+                                                                    <span>Complated</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                            <div class="py-3">
+                                                                <h5 class="my-2"><a href="apps-project-detail.html" class="text-base text-dark dark:text-gray-300">Brand logo design</a></h5>
+                                                                <p class="text-gray-500 text-sm mb-5 dark:text-gray-400">Everyone realizes why a new common language refuse to pay expensive translators.</p>
+
+                                                                <div class="flex items-center gap-3">
+                                                                    <a href="javascript: void(0);">
+                                                                        <div class="relative inline-flex">
+                                                                            <button class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-success/20 text-success font-medium shadow-sm align-middle transition-all text-sm">
+                                                                                <span class="font-semibold leading-none">D</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-t dark:border-gray-600">
+                                                        <div class="p-5">
+                                                            <div class="flex items-center gap-4 mb-5">
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-calender text-lg me-1"></i> <span class="align-text-bottom">11 Oct</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Due date
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-bars text-lg me-1"></i><span class="align-text-bottom">64</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Tasks
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-comments-alt text-lg me-1"></i><span class="align-text-bottom">173</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Comments
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hs-tooltip [--placement:bottom] pb-2">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <div class="flex w-80 h-[6px] bg-light rounded-full overflow-hidden dark:bg-gray-700">
+                                                                        <div class="flex flex-col justify-center overflow-hidden bg-success" role="progressbar" style="width: 100%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                        100% Completed
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card dark:border-gray-600">
+                                                    <div class="p-5">
+                                                        <div>
+                                                            <div class="flex justify-between items-center">
+                                                                <h5 class="text-xs text-success">Web Design</h5>
+                                                                <div class="bg-success text-xs text-white rounded py-px px-1.5 font-medium" role="alert">
+                                                                    <span>Complated</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col">
+                                                            <div class="py-3">
+                                                                <h5 class="my-2"><a href="apps-project-detail.html" class="text-base text-dark dark:text-gray-300">Website Redesign</a></h5>
+                                                                <p class="text-gray-500 text-sm mb-5 dark:text-gray-400">The languages only differ in their grammar pronunciation and their most common words.</p>
+
+                                                                <div class="flex items-center gap-3">
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-9.jpg" alt="Image Description">
+                                                                    </a>
+                                                                    <a href="javascript: void(0);">
+                                                                        <img class="inline-block h-10 w-10 rounded-full border-2 border-white dark:border-gray-700" src="assets/images/users/avatar-10.jpg" alt="Image Description">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-t dark:border-gray-600 z-30">
+                                                        <div class="p-5">
+                                                            <div class="flex items-center gap-4 mb-5">
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-calender text-lg me-1"></i> <span class="align-text-bottom">11 Oct</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Due date
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-bars text-lg me-1"></i><span class="align-text-bottom">71</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Tasks
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                    <button type="button" class="hs-tooltip-toggle">
+                                                                        <i class="uil uil-comments-alt text-lg me-1"></i><span class="align-text-bottom">163</span>
+                                                                        <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                            Comments
+                                                                            <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hs-tooltip [--placement:bottom] pb-2">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <div class="flex w-80 h-[6px] bg-light rounded-full overflow-hidden dark:bg-gray-700">
+                                                                        <div class="flex flex-col justify-center overflow-hidden bg-success" role="progressbar" style="width: 100%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="top" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(109px, 81px);">
+                                                                        100% Completed
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-[45%] -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- tabs-with-underline-3 end -->
+
+                                        <div id="basic-tabs-4" role="tabpanel" aria-labelledby="basic-tabs-item-4" class="transition-all duration-300 transform hidden">
+                                            <h2 class="text-base uppercase dark:text-gray-300">My Tasks</h2>
+                                            <div class="card mb-0 mt-3 border-0">
+                                                <div class="P-6 divide-y dark:divide-gray-600">
+                                                    <!-- task -->
+                                                    <div class="grid sm:grid-cols-3 gap-5 py-3">
+                                                        <div>
+                                                            <div class="px-3">
+                                                                <input type="checkbox" class="form-checkbox rounded dark:bg-gray-600/50" id="task1">
+                                                                <label class="font-semibold" for="task1">
+                                                                    Draft the new contract document for sales team
+                                                                </label>
+                                                            </div> <!-- end checkbox -->
+                                                        </div> <!-- end col -->
+
+                                                        <div class="mx-auto">
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <img src="assets/images/users/avatar-9.jpg" alt="image" class="h-7 sm:mx-auto rounded-full">
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 5px);" data-popper-reference-hidden="" data-popper-escaped="">
+                                                                        Assigned to Arya S
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="mt-3 mt-sm-0">
+                                                                <div class="flex flex-wrap items-center sm:justify-end gap-4">
+                                                                    <div>
+                                                                        <i class="uil uil-schedule text-base me-1"></i>
+                                                                        Today 10am
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-align-alt text-base me-1"></i>
+                                                                        3/7
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-comment-message text-base me-1"></i>
+                                                                        21
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-medium bg-danger/20 text-danger">High</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- end col -->
+                                                        </div>
+                                                        <!-- end task -->
+
+                                                    </div> <!-- end grid-->
+
+                                                    <!-- task -->
+                                                    <div class="grid sm:grid-cols-3 gap-5 py-3">
+                                                        <div>
+                                                            <div class="px-3">
+                                                                <input type="checkbox" class="form-checkbox rounded dark:bg-gray-600/50" id="task2">
+                                                                <label class="font-semibold" for="task2">
+                                                                    iOS App home page
+                                                                </label>
+                                                            </div> <!-- end checkbox -->
+                                                        </div> <!-- end col -->
+
+                                                        <div class="mx-auto">
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <img src="assets/images/users/avatar-2.jpg" alt="image" class="h-7 sm:mx-auto rounded-full">
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Assigned to James B
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="mt-3 mt-sm-0">
+                                                                <div class="flex flex-wrap items-center sm:justify-end gap-4">
+                                                                    <div>
+                                                                        <i class="uil uil-schedule text-base me-1"></i>
+                                                                        Today 4pm
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-align-alt text-base me-1"></i>
+                                                                        2/7
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-comment-message text-base me-1"></i>
+                                                                        48
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-medium bg-danger/20 text-danger">High</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- end col -->
+                                                        </div>
+                                                        <!-- end task -->
+
+                                                    </div> <!-- end grid-->
+
+                                                    <!-- task -->
+                                                    <div class="grid sm:grid-cols-3 gap-5 py-3">
+                                                        <div>
+                                                            <div class="px-3">
+                                                                <input type="checkbox" class="form-checkbox rounded dark:bg-gray-600/50" id="task3">
+                                                                <label class="font-semibold" for="task3">
+                                                                    Write a release note
+                                                                </label>
+                                                            </div> <!-- end checkbox -->
+                                                        </div> <!-- end col -->
+
+                                                        <div class="mx-auto">
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <img src="assets/images/users/avatar-4.jpg" alt="image" class="h-7 sm:mx-auto rounded-full">
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Assigned to Kevin C
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="mt-3 mt-sm-0">
+                                                                <div class="flex flex-wrap items-center sm:justify-end gap-4">
+                                                                    <div>
+                                                                        <i class="uil uil-schedule text-base me-1"></i>
+                                                                        Today 6pm
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-align-alt text-base me-1"></i>
+                                                                        18/21
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-comment-message text-base me-1"></i>
+                                                                        73
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-medium bg-info/20 text-info">Medium</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- end col -->
+                                                        </div>
+                                                        <!-- end task -->
+
+                                                    </div> <!-- end grid-->
+
+                                                    <!-- task -->
+                                                    <div class="grid sm:grid-cols-3 gap-5 py-3">
+                                                        <div>
+                                                            <div class="px-3">
+                                                                <input type="checkbox" class="form-checkbox rounded dark:bg-gray-600/50" id="task4">
+                                                                <label class="font-semibold" for="task4">
+                                                                    Invite user to a project
+                                                                </label>
+                                                            </div> <!-- end checkbox -->
+                                                        </div> <!-- end col -->
+
+                                                        <div class="mx-auto">
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <img src="assets/images/users/avatar-2.jpg" alt="image" class="h-7 sm:mx-auto rounded-full">
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Assigned to James B
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="mt-3 mt-sm-0">
+                                                                <div class="flex flex-wrap items-center sm:justify-end gap-4">
+                                                                    <div>
+                                                                        <i class="uil uil-schedule text-base me-1"></i>
+                                                                        Tomorrow 7am
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-align-alt text-base me-1"></i>
+                                                                        1/12
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-comment-message text-base me-1"></i>
+                                                                        36
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-medium bg-danger/20 text-danger">High</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- end col -->
+                                                        </div>
+                                                        <!-- end task -->
+
+                                                    </div> <!-- end grid-->
+
+                                                    <!-- task -->
+                                                    <div class="grid sm:grid-cols-3 gap-5 py-3">
+                                                        <div>
+                                                            <div class="px-3">
+                                                                <input type="checkbox" class="form-checkbox rounded dark:bg-gray-600/50" id="task1">
+                                                                <label class="font-semibold" for="task1">
+                                                                    Enable analytics tracking
+                                                                </label>
+                                                            </div> <!-- end checkbox -->
+                                                        </div> <!-- end col -->
+
+                                                        <div class="mx-auto">
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <img src="assets/images/users/avatar-2.jpg" alt="image" class="h-7 sm:mx-auto rounded-full">
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Assigned to James B
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="mt-3 mt-sm-0">
+                                                                <div class="flex flex-wrap items-center sm:justify-end gap-4">
+                                                                    <div>
+                                                                        <i class="uil uil-schedule text-base me-1"></i>
+                                                                        27 Aug 10am
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-align-alt text-base me-1"></i>
+                                                                        13/72
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-comment-message text-base me-1"></i>
+                                                                        211
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-medium bg-success/20 text-success">Low</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- end col -->
+                                                        </div>
+                                                        <!-- end task -->
+
+                                                    </div> <!-- end grid-->
+
+                                                    <!-- task -->
+                                                    <div class="grid sm:grid-cols-3 gap-5 py-3">
+                                                        <div>
+                                                            <div class="px-3">
+                                                                <input type="checkbox" class="form-checkbox rounded dark:bg-gray-600/50" id="task1">
+                                                                <label class="font-semibold" for="task1">
+                                                                    Code HTML email template
+                                                                </label>
+                                                            </div> <!-- end checkbox -->
+                                                        </div> <!-- end col -->
+
+                                                        <div class="mx-auto">
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <img src="assets/images/users/avatar-7.jpg" alt="image" class="h-7 sm:mx-auto rounded-full">
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Assigned to Edward S
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <div class="mt-3 mt-sm-0 pb-4">
+                                                                <div class="flex flex-wrap items-center sm:justify-end gap-4">
+                                                                    <div>
+                                                                        <i class="uil uil-schedule text-base me-1"></i>
+                                                                        No Due Date
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-align-alt text-base me-1"></i>
+                                                                        0/7
+                                                                    </div>
+                                                                    <div>
+                                                                        <i class="uil uil-comment-message text-base me-1"></i>
+                                                                        0
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-medium bg-info/20 text-info">Medium</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- end col -->
+                                                        </div>
+                                                        <!-- end task -->
+
+                                                    </div> <!-- end grid-->
+                                                </div>
+
+                                            </div> <!-- tabs-with-underline-2 end -->
+
+                                        </div>
+
+                                        <div id="basic-tabs-5" role="tabpanel" aria-labelledby="basic-tabs-item-5" class="transition-all duration-300 transform hidden">
+                                            <h2 class="uppercase my-3">Files</h2>
+                                            <div class="card mb-2 mt-3 border dark:border-gray-600">
+                                                <div class="p-1 px-2">
+                                                    <div class="flex flex-wrap items-center justify-between gap-5">
+                                                        <div class="flex items-center gap-5">
+                                                            <div>
+                                                                <img src="assets/images/projects/project-1.jpg" class="h-10 w-10 rounded" alt="file-image">
+                                                            </div>
+                                                            <div class="col ps-0">
+                                                                <a href="javascript:void(0);" class="text-muted fw-bold">sales-assets.zip</a>
+                                                                <p class="mb-0">2.3 MB</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-5 z-50">
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <i class="uil uil-cloud-download text-base"></i>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Download
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <i class="uil uil-multiply text-danger text-base"></i>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Delete
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card mb-2 border relative dark:border-gray-600 pb-4">
+                                                <div class="p-1 px-2">
+                                                    <div class="flex flex-wrap items-center justify-between gap-5">
+                                                        <div class="flex items-center gap-5">
+                                                            <div>
+                                                                <img src="assets/images/projects/project-2.jpg" class="h-10 w-10 rounded" alt="file-image">
+                                                            </div>
+                                                            <div class="col ps-0">
+                                                                <a href="javascript:void(0);" class="text-muted fw-bold">new-contarcts.docx</a>
+                                                                <p class="mb-0">1.25 MB</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex items-center gap-5">
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <i class="uil uil-cloud-download text-base"></i>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Download
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="hs-tooltip inline-block [--placement:bottom]">
+                                                                <button type="button" class="hs-tooltip-toggle">
+                                                                    <i class="uil uil-multiply text-danger text-base"></i>
+                                                                    <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible transition-opacity bg-black px-2 py-1 rounded text-white z-50 absolute open opacity-0 hidden" role="tooltip" data-popper-placement="bottom" style="position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(624px, 358px);">
+                                                                        Delete
+                                                                        <div class="bg-black w-2.5 h-2.5 rotate-45 -top-1 start-1/2 -z-10 rounded-[1px] absolute"></div>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div> <!-- tabs-with-underline-2 end -->
+                                    </div> <!-- tab-end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</template>
+<script>
+
+export default
+{   
+
+    data()
+    {
+        return {
+            url: this.conf.url+this.path+'?load=json',
+            content: {
+                items:[]
+            },
+            activeItem: {},
+            showAddSide:false,
+            showEditSide:false,
+            showLoader: true,
+        }
+    },
+
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+    ],
+    mounted() 
+    {
+        this.load()
+    },
+
+    methods: 
+    {
+
+        /**
+         * Handle actions from datatable buttons
+         * Called From 'dataTableActions' component
+         * 
+         * @param String actionName 
+         * @param Object data
+         */  
+        handleAction(actionName, data) {
+            switch(actionName) 
+            {
+                case 'view':
+                    // window.open(this.conf.url+data.content.prefix)
+                    break;  
+
+                case 'edit':
+                    this.showEditSide = true; 
+                    this.showAddSide = false; 
+                    this.activeItem = data
+                    break;  
+
+                case 'delete':
+                    this.$root.$children[0].deleteByKey('driver_id', data, 'Driver.delete');
+                    break;  
+            }
+        },
+
+        load()
+        {
+            this.showLoader = true;
+            this.$root.$children[0].handleGetRequest( this.url ).then(response=> {
+                this.setValues(response)
+                this.showLoader = false;
+            });
+        },
+        
+        setValues(data) {
+            this.content = JSON.parse(JSON.stringify(data)); return this
+        },
+        __(i)
+        {
+            return this.$root.$children[0].__(i);
+        }
+    }
+};
+</script>
