@@ -27,6 +27,13 @@
             <!-- end tab pane -->
             <div class="w-full">
                 <div class="row g-4 mb-3">
+                    <div class="col-sm-auto">
+                        <ul class="gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
+                            <li v-for="option in statusList"  class="nav-item" role="presentation">
+                                <a @click="switchStatus(option)" :class="option.status == activeStatus ? 'font-bold' : ''" v-text="option.text" class="nav-link fw-semibold" data-bs-toggle="tab" href="#project-overview" role="tab" aria-selected="false" tabindex="-1"></a>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="col-sm">
                         <div class="d-flex">
                             <div class="search-box me-2">
