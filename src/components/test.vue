@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mt-n4 mx-n4 card-border-effect-none mb-n5 border-bottom-0 border-start-0 rounded-0">
-                        <div class="card-body pb-4 mb-5">
+                        <div class="card-body pb-4 mb-0">
                             <div class="row">
                                 <div class="col-md">
                                     <div class="row align-items-center">
-                                        <div class="px-0 pt-1">
+                                        <div class="px-1 pt-1">
                                             <img v-if="item" :src="item.user.picture" alt="" width="36" height="36" class="rounded">
                                         </div>
                                         <!--end col-->
