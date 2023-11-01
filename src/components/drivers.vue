@@ -2,7 +2,7 @@
     <div class=" w-full">
 
         <div class="relative w-full" v-if="showAddSide">
-            <driver_details :key="activeItem" :item="activeItem"></driver_details>
+            <driver_profile :key="activeItem" :item="activeItem"></driver_profile>
         </div>
         <div class="relative card ribbon-box border shadow-none mb-lg-0" v-if="!showAddSide && !showLoader">
             <div class="card-body">
@@ -52,9 +52,6 @@
                 </div>
             </div>
         </div>
-
-        <side-form-create :conf="conf" model="Driver.create" v-if="showAddSide && content && content.fillable"
-            :columns="content.fillable" class="col-md-3" />
 
         <side-form-update :conf="conf" model="Driver.update" :item="activeItem" :model_id="activeItem.driver_id"
             :index="activeItem.driver_id" v-if="showEditSide && !showAddSide" :columns="content.fillable"
