@@ -59,7 +59,7 @@
 </div><!-- end row -->
 
 <div class="lg:flex gap-6">
-    <div class="col-xxl-9 w-full">
+    <div class="col-xxl-9 ">
         <div class="card">
             <div class="card-body p-4">
                 <h6 class="fw-semibold text-uppercase mb-3">Ticket Discripation</h6>
