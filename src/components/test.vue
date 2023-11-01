@@ -69,12 +69,12 @@
                                                 aria-label="scrollable content">
                                                 <div class="simplebar-content" style="padding: 0px 16px;">
                                                     <div class="flex gap-2 mb-4" v-for="comment in item.comments">
-                                                        <div class="flex-shrink-0" v-if="comment.user">
-                                                            <img :src="comment.user.photo" alt=""
+                                                        <div class="flex-shrink-0" v-if="comment.receiver">
+                                                            <img :src="comment.receiver.photo" alt=""
                                                                 class="mt-2 avatar-xs rounded-circle">
                                                         </div>
-                                                        <div class="flex-grow-1 ms-3" v-if="comment.user">
-                                                            <h5 class="fs-13 flex gap-2"><span v-text="comment.user.name"></span>
+                                                        <div class="flex-grow-1 ms-3" v-if="comment.receiver">
+                                                            <h5 class="fs-13 flex gap-2"><span v-text="comment.receiver.name"></span>
                                                                 <small class="text-muted" v-text="comment.date"></small>
                                                             </h5>
                                                             <p class="text-muted" v-text="comment.comment"></p>
