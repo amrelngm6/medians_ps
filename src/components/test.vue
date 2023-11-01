@@ -68,7 +68,7 @@
                                             <div class="simplebar-content-wrapper" tabindex="0" role="region"
                                                 aria-label="scrollable content">
                                                 <div class="simplebar-content" style="padding: 0px 16px;">
-                                                    <div class="d-flex mb-4" v-for="comment in item.comments">
+                                                    <div class="flex gap-2 mb-4" v-for="comment in item.comments">
                                                         <div class="flex-shrink-0" v-if="comment.user">
                                                             <img :src="comment.user.photo" alt=""
                                                                 class="avatar-xs rounded-circle">
