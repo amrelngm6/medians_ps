@@ -44,16 +44,16 @@
                 </div>
                 <div class="w-full lg:flex gap gap-6 pb-6">
                     <div class="card mb-0 w-2/3">
-                        <h4 class="p-4 ml-4" v-text="__('top_drivers')"></h4>
+                        <h4 class="p-4 ml-4" v-text="__('most_played_devices')"></h4>
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_devices_used_for_playing')"></p>
                         <div class="card-body w-full">
                             <div class="w-full">
-                                <CanvasJSChart v-if="showCharts && content.top_drivers && content.top_drivers.length" :key="column_options" :options="column_options"/>
+                                <CanvasJSChart v-if="showCharts && content.most_played_devices && content.most_played_devices.length" :key="column_options" :options="column_options"/>
                             </div>
                         </div>
                     </div>
                     <div class="card w-1/3 lg:w-1/3 lg:mb-0">
-                        <h4 class="p-4 ml-4" v-text="__('latest_paid_order_devices')"></h4>
+                        <h4 class="p-4 ml-4" v-text="__('Top drivers')"></h4>
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('latest_5_bookings_has_been_paid')"></p>
                         <div class="card-body w-full">
                             <div class="w-full ">
@@ -61,16 +61,16 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
+                                                <th ></th>
                                                 <th v-text="__('name')"></th>
-                                                <th v-text="__('duration')"></th>
-                                                <th v-text="__('total_amount')"></th>
+                                                <th v-text="__('Trips')"></th>
                                             </tr>
                                         </thead>
-                                        <tbody v-if="content.latest_paid_order_devices">
-                                            <tr :key="index" v-for="(item, index) in content.latest_paid_order_devices" class="text-center">
-                                                <td v-text="item.device ? item.device.name : ''"></td>
-                                                <td style="direction: ltr;">{{item.duration_time}}</td>
-                                                <td v-text="(item.total_cost ? item.total_cost : '') + setting.currency"></td>
+                                        <tbody v-if="content.top_drivers">
+                                            <tr :key="index" v-for="(driver, index) in content.top_drivers" class="text-center" v-if="driver">
+                                                <td><img :src="driver.picture" /></td>
+                                                <td v-text="driver.name"></td>
+                                                <td style="direction: ltr;" v-text="last_trips_count"></td>
                                             </tr>
                                         </tbody>
                                     </table>
