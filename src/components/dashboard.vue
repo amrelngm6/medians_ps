@@ -88,7 +88,7 @@
                                         <tbody >
                                             <tr :key="index" v-for="(message, index) in content.latest_help_messages" class="text-center">
                                                 <td class="flex gap-2">
-                                                    <img :src="message.user.photo" width="24" height="24" class="rounded" />
+                                                    <img v-if="message.user":src="message.user.picture" width="24" height="24" class="rounded" />
                                                     <span v-if="message.user" v-text="message.user.name"></span>
                                                 </td>
                                                 <td v-text="message.subject"></td>
