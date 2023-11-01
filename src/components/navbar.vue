@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="lg:inline-flex no-mobile">
-                    <ul class="md:flex items-center justify-center text-base text-gray-400  py-4 md:pt-0 lg:pt-0  ">
+                    <ul class="md:flex items-center justify-center text-base text-gray-400  pt-2  ">
                         <li>
                             <a :href="conf.url"  v-text="setting.sitename"></a>
                         </li>
