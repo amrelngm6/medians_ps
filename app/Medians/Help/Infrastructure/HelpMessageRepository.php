@@ -3,6 +3,7 @@
 namespace Medians\Help\Infrastructure;
 
 use Medians\Help\Domain\HelpMessage;
+use Medians\Help\Domain\HelpMessageComment;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Drivers\Domain\Driver;
 
@@ -84,6 +85,31 @@ class HelpMessageRepository
 
 		// Return the FBUserInfo object with the new data
     	$Object = HelpMessage::create($dataArray);
+
+    	return $Object;
+    }
+    	
+
+	/**
+	* Save Comment from Admin / Agent
+	*/
+	public function storeUserComment($data) 
+	{
+
+		$Model = new HelpMessageComment();
+
+		$data['user_type'] = User::class;
+		
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+
+		// Return the FBUserInfo object with the new data
+    	$Object = HelpMessageComment::create($dataArray);
 
     	return $Object;
     }

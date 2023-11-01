@@ -182,49 +182,9 @@ class MobileAPIController extends CustomController
 					$return = (new Users\Application\UserController())->store();
 					break;
 
-				case 'Branch.create':
-					$return = (new Branches\Application\BranchController())->store();
-					break;
-
-
-				case 'Device.create':
-					$return = (new Devices\Application\DeviceController())->store();
-					break;
-
-				case 'Category.create':
-					$return = (new Categories\Application\CategoryController())->store();
-					break;
-				case 'Game.create':
-					$return = (new Games\Application\GameController())->store();
-					break;
-				case 'Product.create':
-					$return = (new Products\Application\ProductController())->store();
-					break;
-				case 'OrderDevice.addProduct':
-					$return = (new Devices\Application\CalendarController())->addProduct();
-					break;
-				case 'Stock.create':
-					$return = (new Products\Application\StockController())->store();
-					break;
-				case 'Expense.create':
-					$return = (new Expenses\Application\ExpenseController())->store();
-					break;
-				case 'Customer.create':
-					$return = (new Customers\Application\CustomerController())->store();
-					break;
-				case 'Event.create':
-					$params = (array)  json_decode($request->get('params')['event']);
-					$check = (new DevicesRepository())->storeOrder($params);
-					$return = isset($check->id) ? ['result'=>__('Created')] : $check;
-					break;
-
-				case 'Booking.create':
-					$params = (array)  json_decode($request->get('params'));
-					$return = (new DevicesRepository())->storeBooking($params);
-					break;
-
-	            case 'User.create':
-	                $return =  (new Users\Application\UserController())->store(); 
+					
+	            case 'HelpMessageComment.create':
+	                $return =  (new Help\Application\HelpMessageController())->storeComment(); 
 	                break;
 
 	            case 'Page.create':
