@@ -101,7 +101,7 @@ export default
                     break;  
 
                 case 'delete':
-                    this.$root.$children[0].deleteByKey(object_key, data, this.object_name + '.delete');
+                    this.$root.$children[0].deleteByKey(this.object_key, data, this.object_name + '.delete');
                     break;  
             }
         },
