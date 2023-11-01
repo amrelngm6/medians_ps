@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="team-content">
                                             <a href="#" class="d-block">
-                                                <h5 v-if="item.user" class="fs-16 mb-1" v-text="item.user.name"></h5>
+                                                <h5 v-if="item.user" class="fs-16 mb-1 font-semibold" v-text="item.user.name"></h5>
                                             </a>
                                             <p v-text="item.message" class="text-muted mb-0"></p>
                                         </div>
@@ -66,11 +66,11 @@
                                 <div class="col-lg-5 col">
                                     <div class="row text-muted text-center">
                                         <div class="col-6 border-end border-end-dashed">
-                                            <h5 class="mb-1" v-text="__('Created at')"></h5>
+                                            <h5 class="mb-1 font-semibold" v-text="__('Created at')"></h5>
                                             <p class="text-muted mb-0" v-text="item.date"></p>
                                         </div>
                                         <div class="col-6">
-                                            <h5 class="mb-1" v-text="__('Updated at')"></h5>
+                                            <h5 class="mb-1 font-semibold" v-text="__('Updated at')"></h5>
                                             <p class="text-muted mb-0" v-text="item.last_update"></p>
                                         </div>
                                     </div>
