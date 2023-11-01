@@ -7,8 +7,8 @@
         <div class="card mt-n4 mx-n4 card-border-effect-none">
             <div class="bg-primary-subtle">
                 <div class="card-body pb-0 px-4">
-                    <ul v-for="option in statusList" class="gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
-                        <li class="nav-item" role="presentation">
+                    <ul class="gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
+                        <li v-for="option in statusList"  class="nav-item" role="presentation">
                             <a @click="switchStatus(option)" :class="option.status == activeStatus ? 'font-bold' : ''" v-text="option.text" class="nav-link fw-semibold" data-bs-toggle="tab" href="#project-overview" role="tab" aria-selected="false" tabindex="-1"></a>
                         </li>
                     </ul>
@@ -68,31 +68,31 @@
                                 <div class="col-lg-4 col">
                                     <div class="team-profile-img">
                                         <div class="avatar-lg img-thumbnail rounded-circle">
-                                            <img src="assets/images/users/avatar-2.jpg" alt="" class="img-fluid d-block rounded-circle">
+                                            <img v-if="item.user" :src="item.user.picture" alt="" class="img-fluid d-block rounded-circle">
                                         </div>
                                         <div class="team-content">
                                             <a href="#" class="d-block">
-                                                <h5 class="fs-16 mb-1">Nancy Martino</h5>
+                                                <h5 v-if="item.user" class="fs-16 mb-1" v-text="item.user.name"></h5>
                                             </a>
-                                            <p class="text-muted mb-0">Team Leader &amp; HR</p>
+                                            <p v-text="item.message" class="text-muted mb-0"></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col">
                                     <div class="row text-muted text-center">
                                         <div class="col-6 border-end border-end-dashed">
-                                            <h5 class="mb-1">225</h5>
-                                            <p class="text-muted mb-0">Projects</p>
+                                            <h5 class="mb-1" v-text="__('Created at')"></h5>
+                                            <p class="text-muted mb-0" v-text="item.date"></p>
                                         </div>
                                         <div class="col-6">
-                                            <h5 class="mb-1">197</h5>
-                                            <p class="text-muted mb-0">Tasks</p>
+                                            <h5 class="mb-1" v-text="__('Updated at')"></h5>
+                                            <p class="text-muted mb-0" v-text="item.updated_at"></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col">
                                     <div class="text-end">
-                                        <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>
+                                        <a href="javascript:;" @click="showDetails(item)" class="menu-dark text-white px-4 py-2 rounded-lg" v-text="__('Details')"></a>
                                     </div>
                                 </div>
                             </div>
@@ -146,6 +146,13 @@ export default
 
     methods: 
     {
+
+        showDetails(item)
+        {
+            this.showEditSide = true; 
+            this.activeItem = item;
+        },
+
 
         /**
          * Handle actions from datatable buttons
