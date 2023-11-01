@@ -59,6 +59,19 @@ class TripRepository
 		return $query;
 	}
 
+	
+	/**
+	* Find all items between two days By BranchId
+	*/
+	public function getByDateCharts($params )
+	{
+
+	  	$check = Trip::whereBetween('trip_date' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, trip_date as label');
+
+  		return $check->groupBy('trip_date')->orderBy('trip_date', 'ASC')->get();
+	}
+
 
 	public function search($request, $limit = 20)
 	{

@@ -12,6 +12,10 @@ class DashboardController extends CustomController
 	*/
 	public  $contentRepo;
 	public  $TripRepository;
+	public  $RouteRepository;
+	public  $DriverRepository;
+	public  $PickupLocationRepository;
+	public  $VehicleRepository;
 
 	protected $app;
 	public $start;
@@ -80,7 +84,9 @@ class DashboardController extends CustomController
 	{
 
 		try {
-			
+
+			$trips_charts = $this->TripRepository->getByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+
 			$counts = $this->loadCounts();
             /**
             * Order repository to get
@@ -90,6 +96,7 @@ class DashboardController extends CustomController
 	        $array = [
 	            'title' => 'Dashboard',
 		        'load_vue' => true,
+				'trips_charts'=>$trips_charts
 	        ];
 
 			return array_merge($counts, $array);
