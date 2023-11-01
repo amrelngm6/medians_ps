@@ -36,15 +36,10 @@ class HelpMessage extends CustomModel
     public function user() {
         return $this->morphTo();
     }
-	
+
 	public function getFields()
 	{
 		return $this->fillable;
-	}
-	
-	public function driver() 
-	{
-    	return $this->hasOne(Driver::class, 'driver_id', 'user_id');
 	}
 	
 	public function comments() 
