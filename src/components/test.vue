@@ -25,6 +25,8 @@
                                                 <div class="vr"></div>
                                                 <div class="text-muted"><span v-text="__('Created at')"></span> <span class="fw-medium " id="create-date" v-text="item.created_at"></span></div>
                                                 <div class="vr"></div>
+                                                <div class="text-muted"><span v-text="__('Last update')"></span> <span class="fw-medium " id="update-date" v-text="item.last_update"></span></div>
+                                                <div class="vr"></div>
                                                 <div class="badge rounded-pill bg-info fs-12" id="ticket-status"  v-if="item.status" v-text="item.status"></div>
                                                 <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority" v-if="item.priority" v-text="item.priority"></div>
                                             </div>
@@ -135,7 +137,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-medium" v-text="__('Last update')"></td>
-                                <td id="d-date" v-text="item.updated_at"></td>
+                                <td id="d-date" v-text="item.last_update"></td>
                             </tr>
                             
                         </tbody>
