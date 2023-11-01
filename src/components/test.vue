@@ -10,9 +10,8 @@
                             <div class="row">
                                 <div class="col-md">
                                     <div class="row align-items-center">
-                                        <div class="col-md-auto pt-3">
-                                            <img v-if="item" :src="item.user.picture" alt="" width="28" height="28"
-                                                class="rounded">
+                                        <div class="px-0 pt-1">
+                                            <img v-if="item" :src="item.user.picture" alt="" width="36" height="36" class="rounded">
                                         </div>
                                         <!--end col-->
                                         <div class="col-md">
