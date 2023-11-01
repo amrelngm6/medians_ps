@@ -12,7 +12,7 @@
 
                     <div v-if="content.users" class="w-full grid lg:grid-cols-3 gap gap-6">
                         <div :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
-                            <div class="flex-shrink-0 w-20">
+                            <div class="flex-shrink-0 ">
                                 <div class="relative">
                                     <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     <img class="relative w-12 h-12 rounded-full" :src="user.photo" alt="User avatar">
@@ -23,7 +23,7 @@
                                 <div class="text-sm font-medium text-gray-500" v-text="user.phone"></div>
                                 <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
                             </div>
-                            <div class="flex-shrink-0 text-center">
+                            <div class="text-center">
                                 <span  v-text="user.active ? __('Active') : __('Pending')" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"></span>
                                 <span  v-text="__('edit')" class="my-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
                                 </span>
