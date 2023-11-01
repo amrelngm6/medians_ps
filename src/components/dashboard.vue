@@ -70,7 +70,10 @@
                 <div class="w-full lg:flex gap gap-6 pb-6 ">
 
                     <div class="card  w-full  no-mobile">
-                        <h4 class="p-4 ml-4" v-text="__('Latest help messages')"></h4>
+                        <div class="w-full flex p-4">
+                            <h4 class="w-full " v-text="__('Latest help messages')"></h4>
+                            <h4 class="w-auto" v-text="__('View all')"></h4>
+                        </div>
                         <hr />
                         <div class="card-body w-full">
                             <div class="w-full">
@@ -88,7 +91,7 @@
                                         <tbody >
                                             <tr :key="index" v-for="(message, index) in content.latest_help_messages" class="text-center">
                                                 <td class="flex gap-2">
-                                                    <img v-if="message.user":src="message.user.picture" width="24" height="24" class="rounded" />
+                                                    <img v-if="message.user" :src="message.user.picture" width="24" height="24" class="rounded" />
                                                     <span v-if="message.user" v-text="message.user.name"></span>
                                                 </td>
                                                 <td v-text="message.subject"></td>
