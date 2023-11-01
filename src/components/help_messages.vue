@@ -7,17 +7,9 @@
         <div class="card mt-n4 mx-n4 card-border-effect-none">
             <div class="bg-primary-subtle">
                 <div class="card-body pb-0 px-4">
-                    
-                    
-                    <ul class="nav nav-tabs-custom border-bottom-0" role="tablist">
+                    <ul v-for="option in statusList" class="gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a v-text="__('Active')" class="nav-link fw-semibold" data-bs-toggle="tab" href="#project-overview" role="tab" aria-selected="false" tabindex="-1"></a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a v-text="__('Completed')" class="nav-link fw-semibold" data-bs-toggle="tab" href="#project-documents" role="tab" aria-selected="false" tabindex="-1"></a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a v-text="__('Closed')" class="nav-link fw-semibold" data-bs-toggle="tab" href="#project-activities" role="tab" aria-selected="false" tabindex="-1"></a>
+                            <a @click="switchStatus(option)" :class="option.status == activeStatus ? 'font-bold' : ''" v-text="option.text" class="nav-link fw-semibold" data-bs-toggle="tab" href="#project-overview" role="tab" aria-selected="false" tabindex="-1"></a>
                         </li>
                     </ul>
                 </div>
@@ -136,6 +128,8 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
+            activeStatus: true,
+            statusList: [{text:this.__('New'),status:'new'},{text:this.__('Active'),status:'active'},{text:this.__('Completed'),status:'completed'},{text:this.__('Closed'),status:'closed'}],
         }
     },
     props: [
