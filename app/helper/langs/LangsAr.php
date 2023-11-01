@@ -1111,6 +1111,8 @@ class LangsAr
 		,'Ticket Discripation' => 'تفاصيل الرسالة '
 		,'Ticket Details' => 'بيانات الرسالة '
 		,'User' => 'المستخدم'
+		,'top_drivers_who_have_most_trips' => 'أفضل السائقين حسب الاكثر رحلات'
+		,'latest_students_has_been_added' => 'أحدث الطلاب الذين تم إضافتهم'
 
 		
 		,'COPYRIGHTS' => 'Copyrights are reserved'

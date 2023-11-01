@@ -44,8 +44,8 @@
                 </div>
                 <div class="w-full lg:flex gap gap-6 pb-6">
                     <div class="card mb-0 w-2/3">
-                        <h4 class="p-4 ml-4" v-text="__('most_played_devices')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_devices_used_for_playing')"></p>
+                        <h4 class="p-4 ml-4" v-text="__('Top drivers')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_drivers_who_have_most_trips')"></p>
                         <div class="card-body w-full">
                             <div class="w-full">
                                 <CanvasJSChart v-if="showCharts && content.top_drivers && content.top_drivers.length" :key="column_options" :options="column_options"/>
@@ -53,8 +53,8 @@
                         </div>
                     </div>
                     <div class="card w-1/3 lg:w-1/3 lg:mb-0">
-                        <h4 class="p-4 ml-4" v-text="__('Top drivers')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('latest_5_bookings_has_been_paid')"></p>
+                        <h4 class="p-4 ml-4" v-text="__('Latest students')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('latest_students_has_been_added')"></p>
                         <div class="card-body w-full">
                             <div class="w-full ">
                                 <div class="table-responsive w-full">
