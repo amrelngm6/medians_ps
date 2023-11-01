@@ -11,11 +11,7 @@
                                 <div class="col-md">
                                     <div class="row align-items-center">
                                         <div class="col-md-auto">
-                                            <div class="avatar-md mb-md-0 mb-4">
-                                                <div class="avatar-title bg-white rounded-circle">
-                                                    <img v-if="item" :src="item.user.picture" alt="" class="avatar-sm">
-                                                </div>
-                                            </div>
+                                            <img v-if="item" :src="item.user.picture" alt="" width="28" height="28" class="rounded">
                                         </div>
                                         <!--end col-->
                                         <div class="col-md">

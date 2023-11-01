@@ -1106,6 +1106,8 @@ class LangsAr
 		,'Routes description' => 'هذه القائمة تشمل خطوط السير وأماكن التوقف الخاصة بهم'
 
 		,'Pickup locations description' => 'هذه القائمة تشمل جميع نقاط التوقف '
+		,'Ticket Discripation' => 'تفاصيل الرسالة '
+		,'User' => 'المستخدم'
 
 		
 		,'COPYRIGHTS' => 'Copyrights are reserved'
