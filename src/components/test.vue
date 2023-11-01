@@ -3,141 +3,96 @@
 
         <div class="container-fluid">
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card mt-n4 mx-n4 card-border-effect-none mb-n5 border-bottom-0 border-start-0 rounded-0">
-            <div>
-                <div class="card-body pb-4 mb-5">
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="row align-items-center">
-                                <div class="col-md-auto">
-                                    <div class="avatar-md mb-md-0 mb-4">
-                                        <div class="avatar-title bg-white rounded-circle">
-                                            <img v-if="item" :src="item.user.picture" alt="" class="avatar-sm">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mt-n4 mx-n4 card-border-effect-none mb-n5 border-bottom-0 border-start-0 rounded-0">
+                        <div>
+                            <div class="card-body pb-4 mb-5">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-auto">
+                                                <div class="avatar-md mb-md-0 mb-4">
+                                                    <div class="avatar-title bg-white rounded-circle">
+                                                        <img v-if="item" :src="item.user.picture" alt="" class="avatar-sm">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-md">
+                                                <h4 class="fw-semibold" id="ticket-title" v-text="item.subject"></h4>
+                                                <div class="hstack gap-3 flex">
+                                                    <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client" v-text="item.user.name"></span></div>
+                                                    <div class="vr"></div>
+                                                    <div class="text-muted"><span v-text="__('Created at')"></span> <span class="fw-medium " id="create-date" v-text="item.created_at"></span></div>
+                                                    <div class="vr"></div>
+                                                    <div class="badge rounded-pill bg-info fs-12" id="ticket-status"  v-if="item.status" v-text="item.status"></div>
+                                                    <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority" v-if="item.priority" v-text="item.priority"></div>
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-md-auto mt-md-0 mt-4">
+                                        <div class="hstack gap-1 flex-wrap">
+                                            <button @click="showI = false,showoptions = !showoptions, showI = true" type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
+                                                <i class="fa fa-ellipsis"></i>
+                                            </button>
+                                            <ul v-if="showI && showoptions" class="dropdown-menu" aria-labelledby="settingDropdown">
+                                                <li><a class="dropdown-item" href="#"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
+                                                <li><a class="dropdown-item" href="#"><i class="ri-share-forward-fill align-bottom me-2 text-muted"></i> Share with</a></li>
+                                                <li><a class="dropdown-item" href="#"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>
+                                            </ul>
                                         </div>
                                     </div>
+                                    <!--end col-->
                                 </div>
-                                <!--end col-->
-                                <div class="col-md">
-                                    <h4 class="fw-semibold" id="ticket-title" v-text="item.subject"></h4>
-                                    <div class="hstack gap-3 flex">
-                                        <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client" v-text="item.user.name"></span></div>
-                                        <div class="vr"></div>
-                                        <div class="text-muted"><span v-text="__('Created at')"></span> <span class="fw-medium " id="create-date" v-text="item.created_at"></span></div>
-                                        <div class="vr"></div>
-                                        <div class="badge rounded-pill bg-info fs-12" id="ticket-status"  v-if="item.status" v-text="item.status"></div>
-                                        <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority" v-if="item.priority" v-text="item.priority"></div>
+                                <!--end row-->
+                            </div><!-- end card body -->
+                        </div>
+                    </div><!-- end card -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+            <div class="lg:flex gap-6">
+                <div class="col-xxl-9 ">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <h6 class="fw-semibold text-uppercase mb-3" v-text="__('Ticket Discripation')"></h6>
+                            <p class="text-muted" v-text="item.message"></p>
+                            
+                        </div>
+                        <!--end card-body-->
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-4">Comments</h5>
+
+                            <div data-simplebar="init" style="max-height: 300px;" class="px-3 mx-n3 overflow-y-auto"><div class="simplebar-wrapper" style="margin: 0px -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" ><div class="simplebar-content" style="padding: 0px 16px;">
+                                <div class="d-flex mb-4" v-for="comment in item.comments">
+                                    <div class="flex-shrink-0" v-if="comment.user">
+                                        <img :src="comment.user.picture" alt="" class="avatar-xs rounded-circle">
+                                    </div>
+                                    <div class="flex-grow-1 ms-3" v-if="comment.user">
+                                        <h5 class="fs-13"><span v-text="comment.user.name"></span> <small class="text-muted" v-text="comment.time"></small></h5>
+                                        <p class="text-muted" v-text="comment.comment"></p>
                                     </div>
                                 </div>
-                                <!--end col-->
-                            </div>
-                            <!--end row-->
-                        </div>
-                        <!--end col-->
-                        <div class="col-md-auto mt-md-0 mt-4">
-                            <div class="hstack gap-1 flex-wrap">
-                                <button @click="showI = false,showoptions = !showoptions, showI = true" type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
-                                    <i class="fa fa-ellipsis"></i>
-                                </button>
-                                <ul v-if="showI && showoptions" class="dropdown-menu" aria-labelledby="settingDropdown">
-                                    <li><a class="dropdown-item" href="#"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="ri-share-forward-fill align-bottom me-2 text-muted"></i> Share with</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>
-                                </ul>
+                               
                             </div>
                         </div>
-                        <!--end col-->
                     </div>
-                    <!--end row-->
-                </div><!-- end card body -->
+                </div>
             </div>
-        </div><!-- end card -->
-    </div><!-- end col -->
-</div><!-- end row -->
-
-<div class="lg:flex gap-6">
-    <div class="col-xxl-9 ">
-        <div class="card">
-            <div class="card-body p-4">
-                <h6 class="fw-semibold text-uppercase mb-3" v-text="__('Ticket Discripation')"></h6>
-                <p class="text-muted" v-text="item.message"></p>
-                
-            </div>
-            <!--end card-body-->
-            <div class="card-body p-4">
-                <h5 class="card-title mb-4">Comments</h5>
-
-                <div data-simplebar="init" style="max-height: 300px;" class="px-3 mx-n3 overflow-y-auto"><div class="simplebar-wrapper" style="margin: 0px -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" ><div class="simplebar-content" style="padding: 0px 16px;">
-                    <div class="d-flex mb-4">
-                        <div class="flex-shrink-0">
-                            <img src="assets/images/users/avatar-8.jpg" alt="" class="avatar-xs rounded-circle">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fs-13">Joseph Parker <small class="text-muted">20 Dec 2021 - 05:47AM</small></h5>
-                            <p class="text-muted">I am getting message from customers that when they place order always get error message .</p>
-                            <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
-                            <div class="d-flex mt-4">
-                                <div class="flex-shrink-0">
-                                    <img src="assets/images/users/avatar-10.jpg" alt="" class="avatar-xs rounded-circle">
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="fs-13">Alexis Clarke <small class="text-muted">22 Dec 2021 - 02:32PM</small></h5>
-                                    <p class="text-muted">Please be sure to check your Spam mailbox to see if your email filters have identified the email from Dell as spam.</p>
-                                    <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex mb-4">
-                        <div class="flex-shrink-0">
-                            <img src="assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fs-13">Donald Palmer <small class="text-muted">24 Dec 2021 - 05:20PM</small></h5>
-                            <p class="text-muted">If you have further questions, please contact Customer Support from the “Action Menu” on your <a href="javascript:void(0);" class="text-decoration-underline">Online Order Support</a>.</p>
-                            <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <img src="assets/images/users/avatar-10.jpg" alt="" class="avatar-xs rounded-circle">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fs-13">Alexis Clarke <small class="text-muted">26 min ago</small></h5>
-                            <p class="text-muted">Your <a href="javascript:void(0)" class="text-decoration-underline">Online Order Support</a> provides you with the most current status of your order. To help manage your order refer to the “Action Menu” to initiate return, contact Customer Support and more.</p>
-                            <div class="row g-2 mb-3">
-                                <div class="col-lg-1 col-sm-2 col-6">
-                                    <img src="assets/images/small/img-4.jpg" alt="" class="img-fluid rounded">
-                                </div>
-                                <div class="col-lg-1 col-sm-2 col-6">
-                                    <img src="assets/images/small/img-5.jpg" alt="" class="img-fluid rounded">
-                                </div>
-                            </div>
-                            <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
-                            <div class="d-flex mt-4">
-                                <div class="flex-shrink-0">
-                                    <img src="assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle">
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="fs-13">Donald Palmer <small class="text-muted">8 sec ago</small></h5>
-                                    <p class="text-muted">Other shipping methods are available at checkout if you want your purchase delivered faster.</p>
-                                    <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div></div></div></div>
-            </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
         </div>
                 <form action="javascript:void(0);" class="mt-3">
                     <div class="row g-3">
                         <div class="col-lg-12">
-                            <label for="exampleFormControlTextarea1" class="form-label">Leave a Comments</label>
+                            <label for="exampleFormControlTextarea1" class="form-label" v-text="__('WRITE_COMMENT')"></label>
                             <textarea class="form-control bg-light border-light" id="exampleFormControlTextarea1" rows="3" placeholder="Enter comments"></textarea>
                         </div>
                         <div class="col-lg-12 text-end mt-4">
-                            <a href="javascript:void(0);" class="btn btn-primary">Post Comments</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" v-text="__('Comments')"></a>
                         </div>
                     </div>
                 </form>
