@@ -29,8 +29,8 @@
                 <div class="lg:flex g-4 mb-3">
                     <div class="w-full">
                         <ul class=" pt-2 gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
-                            <li v-for="option in statusList"  class="nav-item" role="presentation">
-                                <span @click="switchStatus(option)" :class="option.status == activeStatus ? 'font-bold' : ''" v-text="option.text" class="nav-link fw-semibold cursor-pointer" ></span>
+                            <li v-for="option in statusList" @click="switchStatus(option)"   class="nav-item" role="presentation">
+                                <span :class="option.status == activeStatus ? 'font-bold' : ''" v-text="option.text" class="nav-link fw-semibold cursor-pointer" ></span>
                             </li>
                         </ul>
                     </div>
@@ -46,7 +46,7 @@
                 <!-- end row -->
 
                 <div class="team-list list-view-filter" v-for="item in content.items" >
-                    <div class="card team-box" v-if="!showLoader">
+                    <div class="card team-box" v-if="!showLoader && (activeStatus == 'all' || item.status == activeStatus)">
                         <div class="card-body px-4">
                             <div class="row align-items-center team-row">
                                 <div class="col-lg-4 col">
