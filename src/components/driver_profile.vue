@@ -52,16 +52,16 @@
 
                                 <div class="pt-5">
                                     <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30" aria-label="Tabs" role="tablist">
-                                        <button @click="setActiveStatus('info')" type="button" :class="activeStatus == 'info' ? 'bg-white':''" class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white active" id="basic-tabs-item-1" data-hs-tab="#basic-tabs-1" aria-controls="basic-tabs-1" role="tab">
+                                        <button @click="setActiveStatus('info')" type="button" :class="activeStatus == 'info' ? 'bg-white':''" class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white active">
                                             Info
                                         </button> <!-- button-end -->
-                                        <button @click="setActiveStatus('trips')" type="button" :class="activeStatus == 'trips' ? 'bg-white':''"  class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-2" data-hs-tab="#basic-tabs-2" aria-controls="basic-tabs-2" role="tab">
+                                        <button @click="setActiveStatus('trips')" type="button" :class="activeStatus == 'trips' ? 'bg-white':''"  class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" >
                                             Trips
                                         </button> <!-- button-end -->
-                                        <button type="button" class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-4" data-hs-tab="#basic-tabs-4" aria-controls="basic-tabs-4" role="tab">
+                                        <button type="button" class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white">
                                             Tasks
                                         </button> <!-- button-end -->
-                                        <button type="button" class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-5" data-hs-tab="#basic-tabs-5" aria-controls="basic-tabs-5" role="tab">
+                                        <button type="button" class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white">
                                             Files
                                         </button> <!-- button-end -->
                                     </nav> <!-- nav-end -->
