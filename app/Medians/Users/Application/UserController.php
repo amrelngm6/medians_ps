@@ -38,7 +38,6 @@ class UserController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "vehicle_id", 'title'=> "#"],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "email", 'title'=> __('email'), 'fillable'=> true, 'column_type'=>'email' ],
