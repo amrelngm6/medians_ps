@@ -20,10 +20,10 @@
                                     <div class="card-body pt-0">
                                         <div class="settings-form">
                                             <label class="block py-3" >
-                                                <input name="params[settings][logo]" type="hidden" :value="content.setting.logo">
+                                                <input name="params[logo]" type="hidden" :value="content.setting.logo">
                                                 <div class="w-full block  cursor-pointer">
                                                     <span class="text-gray-700 w-20">{{__('Logo')}} <span class="star-red">*</span></span>
-                                                    <vue-medialibrary-field name="params[settings][logo]" :api_url="conf.url" v-model="content.setting.logo"></vue-medialibrary-field>
+                                                    <vue-medialibrary-field name="params[logo]" :api_url="conf.url" v-model="content.setting.logo"></vue-medialibrary-field>
                                                 </div>
 
                                             </label>
@@ -53,7 +53,7 @@
 
                                                 <label class="block py-3">
                                                     <label>{{__('Enable debugging')}} <span class="star-red">*</span></label>
-                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][enable_debug]" :value="content.setting.enable_debug">
+                                                    <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[enable_debug]" :value="content.setting.enable_debug">
                                                         <option value="1" v-text="__('enabled')" ></option>
                                                         <option value="0" v-text="__('disabled')" ></option>
                                                     </select>
