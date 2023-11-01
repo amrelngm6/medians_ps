@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card mt-n4 mx-n4 card-border-effect-none">
-            <div class="bg-primary-subtle">
+            <div class="bg-primary-subtle" v-if="!showLoader">
                 <div class="card-body pb-0 px-4">
                     <ul class="gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
                         <li v-for="option in statusList"  class="nav-item" role="presentation">
@@ -46,8 +46,8 @@
                 </div>
                 <!-- end row -->
 
-                <div class="team-list list-view-filter" v-for="item in content.items">
-                    <div class="card team-box">
+                <div class="team-list list-view-filter" v-for="item in content.items" >
+                    <div class="card team-box" v-if="!showLoader">
                         <div class="card-body px-4">
                             <div class="row align-items-center team-row">
                                 <div class="col-lg-4 col">
@@ -134,8 +134,10 @@ export default
 
         showDetails(item)
         {
+            this.showLoader = true
             this.showEditSide = true; 
             this.activeItem = item;
+            this.showLoader = false
         },
 
 
