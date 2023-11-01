@@ -25,7 +25,7 @@
 
                                 <input name="params[subject]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('subject')">
 
-                                <textarea name="params[body]" type="text" rows="4" class="mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('body')"></textarea>
+                                <textarea name="params[body]" type="text" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('body')"></textarea>
 
                                 <label class="block mt-3">
                                     <span class="block mb-2" v-text="__('model')"></span>
