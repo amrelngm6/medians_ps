@@ -24,8 +24,8 @@
                                 <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
                             </div>
                             <div class="text-center">
-                                <span  v-text="user.active ? __('Active') : __('Pending')" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"></span>
-                                <span  v-text="__('edit')" class="my-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
+                                <span  v-text="user.active ? __('Active') : __('Pending')" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                                <span  v-text="__('edit')" class="my-2 inline-flex items-center px-2 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
                                 </span>
                             </div>
                         </div>
