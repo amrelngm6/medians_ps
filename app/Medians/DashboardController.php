@@ -123,7 +123,7 @@ class DashboardController extends CustomController
         $data['routes_count'] = $this->RouteRepository->get()->count();
         $data['pickup_locations_count'] = $this->PickupLocationRepository->get()->count();
         $data['vehicles_count'] = $this->VehicleRepository->get()->count();
-        $data['top_drivers'] = $this->DriverRepository->topDrivers();
+        $data['top_drivers'] = $this->DriverRepository->topDrivers(5);
 
         return $data;
 
