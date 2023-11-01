@@ -84,7 +84,7 @@ class NotificationEvent extends CustomModel
 		switch (get_class($model)) 
 		{
 			case HelpMessageComment::class:
-				return $model->with('message')->first()->receiver;
+				return $model->with('message')->first()->message->user;
 				break;
 
 			default:
