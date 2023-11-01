@@ -35,7 +35,7 @@
                                             </div>
                                         </div>
                                         <!--end col-->
-                                        <span class="w-20 " @click="$emit('callback')"><i class="fa fa-close"></i></span>
+                                        <span class="w-auto py-2 px-4 cursor-pointer text-lg" @click="$emit('callback')"><i class="fa fa-close"></i></span>
                                     </div>
                                     <!--end row-->
                                 </div>
