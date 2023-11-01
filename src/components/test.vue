@@ -94,7 +94,7 @@ userIdx: {}
             <div class="card-body p-4">
                 <h5 class="card-title mb-4">Comments</h5>
 
-                <div data-simplebar="init" style="height: 300px;" class="px-3 mx-n3 simplebar-scrollable-y"><div class="simplebar-wrapper" style="margin: 0px -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" ><div class="simplebar-content" style="padding: 0px 16px;">
+                <div data-simplebar="init" style="max-height: 300px;" class="px-3 mx-n3 overflow-y-auto"><div class="simplebar-wrapper" style="margin: 0px -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" ><div class="simplebar-content" style="padding: 0px 16px;">
                     <div class="d-flex mb-4">
                         <div class="flex-shrink-0">
                             <img src="assets/images/users/avatar-8.jpg" alt="" class="avatar-xs rounded-circle">
@@ -161,7 +161,7 @@ userIdx: {}
                             <label for="exampleFormControlTextarea1" class="form-label">Leave a Comments</label>
                             <textarea class="form-control bg-light border-light" id="exampleFormControlTextarea1" rows="3" placeholder="Enter comments"></textarea>
                         </div>
-                        <div class="col-lg-12 text-end">
+                        <div class="col-lg-12 text-end mt-4">
                             <a href="javascript:void(0);" class="btn btn-primary">Post Comments</a>
                         </div>
                     </div>
