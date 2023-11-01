@@ -14,22 +14,20 @@
                                 <div class="col-md-auto">
                                     <div class="avatar-md mb-md-0 mb-4">
                                         <div class="avatar-title bg-white rounded-circle">
-                                            <img src="assets/images/companies/img-4.png" alt="" class="avatar-sm">
+                                            <img :src="item.user.picture" alt="" class="avatar-sm">
                                         </div>
                                     </div>
                                 </div>
                                 <!--end col-->
                                 <div class="col-md">
-                                    <h4 class="fw-semibold" id="ticket-title">#VLZ135 - Create an Excellent UI for a Dashboard</h4>
+                                    <h4 class="fw-semibold" id="ticket-title" v-text="item.subject"></h4>
                                     <div class="hstack gap-3 flex">
-                                        <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client">Themesbrand</span></div>
+                                        <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client" v-text="item.user.name"></span></div>
                                         <div class="vr"></div>
-                                        <div class="text-muted">Create Date : <span class="fw-medium " id="create-date">20 Dec, 2021</span></div>
+                                        <div class="text-muted"><span v-text="__('Created at')"></span> <span class="fw-medium " id="create-date" v-text="item.created_at"></span></div>
                                         <div class="vr"></div>
-                                        <div class="text-muted">Due Date : <span class="fw-medium" id="due-date">29 Dec, 2021</span></div>
-                                        <div class="vr"></div>
-                                        <div class="badge rounded-pill bg-info fs-12" id="ticket-status">New</div>
-                                        <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority">High</div>
+                                        <div class="badge rounded-pill bg-info fs-12" id="ticket-status"  v-if="item.status" v-text="item.status"></div>
+                                        <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority" v-if="item.priority" v-text="item.priority"></div>
                                     </div>
                                 </div>
                                 <!--end col-->
@@ -39,10 +37,10 @@
                         <!--end col-->
                         <div class="col-md-auto mt-md-0 mt-4">
                             <div class="hstack gap-1 flex-wrap">
-                                <button @click="showoptions = !showoptions" type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
+                                <button @click="showI = false,showoptions = !showoptions, showI = true" type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
                                     <i class="fa fa-ellipsis"></i>
                                 </button>
-                                <ul v-if="showoptions" class="dropdown-menu" aria-labelledby="settingDropdown">
+                                <ul v-if="showI && showoptions" class="dropdown-menu" aria-labelledby="settingDropdown">
                                     <li><a class="dropdown-item" href="#"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="ri-share-forward-fill align-bottom me-2 text-muted"></i> Share with</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>
@@ -62,8 +60,8 @@
     <div class="col-xxl-9 ">
         <div class="card">
             <div class="card-body p-4">
-                <h6 class="fw-semibold text-uppercase mb-3">Ticket Discripation</h6>
-                <p class="text-muted">It would also help to know what the errors are - it could be something simple like a message saying delivery is not available which could be a problem with your shipping templates. Too much or too little spacing, as in the example below, can make things unpleasant for the reader. The goal is to make your text as comfortable to read as possible. On the note of consistency, color consistency is a MUST. If you’re not trying to create crazy contrast in your design, then a great idea would be for you to use a color palette throughout your entire design. It will subconsciously interest viewers and also is very pleasing to look at. <a href="javascript:void(0);" class="link-primary text-decoration-underline">Example</a></p>
+                <h6 class="fw-semibold text-uppercase mb-3" v-text="__('Ticket Discripation')"></h6>
+                <p class="text-muted" v-text="item.message"></p>
                 
             </div>
             <!--end card-body-->
