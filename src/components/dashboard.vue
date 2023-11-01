@@ -61,15 +61,15 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th colspan="2" v-text="__('Driver')"></th>
-                                                <th v-text="__('Trips')"></th>
+                                                <th colspan="2" v-text="__('Student')"></th>
+                                                <th v-text="__('Parent')"></th>
                                             </tr>
                                         </thead>
-                                        <tbody v-if="content.top_drivers_list">
-                                            <tr :key="index" v-for="(driver, index) in content.top_drivers_list" class="text-center" v-if="driver">
-                                                <td><img :src="driver.picture" /></td>
-                                                <td v-text="driver.name"></td>
-                                                <td  v-text="driver.trips_count"></td>
+                                        <tbody v-if="content.latest_students">
+                                            <tr :key="index" v-for="(student, index) in content.latest_students" class="text-center" v-if="student">
+                                                <td><img :src="student.picture" /></td>
+                                                <td v-text="student.first_name"></td>
+                                                <td  v-text="student.parent && student.parent.name ? student.parent.name : ''"></td>
                                             </tr>
                                         </tbody>
                                     </table>
