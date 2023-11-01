@@ -128,7 +128,7 @@ class HelpMessageController extends CustomController
         	$params['user_id'] = $this->app->auth()->id;        	
 
             $returnData = (!empty($this->repo->storeUserComment($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>__('Added'))
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
