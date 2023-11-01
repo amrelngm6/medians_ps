@@ -1,6 +1,7 @@
 <template>
     <div class=" w-full">
-        <div class="container-fluid">
+        <test :item="activeItem" v-if="showEditSide" :ref="activeItem" />
+        <div class="container-fluid" v-if="!showEditSide">
 
 <div class="row">
     <div class="col-lg-12">
