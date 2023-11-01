@@ -240,5 +240,12 @@ export default
         'auth',
         'item'
     ],
+    methods: {
+        
+        __(i)
+        {
+            return this.$root.$children[0].__(i);
+        }
+    }
 };
 </script>
