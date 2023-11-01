@@ -82,16 +82,16 @@
                         <div class="sm:col-span-2 col-span-4 "><span
                                 class="cursor-pointer inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"
                                 ><i
-                                    class="fa fa-phone text-lg leading-none"></i></span></div>
+                                    class="fa fa-phone  py-1"></i></span></div>
                         <div class="sm:col-span-8 col-span-4"><span
                                 class="cursor-pointer inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 w-full rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"
                                 ><i
-                                    class="fa fa-face text-lg leading-none"></i> <span
+                                    class="fa fa-edit py-1"></i> <span
                                     class="text-sm leading-none hidden sm:block">Message</span></span></div>
                         <div class="sm:col-span-2 col-span-4">
                             <div class="hs-dropdown ti-dropdown flex justify-end"><span
                                     class="cursor-pointer hs-dropdown-toggle ti-dropdown-toggle inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"><i
-                                        class="fa fa-ellipsis text-lg leading-none"></i></span>
+                                        class="fa fa-ellipsis py-1"></i></span>
                                         </div></div>
                     </div>
                 </div>
