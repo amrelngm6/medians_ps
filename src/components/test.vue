@@ -87,7 +87,7 @@
                             <textarea class="form-control bg-light border-light" id="exampleFormControlTextarea1" rows="3" placeholder="Enter comments"></textarea>
                         </div>
                         <div class="col-lg-12 text-end mt-4">
-                            <a href="javascript:void(0);" class="btn btn-primary" v-text="__('Comments')"></a>
+                            <a href="javascript:void(0);" class="btn btn-primary" v-text="__('Send')"></a>
                         </div>
                     </div>
                 </form>
