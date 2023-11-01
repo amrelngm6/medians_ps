@@ -1,7 +1,10 @@
 <template>
     <div class=" w-full">
 
-        <div class="relative card ribbon-box border shadow-none mb-lg-0">
+        <div class="relative w-full" v-if="showAddSide">
+            <driver_details :key="activeItem" :item="activeItem"></driver_details>
+        </div>
+        <div class="relative card ribbon-box border shadow-none mb-lg-0" v-if="!showAddSide && !showLoader">
             <div class="card-body">
                 <div class="ribbon ribbon-primary round-shape" v-text="__('Important')"></div>
                 <h5 class="fs-14 text-end ml-20" v-text="__('Before Create Account')"></h5>
@@ -11,7 +14,7 @@
             </div>
         </div>
 
-        <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6">
+        <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6" v-if="!showAddSide && !showLoader">
 
             <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl" v-for="driver in content.items">
                 <div class="box-body space-y-5">
