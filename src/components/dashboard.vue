@@ -74,7 +74,6 @@
                             <h4 class="w-full " v-text="__('Latest help messages')"></h4>
                             <a href="/admin/help_messages" class="w-20" v-text="__('View all')"></a>
                         </div>
-                        <hr />
                         <div class="card-body w-full">
                             <div class="w-full">
                                 <div class="table-responsive w-full">

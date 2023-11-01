@@ -1,6 +1,14 @@
 <template>
     <div class=" w-full">
-        <!-- Rounded Ribbon -->
+        <!-- Primary Alert -->
+        <div class="alert alert-primary alert-dismissible bg-primary text-white alert-label-icon fade show" role="alert">
+            <i class="ri-user-smile-line label-icon"></i><strong>Primary</strong> - Label icon alert
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="alert alert-primary alert-top-border alert-dismissible fade show" role="alert">
+    <i class="ri-user-smile-line me-3 align-middle fs-16 text-primary"></i><strong>Primary</strong> - Top border alert
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
         <div class="relative card ribbon-box border shadow-none mb-lg-0">
             <div class="card-body">
                 <div class="ribbon ribbon-primary round-shape" v-text="__('Important')"></div>
