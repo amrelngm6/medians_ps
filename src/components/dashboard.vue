@@ -268,11 +268,11 @@ export default
             
             // Column charts for most played on devices
             this.column_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.column_options.axisY.title = this.__('bookings_count')
+            this.column_options.axisY.title = this.__('Trips count')
             this.column_options.data[0] = {
                 type: "column",
-                yValueFormatString: "#,### "+this.__('booking'),
-                dataPoints: this.content.most_played_devices
+                yValueFormatString: "#,### "+this.__('Drivers'),
+                dataPoints: this.content.top_drivers
             }
 
             // Line charts for sales in last days 

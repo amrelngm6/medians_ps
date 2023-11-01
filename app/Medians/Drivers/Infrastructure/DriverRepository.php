@@ -48,10 +48,13 @@ class DriverRepository
 		return Driver::limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 
+	public function topDrivers($limit = 100)
+	{
+		return Driver::withCount('last_trips')->orderBy('last_trips_count', 'DESC')->get();
+	}
+
 	public function checkLogin($email, $password)
 	{
-		error_log($email .' '. $password, 3, "./uploads/error_log.log");
-
 		return Driver::where('password', $password)->where('email' , $email)->first();
 	}
 
