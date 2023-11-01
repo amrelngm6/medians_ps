@@ -21,7 +21,7 @@
                                 <!--end col-->
                                 <div class="col-md">
                                     <h4 class="fw-semibold" id="ticket-title">#VLZ135 - Create an Excellent UI for a Dashboard</h4>
-                                    <div class="hstack gap-3 flex-wrap">
+                                    <div class="hstack gap-3 flex">
                                         <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client">Themesbrand</span></div>
                                         <div class="vr"></div>
                                         <div class="text-muted">Create Date : <span class="fw-medium " id="create-date">20 Dec, 2021</span></div>
@@ -66,8 +66,8 @@
     </div><!-- end col -->
 </div><!-- end row -->
 
-<div class="row">
-    <div class="col-xxl-9">
+<div class="lg:flex gap-6">
+    <div class="col-xxl-9 w-full">
         <div class="card">
             <div class="card-body p-4">
                 <h6 class="fw-semibold text-uppercase mb-3">Ticket Discripation</h6>
@@ -179,7 +179,7 @@ userIdx: {}
         <!--end card-->
     </div>
     <!--end col-->
-    <div class="col-xxl-3">
+    <div class="col-xxl-3 w-full">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">Ticket Details</h5>
