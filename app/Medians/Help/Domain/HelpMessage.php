@@ -33,6 +33,10 @@ class HelpMessage extends CustomModel
 	}
 
 
+    public function user() {
+        return $this->morphTo();
+    }
+	
 	public function getFields()
 	{
 		return $this->fillable;
