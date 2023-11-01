@@ -34,8 +34,7 @@
                                 <p class="text-primary dark:text-primary text-xs font-semibold" v-text="driver.contact_number"></p>
                             </div>
                         </div>
-                        <div class="ltr:ml-auto rtl:mr-auto"><span class="cursor-pointer " @click="handleAction('delete', driver)"><i
-                                    class="fa fa-trash  text-danger"></i></span></div>
+
                     </div>
                 </div>
                 <div class="box-footer mt-2">
@@ -50,9 +49,9 @@
                                     class="fa fa-edit py-1"></i> <span
                                     class="text-base  " v-text="__('Edit')"></span></span></div>
                         <div class="sm:col-span-2 col-span-4">
-                            <div class="hs-dropdown ti-dropdown flex justify-end"><span
+                            <div class="hs-dropdown ti-dropdown flex justify-end"><span @click="handleAction('delete', driver)"
                                     class="cursor-pointer hs-dropdown-toggle ti-dropdown-toggle inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"><i
-                                        class="fa fa-ellipsis py-1 px-2"></i></span>
+                                        class="fa fa-trash text-danger py-1 px-2"></i></span>
                                         </div></div>
                     </div>
                 </div>
