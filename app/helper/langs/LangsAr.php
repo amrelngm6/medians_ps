@@ -923,7 +923,7 @@ class LangsAr
 		,'active' => 'نشط'
 		,'unpaid' => 'غير مدفوع'
 		,'Created' => 'تم الإنشاء بنجاح'
-		,'Created at' => 'تم الإنشاء في'
+		,'Created at' => 'تاريخ الإنشاء'
 		,'last update' => 'اخر تحديث'
 		,'Stock alert products' => 'منتجات  أوشكت على النفاذ'
 		,'Stock out products' => 'منتجات   نفذت من المخزون'
