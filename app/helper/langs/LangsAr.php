@@ -1116,6 +1116,7 @@ class LangsAr
 		
 		,'Before Create driver note' => 'عند إنشاء حساب جديد, يرجى التأكد من  <b>البريد الإلكتروني</b>. <br /> حيث أن كلمة المرور التي سيتم إنشارها سيتم إرسالها الي البريد الإلكتروني الذي يتم إدخاله'
 		,'Before Create Account'=> 'قبل إنشاء حساب جديد'
+		,'Important'=> 'هام'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
