@@ -42,7 +42,7 @@ class NotificationRepository
 	public function get($limit = 500,$last_id = 0) 
 	{
 		return ($this->app->auth()->role_id == 1 )
-		? Notification::limit($limit)->get() 
+		? Notification::limit($limit)->orderBy('created_at', 'DESC')->get() 
 		: Notification::limit($limit)
 			->where('receiver_id', $this->app->branch->id)->where('receiver_type', Branch::class )
 			->where('id', '>', $last_id)
