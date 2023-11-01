@@ -23,10 +23,10 @@ class HelpMessageComment extends CustomModel
 		'comment',
 	];
 	
-	public $appends = ['date', 'user'];
+	public $appends = ['date', 'receiver'];
 	
 
-	public function getUserAttribute()
+	public function getReceiverAttribute()
 	{
 		return $this->message->user;
 	}
@@ -38,6 +38,10 @@ class HelpMessageComment extends CustomModel
 
     public function message() {
         return $this->hasOne(HelpMessage::class, 'message_id', 'message_id');
+    }
+
+    public function user() {
+        return $this->morphTo();
     }
 
 	public function getFields()
