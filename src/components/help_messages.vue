@@ -134,6 +134,12 @@ export default
 
     methods: 
     {
+        switchStatus(option)
+        {
+            this.showLoader = true;
+            this.activeStatus = option.status
+            this.showLoader = false;
+        },
 
         showDetails(item)
         {
