@@ -60,13 +60,14 @@ class DriverRepository
 	public function mostTrips($params, $limit = 5)
 	{
 
-		return  Driver::withCount(['last_trips'=>function($q)use($params){
+		return  Driver::withCount(['last_trips as y'=>function($q)use($params){
 			if (isset($params['start']))
 			{
 				$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
 			}
 		}])
-		->orderBy('last_trips_count', 'desc')
+		->having('y', '>', 0)
+		->orderBy('y', 'desc')
 		->limit($limit)
 		->get();
 	}
