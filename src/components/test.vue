@@ -74,7 +74,7 @@
                                                                 class="mt-2 avatar-xs rounded-circle">
                                                         </div>
                                                         <div class="flex-grow-1 ms-3" v-if="comment.user">
-                                                            <h5 class="fs-13"><span v-text="comment.user.name"></span>
+                                                            <h5 class="fs-13 flex gap-2"><span v-text="comment.user.name"></span>
                                                                 <small class="text-muted" v-text="comment.date"></small>
                                                             </h5>
                                                             <p class="text-muted" v-text="comment.comment"></p>
