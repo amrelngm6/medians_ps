@@ -30,7 +30,7 @@
                     <div class="w-full">
                         <ul class=" pt-2 gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
                             <li v-for="option in statusList"  class="nav-item" role="presentation">
-                                <a @click="switchStatus(option)" :class="option.status == activeStatus ? 'font-bold' : ''" v-text="option.text" class="nav-link fw-semibold" data-bs-toggle="tab" href="#project-overview" role="tab" aria-selected="false" tabindex="-1"></a>
+                                <span @click="switchStatus(option)" :class="option.status == activeStatus ? 'font-bold' : ''" v-text="option.text" class="nav-link fw-semibold cursor-pointer" ></span>
                             </li>
                         </ul>
                     </div>
