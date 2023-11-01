@@ -3,11 +3,10 @@
         <!-- Rounded Ribbon -->
         <div class="relative card ribbon-box border shadow-none mb-lg-0">
             <div class="card-body">
-                <div class="ribbon ribbon-primary round-shape">Important</div>
-                <h5 class="fs-14 text-end">Add new driver</h5>
+                <div class="ribbon ribbon-primary round-shape" v-text="__('Important')"></div>
+                <h5 class="fs-14 text-end" v-text="__('Before Create Account')"></h5>
                 <div class="ribbon-content mt-4 text-muted">
-                    <p class="mb-0">When you create new driver you should make sure that you have the right <b>Email</b>.
-                        Because the generated password will be sent to him</p>
+                    <p class="mb-0" v-text="__('Before Create driver note')"></p>
                 </div>
             </div>
         </div>

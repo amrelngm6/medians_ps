@@ -927,8 +927,9 @@ class LangsEn
 			,'Routes description' => 'This list includes routes with its pickup locations'
 			,'PickupLocations' => 'Pickup Locations'
 			,'Trips description' => 'List of the active Trips list.'
+			,'Before Create driver note' => 'When you create new driver you should make sure that you have the right <b>Email</b>. <br />Because the generated password will be sent to him'
 
-		
+			
 			,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	

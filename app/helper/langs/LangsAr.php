@@ -1113,8 +1113,10 @@ class LangsAr
 		,'User' => 'المستخدم'
 		,'top_drivers_who_have_most_trips' => 'أفضل السائقين حسب الاكثر رحلات'
 		,'latest_students_has_been_added' => 'أحدث الطلاب الذين تم إضافتهم'
-
 		
+		,'Before Create driver note' => 'عند إنشاء حساب جديد, يرجى التأكد من  <b>البريد الإلكتروني</b>. <br /> حيث أن كلمة المرور التي سيتم إنشارها سيتم إرسالها الي البريد الإلكتروني الذي يتم إدخاله'
+		,'Before Create Account'=> 'قبل إنشاء حساب جديد'
+
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	
