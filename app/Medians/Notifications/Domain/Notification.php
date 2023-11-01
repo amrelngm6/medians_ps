@@ -66,16 +66,8 @@ class Notification extends CustomModel
 	{
 		switch ($this->model_short_name) 
 		{
-			case 'device':
-				return '/admin/devices/manage';
-				break;
-			
-			case 'orderdevice':
-				return '/admin/devices/booking_follow';
-				break;
-			
-			case 'expense':
-				return '/admin/expenses/index';
+			case 'parents':
+				return '/admin/parents';
 				break;
 			
 		}

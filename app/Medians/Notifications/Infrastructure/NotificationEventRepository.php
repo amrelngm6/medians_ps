@@ -114,6 +114,8 @@ class NotificationEventRepository
 			'User' => \Medians\Users\Domain\User::class,
 			'Student' => \Medians\Students\Domain\Student::class,
 			'Parents' => \Medians\Parents\Domain\Parents::class,
+			'HelpMessage' => \Medians\Help\Domain\HelpMessage::class,
+			'HelpMessageComment' => \Medians\Help\Domain\HelpMessageComment::class,
 		];
 	}   
 }
