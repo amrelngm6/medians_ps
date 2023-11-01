@@ -121,7 +121,6 @@ class HelpMessageController extends CustomController
 
 	public function storeComment() 
 	{
-
 		$params = $this->app->request()->get('params');
 
         try {	

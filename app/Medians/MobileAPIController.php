@@ -187,13 +187,6 @@ class MobileAPIController extends CustomController
 	                $return =  (new Help\Application\HelpMessageController())->storeComment(); 
 	                break;
 
-	            case 'Page.create':
-	                $return =  (new Pages\Application\PageController())->store(); 
-	                break;
-
-	            case 'NotificationEvent.create':
-	                $return =  (new Notifications\Application\NotificationEventController())->store(); 
-	                break;
 
 			}
 

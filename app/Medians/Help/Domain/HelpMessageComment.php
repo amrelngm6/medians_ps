@@ -30,6 +30,11 @@ class HelpMessageComment extends CustomModel
 		return $this->driver;
 	}
 
+	public function getFields()
+	{
+		return $this->fillable;
+	}
+
 	public function driver() 
 	{
     	return $this->morphOne(Driver::class, 'user');

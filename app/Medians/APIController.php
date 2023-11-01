@@ -147,11 +147,12 @@ class APIController extends CustomController
 	            case 'NotificationEvent.create':
 	                $return =  (new Notifications\Application\NotificationEventController())->store(); 
 	                break;
-					
-				case 'Blog.create':
-					$return =  (new Blog\Application\BlogController())->store(); 
+				
+				
+				case 'HelpMessageComment.create':
+					$return =  (new Help\Application\HelpMessageController())->storeComment(); 
 					break;
-
+	
 			}
 
 			return response(json_encode($return));
