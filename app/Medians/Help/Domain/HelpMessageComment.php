@@ -30,9 +30,9 @@ class HelpMessageComment extends CustomModel
 	{
 		return date('Y-m-d H:i', strtotime($this->created_at));
 	}
-	
-    public function user() {
-        return $this->morphTo();
+
+    public function message() {
+        return $this->hasOne(HelpMessage::class, 'message_id', 'message_id');
     }
 
 	public function getFields()

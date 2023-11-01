@@ -7,6 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
 use Medians\Trips\Domain\Trip;
+use Medians\Help\Domain\HelpMessageComment;
 
 /**
  * NotificationEvent class database queries
@@ -78,14 +79,14 @@ class NotificationEvent extends CustomModel
 	 * @param $event Object
 	 * @param $model Object Event related model
 	 */
-	public function filterReceiver($model)
+	public function filterReceiver($event, $model)
 	{
 		switch (get_class($model)) 
 		{
-			case Trip::class:
-				return Driver::find($model->driver_id)->driver_id;
+			case HelpMessageComment::class:
+				return $model->with('user')->message->user;
 				break;
-				
+
 			default:
 				return $model;
 				break;
@@ -103,7 +104,7 @@ class NotificationEvent extends CustomModel
 	public function renderNotification($event, $model)
 	{
 
-    	$receiver = $this->filterReceiver($model);
+    	$receiver = $this->filterReceiver($event, $model);
 
     	$app = new \config\APP;
     	$params = [];
