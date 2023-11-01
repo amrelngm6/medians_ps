@@ -13,7 +13,7 @@
         </div>
 
         <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6">
-            <div class="box mb-0 overflow-hidden">
+            <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl">
                 <div class="box-body space-y-5">
                     <div class="flex">
                         <div class="sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="box mb-0 overflow-hidden">
+            <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl">
                 <div class="box-body space-y-5">
                     <div class="flex">
                         <div class="sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
