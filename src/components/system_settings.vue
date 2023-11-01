@@ -31,12 +31,12 @@
 
                                             <label class="block py-3">
                                                 <span class="text-gray-700">{{__('Sitename')}} <span class="star-red">*</span></span>
-                                                <input name="params[settings][sitename]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required :placeholder="__('Sitename')" :value="content.setting.sitename">
+                                                <input name="params[sitename]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" required :placeholder="__('Sitename')" :value="content.setting.sitename">
                                             </label>
 
                                             <label class="block py-3">
                                                 <span class="text-gray-700">{{__('Language')}} <span class="star-red">*</span></span>
-                                                <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[settings][lang]" :value="content.setting.lang">
+                                                <select class="select h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600 " name="params[lang]" :value="content.setting.lang">
                                                     <option value="english">English</option>
                                                     <option value="arabic">العربية</option>
                                                 </select>
