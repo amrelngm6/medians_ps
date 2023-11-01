@@ -57,9 +57,6 @@
             :index="activeItem.driver_id" v-if="showEditSide && !showAddSide" :columns="content.fillable"
             class="col-md-3" />
 
-
-        <!-- <data_table_page ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Driver" -->
-        <!-- object_key="driver_id"></data_table_page> -->
     </div>
 </template>
 <script>
