@@ -65,6 +65,12 @@ class HelpMessageRepository
 
 
 
+	public function eventsByDate($params)
+	{
+		$query = HelpMessage::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
 
 	/**
 	* Save item to database
