@@ -73,6 +73,9 @@ export default
                 items:[]
             },
             activeItem: {},
+            showAddSide:false,
+            showEditSide:false,
+            showLoader: true,
         }
     },
 
