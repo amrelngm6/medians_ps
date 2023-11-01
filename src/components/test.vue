@@ -44,10 +44,10 @@
                                         <i class="ri-star-fill"></i>
                                     </span>
                                 </button>
-                                <button type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
-                                    <i class="ri-share-line"></i>
+                                <button @click="showoptions = !showoptions" type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
+                                    <i class="fa fa-ellipsis"></i>
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="settingDropdown">
+                                <ul v-if="showoptions" class="dropdown-menu" aria-labelledby="settingDropdown">
                                     <li><a class="dropdown-item" href="#"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="ri-share-forward-fill align-bottom me-2 text-muted"></i> Share with</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>
