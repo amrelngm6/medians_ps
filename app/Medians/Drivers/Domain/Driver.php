@@ -35,8 +35,13 @@ class Driver extends CustomModel
 	];
 
 
-	public $appends = ['name', 'photo'];
+	public $appends = ['name', 'photo','password'];
 
+	public function getPasswordAttribute()
+	{
+		return '';
+	}
+	
 	public function getNameAttribute()
 	{
 		return $this->first_name. ' '.$this->last_name;

@@ -53,6 +53,24 @@ class DriverRepository
 		return Driver::withCount('last_trips')->having('last_trips_count', '>', 0)->orderBy('last_trips_count', 'DESC')->limit($limit)->get();
 	}
 
+	
+	/**
+	 * Get the most used devices
+	 */ 
+	public function mostTrips($params, $limit = 5)
+	{
+
+		return  Driver::withCount(['last_trips'=>function($q)use($params){
+			if (isset($params['start']))
+			{
+				$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
+			}
+		}])
+		->orderBy('last_trips_count', 'desc')
+		->limit($limit)
+		->get();
+	}
+
 	public function checkLogin($email, $password)
 	{
 		return Driver::where('password', $password)->where('email' , $email)->first();
