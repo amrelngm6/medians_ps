@@ -43,7 +43,7 @@
                 </div>
                 <div
                     class="self-stretch grow shrink basis-0 p-[25px] bg-neutral-50 justify-between items-center inline-flex">
-                    <div class="dark-menu rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
+                    <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
                 </div>
             </div>
 
