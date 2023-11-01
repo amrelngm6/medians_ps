@@ -5,14 +5,14 @@
             <main v-if="content && !showLoader" class="relative flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <maps @update-marker="updatedLocation" @click-marker="updatedLocation" v-if="locations.length" :key="locations" :waypoints="locations"></maps>
                 <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
-                    <div class="self-stretch p-10 flex-col justify-center items-start flex">
+                    <div class="self-stretch py-4 flex-col justify-center items-start flex">
                         <div class="text-black text-lg font-semibold" v-text="__('Pickup locations')"></div>
                         <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Pickup locations description')"></div>
                     </div>
                     <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                         <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
-                    <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
+                    <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
                         <div v-for="location in content.items" :key="location.active" v-if="showList && location.active"  class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
                             <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
@@ -25,15 +25,15 @@
                                 </div>
                             </div>
                             <div class="justify-center items-center flex">
-                                <div class="px-3 py-2 bg-fuchsia-600 rounded justify-center items-center flex mr-2 cursor-pointer"  @click="handleAction('edit', location)">
+                                <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex mr-2 cursor-pointer"  @click="handleAction('edit', location)">
                                     <div class="text-center text-xs text-white   uppercase tracking-tight"> <i class="fa fa-edit"></i></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div
-                        class="self-stretch grow shrink basis-0 p-[25px] bg-neutral-50 justify-between items-center inline-flex">
-                        <div class="dark-menu rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
+                        class="self-stretch grow shrink basis-0 justify-between items-center inline-flex">
+                        <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
                     </div>
                 </div>
 
