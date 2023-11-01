@@ -92,7 +92,7 @@
                                                 </td>
                                                 <td v-text="message.subject"></td>
                                                 <td class="text-red-500" v-text="message.message"></td>
-                                                <td v-text="dateTimeFormat(item.created_at)"></td>
+                                                <td v-text="dateTimeFormat(message.created_at)"></td>
                                                 <td v-text="message.date"></td>
                                                 <td v-text="message.status"></td>
                                             </tr>
