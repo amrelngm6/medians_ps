@@ -25,13 +25,20 @@ class HelpMessage extends CustomModel
 		'status',
 	];
 
-	public $appends = ['name'];
+	public $appends = ['name', 'date', 'last_update'];
 
+	public function getDateAttribute()
+	{
+		return date('Y-m-d H:i', strtotime($this->created_at));
+	}
+	public function getLastUpdateAttribute()
+	{
+		return date('Y-m-d H:i', strtotime($this->updated_at));
+	}
 	public function getNameAttribute()
 	{
 		return ($this->user_type == Driver::class && isset($this->driver->first_name)) ? $this->driver->first_name : '';
 	}
-
 
     public function user() {
         return $this->morphTo();
