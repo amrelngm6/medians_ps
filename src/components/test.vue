@@ -23,9 +23,9 @@
                                             <div class="hstack gap-3 flex">
                                                 <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client" v-text="item.user.name"></span></div>
                                                 <div class="vr"></div>
-                                                <div class="text-muted"><span v-text="__('Created at')"></span> <span class="fw-medium " id="create-date" v-text="item.created_at"></span></div>
+                                                <div class="text-muted"><span v-text="__('Created at')"></span> : <span class="fw-medium " id="create-date" v-text="item.date"></span></div>
                                                 <div class="vr"></div>
-                                                <div class="text-muted"><span v-text="__('Last update')"></span> <span class="fw-medium " id="update-date" v-text="item.last_update"></span></div>
+                                                <div class="text-muted"><span v-text="__('Last update')"></span> : <span class="fw-medium " id="update-date" v-text="item.last_update"></span></div>
                                                 <div class="vr"></div>
                                                 <div class="badge rounded-pill bg-info fs-12" id="ticket-status"  v-if="item.status" v-text="item.status"></div>
                                                 <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority" v-if="item.priority" v-text="item.priority"></div>
