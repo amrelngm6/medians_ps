@@ -3,7 +3,6 @@
 
         <div v-if="show" class="left-4">
             <!-- component -->
-        <test />
 
             <div class="w-full relative">
                 <navbar v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
