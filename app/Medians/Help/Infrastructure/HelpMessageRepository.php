@@ -38,7 +38,7 @@ class HelpMessageRepository
 
 	public function get($limit = 100)
 	{
-		return HelpMessage::with('comments')->with('user')->limit($limit)->orderBy('updated_at')->get();
+		return HelpMessage::with('comments')->with('user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
 	}
 
 	public function search($request, $limit = 20)
