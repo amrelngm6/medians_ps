@@ -37,7 +37,7 @@
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_games_used_for_playing')"></p>
                         <div class="card-body w-full">
                             <div class="w-full">
-                                <CanvasJSChart v-if="showCharts && content.most_played_games.length" :key="pie_options" :options="pie_options"/>
+                                <CanvasJSChart v-if="content.most_played_games && showCharts && content.most_played_games.length" :key="pie_options" :options="pie_options"/>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_devices_used_for_playing')"></p>
                         <div class="card-body w-full">
                             <div class="w-full">
-                                <CanvasJSChart v-if="showCharts && content.most_played_devices.length" :key="column_options" :options="column_options"/>
+                                <CanvasJSChart v-if="showCharts && content.most_played_devices && content.most_played_devices.length" :key="column_options" :options="column_options"/>
                             </div>
                         </div>
                     </div>
