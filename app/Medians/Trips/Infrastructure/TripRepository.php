@@ -53,6 +53,13 @@ class TripRepository
 		return Trip::withCount('moving_locations')->withCount('pickup_locations')->with('pickup_locations', 'waiting_locations', 'driver', 'vehicle')->limit($limit)->get();
 	}
 
+	public function eventsByDate($params)
+	{
+		$query = Trip::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');

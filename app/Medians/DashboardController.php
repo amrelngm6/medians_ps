@@ -10,7 +10,8 @@ class DashboardController extends CustomController
 	/**
 	* @var Object
 	*/
-	protected $repo;
+	public  $contentRepo;
+	public  $TripRepository;
 
 	protected $app;
 	public $start;
@@ -22,6 +23,7 @@ class DashboardController extends CustomController
 		$this->app = new \config\APP;
 		
 		$this->contentRepo = new Content\Infrastructure\ContentRepository();
+		$this->TripRepository = new Trips\Infrastructure\TripRepository();
 
 		$this->start = $this->app->request()->get('start') ? date('Y-m-d 00:00:00', strtotime($this->app->request()->get('start'))) : date('Y-m-d 00:00:00');
 		$this->end = $this->app->request()->get('end') ? date('Y-m-d 23:59:59', strtotime($this->app->request()->get('end'))) : date('Y-m-d 23:59:59');
@@ -76,15 +78,18 @@ class DashboardController extends CustomController
 
 		try {
 			
+			$counts = $this->loadCounts();
             /**
             * Order repository to get
             * Sales for last ( 90 ) Days
             */ 
 
-	        return [
+	        $array = [
 	            'title' => 'Dashboard',
 		        'load_vue' => true,
 	        ];
+
+			return array_merge($counts, $array);
 	        
 		} catch (Exception $e) {
 			return $e->getMessage();
@@ -99,6 +104,11 @@ class DashboardController extends CustomController
 	public function loadCounts()
 	{
 		$data = [];
+
+        $data['active_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('trip_status', 'Scheduled')->count();
+        $data['completed_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('trip_status', 'Completed')->count();
+        $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['help_messages_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
 
         return $data;
 
