@@ -21,6 +21,8 @@ class HelpMessage extends CustomModel
 		'user_type',
 		'subject',
 		'message',
+		'priority',
+		'status',
 	];
 
 	public $appends = ['name'];
