@@ -58,8 +58,8 @@
                         <div class="card-body p-4">
                             <h5 class="card-title mb-4" v-text="__('Comments')"></h5>
 
-                            <div data-simplebar="init" style="max-height: 300px;" class="px-3 mx-n3 overflow-y-auto">
-                                <div class="simplebar-wrapper" style="margin: 0px -16px;">
+                            <div data-simplebar="init" style="max-height: 300px;" class="overflow-y-auto">
+                                <div class="simplebar-wrapper" >
                                     <div class="simplebar-height-auto-observer-wrapper">
                                         <div class="simplebar-height-auto-observer"></div>
                                     </div>
