@@ -1267,7 +1267,6 @@ export default
     data()
     {
         return {
-            url: this.conf.url+this.path+'?load=json',
             content: {
                 items:[]
             },
@@ -1288,7 +1287,6 @@ export default
     ],
     mounted() 
     {
-        this.load()
     },
 
     methods: 
