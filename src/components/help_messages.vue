@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="col-6">
                                             <h5 class="mb-1" v-text="__('Updated at')"></h5>
-                                            <p class="text-muted mb-0" v-text="item.updated_at"></p>
+                                            <p class="text-muted mb-0" v-text="item.last_update"></p>
                                         </div>
                                     </div>
                                 </div>
