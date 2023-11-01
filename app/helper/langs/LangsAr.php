@@ -1109,6 +1109,7 @@ class LangsAr
 
 		,'Pickup locations description' => 'هذه القائمة تشمل جميع نقاط التوقف '
 		,'Ticket Discripation' => 'تفاصيل الرسالة '
+		,'Ticket Details' => 'بيانات الرسالة '
 		,'User' => 'المستخدم'
 
 		
