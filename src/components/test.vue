@@ -56,7 +56,7 @@
                         </div>
                         <!--end card-body-->
                         <div class="card-body p-4">
-                            <h5 class="card-title mb-4" v-text="__('Comments')"></h5>
+                            <h5 class="card-title text-sm font-semibold mb-4" v-text="__('Comments')"></h5>
 
                             <div data-simplebar="init" style="max-height: 300px;" class="overflow-y-auto">
                                 <div class="simplebar-wrapper" >
@@ -64,10 +64,10 @@
                                         <div class="simplebar-height-auto-observer"></div>
                                     </div>
                                     <div class="simplebar-mask">
-                                        <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                        <div class="simplebar-offset" >
                                             <div class="simplebar-content-wrapper" tabindex="0" role="region"
                                                 aria-label="scrollable content">
-                                                <div class="simplebar-content" style="padding: 0px 16px;">
+                                                <div class="simplebar-content" >
                                                     <div class="flex gap-2 mb-4" v-for="comment in item.comments">
                                                         <div class="flex-shrink-0" v-if="comment.user">
                                                             <img :src="comment.user.photo" alt=""
