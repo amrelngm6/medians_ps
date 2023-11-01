@@ -3,309 +3,308 @@
 
         <div class="container-fluid">
 
-<!-- start page title -->
-<div class="row">
-    <div class="col-12">
-        <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-transparent">
-            <h4 class="mb-sm-0">Team</h4>
-
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                    <li class="breadcrumb-item active">Team</li>
-                </ol>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- end page title -->
-
-<div class="card">
-    <div class="card-body">
-        <div class="row g-2">
-            <div class="col-sm-4">
-                <div class="search-box">
-                    <input type="text" class="form-control" id="searchMemberList" placeholder="Search for name or designation...">
-                    <i class="ri-search-line search-icon"></i>
-                </div>
-            </div>
-            <!--end col-->
-            <div class="col-sm-auto ms-auto">
-                <div class="list-grid-nav hstack gap-1">
-                    <button type="button" id="grid-view-button" class="btn btn-soft-secondary nav-link btn-icon fs-14 active filter-button"><i class="ri-grid-fill"></i></button>
-                    <button type="button" id="list-view-button" class="btn btn-soft-secondary nav-link  btn-icon fs-14 filter-button"><i class="ri-list-unordered"></i></button>
-                    <button type="button" id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-soft-secondary btn-icon fs-14"><i class="ri-more-2-fill"></i></button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                        <li><a class="dropdown-item" href="#">All</a></li>
-                        <li><a class="dropdown-item" href="#">Last Week</a></li>
-                        <li><a class="dropdown-item" href="#">Last Month</a></li>
-                        <li><a class="dropdown-item" href="#">Last Year</a></li>
-                    </ul>
-                    <button class="btn btn-primary addMembers-modal" data-bs-toggle="modal" data-bs-target="#addmemberModal"><i class="ri-add-fill me-1 align-bottom"></i> Add Members</button>
-                </div>
-            </div>
-            <!--end col-->
-        </div>
-        <!--end row-->
-    </div>
-</div>
-
 <div class="row">
     <div class="col-lg-12">
-        <div>
-
-            <div id="teamlist">
-                <div class="team-list grid-view-filter row" id="team-member-list"><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-9.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn ">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="12"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="12"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="assets/images/users/avatar-2.jpg" alt="" class="member-img img-fluid d-block rounded-circle"></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Nancy Martino</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Team Leader &amp; HR</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">225</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">197</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-12.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn active">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="11"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="11"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><div class="avatar-title border bg-light text-primary rounded-circle text-uppercase">HB</div></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Henry Baird</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Full Stack Developer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">352</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">376</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-11.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn ">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="10"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="10"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="assets/images/users/avatar-3.jpg" alt="" class="member-img img-fluid d-block rounded-circle"></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Frank Hook</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Project Manager</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">164</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">182</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-1.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn active">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="9"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="9"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="assets/images/users/avatar-8.jpg" alt="" class="member-img img-fluid d-block rounded-circle"></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Jennifer Carter</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">UI/UX Designer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">241</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">204</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-10.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn ">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="8"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="8"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><div class="avatar-title border bg-light text-primary rounded-circle text-uppercase">ME</div></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Megan Elmore</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Team Leader &amp; Web Developer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">201</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">263</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-2.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn ">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="7"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="7"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="assets/images/users/avatar-4.jpg" alt="" class="member-img img-fluid d-block rounded-circle"></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Alexis Clarke</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Backend Developer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">132</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">147</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-4.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn active">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="6"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="6"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><div class="avatar-title border bg-light text-primary rounded-circle text-uppercase">NC</div></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Nathan Cole</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Front-End Developer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">352</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">376</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-7.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn active">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="5"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="5"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="assets/images/users/avatar-6.jpg" alt="" class="member-img img-fluid d-block rounded-circle"></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Joseph Parker</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Full Stack Developer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">64</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">93</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-3.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn ">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="4"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="4"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="assets/images/users/avatar-5.jpg" alt="" class="member-img img-fluid d-block rounded-circle"></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Erica Kernan</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Web Designer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">345</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">298</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-5.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn active">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="3"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="3"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><div class="avatar-title border bg-light text-primary rounded-circle text-uppercase">DP</div></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Donald Palmer</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Wed Developer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">97</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">135</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-8.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn ">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="2"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="2"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><img src="assets/images/users/avatar-7.jpg" alt="" class="member-img img-fluid d-block rounded-circle"></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Jack Gough</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">React Js Developer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">87</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">121</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div><div class="col">            <div class="card team-box">                <div class="team-cover">                    <img src="assets/images/small/img-6.jpg" alt="" class="img-fluid">                </div>                <div class="card-body p-4">                    <div class="row align-items-center team-row">                        <div class="col team-settings">                            <div class="row">                                <div class="col">                                    <div class="flex-shrink-0 me-2">                                        <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn ">                                            <i class="ri-star-fill fs-14"></i>                                        </button>                                    </div>                                </div>                                <div class="col text-end dropdown">                                    <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">                                        <i class="ri-more-fill fs-17"></i>                                    </a>                                    <ul class="dropdown-menu dropdown-menu-end">                                        <li><a class="dropdown-item edit-list" href="#addmemberModal" data-bs-toggle="modal" data-edit-id="1"><i class="ri-pencil-line me-2 align-bottom text-muted"></i>Edit</a></li>                                        <li><a class="dropdown-item remove-list" href="#removeMemberModal" data-bs-toggle="modal" data-remove-id="1"><i class="ri-delete-bin-5-line me-2 align-bottom text-muted"></i>Remove</a></li>                                    </ul>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="team-profile-img">                                <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0"><div class="avatar-title border bg-light text-primary rounded-circle text-uppercase">MW</div></div>                                <div class="team-content">                                    <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview" aria-controls="member-overview">                                        <h5 class="fs-16 mb-1">Marie Ward</h5>                                    </a>                                    <p class="text-muted member-designation mb-0">Backend Developer</p>                                </div>                            </div>                        </div>                        <div class="col-lg-4 col">                            <div class="row text-muted text-center">                                <div class="col-6 border-end border-end-dashed">                                    <h5 class="mb-1 projects-num">145</h5>                                    <p class="text-muted mb-0">Projects</p>                                </div>                                <div class="col-6">                                    <h5 class="mb-1 tasks-num">210</h5>                                    <p class="text-muted mb-0">Tasks</p>                                </div>                            </div>                        </div>                        <div class="col-lg-2 col">                            <div class="text-end">                                <a href="pages-profile.html" class="btn btn-light view-btn">View Profile</a>                            </div>                        </div>                    </div>                </div>            </div>        </div></div>
-                <div class="text-center mb-3">
-                    <a href="javascript:void(0);" class="text-success"><i class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load More </a>
-                </div>
-            </div>
-            <div class="py-4 mt-4 text-center" id="noresult" style="display: none;">
-                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:72px;height:72px"></lord-icon>
-                <h5 class="mt-4">Sorry! No Result Found</h5>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="addmemberModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content border-0">
-                        
-                        <div class="modal-body">
-                            <form autocomplete="off" id="memberlist-form" class="needs-validation" novalidate="">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <input type="hidden" id="memberid-input" class="form-control" value="">
-                                        <div class="px-1 pt-1">
-                                            <div class="modal-team-cover position-relative mb-0 mt-n4 mx-n4 rounded-top overflow-hidden">
-                                                <img src="assets/images/small/img-9.jpg" alt="" id="cover-img" class="img-fluid">
-
-                                                <div class="d-flex position-absolute start-0 end-0 top-0 p-3">
-                                                    <div class="flex-grow-1">
-                                                        <h5 class="modal-title text-white" id="createMemberLabel">Add New Members</h5>
-                                                    </div>
-                                                    <div class="flex-shrink-0">
-                                                        <div class="d-flex gap-3 align-items-center">
-                                                            <div>
-                                                                <label for="cover-image-input" class="mb-0" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select Cover Image" data-bs-original-title="Select Cover Image">
-                                                                    <div class="avatar-xs">
-                                                                        <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-                                                                            <i class="ri-image-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </label>
-                                                                <input class="form-control d-none" value="" id="cover-image-input" type="file" accept="image/png, image/gif, image/jpeg">
-                                                            </div>
-                                                            <button type="button" class="btn-close btn-close-white" id="createMemberBtn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="text-center mb-4 mt-n5 pt-2">
-                                            <div class="position-relative d-inline-block">
-                                                <div class="position-absolute bottom-0 end-0">
-                                                    <label for="member-image-input" class="mb-0" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Select Member Image" data-bs-original-title="Select Member Image">
-                                                        <div class="avatar-xs">
-                                                            <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-                                                                <i class="ri-image-fill"></i>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <input class="form-control d-none" value="" id="member-image-input" type="file" accept="image/png, image/gif, image/jpeg">
-                                                </div>
-                                                <div class="avatar-lg">
-                                                    <div class="avatar-title bg-light rounded-circle">
-                                                        <img src="assets/images/users/user-dummy-img.jpg" id="member-img" class="avatar-md rounded-circle h-auto">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="teammembersName" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="teammembersName" placeholder="Enter name" required="">
-                                            <div class="invalid-feedback">Please Enter a member name.</div>
-                                        </div>
-
-                                        <div class="mb-4">
-                                            <label for="designation" class="form-label">Designation</label>
-                                            <input type="text" class="form-control" id="designation" placeholder="Enter designation" required="">
-                                            <div class="invalid-feedback">Please Enter a designation.</div>
-                                        </div>
-                                        <input type="hidden" id="project-input" class="form-control" value="">
-                                        <input type="hidden" id="task-input" class="form-control" value="">
-
-                                        <div class="hstack gap-2 justify-content-end">
-                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" id="addNewMember">Add Member</button>
+        <div class="card mt-n4 mx-n4 card-border-effect-none mb-n5 border-bottom-0 border-start-0 rounded-0">
+            <div>
+                <div class="card-body pb-4 mb-5">
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="row align-items-center">
+                                <div class="col-md-auto">
+                                    <div class="avatar-md mb-md-0 mb-4">
+                                        <div class="avatar-title bg-white rounded-circle">
+                                            <img src="assets/images/companies/img-4.png" alt="" class="avatar-sm">
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!--end modal-content-->
-                </div>
-                <!--end modal-dialog-->
-            </div>
-            <!--end modal-->
-
-            <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="member-overview">
-                <!--end offcanvas-header-->
-                <div class="offcanvas-body profile-offcanvas p-0">
-                    <div class="team-cover">
-                        <img src="assets/images/small/img-9.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="p-3">
-                        <div class="team-settings">
-                            <div class="row">
-                                <div class="col">
-                                    <button type="button" class="btn btn-light btn-icon rounded-circle btn-sm favourite-btn "> <i class="ri-star-fill fs-14"></i> </button>
+                                <!--end col-->
+                                <div class="col-md">
+                                    <h4 class="fw-semibold" id="ticket-title">#VLZ135 - Create an Excellent UI for a Dashboard</h4>
+                                    <div class="hstack gap-3 flex-wrap">
+                                        <div class="text-muted"><i class="ri-building-line align-bottom me-1"></i><span id="ticket-client">Themesbrand</span></div>
+                                        <div class="vr"></div>
+                                        <div class="text-muted">Create Date : <span class="fw-medium " id="create-date">20 Dec, 2021</span></div>
+                                        <div class="vr"></div>
+                                        <div class="text-muted">Due Date : <span class="fw-medium" id="due-date">29 Dec, 2021</span></div>
+                                        <div class="vr"></div>
+                                        <div class="badge rounded-pill bg-info fs-12" id="ticket-status">New</div>
+                                        <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority">High</div>
+                                    </div>
                                 </div>
-                                <div class="col text-end dropdown">
-                                    <a href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="ri-more-fill fs-17"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink14">
-                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-star-line me-2 align-middle"></i>Favorites</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a></li>
-                                    </ul>
-                                </div>
+                                <!--end col-->
                             </div>
+                            <!--end row-->
                         </div>
                         <!--end col-->
-                    </div>
-                    <div class="p-3 text-center">
-                        <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-lg img-thumbnail rounded-circle mx-auto profile-img">
-                        <div class="mt-3">
-                            <h5 class="fs-15 profile-name">Nancy Martino</h5>
-                            <p class="text-muted profile-designation">Team Leader &amp; HR</p>
-                        </div>
-                        <div class="hstack gap-2 justify-content-center mt-4">
-                            <div class="avatar-xs">
-                                <a href="javascript:void(0);" class="avatar-title bg-secondary-subtle text-secondary rounded fs-16">
-                                    <i class="ri-facebook-fill"></i>
-                                </a>
-                            </div>
-                            <div class="avatar-xs">
-                                <a href="javascript:void(0);" class="avatar-title bg-success-subtle text-success rounded fs-16">
-                                    <i class="ri-slack-fill"></i>
-                                </a>
-                            </div>
-                            <div class="avatar-xs">
-                                <a href="javascript:void(0);" class="avatar-title bg-info-subtle text-info rounded fs-16">
-                                    <i class="ri-linkedin-fill"></i>
-                                </a>
-                            </div>
-                            <div class="avatar-xs">
-                                <a href="javascript:void(0);" class="avatar-title bg-danger-subtle text-danger rounded fs-16">
-                                    <i class="ri-dribbble-fill"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-0 text-center">
-                        <div class="col-6">
-                            <div class="p-3 border border-dashed border-start-0">
-                                <h5 class="mb-1 profile-project">124</h5>
-                                <p class="text-muted mb-0">Projects</p>
-                            </div>
-                        </div>
-                        <!--end col-->
-                        <div class="col-6">
-                            <div class="p-3 border border-dashed border-start-0">
-                                <h5 class="mb-1 profile-task">81</h5>
-                                <p class="text-muted mb-0">Tasks</p>
+                        <div class="col-md-auto mt-md-0 mt-4">
+                            <div class="hstack gap-1 flex-wrap">
+                                <button type="button" class="btn avatar-xs mt-n1 p-0 favourite-btn active">
+                                    <span class="avatar-title bg-transparent fs-15">
+                                        <i class="ri-star-fill"></i>
+                                    </span>
+                                </button>
+                                <button type="button" class="btn py-0 fs-16 text-body" id="settingDropdown" data-bs-toggle="dropdown">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="settingDropdown">
+                                    <li><a class="dropdown-item" href="#"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="ri-share-forward-fill align-bottom me-2 text-muted"></i> Share with</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></li>
+                                </ul>
+                                <button type="button" class="btn py-0 fs-16 text-body">
+                                    <i class="ri-flag-line"></i>
+                                </button>
                             </div>
                         </div>
                         <!--end col-->
                     </div>
                     <!--end row-->
-                    <div class="p-3">
-                        <h5 class="fs-15 mb-3">Personal Details</h5>
-                        <div class="mb-3">
-                            <p class="text-muted text-uppercase fw-semibold fs-12 mb-2">Number</p>
-                            <h6>+(256) 2451 8974</h6>
-                        </div>
-                        <div class="mb-3">
-                            <p class="text-muted text-uppercase fw-semibold fs-12 mb-2">Email</p>
-                            <h6>nancymartino@email.com</h6>
-                        </div>
-                        <div>
-                            <p class="text-muted text-uppercase fw-semibold fs-12 mb-2">Location</p>
-                            <h6 class="mb-0">Carson City - USA</h6>
-                        </div>
+                </div><!-- end card body -->
+            </div>
+        </div><!-- end card -->
+    </div><!-- end col -->
+</div><!-- end row -->
+
+<div class="row">
+    <div class="col-xxl-9">
+        <div class="card">
+            <div class="card-body p-4">
+                <h6 class="fw-semibold text-uppercase mb-3">Ticket Discripation</h6>
+                <p class="text-muted">It would also help to know what the errors are - it could be something simple like a message saying delivery is not available which could be a problem with your shipping templates. Too much or too little spacing, as in the example below, can make things unpleasant for the reader. The goal is to make your text as comfortable to read as possible. On the note of consistency, color consistency is a MUST. If you’re not trying to create crazy contrast in your design, then a great idea would be for you to use a color palette throughout your entire design. It will subconsciously interest viewers and also is very pleasing to look at. <a href="javascript:void(0);" class="link-primary text-decoration-underline">Example</a></p>
+                <h6 class="fw-semibold text-uppercase mb-3">Create an Excellent UI for a Dashboard</h6>
+                <ul class="text-muted vstack gap-2 mb-4">
+                    <li>Pick a Dashboard Type</li>
+                    <li>Categorize information when needed</li>
+                    <li>Provide Context</li>
+                    <li>On using colors</li>
+                    <li>On using the right graphs</li>
+                </ul>
+                <div class="mt-4">
+                    <h6 class="fw-semibold text-uppercase mb-3">Here is the code you've requested</h6>
+                    <div>
+                        <pre class="language-markup rounded-2"><code>var app = document.getElementById("app");
+var run = (model) =&gt; get(model, "users", () =&gt;
+get(model, "posts",
+() =&gt; {
+model.users.forEach(user =&gt; model.userIdx[user.id] = user);
+app.innerText = '';
+model.posts.forEach(post =&gt;
+app.appendChild(renderPost(post, model.userIdx[post.userId])));
+}));
+app.appendChild(Wrapper.generate("button", "Load").click(() =&gt; run({
+userIdx: {}
+})).element);</code></pre>
                     </div>
-                    <div class="p-3 border-top">
-                        <h5 class="fs-15 mb-4">File Manager</h5>
-                        <div class="d-flex mb-3">
-                            <div class="flex-shrink-0 avatar-xs">
-                                <div class="avatar-title bg-danger-subtle text-danger rounded fs-16">
-                                    <i class="ri-image-2-line"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1"><a href="javascript:void(0);">Images</a></h6>
-                                <p class="text-muted mb-0">4469 Files</p>
-                            </div>
-                            <div class="text-muted">
-                                12 GB
-                            </div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <div class="flex-shrink-0 avatar-xs">
-                                <div class="avatar-title bg-secondary-subtle text-secondary rounded fs-16">
-                                    <i class="ri-file-zip-line"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1"><a href="javascript:void(0);">Documents</a></h6>
-                                <p class="text-muted mb-0">46 Files</p>
-                            </div>
-                            <div class="text-muted">
-                                3.46 GB
-                            </div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <div class="flex-shrink-0 avatar-xs">
-                                <div class="avatar-title bg-success-subtle text-success rounded fs-16">
-                                    <i class="ri-live-line"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1"><a href="javascript:void(0);">Media</a></h6>
-                                <p class="text-muted mb-0">124 Files</p>
-                            </div>
-                            <div class="text-muted">
-                                4.3 GB
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 avatar-xs">
-                                <div class="avatar-title bg-primary-subtle text-primary rounded fs-16">
-                                    <i class="ri-error-warning-line"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1"><a href="javascript:void(0);">Others</a></h6>
-                                <p class="text-muted mb-0">18 Files</p>
-                            </div>
-                            <div class="text-muted">
-                                846 MB
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end offcanvas-body-->
-                <div class="offcanvas-foorter border p-3 hstack gap-3 text-center position-relative">
-                    <button class="btn btn-light w-100"><i class="ri-question-answer-fill align-bottom ms-1"></i> Send Message</button>
-                    <a href="pages-profile.html" class="btn btn-primary w-100"><i class="ri-user-3-fill align-bottom ms-1"></i> View Profile</a>
                 </div>
             </div>
-            <!--end offcanvas-->
+            <!--end card-body-->
+            <div class="card-body p-4">
+                <h5 class="card-title mb-4">Comments</h5>
+
+                <div data-simplebar="init" style="height: 300px;" class="px-3 mx-n3 simplebar-scrollable-y"><div class="simplebar-wrapper" style="margin: 0px -16px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px 16px;">
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/users/avatar-8.jpg" alt="" class="avatar-xs rounded-circle">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h5 class="fs-13">Joseph Parker <small class="text-muted">20 Dec 2021 - 05:47AM</small></h5>
+                            <p class="text-muted">I am getting message from customers that when they place order always get error message .</p>
+                            <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
+                            <div class="d-flex mt-4">
+                                <div class="flex-shrink-0">
+                                    <img src="assets/images/users/avatar-10.jpg" alt="" class="avatar-xs rounded-circle">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="fs-13">Alexis Clarke <small class="text-muted">22 Dec 2021 - 02:32PM</small></h5>
+                                    <p class="text-muted">Please be sure to check your Spam mailbox to see if your email filters have identified the email from Dell as spam.</p>
+                                    <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h5 class="fs-13">Donald Palmer <small class="text-muted">24 Dec 2021 - 05:20PM</small></h5>
+                            <p class="text-muted">If you have further questions, please contact Customer Support from the “Action Menu” on your <a href="javascript:void(0);" class="text-decoration-underline">Online Order Support</a>.</p>
+                            <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/users/avatar-10.jpg" alt="" class="avatar-xs rounded-circle">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h5 class="fs-13">Alexis Clarke <small class="text-muted">26 min ago</small></h5>
+                            <p class="text-muted">Your <a href="javascript:void(0)" class="text-decoration-underline">Online Order Support</a> provides you with the most current status of your order. To help manage your order refer to the “Action Menu” to initiate return, contact Customer Support and more.</p>
+                            <div class="row g-2 mb-3">
+                                <div class="col-lg-1 col-sm-2 col-6">
+                                    <img src="assets/images/small/img-4.jpg" alt="" class="img-fluid rounded">
+                                </div>
+                                <div class="col-lg-1 col-sm-2 col-6">
+                                    <img src="assets/images/small/img-5.jpg" alt="" class="img-fluid rounded">
+                                </div>
+                            </div>
+                            <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
+                            <div class="d-flex mt-4">
+                                <div class="flex-shrink-0">
+                                    <img src="assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="fs-13">Donald Palmer <small class="text-muted">8 sec ago</small></h5>
+                                    <p class="text-muted">Other shipping methods are available at checkout if you want your purchase delivered faster.</p>
+                                    <a href="javascript: void(0);" class="badge text-muted bg-light"><i class="mdi mdi-reply"></i> Reply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div></div></div></div><div class="simplebar-placeholder" style="width: 1033px; height: 583px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 154px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div>
+                <form action="javascript:void(0);" class="mt-3">
+                    <div class="row g-3">
+                        <div class="col-lg-12">
+                            <label for="exampleFormControlTextarea1" class="form-label">Leave a Comments</label>
+                            <textarea class="form-control bg-light border-light" id="exampleFormControlTextarea1" rows="3" placeholder="Enter comments"></textarea>
+                        </div>
+                        <div class="col-lg-12 text-end">
+                            <a href="javascript:void(0);" class="btn btn-primary">Post Comments</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- end card body -->
         </div>
-    </div><!-- end col -->
+        <!--end card-->
+    </div>
+    <!--end col-->
+    <div class="col-xxl-3">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Ticket Details</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table-card">
+                    <table class="table table-borderless align-middle mb-0">
+                        <tbody>
+                            <tr>
+                                <td class="fw-medium">Ticket</td>
+                                <td>#VLZ<span id="t-no">135</span> </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Client</td>
+                                <td id="t-client">Themesbrand</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Project</td>
+                                <td>Velzon - Admin Dashboard</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Assigned To:</td>
+                                <td>
+                                    <div class="avatar-group">
+                                        <a href="javascript:void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" data-bs-original-title="Erica Kernan">
+                                            <img src="assets/images/users/avatar-4.jpg" alt="" class="rounded-circle avatar-xs">
+                                        </a>
+                                        <a href="javascript:void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" data-bs-original-title="Alexis Clarke">
+                                            <img src="assets/images/users/avatar-10.jpg" alt="" class="rounded-circle avatar-xs">
+                                        </a>
+                                        <a href="javascript:void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" data-bs-original-title="James Price">
+                                            <img src="assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-xs">
+                                        </a>
+                                        <a href="javascript: void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" data-bs-original-title="Add Members">
+                                            <div class="avatar-xs">
+                                                <div class="avatar-title fs-16 rounded-circle bg-light border-dashed border text-primary">
+                                                    +
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Status:</td>
+                                <td>
+                                    <div class="choices" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div class="choices__inner"><select class="form-select choices__input" id="t-status" data-choices="" data-choices-search-false="" aria-label="Default select example" hidden="" tabindex="-1" data-choice="active"><option value="New" data-custom-properties="[object Object]">New</option></select><div class="choices__list choices__list--single"><div class="choices__item choices__item--selectable" data-item="" data-id="1" data-value="New" data-custom-properties="[object Object]" aria-selected="true">New</div></div></div><div class="choices__list choices__list--dropdown" aria-expanded="false"><div class="choices__list" role="listbox"><div id="choices--t-status-item-choice-5" class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted" role="option" data-choice="" data-id="5" data-value="" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Status</div><div id="choices--t-status-item-choice-1" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="1" data-value="Closed" data-select-text="Press to select" data-choice-selectable="">Closed</div><div id="choices--t-status-item-choice-2" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="2" data-value="Inprogress" data-select-text="Press to select" data-choice-selectable="">Inprogress</div><div id="choices--t-status-item-choice-3" class="choices__item choices__item--choice is-selected choices__item--selectable" role="option" data-choice="" data-id="3" data-value="New" data-select-text="Press to select" data-choice-selectable="">New</div><div id="choices--t-status-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="Open" data-select-text="Press to select" data-choice-selectable="">Open</div></div></div></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Priority</td>
+                                <td>
+                                    <span class="badge bg-danger" id="t-priority">High</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Create Date</td>
+                                <td id="c-date">20 Dec, 2021</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Due Date</td>
+                                <td id="d-date">29 Dec, 2021</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Last Activity</td>
+                                <td>14 min ago</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Labels</td>
+                                <td class="hstack text-wrap gap-1">
+                                    <span class="badge bg-primary-subtle text-primary">Admin</span>
+                                    <span class="badge bg-primary-subtle text-primary">UI</span>
+                                    <span class="badge bg-primary-subtle text-primary">Dashboard</span>
+                                    <span class="badge bg-primary-subtle text-primary">Design</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end card-body-->
+        </div>
+        <!--end card-->
+        <div class="card">
+            <div class="card-header">
+                <h6 class="card-title fw-semibold mb-0">Files Attachment</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center border border-dashed p-2 rounded">
+                    <div class="flex-shrink-0 avatar-sm">
+                        <div class="avatar-title bg-light rounded">
+                            <i class="ri-file-zip-line fs-20 text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="mb-1"><a href="javascript:void(0);">Velzon-admin.zip</a></h6>
+                        <small class="text-muted">3.2 MB</small>
+                    </div>
+                    <div class="hstack gap-3 fs-16">
+                        <a href="javascript:void(0);" class="text-muted"><i class="ri-download-2-line"></i></a>
+                        <a href="javascript:void(0);" class="text-muted"><i class="ri-delete-bin-line"></i></a>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center border border-dashed p-2 rounded mt-2">
+                    <div class="flex-shrink-0 avatar-sm">
+                        <div class="avatar-title bg-light rounded">
+                            <i class="ri-file-ppt-2-line fs-20 text-danger"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="mb-1"><a href="javascript:void(0);">Velzon-admin.ppt</a></h6>
+                        <small class="text-muted">4.5 MB</small>
+                    </div>
+                    <div class="hstack gap-3 fs-16">
+                        <a href="javascript:void(0);" class="text-muted"><i class="ri-download-2-line"></i></a>
+                        <a href="javascript:void(0);" class="text-muted"><i class="ri-delete-bin-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end col-->
 </div>
 <!--end row-->
+
 </div>
     </div>
 </template>
