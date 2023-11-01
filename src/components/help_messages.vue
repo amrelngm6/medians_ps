@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <test :item="activeItem" v-if="showEditSide" :ref="activeItem" @callback="closeMessage" />
+        <hep_message_details :item="activeItem" v-if="showEditSide" :ref="activeItem" @callback="closeMessage" />
         <div class="container-fluid" v-if="!showEditSide">
 
             <div class="row">
