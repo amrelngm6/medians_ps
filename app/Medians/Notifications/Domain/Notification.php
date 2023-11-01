@@ -97,6 +97,7 @@ class Notification extends CustomModel
 	 */
 	public static function storeEventNotification(Int $event_id, String $subject,String $body, $model, $receiver)
 	{
+		error_log(json_encode($receiver), 3, "./uploads/error_log.log");
 
 		$receiverPK = $receiver->getPrimaryKey();
 		$modelPK = $model->getPrimaryKey();
