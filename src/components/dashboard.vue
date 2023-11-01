@@ -56,7 +56,7 @@
                                         </thead>
                                         <tbody v-if="content.latest_students">
                                             <tr :key="index" v-for="(student, index) in content.latest_students" class="text-center" v-if="student">
-                                                <td><img :src="student.picture" /></td>
+                                                <td><img width="48" height="48" class="rounded" :src="student.picture" /></td>
                                                 <td v-text="student.first_name"></td>
                                                 <td  v-text="student.parent && student.parent.name ? student.parent.name : ''"></td>
                                             </tr>
