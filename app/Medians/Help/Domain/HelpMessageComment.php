@@ -23,21 +23,14 @@ class HelpMessageComment extends CustomModel
 		'comment',
 	];
 	
-	public $appends = ['user'];
 
-	public function getUserAttribute()
-	{
-		return $this->driver;
-	}
+    public function user() {
+        return $this->morphTo();
+    }
 
 	public function getFields()
 	{
 		return $this->fillable;
-	}
-
-	public function driver() 
-	{
-    	return $this->morphOne(Driver::class, 'user');
 	}
 
 	
