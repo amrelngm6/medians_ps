@@ -26,8 +26,8 @@
                                 <p class="text-primary dark:text-primary text-xs font-semibold" v-text="driver.mobile"></p>
                             </div>
                         </div>
-                        <div class="ltr:ml-auto rtl:mr-auto"><a href="contacts/"><i
-                                    class="fa fa-trash  text-danger"></i></a></div>
+                        <div class="ltr:ml-auto rtl:mr-auto"><span class="cursor-pointer " @click="handleAction('delete', driver)"><i
+                                    class="fa fa-trash  text-danger"></i></span></div>
                     </div>
                 </div>
                 <div class="box-footer mt-2">
