@@ -23,7 +23,7 @@
                             <div class="space-y-1 my-auto">
                                 <h5 class="font-semibold text-base leading-none" v-text="driver.name"></h5>
                                 <p class="text-gray-500 dark:text-white/70 font-semibold text-xs truncate max-w-[9rem]" v-text="driver.email"></p>
-                                <p class="text-primary dark:text-primary text-xs font-semibold" v-text="driver.mobile"></p>
+                                <p class="text-primary dark:text-primary text-xs font-semibold" v-text="driver.contact_number"></p>
                             </div>
                         </div>
                         <div class="ltr:ml-auto rtl:mr-auto"><span class="cursor-pointer " @click="handleAction('delete', driver)"><i
