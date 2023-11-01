@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6">
+        <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6" v-if="!showLoader">
                     <div class="xl:col-span-3 lg:col-span-5">
                         <div class="card text-center p-6 mb-6">
                             <img src="assets/images/users/avatar-7.jpg" alt="" class="h-20 rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
@@ -52,10 +52,10 @@
 
                                 <div class="pt-5">
                                     <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30" aria-label="Tabs" role="tablist">
-                                        <button @click="activeStatus = 'info'" type="button" :class="activeStatus == 'info' ? 'bg-white':''" class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white active" id="basic-tabs-item-1" data-hs-tab="#basic-tabs-1" aria-controls="basic-tabs-1" role="tab">
+                                        <button @click="setActiveStatus('info')" type="button" :class="activeStatus == 'info' ? 'bg-white':''" class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white active" id="basic-tabs-item-1" data-hs-tab="#basic-tabs-1" aria-controls="basic-tabs-1" role="tab">
                                             Info
                                         </button> <!-- button-end -->
-                                        <button @click="activeStatus = 'info'" type="button" :class="activeStatus == 'trips' ? 'bg-white':''"  class="hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-2" data-hs-tab="#basic-tabs-2" aria-controls="basic-tabs-2" role="tab">
+                                        <button @click="setActiveStatus('trips')" type="button" :class="activeStatus == 'trips' ? 'bg-white':''"  class="hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-2" data-hs-tab="#basic-tabs-2" aria-controls="basic-tabs-2" role="tab">
                                             Trips
                                         </button> <!-- button-end -->
                                         <button type="button" class="hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white" id="basic-tabs-item-4" data-hs-tab="#basic-tabs-4" aria-controls="basic-tabs-4" role="tab">
@@ -1275,6 +1275,7 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
+            activeStatus: 'info',
         }
     },
 
@@ -1292,6 +1293,13 @@ export default
 
     methods: 
     {
+        setActiveStatus(status)
+        {
+            this.showLoader = true;
+            this.activeStatus = status;
+            this.showLoader = false;
+        },
+
 
         /**
          * Handle actions from datatable buttons
