@@ -70,7 +70,7 @@
                                             <tr :key="index" v-for="(driver, index) in content.top_drivers" class="text-center" v-if="driver">
                                                 <td><img :src="driver.picture" /></td>
                                                 <td v-text="driver.name"></td>
-                                                <td style="direction: ltr;" v-text="last_trips_count"></td>
+                                                <td  v-text="driver.last_trips_count"></td>
                                             </tr>
                                         </tbody>
                                     </table>
