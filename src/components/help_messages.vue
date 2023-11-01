@@ -50,7 +50,7 @@
                     <div class="card team-box" v-if="!showLoader">
                         <div class="card-body px-4">
                             <div class="row align-items-center team-row">
-                                <div class="col-lg-5 col">
+                                <div class="col-lg-4 col">
                                     <div class="team-profile-img gap-4 flex">
                                         <div class="avatar-lg img-thumbnail rounded-circle">
                                             <img v-if="item.user" :src="item.user.picture" alt="" class="img-fluid d-block rounded-circle">
@@ -63,15 +63,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-5 col">
+                                <div class="col-lg-6 col">
                                     <div class="row text-muted text-center">
-                                        <div class="col-6 border-end border-end-dashed">
+                                        <div class="col-4 border-end border-end-dashed">
                                             <h5 class="mb-1 font-semibold" v-text="__('Created at')"></h5>
                                             <p class="text-muted mb-0" v-text="item.date"></p>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-4">
                                             <h5 class="mb-1 font-semibold" v-text="__('Updated at')"></h5>
                                             <p class="text-muted mb-0" v-text="item.last_update"></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <h5 class="mb-1 font-semibold" v-text="__('Status')"></h5>
+                                            <p class="text-muted mb-0" v-text="item.status"></p>
                                         </div>
                                     </div>
                                 </div>
