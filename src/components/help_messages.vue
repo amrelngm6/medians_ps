@@ -50,24 +50,8 @@
                     <div class="card team-box">
                         <div class="card-body px-4">
                             <div class="row align-items-center team-row">
-                                <div class="col team-settings">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <div class="flex-shrink-0 me-2">
-                                                <button type="button" class="btn fs-16 p-0 favourite-btn">
-                                                    <i class="ri-star-fill"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col text-end dropdown">
-                                            <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ri-more-fill fs-17"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-lg-4 col">
-                                    <div class="team-profile-img">
+                                    <div class="team-profile-img gap-4 flex">
                                         <div class="avatar-lg img-thumbnail rounded-circle">
                                             <img v-if="item.user" :src="item.user.picture" alt="" class="img-fluid d-block rounded-circle">
                                         </div>
