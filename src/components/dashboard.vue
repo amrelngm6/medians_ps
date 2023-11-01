@@ -51,14 +51,14 @@
                                         <thead>
                                             <tr>
                                                 <th colspan="2" v-text="__('Student')"></th>
-                                                <th v-text="__('Parent')"></th>
+                                                <th v-text="__('Contact')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.latest_students">
                                             <tr :key="index" v-for="(student, index) in content.latest_students" class="text-center" v-if="student">
                                                 <td><img width="48" height="48" class="rounded" :src="student.picture" /></td>
                                                 <td v-text="student.first_name"></td>
-                                                <td  v-text="student.parent && student.parent.name ? student.parent.name : ''"></td>
+                                                <td  v-text="student.contact_number"></td>
                                             </tr>
                                         </tbody>
                                     </table>
