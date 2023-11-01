@@ -154,7 +154,8 @@ userIdx: {}
                         </div>
                     </div>
                 </div></div></div></div>
-            </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 154px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div>
+            </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
+        </div>
                 <form action="javascript:void(0);" class="mt-3">
                     <div class="row g-3">
                         <div class="col-lg-12">
