@@ -676,6 +676,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.5rem;
 }
 
+.ml-20 {
+  margin-left: 5rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -1925,14 +1929,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .focus\:ring-offset-white:focus {
   --tw-ring-offset-color: #fff;
-}
-
-[dir="ltr"] .ltr\:ml-auto {
-  margin-left: auto;
-}
-
-[dir="rtl"] .rtl\:mr-auto {
-  margin-right: auto;
 }
 
 [dir="rtl"] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
