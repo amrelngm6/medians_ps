@@ -13,53 +13,8 @@
         </div>
 
         <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6">
-            <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl">
-                <div class="box-body space-y-5">
-                    <div class="flex">
-                        <div class="sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
-                                class="avatar avatar-lg rounded-sm"
-                                src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAADwAA/+4ADkFkb2JlAGTAAAAAAf/bAIQAEw8PFxEXJRYWJS8kHSQvLCQjIyQsOjIyMjIyOkM9PT09PT1DQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQwEUFxceGh4kGBgkMyQeJDNCMykpM0JDQj4yPkJDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0ND/8AAEQgAgACAAwEiAAIRAQMRAf/EAIEAAAIDAQEBAAAAAAAAAAAAAAMEAQIFBgAHAQADAQEAAAAAAAAAAAAAAAABAgMABBAAAgEDAwIDBwMEAwEAAAAAAQIAEQMEITESQQVRgRNhcZEiMhQGocFCsdEjFfBSgkMRAQEBAAICAQUBAAAAAAAAAAABESECMRJBUWEiMgOR/9oADAMBAAIRAxEAPwDoADLBZcLLgRWD4yeEIBLTMEEkFaQpMy+6dyGKvFfrO395tbNWy86zij/I1D4dZnr+Q45NPm+E5rIutcJdjUndjFrTEtvNBx1D/kXFqcNPfG8bvmPfNG+Qnx2+M4u/dZTRYO3fKnXUQxrj6XoZBWcn2vu7YxCsS1o9D09061WDgMuoOxmDFCsoVhiJQibWLskEyRoiCYQa2NAGXBiQyllvukHWS94p604DJrEhmpLjLQw+8D1o15+ALHYCcT3DKD3SW1Y7L7PbOg7zni1jkrudJyFtCza6sd5t00mCJjtfNWPkJoWsFEG2sZxscoNRCkawbp8xmXMBCazOysH09VnRMsVvWwwjy0tkrBxTWqmdV+O5pdDjudV1Wc3wCX6dDGsC8bF/mPf+0NTx25MqZhjvtqtKwn+4tn+Qi8jkahg2meO6oeogX7qlaVm5Hhgf7W/4iePc75G8QrJBlPWfRH2v1Off3/8AtLf7LI25ROsvaFTU7CbI0tayLdy7HJ2H1aL1oNzNHtWACPUbXwgMElcdWoOTNxHuM6BLYt2uKzltttjskySkcy56K/LxB9sxLmffU1Uqw8KUjncMW5d/lTymG+KeRrUeEp0he1+zVsdyF48WXi0YdlIiXbsVm+uK9zulH9JfONObhbxNqmUON4GUtPQ198UQCsKxoP8AnhHxPflF8DmaQMM4qa+yUIpDCXykDSVBNZ4tPCkwBiSDKyRCy9YzYWunjFKx7EFbgHQawXwPXy6TEZLaC0/UVUzTt3RwHhOX7xX0l9k0ey3OeEvUgkTks49/u7JefVo3aNEXW2DrJu3SBALYa9qTpKdbwFjRsqvHkJzmdardY9ZqX8m9ZHGoIp8qgTIFx7hLPvH60vaQiV4iVunXyWEc1JEC+q18o6NXZqAe6BJrCXNh7oGNE1hI6wltayy29YNEvJkSYQTWa3a7XNqnbrMtE5Gk3MYi3bIXoKSf9LkU/nNr3cWFxSPOR+O5FC+O3X5li2XdreoNiv8ASL9uYrkaSfWfjYtb+U/x02WhIoN4sbWTaT5XHnHbN4XCA+8tkWvUHEGJ1vwp92Ddu3013ijZDPXSlI5k4fpfyNJl3rgX5RLzlLtcDD6mWJqpgkFRWXrofdHRFKc0BgjbIjGI3JSsIUFYNzgM0vbBE8wINYxxAgidaQa2ExLASokgxyj2jRtJrVFu0B1Mz8LGu33AtqW1j+Vg5CXQhG6lvhvJd5e1yLfzsnNZl24Wu8vAkQnblrdJh8PCF/k2pp4T3awOTA7gzX9Rn7ctlDSCyrzLqphWFBEsptJORTWdk5txxSZxqTGrg1nsXH9R6nYS2yTUbL2uI9MomsEPpMZy7gZqDaLdDN12za3bJci+K9Gp4x0NWZ1s0YH2zQuW+DUhsLPCGNYEj5oQ6SgNTBGpW1aa6wRASx2Amg+EuA6DIHJmoStdAIxi2j27Ksht2ALezlL/AJChLLc8pSENd3vNjWk+2PprX+Okes3/ALhLF06khlPwmbkn7vBDDcAN8JHZsitkIf8A5uPg0bAG/GSCbinxmU4OPmXFHRm/rNDsLenl3bfv/QxfuSBO5EHZ6fqILBlzDiXw6+2I33J0l1qhKncGkGwq0hmV07sKMhJhHb0U4jcxo2wor1mZdcsxm8h45+Qm1PvkkfKZC7yz6CkokGY4Mrmiqd1P6RMwy262wy/VypCU7lWQjVT6SKiLE0MZvXzeoOqKaxQ6mKNbP5ElfTyF8KV/UQl8jPwyw+rjy8xvBWX++wTZP1pp8Not2XI4s1htjt+8eFovZbnO01o9D/WLYZNi9dtew0/86ye3/wCDLe17x8Je+vDOQ9G/fSMAqM1nIfNtAPbNSNd5dHHdT9xcADIePFfCD7O3O3cxz0NRB9qf7fLay2zVX+0zPZNv7a/w5luY5a7iWUVNZfNxPTvlidKVT9/hJUCS7eVunh5tREMnHNOS+c0aS1tByqdhVj5Rfk98MRRT5ztAs1Ye+7X/AJ1FFG9BoIADSPiVr28bwGUuFbxqImJ4GhqN4StBG4XLrDYaHzlLqBXouo6SgqF8TcjeYiqQV8Svwmvhn//Z"
-                                alt="Image Description">
-                            <div class="space-y-1 my-auto">
-                                <h5 class="font-semibold text-base leading-none">Julia Walker</h5>
-                                <p class="text-gray-500 dark:text-white/70 font-semibold text-xs truncate max-w-[9rem]">
-                                    juliawalker@gmail.com</p>
-                                <p class="text-primary dark:text-primary text-xs font-semibold">+121 2525252352</p>
-                            </div>
-                        </div>
-                        <div class="ltr:ml-auto rtl:mr-auto"><a href="/synto-ts/preview/pagecomponent/contacts/"><i
-                                    class="ri ri-heart-fill text-base text-danger hover:text-danger"></i></a></div>
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <div class="grid grid-cols-12 gap-x-3">
-                        <div class="sm:col-span-2 col-span-4 "><a
-                                class="inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"
-                                href="/synto-ts/preview/pagecomponent/contacts/"><i
-                                    class="ri ri-phone-line text-lg leading-none"></i></a></div>
-                        <div class="sm:col-span-8 col-span-4"><a
-                                class="inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 w-full rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"
-                                href="/synto-ts/preview/pagecomponent/contacts/"><i
-                                    class="ri-chat-2-line text-lg leading-none"></i> <span
-                                    class="text-sm leading-none hidden sm:block">Message</span></a></div>
-                        <div class="sm:col-span-2 col-span-4">
-                            <div class="hs-dropdown ti-dropdown flex justify-end"><span
-                                    class="cursor-pointer hs-dropdown-toggle ti-dropdown-toggle inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"><i
-                                        class="ri ri-more-2-line text-lg leading-none"></i></span>
-                                <div class="hs-dropdown-menu ti-dropdown-menu hidden" style=""><a class="ti-dropdown-item"
-                                        href="/synto-ts/preview/pagecomponent/contacts/"><i
-                                            class="ri-share-line me-2 align-middle"></i>Share</a><a class="ti-dropdown-item"
-                                        href="/synto-ts/preview/pagecomponent/contacts/"><i
-                                            class="ri-video-chat-line me-2 align-middle"></i>Video Call</a><a
-                                        class="ti-dropdown-item" href="/synto-ts/preview/pagecomponent/contacts/"><i
-                                            class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl">
+           
+            <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl" v-for="item in content.items">
                 <div class="box-body space-y-5">
                     <div class="flex">
                         <div class="sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
@@ -99,21 +54,81 @@
         </div>
 
 
-        <data_table_page ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Driver"
-            object_key="driver_id"></data_table_page>
+        <!-- <data_table_page ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Driver" -->
+            <!-- object_key="driver_id"></data_table_page> -->
     </div>
 </template>
 <script>
 
 export default
+{   
+
+    data()
+    {
+        return {
+            content: {
+                items:[]
+            } 
+        }
+    },
+
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+    ],
+    mounted() 
+    {
+        this.load()
+    },
+
+    methods: 
     {
 
-        props: [
-            'path',
-            'lang',
-            'setting',
-            'conf',
-            'auth',
-        ],
-    };
+        /**
+         * Handle actions from datatable buttons
+         * Called From 'dataTableActions' component
+         * 
+         * @param String actionName 
+         * @param Object data
+         */  
+        handleAction(actionName, data) {
+            switch(actionName) 
+            {
+                case 'view':
+                    // window.open(this.conf.url+data.content.prefix)
+                    break;  
+
+                case 'edit':
+                    this.showEditSide = true; 
+                    this.showAddSide = false; 
+                    this.activeItem = data
+                    break;  
+
+                case 'delete':
+                    this.$root.$children[0].deleteByKey('driver_id', data, 'Driver.delete');
+                    break;  
+            }
+        },
+
+        load()
+        {
+            this.showLoader = true;
+            this.$root.$children[0].handleGetRequest( this.url ).then(response=> {
+                this.setValues(response)
+                this.showLoader = false;
+            });
+        },
+        
+        setValues(data) {
+            this.content = JSON.parse(JSON.stringify(data)); return this
+        },
+        __(i)
+        {
+            return this.$root.$children[0].__(i);
+        }
+    }
+};
 </script>
