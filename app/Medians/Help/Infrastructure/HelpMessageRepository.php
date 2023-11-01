@@ -6,6 +6,7 @@ use Medians\Help\Domain\HelpMessage;
 use Medians\Help\Domain\HelpMessageComment;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Drivers\Domain\Driver;
+use Medians\Users\Domain\User;
 
 
 class HelpMessageRepository 
