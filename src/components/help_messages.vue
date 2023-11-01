@@ -14,6 +14,9 @@
                         </li>
                     </ul>
                 </div>
+                <div class="card-body pb-0 px-4">
+                    <span v-text="content.title" class="text-lg font-semibold "></span>
+                </div>
                 <!-- end card body -->
             </div>
         </div>
