@@ -64,31 +64,7 @@
             <div class="card-body p-4">
                 <h6 class="fw-semibold text-uppercase mb-3">Ticket Discripation</h6>
                 <p class="text-muted">It would also help to know what the errors are - it could be something simple like a message saying delivery is not available which could be a problem with your shipping templates. Too much or too little spacing, as in the example below, can make things unpleasant for the reader. The goal is to make your text as comfortable to read as possible. On the note of consistency, color consistency is a MUST. If you’re not trying to create crazy contrast in your design, then a great idea would be for you to use a color palette throughout your entire design. It will subconsciously interest viewers and also is very pleasing to look at. <a href="javascript:void(0);" class="link-primary text-decoration-underline">Example</a></p>
-                <h6 class="fw-semibold text-uppercase mb-3">Create an Excellent UI for a Dashboard</h6>
-                <ul class="text-muted vstack gap-2 mb-4">
-                    <li>Pick a Dashboard Type</li>
-                    <li>Categorize information when needed</li>
-                    <li>Provide Context</li>
-                    <li>On using colors</li>
-                    <li>On using the right graphs</li>
-                </ul>
-                <div class="mt-4">
-                    <h6 class="fw-semibold text-uppercase mb-3">Here is the code you've requested</h6>
-                    <div>
-                        <pre class="language-markup rounded-2"><code>var app = document.getElementById("app");
-var run = (model) =&gt; get(model, "users", () =&gt;
-get(model, "posts",
-() =&gt; {
-model.users.forEach(user =&gt; model.userIdx[user.id] = user);
-app.innerText = '';
-model.posts.forEach(post =&gt;
-app.appendChild(renderPost(post, model.userIdx[post.userId])));
-}));
-app.appendChild(Wrapper.generate("button", "Load").click(() =&gt; run({
-userIdx: {}
-})).element);</code></pre>
-                    </div>
-                </div>
+                
             </div>
             <!--end card-body-->
             <div class="card-body p-4">
@@ -209,7 +185,7 @@ userIdx: {}
                                         </a>
                                         <a href="javascript: void(0);" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" data-bs-original-title="Add Members">
                                             <div class="avatar-xs">
-                                                <div class="avatar-title fs-16 rounded-circle bg-light border-dashed border text-primary">
+                                                <div class="avatar-title fs-16 rounded-circle bg-light border-dashed border text-white">
                                                     +
                                                 </div>
                                             </div>
@@ -244,10 +220,10 @@ userIdx: {}
                             <tr>
                                 <td class="fw-medium">Labels</td>
                                 <td class="hstack text-wrap gap-1">
-                                    <span class="badge bg-primary-subtle text-primary">Admin</span>
-                                    <span class="badge bg-primary-subtle text-primary">UI</span>
-                                    <span class="badge bg-primary-subtle text-primary">Dashboard</span>
-                                    <span class="badge bg-primary-subtle text-primary">Design</span>
+                                    <span class="badge bg-primary-subtle text-white">Admin</span>
+                                    <span class="badge bg-primary-subtle text-white">UI</span>
+                                    <span class="badge bg-primary-subtle text-white">Dashboard</span>
+                                    <span class="badge bg-primary-subtle text-white">Design</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -257,43 +233,6 @@ userIdx: {}
             <!--end card-body-->
         </div>
         <!--end card-->
-        <div class="card">
-            <div class="card-header">
-                <h6 class="card-title fw-semibold mb-0">Files Attachment</h6>
-            </div>
-            <div class="card-body">
-                <div class="d-flex align-items-center border border-dashed p-2 rounded">
-                    <div class="flex-shrink-0 avatar-sm">
-                        <div class="avatar-title bg-light rounded">
-                            <i class="ri-file-zip-line fs-20 text-primary"></i>
-                        </div>
-                    </div>
-                    <div class="flex-grow-1 ms-3">
-                        <h6 class="mb-1"><a href="javascript:void(0);">Velzon-admin.zip</a></h6>
-                        <small class="text-muted">3.2 MB</small>
-                    </div>
-                    <div class="hstack gap-3 fs-16">
-                        <a href="javascript:void(0);" class="text-muted"><i class="ri-download-2-line"></i></a>
-                        <a href="javascript:void(0);" class="text-muted"><i class="ri-delete-bin-line"></i></a>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center border border-dashed p-2 rounded mt-2">
-                    <div class="flex-shrink-0 avatar-sm">
-                        <div class="avatar-title bg-light rounded">
-                            <i class="ri-file-ppt-2-line fs-20 text-danger"></i>
-                        </div>
-                    </div>
-                    <div class="flex-grow-1 ms-3">
-                        <h6 class="mb-1"><a href="javascript:void(0);">Velzon-admin.ppt</a></h6>
-                        <small class="text-muted">4.5 MB</small>
-                    </div>
-                    <div class="hstack gap-3 fs-16">
-                        <a href="javascript:void(0);" class="text-muted"><i class="ri-download-2-line"></i></a>
-                        <a href="javascript:void(0);" class="text-muted"><i class="ri-delete-bin-line"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <!--end col-->
 </div>
