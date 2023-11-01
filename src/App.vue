@@ -3,6 +3,8 @@
 
         <div v-if="show" class="left-4">
             <!-- component -->
+        <test />
+
             <div class="w-full relative">
                 <navbar v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
