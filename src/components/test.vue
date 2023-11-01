@@ -14,7 +14,7 @@
                                 <div class="col-md-auto">
                                     <div class="avatar-md mb-md-0 mb-4">
                                         <div class="avatar-title bg-white rounded-circle">
-                                            <img :src="item.user.picture" alt="" class="avatar-sm">
+                                            <img v-if="item" :src="item.user.picture" alt="" class="avatar-sm">
                                         </div>
                                     </div>
                                 </div>
@@ -192,38 +192,26 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fw-medium">Status:</td>
+                                <td class="fw-medium" v-text="__('Status')"></td>
                                 <td>
                                     <div class="choices" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div class="choices__inner"><select class="form-select choices__input" id="t-status" data-choices="" data-choices-search-false="" aria-label="Default select example" hidden="" tabindex="-1" data-choice="active"><option value="New" data-custom-properties="[object Object]">New</option></select><div class="choices__list choices__list--single"><div class="choices__item choices__item--selectable" data-item="" data-id="1" data-value="New" data-custom-properties="[object Object]" aria-selected="true">New</div></div></div><div class="choices__list choices__list--dropdown" aria-expanded="false"><div class="choices__list" role="listbox"><div id="choices--t-status-item-choice-5" class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted" role="option" data-choice="" data-id="5" data-value="" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Status</div><div id="choices--t-status-item-choice-1" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="1" data-value="Closed" data-select-text="Press to select" data-choice-selectable="">Closed</div><div id="choices--t-status-item-choice-2" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="2" data-value="Inprogress" data-select-text="Press to select" data-choice-selectable="">Inprogress</div><div id="choices--t-status-item-choice-3" class="choices__item choices__item--choice is-selected choices__item--selectable" role="option" data-choice="" data-id="3" data-value="New" data-select-text="Press to select" data-choice-selectable="">New</div><div id="choices--t-status-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="Open" data-select-text="Press to select" data-choice-selectable="">Open</div></div></div></div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fw-medium">Priority</td>
+                                <td class="fw-medium"  v-text="__('Priority')"></td>
                                 <td>
-                                    <span class="badge bg-danger" id="t-priority">High</span>
+                                    <span class="badge bg-danger" id="t-priority" v-text="item.priority"></span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fw-medium">Create Date</td>
-                                <td id="c-date">20 Dec, 2021</td>
+                                <td class="fw-medium" v-text="__('Created at')"></td>
+                                <td id="c-date" v-text="item.date"></td>
                             </tr>
                             <tr>
-                                <td class="fw-medium">Due Date</td>
-                                <td id="d-date">29 Dec, 2021</td>
+                                <td class="fw-medium" v-text="__('Last update')"></td>
+                                <td id="d-date" v-text="item.updated_at"></td>
                             </tr>
-                            <tr>
-                                <td class="fw-medium">Last Activity</td>
-                                <td>14 min ago</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-medium">Labels</td>
-                                <td class="hstack text-wrap gap-1">
-                                    <span class="badge bg-primary-subtle text-white">Admin</span>
-                                    <span class="badge bg-primary-subtle text-white">UI</span>
-                                    <span class="badge bg-primary-subtle text-white">Dashboard</span>
-                                    <span class="badge bg-primary-subtle text-white">Design</span>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -250,6 +238,7 @@ export default
         'setting',
         'conf',
         'auth',
+        'item'
     ],
 };
 </script>
