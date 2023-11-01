@@ -61,8 +61,7 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th ></th>
-                                                <th v-text="__('name')"></th>
+                                                <th colspan="2" v-text="__('Driver')"></th>
                                                 <th v-text="__('Trips')"></th>
                                             </tr>
                                         </thead>
