@@ -63,7 +63,6 @@ class PickupLocationRepository
 
 
 
-
 	/**
 	* Save item to database
 	*/

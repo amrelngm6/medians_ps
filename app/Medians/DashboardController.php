@@ -112,10 +112,10 @@ class DashboardController extends CustomController
         $data['completed_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('trip_status', 'Completed')->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['help_messages_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['drivers_count'] = $this->DriverRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['routes_count'] = $this->RouteRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['pickup_locations_count'] = $this->PickupLocationRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['vehicles_count'] = $this->VehicleRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['drivers_count'] = $this->DriverRepository->get()->count();
+        $data['routes_count'] = $this->RouteRepository->get()->count();
+        $data['pickup_locations_count'] = $this->PickupLocationRepository->get()->count();
+        $data['vehicles_count'] = $this->VehicleRepository->get()->count();
 
         return $data;
 
