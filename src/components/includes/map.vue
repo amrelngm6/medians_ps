@@ -94,6 +94,13 @@ export default
             'waypoints'
         ],
         mounted() {
+            
+            if (google)
+            {
+                this.directionsService = new google.maps.DirectionsService();
+                this.directionsDisplay = new google.maps.DirectionsRenderer();
+            }
+            
             if (this.waypoints && this.waypoints.length)
                 this.calculateAndDisplayRoute();
 
