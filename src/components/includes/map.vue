@@ -159,8 +159,9 @@ export default
                         const { origin, destination } = waypoint;
                         console.log(origin);
                         console.log(destination);
-                        console.log(window.google);
-                        console.log(window.google.maps.LatLng(destination.lat, destination.lng));
+                        console.log(window.google.maps);
+                        const t = window.google.maps.LatLng(destination.lat, destination.lng);
+                        console.log(t);
                         t.directionsService.route(
                             {
                                 origin: new window.google.maps.LatLng(origin.lat, origin.lng),
