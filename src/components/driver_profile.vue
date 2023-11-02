@@ -72,7 +72,7 @@
                                     class="transition-all duration-300 transform">
                                     <div class="w-full border-b border-gray-100" v-if="activeStatus == 'info'">
                                         <div class="row mt-6">
-                                            <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" value="10"></dashboard_card>
+                                            <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" :value="activeItem.last_trips.length"></dashboard_card>
                                             <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" value="10"></dashboard_card>
                                             <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" value="10"></dashboard_card>
                                         </div>
