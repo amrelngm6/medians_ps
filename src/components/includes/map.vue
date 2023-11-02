@@ -155,7 +155,8 @@ export default
                     this.directionsDisplay.setMap(map);
 
                     this.waypoints.forEach((waypoint, index) => {
-                        const { origin, destination } = waypoint;
+                        const { origin, destination} = waypoint;
+                        const final_destination = index ? this.waypoints[index - 1].destination : destination;
                         this.directionsService.route(
                             {
                                 origin: new window.google.maps.LatLng(origin.lat, origin.lng),
@@ -164,7 +165,6 @@ export default
                             },
                             (response, status) => {
                                 console.log(response);
-                                console.log(Status);
                                 if (status === 'OK') {
                                 this.directionsDisplay.setDirections(response);
                                 } else {
@@ -172,6 +172,7 @@ export default
                                 }
                             }
                         );
+
                     });
                 }
             },
