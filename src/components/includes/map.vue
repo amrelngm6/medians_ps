@@ -147,7 +147,7 @@ export default
 
              calculateAndDisplayRoute() {
                 console.log(window.google);
-                if (window.google) {
+                if (window.google && this.waypoints.length) {
                     console.log(window.google);
                     
                     var map = this.$refs.gmap.$mapObject;
