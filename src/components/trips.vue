@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div  v-if="content " class=" w-full relative">
 
-            <maps :showroute="true" :key="locations" :waypoints="locations"></maps>
+            <maps :showroute="true" :key="showMap" :waypoints="locations"></maps>
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
                     <div class="text-black text-lg font-semibold" v-text="__('Trips')"></div>
@@ -168,6 +168,8 @@ export default
         {
             if (trip)
             {
+                
+                this.showMap = false
                 this.activeTrip = trip
                 let a, o;
                 let locations = [];
@@ -177,8 +179,10 @@ export default
                     locations[i] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
                 }
                 locations[locations.length] = {status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
+                this.showMap = true
                 return locations;
             }
+            
         },  
 
         /**
