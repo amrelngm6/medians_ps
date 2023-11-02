@@ -71,11 +71,11 @@
                                 <div id="basic-tabs-1" 
                                     class="transition-all duration-300 transform">
                                     <div class="w-full border-b border-gray-100" v-if="activeStatus == 'info'">
-                                        <div class="row mt-6 w-full">
+                                        <div class="mt-6 w-full">
                                             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
-                                                <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" class="border border-1 " :title="__('Completed trips')" :value="activeItem.last_trips.length"></dashboard_card_white>
-                                                <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('Pickup locations')" :value="activeItem.total_pickups_count"></dashboard_card_white>
-                                                <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('Reviews')" :value="activeItem.reviews_count"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" class="border border-1" :title="__('Completed trips')" :value="activeItem.last_trips.length"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" class="border border-1" :title="__('Pickup locations')" :value="activeItem.total_pickups_count"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" class="border border-1" :title="__('Reviews')" :value="'0'"></dashboard_card_white>
                                             </div>
                                         </div>
                                     </div>
