@@ -11,7 +11,8 @@
         }"
        :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
        <GmapPolyline
-        :path="waypoints"
+        :path="polylineCoordinates"
+        :index="polylineCoordinates"
         :editable="true" 
       />
             <DirectionsRenderer 
@@ -127,10 +128,7 @@ export default
             
             addPoint(event) {
                 console.log(event)
-                this.polylineCoordinates.push({
-                    lat: event.lat,
-                    lng: event.lng
-                });
+                this.polylineCoordinates.push(event);
                 console.log(this.polylineCoordinates)
             },
             setMarker(i) { this.activeMarkerIndex = i; },
