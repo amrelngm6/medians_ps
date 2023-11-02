@@ -86,7 +86,7 @@ export default
             },
 
             activeItem:{},
-            activeTrip:{},
+            activeTrip:null,
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
