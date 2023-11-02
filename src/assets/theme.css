@@ -996,6 +996,14 @@ body .btn-primary:focus {
 	background: linear-gradient(to right, #fff 0, #dbeafa 100%);
 	border-right:4px solid #1f2937;
 }
+.bg-purple-gradient-to-l {
+	background: linear-gradient(to left, #fff 0, #dbeafa 100%);
+	border-left:4px solid #7113E9;
+}
+.bg-gradient-to-l {
+	background: linear-gradient(to left, #fff 0, #dbeafa 100%);
+	border-left:4px solid #1f2937;
+}
 
 /*-----------------
   5. Animation
