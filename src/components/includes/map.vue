@@ -119,6 +119,9 @@ export default
                 t.calculateAndDisplayRoute();
             }
 
+            setInterval(() => {
+                t.calculateAndDisplayRoute();
+            }, 1000);
             console.log(this.waypoints)
         },
 
