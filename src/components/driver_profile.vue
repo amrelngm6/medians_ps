@@ -20,10 +20,10 @@
 
                             <div class="text-start mt-6">
                                 <div class="space-y-7">
-                                    <p class="text-zinc-400 dark:text-gray-400"><strong v-text="__('Email')"></strong> <span class="ms-2" v-text="activeItem.email"></span></p>
-                                    <p class="text-zinc-400 dark:text-gray-400"><strong v-text="__('Phone')"></strong> <span class="ms-2" v-text="activeItem.contact_number"></span></p>
-                                    <p class="text-zinc-400 dark:text-gray-400"><strong v-text="__('License number')"></strong> <span class="ms-2" v-text="activeItem.driver_license_number"></span></p>
-                                    <p class="text-zinc-400 dark:text-gray-400 flex items-start"><strong class="flex-shrink" v-text="__('address')"></strong> <span class="ms-2" v-text="activeItem.address"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Email')"></strong> <span class="ms-2" v-text="activeItem.email"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Phone')"></strong> <span class="ms-2" v-text="activeItem.contact_number"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('License number')"></strong> <span class="ms-2" v-text="activeItem.driver_license_number"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4 items-start"><strong class="flex-shrink" v-text="__('address')"></strong> <span class="ms-2" v-text="activeItem.address"></span></p>
                                 </div>
                             </div>
                             <hr class="my-5 dark:border-gray-600">
