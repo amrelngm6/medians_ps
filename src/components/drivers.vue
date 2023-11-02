@@ -1,7 +1,7 @@
 <template>
     <div class=" w-full pb-20">
 
-        <div class="relative w-full" v-if="showProfile">
+        <div class="relative w-full" v-if="showProfile && !showLoader">
             <driver_profile :key="activeItem" :item="activeItem" @edit="handleAction" @close="handleAction"></driver_profile>
         </div>
 
@@ -112,6 +112,7 @@ export default
              */
             handleAction(actionName, data) {
                 console.log(actionName)
+                this.showLoader = true;
                 switch (actionName) {
                     case 'view':
                         this.showEditSide = false;
@@ -140,6 +141,8 @@ export default
                         this.showProfile = false;
                         break;
                 }
+                this.showLoader = false;
+
             },
 
             load() {
