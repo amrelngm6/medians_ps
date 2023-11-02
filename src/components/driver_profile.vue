@@ -2,7 +2,7 @@
     <div class=" w-full">
         <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6" v-if="!showLoader">
                     <div class="xl:col-span-3 lg:col-span-5">
-                        <div class="card  p-6 mb-6">
+                        <div class="card px-4 py-6 mb-6">
                             <div class="text-center">
 
                                 <img :src="activeItem.picture" alt="" class=" rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
@@ -95,6 +95,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <p class="text-center">
+                                                    <span class="mx-auto menu-dark px-4 py-3 rounded-xl" @click="loadmore()" v-text="__('Load more')"></span>
+                                                </p>
                                             </div>
                                         </div> <!-- tabs-with-underline-1 end -->
                                     </div> <!-- tab-end -->
@@ -141,6 +145,14 @@ export default
 
     methods: 
     {
+
+        loadmore()
+        {
+            this.showLoader = true;
+            this.limitCount += 2;
+            this.showLoader = false;
+        },
+
         setActiveStatus(status)
         {
             this.showLoader = true;
