@@ -48,6 +48,11 @@ class DriverRepository
 		return Driver::limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 
+	public function getAll($limit = 100)
+	{
+		return Driver::with('last_trips')->limit($limit)->orderBy('driver_id', 'DESC')->get();
+	}
+
 	public function topDrivers($limit = 100)
 	{
 		return Driver::withCount('last_trips')->having('last_trips_count', '>', 0)->orderBy('last_trips_count', 'DESC')->limit($limit)->get();

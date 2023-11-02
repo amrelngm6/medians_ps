@@ -93,7 +93,7 @@ class DriverController extends CustomController
 		        'title' => __('Drivers'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
-		        'items' => $this->repo->get(),
+		        'items' => $this->repo->getAll(),
 		        'categories' => $this->categoryRepo->get('Medians\Drivers\Domain\Driver'),
 		    ]);
 		} catch (\Exception $e) {
