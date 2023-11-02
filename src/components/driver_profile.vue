@@ -3,42 +3,28 @@
         <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6" v-if="!showLoader">
                     <div class="xl:col-span-3 lg:col-span-5">
                         <div class="card text-center p-6 mb-6">
-                            <img src="assets/images/users/avatar-7.jpg" alt="" class="h-20 rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
-                            <h4 class="mb-1 mt-3 text-lg dark:text-gray-300">Shreyu N</h4>
-                            <p class="text-gray-400 mb-4 dark:text-gray-400">User Experience Specialist <br> San Francisco, CA</p>
+                            <img :src="activeItem.picture" alt="" class=" rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
+                            <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
+                            <p class="text-gray-400 mb-4 dark:text-gray-400" v-text="activeItem.email"></p>
 
                             <div class="flex w-full h-4 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-600 mb-6">
                                 <div class="flex flex-col justify-center overflow-hidden bg-success text-xs text-white text-center" role="progressbar" style="width: 60%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100">Your Profile is 25% completed</div>
                             </div>
 
-                            <button type="button" class="btn bg-primary/90 hover:bg-primary rounded btn-sm text-white mb-3">Follow</button>
-                            <button type="button" class="btn border border-gray-200 hover:bg-light btn-sm hover:border-transparent rounded mb-3 dark:border-gray-600 dark:hover:bg-gray-600/50">Message</button>
+                            <button type="button" class="btn bg-primary/90 hover:bg-primary rounded btn-sm text-white mb-3" v-text="__('Edit')"></button>
 
                             <hr class="mt-5 dark:border-gray-600">
 
                             <div class="text-start mt-6">
-                                <h4 class="text-sm mb-2.5 dark:text-gray-300">About</h4>
-                                <p class="text-gray-400 mb-6 dark:text-gray-400">
-                                    Hi I'm Tosha Minner,has been the industry's standard dummy text ever since the
-                                    1500s, when an unknown printer took a galley of type.
-                                </p>
-                                <hr class="mb-5 dark:border-gray-600">
                                 <div class="space-y-7">
-                                    <p class="text-zinc-400 dark:text-gray-400"><strong>Email :</strong> <span class="ms-2">xyz123@gmail.com</span></p>
-                                    <p class="text-zinc-400 dark:text-gray-400"><strong>Phone :</strong> <span class="ms-2"> (123) 123 1234</span></p>
-                                    <p class="text-zinc-400 dark:text-gray-400 flex items-start"><strong class="flex-shrink">Address:</strong> <span class="ms-2">1975 Boring Lane, San Francisco, California, United States - 94108</span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400"><strong v-text="__('Email')"></strong> <span class="ms-2" v-text="activeItem.email"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400"><strong v-text="__('Phone')"></strong> <span class="ms-2" v-text="activeItem.contact_number"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400"><strong v-text="__('License number')"></strong> <span class="ms-2" v-text="activeItem.driver_license_number"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex items-start"><strong class="flex-shrink" v-text="__('address')"></strong> <span class="ms-2" v-text="activeItem.address"></span></p>
                                 </div>
                             </div>
                             <hr class="my-5 dark:border-gray-600">
 
-                            <h2 class="text-start mb-5 dark:text-gray-300">Skills</h2>
-                            <div class="flex flex-wrap items-end gap-2">
-                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">UI design</span>
-                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">UX</span>
-                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">Sketch</span>
-                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">Photoshop</span>
-                                <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded text-xs font-semibold bg-primary/20 text-primary">Frontend</span>
-                            </div>
                         </div> <!-- end card -->
                     </div>
 
