@@ -1273,9 +1273,11 @@ export default
         'setting',
         'conf',
         'auth',
+        'item',
     ],
     mounted() 
     {
+        this.activeItem = this.item;
     },
 
     methods: 
