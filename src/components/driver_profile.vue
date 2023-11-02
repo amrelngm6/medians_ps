@@ -84,8 +84,8 @@
                                                                         </div>
                                                                         <div class="relative me-5 md:ps-0 ps-10">
                                                                             <div class="pt-3">
-                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300" v-text="location.model.name"></h4>
-                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400" v-text="location.model.location.address"></p>
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300" v-if="location.model" v-text="location.model.name"></h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400" v-if="location.location" v-text="location.location.address"></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
