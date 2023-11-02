@@ -226,10 +226,8 @@ export default
 
         load()
         {
-            this.showLoader = true;
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
-                this.showLoader = false;
                 this.searchTextChanged()
 
                 // this.$alert(response)
