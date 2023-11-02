@@ -150,29 +150,23 @@ export default
 
             async calculateAndDisplayRoute() {
                 if (window.google) {
-                    const waypoints = this.waypoints.map(point => {
-                        return {
-                        location: new google.maps.LatLng(point.lat, point.lng),
-                        stopover: true
-                        };
+                    this.waypoints.forEach((waypoint, index) => {
+                        const { origin, destination } = waypoint;
+                        this.directionsService.route(
+                            {
+                                origin: new google.maps.LatLng(origin.lat, origin.lng),
+                                destination: new google.maps.LatLng(destination.lat, destination.lng),
+                                travelMode: 'DRIVING'
+                            },
+                            (response, status) => {
+                                if (status === 'OK') {
+                                this.directionsDisplay.setDirections(response);
+                                } else {
+                                console.warn('Directions request failed due to ' + status);
+                                }
+                            }
+                        );
                     });
-
-                    this.directionsService.route(
-                        {
-                        origin: waypoints[0].destination,
-                        destination: waypoints[this.waypoints.length - 1].destination,
-                        waypoints: waypoints.slice(1, waypoints.length - 1),
-                        optimizeWaypoints: true, // Optimize the order of waypoints
-                        travelMode: 'DRIVING'
-                        },
-                        (response, status) => {
-                        if (status === 'OK') {
-                            this.directionsDisplay.setDirections(response);
-                        } else {
-                            console.warn('Directions request failed due to ' + status);
-                        }
-                        }
-                    );
                 }
             },
 
