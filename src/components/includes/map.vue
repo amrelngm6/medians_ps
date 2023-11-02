@@ -12,7 +12,7 @@
        :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
        <GmapPolyline
         :path="waypoints"
-        :editable="true" // Set to true if you want the polyline to be editable
+        :editable="true" 
       />
             <DirectionsRenderer 
                 v-if="showroute"
@@ -91,7 +91,7 @@ export default
                 ],
 
                 polylineCoordinates: [],
-            },
+            }
 
         },
 
