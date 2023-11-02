@@ -72,9 +72,17 @@
                                     class="transition-all duration-300 transform">
                                     <div class="w-full border-b border-gray-100" v-if="activeStatus == 'info'">
                                         <div class="row mt-6">
-                                            <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" :value="activeItem.last_trips.length"></dashboard_card>
-                                            <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" value="10"></dashboard_card>
-                                            <dashboard_card class="col-md-4" classes="bg-gradient-danger" :title="__('Trips count')" value="10"></dashboard_card>
+                                            
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                                                <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_trips')" :value="activeItem.last_trips.length"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('completed_trips')" :value="activeItem.total_pickups_count"></dashboard_card_white>
+                                            </div>
+                                            
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+                                                <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_trips')" :value="activeItem.last_trips.length"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('completed_trips')" :value="activeItem.total_pickups_count"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('completed_trips')" :value="activeItem.total_pickups_count"></dashboard_card_white>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' && activeItem.last_trips">
