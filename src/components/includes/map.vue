@@ -158,8 +158,8 @@ export default
                         const { origin, destination } = waypoint;
                         this.directionsService.route(
                             {
-                                origin: new google.maps.LatLng(origin.lat, origin.lng),
-                                destination: new google.maps.LatLng(destination.lat, destination.lng),
+                                origin: new window.google.maps.LatLng(origin.lat, origin.lng),
+                                destination: new window.google.maps.LatLng(destination.lat, destination.lng),
                                 travelMode: 'DRIVING'
                             },
                             (response, status) => {
