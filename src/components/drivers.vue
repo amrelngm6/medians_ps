@@ -2,7 +2,7 @@
     <div class=" w-full pb-20">
 
         <div class="relative w-full" v-if="showProfile">
-            <driver_profile :key="activeItem" :item="activeItem" @edit="handleAction"></driver_profile>
+            <driver_profile :key="activeItem" :item="activeItem" @edit="handleAction" @close="handleAction"></driver_profile>
         </div>
 
         <main v-if="content && !showProfile && !showLoader" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
@@ -129,6 +129,14 @@ export default
 
                     case 'delete':
                         this.$root.$children[0].deleteByKey('driver_id', data, 'Driver.delete');
+                        break;
+                        break;
+
+                    case 'close':
+                        
+                        this.showEditSide = false;
+                        this.showAddSide = false;
+                        this.showProfile = false;
                         break;
                 }
             },

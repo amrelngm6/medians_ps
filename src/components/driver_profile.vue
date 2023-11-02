@@ -12,7 +12,7 @@
 
                         <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
                             v-text="__('Edit')"></button>
-                        <button type="button" @click="update" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
+                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
                             ><i class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
                     </div>
 
@@ -220,6 +220,11 @@ export default
             update()
             {
                 this.$emit('edit', this.activeItem);
+            },
+
+            close()
+            {
+                this.$emit('close', '');
             },
 
             loadmore() {
