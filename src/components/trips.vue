@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div  v-if="content " class=" w-full relative">
 
-            <maps :showroute="true" :key="showMap" :waypoints="locations"></maps>
+            <maps :showroute="true" :key="locations" :waypoints="locations"></maps>
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
                     <div class="text-black text-lg font-semibold" v-text="__('Trips')"></div>

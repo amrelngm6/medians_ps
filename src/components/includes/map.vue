@@ -116,13 +116,10 @@ export default
             t.directionsDisplay = new window.google.maps.DirectionsRenderer();
             
             if (t.waypoints && t.waypoints.length) {
+                this.polylineCoordinates = []
                 t.calculateAndDisplayRoute();
             }
 
-            setInterval(() => {
-                this.polylineCoordinates = []
-                t.calculateAndDisplayRoute();
-            }, 1000);
             console.log(this.waypoints)
         },
 
