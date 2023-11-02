@@ -198,12 +198,7 @@ class APP
 		if (empty($user))
 			return null;
 
-		if ($user->role_id === 1)
-			return $this->masterMenu();
-		elseif ($user->role_id === 3)
-			return $this->checkMenuAccess($this->adminMenu(), $user);
-		elseif ($user->role_id === 4)
-			return $this->checkMenuAccess($this->adminMenu(), $user);
+		return $this->checkMenuAccess($this->adminMenu(), $user);
 	}
 
 	
@@ -216,38 +211,38 @@ class APP
 	{
 
 		$data = array(
-			array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'master_dashboard'),
-			array('title'=>__('notifications'),  'icon'=>'fa-desktop', 'link'=>'#notifications', 'sub'=>
-				[
-	                array('title'=>__('notifications_log'),  'icon'=>'', 'link'=>'admin/notifications', 'component'=>'notifications'),
-	                array('title'=>__('notifications_events'),  'icon'=>'', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
-				]
-			),
-
-	        // array('title'=>__('Pages'),  'icon'=>'fa-file', 'link'=>'admin/pages', 'component'=>'pages'),
-	        array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
-			array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
+			
+			array('title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
 			array('title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
-
+		
 		return $data;
 	}
-
-
+	
+	
 	/**
-	* Return Administrator menu
-	* List of side menu
-	*/
+	 * Return Administrator menu
+	 * List of side menu
+	 */
 	public function adminMenu()
 	{
-
+		
 		$data = array(
-			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
+			
+			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'#dashboard', 'sub'=>
+			[
+				array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
+				array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'master_dashboard'),
+				array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
+				// array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
+			]
+			),
 			
 			array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'#customers', 'sub'=>
 			[
 				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'fa-user', 'link'=>'admin/parents', 'component'=>'parents'),
 				array('permission'=>'Student.index', 'title'=>__('Students'),  'icon'=>'fa-user', 'link'=>'admin/students', 'component'=>'students'),
+				array('permission'=>'Driver.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
 			]
 			),
 			
@@ -257,14 +252,13 @@ class APP
 					array('permission'=>'Pickup.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
 				]
 			),
-			
-			array('permission'=>'Driver.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
+
 			array('permission'=>'Vehicles.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
 			array('permission'=>'Trips.index', 'title'=>__('trips'),  'icon'=>'fa-suitcase-rolling', 'link'=>'admin/trips', 'component'=>'trips'),
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'fa-circle-info', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
 			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
-			array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
+			array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'fa-alarm', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
 
