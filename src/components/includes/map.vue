@@ -10,6 +10,7 @@
             fullscreenControl: true
         }"
        :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
+       
        <GmapPolyline
         :path="polylineCoordinates"
         :index="polylineCoordinates"
