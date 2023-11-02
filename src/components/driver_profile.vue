@@ -149,7 +149,7 @@ export default
         loadmore()
         {
             this.showLoader = true;
-            this.limitCount += 2;
+            this.limitCount += 5;
             this.showLoader = false;
         },
 
