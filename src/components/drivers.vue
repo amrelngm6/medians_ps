@@ -1,11 +1,11 @@
 <template>
-    <div class=" w-full">
+    <div class=" w-full pb-20">
 
         <div class="relative w-full" v-if="showProfile">
             <driver_profile :key="activeItem" :item="activeItem" @edit="handleAction"></driver_profile>
         </div>
 
-        <main v-if="content && !showProfile && !showLoader" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
+        <main v-if="content && !showProfile && !showLoader" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
             <!-- New releases -->
             <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                 <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
