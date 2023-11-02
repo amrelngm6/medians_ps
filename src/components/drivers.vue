@@ -30,7 +30,7 @@
                             <div class="sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
                                     class="avatar avatar-lg rounded-sm" :src="driver.picture" alt="Image Description">
                                 <div class="space-y-1 my-auto">
-                                    <h5 @click="handleAction('view', driver)" class="font-semibold text-base leading-none" v-text="driver.name"></h5>
+                                    <h5 @click="handleAction('view', driver)" class="cursor-pointer font-semibold text-base leading-none" v-text="driver.name"></h5>
                                     <p class="text-gray-500 dark:text-white/70 font-semibold text-xs truncate max-w-[9rem]"
                                         v-text="driver.email"></p>
                                     <p class="text-primary dark:text-primary text-xs font-semibold"
