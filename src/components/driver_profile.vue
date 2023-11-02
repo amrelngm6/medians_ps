@@ -49,21 +49,21 @@
                                 aria-label="Tabs" role="tablist">
                                 <button @click="setActiveStatus('info')" type="button"
                                     v-text="__('Info')"
-                                    :class="activeStatus == 'info' ? 'dark-menu text-white font-semibold' : 'text-gray-50'"
+                                    :class="activeStatus == 'info' ? 'menu-dark text-white font-semibold' : 'text-gray-50'"
                                     class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
                                 </button> <!-- button-end -->
                                 <button @click="setActiveStatus('trips')" type="button"
                                     v-text="__('Trips')"
-                                    :class="activeStatus == 'trips' ? 'dark-menu text-whit font-semibolde' : 'text-gray-50'"
+                                    :class="activeStatus == 'trips' ? 'menu-dark text-whit font-semibolde' : 'text-gray-50'"
                                     class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-50 dark:text-white">
                                 </button> <!-- button-end -->
                                 <button @click="setActiveStatus('reviews')"  type="button"
                                 v-text="__('Reviews')"
-                                    :class="activeStatus == 'reviews' ? 'dark-menu text-whit font-semibolde' : 'text-gray-50'"
+                                    :class="activeStatus == 'reviews' ? 'menu-dark text-whit font-semibolde' : 'text-gray-50'"
                                     class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white">
                                 </button> <!-- button-end -->
                                 <button type="button"
-                                    :class="activeStatus == 'help_messages' ? 'dark-menu text-whit font-semibolde' : 'text-gray-50'"
+                                    :class="activeStatus == 'help_messages' ? 'menu-dark text-whit font-semibolde' : 'text-gray-50'"
                                     v-text="__('Help messages')"
                                     class="hover:bg-white hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap text-gray-500 dark:text-white">
                                 </button> <!-- button-end -->
