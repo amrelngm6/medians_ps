@@ -126,10 +126,12 @@ export default
         {
             
             addPoint(event) {
+                console.log(event)
                 this.polylineCoordinates.push({
                     lat: event.lat,
                     lng: event.lng
                 });
+                console.log(this.polylineCoordinates)
             },
             setMarker(i) { this.activeMarkerIndex = i; },
             updateDestination(event) {
