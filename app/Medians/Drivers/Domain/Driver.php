@@ -7,6 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Trips\Domain\Trip;
+use Medians\Trips\Domain\TripPickup;
 use Medians\CustomFields\Domain\CustomField;
 
 
