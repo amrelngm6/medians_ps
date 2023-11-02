@@ -164,6 +164,11 @@ export default
                                 travelMode: 'DRIVING'
                             },
                             (response, status) => {
+                                
+                                console.log(status);
+                                if (status == 'OK') {
+                                    console.log('status');
+                                }
                                 if (status === 'OK') {
                                     console.log(response);
                                 this.directionsDisplay.setDirections(response);
