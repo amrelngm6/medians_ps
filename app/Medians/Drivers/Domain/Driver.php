@@ -76,7 +76,7 @@ class Driver extends CustomModel
 
 	public function help_messages() 
 	{
-		return $this->morphMany(HelpMessage::class, 'user');	
+		return $this->morphMany(HelpMessage::class, 'user')->orderBy('message_id', 'DESC');	
 	}
 
 	public function last_trips() 
