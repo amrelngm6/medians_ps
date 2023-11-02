@@ -116,7 +116,10 @@ export default
     mounted() 
     {
         this.load()
-        console.log(this.lang)
+
+        setInterval(() => {
+            this.load()
+        }, 10000);
     },
 
     methods: 
