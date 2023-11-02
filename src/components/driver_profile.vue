@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-center">
+                        <p class="text-center" v-if="showLoadMore">
                             <span class="mx-auto menu-dark px-4 py-3 rounded-xl text-white cursor-pointer text-white rounded-lg" @click="loadmore()" v-text="__('Load more')"></span>
                         </p>
                     </div>
@@ -124,6 +124,7 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: false,
+            showLoadMore: true,
             limitCount: 3,
             activeStatus: 'info',
         }
@@ -150,6 +151,10 @@ export default
         {
             this.showLoader = true;
             this.limitCount += 5;
+            if (this.limitCount > this.activeItem.last_trips.length)
+            {
+                this.showLoadMore = false;
+            }
             this.showLoader = false;
         },
 
