@@ -101,10 +101,12 @@ export default
                     this.directionsService = new google.maps.DirectionsService();
                     this.directionsDisplay = new google.maps.DirectionsRenderer();
                 }
+                
+                if (this.waypoints && this.waypoints.length)
+                    this.calculateAndDisplayRoute();
+
             }, 1000);
             
-            if (this.waypoints && this.waypoints.length)
-                this.calculateAndDisplayRoute();
 
             console.log(this.waypoints)
         },
@@ -157,8 +159,8 @@ export default
 
                     this.directionsService.route(
                         {
-                        origin: waypoints[0].location,
-                        destination: waypoints[this.waypoints.length - 1].location,
+                        origin: waypoints[0].destination,
+                        destination: waypoints[this.waypoints.length - 1].destination,
                         waypoints: waypoints.slice(1, waypoints.length - 1),
                         optimizeWaypoints: true, // Optimize the order of waypoints
                         travelMode: 'DRIVING'
