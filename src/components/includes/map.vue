@@ -155,29 +155,24 @@ export default
                     this.directionsDisplay.setMap(map);
 
                     this.waypoints.forEach((waypoint, index) => {
-                        const { origin, destination} = waypoint;
-                        const final_destination = index ? this.waypoints[index - 1].destination : destination;
+                        const { origin, destination } = waypoint;
+                        console.log(origin);
+                        console.log(destination);
                         this.directionsService.route(
                             {
-                                origin: window.google.maps.LatLng(origin.lat, origin.lng),
-                                destination: window.google.maps.LatLng(final_destination.lat, final_destination.lng),
+                                origin: new window.google.maps.LatLng(origin.lat, origin.lng),
+                                destination: new window.google.maps.LatLng(destination.lat, destination.lng),
                                 travelMode: 'DRIVING'
                             },
                             (response, status) => {
-                                
-                                console.log(status);
-                                if (status == 'OK') {
-                                    console.log('status');
-                                }
+                                console.log(response);
                                 if (status === 'OK') {
-                                    console.log(response);
                                 this.directionsDisplay.setDirections(response);
                                 } else {
                                 console.warn('Directions request failed due to ' + status);
                                 }
                             }
                         );
-
                     });
                 }
             },
