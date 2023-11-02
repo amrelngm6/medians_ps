@@ -40,7 +40,7 @@
 
                         </div>
                     </div>
-                    <div class="box-footer mt-2">
+                    <div class="box-footer mt-6">
                         <div class="grid grid-cols-12 gap-x-3">
                             <div class="sm:col-span-2 col-span-4 "><span @click="handleAction('view', driver)"
                                     class="cursor-pointer inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"><i
