@@ -78,7 +78,7 @@
                                             <div class="dark:border-border-dark dark:border-dashed border border-border-light border-dashed p-4 flex flex-col gap-5">
                                                 <div class="flex items-start justify-between"> 
                                                     <span class="border border-1 grid p-3 rounded-full sm:p-2  place-content-center"><help_icon class="text-primary w-10 h-10" /></span>
-                                                    <span class="text-content3 text-2xs" v-text="help_message.date"></span>
+                                                    <span class="text-content3 text-2xs text-muted" v-text="help_message.date"></span>
                                                 </div>
                                                 <div class="flex flex-col gap-2"> 
                                                     <div> 
