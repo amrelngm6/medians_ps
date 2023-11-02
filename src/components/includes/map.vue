@@ -160,7 +160,7 @@ export default
                         console.log(origin);
                         console.log(destination);
                         console.log(window.google.maps);
-                        const b = window.google.maps.LatLng(destination.lat, destination.lng);
+                        const b = new window.google.maps.LatLng(destination.lat, destination.lng);
                         console.log(b);
                         t.directionsService.route(
                             {
