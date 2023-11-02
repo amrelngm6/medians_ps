@@ -121,6 +121,7 @@ export default
                 t.calculateAndDisplayRoute();
             }
 
+            console.log(this.waypoints)
         },
 
         methods:
@@ -158,7 +159,7 @@ export default
                     const distanceB = this.calculateDistance(locationData, b);
 
                     return distanceA - distanceB;
-                }),
+                });
 
             },
             setMarker(i) { this.activeMarkerIndex = i; },
