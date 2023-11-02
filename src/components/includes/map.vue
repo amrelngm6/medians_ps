@@ -120,6 +120,7 @@ export default
             }
 
             setInterval(() => {
+                this.polylineCoordinates = []
                 t.calculateAndDisplayRoute();
             }, 1000);
             console.log(this.waypoints)
