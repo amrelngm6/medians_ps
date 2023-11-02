@@ -32,8 +32,13 @@ class Student extends CustomModel
 	];
 
 
-	public $appends = ['student_name'];
+	public $appends = ['student_name', 'name'];
 
+
+	public function getNameAttribute() : String
+	{
+		return $this->first_name .' '.$this->last_name;
+	}
 
 	public function getStudentNameAttribute() : String
 	{
