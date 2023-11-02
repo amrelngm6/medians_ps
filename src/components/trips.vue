@@ -11,7 +11,7 @@
                 <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                     <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                 </div>
-                <div v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch p-10  ">
+                <div v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
 
                     <div v-for="(trip, index) in content.items" :key="trip.active" class="w-full">
                         <div  v-if="showList  && trip.active  && trip.trip_status == 'Scheduled'" :class="trip.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
