@@ -90,10 +90,7 @@
                                                         <div class="w-8 h-8"><img src="" alt="avatar"></div>
                                                         </div>
                                                         <div class="avatar border-white border-[0.125rem]  dark:border-border-dark">
-                                                        <div class="w-8 h-8"><img src="../../assets/images/user-app/14.png" alt="avatar"></div>
-                                                        </div>
-                                                        <div class="avatar border-white border-[0.125rem]  dark:border-border-dark">
-                                                        <div class="w-8 h-8"><img src="../../assets/images/user-app/15.png" alt="avatar"></div>
+                                                        <div class="w-8 h-8"><img :src="activeItem.picture" alt="avatar"></div>
                                                         </div>
                                                     </div>
                                                     </div><span class="bg-secondary-extralight text-secondary badge-sm rounded-5 w-max">Inprogress  </span>
