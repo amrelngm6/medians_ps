@@ -30,8 +30,13 @@ class TripPickup extends CustomModel
 	];
 
 
-	public $appends = ['latitude', 'longitude'];
+	public $appends = ['latitude', 'longitude', 'time'];
 
+
+	public function getTimeAttribute()
+	{
+		return empty($this->boarding_time) ? '' : date('H:i:s', strtotime($this->boarding_time));
+	}
 
 	public function getLatitudeAttribute()
 	{
