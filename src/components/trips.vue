@@ -161,7 +161,6 @@ export default
                 
             this.content.items[i].selected = true; 
             this.locations = this.setLocationsPickups(route);
-            this.showMap = !this.showMap;
         },  
         
         setLocationsPickups(route)
@@ -212,6 +211,7 @@ export default
                 this.setValues(response)
                 this.showLoader = false;
                 this.searchTextChanged()
+                this.showMap = !this.showMap;
 
                 // this.$alert(response)
             });
