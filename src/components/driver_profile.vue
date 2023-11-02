@@ -16,7 +16,7 @@
 
                     <hr class="mt-5 dark:border-gray-600">
 
-                    <div class="text-start mt-6">
+                    <div class="text-start mt-6 text-sm">
                         <div class="space-y-7">
                             <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong
                                     v-text="__('First name')"></strong> <span class="ms-2"
