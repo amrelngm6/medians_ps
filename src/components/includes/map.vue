@@ -168,6 +168,7 @@ export default
                             (response, status) => {
                                 if (status === 'OK') {
                                     t.directionsDisplay.setDirections(response);
+                                    console.log(t.directionsDisplay);
                                 } else {
                                 console.warn('Directions request failed due to ' + status);
                                 }
