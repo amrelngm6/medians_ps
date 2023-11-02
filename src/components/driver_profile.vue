@@ -67,8 +67,8 @@
                                                     </div>
 
                                                     <!--  -->
-                                                    <div class="space-y-4">
-                                                        <div class="text-start">
+                                                    <div class="space-y-4" v-if="content.trips">
+                                                        <div class="text-start" v-for="trip in content.trips">
                                                             <div class="absolute start-7 mt-6">
                                                                 <div class="relative">
                                                                     <div class="w-8 h-8 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
@@ -85,7 +85,7 @@
                                                                         </div>
                                                                         <div class="relative me-5 md:ps-0 ps-10">
                                                                             <div class="pt-3">
-                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">Designing Shreyu Admin</h4>
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300" ></h4>
                                                                                 <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
                                                                             </div>
                                                                         </div>

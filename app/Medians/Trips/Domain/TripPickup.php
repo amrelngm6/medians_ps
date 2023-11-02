@@ -48,6 +48,11 @@ class TripPickup extends CustomModel
 		return $this->hasOne(PickupLocation::class, 'pickup_id', 'pickup_id');	
 	}
 
+	public function user() 
+	{
+		return $this->morphTo();	
+	}
+
 
 
 }
