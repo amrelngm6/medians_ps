@@ -96,14 +96,15 @@ export default
         mounted() {
             
             setTimeout(function(){
-                if (google)
+                if (window.google)
                 {
                     this.directionsService = new google.maps.DirectionsService();
                     this.directionsDisplay = new google.maps.DirectionsRenderer();
                 }
                 
-                if (this.waypoints && this.waypoints.length)
+                if (this.waypoints && this.waypoints.length) {
                     this.calculateAndDisplayRoute();
+                }
 
             }, 1000);
             
