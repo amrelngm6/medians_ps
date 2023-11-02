@@ -157,21 +157,15 @@ export default
                     this.waypoints.forEach((waypoint, index) => {
                         const { origin, destination} = waypoint;
                         const final_destination = index ? this.waypoints[index - 1].destination : destination;
-
-                        console.log('final_destination')
-                        console.log(final_destination)
-                        console.log('origin')
-                        console.log(origin)
-                        
                         this.directionsService.route(
                             {
-                                origin: new window.google.maps.LatLng(origin.lat, origin.lng),
-                                destination: new window.google.maps.LatLng(final_destination.lat, final_destination.lng),
+                                origin: window.google.maps.LatLng(origin.lat, origin.lng),
+                                destination: window.google.maps.LatLng(final_destination.lat, final_destination.lng),
                                 travelMode: 'DRIVING'
                             },
                             (response, status) => {
-                                console.log(response);
                                 if (status === 'OK') {
+                                    console.log(response);
                                 this.directionsDisplay.setDirections(response);
                                 } else {
                                 console.warn('Directions request failed due to ' + status);
