@@ -67,8 +67,8 @@
                                                     </div>
 
                                                     <!--  -->
-                                                    <div class="space-y-4" v-if="content.trips">
-                                                        <div class="text-start" v-for="trip in content.trips">
+                                                    <div class="space-y-4" v-if="activeItem.trips">
+                                                        <div class="text-start" v-for="trip in activeItem.trips">
                                                             <div class="absolute start-7 mt-6">
                                                                 <div class="relative">
                                                                     <div class="w-8 h-8 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
