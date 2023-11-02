@@ -203,6 +203,7 @@ class TripRepository
 
 		$pickup = TripPickup::find($data['trip_pickup_id']);
 		$data['boarding_time'] = date('Y-m-d h:i:s');
+		$data['status'] = 'moving';
 		$update = $pickup->update($data);
 
 		return $update ? true : false;
@@ -219,7 +220,7 @@ class TripRepository
 
 		$update = $trip->update($data);
 
-		TripPickup::where('trip_id', $data['trip_id'])->update(['dropoff_time'=> date('Y-m-d h:i:s')]);
+		TripPickup::where('trip_id', $data['trip_id'])->update(['status'=> 'done', 'dropoff_time'=> date('Y-m-d h:i:s')]);
 
 		return $update ? true : false;
 	}
