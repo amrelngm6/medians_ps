@@ -1273,7 +1273,7 @@ export default
             activeItem: {},
             showAddSide:false,
             showEditSide:false,
-            showLoader: true,
+            showLoader: false,
             activeStatus: 'info',
         }
     },
