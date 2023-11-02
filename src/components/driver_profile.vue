@@ -74,7 +74,7 @@
                                     class="transition-all duration-300 transform">
                                     <div class="grid grid-cols-1 lg:grid-cols-2  gap-6 w-full border-b border-gray-100" v-if="activeStatus == 'help_messages'">
 
-                                        <div class="col-span-4 4xl:col-span-6 2md:col-span-12" v-for="help_message in activeItem.help_messages">
+                                        <div class="w-full relative" v-for="help_message in activeItem.help_messages">
                                             <div class="dark:border-border-dark dark:border-dashed border border-border-light border-dashed p-4 flex flex-col gap-5">
                                                 <div class="flex items-start justify-between"> 
                                                     <span class="border border-1 grid p-3 rounded-full sm:p-2  place-content-center"><help_icon class="text-primary w-10 h-10" /></span>
