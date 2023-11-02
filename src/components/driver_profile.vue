@@ -55,24 +55,23 @@
 
                                     <div class="mt-3 overflow-hidden">
                                         <div id="basic-tabs-1" role="tabpanel" aria-labelledby="basic-tabs-item-1" class="transition-all duration-300 transform">
-                                            <div class="space-y-7">
-                                                <div class="relative overflow-hidden">
+                                            <div class="space-y-7"  v-if="activeItem.last_trips">
+
+                                                <div class="relative overflow-hidden"  v-for="trip in activeItem.last_trips">
                                                     <!-- Center Border Line -->
                                                     <div class="absolute border-s-2 border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10"></div>
 
                                                     <div class="md:text-start mb-5 mt-5">
-                                                        <h5 class="bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded px-2">
-                                                            This Week
-                                                        </h5>
+                                                        <h5 class="bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded px-2" v-text="trip.trip_id"></h5>
                                                     </div>
 
                                                     <!--  -->
-                                                    <div class="space-y-4" v-if="activeItem.trips">
-                                                        <div class="text-start" v-for="trip in activeItem.trips">
+                                                    <div class="space-y-4" v-for="location in trip.pickup_locations">
+                                                        <div class="text-start">
                                                             <div class="absolute start-7 mt-6">
                                                                 <div class="relative">
                                                                     <div class="w-8 h-8 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
-                                                                        <img :src="trip.student.picture" class="rounded-full" alt="">
+                                                                        <img :src="location.model.picture" class="rounded-full" alt="">
                                                                     </div>
                                                                     <div class="absolute top-4 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
                                                                 </div>
@@ -81,12 +80,12 @@
                                                                 <div class="md:col-start-1 col-span-2">
                                                                     <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
                                                                         <div class="ms-10">
-                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center text-sm ml-16">02 hours ago</h2>
+                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center text-sm ml-16" v-text="location.boarding_time"></h2>
                                                                         </div>
                                                                         <div class="relative me-5 md:ps-0 ps-10">
                                                                             <div class="pt-3">
-                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300" ></h4>
-                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
+                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300" v-text="location.model.name"></h4>
+                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400" v-text="location.model.address"></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
