@@ -651,6 +651,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.5rem;
 }
 
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
 .ml-20 {
   margin-left: 5rem;
 }
@@ -1366,6 +1370,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1.5rem;
 }
 
+.pb-20 {
+  padding-bottom: 5rem;
+}
+
 .pt-3 {
   padding-top: 0.75rem;
 }
@@ -1533,6 +1541,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(161 161 170 / var(--tw-text-opacity));
 }
 
+.text-gray-50 {
+  --tw-text-opacity: 1;
+  color: rgb(249 250 251 / var(--tw-text-opacity));
+}
+
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -1697,6 +1710,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-blue-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.hover\:text-blue-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(30 64 175 / var(--tw-text-opacity));
 }
 
 .hover\:text-purple-600:hover {
