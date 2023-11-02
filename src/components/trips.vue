@@ -1,6 +1,6 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
-        <div  v-if="content && !showLoader" class=" w-full relative">
+        <div  v-if="content " class=" w-full relative">
 
             <maps :showroute="true" :key="locations" :waypoints="locations"></maps>
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
