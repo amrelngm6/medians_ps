@@ -150,8 +150,10 @@ export default
                 console.log(event)
                 this.polylineCoordinates.push(event);
                 
+                console.log(this.waypoints[this.waypoints.length - 1])
+                console.log(this.waypoints[0])
                 // Sorting the polylineCoordinates array based on distance from a specific location
-                polylineCoordinates.sort((a, b) => {
+                this.polylineCoordinates.sort((a, b) => {
                     const locationData = this.waypoints[0];
                     const distanceA = calculateDistance(locationData, a);
                     const distanceB = calculateDistance(locationData, b);
