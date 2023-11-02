@@ -10,7 +10,7 @@
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
                         <p class="text-gray-400 mb-4 dark:text-gray-400" v-text="activeItem.email"></p>
 
-                        <button type="button" class="btn bg-primary/90 hover:bg-primary rounded btn-sm text-white mb-3"
+                        <button type="button" @click="$emit('edit', activeItem)" class="btn bg-primary/90 hover:bg-primary rounded btn-sm text-white mb-3"
                             v-text="__('Edit')"></button>
                     </div>
 

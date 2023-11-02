@@ -2,7 +2,7 @@
     <div class=" w-full">
 
         <div class="relative w-full" v-if="showProfile">
-            <driver_profile :key="activeItem" :item="activeItem"></driver_profile>
+            <driver_profile :key="activeItem" :item="activeItem" @edit="handleAction"></driver_profile>
         </div>
 
         <main v-if="content && !showProfile && !showLoader" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
