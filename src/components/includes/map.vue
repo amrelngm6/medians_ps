@@ -146,10 +146,12 @@ export default
                 return distance;
             },
 
-            addPoint(event) {
-                console.log(event)
-                if (event.status)
-                this.polylineCoordinates.push(event);
+            addPoint(event, status) {
+                console.log(status)
+                if (status == 'waiting')
+                {
+                    this.polylineCoordinates.push(event);
+                }
                 // Sorting the polylineCoordinates array based on distance from a specific location
                 this.polylineCoordinates.sort((a, b) => {
                     const locationData = this.waypoints[0];
