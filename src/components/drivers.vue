@@ -123,6 +123,7 @@ export default
 
                     case 'edit':
                         this.showEditSide = true;
+                        this.showProfile = false;
                         this.showAddSide = false;
                         this.activeItem = data
                         break;
