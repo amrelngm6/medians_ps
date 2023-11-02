@@ -167,6 +167,15 @@ export default
         
         updateMarker(m, event)
         {
+            var params = new URLSearchParams();
+            params.append('type', 'Vehicle.update')
+            params.append('params[vehicle_id]', this.activeTrip.vehicle_id)
+            params.append('params[last_latitude]', item.destination.lat)
+            params.append('params[last_longitude]', item.destination.lng)
+            this.handleRequest(params, '/api/update').then(response => {
+                this.$alert(response.result)
+            })
+
             console.log(m)
             console.log(event)
         },  
