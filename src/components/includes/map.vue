@@ -95,17 +95,18 @@ export default
         ],
         mounted() {
             
+            var t = this;
             setTimeout(function(){
-            console.log(this.waypoints)
+            console.log(t.waypoints)
 
                 if (window.google)
                 {
-                    this.directionsService = new google.maps.DirectionsService();
-                    this.directionsDisplay = new google.maps.DirectionsRenderer();
+                    t.directionsService = new google.maps.DirectionsService();
+                    t.directionsDisplay = new google.maps.DirectionsRenderer();
                 }
                 
-                if (this.waypoints && this.waypoints.length) {
-                    this.calculateAndDisplayRoute();
+                if (t.waypoints && t.waypoints.length) {
+                    t.calculateAndDisplayRoute();
                 }
 
             }, 1000);
