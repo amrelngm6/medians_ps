@@ -86,14 +86,13 @@ export default
             },
 
             activeItem:{},
+            activeTrip:{},
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
             locations: [],
             showList: true,
             showMap: true,
-            activeTrip: {},
-            activeIndex: null,
             searchText: '',
         }
     },
@@ -158,9 +157,6 @@ export default
         setLocationsMarkers(trip, i)
         {   
 
-            this.activeTrip = trip;
-            this.activeIndex = i;
-
             for (let a = 0; a < this.content.items.length; a++) 
                 this.content.items[a].selected = false;
                 
@@ -170,7 +166,7 @@ export default
         
         setLocationsPickups(trip)
         {
-            
+            this.activeTrip = trip
             let a, o;
             let locations = [];
             // = parseFloat(location.latitude);
@@ -233,9 +229,7 @@ export default
         },
         
         setValues(data) {
-            this.content = JSON.parse(JSON.stringify(data)); 
-            this.setLocationsMarkers(this.activeTrip, this.activeIndex);
-            return this
+            this.content = JSON.parse(JSON.stringify(data)); this.setLocationsPickups(this.activeTrip); return this
         },
         __(i)
         {
