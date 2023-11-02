@@ -72,7 +72,7 @@
                                                             <div class="absolute start-7 mt-6">
                                                                 <div class="relative">
                                                                     <div class="w-8 h-8 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
-                                                                        <img :src="activeItem.picture" class="h-14 rounded-full" alt="">
+                                                                        <img :src="trip.student.picture" class="rounded-full" alt="">
                                                                     </div>
                                                                     <div class="absolute top-4 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
                                                                 </div>
@@ -86,58 +86,6 @@
                                                                         <div class="relative me-5 md:ps-0 ps-10">
                                                                             <div class="pt-3">
                                                                                 <h4 class="mb-1.5 text-base dark:text-gray-300" ></h4>
-                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-start">
-                                                            <div class="absolute start-7 mt-7">
-                                                                <div class="relative">
-                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
-                                                                        <i class="uil uil-record-audio"></i>
-                                                                    </div>
-                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="grid grid-cols-1">
-                                                                <div class="md:col-start-1 col-span-2">
-                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
-                                                                        <div class="ms-10">
-                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">21 hours ago</h2>
-                                                                        </div>
-                                                                        <div class="relative me-5 md:ps-0 ps-10">
-                                                                            <div class="pt-3">
-                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">UX and UI for Ubold Admin</h4>
-                                                                                <p class="mb-4 text-gray-500 dark:text-gray-400">Ubold Admin - A responsive admin and dashboard template</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-start">
-                                                            <div class="absolute start-7 mt-7">
-                                                                <div class="relative">
-                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
-                                                                        <i class="uil uil-record-audio"></i>
-                                                                    </div>
-                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="grid grid-cols-1">
-                                                                <div class="md:col-start-1 col-span-2">
-                                                                    <div class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
-                                                                        <div class="ms-10">
-                                                                            <h2 class="p-2 rounded bg-primary/20 text-primary flex items-center justify-center">22 hours ago</h2>
-                                                                        </div>
-                                                                        <div class="relative me-5 md:ps-0 ps-10">
-                                                                            <div class="pt-3">
-                                                                                <h4 class="mb-1.5 text-base dark:text-gray-300">UX and UI for Shreyu Admin</h4>
                                                                                 <p class="mb-4 text-gray-500 dark:text-gray-400">Shreyu Admin - A responsive admin and dashboard template</p>
                                                                             </div>
                                                                         </div>
