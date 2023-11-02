@@ -166,7 +166,7 @@ export default
             // = parseFloat(location.latitude);
             for (let i = 0; i < route.pickup_locations.length; i++) {
                 a = route.pickup_locations[i].location;
-                locations[i] = {icon: this.conf.url+'uploads/images/blue_pin.gif', origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+                locations[i] = {icon: this.conf.url+ 'uploads/images/'+ (route.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'red_pin.gif'), origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
             locations[locations.length] = {icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
             return locations;
