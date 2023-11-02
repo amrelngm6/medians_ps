@@ -72,7 +72,7 @@
                             <div class="mt-3 overflow-hidden">
                                 <div id="basic-tabs-1" 
                                     class="transition-all duration-300 transform">
-                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'help_messages'">
+                                    <div class="grid grid-cols-1 lg:grid-cols-2  gap-6 w-full border-b border-gray-100" v-if="activeStatus == 'help_messages'">
 
                                         <div class="col-span-4 4xl:col-span-6 2md:col-span-12" v-for="help_message in activeItem.help_messages">
                                             <div class="dark:border-border-dark dark:border-dashed border border-border-light border-dashed p-4 flex flex-col gap-5">
@@ -84,16 +84,7 @@
                                                 </div>
                                                 <div class="flex items-center justify-between gap-1"> 
                                                     <div>  
-                                                    <p class="text-content3 text-xs">Team Members                                                                 </p>
-                                                    <div class="avatar-group">
-                                                        <div class="avatar border-white border-[0.125rem]  dark:border-border-dark">
-                                                        <div class="w-8 h-8"><img src="" alt="avatar"></div>
-                                                        </div>
-                                                        <div class="avatar border-white border-[0.125rem]  dark:border-border-dark">
-                                                        <div class="w-8 h-8"><img :src="activeItem.picture" alt="avatar"></div>
-                                                        </div>
-                                                    </div>
-                                                    </div><span class="bg-secondary-extralight text-secondary badge-sm rounded-5 w-max">Inprogress  </span>
+                                                    </div><span class="bg-blue-50 px-4 py-1 text-secondary badge-sm rounded-5 w-max" v-test="help_message.status"></span>
                                                 </div>
                                                 </div>
                                             </div>
