@@ -239,7 +239,7 @@ export default
                     const a = this.content.items[i];
                     if (a.trip_id == this.activeTrip.trip_id)
                     {
-                        this.setLocationsPickups(this.activeTrip); 
+                        this.setLocationsPickups(a); 
                     }
                 }
                 
