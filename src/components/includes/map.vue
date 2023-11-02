@@ -121,7 +121,6 @@ export default
                 t.calculateAndDisplayRoute();
             }
 
-            console.log(this.waypoints)
         },
 
         methods:
@@ -148,7 +147,6 @@ export default
             },
 
             addPoint(event, status) {
-                console.log(status)
                 if (status == 'waiting')
                 {
                     this.polylineCoordinates.push(event);
@@ -162,7 +160,6 @@ export default
                     return distanceA - distanceB;
                 }),
 
-                console.log(this.polylineCoordinates)
             },
             setMarker(i) { this.activeMarkerIndex = i; },
             updateDestination(event) {
@@ -212,7 +209,6 @@ export default
                         const d = new window.google.maps.LatLng(destination.lat, destination.lng);
                         const o = new window.google.maps.LatLng(origin.lat, origin.lng);
                         t.addPoint(destination, status);
-                        console.log(d.lat(), d.lng(), o.lat(),o.lng());
                         t.directionsService.route(
                             {
                                 origin: o,
@@ -222,7 +218,6 @@ export default
                             (response, status) => {
                                 if (status === 'OK') {
                                     t.directionsDisplay.setDirections(response);
-                                    console.log(t.directionsDisplay);
                                 } else {
                                 console.warn('Directions request failed due to ' + status);
                                 }
