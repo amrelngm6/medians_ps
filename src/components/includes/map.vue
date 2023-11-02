@@ -154,12 +154,9 @@ export default
                     var map = this.$refs.gmap.$mapObject;
 
                     this.directionsDisplay.setMap(map);
-
+                    this.showroute = false;
                     this.waypoints.forEach((waypoint, index) => {
                         const { origin, destination } = waypoint;
-                        console.log(origin);
-                        console.log(destination);
-                        console.log(window.google.maps);
                         const d = new window.google.maps.LatLng(destination.lat, destination.lng);
                         const o = new window.google.maps.LatLng(origin.lat, origin.lng);
                         t.directionsService.route(
@@ -177,6 +174,8 @@ export default
                             }
                         );
                     });
+                    this.showroute = true;
+
                 }
             },
 
