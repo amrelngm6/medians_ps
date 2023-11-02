@@ -44,7 +44,7 @@
             <div class="xl:col-span-9 lg:col-span-7">
                 <div class="card">
                     <div class="p-6">
-                        <div class="pt-5">
+                        <div class="w-full">
                             <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
                                 <button @click="setActiveStatus('info')" type="button"
@@ -74,7 +74,7 @@
                                         <div class="row mt-6">
                                             <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" :value="activeItem.last_trips.length"></dashboard_card>
                                             <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" value="10"></dashboard_card>
-                                            <dashboard_card class="col-md-4" classes="bg-gradient-success" :title="__('Trips count')" value="10"></dashboard_card>
+                                            <dashboard_card class="col-md-4" classes="bg-gradient-danger" :title="__('Trips count')" value="10"></dashboard_card>
                                         </div>
                                     </div>
                                     <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' && activeItem.last_trips">
