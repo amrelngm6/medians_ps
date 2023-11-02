@@ -166,17 +166,19 @@ export default
         
         setLocationsPickups(trip)
         {
-            this.activeTrip = trip
-            let a, o;
-            let locations = [];
-            // = parseFloat(location.latitude);
-            for (let i = 0; i < trip.pickup_locations.length; i++) {
-                a = trip.pickup_locations[i].location;
-                o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
-                locations[i] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+            if (trip)
+            {
+                this.activeTrip = trip
+                let a, o;
+                let locations = [];
+                for (let i = 0; i < trip.pickup_locations.length; i++) {
+                    a = trip.pickup_locations[i].location;
+                    o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
+                    locations[i] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+                }
+                locations[locations.length] = {status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
+                return locations;
             }
-            locations[locations.length] = {status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
-            return locations;
         },  
 
         /**
