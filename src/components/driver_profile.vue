@@ -136,7 +136,7 @@
                                                             <div
                                                                 class="flex md:flex-nowrap flex-wrap items-center gap-6 ms-10 md:mt-0 mt-5">
                                                                 <div class="ms-10">
-                                                                    <h2 :class="__('lang') == 'ar' ? 'bg-gradient-to-l' : 'bg-gradient-to-r'" class="p-2 rounded  text-primary flex items-center justify-center text-sm ml-16 "
+                                                                    <h2 :class="__('lang') == 'ar' ? 'bg-gradient-to-l' : 'bg-gradient-to-r'" class="p-2 rounded  text-primary flex items-center justify-center text-sm mx-16 "
                                                                         v-text="location.boarding_time"></h2>
                                                                 </div>
                                                                 <div class="relative me-5 md:ps-0 ps-10">
