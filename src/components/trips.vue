@@ -165,7 +165,7 @@ export default
             this.locations = this.setLocationsPickups(trip);
         },  
         
-        updateMarker(m, event)
+        updateMarker(item, event)
         {
             var params = new URLSearchParams();
             params.append('type', 'Vehicle.update')
@@ -176,7 +176,7 @@ export default
                 this.$alert(response.result)
             })
 
-            console.log(m)
+            console.log(item)
             console.log(event)
         },  
         
