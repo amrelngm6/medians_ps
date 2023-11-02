@@ -147,6 +147,7 @@ export default
 
              calculateAndDisplayRoute() {
                 console.log(window.google);
+                var t = this;
                 if (window.google && this.waypoints.length) {
                     console.log(this.waypoints);
                     
@@ -159,18 +160,15 @@ export default
                         console.log(origin);
                         console.log(destination);
                         console.log(window.google.maps.LatLng(destination.lat, destination.lng));
-                        this.directionsService.route(
+                        t.directionsService.route(
                             {
                                 origin: new window.google.maps.LatLng(origin.lat, origin.lng),
                                 destination: new window.google.maps.LatLng(destination.lat, destination.lng),
                                 travelMode: 'DRIVING'
                             },
                             (response, status) => {
-                                console.log(response);
-                                console.log(status);
                                 if (status === 'OK') {
-                                    console.log('status');
-                                this.directionsDisplay.setDirections(response);
+                                    t.directionsDisplay.setDirections(response);
                                 } else {
                                 console.warn('Directions request failed due to ' + status);
                                 }
