@@ -44,11 +44,6 @@
             <div class="xl:col-span-9 lg:col-span-7">
                 <div class="card">
                     <div class="p-6">
-
-                        <div class="flex justify-between items-center">
-                            <h4 class="uppercase mb-1 dark:text-gray-300">Nav Pills</h4>
-                        </div> <!-- card-title end -->
-
                         <div class="pt-5">
                             <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
