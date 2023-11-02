@@ -148,10 +148,8 @@ export default
 
             addPoint(event) {
                 console.log(event)
+                if (event.status)
                 this.polylineCoordinates.push(event);
-                
-                console.log(this.waypoints[this.waypoints.length - 1])
-                console.log(this.waypoints[0])
                 // Sorting the polylineCoordinates array based on distance from a specific location
                 this.polylineCoordinates.sort((a, b) => {
                     const locationData = this.waypoints[0];
@@ -207,10 +205,10 @@ export default
                     this.directionsDisplay.setMap(map);
                     this.showroute = false;
                     this.waypoints.forEach((waypoint, index) => {
-                        const { origin, destination } = waypoint;
+                        const { origin, destination, status } = waypoint;
                         const d = new window.google.maps.LatLng(destination.lat, destination.lng);
                         const o = new window.google.maps.LatLng(origin.lat, origin.lng);
-                        t.addPoint(destination)
+                        t.addPoint(destination, status);
                         console.log(d.lat(), d.lng(), o.lat(),o.lng());
                         t.directionsService.route(
                             {
