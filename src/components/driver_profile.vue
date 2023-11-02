@@ -13,7 +13,7 @@
                         <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
                             v-text="__('Edit')"></button>
                         <button type="button" @click="update" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
-                            ><i class="fa fa-close"></i> <span v-text="__('Back')"></span></button>
+                            ><i class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
                     </div>
 
                     <hr class="mt-5 dark:border-gray-600">
@@ -219,7 +219,7 @@ export default
         {
             update()
             {
-                this.$emit('edit', activeItem);
+                this.$emit('edit', this.activeItem);
             },
 
             loadmore() {
