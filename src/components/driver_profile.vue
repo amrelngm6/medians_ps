@@ -77,7 +77,7 @@
                                         <div class="col-span-4 4xl:col-span-6 2md:col-span-12" v-for="help_message in activeItem.help_messages">
                                             <div class="dark:border-border-dark dark:border-dashed border border-border-light border-dashed p-4 flex flex-col gap-5">
                                                 <div class="flex items-start justify-between"> 
-                                                    <span class="grid p-3 rounded-full sm:p-2 bg-danger place-content-center"><help_icon class="w-10 h-10" /></span>
+                                                    <span class="border border-1 grid p-3 rounded-full sm:p-2  place-content-center"><help_icon class="w-10 h-10" /></span>
                                                     <span class="text-content3 text-2xs" v-text="help_message.date"></span>
                                                 </div>
                                                 <div class="flex flex-col gap-2"> 
