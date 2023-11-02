@@ -84,7 +84,7 @@
                                                         <p class="text-content3 text-2xs truncate"  v-text="help_message.message"></p>
                                                     </div>
                                                     <div class="flex items-center justify-between gap-1"> 
-                                                        <span class="bg-blue-50 px-4 py-1 text-secondary badge-sm rounded-5 " v-test="help_message.status"></span>
+                                                        <span class="bg-blue-50 px-4 py-1 text-secondary badge-sm rounded-5 " v-text="help_message.status"></span>
                                                     </div>
                                                 </div>
                                             </div>
