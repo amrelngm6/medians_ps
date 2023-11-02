@@ -3,7 +3,7 @@
         <GmapMap ref="gmap" :center="center" :key="reload" :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
 
             <DirectionsRenderer 
-                v-if="showRoute"
+                v-if="showroute"
                 v-for="(waypoint, index) in waypoints" 
                 :origin="waypoint.origin"
                 :destination="waypoint.destination" 
@@ -44,7 +44,6 @@ export default
                 activeMarkerIndex: 0,
                 reload: true,
                 render: true,
-                showRoute: false,
                 travelMode: 'DRIVING',
                 origin: { lat: 30.093048, lng: 31.152120 }, // Replace with your origin location
                 destination: { lat: 30.073048, lng: 31.142120 }, // Replace with your destination location
@@ -91,6 +90,7 @@ export default
             'setting',
             'conf',
             'auth',
+            'showroute',
             'waypoints'
         ],
         mounted() {
