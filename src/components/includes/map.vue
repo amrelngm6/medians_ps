@@ -158,9 +158,10 @@ export default
                         const { origin, destination} = waypoint;
                         const final_destination = index ? this.waypoints[index - 1].destination : destination;
 
+                        console.log('final_destination')
                         console.log(final_destination)
+                        console.log('origin')
                         console.log(origin)
-                        console.log(destination)
                         
                         this.directionsService.route(
                             {
