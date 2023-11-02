@@ -95,11 +95,13 @@ export default
         ],
         mounted() {
             
-            if (google)
-            {
-                this.directionsService = new google.maps.DirectionsService();
-                this.directionsDisplay = new google.maps.DirectionsRenderer();
-            }
+            setTimeout(function(){
+                if (google)
+                {
+                    this.directionsService = new google.maps.DirectionsService();
+                    this.directionsDisplay = new google.maps.DirectionsRenderer();
+                }
+            }, 1000);
             
             if (this.waypoints && this.waypoints.length)
                 this.calculateAndDisplayRoute();
