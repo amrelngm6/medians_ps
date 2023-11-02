@@ -111,6 +111,7 @@ export default
              * @param Object data
              */
             handleAction(actionName, data) {
+                console.log(actionName)
                 switch (actionName) {
                     case 'view':
                         this.showEditSide = false;
