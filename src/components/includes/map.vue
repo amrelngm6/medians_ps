@@ -148,7 +148,7 @@ export default
                 this.travelMode;
             },
 
-            async calculateAndDisplayRoute() {
+             calculateAndDisplayRoute() {
                 console.log(window.google);
                 if (window.google) {
                     console.log(window.google);
