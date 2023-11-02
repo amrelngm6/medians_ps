@@ -9,10 +9,6 @@
                                 <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
                                 <p class="text-gray-400 mb-4 dark:text-gray-400" v-text="activeItem.email"></p>
                                 
-                                <div class="flex w-full h-4 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-600 mb-6">
-                                    <div class="flex flex-col justify-center overflow-hidden bg-success text-xs text-white text-center" role="progressbar" style="width: 60%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100">Your Profile is 25% completed</div>
-                                </div>
-                                
                                 <button type="button" class="btn bg-primary/90 hover:bg-primary rounded btn-sm text-white mb-3" v-text="__('Edit')"></button>
                             </div>
 
@@ -20,6 +16,8 @@
 
                             <div class="text-start mt-6">
                                 <div class="space-y-7">
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('First name')"></strong> <span class="ms-2" v-text="activeItem.first_name"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Last name')"></strong> <span class="ms-2" v-text="activeItem.last_name"></span></p>
                                     <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Email')"></strong> <span class="ms-2" v-text="activeItem.email"></span></p>
                                     <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Phone')"></strong> <span class="ms-2" v-text="activeItem.contact_number"></span></p>
                                     <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('License number')"></strong> <span class="ms-2" v-text="activeItem.driver_license_number"></span></p>
