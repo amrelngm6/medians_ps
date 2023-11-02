@@ -209,16 +209,16 @@ export default
             sortWaypointsByDistance() {
 
                 const waypointsWithDistances = this.waypoints.map((waypoint) => {
-                    const originLatLng = new google.maps.LatLng(this.origin);
-                    const destinationLatLng = new google.maps.LatLng(this.destination);
-                    const waypointLatLng = new google.maps.LatLng(waypoint.location);
+                    const originLatLng = new window.google.maps.LatLng(this.origin);
+                    const destinationLatLng = new window.google.maps.LatLng(this.destination);
+                    const waypointLatLng = new window.google.maps.LatLng(waypoint.location);
 
-                    const distanceToOrigin = google.maps.geometry.spherical.computeDistanceBetween(
+                    const distanceToOrigin = window.google.maps.geometry.spherical.computeDistanceBetween(
                         originLatLng,
                         waypointLatLng
                     );
 
-                    const distanceToDestination = google.maps.geometry.spherical.computeDistanceBetween(
+                    const distanceToDestination = window.google.maps.geometry.spherical.computeDistanceBetween(
                         waypointLatLng,
                         destinationLatLng
                     );
