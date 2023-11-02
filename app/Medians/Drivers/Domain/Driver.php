@@ -41,7 +41,7 @@ class Driver extends CustomModel
 	{
 		return '';
 	}
-	
+
 	public function getNameAttribute()
 	{
 		return $this->first_name. ' '.$this->last_name;
@@ -76,6 +76,11 @@ class Driver extends CustomModel
 	public function last_trips() 
 	{
 		return $this->hasMany(Trip::class, 'driver_id', 'driver_id')->with('pickup_locations')->orderBy('trip_id', 'DESC');	
+	}
+
+	public function total_pickups() 
+	{
+		return $this->hasManyThrough(TripPickup::class, Trip::class);
 	}
 
 
