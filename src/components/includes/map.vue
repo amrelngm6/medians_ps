@@ -148,7 +148,7 @@ export default
              calculateAndDisplayRoute() {
                 console.log(window.google);
                 if (window.google && this.waypoints.length) {
-                    console.log(window.google);
+                    console.log(this.waypoints);
                     
                     var map = this.$refs.gmap.$mapObject;
 
@@ -163,6 +163,8 @@ export default
                                 travelMode: 'DRIVING'
                             },
                             (response, status) => {
+                                console.log(response);
+                                console.log(Status);
                                 if (status === 'OK') {
                                 this.directionsDisplay.setDirections(response);
                                 } else {
