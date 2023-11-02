@@ -158,10 +158,8 @@ export default
             },
 
              calculateAndDisplayRoute() {
-                console.log(window.google);
                 var t = this;
                 if (window.google && this.waypoints.length) {
-                    console.log(this.waypoints);
                     
                     var map = this.$refs.gmap.$mapObject;
 
@@ -171,7 +169,7 @@ export default
                         const { origin, destination } = waypoint;
                         const d = new window.google.maps.LatLng(destination.lat, destination.lng);
                         const o = new window.google.maps.LatLng(origin.lat, origin.lng);
-                        console.log(d.lat, d.lng, o.lat,o.lng);
+                        console.log(d.lat(), d.lng(), o.lat(),o.lng());
                         t.directionsService.route(
                             {
                                 origin: o,
