@@ -219,6 +219,8 @@ class TripRepository
 
 		$update = $trip->update($data);
 
+		TripPickup::where('trip_id', $data['trip_id'])->update(['dropoff_time'=> date('Y-m-d h:i:s')]);
+
 		return $update ? true : false;
 	}
 	
