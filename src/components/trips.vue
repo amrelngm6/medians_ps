@@ -92,6 +92,8 @@ export default
             locations: [],
             showList: true,
             showMap: true,
+            activeTrip: {},
+            activeIndex: null,
             searchText: '',
         }
     },
@@ -153,28 +155,31 @@ export default
             let a = (item.driver.name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
             return a ? a : ((item.vehicle.plate_number).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
         },
-        setLocationsMarkers(route, i)
+        setLocationsMarkers(trip, i)
         {   
+
+            this.activeTrip = trip;
+            this.activeIndex = i;
 
             for (let a = 0; a < this.content.items.length; a++) 
                 this.content.items[a].selected = false;
                 
             this.content.items[i].selected = true; 
-            this.locations = this.setLocationsPickups(route);
+            this.locations = this.setLocationsPickups(trip);
         },  
         
-        setLocationsPickups(route)
+        setLocationsPickups(trip)
         {
             
             let a, o;
             let locations = [];
             // = parseFloat(location.latitude);
-            for (let i = 0; i < route.pickup_locations.length; i++) {
-                a = route.pickup_locations[i].location;
-                o = i ? route.pickup_locations[i-1].location : route.pickup_locations[i].location;
-                locations[i] = {status: route.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (route.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+            for (let i = 0; i < trip.pickup_locations.length; i++) {
+                a = trip.pickup_locations[i].location;
+                o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
+                locations[i] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
-            locations[locations.length] = {status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
+            locations[locations.length] = {status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
             return locations;
         },  
 
@@ -211,7 +216,6 @@ export default
                 this.setValues(response)
                 this.showLoader = false;
                 this.searchTextChanged()
-                this.showMap = !this.showMap;
 
                 // this.$alert(response)
             });
@@ -229,7 +233,9 @@ export default
         },
         
         setValues(data) {
-            this.content = JSON.parse(JSON.stringify(data)); return this
+            this.content = JSON.parse(JSON.stringify(data)); 
+            this.setLocationsMarkers(this.activeTrip, this.activeIndex);
+            return this
         },
         __(i)
         {
