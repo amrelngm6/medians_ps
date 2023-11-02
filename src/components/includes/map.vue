@@ -155,8 +155,8 @@ export default
                 // Sorting the polylineCoordinates array based on distance from a specific location
                 this.polylineCoordinates.sort((a, b) => {
                     const locationData = this.waypoints[0];
-                    const distanceA = calculateDistance(locationData, a);
-                    const distanceB = calculateDistance(locationData, b);
+                    const distanceA = this.calculateDistance(locationData, a);
+                    const distanceB = this.calculateDistance(locationData, b);
 
                     return distanceA - distanceB;
                 }),
