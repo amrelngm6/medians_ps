@@ -57,7 +57,7 @@
                                         <div id="basic-tabs-1" role="tabpanel" aria-labelledby="basic-tabs-item-1" class="transition-all duration-300 transform">
                                             <div class="space-y-7"  v-if="activeItem.last_trips">
 
-                                                <div class="relative overflow-hidden"  v-for="trip in activeItem.last_trips">
+                                                <div class="relative overflow-hidden"  v-for="(trip, index) in activeItem.last_trips" v-if="index <= limitCount">
                                                     <!-- Center Border Line -->
                                                     <div class="absolute border-s-2 border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10"></div>
 
@@ -304,6 +304,7 @@ export default
             showAddSide:false,
             showEditSide:false,
             showLoader: false,
+            limitCount: 2,
             activeStatus: 'info',
         }
     },
