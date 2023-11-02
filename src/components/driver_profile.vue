@@ -69,12 +69,12 @@
                                                     <!--  -->
                                                     <div class="space-y-4">
                                                         <div class="text-start">
-                                                            <div class="absolute start-7 mt-7">
+                                                            <div class="absolute start-7 mt-6">
                                                                 <div class="relative">
-                                                                    <div class="w-6 h-6 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                    <div class="w-8 h-8 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
                                                                         <img :src="activeItem.picture" class="h-14 rounded-full" alt="">
                                                                     </div>
-                                                                    <div class="absolute top-3 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
+                                                                    <div class="absolute top-4 -end-6 w-12 h-[2px] bg-gray-400 -z-10"></div>
                                                                 </div>
                                                             </div>
                                                             <div class="grid grid-cols-1">
