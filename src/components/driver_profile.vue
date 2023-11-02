@@ -219,12 +219,12 @@ export default
         {
             update()
             {
-                this.$emit('edit', this.activeItem);
+                this.$emit('edit', 'edit', this.activeItem);
             },
 
             close()
             {
-                this.$emit('close', '');
+                this.$emit('close', 'close', this.activeItem);
             },
 
             loadmore() {
