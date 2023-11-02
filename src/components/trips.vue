@@ -238,8 +238,10 @@ export default
                 for (let i = 0; i < this.content.items.length; i++) {
                     const a = this.content.items[i];
                     if (a.trip_id == this.activeTrip.trip_id)
+                    {
+                        this.setLocationsPickups(this.activeTrip); 
+                    }
                 }
-                this.setLocationsPickups(this.activeTrip); 
                 
             }
             return this
