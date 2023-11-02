@@ -149,6 +149,11 @@ export default
                 console.log(window.google);
                 if (window.google) {
                     console.log(window.google);
+                    
+                    var map = this.$refs.gmap.$mapObject;
+
+                    this.directionsDisplay.setMap(map);
+
                     this.waypoints.forEach((waypoint, index) => {
                         const { origin, destination } = waypoint;
                         this.directionsService.route(
