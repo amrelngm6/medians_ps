@@ -149,7 +149,9 @@ export default
             },
 
             async calculateAndDisplayRoute() {
+                console.log(window.google);
                 if (window.google) {
+                    console.log(window.google);
                     this.waypoints.forEach((waypoint, index) => {
                         const { origin, destination } = waypoint;
                         this.directionsService.route(
