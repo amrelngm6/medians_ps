@@ -99,12 +99,12 @@
                                             </div>
                                         </div> <!-- tabs-with-underline-1 end -->
                                     </div> <!-- tab-end -->
-                                    <p class="text-center">
-                                        <span class="mx-auto menu-dark px-4 py-3 rounded-xl text-white cursor-pointer text-white rounded-lg" @click="loadmore()" v-text="__('Load more')"></span>
-                                    </p>
                                 </div>
                             </div>
                         </div>
+                        <p class="text-center">
+                            <span class="mx-auto menu-dark px-4 py-3 rounded-xl text-white cursor-pointer text-white rounded-lg" @click="loadmore()" v-text="__('Load more')"></span>
+                        </p>
                     </div>
                 </div>
     </div>
