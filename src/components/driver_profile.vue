@@ -63,6 +63,7 @@
 
                                                     <div class="md:text-start mb-5 mt-5">
                                                         <h5 class="bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded px-2" v-text="__('Trip number')+' #'+ trip.trip_id"></h5>
+                                                        <span v-text="trip.trip_date"></span>
                                                     </div>
 
                                                     <!--  -->
