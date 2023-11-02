@@ -118,7 +118,6 @@ export default
             if (t.waypoints && t.waypoints.length) {
                 t.calculateAndDisplayRoute();
             }
-            
 
             console.log(this.waypoints)
         },
