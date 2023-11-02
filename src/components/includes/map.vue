@@ -96,20 +96,13 @@ export default
         mounted() {
             
             var t = this;
-            setTimeout(function(){
-            console.log(t.waypoints)
-
-                if (window.google)
-                {
-                    t.directionsService = new google.maps.DirectionsService();
-                    t.directionsDisplay = new google.maps.DirectionsRenderer();
-                }
-                
-                if (t.waypoints && t.waypoints.length) {
-                    t.calculateAndDisplayRoute();
-                }
-
-            }, 1000);
+            
+            t.directionsService = new window.google.maps.DirectionsService();
+            t.directionsDisplay = new window.google.maps.DirectionsRenderer();
+            
+            if (t.waypoints && t.waypoints.length) {
+                t.calculateAndDisplayRoute();
+            }
             
 
             console.log(this.waypoints)
