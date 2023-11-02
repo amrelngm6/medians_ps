@@ -75,9 +75,9 @@
                             <div class="mt-3 overflow-hidden">
                                 <div id="basic-tabs-1" role="tabpanel" aria-labelledby="basic-tabs-item-1"
                                     class="transition-all duration-300 transform">
-                                    <div class="w-full" v-if="activeItem.last_trips">
+                                    <div class="w-full border-b border-gray-100" v-if="activeItem.last_trips">
 
-                                        <div class="relative overflow-hidden border-b-1 border-gray-100"
+                                        <div class="relative overflow-hidden "
                                             v-for="(trip, index) in activeItem.last_trips" v-if="index <= limitCount">
                                             <!-- Center Border Line -->
                                             <div
