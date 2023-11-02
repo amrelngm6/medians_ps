@@ -60,14 +60,14 @@
                     </div>
                 </div>
             </div>
-
-            <side-form-update :conf="conf" model="Driver.update" :item="activeItem" :model_id="activeItem.driver_id"
-                :index="activeItem.driver_id" v-if="showEditSide && !showAddSide" :columns="content.fillable"
-                class="col-md-3" />
-
-            <side-form-create :conf="conf" model="Driver.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
-
+            
         </main>
+
+        <side-form-update :conf="conf" model="Driver.update" :item="activeItem" :model_id="activeItem.driver_id"
+            :index="activeItem.driver_id" v-if="showEditSide && !showAddSide" :columns="content.fillable"
+            class="col-md-3" />
+
+        <side-form-create :conf="conf" model="Driver.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
     </div>
 </template>
 <script>
