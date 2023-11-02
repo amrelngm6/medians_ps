@@ -146,9 +146,17 @@
 </template>
 <script>
 
+import dashboard_card from './includes/dashboard_card';
+import dashboard_card_white from './includes/dashboard_card_white';
+import dashboard_center_squares from './includes/dashboard_center_squares';
+
 export default
     {
-
+        components:{
+            dashboard_center_squares,
+            dashboard_card_white,
+            dashboard_card,
+        },
         data() {
             return {
                 content: {
