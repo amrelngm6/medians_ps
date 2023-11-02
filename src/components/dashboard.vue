@@ -24,10 +24,10 @@
                         <CanvasJSChart v-if="showCharts && content.trips_charts.length" :key="line_options" :options="line_options"/>
                     </div>
                     <div class="row mt-6">
-                        <dashboard_card classes="bg-gradient-success" :title="__('Vehciles')" :value="content.vehicles_count"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-danger" :title="__('Drivers')" :value="content.drivers_count"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-primary" :title="__('Routes')" :value="content.routes_count"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-purple" :title="__('Pickup locations')" :value="content.pickup_locations_count" ></dashboard_card>
+                        <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-success" :title="__('Vehciles')" :value="content.vehicles_count"></dashboard_card>
+                        <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-danger" :title="__('Drivers')" :value="content.drivers_count"></dashboard_card>
+                        <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-primary" :title="__('Routes')" :value="content.routes_count"></dashboard_card>
+                        <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-purple" :title="__('Pickup locations')" :value="content.pickup_locations_count" ></dashboard_card>
                     </div>
                 </div>
                 
