@@ -160,7 +160,7 @@ export default
                         this.directionsService.route(
                             {
                                 origin: new window.google.maps.LatLng(origin.lat, origin.lng),
-                                destination: new window.google.maps.LatLng(destination.lat, destination.lng),
+                                destination: new window.google.maps.LatLng(final_destination.lat, final_destination.lng),
                                 travelMode: 'DRIVING'
                             },
                             (response, status) => {
