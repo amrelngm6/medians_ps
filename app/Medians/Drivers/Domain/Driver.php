@@ -81,7 +81,7 @@ class Driver extends CustomModel
 
 	public function total_pickups() 
 	{
-		return $this->hasManyThrough(TripPickup::class, Trip::class, 'trip_id', 'trip_id', 'driver_id', 'driver_id');
+		return $this->hasManyThrough(TripPickup::class, Trip::class, 'trip_id', 'trip_id');
 	}
 
 
