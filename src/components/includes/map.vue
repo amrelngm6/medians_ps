@@ -160,12 +160,12 @@ export default
                         console.log(origin);
                         console.log(destination);
                         console.log(window.google.maps);
-                        const b = new window.google.maps.LatLng(destination.lat, destination.lng);
-                        console.log(b);
+                        const d = new window.google.maps.LatLng(destination.lat, destination.lng);
+                        const o = new window.google.maps.LatLng(origin.lat, origin.lng);
                         t.directionsService.route(
                             {
-                                origin: new window.google.maps.LatLng(origin.lat, origin.lng),
-                                destination: new window.google.maps.LatLng(destination.lat, destination.lng),
+                                origin: o,
+                                destination: d,
                                 travelMode: 'DRIVING'
                             },
                             (response, status) => {
