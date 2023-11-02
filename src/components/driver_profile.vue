@@ -70,6 +70,11 @@
                             <div class="mt-3 overflow-hidden">
                                 <div id="basic-tabs-1" 
                                     class="transition-all duration-300 transform">
+                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'info' && activeItem.last_trips">
+                                        <div class="row mt-6">
+                                            <dashboard_card classes="bg-gradient-success" :title="__('Trips count')" value="10"></dashboard_card>
+                                        </div>
+                                    </div>
                                     <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' && activeItem.last_trips">
 
                                         <div class="relative overflow-hidden "
