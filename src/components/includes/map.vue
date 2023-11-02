@@ -90,7 +90,9 @@ export default
                     }
                 ],
 
-            }
+                polylineCoordinates: [],
+            },
+
         },
 
         computed: {
@@ -122,6 +124,13 @@ export default
 
         methods:
         {
+            
+            addPoint(event) {
+                this.polylineCoordinates.push({
+                    lat: event.lat,
+                    lng: event.lng
+                });
+            },
             setMarker(i) { this.activeMarkerIndex = i; },
             updateDestination(event) {
                 this.destination = {
@@ -169,6 +178,7 @@ export default
                         const { origin, destination } = waypoint;
                         const d = new window.google.maps.LatLng(destination.lat, destination.lng);
                         const o = new window.google.maps.LatLng(origin.lat, origin.lng);
+                        t.addPoint(destination)
                         console.log(d.lat(), d.lng(), o.lat(),o.lng());
                         t.directionsService.route(
                             {
