@@ -125,10 +125,40 @@ export default
 
         methods:
         {
-            
+            calculateDistance(location1, location2) {
+                const R = 6371; // Radius of the Earth in kilometers
+                const lat1 = location1.lat;
+                const lon1 = location1.lng;
+                const lat2 = location2.lat;
+                const lon2 = location2.lng;
+
+                const dLat = (lat2 - lat1) * (Math.PI / 180);
+                const dLon = (lon2 - lon1) * (Math.PI / 180);
+
+                const a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                const distance = R * c; // Distance in kilometers
+
+                return distance;
+            },
+
             addPoint(event) {
                 console.log(event)
                 this.polylineCoordinates.push(event);
+                
+                // Sorting the polylineCoordinates array based on distance from a specific location
+                polylineCoordinates.sort((a, b) => {
+                    const locationData = this.waypoints[0];
+                    const distanceA = calculateDistance(locationData, a);
+                    const distanceB = calculateDistance(locationData, b);
+
+                    return distanceA - distanceB;
+                }),
+
                 console.log(this.polylineCoordinates)
             },
             setMarker(i) { this.activeMarkerIndex = i; },
