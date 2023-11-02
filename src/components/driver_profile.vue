@@ -2,16 +2,19 @@
     <div class=" w-full">
         <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6" v-if="!showLoader">
                     <div class="xl:col-span-3 lg:col-span-5">
-                        <div class="card text-center p-6 mb-6">
-                            <img :src="activeItem.picture" alt="" class=" rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
-                            <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
-                            <p class="text-gray-400 mb-4 dark:text-gray-400" v-text="activeItem.email"></p>
+                        <div class="card  p-6 mb-6">
+                            <div class="text-center">
 
-                            <div class="flex w-full h-4 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-600 mb-6">
-                                <div class="flex flex-col justify-center overflow-hidden bg-success text-xs text-white text-center" role="progressbar" style="width: 60%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100">Your Profile is 25% completed</div>
+                                <img :src="activeItem.picture" alt="" class=" rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
+                                <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
+                                <p class="text-gray-400 mb-4 dark:text-gray-400" v-text="activeItem.email"></p>
+                                
+                                <div class="flex w-full h-4 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-600 mb-6">
+                                    <div class="flex flex-col justify-center overflow-hidden bg-success text-xs text-white text-center" role="progressbar" style="width: 60%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100">Your Profile is 25% completed</div>
+                                </div>
+                                
+                                <button type="button" class="btn bg-primary/90 hover:bg-primary rounded btn-sm text-white mb-3" v-text="__('Edit')"></button>
                             </div>
-
-                            <button type="button" class="btn bg-primary/90 hover:bg-primary rounded btn-sm text-white mb-3" v-text="__('Edit')"></button>
 
                             <hr class="mt-5 dark:border-gray-600">
 
