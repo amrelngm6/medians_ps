@@ -62,8 +62,8 @@
                                                     <div class="absolute border-s-2 border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10"></div>
 
                                                     <div class="md:text-start mb-5 mt-5">
-                                                        <h5 class="bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded px-2" v-text="__('Trip number')+' #'+ trip.trip_id"></h5>
-                                                        <span v-text="trip.trip_date"></span>
+                                                        <h5 class="bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded " v-text="__('Trip number')+' #'+ trip.trip_id"></h5>
+                                                        <p class="text-muted text-sm" v-text="trip.trip_date"></p>
                                                     </div>
 
                                                     <!--  -->
