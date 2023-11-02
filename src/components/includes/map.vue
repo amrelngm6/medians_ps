@@ -10,7 +10,7 @@
             fullscreenControl: true
         }"
        :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
-       
+
        <GmapPolyline
         :path="polylineCoordinates"
         :index="polylineCoordinates"
@@ -182,7 +182,7 @@ export default
                     lat: event.latLng.lat(), lng: event.latLng.lng()
                 };
 
-                this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], this.activeMarkerIndex);
+                this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], event);
             },
             checkMarker(i) {
                 console.log(this.waypoints[i]);
