@@ -96,6 +96,8 @@ export default
         mounted() {
             
             setTimeout(function(){
+            console.log(this.waypoints)
+
                 if (window.google)
                 {
                     this.directionsService = new google.maps.DirectionsService();
