@@ -10,7 +10,6 @@ use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripPickup;
 use Medians\CustomFields\Domain\CustomField;
 
-
 class Driver extends CustomModel
 {
 
@@ -81,7 +80,7 @@ class Driver extends CustomModel
 
 	public function total_pickups() 
 	{
-		return $this->hasManyThrough(TripPickup::class, Trip::class, 'trip_id', 'trip_id');
+		return $this->hasManyThrough(TripPickup::class, Trip::class, 'driver_id', 'trip_id', 'driver_id', 'trip_id');
 	}
 
 

@@ -7,6 +7,8 @@ use Medians\Drivers\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
 
 
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 class DriverRepository 
 {
 
@@ -50,6 +52,7 @@ class DriverRepository
 
 	public function getAll($limit = 100)
 	{
+		
 		return Driver::with('last_trips','total_pickups')->limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 

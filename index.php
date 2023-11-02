@@ -30,6 +30,8 @@ $capsule->addConnection([
 
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
+$capsule->connection()->enableQueryLog();
+
 
 /**
  * Load all System Models
