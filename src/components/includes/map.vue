@@ -136,7 +136,36 @@ export default
             setMode() {
                 this.travelMode;
             },
+
             async calculateAndDisplayRoute() {
+                if (window.google) {
+                    const waypoints = this.waypoints.map(point => {
+                        return {
+                        location: new google.maps.LatLng(point.lat, point.lng),
+                        stopover: true
+                        };
+                    });
+
+                    this.directionsService.route(
+                        {
+                        origin: waypoints[0].location,
+                        destination: waypoints[this.waypoints.length - 1].location,
+                        waypoints: waypoints.slice(1, waypoints.length - 1),
+                        optimizeWaypoints: true, // Optimize the order of waypoints
+                        travelMode: 'DRIVING'
+                        },
+                        (response, status) => {
+                        if (status === 'OK') {
+                            this.directionsDisplay.setDirections(response);
+                        } else {
+                            console.warn('Directions request failed due to ' + status);
+                        }
+                        }
+                    );
+                }
+            },
+
+            async calculateAndDisplayRoute2() {
                 if (window.google) {
                     this.render = false;
 
