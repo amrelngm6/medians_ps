@@ -8,6 +8,7 @@ use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripPickup;
+use Medians\Help\Domain\HelpMessage;
 use Medians\CustomFields\Domain\CustomField;
 
 class Driver extends CustomModel
@@ -71,6 +72,11 @@ class Driver extends CustomModel
 	public function trip() 
 	{
 		return $this->hasOne(Trip::class, 'driver_id', 'driver_id')->withCount('waiting_locations','moving_locations')->with('pickup_locations')->where('trip_status', '!=', 'Completed')->where('trip_date', date('Y-m-d'));	
+	}
+
+	public function help_messages() 
+	{
+		return $this->morphMany(HelpMessage::class, 'user');	
 	}
 
 	public function last_trips() 
