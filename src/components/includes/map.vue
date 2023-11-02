@@ -158,6 +158,7 @@ export default
                         const { origin, destination } = waypoint;
                         console.log(origin);
                         console.log(destination);
+                        console.log(window.google.maps.LatLng(destination.lat, destination.lng));
                         this.directionsService.route(
                             {
                                 origin: new window.google.maps.LatLng(origin.lat, origin.lng),
@@ -166,7 +167,9 @@ export default
                             },
                             (response, status) => {
                                 console.log(response);
+                                console.log(status);
                                 if (status === 'OK') {
+                                    console.log('status');
                                 this.directionsDisplay.setDirections(response);
                                 } else {
                                 console.warn('Directions request failed due to ' + status);
