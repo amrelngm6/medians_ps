@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6" v-if="!showAddSide && !showLoader">
+            <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6" v-if="!showLoader">
 
                 <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl" v-for="driver in content.items">
                     <div class="box-body space-y-5">
@@ -64,6 +64,8 @@
             <side-form-update :conf="conf" model="Driver.update" :item="activeItem" :model_id="activeItem.driver_id"
                 :index="activeItem.driver_id" v-if="showEditSide && !showAddSide" :columns="content.fillable"
                 class="col-md-3" />
+
+            <side-form-create :conf="conf" model="Driver.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
 
         </main>
     </div>
