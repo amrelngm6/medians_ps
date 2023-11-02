@@ -175,7 +175,7 @@
 import dashboard_card from './includes/dashboard_card';
 import dashboard_card_white from './includes/dashboard_card_white';
 import dashboard_center_squares from './includes/dashboard_center_squares';
-import help_icon from './includes/svg/help';
+import help_icon from './includes/svgs/help';
 
 export default
     {
