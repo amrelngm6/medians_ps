@@ -15,8 +15,8 @@
             
             <DirectionsRenderer 
                 v-if="showroute && directionPoints"
-                :origin="directionPoints.origin"
-                :destination="directionPoints.destination" 
+                :destination="directionPoints.origin"
+                :origin="directionPoints.destination" 
                 :key="directionPoints" 
                 :travelMode="travelMode" 
                  />
