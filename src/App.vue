@@ -187,19 +187,7 @@ export default {
          */
         defaultPage()
         {
-            if (this.auth && this.auth.role_id === 1) {
-                return 'master_dashboard';
-            }
-
-
-            if (this.auth && this.auth.role_id > 1) {
-                return 'dashboard';
-            }
-
-            console.log(this.auth);
-
-            return 'get_started';
-
+            return 'dashboard';
         }, 
 
         /**
