@@ -39,7 +39,7 @@ class DashboardController extends CustomController
 
 		$this->start = $this->app->request()->get('start') ? date('Y-m-d', strtotime($this->app->request()->get('start'))) : date('Y-m-d');
 		$this->end = $this->app->request()->get('end') ? date('Y-m-d', strtotime($this->app->request()->get('end'))) : date('Y-m-d');
-
+		$this->month_first = date('Y-m-01');
 	}
 
 	/**
@@ -87,7 +87,7 @@ class DashboardController extends CustomController
 
 		try {
 
-			$trips_charts = $this->TripRepository->getByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+			$trips_charts = $this->TripRepository->getByDateCharts(['start'=>$this->app->request()->get('start') ? $this->start : $this->month_first, 'end'=>$this->end]);
 
 			$counts = $this->loadCounts();
             /**
