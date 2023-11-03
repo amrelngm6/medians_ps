@@ -160,6 +160,8 @@ export default
         
         updateMarker(item, event)
         {
+            console.log(item);
+            console.log(event);
             this.activeItem.latitude = item.destination.lat;
             this.activeItem.longitude = item.destination.lng;
             this.handleAction('edit', this.activeItem);
