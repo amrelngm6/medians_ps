@@ -99,8 +99,11 @@ export default
             setInterval(() => {
                 console.log(t.waypoints);
                 if (t.waypoints != this.$parent.locations && this.$parent.locations) {
-                console.log('interval');
-                    t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
+                    console.log('interval');
+                    if (t.waypoints.length)
+                    {
+                        t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
+                    }
                     t.waypoints = this.$parent.locations;
                     this.polylineCoordinates = []
                     t.calculateAndDisplayRoute();
