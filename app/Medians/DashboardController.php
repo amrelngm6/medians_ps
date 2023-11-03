@@ -49,8 +49,6 @@ class DashboardController extends CustomController
 	 */
 	public function index()
 	{
-		$this->checkBranch();
-
 		try {
 			
 			// Name of the Vue components
