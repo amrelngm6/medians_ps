@@ -85,7 +85,6 @@ class RouteController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-		        'categories' => $this->categoryRepo->get('Medians\Routes\Domain\Route'),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -104,39 +103,6 @@ class RouteController extends CustomController
 		echo  json_encode($data);
 	}
 
-	/**
-	 * Create new item
-	 * 
-	 */ 
-	public function create() 
-	{
-
-		return render('views/admin/Route/create.html.twig', [
-	        'title' => __('add_new'),
-	        'langs_list' => ['ar','en'],
-	        'categories' => $this->categoryRepo->get('Medians\Routes\Domain\Route'),
-	    ]);
-
-	}
-
-
-
-	public function edit($id ) 
-	{
-		try {
-				
-			return render('views/admin/Route/Route.html.twig', [
-		        'title' => __('edit_Route'),
-		        'langs_list' => ['ar','en'],
-		        'item' => $this->repo->find($id),
-		        'categories' => $this->categoryRepo->get('Medians\Routes\Domain\Route'),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
-		}
-	}
 
 
 	public function store() 

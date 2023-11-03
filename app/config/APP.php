@@ -195,6 +195,10 @@ class APP
 	{
 		$user = $this->auth();
 
+		$user->permissions = $user->with('RolePermissions')->find($user->id)->RolePermissions;
+
+		print_r($user->permissions);
+
 		if (empty($user))
 			return null;
 
@@ -232,9 +236,8 @@ class APP
 			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'#dashboard', 'sub'=>
 			[
 				array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
-				array('title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'master_dashboard'),
-				array('title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
-				// array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
+				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
+				array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
 			]
 			),
 			
@@ -271,6 +274,47 @@ class APP
 	 * @param Instance User $user
 	 */
 	public function checkMenuAccess($menu, $user)
+	{
+	
+		$newMenu = [];
+		if ($user->role_id > 3 )
+		{
+			foreach ($menu as $key => $item)
+			{
+				if (isset($item['sub'])) 
+				{
+
+					foreach ($item['sub'] as $k => $sub)
+					{
+						$newMenu[$key]['sub'][] = isset($user->permissions[$sub['permission']]) ? $sub : null;
+					}
+					$newMenu[$key]['sub'] = array_values(array_filter($newMenu[$key]['sub']));
+					if (isset($newMenu[$key]['sub']))
+					{
+						$newMenu[$key]['title'] = $item['title'];
+						$newMenu[$key]['icon'] = $item['icon'];
+						$newMenu[$key]['link'] = $item['link'];
+					}
+
+				} else {
+					$newMenu[$key] = isset($user->permissions[$item['permission']]) ? $item : null;
+				}
+
+				if (empty($newMenu[$key]['sub']) && empty($newMenu[$key]['permission']) )
+					$newMenu[$key] = null;
+			}
+
+			return array_values(array_filter($newMenu));
+		}
+		return $data;
+	}
+
+	/**
+	 * Check permission of the menu link
+	 * @param String $permission
+	 * @param Instance User $user
+	 */
+	public function checkMenuPermissionsAccess($menu, $user)
 	{
 		if ($user->role_id == 3 )
 		{

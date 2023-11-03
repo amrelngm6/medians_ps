@@ -128,12 +128,10 @@ class User extends CustomModel
         return $this->morphMany(CustomField::class, 'model');
     }
 
-
     public function RolePermissions()
     {
-		return $this->hasMany(Permission::class, 'role_id', 'role_id')->selectRaw('CONCAT(model, ".", action) AS code, access ');
+		return $this->hasMany(Permission::class, 'role_id', 'role_id')->selectRaw('CONCAT(model, ".", action) AS code, action, access ');
     }
-
 
 	
 	/**
