@@ -93,9 +93,12 @@ export default
         ],
         mounted() {
             var t = this;
-            setTimeout(function(){
-                t.onMapReady()
-            }, 1000)
+            if (this.showroute)
+            {
+                setTimeout(function(){
+                    t.onMapReady()
+                }, 1000)
+            }
         },
 
         methods:
