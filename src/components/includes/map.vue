@@ -114,20 +114,22 @@ export default
         mounted() {
             
             var t = this;
-
-            t.directionsService = new window.google.maps.DirectionsService();
-            t.directionsDisplay = new window.google.maps.DirectionsRenderer();
-
+            setTimeout(() => {
+                t.directionsService = new window.google.maps.DirectionsService();
+                t.directionsDisplay = new window.google.maps.DirectionsRenderer();
+            }, 1000);
             setInterval(() => {
                 console.log(t.waypoints);
                 if (t.waypoints != this.$parent.locations && this.$parent.locations) {
+                console.log('interval');
+
                     t.waypoints = this.$parent.locations;
                     this.polylineCoordinates = []
                     t.calculateAndDisplayRoute();
                     t.calculateAndDisplayRoute();
 
                 }
-            }, 1000);
+            }, 2000);
             console.log(t.waypoints);
         },
 
