@@ -9,6 +9,7 @@
                 rotateControl: true,
                 fullscreenControl: true
             }"
+            @map-ready="onMapReady"
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
 
 <!-- 
@@ -91,23 +92,32 @@ export default
         ],
         mounted() {
             
-            var t = this;
-            setTimeout(() => {
-                t.directionsService = new window.google.maps.DirectionsService();
-                t.directionsDisplay = new window.google.maps.DirectionsRenderer();
-            }, 1000);
-            setInterval(() => {
-                console.log(t.waypoints);
-                if (t.waypoints != this.$parent.locations && this.$parent.locations) {
-                    console.log('interval');
-                    t.waypoints = this.$parent.locations;
-                    t.calculateAndDisplayRoute();
-                }
-            }, 2000);
         },
 
         methods:
         {
+
+            /**
+             * When map loaded is ready
+             * 
+             * @param
+             */
+            onMapReady()
+            {
+                var t = this;
+                t.directionsService = new window.google.maps.DirectionsService();
+                t.directionsDisplay = new window.google.maps.DirectionsRenderer();
+
+                setInterval(() => {
+                    console.log(t.waypoints);
+                    if (t.waypoints != this.$parent.locations && this.$parent.locations) {
+                        console.log('interval');
+                        t.waypoints = this.$parent.locations;
+                        t.calculateAndDisplayRoute();
+                    }
+                }, 2000);
+            },
+
             calculateDistance(location1, location2) {
                 const R = 6371; // Radius of the Earth in kilometers
                 const lat1 = location1.lat;
