@@ -12,7 +12,7 @@
       attributeName="transform"
       attributeType="XML"
       type="translate"
-      dur="2s"
+      dur="1s"
       values="0 1; 0 0; 0 1"
       repeatCount="indefinite" />
     </path>
