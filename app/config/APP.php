@@ -277,7 +277,7 @@ class APP
 	{
 	
 		$newMenu = [];
-		if ($user->role_id > 3 )
+		if ($user->role_id > 1 )
 		{
 			foreach ($menu as $key => $item)
 			{
@@ -306,7 +306,7 @@ class APP
 
 			return array_values(array_filter($newMenu));
 		}
-		return $data;
+		return $menu;
 	}
 
 	/**
