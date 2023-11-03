@@ -41,7 +41,7 @@ class User extends CustomModel
 
 	public function getPermissionsAttribute() 
 	{
-        return !empty($this->RolePermissions) ? array_column($this->RolePermissions->toArray(), 'access', 'code') : [];
+        return !empty($this->RolePermissions) ? array_column($this->RolePermissions->toArray(), 'access', 'action') : [];
 	}
 
 	/**
@@ -130,7 +130,7 @@ class User extends CustomModel
 
     public function RolePermissions()
     {
-		return $this->hasMany(Permission::class, 'role_id', 'role_id')->selectRaw('CONCAT(model, "", action) AS code, action, access ');
+		return $this->hasMany(Permission::class, 'role_id', 'role_id');
     }
 
 	

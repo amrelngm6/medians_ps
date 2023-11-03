@@ -195,10 +195,6 @@ class APP
 	{
 		$user = $this->auth();
 
-		$user->permissions = $user->with('RolePermissions')->find($user->id)->RolePermissions;
-
-		print_r($user->permissions);
-
 		if (empty($user))
 			return null;
 
