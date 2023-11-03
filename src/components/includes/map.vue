@@ -127,7 +127,7 @@ export default
 
             setInterval(() => {
                 this.$emit('interval-callback');
-                console.log($this.$parent.locations);
+                console.log(this.$parent.locations);
             }, 1000);
             
         },
