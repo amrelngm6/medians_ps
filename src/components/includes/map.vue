@@ -95,6 +95,7 @@ export default
                 ],
 
                 polylineCoordinates: [],
+                waypoints: [],
             }
 
         },
@@ -109,7 +110,6 @@ export default
             'conf',
             'auth',
             'showroute',
-            'waypoints'
         ],
         mounted() {
             
