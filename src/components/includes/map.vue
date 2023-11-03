@@ -115,10 +115,10 @@ export default
             
             var t = this;
             
-            t.waypoints = this.$parent.locations;
             
             setInterval(() => {
-                if (t.waypoints && t.waypoints.length) {
+                if (t.waypoints != this.$parent.locations && t.waypoints.length) {
+                    t.waypoints = this.$parent.locations;
                     this.polylineCoordinates = []
                     t.calculateAndDisplayRoute();
                 }
