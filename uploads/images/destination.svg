@@ -13,7 +13,7 @@
       attributeType="XML"
       type="translate"
       dur="2s"
-      values="0 0; -10 0; 0 0"
+      values="0 1; 0 0; 0 1"
       repeatCount="indefinite" />
     </path>
 </g>
