@@ -115,15 +115,13 @@ export default
             
             var t = this;
             
-            if (t.waypoints && t.waypoints.length) {
-                this.polylineCoordinates = []
-                t.calculateAndDisplayRoute();
-            }
-
-            console.log(this.waypoints)
-
+            t.waypoints = this.$parent.locations;
+            
             setInterval(() => {
-                console.log(this.$parent.locations);
+                if (t.waypoints && t.waypoints.length) {
+                    this.polylineCoordinates = []
+                    t.calculateAndDisplayRoute();
+                }
             }, 1000);
             
         },
