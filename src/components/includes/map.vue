@@ -15,8 +15,8 @@
             
             <DirectionsRenderer 
                 v-if="showroute && directionPoints"
-                :destination="directionPoints.origin"
-                :origin="directionPoints.destination" 
+                :destination="directionPoints.destination" 
+                :origin="directionPoints.origin"
                 :key="directionPoints" 
                 :travelMode="travelMode" 
                  />
@@ -196,7 +196,7 @@ export default
                 var t = this;
                 if (window.google && this.waypoints.length) 
                 {
-                    t.directionPoints = {origin: t.waypoints[t.waypoints.length-1].destination, destination:t.waypoints[0].destination};
+                    t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[t.waypoints.length-1].destination};
                     const {origin, destination} = t.directionPoints;
 
                     t.directionsService.route(
