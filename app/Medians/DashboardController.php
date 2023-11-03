@@ -22,6 +22,7 @@ class DashboardController extends CustomController
 	protected $app;
 	public $start;
 	public $end;
+	public $month_first;
 	
 
 	function __construct()
