@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div  v-if="content && !showLoader" class=" w-full relative">
 
-            <maps :key="locations" :waypoints="locations" :showroute="'yes'"></maps>
+            <maps @update-marker="updateMarker" :key="locations" :waypoints="locations" :showroute="false"></maps>
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
                     <div class="text-black text-lg font-semibold" v-text="__('Routes')"></div>
@@ -157,9 +157,14 @@ export default
             this.locations = this.setLocationsPickups(route);
         },  
         
+        updateMarker(item, event)
+        {
+            console.log(item)
+            console.log(event)
+        },
+
         setLocationsPickups(route)
         {
-            
             let a;
             let locations = [];
             // = parseFloat(location.latitude);
@@ -168,6 +173,7 @@ export default
                 locations[i] = {icon: this.conf.url+'uploads/images/blue_pin.gif', origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
             locations[locations.length] = {icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
+            locations.push({drag:true, icon: this.conf.url+'uploads/images/pin.png', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }) ;
             return locations;
         },  
 
