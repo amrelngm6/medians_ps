@@ -149,6 +149,7 @@ export default
         },
         setLocationsMarkers(route, i)
         {   
+            this.activeItem = route;
 
             for (let a = 0; a < this.content.items.length; a++) 
                 this.content.items[a].selected = false;
@@ -159,6 +160,7 @@ export default
         
         updateMarker(item, event)
         {
+            console.log(this.activeItem)
             console.log(item)
             console.log(event)
         },
