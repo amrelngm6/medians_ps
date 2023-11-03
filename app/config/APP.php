@@ -232,7 +232,7 @@ class APP
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'fa-circle-info', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
 			array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
-			array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'fa-bell-o', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
+			array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'fa-bell-concierge', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
 			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
