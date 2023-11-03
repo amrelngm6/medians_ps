@@ -194,41 +194,25 @@ export default
 
              calculateAndDisplayRoute() {
                 var t = this;
-                if (window.google && this.waypoints.length) {
-                    
-                    
-                    if (t.waypoints.length)
-                    {
-                        t.directionPoints = {origin: t.waypoints[t.waypoints.length-1].destination, destination:t.waypoints[0].destination};
-                    }
-                    
+                if (window.google && this.waypoints.length) 
+                {
+                    t.directionPoints = {origin: t.waypoints[t.waypoints.length-1].destination, destination:t.waypoints[0].destination};
                     const {origin, destination} = t.directionPoints;
-
-                    const d = new window.google.maps.LatLng(destination.lat, destination.lng);
-                    const o = new window.google.maps.LatLng(origin.lat, origin.lng);
 
                     t.directionsService.route(
                         {
-                            origin: o,
-                            destination: d,
+                            origin: new window.google.maps.LatLng(origin.lat, origin.lng),
+                            destination: new window.google.maps.LatLng(destination.lat, destination.lng),
                             travelMode: 'DRIVING'
                         },
                         (response, status) => {
                             if (status === 'OK') {
                                 t.directionsDisplay.setDirections(response);
                             } else {
-                            console.warn('Directions request failed due to ' + status);
+                                console.warn('Directions request failed due to ' + status);
                             }
                         }
                     );
-                    
-                    this.waypoints.forEach((waypoint, index) => {
-                        const { origin, destination, status } = waypoint;
-                        t.addPoint(destination, status);
-                        
-                    });
-                    this.showroute = true;
-
                 }
             },
 
