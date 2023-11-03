@@ -112,7 +112,7 @@
                                                 :class="__('lang') == 'ar' ? 'right-4' : 'left-4'" class="absolute border-s-2  border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10">
                                             </div>
 
-                                            <div class="md:text-start flex mb-5 mt-5">
+                                            <div class="md:text-start lg:flex mb-5 mt-5">
                                                 <div class="w-full">
                                                     <h5 class="font-semibold bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded "
                                                     v-text="__('Trip number') + ' #' + trip.trip_id"></h5>
