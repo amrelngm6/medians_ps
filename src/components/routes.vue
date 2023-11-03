@@ -160,8 +160,8 @@ export default
         
         updateMarker(item, event)
         {
-            this.activeItem.latitude = event.latlng.lat();
-            this.activeItem.longitude = event.latlng.lng();
+            this.activeItem.latitude = event.latLng.lat();
+            this.activeItem.longitude = event.latLng.lng();
             this.handleAction('edit', this.activeItem);
         },
 
