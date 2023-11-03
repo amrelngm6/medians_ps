@@ -107,8 +107,6 @@ export default
                     t.waypoints = this.$parent.locations;
                     this.polylineCoordinates = []
                     t.calculateAndDisplayRoute();
-                    t.calculateAndDisplayRoute();
-
                 }
             }, 2000);
             console.log(t.waypoints);
