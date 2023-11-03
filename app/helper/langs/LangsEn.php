@@ -924,12 +924,12 @@ class LangsEn
 			,'editor_help' => 'At the top left of each section click on EDIT button and after editing click on SAVE'
 			,'editor notes' => 'To edit Links or Images ( <a> / <img> ) tags use right-click at your mouse'
 			,'Pickup locations description' => 'This list includes all pickup locations'
-			,'Routes description' => 'This list includes routes with its pickup locations'
+			,'Routes description' => 'List of routes with its pickup locations'
 			,'PickupLocations' => 'Pickup Locations'
 			,'Trips description' => 'List of the active Trips list.'
 			,'Before Create driver note' => 'When you create new driver you should make sure that you have the right <b>Email</b>. <br />Because the generated password will be sent to him'
 
-			
+
 			,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
 	
