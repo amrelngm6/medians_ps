@@ -309,6 +309,7 @@ class APP
 		return $menu;
 	}
 
+	
 	/**
 	 * Check permission of the menu link
 	 * @param String $permission

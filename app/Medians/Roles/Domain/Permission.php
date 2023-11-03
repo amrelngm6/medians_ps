@@ -13,8 +13,10 @@ class Permission extends CustomModel
 	*/
 	protected $table = 'permissions';
 
+    protected $primaryKey = 'permission_id';
 
 	protected $fillable = [
+    	'permission_id',
     	'role_id',
     	'branch_id',
     	'model',
