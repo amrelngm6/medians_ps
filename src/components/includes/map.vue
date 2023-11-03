@@ -93,8 +93,9 @@ export default
         ],
         mounted() {
             var t = this;
-            if (this.showroute)
+            if (this.showroute == true)
             {
+                console.log(this.showroute);
                 setTimeout(function(){
                     t.onMapReady()
                 }, 1000)
