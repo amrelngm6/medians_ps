@@ -2,7 +2,7 @@
     <div class="w-full overflow-auto" style="height: 85vh; z-index: 9999;">
 
 
-        <div class="top-0 py-2 w-full px-2 bg-gray-100 mt-0 sticky" style="z-index:9">
+        <div class="top-0 py-2 w-full px-4 bg-gray-50 mt-0 sticky rounded" style="z-index:9">
             <div class="w-full flex gap-6">
                 <h3 class="text-base lg:text-lg whitespace-nowrap" v-text="__('Dashboard Reports')"></h3> 
                 <ul class="w-full flex gap-4 ">
