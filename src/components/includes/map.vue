@@ -92,8 +92,9 @@ export default
             'showroute',
         ],
         mounted() {
+            var t = this;
             setTimeout(function(){
-                this.onMapReady()
+                t.onMapReady()
             }, 1000)
         },
 
