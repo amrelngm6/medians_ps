@@ -136,7 +136,7 @@
                                                     <div class="absolute start-7 mt-6">
                                                         <div class="relative">
                                                             <div
-                                                                class="w-8 h-8 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                class="w-9 h-9 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
                                                                 <img :src="location.model.picture" class="rounded-full"
                                                                     alt="">
                                                             </div>
