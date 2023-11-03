@@ -197,8 +197,6 @@ class APP
 
 		$user->permissions = $user->with('RolePermissions')->find($user->id)->RolePermissions;
 
-		print_r($user->permissions);
-
 		if (empty($user))
 			return null;
 
@@ -283,7 +281,6 @@ class APP
 			{
 				if (isset($item['sub'])) 
 				{
-
 					foreach ($item['sub'] as $k => $sub)
 					{
 						$newMenu[$key]['sub'][] = isset($user->permissions[$sub['permission']]) ? $sub : null;

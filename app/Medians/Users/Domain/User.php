@@ -130,7 +130,7 @@ class User extends CustomModel
 
     public function RolePermissions()
     {
-		return $this->hasMany(Permission::class, 'role_id', 'role_id')->selectRaw('CONCAT(model, ".", action) AS code, action, access ');
+		return $this->hasMany(Permission::class, 'role_id', 'role_id')->selectRaw('CONCAT(model, "", action) AS code, action, access ');
     }
 
 	
