@@ -109,7 +109,7 @@
                                             v-for="(trip, index) in activeItem.last_trips" v-if="index <= limitCount">
                                             <!-- Center Border Line -->
                                             <div
-                                                class="absolute border-s-2 border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10">
+                                                :class="__('lang') == 'ar' ? 'right-4' : 'left-4'" class="left-4 right-4 absolute border-s-2  border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10">
                                             </div>
 
                                             <div class="md:text-start mb-5 mt-5">

@@ -524,6 +524,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 0px;
 }
 
+.right-4 {
+  right: 1rem;
+}
+
+.left-4 {
+  left: 1rem;
+}
+
 .top-20 {
   top: 5rem;
 }
@@ -1333,10 +1341,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0px;
 }
 
-.p-10 {
-  padding: 2.5rem;
-}
-
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1610,6 +1614,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-purple-800 {
   --tw-text-opacity: 1;
   color: rgb(107 33 168 / var(--tw-text-opacity));
+}
+
+.text-purple-600 {
+  --tw-text-opacity: 1;
+  color: rgb(147 51 234 / var(--tw-text-opacity));
 }
 
 .text-gray-900 {
