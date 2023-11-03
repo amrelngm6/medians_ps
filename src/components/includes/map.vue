@@ -102,7 +102,7 @@ export default
                     console.log('interval');
                     if (t.waypoints.length)
                     {
-                        t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
+                        t.directionPoints = {origin: t.waypoints[t.waypoints.length-1].destination, destination:t.waypoints[0].destination};
                     }
                     t.waypoints = this.$parent.locations;
                     this.polylineCoordinates = []
