@@ -131,7 +131,7 @@
                                             </div>
 
                                             <!--  -->
-                                            <div class="space-y-4" v-for="location in trip.pickup_locations">
+                                            <div class="space-y-4" v-for="location in trip.pickup_locations" :key="trip">
                                                 <div class="text-start">
                                                     <div class="absolute start-7 mt-6">
                                                         <div class="relative">
