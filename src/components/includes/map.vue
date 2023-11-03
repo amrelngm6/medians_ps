@@ -115,9 +115,6 @@ export default
             
             var t = this;
             
-            t.directionsService = new window.google.maps.DirectionsService();
-            t.directionsDisplay = new window.google.maps.DirectionsRenderer();
-            
             if (t.waypoints && t.waypoints.length) {
                 this.polylineCoordinates = []
                 t.calculateAndDisplayRoute();
@@ -209,6 +206,9 @@ export default
                 var t = this;
                 if (window.google && this.waypoints.length) {
                     
+                    t.directionsService = new window.google.maps.DirectionsService();
+                    t.directionsDisplay = new window.google.maps.DirectionsRenderer();
+
                     var map = this.$refs.gmap.$mapObject;
 
                     this.directionsDisplay.setMap(map);
