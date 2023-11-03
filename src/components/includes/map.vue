@@ -14,10 +14,10 @@
 
             <DirectionsRenderer 
                 v-if="showroute"
-                v-for="(waypoint, index) in waypoints" 
+                v-for="(waypoint, index) in directionPoints" 
                 :origin="waypoint.origin"
                 :destination="waypoint.destination" 
-                :key="waypoint" 
+                :key="directionPoints" 
                 :travelMode="travelMode" 
                  />
                  
@@ -91,7 +91,7 @@ export default
                 console.log(t.waypoints);
                 if (t.waypoints != this.$parent.locations && this.$parent.locations) {
                 console.log('interval');
-
+                    t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
                     t.waypoints = this.$parent.locations;
                     this.polylineCoordinates = []
                     t.calculateAndDisplayRoute();

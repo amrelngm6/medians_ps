@@ -180,8 +180,6 @@ export default
                 this.$alert(response.result)
             })
 
-            console.log(item)
-            console.log(event)
         },  
         
         setLocationsPickups(trip)
@@ -233,8 +231,6 @@ export default
             this.$parent.handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 this.searchTextChanged()
-
-                // this.$alert(response)
             });
         },
 
