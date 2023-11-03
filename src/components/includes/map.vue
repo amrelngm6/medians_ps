@@ -11,11 +11,6 @@
             }"
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
 
-            <GmapPolyline
-                :path="polylineCoordinates"
-                :index="polylineCoordinates"
-                :editable="true" 
-            />
 
             <DirectionsRenderer 
                 v-if="showroute"
@@ -55,7 +50,6 @@ export default
         name: 'Vehicles',
         data() {
             return {
-                imageUrl: 'http://192.168.1.99:81/uploads/images/',
                 modes: ['DRIVING', 'WALKING'],
                 activeMarkerIndex: 0,
                 reload: true,
@@ -67,31 +61,6 @@ export default
                 zoom: 14,
                 center: { lat: 30.058122734715376, lng: 31.219219598388676 },
                 markers: [
-                    {
-                        position: {
-                            lat: 30.0581227357153761, lng: 31.21921983886761
-                        }
-                    },
-                    {
-                        position: {
-                            lat: 30.058122734715376, lng: 31.219219598388676
-                        }
-                    },
-                    {
-                        position: {
-                            lat: 30.057544505767098, lng: 31.22335947143557
-                        }
-                    },
-                    {
-                        position: {
-                            lat: 30.062368086177194, lng: 31.221097905273425
-                        }
-                    },
-                    {
-                        position: {
-                            lat: 30.05930379083195, lng: 31.22166653358458
-                        }
-                    }
                 ],
 
                 polylineCoordinates: [],
