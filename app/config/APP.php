@@ -231,24 +231,24 @@ class APP
 			
 			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'#dashboard', 'sub'=>
 			[
-				array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
+				array('permission'=> 'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
 				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
-				array('permission'=>'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
+				array('permission'=> 'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
 			]
 			),
 			
-			array('title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'#customers', 'sub'=>
+			array('permission'=>'Dashboard.index', 'title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'#customers', 'sub'=>
 			[
 				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'fa-user', 'link'=>'admin/parents', 'component'=>'parents'),
-				array('permission'=>'Student.index', 'title'=>__('Students'),  'icon'=>'fa-user', 'link'=>'admin/students', 'component'=>'students'),
-				array('permission'=>'Driver.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
+				array('permission'=>'Students.index', 'title'=>__('Students'),  'icon'=>'fa-user', 'link'=>'admin/students', 'component'=>'students'),
+				array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
 			]
 			),
 			
-			array('title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'#route', 'sub'=>
+			array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'#route', 'sub'=>
 				[
-					array('permission'=>'Route.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'admin/routes', 'component'=>'routes'),
-					array('permission'=>'Pickup.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
+					array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'admin/routes', 'component'=>'routes'),
+					array('permission'=>'PickupLocations.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
 				]
 			),
 
