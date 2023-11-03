@@ -1,21 +1,22 @@
 <template>
     <div class="w-full  overflow-auto" style="height: 85vh; z-index: 9999;">
         <GmapMap ref="gmap" :center="center" :key="reload" 
-        :options="{
-            zoomControl: true,
-            mapTypeControl: true,
-            scaleControl: true,
-            streetViewControl: true,
-            rotateControl: true,
-            fullscreenControl: true
-        }"
-       :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
+            :options="{
+                zoomControl: true,
+                mapTypeControl: true,
+                scaleControl: true,
+                streetViewControl: true,
+                rotateControl: true,
+                fullscreenControl: true
+            }"
+            :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
 
-       <GmapPolyline
-        :path="polylineCoordinates"
-        :index="polylineCoordinates"
-        :editable="true" 
-      />
+            <GmapPolyline
+                :path="polylineCoordinates"
+                :index="polylineCoordinates"
+                :editable="true" 
+            />
+
             <DirectionsRenderer 
                 v-if="showroute"
                 v-for="(waypoint, index) in waypoints" 
@@ -24,6 +25,7 @@
                 :key="waypoint" 
                 :travelMode="travelMode" 
                  />
+                 
             <GmapMarker
                 v-for="(marker, index) in waypoints" 
                 :key="waypoints" 
