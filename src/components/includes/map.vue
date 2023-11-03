@@ -12,16 +12,7 @@
             
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
 
-<!-- 
-            <DirectionsRenderer 
-                v-if="showroute"
-                v-for="(waypoint, index) in directionPoints" 
-                :origin="waypoint.origin"
-                :destination="waypoint.destination" 
-                :key="directionPoints" 
-                :travelMode="travelMode" 
-                 />
-                  -->
+            
             <DirectionsRenderer 
                 v-if="showroute && directionPoints"
                 :origin="directionPoints.origin"
