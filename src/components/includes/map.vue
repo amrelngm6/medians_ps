@@ -114,12 +114,16 @@ export default
         mounted() {
             
             var t = this;
-            
+
+            t.directionsService = new window.google.maps.DirectionsService();
+            t.directionsDisplay = new window.google.maps.DirectionsRenderer();
+
             setInterval(() => {
                 console.log(t.waypoints);
                 if (t.waypoints != this.$parent.locations && this.$parent.locations) {
                     t.waypoints = this.$parent.locations;
                     this.polylineCoordinates = []
+                    t.calculateAndDisplayRoute();
                     t.calculateAndDisplayRoute();
 
                 }
@@ -204,8 +208,6 @@ export default
                 var t = this;
                 if (window.google && this.waypoints.length) {
                     
-                    t.directionsService = new window.google.maps.DirectionsService();
-                    t.directionsDisplay = new window.google.maps.DirectionsRenderer();
 
                     var map = this.$refs.gmap.$mapObject;
 
