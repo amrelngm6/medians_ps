@@ -100,16 +100,9 @@ export default
                 console.log(t.waypoints);
                 if (t.waypoints != this.$parent.locations && this.$parent.locations) {
                     console.log('interval');
-                    if (t.waypoints.length)
-                    {
-                        t.directionPoints = {origin: t.waypoints[t.waypoints.length-1].destination, destination:t.waypoints[0].destination};
-                    }
-                    t.waypoints = this.$parent.locations;
-                    this.polylineCoordinates = []
                     t.calculateAndDisplayRoute();
                 }
             }, 2000);
-            console.log(t.waypoints);
         },
 
         methods:
@@ -194,25 +187,38 @@ export default
 
                     this.directionsDisplay.setMap(map);
                     this.showroute = false;
+                    
+                    if (t.waypoints.length)
+                    {
+                        t.directionPoints = {origin: t.waypoints[t.waypoints.length-1].destination, destination:t.waypoints[0].destination};
+                    }
+                    
+                    t.waypoints = this.$parent.locations;
+
+                    const {origin, destination} = t.directionPoints;
+
+                    const d = new window.google.maps.LatLng(destination.lat, destination.lng);
+                    const o = new window.google.maps.LatLng(origin.lat, origin.lng);
+
+                    t.directionsService.route(
+                        {
+                            origin: o,
+                            destination: d,
+                            travelMode: 'DRIVING'
+                        },
+                        (response, status) => {
+                            if (status === 'OK') {
+                                t.directionsDisplay.setDirections(response);
+                            } else {
+                            console.warn('Directions request failed due to ' + status);
+                            }
+                        }
+                    );
+                    
                     this.waypoints.forEach((waypoint, index) => {
                         const { origin, destination, status } = waypoint;
-                        const d = new window.google.maps.LatLng(destination.lat, destination.lng);
-                        const o = new window.google.maps.LatLng(origin.lat, origin.lng);
                         t.addPoint(destination, status);
-                        t.directionsService.route(
-                            {
-                                origin: o,
-                                destination: d,
-                                travelMode: 'DRIVING'
-                            },
-                            (response, status) => {
-                                if (status === 'OK') {
-                                    t.directionsDisplay.setDirections(response);
-                                } else {
-                                console.warn('Directions request failed due to ' + status);
-                                }
-                            }
-                        );
+                        
                     });
                     this.showroute = true;
 
