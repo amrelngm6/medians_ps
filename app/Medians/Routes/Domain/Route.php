@@ -21,6 +21,8 @@ class Route extends CustomModel
 	public $fillable = [
 		'route_name',
 		'description',
+		'latitude',
+		'longitude',
 		'created_by'
 	];
 
