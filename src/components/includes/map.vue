@@ -123,7 +123,6 @@ export default
             console.log(this.waypoints)
 
             setInterval(() => {
-                this.$emit('interval-callback');
                 console.log(this.$parent.locations);
             }, 1000);
             
