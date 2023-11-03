@@ -22,8 +22,6 @@ class CategoryController extends CustomController
 	function __construct()
 	{
 
-		$this->checkBranch();
-
 		$this->repo = new CategoryRepository();
 		
 	}

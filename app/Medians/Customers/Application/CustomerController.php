@@ -73,8 +73,6 @@ class CustomerController extends CustomController
 	 */
 	public function index()
 	{
-		$this->checkBranch();
-		
 		return render('customers', [
 			'items' =>  $this->repo->get(),
 	        'title' => __('Customers'),
