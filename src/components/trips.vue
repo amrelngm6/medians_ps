@@ -187,13 +187,14 @@ export default
             this.activeTrip = trip
             let a, o;
             this.locations = [];
-            for (let i = 0; i < trip.pickup_locations.length; i++) {
+            this.locations[0] = {drag:true, status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
+            for (let i = 1; i <= trip.pickup_locations.length; i++) {
                 a = trip.pickup_locations[i].location;
                 o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
                 this.locations[i] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
-            this.locations[this.locations.length] = {drag:true, status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
             this.locations[this.locations.length] = {drag:true, icon: this.conf.url+'uploads/images/destination.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
+            console.log(this.locations)
             this.showMap = !this.showMap
             
             return this.locations;
