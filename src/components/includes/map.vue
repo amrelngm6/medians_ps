@@ -9,7 +9,7 @@
                 rotateControl: true,
                 fullscreenControl: true
             }"
-            @map-ready="onMapReady"
+            
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
 
 <!-- 
@@ -49,6 +49,7 @@
 </template>
 <script>
 
+import { F } from "core-js/modules/_export";
 import DirectionsRenderer from "./map_direction.vue";
 
 export default
@@ -91,7 +92,9 @@ export default
             'showroute',
         ],
         mounted() {
-            
+            setTimeout(function(){
+                this.onMapReady()
+            }, 1000)
         },
 
         methods:
