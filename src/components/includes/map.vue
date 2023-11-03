@@ -95,10 +95,11 @@ export default
             var t = this;
             if (this.showroute == true)
             {
-                console.log(this.showroute);
                 setTimeout(function(){
                     t.onMapReady()
                 }, 1000)
+            } else {
+                t.waypoints = this.$parent.locations;
             }
         },
 
