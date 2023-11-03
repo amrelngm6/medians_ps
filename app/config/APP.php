@@ -229,14 +229,7 @@ class APP
 		
 		$data = array(
 			
-			array('permission'=>'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'#dashboard', 'sub'=>
-			[
-				array('permission'=> 'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
-				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
-				array('permission'=> 'Setting.index', 'title'=> __('Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/settings', 'component'=>'settings'),
-			]
-			),
-			
+			array('permission'=> 'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
 			array('permission'=>'Dashboard.index', 'title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'#customers', 'sub'=>
 			[
 				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'fa-user', 'link'=>'admin/parents', 'component'=>'parents'),
@@ -256,8 +249,9 @@ class APP
 			array('permission'=>'Trips.index', 'title'=>__('trips'),  'icon'=>'fa-suitcase-rolling', 'link'=>'admin/trips', 'component'=>'trips'),
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'fa-circle-info', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
-			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
+			array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
 			array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'fa-alarm', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
+			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
 			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
 
