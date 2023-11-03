@@ -98,9 +98,7 @@ if(isset($app->auth()->id))
     $roleId = $app->auth()->role_id;
 
     // Switch dashboard controller based on the user Role 
-    Macaw::get('/dashboard', $roleId === 1 
-        ? \Medians\MasterDashboardController::class.'@index' 
-        : \Medians\DashboardController::class.'@index'); 
+    Macaw::get('/dashboard', \Medians\DashboardController::class.'@index'); 
 
     Macaw::get('/admin/payment_success', \Medians\Payments\Application\PaymentController::class.'@payment_success'); 
     Macaw::get('/admin/payment_failed', \Medians\Payments\Application\PaymentController::class.'@payment_failed'); 
