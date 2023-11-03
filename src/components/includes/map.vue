@@ -22,7 +22,7 @@
                  />
                   -->
             <DirectionsRenderer 
-                v-if="showroute"
+                v-if="showroute && directionPoints"
                 :origin="directionPoints.origin"
                 :destination="directionPoints.destination" 
                 :key="directionPoints" 
