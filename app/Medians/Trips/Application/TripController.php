@@ -131,10 +131,8 @@ class TripController extends CustomController
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
         
-
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
-        	
         }
 
 	}
@@ -149,16 +147,13 @@ class TripController extends CustomController
 
         	$check = $this->repo->find($params['id']);
 
-
             if ($this->repo->delete($params['id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }
-            
 
         } catch (Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
-        	
         }
 
 	}
