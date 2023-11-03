@@ -100,6 +100,7 @@ export default
                 console.log(t.waypoints);
                 if (t.waypoints != this.$parent.locations && this.$parent.locations) {
                     console.log('interval');
+                    t.waypoints = this.$parent.locations;
                     t.calculateAndDisplayRoute();
                 }
             }, 2000);
@@ -193,8 +194,6 @@ export default
                         t.directionPoints = {origin: t.waypoints[t.waypoints.length-1].destination, destination:t.waypoints[0].destination};
                     }
                     
-                    t.waypoints = this.$parent.locations;
-
                     const {origin, destination} = t.directionPoints;
 
                     const d = new window.google.maps.LatLng(destination.lat, destination.lng);
