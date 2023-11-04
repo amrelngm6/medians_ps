@@ -235,6 +235,28 @@ class AuthService
 		return $checkDriverLogin;
 	}
 
+	/**
+	 * Check Parent login credentials
+	 * 
+	 * @return Object / String 
+	 */ 
+	public function checkParentLogin($email, $password)
+	{
+		$checkParentLogin = $this->parentRepo->checkLogin($email, $password);
+
+		if (empty($checkParentLogin->id))
+		{
+            return __("User credentials not valid");
+		}
+
+		if (empty($checkParentLogin->active))
+		{
+			return __("User account is not active");
+		}
+
+		return $checkParentLogin;
+	}
+
 
 
 	/**

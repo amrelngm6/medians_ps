@@ -48,7 +48,6 @@ class UserController extends CustomController
 				'data' => $this->rolesRepo->get()
 			],
             [ 'key'=> "profile_image", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
-
         ];
 	}
 
@@ -66,6 +65,7 @@ class UserController extends CustomController
 		return render('users', [
 			'load_vue'=> true,
 			'users' =>   $query,
+			'users' =>   $this->rolesRepo->get(),
 	        'title' => __('Users'),
 	        'fillable' => $this->fillable(),
 	    ]);

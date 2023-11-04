@@ -42,7 +42,7 @@ class ParentController extends CustomController
             [ 'key'=> "parent_id", 'title'=> "#"],
             [ 'key'=> "parent_name", 'title'=> __('Name'), 'sortable'=> true ],
             [ 'key'=> "email", 'title'=> __('Email'), 'sortable'=> true ],
-            [ 'key'=> "mobile", 'title'=> __('Mobile'), 'sortable'=> false ],
+            [ 'key'=> "contact_number", 'title'=> __('Mobile'), 'sortable'=> false ],
         ];
 	}
 
@@ -93,41 +93,6 @@ class ParentController extends CustomController
 		}
 	}
 
-
-
-	/**
-	 * Create new item
-	 * 
-	 */ 
-	public function create() 
-	{
-
-		return render('views/admin/Student/create.html.twig', [
-	        'title' => __('add_new'),
-	        'langs_list' => ['ar','en'],
-	        'categories' => $this->categoryRepo->get('Medians\Parents\Domain\Student'),
-	    ]);
-
-	}
-
-
-
-	public function edit($id ) 
-	{
-		try {
-				
-			return render('views/admin/Student/Student.html.twig', [
-		        'title' => __('edit_Student'),
-		        'langs_list' => ['ar','en'],
-		        'item' => $this->repo->find($id),
-		        'categories' => $this->categoryRepo->get('Medians\Parents\Domain\Student'),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
-		}
-	}
 
 
 	public function store() 

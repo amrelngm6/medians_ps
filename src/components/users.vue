@@ -10,23 +10,28 @@
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
 
-                    <div v-if="content.users" class="w-full grid lg:grid-cols-3 gap gap-6">
-                        <div :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
-                            <div class="flex-shrink-0 ">
-                                <div class="relative">
-                                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                    <img class="relative w-12 h-12 rounded-full" :src="user.photo" alt="User avatar">
+                    <div v-if="content.users" class="w-full">
+                        <div v-for="role in content.roles" class="w-full">
+                            <h1 v-text="role.name" class="pb-b"></h1>
+                            <div v-for="role in roles" class="w-full grid lg:grid-cols-3 gap gap-6">
+                                <div v-if="user && user.role_id == role.id" :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
+                                    <div class="flex-shrink-0 ">
+                                        <div class="relative">
+                                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                                            <img class="relative w-12 h-12 rounded-full" :src="user.photo" alt="User avatar">
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow w-full">
+                                        <div class="text-lg font-medium text-gray-900">{{user.first_name}} {{user.last_name}}</div>
+                                        <div class="text-sm font-medium text-gray-500" v-text="user.phone"></div>
+                                        <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <span  v-text="user.active ? __('Active') : __('Pending')" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                                        <span  v-text="__('edit')" class="my-2 inline-flex items-center px-2 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex-grow w-full">
-                                <div class="text-lg font-medium text-gray-900">{{user.first_name}} {{user.last_name}}</div>
-                                <div class="text-sm font-medium text-gray-500" v-text="user.phone"></div>
-                                <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
-                            </div>
-                            <div class="text-center">
-                                <span  v-text="user.active ? __('Active') : __('Pending')" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
-                                <span  v-text="__('edit')" class="my-2 inline-flex items-center px-2 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
-                                </span>
                             </div>
                         </div>
                     </div>
@@ -50,7 +55,7 @@ export default {
             content: {
 
                 title: this.__('users'),
-                branches: [],
+                roles: [],
                 users: [],
             },
 

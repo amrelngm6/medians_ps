@@ -80,7 +80,6 @@ class BlogController extends CustomController
 		        'title' => __('blog'),
 		        'columns' => $this->columns(),
 		        'items' => $this->repo->get(),
-		        'categories' => $this->categoryRepo->get('Medians\Blog\Domain\Blog'),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -88,41 +87,6 @@ class BlogController extends CustomController
 		}
 	}
 
-
-
-	/**
-	 * Create new item
-	 * 
-	 */ 
-	public function create() 
-	{
-
-		return render('views/admin/blog/create.html.twig', [
-	        'title' => __('add_new'),
-	        'langs_list' => ['ar','en'],
-	        'categories' => $this->categoryRepo->get('Medians\Blog\Domain\Blog'),
-	    ]);
-
-	}
-
-
-
-	public function edit($id ) 
-	{
-		try {
-				
-			return render('views/admin/blog/blog.html.twig', [
-		        'title' => __('edit_blog'),
-		        'langs_list' => ['ar','en'],
-		        'item' => $this->repo->find($id),
-		        'categories' => $this->categoryRepo->get('Medians\Blog\Domain\Blog'),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
-		}
-	}
 
 
 	public function store() 

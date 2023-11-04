@@ -94,44 +94,7 @@ class DriverController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->getAll(),
-		        'categories' => $this->categoryRepo->get('Medians\Drivers\Domain\Driver'),
 		    ]);
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
-		}
-	}
-
-
-
-	/**
-	 * Create new item
-	 * 
-	 */ 
-	public function create() 
-	{
-
-		return render('views/admin/Driver/create.html.twig', [
-	        'title' => __('add_new'),
-	        'langs_list' => ['ar','en'],
-	        'categories' => $this->categoryRepo->get('Medians\Drivers\Domain\Driver'),
-	    ]);
-
-	}
-
-
-
-	public function edit($id ) 
-	{
-		try {
-				
-			return render('views/admin/Driver/Driver.html.twig', [
-		        'title' => __('edit_Driver'),
-		        'langs_list' => ['ar','en'],
-		        'item' => $this->repo->find($id),
-		        'categories' => $this->categoryRepo->get('Medians\Drivers\Domain\Driver'),
-		    ]);
-
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
 			

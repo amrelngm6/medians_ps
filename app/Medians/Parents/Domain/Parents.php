@@ -21,8 +21,9 @@ class Parents extends CustomModel
 		'first_name',
 		'last_name',
 		'picture',
-		'mobile',
+		'contact_number',
 		'email',
+		'generated_password',
 		'password',
 		'status',
 	];
