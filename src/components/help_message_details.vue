@@ -153,7 +153,7 @@
                                         <tr>
                                             <td class="fw-medium" v-text="__('Close ticket')"></td>
                                             <td id="d-date">
-                                                <span class="px-3 py-2 text-sm border-red-600 border-1 rounded border mt-2 block text-center" id="t-close" v-text="__('Close')"></span>
+                                                <span @click="close" class="cursor-pointer px-3 py-2 text-sm border-red-600 border-1 rounded border mt-2 block text-center" id="t-close" v-text="__('Close')"></span>
                                             </td>
                                         </tr>
 
@@ -189,7 +189,24 @@ export default
 
             __(i) {
                 return this.$root.$children[0].__(i);
-            }
+            },
+            
+            close() {
+                
+                if (!window.confirm(this.__('confirm_close_ticket')))
+                {
+                    return null;
+                }
+
+                var params = new URLSearchParams();
+                params.append('type', 'HelpMessage.close')
+                params.append('params[message_id]', this.item.message_id)
+                params.append('params[status]', 'completed')
+                this.handleRequest(params, '/api/handle').then(response => {
+                    this.$alert(response.result)
+                })
+            },
+
         }
     };
 </script>

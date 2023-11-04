@@ -57,6 +57,9 @@ class APIController extends CustomController
 			case 'Devices':
 				return json_encode((new DevicesRepository())->getApi());
 				break;
+			case 'HelpMessage.close':
+				return json_encode((new Help/Application/HelpMessageController())->close());
+				break;
 			case 'Products':
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
 				break;
@@ -314,7 +317,7 @@ class APIController extends CustomController
 				case 'Page.delete':
 					return response((new Pages\Application\PageController())->delete());
 					break;
-					
+
 				case 'Vehicle.delete':
 					return response((new Vehicles\Application\VehicleController())->delete());
 					break;
