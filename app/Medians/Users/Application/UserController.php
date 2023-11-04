@@ -65,7 +65,7 @@ class UserController extends CustomController
 		return render('users', [
 			'load_vue'=> true,
 			'users' =>   $query,
-			'users' =>   $this->rolesRepo->get(),
+			'roles' =>   $this->rolesRepo->get(),
 	        'title' => __('Users'),
 	        'fillable' => $this->fillable(),
 	    ]);
