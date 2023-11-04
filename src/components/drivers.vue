@@ -5,7 +5,7 @@
             <driver_profile :key="activeItem" :item="activeItem" @edit="handleAction" @close="handleAction"></driver_profile>
         </div>
 
-        <main v-if="content && !showProfile && !showLoader" class="px-8 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
+        <main v-if="content && !showProfile && !showLoader" class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
             <!-- New releases -->
             <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                 <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
