@@ -1119,7 +1119,7 @@ class LangsAr
 		,'Important'=> 'هام'
 		,'loadmore'=> 'عرض المزيد'
 		,'load more'=> 'عرض المزيد'
-		,'You can manage your account only'=> 'يمكنك إدارة حسابك الشخصي فقط'
+		,'Theese users can manage your account only'=> 'يمكنهم إدارة حسابهم الشخصي فقط'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
