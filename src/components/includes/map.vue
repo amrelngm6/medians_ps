@@ -112,9 +112,7 @@ export default
                 this.directionsDisplay.setMap(map);
 
                 setInterval(() => {
-                    console.log(t.waypoints);
                     if (t.waypoints != this.$parent.locations && this.$parent.locations) {
-                        console.log('interval');
                         t.waypoints = this.$parent.locations;
                         t.calculateAndDisplayRoute();
                     }
@@ -196,7 +194,7 @@ export default
                 var t = this;
                 if (window.google && this.waypoints.length) 
                 {
-                    t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[t.waypoints.length-1].destination};
+                    t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
                     const {origin, destination} = t.directionPoints;
 
                     t.directionsService.route(
