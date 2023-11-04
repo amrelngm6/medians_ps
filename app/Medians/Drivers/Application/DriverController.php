@@ -114,7 +114,6 @@ class DriverController extends CustomController
 
         	$params['created_by'] = $this->app->auth()->id;
         	
-
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);

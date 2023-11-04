@@ -64,6 +64,20 @@ class ParentRepository
 
 
 
+	/**
+	 * Generate random password
+	 */
+	public function randomPassword() {
+		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+		$pass = array(); //remember to declare $pass as an array
+		$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+		for ($i = 0; $i < 8; $i++) {
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return 'P'. implode($pass); //turn the array into a string
+	}
+
 
 	/**
 	* Save item to database
@@ -73,6 +87,9 @@ class ParentRepository
 
 		$Model = new Parents();
 		
+		$Auth = new \Medians\Auth\Application\AuthService;
+		$data['generated_password'] = $this->randomPassword();
+		$data['password'] = $Auth->encrypt($data['generated_password']);
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $this->getModel()->getFields()))
@@ -80,10 +97,10 @@ class ParentRepository
 				$dataArray[$key] = $value;
 			}
 		}		
+		
 
 		// Return the FBUserInfo object with the new data
     	$Object = Parents::create($dataArray);
-    	$Object->update($dataArray);
 
     	// Store Custom fields
 		if (isset($data['field']))
