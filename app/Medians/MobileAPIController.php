@@ -305,7 +305,7 @@ class MobileAPIController extends CustomController
 	} 
 
 	/**
-	 * delete model 
+	 * Search model 
 	 * 
 	 */
 	public function search()
@@ -347,40 +347,30 @@ class MobileAPIController extends CustomController
 			$return = [];
 			switch ($request->get('type')) 
 			{
-				case 'OrderDevice.removeProduct':
-					$return = (new Devices\Application\CalendarController())->removeProduct();
-					break;
-
-				case 'Category.delete':
-					$return = (new Categories\Application\CategoryController())->delete();
-					break;
-
-				case 'Branch.delete':
-					$return = (new Branches\Application\BranchController())->delete();
-					break;
-
-				case 'Product.delete':
-					$return = (new Products\Application\ProductController())->delete();
-					break;
-					
-				case 'Game.delete':
-					return response((new Games\Application\GameController())->delete());
-					break;
-					
-				case 'Device.delete':
-					return response((new Devices\Application\DeviceController())->delete());
-					break;
-
+				
+				
 				case 'User.delete':
 					return response((new Users\Application\UserController())->delete());
 					break;
 
-				case 'Customer.delete':
-					return response((new Customers\Application\CustomerController())->delete());
+				case 'Driver.delete':
+					return response((new Drivers\Application\DriverController())->delete());
 					break;
 
-				case 'Stock.delete':
-					return response((new Products\Application\StockController())->delete());
+				case 'Parent.delete':
+					return response((new Parents\Application\ParentController())->delete());
+					break;
+
+				case 'Route.delete':
+					return response((new Routes\Application\RouteController())->delete());
+					break;
+
+				case 'PickupLocation.delete':
+					return response((new Locations\Application\PickupLocationController())->delete());
+					break;
+
+				case 'Student.delete':
+					return response((new Students\Application\StudentController())->delete());
 					break;
 
 				case 'Page.delete':
