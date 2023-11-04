@@ -357,7 +357,7 @@ class MobileAPIController extends CustomController
 					return response((new Drivers\Application\DriverController())->delete());
 					break;
 
-				case 'Parent.delete':
+				case 'Parents.delete':
 					return response((new Parents\Application\ParentController())->delete());
 					break;
 
