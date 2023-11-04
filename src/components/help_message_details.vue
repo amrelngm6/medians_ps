@@ -150,6 +150,12 @@
                                             <td class="fw-medium" v-text="__('Last update')"></td>
                                             <td id="d-date" v-text="item.last_update"></td>
                                         </tr>
+                                        <tr>
+                                            <td class="fw-medium" v-text="__('Close ticket')"></td>
+                                            <td id="d-date">
+                                                <span class="px-3 py-2 text-sm border-red-600 border-1 rounded" id="t-close" v-text="item.priority"></span>
+                                            </td>
+                                        </tr>
 
                                     </tbody>
                                 </table>
