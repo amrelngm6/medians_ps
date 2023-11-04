@@ -5,7 +5,7 @@
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,showLoader = false, activeItem = {}; ">{{__('add_new')}}</a>
+                    <a href="javascript:;" class="menu-dark uppercase p-2 mx-2 text-center text-white w-32 rounded bg-gradient-purple hover:bg-red-800" @click="showLoader = true, showAddSide = true,showLoader = false, activeItem = {}; ">{{__('add_new')}}</a>
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
