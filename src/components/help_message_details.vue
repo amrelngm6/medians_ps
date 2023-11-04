@@ -202,7 +202,7 @@ export default
                 params.append('type', 'HelpMessage.close')
                 params.append('params[message_id]', this.item.message_id)
                 params.append('params[status]', 'completed')
-                this.handleRequest(params, '/api/handle').then(response => {
+                this.$root.$children[0].handleRequest(params, '/api/handle').then(response => {
                     this.$alert(response.result)
                 })
             },
