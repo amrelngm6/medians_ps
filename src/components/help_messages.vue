@@ -59,10 +59,10 @@
                                                             class="img-fluid d-block rounded-circle">
                                                     </div>
                                                     <div class="team-content">
-                                                        <a href="#" class="d-block">
+                                                        <div href="#" class="d-block">
                                                             <h5 v-if="item.user" class="fs-16 mb-1 font-semibold"
                                                                 v-text="item.user.name"></h5>
-                                                        </a>
+                                                        </div>
                                                         <p v-text="item.message" class="text-muted mb-0"></p>
                                                     </div>
                                                 </div>
