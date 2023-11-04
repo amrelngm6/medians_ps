@@ -67,6 +67,7 @@ export default
                 polylineCoordinates: [],
                 waypoints: [],
                 directionPoints: {},
+                activeDestination: {},
             }
 
         },
@@ -176,9 +177,10 @@ export default
                 this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], event);
             },
             checkMarker(i) {
+                this.activeDestination = this.waypoints[i].destination;
                 console.log(this.waypoints[i]);
                 this.$emit('click-marker', this.waypoints[i], i);
-
+                this.calculateAndDisplayRoute()
             },
             addMarker() {
                 this.markers[this.markers.length] = { position: { lat: this.markers[this.markers.length - 1].position.lat + 0.005, lng: this.markers[this.markers.length - 1].position.lat + 0.05 } }
@@ -195,12 +197,12 @@ export default
                 if (window.google && this.waypoints.length) 
                 {
                     t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
-                    const {origin, destination} = t.directionPoints;
-
+                    var {origin, destination} = t.directionPoints;
+                    
                     t.directionsService.route(
                         {
                             origin: new window.google.maps.LatLng(origin.lat, origin.lng),
-                            destination: new window.google.maps.LatLng(destination.lat, destination.lng),
+                            destination: this.activeDestination ? this.activeDestination : new window.google.maps.LatLng(destination.lat, destination.lng),
                             travelMode: 'DRIVING'
                         },
                         (response, status) => {
