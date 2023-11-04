@@ -12,7 +12,7 @@
 
                     <div v-if="content.users" class="w-full">
                         <div v-for="role in content.roles" class="w-full pb-4">
-                            <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span v-text="role.id > 1 ? __('You can manage your account only') : ''"></span></h3>
+                            <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span class="text-sm text-muted" v-text="role.id > 1 ? __('You can manage your account only') : ''"></span></h3>
                             <hr />
                             <div class="w-full grid lg:grid-cols-3 gap gap-6">
                                 <div v-if="user && user.role_id == role.id" :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
