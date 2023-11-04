@@ -14,7 +14,7 @@
                         <div v-for="role in content.roles" class="w-full pb-4">
                             <h3 v-text="role.name" class="pb-b"></h3>
                             <hr />
-                            <div v-for="role in roles" class="w-full grid lg:grid-cols-3 gap gap-6">
+                            <div class="w-full grid lg:grid-cols-3 gap gap-6">
                                 <div v-if="user && user.role_id == role.id" :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
                                     <div class="flex-shrink-0 ">
                                         <div class="relative">
