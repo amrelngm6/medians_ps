@@ -28,8 +28,8 @@
                                         <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
                                     </div>
                                     <div class="text-center">
-                                        <span  v-text="user.active ? __('Active') : __('Pending')" class="inline-flex items-center px-6 py-1 rounded-full text-xs font-medium "></span>
-                                        <span  v-text="__('edit')" class="my-2 inline-flex items-center px-6  py-1 rounded-full text-xs pb-2 font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
+                                        <span  v-text="user.active ? __('Active') : __('Pending')" class="hover:bg-purple-800 hover:text-gray-100 inline-flex items-center px-6 py-1 rounded-full text-xs font-medium "></span>
+                                        <span  v-text="__('edit')" class="hover:bg-purple-800 hover:text-gray-100 my-2 inline-flex items-center px-6  py-1 rounded-full text-xs pb-2 font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
                                         </span>
                                     </div>
                                 </div>
