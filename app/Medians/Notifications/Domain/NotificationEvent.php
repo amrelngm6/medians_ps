@@ -82,6 +82,7 @@ class NotificationEvent extends CustomModel
 	 */
 	public function filterReceiver($event, $model)
 	{
+		print_r($model);
 		switch (get_class($model)) 
 		{
 			case HelpMessageComment::class:
