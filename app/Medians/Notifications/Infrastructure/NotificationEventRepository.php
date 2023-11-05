@@ -116,6 +116,7 @@ class NotificationEventRepository
 			'Parents' => \Medians\Parents\Domain\Parents::class,
 			'HelpMessage' => \Medians\Help\Domain\HelpMessage::class,
 			'HelpMessageComment' => \Medians\Help\Domain\HelpMessageComment::class,
+			'PickupLocation' => \Medians\Locations\Domain\PickupLocation::class,
 		];
 	}   
 }
