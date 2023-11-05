@@ -26,7 +26,7 @@
         "omnipay/paypal": "*",
         "paypal/rest-api-sdk-php": "*",
         "php-http/message-factory": "^1.1",
-        "OneSignal/onesignal-php-api": "*@dev",
+        "onesignal/onesignal-php-api": "*@dev",
         "php-http/httplug": "^2.4"
     },
     "config": {
