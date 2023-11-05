@@ -87,6 +87,7 @@ class OneSignalService extends CustomController
         $notification = new Notification();
         $notification->setAppId($this->APP_ID);
         $notification->setContents($content);
+        $notification->setTargetChannel('push');
         $notification->setIncludeAliases(['external_id'=>[$this->user_onesignal_id]]);
     
         return $notification;
