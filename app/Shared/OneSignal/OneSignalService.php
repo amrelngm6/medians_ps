@@ -34,7 +34,7 @@ class OneSignalService extends CustomController
     {
         $args = func_get_args();
 
-		error_log(json_encode($args), 3, "./uploads/error_log.log");
+		error_log(json_encode($args), 3, "./uploads/error_logs.log");
     }
 
 
