@@ -38,7 +38,7 @@ class RouteRepository
 
 	public function get($limit = 100)
 	{
-		return Route::with('pickup_locations', 'vehicle')->limit($limit)->get();
+		return Route::with('pickup_locations', 'vehicle', 'driver')->limit($limit)->get();
 	}
 
 	public function search($request, $limit = 20)
