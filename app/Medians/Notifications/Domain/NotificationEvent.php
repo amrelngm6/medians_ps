@@ -90,7 +90,7 @@ class NotificationEvent extends CustomModel
 
 			case PickupLocation::class:
 				$location =  $model->with(['route'=>function($q){return $q->with('driver');}])->first();
-				 return isset($location->route->driver) ? $location->route->driver : null;
+				return isset($location->route->driver) ? $location->route->driver : null;
 				break;
 
 			default:
@@ -114,7 +114,7 @@ class NotificationEvent extends CustomModel
 
 		if (!$receiver)
 			return null;
-		
+
     	$app = new \config\APP;
     	$params = [];
 
