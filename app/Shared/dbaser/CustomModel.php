@@ -120,9 +120,6 @@ class CustomModel extends Model
      */
     public function updatedEvent()
     {
-    	if (empty($this->id))
-    		return null;
-
 		print_r($this->getDirty());
 
     	$fields = array_fill_keys($this->fillable,1);
