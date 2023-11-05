@@ -61,7 +61,7 @@ class NotificationEvent extends CustomModel
 	 */ 
 	public function handleEvent($model, $action)
 	{
-
+		print('handle');
     	$events = json_decode(NotificationEvent::where('action',$action)->where('model',get_class($model))->get());
 
     	foreach ($events as $event) 

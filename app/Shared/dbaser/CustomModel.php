@@ -120,6 +120,8 @@ class CustomModel extends Model
      */
     public function updatedEvent()
     {
+		print('Update');
+
     	if (empty($this->id))
     		return null;
 
