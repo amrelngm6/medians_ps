@@ -70,14 +70,7 @@ class OneSignalService extends CustomController
     public function send($receiver, $subject, $message)
     {
 
-		error_log(json_encode($receiver->field['onesignal_id']), 3, "./uploads/error_logs.log");
-
-        $notification = $this->sendNotification($subject,$message);
-
-        // $result = $this->apiInstance->createNotification($notification);
-
-        print_r($notification);
-
+        $this->sendNotification($subject,$message);
     }
 
 
