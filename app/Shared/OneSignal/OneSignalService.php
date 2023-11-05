@@ -70,16 +70,46 @@ class OneSignalService extends CustomController
 
 		error_log(json_encode($receiver->field['onesignal_id']), 3, "./uploads/error_logs.log");
 
-        $notification = $this->createNotification('PHP Test notification');
+        $notification = $this->sendNotification('Test','PHP Test notification');
 
-        $result = $this->apiInstance->createNotification($notification);
+        // $result = $this->apiInstance->createNotification($notification);
 
-        print_r($result->getId());
+        print_r($notification);
 
     }
 
 
-
+    function sendNotification($subject, $message) {
+    
+        $content = array(
+            "en" => $message
+        );
+    
+        $fields = array(
+            'app_id' => $this->APP_ID,
+            'included_segments' => array('All'), // Send to all subscribers
+            'contents' => $content
+        );
+    
+        $fields = json_encode($fields);
+    
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json; charset=utf-8',
+            'Authorization: Basic ' . $this->APP_KEY_TOKEN
+        ));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+    
+        $response = curl_exec($ch);
+        curl_close($ch);
+    
+        return $response;
+    }
+    
     function createNotification($enContent): Notification {
         $content = new StringMap();
         $content->setEn($enContent);
