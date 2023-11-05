@@ -92,7 +92,8 @@ class OneSignalService extends CustomController
             'target_channel' => 'push',
             'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
         );
-    
+        
+        print_r($fields);
         $fields = json_encode($fields);
     
         $ch = curl_init();

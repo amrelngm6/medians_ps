@@ -130,10 +130,6 @@ class Notification extends CustomModel
 		{
 
 			$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($receiver->field['onesignal_id']);
-			if (is_array($notification->body_text))
-			{
-				print_r($notification);
-			}
 			$sendOneSignalNotification->sendNotification($notification->subject, $notification->body_text);
 		}
 
