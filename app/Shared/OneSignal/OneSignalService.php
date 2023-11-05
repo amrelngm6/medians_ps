@@ -60,7 +60,7 @@ class OneSignalService extends CustomController
 
         $this->apiInstance = new DefaultApi(
             new GuzzleHttp\Client(),
-            $config
+            $this->config
         );
 	}
 
@@ -72,7 +72,7 @@ class OneSignalService extends CustomController
 
         $notification = $this->createNotification('PHP Test notification');
 
-        $result = $apiInstance->createNotification($notification);
+        $result = $this->apiInstance->createNotification($notification);
 
         print_r($result);
 
