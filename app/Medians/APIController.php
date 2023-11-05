@@ -49,7 +49,7 @@ class APIController extends CustomController
 		switch ($this->app->request()->get('type')) 
 		{
 			case 'HelpMessage.close':
-				return json_encode((new Help/Application/HelpMessageController())->close());
+				return json_encode((new Help\Application\HelpMessageController())->close());
 				break;
 			
 		}
