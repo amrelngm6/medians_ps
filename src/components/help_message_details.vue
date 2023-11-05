@@ -16,10 +16,10 @@
                                         <!--end col-->
                                         <div class="col-md">
                                             <h4 class="fw-semibold" id="ticket-title" v-text="item.subject"></h4>
-                                            <div class="hstack gap-3 flex">
+                                            <div class="hstack gap-3 flex" >
                                                 <div class="text-muted"><i
                                                         class="ri-building-line align-bottom me-1"></i><span
-                                                        id="ticket-client" v-text="item.user.name"></span></div>
+                                                        id="ticket-client" v-text="item.user ? item.user.name : ''"></span></div>
                                                 <div class="vr"></div>
                                                 <div class="text-muted"><span v-text="__('Created at')"></span> : <span
                                                         class="fw-medium " id="create-date" v-text="item.date"></span></div>
@@ -127,7 +127,7 @@
                                         </tr>
                                         <tr>
                                             <td class="fw-medium" v-text="__('User')"></td>
-                                            <td id="t-client" v-text="item.user.name"></td>
+                                            <td id="t-client" v-text="item.user ? item.user.name : ''"></td>
                                         </tr>
 
                                         <tr>
