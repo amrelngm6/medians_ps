@@ -39,22 +39,26 @@ class OneSignalService extends CustomController
 
     protected $user_onesignal_id;
 
+    protected $config;
+
+    protected $apiInstance;
+
     function __construct($id)
 	{
 
 		$this->app = new \config\APP;
-        $this->APP_ID = '<YOUR_APP_ID>';
-        $this->APP_KEY_TOKEN = '<YOUR_APP_KEY_TOKEN>';
+        $this->APP_ID = '8c316c75-1878-4bf9-99ad-3964bb83f525';
+        $this->APP_KEY_TOKEN = 'ZDE4MGQ3YmEtZjljZS00ZWFmLThkMDQtNjMzYzk0YjlmMWZk';
         $this->USER_KEY_TOKEN = '<YOUR_USER_KEY_TOKEN>';
 
 
         $this->user_onesignal_id = $id;
 
-        $config = Configuration::getDefaultConfiguration()
-            ->setAppKeyToken(APP_KEY_TOKEN)
-            ->setUserKeyToken(USER_KEY_TOKEN);
+        $this->config = Configuration::getDefaultConfiguration()
+            ->setAppKeyToken($this->APP_KEY_TOKEN)
+            ->setUserKeyToken($this->USER_KEY_TOKEN);
 
-        $apiInstance = new DefaultApi(
+        $this->apiInstance = new DefaultApi(
             new GuzzleHttp\Client(),
             $config
         );
@@ -66,9 +70,10 @@ class OneSignalService extends CustomController
 
 		error_log(json_encode($receiver->field['onesignal_id']), 3, "./uploads/error_logs.log");
 
-        $notification = createNotification('PHP Test notification');
+        $notification = $this->createNotification('PHP Test notification');
 
         $result = $apiInstance->createNotification($notification);
+
         print_r($result);
 
     }
