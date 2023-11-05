@@ -27,6 +27,8 @@
 
                                 <textarea name="params[body]" type="text" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('body')"></textarea>
 
+                                <textarea name="params[body_text]" type="text" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Notification text')"></textarea>
+
                                 <label class="block mt-3">
                                     <span class="block mb-2" v-text="__('model')"></span>
                                     <select name="params[model]" class="form-checkbox p-2 px-3 w-full text-orange-600 border border-1 border-gray-400 rounded-lg">
@@ -86,6 +88,8 @@
                                     <input name="params[subject]" type="text" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('subject')"  v-model="activeItem.subject">
 
                                     <textarea name="params[body]" type="text" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('body')"  v-model="activeItem.body"></textarea>
+
+                                    <textarea name="params[body_text]" type="text" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="__('Notification text')" v-model="activeItem.body_text"></textarea>
 
                                     <label class="block mt-3">
                                         <span class="block mb-2" v-text="__('model')"></span>
