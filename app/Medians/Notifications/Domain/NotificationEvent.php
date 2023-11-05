@@ -117,6 +117,6 @@ class NotificationEvent extends CustomModel
     	$params['model'] = $model;
     	$body = $app->renderTemplate($event->body)->render($params);
 
-    	return Notification::storeEventNotification($event->id, $event->subject , $body, $model, $receiver);
+    	return Notification::storeEventNotification($event , $body, $model, $receiver);
 	}  
 }

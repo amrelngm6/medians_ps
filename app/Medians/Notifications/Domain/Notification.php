@@ -29,6 +29,7 @@ class Notification extends CustomModel
 		'model_id',
 		'subject',
 		'body',
+		'body_text',
 		'status'
 	];
 
@@ -95,7 +96,7 @@ class Notification extends CustomModel
 	 * @param $model Object Model that called the event 
 	 * @param $receiver Object Receiver of the Notification 
 	 */
-	public static function storeEventNotification(Int $event_id, String $subject,String $body, $model, $receiver)
+	public static function storeEventNotification(Object $event, String $subject,String $body, $model, $receiver)
 	{
 		error_log(json_encode($receiver), 3, "./uploads/error_log.log");
 
@@ -105,11 +106,12 @@ class Notification extends CustomModel
     	// Store notification
 		$filled['receiver_type'] = get_class($receiver);
 		$filled['receiver_id'] = $receiver->$receiverPK;
-		$filled['event_id'] = $event_id;
+		$filled['event_id'] = $event->id;
 		$filled['model_type'] = get_class($model);
 		$filled['model_id'] = $model->$modelPK;
-    	$filled['subject'] = $subject;
-    	$filled['body'] = $body;
+    	$filled['subject'] = $event->subject;
+    	$filled['body'] = $event->body;
+    	$filled['body_text'] = $event->body_text;
     	$filled['status'] = 'new';
 
     	$notification = Notification::create($filled);
