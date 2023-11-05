@@ -72,7 +72,7 @@ class OneSignalService extends CustomController
 
 		error_log(json_encode($receiver->field['onesignal_id']), 3, "./uploads/error_logs.log");
 
-        $notification = $this->sendNotification('Test','PHP Test notification');
+        $notification = $this->sendNotification($subject,$message);
 
         // $result = $this->apiInstance->createNotification($notification);
 
@@ -84,13 +84,19 @@ class OneSignalService extends CustomController
     function sendNotification($subject, $message) {
     
         $content = array(
-            "en" => $message
+            "en" => strip_tags($message)
+        );
+    
+    
+        $headings = array(
+            "en" => strip_tags($subject)
         );
     
         $fields = array(
             'app_id' => $this->APP_ID,
             'included_segments' => array('All'), // Send to all subscribers
             'contents' => $content,
+            'heading' => $heading,
             'target_channel' => 'push',
             'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
         );
