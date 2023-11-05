@@ -4,6 +4,7 @@ namespace Medians\Locations\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Students\Domain\Student;
+use Medians\Routes\Domain\Route;
 
 
 class PickupLocation extends CustomModel
@@ -20,7 +21,6 @@ class PickupLocation extends CustomModel
 		'model_type',
 		'model_id',
 		'route_id',
-		'location_name',
 		'location_name',
 		'latitude',
 		'longitude',
@@ -62,6 +62,11 @@ class PickupLocation extends CustomModel
 	public function student() 
 	{
     	return $this->hasOne(Student::class, 'student_id', 'model_id');
+	}
+	
+	public function route() 
+	{
+    	return $this->hasOne(Route::class, 'route_id', 'route_id');
 	}
 	
 	
