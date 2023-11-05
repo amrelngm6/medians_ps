@@ -47,6 +47,8 @@ class TripController extends CustomController
             [ 'key'=> "car_plate", 'title'=> __('vehicle'), 'sortable'=> true ],
             [ 'key'=> "driver_name", 'title'=> __('driver'), 'sortable'=> true ],
 			[ 'key'=> "pickup_locations_count", 'title'=> __('pickup Locations'), 'sortable'=> true],
+            [ 'key'=> "duration", 'title'=> __('Duration'), 'sortable'=> true ],
+            [ 'key'=> "distance", 'title'=> __('Distance'), 'sortable'=> true ],
             [ 'key'=> "trip_date", 'title'=> __('trip_date'), 'sortable'=> true ],
             [ 'key'=> "trip_status", 'title'=> __('trip_status'), 'sortable'=> true ],
         ];
