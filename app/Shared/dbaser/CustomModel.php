@@ -120,10 +120,10 @@ class CustomModel extends Model
      */
     public function updatedEvent()
     {
-		print('Update');
-
     	if (empty($this->id))
     		return null;
+
+		print_r($this->getDirty());
 
     	$fields = array_fill_keys($this->fillable,1);
     	$updatedFields = array_intersect_key($fields, $this->getDirty());
