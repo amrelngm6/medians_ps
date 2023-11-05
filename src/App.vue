@@ -304,4 +304,8 @@ export default {
 @import './assets/style.css';
 @import './assets/theme.css';
 @import './assets/plugins.css';
+
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 </style>

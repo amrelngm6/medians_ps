@@ -33,6 +33,7 @@ class NotificationEvent extends CustomModel
 		'action',
 		'subject',
 		'body',
+		'body_text',
 		'status',
     	'created_by',
 	];

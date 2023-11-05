@@ -24,6 +24,12 @@ Vue.use(VueGoogleMaps, {
     }
 });
 
+import VueQuillEditor from 'vue-quill-editor';
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor)
+
 
 Vue.component('moment', () => import ('moment'));
 Vue.component('dataTableActions', () => import('./components/includes/data-table-actions.vue'));
@@ -61,6 +67,7 @@ Vue.component('trips', () => import('./components/trips'));
 Vue.component('help_messages', () => import('./components/help_messages'));
 Vue.component('data_table_page', () => import('./components/data_table_page'));
 Vue.component('maps', () => import('./components/includes/map'));
+
 
 Vue.component('help_message_details', () => import('./components/help_message_details'));
 Vue.component('driver_profile', () => import('./components/driver_profile'));
