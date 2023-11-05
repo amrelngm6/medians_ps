@@ -76,7 +76,6 @@ class OneSignalService extends CustomController
 
     function sendNotification($subject, $message) {
         
-        echo $message;
         $content = array(
             "en" => strip_tags($message)
         );
@@ -111,7 +110,13 @@ class OneSignalService extends CustomController
         $response = curl_exec($ch);
         curl_close($ch);
         
-        print_r(json_decode($response));
+        $responseObject =  json_decode($response);
+
+        if (isset($responseObject->errors))
+        {
+            return throw new \Exception($responseObject->errors, 1);
+        }
+
         return $response;
     }
     
