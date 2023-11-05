@@ -183,10 +183,12 @@ class NotificationController extends CustomController
 	 */
 	public function loadLatestNotifications($items=0)
 	{
+		$firstitem = $items->first();
+		
 		return [
 	        'load_vue' => true,
 	        'title' => __('Notifications'),
-	        'last_id' => !empty($items) ? $items->first()->id : 0,
+	        'last_id' => !empty($firstitem) ? $firstitem->id : 0,
 	        'items' => $items,
 	        'total_count' => $items->count(),
 	        'new_count' => $items->where('status', 'new')->count(),

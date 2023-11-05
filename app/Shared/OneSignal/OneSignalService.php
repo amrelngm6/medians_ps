@@ -109,7 +109,8 @@ class OneSignalService extends CustomController
     
         $response = curl_exec($ch);
         curl_close($ch);
-    
+        
+        print_r(json_decode($response));
         return $response;
     }
     
