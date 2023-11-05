@@ -76,20 +76,20 @@ class OneSignalService extends CustomController
 
     function sendNotification($subject, $message) {
         
-        $content = array(
-            "en" => strip_tags($message)
-        );
-    
-    
+        
         $headings = array(
             "en" => strip_tags($subject)
+        );
+
+        $content = array(
+            "en" => strip_tags($message)
         );
     
         $fields = array(
             'app_id' => $this->APP_ID,
             'included_segments' => array('All'), // Send to all subscribers
+            'headings' => $headings,
             'contents' => $content,
-            'heading' => $headings,
             'target_channel' => 'push',
             'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
         );
