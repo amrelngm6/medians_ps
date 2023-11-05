@@ -286,7 +286,7 @@ class MobileAPIController extends CustomController
                 break;
 
             case 'Driver.update':
-				return (new Drivers\Application\DriverController())->update(); 
+				return (new Drivers\Application\DriverController())->updateMobile(); 
                 break;
 
             case 'Page.update':
