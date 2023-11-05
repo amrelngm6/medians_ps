@@ -90,7 +90,6 @@ class NotificationEvent extends CustomModel
 
 			case PickupLocation::class:
 				$location =  $model->with('route')->find($model->pickup_id);
-				print_r($location);
 				return isset($location->route->driver) ? $location->route->driver : null;
 				break;
 
