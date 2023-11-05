@@ -132,13 +132,13 @@ class HelpMessageRepository
     public function update($data)
     {
 
-		$Object = HelpMessage::find($data['pickup_id']);
+		$Object = HelpMessage::find($data['message_id']);
 		
 		// Return the FBUserInfo object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['pickup_id']) : '';
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['message_id']) : '';
 
     	return $Object;
 
