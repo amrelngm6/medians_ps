@@ -7,6 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
 use Medians\Trips\Domain\Trip;
+use Medians\Locations\Domain\PickupLocation;
 use Medians\Help\Domain\HelpMessageComment;
 
 /**
@@ -85,6 +86,10 @@ class NotificationEvent extends CustomModel
 		{
 			case HelpMessageComment::class:
 				return $model->message->user;
+				break;
+
+			case PickupLocation::class:
+				return $model->with(['route'=>function($q){return $q->with('driver');}])->first();
 				break;
 
 			default:
