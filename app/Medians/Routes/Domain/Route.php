@@ -52,7 +52,9 @@ class Route extends CustomModel
 
 	public function driver() 
 	{
-		return $this->hasOneThrough(Driver::class, Vehicle::class, 'driver_id', 'driver_id', 'route_id', 'driver_id');	
+
+
+		return $this->hasOneThrough(Driver::class, Vehicle::class, 'route_id', 'driver_id', 'route_id', 'driver_id');	
 	}
 
 	public function vehicle() 
