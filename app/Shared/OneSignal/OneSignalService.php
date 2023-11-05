@@ -53,7 +53,6 @@ class OneSignalService extends CustomController
         $this->APP_KEY_TOKEN = 'ZDE4MGQ3YmEtZjljZS00ZWFmLThkMDQtNjMzYzk0YjlmMWZk';
         $this->USER_KEY_TOKEN = '<YOUR_USER_KEY_TOKEN>';
 
-
         $this->user_onesignal_id = $id;
 
         $this->config = Configuration::getDefaultConfiguration()

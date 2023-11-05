@@ -126,7 +126,7 @@ class Notification extends CustomModel
 	public function sendNotification(Notification $notification, $receiver)
 	{
 		
-		if (isset($receiver->field['onesignal_id']))
+		if (!empty($receiver->field['onesignal_id']))
 		{
 
 			$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($receiver->field['onesignal_id']);
