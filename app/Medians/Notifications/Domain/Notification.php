@@ -124,6 +124,11 @@ class Notification extends CustomModel
 	 */
 	public function sendNotification(Notification $notification, $receiver)
 	{
+
+		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService(isset($receiver->field->onesignal_id) ? $receiver->field->onesignal_id : '', $receiver->name, $notification->subject, $notification->body);
+
+		return $sendOneSignalNotification->send();
+
 		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
 
 		return $sendMail->sendMail();

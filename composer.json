@@ -1,4 +1,10 @@
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/OneSignal/onesignal-php-api.git"
+        }
+    ],
     "require": {
         "illuminate/database": "^9.52",
         "symfony/finder": "^6.0",
@@ -19,7 +25,9 @@
         "google/apiclient": "^2.15",
         "omnipay/paypal": "*",
         "paypal/rest-api-sdk-php": "*",
-        "php-http/message-factory": "^1.1"
+        "php-http/message-factory": "^1.1",
+        "OneSignal/onesignal-php-api": "*@dev",
+        "php-http/httplug": "^2.4"
     },
     "config": {
         "allow-plugins": {

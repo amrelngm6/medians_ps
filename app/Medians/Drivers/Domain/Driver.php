@@ -36,7 +36,14 @@ class Driver extends CustomModel
 	];
 
 
-	public $appends = ['name', 'photo','password'];
+	public $appends = ['name', 'photo','field','password'];
+
+	
+    public function getFieldAttribute() 
+    {
+        return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+    }
+
 
 	public function getPasswordAttribute()
 	{
@@ -89,6 +96,11 @@ class Driver extends CustomModel
 		return $this->hasManyThrough(TripPickup::class, Trip::class, 'driver_id', 'trip_id', 'driver_id', 'trip_id');
 	}
 
+
+    public function custom_fields()
+    {
+        return $this->morphMany(CustomField::class, 'model');
+    }
 
 
 	/**

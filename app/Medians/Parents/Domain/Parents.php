@@ -6,6 +6,7 @@ use Shared\dbaser\CustomModel;
 
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Students\Domain\Student;
+use Medians\CustomFields\Domain\CustomField;
 
 class Parents extends CustomModel
 {
@@ -65,5 +66,24 @@ class Parents extends CustomModel
 
 
 	
+
+	/**
+	 * Create Custom filed for Session of Parent
+	 */
+	public function insertCustomField($code, $value)
+	{
+
+    	// Insert activation code 
+		$fillable = [
+			'code'=>$code,
+			'model_type'=>Parents::class, 
+			'model_id'=>$this->parent_id, 
+			'value'=>$value
+		];
+
+		return CustomField::firstOrCreate($fillable);
+
+	}  
+
 
 }
