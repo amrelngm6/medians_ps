@@ -3,22 +3,6 @@ namespace Shared\OneSignal;
 
 use Shared\dbaser\CustomController;
 
-
-use \DateTime;
-use onesignal\client\api\DefaultApi;
-use onesignal\client\Configuration;
-use onesignal\client\model\GetNotificationRequestBody;
-use onesignal\client\model\Notification;
-use onesignal\client\model\StringMap;
-use onesignal\client\model\Player;
-use onesignal\client\model\UpdatePlayerTagsRequestBody;
-use onesignal\client\model\ExportPlayersRequestBody;
-use onesignal\client\model\Segment;
-use onesignal\client\model\FilterExpressions;
-use PHPUnit\Framework\TestCase;
-use \GuzzleHttp;
-
-
 class OneSignalService extends CustomController 
 {
 
@@ -54,15 +38,6 @@ class OneSignalService extends CustomController
         $this->USER_KEY_TOKEN = '<YOUR_USER_KEY_TOKEN>';
 
         $this->user_onesignal_id = $id;
-
-        $this->config = Configuration::getDefaultConfiguration()
-            ->setAppKeyToken($this->APP_KEY_TOKEN)
-            ->setUserKeyToken($this->USER_KEY_TOKEN);
-
-        $this->apiInstance = new DefaultApi(
-            new GuzzleHttp\Client(),
-            $this->config
-        );
 	}
 
 
