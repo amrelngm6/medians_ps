@@ -37,6 +37,8 @@ class OneSignalService extends CustomController
      */
     protected $USER_KEY_TOKEN;
 
+    protected $receiver_id;
+
     protected $user_onesignal_id;
 
     protected $config;
@@ -88,7 +90,8 @@ class OneSignalService extends CustomController
         $fields = array(
             'app_id' => $this->APP_ID,
             'included_segments' => array('All'), // Send to all subscribers
-            'contents' => $content
+            'contents' => $content,
+            'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
         );
     
         $fields = json_encode($fields);
