@@ -76,7 +76,7 @@ class OneSignalService extends CustomController
 
     function sendNotification($subject, $message) {
         
-        
+        print_r($message);
         $headings = array(
             "en" => strip_tags($subject)
         );
