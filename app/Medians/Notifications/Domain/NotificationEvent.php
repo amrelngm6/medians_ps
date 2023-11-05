@@ -82,7 +82,6 @@ class NotificationEvent extends CustomModel
 	 */
 	public function filterReceiver($event, $model)
 	{
-		print_r($model);
 		switch (get_class($model)) 
 		{
 			case HelpMessageComment::class:
@@ -90,7 +89,7 @@ class NotificationEvent extends CustomModel
 				break;
 
 			case PickupLocation::class:
-				$location =  $model->with(['route'=>function($q){return $q->with('driver');}])->first();
+				$location =  $model->with('route')->find($model->pickup_id);
 				print_r($location);
 				return isset($location->route->driver) ? $location->route->driver : null;
 				break;
