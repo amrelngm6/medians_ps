@@ -74,7 +74,7 @@ class OneSignalService extends CustomController
 
         $result = $this->apiInstance->createNotification($notification);
 
-        print_r($result);
+        print_r($result->getId());
 
     }
 
