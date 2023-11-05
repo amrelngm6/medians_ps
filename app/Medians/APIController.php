@@ -46,22 +46,10 @@ class APIController extends CustomController
 		$this->app = new \config\APP;
 
 		$return = [];
-		switch ($this->app->request()->get('model')) 
+		switch ($this->app->request()->get('type')) 
 		{
-			case 'User':
-				$controller = new UserRepository();
-				break;
-			case 'OrderDevice':
-				$controller = new OrderDevicesRepository();
-				break;
-			case 'Devices':
-				return json_encode((new DevicesRepository())->getApi());
-				break;
 			case 'HelpMessage.close':
 				return json_encode((new Help/Application/HelpMessageController())->close());
-				break;
-			case 'Products':
-				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
 				break;
 			
 		}
