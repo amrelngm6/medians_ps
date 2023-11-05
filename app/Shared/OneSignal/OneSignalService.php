@@ -30,11 +30,10 @@ class OneSignalService extends CustomController
 	}
 
 
-    public function send()
+    public function send($receiver, $subject, $message)
     {
-        $args = func_get_args();
 
-		error_log(json_encode($args), 3, "./uploads/error_logs.log");
+		error_log(json_encode($receiver->field['onesignal_id']), 3, "./uploads/error_logs.log");
     }
 
 
