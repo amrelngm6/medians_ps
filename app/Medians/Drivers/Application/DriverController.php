@@ -150,7 +150,7 @@ class DriverController extends CustomController
 
 	public function updateMobile()
 	{
-		$params = json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->request()->get('params'));
 
         try {
 
