@@ -285,8 +285,8 @@ class MobileAPIController extends CustomController
                 $return = (new Users\Application\UserController())->update(); 
                 break;
 
-            case 'User.update':
-                $return =  (new Users\Application\UserController())->update(); 
+            case 'Driver.update':
+				return (new Drivers\Application\DriverController())->update(); 
                 break;
 
             case 'Page.update':
