@@ -42,7 +42,6 @@ class Notification extends CustomModel
 
 		return date( ($date == date('Y-m-d')) ? 'H:i a' : 'M d, H:i a'  , strtotime($this->created_at));
 
-		return date('Y-m-d', strtotime($this->created_at));
 	}
 
 	public function getShortDateAttribute()
