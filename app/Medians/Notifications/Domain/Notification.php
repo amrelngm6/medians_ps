@@ -96,7 +96,7 @@ class Notification extends CustomModel
 	 * @param $model Object Model that called the event 
 	 * @param $receiver Object Receiver of the Notification 
 	 */
-	public static function storeEventNotification(Object $event,String $body, $model, $receiver)
+	public static function storeEventNotification(Object $event, $model, $receiver)
 	{
 
 		$receiverPK = $receiver->getPrimaryKey();
