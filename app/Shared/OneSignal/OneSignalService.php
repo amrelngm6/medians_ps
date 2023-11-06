@@ -60,7 +60,7 @@ class OneSignalService extends CustomController
     
         $fields = array(
             'app_id' => $this->APP_ID,
-            // 'included_segments' => array('All'), // Send to all subscribers
+            'included_segments' => array('All'), // Send to all subscribers
             'headings' => $headings,
             'subtitle' => $headings,
             'contents' => $content,
