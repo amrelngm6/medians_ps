@@ -55,9 +55,8 @@ class NotificationRepository
 	*/
 	public function load($user, $limit = 500,$last_id = 0) 
 	{
-		$pk = $user->getPrimaryKey();
 		return Notification::limit($limit)
-			->where('receiver_id', $user->$pk)->where('receiver_type', get_class($user) )
+			->where('receiver_id', $user->driver_id)->where('receiver_type', get_class($user) )
 			->where('id', '>', $last_id)
 			->orderBy('created_at', 'DESC')
 			->get() ;
