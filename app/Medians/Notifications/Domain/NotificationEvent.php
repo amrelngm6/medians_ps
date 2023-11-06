@@ -124,6 +124,7 @@ class NotificationEvent extends CustomModel
 		 * And replace the shortcode
 		 */ 
     	$params['model'] = $model;
+    	$params['receiver'] = $receiver;
     	$event->body = $app->renderTemplate($event->body)->render($params);
     	$event->subject = $app->renderTemplate($event->subject)->render($params);
     	$event->body_text = $app->renderTemplate($event->body_text)->render($params);
