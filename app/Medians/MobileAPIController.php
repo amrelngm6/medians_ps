@@ -153,6 +153,10 @@ class MobileAPIController extends CustomController
 			case 'help_message':
 				$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
 				break;
+				
+			case 'help_messages':
+				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessages();
+				break;
 
 			case 'create_trip':
 				$return = (new \Medians\Trips\Infrastructure\TripRepository())->createTrip($params);

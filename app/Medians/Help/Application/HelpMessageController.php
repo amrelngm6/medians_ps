@@ -147,15 +147,7 @@ class HelpMessageController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		$items = $this->repo->load($this->app->auth(), 10, 0);
-		
-		$firstitem = $items->first();
-		return [
-	        'last_id' => !empty($firstitem) ? $firstitem->id : 0,
-	        'items' => $items,
-	        'total_count' => $items->count(),
-	        'new_count' => $items->where('status', 'new')->count(),
-	    ];
+		return $this->repo->load($this->app->auth(), 10, 0);
 	}  
 
 
