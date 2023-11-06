@@ -147,7 +147,7 @@ class HelpMessageController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		echo json_encode($this->repo->load($this->app->auth(), 100));
+		echo json_encode($this->repo->loadDriverMessages($this->app->auth(), 100));
 	}  
 
 
