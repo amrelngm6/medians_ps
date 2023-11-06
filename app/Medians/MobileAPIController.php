@@ -175,7 +175,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'notifications':
-				$return =  (new Notifications\Application\NotificationController())->get($params); 
+				$return =  (new Notifications\Application\NotificationController())->loadLatestMobileNotifications(); 
 				break;
 				
 		}
