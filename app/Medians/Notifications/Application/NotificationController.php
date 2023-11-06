@@ -203,6 +203,8 @@ class NotificationController extends CustomController
 	 */
 	public function loadLatestMobileNotifications()
 	{
+		$this->app = new \config\APP;
+
 		$items = $this->repo->load($this->app->auth(), 10, 0);
 		
 		$firstitem = $items->first();
