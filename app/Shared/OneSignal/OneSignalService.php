@@ -60,14 +60,14 @@ class OneSignalService extends CustomController
     
         $fields = array(
             'app_id' => $this->APP_ID,
-            'included_segments' => array('All'), // Send to all subscribers
+            // 'included_segments' => array('All'), // Send to all subscribers
             'headings' => $headings,
             'subtitle' => $headings,
             'contents' => $content,
             'data' => $receiver,
             'group' => '1',
             'target_channel' => 'push',
-            'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
+            'include_aliases' => (object) ['external_id'=>[$this->user_onesignal_id]]
         );
         
         $fields = json_encode($fields);
