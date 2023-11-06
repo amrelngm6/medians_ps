@@ -173,6 +173,10 @@ class MobileAPIController extends CustomController
 			case 'Vehicle.update':
 				$return =  (new Vehicles\Application\VehicleController())->updateLocation($params); 
 				break;
+
+			case 'notifications':
+				$return =  (new Notifications\Application\NotificationController())->get($params); 
+				break;
 				
 		}
 

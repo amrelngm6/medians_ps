@@ -44,9 +44,20 @@ class NotificationRepository
 		return ($this->app->auth()->role_id == 1 )
 		? Notification::limit($limit)->orderBy('created_at', 'DESC')->get() 
 		: Notification::limit($limit)
-			->where('receiver_id', $this->app->branch->id)->where('receiver_type', Branch::class )
+			->where('receiver_id', $this->app->auth()->id)->where('receiver_type', User::class )
 			->where('id', '>', $last_id)
-			->orWhere('receiver_id', $this->app->auth()->id)->where('receiver_type', User::class )
+			->orderBy('created_at', 'DESC')
+			->get() ;
+	}
+
+	/**
+	* Find items by `params` 
+	*/
+	public function load($user, $limit = 500,$last_id = 0) 
+	{
+		$pk = $user->getPrimaryKey();
+		return Notification::limit($limit)
+			->where('receiver_id', $user->$pk)->where('receiver_type', get_class($user) )
 			->where('id', '>', $last_id)
 			->orderBy('created_at', 'DESC')
 			->get() ;
