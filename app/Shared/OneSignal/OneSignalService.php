@@ -65,6 +65,7 @@ class OneSignalService extends CustomController
             'subtitle' => $headings,
             'contents' => $content,
             'data' => $receiver,
+            'group' => '1',
             'target_channel' => 'push',
             'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
         );
