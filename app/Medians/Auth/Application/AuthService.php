@@ -346,8 +346,6 @@ class AuthService
 	 */ 
 	public function checkAPISession($token = null, $userType = null) 
 	{
-		print($userType);
-		print($token);
 		return $userType == 'Driver' ? $this->driverRepo->findByToken($token) : $this->repo->findByToken($token);
 	}
 
