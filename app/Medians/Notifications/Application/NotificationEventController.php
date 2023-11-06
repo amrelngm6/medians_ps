@@ -41,6 +41,11 @@ class NotificationEventController extends CustomController
                 'sortable'=> false,
             ],
             [
+                'key'=> "model",
+                'title'=> __('model'),
+                'sortable'=> true,
+            ],
+            [
                 'key'=> "receiver_model",
                 'title'=> __('receiver_model'),
                 'sortable'=> true,
