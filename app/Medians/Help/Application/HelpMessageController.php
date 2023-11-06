@@ -147,7 +147,7 @@ class HelpMessageController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		return $this->repo->load($this->app->auth(), 10, 0);
+		return $this->repo->load($this->app->auth(), 100);
 	}  
 
 
