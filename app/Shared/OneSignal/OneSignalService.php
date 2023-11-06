@@ -70,7 +70,7 @@ class OneSignalService extends CustomController
             'include_aliases' => (object) ['external_id'=>[$this->user_onesignal_id]]
         );
         
-        error_log('./signal.log', 3);
+        error_log(json_encode($fields),3, './signal.log');
 
         $fields = json_encode($fields);
     
