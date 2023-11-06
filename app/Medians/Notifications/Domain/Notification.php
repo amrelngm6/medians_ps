@@ -38,7 +38,7 @@ class Notification extends CustomModel
 
 	public function getNotificationModelAttribute()
 	{
-		$reflect = new ReflectionClass($this->model_type);
+		$reflect = new \ReflectionClass($this->model_type);
 		return $reflect->getShortName();
 	}
 	
