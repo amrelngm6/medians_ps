@@ -226,7 +226,6 @@ class DriverRepository
 	*/
 	public function storeCustomFields($data, $id) 
 	{
-		CustomField::where('model_type', Driver::class)->where('model_id', $id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
@@ -235,10 +234,18 @@ class DriverRepository
 				$fields['model_type'] = Driver::class;	
 				$fields['model_id'] = $id;	
 				$fields['code'] = $key;	
-				$fields['value'] = $value;
 
-				$Model = CustomField::create($fields);
-				$Model->update($fields);
+				if (is_array($value))
+				{
+					CustomField::where('model_type', Driver::class)->where('code',$key)->where('model_id', $id)->delete();
+					foreach ($value as $k => $v) {
+						$Model = CustomField::firstOrCreate($fields);
+						$Model->update(['value'=>$v]);
+					}
+				} else {
+					$Model = CustomField::firstOrCreate($fields);
+					$Model->update(['value'=>$value]);
+				}
 			}
 	
 			return $Model;		
