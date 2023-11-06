@@ -253,5 +253,32 @@ class NotificationController extends CustomController
         }
 	}
 
+	/**
+	 * Update item to database
+	 * 
+	 * @return [] 
+	*/
+	public function update() 
+	{
+
+		$this->app = new \config\APP;
+
+		$params = json_decode($this->app->request()->get('params'));
+
+        try {
+
+           	$returnData =  ($this->repo->update($params))
+           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+           	: array('error'=>'Not allowed');
+
+
+        } catch (Exception $e) {
+            $returnData = array('error'=>$e->getMessage());
+        }
+
+        return $returnData;
+
+	}
+
 	
 }

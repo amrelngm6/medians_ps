@@ -178,6 +178,8 @@ class MobileAPIController extends CustomController
 				$return =  (new Notifications\Application\NotificationController())->loadLatestMobileNotifications(); 
 				break;
 				
+
+				
 		}
 
 		echo json_encode($return);
@@ -239,48 +241,7 @@ class MobileAPIController extends CustomController
 		$return = [];
 		switch ($request->get('type')) 
 		{
-			case 'SystemSettings.update':
-                $return =  (new Settings\Application\SystemSettingsController())->update(); 
-				break;
 
-			case 'Branch.update':
-                $return =  (new Branches\Application\BranchController())->update(); 
-				break;
-
-			case 'Device.update':
-                $return =  (new Devices\Application\DeviceController())->update(); 
-				break;
-				
-			case 'Category.update':
-				$return = (new Categories\Application\CategoryController)->update($request);
-				break;
-
-			case 'Game.update':
-				$return = (new Games\Application\GameController())->update($request);
-				break;
-			case 'Product.update':
-				$return = (new Products\Application\ProductController())->update();
-				break;
-			case 'Expense.update':
-				$return = (new Expenses\Application\ExpenseController())->update();
-				break;
-			case 'Event.update':
-				$params = (array)  json_decode($request->get('params')['event']);
-				$check = (new DevicesRepository())->updateOrder($params);
-				$return = isset($check->id) ? ['result'=>__('Updated')] : ['result'=>'Error'];
-				break;
-
-			case 'Booking.update':
-				$params = (array)  json_decode($request->get('params'));
-				$return = (new DevicesRepository())->updateBooking($params);
-				break;
-
-
-			case 'Event.cancel':
-				$params = (array)  json_decode($request->get('params')['event']);
-				$check = (new DevicesRepository())->cancelOrder($params);
-				$return = isset($check->id) ? ['result'=>__('Updated')] : ['result'=>'Error'];
-				break;
             case 'Settings.update':
                 $return = (new Settings\Application\SettingsController())->update(); 
                 break;
@@ -293,15 +254,14 @@ class MobileAPIController extends CustomController
 				return (new Drivers\Application\DriverController())->updateMobile(); 
                 break;
 
-            case 'Page.update':
-                $return =  (new Pages\Application\PageController())->update(); 
-                break;
-
             case 'NotificationEvent.update':
                 $return =  (new Notifications\Application\NotificationEventController())->update(); 
                 break;
 
-
+			case 'Notification.update':
+				$return =  (new Notifications\Application\NotificationController())->update(); 
+				break;
+	
 
 		}
 
