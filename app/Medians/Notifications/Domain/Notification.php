@@ -34,8 +34,14 @@ class Notification extends CustomModel
 	];
 
 
-	protected $appends = ['receiver_name', 'date', 'model_short_name', 'short_date', 'url'];
+	protected $appends = ['receiver_name', 'notification_model', 'date', 'model_short_name', 'short_date', 'url'];
 
+	public function getNotificationModelAttribute()
+	{
+		$reflect = new ReflectionClass($this->model_type);
+		return $reflect->getShortName();
+	}
+	
 	public function getDateAttribute()
 	{
 		$date = date('Y-m-d', strtotime($this->created_at));
