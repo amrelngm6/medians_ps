@@ -205,15 +205,17 @@ class NotificationController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		$items = $this->repo->load($this->app->auth(), 10, 0);
+		print_r($this->app->request()->headers->get('token'));
+		print_r($this->app->auth());
+		// $items = $this->repo->load($this->app->auth(), 10, 0);
 		
-		$firstitem = $items->first();
-		return [
-	        'last_id' => !empty($firstitem) ? $firstitem->id : 0,
-	        'items' => $items,
-	        'total_count' => $items->count(),
-	        'new_count' => $items->where('status', 'new')->count(),
-	    ];
+		// $firstitem = $items->first();
+		// return [
+	    //     'last_id' => !empty($firstitem) ? $firstitem->id : 0,
+	    //     'items' => $items,
+	    //     'total_count' => $items->count(),
+	    //     'new_count' => $items->where('status', 'new')->count(),
+	    // ];
 	}  
 
 

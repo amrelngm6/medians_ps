@@ -4,7 +4,7 @@ namespace Medians\Notifications\Infrastructure;
 
 use Medians\Notifications\Domain\Notification;
 
-use Medians\Branches\Domain\Branch;
+use Medians\Drivers\Domain\Driver;
 use Medians\Users\Domain\User;
 
 
@@ -56,7 +56,7 @@ class NotificationRepository
 	public function load($user, $limit = 500,$last_id = 0) 
 	{
 		return Notification::limit($limit)
-			->where('receiver_id', $user->driver_id)->where('receiver_type', get_class($user) )
+			->where('receiver_id', $user->driver_id)->where('receiver_type', Driver::class )
 			->where('id', '>', $last_id)
 			->orderBy('created_at', 'DESC')
 			->get() ;
