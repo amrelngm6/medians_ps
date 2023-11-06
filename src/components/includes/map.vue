@@ -56,11 +56,11 @@ export default
                 reload: true,
                 render: true,
                 travelMode: 'DRIVING',
-                origin: { lat: 30.093048, lng: 31.152120 }, // Replace with your origin location
-                destination: { lat: 30.073048, lng: 31.142120 }, // Replace with your destination location
+                origin: { lat: 0, lng: 0 }, // Replace with your origin location
+                destination: { lat: 0, lng: 0 }, // Replace with your destination location
 
                 zoom: 14,
-                center: { lat: 30.058122734715376, lng: 31.219219598388676 },
+                center: { lat: 0, lng: 0 },
                 markers: [
                 ],
 
@@ -85,6 +85,10 @@ export default
         ],
         mounted() {
             var t = this;
+            if (this.$parent.locations && this.$parent.locations.length)
+            {
+                this.center = this.$parent.locations[0].destination;
+            }
             if (this.showroute == true)
             {
                 setTimeout(function(){
