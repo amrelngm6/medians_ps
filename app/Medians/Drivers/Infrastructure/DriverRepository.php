@@ -23,7 +23,6 @@ class DriverRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 	}
 
 

@@ -36,6 +36,7 @@ class APP
 
 	public $capsule;
 
+	public $session;
 
 
 	function __construct()
@@ -101,14 +102,11 @@ class APP
 
 	public function auth()
 	{
-		$check = !empty($this->auth) ? $this->auth : (new AuthService())->checkSession();
+		$request = Request::createFromGlobals();
+
+		$this->session = !empty($this->session) ? $this->session : (new AuthService())->checkSession();
 		
-		$this->branch = (object) ['id'=>0];
-
-		if ($this->hasBranches)
-			$this->branch = !empty($this->branch) ? $this->branch : (isset($check->branch) ? $check->branch : $this->checkAPISession()->branch);
-
-		return $check ? $check : $this->checkAPISession();
+		return $this->session ? $this->session : $this->checkAPISession();
 	}
 
 	/**
@@ -116,16 +114,10 @@ class APP
 	 */
 	public function checkAPISession()
 	{
-		if (!empty($this->request()->headers->get('token')) )
-		{ 
-			$check = (new AuthService())->checkAPISession($this->request()->headers->get('token'), $this->request()->headers->get('userType'));
-			return $check;
-
-		} else {
-			$check = (new AuthService())->checkAPISession($this->request()->headers->get('token'));
-			return $check;
+		if (!empty($this->request()->headers->get('token')))
+		{
+			return  (new AuthService())->checkAPISession($this->request()->headers->get('token'), $this->request()->headers->get('userType'));
 		}
-		return (object) ['branch'=>null];
 	}  
 
 	public function setBranch($branch)

@@ -331,13 +331,9 @@ class AuthService
 	{
 		$this->AuthModel = new AuthModel($code);
 
-		$this->app = new \config\APP;
-
 		if (!empty ( $this->AuthModel->checkSession($code) ))
 		{
 			return $this->repo->find($this->AuthModel->checkSession($code));
-		} else if ($this->app->request()->headers->get('userType')) {
-
 		}
 	}
 
@@ -348,9 +344,9 @@ class AuthService
 	 * 
 	 * @return ? AuthModel
 	 */ 
-	public function checkAPISession($token = null) 
+	public function checkAPISession($token = null, $userType = null) 
 	{
-		return $this->repo->findByToken($token);
+		return $userType == 'Driver' ? $this->driverRepo->findByToken($token) : $this->repo->findByToken($token);
 	}
 
 
@@ -396,7 +392,6 @@ class AuthService
 	public function sendMail($user, $subject, $template) 
 	{
 	
-		$this->app = new \config\APP;
 
 		$body =  $this->app->template()->render('views/email/email.html.twig', ['template'=>$template,'user'=>$user, 'app'=>$this->app]);
 
