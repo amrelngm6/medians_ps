@@ -23,8 +23,14 @@ class HelpMessageComment extends CustomModel
 		'comment',
 	];
 	
-	public $appends = ['date', 'receiver'];
+	public $appends = ['date', 'short_date', 'receiver'];
 	
+	public function getShortDateAttribute()
+	{
+		$date = date('Y-m-d', strtotime($this->created_at));
+		return date( ($date == date('Y-m-d')) ? 'H:i' : 'M d, H:i'  , strtotime($this->created_at));
+	}
+
 
 	public function getReceiverAttribute()
 	{

@@ -88,6 +88,7 @@ Macaw::get('/driver/(:all)', \Medians\Drivers\Application\DriverController::clas
 Macaw::get('/trip/(:all)', \Medians\Trips\Application\TripController::class.'@getTrip');
 
 
+
 /**
 * Restricted access requests 
 */

@@ -25,7 +25,13 @@ class HelpMessage extends CustomModel
 		'status',
 	];
 
-	public $appends = ['name', 'date', 'last_update'];
+	public $appends = ['name', 'date', 'short_date', 'last_update'];
+
+	public function getShortDateAttribute()
+	{
+		$date = date('Y-m-d', strtotime($this->created_at));
+		return date( ($date == date('Y-m-d')) ? 'H:i' : 'M d, H:i'  , strtotime($this->created_at));
+	}
 
 	public function getDateAttribute()
 	{

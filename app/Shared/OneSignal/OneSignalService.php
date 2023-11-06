@@ -44,7 +44,7 @@ class OneSignalService extends CustomController
     public function send($receiver, $subject, $message)
     {
 
-        $this->sendNotification($receiver, $subject,$message);
+        $this->sendNotification($receiver, $subject, $message);
     }
 
 
