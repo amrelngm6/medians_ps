@@ -47,7 +47,7 @@ class AuthService
 	function __construct()
 	{
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
-		$this->driverRepo = new \Medians\Users\Infrastructure\UserRepository();
+		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository();
 	}
  
 
@@ -283,49 +283,7 @@ class AuthService
 		}
 	} 
 
-	/**
-	 * User login request
-	 */ 
-	public function userSignup()
-	{
-
-		$this->app = new \config\APP;
-        
-        $params = $this->app->request()->get('params');
-
-        try {
-            
-            $validate = $this->validateSignup($params);
-
-
-            /**
-             * Check if data is Validated or 
-             * return the error
-             */  
-            if (!empty($validate)){
-            	echo $validate;
-            	return $validate;
-            }
-
-            $params['active'] = '0';
-            $params['role_id'] = 3;
-            $params['active_branch'] = '0';
-
-			$save = $this->repo->store($params);
-
-        	echo json_encode(isset($save->id) 
-           	? array('success'=>1, 'result'=>__('Created').__('check_email_for_activation'), 'reload'=>1)
-        	: array('error'=> $save ));
-
-    		$this->sendMail($save, "Activate your account", 'activate-account');
-
-
-        } catch (Exception $e) {
-        	throw new Exception("Error Processing Request", 1);
-        	
-        }
-	}
-
+	
 	/**
 	 * Validate the password length
 	 * 
@@ -373,9 +331,13 @@ class AuthService
 	{
 		$this->AuthModel = new AuthModel($code);
 
+		$this->app = new \config\APP;
+
 		if (!empty ( $this->AuthModel->checkSession($code) ))
 		{
 			return $this->repo->find($this->AuthModel->checkSession($code));
+		} else if ($this->app->request()->headers->get('userType')) {
+
 		}
 	}
 

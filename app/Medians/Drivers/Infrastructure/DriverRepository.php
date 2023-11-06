@@ -109,6 +109,19 @@ class DriverRepository
 
 
 	/**
+	 * Check user session by his token
+	 */
+	public function findByToken($token)
+	{
+		return Driver::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
+			$q->where('code','API_token')->where('value',$token);
+		})->first();
+
+	}
+
+
+
+	/**
 	 * Generate random password
 	 */
 	public function randomPassword() {
