@@ -92,7 +92,7 @@ export default
             },
 
             activeItem:{},
-            center:{},
+            center:{lat:31, lng:30},
             activeTrip:null,
             showAddSide:false,
             showEditSide:false,
@@ -131,8 +131,8 @@ export default
     ],
     mounted() 
     {
-        this.getUserLocation()
         this.load()
+        this.getUserLocation()
         setInterval(() => {
             // this.load()
         }, 10000);
