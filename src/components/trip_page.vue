@@ -189,6 +189,7 @@ export default
                 content: {
                     items: []
                 },
+                locations: [],
                 activeItem: {},
                 showAddSide: false,
                 showEditSide: false,
@@ -210,6 +211,10 @@ export default
         mounted() {
             this.activeItem = this.trip;
             console.log(this.activeItem)
+            if (this.trip)
+            {
+                this.locations = this.trip.pickup_locations;
+            }
         },
 
         methods:
