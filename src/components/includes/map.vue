@@ -111,6 +111,9 @@ export default
                 t.directionsDisplay = new window.google.maps.DirectionsRenderer();
 
                 var map = this.$refs.gmap.$mapObject;
+
+                console.log(map)
+
                 this.directionsDisplay.setMap(map);
 
                 setInterval(() => {
