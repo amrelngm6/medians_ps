@@ -316,7 +316,7 @@ export default
             * @param {Model Object} i 
             */
             handleObject(data) {
-                data.icon = this.conf.url + 'uploads/images/blue_pin.gif'
+                data.icon = this.conf ? (this.conf.url + 'uploads/images/blue_pin.gif') : ''
                 data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) }
                 data.drag = true;
                 return data;
