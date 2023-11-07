@@ -90,7 +90,7 @@ export default
             console.log(this.waypoints);
             setTimeout(function(){
                 t.onMapReady()
-
+                t.getUserLocation()
             }, 1000)
         },
 
