@@ -1,8 +1,14 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
-        <div  v-if="content " class=" w-full relative">
 
-            <maps @update-marker="updateMarker" :showroute="true" :waypoints="locations" @interval-callback="callback"></maps>
+        <div  v-if="showTrip" class=" w-full relative">
+
+            <trip_page :item="activeItem"></trip_page>
+        </div>    
+            
+        <div  v-if="content && !showTrip" class=" w-full relative">
+
+            <maps #click-marker="clickMarker" @update-marker="updateMarker" :showroute="true" :waypoints="locations" @interval-callback="callback"></maps>
 
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
@@ -69,12 +75,12 @@
     </div>
 </template>
 <script>
-import dataTableActions from './includes/data-table-actions.vue';
+import dataTableSideActions from './includes/data-table-side-actions.vue';
 
 export default 
 {
     components:{
-        dataTableActions,
+        dataTableSideActions,
     },
     name:'Trips',
     data() {
@@ -100,6 +106,12 @@ export default
 
     computed: {
         bindings() {
+
+            this.content.columns.push({
+                    key: this.__("actions"),
+                    component: dataTableSideActions,
+                    sortable: false,
+                });
 
             return {
 
@@ -127,6 +139,16 @@ export default
 
     methods: 
     {
+        editFields(data)
+        {
+            console.log(data);
+        },
+
+        switchTrip(trip, show = true)
+        {
+            showTrip = show;
+            this.activeItem = trip
+        },
         callback()
         {
             console.log(this.locations);
@@ -169,6 +191,11 @@ export default
             this.locations = this.setLocationsPickups(trip);
         },  
         
+        clickMarker(item, event)
+        {
+            
+        },
+
         updateMarker(item, event)
         {
             var params = new URLSearchParams();
