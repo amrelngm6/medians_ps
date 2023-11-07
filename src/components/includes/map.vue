@@ -110,7 +110,11 @@ export default
                             this.center.lat = position.coords.latitude;
                             this.center.lng = position.coords.longitude;
                             this.locationError = null;
-                            this.$refs.map.panTo(this.center);
+                            var map = this.$refs.gmap.$mapObject;
+                            console.log(map)
+                            map.panTo(this.center);
+                            console.log(this.$refs.map)
+
                         },
                         error => {
                             this.locationError = "Error: " + error.message;
