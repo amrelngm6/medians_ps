@@ -242,7 +242,7 @@ export default
             }
             this.locations[this.locations.length] = {drag:true, icon: this.conf.url+'uploads/images/destination.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
             this.showMap = !this.showMap
-            
+            this.center = this.locations[0].destination;
             return this.locations;
         },  
 
