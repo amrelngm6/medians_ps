@@ -144,6 +144,7 @@ export default
             setLocationsMarkers(location)
             {   
                 this.locations = [this.handleObject(location)];
+                this.center = this.locations[0].destination;
             },  
 
             /**
