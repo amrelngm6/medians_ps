@@ -131,8 +131,8 @@ export default
     ],
     mounted() 
     {
+        this.getUserLocation()
         this.load()
-
         setInterval(() => {
             // this.load()
         }, 10000);
