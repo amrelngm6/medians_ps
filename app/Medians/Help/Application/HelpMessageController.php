@@ -198,15 +198,12 @@ class HelpMessageController extends CustomController
 
         try {	
 
-			print_r($params);
-			print_r($this->app->auth());
+        	$params['user_id'] = $this->app->auth();        	
 
-        	// $params['user_id'] = $this->app->auth();        	
-
-            // $returnData = (!empty($this->repo->storeDriverComment($params))) 
-            // ? array('success'=>1, 'result'=>__('Added'))
-            // : array('success'=>0, 'result'=>'Error', 'error'=>1);
-			return '';
+            $returnData = (!empty($this->repo->storeDriverComment($params))) 
+            ? array('success'=>1, 'result'=>__('Added'))
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+			
         } catch (Exception $e) {
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
