@@ -139,12 +139,7 @@ export default
 
     methods: 
     {
-        editFields(data)
-        {
-            console.log(data);
-        },
-
-        switchTrip(trip, show = true)
+        editFields(data, show = true)
         {
             showTrip = show;
             this.activeItem = trip
