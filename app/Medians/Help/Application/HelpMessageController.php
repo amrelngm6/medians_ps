@@ -200,7 +200,7 @@ class HelpMessageController extends CustomController
 
         	$params['user_id'] = $this->app->auth()->driver_id;        	
 
-            $returnData = (!empty($this->repo->storeUserComment($params))) 
+            $returnData = (!empty($this->repo->storeDriverComment($params))) 
             ? array('success'=>1, 'result'=>__('Added'))
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 

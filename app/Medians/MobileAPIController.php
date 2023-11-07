@@ -220,7 +220,7 @@ class MobileAPIController extends CustomController
 					break;
 					
 	            case 'HelpMessageComment.create':
-	                $return =  (new Help\Application\HelpMessageController())->storeComment(); 
+	                $return =  (new Help\Application\HelpMessageController())->storeDriverComment(); 
 	                break;
 
 
