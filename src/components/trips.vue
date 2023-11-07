@@ -5,7 +5,7 @@
             <trip_page @close="editFields" :item="activeItem"></trip_page>
         </div>    
             
-        <div  v-if="content && !showTrip &&" class=" w-full relative">
+        <div  v-if="content && !showTrip " class=" w-full relative">
 
             <maps :center="locations[0]" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="true" :waypoints="locations" @interval-callback="callback"></maps>
 
