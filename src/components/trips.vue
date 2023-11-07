@@ -100,7 +100,7 @@ export default
             locations: [],
             showList: true,
             showMap: true,
-            showTrip: true,
+            showTrip: false,
             searchText: '',
         }
     },
