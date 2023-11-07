@@ -198,6 +198,7 @@ class HelpMessageController extends CustomController
 
         try {	
 
+			print_r($params);
 			print_r($this->app->auth());
 
         	// $params['user_id'] = $this->app->auth();        	
@@ -210,7 +211,9 @@ class HelpMessageController extends CustomController
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
 
-		return $returnData;
+		echo json_encode($returnData);
+
+		return true;
 	}
 
 
