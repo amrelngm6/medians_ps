@@ -81,14 +81,12 @@ export default
             'setting',
             'conf',
             'auth',
+            'center',
             'showroute',
         ],
         mounted() {
             var t = this;
-            if (this.$parent.locations && this.$parent.locations.length)
-            {
-                this.center = this.$parent.locations[0].destination;
-            }
+            
             if (this.showroute == true)
             {
                 setTimeout(function(){

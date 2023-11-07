@@ -7,7 +7,7 @@
             
         <div  v-if="content && !showTrip " class=" w-full relative">
 
-            <maps :center="locations[0]" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="true" :waypoints="locations" @interval-callback="callback"></maps>
+            <maps :center="{lat: locations[0].latitude, lng:locations[0].longitude}" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="true" :waypoints="locations" @interval-callback="callback"></maps>
 
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
