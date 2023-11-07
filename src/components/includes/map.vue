@@ -87,14 +87,9 @@ export default
             var t = this;
             console.log(this.center);
             console.log(this.waypoints);
-            if (this.showroute == true)
-            {
-                setTimeout(function(){
-                    t.onMapReady()
-                }, 1000)
-            } else {
-                // t.waypoints = this.$parent.locations;
-            }
+            setTimeout(function(){
+                t.onMapReady()
+            }, 1000)
         },
 
         methods:
