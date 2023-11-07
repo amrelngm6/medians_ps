@@ -232,7 +232,7 @@ export default
 
             close()
             {
-                this.$emit('close', 'close', this.activeItem);
+                this.$emit('close', 'close', this.activeItem, false);
             },
 
             loadmore() {
