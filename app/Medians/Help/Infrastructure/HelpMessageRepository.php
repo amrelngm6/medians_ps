@@ -48,6 +48,11 @@ class HelpMessageRepository
 		return HelpMessage::with('user','comments' )->where('user_id', $user->driver_id)->where('user_type', Driver::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 
+	public function load($limit = 100)
+	{
+		return HelpMessage::with('user','comments' )->limit($limit)->orderBy('message_id', 'DESC')->get();
+	}
+
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');
