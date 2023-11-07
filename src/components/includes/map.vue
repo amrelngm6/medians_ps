@@ -14,8 +14,8 @@
 
             
             <DirectionsRenderer 
-                v-if="(showroute, index) && directionPoints"
-                :destination="{ placeId: index, location: directionPoints.destination}" 
+                v-if="showroute && directionPoints"
+                :destination="directionPoints.destination" 
                 :origin="directionPoints.origin"
                 :key="directionPoints" 
                 :travelMode="travelMode" 
@@ -60,6 +60,7 @@ export default
                 destination: { lat: 0, lng: 0 }, // Replace with your destination location
 
                 zoom: 14,
+                center: { lat: 0, lng: 0 },
                 markers: [
                 ],
 
@@ -80,7 +81,6 @@ export default
             'setting',
             'conf',
             'auth',
-            'center',
             'showroute',
         ],
         mounted() {
@@ -89,7 +89,7 @@ export default
             {
                 setTimeout(function(){
                     t.onMapReady()
-                }, 500)
+                }, 1000)
             } else {
                 t.waypoints = this.$parent.locations;
             }
@@ -110,9 +110,6 @@ export default
                 t.directionsDisplay = new window.google.maps.DirectionsRenderer();
 
                 var map = this.$refs.gmap.$mapObject;
-
-                console.log(map)
-
                 this.directionsDisplay.setMap(map);
 
                 setInterval(() => {
@@ -120,8 +117,7 @@ export default
                         t.waypoints = this.$parent.locations;
                         t.calculateAndDisplayRoute();
                     }
-                    console.log(t.waypoints)
-                }, 1000);
+                }, 2000);
             },
 
             calculateDistance(location1, location2) {
@@ -198,15 +194,10 @@ export default
 
              calculateAndDisplayRoute() {
                 var t = this;
-                console.log('map 1')
-
                 if (window.google && this.waypoints.length) 
                 {
-                    
-                    t.directionPoints = {origin: t.waypoints[0].destination, destination: t.waypoints[1].destination};
-                    console.log(t.directionPoints)
+                    t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
                     var {origin, destination} = t.directionPoints;
-                    console.log(destination)
                     
                     t.directionsService.route(
                         {
