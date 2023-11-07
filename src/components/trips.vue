@@ -146,7 +146,6 @@ export default
          */
         getUserLocation() 
         {
-            this.center = this.activeTrip ? this.locations[0].destination : {}; 
             if (navigator.geolocation) {
 
                 navigator.geolocation.getCurrentPosition(
