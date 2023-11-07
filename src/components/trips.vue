@@ -7,7 +7,7 @@
             
         <div  v-if="content && !showTrip " class=" w-full relative">
 
-            <maps :conf="conf" :key="locations" :center="locations.length > 0 ? locations[0].destination : center" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations" @interval-callback="callback"></maps>
+            <maps :conf="conf" :key="locations" :center="center" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations" @interval-callback="callback"></maps>
 
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
@@ -144,9 +144,11 @@ export default
         /**
          * Get current location
          */
-            getUserLocation() 
+        getUserLocation() 
         {
+            this.center = this.activeTrip ? this.locations[0].destination : {}; 
             console.log('aa')
+            console.log(this.center)
             if (navigator.geolocation) {
 
                 navigator.geolocation.getCurrentPosition(
