@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div  v-if="content && !showLoader" class=" w-full relative">
 
-            <maps @update-marker="updateMarker" :center="{lat: locations[0] ? locations[0].latitude : 0, lng: locations[0] ? locations[0].longitude : 0}" :key="locations" :waypoints="locations" :showroute="false"></maps>
+            <maps @update-marker="updateMarker" :center="locations[0] ? locations[0].destination : {lat:0, lng: 0}" :key="locations" :waypoints="locations" :showroute="false"></maps>
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
                     <div class="text-black text-lg font-semibold" v-text="__('Routes')"></div>
