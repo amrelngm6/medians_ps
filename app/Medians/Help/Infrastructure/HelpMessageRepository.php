@@ -126,6 +126,31 @@ class HelpMessageRepository
     	return $Object;
     }
     	
+
+	/**
+	* Save Comment from Admin / Agent
+	*/
+	public function storeDriverComment($data) 
+	{
+
+		$Model = new HelpMessageComment();
+
+		$data['user_type'] = Driver::class;
+		
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+
+		// Return the FBUserInfo object with the new data
+    	$Object = HelpMessageComment::create($dataArray);
+
+    	return $Object;
+    }
+    	
     /**
      * Update Lead
      */

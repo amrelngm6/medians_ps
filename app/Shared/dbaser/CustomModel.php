@@ -20,6 +20,12 @@ class CustomModel extends Model
 		$this->orderBy('id', 'DESC');
 	}
 
+	public function getId()
+	{
+		$k = $this->getPrimaryKey();
+		return isset($this->$l) ? $this->$l : 0; 
+	}
+
 	public function getPrimaryKey()
 	{
 		return  $this->primaryKey;

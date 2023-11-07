@@ -192,6 +192,25 @@ class HelpMessageController extends CustomController
 	}
 
 
+	public function storeDriverComment() 
+	{
+		$params = $this->app->request()->get('params');
+
+        try {	
+
+        	$params['user_id'] = $this->app->auth()->driver_id;        	
+
+            $returnData = (!empty($this->repo->storeUserComment($params))) 
+            ? array('success'=>1, 'result'=>__('Added'))
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		return $returnData;
+	}
+
 
 	public function update()
 	{

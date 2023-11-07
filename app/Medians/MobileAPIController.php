@@ -150,7 +150,7 @@ class MobileAPIController extends CustomController
 			case 'Products':
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
 				break;
-				
+
 			case 'help_message':
 				$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
 				break;
@@ -218,7 +218,6 @@ class MobileAPIController extends CustomController
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
 					break;
-
 					
 	            case 'HelpMessageComment.create':
 	                $return =  (new Help\Application\HelpMessageController())->storeComment(); 
