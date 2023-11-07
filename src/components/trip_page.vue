@@ -103,7 +103,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' ">
+                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' && trip">
 
                                             <div
                                                 :class="__('lang') == 'ar' ? 'right-4' : 'left-4'" class="absolute border-s-2  border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10">
