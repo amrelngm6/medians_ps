@@ -81,6 +81,7 @@ export default
             'conf',
             'auth',
             'waypoints',
+            'showroute',
             'center',
         ],
         mounted() {
