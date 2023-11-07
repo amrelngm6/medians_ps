@@ -102,6 +102,7 @@ export default
              */
             getUserLocation() 
             {
+                console.log('aa')
                 if (navigator.geolocation) {
 
                     navigator.geolocation.getCurrentPosition(
