@@ -86,11 +86,12 @@ export default
         mounted() {
             var t = this;
             console.log(this.center)
+            console.log(this.$parent.locations)
             if (this.showroute == true)
             {
                 setTimeout(function(){
                     t.onMapReady()
-                }, 1000)
+                }, 500)
             } else {
                 t.waypoints = this.$parent.locations;
             }
