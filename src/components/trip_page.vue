@@ -197,7 +197,6 @@ export default
                     items: []
                 },
                 activeItem: {},
-                trip: {},
                 showAddSide: false,
                 showEditSide: false,
                 showLoader: false,
@@ -213,10 +212,9 @@ export default
             'setting',
             'conf',
             'auth',
-            'item',
+            'trip',
         ],
         mounted() {
-            this.trip = this.item;
             this.activeItem = this.item;
             console.log(this.activeItem)
         },
