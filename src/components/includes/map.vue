@@ -60,7 +60,6 @@ export default
                 destination: { lat: 0, lng: 0 }, // Replace with your destination location
 
                 zoom: 14,
-                center: { lat: 0, lng: 0 },
                 markers: [
                 ],
 
@@ -86,7 +85,7 @@ export default
         ],
         mounted() {
             var t = this;
-            
+            console.log(this.center)
             if (this.showroute == true)
             {
                 setTimeout(function(){
