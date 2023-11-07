@@ -85,6 +85,7 @@ export default
         ],
         mounted() {
             var t = this;
+            console.log(this.center);
             if (this.showroute == true)
             {
                 setTimeout(function(){
