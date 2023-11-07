@@ -305,7 +305,7 @@ export default
 
             setLocations() {
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
-                    this.locations[i] = this.handleObject(this.content.items[i]);
+                    this.locations[i] = this.handleObject(this.activeItem.pickup_locations[i]);
                 }
 
                 return this
