@@ -5,7 +5,7 @@
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center">
 
-                        <img :src="activeItem.picture" alt=""
+                        <img :src="activeItem.driver.picture" alt=""
                             class=" rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
                         <p class="text-gray-400 mb-4 dark:text-gray-400" v-text="activeItem.email"></p>
