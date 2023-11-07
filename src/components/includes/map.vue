@@ -86,45 +86,14 @@ export default
         ],
         mounted() {
             var t = this;
-            console.log(this.center);
-            console.log(this.waypoints);
             setTimeout(function(){
                 t.onMapReady()
-                t.getUserLocation()
             }, 1000)
         },
 
         methods:
         {
 
-            /**
-             * 
-             */
-            getUserLocation() 
-            {
-                console.log('aa')
-                if (navigator.geolocation) {
-
-                    navigator.geolocation.getCurrentPosition(
-                        position => {
-                            this.center.lat = position.coords.latitude;
-                            this.center.lng = position.coords.longitude;
-                            this.locationError = null;
-                            var map = this.$refs.gmap.$mapObject;
-                            console.log(map)
-                            map.panTo(this.center);
-                            console.log(this.$refs.map)
-
-                        },
-                        error => {
-                            this.locationError = "Error: " + error.message;
-                        }
-                    );
-                } else {
-                    this.locationError = "Geolocation is not supported by this browser.";
-                }
-            },
-                
             /**
              * When map loaded is ready
              * 
