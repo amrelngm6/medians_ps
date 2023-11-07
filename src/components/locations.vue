@@ -201,7 +201,6 @@ export default
                 data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) } 
                 data.drag = true; 
                 return data;
-
             },  
             __(i) {
                 return this.$root.$children[0].__(i);
