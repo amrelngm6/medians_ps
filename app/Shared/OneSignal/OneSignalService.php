@@ -3,7 +3,7 @@ namespace Shared\OneSignal;
 
 use Shared\dbaser\CustomController;
 
-class OneSignalService extends CustomController 
+class OneSignalService 
 {
 
     /**
@@ -31,7 +31,6 @@ class OneSignalService extends CustomController
 
     function __construct($id)
 	{
-        print_r($id);
 		$this->app = new \config\APP;
         $this->APP_ID = '8c316c75-1878-4bf9-99ad-3964bb83f525';
         $this->APP_KEY_TOKEN = 'ZDE4MGQ3YmEtZjljZS00ZWFmLThkMDQtNjMzYzk0YjlmMWZk';
