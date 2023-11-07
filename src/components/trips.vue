@@ -133,7 +133,7 @@ export default
         this.load()
 
         setInterval(() => {
-            this.load()
+            // this.load()
         }, 10000);
     },
 
