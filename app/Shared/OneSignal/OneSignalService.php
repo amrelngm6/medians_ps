@@ -59,13 +59,13 @@ class OneSignalService
     
         $fields = array(
             'app_id' => $this->APP_ID,
-            // 'included_segments' => array('All'), // Send to all subscribers
+            'included_segments' => array('All'), // Send to all subscribers
             'headings' => $headings,
             'contents' => $content,
             // 'include_external_user_ids' => [$this->user_onesignal_id],
             // 'data' => $receiver,
             'target_channel' => 'push',
-            'include_aliases' => ['external_id'=>['D-23']]
+            'include_aliases' => ['external_id'=>['D-23', '23']]
         );
         
 
