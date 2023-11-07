@@ -48,9 +48,9 @@
                                     :class="activeStatus == 'info' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
                                 </button> <!-- button-end -->
-                                <button @click="setActiveStatus('trips')" type="button"
-                                    v-text="__('Trips')"
-                                    :class="activeStatus == 'trips' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
+                                <button @click="setActiveStatus('pickup_locations')" type="button"
+                                    v-text="__('Pickup locations')"
+                                    :class="activeStatus == 'pickup_locations' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white">
                                 </button> <!-- button-end -->
                                 <button type="button"  @click="setActiveStatus('help_messages')"
@@ -97,7 +97,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' && trip">
+                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'pickup_locations' && trip">
 
                                             <div
                                                 :class="__('lang') == 'ar' ? 'right-4' : 'left-4'" class="absolute border-s-2  border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10">
