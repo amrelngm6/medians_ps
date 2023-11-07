@@ -205,7 +205,7 @@ class HelpMessageController extends CustomController
             // $returnData = (!empty($this->repo->storeDriverComment($params))) 
             // ? array('success'=>1, 'result'=>__('Added'))
             // : array('success'=>0, 'result'=>'Error', 'error'=>1);
-
+			return '';
         } catch (Exception $e) {
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
