@@ -15,7 +15,7 @@
             
             <DirectionsRenderer 
                 v-if="showroute && directionPoints"
-                :destination="directionPoints.destination" 
+                :destination="{ location: directionPoints.destination}" 
                 :origin="directionPoints.origin"
                 :key="directionPoints" 
                 :travelMode="travelMode" 
@@ -203,7 +203,7 @@ export default
                 if (window.google && this.waypoints.length) 
                 {
                     
-                    t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
+                    t.directionPoints = {origin: t.waypoints[0].destination, destination: t.waypoints[1].destination};
                     console.log(t.directionPoints)
                     var {origin, destination} = t.directionPoints;
                     console.log(destination)
