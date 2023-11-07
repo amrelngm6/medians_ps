@@ -180,8 +180,7 @@ class HelpMessageController extends CustomController
 
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;
-        	
+        	$params['created_by'] = $this->app->auth()->driver_id;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('THNKS_MSG'), 'reload'=>1)

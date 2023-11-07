@@ -150,6 +150,7 @@ class MobileAPIController extends CustomController
 			case 'Products':
 				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
 				break;
+				
 			case 'help_message':
 				$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
 				break;
