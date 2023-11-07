@@ -103,11 +103,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' && activeItem.last_trips">
+                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' ">
 
-                                        <div class="relative overflow-hidden "
-                                            v-for="(trip, index) in activeItem.last_trips" v-if="index <= limitCount" :key="limitCount">
-                                            <!-- Center Border Line -->
                                             <div
                                                 :class="__('lang') == 'ar' ? 'right-4' : 'left-4'" class="absolute border-s-2  border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10">
                                             </div>
@@ -168,7 +165,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
                                     </div>
                                 </div> <!-- tabs-with-underline-1 end -->
@@ -201,6 +197,7 @@ export default
                     items: []
                 },
                 activeItem: {},
+                trip: {},
                 showAddSide: false,
                 showEditSide: false,
                 showLoader: false,
@@ -219,6 +216,7 @@ export default
             'item',
         ],
         mounted() {
+            this.trip = this.item;
             this.activeItem = this.item;
             console.log(this.activeItem)
         },
