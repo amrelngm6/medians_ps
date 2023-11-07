@@ -41,21 +41,21 @@ class OneSignalService extends CustomController
 	}
 
 
-    public function send($receiver, $subject, $message)
+    public function send($receiver, $subject, $messageText)
     {
 
-        $this->sendNotification($receiver, $subject, $message);
+        $this->sendNotification($receiver, $subject, $messageText);
     }
 
 
-    function sendNotification($receiver, $subject, $message) {
+    function sendNotification($receiver, $subject, $messageText) {
         
         $headings = array(
             "en" => strip_tags($subject)
         );
 
         $content = array(
-            "en" => strip_tags($message)
+            "en" => strip_tags($messageText)
         );
     
         $fields = array(
