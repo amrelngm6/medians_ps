@@ -147,6 +147,7 @@ export default
         callback()
         {
             this.editFields(null, false)
+            this.showTrip = false;
         },
         filterLocations(locations, status)
         {
