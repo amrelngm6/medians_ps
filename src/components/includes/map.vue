@@ -91,17 +91,35 @@ export default
             setTimeout(function(){
                 t.onMapReady()
 
-                if (navigator)
-                {
-                    console.log(navigator)
-                }
-
             }, 1000)
         },
 
         methods:
         {
 
+            /**
+             * 
+             */
+            getUserLocation() 
+            {
+                if (navigator.geolocation) {
+
+                    navigator.geolocation.getCurrentPosition(
+                        position => {
+                            this.center.lat = position.coords.latitude;
+                            this.center.lng = position.coords.longitude;
+                            this.locationError = null;
+                            this.$refs.map.panTo(this.center);
+                        },
+                        error => {
+                            this.locationError = "Error: " + error.message;
+                        }
+                    );
+                } else {
+                    this.locationError = "Geolocation is not supported by this browser.";
+                }
+            },
+                
             /**
              * When map loaded is ready
              * 
