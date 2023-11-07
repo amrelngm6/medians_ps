@@ -146,7 +146,7 @@ export default
         },
         callback()
         {
-            console.log(this.locations);
+            this.editFields(null, false)
         },
         filterLocations(locations, status)
         {
