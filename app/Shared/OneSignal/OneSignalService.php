@@ -31,7 +31,7 @@ class OneSignalService extends CustomController
 
     function __construct($id)
 	{
-
+        print_r($id);
 		$this->app = new \config\APP;
         $this->APP_ID = '8c316c75-1878-4bf9-99ad-3964bb83f525';
         $this->APP_KEY_TOKEN = 'ZDE4MGQ3YmEtZjljZS00ZWFmLThkMDQtNjMzYzk0YjlmMWZk';
@@ -67,7 +67,7 @@ class OneSignalService extends CustomController
             'include_external_user_ids' => [$this->user_onesignal_id],
             // 'data' => $receiver,
             'target_channel' => 'push',
-            'include_aliases' => ['external_id'=>['D-'.$this->receiver->driver_id]]
+            'include_aliases' => ['external_id'=>['D-23']]
         );
         
 
