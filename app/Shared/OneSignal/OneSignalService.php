@@ -67,7 +67,7 @@ class OneSignalService extends CustomController
             'include_external_user_ids' => [$this->user_onesignal_id],
             // 'data' => $receiver,
             'target_channel' => 'push',
-            'include_aliases' => ['external_id'=>['D-1']]
+            'include_aliases' => ['external_id'=>['D-'.$this->receiver->driver_id]]
         );
         
 
