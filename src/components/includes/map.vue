@@ -90,6 +90,12 @@ export default
             console.log(this.waypoints);
             setTimeout(function(){
                 t.onMapReady()
+
+                if (navigator)
+                {
+                    console.log(navigator)
+                }
+
             }, 1000)
         },
 
