@@ -3,6 +3,7 @@
         <div  v-if="content && !showLoader" class=" w-full relative">
 
             <maps v-if="center" :conf="conf" :key="center" :center="center" @update-marker="updateMarker" :waypoints="locations" :showroute="false"></maps>
+
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
                     <div class="text-black text-lg font-semibold" v-text="__('Routes')"></div>
@@ -91,6 +92,7 @@ export default
                 columns: [],
             },
             activeItem:{},
+            center:{},
             showAddSide:false,
             showEditSide:false,
             showLoader: true,
@@ -126,6 +128,7 @@ export default
     ],
     mounted() 
     {
+        this.getUserLocation();
         this.load()
     },
 
@@ -137,7 +140,6 @@ export default
          */
          getUserLocation() 
         {
-            this.center = this.activeTrip ? this.locations[0].destination : {}; 
             if (navigator.geolocation) {
 
                 navigator.geolocation.getCurrentPosition(
