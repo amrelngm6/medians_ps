@@ -62,6 +62,7 @@ class OneSignalService extends CustomController
             'app_id' => $this->APP_ID,
             // 'included_segments' => array('All'), // Send to all subscribers
             'headings' => $headings,
+            'message' => 'test',
             'contents' => $content,
             'include_external_user_ids' => [$this->user_onesignal_id],
             // 'data' => $receiver,
