@@ -53,9 +53,9 @@
                                     :class="activeStatus == 'pickup_locations' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white">
                                 </button> <!-- button-end -->
-                                <button type="button"  @click="setActiveStatus('help_messages')"
-                                    :class="activeStatus == 'help_messages' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
-                                    v-text="__('Help messages')"
+                                <button type="button"  @click="setActiveStatus('map')"
+                                    :class="activeStatus == 'map' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
+                                    v-text="__('Map')"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white">
                                 </button> <!-- button-end -->
                                 <button @click="setActiveStatus('reviews')"  type="button"
