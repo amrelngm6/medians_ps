@@ -1,7 +1,7 @@
 <template>
     <div class="action-buttons flex gap-6 gap text-base">
 
-        <a @click="handleAction()" class="text-gray-400 hover:text-gray-100  mx-2" href="javascript:;">
+        <a @click="handleAction()" class="text-gray-400 hover:text-gray-100  p-2" href="javascript:;">
             <i class="material-icons-outlined text-base">edit</i>
         </a>
 
