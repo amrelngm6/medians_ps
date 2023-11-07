@@ -85,8 +85,6 @@ export default
         ],
         mounted() {
             var t = this;
-            console.log(this.center)
-            console.log(this.$parent.locations)
             if (this.showroute == true)
             {
                 setTimeout(function(){
@@ -199,10 +197,15 @@ export default
 
              calculateAndDisplayRoute() {
                 var t = this;
+                console.log('map 1')
+
                 if (window.google && this.waypoints.length) 
                 {
+                    
                     t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
+                    console.log(t.directionPoints)
                     var {origin, destination} = t.directionPoints;
+                    console.log(destination)
                     
                     t.directionsService.route(
                         {
