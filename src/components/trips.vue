@@ -5,9 +5,9 @@
             <trip_page @close="editFields" :item="activeItem"></trip_page>
         </div>    
             
-        <div  v-if="content && !showTrip" class=" w-full relative">
+        <div  v-if="content && !showTrip &&" class=" w-full relative">
 
-            <maps #click-marker="clickMarker" @update-marker="updateMarker" :showroute="true" :waypoints="locations" @interval-callback="callback"></maps>
+            <maps :center="locations[0].destination" #click-marker="clickMarker" @update-marker="updateMarker" :showroute="true" :waypoints="locations" @interval-callback="callback"></maps>
 
             <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
