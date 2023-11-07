@@ -120,7 +120,8 @@ export default
                         t.waypoints = this.$parent.locations;
                         t.calculateAndDisplayRoute();
                     }
-                }, 2000);
+                    console.log(t.waypoints)
+                }, 1000);
             },
 
             calculateDistance(location1, location2) {
