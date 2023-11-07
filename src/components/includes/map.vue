@@ -86,6 +86,7 @@ export default
         mounted() {
             var t = this;
             console.log(this.center);
+            console.log(this.waypoints);
             if (this.showroute == true)
             {
                 setTimeout(function(){
