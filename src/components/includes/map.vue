@@ -65,7 +65,7 @@ export default
                 ],
 
                 polylineCoordinates: [],
-                waypoints: [],
+                // waypoints: [],
                 directionPoints: {},
                 activeDestination: {},
             }
@@ -81,7 +81,7 @@ export default
             'setting',
             'conf',
             'auth',
-            'showroute',
+            'waypoints',
         ],
         mounted() {
             var t = this;
@@ -91,7 +91,7 @@ export default
                     t.onMapReady()
                 }, 1000)
             } else {
-                t.waypoints = this.$parent.locations;
+                // t.waypoints = this.$parent.locations;
             }
         },
 
