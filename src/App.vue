@@ -7,7 +7,7 @@
             <div class="w-full relative">
                 <navbar v-if="auth" style="z-index: 99999;" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
-                <div class="gap gap-6 h-full flex w-full overflow-hidden pt-6 pb-6 px-4 bg-white ">
+                <div class="gap gap-6 h-full flex w-full overflow-hidden pt-6 px-4 bg-white ">
                     <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999"></side-menu>
 
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">

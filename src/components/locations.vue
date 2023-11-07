@@ -46,6 +46,7 @@
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
+                    
                     <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings" />
 
                     <side-form-create :conf="conf" model="PickupLocation.create"
