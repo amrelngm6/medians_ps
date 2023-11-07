@@ -134,7 +134,7 @@
                                                         <div class="relative">
                                                             <div
                                                                 class="w-9 h-9 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
-                                                                <img :src="location.model.picture" class="rounded-full"
+                                                                <img v-if="location.model" :src="location.model.picture" class="rounded-full"
                                                                     alt="">
                                                             </div>
                                                             <div
@@ -215,7 +215,7 @@ export default
             'trip',
         ],
         mounted() {
-            this.activeItem = this.item;
+            this.activeItem = this.trip;
             console.log(this.activeItem)
         },
 
