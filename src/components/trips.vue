@@ -153,20 +153,14 @@ export default
                     position => {
                         this.center.lat = position.coords.latitude;
                         this.center.lng = position.coords.longitude;
-                console.log(this.locationError);
-
                     },
                     error => {
                         this.locationError = "Error: " + error.message;
-                console.log(this.locationError);
-
                     }
                 );
             } else {
                 this.locationError = "Geolocation is not supported by this browser.";
-                console.log(this.locationError);
             }
-
         },
             
         editFields(data, show = true)
