@@ -194,7 +194,7 @@ class HelpMessageController extends CustomController
 
 	public function storeDriverComment() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = (array) json_decode($this->app->request()->get('params'));
 
         try {	
 
