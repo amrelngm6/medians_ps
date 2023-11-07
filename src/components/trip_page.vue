@@ -21,21 +21,15 @@
                     <div class="text-start mt-6 text-sm">
                         <div class="space-y-7">
                             <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong
-                                    v-text="__('First name')"></strong> <span class="ms-2"
-                                    v-text="activeItem.first_name"></span></p>
+                                    v-text="__('Duration')"></strong> <span class="ms-2"
+                                    v-text="activeItem.duration"></span></p>
                             <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong
-                                    v-text="__('Last name')"></strong> <span class="ms-2"
-                                    v-text="activeItem.last_name"></span></p>
-                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Email')"></strong>
-                                <span class="ms-2" v-text="activeItem.email"></span></p>
-                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Phone')"></strong>
-                                <span class="ms-2" v-text="activeItem.contact_number"></span></p>
-                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong
-                                    v-text="__('License number')"></strong> <span class="ms-2"
-                                    v-text="activeItem.driver_license_number"></span></p>
-                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4 items-start"><strong class="flex-shrink"
-                                    v-text="__('address')"></strong> <span class="ms-2" v-text="activeItem.address"></span>
-                            </p>
+                                    v-text="__('Pickup locations')"></strong> <span class="ms-2"
+                                    v-text="activeItem.pickup_locations_count"></span></p>
+                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Route')"></strong>
+                                <span class="ms-2" v-text="activeItem.route ? activeItem.route.route_name : ''"></span></p>
+                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Driver')"></strong>
+                                <span class="ms-2" v-text="activeItem.driver_name"></span></p>
                         </div>
                     </div>
                     <hr class="my-5 dark:border-gray-600">
@@ -97,9 +91,9 @@
                                     <div class="w-full border-b border-gray-100" v-if="activeStatus == 'info'">
                                         <div class="mt-6 w-full">
                                             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
-                                                <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-success" class="border border-1" :title="__('Completed trips')" :value="activeItem.last_trips ? activeItem.last_trips.length : '0'"></dashboard_card_white>
-                                                <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-info" class="border border-1" :title="__('Pickup locations')" :value="activeItem.total_pickups_count"></dashboard_card_white>
-                                                <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-danger" class="border border-1" :title="__('Reviews')" :value="'0'"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-success" class="border border-1" :title="__('Duration')" :value="activeItem.duration ? activeItem.duration : '0'"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-info" class="border border-1" :title="__('Pickup locations')" :value="activeItem.pickup_locations_count"></dashboard_card_white>
+                                                <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-danger" class="border border-1" :title="__('Distance')" :value="activeItem.distance"></dashboard_card_white>
                                             </div>
                                         </div>
                                     </div>
