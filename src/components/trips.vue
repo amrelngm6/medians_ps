@@ -142,7 +142,7 @@ export default
         editFields(data, show = true)
         {
             this.showTrip = show;
-            this.activeItem = trip
+            this.activeItem = data
         },
         callback()
         {
