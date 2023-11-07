@@ -236,7 +236,6 @@ export default
             this.activeItem = this.trip;
             console.log(this.activeItem)
             if (this.trip) {
-                this.locations = this.trip.pickup_locations;
                 this.setLocations();
             }
         },
