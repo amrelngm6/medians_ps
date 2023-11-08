@@ -156,6 +156,8 @@ class MobileAPIController extends CustomController
 		}
 
 		echo json_encode($return);
+		
+		return true;
 	} 
 
 	/**
