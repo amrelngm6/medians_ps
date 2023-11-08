@@ -269,4 +269,15 @@ class ParentController extends CustomController
 		}
 	} 
 
+	/**
+	 * get Parent
+	 */
+	public function getParent($id)
+	{
+		$data =  $this->repo->getParent($id);
+
+		echo  json_encode($data);
+	}
+
+
 }

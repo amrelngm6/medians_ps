@@ -31,9 +31,9 @@ class ParentRepository
 	}
 
 
-	public function find($id)
+	public function find($parent_id)
 	{
-		return Parents::find($id);
+		return Parents::find($parent_id);
 	}
 
 	public function get($limit = 100)
@@ -44,6 +44,11 @@ class ParentRepository
 	public function checkLogin($email, $password)
 	{
 		return Parents::where('password', $password)->where('email' , $email)->first();
+	}
+
+	public function getParent($parent_id)
+	{
+		return Parents::with('students', 'vehicle')->find($parent_id);
 	}
 
 	public function search($request, $limit = 20)
