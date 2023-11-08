@@ -78,6 +78,7 @@ Macaw::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
 Macaw::post('/userSignup', \Medians\Auth\Application\AuthService::class.'@userSignup');
 Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
 Macaw::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
+Macaw::post('/mobile_api/handle', \Medians\MobileAPIController::class.'@handle');
 Macaw::post('/mobile_api/driver_login', \Medians\MobileAPIController::class.'@driver_login');
 Macaw::post('/mobile_api/login', \Medians\MobileAPIController::class.'@login');
 Macaw::post('/mobile_api/create', \Medians\MobileAPIController::class.'@create');
