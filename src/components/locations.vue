@@ -4,15 +4,15 @@
 
             <main v-if="content && !showLoader" class="relative flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <maps @update-marker="updatedLocation" @click-marker="updatedLocation" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
-                <div style="max-height:calc(100vh - 140px)" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
+                <div  :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                     <div class="self-stretch py-4 flex-col justify-center items-start flex">
                         <div class="text-black text-lg font-semibold" v-text="__('Pickup locations')"></div>
                         <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Pickup locations description')"></div>
                     </div>
-                    <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
+                    <div v-if="!collapsed" class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                         <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
-                    <div  class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
+                    <div :key="collapsed" v-if="collapsed" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
                         <div v-for="location in content.items" :key="location.active" v-if="showList && location.active"  class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
                             <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
@@ -32,8 +32,9 @@
                         </div>
                     </div>
                     <div
-                        class="self-stretch grow shrink basis-0 justify-between items-center inline-flex">
+                        class="flex self-stretch grow shrink basis-0 justify-between items-center inline-flex">
                         <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
+                        <div @click="collapsed = !collapsed" class="cursor-ponter p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? __('Expand') : __('Collapse')"></p></div>
                     </div>
                 </div>
 
@@ -85,6 +86,7 @@ export default
                 showAddSide: false,
                 showEditSide: false,
                 showLoader: true,
+                collapsed: false,
                 searchText: '',
             }
         },
