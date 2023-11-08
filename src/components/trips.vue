@@ -9,7 +9,7 @@
 
             <maps v-if="center" :conf="conf" :key="center" :center="center" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations" @interval-callback="callback"></maps>
 
-            <div style="max-height:calc(100vh - 140px)" class="h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
+            <div style="max-height:calc(100vh - 140px)" class="mx-16 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
                     <div class="text-black text-lg font-semibold" v-text="__('Trips')"></div>
                     <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Trips description')"></div>
