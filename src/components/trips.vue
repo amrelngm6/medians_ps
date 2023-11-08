@@ -17,9 +17,8 @@
                 <div v-if="!collapsed" class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                     <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                 </div>
-                <div :key="collapsed" v-if="!collapsed && content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
-
-                    <div v-for="(trip, index) in content.items" :key="trip.active" class="w-full">
+                <div :key="collapsed" v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
+                    <div v-if="!collapsed" v-for="(trip, index) in content.items" :key="trip.active" class="w-full">
                         <div  v-if="showList  && trip.active  && trip.trip_status == 'Scheduled'" :class="trip.selected ? 'text-gray-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
                             <div  class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex" v-if="trip.vehicle">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
