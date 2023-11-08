@@ -99,6 +99,7 @@ class ParentController extends CustomController
 		$params = (array) json_decode($this->app->request()->get('params'));
         try {	
 
+			print_r($params);
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Password sent through email'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);

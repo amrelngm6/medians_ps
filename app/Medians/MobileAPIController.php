@@ -171,7 +171,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Parent.signup':
-				$return =  (new Parents\Application\ParentController())->signup($params); 
+				$return =  (new Parents\Application\ParentController())->signup(); 
 				break;
 
 			case 'notifications':
