@@ -141,15 +141,6 @@ class MobileAPIController extends CustomController
 			case 'APP':
 				$return = ['app'=>$this->app, 'lang'=>(new \helper\Lang($this->app->default_lang))->load()->vueLang()];
 				break;
-			case 'OrderDevice':
-				$controller = new OrderDevicesRepository();
-				break;
-			case 'Devices':
-				$return = (new DevicesRepository())->getByBranch($this->app->branch->id);
-				break;
-			case 'Products':
-				$return = (new ProductsRepository())->getItems(['stock'=>true, 'status'=>true]);
-				break;
 
 			case 'help_message':
 				$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
@@ -177,6 +168,10 @@ class MobileAPIController extends CustomController
 
 			case 'Vehicle.update':
 				$return =  (new Vehicles\Application\VehicleController())->updateLocation($params); 
+				break;
+
+			case 'Parent.signup':
+				$return =  (new Parents\Application\ParentController())->signup($params); 
 				break;
 
 			case 'notifications':

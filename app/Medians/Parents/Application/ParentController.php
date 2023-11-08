@@ -94,6 +94,24 @@ class ParentController extends CustomController
 
 
 
+	public function signup() 
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+        try {	
+
+            $returnData = (!empty($this->repo->store($params))) 
+            ? array('success'=>1, 'result'=>__('Password sent through email'), 'reload'=>1)
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		return $returnData;
+	}
+
+
+
 	public function store() 
 	{
 
