@@ -93,6 +93,37 @@ class ParentController extends CustomController
 	}
 
 
+	/**
+	 * Parent Login through Mobile API
+	 */
+	public function login()
+	{
+		$Auth = new \Medians\Auth\Application\AuthService;
+		$repo = new \Medians\Parents\Infrastructure\ParentRepository;
+
+		$this->app = new \config\APP;
+		$request = $this->app->request();
+		
+		$params = json_decode($request->get('params'));		
+
+		$checkLogin = $repo->checkLogin($params->email, $Auth->encrypt($params->password));
+		
+		if (empty($checkLogin->parent_id)) {
+			echo json_encode(['error'=> __("User credentials not valid")]); return null;
+		}
+		
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->parent_id);
+		$generateToken = $checkLogin->insertCustomField('API_token', $token);
+
+		echo json_encode(
+		[
+			'success'=>true, 
+			'parent_id'=> isset($checkLogin->parent_id) ? $checkLogin->parent_id : null, 
+			'token'=>$generateToken->value
+		]);
+	}  
+
+
 
 	public function signup() 
 	{
