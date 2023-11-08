@@ -48,7 +48,7 @@ class ParentRepository
 
 	public function getParent($parent_id)
 	{
-		return Parents::with('students', 'vehicle')->find($parent_id);
+		return Parents::with('students')->find($parent_id);
 	}
 
 	public function search($request, $limit = 20)
