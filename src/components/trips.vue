@@ -56,7 +56,7 @@
                     </div>
                     <div
                         class="flex self-stretch grow shrink basis-0 justify-between items-center inline-flex">
-                        <div @click="collapsed = !collapsed" class="cursor-ponter p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? __('Expand') : __('Collapse')"></p></div>
+                        <div @click="collapsed = !collapsed" class="cursor-pointer p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? __('Expand') : __('Collapse')"></p></div>
                     </div>
                 </div>
             </div>
