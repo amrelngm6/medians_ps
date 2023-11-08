@@ -4,12 +4,12 @@
 
             <maps v-if="center" :conf="conf" :key="center" :center="center" @update-marker="updateMarker" :waypoints="locations" :showroute="false"></maps>
 
-            <div :style="collapsed ? 'max-height:240px' ('max-height:'+calc(100vh - 140px))" class="mx-16 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
+            <div :style="collapsed ? 'max-height:240px' : ('max-height:'+calc(100vh - 140px))" class="mx-16 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
                     <div class="text-black text-lg font-semibold" v-text="__('Routes')"></div>
                     <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Routes description')"></div>
                 </div>
-                <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
+                <div v-if="!collapsed" class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                     <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                 </div>
                 <div :key="collapsed" v-if="!collapsed && content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
