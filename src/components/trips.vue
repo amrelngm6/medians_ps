@@ -9,15 +9,15 @@
 
             <maps v-if="center" :conf="conf" :key="center" :center="center" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations" @interval-callback="callback"></maps>
 
-            <div style="max-height:calc(100vh - 140px)" class="mx-14 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
+            <div :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'"  class="mx-14 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
                     <div class="text-black text-lg font-semibold" v-text="__('Trips')"></div>
                     <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Trips description')"></div>
                 </div>
-                <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
+                <div v-if="!collapsed" class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                     <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                 </div>
-                <div v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
+                <div :key="collapsed" v-if="!collapsed && content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
 
                     <div v-for="(trip, index) in content.items" :key="trip.active" class="w-full">
                         <div  v-if="showList  && trip.active  && trip.trip_status == 'Scheduled'" :class="trip.selected ? 'text-gray-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
@@ -54,7 +54,10 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div
+                        class="flex self-stretch grow shrink basis-0 justify-between items-center inline-flex">
+                        <div @click="collapsed = !collapsed" class="cursor-ponter p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? __('Expand') : __('Collapse')"></p></div>
+                    </div>
                 </div>
             </div>
 
@@ -101,6 +104,7 @@ export default
             showList: true,
             showMap: true,
             showTrip: false,
+            collapsed: true,
             searchText: '',
         }
     },
