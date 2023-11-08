@@ -103,7 +103,7 @@ export default
             showList: true,
             showMap: true,
             showTrip: false,
-            collapsed: true,
+            collapsed: false,
             searchText: '',
         }
     },
