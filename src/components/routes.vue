@@ -45,7 +45,7 @@
                 <div
                     class="flex self-stretch grow shrink basis-0  justify-between items-center inline-flex">
                     <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
-                    <div class="">1</div>
+                    <div class="p-2 block text-center"><i class="fa fa-circle-up"></i><span>Collapse</span></div>
                 </div>
             </div>
 
