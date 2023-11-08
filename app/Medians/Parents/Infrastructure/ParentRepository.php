@@ -41,6 +41,11 @@ class ParentRepository
 		return Parents::with('pickup_location')->limit($limit)->get();
 	}
 
+	public function checkLogin($email, $password)
+	{
+		return Driver::where('password', $password)->where('email' , $email)->first();
+	}
+
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');
