@@ -43,7 +43,7 @@ class ParentRepository
 
 	public function checkLogin($email, $password)
 	{
-		return Driver::where('password', $password)->where('email' , $email)->first();
+		return Parents::where('password', $password)->where('email' , $email)->first();
 	}
 
 	public function search($request, $limit = 20)
