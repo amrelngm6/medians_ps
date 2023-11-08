@@ -1122,6 +1122,8 @@ class LangsAr
 		,'vehicle'=> 'السيارة'
 		,'vehicles'=> 'السيارات'
 		,'Theese users can manage your account only'=> 'يمكنهم إدارة حسابهم الشخصي فقط'
+		,'expand'=> 'سحب لأسفل'
+		,'collapse'=> 'رفع لأعلى'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
