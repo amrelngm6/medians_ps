@@ -12,7 +12,7 @@
                     <div v-if="!collapsed" class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                         <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
-                    <div :key="collapsed" v-if="collapsed" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
+                    <div :key="collapsed" v-if="!collapsed" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
                         <div v-for="location in content.items" :key="location.active" v-if="showList && location.active"  class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
                             <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
