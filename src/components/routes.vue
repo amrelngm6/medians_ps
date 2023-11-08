@@ -12,7 +12,7 @@
                 <div class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                     <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                 </div>
-                <div v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
+                <div :key="collapsed" v-if="!collapsed && content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
 
                     <div v-for="(route, index) in content.items" :key="route.active" class="w-full">
                         <div  v-if="showList  && route.active" :class="route.selected ? 'text-fuchsia-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
@@ -45,7 +45,7 @@
                 <div
                     class="flex self-stretch grow shrink basis-0  justify-between items-center inline-flex">
                     <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
-                    <div class="p-2 block text-center"><i class="fa fa-circle-up"></i><span>Collapse</span></div>
+                    <div @click="collapsed = !collapsed" class="p-2 block text-center "><i class="fa fa-circle-up"></i><p class="font-semibold" v-text="__('Collapse')"></p></div>
                 </div>
             </div>
 
@@ -99,6 +99,7 @@ export default
             locations: [],
             showList: true,
             searchText: '',
+            collapsed: false,
         }
     },
 
