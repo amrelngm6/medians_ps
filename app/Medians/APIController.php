@@ -226,6 +226,10 @@ class APIController extends CustomController
                 $controller =  new Vehicles\Application\VehicleController; 
                 break;
 
+            case 'Event.update':
+				$controller = new Events\Application\EventController;
+                break;
+
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
