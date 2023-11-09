@@ -73,6 +73,17 @@ class ParentRepository
 	}
 
 
+	/**
+	 * Check user session by his token
+	 */
+	public function findByToken($token)
+	{
+		return Parents::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
+			$q->where('code','API_token')->where('value',$token);
+		})->first();
+
+	}
+
 
 	/**
 	 * Generate random password

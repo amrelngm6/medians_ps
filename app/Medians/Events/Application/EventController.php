@@ -36,7 +36,7 @@ class EventController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "message_id", 'title'=> "#"],
+            [ 'key'=> "event_id", 'title'=> "#"],
             [ 'key'=> "title", 'title'=> __('Title'), 'sortable'=> true ],
             [ 'key'=> "status", 'title'=> __('status'), 'sortable'=> true ],
             [ 'key'=> "created_at", 'title'=> __('Created Time'), 'sortable'=> true ],
@@ -53,7 +53,6 @@ class EventController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "message_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "title", 'title'=> __('title'),  'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'textarea' ],
             [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],

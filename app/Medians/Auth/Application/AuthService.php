@@ -38,6 +38,11 @@ class AuthService
 	protected $driverRepo;
 
 	/**
+	* @var Instance Parent Repo
+	*/
+	protected $parentRepo;
+
+	/**
 	* @var Instance App
 	*/
 	protected $app;
@@ -48,6 +53,7 @@ class AuthService
 	{
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
 		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository();
+		$this->parentRepo = new \Medians\Parents\Infrastructure\ParentRepository();
 	}
  
 
@@ -263,25 +269,25 @@ class AuthService
 	 * Signup page 
 	 * @var Int
 	 */
-	public function signup()
-	{
+	// public function signup()
+	// {
 
-		$this->app = new \config\APP;
+	// 	$this->app = new \config\APP;
 
-		try {
+	// 	try {
 
-			if (isset($this->app->auth()->id)) {
-				echo $this->app->redirect('/dashboard');
-			}
+	// 		if (isset($this->app->auth()->id)) {
+	// 			echo $this->app->redirect('/dashboard');
+	// 		}
 
-			return render('views/front/signup.html.twig', [
-		        'google_login' => $this->loginWithGoogle(),
-			]);
+	// 		return render('views/front/signup.html.twig', [
+	// 	        'google_login' => $this->loginWithGoogle(),
+	// 		]);
 
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-		}
-	} 
+	// 	} catch (\Exception $e) {
+	// 		throw new \Exception($e->getMessage(), 1);
+	// 	}
+	// } 
 
 	
 	/**
@@ -296,9 +302,6 @@ class AuthService
 
         if (empty($params['email']))
 			return json_encode(array('error'=>__('Email required')));
-
-        // if (empty($params['mobile']))
-			// return json_encode(array('error'=>__('MOBILE_ERR')));
 
         if (empty($params['first_name']))
 			return json_encode(array('error'=>__('Name required')));
@@ -346,7 +349,20 @@ class AuthService
 	 */ 
 	public function checkAPISession($token = null, $userType = null) 
 	{
-		return $userType == 'Driver' ? $this->driverRepo->findByToken($token) : $this->repo->findByToken($token);
+		switch ($userType) {
+			case 'Driver':
+				return $this->driverRepo->findByToken($token);
+				break;
+				
+			case 'Parent':
+				return $this->parentRepo->findByToken($token);
+				break;
+
+			default:
+				return $this->repo->findByToken($token);
+				break;
+		}
+		return $userType == 'Driver' ?  : $this->repo->findByToken($token);
 	}
 
 

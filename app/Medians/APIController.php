@@ -82,7 +82,6 @@ class APIController extends CustomController
 					$return = (new Users\Application\GetStartedController())->store_setting();
 					break;
 
-
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
 					break;
@@ -119,11 +118,9 @@ class APIController extends CustomController
 				case 'Category.create':
 					$return = (new Categories\Application\CategoryController())->store();
 					break;
-
+					
 				case 'Event.create':
-					$params = (array)  json_decode($request->get('params')['event']);
-					$check = (new DevicesRepository())->storeOrder($params);
-					$return = isset($check->id) ? ['result'=>__('Created')] : $check;
+					$return = (new Events\Application\EventController())->store();
 					break;
 
 
