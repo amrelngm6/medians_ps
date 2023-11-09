@@ -55,10 +55,9 @@ class EventController extends CustomController
 		return [
             [ 'key'=> "message_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "title", 'title'=> __('title'),  'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "picture", 'title'=> __('picture'),  'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "user_name", 'title'=> __('user_name'),  ],
+            [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'textarea' ],
+            [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "picture", 'title'=> __('picture'),  'fillable'=> true, 'column_type'=>'picture' ],
         ];
 	}
 
