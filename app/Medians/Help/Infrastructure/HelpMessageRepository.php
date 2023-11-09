@@ -23,7 +23,6 @@ class HelpMessageRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 	}
 
 

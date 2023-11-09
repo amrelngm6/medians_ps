@@ -13,7 +13,6 @@ class CustomerRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;;
 	}
 
 	public function getModel()

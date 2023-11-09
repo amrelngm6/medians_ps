@@ -23,7 +23,6 @@ class CustomerController extends CustomController
 	{
 
 
-		$this->app = new \config\APP;
 
 		$this->repo = new Repo\CustomerRepository();
 

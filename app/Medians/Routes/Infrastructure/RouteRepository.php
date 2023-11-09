@@ -21,7 +21,6 @@ class RouteRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 	}
 
 

@@ -87,6 +87,7 @@ Macaw::get('/route/(:all)', \Medians\Routes\Application\RouteController::class.'
 Macaw::get('/parent/(:all)', \Medians\Parents\Application\ParentController::class.'@getParent');
 Macaw::get('/driver/(:all)', \Medians\Drivers\Application\DriverController::class.'@getDriver');
 Macaw::get('/trip/(:all)', \Medians\Trips\Application\TripController::class.'@getTrip');
+Macaw::get('/events', \Medians\Events\Application\EventController::class.'@index');
 
 
 

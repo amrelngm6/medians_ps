@@ -20,7 +20,6 @@ class VehicleRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 	}
 
 

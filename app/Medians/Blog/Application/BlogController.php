@@ -22,8 +22,6 @@ class BlogController extends CustomController
 	function __construct()
 	{
 
-		$this->app = new \config\APP;
-
 		$this->repo = new BlogRepository();
 		$this->categoryRepo = new CategoryRepository();
 	}

@@ -21,7 +21,6 @@ class BlogRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 		foreach ($this->get(100) as $key => $value) 
 		{
 			// (new \Medians\Media\Infrastructure\MediaRepository)->resize($value->picture, 270, 224);

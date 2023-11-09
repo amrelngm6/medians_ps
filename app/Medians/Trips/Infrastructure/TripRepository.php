@@ -23,7 +23,6 @@ class TripRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 	}
 
 

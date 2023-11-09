@@ -362,7 +362,7 @@ class AuthService
 				return $this->repo->findByToken($token);
 				break;
 		}
-		return $userType == 'Driver' ?  : $this->repo->findByToken($token);
+		// return $userType == 'Driver' ?  : $this->repo->findByToken($token);
 	}
 
 

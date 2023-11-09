@@ -14,7 +14,6 @@ class SettingsRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 	}
 
 	/**

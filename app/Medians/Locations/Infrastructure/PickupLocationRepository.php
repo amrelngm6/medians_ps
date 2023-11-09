@@ -20,7 +20,6 @@ class PickupLocationRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 	}
 
 

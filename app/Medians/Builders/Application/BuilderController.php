@@ -18,7 +18,6 @@ class BuilderController extends CustomController
 	{
 		$this->repo = new BuilderRepository;
 		$this->contentRepo = new ContentRepository;
-		$this->app = new \Config\APP;
 
 	}
 

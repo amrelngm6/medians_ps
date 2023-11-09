@@ -21,7 +21,6 @@ class ParentRepository
 
 	function __construct()
 	{
-		$this->app = new \config\APP;
 	}
 
 
