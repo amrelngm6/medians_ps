@@ -57,7 +57,7 @@ class EventController extends CustomController
             [ 'key'=> "title", 'title'=> __('title'),  'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'textarea' ],
             [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
-            [ 'key'=> "picture", 'title'=> __('picture'),  'fillable'=> true, 'column_type'=>'picture' ],
+            [ 'key'=> "picture", 'title'=> __('picture'),  'fillable'=> true, 'column_type'=>'file' ],
         ];
 	}
 
