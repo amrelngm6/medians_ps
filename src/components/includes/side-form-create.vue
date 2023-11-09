@@ -18,8 +18,8 @@
                     <input v-if="column.column_type == 'password'" autocomplete="off" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
 
                     <div class="flex gap gap-4" v-if="column.column_type == 'checkbox'">
-                        <label class="block" v-text="column.title"> </label>
-                        <input type="checkbox" :name="'params['+column.key+']'" />
+                        <label :for="column.key" class="block" v-text="column.title"> </label>
+                        <input :id="column.key" type="checkbox" :name="'params['+column.key+']'" />
                     </div>
 
                     <select :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-if="column.data && column.column_type == 'select'"  :placeholder="column.title">
