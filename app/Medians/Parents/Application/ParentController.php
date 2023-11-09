@@ -272,7 +272,20 @@ class ParentController extends CustomController
 	/**
 	 * get Parent
 	 */
-	public function getParent($id)
+	public function getParent()
+	{
+		$this->app = new \config\APP;
+
+		$data =  $this->repo->getParent($this->app->auth()->parent_id);
+
+		echo  json_encode($data);
+	}
+
+
+	/**
+	 * get Parent
+	 */
+	public function checkParent($id)
 	{
 		$data =  $this->repo->getParent($id);
 
