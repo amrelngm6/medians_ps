@@ -65,6 +65,7 @@ Vue.component('vehicles', () => import('./components/vehicles'));
 Vue.component('locations', () => import('./components/locations'));
 Vue.component('trips', () => import('./components/trips'));
 Vue.component('help_messages', () => import('./components/help_messages'));
+Vue.component('events', () => import('./components/events'));
 Vue.component('data_table_page', () => import('./components/data_table_page'));
 Vue.component('maps', () => import('./components/includes/map'));
 
