@@ -192,6 +192,10 @@ class MobileAPIController extends CustomController
 	            case 'HelpMessageComment.create':
 	                return  (new Help\Application\HelpMessageController())->storeDriverComment(); 
 	                break;
+					
+	            case 'Student.create':
+	                return  (new Students\Application\StudentController())->addStudent(); 
+	                break;
 
 
 			}

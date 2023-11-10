@@ -226,4 +226,26 @@ class StudentController extends CustomController
 		}
 	} 
 
+	
+	public function addStudent() 
+	{
+
+		$params = (array) json_decode($this->app->request()->get('params'));
+        try {	
+
+			$params['parent_id'] =  $this->app->auth()->parent_id;
+
+			$save = $this->repo->store($params);
+
+            return  (!empty($save)) 
+            ? array('success'=>1, 'result'=>$save, 'reload'=>1)
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+			
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		return $returnData;
+	}
+
 }
