@@ -238,7 +238,7 @@ class StudentController extends CustomController
 
 			$save = $this->repo->store($params);
 
-            return  (!empty($save)) 
+            $returnData =  (!empty($save)) 
             ? array('success'=>1, 'result'=>$save, 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 			
