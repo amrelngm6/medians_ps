@@ -5,6 +5,7 @@ namespace Medians\Students\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Locations\Domain\PickupLocation;
+use Medians\Locations\Domain\Destination;
 use Medians\Parents\Domain\Parents;
 
 class Student extends CustomModel
@@ -64,6 +65,11 @@ class Student extends CustomModel
 	public function pickup_location() 
 	{
     	return $this->hasOne(PickupLocation::class, 'model_id', 'student_id')->where('model_type', Student::class);
+	}
+
+	public function destination() 
+	{
+    	return $this->hasOne(Destination::class, 'model_id', 'student_id')->where('model_type', Student::class);
 	}
 
 	public function parent() 
