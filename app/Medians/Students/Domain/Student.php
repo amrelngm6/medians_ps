@@ -25,6 +25,7 @@ class Student extends CustomModel
 		'address',
 		'parent_id',
 		'contact_number',
+		'transfer_status',
 		'status',
 		'gender',
 		'created_by'
