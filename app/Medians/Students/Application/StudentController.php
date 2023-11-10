@@ -99,38 +99,6 @@ class StudentController extends CustomController
 
 
 
-	/**
-	 * Create new item
-	 * 
-	 */ 
-	public function create() 
-	{
-
-		return render('views/admin/Student/create.html.twig', [
-	        'title' => __('add_new'),
-	        'langs_list' => ['ar','en'],
-	    ]);
-
-	}
-
-
-
-	public function edit($id ) 
-	{
-		try {
-				
-			return render('views/admin/Student/Student.html.twig', [
-		        'title' => __('edit_Student'),
-		        'langs_list' => ['ar','en'],
-		        'item' => $this->repo->find($id),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
-		}
-	}
-
 
 	public function store() 
 	{
