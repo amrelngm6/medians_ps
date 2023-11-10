@@ -174,17 +174,8 @@ class MobileAPIController extends CustomController
 		try {
 				
 			$return = [];
-			switch ($request->get('type')) 
+			switch ($request->get('model')) 
 			{
-				case 'User.get_started_save_branch':
-					$return = (new Users\Application\GetStartedController())->store_branch();
-					break;
-
-				case 'User.get_started_save_setting':
-					$return = (new Users\Application\GetStartedController())->store_setting();
-					break;
-
-
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
 					break;
@@ -217,12 +208,8 @@ class MobileAPIController extends CustomController
 		$request = $app->request();
 
 		$return = [];
-		switch ($request->get('type')) 
+		switch ($request->get('model')) 
 		{
-
-            case 'Settings.update':
-                $return = (new Settings\Application\SettingsController())->update(); 
-                break;
 
             case 'User.update':
                 $return = (new Users\Application\UserController())->update(); 
@@ -232,14 +219,9 @@ class MobileAPIController extends CustomController
 				return (new Drivers\Application\DriverController())->updateMobile(); 
                 break;
 
-            case 'NotificationEvent.update':
-                $return =  (new Notifications\Application\NotificationEventController())->update(); 
-                break;
-
 			case 'Notification.update':
 				$return =  (new Notifications\Application\NotificationController())->update(); 
 				break;
-	
 
 		}
 
