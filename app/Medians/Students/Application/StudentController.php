@@ -245,7 +245,10 @@ class StudentController extends CustomController
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
 
-		return $returnData;
+		echo  json_encode($returnData);
+
+		return null;
+		
 	}
 
 }
