@@ -74,12 +74,7 @@ class Student extends CustomModel
 	{
 		return $this->belongsTo(Parents::class, 'parent_id', 'parent_id');
 	}
-
-	public function pending_student() 
-	{
-		return $this->belongsTo(Student::class, 'parent_id', 'parent_id')->where('transfer_status', 'Pending');
-	}
-
+	
 	
 
 }

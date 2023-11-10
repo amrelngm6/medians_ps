@@ -64,6 +64,11 @@ class Parents extends CustomModel
     	return $this->hasMany(Student::class, 'parent_id', 'parent_id');
 	}
 
+	public function pending_student() 
+	{
+		return $this->hasOne(Student::class, 'parent_id', 'parent_id')->where('transfer_status', 'Pending');
+	}
+
     public function custom_fields()
     {
         return $this->morphMany(CustomField::class, 'model');
