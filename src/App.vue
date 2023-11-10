@@ -237,7 +237,7 @@ export default {
          */
         handleAccess(response) 
         {
-            if (response && (response.success == 1 || response.success))
+            if (response && (response.success && response.reload))
             {
                 this.$alert(response.result).then(() => {
                     location.reload();

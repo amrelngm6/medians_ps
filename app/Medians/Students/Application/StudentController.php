@@ -158,7 +158,7 @@ class StudentController extends CustomController
             if ($this->repo->delete($params['student_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
-            }
+			}
             
 
         } catch (Exception $e) {
