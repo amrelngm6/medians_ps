@@ -244,7 +244,7 @@ export default {
                 });
 
             } else {
-
+                console.log(response);
                 response ? this.$alert(response.error ? response.error : response.result) : '';
             }
 
