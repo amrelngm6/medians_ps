@@ -25,7 +25,7 @@ class Student extends CustomModel
 		'address',
 		'parent_id',
 		'contact_number',
-		'current_school',
+		'status',
 		'gender',
 		'created_by'
 	];
@@ -73,6 +73,11 @@ class Student extends CustomModel
 	public function parent_name() 
 	{
 		return $this->belongsTo(Parents::class, 'parent_id', 'parent_id');
+	}
+
+	public function pending_student() 
+	{
+		return $this->belongsTo(Student::class, 'parent_id', 'parent_id')->where('transfer_status', 'Pending');
 	}
 
 	

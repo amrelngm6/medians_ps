@@ -8,7 +8,7 @@ use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Students\Infrastructure\StudentRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
 
-class PickupLocationController extends CustomController 
+class DestinationController extends CustomController 
 {
 
 	/**
@@ -30,7 +30,7 @@ class PickupLocationController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new PickupLocationRepository();
+		$this->repo = new DestinationRepository();
 		$this->categoryRepo = new CategoryRepository();
 		$this->studentRepo = new StudentRepository();
 		$this->routeRepo = new RouteRepository();
@@ -96,9 +96,9 @@ class PickupLocationController extends CustomController
 		
 		try {
 			
-		    return render('locations', [
+		    return render('destinations', [
 		        'load_vue' => true,
-		        'title' => __('PickupLocations'),
+		        'title' => __('Destinations'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -164,34 +164,41 @@ class PickupLocationController extends CustomController
         	throw new \Exception("Error Processing Request", 1);
         	
         }
+
 	}
 
 
 	public function delete() 
 	{
+
 		$params = $this->app->request()->get('params');
 
         try {
 
         	$check = $this->repo->find($params['pickup_id']);
 
+
             if ($this->repo->delete($params['pickup_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }
+            
 
         } catch (Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
+        	
         }
 
 	}
 
 	public function validate($params) 
 	{
+
 		if (empty($params['content']['ar']['title']))
 		{
         	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
 		}
+
 	}
 
 
