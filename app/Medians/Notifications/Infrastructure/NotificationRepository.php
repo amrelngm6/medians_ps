@@ -38,12 +38,12 @@ class NotificationRepository
 	/**
 	* Find items by `params` 
 	*/
-	public function get($limit = 500,$last_id = 0) 
+	public function get( $user, $limit = 500,$last_id = 0) 
 	{
-		return ($this->app->auth()->role_id == 1 )
+		return ($user->role_id == 1 )
 		? Notification::limit($limit)->orderBy('created_at', 'DESC')->get() 
 		: Notification::limit($limit)
-			->where('receiver_id', $this->app->auth()->id)->where('receiver_type', User::class )
+			->where('receiver_id', $user->id)->where('receiver_type', User::class )
 			->where('id', '>', $last_id)
 			->orderBy('created_at', 'DESC')
 			->get() ;

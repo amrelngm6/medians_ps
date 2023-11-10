@@ -172,7 +172,9 @@ class NotificationController extends CustomController
 	 */ 
 	public function latest_notifications($last_id=0) 
 	{
-		$items = $this->repo->get(50, $last_id);
+		$this->app = new \config\APP;
+
+		$items = $this->repo->get($this->app->auth(), 50, $last_id);
 
 		return render('notifications', $this->loadLatestNotifications($items));
 	}
