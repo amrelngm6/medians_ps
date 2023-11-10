@@ -7,7 +7,7 @@ use Medians\Students\Domain\Student;
 use Medians\Routes\Domain\Route;
 
 
-class PickupLocation extends CustomModel
+class Destination extends CustomModel
 {
 
 	/*
