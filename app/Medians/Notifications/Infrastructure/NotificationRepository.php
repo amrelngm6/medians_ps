@@ -40,6 +40,7 @@ class NotificationRepository
 	*/
 	public function get( $user, $limit = 500,$last_id = 0) 
 	{
+		if (!$user){return null;}
 		return ($user->role_id == 1 )
 		? Notification::limit($limit)->orderBy('created_at', 'DESC')->get() 
 		: Notification::limit($limit)
