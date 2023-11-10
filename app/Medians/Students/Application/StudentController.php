@@ -234,6 +234,7 @@ class StudentController extends CustomController
         try {	
 
 			$params['parent_id'] =  $this->app->auth()->parent_id;
+			$params['last_name'] =  $this->app->auth()->first_name;
 
 			$save = $this->repo->store($params);
 
