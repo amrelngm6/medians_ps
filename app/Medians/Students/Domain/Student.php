@@ -26,8 +26,7 @@ class Student extends CustomModel
 		'parent_id',
 		'contact_number',
 		'current_school',
-		'grade_level',
-		'transfer_status',
+		'gender',
 		'created_by'
 	];
 
