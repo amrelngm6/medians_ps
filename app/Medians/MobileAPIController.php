@@ -147,6 +147,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Parents\Application\ParentController())->login(); 
 				break;
 
+			case 'Parents.resetPassword':
+				$return =  (new Parents\Application\ParentController())->resetPassword(); 
+				break;
+
 			case 'notifications':
 				$return =  (new Notifications\Application\NotificationController())->loadLatestMobileNotifications(); 
 				break;

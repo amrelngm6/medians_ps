@@ -54,8 +54,6 @@ Macaw::get('/switch-branch/(:all)', function ($id)  {
     }
     echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
 });
-
-
 Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::get('/signup', \Medians\Auth\Application\AuthService::class.'@signup');
 
