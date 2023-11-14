@@ -109,7 +109,7 @@ class ParentController extends CustomController
 		$checkLogin = $repo->checkLogin($params->email, $Auth->encrypt($params->password));
 		
 		if (empty($checkLogin->parent_id)) {
-			echo json_encode(['error'=> __("User credentials not valid")]); return null;
+			echo json_encode(['error'=> __("User credentials not valid")]); return '';
 		}
 		
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->parent_id);
