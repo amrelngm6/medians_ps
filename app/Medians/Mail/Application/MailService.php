@@ -33,10 +33,9 @@ class MailService
 		$this->body = $body;
 	}
 
+
 	public function sendMail()
 	{
-
-
 		// Get system settings for Google Login
 		$SystemSettings = new SystemSettingsController;
 

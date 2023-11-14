@@ -5,7 +5,7 @@ namespace Medians\Parents\Infrastructure;
 use Medians\Parents\Domain\Parents;
 use Medians\Parents\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
-
+use Medians\Mail\Application\MailService;
 
 class ParentRepository 
 {
@@ -127,6 +127,8 @@ class ParentRepository
 
 		$Model = CustomField::create($fields);
 		
+		$sendMail = new MailService($findByEmail->email, $findByEmail->parent_name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
+
 		return  1;
     }
     	
