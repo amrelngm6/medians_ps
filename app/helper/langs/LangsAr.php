@@ -1124,6 +1124,7 @@ class LangsAr
 		,'Theese users can manage your account only'=> 'يمكنهم إدارة حسابهم الشخصي فقط'
 		,'expand'=> 'سحب لأسفل'
 		,'collapse'=> 'رفع لأعلى'
+		,'user_not_found'=> 'هذا الحساب غير موجود'
 		,'confirmation_code_sent_through_email'=> 'سيتم إرسال كود التأكيد عبر البريد الإلكتروني'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
