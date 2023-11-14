@@ -45,6 +45,11 @@ class ParentRepository
 		return Parents::where('password', $password)->where('email' , $email)->first();
 	}
 
+	public function findByEmail($email)
+	{
+		return Parents::where('email' , $email)->first();
+	}
+
 	public function getParent($parent_id)
 	{
 		return Parents::with('students', 'pending_student')->find($parent_id);
@@ -98,6 +103,33 @@ class ParentRepository
 		return 'P'. implode($pass); //turn the array into a string
 	}
 
+
+	/**
+	* Save item to database
+	*/
+	public function resetPassword($data) 
+	{
+
+		$Model = new Parents();
+		
+		$findByEmail = $this->findByEmail($data['email']);
+
+		if (empty($findByEmail))
+			return __('User not found');
+		
+		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $id)->where('code', 'reset_token')->delete();
+		
+		$fields = [];
+		$fields['model_type'] = Parents::class;	
+		$fields['model_id'] = $findByEmail->parent_id;	
+		$fields['code'] = 'reset_token';	
+		$fields['value'] = $this->randomPassword();
+
+		$Model = CustomField::create($fields);
+		
+		return  1;
+    }
+    	
 
 	/**
 	* Save item to database
@@ -188,7 +220,6 @@ class ParentRepository
 				$fields['value'] = $value;
 
 				$Model = CustomField::create($fields);
-				$Model->update($fields);
 			}
 	
 			return $Model;		

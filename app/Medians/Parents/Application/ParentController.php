@@ -149,9 +149,11 @@ class ParentController extends CustomController
 
         try {	
 
-            return  (!empty($this->repo->resetPassword($params))) 
+			$check = $this->repo->resetPassword($params);
+
+            return  ($check == 1) 
             ? array('success'=>1, 'result'=>__('Confirmation code sent through email'), 'reload'=>1)
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+            : array('success'=>0, 'result'=> $check, 'error'=>1);
 			
         } catch (Exception $e) {
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
