@@ -117,7 +117,7 @@ class ParentRepository
 		if (empty($findByEmail))
 			return __('User not found');
 		
-		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $id)->where('code', 'reset_token')->delete();
+		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $findByEmail->parent_id)->where('code', 'reset_token')->delete();
 		
 		$fields = [];
 		$fields['model_type'] = Parents::class;	
