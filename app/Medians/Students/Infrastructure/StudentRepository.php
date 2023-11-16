@@ -82,7 +82,6 @@ class StudentRepository
 
 		// Return the FBUserInfo object with the new data
     	$Object = Student::create($dataArray);
-    	$Object->update($dataArray);
 
     	// Store Custom fields
 		if (isset($data['field']))
