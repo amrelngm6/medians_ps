@@ -69,7 +69,7 @@ class StudentRepository
 	*/
 	public function store($data) 
 	{
-
+		print_r($data);
 		$Model = new Student();
 		
 		foreach ($data as $key => $value) 
