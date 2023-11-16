@@ -48,7 +48,7 @@
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
                     
-                    <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings" />
+                    <data-table ref="locations" @actionTriggered="handleAction" v-bind="bindings" />
 
                     <side-form-create :conf="conf" model="PickupLocation.create"
                         v-if="showAddSide && content && content.fillable" :columns="content.fillable" class="col-md-3" />
@@ -170,7 +170,7 @@ export default
                         break;
 
                     case 'delete':
-                        this.$parent.deleteByKey('vehicle_id', data.vehicle_id, 'Vehicle.delete');
+                        this.$parent.deleteByKey('pickup_id', data.pickup_id, 'PickupLocation.delete');
                         break;
                 }
             },
