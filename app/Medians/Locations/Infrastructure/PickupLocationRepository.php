@@ -80,11 +80,33 @@ class PickupLocationRepository
 
 		// Return the FBUserInfo object with the new data
     	$Object = PickupLocation::create($dataArray);
-    	$Object->update($dataArray);
 
     	// Store Custom fields
 		if (isset($data['field']))
 	    	$this->storeCustomFields($data['field'], $Object->id);
+
+    	return $Object;
+    }
+    	
+
+	/**
+	* Save item to database
+	*/
+	public function storeDestination($data) 
+	{
+
+		$Model = new Destination();
+		
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $this->getModel()->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+
+		// Return the FBUserInfo object with the new data
+    	$Object = Destination::create($dataArray);
 
     	return $Object;
     }

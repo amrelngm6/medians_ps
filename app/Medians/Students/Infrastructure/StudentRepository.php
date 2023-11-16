@@ -7,6 +7,7 @@ use Medians\Students\Domain\Content;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Locations\Domain\Destination;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Locations\Infrastructure\PickupLocationRepository;
 
 
 class StudentRepository 
@@ -20,9 +21,12 @@ class StudentRepository
 	 */ 
 	protected $app ;
 
+	protected $pickupLocationRepository ;
+
 
 	function __construct()
 	{
+		$this->pickupLocationRepository = new PickupLocationRepository;
 	}
 
 
@@ -173,15 +177,15 @@ class StudentRepository
 			$location = (array) $data['pickup_location'];
 			$location['model_id'] = $data['student_id'];
 			$location['model_class'] = Student::class;
-			PickupLocation::firstOrCreate($location);
+			$this->pickupLocationRepository->store($location);
 		}
-
+		
 		if (isset($data['destination']))
 		{
 			$destination = (array)  $data['destination'];
 			$destination['model_id'] = $data['student_id'];
 			$destination['model_class'] = Student::class;
-			Destination::firstOrCreate($destination);
+			$this->pickupLocationRepository->storeDestination($destination);
 		}
 
     	return $Object;
