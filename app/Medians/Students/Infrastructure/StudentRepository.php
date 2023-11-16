@@ -170,7 +170,7 @@ class StudentRepository
 
 		if (isset($data['pickup_location']))
 		{
-			$location = $data['pickup_location'];
+			$location = (array) $data['pickup_location'];
 			$location['model_id'] = $data['student_id'];
 			$location['model_class'] = Student::class;
 			PickupLocation::firstOrCreate($location);
@@ -178,7 +178,7 @@ class StudentRepository
 
 		if (isset($data['destination']))
 		{
-			$destination = $data['destination'];
+			$destination = (array)  $data['destination'];
 			$destination['model_id'] = $data['student_id'];
 			$destination['model_class'] = Student::class;
 			Destination::firstOrCreate($destination);
