@@ -32,7 +32,7 @@ class PickupLocationRepository
 
 	public function find($id)
 	{
-		return PickupLocation::with('pickup_locations')->find($id);
+		return PickupLocation::find($id);
 	}
 
 	public function get($limit = 100)
