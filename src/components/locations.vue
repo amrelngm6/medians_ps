@@ -170,7 +170,7 @@ export default
                         break;
 
                     case 'delete':
-                        this.$parent.deleteByKey('pickup_id', data.pickup_id, 'PickupLocation.delete');
+                        this.$parent.deleteByKey('pickup_id', data, 'PickupLocation.delete');
                         break;
                 }
             },
