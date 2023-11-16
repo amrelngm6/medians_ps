@@ -239,8 +239,10 @@ export default {
         {
             if (response && (response.success && response.reload))
             {
+                console.log('reload response');
+                console.log(response);
                 this.$alert(response.result).then(() => {
-                    location.reload();
+                    window.location.reload();
                 });
 
             } else {
