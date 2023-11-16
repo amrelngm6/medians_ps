@@ -148,7 +148,7 @@ class NotificationController extends CustomController
 
         try {
 
-        	$check = $this->repo->get(10, $params['last_id']);
+        	$check = $this->repo->get($this->app->auth(), $params['last_id']);
 
            	echo  (count($check))
             ? json_encode($this->loadLatestNotifications($check))
