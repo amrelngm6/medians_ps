@@ -195,7 +195,7 @@ class MobileAPIController extends CustomController
 
 			}
 
-			return response(json_encode($return));
+			return json_encode($return);
 
 		} catch (Exception $e) {
 			return $e->getMessage();
@@ -220,7 +220,7 @@ class MobileAPIController extends CustomController
                 break;
 
             case 'Driver.update':
-				return (new Drivers\Application\DriverController())->updateMobile(); 
+				$return = (new Drivers\Application\DriverController())->updateMobile(); 
                 break;
 
 			case 'Notification.update':
@@ -233,7 +233,7 @@ class MobileAPIController extends CustomController
 
 		}
 
-		return response(json_encode($return));
+		return json_encode($return);
 	} 
 
 	/**
