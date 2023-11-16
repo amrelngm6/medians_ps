@@ -195,7 +195,9 @@ class MobileAPIController extends CustomController
 
 			}
 
-			return json_encode($return);
+			echo json_encode($return);
+		
+			return true;
 
 		} catch (Exception $e) {
 			return $e->getMessage();
@@ -233,7 +235,9 @@ class MobileAPIController extends CustomController
 
 		}
 
-		return json_encode($return);
+		echo json_encode($return);
+		
+		return true;
 	} 
 
 	/**
@@ -281,10 +285,6 @@ class MobileAPIController extends CustomController
 			{
 				
 				
-				case 'User.delete':
-					return response((new Users\Application\UserController())->delete());
-					break;
-
 				case 'Driver.delete':
 					return response((new Drivers\Application\DriverController())->delete());
 					break;
@@ -305,14 +305,12 @@ class MobileAPIController extends CustomController
 					return response((new Students\Application\StudentController())->delete());
 					break;
 
-				case 'Page.delete':
-					return response((new Pages\Application\PageController())->delete());
-					break;
-
 
 			}
 
-			return response(json_encode($return));
+			echo json_encode($return);
+		
+			return true;
 
 		} catch (Exception $e) {
 			throw new Exception("Error Processing Request", 1);
