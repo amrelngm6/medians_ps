@@ -3,6 +3,7 @@
 namespace Medians\Locations\Infrastructure;
 
 use Medians\Locations\Domain\PickupLocation;
+use Medians\Locations\Domain\Destination;
 use Medians\CustomFields\Domain\CustomField;
 
 
