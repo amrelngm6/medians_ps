@@ -4,6 +4,8 @@ namespace Medians\Students\Infrastructure;
 
 use Medians\Students\Domain\Student;
 use Medians\Students\Domain\Content;
+use Medians\Locations\Domain\PickupLocation;
+use Medians\Locations\Domain\Destination;
 use Medians\CustomFields\Domain\CustomField;
 
 
@@ -69,7 +71,6 @@ class StudentRepository
 	*/
 	public function store($data) 
 	{
-		print_r($data);
 		$Model = new Student();
 		
 		foreach ($data as $key => $value) 
@@ -102,7 +103,6 @@ class StudentRepository
     	$Object->update( (array) $data);
 
     	return $Object;
-
     }
 
 
@@ -156,6 +156,36 @@ class StudentRepository
 		}
 	}
 
+    	
+    /**
+     * Update Lead
+     */
+    public function updateStudentInfo($data)
+    {
+
+		$Object = Student::find($data['student_id']);
+		
+		// Return the FBUserInfo object with the new data
+    	$Object->update( (array) $data);
+
+		if (isset($data['pickup_location']))
+		{
+			$location = $data['pickup_location'];
+			$location['model_id'] = $data['student_id'];
+			$location['model_class'] = Student::class;
+			PickupLocation::firstOrCreate($location);
+		}
+
+		if (isset($data['destination']))
+		{
+			$destination = $data['destination'];
+			$destination['model_id'] = $data['student_id'];
+			$destination['model_class'] = Student::class;
+			Destination::firstOrCreate($destination);
+		}
+
+    	return $Object;
+    }
 
  
 }

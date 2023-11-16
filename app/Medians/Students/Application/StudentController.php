@@ -249,7 +249,28 @@ class StudentController extends CustomController
 		echo  json_encode($returnData);
 
 		return null;
-		
+	}
+
+	public function updateStudentInfo() 
+	{
+
+		$params = (array) json_decode($this->app->request()->get('params'));
+        try {	
+
+			$params['parent_id'] =  $this->app->auth()->parent_id;
+			$params['last_name'] =  $this->app->auth()->first_name;
+
+			$save = $this->repo->updateStudentInfo($params);
+
+            $returnData =  (!empty($save)) 
+            ? array('success'=>1, 'result'=>$save, 'reload'=>1)
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+			
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		return $returnData;
 	}
 
 }
