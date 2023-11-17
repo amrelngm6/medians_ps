@@ -19,14 +19,18 @@
                     <div class="p-6">
                         <h1 class="font-bold text-lg w-full" v-text="__('Permissions list')"></h1>
                         <p v-text="__('Click on the permission to update')"></p>
-                        <div class="w-full" v-if="activeItem">
-                            <nav class=" space-y-3 bg-gray-100 p-2 dark:bg-gray-900/30"
+                        <div class="py-6 w-full" v-if="activeItem">
+                            <nav class=" space-y-3 bg-gray-100 p-4 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
-                                <button v-for="role in activeItem.permissions" @click="setActiveStatus(role)" type="button"
-                                    v-text="__(role.model)"
-                                    :class="role.access ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
+                                <label v-for="permission in activeItem.permissions" >
+                                    <input type="checkbox" v-model="permission.access" />
+                                    <button @click="setActiveStatus(permission)" type="button"
+                                    v-text="__(permission.model)"
+                                    :class="permission.access ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="mb-2 hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
-                                </button> <!-- button-end -->
+                                    </button>
+                                </label>
+                                 <!-- button-end -->
                             </nav> <!-- nav-end -->
                         </div>
                     </div>
