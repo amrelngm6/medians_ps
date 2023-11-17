@@ -4,6 +4,7 @@ namespace Medians\Locations\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Locations\Infrastructure\PickupLocationRepository;
+use Medians\Locations\Infrastructure\DestinationRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Students\Infrastructure\StudentRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
