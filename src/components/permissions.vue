@@ -4,23 +4,21 @@
             <div class="xl:col-span-3 lg:col-span-5">
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center pb-4">
-
                         <h4 class="mb-6 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
-
                         <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
                             v-text="__('Edit')"></button>
                         <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
                             ><i class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
                     </div>
-
                     <hr class="mt-5 dark:border-gray-600">
-
                 </div> <!-- end card -->
             </div>
 
             <div class="xl:col-span-9 lg:col-span-7">
                 <div class="card">
                     <div class="p-6">
+                        <h1 class="font-bold text-lg w-full" v-text="__('Permissions list')"></h1>
+                        <p v-text="__('Click on the permission to update')"></p>
                         <div class="w-full" v-if="activeItem">
                             <nav class=" space-y-3 bg-gray-100 p-2 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
@@ -30,18 +28,6 @@
                                     class="mb-2 hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
                                 </button> <!-- button-end -->
                             </nav> <!-- nav-end -->
-
-                            <div class="mt-3 overflow-hidden">
-                                <div id="basic-tabs-1" class="transition-all duration-300 transform">
-                                    <div class="w-full border-b border-gray-100" v-for="role in content.items" v-if="activeStatus == role.model">
-                                        <div class="mt-6 w-full">
-                                            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
-                                                {{role}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- tabs-with-underline-1 end -->
-                            </div> <!-- tab-end -->
                         </div>
                     </div>
                 </div>
