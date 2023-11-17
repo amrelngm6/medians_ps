@@ -23,6 +23,8 @@ class Role extends CustomModel
 
 	public $appends = ['role_id'];
 
+	public $timestamps = false;
+
 
 	public function getRoleIdAttribute()
 	{
