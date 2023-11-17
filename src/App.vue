@@ -212,7 +212,12 @@ export default {
             params.append('type', type)
             params.append('params[id]', item.id)
             this.handleRequest(params, '/api/delete').then(response => {
-                this.$alert(response.result)
+                this.$alert(response.result).then(() => {
+                    if (response && response.reload)
+                    {
+                        location.reload();
+                    }
+                })
             })
         },
 
@@ -227,11 +232,12 @@ export default {
             params.append('type', type)
             params.append('params['+itemKey+']', itemValue[itemKey])
             this.handleRequest(params, '/api/delete').then(response => {
-                this.$alert(response.result)
-                if (response && response.reload)
-                {
-                    location.reload();
-                }
+                this.$alert(response.result).then(() => {
+                    if (response && response.reload)
+                    {
+                        location.reload();
+                    }
+                });
             })
         },
 
