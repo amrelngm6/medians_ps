@@ -25,6 +25,10 @@ class Role extends CustomModel
 
 	public $timestamps = false;
 
+	public function permissions()
+	{
+		return $this->hasMany(Permission::class, 'role_id', 'id');
+	}
 
 	public function getRoleIdAttribute()
 	{
