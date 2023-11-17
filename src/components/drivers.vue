@@ -36,6 +36,10 @@
                                     <p class="text-primary dark:text-primary text-xs font-semibold"
                                         v-text="driver.contact_number"></p>
                                 </div>
+                                <div class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(driver)">
+                                    <span :class="!driver.status ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: driver.status ? '16px' : 0}"></a></span>
+                                </div>
+
                             </div>
 
                         </div>
@@ -145,6 +149,21 @@ export default
 
             },
 
+            setActiveStatus(driver) {
+                this.showLoader = true;
+                driver.status = !driver.status;
+                this.showLoader = false;
+                var params = new URLSearchParams();
+                params.append('type', 'Driver.update')
+                params.append('params', JSON.stringify(driver))
+                this.$root.$children[0].handleRequest(params, '/api/update').then(response => {
+                    this.$alert(response.result).then(() => {
+
+                    });
+                })
+            },
+
+            
             load() {
                 this.showLoader = true;
                 this.$root.$children[0].handleGetRequest(this.url).then(response => {
