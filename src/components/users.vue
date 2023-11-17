@@ -21,8 +21,6 @@
                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                             <img class="relative w-12 h-12 rounded-full" :src="user.photo" alt="User avatar">
                                         </div>
-                                        <span :class="!user.active ? 'bg-inverse-dark' : ''" class="bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: user.active ? '16px' : 0}"></a></span>
-
                                     </div>
                                     <div class="flex-grow w-full">
                                         <div class="text-lg font-medium text-gray-900">{{user.first_name}} {{user.last_name}}</div>
@@ -30,7 +28,11 @@
                                         <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
                                     </div>
                                     <div class="text-center">
-                                        <span  v-text="user.active ? __('Active') : __('Pending')" class=" font-semibold inline-flex items-center px-6 py-1 rounded-full text-xs font-medium "></span>
+                                        <div class="flex gap gap-2">
+                                            <span :class="!user.active ? 'bg-inverse-dark' : ''" class="bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: user.active ? '16px' : 0}"></a></span>
+                                            <span  v-text="user.active ? __('Active') : __('Pending')" class=" font-semibold inline-flex items-center px-6 py-1 rounded-full text-xs font-medium "></span>
+                                        </div>
+
                                         <span  v-text="__('edit')" class="hover:bg-purple-800 hover:text-gray-100 my-2 inline-flex items-center px-6  py-1 rounded-full text-xs pb-2 font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
                                         </span>
                                     </div>
