@@ -3,7 +3,7 @@
         <div class=" w-full">
 
             <main v-if="content && !showLoader" class="relative flex-1 overflow-x-hidden overflow-y-auto  w-full">
-                <maps @update-marker="updatedLocation" @click-marker="updatedLocation" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
+                <maps @update-marker="updatedDestination" @click-marker="updatedDestination" v-if="destinations.length" :key="center" :center="center" :waypoints="destinations"></maps>
                 <div  :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                     <div class="self-stretch py-4 flex-col justify-center items-start flex">
                         <div class="text-black text-lg font-semibold" v-text="__('Destinations')"></div>
@@ -13,19 +13,19 @@
                         <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
                     <div :key="collapsed" v-if="!collapsed" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
-                        <div v-for="location in content.items" :key="location.active" v-if="showList && location.active"  class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
-                            <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
+                        <div v-for="destination in content.items" :key="destination.active" v-if="showList && destination.active"  class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
+                            <div v-if="destination.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
                                     <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
-                                        :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/60x6'" />
+                                        :src="(destination.student && destination.student.picture) ? destination.student.picture : 'https://via.placeholder.com/60x6'" />
                                 </div>
-                                <div @click="setLocationsMarkers(location)" class="grow shrink basis-0 flex-col justify-center items-start gap-[3px] inline-flex cursor-pointer">
-                                    <div class="text-black font-semibold text-base " v-text="location.student_name"></div>
-                                    <div class="self-stretch text-slate-500 text-sm font-normal " v-text="location.location_name + ' - ' + location.address"></div>
+                                <div @click="setDestinationsMarkers(destination)" class="grow shrink basis-0 flex-col justify-center items-start gap-[3px] inline-flex cursor-pointer">
+                                    <div class="text-black font-semibold text-base " v-text="destination.student_name"></div>
+                                    <div class="self-stretch text-slate-500 text-sm font-normal " v-text="destination.location_name + ' - ' + destination.address"></div>
                                 </div>
                             </div>
                             <div class="justify-center items-center flex">
-                                <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex mr-2 cursor-pointer"  @click="handleAction('edit', location)">
+                                <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex mr-2 cursor-pointer"  @click="handleAction('edit', destination)">
                                     <div class="text-center text-xs text-white   uppercase tracking-tight"> <i class="fa fa-edit"></i></div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
                     
-                    <data-table ref="locations" @actionTriggered="handleAction" v-bind="bindings" />
+                    <data-table ref="destinations" @actionTriggered="handleAction" v-bind="bindings" />
 
                     <side-form-create :conf="conf" model="Destination.create"
                         v-if="showAddSide && content && content.fillable" :columns="content.fillable" class="col-md-3" />
@@ -71,7 +71,7 @@ export default
         components: {
             dataTableActions,
         },
-        name: 'Locations',
+        name: 'Destinations',
         data() {
             return {
                 url: this.conf.url + this.path + '?load=json',
@@ -81,7 +81,7 @@ export default
                     columns: [],
                 },
                 
-                locations: [],
+                destinations: [],
                 activeItem: {},
                 showAddSide: false,
                 showEditSide: false,
@@ -137,17 +137,17 @@ export default
                 return a ? a : ((item.location_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
             },
 
-            updatedLocation(item, index)
+            updatedDestination(item, index)
             {
                 item.latitude = item.destination.lat;
                 item.longitude = item.destination.lng;
                 this.handleAction('edit', item)
                 console.log(item);
             },  
-            setLocationsMarkers(location)
+            setDestinationsMarkers(destination)
             {   
-                this.locations = [this.handleObject(location)];
-                this.center = this.locations[0].destination;
+                this.destinations = [this.handleObject(destination)];
+                this.center = this.destinations[0].destination;
             },  
 
             /**
@@ -189,9 +189,9 @@ export default
 
                 this.content = JSON.parse(JSON.stringify(data));
                 for (let i = 0; i < this.content.items.length; i++) {
-                    this.locations[i] = this.handleObject(this.content.items[i]);
+                    this.destinations[i] = this.handleObject(this.content.items[i]);
                 }
-                this.center = this.locations[0].destination;
+                this.center = this.destinations[0].destination;
                 return this
             },
 
