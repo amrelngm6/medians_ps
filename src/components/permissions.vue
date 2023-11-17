@@ -5,7 +5,7 @@
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center pb-4">
 
-                        <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
+                        <h4 class="mb-6 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
 
                         <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
                             v-text="__('Edit')"></button>
@@ -24,9 +24,9 @@
                         <div class="w-full" v-if="activeItem">
                             <nav class=" space-y-3 bg-gray-100 p-2 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
-                                <button v-for="role in activeItem.permissions" @click="setActiveStatus(role.model)" type="button"
+                                <button v-for="role in activeItem.permissions" @click="setActiveStatus(role)" type="button"
                                     v-text="__(role.model)"
-                                    :class="activeStatus == role.model ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
+                                    :class="role.access ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
                                 </button> <!-- button-end -->
                             </nav> <!-- nav-end -->
@@ -109,9 +109,9 @@ export default
                 this.showLoader = false;
             },
 
-            setActiveStatus(status) {
+            setActiveStatus(permission) {
                 this.showLoader = true;
-                this.activeStatus = status;
+                permission.access = !permission.access;
                 this.showLoader = false;
             },
 
