@@ -239,7 +239,7 @@ class APIController extends CustomController
 				break;
 			
 			case 'Role.updatePermissions':
-				$controller =  new Roles\Application\RoleController; 
+				return (new Roles\Application\RoleController)->updatePermissions(); 
 				break;
 			
 		}

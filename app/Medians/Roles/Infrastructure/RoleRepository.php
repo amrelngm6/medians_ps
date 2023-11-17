@@ -81,7 +81,8 @@ class RoleRepository
 	public function updatePermissions($data) 
 	{
 		try {
-				
+			
+			print_r($data);
 			$Model = new Permission();
 			
 			foreach ($data as $key => $value) 

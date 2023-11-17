@@ -127,12 +127,14 @@ class RoleController extends CustomController
 	}
 
 
-	public function updateLocation($params)
+	public function updatePermissions()
 	{
+
+		$params = (array) json_decode($this->app->request()->get('params'));
 
         try {
 
-            if ($this->repo->update($params))
+            if ($this->repo->updatePermissions($params['permissions']))
             {
                 return array('success'=>1, 'p'=>$params, 'result'=>__('Updated'), 'reload'=>1);
             }
