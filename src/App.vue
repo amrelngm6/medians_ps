@@ -228,6 +228,10 @@ export default {
             params.append('params['+itemKey+']', itemValue[itemKey])
             this.handleRequest(params, '/api/delete').then(response => {
                 this.$alert(response.result)
+                if (response && response.reload)
+                {
+                    location.reload();
+                }
             })
         },
 
@@ -240,9 +244,8 @@ export default {
             if (response && (response.success && response.reload))
             {
                 console.log('reload response');
-                console.log(response);
                 this.$alert(response.result).then(() => {
-                    window.location.reload();
+                    location.reload();
                 });
 
             } else {
