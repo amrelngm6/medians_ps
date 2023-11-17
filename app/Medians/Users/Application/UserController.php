@@ -189,10 +189,10 @@ class UserController extends CustomController
 		if (empty($params['email']))
 			return ['result'=> __('Email required')];
 
-		if (empty($params['phone']))
-			return ['result'=> __('Mobile required')];
+		// if (empty($params['phone']))
+		// 	return ['result'=> __('Mobile required')];
 		
-		if ($params['id'] != $this->app->auth()->id && $this->app->auth()->id != 1)
+		if ($params['id'] != $this->app->auth()->id && $this->app->auth()->role_id != 1)
 			return ['result'=> __('Not allowed')];
 	}
 
@@ -214,6 +214,27 @@ class UserController extends CustomController
 	        	return  $this->validateUpdate($params);
 			}			
 
+
+			$update = $this->repo->update($params);
+
+        	return isset($update->id) 
+           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+        	: array('error'=> $update );
+
+        } catch (Exception $e) {
+            return  ['error' => $e->getMessage()];
+        }
+	}
+
+	/**
+	*  Update item
+	*/
+	public function updateStatus() 
+	{
+
+		$params = (array)  json_decode($this->app->request()->get('params'));
+
+		try {
 
 			$update = $this->repo->update($params);
 

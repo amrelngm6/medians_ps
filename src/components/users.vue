@@ -96,9 +96,9 @@ export default {
             user.active = !user.access;
             this.showLoader = false;
             var params = new URLSearchParams();
-            params.append('type', 'User.update')
+            params.append('type', 'User.updateStatus')
             params.append('params', JSON.stringify(user))
-            this.$root.$children[0].handleRequest(params, '/api/update').then(response => {
+            this.$root.$children[0].handleRequest(params, '/api/handle').then(response => {
                 this.$alert(response.result).then(() => {
 
                 });

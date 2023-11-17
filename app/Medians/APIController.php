@@ -51,7 +51,11 @@ class APIController extends CustomController
 			case 'HelpMessage.close':
 				return json_encode((new Help\Application\HelpMessageController())->close());
 				break;
-			
+				
+			case 'User.updateStatus':
+				return json_encode((new Users\Application\UserController())->updateStatus());
+				break;
+	
 		}
 
 		$return = isset($controller) ? $controller->find($this->app->request()->get('id')) : $return;
