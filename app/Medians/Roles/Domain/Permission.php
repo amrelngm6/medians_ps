@@ -18,7 +18,6 @@ class Permission extends CustomModel
 	protected $fillable = [
     	'permission_id',
     	'role_id',
-    	'branch_id',
     	'model',
     	'action',
     	'access',
