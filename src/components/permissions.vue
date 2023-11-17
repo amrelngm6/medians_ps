@@ -21,10 +21,10 @@
             <div class="xl:col-span-9 lg:col-span-7">
                 <div class="card">
                     <div class="p-6">
-                        <div class="w-full">
-                            <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30"
+                        <div class="w-full" v-if="activeItem">
+                            <nav class=" space-y-3 bg-gray-100 p-2 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
-                                <button v-for="role in content.items" @click="setActiveStatus(role.name)" type="button"
+                                <button v-for="role in activeItem.permissions" @click="setActiveStatus(role.name)" type="button"
                                     v-text="__(role.name)"
                                     :class="activeStatus == role.name ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
