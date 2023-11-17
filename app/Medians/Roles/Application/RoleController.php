@@ -51,7 +51,7 @@ class RoleController extends CustomController
 
 		return [
             [ 'key'=> "id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> __('vehicle_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "name", 'title'=> __('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
         ];
 	}
 
@@ -153,10 +153,10 @@ class RoleController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['vehicle_id']);
+        	$check = $this->repo->find($params['id']);
 
 
-            if ($this->repo->delete($params['vehicle_id']))
+            if ($this->repo->delete($params['id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }
