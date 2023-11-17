@@ -129,11 +129,13 @@ class DriverController extends CustomController
 
 	public function update()
 	{
+		
 		$params = $this->app->request()->get('params');
+		$params = is_array($params) ?  (array) $params : json_decode($params);
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
+        	$params['status'] = !empty($params['status']) ? 1 : 0;
 
             if ($this->repo->update($params))
             {
@@ -150,7 +152,8 @@ class DriverController extends CustomController
 
 	public function updateMobile()
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = $this->app->request()->get('params');
+		$params = is_array($params) ?  (array) $params : json_decode($params);
 
         try {
 

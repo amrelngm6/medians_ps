@@ -173,18 +173,6 @@ class APIController extends CustomController
                 $controller =  new Settings\Application\SystemSettingsController; 
 				break;
 
-			case 'Branch.update':
-                $controller =  new Branches\Application\BranchController; 
-				break;
-
-			case 'Device.update':
-                $controller =  new Devices\Application\DeviceController; 
-				break;
-				
-			case 'Category.update':
-				$controller = new Categories\Application\CategoryController;
-				break;
-
 			case 'Student.update':
 				$controller = new Students\Application\StudentController;
 				break;

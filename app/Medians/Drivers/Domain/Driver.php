@@ -32,6 +32,7 @@ class Driver extends CustomModel
 		'password',
 		'generated_password',
 		'contact_number',
+		'status',
 		'created_by'
 	];
 
