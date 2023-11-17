@@ -37,12 +37,10 @@
                                         v-text="driver.contact_number"></p>
                                 </div>
                                 <div class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(driver)">
-                                    <span :class="driver.status ? '': 'bg-inverse-dark' " class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: driver.status ? '16px' : 0}"></a></span>
+                                    <span :class="driver.status ? '': 'bg-inverse-dark' " class="w- mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: driver.status ? '16px' : 0}"></a></span>
                                     <span  v-text="driver.status ? __('Active') : __('Pending')" class=" font-semibold  px-2 py-1 rounded-full text-xs font-medium "></span>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                     <div class="box-footer mt-6">
