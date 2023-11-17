@@ -125,7 +125,7 @@ export default
                         this.showEditSide = false;
                         this.showAddSide = false;
                         this.showProfile = true;
-                        this.activeItem = data
+                        this.savePermissions(data);
                         break;
 
                     case 'edit':
