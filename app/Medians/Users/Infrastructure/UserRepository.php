@@ -115,6 +115,25 @@ class UserRepository
 	/**
 	* Update item to database
 	*/
+	public function updateStatus($data) 
+	{
+		try {
+			
+			$Object = User::find($data['id']);
+			
+    		$Object->update(['active'=>$data['active']]);	
+			
+    		return $Object;	
+
+		} catch (\Exception $e) {
+			return $e->getMessage();
+		}
+	}
+	
+
+	/**
+	* Update item to database
+	*/
 	public function update($data) 
 	{
 		try {

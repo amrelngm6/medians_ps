@@ -236,7 +236,7 @@ class UserController extends CustomController
 
 		try {
 
-			$update = $this->repo->update($params);
+			$update = $this->repo->updateStatus($params);
 
         	return isset($update->id) 
            	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
