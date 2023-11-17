@@ -59,7 +59,7 @@ class RoleRepository
 	{
 		try {
 			
-			$delete = Role::find($id)->delete();
+			$delete = $id > 3 ? Role::find($id)->delete() : '';
 			return true;
 
 		} catch (\Exception $e) {
