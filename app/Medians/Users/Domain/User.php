@@ -113,9 +113,9 @@ class User extends CustomModel
 	/**
 	 * Relation with role 
 	 */
-	public function users() 
+	public function driver() 
 	{
-		return $this->hasOne(User::class, 'role_id', 'id');
+		return $this->hasOne(Driver::class, 'user_id', 'id');
 	}
 
 	public function hasToken()
