@@ -63,6 +63,7 @@ Vue.component('drivers', () => import('./components/drivers'));
 Vue.component('routes', () => import('./components/routes'));
 Vue.component('vehicles', () => import('./components/vehicles'));
 Vue.component('locations', () => import('./components/locations'));
+Vue.component('destinations', () => import('./components/destinations'));
 Vue.component('trips', () => import('./components/trips'));
 Vue.component('help_messages', () => import('./components/help_messages'));
 Vue.component('events', () => import('./components/events'));
