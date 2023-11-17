@@ -155,7 +155,6 @@ class RoleController extends CustomController
 
         	$check = $this->repo->find($params['id']);
 
-
             if ($this->repo->delete($params['id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));

@@ -29,7 +29,7 @@ class RoleRepository
 		$Model = new Role();
 		
 		$dataArray = array('name'=>$data['name']);
-		
+
 		// Return the FBUserInfo object with the new data
     	$Object = Role::create($dataArray);
 
@@ -59,7 +59,7 @@ class RoleRepository
 	{
 		try {
 			
-			$delete = Student::find($id)->delete();
+			$delete = Role::find($id)->delete();
 			return true;
 
 		} catch (\Exception $e) {
