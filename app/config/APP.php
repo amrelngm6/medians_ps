@@ -220,6 +220,7 @@ class APP
 				[
 					array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'admin/routes', 'component'=>'routes'),
 					array('permission'=>'PickupLocations.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
+					array('permission'=>'Destinations.index', 'title'=>__('Destinations'),  'icon'=>'fa-map', 'link'=>'admin/destinations', 'component'=>'destinations'),
 				]
 			),
 
