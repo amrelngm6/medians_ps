@@ -2,7 +2,7 @@
     <div class=" w-full pb-20">
 
         <div class="relative w-full" v-if="showProfile && !showLoader">
-            <role_profile :key="activeItem" :item="activeItem" @edit="handleAction" @close="handleAction"></role_profile>
+            <permissions :key="activeItem" :item="activeItem" @edit="handleAction" @close="handleAction"></permissions>
         </div>
 
         <main v-if="content && !showProfile && !showLoader" class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">

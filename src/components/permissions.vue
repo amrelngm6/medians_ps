@@ -1,0 +1,160 @@
+<template>
+    <div class=" w-full">
+        <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6" v-if="!showLoader">
+            <div class="xl:col-span-3 lg:col-span-5">
+                <div class="card px-4 py-6 mb-6">
+                    <div class="text-center">
+
+                        <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
+
+                        <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
+                            v-text="__('Edit')"></button>
+                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
+                            ><i class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
+                    </div>
+
+                    <hr class="mt-5 dark:border-gray-600">
+
+                </div> <!-- end card -->
+            </div>
+
+            <div class="xl:col-span-9 lg:col-span-7">
+                <div class="card">
+                    <div class="p-6">
+                        <div class="w-full">
+                            <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30"
+                                aria-label="Tabs" role="tablist">
+                                <button v-for="role in content.items" @click="setActiveStatus(role.name)" type="button"
+                                    v-text="__(role.name)"
+                                    :class="activeStatus == role.name ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
+                                    class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
+                                </button> <!-- button-end -->
+                            </nav> <!-- nav-end -->
+
+                            <div class="mt-3 overflow-hidden">
+                                <div id="basic-tabs-1" class="transition-all duration-300 transform">
+                                    <div class="w-full border-b border-gray-100" v-for="role in content.items" v-if="activeStatus == role.name">
+                                        <div class="mt-6 w-full">
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+                                                {{role}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- tabs-with-underline-1 end -->
+                            </div> <!-- tab-end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+
+import dashboard_card_white from './includes/dashboard_card_white';
+import help_icon from './svgs/help';
+
+export default
+    {
+        components:{
+            dashboard_card_white,
+            help_icon,
+        },
+        data() {
+            return {
+                content: {
+                    items: []
+                },
+                activeItem: {},
+                showAddSide: false,
+                showEditSide: false,
+                showLoader: false,
+                showLoadMore: true,
+                limitCount: 3,
+                activeStatus: 'info',
+            }
+        },
+
+        props: [
+            'path',
+            'lang',
+            'setting',
+            'conf',
+            'auth',
+            'item',
+        ],
+        mounted() {
+            this.activeItem = this.item;
+            console.log(this.activeItem)
+        },
+
+        methods:
+        {
+            update()
+            {
+                this.$emit('edit', 'edit', this.activeItem);
+            },
+
+            close()
+            {
+                this.$emit('close', 'close', this.activeItem);
+            },
+
+            loadmore() {
+                this.showLoader = true;
+                this.limitCount += 5;
+                if (this.limitCount > this.activeItem.last_trips.length) {
+                    this.showLoadMore = false;
+                }
+                this.showLoader = false;
+            },
+
+            setActiveStatus(status) {
+                this.showLoader = true;
+                this.activeStatus = status;
+                this.showLoader = false;
+            },
+
+
+            /**
+             * Handle actions from datatable buttons
+             * Called From 'dataTableActions' component
+             * 
+             * @param String actionName 
+             * @param Object data
+             */
+            handleAction(actionName, data) {
+                switch (actionName) {
+                    case 'view':
+                        // window.open(this.conf.url+data.content.prefix)
+                        break;
+
+                    case 'edit':
+                        this.showEditSide = true;
+                        this.showAddSide = false;
+                        this.activeItem = data
+                        break;
+
+                    case 'delete':
+                        this.$root.$children[0].deleteByKey('driver_id', data, 'Driver.delete');
+                        break;
+                }
+            },
+
+            load() {
+                this.showLoader = true;
+                this.$root.$children[0].handleGetRequest(this.url).then(response => {
+                    this.setValues(response)
+                    this.showLoader = false;
+                });
+            },
+
+            setValues(data) {
+                this.content = JSON.parse(JSON.stringify(data)); return this
+            },
+            __(i) {
+                return this.$root.$children[0].__(i);
+            }
+        }
+    };
+</script>
