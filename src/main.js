@@ -74,6 +74,7 @@ Vue.component('maps', () => import('./components/includes/map'));
 Vue.component('help_message_details', () => import('./components/help_message_details'));
 Vue.component('driver_profile', () => import('./components/driver_profile'));
 Vue.component('trip_page', () => import('./components/trip_page'));
+Vue.component('roles', () => import('./components/roles'));
 
 
 Vue.config.productionTip = false
