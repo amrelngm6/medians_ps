@@ -2,7 +2,7 @@
     <div class=" w-full pb-20">
 
         <div class="relative w-full" v-if="showProfile && !showLoader">
-            <permissions :key="activeItem" :item="activeItem" @edit="handleAction" @close="handleAction"></permissions>
+            <permissions :key="activeItem" :item="activeItem" @save="handleAction" @close="handleAction"></permissions>
         </div>
 
         <main v-if="content && !showProfile && !showLoader" class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
@@ -111,7 +111,6 @@ export default
              * @param Object data
              */
             handleAction(actionName, data) {
-                console.log(actionName)
                 this.showLoader = true;
                 switch (actionName) {
                     case 'view':
@@ -120,6 +119,13 @@ export default
                         this.showProfile = true;
                         this.activeItem = data
                         // window.open(this.conf.url+data.content.prefix)
+                        break;
+
+                    case 'save':
+                        this.showEditSide = false;
+                        this.showAddSide = false;
+                        this.showProfile = true;
+                        this.activeItem = data
                         break;
 
                     case 'edit':
@@ -145,6 +151,18 @@ export default
 
             },
 
+            savePermissions(data)
+            {
+                console.log(data);
+                var params = new URLSearchParams();
+                params.append('type', 'Role.updatePermissions')
+                params.append('params', data)
+                this.handleRequest(params, '/api/update').then(response => {
+                    this.$alert(response.result).then(() => {
+
+                    });
+                })
+            },  
             load() {
                 this.showLoader = true;
                 this.$root.$children[0].handleGetRequest(this.url).then(response => {

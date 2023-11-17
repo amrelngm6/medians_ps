@@ -5,8 +5,6 @@
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center pb-4">
                         <h4 class="mb-6 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
-                        <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
-                            v-text="__('Edit')"></button>
                         <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
                             ><i class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
                     </div>
@@ -17,8 +15,15 @@
             <div class="xl:col-span-9 lg:col-span-7">
                 <div class="card">
                     <div class="p-6">
-                        <h1 class="font-bold text-lg w-full" v-text="__('Permissions list')"></h1>
-                        <p v-text="__('Click on the permission to update')"></p>
+                        <div class="flex w-full ">
+                            <div class="w-full ">
+                                <h1 class="font-bold text-lg w-full" v-text="__('Permissions list')"></h1>
+                                <p v-text="__('Click on the permission to update')"></p>
+                            </div>
+                            <div>
+                                <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary" v-text="__('Save')"></button>
+                            </div>
+                        </div>
                         <div class="py-6 w-full" v-if="activeItem">
                             <nav class=" space-y-3 bg-gray-100 p-4 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
@@ -80,7 +85,7 @@ export default
         {
             update()
             {
-                this.$emit('edit', 'edit', this.activeItem);
+                this.$emit('save', 'save', this.activeItem);
             },
 
             close()
