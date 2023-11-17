@@ -130,7 +130,7 @@ class User extends CustomModel
 
     public function RolePermissions()
     {
-		return $this->hasMany(Permission::class, 'role_id', 'role_id');
+		return $this->hasMany(Permission::class, 'role_id', 'role_id')->where('access', 1);
     }
 
 	
