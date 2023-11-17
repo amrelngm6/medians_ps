@@ -136,9 +136,10 @@ class RoleController extends CustomController
 
             if ($this->repo->updatePermissions($params['permissions']))
             {
-                return array('success'=>1, 'p'=>$params, 'result'=>__('Updated'), 'reload'=>1);
+                echo json_encode(array('success'=>1, 'p'=>$params, 'result'=>__('Updated'), 'reload'=>1));
             }
-        
+			
+			return null;
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);

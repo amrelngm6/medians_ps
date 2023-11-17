@@ -29,7 +29,7 @@
                                 aria-label="Tabs" role="tablist">
                                 <label @click="setActiveStatus(permission)" :class="permission.access ? 'menu-dark text-white font-semibold' : 'text-gray-500'" v-for="permission in activeItem.permissions" 
                                 class="cursor-pointer px-4 flex gap gap-4 mb-2 hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full  py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
-                                    <span class="bg-red-400 block h-4 relative rounded-full w-8"><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: permission.access ? '16px' : 0}"></a></span>
+                                    <span :class="!permission.access ? 'bg-inverse-dark' : ''" class="bg-red-400 block h-4 relative rounded-full w-8"><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: permission.access ? '16px' : 0}"></a></span>
                                     <span type="button"
                                     v-text="__(permission.model)"></span>
                                 </label>

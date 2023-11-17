@@ -82,11 +82,11 @@ class RoleRepository
 	{
 		try {
 			
-			print_r($data);
 			$Model = new Permission();
 			
 			foreach ($data as $key => $value) 
 			{
+				$value = (array) $value;
 				$permission = Permission::find($value['permission_id']);
 				$permission->update(['access'=> $value['access'] ? 1 : null]);
 			}		
