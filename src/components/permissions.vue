@@ -3,7 +3,7 @@
         <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6" v-if="!showLoader">
             <div class="xl:col-span-3 lg:col-span-5">
                 <div class="card px-4 py-6 mb-6">
-                    <div class="text-center">
+                    <div class="text-center pb-4">
 
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
 
