@@ -85,7 +85,7 @@ class StudentRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Student::create($dataArray);
 
     	// Store Custom fields
@@ -103,7 +103,7 @@ class StudentRepository
 
 		$Object = Student::find($data['student_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;
@@ -169,7 +169,7 @@ class StudentRepository
 
 		$Object = Student::find($data['student_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
 		if (isset($data['pickup_location']))

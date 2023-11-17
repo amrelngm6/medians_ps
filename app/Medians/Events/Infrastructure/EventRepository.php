@@ -65,7 +65,7 @@ class EventRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Event::create($dataArray);
 
     	return $Object;
@@ -80,7 +80,7 @@ class EventRepository
 
 		$Object = Event::find($data['event_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields

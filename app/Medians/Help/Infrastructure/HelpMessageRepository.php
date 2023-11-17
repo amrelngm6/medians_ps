@@ -99,7 +99,7 @@ class HelpMessageRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = HelpMessage::create($dataArray);
 
     	return $Object;
@@ -124,7 +124,7 @@ class HelpMessageRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = HelpMessageComment::create($dataArray);
 
     	return $Object;
@@ -149,7 +149,7 @@ class HelpMessageRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = HelpMessageComment::create($dataArray);
 
     	return $Object;
@@ -163,7 +163,7 @@ class HelpMessageRepository
 
 		$Object = HelpMessage::find($data['message_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields

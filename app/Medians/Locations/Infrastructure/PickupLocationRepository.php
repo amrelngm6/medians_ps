@@ -79,7 +79,7 @@ class PickupLocationRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = PickupLocation::create($dataArray);
 
     	// Store Custom fields
@@ -106,7 +106,7 @@ class PickupLocationRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Destination::create($dataArray);
 
     	return $Object;
@@ -120,7 +120,7 @@ class PickupLocationRepository
 
 		$Object = PickupLocation::find($data['pickup_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields

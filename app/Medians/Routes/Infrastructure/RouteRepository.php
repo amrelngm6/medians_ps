@@ -80,7 +80,7 @@ class RouteRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Route::create($dataArray);
     	$Object->update($dataArray);
 
@@ -99,7 +99,7 @@ class RouteRepository
 
 		$Object = Route::find($data['route_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields

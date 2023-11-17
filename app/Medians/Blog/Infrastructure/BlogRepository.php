@@ -98,7 +98,7 @@ class BlogRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Blog::create($dataArray);
     	$Object->update($dataArray);
 
@@ -119,7 +119,7 @@ class BlogRepository
 
 		$Object = Blog::find($data['id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	// Store languages content

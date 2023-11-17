@@ -79,7 +79,7 @@ class VehicleRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Vehicle::create($dataArray);
     	$Object->update($dataArray);
 
@@ -98,7 +98,7 @@ class VehicleRepository
 
 		$Object = Vehicle::find($data['vehicle_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$update = $Object->update( (array) $data);
 
     	// Store Custom fields

@@ -31,7 +31,7 @@ class RoleRepository
 		
 		$dataArray = array('name'=>$data['name']);
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Role::create($dataArray);
 
     	return $Object;
@@ -86,14 +86,11 @@ class RoleRepository
 			
 			foreach ($data as $key => $value) 
 			{
-				if (in_array($key, $Model->getFields()))
-				{
-					$dataArray[$key] = $value;
-				}
+				$permission = Permission::find($value['permission_id']);
+				$permission->update(['access'=> $value['access'] ? 1 : null]);
 			}		
-
-			// Return the FBUserInfo object with the new data
-			return Student::create($dataArray);
+			
+			return true;
 
 		} catch (\Exception $e) {
 			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);

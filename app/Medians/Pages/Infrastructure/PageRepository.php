@@ -104,7 +104,7 @@ class PageRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Page::create($dataArray);
     	$Object->update($dataArray);
 

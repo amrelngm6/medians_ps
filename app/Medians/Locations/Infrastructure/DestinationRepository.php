@@ -78,7 +78,7 @@ class DestinationRepository
 			}
 		}		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Destination::create($dataArray);
 
     	// Store Custom fields
@@ -98,7 +98,7 @@ class DestinationRepository
 
 		$Object = Destination::find($data['destination_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields

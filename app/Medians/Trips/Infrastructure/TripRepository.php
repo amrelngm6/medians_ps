@@ -118,7 +118,7 @@ class TripRepository
 
 		$dataArray = $this->filterData($data);
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Trip::create($dataArray);
     	$Object->update($dataArray);
 
@@ -133,7 +133,7 @@ class TripRepository
 
 		$Object = Trip::find($data['trip_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;

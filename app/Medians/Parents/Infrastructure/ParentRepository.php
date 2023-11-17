@@ -153,7 +153,7 @@ class ParentRepository
 		}		
 		
 
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object = Parents::create($dataArray);
 
     	// Store Custom fields
@@ -171,7 +171,7 @@ class ParentRepository
 
 		$Object = Parents::find($data['parent_id']);
 		
-		// Return the FBUserInfo object with the new data
+		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;
