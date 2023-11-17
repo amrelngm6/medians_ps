@@ -18,7 +18,7 @@ class RoleRepository
 
 	public function get($limit = 100)
 	{
-		return Role::with('permissions','permissions_group')->limit($limit)->get();
+		return Role::with('permissions','permissions_group')->withCount('users')->limit($limit)->get();
 	}
 
 

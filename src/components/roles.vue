@@ -27,14 +27,11 @@
                 <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl" v-for="role in content.items">
                     <div class="box-body space-y-5">
                         <div class="flex">
-                            <div class="sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
-                                    class="avatar avatar-lg rounded-sm" :src="role.picture" alt="Image Description">
+                            <div class="sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse">
                                 <div class="space-y-1 my-auto">
                                     <h5 @click="handleAction('view', role)" class="cursor-pointer font-semibold text-base leading-none" v-text="role.name"></h5>
                                     <p class="text-gray-500 dark:text-white/70 font-semibold text-xs truncate max-w-[9rem]"
-                                        v-text="role.email"></p>
-                                    <p class="text-primary dark:text-primary text-xs font-semibold"
-                                        v-text="role.contact_number"></p>
+                                        v-text="__('Users count') + role.users_count"></p>
                                 </div>
                             </div>
 
