@@ -156,7 +156,7 @@ export default
                 console.log(data);
                 var params = new URLSearchParams();
                 params.append('type', 'Role.updatePermissions')
-                params.append('params', data)
+                params.append('params', JSON.stringify(data))
                 this.$root.$children[0].handleRequest(params, '/api/update').then(response => {
                     this.$alert(response.result).then(() => {
 
