@@ -176,7 +176,7 @@ class StudentRepository
 		{
 			$location = (array) $data['pickup_location'];
 			$location['model_id'] = $data['student_id'];
-			$location['model_class'] = Student::class;
+			$location['model_type'] = Student::class;
 			$this->pickupLocationRepository->store($location);
 		}
 		
@@ -184,7 +184,7 @@ class StudentRepository
 		{
 			$destination = (array)  $data['destination'];
 			$destination['model_id'] = $data['student_id'];
-			$destination['model_class'] = Student::class;
+			$destination['model_type'] = Student::class;
 			$this->pickupLocationRepository->storeDestination($destination);
 		}
 
