@@ -24,5 +24,6 @@ class Permission extends CustomModel
     	'access',
 	];
 
+	public $timestamps = false;
 
 }
