@@ -27,9 +27,9 @@
                 <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl" v-for="driver in content.items">
                     <div class="box-body space-y-5">
                         <div class="flex">
-                            <div class="sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
+                            <div class="w-full sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
                                     class="avatar avatar-lg rounded-sm" :src="driver.picture" alt="Image Description">
-                                <div class="space-y-1 my-auto">
+                                <div class="w-full space-y-1 my-auto">
                                     <h5 @click="handleAction('view', driver)" class="cursor-pointer font-semibold text-base leading-none" v-text="driver.name"></h5>
                                     <p class="text-gray-500 dark:text-white/70 font-semibold text-xs truncate max-w-[9rem]"
                                         v-text="driver.email"></p>
@@ -37,7 +37,8 @@
                                         v-text="driver.contact_number"></p>
                                 </div>
                                 <div class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(driver)">
-                                    <span :class="!driver.status ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: driver.status ? '16px' : 0}"></a></span>
+                                    <span :class="driver.status ? '': 'bg-inverse-dark' " class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: driver.status ? '16px' : 0}"></a></span>
+                                    <span  v-text="driver.status ? __('Active') : __('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
                                 </div>
 
                             </div>
