@@ -3,6 +3,7 @@
 namespace Medians\Roles\Infrastructure;
 
 use Medians\Roles\Domain\Role;
+use Medians\Roles\Domain\Permission;
 
 
 class RoleRepository 
@@ -46,6 +47,11 @@ class RoleRepository
 		
     	$Object->update( (array) $data);
 
+		if (isset($data['permissions']))
+		{
+			$this->updatePermissions($data['permissions']);
+		}
+
     	return $Object;
     }
 
@@ -61,6 +67,33 @@ class RoleRepository
 			
 			$delete = $id > 3 ? Role::find($id)->delete() : '';
 			return true;
+
+		} catch (\Exception $e) {
+			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);
+		}
+	}
+
+	/**
+	* Update permissions of role
+	*
+	* @Returns Boolen
+	*/
+	public function updatePermissions($data) 
+	{
+		try {
+				
+			$Model = new Permission();
+			
+			foreach ($data as $key => $value) 
+			{
+				if (in_array($key, $Model->getFields()))
+				{
+					$dataArray[$key] = $value;
+				}
+			}		
+
+			// Return the FBUserInfo object with the new data
+			return Student::create($dataArray);
 
 		} catch (\Exception $e) {
 			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);

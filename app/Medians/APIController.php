@@ -238,6 +238,10 @@ class APIController extends CustomController
 				$controller =  new Roles\Application\RoleController; 
 				break;
 			
+			case 'Role.updatePermissions':
+				$controller =  new Roles\Application\RoleController; 
+				break;
+			
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
