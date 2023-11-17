@@ -240,33 +240,6 @@ class MobileAPIController extends CustomController
 		return true;
 	} 
 
-	/**
-	 * Search model 
-	 * 
-	 */
-	public function search()
-	{
-
-		$app = new \config\APP;
-		$request = $app->request();
-
-		try {
-			
-			$return = [];
-			switch ($request->get('type')) 
-			{
-				case 'Customer':
-					$return = (new Customers\Application\CustomerController())->search($request->get('search_text'));
-					break;
-
-			}
-
-		} catch (Exception $e) {
-			throw new Exception("Error Processing Request", 1);
-					
-		}
-	}
-
 
 	/**
 	 * delete model 

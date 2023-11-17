@@ -188,7 +188,7 @@ class StudentRepository
 			$this->pickupLocationRepository->storeDestination($destination);
 		}
 
-    	return $Object;
+    	return $Object->with('pickup_location','destination')->find($Object->student_id);
     }
 
  
