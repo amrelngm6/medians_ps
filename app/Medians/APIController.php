@@ -135,6 +135,10 @@ class APIController extends CustomController
 	            case 'NotificationEvent.create':
 	                $return =  (new Notifications\Application\NotificationEventController())->store(); 
 	                break;
+
+	            case 'Role.create':
+	                $return =  (new Roles\Application\RoleController())->store(); 
+	                break;
 				
 				
 				case 'HelpMessageComment.create':
@@ -230,6 +234,10 @@ class APIController extends CustomController
 				$controller = new Events\Application\EventController;
                 break;
 
+			case 'Role.update':
+				$return =  new Roles\Application\RoleController; 
+				break;
+			
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
@@ -315,11 +323,11 @@ class APIController extends CustomController
 					return response((new Help\Application\HelpMessageController())->delete());
 					break;
 
-					
+				case 'Role.delete':
+					return response((new Roles\Application\RoleController())->delete());
+					break;
 
 			}
-
-			return response(json_encode($return));
 
 		} catch (Exception $e) {
 			throw new Exception("Error Processing Request", 1);
