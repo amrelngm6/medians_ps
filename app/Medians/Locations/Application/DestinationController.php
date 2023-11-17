@@ -47,7 +47,7 @@ class DestinationController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "pickup_id", 'title'=> "#"],
+            [ 'key'=> "destination_id", 'title'=> "#"],
             [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true ],
             [ 'key'=> "student_name", 'title'=> __('student_name'), 'sortable'=> true ],
             [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true ],
@@ -65,7 +65,7 @@ class DestinationController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "pickup_id", 'title'=> "#", 'column_type'=>'hidden'],
+            [ 'key'=> "destination_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "model_type", 'title'=> "#", 'default'=> ($this->studentRepo->getModel())::class, 'column_type'=>'hidden'],
 			[ 'key'=> "model_id", 'title'=> __('Student'), 
 				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'student_id', 'text_key'=>'student_name', 
