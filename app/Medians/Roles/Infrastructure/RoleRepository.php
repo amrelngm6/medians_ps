@@ -17,7 +17,7 @@ class RoleRepository
 
 	public function get($limit = 100)
 	{
-		return Role::limit($limit)->get();
+		return Role::with('permissions')->limit($limit)->get();
 	}
 
 
