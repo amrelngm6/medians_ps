@@ -6,8 +6,8 @@
                 <maps @update-marker="updatedLocation" @click-marker="updatedLocation" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
                 <div  :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                     <div class="self-stretch py-4 flex-col justify-center items-start flex">
-                        <div class="text-black text-lg font-semibold" v-text="__('Pickup locations')"></div>
-                        <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Pickup locations description')"></div>
+                        <div class="text-black text-lg font-semibold" v-text="__('Destinations')"></div>
+                        <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Destinations description')"></div>
                     </div>
                     <div v-if="!collapsed" class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
                         <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
@@ -50,11 +50,11 @@
                     
                     <data-table ref="locations" @actionTriggered="handleAction" v-bind="bindings" />
 
-                    <side-form-create :conf="conf" model="PickupLocation.create"
+                    <side-form-create :conf="conf" model="Destination.create"
                         v-if="showAddSide && content && content.fillable" :columns="content.fillable" class="col-md-3" />
 
-                    <side-form-update :conf="conf" model="PickupLocation.update" :item="activeItem"
-                        :model_id="activeItem.pickup_id" index="pickup_id" v-if="showEditSide && !showAddSide"
+                    <side-form-update :conf="conf" model="Destination.update" :item="activeItem"
+                        :model_id="activeItem.destination_id" index="destination_id" v-if="showEditSide && !showAddSide"
                         :columns="content.fillable" class="col-md-3" />
 
                 </div>
@@ -170,7 +170,7 @@ export default
                         break;
 
                     case 'delete':
-                        this.$parent.deleteByKey('pickup_id', data, 'PickupLocation.delete');
+                        this.$parent.deleteByKey('destination_id', data, 'Destination.delete');
                         break;
                 }
             },
