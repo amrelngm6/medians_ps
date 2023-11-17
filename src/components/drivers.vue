@@ -27,7 +27,7 @@
                 <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl" v-for="driver in content.items">
                     <div class="box-body space-y-5">
                         <div class="flex">
-                            <div class="w-full sm:flex sm:space-x-3 sm:space-y-0 space-y-4 rtl:space-x-reverse"><img
+                            <div class="w-full flex space-x-3 space-y-0 space-y-4 rtl:space-x-reverse"><img
                                     class="avatar avatar-lg rounded-sm" :src="driver.picture" alt="Image Description">
                                 <div class="w-full space-y-1 my-auto">
                                     <h5 @click="handleAction('view', driver)" class="cursor-pointer font-semibold text-base leading-none" v-text="driver.name"></h5>
