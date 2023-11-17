@@ -93,7 +93,7 @@ export default {
 
         setActiveStatus(user) {
             this.showLoader = true;
-            user.active = !user.access;
+            user.active = !user.active;
             this.showLoader = false;
             var params = new URLSearchParams();
             params.append('type', 'User.updateStatus')

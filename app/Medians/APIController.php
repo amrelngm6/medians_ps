@@ -53,7 +53,7 @@ class APIController extends CustomController
 				break;
 				
 			case 'User.updateStatus':
-				return json_encode((new Users\Application\UserController())->updateStatus());
+				return (new Users\Application\UserController())->updateStatus();
 				break;
 	
 		}

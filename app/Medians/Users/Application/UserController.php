@@ -238,9 +238,9 @@ class UserController extends CustomController
 
 			$update = $this->repo->updateStatus($params);
 
-        	echo isset($update->id) 
+        	echo json_encode( isset($update->id) 
            	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-        	: array('error'=> $update );
+        	: array('error'=> $update ));
 
         } catch (Exception $e) {
             return  ['error' => $e->getMessage()];
