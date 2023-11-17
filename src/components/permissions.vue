@@ -24,16 +24,16 @@
                         <div class="w-full" v-if="activeItem">
                             <nav class=" space-y-3 bg-gray-100 p-2 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
-                                <button v-for="role in activeItem.permissions" @click="setActiveStatus(role.name)" type="button"
-                                    v-text="__(role.name)"
-                                    :class="activeStatus == role.name ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
+                                <button v-for="role in activeItem.permissions" @click="setActiveStatus(role.model)" type="button"
+                                    v-text="__(role.model)"
+                                    :class="activeStatus == role.model ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
                                 </button> <!-- button-end -->
                             </nav> <!-- nav-end -->
 
                             <div class="mt-3 overflow-hidden">
                                 <div id="basic-tabs-1" class="transition-all duration-300 transform">
-                                    <div class="w-full border-b border-gray-100" v-for="role in content.items" v-if="activeStatus == role.name">
+                                    <div class="w-full border-b border-gray-100" v-for="role in content.items" v-if="activeStatus == role.model">
                                         <div class="mt-6 w-full">
                                             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
                                                 {{role}}
