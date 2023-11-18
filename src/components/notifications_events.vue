@@ -58,11 +58,12 @@
                                     </select>
                                 </label>
                                 
-                                <label class="flex gap gap-2 items-center mt-3">
-                                    <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status" :checked="activeItem.status > 0 ? true : false" >
-                                    <span class="ml-2 mx-2 text-gray-700">{{__('Status')}}</span>
-                                </label>
-                                
+                                <div v-if="!showLoader"  class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(activeItem)">
+                                    <span class="text-gray-700" v-text="__('Status')"></span>
+                                    <span :class="!activeItem.status ? 'bg-inverse-dark' : ''" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: activeItem.status ? '16px' : 0}"></a></span>
+                                    <span  v-text="activeItem.status ? $parent.__('Active') : $parent.__('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                                    <input v-model="activeItem.status"  type="checkbox" class="hidden" :name="'params[status]'" />
+                                </div>
 
                                 <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800" v-text="__('save')"></button>
                             </form>
@@ -120,11 +121,12 @@
                                         </select>
                                     </label>
                                     
-                                    <label class="flex gap gap-2 items-center mt-3">
-                                        <input name="params[status]" type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" v-model="activeItem.status" :checked="activeItem.status == 1 ? true : false"  >
-                                        <span class="ml-2 mx-2 text-gray-700">{{__('Status')}}</span>
-                                    </label>
-                                    
+                                    <div v-if="activeItem && !showLoader"  class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(activeItem)">
+                                        <span class="text-gray-700" v-text="__('Status')"></span>
+                                        <span :class="!activeItem.status ? 'bg-inverse-dark' : ''" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: activeItem.status ? '16px' : 0}"></a></span>
+                                        <span  v-text="activeItem.status ? $parent.__('Active') : $parent.__('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                                        <input v-model="activeItem.status"  type="checkbox" class="hidden" :name="'params[status]'" />
+                                    </div>                                    
 
                                     <button class="uppercase h-10 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800">{{__('Update')}}</button>
                                 </form>
@@ -194,7 +196,11 @@ export default
 
     methods: 
     {
-
+        setActiveStatus(item) {
+            this.showLoader = true;
+            item.status = !item.status;
+            this.showLoader = false;
+        },
 
         handleAction(actionName, data) {
             switch(actionName) 
