@@ -210,7 +210,6 @@ class ParentRepository
 	*/
 	public function storeCustomFields($data, $id) 
 	{
-		CustomField::where('model_type', Parents::class)->where('model_id', $id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
@@ -219,9 +218,18 @@ class ParentRepository
 				$fields['model_type'] = Parents::class;	
 				$fields['model_id'] = $id;	
 				$fields['code'] = $key;	
-				$fields['value'] = $value;
 
-				$Model = CustomField::create($fields);
+				if (is_array($value))
+				{
+					CustomField::where('model_type', Parents::class)->where('code',$key)->where('model_id', $id)->delete();
+					foreach ($value as $k => $v) {
+						$Model = CustomField::firstOrCreate($fields);
+						$Model->update(['value'=>$v]);
+					}
+				} else {
+					$Model = CustomField::firstOrCreate($fields);
+					$Model->update(['value'=>$value]);
+				}
 			}
 	
 			return $Model;		

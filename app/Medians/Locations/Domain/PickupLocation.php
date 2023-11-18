@@ -28,7 +28,6 @@ class PickupLocation extends CustomModel
 		'status',
 	];
 
-
 	public $appends = ['contact_number', 'student_name', 'picture', 'status_text'];
 
 	public function getStatusTextAttribute() {
