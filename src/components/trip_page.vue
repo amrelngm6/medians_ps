@@ -10,9 +10,6 @@
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
                         <p class="text-gray-400 mb-4 dark:text-gray-400" v-text="activeItem.email"></p>
 
-                        <button type="button" @click="update"
-                            class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
-                            v-text="__('Edit')"></button>
                         <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"><i
                                 class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
                     </div>
