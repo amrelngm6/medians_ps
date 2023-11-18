@@ -4,11 +4,8 @@
             <div class="xl:col-span-3 lg:col-span-5">
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center" v-if="activeItem && activeItem.driver">
-
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="__('Trip') + __(' #') + activeItem.trip_id"></h4>
-
-                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"><i
-                                class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
+                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"><i class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
                     </div>
 
                     <hr class="mt-5 dark:border-gray-600">
