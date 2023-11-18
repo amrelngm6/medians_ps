@@ -170,7 +170,7 @@ class HelpMessageController extends CustomController
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
 
-		return $returnData;
+		echo json_encode($returnData);
 	}
 
 	public function storeMobile() 
