@@ -25,7 +25,8 @@
                     </select>
 
                     <div v-if="column.column_type == 'checkbox' && !showLoader"  class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(column)">
-                        <span :class="!column.active ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: column.active ? '16px' : 0}"></a></span>
+                        <span :for="column.key" class="block" v-text="column.title"></span>
+                        <span :class="!column.active ? 'bg-inverse-dark' : ''" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: column.active ? '16px' : 0}"></a></span>
                         <span  v-text="column.active ? $parent.__('Active') : $parent.__('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
                         <input v-model="column.active"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
                     </div>
