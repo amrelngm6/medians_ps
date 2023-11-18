@@ -19,8 +19,13 @@
                     
                         <input v-if="column.column_type == 'password'" autocomplete="off" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
 
-                        <input v-if="column.column_type == 'checkbox'"  type="checkbox" :name="'params['+column.key+']'" v-model="item[column.key]" />
-
+                        <div v-if="column.column_type == 'checkbox' && !showLoader"  class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(item[column.key])">
+                            <span class="block" v-text="column.title"></span>
+                            <span :class="!item[column.key] ? 'bg-inverse-dark' : ''" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: item[column.key] ? '16px' : 0}"></a></span>
+                            <span  v-text="item[column.key] ? $parent.__('Active') : $parent.__('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                            <input v-model="item[column.key]"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
+                        </div>
+                        
                         <textarea v-if="column.column_type == 'textarea'" :name="'params['+column.key+']'" type="text" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title" v-model="item[column.key]"></textarea>
 
                         <select v-if="column.data && column.column_type == 'select'" v-model="item[column.key]" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600"   :placeholder="column.title">
@@ -52,7 +57,8 @@ export default
 
     data() {
         return {
-            file: ''
+            file: '',
+            showLoader: false
         }
     },
     methods: {
@@ -73,6 +79,11 @@ export default
                     break;
             }
             return false;
+        },   
+        setActiveStatus(column) {
+            this.showLoader = true;
+            column = !column;
+            this.showLoader = false;
         },        
     }
 };
