@@ -160,8 +160,6 @@ class HelpMessageController extends CustomController
 
         try {	
 
-        	$params['user_id'] = $this->app->auth()->id;        	
-
             $returnData = (!empty($this->repo->update($params))) 
             ? array('success'=>1, 'result'=>__('Done'))
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
