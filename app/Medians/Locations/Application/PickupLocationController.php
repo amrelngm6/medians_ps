@@ -153,7 +153,7 @@ class PickupLocationController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
+        	$params['status'] = isset($params['status']) ? 1 : 0;
 
             if ($this->repo->update($params))
             {
