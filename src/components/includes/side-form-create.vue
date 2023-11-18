@@ -17,11 +17,6 @@
 
                     <input v-if="column.column_type == 'password'" autocomplete="off" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
 
-                    <div class="flex gap gap-4" v-if="column.column_type == 'checkbox'">
-                        <label :for="column.key" class="block" v-text="column.title"> </label>
-                        <input :id="column.key" type="checkbox" :name="'params['+column.key+']'" />
-                    </div>
-
                     <textarea v-if="column.column_type == 'textarea'" :name="'params['+column.key+']'" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title"></textarea>
 
                     <select :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-if="column.data && column.column_type == 'select'"  :placeholder="column.title">
@@ -29,14 +24,12 @@
                         <option v-for="option in column.data" :value="option[column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
                     </select>
 
-                    
-                    <div v-if="column.column_type == 'checkbox'"  class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(column)">
+                    <div v-if="column.column_type == 'checkbox' && !showLoader"  class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(column)">
                         <span :class="!column.active ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: column.active ? '16px' : 0}"></a></span>
                         <span  v-text="column.active ? $parent.__('Active') : $parent.__('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
                         <input v-model="column.active"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
                     </div>
                     
-
                     <vue-medialibrary-field v-if="column.column_type == 'file'" :name="'params['+column.key+']'" key="upload-file" v-model="file" :api_url="conf.url"></vue-medialibrary-field>
 
                 </div>
