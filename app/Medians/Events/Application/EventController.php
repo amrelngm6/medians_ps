@@ -39,7 +39,7 @@ class EventController extends CustomController
             [ 'key'=> "event_id", 'title'=> "#"],
             [ 'key'=> "title", 'title'=> __('Title'), 'sortable'=> true ],
             [ 'key'=> "status", 'title'=> __('status'), 'sortable'=> true ],
-            [ 'key'=> "created_at", 'title'=> __('Created Time'), 'sortable'=> true ],
+            [ 'key'=> "date", 'title'=> __('date'), 'sortable'=> true ],
         ];
 	}
 
