@@ -62,11 +62,12 @@ class StudentController extends CustomController
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'parent_name', 
 				'data' => $this->parentRepo->get()  
 			],
-            [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
-            [ 'key'=> "date_of_birth", 'title'=> __('date_of_birth'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'date' ],
-            [ 'key'=> "picture", 'title'=> __('picture'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'file' ],
+            [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "last_name", 'title'=> __('last_name'), 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'fillable'=> true, 'column_type'=>'phone' ],
+            [ 'key'=> "date_of_birth", 'title'=> __('date_of_birth'), 'fillable'=> true, 'column_type'=>'date' ],
+            [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=>true, 'column_type'=>'file' ],
+            [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
         ];
 	}
 
