@@ -29,6 +29,14 @@
                         <option v-for="option in column.data" :value="option[column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
                     </select>
 
+                    
+                    <div class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(column)">
+                        <span :class="!column.active ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: column.active ? '16px' : 0}"></a></span>
+                        <span  v-text="column.active ? __('Active') : __('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                        <input v-if="column.column_type == 'checkbox'" v-model="column.active"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
+                    </div>
+                    
+
                     <vue-medialibrary-field v-if="column.column_type == 'file'" :name="'params['+column.key+']'" key="upload-file" v-model="file" :api_url="conf.url"></vue-medialibrary-field>
 
                 </div>
@@ -49,7 +57,8 @@ export default
     ],
     data() {
         return {
-            file: ''
+            file: '',
+            showLoader: false,
         }
     },
     methods: {
@@ -69,7 +78,13 @@ export default
                     break;
             }
             return false;
-        },        
+        },   
+        setActiveStatus(column) {
+            this.showLoader = true;
+            column.active = !column.active;
+            this.showLoader = false;
+        },
+     
     }
 
 };
