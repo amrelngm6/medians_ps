@@ -109,6 +109,7 @@ class StudentController extends CustomController
         try {	
 
         	$params['created_by'] = $this->app->auth()->id;
+        	$params['status'] = isset($params['status']) ? 1 : 0;
         	
 
             $returnData = (!empty($this->repo->store($params))) 
@@ -130,7 +131,7 @@ class StudentController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
+        	$params['status'] = !empty($params['status']) ? 1 : 0;
 
             if ($this->repo->update($params))
             {
