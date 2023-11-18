@@ -29,7 +29,11 @@ class PickupLocation extends CustomModel
 	];
 
 
-	public $appends = ['contact_number', 'student_name', 'picture'];
+	public $appends = ['contact_number', 'student_name', 'picture', 'status_text'];
+
+	public function getStatusTextAttribute() {
+		return isset($this->status) ? 'on' : 'off';
+	}
 
 	public function getContactNumberAttribute() {
 		return isset($this->student->contact_number) ? $this->student->contact_number : '0';
