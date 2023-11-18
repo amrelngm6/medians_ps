@@ -25,6 +25,7 @@ class PickupLocation extends CustomModel
 		'latitude',
 		'longitude',
 		'address',
+		'status',
 	];
 
 
