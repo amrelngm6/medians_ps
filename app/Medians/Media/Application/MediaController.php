@@ -73,13 +73,15 @@ class MediaController extends CustomController
 
 		if (strpos($filepath, 'uploads/') && is_file($_SERVER['DOCUMENT_ROOT'].$filepath))
 		{
+
+			$ext = explode('.', $filepath);
 			// Set the caching headers
 			$expires = 60 * 60 * 24 * 7; // 1 week (in seconds)
 			header("Cache-Control: public, max-age=$expires");
 			header("Expires: " . gmdate("D, d M Y H:i:s", time() + $expires) . " GMT");
 
 			// Serve the CSS file
-			header("Content-Type: text/css");
+			header("Content-Type: text/".end($ext));
 			readfile($_SERVER['DOCUMENT_ROOT'].$filepath);
 
 		} else {
