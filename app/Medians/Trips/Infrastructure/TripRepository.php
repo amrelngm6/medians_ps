@@ -53,7 +53,7 @@ class TripRepository
 			'pickup_locations', function($q) use ($id){
 				$q->where('model_id', $id);
 			}
-		)->orderBy('trip_id','DESC')->limit(10)->get();
+		)->orderBy('trip_id','DESC')->limit(10)->paginate()->items();
 	}
 
 	public function get($limit = 100)
