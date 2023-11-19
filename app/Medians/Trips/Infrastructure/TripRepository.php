@@ -47,6 +47,15 @@ class TripRepository
 		return Trip::with('pickup_locations', 'driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
+	public function getStudentTrips($id)
+	{
+		return Trip::with('pickup_locations', 'driver', 'vehicle')->whereHas(
+			'pickup_locations', function($q) use ($id){
+				$q->where('model_id', $id);
+			}
+		)->orderBy('trip_id','DESC')->limit(10)->get();
+	}
+
 	public function get($limit = 100)
 	{
 		return Trip::withCount('moving_locations')->withCount('pickup_locations')->with('route', 'pickup_locations', 'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();

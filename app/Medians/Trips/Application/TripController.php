@@ -200,7 +200,15 @@ class TripController extends CustomController
 	 */
 	public function loadTrips($params)
 	{
-		$data =  $this->repo->getDriverTrips($this->app->request()->get('driverId'));
+		if  ($this->app->request()->get('driverId'))
+		{
+			return  $this->repo->getDriverTrips($this->app->request()->get('driverId'));
+		}
+
+		if  ($this->app->request()->get('studentId'))
+		{
+			return  $this->repo->getStudentTrips($this->app->request()->get('studentId'));
+		}
 
 		return  $data;
 		
