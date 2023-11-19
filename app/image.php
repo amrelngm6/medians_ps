@@ -17,7 +17,7 @@
 
 // print_r($_SERVER);
 // Build up the src query
-$_GET['src'] = str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(dirname($_SERVER['SCRIPT_FILENAME'])). '/'.$type.'/'.$src); 
+$_GET['src'] = str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(dirname($_SERVER['SCRIPT_FILENAME'])). $_GET['src']); 
 
 
 if(!empty($_GET['w'])) {
