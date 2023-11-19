@@ -82,7 +82,6 @@ class MediaController extends CustomController
 
 			// Serve the CSS file
 			$extension = "text/".end($ext);
-			echo $extension;
 			header("Content-Type: $extension");
 			readfile($_SERVER['DOCUMENT_ROOT'].$filepath);
 
