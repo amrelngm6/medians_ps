@@ -6,6 +6,7 @@ use Medians\Trips\Domain\Trip;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Locations\Domain\Destination;
 use Medians\Trips\Domain\TripPickup;
+use Medians\Trips\Domain\TripDestination;
 use Medians\Trips\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
 
@@ -199,9 +200,9 @@ class TripRepository
 			$savePickups = $this->savePickup($value);
 		}
 
-		$check = Destination::where('route_id', $data['route_id'])->get();
+		$destinations = Destination::where('route_id', $data['route_id'])->get();
 
-		foreach ($check as $key => $value) 
+		foreach ($destinations as $key => $value) 
 		{
 			$value['trip_id'] = $save->trip_id;
 			$value['status'] = 'waiting';
