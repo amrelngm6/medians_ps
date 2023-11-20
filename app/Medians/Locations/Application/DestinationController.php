@@ -153,7 +153,7 @@ class DestinationController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
+        	$params['status'] = !empty($params['status']) ? 1 : 0;
 
             if ($this->repo->update($params))
             {

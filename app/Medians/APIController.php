@@ -238,7 +238,7 @@ class APIController extends CustomController
 				break;
 		
 			case 'Destination.update':
-				$return =  (new Locations\Application\DestinationController())->update(); 
+				$controller =  new Locations\Application\DestinationController; 
 				break;
 
 		}
