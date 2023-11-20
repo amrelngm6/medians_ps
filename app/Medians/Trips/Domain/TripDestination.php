@@ -4,6 +4,7 @@ namespace Medians\Trips\Domain;
 
 use Medians\Routes\Domain\Route;
 use Medians\Locations\Domain\PickupLocation;
+use Medians\Locations\Domain\Destination;
 use Medians\Vehicles\Domain\Vehicle;
 use Shared\dbaser\CustomModel;
 
