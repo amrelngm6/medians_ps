@@ -57,7 +57,7 @@ class TripRepository
 			'pickup_locations', function($q) use ($id){
 				$q->where('model_id', $id);
 			}
-		)->orderBy('trip_id','DESC')->limit(10)->get();
+		)->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
 	public function get($limit = 100)
