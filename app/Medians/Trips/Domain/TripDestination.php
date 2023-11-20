@@ -40,12 +40,12 @@ class TripDestination extends CustomModel
 
 	public function getLatitudeAttribute()
 	{
-		return isset($this->location->latitude) ? $this->location->latitude : 0;
+		return isset($this->destination->latitude) ? $this->destination->latitude : 0;
 	}
 
 	public function getLongitudeAttribute()
 	{
-		return isset($this->location->longitude) ? $this->location->longitude : 0;
+		return isset($this->destination->longitude) ? $this->destination->longitude : 0;
 	}
 
 	public function destination() 
