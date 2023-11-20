@@ -205,7 +205,7 @@ class TripRepository
 		{
 			$value['trip_id'] = $save->trip_id;
 			$value['status'] = 'waiting';
-			$savePickups = $this->saveDestination($value);
+			$saveDestinations = $this->saveDestination($value);
 		}
 
 		return $this->getTrip($save->trip_id);
@@ -275,13 +275,11 @@ class TripRepository
 			'trip_id' => $data['trip_id'],
 			'model_type' => $data['model_type'],
 			'model_id' => $data['model_id'],
-			'pickup_id' => $data['pickup_id'],
+			'destination_id' => $data['destination_id'],
 			'status' => $data['status'],
 		];
 
-		$check = TripDestination::create($fieldsData);
-
-		return $check;
+		return TripDestination::create($fieldsData);
 	}
 	
     	
