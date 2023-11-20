@@ -52,7 +52,7 @@ class TripRepository
 
 	public function getStudentTrips($id)
 	{
-		return Trip::with('pickup_locations', 'driver', 'vehicle', 'route')->whereHas(
+		return Trip::with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
 				$q->where('model_id', $id);
 			}
