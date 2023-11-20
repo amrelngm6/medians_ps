@@ -49,7 +49,7 @@ class APIController extends CustomController
 		switch ($this->app->request()->get('type')) 
 		{
 			case 'HelpMessage.close':
-				return json_encode((new Help\Application\HelpMessageController())->close());
+				return (new Help\Application\HelpMessageController())->close();
 				break;
 				
 			case 'User.updateStatus':
@@ -144,9 +144,12 @@ class APIController extends CustomController
 	                $return =  (new Roles\Application\RoleController())->store(); 
 	                break;
 				
-				
 				case 'HelpMessageComment.create':
 					$return =  (new Help\Application\HelpMessageController())->storeComment(); 
+					break;
+	
+				case 'Destination.create':
+					$return =  (new Locations\Application\DestinationController())->store(); 
 					break;
 	
 			}
@@ -233,7 +236,11 @@ class APIController extends CustomController
 			case 'Role.updatePermissions':
 				return (new Roles\Application\RoleController)->updatePermissions(); 
 				break;
-			
+		
+			case 'Destination.update':
+				$return =  (new Locations\Application\DestinationController())->update(); 
+				break;
+
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
