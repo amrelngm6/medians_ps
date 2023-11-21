@@ -130,7 +130,7 @@ class MobileAPIController extends CustomController
 			case 'update_pickup':
 				$return = (new \Medians\Trips\Infrastructure\TripRepository())->updateTrip($params);
 				break;
-
+			
 			case 'trips':
 				$return = (new \Medians\Trips\Application\TripController())->loadTrips($params);
 				break;
@@ -154,8 +154,11 @@ class MobileAPIController extends CustomController
 			case 'notifications':
 				$return =  (new Notifications\Application\NotificationController())->loadLatestMobileNotifications(); 
 				break;
-				
 
+			case 'student_pickup':
+				$return =  (new Locations\Application\PickupLocationController())->loadPickup(); 
+				break;
+				
 				
 		}
 
