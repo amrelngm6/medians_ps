@@ -29,8 +29,8 @@
                 :draggable="marker.drag ? true : false" 
                 :icon="marker.icon ? marker.icon : null" 
                 @click="checkMarker(index)"
-                @drag="drakMarker(index)" 
-                @dragend="updateMarker(index)" />
+                @drag="activeMarkerIndex = index" 
+                @dragend="updateMarker" />
 
         </GmapMap>
         <select :change="calculateAndDisplayRoute" v-model="travelMode">
@@ -165,16 +165,18 @@ export default
                     lng: event.latLng.lng(),
                 };
             },
-            drakMarker(index) {
-                activeMarkerIndex = index
-            },  
-            updateMarker(event) {
+            
+            async updateMarker(event) 
+            {
                 this.waypoints[this.activeMarkerIndex].destination = {
                     lat: event.latLng.lat(), lng: event.latLng.lng()
                 };
 
+                this.waypoints[i].address = await this.handlePositionToPlaceId(this.waypoints[this.activeMarkerIndex].destination.lat, this.waypoints[this.activeMarkerIndex].destination.lng);
+
                 this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], event);
             },
+            
             async checkMarker(i)  {
                 this.activeDestination = this.waypoints[i].destination;
                 this.waypoints[i].address = await this.handlePositionToPlaceId(this.waypoints[i].destination.lat, this.waypoints[i].destination.lng);
