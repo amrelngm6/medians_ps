@@ -137,8 +137,11 @@ export default
                 return a ? a : ((item.location_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
             },
 
-            updatedLocation(item, index)
+            updatedLocation(item, index, marker)
             {
+                console.log(marker);
+                console.log(marker.placeId);
+
                 item.latitude = item.destination.lat;
                 item.longitude = item.destination.lng;
                 this.handleAction('edit', item)
