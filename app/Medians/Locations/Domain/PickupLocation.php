@@ -26,6 +26,13 @@ class PickupLocation extends CustomModel
 		'longitude',
 		'address',
 		'status',
+		'saturday',
+		'sunday',
+		'monday',
+		'tuesday',
+		'wednesday',
+		'thursday',
+		'friday',
 	];
 
 	public $appends = ['contact_number', 'student_name', 'picture', 'status_text'];

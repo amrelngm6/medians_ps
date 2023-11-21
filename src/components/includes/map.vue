@@ -28,7 +28,7 @@
                 :clickable="true" 
                 :draggable="marker.drag ? true : false" 
                 :icon="marker.icon ? marker.icon : null" 
-                @click="checkMarker(index)"
+                @click="checkMarker(index, marker)"
                 @drag="activeMarkerIndex = index" 
                 @dragend="updateMarker" />
 
@@ -172,10 +172,10 @@ export default
 
                 this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], event);
             },
-            checkMarker(i) {
+            checkMarker(i, marker) {
                 this.activeDestination = this.waypoints[i].destination;
                 console.log(this.waypoints[i]);
-                this.$emit('click-marker', this.waypoints[i], i);
+                this.$emit('click-marker', this.waypoints[i], i, marker);
                 this.calculateAndDisplayRoute()
             },
             addMarker() {
