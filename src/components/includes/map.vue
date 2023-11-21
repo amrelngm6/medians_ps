@@ -174,7 +174,7 @@ export default
             },
             checkMarker(i, marker) {
                 this.activeDestination = this.waypoints[i].destination;
-                this.$emit('click-marker', this.waypoints[i], i, marker);
+                this.$emit('click-marker', this.waypoints[i], i, handlePositionToPlaceId(marker.destination.latitude, marker.destination.longitude));
                 this.calculateAndDisplayRoute()
             },
             addMarker() {
@@ -275,6 +275,35 @@ export default
             },
 
 
+            async getPlaceIdFromPosition(lat, lng) {
+                const geocoder = new google.maps.Geocoder();
+
+                const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+                return new Promise((resolve, reject) => {
+                    geocoder.geocode({ location: latLng }, (results, status) => {
+                    if (status === 'OK') {
+                        results[0] ? resolve(results[0].place_id) : reject('No results found');
+                    } else {
+                        reject(`Geocoder failed due to: ${status}`);
+                    }
+                    });
+                });
+            },
+            async handlePositionToPlaceId(lat, lng) {
+
+                try {
+                    const placeId = await this.getPlaceIdFromPosition(lat, lng);
+                    console.log('Place ID:', placeId);
+                    return placeId;
+                    // Perform actions with the retrieved placeId
+                } catch (error) {
+                    console.error(error);
+                    // Handle error if geocoding fails
+                }
+            },
+
+                
             __(i) {
                 return this.$root.$children[0].__(i);
             }
