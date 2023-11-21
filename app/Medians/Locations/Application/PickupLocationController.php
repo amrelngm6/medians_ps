@@ -188,7 +188,7 @@ class PickupLocationController extends CustomController
 	{
 		$params = (array)  json_decode($this->app->request()->get('params'));
 
-		print_r($params);
+		error_log($this->app->request()->get('params'));
         try {
 
             if ($this->repo->update($params))
