@@ -195,7 +195,6 @@ class PickupLocationController extends CustomController
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>0);
             }
         
-
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
         	

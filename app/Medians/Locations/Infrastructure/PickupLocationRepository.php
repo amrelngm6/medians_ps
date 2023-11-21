@@ -118,6 +118,7 @@ class PickupLocationRepository
     public function update($data)
     {
 
+		print($data);
 		$Object = PickupLocation::find($data['pickup_id']);
 		
 		// Return the  object with the new data
