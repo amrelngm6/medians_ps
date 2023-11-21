@@ -128,7 +128,7 @@ class PickupLocationController extends CustomController
 	 */
 	public function loadPickup()
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = $this->app->request()->get('params');
 
 		$data =  $this->repo->find($params['pickup_id']);
 
