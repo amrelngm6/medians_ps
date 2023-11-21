@@ -28,7 +28,7 @@
                 :clickable="true" 
                 :draggable="marker.drag ? true : false" 
                 :icon="marker.icon ? marker.icon : null" 
-                @click="checkMarker(index, this)"
+                @click="checkMarker(index, marker)"
                 @drag="activeMarkerIndex = index" 
                 @dragend="updateMarker" />
 
