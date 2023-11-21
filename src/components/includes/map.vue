@@ -283,7 +283,7 @@ export default
                 return new Promise((resolve, reject) => {
                     geocoder.geocode({ location: latLng }, (results, status) => {
                     if (status === 'OK') {
-                        results[0] ? resolve(results[0].place_id) : reject('No results found');
+                        results[0] ? resolve(results) : reject('No results found');
                     } else {
                         reject(`Geocoder failed due to: ${status}`);
                     }
