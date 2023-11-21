@@ -174,7 +174,7 @@ export default
             },
             checkMarker(i, marker) {
                 this.activeDestination = this.waypoints[i].destination;
-                this.$emit('click-marker', this.waypoints[i], i, this.handlePositionToPlaceId(marker.destination.latitude, marker.destination.longitude));
+                this.$emit('click-marker', this.waypoints[i], i, this.handlePositionToPlaceId(marker.destination.lat, marker.destination.lng));
                 this.calculateAndDisplayRoute()
             },
             addMarker() {
