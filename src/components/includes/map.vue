@@ -174,7 +174,8 @@ export default
             },
             checkMarker(i, marker) {
                 this.activeDestination = this.waypoints[i].destination;
-                this.$emit('click-marker', this.waypoints[i], i, this.handlePositionToPlaceId(marker.destination.lat, marker.destination.lng));
+                this.waypoints[i].address = this.handlePositionToPlaceId(marker.destination.lat, marker.destination.lng);
+                this.$emit('click-marker', this.waypoints[i], i);
                 this.calculateAndDisplayRoute()
             },
             addMarker() {
@@ -283,7 +284,7 @@ export default
                 return new Promise((resolve, reject) => {
                     geocoder.geocode({ location: latLng }, (results, status) => {
                     if (status === 'OK') {
-                        results[0] ? resolve(results) : reject('No results found');
+                        results[0] ? resolve(results[0]) : reject('No results found');
                     } else {
                         reject(`Geocoder failed due to: ${status}`);
                     }
@@ -293,9 +294,9 @@ export default
             async handlePositionToPlaceId(lat, lng) {
 
                 try {
-                    const placeId = await this.getPlaceIdFromPosition(lat, lng);
-                    console.log('Place ID:', placeId);
-                    return placeId;
+                    const place = await this.getPlaceIdFromPosition(lat, lng);
+                    console.log('Place ID:', place.formatted_address);
+                    return place.formatted_address;
                     // Perform actions with the retrieved placeId
                 } catch (error) {
                     console.error(error);
