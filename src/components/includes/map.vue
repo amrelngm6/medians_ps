@@ -28,9 +28,9 @@
                 :clickable="true" 
                 :draggable="marker.drag ? true : false" 
                 :icon="marker.icon ? marker.icon : null" 
-                @click="checkMarker(index, marker)"
-                @drag="activeMarkerIndex = index" 
-                @dragend="updateMarker" />
+                @click="checkMarker(index)"
+                @drag="drakMarker(index)" 
+                @dragend="updateMarker(index)" />
 
         </GmapMap>
         <select :change="calculateAndDisplayRoute" v-model="travelMode">
@@ -165,6 +165,9 @@ export default
                     lng: event.latLng.lng(),
                 };
             },
+            drakMarker(index) {
+                activeMarkerIndex = index
+            },  
             updateMarker(event) {
                 this.waypoints[this.activeMarkerIndex].destination = {
                     lat: event.latLng.lat(), lng: event.latLng.lng()
@@ -172,9 +175,9 @@ export default
 
                 this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], event);
             },
-            async checkMarker(i, marker)  {
+            async checkMarker(i)  {
                 this.activeDestination = this.waypoints[i].destination;
-                this.waypoints[i].address = await this.handlePositionToPlaceId(marker.destination.lat, marker.destination.lng);
+                this.waypoints[i].address = await this.handlePositionToPlaceId(this.waypoints[i].destination.lat, this.waypoints[i].destination.lng);
                 this.$emit('click-marker', this.waypoints[i], i);
                 this.calculateAndDisplayRoute()
             },
@@ -190,7 +193,7 @@ export default
 
              calculateAndDisplayRoute() {
                 var t = this;
-                if (window.google && this.waypoints.length) 
+                if (window.google && this.waypoints.length && this.showroute) 
                 {
                     t.directionPoints = {origin: t.waypoints[0].destination, destination:t.waypoints[1].destination};
                     var {origin, destination} = t.directionPoints;
