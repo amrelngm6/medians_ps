@@ -4,6 +4,7 @@ namespace Medians\Locations\Infrastructure;
 
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Locations\Domain\Destination;
+use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
 
 
@@ -33,6 +34,11 @@ class PickupLocationRepository
 	public function find($id)
 	{
 		return PickupLocation::find($id);
+	}
+
+	public function findByStudent($id)
+	{
+		return PickupLocation::where('model_type', Student::class)->where('model_id',$id)->first();
 	}
 
 	public function get($limit = 100)
@@ -118,7 +124,6 @@ class PickupLocationRepository
     public function update($data)
     {
 
-		print($data);
 		$Object = PickupLocation::find($data['pickup_id']);
 		
 		// Return the  object with the new data
