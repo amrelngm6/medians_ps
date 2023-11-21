@@ -183,6 +183,26 @@ class PickupLocationController extends CustomController
 	}
 
 
+	/// Update working days
+	public function updateDays()
+	{
+		$params = (array)  json_decode($this->app->request()->get('params'));
+
+        try {
+
+            if ($this->repo->update($params))
+            {
+                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>0);
+            }
+        
+
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        	
+        }
+	}
+
+
 	public function delete() 
 	{
 		$params = $this->app->request()->get('params');

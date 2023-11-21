@@ -240,6 +240,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Students\Application\StudentController())->updateStudentInfo(); 
 				break;
 
+			case 'PickupLocation.update':
+				$return =  (new Locations\Application\PickupLocationController())->updateDays(); 
+				break;
+
 		}
 
 		echo json_encode($return);
