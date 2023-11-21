@@ -46,23 +46,23 @@ class PickupLocation extends CustomModel
 	}
 
 	public function getMondayAttribute() {
-		return $this->sunday ?? true;
+		return $this->monday ?? true;
 	}
 
 	public function getTuesdayAttribute() {
-		return $this->sunday ?? true;
+		return $this->tuesday ?? true;
 	}
 
 	public function getWednesdayAttribute() {
-		return $this->sunday ?? true;
+		return $this->wednesday ?? true;
 	}
 
 	public function  getThursdayAttribute() {
-		return $this->sunday ?? true;
+		return $this->thursday ?? true;
 	}
 
 	public function getFridayAttribute() {
-		return $this->sunday ?? true;
+		return $this->friday ?? true;
 	}
 
 	public function getStatusTextAttribute() {
