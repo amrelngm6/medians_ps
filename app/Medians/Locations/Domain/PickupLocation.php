@@ -35,33 +35,33 @@ class PickupLocation extends CustomModel
 		'friday',
 	];
 
-	public $appends = ['contact_number', 'student_name', 'picture', 'status_text','saturday','sunday','monday','tuesday','wednesday','thursday','friday'];
+	public $appends = ['contact_number', 'student_name', 'picture', 'status_text','saturdays','sundays','mondays','tuesdays','wednesdays','thursdays','fridays'];
 
-	public function getSaturdayAttribute() {
+	public function getSaturdaysAttribute() {
 		return !empty($this->saturday) ? true : false;
 	}
 
-	public function getSundayAttribute() {
+	public function getSundaysAttribute() {
 		return !empty($this->sunday) ? true : false;
 	}
 
-	public function getMondayAttribute() {
+	public function getMondaysAttribute() {
 		return !empty($this->monday) ? true : false;
 	}
 
-	public function getTuesdayAttribute() {
+	public function getTuesdaysAttribute() {
 		return $this->tuesday ?? true;
 	}
 
-	public function getWednesdayAttribute() {
+	public function getWednesdaysAttribute() {
 		return $this->wednesday ?? true;
 	}
 
-	public function  getThursdayAttribute() {
+	public function  getThursdaysAttribute() {
 		return $this->thursday ?? true;
 	}
 
-	public function getFridayAttribute() {
+	public function getFridaysAttribute() {
 		return $this->friday ?? true;
 	}
 
