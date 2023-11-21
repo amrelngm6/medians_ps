@@ -172,11 +172,11 @@ export default
                     lat: event.latLng.lat(), lng: event.latLng.lng()
                 };
 
-                this.waypoints[i].address = await this.handlePositionToPlaceId(this.waypoints[this.activeMarkerIndex].destination.lat, this.waypoints[this.activeMarkerIndex].destination.lng);
+                this.waypoints[this.activeMarkerIndex].address = await this.handlePositionToPlaceId(this.waypoints[this.activeMarkerIndex].destination.lat, this.waypoints[this.activeMarkerIndex].destination.lng);
 
-                this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], event);
+                this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], this.activeMarkerIndex);
             },
-            
+
             async checkMarker(i)  {
                 this.activeDestination = this.waypoints[i].destination;
                 this.waypoints[i].address = await this.handlePositionToPlaceId(this.waypoints[i].destination.lat, this.waypoints[i].destination.lng);
