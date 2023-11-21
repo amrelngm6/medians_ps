@@ -7,6 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Locations\Domain\Destination;
 use Medians\Parents\Domain\Parents;
+use Medians\Trips\Domain\TripPickup;
 
 class Student extends CustomModel
 {
@@ -61,6 +62,11 @@ class Student extends CustomModel
     	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
 	}
 
+
+	public function trips() 
+	{
+    	return $this->hasMany(TripPickup::class, 'model_id', 'student_id')->where('model_type', Student::class)->with('trip');
+	}
 
 	public function pickup_location() 
 	{
