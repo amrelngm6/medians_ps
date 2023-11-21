@@ -172,9 +172,9 @@ export default
 
                 this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], event);
             },
-            checkMarker(i, marker) {
+            async checkMarker(i, marker)  {
                 this.activeDestination = this.waypoints[i].destination;
-                this.waypoints[i].address = this.handlePositionToPlaceId(marker.destination.lat, marker.destination.lng);
+                this.waypoints[i].address = await this.handlePositionToPlaceId(marker.destination.lat, marker.destination.lng);
                 this.$emit('click-marker', this.waypoints[i], i);
                 this.calculateAndDisplayRoute()
             },
