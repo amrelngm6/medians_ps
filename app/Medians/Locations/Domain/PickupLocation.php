@@ -38,11 +38,11 @@ class PickupLocation extends CustomModel
 	public $appends = ['contact_number', 'student_name', 'picture', 'status_text','saturday','sunday','monday','tuesday','wednesday','thursday','friday'];
 
 	public function getSaturdayAttribute() {
-		return $this->saturday ?? true;
+		return $this->saturday == 1 ? true : false;
 	}
 
 	public function getSundayAttribute() {
-		return $this->sunday ?? true;
+		return $this->sunday == 1 ? true : false;
 	}
 
 	public function getMondayAttribute() {
