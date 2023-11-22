@@ -43,7 +43,7 @@ class PickupLocationRepository
 
 	public function get($limit = 100)
 	{
-		return PickupLocation::limit($limit)->get();
+		return PickupLocation::limit($limit)->orderBy('pickup_id','DESC')->get();
 	}
 
 	public function getRouteStudents($route_id)
