@@ -151,6 +151,10 @@ class APIController extends CustomController
 				case 'Destination.create':
 					$return =  (new Locations\Application\DestinationController())->store(); 
 					break;
+
+				case 'Vacation.create':
+					$return =  (new Vacations\Application\VacationController())->store(); 
+					break;
 	
 			}
 
@@ -227,6 +231,10 @@ class APIController extends CustomController
 
             case 'Event.update':
 				$controller = new Events\Application\EventController;
+                break;
+
+            case 'Vacation.update':
+				$controller = new Vacation\Application\VacationController;
                 break;
 
 			case 'Role.update':
