@@ -23,23 +23,13 @@ class Vacation extends CustomModel
 		'student_type',
 	];
 
-	public $appends = ['date', 'student_name', 'last_update'];
-
-	public function getShortDateAttribute()
-	{
-		$date = date('Y-m-d', strtotime($this->created_at));
-		return date( ($date == date('Y-m-d')) ? 'H:i' : 'M d, H:i'  , strtotime($this->created_at));
-	}
+	public $appends = ['student_name', 'last_update'];
 
 	public function getStudentNameAttribute()
 	{
 		return $this->student->student_name;
 	}
 
-	public function getDateAttribute()
-	{
-		return date('Y-m-d H:i', strtotime($this->created_at));
-	}
 	public function getLastUpdateAttribute()
 	{
 		return date('Y-m-d H:i', strtotime($this->updated_at));
