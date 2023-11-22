@@ -48,7 +48,7 @@ class StudentRepository
 
 	public function findWithLocations($student_id, $parent_id)
 	{
-		return Student::where('parent_id', 0)->with('pickup_location', 'destination')->find($student_id);
+		return Student::where('parent_id', $parent_id)->with('pickup_location', 'destination')->find($student_id);
 	}
 
 
