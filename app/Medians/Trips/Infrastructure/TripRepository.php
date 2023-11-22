@@ -45,16 +45,16 @@ class TripRepository
 		return Trip::withCount('moving_locations')->withCount('waiting_locations')->with('pickup_locations', 'destinations', 'driver', 'vehicle')->find($id);
 	}
 
-	public function getDriverTrips($id)
+	public function getDriverTrips($id, $lastId = 0)
 	{
-		return Trip::with(['pickup_locations'=> function($q){
+		return Trip::where('trip_id', '>', $lastId)->with(['pickup_locations'=> function($q){
 			$q->with('model');
 		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
-	public function getStudentTrips($id)
+	public function getStudentTrips($id, $lastId = 0)
 	{
-		return Trip::with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+		return Trip::where('trip_id', '>', $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
 				$q->where('model_id', $id);
 			}
@@ -196,7 +196,6 @@ class TripRepository
 
 		$checkRoute = $this->routeRepo->getRouteStudents($data['route_id']);
 
-		error_log(json_encode($checkRoute));
 		foreach ($checkRoute->pickup_locations as $key => $value) 
 		{
 			$value['trip_id'] = $save->trip_id;

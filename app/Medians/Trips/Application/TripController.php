@@ -104,9 +104,6 @@ class TripController extends CustomController
 
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;
-        	
-
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
@@ -178,18 +175,6 @@ class TripController extends CustomController
 	{
 		$trip =  $this->repo->getTrip($id);
 
-		// $data = [];
-		// foreach ($trip->pickup_locations as $key => $value) {
-		// 	$value->distance = $this->haversineDistance($value->latitude, $value->longitude);
-		// 	$data[$key] = $value;
-		// }
-		
-		// usort($data, function($a, $b) {
-		// 	return $b->distance - $a->distance;
-		// });
-		
-		// $trip->pickup_locations = $data;
-
 		echo  json_encode( $trip );
 	}
 
@@ -202,12 +187,12 @@ class TripController extends CustomController
 	{
 		if  ($this->app->request()->get('driverId'))
 		{
-			return  $this->repo->getDriverTrips($this->app->request()->get('driverId'));
+			return  $this->repo->getDriverTrips($this->app->request()->get('driverId'), $this->app->request()->get('lastId'));
 		}
 
 		if  ($this->app->request()->get('studentId'))
 		{
-			return  $this->repo->getStudentTrips($this->app->request()->get('studentId'));
+			return  $this->repo->getStudentTrips($this->app->request()->get('studentId'), $this->app->request()->get('lastId'));
 		}
 
 		return  $data;
