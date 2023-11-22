@@ -46,12 +46,9 @@ class StudentRepository
 		return Student::with('pickup_location','parent')->limit($limit)->orderBy('student_id', 'DESC')->get();
 	}
 
-	public function search($request, $limit = 20)
+	public function locations($student_id)
 	{
-		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
-
-		return $this->similar( $arr, $limit);
+		return Student::with('pickup_location', 'destination')->find($student_id);
 	}
 
 
@@ -191,5 +188,5 @@ class StudentRepository
     	return $Object->with('pickup_location','destination')->find($Object->student_id);
     }
 
- 
+	
 }

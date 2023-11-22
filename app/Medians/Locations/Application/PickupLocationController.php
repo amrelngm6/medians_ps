@@ -136,9 +136,6 @@ class PickupLocationController extends CustomController
 		return $data;
 	}
 
-	
-	
-
 
 	public function store() 
 	{

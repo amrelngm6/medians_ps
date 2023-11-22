@@ -180,54 +180,19 @@ class StudentController extends CustomController
 
 	}
 
-
+	
 	/**
-	 * Front page 
-	 * @var Int
+	 * getPickupLocation
 	 */
-	public function page($contentObject)
+	public function loadLocations()
 	{
+		
+		$student_id = $this->app->request()->get('student_id');
 
-		try {
-			
-			$item = $this->repo->find($contentObject->item_id);
-			$item->addView();
+		$data =  $this->repo->locations($student_id);
 
-			return render('views/front/page.html.twig', [
-		        'item' => $item,
-		        'similar_articles' => $this->repo->similar($item, 3),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-		}
-	} 
-
-	/**
-	 * Front page 
-	 * @var Int
-	 */
-	public function list()
-	{
-		$request =  $this->app->request();
-
-		try {
-				
-			return render('views/front/Student.html.twig', [
-		        'first_item' => $this->repo->getFeatured(1),
-		        'search_items' => $request->get('search') ?  $this->repo->search($request, 10) : [],
-		        'search_text' => $request->get('search'),
-		        'items' => $this->repo->get(4),
-		        'cat_her' => $this->repo->getByCategory(6, 4),
-		        'cat_him' => $this->repo->getByCategory(7, 4),
-		    ]);
-
-		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
-		}
-	} 
-
+		return $data;
+	}
 	
 	public function addStudent() 
 	{

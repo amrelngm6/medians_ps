@@ -86,18 +86,7 @@ class HelpMessageController extends CustomController
 		}
 	}
 
-
-	/**
-	 * getPickupLocation
-	 */
-	public function getPickupLocation($id)
-	{
-		$data =  $this->repo->find($id);
-
-		echo  json_encode($data);
-	}
-
-
+	
 
 	public function store() 
 	{
