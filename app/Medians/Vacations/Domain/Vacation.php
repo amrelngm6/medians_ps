@@ -4,7 +4,7 @@ namespace Medians\Vacations\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
-use Medians\Drivers\Domain\Driver;
+use Medians\Students\Domain\Student;
 
 class Vacation extends CustomModel
 {
