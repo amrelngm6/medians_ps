@@ -133,6 +133,8 @@ class StudentRepository
 
 		if (isset($data['pickup_location']))
 		{
+			$this->pickupLocationRepository->deleteByStudent($Object->student_id);
+
 			$location = (array) $data['pickup_location'];
 			$location['model_id'] = $data['student_id'];
 			$location['model_type'] = Student::class;
@@ -141,6 +143,8 @@ class StudentRepository
 		
 		if (isset($data['destination']))
 		{
+			$this->destinationRepository->deleteByStudent($Object->student_id);
+
 			$destination = (array)  $data['destination'];
 			$destination['model_id'] = $data['student_id'];
 			$destination['model_type'] = Student::class;
