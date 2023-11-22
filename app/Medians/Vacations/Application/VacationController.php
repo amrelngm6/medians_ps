@@ -40,7 +40,7 @@ class VacationController extends CustomController
             [ 'key'=> "vacation_id", 'title'=> "#"],
             [ 'key'=> "title", 'title'=> __('Title'), 'sortable'=> true ],
             [ 'key'=> "date", 'title'=> __('date'), 'sortable'=> true ],
-            [ 'key'=> "user", 'title'=> __('user_name'), 'sortable'=> true ],
+            [ 'key'=> "student_name", 'title'=> __('user_name'), 'sortable'=> true ],
         ];
 	}
 
