@@ -76,7 +76,7 @@ class Student extends CustomModel
 
 	public function route() 
 	{
-		return $this->hasOneThrough(Route::class, PickupLocation::class, 'route_id', 'student_id', 'route_id', 'model_id');	
+		return $this->hasOneThrough(Route::class, PickupLocation::class, 'model_id', 'route_id', 'student_id', 'route_id');	
 	}
 
 	public function destination() 
