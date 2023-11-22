@@ -190,6 +190,7 @@ class TripController extends CustomController
 		{
 			return  $this->repo->getDriverTrips($user->driver_id, $this->app->request()->get('lastId'));
 		}
+		error_log(json_encode($user));
 		
 		if  (isset($user->parent_id))
 		{
