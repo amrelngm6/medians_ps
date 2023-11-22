@@ -54,7 +54,7 @@ class TripRepository
 
 	public function getStudentTrips($id, $lastId = 0)
 	{
-		return Trip::where('trip_id', '>', $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+		return Trip::where('trip_id', $lastId ? '<' : '>', $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
 				$q->where('model_id', $id);
 			}
