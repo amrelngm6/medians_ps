@@ -95,7 +95,7 @@ class PickupLocationController extends CustomController
 	 */ 
 	public function index( ) 
 	{
-		
+
 		try {
 			
 		    return render('locations', [

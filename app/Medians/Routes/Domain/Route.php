@@ -3,6 +3,7 @@
 namespace Medians\Routes\Domain;
 
 use Medians\Locations\Domain\PickupLocation;
+use Medians\Locations\Domain\Destination;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Drivers\Domain\Driver;
 use Shared\dbaser\CustomModel;
@@ -48,6 +49,11 @@ class Route extends CustomModel
 	public function pickup_locations() 
 	{
 		return $this->hasMany(PickupLocation::class, 'route_id', 'route_id')->where('status', 1)->with('student');	
+	}
+
+	public function destinations() 
+	{
+		return $this->hasMany(Destination::class, 'route_id', 'route_id');	
 	}
 
 	public function driver() 

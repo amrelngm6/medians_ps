@@ -64,6 +64,12 @@ class Destination extends CustomModel
     	return $this->hasOne(Student::class, 'student_id', 'model_id');
 	}
 	
+	
+	public function active_pickup() 
+	{
+    	return $this->hasOne(PickupLocation::class, 'model_id', 'model_id');
+	}
+	
 	public function route() 
 	{
     	return $this->hasOne(Route::class, 'route_id', 'route_id')->with('driver');

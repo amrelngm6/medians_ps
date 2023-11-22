@@ -76,7 +76,6 @@ class RouteController extends CustomController
 	 */ 
 	public function index( ) 
 	{
-		
 		try {
 			
 		    return render('routes', [

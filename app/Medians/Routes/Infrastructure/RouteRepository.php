@@ -3,7 +3,7 @@
 namespace Medians\Routes\Infrastructure;
 
 use Medians\Routes\Domain\Route;
-use Medians\Routes\Domain\Content;
+use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
 
 
@@ -39,26 +39,18 @@ class RouteRepository
 	{
 		return Route::with('pickup_locations', 'vehicle', 'driver')->limit($limit)->get();
 	}
-
-	public function search($request, $limit = 20)
+	
+	public function getRouteStudents($route_id)
 	{
-		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['route_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
-
-		return $this->similar( $arr, $limit);
-	}
-
-
-	public function similar($item, $limit = 3)
-	{
-		$title = str_replace([' ','-'], '%', $item->content->title);
-
-		return Route::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
-			}
-		})
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
+		$dayName = strtolower(date('l'));
+		
+		return Route::with(['pickup_locations'=> function($q) use ($dayName, $route_id){
+			return $q->where($dayName, '>',0)->where('route_id', $route_id);
+		}])->with(['destinations'=> function($q) use ($route_id, $dayName){
+			return $q->where('route_id', $route_id)->where('model_type',Student::class)->whereHas('active_pickup', function($Q) use ($dayName){
+				return $Q->where($dayName, '>' ,0);
+			});
+		}])->find($route_id);
 	}
 
 
