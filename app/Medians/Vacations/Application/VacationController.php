@@ -4,6 +4,7 @@ namespace Medians\Vacations\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Vacations\Infrastructure\VacationRepository;
+use Medians\Students\Infrastructure\StudentRepository;
 
 class VacationController extends CustomController 
 {
@@ -21,8 +22,8 @@ class VacationController extends CustomController
 	{
 
 		$this->app = new \config\APP;
-
-		$this->repo = new VacationRepository	();
+		$this->studentRepo = new StudentRepository();
+		$this->repo = new VacationRepository();
 	}
 
 
