@@ -19,8 +19,8 @@ class Vacation extends CustomModel
 	public $fillable = [
 		'title',
 		'date',
-		'user_id',
-		'user_type',
+		'student_id',
+		'student_type',
 	];
 
 	public $appends = ['date', 'short_date', 'last_update'];
@@ -43,6 +43,11 @@ class Vacation extends CustomModel
 	public function getFields()
 	{
 		return $this->fillable;
+	}
+	
+	public function student()
+	{
+		return $this->hasOne(Student::class, 'student_id','student_id');
 	}
 	
 	

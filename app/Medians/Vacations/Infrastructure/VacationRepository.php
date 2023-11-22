@@ -45,7 +45,7 @@ class VacationRepository
 
 		$Model = new Vacation();
 
-		$data['user_type'] = Student::class;
+		$data['student_type'] = Student::class;
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $Model->getFields()))
