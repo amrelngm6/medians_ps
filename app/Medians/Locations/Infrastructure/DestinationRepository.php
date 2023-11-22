@@ -3,6 +3,7 @@
 namespace Medians\Locations\Infrastructure;
 
 use Medians\Locations\Domain\Destination;
+use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
 
 
