@@ -1,0 +1,19 @@
+<template>
+    <div class=" w-full">
+        <data_table_page ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Vacation" object_key="vacation_id" ></data_table_page>
+    </div>
+</template>
+<script>
+
+export default 
+{
+
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+    ],
+};
+</script>
