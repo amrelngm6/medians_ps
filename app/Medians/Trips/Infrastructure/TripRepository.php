@@ -65,13 +65,11 @@ class TripRepository
 	{
 		$v = $lastId ? '<' : '>';
 		$lastId = $lastId ? $lastId : 0;
-		error_log(json_encode($id));
-		error_log(json_encode($lastId));
 
 		// return Trip::where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 		return Trip::with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
-				return $q->whereHas('student', function($q) use ($id){
+				return $q->with('location')->whereHas('student', function($q) use ($id){
 					return $q->where('parent_id', $id);
 				});
 			})
