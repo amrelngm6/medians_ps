@@ -46,26 +46,15 @@ class PickupLocationRepository
 		return PickupLocation::limit($limit)->get();
 	}
 
-	public function search($request, $limit = 20)
+	public function getRouteStudents($route_id)
 	{
-		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['pickup_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
-
-		return $this->similar( $arr, $limit);
-	}
-
-
-	public function similar($item, $limit = 3)
-	{
-		$title = str_replace([' ','-'], '%', $item->content->title);
-
-		return PickupLocation::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
-			}
+		return PickupLocation::whereDoesntHave('',function($q){
+			return $q;
 		})
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
+		->where('route_id', $route_id)->get();
 	}
+
+
 
 
 

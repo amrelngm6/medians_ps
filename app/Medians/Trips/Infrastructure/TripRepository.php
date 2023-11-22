@@ -10,6 +10,9 @@ use Medians\Trips\Domain\TripDestination;
 use Medians\Trips\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
 
+use Medians\Locations\Infrastructure\DestinationRepository;
+use Medians\Locations\Infrastructure\PickupLocationRepository;
+
 
 class TripRepository 
 {
@@ -21,10 +24,14 @@ class TripRepository
 	 * settings for branch
 	 */ 
 	protected $app ;
+	protected $destinationRepo;
+	protected $pickupRepo;
 
 
 	function __construct()
 	{
+		$this->destinationRepo = new DestinationRepository();
+		$this->pickupRepo = new PickupLocationRepository();
 	}
 
 
@@ -191,7 +198,8 @@ class TripRepository
 		if (empty($save->wasRecentlyCreated))
 			return $save;
 
-		$check = PickupLocation::where('route_id', $data['route_id'])->get();
+
+		$check = $this->pickupRepo->getRouteStudents($data['route_id']);
 
 		foreach ($check as $key => $value) 
 		{
@@ -200,7 +208,7 @@ class TripRepository
 			$savePickups = $this->savePickup($value);
 		}
 
-		$destinations = Destination::where('route_id', $data['route_id'])->get();
+		$check = $this->destinationRepo->getRouteStudents($data['route_id']);
 
 		foreach ($destinations as $key => $value) 
 		{
