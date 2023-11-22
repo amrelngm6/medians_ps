@@ -1,37 +1,37 @@
 <?php
 
-namespace Medians\Events\Infrastructure;
+namespace Medians\Vacations\Infrastructure;
 
-use Medians\Events\Domain\Event;
+use Medians\Vacations\Domain\Vacation;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Drivers\Domain\Driver;
 use Medians\Users\Domain\User;
 
 
-class EventRepository 
+class VacationRepository 
 {
 
 
 	public static function getModel()
 	{
-		return new Event();
+		return new Vacation();
 	}
 
 
 	public function find($id)
 	{
-		return Event::find($id);
+		return Vacation::find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Event::limit($limit)->orderBy('event_id', 'DESC')->get();
+		return Vacation::limit($limit)->orderBy('vacation_id', 'DESC')->get();
 	}
 
 
-	public function eventsByDate($params)
+	public function vacationsByDate($params)
 	{
-		$query = Event::whereBetween('created_at', [$params['start'], $params['end']]);
+		$query = Vacation::whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -42,7 +42,7 @@ class EventRepository
 	public function store($data) 
 	{
 
-		$Model = new Event();
+		$Model = new Vacation();
 
 		foreach ($data as $key => $value) 
 		{
@@ -53,9 +53,8 @@ class EventRepository
 		}		
 
 		// Return the  object with the new data
-    	$Object = Event::create($dataArray);
+    	return Vacation::create($dataArray);
 
-    	return $Object;
     }
     	
 
@@ -65,7 +64,7 @@ class EventRepository
     public function update($data)
     {
 
-		$Object = Event::find($data['event_id']);
+		$Object = Vacation::find($data['vacation_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -84,9 +83,9 @@ class EventRepository
 	{
 		try {
 			
-			$delete = Event::find($id)->delete();
+			$delete = Vacation::find($id)->delete();
 
-			return true;
+			return $delete ? true : false;
 
 		} catch (\Exception $e) {
 
@@ -94,6 +93,7 @@ class EventRepository
 			
 		}
 	}
+
 
 
  

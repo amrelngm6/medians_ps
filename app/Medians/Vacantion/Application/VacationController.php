@@ -1,11 +1,11 @@
 <?php
-namespace Medians\Events\Application;
+namespace Medians\Vacations\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Events\Infrastructure\EventRepository;
+use Medians\Vacations\Infrastructure\VacationRepository;
 
-class EventController extends CustomController 
+class VacationController extends CustomController 
 {
 
 	/**
@@ -22,7 +22,7 @@ class EventController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new EventRepository	();
+		$this->repo = new VacationRepository	();
 	}
 
 
@@ -36,7 +36,7 @@ class EventController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "event_id", 'title'=> "#"],
+            [ 'key'=> "vacation_id", 'title'=> "#"],
             [ 'key'=> "title", 'title'=> __('Title'), 'sortable'=> true ],
             [ 'key'=> "status", 'title'=> __('status'), 'sortable'=> true ],
             [ 'key'=> "date", 'title'=> __('date'), 'sortable'=> true ],
@@ -53,7 +53,7 @@ class EventController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "event_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
+            [ 'key'=> "vacation_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
             [ 'key'=> "title", 'title'=> __('title'),  'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'textarea' ],
             [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
@@ -75,9 +75,9 @@ class EventController extends CustomController
 		
 		try {
 			
-		    return render('events', [
+		    return render('vacations', [
 		        'load_vue' => true,
-		        'title' => __('Events'),
+		        'title' => __('Vacations'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -120,19 +120,20 @@ class EventController extends CustomController
 
 		return $returnData;
 	}
-
+	
+	
 	/**
-	 * Load latest notifications at mobile
+	 * Load latest vacations at mobile
 	 * 
 	 */
-	public function loadEvents()
+	public function loadVacations()
 	{
 		$this->app = new \config\APP;
 
 		return $this->repo->loadDriverMessages($this->app->auth(), 100);
 	}  
 
-	
+
 
 	public function update()
 	{
@@ -179,15 +180,5 @@ class EventController extends CustomController
 
 	}
 
-	public function validate($params) 
-	{
-
-		if (empty($params['content']['ar']['title']))
-		{
-        	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
-		}
-
-	}
-
-
+	
 }
