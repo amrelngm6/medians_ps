@@ -64,6 +64,10 @@ class StudentController extends CustomController
 			],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "transfer_status", 'title'=> __('Transfer status'), 
+				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
+				'data' => [['transfer_status'=>'Approved','title'=>__('Approved')], ['transfer_status'=>'Pending','title'=>__('Pending')]]  
+			],
             [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'fillable'=> true, 'column_type'=>'phone' ],
             [ 'key'=> "date_of_birth", 'title'=> __('date_of_birth'), 'fillable'=> true, 'column_type'=>'date' ],
             [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=>true, 'column_type'=>'file' ],

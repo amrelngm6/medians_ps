@@ -1105,6 +1105,7 @@ class LangsAr
 		,'Waiting pickups' => 'مواقع قيد الإنتظار'
 		,'active pickups' => 'مواقع مكتملة'
 		,'Trips' => 'الرحلات'
+		,'transfer_status' => 'حالة الإشتراك'
 		,'Trips description' => 'قائمة بالرحلات النشطة حاليا'
 		,'find by name and address' => 'ابحث عن طريق الإسم او التفاصيل'
 		,'Routes description' => 'هذه القائمة تشمل خطوط السير وأماكن التوقف الخاصة بهم'
