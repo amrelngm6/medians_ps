@@ -7,6 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Locations\Domain\Destination;
 use Medians\Parents\Domain\Parents;
+use Medians\Routes\Domain\Route;
 use Medians\Trips\Domain\TripPickup;
 
 class Student extends CustomModel
