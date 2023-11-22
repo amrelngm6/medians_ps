@@ -234,7 +234,7 @@ class APIController extends CustomController
                 break;
 
             case 'Vacation.update':
-				$controller = new Vacation\Application\VacationController;
+				$controller = new Vacations\Application\VacationController;
                 break;
 
 			case 'Role.update':
