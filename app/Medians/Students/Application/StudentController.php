@@ -187,9 +187,11 @@ class StudentController extends CustomController
 	public function loadLocations()
 	{
 		
+		
+
 		$params = (array) json_decode($this->app->request()->get('params'));
 
-		$data =  $this->repo->findWithLocations($params['student_id']);
+		$data =  $this->repo->findWithLocations($params['student_id'], $this->app->auth()->parent_id);
 
 		return $data;
 	}
