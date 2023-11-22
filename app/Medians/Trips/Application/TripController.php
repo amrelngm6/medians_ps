@@ -191,11 +191,10 @@ class TripController extends CustomController
 			return  $this->repo->getDriverTrips($user->driver_id, $this->app->request()->get('lastId'));
 		}
 		
-		// if  (isset($user->parent_id))
-		// {
-			return  $this->repo->getParentStudentsTrips($this->app->request()->get('studentId'), $this->app->request()->get('lastId'));
-			// return  $this->repo->getParentStudentsTrips($user->parent_id, $this->app->request()->get('lastId'));
-		// }
+		if  (isset($user->parent_id))
+		{
+			return  $this->repo->getParentStudentsTrips($user->parent_id, $this->app->request()->get('lastId'));
+		}
 
 		return  $data;
 		
