@@ -318,6 +318,10 @@ class APIController extends CustomController
 					return response((new Locations\Application\PickupLocationController())->delete());
 					break;
 
+				case 'Destination.delete':
+					return response((new Locations\Application\DestinationController())->delete());
+					break;
+
 				case 'Student.delete':
 					return response((new Students\Application\StudentController())->delete());
 					break;
