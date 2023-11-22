@@ -38,8 +38,8 @@ class VacationController extends CustomController
 		return [
             [ 'key'=> "vacation_id", 'title'=> "#"],
             [ 'key'=> "title", 'title'=> __('Title'), 'sortable'=> true ],
-            [ 'key'=> "status", 'title'=> __('status'), 'sortable'=> true ],
             [ 'key'=> "date", 'title'=> __('date'), 'sortable'=> true ],
+            [ 'key'=> "user", 'title'=> __('user_name'), 'sortable'=> true ],
         ];
 	}
 
@@ -55,9 +55,11 @@ class VacationController extends CustomController
 		return [
             [ 'key'=> "vacation_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
             [ 'key'=> "title", 'title'=> __('title'),  'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'textarea' ],
-            [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
-            [ 'key'=> "picture", 'title'=> __('picture'),  'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "date", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'date' ],
+			[ 'key'=> "model_id", 'title'=> __('Student'), 
+				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'student_id', 'text_key'=>'student_name', 
+				'data' => $this->studentRepo->get()
+			],
         ];
 	}
 
