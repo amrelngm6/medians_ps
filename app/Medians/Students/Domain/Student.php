@@ -73,6 +73,11 @@ class Student extends CustomModel
     	return $this->hasOne(PickupLocation::class, 'model_id', 'student_id')->where('model_type', Student::class);
 	}
 
+	public function route() 
+	{
+		return $this->hasOneThrough(Route::class, PickupLocation::class, 'route_id', 'model_id', 'route_id', 'student_id');	
+	}
+
 	public function destination() 
 	{
     	return $this->hasOne(Destination::class, 'model_id', 'student_id')->where('model_type', Student::class);

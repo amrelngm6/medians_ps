@@ -53,7 +53,7 @@ class ParentRepository
 	public function getParent($parent_id)
 	{
 		return Parents::with(['students'=>function($q){
-			$q->withCount('trips');
+			$q->withCount('trips')->with('route');
 		}])->with('pending_student')->find($parent_id);
 	}
 
