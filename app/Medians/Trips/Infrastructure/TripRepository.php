@@ -65,7 +65,7 @@ class TripRepository
 	{
 		return Trip::where('trip_id', $lastId ? '<' : '>', $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
-				$q->where('model_id', $id)->whereHas('model', function($q) use ($id){
+				$q->whereHas('model', function($q) use ($id){
 					return $q->where('parent_id', $id);
 				});
 			})
