@@ -36,7 +36,7 @@ class DestinationRepository
 
 	public function get($limit = 100)
 	{
-		return Destination::limit($limit)->orderBy('pickup_id','DESC')->get();
+		return Destination::limit($limit)->orderBy('destination_id','DESC')->get();
 	}
 
 	public function getRouteStudents($route_id)
