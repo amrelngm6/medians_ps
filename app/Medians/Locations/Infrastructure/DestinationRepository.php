@@ -119,10 +119,6 @@ class DestinationRepository
 			
 			$delete = Destination::where('model_id',$student_id)->where('model_type',Student::class)->delete();
 
-			if ($delete){
-				$this->storeCustomFields(null, $id);
-			}
-
 			return true;
 
 		} catch (\Exception $e) {
