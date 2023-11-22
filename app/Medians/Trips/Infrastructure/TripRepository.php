@@ -3,15 +3,11 @@
 namespace Medians\Trips\Infrastructure;
 
 use Medians\Trips\Domain\Trip;
-use Medians\Locations\Domain\PickupLocation;
-use Medians\Locations\Domain\Destination;
 use Medians\Trips\Domain\TripPickup;
 use Medians\Trips\Domain\TripDestination;
-use Medians\Trips\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
 
-use Medians\Locations\Infrastructure\DestinationRepository;
-use Medians\Locations\Infrastructure\PickupLocationRepository;
+use Medians\Routes\Infrastructure\RouteRepository;
 
 
 class TripRepository 
@@ -24,14 +20,12 @@ class TripRepository
 	 * settings for branch
 	 */ 
 	protected $app ;
-	protected $destinationRepo;
-	protected $pickupRepo;
+	protected $routeRepo;
 
 
 	function __construct()
 	{
-		$this->destinationRepo = new DestinationRepository();
-		$this->pickupRepo = new PickupLocationRepository();
+		$this->routeRepo = new RouteRepository();
 	}
 
 
@@ -199,18 +193,17 @@ class TripRepository
 			return $save;
 
 
-		$check = $this->pickupRepo->getRouteStudents($data['route_id']);
 
-		foreach ($check as $key => $value) 
+		$checkRoute = $this->routeRepo->getRouteStudents($data['route_id']);
+
+		foreach ($checkRoute->pickup_locations as $key => $value) 
 		{
 			$value['trip_id'] = $save->trip_id;
 			$value['status'] = 'waiting';
 			$savePickups = $this->savePickup($value);
 		}
 
-		$check = $this->destinationRepo->getRouteStudents($data['route_id']);
-
-		foreach ($destinations as $key => $value) 
+		foreach ($checkRoute->destinations as $key => $value) 
 		{
 			$value['trip_id'] = $save->trip_id;
 			$value['status'] = 'waiting';
