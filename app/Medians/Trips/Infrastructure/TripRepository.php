@@ -196,6 +196,7 @@ class TripRepository
 
 		$checkRoute = $this->routeRepo->getRouteStudents($data['route_id']);
 
+		error_log(json_encode($checkRoute));
 		foreach ($checkRoute->pickup_locations as $key => $value) 
 		{
 			$value['trip_id'] = $save->trip_id;
