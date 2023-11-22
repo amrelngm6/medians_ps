@@ -200,14 +200,14 @@ class TripRepository
 		{
 			$value['trip_id'] = $save->trip_id;
 			$value['status'] = 'waiting';
-			$savePickups = $this->savePickup($value);
+			$this->savePickup($value);
 		}
 
 		foreach ($checkRoute->destinations as $key => $value) 
 		{
 			$value['trip_id'] = $save->trip_id;
 			$value['status'] = 'waiting';
-			$saveDestinations = $this->saveDestination($value);
+			$this->saveDestination($value);
 		}
 
 		return $this->getTrip($save->trip_id);
