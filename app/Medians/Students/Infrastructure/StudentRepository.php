@@ -8,6 +8,7 @@ use Medians\Locations\Domain\PickupLocation;
 use Medians\Locations\Domain\Destination;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Locations\Infrastructure\PickupLocationRepository;
+use Medians\Locations\Infrastructure\DestinationRepository;
 
 
 class StudentRepository 
@@ -22,11 +23,13 @@ class StudentRepository
 	protected $app ;
 
 	protected $pickupLocationRepository ;
+	protected $destinationRepository ;
 
 
 	function __construct()
 	{
 		$this->pickupLocationRepository = new PickupLocationRepository;
+		$this->destinationRepository = new DestinationRepository;
 	}
 
 
@@ -162,7 +165,7 @@ class StudentRepository
 			$location = (array) $data['pickup_location'];
 			$location['model_id'] = $data['student_id'];
 			$location['model_type'] = Student::class;
-			$this->pickupLocationRepository->store($location);
+			$location['pickup_id'] > 0 ? $this->pickupLocationRepository->update($location) : $this->pickupLocationRepository->store($location);
 		}
 		
 		if (isset($data['destination']))
@@ -170,7 +173,7 @@ class StudentRepository
 			$destination = (array)  $data['destination'];
 			$destination['model_id'] = $data['student_id'];
 			$destination['model_type'] = Student::class;
-			$this->pickupLocationRepository->storeDestination($destination);
+			$destination['destination_id'] > 0 ? $this->destinationRepository->update($destination) : $this->destinationRepository->store($destination);
 		}
 
     	return $Object->with('pickup_location','destination')->find($Object->student_id);

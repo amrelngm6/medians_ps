@@ -65,9 +65,6 @@ class DestinationRepository
 		// Return the  object with the new data
     	$Object = Destination::create($dataArray);
 
-    	// Store Custom fields
-		if (isset($data['field']))
-	    	$this->storeCustomFields($data['field'], $Object->id);
 
     	return $Object;
     }
@@ -85,9 +82,6 @@ class DestinationRepository
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
-    	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['destination_id']) : '';
-
     	return $Object;
 
     }
@@ -104,42 +98,12 @@ class DestinationRepository
 			
 			$delete = Destination::find($id)->delete();
 
-			if ($delete){
-				$this->storeCustomFields(null, $id);
-			}
-
 			return true;
 
 		} catch (\Exception $e) {
 
 			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);
 			
-		}
-	}
-
-
-
-	/**
-	* Save related items to database
-	*/
-	public function storeCustomFields($data, $id) 
-	{
-		CustomField::where('model_type', Destination::class)->where('model_id', $id)->delete();
-		if ($data)
-		{
-			foreach ($data as $key => $value)
-			{
-				$fields = [];
-				$fields['model_type'] = Destination::class;	
-				$fields['model_id'] = $id;	
-				$fields['code'] = $key;	
-				$fields['value'] = $value;
-
-				$Model = CustomField::create($fields);
-				$Model->update($fields);
-			}
-	
-			return $Model;		
 		}
 	}
 
