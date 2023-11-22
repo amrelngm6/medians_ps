@@ -112,9 +112,9 @@ class DestinationController extends CustomController
 
 
 	/**
-	 * getPickupLocation
+	 * Student Destination
 	 */
-	public function getPickupLocation($id)
+	public function loadDestination($id)
 	{
 		$data =  $this->repo->find($id);
 
@@ -176,10 +176,10 @@ class DestinationController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['pickup_id']);
+        	$check = $this->repo->find($params['destination_id']);
 
 
-            if ($this->repo->delete($params['pickup_id']))
+            if ($this->repo->delete($params['destination_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }
