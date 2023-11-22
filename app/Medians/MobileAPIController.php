@@ -159,6 +159,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Locations\Application\PickupLocationController())->loadPickup(); 
 				break;
 				
+			case 'student_locations':
+				$return =  (new Students\Application\StudentController())->loadLocations(); 
+				break;
+				
 				
 		}
 

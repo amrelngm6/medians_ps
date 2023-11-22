@@ -46,23 +46,11 @@ class StudentRepository
 		return Student::with('pickup_location','parent')->limit($limit)->orderBy('student_id', 'DESC')->get();
 	}
 
-	public function locations($student_id)
+	public function findWithLocations($student_id)
 	{
 		return Student::with('pickup_location', 'destination')->find($student_id);
 	}
 
-
-	public function similar($item, $limit = 3)
-	{
-		$title = str_replace([' ','-'], '%', $item->content->title);
-
-		return Student::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
-			}
-		})
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
-	}
 
 
 
