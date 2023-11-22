@@ -220,6 +220,9 @@ if(isset($app->auth()->id))
     /** @return events */
     Macaw::get('/admin/events', Medians\Events\Application\EventController::class.'@index');
 
+    /** @return vacations */
+    Macaw::get('/admin/vacations', Medians\Vacations\Application\VacationController::class.'@index');
+
     /** @return roles */
     Macaw::get('/admin/roles', Medians\Roles\Application\RoleController::class.'@index');
 
