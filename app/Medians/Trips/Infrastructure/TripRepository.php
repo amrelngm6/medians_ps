@@ -61,6 +61,17 @@ class TripRepository
 		)->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
+	public function getParentStudentsTrips($id, $lastId = 0)
+	{
+		return Trip::where('trip_id', $lastId ? '<' : '>', $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+			'pickup_locations', function($q) use ($id){
+				$q->where('model_id', $id)->whereHas('student', function($q) use ($id){
+					return $q->where('parent_id', $id);
+				});
+			})
+		->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
+	}
+
 	public function get($limit = 100)
 	{
 		return Trip::withCount('moving_locations')->withCount('pickup_locations')->with('route', 'pickup_locations', 'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
