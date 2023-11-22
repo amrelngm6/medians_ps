@@ -5,6 +5,7 @@ namespace Medians\Vacations\Infrastructure;
 use Medians\Vacations\Domain\Vacation;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Drivers\Domain\Driver;
+use Medians\Students\Domain\Student;
 use Medians\Users\Domain\User;
 
 
@@ -44,6 +45,7 @@ class VacationRepository
 
 		$Model = new Vacation();
 
+		$data['user_type'] = Student::class;
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $Model->getFields()))
