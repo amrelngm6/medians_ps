@@ -122,12 +122,12 @@ class NotificationEvent extends CustomModel
 				break;
 
 			case PickupLocation::class:
-				$location =  $model->with('student')->find($model->pickup_id);
+				$location =  $model->with('parent')->find($model->pickup_id);
 				return isset($location->parent) ? $location->parent : null;
 				break;
 
-			case PickupLocation::class:
-				$location =  $model->with('student')->find($model->destination_id);
+			case Destination::class:
+				$location =  $model->with('parent')->find($model->destination_id);
 				return isset($location->parent) ? $location->parent : null;
 				break;
 			
