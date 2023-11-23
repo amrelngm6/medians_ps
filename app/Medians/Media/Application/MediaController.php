@@ -42,6 +42,15 @@ class MediaController extends CustomController
 			$this->repo->upload($value);
 		}
 		return json_encode(['data'=> ['message'=>'Uploaded successfully']]);
+	}
+
+	public function uploadFile()
+	{
+		$this->app = new \config\APP;
+
+		foreach ($this->app->request()->files as $key => $value) {
+			return $this->repo->upload($value);
+		}
 		
 	}
 

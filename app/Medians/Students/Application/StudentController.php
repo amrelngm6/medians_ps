@@ -246,4 +246,14 @@ class StudentController extends CustomController
 		return $returnData;
 	}
 
+
+	public function uploadPicture()
+	{
+		$media = new \Medians\Media\Application\MediaController;
+		$uploaded = $media->uploadFile();
+		if ($uploaded)
+		{
+			echo json_encode($uploaded);
+		}
+	} 
 }
