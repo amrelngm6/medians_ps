@@ -34,14 +34,14 @@ class OneSignalService
 	}
 
 
-    public function send($receiver, $subject, $messageText)
+    public function send($receiverId, $subject, $messageText)
     {
 
-        $this->sendNotification($receiver, $subject, $messageText);
+        $this->sendNotification($receiverId, $subject, $messageText);
     }
 
 
-    function sendNotification($receiver, $subject, $messageText) {
+    function sendNotification($receiverId, $subject, $messageText) {
         
         $headings = array(
             "en" => strip_tags($subject)
@@ -57,10 +57,11 @@ class OneSignalService
             // 'included_segments' => ['segment D-23'], // Send to all subscribers
             'headings' => $headings,
             'contents' => $content,
-            // 'include_external_user_ids' => [$this->user_onesignal_id],
+            'include_external_user_ids' => [$this->user_onesignal_id],
             // 'data' => $receiver,
             'target_channel' => 'push',
-            'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
+            'include_aliases' => ['external_id'=>[$receiverId]]
+            // 'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
         );
         
         

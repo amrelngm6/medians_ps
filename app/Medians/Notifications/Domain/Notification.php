@@ -5,6 +5,8 @@ namespace Medians\Notifications\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
+use Medians\Drivers\Domain\Driver;
+use Medians\Parents\Domain\Parents;
 use Medians\Mail\Application\MailService;
 
 
@@ -134,8 +136,14 @@ class Notification extends CustomModel
 		if (!empty($receiver->field['onesignal_id']))
 		{
 
+			if ($notification->receiver_type == Driver::class)
+			{
+				$id = "D-".$notification['receiver_id'];
+			} else {
+				$id = "P-".$notification['receiver_id'];
+			}
 			$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($receiver->field['onesignal_id']);
-			$sendOneSignalNotification->sendNotification($receiver, $notification->subject, $notification->body_text);
+			$sendOneSignalNotification->sendNotification($notification->receiver_id, $notification->subject, $notification->body_text);
 		}
 
 		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
