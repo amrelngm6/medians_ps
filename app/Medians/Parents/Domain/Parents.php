@@ -66,7 +66,7 @@ class Parents extends CustomModel
 
 	public function pending_student() 
 	{
-		return $this->hasOne(Student::class, 'parent_id', 'parent_id')->where('transfer_status', 'Pending')->with('destination','pickup_location');
+		return $this->hasOne(Student::class, 'parent_id', 'parent_id')->where('transfer_status', 'Pending')->with('pickup_location','destination');
 	}
 
     public function custom_fields()

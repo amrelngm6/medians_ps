@@ -55,7 +55,7 @@ class ParentRepository
 		return Parents::with(['students'=>function($q){
 			$q->withCount('trips')->with('route');
 		}])->with(['pending_student'=> function($q){
-			$q->whereDoesntHave('destination')->orWhereDoesntHave('pickup_location');
+			$q->whereDoesntHave('pickup_location')->orWhereDoesntHave('destination');
 		}])->find($parent_id);
 	}
 
