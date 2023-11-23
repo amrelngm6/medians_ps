@@ -9,6 +9,7 @@ use Medians\Drivers\Domain\Driver;
 use Medians\Trips\Domain\Trip;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Help\Domain\HelpMessageComment;
+use Medians\Parents\Domain\Parents;
 
 /**
  * NotificationEvent class database queries
@@ -85,21 +86,21 @@ class NotificationEvent extends CustomModel
 		switch (get_class($model)) 
 		{
 			case HelpMessageComment::class:
-				return $model->message->user;
+				return [$model->message->user];
 				break;
 
 			case PickupLocation::class:
 				$location =  $model->with('route')->find($model->pickup_id);
-				return isset($location->route->driver) ? $location->route->driver : null;
+				return isset($location->route->driver) ? [$location->route->driver] : null;
 				break;
 
 			case Destination::class:
 				$location =  $model->with('route')->find($model->destination_id);
-				return isset($location->route->driver) ? $location->route->driver : null;
+				return isset($location->route->driver) ? [$location->route->driver] : null;
 				break;
 	
 			default:
-				return $model;
+				return [$model];
 				break;
 			
 		}
@@ -118,17 +119,27 @@ class NotificationEvent extends CustomModel
 		switch (get_class($model)) 
 		{
 			case HelpMessageComment::class:
-				return $model->message->user;
+				return [$model->message->user];
 				break;
 
 			case PickupLocation::class:
 				$location =  $model->with('parent')->find($model->pickup_id);
-				return isset($location->parent) ? $location->parent : null;
+				return isset($location->parent) ? [$location->parent] : null;
 				break;
 
 			case Destination::class:
 				$location =  $model->with('parent')->find($model->destination_id);
-				return isset($location->parent) ? $location->parent : null;
+				return isset($location->parent) ? [$location->parent] : null;
+				break;
+			
+
+			case Trip::class:
+				$class = new Parents;
+				$tripId = $model->trip_id;
+				$parents =  $class->whereHas('pickup_location', function($q) use ($tripId){
+					$q->where('trip_id', $tripId);
+				})->get($model->destination_id);
+				return $parents;
 				break;
 			
 			default:
@@ -148,13 +159,24 @@ class NotificationEvent extends CustomModel
 	public function renderNotification($event, $model)
 	{
 
-    	$receiver = $event->receiver_model == Driver::class 
+    	$receivers = $event->receiver_model == Driver::class 
 		? $this->filterDriver($event, $model)
 		: $this->filterParent($event, $model);
 
-		if (!$receiver)
+		if (!$receivers)
 			return null;
 
+		foreach ($receivers as $key => $receiver) 
+		{
+			$this->saveNotification($event, $model, $receiver);
+		}
+
+		return true;
+	}  
+
+	public function saveNotification($event, $model, $receiver)
+	{
+		
     	$app = new \config\APP;
     	$params = [];
 
@@ -170,5 +192,5 @@ class NotificationEvent extends CustomModel
     	$event->body_text = $app->renderTemplate($event->body_text)->render($params);
 
     	return Notification::storeEventNotification($event, $model, $receiver);
-	}  
+	}
 }
