@@ -34,7 +34,7 @@ class LangsAr
 		,'ENTER_MAIL' => 'البريد الالكتروني'
 		,'ENTER_PASS' => 'كلمة المرور'
 		,'PASSWORD' => 'كلمة المرور'
-		,'PASSWORD_ERROR' => 'Password is not right'
+		,'PASSWORD_ERROR' => 'كلمة المرور غير صحيحة'
 		,'OLD_PASSWORD' => 'كلمة المرور الحالية'
 		,'NEW_PASSWORD' => 'كلمة المرور الجديدة'
 		,'ENTER_PASS_AG' => 'كلمة المرور مرة اخرى'
