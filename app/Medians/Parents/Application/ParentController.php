@@ -183,8 +183,8 @@ class ParentController extends CustomController
 
 	public function changePassword()
 	{
-		$params = $this->app->request()->get('params');
-		$params = (array)  is_array($params) ?  $params : json_decode($params);
+		$_params = $this->app->request()->get('params');
+		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
 
         try {
 			
