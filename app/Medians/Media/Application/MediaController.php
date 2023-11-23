@@ -49,7 +49,10 @@ class MediaController extends CustomController
 		$this->app = new \config\APP;
 
 		foreach ($this->app->request()->files as $key => $value) {
-			return $this->repo->upload($value, $type);
+			if ($value)
+			{
+				return $this->repo->upload($value, $type);
+			}
 		}
 		
 	}
