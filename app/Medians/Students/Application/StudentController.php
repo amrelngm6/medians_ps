@@ -250,6 +250,10 @@ class StudentController extends CustomController
 	public function uploadPicture()
 	{
 		$media = new \Medians\Media\Application\MediaController;
-		return  $media->uploadFile('students');
+		$pictureName =  $media->uploadFile('students');
+		$student =  $this->repo->find($this->app->request()->get('student_id'));
+		$student->picture = '/uploads/students/'.$pictureName;
+		$student->save();
+		return  true;
 	} 
 }
