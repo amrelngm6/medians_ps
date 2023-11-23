@@ -206,8 +206,15 @@ class NotificationController extends CustomController
 	public function loadLatestMobileNotifications()
 	{
 		$this->app = new \config\APP;
-		
-		$items = $this->repo->load($this->app->auth(), 10, 0);
+		$user = $this->app->auth();
+		if (isset($user->parent_id))
+		{
+			$items = $this->repo->loadParentNotifications($user->parent_id, 10, 0);
+		}
+		if (isset($user->driver_id))
+		{
+			$items = $this->repo->loadDriverNotifications($user->driver_id, 10, 0);
+		}
 		
 		$firstitem = $items->first();
 		return [
