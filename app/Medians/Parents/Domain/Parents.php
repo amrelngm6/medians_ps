@@ -57,7 +57,7 @@ class Parents extends CustomModel
 
 	public function trip_pickup_location() 
 	{
-		return $this->hasOneThrough(TripPickup::class, Student::class, 'parent_id', 'model_id', 'parent_id', 'student_id');	
+		return $this->hasOneThrough(TripPickup::class, Student::class, 'model_id', 'parent_id', 'student_id','parent_id');	
 	}
 
 	public function students() 
