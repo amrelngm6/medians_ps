@@ -207,6 +207,7 @@ class NotificationController extends CustomController
 	{
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
+		print($user);
 		if (isset($user->parent_id))
 		{
 			$items = $this->repo->loadParentNotifications($user->parent_id, 10, 0);
