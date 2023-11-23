@@ -54,6 +54,12 @@ class Parents extends CustomModel
     	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
 	}
 
+
+	public function trip_pickup_location() 
+	{
+		return $this->hasOneThrough(TripPickup::class, Student::class, 'parent_id', 'model_id', 'parent_id', 'student_id');	
+	}
+
 	public function students() 
 	{
     	return $this->hasMany(Student::class, 'parent_id', 'parent_id');
