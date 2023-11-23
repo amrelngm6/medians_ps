@@ -1129,7 +1129,8 @@ class LangsAr
 		,'collapse'=> 'رفع لأعلى'
 		,'user_not_found'=> 'هذا الحساب غير موجود'
 		,'confirmation_code_sent_through_email'=> 'سيتم إرسال كود التأكيد عبر البريد الإلكتروني'
-		,'users_count'=> 'عدد المستخدمين '
+		,'users_count'=> 'عدد المستخدمين'
+		,'destinations'=> 'أماكن التوصيل'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);
