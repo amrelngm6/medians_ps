@@ -188,7 +188,7 @@ class ParentRepository
      */
     public function changePassword($data)
     {
-		$Auth = new Auth\Application\AuthService;
+		$Auth = new \Medians\Auth\Application\AuthService;
 
 		$Object = Parents::find($data['parent_id']);
 		
