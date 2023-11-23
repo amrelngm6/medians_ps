@@ -18,7 +18,7 @@ class OneSignalService
 
     protected $receiver_id;
 
-    protected $user_onesignal_id;
+    protected $external_id;
 
     protected $config;
 
@@ -30,18 +30,18 @@ class OneSignalService
         $this->APP_ID = '8c316c75-1878-4bf9-99ad-3964bb83f525';
         $this->APP_KEY_TOKEN = 'ZDE4MGQ3YmEtZjljZS00ZWFmLThkMDQtNjMzYzk0YjlmMWZk';
 
-        $this->user_onesignal_id = $id;
+        $this->external_id = $id;
 	}
 
 
-    public function send($receiverId, $subject, $messageText)
+    public function send($subject, $messageText)
     {
 
-        $this->sendNotification($receiverId, $subject, $messageText);
+        $this->sendNotification($subject, $messageText);
     }
 
 
-    function sendNotification($receiverId, $subject, $messageText) {
+    function sendNotification($subject, $messageText) {
         
         $headings = array(
             "en" => strip_tags($subject)
@@ -60,8 +60,8 @@ class OneSignalService
             // 'include_external_user_ids' => [$receiverId],
             // 'data' => $receiver,
             'target_channel' => 'push',
-            'include_aliases' => ['external_id'=>[$receiverId]]
-            // 'include_aliases' => ['external_id'=>[$this->user_onesignal_id]]
+            'include_aliases' => ['external_id'=>[$this->external_id]]
+            // 'include_aliases' => ['external_id'=>[$this->external_id]]
         );
         
         

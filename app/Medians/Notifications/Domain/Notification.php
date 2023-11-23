@@ -133,14 +133,9 @@ class Notification extends CustomModel
 	public function sendNotification(Notification $notification, $receiver)
 	{
 		
-		if ($notification->receiver_type == Driver::class)
-		{
-			$id = "D-".$notification->receiver_id;
-		} else {
-			$id = "P-".$notification->receiver_id;
-		}
-		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService();
-		$sendOneSignalNotification->sendNotification($id, $notification->subject, $notification->body_text);
+		$id = ($notification->receiver_type == Driver::class) ? "D-".$notification->receiver_id : "P-".$notification->receiver_id;
+		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($id);
+		$send = $sendOneSignalNotification->sendNotification($notification->subject, $notification->body_text);
 
 		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
 
