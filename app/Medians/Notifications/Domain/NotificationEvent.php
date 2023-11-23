@@ -134,8 +134,8 @@ class NotificationEvent extends CustomModel
 			
 
 			case TripPickup::class:
-				$parent =  $model->whereHas('parent')->find($model->trip_pickup_id);
-				return [$parent];
+				$object =  $model->whereHas('parent')->find($model->trip_pickup_id);
+				return [$object->parent];
 				break;
 			
 			default:
