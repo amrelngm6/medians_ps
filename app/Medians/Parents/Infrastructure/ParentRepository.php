@@ -196,8 +196,7 @@ class ParentRepository
 
 		if (!$this->checkLogin($Object->email, $current))
 		{
-			
-			return;
+			return __('PASSWORD_MATCHING_ERROR');
 		}
 
 		$data['password'] = $Auth->encrypt($data['new_password']);

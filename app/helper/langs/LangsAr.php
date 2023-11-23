@@ -418,7 +418,7 @@ class LangsAr
 		,'BRANCH_EMPTY' => 'Branch field is required'
 		,'AGENT_EMPTY' => 'Company field is required'
 		,'DESK_EMPTY' => 'Desk location field is required'
-		,'PASSWORD_MATCHING_ERROR' => 'Password not matched'
+		,'PASSWORD_MATCHING_ERROR' => 'كلمة المرور غير متطابقة'
 		,'WRONG_INFO' => 'البيانات غير سليمة'
 		,'ERR' => 'خطأ'
 		,'ERR_EXT' => 'Error file extension not allowed'
