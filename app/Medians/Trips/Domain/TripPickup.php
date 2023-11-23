@@ -67,7 +67,7 @@ class TripPickup extends CustomModel
 
 	public function parent() 
 	{
-		return $this->hasOneThrough(Parents::class, Student::class, 'parent_id', 'model_id', 'parent_id', 'student_id');	
+		return $this->hasOneThrough(Parents::class, Student::class, 'model_id', 'parent_id', 'student_id', 'parent_id');	
 	}
 
 
