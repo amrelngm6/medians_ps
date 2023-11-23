@@ -114,14 +114,17 @@ class MobileAPIController extends CustomController
 			case 'help_message':
 				$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
 				break;
-				
 
+			case 'help_messages':
+				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessages();
+				break;
+	
 			case 'parent_help_message':
 				$return = (new \Medians\Help\Application\HelpMessageController())->parentStore();
 				break;
 				
-			case 'help_messages':
-				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessages();
+			case 'parent_help_messages':
+				$return = (new \Medians\Help\Application\HelpMessageController())->loadParentHelpMessages();
 				break;
 
 			case 'create_trip':

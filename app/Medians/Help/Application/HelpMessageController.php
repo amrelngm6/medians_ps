@@ -139,6 +139,18 @@ class HelpMessageController extends CustomController
 		return $this->repo->loadDriverMessages($this->app->auth(), 100);
 	}  
 
+	
+	/**
+	 * Load latest notifications at mobile
+	 * 
+	 */
+	public function loadParentHelpMessages()
+	{
+		$this->app = new \config\APP;
+
+		return $this->repo->loadParentMessages($this->app->auth(), 100);
+	}  
+
 
 	/**
 	 * Close / End ticket
