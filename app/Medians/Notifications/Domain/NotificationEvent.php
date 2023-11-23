@@ -175,7 +175,7 @@ class NotificationEvent extends CustomModel
 
 	public function saveNotification($event, $model, $receiver)
 	{
-		
+		error_log($receiver);
     	$app = new \config\APP;
     	$params = [];
 
