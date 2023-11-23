@@ -69,6 +69,7 @@ class NotificationRepository
 	*/
 	public function loadParentNotifications($userId, $limit = 500,$last_id = 0) 
 	{
+		print($userId);
 		return Notification::limit($limit)
 			->where('receiver_id', $userId)->where('receiver_type', Parents::class )
 			->where('id', '>', $last_id)
