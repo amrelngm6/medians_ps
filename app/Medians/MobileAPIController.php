@@ -203,10 +203,14 @@ class MobileAPIController extends CustomController
 					$return = (new Users\Application\UserController())->store();
 					break;
 					
-	            case 'HelpMessageComment.create':
-	                return  (new Help\Application\HelpMessageController())->storeDriverComment(); 
-	                break;
-					
+				case 'HelpMessageComment.create':
+					return  (new Help\Application\HelpMessageController())->storeDriverComment(); 
+					break;
+			
+				case 'HelpMessageComment.parent_comment':
+					return  (new Help\Application\HelpMessageController())->storeParentComment(); 
+					break;
+						
 	            case 'Student.create':
 	                return  (new Students\Application\StudentController())->addStudent(); 
 	                break;

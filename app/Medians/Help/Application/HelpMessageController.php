@@ -197,8 +197,6 @@ class HelpMessageController extends CustomController
 
 		$params = (array) json_decode($this->app->request()->get('params'));
 		$user = $this->app->auth();
-		print_r('$user');
-		print_r($user);
         try {	
 			$params['user_id'] = $user->parent_id;
 
