@@ -181,6 +181,26 @@ class ParentController extends CustomController
 	}
 
 
+	public function changePassword()
+	{
+		$params = $this->app->request()->get('params');
+		$params = is_array($params) ?  (array) $params : json_decode($params);
+
+        try {
+			
+			$params['parent_id'] = $this->app->auth()->parent_id;
+
+            if ($this->repo->changePassword($params))
+            {
+                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+            }
+
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
+
+
 	public function store() 
 	{
 

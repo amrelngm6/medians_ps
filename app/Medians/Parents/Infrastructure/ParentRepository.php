@@ -182,6 +182,25 @@ class ParentRepository
 
     }
 
+    	
+    /**
+     * Update Lead
+     */
+    public function changePassword($data)
+    {
+		$Auth = new Auth\Application\AuthService;
+
+		$Object = Parents::find($data['parent_id']);
+		
+		$data['password'] = $Auth->encrypt($data['new_password']);
+
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+
+    }
+
 
 	/**
 	* Delete item to database
