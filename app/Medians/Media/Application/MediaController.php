@@ -44,12 +44,12 @@ class MediaController extends CustomController
 		return json_encode(['data'=> ['message'=>'Uploaded successfully']]);
 	}
 
-	public function uploadFile()
+	public function uploadFile($type)
 	{
 		$this->app = new \config\APP;
 
 		foreach ($this->app->request()->files as $key => $value) {
-			return $this->repo->upload($value);
+			return $this->repo->upload($value, $type);
 		}
 		
 	}
@@ -58,7 +58,6 @@ class MediaController extends CustomController
 	{
 		try {
 			
-
 			$this->app = new \config\APP;
 		
 		    $item = json_decode($this->app->request()->get('file_name'));

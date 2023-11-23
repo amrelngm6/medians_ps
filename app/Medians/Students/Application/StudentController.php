@@ -250,6 +250,6 @@ class StudentController extends CustomController
 	public function uploadPicture()
 	{
 		$media = new \Medians\Media\Application\MediaController;
-		return  $media->uploadFile();
+		return  $media->uploadFile('students');
 	} 
 }
