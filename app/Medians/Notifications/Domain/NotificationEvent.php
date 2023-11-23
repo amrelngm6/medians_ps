@@ -67,7 +67,7 @@ class NotificationEvent extends CustomModel
 
     	foreach ($events as $event) 
     	{
-    		$this->renderNotification($event, $model);
+    		$event = $this->renderNotification($event, $model);
     	}
 
     	return true;
@@ -154,6 +154,8 @@ class NotificationEvent extends CustomModel
 
 		if (!$receiver)
 			return null;
+
+		error_log(json_encode($event));
 
     	$app = new \config\APP;
     	$params = [];
