@@ -56,7 +56,7 @@ class Parents extends CustomModel
 
 	public function pickup_location() 
 	{
-		return $this->hasOneThrough(PickupLocation::class, Student::class, 'student_id', 'parent_id', 'model_id', 'parent_id');	
+		return $this->hasOneThrough(PickupLocation::class, Student::class, 'parent_id', 'model_id', 'parent_id', 'student_id');	
 	}
 
 	public function students() 
