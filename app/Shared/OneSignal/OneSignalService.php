@@ -82,7 +82,7 @@ class OneSignalService
         
         $responseObject =  json_decode($response);
 
-        error_log($responset);
+        error_log($response);
         // if (isset($responseObject->errors))
         // {
         //     return throw new \Exception($responseObject->errors, 1);
