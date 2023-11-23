@@ -186,6 +186,31 @@ class HelpMessageRepository
     	return $Object;
     }
     	
+
+	/**
+	* Save Comment from Admin / Agent
+	*/
+	public function storeParentComment($data) 
+	{
+
+		$Model = new HelpMessageComment();
+
+		$data['user_type'] = Parents::class;
+		
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+
+		// Return the  object with the new data
+    	$Object = HelpMessageComment::create($dataArray);
+
+    	return $Object;
+    }
+    	
     /**
      * Update Lead
      */

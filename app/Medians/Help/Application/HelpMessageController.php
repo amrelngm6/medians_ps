@@ -234,6 +234,28 @@ class HelpMessageController extends CustomController
 	}
 
 
+	public function storeParentComment() 
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+        try {	
+
+        	$params['user_id'] = $this->app->auth()->parent_id;        	
+
+            $returnData = (!empty($this->repo->storeParentComment($params))) 
+            ? array('success'=>1, 'result'=>__('Added'))
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+			
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		echo json_encode($returnData);
+
+		return true;
+	}
+
+
 	public function update()
 	{
 		$params = $this->app->request()->get('params');
