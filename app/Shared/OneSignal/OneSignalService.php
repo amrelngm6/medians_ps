@@ -63,8 +63,9 @@ class OneSignalService
             'include_aliases' => ['external_id'=>['D-'.$this->user_onesignal_id, 'P-'.$this->user_onesignal_id]]
         );
         
-
+        
         $fields = json_encode($fields);
+        error_log($fields);
     
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
