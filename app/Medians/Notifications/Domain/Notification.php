@@ -139,7 +139,7 @@ class Notification extends CustomModel
 		} else {
 			$id = "P-".$notification->receiver_id;
 		}
-		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($receiver->field['onesignal_id']);
+		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService();
 		$sendOneSignalNotification->sendNotification($id, $notification->subject, $notification->body_text);
 
 		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
