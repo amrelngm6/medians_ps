@@ -255,6 +255,6 @@ class StudentController extends CustomController
 		$student =  $this->repo->find($student_id);
 		$student->picture = '/uploads/students/'.$pictureName;
 		$student->save();
-		return  true;
+		return  $student->picture;
 	} 
 }
