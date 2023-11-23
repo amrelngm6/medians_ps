@@ -7,6 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
 use Medians\Trips\Domain\Trip;
+use Medians\Trips\Domain\TripPickup;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Help\Domain\HelpMessageComment;
 use Medians\Parents\Domain\Parents;
