@@ -54,10 +54,10 @@ class NotificationRepository
 	/**
 	* Find items by `params` 
 	*/
-	public function loadDriverNotifications($user, $limit = 500,$last_id = 0) 
+	public function loadDriverNotifications($userId, $limit = 500,$last_id = 0) 
 	{
 		return Notification::limit($limit)
-			->where('receiver_id', $user->driver_id)->where('receiver_type', Driver::class )
+			->where('receiver_id', $userId)->where('receiver_type', Driver::class )
 			->where('id', '>', $last_id)
 			->orderBy('created_at', 'DESC')
 			->get() ;
@@ -67,10 +67,10 @@ class NotificationRepository
 	/**
 	* Find items by `params` 
 	*/
-	public function loadParentNotifications($user, $limit = 500,$last_id = 0) 
+	public function loadParentNotifications($userId, $limit = 500,$last_id = 0) 
 	{
 		return Notification::limit($limit)
-			->where('receiver_id', $user->driver_id)->where('receiver_type', Parents::class )
+			->where('receiver_id', $userId)->where('receiver_type', Parents::class )
 			->where('id', '>', $last_id)
 			->orderBy('created_at', 'DESC')
 			->get() ;
