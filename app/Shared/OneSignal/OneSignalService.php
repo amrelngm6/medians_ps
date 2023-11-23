@@ -16,11 +16,6 @@ class OneSignalService
      */
     protected $APP_KEY_TOKEN;
 
-    /**
-     * OneSignal USER KEY TOKEN
-     */
-    protected $USER_KEY_TOKEN;
-
     protected $receiver_id;
 
     protected $user_onesignal_id;
@@ -34,7 +29,6 @@ class OneSignalService
 		$this->app = new \config\APP;
         $this->APP_ID = '8c316c75-1878-4bf9-99ad-3964bb83f525';
         $this->APP_KEY_TOKEN = 'ZDE4MGQ3YmEtZjljZS00ZWFmLThkMDQtNjMzYzk0YjlmMWZk';
-        $this->USER_KEY_TOKEN = '<YOUR_USER_KEY_TOKEN>';
 
         $this->user_onesignal_id = $id;
 	}
@@ -66,7 +60,7 @@ class OneSignalService
             // 'include_external_user_ids' => [$this->user_onesignal_id],
             // 'data' => $receiver,
             'target_channel' => 'push',
-            'include_aliases' => ['external_id'=>['D-23']]
+            'include_aliases' => ['external_id'=>['D-'.$this->user_onesignal_id, 'P-'.$this->user_onesignal_id]]
         );
         
 
