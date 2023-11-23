@@ -253,7 +253,7 @@ class StudentController extends CustomController
 		$uploaded = $media->uploadFile();
 		if ($uploaded)
 		{
-			echo json_encode($uploaded);
+			return json_encode($uploaded);
 		}
 	} 
 }
