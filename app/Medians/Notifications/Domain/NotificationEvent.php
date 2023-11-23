@@ -138,7 +138,7 @@ class NotificationEvent extends CustomModel
 				$tripId = $model->trip_id;
 				$parents =  $class->whereHas('pickup_location', function($q) use ($tripId){
 					$q->where('trip_id', $tripId);
-				})->get($model->destination_id);
+				})->get();
 				return $parents;
 				break;
 			
