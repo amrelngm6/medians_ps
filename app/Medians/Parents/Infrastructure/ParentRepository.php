@@ -192,6 +192,14 @@ class ParentRepository
 
 		$Object = Parents::find($data['parent_id']);
 		
+		$current = $Auth->encrypt($data['current_password']);
+
+		if (!$this->checkLogin($Object->email, $current))
+		{
+			
+			return;
+		}
+
 		$data['password'] = $Auth->encrypt($data['new_password']);
 
 		// Return the  object with the new data

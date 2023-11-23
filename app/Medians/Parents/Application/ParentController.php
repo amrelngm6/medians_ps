@@ -190,10 +190,10 @@ class ParentController extends CustomController
 			
 			$params['parent_id'] = $this->app->auth()->parent_id;
 
-            if ($this->repo->changePassword($params))
-            {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
-            }
+			$check = $this->repo->changePassword($params);
+            return isset($check->parent_id)
+			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+			 : array('error'=>1, 'result'=>__('Error'));
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
