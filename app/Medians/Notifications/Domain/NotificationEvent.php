@@ -133,7 +133,6 @@ class NotificationEvent extends CustomModel
 				return isset($location->parent) ? [$location->parent] : null;
 				break;
 			
-
 			case TripPickup::class:
 				$object =  $model->whereHas('parent')->find($model->trip_pickup_id);
 				return [$object->parent];
