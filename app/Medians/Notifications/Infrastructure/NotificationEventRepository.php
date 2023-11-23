@@ -38,6 +38,9 @@ class NotificationEventRepository
 	*/
 	public function get($params = null) 
 	{
+		$PickupLocation = new \Medians\Locations\Domain\PickupLocation;
+    	$events = json_decode($PickupLocation->with('parent')->get());
+		print_r($events);
 		return NotificationEvent::get();
 	}
 
