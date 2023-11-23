@@ -56,7 +56,12 @@ class Parents extends CustomModel
 
 	public function pickup_location() 
 	{
-    	return $this->hasOne(PickupLocation::class, 'model_id', 'student_id')->where('model_type', Parents::class);
+    	return $this->hasOne(PickupLocation::class, 'model_id', 'student_id')->where('model_type', Students::class);
+	}
+
+	public function route() 
+	{
+		return $this->hasOneThrough(PickupLocation::class, Student::class, 'student_id', 'parent_id', 'model_id', 'parent_id');	
 	}
 
 	public function students() 
