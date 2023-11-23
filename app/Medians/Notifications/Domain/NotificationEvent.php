@@ -164,7 +164,10 @@ class NotificationEvent extends CustomModel
 
 		foreach ($receivers as $key => $receiver) 
 		{
-			$this->saveNotification($event, $model, $receiver);
+			if ($receiver)
+			{
+				$this->saveNotification($event, $model, $receiver);
+			}
 		}
 
 		return true;
