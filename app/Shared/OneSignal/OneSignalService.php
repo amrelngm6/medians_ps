@@ -57,7 +57,7 @@ class OneSignalService
             // 'included_segments' => ['segment D-23'], // Send to all subscribers
             'headings' => $headings,
             'contents' => $content,
-            'include_external_user_ids' => [$receiverId],
+            // 'include_external_user_ids' => [$receiverId],
             // 'data' => $receiver,
             'target_channel' => 'push',
             'include_aliases' => ['external_id'=>[$receiverId]]
