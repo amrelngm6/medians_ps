@@ -5,6 +5,7 @@ namespace Medians\Parents\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Locations\Domain\PickupLocation;
+use Medians\Trips\Domain\TripPickup;
 use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
 
@@ -54,9 +55,9 @@ class Parents extends CustomModel
 	}
 
 
-	public function pickup_location() 
+	public function trip_pickup_location() 
 	{
-		return $this->hasOneThrough(PickupLocation::class, Student::class, 'parent_id', 'model_id', 'parent_id', 'student_id');	
+		return $this->hasOneThrough(TripPickup::class, Student::class, 'parent_id', 'model_id', 'parent_id', 'student_id');	
 	}
 
 	public function students() 
