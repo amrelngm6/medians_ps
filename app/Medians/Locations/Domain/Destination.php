@@ -4,6 +4,7 @@ namespace Medians\Locations\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Students\Domain\Student;
+use Medians\Parents\Domain\Parents;
 use Medians\Routes\Domain\Route;
 
 
@@ -64,6 +65,10 @@ class Destination extends CustomModel
     	return $this->hasOne(Student::class, 'student_id', 'model_id');
 	}
 	
+	public function parent() 
+	{
+		return $this->hasOneThrough(Parents::class, Student::class, 'student_id', 'parent_id', 'model_id', 'parent_id');	
+	}
 	
 	public function active_pickup() 
 	{

@@ -80,7 +80,7 @@ class NotificationEvent extends CustomModel
 	 * @param $event Object
 	 * @param $model Object Event related model
 	 */
-	public function filterReceiver($event, $model)
+	public function filterDriver($event, $model)
 	{
 		switch (get_class($model)) 
 		{
@@ -93,6 +93,44 @@ class NotificationEvent extends CustomModel
 				return isset($location->route->driver) ? $location->route->driver : null;
 				break;
 
+			case Destination::class:
+				$location =  $model->with('route')->find($model->destination_id);
+				return isset($location->route->driver) ? $location->route->driver : null;
+				break;
+	
+			default:
+				return $model;
+				break;
+			
+		}
+	}
+
+
+	
+	/**
+	 * Prepare notification content 
+	 * 
+	 * @param $event Object
+	 * @param $model Object Event related model
+	 */
+	public function filterParent($event, $model)
+	{
+		switch (get_class($model)) 
+		{
+			case HelpMessageComment::class:
+				return $model->message->user;
+				break;
+
+			case PickupLocation::class:
+				$location =  $model->with('student')->find($model->pickup_id);
+				return isset($location->parent) ? $location->parent : null;
+				break;
+
+			case PickupLocation::class:
+				$location =  $model->with('student')->find($model->destination_id);
+				return isset($location->parent) ? $location->parent : null;
+				break;
+			
 			default:
 				return $model;
 				break;
@@ -110,7 +148,9 @@ class NotificationEvent extends CustomModel
 	public function renderNotification($event, $model)
 	{
 
-    	$receiver = $this->filterReceiver($event, $model);
+    	$receiver = $event->receiver_model == Driver::class 
+		? $this->filterDriver($event, $model)
+		: $this->filterParent($event, $model);
 
 		if (!$receiver)
 			return null;
