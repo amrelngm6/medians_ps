@@ -6,6 +6,7 @@ use Medians\Help\Domain\HelpMessage;
 use Medians\Help\Domain\HelpMessageComment;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Drivers\Domain\Driver;
+use Medians\Parents\Domain\Parents;
 use Medians\Users\Domain\User;
 
 
@@ -90,6 +91,31 @@ class HelpMessageRepository
 		$Model = new HelpMessage();
 
 		$data['user_type'] = Driver::class;
+		
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+
+		// Return the  object with the new data
+    	$Object = HelpMessage::create($dataArray);
+
+    	return $Object;
+    }
+    	
+	
+	/**
+	* Save item to database
+	*/
+	public function parentStore($data) 
+	{
+
+		$Model = new HelpMessage();
+
+		$data['user_type'] = Parents::class;
 		
 		foreach ($data as $key => $value) 
 		{

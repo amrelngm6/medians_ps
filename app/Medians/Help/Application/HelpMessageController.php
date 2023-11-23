@@ -166,8 +166,29 @@ class HelpMessageController extends CustomController
 		$params = (array) json_decode($this->app->request()->get('params'));
 
         try {	
+			$params['user_id'] = $this->app->auth()->driver_id;
 
             $returnData = (!empty($this->repo->store($params))) 
+            ? array('success'=>1, 'result'=>__('THNKS_MSG'), 'reload'=>1)
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		return $returnData;
+	}
+
+	
+	public function parentStore() 
+	{
+
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+        try {	
+			$params['user_id'] = $this->app->auth()->parent_id;
+
+            $returnData = (!empty($this->repo->parentStore($params))) 
             ? array('success'=>1, 'result'=>__('THNKS_MSG'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
