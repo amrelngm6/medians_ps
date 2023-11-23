@@ -155,8 +155,6 @@ class NotificationEvent extends CustomModel
 		if (!$receiver)
 			return null;
 
-		error_log(json_encode($event));
-
     	$app = new \config\APP;
     	$params = [];
 
