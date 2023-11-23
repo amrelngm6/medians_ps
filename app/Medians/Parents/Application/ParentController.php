@@ -193,7 +193,7 @@ class ParentController extends CustomController
 			$check = $this->repo->changePassword($params);
             return isset($check->parent_id)
 			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-			 : array('error'=>1, 'result'=>__('Error'));
+			 : array('error'=>$check, 'result'=>__('Error'));
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
