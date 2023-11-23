@@ -5,6 +5,7 @@ namespace Medians\Trips\Domain;
 use Medians\Routes\Domain\Route;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Vehicles\Domain\Vehicle;
+use Medians\Parents\Domain\Parents;
 use Medians\Students\Domain\Student;
 use Shared\dbaser\CustomModel;
 
@@ -63,6 +64,12 @@ class TripPickup extends CustomModel
 	{
 		return $this->hasOne(Student::class, 'student_id', 'model_id');	
 	}
+
+	public function trip_pickup_location() 
+	{
+		return $this->hasOneThrough(Parents::class, Student::class, 'parent_id', 'model_id', 'parent_id', 'student_id');	
+	}
+
 
 	public function model() 
 	{
