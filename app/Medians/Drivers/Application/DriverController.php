@@ -171,7 +171,7 @@ class DriverController extends CustomController
 	/**
 	 * Driver Login through Mobile API
 	 */
-	public function driver_login()
+	public function login()
 	{
 		
 		$Auth = new \Medians\Auth\Application\AuthService;
