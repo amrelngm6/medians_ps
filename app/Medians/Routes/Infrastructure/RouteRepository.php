@@ -59,7 +59,7 @@ class RouteRepository
 		
 		return Route::with(['driver'=> function($q) use ($driver_id){
 			
-			return $q->where('driver_id', $driver_id);
+			return $q->where('vehicles.driver_id', $driver_id);
 
 		}])->whereHas('driver', function($q) use ($driver_id){
 			return $q->where('vehicles.driver_id', $driver_id);
