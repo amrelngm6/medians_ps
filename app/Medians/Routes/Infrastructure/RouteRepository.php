@@ -63,7 +63,7 @@ class RouteRepository
 
 		}])->whereHas('driver', function($q) use ($driver_id){
 			return $q->where('vehicles.driver_id', $driver_id);
-		})->get();
+		})->with('pickup_locations','destinations','vehicle')->get();
 	}
 
 
