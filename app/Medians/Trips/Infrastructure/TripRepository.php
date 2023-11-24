@@ -208,7 +208,6 @@ class TripRepository
 			return $save;
 
 
-
 		$checkRoute = $this->routeRepo->getRouteStudents($data['route_id']);
 
 		foreach ($checkRoute->pickup_locations as $key => $value) 

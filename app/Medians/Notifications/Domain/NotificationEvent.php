@@ -99,7 +99,7 @@ class NotificationEvent extends CustomModel
 				$location =  $model->with('route')->find($model->destination_id);
 				return isset($location->route->driver) ? [$location->route->driver] : null;
 				break;
-	
+
 			default:
 				return [$model];
 				break;
