@@ -195,9 +195,8 @@ class TripController extends CustomController
 		{
 			return  $this->repo->getParentStudentsTrips($user->parent_id, $this->app->request()->get('lastId'));
 		}
-
-		return  $data;
 		
+		return [];
 	}
 
 	function haversineDistance($lat1, $lon1, $lat2 = 30.950765, $lon2 = 31.921556)  {
