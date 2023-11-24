@@ -110,7 +110,7 @@ class RouteController extends CustomController
 	{
 		$user = $this->app->auth();		
 
-		$data =  $this->repo->getDriverRoute($user->driver_id);
+		$data =  $this->repo->getDriverRoutes($user->driver_id);
 		echo  json_encode($data);
 	}
 
