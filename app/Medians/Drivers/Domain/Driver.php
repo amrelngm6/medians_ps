@@ -110,6 +110,11 @@ class Driver extends CustomModel
 	public function insertCustomField($code, $value)
 	{
 
+		$delete = CustomField::where('code', $code)
+		->where('model_type', Driver::class)
+		->where('model_id', $this->parent_id)
+		->delete();
+
     	// Insert activation code 
 		$fillable = [
 			'code'=>$code,
