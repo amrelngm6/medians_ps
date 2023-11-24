@@ -62,7 +62,7 @@ class TripRepository
 		->where('driver_id', $driver_id)
 		->whereDate('trip_date', date('Y-m-d'))
 		->where('trip_status', '!=', 'Completed')
-		->toSql();
+		->first();
 	}
 
 	public function getStudentTrips($id, $lastId = 0)
