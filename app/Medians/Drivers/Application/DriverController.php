@@ -261,8 +261,6 @@ class DriverController extends CustomController
 		if ($pictureName)
 		{
 			$driver =  $this->repo->findByToken($_POST['token']);
-			error_log(json_encode($_POST));
-			error_log(json_encode($driver));
 			$driver->picture = '/uploads/drivers/'.$pictureName;
 			$driver->save();
 			return  $driver->picture;
