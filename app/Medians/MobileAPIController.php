@@ -125,7 +125,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Driver.login':
-				$return =  (new Parents\Application\ParentController())->login(); 
+				$return =  (new Drivers\Application\DriverController())->login(); 
 				break;
 
 			case 'Parents.resetPassword':
