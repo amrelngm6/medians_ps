@@ -103,6 +103,18 @@ class RouteController extends CustomController
 	}
 
 
+	/**
+	 * getRoute
+	 */
+	public function getDriverRoutes($id)
+	{
+		$user = $this->app->auth();		
+
+		$data =  $this->repo->getDriverRoute($user->driver_id);
+		echo  json_encode($data);
+	}
+
+
 
 	public function store() 
 	{
@@ -111,6 +123,7 @@ class RouteController extends CustomController
 
         try {	
 
+			// Administrator user id
         	$params['created_by'] = $this->app->auth()->id;
         	
 

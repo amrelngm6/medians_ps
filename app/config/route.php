@@ -81,6 +81,7 @@ Macaw::post('/mobile_api/create', \Medians\MobileAPIController::class.'@create')
 Macaw::post('/mobile_api/update', \Medians\MobileAPIController::class.'@update');
 Macaw::post('/mobile_api', \Medians\MobileAPIController::class.'@handle');
 Macaw::get('/route/(:all)', \Medians\Routes\Application\RouteController::class.'@getRoute');
+Macaw::get('/driver_routes', \Medians\Routes\Application\RouteController::class.'@getDriverRoutes');
 Macaw::get('/parent/(:all)', \Medians\Parents\Application\ParentController::class.'@checkParent');
 Macaw::get('/get_parent', \Medians\Parents\Application\ParentController::class.'@getParent');
 Macaw::get('/driver/(:all)', \Medians\Drivers\Application\DriverController::class.'@getDriver');
