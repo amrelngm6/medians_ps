@@ -106,7 +106,7 @@ class RouteController extends CustomController
 	/**
 	 * getRoute
 	 */
-	public function getDriverRoutes($id)
+	public function getDriverRoutes()
 	{
 		$user = $this->app->auth();		
 
