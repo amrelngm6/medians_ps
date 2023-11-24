@@ -182,10 +182,13 @@ export default
             this.locations = this.setLocationsPickups(route);
         },  
         
-        updateMarker(item, index)
+        updateMarker(item, index, event)
         {
-            this.activeItem.latitude = item.destination.lat();
-            this.activeItem.longitude = item.destination.lng();
+            console.log(item)
+            console.log(index)
+            console.log(event)
+            this.activeItem.latitude = event.latLng.lng();
+            this.activeItem.longitude = event.latLng.lat();
             this.handleAction('edit', this.activeItem);
         },
 
