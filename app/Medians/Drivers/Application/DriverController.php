@@ -258,10 +258,14 @@ class DriverController extends CustomController
 
 		$media = new \Medians\Media\Application\MediaController;
 		$pictureName =  $media->uploadFile('drivers');
-		$driver =  $this->repo->find($this->app->request()->get('driver_id'));
-		error_log(json_encode($driver));
-		$driver->picture = '/uploads/drivers/'.$pictureName;
-		$driver->save();
-		return  $driver->picture;
+		if ($pictureName)
+		{
+			$request = $this->app->request();
+			$driver =  $this->repo->find($request->get('driver_id'));
+			error_log(json_encode($driver));
+			$driver->picture = '/uploads/drivers/'.$pictureName;
+			$driver->save();
+			return  $driver->picture;
+		}
 	} 
 }
