@@ -152,7 +152,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Parents\Application\ParentController())->changePassword(); 
 				break;
 				
-				
+			case 'Driver.getActiveDriverTrip':
+				$return =  (new Trips\Application\TripController())->getActiveDriverTrip(); 
+				break;
+
 		}
 
 		echo json_encode($return);

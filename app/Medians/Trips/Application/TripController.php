@@ -185,9 +185,7 @@ class TripController extends CustomController
 	{
 		$user = $this->app->auth();		
 
-		$trip =  $this->repo->getActiveDriverTrip($user->driver_id);
-
-		echo  json_encode( $trip );
+		return  $this->repo->getActiveDriverTrip($user->driver_id);
 	}
 
 	
