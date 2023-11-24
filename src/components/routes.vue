@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div  v-if="content && !showLoader" class=" w-full relative">
 
-            <maps v-if="center" :conf="conf" :key="center" :center="center" @update-marker="updateMarker" :waypoints="locations" :showroute="false"></maps>
+            <maps v-if="center" :conf="conf" :key="center" :center="center" @update-marker="updateMarker" @click-marker="clickMarker" :waypoints="locations" :showroute="false"></maps>
 
             <div :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
@@ -184,11 +184,15 @@ export default
         
         updateMarker(item, index, event)
         {
-            console.log(item)
-            console.log(index)
-            console.log(event)
-            this.activeItem.latitude = event.latLng.lng();
-            this.activeItem.longitude = event.latLng.lat();
+            this.activeItem.latitude = event.latLng.lat();
+            this.activeItem.longitude = event.latLng.lng();
+            this.handleAction('edit', this.activeItem);
+        },
+
+        clickMarker(item, index, event)
+        {
+            this.activeItem.latitude = event.latLng.lat();
+            this.activeItem.longitude = event.latLng.lng();
             this.handleAction('edit', this.activeItem);
         },
 
