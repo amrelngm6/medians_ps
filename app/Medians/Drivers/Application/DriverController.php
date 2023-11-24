@@ -4,7 +4,6 @@ namespace Medians\Drivers\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Drivers\Infrastructure\DriverRepository;
-use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Users\Infrastructure\UserRepository;
 
 class DriverController extends CustomController 
@@ -17,8 +16,6 @@ class DriverController extends CustomController
 
 	protected $app;
 
-	public $categoryRepo;
-
 	public $userRepo;
 	
 
@@ -28,7 +25,6 @@ class DriverController extends CustomController
 		$this->app = new \config\APP;
 
 		$this->repo = new DriverRepository();
-		$this->categoryRepo = new CategoryRepository();
 		$this->userRepo = new UserRepository();
 	}
 
@@ -259,11 +255,11 @@ class DriverController extends CustomController
 	 */
 	public function uploadPicture()
 	{
-		error_log(json_encode($this->app->auth()));
 
 		$media = new \Medians\Media\Application\MediaController;
 		$pictureName =  $media->uploadFile('drivers');
 		$driver =  $this->repo->find($this->app->request()->get('driver_id'));
+		error_log(json_encode($driver));
 		$driver->picture = '/uploads/drivers/'.$pictureName;
 		$driver->save();
 		return  $driver->picture;
