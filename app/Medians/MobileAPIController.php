@@ -148,6 +148,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Students\Application\StudentController())->uploadPicture(); 
 				break;
 				
+			case 'Driver.upload_picture':
+				$return =  (new Drivers\Application\DriverController())->uploadPicture(); 
+				break;
+				
 			case 'Parents.changePassword':
 				$return =  (new Parents\Application\ParentController())->changePassword(); 
 				break;

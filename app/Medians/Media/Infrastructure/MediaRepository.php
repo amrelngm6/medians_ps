@@ -19,6 +19,8 @@ class MediaRepository
 
 	public $students_dir = '/uploads/students/';
 
+	public $drivers_dir = '/uploads/drivers/';
+
 	public $videos_dir = '/uploads/videos/';
 
 
@@ -43,7 +45,11 @@ class MediaRepository
 			case 'students':
 				$this->_dir = $this->students_dir;
 				break;
-			
+		
+			case 'drivers':
+				$this->_dir = $this->drivers_dir;
+				break;
+				
 			default:
 				$this->_dir = $this->images_dir;
 				break;
