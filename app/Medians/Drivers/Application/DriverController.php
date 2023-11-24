@@ -259,12 +259,11 @@ class DriverController extends CustomController
 	 */
 	public function uploadPicture()
 	{
-		error_log($this->app->request()->get('token'));
-		error_log($this->app->request()->get('driver_id'));
+		error_log(json_encode($this->app->auth()));
 
 		$media = new \Medians\Media\Application\MediaController;
 		$pictureName =  $media->uploadFile('drivers');
-		$driver =  $this->repo->find($driverId);
+		$driver =  $this->repo->find($this->app->request()->get('driver_id'));
 		$driver->picture = '/uploads/drivers/'.$pictureName;
 		$driver->save();
 		return  $driver->picture;
