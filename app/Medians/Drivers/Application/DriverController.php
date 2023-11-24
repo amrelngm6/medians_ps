@@ -183,13 +183,13 @@ class DriverController extends CustomController
 		$checkLogin = $this->repo->checkLogin($params->email, $Auth->encrypt($params->password));
 		
 		if (empty($checkLogin->driver_id)) {
-			echo json_encode(['error'=> __("User credentials not valid")]); return null;
+			return json_encode(['error'=> __("User credentials not valid")]); return null;
 		}
 		
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->driver_id);
 		$generateToken = $checkLogin->insertCustomField('API_token', $token);
 
-		echo json_encode(
+		return json_encode(
 		[
 			'success'=>true, 
 			'driver_id'=> isset($checkLogin->driver_id) ? $checkLogin->driver_id : null, 
