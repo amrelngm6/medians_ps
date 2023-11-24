@@ -42,7 +42,7 @@ class TripRepository
 
 	public function getTrip($id)
 	{
-		return Trip::withCount('moving_locations')->withCount('waiting_locations')->with('pickup_locations', 'destinations', 'driver', 'vehicle')->find($id);
+		return Trip::withCount('moving_locations')->withCount('waiting_locations')->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')->find($id);
 	}
 
 	public function getDriverTrips($id, $lastId = 0)
