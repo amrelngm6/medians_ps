@@ -60,7 +60,7 @@ class TripRepository
 			$q->with('model');
 		}])
 		->where('driver_id', $driver_id)
-		->whereDate('date', date('Y-m-d'))
+		->whereDate('trip_date', date('Y-m-d'))
 		->where('status', '!=', 'Completed')
 		->first();
 	}
