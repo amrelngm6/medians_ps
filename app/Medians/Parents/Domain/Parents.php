@@ -83,6 +83,10 @@ class Parents extends CustomModel
 	 */
 	public function insertCustomField($code, $value)
 	{
+		$delete = CustomField::where('code', $code)
+		->where('model_type', Parents::class)
+		->where('model_id', $this->parent_id)
+		->delete();
 
     	// Insert activation code 
 		$fillable = [
