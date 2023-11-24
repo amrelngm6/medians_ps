@@ -178,6 +178,18 @@ class TripController extends CustomController
 		echo  json_encode( $trip );
 	}
 
+	/**
+	 * get Trip
+	 */
+	public function getActiveDriverTrip()
+	{
+		$user = $this->app->auth();		
+
+		$trip =  $this->repo->getActiveDriverTrip($user->driver_id);
+
+		echo  json_encode( $trip );
+	}
+
 	
 
 	/**
@@ -195,7 +207,7 @@ class TripController extends CustomController
 		{
 			return  $this->repo->getParentStudentsTrips($user->parent_id, $this->app->request()->get('lastId'));
 		}
-		
+
 		return [];
 	}
 

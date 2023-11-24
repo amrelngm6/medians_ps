@@ -52,6 +52,19 @@ class TripRepository
 		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
+	public function getActiveDriverTrip($driver_id, $lastId = 0)
+	{
+		return Trip::with(['pickup_locations'=> function($q){
+			$q->with('model');
+		}])->with(['destinations'=> function($q){
+			$q->with('model');
+		}])
+		->where('driver_id', $driver_id)
+		->whereDate('date', date('Y-m-d'))
+		->where('status', '!=', 'Completed')
+		->first();
+	}
+
 	public function getStudentTrips($id, $lastId = 0)
 	{
 		return Trip::where('trip_id', '>', $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(

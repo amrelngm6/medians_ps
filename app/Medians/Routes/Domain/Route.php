@@ -2,6 +2,7 @@
 
 namespace Medians\Routes\Domain;
 
+use Medians\Trips\Domain\Trip;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Locations\Domain\Destination;
 use Medians\Vehicles\Domain\Vehicle;
@@ -44,6 +45,11 @@ class Route extends CustomModel
 	public function thumbnail() 
 	{
     	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
+	}
+
+	public function trip() 
+	{
+		return $this->hasOne(Trip::class, 'route_id', 'route_id');	
 	}
 
 	public function pickup_locations() 
