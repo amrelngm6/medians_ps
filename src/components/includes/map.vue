@@ -174,7 +174,7 @@ export default
 
                 this.waypoints[this.activeMarkerIndex].address = await this.handlePositionToPlaceId(this.waypoints[this.activeMarkerIndex].destination.lat, this.waypoints[this.activeMarkerIndex].destination.lng);
 
-                this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], this.activeMarkerIndex);
+                this.$emit('update-marker', this.waypoints[this.activeMarkerIndex], this.activeMarkerIndex, event);
             },
 
             async checkMarker(i)  {
