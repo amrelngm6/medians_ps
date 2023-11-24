@@ -260,8 +260,8 @@ class DriverController extends CustomController
 		$pictureName =  $media->uploadFile('drivers');
 		if ($pictureName)
 		{
-			$request = $this->app->request();
-			$driver =  $this->repo->find($request->get('driver_id'));
+			$driver =  $this->repo->findByToken($_POST['token']);
+			error_log(json_encode($_POST));
 			error_log(json_encode($driver));
 			$driver->picture = '/uploads/drivers/'.$pictureName;
 			$driver->save();
