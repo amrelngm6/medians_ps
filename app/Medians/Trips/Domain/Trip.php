@@ -86,6 +86,12 @@ class Trip extends CustomModel
 	{
 		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->where('status', 'moving');	
 	}
+	
+	public function done_locations() 
+	{
+		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->where('status', 'done');	
+	}
+
 
 
 	public function haversineDistance($lat1, $lon1, $lat2, $lon2) {
