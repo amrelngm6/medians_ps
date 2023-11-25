@@ -47,7 +47,8 @@ class TripRepository
 
 	public function getDriverTrips($id, $lastId = 0)
 	{
-		return Trip::where('trip_id', '<', $lastId)->with(['pickup_locations'=> function($q){
+		$v = $lastId ? '<' : '>';
+		return Trip::where('trip_id', $v, $lastId)->with(['pickup_locations'=> function($q){
 			$q->with('model');
 		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
@@ -67,18 +68,17 @@ class TripRepository
 
 	public function getStudentTrips($id, $lastId = 0)
 	{
-		return Trip::where('trip_id', '>', $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+		$v = $lastId ? '<' : '>';
+		return Trip::where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
 				$q->where('model_id', $id);
 			}
 		)->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
-	public function getParentStudentsTrips($id, $lastId = '0')
+	public function getParentStudentsTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
-		$lastId = $lastId ? $lastId : 0;
-		// return Trip::with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 		return Trip::where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
 				return $q->with('location')->whereHas('student', function($q) use ($id){
