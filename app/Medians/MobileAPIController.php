@@ -105,7 +105,11 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'update_pickup':
-				$return = (new \Medians\Trips\Infrastructure\TripRepository())->updateTrip($params);
+				$return = (new \Medians\Trips\Infrastructure\TripRepository())->updateTripPickup($params);
+				break;
+
+			case 'update_destination':
+				$return = (new \Medians\Trips\Infrastructure\TripRepository())->updateTripDestination($params);
 				break;
 			
 			case 'trips':

@@ -100,6 +100,7 @@ class NotificationEvent extends CustomModel
 				return isset($location->route->driver) ? [$location->route->driver] : null;
 				break;
 
+			
 			default:
 				return [$model];
 				break;

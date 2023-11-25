@@ -113,28 +113,7 @@ class TripRepository
   		return $check->groupBy('trip_date')->orderBy('trip_date', 'ASC')->get();
 	}
 
-
-	public function search($request, $limit = 20)
-	{
-		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['trip_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
-
-		return $this->similar( $arr, $limit);
-	}
-
-
-	public function similar($item, $limit = 3)
-	{
-		$title = str_replace([' ','-'], '%', $item->content->title);
-
-		return Trip::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
-			}
-		})
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
-	}
-
+	
 
 	public function filterData($data)
 	{
@@ -245,13 +224,29 @@ class TripRepository
 	/**
 	 * update trip
 	 */
-	public function updateTrip($data)
+	public function updateTripPickup($data)
 	{
 		
 		$trip = Trip::find($data['trip_id']);
 
 		$pickup = TripPickup::find($data['trip_pickup_id']);
 		$data['boarding_time'] = date('Y-m-d h:i:s');
+		$update = $pickup->update($data);
+
+		return $update ? true : false;
+	}
+	
+
+	/**
+	 * update trip
+	 */
+	public function updateTripDestination($data)
+	{
+		
+		$trip = Trip::find($data['trip_id']);
+
+		$pickup = TripDestination::find($data['trip_destination_id']);
+		$data['dropoff_time'] = date('Y-m-d h:i:s');
 		$update = $pickup->update($data);
 
 		return $update ? true : false;
