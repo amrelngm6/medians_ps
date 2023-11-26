@@ -118,6 +118,30 @@ class DriverRepository
 
 	}
 
+    /**
+     * Update password
+     */
+    public function changePassword($data)
+    {
+		$Auth = new \Medians\Auth\Application\AuthService;
+
+		$Object = Driver::find($data['driver_id']);
+		
+		$current = $Auth->encrypt($data['current_password']);
+
+		if (!$this->checkLogin($Object->email, $current))
+		{
+			return __('PASSWORD_ERROR');
+		}
+
+		$data['password'] = $Auth->encrypt($data['new_password']);
+
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+
+    }
 
 
 	/**

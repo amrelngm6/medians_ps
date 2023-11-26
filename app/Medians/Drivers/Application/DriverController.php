@@ -250,6 +250,26 @@ class DriverController extends CustomController
 	}
 
 
+	public function changePassword()
+	{
+		$_params = $this->app->request()->get('params');
+		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
+
+        try {
+			
+			$params['driver_id'] = $this->app->auth()->driver_id;
+
+			$check = $this->repo->changePassword($params);
+            return isset($check->driver_id)
+			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+			 : array('error'=>$check, 'result'=>__('Error'));
+
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
+
+
 	/**
 	 * Upload driver picture
 	 */

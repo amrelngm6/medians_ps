@@ -184,7 +184,7 @@ class ParentRepository
 
     	
     /**
-     * Update Lead
+     * Update password
      */
     public function changePassword($data)
     {
