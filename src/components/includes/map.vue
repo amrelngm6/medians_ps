@@ -31,7 +31,8 @@
                 @click="checkMarker(index)"
                 @drag="activeMarkerIndex = index" 
                 @dragend="updateMarker" >
-                <GMapInfoWindow>
+                <GMapInfoWindow
+                :opened="true">
                     <div v-text="marker.destination.lat">
                     </div>
                 </GMapInfoWindow>
