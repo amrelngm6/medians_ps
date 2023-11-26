@@ -181,30 +181,6 @@
 
 
 
-                            <div class="w-full flex gap-4" v-if="activeTab == 'site_content'">
-                                
-                                <div class="card w-full" >
-                                    <div class="card-header pt-0">
-                                        <span class="text-gray-700 font-semibold"><span v-text="__('site_content')"></span></span> 
-                                    </div>
-                                    <div class="card-body py-6">
-                                        <a href="/admin/editor" target="_blank" class="pt-2 text-center block uppercase h-12 mt-3 text-white w-40 mx-auto rounded bg-red-700 hover:bg-red-800">{{__('Open editor')}}</a>
-
-                                        <hr class="my-4" />
-
-                                        <div class="w-full text-base">
-                                            <p class="my-2 py-2 px-2 flex gap-2 rounded-lg bg-blue-50">
-                                                <i class="fa fa-bell mt-1"></i> <span v-text="__('editor_help')"></span>
-                                            </p>
-                                            <p class="my-2 py-2 px-2 flex gap-2 rounded-lg bg-red-50">
-                                                <i class="fa fa-bell mt-1"></i> <span v-text="__('editor_notes')"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
 
                             <div class="w-full flex gap-4" v-if="activeTab == 'payment_methods'">
                                 
@@ -251,7 +227,7 @@
 
                             </div>
 
-                            <button v-if="activeTab != 'site_content'" class="uppercase mt-3 text-white mx-auto rounded-lg bg-purple-800 hover:bg-red-800 px-4 py-2">{{__('Save')}}</button>
+                            <button class="uppercase mt-3 text-white mx-auto rounded-lg bg-purple-800 hover:bg-red-800 px-4 py-2">{{__('Save')}}</button>
                         </form>
                     </div>
                     <div class="col-md-3" >
@@ -279,7 +255,6 @@ export default
                 {title:this.__('Basic Details'), link:'basic'},
                 {title:this.__('Notifications'), link:'notifications'},
                 {title:this.__('SMTP setting'), link:'smtp'},
-                {title:this.__('site content'), link:'site_content'},
                 {title:this.__('payment methods'), link:'payment_methods'},
                 // {title:this.__('Address_Details'), link:'address'},
                 {title:this.__('GOOGLE_AUTH'), link:'google'},
