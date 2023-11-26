@@ -161,7 +161,7 @@
                                                                     <h4 class="mb-1.5 text-base dark:text-gray-300"
                                                                         v-if="location.model" v-text="location.model.name">
                                                                     </h4>
-                                                                    <p style="white-space: nowrap;" class="mb-4 text-gray-500 dark:text-gray-400"
+                                                                    <p style="white-space: nowrap;" :style="{'white-space':'nowrap'}" class="mb-4 text-gray-500 dark:text-gray-400"
                                                                         v-if="location.location"
                                                                         v-text="location.location.address"></p>
                                                                 </div>
