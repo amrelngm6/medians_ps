@@ -171,7 +171,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div> <!-- tabs-with-underline-1 end -->
                             </div> <!-- tab-end -->
