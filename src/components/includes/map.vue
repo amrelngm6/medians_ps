@@ -30,7 +30,12 @@
                 :icon="marker.icon ? marker.icon : null" 
                 @click="checkMarker(index)"
                 @drag="activeMarkerIndex = index" 
-                @dragend="updateMarker" />
+                @dragend="updateMarker" >
+                <GMapInfoWindow>
+                    <div v-text="marker.destination.lat">
+                    </div>
+                </GMapInfoWindow>
+                </GmapMarker>
 
         </GmapMap>
         <select :change="calculateAndDisplayRoute" v-model="travelMode">
