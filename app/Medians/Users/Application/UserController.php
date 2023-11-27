@@ -38,11 +38,13 @@ class UserController extends CustomController
 	{
 
 		return [
+            [ 'key'=> "id", 'title'=> __('id'), 'fillable'=> true, 'column_type'=>'hidden' ],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "email", 'title'=> __('email'), 'fillable'=> true, 'column_type'=>'email' ],
             [ 'key'=> "phone", 'title'=> __('phone'), 'fillable'=> true, 'column_type'=>'phone' ],
             [ 'key'=> "password", 'title'=> __('password'), 'fillable'=> true, 'column_type'=>'password' ],
+            [ 'key'=> "active", 'title'=> __('status'), 'fillable'=> true, 'column_type'=>'hidden' ],
 			[ 'key'=> "role_id", 'title'=> __('Role'), 
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->rolesRepo->get()
