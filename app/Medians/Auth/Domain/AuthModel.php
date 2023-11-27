@@ -59,6 +59,7 @@ class AuthModel
 
 	public function unsetSession() : void
 	{
+		$_COOKIE[$this->getCode()] = null;
         setcookie($this->getCode(), null, time() + (10), "/");
 		unset($this->code); 
 	}

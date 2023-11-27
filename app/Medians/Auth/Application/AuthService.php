@@ -2,8 +2,6 @@
 
 namespace Medians\Auth\Application;
 
-
-
 use Medians\Auth\Domain\AuthModel;
 
 use Medians\Settings\Application\SystemSettingsController;
@@ -265,30 +263,6 @@ class AuthService
 
 
 
-	/**
-	 * Signup page 
-	 * @var Int
-	 */
-	// public function signup()
-	// {
-
-	// 	$this->app = new \config\APP;
-
-	// 	try {
-
-	// 		if (isset($this->app->auth()->id)) {
-	// 			echo $this->app->redirect('/dashboard');
-	// 		}
-
-	// 		return render('views/front/signup.html.twig', [
-	// 	        'google_login' => $this->loginWithGoogle(),
-	// 		]);
-
-	// 	} catch (\Exception $e) {
-	// 		throw new \Exception($e->getMessage(), 1);
-	// 	}
-	// } 
-
 	
 	/**
 	 * Validate the password length
@@ -398,30 +372,6 @@ class AuthService
 	public static function encrypt($value) : String 
 	{
 		return sha1(md5($value));
-	}
-
-
-
-	/**
-	 * Send email to activate the account
-	 */ 
-	public function sendMail($user, $subject, $template) 
-	{
-	
-
-		$body =  $this->app->template()->render('views/email/email.html.twig', ['template'=>$template,'user'=>$user, 'app'=>$this->app]);
-
-		$mail = new MailService($user->email, $user->email, $subject, $body);
-
-		try {
-
-			$mail->sendMail();
-
-			return true;
-
-		} catch (Exception $e) {
-			throw new Exception("Error Processing Request ". $e->getMessage(), 1);
-		}
 	}
 
 

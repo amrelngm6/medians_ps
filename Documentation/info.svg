@@ -1,0 +1,7 @@
+<svg id="info" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <circle id="Ellipse_33" data-name="Ellipse 33" cx="15" cy="15" r="15" fill="none"/>
+  <path id="Path_1521" data-name="Path 1521" d="M236.668,107.668a1,1,0,1,1-1-1A1,1,0,0,1,236.668,107.668Zm0,0" transform="translate(-223.668 -101.668)" fill="#4e2a73"/>
+  <path id="Path_1522" data-name="Path 1522" d="M205.168,202a.75.75,0,0,1-.75-.75V193.5h-1a.75.75,0,0,1,0-1.5h1.75a.75.75,0,0,1,.75.75v8.5A.75.75,0,0,1,205.168,202Zm0,0" transform="translate(-193.168 -183)" fill="#4e2a73"/>
+  <path id="Path_1523" data-name="Path 1523" d="M12,24A12,12,0,1,1,24,12,12.013,12.013,0,0,1,12,24ZM12,1.5A10.5,10.5,0,1,0,22.5,12,10.512,10.512,0,0,0,12,1.5Zm0,0" fill="#4e2a73"/>
+  <path id="Path_1524" data-name="Path 1524" d="M197.25,374.832h-4.5a.75.75,0,0,1,0-1.5h4.5a.75.75,0,1,1,0,1.5Zm0,0" transform="translate(-183 -355.832)" fill="#4e2a73"/>
+</svg>
