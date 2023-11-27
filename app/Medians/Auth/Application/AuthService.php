@@ -307,10 +307,13 @@ class AuthService
 	public function checkSession($code = null) 
 	{
 		$this->AuthModel = new AuthModel($code);
+		
+		$check = $this->AuthModel->checkSession($code);
 
-		if (!empty ( $this->AuthModel->checkSession($code) ))
+
+		if (!empty ( $check ))
 		{
-			return $this->repo->find($this->AuthModel->checkSession($code));
+			return $this->repo->find($check);
 		}
 	}
 
@@ -363,6 +366,7 @@ class AuthService
 	{
 		
 		$this->AuthModel = new AuthModel();
+
 		return $this->AuthModel->unsetSession();
 	}
 

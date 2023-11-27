@@ -102,10 +102,11 @@ class APP
 
 	public function auth()
 	{
-		$request = Request::createFromGlobals();
-
-		$this->session = !empty($this->session) ? $this->session : (new AuthService())->checkSession();
 		
+		$request = Request::createFromGlobals();
+		
+		$this->session = !empty($this->session) ? $this->session : (new AuthService())->checkSession();
+
 		return $this->session ? $this->session : $this->checkAPISession();
 	}
 

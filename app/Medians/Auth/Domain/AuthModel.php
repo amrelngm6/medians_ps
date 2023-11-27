@@ -59,8 +59,8 @@ class AuthModel
 
 	public function unsetSession() : void
 	{
-		$_COOKIE[$this->getCode()] = null;
-        setcookie($this->getCode(), null, time() + (10), "/");
+		$code = $this->getCode();
+        setcookie($this->code, 0, time() + (10 * 365 * 24 * 60 * 60), "/");
 		unset($this->code); 
 	}
 
@@ -68,15 +68,9 @@ class AuthModel
 
 	public function checkSession() 
 	{
-		if (!empty($_COOKIE[$this->getCode()]))
-		{
-			return $_COOKIE[$this->getCode()]; 
+		$code = $this->getCode();
 
-		} else {
-
-			return null;
-			
-		}
+		return !empty($_COOKIE[$code]) ? $_COOKIE[$code] : null;
 	}
 
 
