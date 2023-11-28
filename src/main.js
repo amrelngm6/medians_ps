@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
-import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
+import * as VueGoogleMaps from 'vue2-google-maps';
+
+Vue.use(VueGoogleMaps, {
+    load: {key: 'GOOGLE_MAP_API_KEY',
+    libraries: 'places,routes'
+    }
+});
 
 import VueSimpleAlert from "vue-simple-alert";
 Vue.use(VueSimpleAlert);
@@ -17,20 +23,16 @@ Vue.use(VTooltip)
 import DataTable from "@andresouzaabreu/vue-data-table";
 Vue.component("data-table", DataTable);
 
-import * as VueGoogleMaps from 'vue2-google-maps';
-Vue.use(VueGoogleMaps, {
-    load: {key: 'AIzaSyDL0vscd-iCbsPOhokIhMBXtujAkLShlME',
-    libraries: 'places,routes'
-    }
-});
-
 import VueQuillEditor from 'vue-quill-editor';
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 Vue.use(VueQuillEditor)
 
+import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
 
+import QrcodeVue from 'qrcode.vue';
+Vue.component('qr_code', QrcodeVue);
 Vue.component('moment', () => import ('moment'));
 Vue.component('dataTableActions', () => import('./components/includes/data-table-actions.vue'));
 
@@ -38,10 +40,6 @@ Vue.component('login-dashboard', () => import('./components/login-dashboard'));
 Vue.component('side-menu', () => import('./components/side-menu'));
 Vue.component('close_icon', () => import('./components/svgs/Close'));
 Vue.component('open-icon', () => import('./components/svgs/open-icon'));
-
-
-import QrcodeVue from 'qrcode.vue';
-Vue.component('qr_code', QrcodeVue);
 Vue.component('vue-medialibrary-manager', () => import('./components/includes/Manager'));
 Vue.component('vue-medialibrary-field', () => import('./components/includes/Field'));
 Vue.component('notifications_events', () => import('./components/notifications_events'));
