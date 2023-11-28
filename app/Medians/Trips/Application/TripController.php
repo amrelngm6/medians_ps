@@ -156,18 +156,7 @@ class TripController extends CustomController
         }
 
 	}
-
-	public function validate($params) 
-	{
-
-		if (empty($params['content']['ar']['title']))
-		{
-        	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
-		}
-
-	}
-
-
+	
 	/**
 	 * get Trip
 	 */
