@@ -19,8 +19,8 @@ class Vacation extends CustomModel
 	public $fillable = [
 		'title',
 		'date',
-		'student_id',
-		'student_type',
+		'model_id',
+		'model_type',
 	];
 
 	public $appends = ['student_name', 'last_update'];
@@ -42,7 +42,7 @@ class Vacation extends CustomModel
 	
 	public function student()
 	{
-		return $this->hasOne(Student::class, 'student_id','student_id');
+		return $this->morphOne(Student::class, 'model');
 	}
 	
 	

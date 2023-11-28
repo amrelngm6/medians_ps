@@ -21,46 +21,10 @@ class MobileAPIController extends CustomController
 	/**
 	* @var Object
 	*/
-	protected $repo;
-
 	protected $app;
 
 
-	/**
-	 * Login through Mobile API
-	 */
-	public function login()
-	{
-		$Auth = new Auth\Application\AuthService;
-
-		$this->app = new \config\APP;
-		$request = $this->app->request();
-		
-		$params = json_decode($request->get('params'));		
-
-		$checkLogin = $Auth->checkLogin($params->email, $Auth->encrypt($params->password));
-
-		if (empty($checkLogin->id))
-		{
-			echo json_encode(['error'=> $checkLogin]);
-
-			return null;
-		}
-
-		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->id);
-		$generateToken = $checkLogin->insertCustomField('API_token', $token);
-
-		echo json_encode(
-		[
-			'success'=>true, 
-			'user_id'=>$checkLogin->id, 
-			'driver_id'=> isset($checkLogin->driver->driver_id) ? $checkLogin->driver->driver_id : null, 
-			'token'=>$generateToken->value
-		]);
-	}  
-
-
-
+	
 	/**
 	 * Model object 
 	 * 
@@ -289,10 +253,6 @@ class MobileAPIController extends CustomController
 					return response((new Parents\Application\ParentController())->delete());
 					break;
 
-				case 'Route.delete':
-					return response((new Routes\Application\RouteController())->delete());
-					break;
-
 				case 'PickupLocation.delete':
 					return response((new Locations\Application\PickupLocationController())->delete());
 					break;
@@ -314,52 +274,5 @@ class MobileAPIController extends CustomController
 		}
 	} 
 
-	/**
-	 * Update model 
-	 * 
-	 */
-	public function updateStatus()
-	{
-
-		$app = new \config\APP;
-		$request = $app->request();
-
-		$id = $request->get('id');
-		$status = $request->get('status');
-
-		$return = [];
-		switch ($request->get('model')) 
-		{
-			case 'Device':
-				$return = (new DevicesRepository())->find($id)->update(['status'=>$status]);
-				break;
-		}
-
-		return response(json_encode($return));
-	} 
-
-	public function bug_report()
-	{
-		$this->app = new \config\APP;
-
-		$info = $_POST['info'];
-		$err = $_POST['err'];
-		$root_path_info = pathinfo(dirname(__DIR__));
-		$output = date('YmdHis').'-'.$this->app->auth()->id.'-'.$info;
-		file_put_contents($root_path_info['dirname'].'/uploads/bugs/'.$output.'.jpg', file_get_contents($_POST['image']));
-
-		$txtLog = $root_path_info['dirname'].'/uploads/bugs/error_bugs.txt'; 
-		file_put_contents($txtLog, file_get_contents($txtLog)."\r\n".$output . $err);
-
-		$this->BugReportRepo = new BugReportRepository;
-
-		$data = array();
-		$data['user_id'] = $this->app->auth()->id;
-		$data['file_name'] = $output.'.jpg';
-		$data['info'] =  $info;
-		$data['error'] =  $err;
-		$this->BugReportRepo->store($data);
-
-	}
-
+	
 }

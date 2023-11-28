@@ -78,13 +78,6 @@ class APIController extends CustomController
 			$return = [];
 			switch ($request->get('type')) 
 			{
-				case 'User.get_started_save_branch':
-					$return = (new Users\Application\GetStartedController())->store_branch();
-					break;
-
-				case 'User.get_started_save_setting':
-					$return = (new Users\Application\GetStartedController())->store_setting();
-					break;
 
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
@@ -119,22 +112,9 @@ class APIController extends CustomController
 					return response((new Help\Application\HelpMessageController())->store());
 					break;
 		
-				case 'Category.create':
-					$return = (new Categories\Application\CategoryController())->store();
-					break;
-					
 				case 'Event.create':
 					$return = (new Events\Application\EventController())->store();
 					break;
-
-
-	            case 'User.create':
-	                $return =  (new Users\Application\UserController())->store(); 
-	                break;
-
-	            case 'Page.create':
-	                $return =  (new Pages\Application\PageController())->store(); 
-	                break;
 
 	            case 'NotificationEvent.create':
 	                $return =  (new Notifications\Application\NotificationEventController())->store(); 
@@ -217,10 +197,6 @@ class APIController extends CustomController
                 $controller = new Users\Application\UserController; 
                 break;
 
-            case 'Page.update':
-                $controller =  new Pages\Application\PageController; 
-                break;
-
             case 'NotificationEvent.update':
                 $controller =  new Notifications\Application\NotificationEventController; 
                 break;
@@ -254,33 +230,7 @@ class APIController extends CustomController
 		return response(isset($controller) ? json_encode($controller->update()) : []);
 	} 
 
-	/**
-	 * delete model 
-	 * 
-	 */
-	public function search()
-	{
-
-		$app = new \config\APP;
-		$request = $app->request();
-
-		try {
-			
-			$return = [];
-			switch ($request->get('type')) 
-			{
-				case 'Customer':
-					$return = (new Customers\Application\CustomerController())->search($request->get('search_text'));
-					break;
-
-			}
-
-		} catch (Exception $e) {
-			throw new Exception("Error Processing Request", 1);
-					
-		}
-	}
-
+	
 
 	/**
 	 * delete model 
@@ -326,10 +276,6 @@ class APIController extends CustomController
 					return response((new Students\Application\StudentController())->delete());
 					break;
 
-				case 'Page.delete':
-					return response((new Pages\Application\PageController())->delete());
-					break;
-
 				case 'Vehicle.delete':
 					return response((new Vehicles\Application\VehicleController())->delete());
 					break;
@@ -342,6 +288,10 @@ class APIController extends CustomController
 					return response((new Roles\Application\RoleController())->delete());
 					break;
 
+				case 'NotificationEvent.delete':
+					return response((new Notifications\Application\NotificationEventController())->delete());
+					break;
+			
 			}
 
 		} catch (Exception $e) {
@@ -350,30 +300,12 @@ class APIController extends CustomController
 		}
 	} 
 
+
 	/**
-	 * Update model 
-	 * 
+	 * Debug function that takes screenshot 
+	 * and save at the server with txt file 
+	 * with full log
 	 */
-	public function updateStatus()
-	{
-
-		$app = new \config\APP;
-		$request = $app->request();
-
-		$id = $request->get('id');
-		$status = $request->get('status');
-
-		$return = [];
-		switch ($request->get('model')) 
-		{
-			case 'Device':
-				$return = (new DevicesRepository())->find($id)->update(['status'=>$status]);
-				break;
-		}
-
-		return response(json_encode($return));
-	} 
-
 	public function bug_report()
 	{
 		$this->app = new \config\APP;

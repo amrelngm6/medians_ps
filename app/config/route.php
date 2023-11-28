@@ -15,17 +15,6 @@ $app = new \config\APP;
 
 
 
-/**
- * Store daily reports
- */ 
-Macaw::get('/admin/store_daily_report/(:all)', \Medians\Reports\Application\ReportController::class.'@store_report');
-
-
-/**
- * These routes for guests 
- */ 
-Macaw::get('/(:all)', \Medians\Pages\Application\PageController::class.'@pages');
-Macaw::get('', \Medians\Pages\Application\PageController::class.'@home');
 
 /** @return send_message */
 Macaw::post('/send_message', Medians\Help\Application\HelpMessageController::class.'@store');
@@ -40,22 +29,14 @@ Macaw::post('/send_message', Medians\Help\Application\HelpMessageController::cla
  */ 
 Macaw::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@switchLang');
 
-
 /**
- * Switch the active branch
- * and redirect to Dashboard
- */ 
-Macaw::get('/switch-branch/(:all)', function ($id)  {
-    $app = new \config\App;
-    $user = $app->auth();
-    if (in_array($id, array_column($user->branches->toArray(), 'id')))
-    {
-        $user->update(['active_branch'=>$id]);
-    }
-    echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
-});
+ * Authentication
+ */
 Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::get('/signup', \Medians\Auth\Application\AuthService::class.'@signup');
+
+// Login as admin
+Macaw::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
 
 /**
  * Activate account after signup
@@ -69,17 +50,16 @@ Macaw::get('/google_login_redirect', \Medians\Auth\Application\AuthService::clas
 
 
 /**
- * @return  Login page in case if not authorized 
- * Theses routes are POST requests
+ * Mobile API requests authorized & non-authorized  
 */
-Macaw::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
-Macaw::post('/userSignup', \Medians\Auth\Application\AuthService::class.'@userSignup');
-Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
-Macaw::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
 Macaw::post('/mobile_api/login', \Medians\MobileAPIController::class.'@login');
 Macaw::post('/mobile_api/create', \Medians\MobileAPIController::class.'@create');
 Macaw::post('/mobile_api/update', \Medians\MobileAPIController::class.'@update');
 Macaw::post('/mobile_api', \Medians\MobileAPIController::class.'@handle');
+
+// Get requests
+Macaw::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
+Macaw::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
 Macaw::get('/route/(:all)', \Medians\Routes\Application\RouteController::class.'@getRoute');
 Macaw::get('/driver_routes', \Medians\Routes\Application\RouteController::class.'@getDriverRoutes');
 Macaw::get('/parent/(:all)', \Medians\Parents\Application\ParentController::class.'@checkParent');
@@ -97,14 +77,8 @@ Macaw::get('/routes', \Medians\Routes\Application\RouteController::class.'@index
 if(isset($app->auth()->id))
 {
 
-    $roleId = $app->auth()->role_id;
-
-    // Switch dashboard controller based on the user Role 
+    // Dashboard controller based on the user Role 
     Macaw::get('/dashboard', \Medians\DashboardController::class.'@index'); 
-
-    Macaw::get('/admin/payment_success', \Medians\Payments\Application\PaymentController::class.'@payment_success'); 
-    Macaw::get('/admin/payment_failed', \Medians\Payments\Application\PaymentController::class.'@payment_failed'); 
-
 
 
     // API POST requests
@@ -119,8 +93,6 @@ if(isset($app->auth()->id))
     Macaw::post('/api', \Medians\APIController::class.'@handle');
 
     // API GET requests
-    Macaw::get('/api/calendar', \Medians\Devices\Application\CalendarController::class.'@calendar');
-    Macaw::get('/api/calendar_events', \Medians\Devices\Application\CalendarController::class.'@events');
     Macaw::get('/api/(:all)', \Medians\APIController::class.'@handle');
 
     Macaw::get('/logout', function () 
@@ -140,17 +112,6 @@ if(isset($app->auth()->id))
 
 
 
-    Macaw::get('/admin/devices/categories', function ()  {
-        try 
-        {
-            return (new \Medians\Categories\Application\CategoryController)->index('Medians\Devices\Domain\Device');
-
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
-    });
-
-
 
     /**
     * @return Settings request
@@ -166,14 +127,7 @@ if(isset($app->auth()->id))
     Macaw::get('/admin/users', \Medians\Users\Application\UserController::class.'@index');
     Macaw::get('/admin/index_users', \Medians\Users\Application\UserController::class.'@index_users');
 
-    /**
-    * @return customers
-    */
-    Macaw::get('/admin/customers/index', \Medians\Customers\Application\CustomerController::class.'@index');
-    Macaw::get('/admin/customers', \Medians\Customers\Application\CustomerController::class.'@index');
-
-
-
+    
 
     /**
     * @return  Notifications 
@@ -242,50 +196,26 @@ if(isset($app->auth()->id))
     */
     Macaw::get('/admin/system_settings', \Medians\Settings\Application\SystemSettingsController::class.'@index');
 
-
-    /**
-    * @return Content editor
-    */
-    Macaw::get('/admin/pages', \Medians\Pages\Application\PageController::class.'@index');
-    Macaw::get('/builder', \Medians\Builders\Application\BuilderController::class.'@index');
-    Macaw::get('/admin/editor', \Medians\Pages\Application\PageController::class.'@editor');
-    Macaw::post('/admin/update_section_content', \Medians\Pages\Application\PageController::class.'@updateContent');
-
-    Macaw::get('/builder/load', \Medians\Builders\Application\BuilderController::class.'@load'); 
-    Macaw::get('/builder/meta', \Medians\Builders\Application\BuilderController::class.'@meta'); 
-    Macaw::post('/builder', \Medians\Builders\Application\BuilderController::class.'@submit'); 
-    Macaw::post('/builder/submit', \Medians\Builders\Application\BuilderController::class.'@submit'); 
-    
     /**
     * @return Notifications events 
     */
     Macaw::get('/admin/notifications_events', \Medians\Notifications\Application\NotificationEventController::class.'@index');
 
 
-    
-    /**
-    * @return Blog
-    */
-    Macaw::get('/admin/blog', Medians\Blog\Application\BlogController::class.'@index');
-    Macaw::get('/admin/blog/categories', function ()  {
-        return (new apps\Categories\CategoryController())->index('Medians\Blog\Domain\Blog');
-    });
-
-    
-
-
 
 
 }
 
-Macaw::get('/assets', \Medians\Media\Application\MediaController::class.'@assets'); 
-Macaw::get('/stream', \Medians\Media\Application\MediaController::class.'@stream'); 
-
-
 
 /**
-* return list of device 
-*/
+ * Loading assets with handling types
+ */
+Macaw::get('/assets', \Medians\Media\Application\MediaController::class.'@assets'); 
+
+/**
+ * Streaming multi-media types
+ */
+Macaw::get('/stream', \Medians\Media\Application\MediaController::class.'@stream'); 
 
 return $app->run();
 
