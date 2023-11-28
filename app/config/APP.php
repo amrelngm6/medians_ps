@@ -213,19 +213,19 @@ class APP
 			[
 				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'fa-user', 'link'=>'admin/parents', 'component'=>'parents'),
 				array('permission'=>'Students.index', 'title'=>__('Students'),  'icon'=>'fa-user', 'link'=>'admin/students', 'component'=>'students'),
-				array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
-			]
+				]
 			),
 			
+			array('permission'=>'Vehicles.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
+			array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
 			array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'#route', 'sub'=>
 				[
 					array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'admin/routes', 'component'=>'routes'),
 					array('permission'=>'PickupLocations.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
 					array('permission'=>'Destinations.index', 'title'=>__('Destinations'),  'icon'=>'fa-map', 'link'=>'admin/destinations', 'component'=>'destinations'),
-				]
+					]
 			),
 
-			array('permission'=>'Vehicles.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
 			array('permission'=>'Trips.index', 'title'=>__('trips'),  'icon'=>'fa-suitcase-rolling', 'link'=>'admin/trips', 'component'=>'trips'),
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'fa-circle-info', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'fa-circle-info', 'link'=>'admin/events', 'component'=>'events'),

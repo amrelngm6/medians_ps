@@ -198,6 +198,18 @@ class TripController extends CustomController
 		return [];
 	}
 
+
+	/**
+	 * Load Trips of driver
+	 */
+	public function loadStudentTrips($params)
+	{
+		$studentId = $this->app->request()->get('student_id'); 
+		$lastId = $this->app->request()->get('lastId'); 
+
+		return  $this->repo->getStudentTrips($studentId, $lastId);
+	}
+
 	function haversineDistance($lat1, $lon1, $lat2 = 30.950765, $lon2 = 31.921556)  {
 		$earthRadius = 6371; // Radius of the Earth in kilometers
 	

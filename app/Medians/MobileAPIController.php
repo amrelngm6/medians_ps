@@ -79,6 +79,10 @@ class MobileAPIController extends CustomController
 			case 'trips':
 				$return = (new \Medians\Trips\Application\TripController())->loadTrips($params);
 				break;
+			
+			case 'student_trips':
+				$return = (new \Medians\Trips\Application\TripController())->loadStudentTrips($params);
+				break;
 
 			case 'Vehicle.update':
 				$return =  (new Vehicles\Application\VehicleController())->updateLocation($params); 

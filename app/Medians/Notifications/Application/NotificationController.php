@@ -67,16 +67,14 @@ class NotificationController extends CustomController
 	/**
 	 * Admin index items
 	 * 
-	 * @param Silex\Application $app
-	 * @param \Twig\Environment $twig
-	 * 
 	 */ 
 	public function index() 
 	{
+		$app = new \Config\APP;
 		return render('notifications', [
 	        'load_vue' => true,
 	        'title' => __('Notifications'),
-	        'items' => $this->repo->get(),
+	        'items' => $this->repo->get($app->auth()),
 	        'columns' => $this->columns(),
 
 	    ]);
