@@ -132,6 +132,11 @@ class MobileAPIController extends CustomController
 				$return =  (new Parents\Application\ParentController())->changePassword(); 
 				break;
 				
+				
+			case 'Parents.resetChangePassword':
+				$return =  (new Parents\Application\ParentController())->resetChangePassword(); 
+				break;
+				
 			case 'Driver.changePassword':
 				$return =  (new Drivers\Application\DriverController())->changePassword(); 
 				break;
