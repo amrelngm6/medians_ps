@@ -147,17 +147,15 @@ class ParentRepository
 
 		$Object = Parents::find($data['parent_id']);
 		
-		$current = $Auth->encrypt($data['current_password']);
-
 		if (!$this->findByToken($data['reset_token'], 'reset_token'))
 		{
-			return __('PASSWORD_ERROR');
+			return __('Sent toen is not valid');
 		}
 
-		$data['password'] = $Auth->encrypt($data['new_password']);
+		$newPassword = $Auth->encrypt($data['password']);
 
 		// Return the  object with the new data
-    	$Object->update( (array) $data);
+    	$Object->update( ['password'=> $newPassword]);
 
     	return $Object;
     }
