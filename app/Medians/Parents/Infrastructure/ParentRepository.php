@@ -84,10 +84,10 @@ class ParentRepository
 	/**
 	 * Check user session by his token
 	 */
-	public function findByToken($token)
+	public function findByToken($token, $code = 'API_token')
 	{
 		return Parents::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
-			$q->where('code','API_token')->where('value',$token);
+			$q->where('code', $code)->where('value',$token);
 		})->first();
 
 	}
