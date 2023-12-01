@@ -93,27 +93,16 @@ class DriverRepository
 		return $this->similar( $arr, $limit);
 	}
 
-
-	public function similar($item, $limit = 3)
-	{
-		$title = str_replace([' ','-'], '%', $item->content->title);
-
-		return Driver::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
-			}
-		})
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
-	}
+	
 
 
 	/**
 	 * Check user session by his token
 	 */
-	public function findByToken($token)
+	public function findByToken($token, $code = 'API_token')
 	{
 		return Driver::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
-			$q->where('code','API_token')->where('value',$token);
+			$q->where('code', $code)->where('value',$token);
 		})->first();
 
 	}
@@ -144,6 +133,60 @@ class DriverRepository
     }
 
 
+    /**
+     * Reset & Update password 
+     */
+    public function resetChangePassword($data)
+    {
+		$Auth = new \Medians\Auth\Application\AuthService;
+
+		$Object = Driver::find($data['driver_id']);
+		
+		$current = $Auth->encrypt($data['current_password']);
+
+		if (!$this->findByToken($data['reset_token'], 'reset_token'))
+		{
+			return __('PASSWORD_ERROR');
+		}
+
+		$data['password'] = $Auth->encrypt($data['new_password']);
+
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+    }
+
+
+	/**
+	* Reset user password
+	*/
+	public function resetPassword($data) 
+	{
+
+		$Model = new Parents();
+		
+		$findByEmail = $this->findByEmail($data['email']);
+
+		if (empty($findByEmail))
+			return __('User not found');
+		
+		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $findByEmail->parent_id)->where('code', 'reset_token')->delete();
+		
+		$fields = [];
+		$fields['model_type'] = Parents::class;	
+		$fields['model_id'] = $findByEmail->parent_id;	
+		$fields['code'] = 'reset_token';	
+		$fields['value'] = $this->randomPassword();
+
+		$Model = CustomField::create($fields);
+		
+		$sendMail = new MailService($findByEmail->email, $findByEmail->parent_name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
+		$sendMail->sendMail();
+
+		return  1;
+    }
+    	
 	/**
 	 * Generate random password
 	 */

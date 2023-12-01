@@ -151,34 +151,6 @@
                                 </div>
                             </div>
 
-
-
-
-                            <div class="w-full flex gap-4" v-if="activeTab == 'google'">
-                                <div class="card w-full" >
-                                    <div class="card-header pt-0">
-                                        <span class="text-gray-700 font-semibold"><span v-text="__('GOOGLE_AUTH')"></span></span> 
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="settings-form">
-                                            <div class="form-group">
-
-                                                <label class="block py-3">
-                                                    <span class="text-gray-700"><span v-text="__('google_login_api_key')"></span></span>
-                                                    <input name="params[google_login_key]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('google_login_api_key')"  :value="content.setting.google_login_key">
-                                                </label>
-
-                                                <label class="block py-3">
-                                                    <span class="text-gray-700"><span v-text="__('google_login_api_secret')"></span></span>
-                                                    <input name="params[google_login_secret]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="__('google_login_api_secret')"  :value="content.setting.google_login_secret">
-                                                </label>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <button class="uppercase mt-3 text-white mx-auto rounded-lg bg-purple-800 hover:bg-red-800 px-4 py-2">{{__('Save')}}</button>
                         </form>
                     </div>
@@ -207,9 +179,6 @@ export default
                 {title:this.__('Basic Details'), link:'basic'},
                 {title:this.__('Notifications'), link:'notifications'},
                 {title:this.__('SMTP setting'), link:'smtp'},
-                // {title:this.__('payment methods'), link:'payment_methods'},
-                // {title:this.__('Address_Details'), link:'address'},
-                {title:this.__('GOOGLE_AUTH'), link:'google'},
             ],
             activeItem:null,
             activeTab:'basic',

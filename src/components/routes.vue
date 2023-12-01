@@ -232,7 +232,7 @@ export default
                     break;  
 
                 case 'delete':
-                    this.$parent.deleteByKey('route_id', data.route_id, 'Routes.delete');
+                    this.$parent.deleteByKey('route_id', data, 'Routes.delete');
                     break;  
             }
         },

@@ -164,6 +164,26 @@ class DriverController extends CustomController
         }
 	}
 
+	public function resetPassword() 
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+        try {	
+
+			$check = $this->repo->resetPassword($params);
+
+            return  ($check == 1) 
+            ? array('success'=>1, 'result'=>__('Confirmation code sent through email'), 'reload'=>1)
+            : array('success'=>0, 'result'=> $check, 'error'=>1);
+			
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		return $returnData;
+	}
+
+
 	/**
 	 * Driver Login through Mobile API
 	 */
@@ -260,6 +280,25 @@ class DriverController extends CustomController
 			$params['driver_id'] = $this->app->auth()->driver_id;
 
 			$check = $this->repo->changePassword($params);
+            return isset($check->driver_id)
+			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+			 : array('error'=>$check, 'result'=>__('Error'));
+
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
+
+	public function resetChangePassword()
+	{
+		$_params = $this->app->request()->get('params');
+		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
+
+        try {
+			
+			$params['driver_id'] = $this->app->auth()->driver_id;
+
+			$check = $this->repo->resetChangePassword($params);
             return isset($check->driver_id)
 			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
 			 : array('error'=>$check, 'result'=>__('Error'));

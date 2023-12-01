@@ -32,6 +32,7 @@ Macaw::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@switchLa
 /**
  * Authentication
  */
+Macaw::get('/', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 Macaw::get('/signup', \Medians\Auth\Application\AuthService::class.'@signup');
 

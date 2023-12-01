@@ -137,6 +137,32 @@ class ParentRepository
     }
     	
 
+	
+    /**
+     * Reset & Update password 
+     */
+    public function resetChangePassword($data)
+    {
+		$Auth = new \Medians\Auth\Application\AuthService;
+
+		$Object = Parents::find($data['parent_id']);
+		
+		$current = $Auth->encrypt($data['current_password']);
+
+		if (!$this->findByToken($data['reset_token'], 'reset_token'))
+		{
+			return __('PASSWORD_ERROR');
+		}
+
+		$data['password'] = $Auth->encrypt($data['new_password']);
+
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+    }
+
+
 	/**
 	* Save item to database
 	*/

@@ -162,6 +162,26 @@ class ParentController extends CustomController
 		return $returnData;
 	}
 
+	/**
+	 * Reset and change password  
+	 */
+	public function resetChangePassword()
+	{
+		$params = json_decode($this->app->request()->get('params'));
+
+        try {
+			
+			$params['parent_id'] = $this->app->auth()->parent_id;
+
+			$check = $this->repo->resetChangePassword($params);
+            return isset($check->parent_id)
+			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+			 : array('error'=>$check, 'result'=>__('Error'));
+
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
 
 	public function updateMobile()
 	{

@@ -104,6 +104,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Parents\Application\ParentController())->resetPassword(); 
 				break;
 
+			case 'Drivers.resetPassword':
+				$return =  (new Drivers\Application\DriverController())->resetPassword(); 
+				break;
+			
 			case 'notifications':
 				$return =  (new Notifications\Application\NotificationController())->loadLatestMobileNotifications(); 
 				break;

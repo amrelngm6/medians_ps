@@ -178,15 +178,7 @@ class DashboardController extends CustomController
 			return true;
 		}
 
-		$object = $this->contentRepo->find(urldecode($prefix));
-		if (empty($object)){
-			echo (new \config\APP)->redirect('/'.$prefix); 
-			return true;
-		}
-
-		$item = $this->contentRepo->switch_lang($object);
-
-		echo (new \config\APP)->redirect('/'.$item->prefix); 
+		echo (new \config\APP)->redirect('/'); 
 		
 		$_SESSION['site_lang'] = in_array($lang, ['arabic', 'english']) ? $lang : 'arabic';
 

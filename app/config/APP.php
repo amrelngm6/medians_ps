@@ -230,10 +230,15 @@ class APP
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'fa-circle-info', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'fa-circle-info', 'link'=>'admin/events', 'component'=>'events'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
-			array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'fa-bell-concierge', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
-			array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
-			array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
-			array('permission'=> 'Roles.index', 'title'=> __('ROLES MANAEGMENT'),  'icon'=>'fa-chain', 'link'=>'admin/roles', 'component'=>'roles'),
+			
+			array('permission'=>'NotificationEvent.index', 'title'=>__('Management'),  'icon'=>'fa-cogs', 'link'=>'#management', 'sub'=>
+			[
+				array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'fa-bell-concierge', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
+				// array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
+				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
+				array('permission'=> 'Roles.index', 'title'=> __('ROLES MANAEGMENT'),  'icon'=>'fa-chain', 'link'=>'admin/roles', 'component'=>'roles'),
+			]
+			),
 			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
 		);
 

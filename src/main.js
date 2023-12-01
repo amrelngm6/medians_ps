@@ -31,8 +31,6 @@ Vue.use(VueQuillEditor)
 
 import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
 
-import QrcodeVue from 'qrcode.vue';
-Vue.component('qr_code', QrcodeVue);
 Vue.component('moment', () => import ('moment'));
 Vue.component('dataTableActions', () => import('./components/includes/data-table-actions.vue'));
 

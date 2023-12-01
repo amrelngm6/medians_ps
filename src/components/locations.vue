@@ -4,7 +4,7 @@
 
             <main v-if="content && !showLoader" class="relative flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <maps @update-marker="updatedLocation" @click-marker="updatedLocation" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
-                <div  :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
+                <div v-if="locations.length" :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                     <div class="self-stretch py-4 flex-col justify-center items-start flex">
                         <div class="text-black text-lg font-semibold" v-text="__('Pickup locations')"></div>
                         <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Pickup locations description')"></div>
@@ -193,7 +193,7 @@ export default
                 for (let i = 0; i < this.content.items.length; i++) {
                     this.locations[i] = this.handleObject(this.content.items[i]);
                 }
-                this.center = this.locations[0].destination;
+                this.center = this.locations[0] ? this.locations[0].destination : {lat:30, lng:31};
                 return this
             },
 
