@@ -171,8 +171,6 @@ class ParentController extends CustomController
 
         try {
 			
-			$params['parent_id'] = $this->app->auth()->parent_id;
-
 			$check = $this->repo->resetChangePassword($params);
             return isset($check->parent_id)
 			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)

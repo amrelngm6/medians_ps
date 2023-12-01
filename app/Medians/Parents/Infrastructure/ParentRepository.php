@@ -145,9 +145,9 @@ class ParentRepository
     {
 		$Auth = new \Medians\Auth\Application\AuthService;
 
-		$Object = Parents::find($data['parent_id']);
+		$Object = $this->findByToken($data['reset_token'], 'reset_token');
 		
-		if (!$this->findByToken($data['reset_token'], 'reset_token'))
+		if (!$Object)
 		{
 			return __('Sent toen is not valid');
 		}
