@@ -66,6 +66,7 @@ Macaw::get('/driver_routes', \Medians\Routes\Application\RouteController::class.
 Macaw::get('/parent/(:all)', \Medians\Parents\Application\ParentController::class.'@checkParent');
 Macaw::get('/get_parent', \Medians\Parents\Application\ParentController::class.'@getParent');
 Macaw::get('/driver/(:all)', \Medians\Drivers\Application\DriverController::class.'@getDriver');
+Macaw::get('/vehicle/(:all)', \Medians\Vehicles\Application\VehicleController::class.'@getVehicle');
 Macaw::get('/trip/(:all)', \Medians\Trips\Application\TripController::class.'@getTrip');
 Macaw::get('/events', \Medians\Events\Application\EventController::class.'@index');
 Macaw::get('/routes', \Medians\Routes\Application\RouteController::class.'@index');

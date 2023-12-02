@@ -190,12 +190,30 @@ class VehicleController extends CustomController
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }
             
+        } catch (Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
+
+	
+
+	public function getVehicle($vehicle_id)
+	{
+
+		$auth = $this->app->auth();
+
+        try {
+
+			if (!empty($auth))
+			{
+				$check = $this->repo->find($vehicle_id);
+				echo json_encode($check);
+			}
 
         } catch (Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
-        	
         }
-
 	}
+	
 	
 }
