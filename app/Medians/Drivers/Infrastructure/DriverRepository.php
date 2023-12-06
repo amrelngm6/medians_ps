@@ -101,7 +101,7 @@ class DriverRepository
 	 */
 	public function findByToken($token, $code = 'API_token')
 	{
-		return Driver::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
+		return Driver::with('custom_fields')->whereHas('custom_fields', function($q) use ($token, $code) {
 			$q->where('code', $code)->where('value',$token);
 		})->first();
 

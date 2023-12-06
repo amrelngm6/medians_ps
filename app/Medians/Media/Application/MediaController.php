@@ -92,7 +92,7 @@ class MediaController extends CustomController
 			header("Expires: " . gmdate("D, d M Y H:i:s", time() + $expires) . " GMT");
 
 			// Serve the CSS file
-			$extension = "text/".end($ext);
+			$extension = "image/".end($ext);
 			header("Content-Type: $extension");
 			readfile($_SERVER['DOCUMENT_ROOT'].$filepath);
 
