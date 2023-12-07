@@ -297,6 +297,11 @@ export default
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
                     this.locations[i] = this.handleObject(this.activeItem.pickup_locations[i]);
                 }
+                let a=this.activeItem.pickup_locations;
+                for (let i = 0; i < this.activeItem.destinations.length; i++) {
+                    a++ 
+                    this.locations[a] = this.handleObject(this.activeItem.destinations[a]);
+                }
 
                 return this
             },
