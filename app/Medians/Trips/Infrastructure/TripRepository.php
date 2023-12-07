@@ -91,7 +91,7 @@ class TripRepository
 
 	public function get($limit = 100)
 	{
-		return Trip::withCount('moving_locations')->withCount('pickup_locations')->with('route', 'pickup_locations', 'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
+		return Trip::withCount('moving_locations')->withCount('pickup_locations')->with('route', 'pickup_locations', 'destinations', 'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
 	}
 
 	public function eventsByDate($params)
