@@ -140,7 +140,7 @@
                                                     <div class="relative">
                                                         <div
                                                             class="w-9 h-9 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
-                                                            <img v-if="location.model" :src="location.model.picture"
+                                                            <img v-if="location.model" :src="'/app/image.php?w=100&src='+ location.model.picture"
                                                                 class="rounded-full" alt="">
                                                         </div>
                                                         <div class="absolute top-4 -end-6 w-12 h-[2px] bg-gray-400 -z-10">
