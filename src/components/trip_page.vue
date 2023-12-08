@@ -298,10 +298,13 @@ export default
                 this.activeItem.locations = [];
                 let a=this.activeItem.pickup_locations.length;
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
-                    this.activeItem.locations[i] = this.handleObject(this.activeItem.pickup_locations[i], 'blue_pin.gif');
-                    this.activeItem.locations[a] = this.handleObject(this.activeItem.destinations[i], 'yellow_pin.gif');
+                    this.activeItem.locations[i] = this.handlePickup(this.activeItem.pickup_locations[i], this.activeItem.destinations[i], 'blue_pin.gif');
+                    this.activeItem.locations[a] = this.handlePickup(this.activeItem.destinations[i], this.activeItem.pickup_locations[i], 'yellow_pin.gif');
                     a++ 
                 }
+
+                this.activeItem.locations.push(this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'car.svg'));
+                this.activeItem.locations.push(this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'destination.svg'));
 
                 return this
             },
@@ -310,14 +313,16 @@ export default
             * Handle object
             * @param {Model Object} i 
             */
-            handleObject(data, iconPath = 'blue_pin.gif') {
-
-                data.icon = iconPath ? (this.conf.url + 'uploads/images/' + iconPath) : ''
-                data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) }
+            handlePickup(origin, destination, icon) {
+                let data = {}
+                data.icon = this.conf.url + 'uploads/images/' + icon
+                data.origin = { lat: parseFloat(origin.latitude), lng: parseFloat(origin.longitude) }
+                data.destination = { lat: parseFloat(destination.latitude), lng: parseFloat(destination.longitude) }
                 data.drag = false;
                 return data;
             },
 
+            
 
             __(i) {
                 return this.$root.$children[0].__(i);

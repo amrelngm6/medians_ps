@@ -31,8 +31,16 @@ class Vehicle extends CustomModel
 	];
 
 
-	// public $appends = [];
+	public $appends = ['latitude', 'longitude'];
 
+	public function getLatitudeAttribute()
+	{
+		return $this->last_latitude;
+	}
+	public function getLongitudeAttribute()
+	{
+		return $this->last_longitude;
+	}
 
 	public function photo() : String
 	{
