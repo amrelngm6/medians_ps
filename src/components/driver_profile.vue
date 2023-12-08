@@ -137,7 +137,7 @@
                                                         <div class="relative">
                                                             <div
                                                                 class="w-9 h-9 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
-                                                                <img :src="'/app/image.php?w=100&src='+ location.model.picture" class="rounded-full"
+                                                                <img :src="'/app/image.php?w=100&h=100&src='+ location.model.picture" class="rounded-full"
                                                                     alt="">
                                                             </div>
                                                             <div
