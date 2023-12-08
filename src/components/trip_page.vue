@@ -300,10 +300,13 @@ export default
             setLocations() {
                 this.activeItem.locations = [this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'car.svg')];
                 let a=this.activeItem.pickup_locations.length;
-                let icon;
+                let icon1;
+                let icon2;
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
-                    this.activeItem.locations.push(this.handlePickup(this.activeItem.pickup_locations[i], this.activeItem.destinations[i]));
-                    this.activeItem.locations.push(this.handlePickup(this.activeItem.destinations[i], this.activeItem.pickup_locations[i]));
+                    icon1 = origin.time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    icon2 = origin.time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    this.activeItem.locations.push(this.handlePickup(this.activeItem.pickup_locations[i], this.activeItem.destinations[i], icon1));
+                    this.activeItem.locations.push(this.handlePickup(this.activeItem.destinations[i], this.activeItem.pickup_locations[i], icon2));
                     a++ 
                 }
                 this.activeItem.locations.push(this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'destination.svg'));
@@ -315,9 +318,8 @@ export default
             * Handle object
             * @param {Model Object} i 
             */
-            handlePickup(origin, destination) {
+            handlePickup(origin, destination, icon) {
                 let data = {}
-                let icon = origin.time ? 'yellow_pin.gif' : 'blue_pin.gif';
                 data.icon = this.conf.url + 'uploads/images/' + icon
                 data.origin = { lat: parseFloat(origin.latitude), lng: parseFloat(origin.longitude) }
                 data.destination = { lat: parseFloat(destination.latitude), lng: parseFloat(destination.longitude) }
