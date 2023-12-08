@@ -35,7 +35,7 @@ class TripDestination extends CustomModel
 
 	public function getTimeAttribute()
 	{
-		return empty($this->boarding_time) ? '' : date('H:i:s', strtotime($this->boarding_time));
+		return empty($this->dropoff_time) ? '' : date('H:i:s', strtotime($this->dropoff_time));
 	}
 
 	public function getLatitudeAttribute()
