@@ -300,11 +300,10 @@ export default
             setLocations() {
                 this.activeItem.locations = [this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'car.svg')];
                 let a=this.activeItem.pickup_locations.length;
-                let icon1;
-                let icon2;
+                let icon1, icon2;
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
-                    icon1 = origin.time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    icon2 = origin.time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    icon1 = this.activeItem.pickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    icon2 = this.activeItem.destinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
                     this.activeItem.locations.push(this.handlePickup(this.activeItem.pickup_locations[i], this.activeItem.destinations[i], icon1));
                     this.activeItem.locations.push(this.handlePickup(this.activeItem.destinations[i], this.activeItem.pickup_locations[i], icon2));
                     a++ 
