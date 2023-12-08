@@ -156,7 +156,7 @@
                                                                     class="p-2 rounded  text-primary flex items-center justify-center text-sm mx-16 "
                                                                     v-text="location.boarding_time ? location.time : __('Waiting')"></h2>
                                                             </div>
-                                                            <div class="relative me-5 md:ps-0 ps-10 w-96 overflow-auto">
+                                                            <div class="relative me-5 md:ps-0 ps-10  overflow-auto">
                                                                 <div class="pt-3">
                                                                     <h4 class="mb-1.5 text-base dark:text-gray-300"
                                                                         v-if="location.model" v-text="location.model.name">
