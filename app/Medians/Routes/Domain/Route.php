@@ -29,8 +29,14 @@ class Route extends CustomModel
 	];
 
 
-	// public $appends = [];
+	public $appends = ['driver_name'];
 
+
+    // Define an accessor to fetch the driver's name
+    public function getDriverNameAttribute()
+    {
+        return $this->driver->name ?? '';
+    }
 
 	public function photo() : String
 	{

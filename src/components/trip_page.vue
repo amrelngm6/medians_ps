@@ -298,14 +298,14 @@ export default
             },
 
             setLocations() {
-                this.activeItem.locations = [this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'car.svg')];
+                this.activeItem.locations = [this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'car.svg')];
                 let a=this.activeItem.pickup_locations.length;
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
                     this.activeItem.locations.push(this.handlePickup(this.activeItem.pickup_locations[i], this.activeItem.destinations[i], 'blue_pin.gif'));
                     this.activeItem.locations.push(this.handlePickup(this.activeItem.destinations[i], this.activeItem.pickup_locations[i], 'yellow_pin.gif'));
                     a++ 
                 }
-                this.activeItem.locations.push(this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'destination.svg'));
+                this.activeItem.locations.push(this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'destination.svg'));
 
                 return this
             },

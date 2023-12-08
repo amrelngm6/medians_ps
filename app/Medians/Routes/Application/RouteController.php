@@ -44,6 +44,7 @@ class RouteController extends CustomController
 		return [
             [ 'key'=> "route_id", 'title'=> "#"],
             [ 'key'=> "route_name", 'title'=> __('route_name'), 'sortable'=> true ],
+            [ 'key'=> "driver_name", 'title'=> __('driver_name'), 'sortable'=> true ],
         ];
 	}
 

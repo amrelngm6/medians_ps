@@ -22,7 +22,7 @@
             <GmapMarker
                 v-for="(marker, index) in waypoints" 
                 :key="waypoints" 
-                :position="marker.destination"
+                :position="marker.origin"
                 :clickable="true" 
                 :draggable="false" 
                 :icon="marker.icon ? marker.icon : null" 
@@ -54,7 +54,7 @@ export default
                 origin: { lat: 0, lng: 0 }, // Replace with your origin location
                 destination: { lat: 0, lng: 0 }, // Replace with your destination location
                 
-                zoom: 16,
+                zoom: 12,
                 markers: [
                 ],
                 
@@ -111,8 +111,7 @@ export default
                 var t = this;
                 let url = this.conf ? (this.conf.url + "vehicle/"+this.trip.vehicle_id) : ''
                 this.$root.$children[0].handleGetRequest( url ).then(response=> {
-                    t.center = {lat: parseFloat(response.latitude), lng: parseFloat(response.longitude)};
-                    console.log()
+                    t.updateMarkers(response);
                 });
             },
 
@@ -124,20 +123,9 @@ export default
             {
                 this.center = {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude)}
                 this.waypoints = this.trip.locations;
+                this.waypoints[0].origin = this.center;
             },
             
-            
-            /**
-            * Handle object
-            * @param {Model Object} i 
-            */
-            handleObject(data) {
-                data.icon = this.conf ? (this.conf.url + 'uploads/images/blue_pin.gif') : ''
-                data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) }
-                data.drag = false;
-                return data;
-            },
-
 
             async checkMarker(i)  {
                 this.activeDestination = this.waypoints[i].destination;
