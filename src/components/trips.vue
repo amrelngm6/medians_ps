@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
 
         <div  v-if="showTrip" class=" w-full relative">
-            <trip_page @close="callback" :trip="activeItem"></trip_page>
+            <trip_page :conf="conf" @close="callback" :trip="activeItem"></trip_page>
         </div>    
             
         <div  v-if="content && !showTrip " class=" w-full relative">
@@ -30,9 +30,12 @@
                                             <div class="self-stretch text-slate-500 text-sm text-muted "> <i class="fa fa-map-location "></i><span v-if="trip.route" class="font-semibold text-sm px-2" v-text="trip.route.route_name"></span></div>
                                         </div>
                                     </div>
-                                    <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
-                                        <div class="px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(trip, index)" >
+                                    <div  class="gap-2 py-2  justify-start items-start gap-2.5 inline-flex">
+                                        <div class="mb-2 px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(trip, index)" >
                                             <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-location-dot"></i></div>
+                                        </div>
+                                        <div class="mb-2 px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="handleAction('edit', trip)" >
+                                            <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-edit"></i></div>
                                         </div>
                                    </div>
                                 </div>
@@ -263,9 +266,7 @@ export default
                     break;  
 
                 case 'edit':
-                    this.showEditSide = true; 
-                    this.showAddSide = false; 
-                    this.activeItem = data
+                    this.editFields(data);
                     break;  
 
                 case 'delete':

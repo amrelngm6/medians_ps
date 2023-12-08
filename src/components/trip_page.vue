@@ -178,9 +178,10 @@
                     </div>
                 </div>
                 <p class="text-center" v-if="activeStatus == 'map'">
-                    <maps :key="locations" :center="locations.length > 0 ? locations[0].destination : { lat: 0, lng: 0 }"
-                        @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations"
-                        @interval-callback="callback"></maps>
+                    <trip_map :key="trip" 
+                        :trip="trip"
+                        @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" 
+                        @interval-callback="callback"></trip_map>
 
                 </p>
             </div>
@@ -224,7 +225,7 @@ export default
         ],
         mounted() {
             this.activeItem = this.trip;
-            console.log(this.activeItem)
+
             if (this.trip) {
                 this.setLocations();
             }
@@ -294,13 +295,12 @@ export default
             },
 
             setLocations() {
+                this.activeItem.locations = [];
+                let a=this.activeItem.pickup_locations.length;
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
-                    this.locations[i] = this.handleObject(this.activeItem.pickup_locations[i]);
-                }
-                let a=this.activeItem.pickup_locations;
-                for (let i = 0; i < this.activeItem.destinations.length; i++) {
+                    this.activeItem.locations[i] = this.handleObject(this.activeItem.pickup_locations[i], 'blue_pin.gif');
+                    this.activeItem.locations[a] = this.handleObject(this.activeItem.destinations[i]);
                     a++ 
-                    this.locations[a] = this.handleObject(this.activeItem.destinations[a]);
                 }
 
                 return this
@@ -310,8 +310,9 @@ export default
             * Handle object
             * @param {Model Object} i 
             */
-            handleObject(data) {
-                data.icon = this.conf ? (this.conf.url + 'uploads/images/blue_pin.gif') : ''
+            handleObject(data, iconPath = 'blue_pin.gif') {
+
+                data.icon = this.conf ? (this.conf.url + 'uploads/images/' + iconPath) : ''
                 data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) }
                 data.drag = false;
                 return data;
