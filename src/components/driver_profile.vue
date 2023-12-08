@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="w-full border-b border-gray-100" v-if="activeStatus == 'trips' && activeItem.last_trips">
 
-                                        <div class="relative overflow-hidden "
+                                        <div class="relative overflow-hidden  mb-10 pb-10 border-b"
                                             v-for="(trip, index) in activeItem.last_trips" v-if="index <= limitCount" :key="limitCount">
                                             <!-- Center Border Line -->
                                             <div
