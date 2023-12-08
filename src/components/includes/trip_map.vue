@@ -11,7 +11,7 @@
             }"
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
 
-<!--             
+            
             <DirectionsRenderer 
                 v-if="showroute && directionPoints"
                 :destination="directionPoints.destination" 
@@ -19,7 +19,7 @@
                 :key="directionPoints" 
                 :travelMode="travelMode" 
                  />
-                 -->
+                
             <GmapMarker
                 v-for="(marker, index) in waypoints" 
                 :key="waypoints" 
@@ -100,11 +100,11 @@ export default
             onMapReady()
             {
                 var t = this;
-                // t.directionsService = new window.google.maps.DirectionsService();
-                // t.directionsDisplay = new window.google.maps.DirectionsRenderer();
+                t.directionsService = new window.google.maps.DirectionsService();
+                t.directionsDisplay = new window.google.maps.DirectionsRenderer();
 
                 var map = this.$refs.gmap.$mapObject;
-                // this.directionsDisplay.setMap(map);
+                this.directionsDisplay.setMap(map);
 
                 setInterval(() => {
                     if (t.waypoints != t.trip.locations && t.trip.locations) {
