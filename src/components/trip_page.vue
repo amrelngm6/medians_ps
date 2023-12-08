@@ -154,7 +154,7 @@
                                                             <div class="ms-10">
                                                                 <h2 :class="__('lang') == 'ar' ? 'bg-gradient-to-l' : 'bg-gradient-to-r'"
                                                                     class="p-2 rounded  text-primary flex items-center justify-center text-sm mx-16 "
-                                                                    v-text="location.boarding_time"></h2>
+                                                                    v-text="location.boarding_time ? location.boarding_time : __('Waiting')"></h2>
                                                             </div>
                                                             <div class="relative me-5 md:ps-0 ps-10 w-96 overflow-auto">
                                                                 <div class="pt-3">
@@ -299,7 +299,7 @@ export default
                 let a=this.activeItem.pickup_locations.length;
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
                     this.activeItem.locations[i] = this.handleObject(this.activeItem.pickup_locations[i], 'blue_pin.gif');
-                    this.activeItem.locations[a] = this.handleObject(this.activeItem.destinations[i]);
+                    this.activeItem.locations[a] = this.handleObject(this.activeItem.destinations[i], 'yellow_pin.gif');
                     a++ 
                 }
 
@@ -312,7 +312,7 @@ export default
             */
             handleObject(data, iconPath = 'blue_pin.gif') {
 
-                data.icon = this.conf ? (this.conf.url + 'uploads/images/' + iconPath) : ''
+                data.icon = iconPath ? (this.conf.url + 'uploads/images/' + iconPath) : ''
                 data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) }
                 data.drag = false;
                 return data;

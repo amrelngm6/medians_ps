@@ -83,7 +83,7 @@ export default
         ],
         mounted() {
             var t = this;
-
+            t.updateMarkers();
             setTimeout(function(){
                 t.onMapReady()
             }, 1000)
@@ -108,13 +108,21 @@ export default
 
                 setInterval(() => {
                     if (t.waypoints != t.trip.locations && t.trip.locations) {
-                        t.center = {lat: parseFloat(t.trip.vehicle.last_latitude), lng: parseFloat(t.trip.vehicle.last_longitude)}
-                        t.waypoints = t.trip.locations;
-                        // t.calculateAndDisplayRoute();
+                        t.updateMarkers()
                     }
                 }, 2000);
             },
 
+            /**
+             * Set markers and update 
+             * if got new location
+             */
+            updateMarkers()
+            {
+                this.center = {lat: parseFloat(this.trip.vehicle.last_latitude), lng: parseFloat(this.trip.vehicle.last_longitude)}
+                this.waypoints = this.trip.locations;
+            },
+            
             
             /**
             * Handle object
