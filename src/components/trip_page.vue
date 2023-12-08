@@ -303,8 +303,8 @@ export default
                     a++ 
                 }
 
-                this.activeItem.locations.push(this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'car.svg'));
-                this.activeItem.locations.push(this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'destination.svg'));
+                this.activeItem.locations.push(this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'destination.svg'));
+                this.activeItem.locations.push(this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'car.svg'));
 
                 return this
             },
