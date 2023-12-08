@@ -179,8 +179,11 @@
                 </div>
                 <p class="text-center" v-if="activeStatus == 'map'">
                     <trip_map :key="trip" 
-                        :trip="trip"
-                        @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" 
+                        :trip="trip" 
+                        :conf="conf"
+                        :showroute="true" 
+                        @click-marker="clickMarker" 
+                        @update-marker="updateMarker" 
                         @interval-callback="callback"></trip_map>
 
                 </p>
@@ -295,16 +298,14 @@ export default
             },
 
             setLocations() {
-                this.activeItem.locations = [];
+                this.activeItem.locations = [this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'car.svg')];
                 let a=this.activeItem.pickup_locations.length;
                 for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
-                    this.activeItem.locations[i] = this.handlePickup(this.activeItem.pickup_locations[i], this.activeItem.destinations[i], 'blue_pin.gif');
-                    this.activeItem.locations[a] = this.handlePickup(this.activeItem.destinations[i], this.activeItem.pickup_locations[i], 'yellow_pin.gif');
+                    this.activeItem.locations.push(this.handlePickup(this.activeItem.pickup_locations[i], this.activeItem.destinations[i], 'blue_pin.gif'));
+                    this.activeItem.locations.push(this.handlePickup(this.activeItem.destinations[i], this.activeItem.pickup_locations[i], 'yellow_pin.gif'));
                     a++ 
                 }
-
                 this.activeItem.locations.push(this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'destination.svg'));
-                this.activeItem.locations.push(this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'car.svg'));
 
                 return this
             },
