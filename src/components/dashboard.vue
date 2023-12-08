@@ -270,7 +270,7 @@ export default
             // Line charts for sales in last days 
             this.line_options = JSON.parse(JSON.stringify(this.charts_options));
             this.line_options.theme = 'light2'
-            this.line_options.axisY.suffix = this.setting.currency
+            this.line_options.axisY.suffix = ''
             this.line_options.axisY.title = this.__('Trips')
             this.line_options.toolTip = {shared: true}
             this.line_options.data[0] = {
