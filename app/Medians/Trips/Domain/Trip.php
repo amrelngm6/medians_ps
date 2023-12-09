@@ -69,7 +69,7 @@ class Trip extends CustomModel
 
 	public function student() 
 	{
-		return $this->hasMany(TripPickup::class);	
+		return $this->hasOne(TripPickup::class, 'trip_id', 'trip_id');	
 	}
 
 	public function pickup_locations() 
