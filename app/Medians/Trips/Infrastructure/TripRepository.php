@@ -89,6 +89,11 @@ class TripRepository
 					return $q->with('location')->whereHas('student', function($q) use ($id){
 						return $q->where('parent_id', $id);
 					});
+			}])->with([
+				'student_destination' => function($q) use ($id){
+					return $q->with('location')->whereHas('student', function($q) use ($id){
+						return $q->where('parent_id', $id);
+					});
 			}])
 			->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}

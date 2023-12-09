@@ -72,6 +72,11 @@ class Trip extends CustomModel
 		return $this->hasOne(TripPickup::class, 'trip_id', 'trip_id');	
 	}
 
+	public function student_destination() 
+	{
+		return $this->hasOne(TripDestination::class, 'trip_id', 'trip_id');	
+	}
+
 	public function pickup_locations() 
 	{
 		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->with('location','model')->orderBy('boarding_time', 'asc');	
