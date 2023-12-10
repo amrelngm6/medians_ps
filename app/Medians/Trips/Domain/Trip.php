@@ -132,10 +132,18 @@ class Trip extends CustomModel
 	
 	public function getDistanceAttribute() {
 		$locations = $this->pickup_locations;
+		$route = $this->route;
 		$totalDistance = 0;
 		for ($i = 0; $i < count($locations); $i++) {
 			$totalDistance += $this->haversineDistance($locations[$i]['latitude'], $locations[$i]['longitude'], $locations[($i + 1) % count($locations)]['latitude'], $locations[($i + 1) % count($locations)]['longitude']);
 		}
+		
+		if (count($locations) > 0)
+		{
+
+			$totalDistance += $this->haversineDistance($locations[(count($locations) - 1)]['latitude'], $locations[(count($locations) - 1)]['longitude'], $route->latitude, $route->longitude);
+		}
+
 		return number_format($totalDistance, 3);
 	}
 
