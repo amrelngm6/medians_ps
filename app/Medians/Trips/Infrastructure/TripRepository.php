@@ -52,12 +52,12 @@ class TripRepository
 			'student_location' => function($q) use ($parent_id){
 				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
 					return $q->where('parent_id', $parent_id);
-				});
+				})->orderBy('status','DESC');
 		}])->with([
 			'student_destination' => function($q) use ($parent_id){
 				return $q->with('destination')->whereHas('student', function($q) use ($parent_id){
 					return $q->where('parent_id', $parent_id);
-				});
+				})->orderBy('status','DESC');
 		}])
 		->find($trip_id);
 	}
@@ -100,7 +100,7 @@ class TripRepository
 			'pickup_locations', function($q) use ($id){
 				return $q->with('location')->whereHas('student', function($q) use ($id){
 					return $q->where('parent_id', $id);
-				});
+				})->orderBy('status','DESC');
 			})->with([
 				'student_location' => function($q) use ($id){
 					return $q->with('location')->whereHas('student', function($q) use ($id){
@@ -110,7 +110,7 @@ class TripRepository
 				'student_destination' => function($q) use ($id){
 					return $q->with('destination')->whereHas('student', function($q) use ($id){
 						return $q->where('parent_id', $id);
-					});
+				})->orderBy('status','DESC');
 			}])
 			->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}
