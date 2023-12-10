@@ -6,6 +6,8 @@ use Medians\Routes\Domain\Route;
 use Medians\Locations\Domain\PickupLocation;
 use Medians\Locations\Domain\Destination;
 use Medians\Vehicles\Domain\Vehicle;
+use Medians\Students\Domain\Student;
+use Medians\Parents\Domain\Parents;
 use Shared\dbaser\CustomModel;
 
 
@@ -51,6 +53,16 @@ class TripDestination extends CustomModel
 	public function destination() 
 	{
 		return $this->hasOne(Destination::class, 'destination_id', 'destination_id');	
+	}
+
+	public function student() 
+	{
+		return $this->hasOne(Student::class, 'student_id', 'model_id');	
+	}
+
+	public function parent() 
+	{
+		return $this->hasOneThrough(Parents::class, Student::class, 'student_id', 'parent_id', 'model_id', 'parent_id');	
 	}
 
 	public function model() 
