@@ -105,7 +105,7 @@ class TripRepository
 				'student_location' => function($q) use ($id){
 					return $q->with('location')->whereHas('student', function($q) use ($id){
 						return $q->where('parent_id', $id);
-					});
+				})->orderBy('status','DESC');
 			}])->with([
 				'student_destination' => function($q) use ($id){
 					return $q->with('destination')->whereHas('student', function($q) use ($id){
