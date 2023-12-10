@@ -156,19 +156,35 @@ class TripController extends CustomController
         }
 
 	}
+
 	
 	/**
 	 * get Trip
 	 */
 	public function getTrip($id)
 	{
+		
 		$trip =  $this->repo->getTrip($id);
 
 		echo  json_encode( $trip );
 	}
 
+	
 	/**
-	 * get Trip
+	 * Get Trip
+	 */
+	public function getParentTrip($id)
+	{
+		
+		$user = $this->app->auth();		
+
+		$trip =  $this->repo->getParentTrip($id, $user->parent_id);
+
+		echo  json_encode( $trip );
+	}
+
+	/**
+	 * Get Driver active Trip
 	 */
 	public function getActiveDriverTrip()
 	{

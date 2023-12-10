@@ -45,6 +45,23 @@ class TripRepository
 		return Trip::withCount('moving_locations','done_locations','waiting_locations')->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')->find($id);
 	}
 
+	public function getParentTrip($trip_id, $parent_id)
+	{
+		return Trip::with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
+		->with([
+			'student_location' => function($q) use ($parent_id){
+				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
+					return $q->where('parent_id', $parent_id);
+				});
+		}])->with([
+			'student_destination' => function($q) use ($parent_id){
+				return $q->with('destination')->whereHas('student', function($q) use ($parent_id){
+					return $q->where('parent_id', $parent_id);
+				});
+		}])
+		->find($trip_id);
+	}
+
 	public function getDriverTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
