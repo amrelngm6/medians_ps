@@ -105,7 +105,6 @@ class SettingsController extends CustomController
 
 		$data = [
 			'created_by' => $this->app->auth()->id,
-			'branch_id' => $this->app->branch->id,
 			'model' => '',
 			'code' => $code,
 			'value' => $value

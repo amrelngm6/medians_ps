@@ -64,22 +64,6 @@ class Configuration
 		$this->url = str_replace('\\','/',$this->url);
 	}
 
-
-	public function setUrl($url) : Void
-	{
-		$this->url = $url;
-	}
-
-	public function setPath($path) : Void
-	{
-		$this->path = $path;
-	}
-
-	public function setAdminPath($admin_path) : Void
-	{
-		$this->admin_path = $admin_path;
-	}
-
 	public function getCONF() : Object
 	{
 		return $this;
@@ -100,8 +84,6 @@ class Configuration
 		global $Capsule;
 
 		$this->capsule = $Capsule;
-		// if (isset($_SESSION['db_checked']) && $this->capsule->getConnection())
-		// 	return $this->capsule;
 
 		return $this->capsule;
 	}

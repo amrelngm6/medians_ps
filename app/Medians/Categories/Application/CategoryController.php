@@ -54,7 +54,6 @@ class CategoryController extends CustomController
 		$this->app = new \config\APP;
 
 		$params = $this->app->request()->get('params');
-		$params['branch_id'] = $this->app->branch->id;
 
         try {	
 

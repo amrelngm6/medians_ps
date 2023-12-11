@@ -13,7 +13,6 @@ class PageRepository
 	/**
 	 * Load app for Sessions and helpful
 	 * methods for authentication and
-	 * settings for branch
 	 */ 
 	protected $app ;
 

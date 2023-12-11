@@ -16,7 +16,6 @@ function render($template, $data, $responseType = 'html')
         
         $app = new \config\APP;
             
-        // $settings = !empty($app->auth()->active_branch) ? $app->Settings() : [];
         $settings = $app->Settings();
         
             
@@ -43,7 +42,6 @@ function render($template, $data, $responseType = 'html')
     $data['component'] = $template;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
-    $data['app']->branch = $app->branch;
     $data['app']->Settings = $settings;
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
     $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');

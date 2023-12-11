@@ -129,7 +129,7 @@ class TripRepository
 
 	
 	/**
-	* Find all items between two days By BranchId
+	* Find all items between two days 
 	*/
 	public function getByDateCharts($params )
 	{

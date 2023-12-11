@@ -35,11 +35,11 @@ class CategoryRepository
 		switch ($model) 
 		{
 			case Product::class:
-				return Category::withCount('products')->where('model', $model)->where('branch_id', $this->app->branch->id)->limit($limit)->get();
+				return Category::withCount('products')->where('model', $model)->limit($limit)->get();
 				break;
 			
 			case Device::class:
-				return Category::withCount('devices')->where('model', $model)->where('branch_id', $this->app->branch->id)->limit($limit)->get();
+				return Category::withCount('devices')->where('model', $model)->limit($limit)->get();
 				break;
 		}
 	}
@@ -51,7 +51,7 @@ class CategoryRepository
 	 */ 
 	public function categories($model)
 	{
-		return Category::where('branch_id', $this->app->branch->id)->where('model', $model)->orderBy('id', 'DESC')->get();
+		return Category::where('model', $model)->orderBy('id', 'DESC')->get();
 	}
 
 

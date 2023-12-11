@@ -21,7 +21,6 @@ class User extends CustomModel
 
 
 	protected $fillable = [
-    	'active_branch',
     	'first_name',
     	'last_name',
     	'email',

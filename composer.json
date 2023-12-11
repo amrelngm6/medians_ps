@@ -13,7 +13,6 @@
         "psr/event-dispatcher": "^1.0",
         "symfony/http-client": "^6.0",
         "symfony/http-foundation": "^6.0",
-        "noahbuscher/macaw": "dev-master",
         "symfony/serializer": "^5.3",
         "spatie/async": "^1.5",
         "chillerlan/php-qrcode": "^3.4",

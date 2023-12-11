@@ -13,8 +13,6 @@ class NotificationController extends CustomController
 	*/
 	protected $repo;
 	
-	protected $branchRepo;
-
 
 
 	function __construct()
@@ -230,35 +228,6 @@ class NotificationController extends CustomController
 
 
 
-
-	/**
-	*  Store item
-	*/
-	public function store($branch, $model) 
-	{
-
-		try {	
-
-
-			$DashboardController = new \Medians\DashboardController;
-
-	    	// Store notification
-			$filled['receiver_type'] = get_class($branch);
-			$filled['receiver_id'] = $branch->id;
-			$filled['event_id'] = 0;
-			$filled['model_type'] = get_class($model);
-			$filled['model_id'] = $model->id;
-	    	$filled['subject'] = __('Booking time ended') . (isset($model->title) ? $model->title : $model->id);
-	    	$filled['body'] = __('Booking time ended and requires an action');
-	    	$filled['status'] = 'new';
-
-	    	$this->repo->store($filled);
-
-
-        } catch (Exception $e) {
-
-        }
-	}
 
 	/**
 	 * Update item to database

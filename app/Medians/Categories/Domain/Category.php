@@ -17,7 +17,6 @@ class Category extends CustomModel
 
 	public $fillable = [
 		'name',
-		'branch_id',
 		'model',
 		'status',
 	];

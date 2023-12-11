@@ -2,7 +2,6 @@
 
 namespace Medians\Users\Application;
 
-use Medians\Branches\Infrastructure\BranchRepository;
 use Medians\Plans\Infrastructure\PlanRepository;
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 
@@ -28,7 +27,6 @@ class GetStartedController
 	{
 		$this->app = new \config\APP;		
 
-		$this->repo = new BranchRepository();
 
 		$this->planSubscriptionRepo = new PlanSubscriptionRepository();
 
@@ -67,49 +65,8 @@ class GetStartedController
 	}
 
 
-	/**
-	*  Store branch for new user
-	*/
-	public function store_branch() 
-	{
-		$params = (array)  $this->app->request()->get('params');
 
-		try {
-
-			$params['status'] = 'on';
-			$params['owner_id'] = $this->app->auth()->id;
-			$save = $this->repo->store($params);
-
-			if (isset($save->id))
-				$this->saveActiveBranch($save);
-
-        	return isset($save->id) 
-           	? array('success'=>1, 'result'=>__('Created'), 'reload'=>1)
-        	: array('error'=> $save );
-
-        } catch (Exception $e) {
-            return  $e->getMessage();
-        }
-	}
-
-
-	/**
-	 * Save the created branch 
-	 * for the active session
-	 * 
-	 */ 
-	public function saveActiveBranch($branch)
-	{
-
-		$user = $this->app->auth();
-
-		$user->update(['active_branch'=>$branch->id]);
-
-		return $this;
-	} 
-
-
-
+	
 	/**
 	 * Save the created branch 
 	 * for the active session
@@ -156,7 +113,6 @@ class GetStartedController
 		$params = [];
 		// Store new subscription 
     	$params['plan_id'] = $plan->id;
-    	$params['branch_id'] = $this->app->branch->id;
     	$params['user_id'] = $this->app->auth()->id;
     	$params['start_date'] = date('Y-m-d');
     	$params['end_date'] = date('Y-m-d', strtotime('+'.$days.' days', strtotime(date('Y-m-d'))));

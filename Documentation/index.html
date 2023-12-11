@@ -1223,7 +1223,7 @@ export default
 |      Ends with String  name of the function
 |  
 */
-Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
+RouteHandler::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 
 
 /**
@@ -1237,7 +1237,7 @@ Macaw::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 |      Ends with String  name of the function
 |  
 */
-Macaw::post('/API/create', \Medians\APIController::class.'@create');
+RouteHandler::post('/API/create', \Medians\APIController::class.'@create');
 
 
                             </code>

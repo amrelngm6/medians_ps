@@ -12,7 +12,6 @@ class ContentRepository
 	/**
 	 * Load app for Sessions and helpful
 	 * methods for authentication and
-	 * settings for branch
 	 */ 
 	protected $app ;
 
@@ -51,7 +50,7 @@ class ContentRepository
 
 	public function categories($model)
 	{
-		return Category::where('branch_id', $this->app->branch->id)->where('model', $model)->get();
+		return Category::where('model', $model)->get();
 	}
 
 

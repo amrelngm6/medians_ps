@@ -20,18 +20,6 @@ class CustomerRepository
 		return new Customer;
 	}
 
-	public function search($mobile)
-	{
-		return Customer::where('mobile', 'LIKE', '%'.$mobile.'%')->where('active_branch', $this->app->branch->id)->limit(10)->get();
-	}
-
-
-	public function get($limit = 100)
-	{
-		return Customer::where('active_branch', $this->app->branch->id)->limit($limit)->get();
-	}
-
-
 
 	/**
 	* Find latest items

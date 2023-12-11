@@ -120,7 +120,6 @@ class CustomerController extends CustomController
 	        	return array('error'=> __('MOBILE_ERR'), 'result'=> __('MOBILE_ERR') );
 
 			$params['created_by'] = $this->app->auth()->id;
-			$params['active_branch'] = $this->app->branch->id;
 			$Item = $this->repo->store($params);
 
         	return array('success'=>1, 'result'=> $Item);

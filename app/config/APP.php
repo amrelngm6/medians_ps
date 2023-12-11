@@ -3,7 +3,7 @@
 namespace config;
 
 use Twig\Environment;
-use \NoahBuscher\Macaw\Macaw;
+use \Shared\RouteHandler;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -23,8 +23,6 @@ class APP
 	public $lang;
 
 	public $auth;
-
-	public $branch;
 
 	public $hasBranches = false;
 
@@ -121,17 +119,6 @@ class APP
 		}
 	}  
 
-	public function setBranch($branch)
-	{
-		$this->branch = $branch; 
-	}
-
-	public function active_branch()
-	{
-		$this->auth();
-
-		return $this->branch;
-	}
 
 	public static function request()
 	{
@@ -148,7 +135,7 @@ class APP
 
 	public function  run()
 	{
-		Macaw::dispatch();
+		RouteHandler::dispatch();
 
 		return true;
 
