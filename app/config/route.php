@@ -40,16 +40,6 @@ RouteHandler::get('/signup', \Medians\Auth\Application\AuthService::class.'@sign
 // Login as admin
 RouteHandler::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
 
-/**
- * Activate account after signup
- */ 
-RouteHandler::get('/activate-account/(:all)', \Medians\Users\Application\UserController::class.'@activate_account');
-
-/** 
- * Login with Google redirect page
- */  
-RouteHandler::get('/google_login_redirect', \Medians\Auth\Application\AuthService::class.'@verifyLoginWithGoogle');
-
 
 /**
  * Mobile API requests authorized & non-authorized  

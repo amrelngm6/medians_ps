@@ -191,9 +191,6 @@ class UserController extends CustomController
 		if (empty($params['email']))
 			return ['result'=> __('Email required')];
 
-		// if (empty($params['phone']))
-		// 	return ['result'=> __('Mobile required')];
-		
 		if ($params['id'] != $this->app->auth()->id && $this->app->auth()->role_id != 1)
 			return ['result'=> __('Not allowed')];
 	}
@@ -249,23 +246,6 @@ class UserController extends CustomController
         }
 	}
 
-
-	/**
-	 * Activate account page
-	 * 
-	 * @param String $code
-	 * @return response
-	 */ 
-	public function activate_account($code)
-	{
-		$check = $this->repo->findByActivationCode($code);
-
-		if ($check->id)
-		{
-			$check->update(['active'=>1]);
-			return render('views/front/activate.html.twig',['user'=>$check]);
-		}
-	}
 
 
 
