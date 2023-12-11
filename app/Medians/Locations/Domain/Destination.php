@@ -41,12 +41,12 @@ class Destination extends CustomModel
 
 	public function photo() : String
 	{
-		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.jpg';
+		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.png';
 	}
 
 	public function getPictureAttribute() : String
 	{
-		return !empty($this->student->picture) ? $this->student->picture : '/uploads/images/default_profile.jpg';
+		return !empty($this->student->picture) ? $this->student->picture : '/uploads/images/default_profile.png';
 	}
 
 	public function getFields()

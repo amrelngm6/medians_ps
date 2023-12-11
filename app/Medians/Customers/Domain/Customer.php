@@ -41,7 +41,7 @@ class Customer extends CustomModel
 
 	public function photo() : String
 	{
-		return !empty($this->profile_image) ? $this->profile_image : '/uploads/images/default_profile.jpg';
+		return !empty($this->profile_image) ? $this->profile_image : '/uploads/images/default_profile.png';
 	}
 
 	public function getFields()
