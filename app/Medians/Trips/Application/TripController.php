@@ -191,9 +191,7 @@ class TripController extends CustomController
 		
 		$user = $this->app->auth();		
 
-		$trip =  $this->repo->getActiveParentTrip($user->parent_id);
-
-		return  $trip ? json_encode( $trip ) : null;
+		return   $this->repo->getActiveParentTrip($user->parent_id);
 	}
 
 	/**
