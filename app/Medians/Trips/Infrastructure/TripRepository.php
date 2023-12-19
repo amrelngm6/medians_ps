@@ -6,6 +6,7 @@ use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripPickup;
 use Medians\Trips\Domain\TripDestination;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Students\Domain\Student;
 
 use Medians\Routes\Infrastructure\RouteRepository;
 
@@ -60,6 +61,27 @@ class TripRepository
 				})->orderBy('status','DESC');
 		}])
 		->find($trip_id);
+	}
+
+	public function getActiveParentTrip($parent_id)
+	{
+		$ids = Student::where('parent_id', $parent_id)->select('student_id')->get();
+
+		$students =  array_column($ids->toArray(), 'student_id');
+
+		return Trip::with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
+		->whereHas(
+			'student_location' , function($q) use ($students){
+				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
+		})->with([
+			'student_location' => function($q) use ($students){
+				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
+		}])->with([
+			'student_destination' => function($q) use ($students){
+			return $q->with('destination')->whereIn('model_id', $students)->orderBy('status','DESC');
+		}])
+		->where('trip_status','Scheduled')
+		->first();
 	}
 
 	public function getDriverTrips($id, $lastId = 0)

@@ -60,7 +60,6 @@ class AuthService
 	 */
 	public function loginPage()
 	{
-		print(1);
 		try {
 				
 			$this->app = new \config\APP;
