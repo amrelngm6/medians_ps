@@ -22,7 +22,6 @@ class Driver extends CustomModel
     protected $primaryKey = 'driver_id';
 	
 	public $fillable = [
-		// 'driver_id',
 		'first_name',
 		'last_name',
 		'picture',
@@ -37,15 +36,9 @@ class Driver extends CustomModel
 	];
 
 
-	public $appends = ['name', 'photo','field','password'];
+	public $appends = ['name', 'photo','password'];
 
 	
-    public function getFieldAttribute() 
-    {
-        return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
-    }
-
-
 	public function getPasswordAttribute()
 	{
 		return '';
