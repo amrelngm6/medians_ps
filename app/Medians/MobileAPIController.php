@@ -132,6 +132,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Parents\Application\ParentController())->changePassword(); 
 				break;
 				
+			case 'Parents.getActiveParentTrip':
+				$return =  (new Trips\Application\TripController())->getActiveParentTrip(); 
+				break;
+				
 				
 			case 'Parents.resetChangePassword':
 				$return =  (new Parents\Application\ParentController())->resetChangePassword(); 
