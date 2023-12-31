@@ -22,7 +22,7 @@
                  /> -->
                  
             <Marker
-                v-for="(marker, index) in waypoints" 
+                v-for="(marker, index) in markers" 
                 :key="waypoints" 
                 :position="marker.destination"
                 :clickable="true" 
@@ -113,7 +113,7 @@ export default
                 destination: { lat: 0, lng: 0 }, // Replace with your destination location
                 settings: props.setting,
                 zoom,
-                markers,
+                markers: props.waypoints,
                 polylineCoordinates,
                 directionPoints,
                 activeDestination,
