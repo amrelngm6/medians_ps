@@ -38,10 +38,8 @@
 </template>
 <script>
 // import DirectionsRenderer from "./map_direction.vue";
-import { defineComponent, ref } from "vue";
+import { ref } from "vue";
 import { GoogleMap, Marker } from "vue3-google-map";
-
-
 
 export default
     {
