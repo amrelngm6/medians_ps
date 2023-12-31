@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div  v-if="content " class=" w-full relative">
 
-            <maps v-if="center" :conf="conf" :setting="setting" :key="center" :center="center" @update-marker="updateMarker" @click-marker="clickMarker" :waypoints="locations" :showroute="false"></maps>
+            <maps v-if="center" :conf="conf" :setting="setting" :key="center" :center="center" @update-marker="updateMarker" @click-marker="clickMarker" :waypoints="waypoints" :showroute="false"></maps>
 
             <div :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
@@ -265,10 +265,13 @@ export default
                     break;
             }
         }
-        console.log(center.value)
+        const waypoints = () => {
+            return []
+        }
 
         return {
             showAddSide,
+            waypoints,
             showEditSide,
             url,
             content,
