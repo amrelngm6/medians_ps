@@ -197,7 +197,7 @@ export default
                 content.value.items[a].selected = false;
                 
             content.value.items[i].selected = true; 
-            locations.value = setLocationsPickups(route);
+            waypoints.value = setLocationsPickups(route);
         }
         
         const updateMarker = (item, index, event) =>
@@ -217,16 +217,16 @@ export default
         const setLocationsPickups = (route) => 
         {
             let a;
-            let locations = [];
+            let locations_ = [];
             // = parseFloat(location.latitude);
             for (let i = 0; i < route.pickup_locations.length; i++) {
                 a = route.pickup_locations[i];
-                locations[i] = {icon: props.conf.url+'uploads/images/blue_pin.gif', origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+                locations_[i] = {icon: props.conf.url+'uploads/images/blue_pin.gif', origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
-            locations[locations.length] = {icon: props.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
-            center.value = locations[0].destination;
-            locations[locations.length] = {drag:true, icon: props.conf.url+'uploads/images/destination.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.latitude), lng: parseFloat(route.longitude) } }
-            return locations;
+            locations_[locations_.length] = {icon: props.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
+            center.value = locations_[0].destination;
+            locations_[locations_.length] = {drag:true, icon: props.conf.url+'uploads/images/destination.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.latitude), lng: parseFloat(route.longitude) } }
+            return locations_;
         }
 
 
@@ -265,9 +265,8 @@ export default
                     break;
             }
         }
-        const waypoints = () => {
-            return []
-        }
+
+        const waypoints = ref([])
 
         return {
             showAddSide,
