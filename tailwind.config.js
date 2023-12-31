@@ -3,10 +3,6 @@ module.exports = {
   content: [
     "./src/*.{vue,js,ts,jsx,tsx,twig}",
     "./src/**/*.{vue,js,ts,jsx,tsx,twig}",
-    "./app/views/admin/**/*.{twig}",
-    "./app/views/admin/*.{twig}",
-    "./app/views/admin/*.twig",
-    "./app/views/admin/*.html",
     "./src/**/**/*.{vue,js,ts,jsx,tsx,twig}",
   ],
   safelist: [
@@ -19,9 +15,5 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/aspect-ratio'),
   ]
 }

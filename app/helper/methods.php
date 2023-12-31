@@ -33,12 +33,25 @@ function render($template, $data, $responseType = 'html')
         return true;
     }
 
+    foreach (glob($_SERVER['DOCUMENT_ROOT']."/dist/assets/index-*.js") as $row =>$value )
+    {
+        $js = str_replace($_SERVER['DOCUMENT_ROOT'], '', $value);
+    }
+
+    foreach (glob($_SERVER['DOCUMENT_ROOT']."/dist/assets/index-*.css") as $row =>$value )
+    {
+        $css = str_replace($_SERVER['DOCUMENT_ROOT'], '', $value);
+    }
+    
+
     /**
      * Response will be override only
      * In case the system works In Vue APP
      */ 
     $path = isset($data['load_vue']) ? 'views/admin/vue.html.twig' : $template;
     $app = new \config\APP;
+    $data['jsFile'] = $js;
+    $data['cssFile'] = $css;
     $data['component'] = $template;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();

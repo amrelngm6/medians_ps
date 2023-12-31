@@ -24,7 +24,6 @@
 //   }
 // }
 
-const path = require('path')
 
 module.exports = {
   publicPath: '/dist/',
@@ -42,7 +41,7 @@ module.exports = {
   },
   css: {
     extract: {
-      path: path.resolve(__dirname, 'dist'),
+      path: resolve(__dirname, 'dist'),
       filename: "./css/app.css",
       chunkFilename: './css/chunk.[id].css',
     },

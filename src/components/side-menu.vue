@@ -6,7 +6,7 @@
                     <span class="nav-link block py-1 bg-gray-800">
 
                         <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold  p-3 block" v-text="$parent.__('Dashboard menu')"></span>
+                            <span class="font-weight-bold  p-3 block" v-text="translate('Dashboard menu')"></span>
                         </div>
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                     </span>
@@ -34,10 +34,15 @@
         </div>
     </div>
 </template>
+
 <script>
 
+import {translate} from '@/utils.vue';
 
 export default {
+    components: {
+        translate
+    },
     computed: {},
     data() {
         return {
@@ -51,31 +56,17 @@ export default {
         this.pages = this.menus;
         this.activePage = this.samepage;
         this.resetClasses() 
-
     },
     methods: {
-
-
-        /**
-         * Check if user has active branch or not
-         */
-         checkBranchLink(link)
+        
+        translate(i)
         {
-            return (this.auth && this.auth.active_branch < 1) ? 'get_started' :  link;
-        },  
-        /**
-         * Check if user has active branch or not
-         */
-        checkBranchComponent(component)
-        {
-            return (this.auth && this.auth.active_branch < 1) ? 'get_started' :  component;
-        },  
+            return translate(i);
+        }, 
         openPage(page)
         {
 
             this.showMenu = false
-            // page.link = this.checkBranchLink(page.link);
-            // page.component = this.checkBranchComponent(page.component);
             this.activePage = page.link;
             page.sub ? null : this.$parent.switchTab(page);
             this.resetClasses() 

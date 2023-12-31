@@ -13,6 +13,7 @@ class NotificationEventController extends CustomController
 	*/
 	protected $repo;
 
+	protected $app;
 
 
 	function __construct()
@@ -31,35 +32,47 @@ class NotificationEventController extends CustomController
 
 		return [
             [
-                'key'=> "id",
-                'title'=> '#',
+                'value'=> "id",
+                'text'=> '#',
                 'sortable'=> false,
+				'width' => 30,
+				'fixed'=>true,
             ],
             [
-                'key'=> "title",
-                'title'=> __('name'),
+				'value'=> "title",
+                'text'=> __('name'),
                 'sortable'=> false,
+				'fixed'=>true,
+				'width' => 200,
             ],
             [
-                'key'=> "model",
-                'title'=> __('model'),
+                'value'=> "model",
+                'text'=> __('model'),
+                'sortable'=> true,
+				'width' => 150,
+				'fixed'=>true,
+            ],
+            [
+                'value'=> "receiver_model",
+                'text'=> __('receiver_model'),
+				'width' => 150,
                 'sortable'=> true,
             ],
             [
-                'key'=> "receiver_model",
-                'title'=> __('receiver_model'),
+                'value'=> "subject",
+                'text'=> __('subject'),
+				'width' => 200,
                 'sortable'=> true,
             ],
             [
-                'key'=> "subject",
-                'title'=> __('subject'),
+                'value'=> "status",
+                'text'=> __('status'),
+				'width' => 50,
                 'sortable'=> true,
-            ],
-            [
-                'key'=> "status",
-                'title'=> __('status'),
-                'sortable'=> true,
-            ]
+			],
+			
+            [ 'value'=> "edit", 'text'=> __('edit'), 'width'=>50  ],
+            [ 'value'=> "delete", 'text'=> __('delete'), 'width'=>50  ],
         ];
 	}
 

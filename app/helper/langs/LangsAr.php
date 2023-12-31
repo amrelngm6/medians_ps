@@ -1102,6 +1102,7 @@ class LangsAr
 		,'parents' => 'أولياء الأمور'
 		,'parent' => 'ولي الأمر'
 		,'parent guardian name' => 'إسم ولي الأمر'
+		,'parent_required' => 'ولي الأمر مطلوب'
 		,'contact number' => 'رقم التواصل'
 		,'license number' => 'رقم الرخصة'
 		,'Waiting pickups' => 'مواقع قيد الإنتظار'

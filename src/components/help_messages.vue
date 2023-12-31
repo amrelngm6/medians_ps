@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <help_message_details :item="activeItem" v-if="showEditSide" :ref="activeItem" @callback="closeMessage" />
+        <help_message_details :item="activeItem" v-if="showEditSide" ref="activeHelpMessage" @callback="closeMessage" />
         <div class="container-fluid" v-if="!showEditSide">
 
             <div class="row">
@@ -107,9 +107,14 @@
 </template>
 <script>
 
+import help_message_details from '@/components/help_message_details.vue';
+import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
+
 export default
     {
-
+        components: {
+            help_message_details
+        },
         data() {
             return {
                 url: this.conf.url + this.path + '?load=json',
@@ -182,14 +187,14 @@ export default
                         break;
 
                     case 'delete':
-                        this.$root.$children[0].deleteByKey(this.object_key, data, this.object_name + '.delete');
+                        deleteByKey(this.object_key, data, this.object_name + '.delete');
                         break;
                 }
             },
 
             load() {
                 this.showLoader = true;
-                this.$root.$children[0].handleGetRequest(this.url).then(response => {
+                handleGetRequest(this.url).then(response => {
                     this.setValues(response)
                     this.showLoader = false;
                 });
@@ -199,7 +204,7 @@ export default
                 this.content = JSON.parse(JSON.stringify(data)); return this
             },
             __(i) {
-                return this.$root.$children[0].__(i);
+                return translate(i);
             }
         }
     };

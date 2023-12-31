@@ -42,9 +42,9 @@ class RouteController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "route_id", 'title'=> "#"],
-            [ 'key'=> "route_name", 'title'=> __('route_name'), 'sortable'=> true ],
-            [ 'key'=> "driver_name", 'title'=> __('driver_name'), 'sortable'=> true ],
+            [ 'value'=> "route_id", 'text'=> "#"],
+            [ 'value'=> "route_name", 'text'=> __('route_name'), 'sortable'=> true ],
+            [ 'value'=> "driver_name", 'text'=> __('driver_name'), 'sortable'=> true ],
         ];
 	}
 
@@ -59,9 +59,9 @@ class RouteController extends CustomController
 
 		return [
             [ 'key'=> "route_id", 'title'=> "#",'column_type'=>'hidden'],
-            [ 'key'=> "route_name", 'title'=> __('route_name'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "latitude", 'title'=> __('Latitude'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "longitude", 'title'=> __('Longitude'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "route_name", 'title'=> __('route_name'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
+            [ 'key'=> "latitude", 'title'=> __('Latitude'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
+            [ 'key'=> "longitude", 'title'=> __('Longitude'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
             [ 'key'=> "description", 'title'=> __('description'), 'fillable'=>true, 'column_type'=>'text' ],
         ];
 	}

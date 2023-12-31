@@ -45,10 +45,13 @@ class VehicleController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "vehicle_id", 'title'=> "#"],
-            [ 'key'=> "vehicle_name", 'title'=> __('vehicle_name'), 'sortable'=> true ],
-            [ 'key'=> "plate_number", 'title'=> __('plate_number'), 'sortable'=> true ],
-            [ 'key'=> "maintenance_status", 'title'=> __('maintenance_status'), 'sortable'=> true ],
+            [ 'value'=> "vehicle_id", 'text'=> "#"],
+            [ 'value'=> "route.route_name", 'text'=> __('Route')],
+            [ 'value'=> "vehicle_name", 'text'=> __('vehicle_name'), 'sortable'=> true ],
+            [ 'value'=> "plate_number", 'text'=> __('plate_number'), 'sortable'=> true ],
+            [ 'value'=> "maintenance_status", 'text'=> __('maintenance_status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> __('edit')  ],
+            [ 'value'=> "delete", 'text'=> __('delete')  ],
         ];
 	}
 
@@ -63,7 +66,7 @@ class VehicleController extends CustomController
 
 		return [
             [ 'key'=> "vehicle_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "vehicle_name", 'title'=> __('vehicle_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "vehicle_name", 'title'=> __('vehicle_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "maintenance_status", 'title'=> __('maintenance_status'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "route_id", 'title'=> __('Route'), 
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'route_name', 
@@ -110,6 +113,17 @@ class VehicleController extends CustomController
 
 
 
+	public function validate($params) 
+	{
+
+		if (empty($params['vehicle_name']))
+		{
+			throw new \Exception(__('NAME_EMPTY'), 0);
+		}
+
+	}
+
+
 
 	public function store() 
 	{
@@ -118,15 +132,23 @@ class VehicleController extends CustomController
 
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;
+			try {
+				
+				$this->validate($params);
+
+			} catch (\Exception $e) {
+	        	return array('result'=>$e->getMessage(), 'error'=>1);
+			}
+
+			$params['created_by'] = $this->app->auth()->id;
         	
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
-        } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        } catch (\Exception $es) {
+        	return array('result'=>$es->getMessage(), 'error'=>1);
         }
 
 		return $returnData;

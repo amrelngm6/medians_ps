@@ -39,11 +39,13 @@ class StudentController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "student_id", 'title'=> "#"],
-            [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true ],
-            [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true ],
-            [ 'key'=> "parent_name", 'title'=> __('parent_name'), 'sortable'=> true ],
-            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true ],
+            [ 'value'=> "student_id", 'text'=> "#"],
+            [ 'value'=> "first_name", 'text'=> __('first_name'), 'sortable'=> true ],
+            [ 'value'=> "picture", 'text'=> __('picture'),  ],
+            [ 'value'=> "parent_name", 'text'=> __('parent_name'), 'sortable'=> true ],
+            [ 'value'=> "contact_number", 'text'=> __('contact_number'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> __('edit')  ],
+            [ 'value'=> "delete", 'text'=> __('delete')  ],
         ];
 	}
 
@@ -104,6 +106,27 @@ class StudentController extends CustomController
 
 
 
+	public function validate($params) 
+	{
+
+		if (empty($params['first_name']))
+		{
+			throw new \Exception(__('NAME_EMPTY'), 0);
+		}
+
+		if (empty($params['parent_id']))
+		{
+			throw new \Exception(__('parent_required'), 0);
+		}
+
+		if (empty($params['contact_number']))
+		{
+			throw new \Exception(__('MOBILE_ERR'), 0);
+		}
+
+	}
+
+
 
 	public function store() 
 	{
@@ -111,6 +134,14 @@ class StudentController extends CustomController
 		$params = $this->app->request()->get('params');
 
         try {	
+
+			try {
+				
+				$this->validate($params);
+
+			} catch (\Exception $e) {
+	        	return array('result'=>$e->getMessage(), 'error'=>1);
+			}
 
         	$params['created_by'] = $this->app->auth()->id;
         	$params['status'] = isset($params['status']) ? 1 : 0;
@@ -120,8 +151,8 @@ class StudentController extends CustomController
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
-        } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        } catch (\Exception $es) {
+        	return array('result'=>$es->getMessage(), 'error'=>1);
         }
 
 		return $returnData;
@@ -173,17 +204,7 @@ class StudentController extends CustomController
         }
 
 	}
-
-	public function validate($params) 
-	{
-
-		if (empty($params['content']['ar']['title']))
-		{
-        	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
-		}
-
-	}
-
+	
 	
 	/**
 	 * getPickupLocation

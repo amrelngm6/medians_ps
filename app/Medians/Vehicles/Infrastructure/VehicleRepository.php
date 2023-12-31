@@ -36,7 +36,7 @@ class VehicleRepository
 
 	public function get($limit = 100)
 	{
-		return Vehicle::limit($limit)->get();
+		return Vehicle::limit($limit) ->with('route')->get();
 	}
 
 	public function search($request, $limit = 20)

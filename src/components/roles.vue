@@ -1,28 +1,28 @@
 <template>
     <div class=" w-full pb-20">
 
-        <div class="relative w-full" v-if="showProfile && !showLoader">
-            <permissions :key="activeItem" :item="activeItem" @save="handleAction" @close="handleAction"></permissions>
+        <div class="relative w-full" v-if="showDetails ">
+            <permissions :key="activeItem" :item="activeItem" @save="handleAction" @close="handleAction" :conf="conf"></permissions>
         </div>
 
-        <main v-if="content && !showProfile && !showLoader" class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
+        <main v-if="content && !showDetails " class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
             <!-- New releases -->
             <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                 <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg menu-dark hover:bg-purple-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
+                <!-- <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg menu-dark hover:bg-purple-800" @click="showAddSide = true,activeItem = {} ">{{translate('add_new')}}</a> -->
             </div>
 
             <div class="relative card ribbon-box border shadow-none mb-lg-0" >
                 <div class="card-body">
-                    <div class="ribbon ribbon-primary round-shape" v-text="__('Important')"></div>
-                    <h5 class="fs-14 text-end ml-20" v-text="__('Before Create Account')"></h5>
+                    <div class="ribbon ribbon-primary round-shape" v-text="translate('Important')"></div>
+                    <h5 class="fs-14 text-end ml-20" v-text="translate('Before Create Account')"></h5>
                     <div class="ribbon-content mt-4 text-muted">
-                        <div class="mb-0" v-html="__('Before Create role note')"></div>
+                        <div class="mb-0" v-html="translate('Before Create role note')"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6" v-if="!showLoader">
+            <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6" >
 
                 <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl" v-for="role in content.items">
                     <div class="box-body space-y-5">
@@ -31,7 +31,7 @@
                                 <div class="space-y-1 my-auto">
                                     <h5 @click="handleAction('view', role)" class="cursor-pointer font-semibold text-base leading-none" v-text="role.name"></h5>
                                     <p class="text-gray-500 dark:text-white/70 font-semibold text-xs truncate max-w-[9rem]"
-                                        v-text="__('Users count') + role.users_count"></p>
+                                        v-text="translate('Users count') + role.users_count"></p>
                                 </div>
                             </div>
 
@@ -45,7 +45,7 @@
                             <div @click="handleAction('edit', role)" class="sm:col-span-8 col-span-4"><span
                                     class="cursor-pointer inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 w-full rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"><i
                                         class="fa fa-edit py-1"></i> <span class="text-base  "
-                                        v-text="__('Edit')"></span></span></div>
+                                        v-text="translate('Edit')"></span></span></div>
                             <div class="sm:col-span-2 col-span-4">
                                 <div class="hs-dropdown ti-dropdown flex justify-end"><span
                                         @click="handleAction('delete', role)"
@@ -69,111 +69,135 @@
 </template>
 <script>
 
+import {defineAsyncComponent, ref} from 'vue';
+import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
+
+const SideFormCreate = defineAsyncComponent(() =>
+  import('@/components/includes/side-form-create.vue')
+);
+
+const SideFormUpdate = defineAsyncComponent(() =>
+  import('@/components/includes/side-form-update.vue')
+);
+
+const permissions = defineAsyncComponent(() =>
+  import('@/components/permissions.vue')
+);
+
 export default
-    {
+{
+    components: {
+        SideFormCreate,
+        SideFormUpdate,
+        permissions
+    },  
+    setup(props) {
 
-        data() {
-            return {
-                url: this.conf.url + this.path + '?load=json',
-                content: {
-                    items: []
-                },
-                activeItem: {},
-                showAddSide: false,
-                showProfile: false,
-                showEditSide: false,
-                showLoader: true,
-            }
-        },
+        const url =  props.conf.url+props.path+'?load=json';
+        
+        const showAddSide = ref(false);
+        const showEditSide = ref(false);
+        const showDetails = ref(null);
+        const activeItem = ref({});
 
-        props: [
-            'path',
-            'lang',
-            'setting',
-            'conf',
-            'auth',
-        ],
-        mounted() {
-            this.load()
-        },
+        const content =  ref({
+            title: '',
+            items: [],
+            columns: [],
+        });
 
-        methods:
+        const load = () => {
+            handleGetRequest( url ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+            });
+        }
+        
+        load();
+
+        const closeSide = () => {
+            showAddSide.value = false;
+            showEditSide.value = false;
+        }
+
+        
+        
+        const savePermissions = (data) =>
         {
+            console.log(data);
+            var params = new URLSearchParams();
+            params.append('type', 'Role.updatePermissions')
+            params.append('params', JSON.stringify(data))
+            handleRequest(params, '/api/update').then(response => {
+                showAlert(response.result);
+            })
+        }
 
-            /**
-             * Handle actions from datatable buttons
-             * Called From 'dataTableActions' component
-             * 
-             * @param String actionName 
-             * @param Object data
-             */
-            handleAction(actionName, data) {
-                this.showLoader = true;
-                switch (actionName) {
-                    case 'view':
-                        this.showEditSide = false;
-                        this.showAddSide = false;
-                        this.showProfile = true;
-                        this.activeItem = data
-                        // window.open(this.conf.url+data.content.prefix)
-                        break;
-
-                    case 'save':
-                        this.showEditSide = false;
-                        this.showAddSide = false;
-                        this.showProfile = true;
-                        this.savePermissions(data);
-                        break;
-
-                    case 'edit':
-                        this.showEditSide = true;
-                        this.showProfile = false;
-                        this.showAddSide = false;
-                        this.activeItem = data
-                        break;
-
-                    case 'delete':
-                        this.$root.$children[0].deleteByKey('id', data, 'Role.delete');
-                        break;
-                        break;
-
-                    case 'close':
-                        
-                        this.showEditSide = false;
-                        this.showAddSide = false;
-                        this.showProfile = false;
-                        break;
-                }
-                this.showLoader = false;
-
-            },
-
-            savePermissions(data)
+        /**
+         * Handle actions from datatable buttons
+         * Called From 'dataTableActions' component
+         * 
+         * @param String actionName 
+         * @param Object data
+         */  
+        const handleAction =  (actionName, data) =>  {
+            console.log(actionName);
+            switch(actionName) 
             {
-                console.log(data);
-                var params = new URLSearchParams();
-                params.append('type', 'Role.updatePermissions')
-                params.append('params', JSON.stringify(data))
-                this.$root.$children[0].handleRequest(params, '/api/update').then(response => {
-                    this.$alert(response.result).then(() => {
 
-                    });
-                })
-            },  
-            load() {
-                this.showLoader = true;
-                this.$root.$children[0].handleGetRequest(this.url).then(response => {
-                    this.setValues(response)
-                    this.showLoader = false;
-                });
-            },
+                case 'view':
+                    showEditSide.value = false;
+                    showAddSide.value = false;
+                    showDetails.value = true;
+                    activeItem.value = data
+                    break;
 
-            setValues(data) {
-                this.content = JSON.parse(JSON.stringify(data)); return this
-            },
-            __(i) {
-                return this.$root.$children[0].__(i);
+                case 'save':
+                    showEditSide.value = false;
+                    showAddSide.value = false;
+                    showDetails.value = true;
+                    savePermissions(data);
+                    break;
+
+                case 'edit':
+                    showEditSide.value = true;
+                    showDetails.value = false;
+                    showAddSide.value = false;
+                    activeItem.value = data
+                    break;
+
+                case 'delete':
+                    deleteByKey('id', data, 'Role.delete');
+                    break;
+
+                case 'close':
+                    
+                    showEditSide.value = false;
+                    showAddSide.value = false;
+                    showDetails.value = false;
+                    break;
             }
         }
-    };
+
+        return {
+            showAddSide,
+            showEditSide,
+            url,
+            content,
+            activeItem,
+            showDetails,
+            closeSide,
+            translate,
+            handleAction
+        };
+    },
+
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+    ],
+};
+
 </script>

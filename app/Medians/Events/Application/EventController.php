@@ -36,10 +36,12 @@ class EventController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "event_id", 'title'=> "#"],
-            [ 'key'=> "title", 'title'=> __('Title'), 'sortable'=> true ],
-            [ 'key'=> "status", 'title'=> __('status'), 'sortable'=> true ],
-            [ 'key'=> "date", 'title'=> __('date'), 'sortable'=> true ],
+            [ 'value'=> "event_id", 'text'=> "#"],
+            [ 'value'=> "title", 'text'=> __('Title'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> __('date'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> __('edit')  ],
+            [ 'value'=> "delete", 'text'=> __('delete')  ],
         ];
 	}
 
@@ -54,8 +56,8 @@ class EventController extends CustomController
 
 		return [
             [ 'key'=> "event_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
-            [ 'key'=> "title", 'title'=> __('title'),  'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'textarea' ],
+            [ 'key'=> "title", 'title'=> __('title'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
+            [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'textarea','required'=>true ],
             [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
             [ 'key'=> "picture", 'title'=> __('picture'),  'fillable'=> true, 'column_type'=>'file' ],
         ];
@@ -154,10 +156,10 @@ class EventController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['pickup_id']);
+        	$check = $this->repo->find($params['event_id']);
 
 
-            if ($this->repo->delete($params['pickup_id']))
+            if ($this->repo->delete($params['event_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }

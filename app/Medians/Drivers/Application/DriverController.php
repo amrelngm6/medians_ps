@@ -31,25 +31,6 @@ class DriverController extends CustomController
 
 
 
-	/**
-	 * Columns list to view at DataTable 
-	 *  
-	 */ 
-	public function columns( ) 
-	{
-
-		return [
-            [ 'key'=> "driver_id", 'title'=> "#"],
-            [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true ],
-            [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true ],
-            [ 'key'=> "email", 'title'=> __('email'), 'sortable'=> true ],
-            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true ],
-            [ 'key'=> "driver_license_number", 'title'=> __('license_number'), 'sortable'=> true ],
-            [ 'key'=> "vehicle_plate_number", 'title'=> __('plate_number'), 'sortable'=> true ],
-        ];
-	}
-
-	
 
 	/**
 	 * Columns list to view at DataTable 
@@ -60,10 +41,10 @@ class DriverController extends CustomController
 
 		return [
             [ 'key'=> "driver_id", 'title'=> "#", 'fillable'=>true, 'column_type'=>'hidden'],
-			[ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' , 'required'=>true ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "email", 'title'=> __('email'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'email' ],
-            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
+            [ 'key'=> "email", 'title'=> __('email'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'email', 'required'=>true ],
+            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone', 'required'=>true ],
             [ 'key'=> "driver_license_number", 'title'=> __('driver_license_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "vehicle_plate_number", 'title'=> __('vehicle_plate_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
@@ -87,9 +68,8 @@ class DriverController extends CustomController
 		    return render('drivers', [
 		        'load_vue' => true,
 		        'title' => __('Drivers'),
-		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
-		        'items' => $this->repo->getAll(),
+		        'items' => $this->repo->get(),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

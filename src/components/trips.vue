@@ -2,12 +2,12 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
 
         <div  v-if="showTrip" class=" w-full relative">
-            <trip_page :conf="conf" @close="callback" :trip="activeItem"></trip_page>
+            <!-- <trip_page :conf="conf" @close="callback" :trip="activeItem"></trip_page> -->
         </div>    
             
         <div  v-if="content && !showTrip " class=" w-full relative">
 
-            <maps v-if="center" :conf="conf" :key="center" :center="center" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations" @interval-callback="callback"></maps>
+            <!-- <maps v-if="center" :conf="conf" :key="center" :center="center" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations" @interval-callback="callback"></maps> -->
 
             <div :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'"  class="mx-14 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
@@ -72,14 +72,15 @@
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6" >
-                    <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
+                    <!-- <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/> -->
                 </div>
             </main>
         </div>
     </div>
 </template>
 <script>
-import dataTableSideActions from './includes/data-table-side-actions.vue';
+import dataTableSideActions from '@/components/includes/data-table-side-actions.vue';
+import {translate, handleGetRequest} from '@/utils.vue';
 
 export default 
 {
@@ -195,9 +196,13 @@ export default
         searchTextChanged()
         {
             this.showList = false;
-            for (let i = 0; i < this.content.items.length; i++) {
-                this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
+            if (this.activeTrip && this.content && this.content.items)
+            {
+                for (let i = 0; i < this.content.items.length; i++) {
+                    this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
+                }
             }
+
             this.showList = true;
         },
 
@@ -228,7 +233,7 @@ export default
             params.append('params[vehicle_id]', this.activeTrip.vehicle_id)
             params.append('params[last_latitude]', item.destination.lat)
             params.append('params[last_longitude]', item.destination.lng)
-            this.$parent.handleRequest(params, '/api/update').then(response => {
+            handleRequest(params, '/api/update').then(response => {
                 this.$alert(response.result)
             })
 
@@ -277,9 +282,10 @@ export default
 
         load()
         {
-            this.$parent.handleGetRequest( this.url ).then(response=> {
-                this.setValues(response)
-                this.searchTextChanged()
+            let t = this;
+            handleGetRequest( this.url ).then(response=> {
+                t.setValues(response)
+                t.searchTextChanged()
             });
         },
 
@@ -296,7 +302,7 @@ export default
         
         setValues(data) {
             this.content = JSON.parse(JSON.stringify(data)); 
-            if (this.activeTrip)
+            if (this.activeTrip && this.content && this.content.items)
             {
                 for (let i = 0; i < this.content.items.length; i++) {
                     const a = this.content.items[i];
@@ -309,9 +315,10 @@ export default
             }
             return this
         },
+        
         __(i)
         {
-            return this.$root.$children[0].__(i);
+            return translate(i);
         }
     }
 };

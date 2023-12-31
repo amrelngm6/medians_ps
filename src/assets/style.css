@@ -656,8 +656,8 @@ body .sidebar-create-form,
 body .sidebar-edit-form
 {
     position: fixed;
-    top: 60px;
-    height: calc(100vh - 60px);
+    top: 0px;
+    height: 100vh;
     right: 0;
     padding: 0;
     z-index: 9;
@@ -666,6 +666,13 @@ body .sidebar-edit-form
     overflow: auto;
 }
     
+
+body.ltr .sidebar-create-form,
+body.ltr .sidebar-edit-form
+{
+  left: 0;
+  right:auto;
+}
 body .sidebar-edit-form
 {
   padding: 16px;
@@ -673,7 +680,7 @@ body .sidebar-edit-form
 
 body .sidebar-create-form > div
 {
-    padding-top: 40px;
+    padding-top: 100px;
     min-height: 100%;
 }
 body .sidebar-edit-form  > div

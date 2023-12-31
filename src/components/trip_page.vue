@@ -193,8 +193,8 @@
 </template>
 <script>
 
-import dashboard_card_white from './includes/dashboard_card_white';
-import help_icon from './svgs/help';
+import dashboard_card_white from './includes/dashboard_card_white.vue';
+import help_icon from './svgs/help.vue';
 
 export default
     {

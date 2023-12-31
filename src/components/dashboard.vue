@@ -1,12 +1,11 @@
 <template>
     <div class="w-full overflow-auto" style="height: 85vh; z-index: 9999;">
 
-
         <div class="top-0 py-2 w-full px-4 bg-gray-50 mt-0 sticky rounded" style="z-index:9">
             <div class="w-full flex gap-6">
                 <h3 class="text-base lg:text-lg whitespace-nowrap" v-text="__('Dashboard Reports')"></h3> 
                 <ul class="w-full flex gap-4 ">
-                    <li v-for="item in dates_filters" v-if="item" @click="switchDate(item.value)" :class="(activeDate == item.value) ? 'font-semibold' : ''" class="cursor-pointer" v-text="__(item.title)"></li>
+                    <li v-for="item in dates_filters" @click="switchDate(item.value)" :class="(activeDate == item.value) ? 'font-semibold' : ''" class="cursor-pointer" v-text="__(item.title)"></li>
                 </ul>
             </div>
         </div>
@@ -111,11 +110,14 @@
     </div>
 </template>
 <script>
-import dashboard_card from './includes/dashboard_card';
-import dashboard_card_white from './includes/dashboard_card_white';
-import dashboard_center_squares from './includes/dashboard_center_squares';
 import moment from 'moment';
-import CanvasJSChart from './canvasjs/CanvasJSVueComponent.vue';
+import dashboard_card from '@/components/includes/dashboard_card.vue';
+import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
+import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
+import {translate, handleGetRequest} from '@/utils.vue';
+
+// import CanvasJSChart from '@/components/canvasjs/CanvasJSVueComponent.vue';
+import * as CanvasJSChart from "@canvasjs/charts";
 
 export default 
 {
@@ -219,21 +221,11 @@ export default
             return moment(date).format('YYYY-MM-DD HH:mm a');
         },
 
-        /**
-         * 
-         */
-        changeLoad()
-        {
-            console.log('changed')
-            // console.log(this.load(this.url+'&start='+))
-        },  
         load(url)
         {
             // this.showLoader = true;
-            this.$parent.handleGetRequest( url ).then(response=> {
+            handleGetRequest( url ).then(response=> {
                 this.setValues(response).setCharts(response)
-                // this.showLoader = false;
-                // this.$alert(response)
             });
         },
 
@@ -284,11 +276,11 @@ export default
             this.showCharts = true
         },
 
-
         __(i)
         {
-            return this.$parent.__(i);
+            return translate(i);
         }
+
     }
 };
 </script>

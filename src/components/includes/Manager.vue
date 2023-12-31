@@ -176,12 +176,12 @@
 </template>
 
 <script>
-    import Vue from 'vue';
-    import Loader from './Loader';
-    import SvgError from '../svgs/Error';
-    import SvgMedia from '../svgs/Media';
-    import close_icon from '../svgs/Close';
-    import InfiniteLoading from 'vue-infinite-loading';
+    import Loader from './Loader.vue';
+    import SvgError from '../svgs/Error.vue';
+    import SvgMedia from '../svgs/Media.vue';
+    import close_icon from '../svgs/Close.vue';
+    import InfiniteLoading from "v3-infinite-loading";
+
     import debounce from 'lodash/debounce';
     import axios from 'axios';
         
@@ -355,7 +355,7 @@
                         this.$emit('fail-to-find', true);
                     })
                     .then((data) => {
-                        if (data.file) {
+                        if (data && data.file) {
                             this.openFile = data.file;
                             
                             this.select(data.file);
@@ -389,7 +389,7 @@
                         if (data.media.length > 0) {
                             data.media.forEach(item => {
                                 this.store[type].data.push(item);
-                                Vue.set(this.store[type].selectedModel, item.id, false);
+                                // app.set(this.store[type].selectedModel, item.id, false);
                             });
 
                             this.store[type].total = data.total;

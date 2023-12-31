@@ -5,9 +5,16 @@
 </template>
 <script>
 
+import {defineAsyncComponent} from 'vue';
+const data_table_page = defineAsyncComponent(() =>
+  import('@/components/data_table_page.vue')
+);
+
 export default 
 {
-
+    components: {
+        data_table_page,
+    },
     props: [
         'path',
         'lang',

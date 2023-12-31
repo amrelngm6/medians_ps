@@ -55,8 +55,8 @@
 </template>
 
 <script>
-    import Loader from './Loader';
-    import Manager from './Manager';
+    import Loader from './Loader.vue';
+    import Manager from './Manager.vue';
     import axios from 'axios';
 
     export default {

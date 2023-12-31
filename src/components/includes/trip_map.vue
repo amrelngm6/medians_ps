@@ -35,12 +35,12 @@
 </template>
 <script>
 
-import DirectionsRenderer from "./map_direction.vue";
+// import DirectionsRenderer from "./map_direction.vue";
 
 export default
     {
         components: {
-            DirectionsRenderer,
+            // DirectionsRenderer,
         },
         name: 'Trip Map',
         data() {

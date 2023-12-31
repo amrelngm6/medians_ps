@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b35f2"],{"27a8":function(t,a,n){"use strict";n.r(a);var e=function(){var t=this,a=t._self._c;return a("div",{staticClass:"w-full"},[a("data_table_page",{ref:"data_table",attrs:{conf:t.conf,path:t.path,setting:t.setting,auth:t.auth,object_name:"Vacation",object_key:"vacation_id"}})],1)},c=[],s={props:["path","lang","setting","conf","auth"]},o=s,i=n("2877"),l=Object(i["a"])(o,e,c,!1,null,null,null);a["default"]=l.exports}}]);
-//# sourceMappingURL=chunk-2d0b35f2.chunk.js.map

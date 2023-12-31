@@ -1,19 +1,19 @@
 <template>
     <div>
 
-        <div v-if="show" class="left-4">
+        <div class="left-4">
             <!-- component -->
-
+            
             <div class="w-full relative">
-                <navbar v-if="auth" style="z-index: 99999;" :setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
-                <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:99999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
+                <navbar v-if="auth" style="z-index: 9999;" :setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
+                <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden pt-6 px-4 bg-white ">
-                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999"></side-menu>
+                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999"></side-menu>
 
-                    <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+                    <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 999;">
                         <div class="w-full">
                             <transition   :duration="550">
-                                <component ref="activeTab" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="component"></component>
+                                <component ref="activeTab" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent"></component>
                             </transition>
                         </div>
                     </div>
@@ -22,17 +22,72 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     </div>
 </template>
 <script>
-const axios = require('axios').default;
 
 
+import {defineAsyncComponent} from 'vue';
+import SideMenu from '@/components/side-menu.vue'; 
+import navbar from '@/components/navbar.vue'; 
+import dashboard from '@/components/dashboard.vue'; 
+import trips from '@/components/trips.vue'; 
+import vehicles from '@/components/vehicles.vue'; 
+import HelpMessages from '@/components/help_messages.vue'; 
+import notifications_events from '@/components/notifications_events.vue'; 
+import {translate, handleRequest, showAlert} from '@/utils.vue';
+
+const students = defineAsyncComponent(() =>
+  import('@/components/students.vue')
+);
+const parents = defineAsyncComponent(() =>
+  import('@/components/parents.vue')
+);
+
+const drivers = defineAsyncComponent(() =>
+  import('@/components/drivers.vue')
+);
+
+const events = defineAsyncComponent(() =>
+  import('@/components/events.vue')
+);
+
+const roles = defineAsyncComponent(() =>
+  import('@/components/roles.vue')
+);
+
+const settings = defineAsyncComponent(() =>
+  import('@/components/settings.vue')
+);
+
+const system_settings = defineAsyncComponent(() =>
+  import('@/components/system_settings.vue')
+);
+
+const routes = defineAsyncComponent(() =>
+  import('@/components/routes.vue')
+);
 
 export default {
     name: 'app',
     components: {
+        SideMenu,
+        navbar,
+        dashboard,
+        trips,
+        vehicles,
+        students,
+        parents,
+        drivers,
+        roles,
+        routes,
+        system_settings,
+        settings,
+        events,
+        notifications_events,
+        translate,
+        'help_messages':HelpMessages,
     },
     data() {
         return {
@@ -41,7 +96,7 @@ export default {
             showAddSide: false,
             showEditSide: false,
             showTab: true,
-            component: {},
+            activeComponent: 'dashboard',
             activeTab: 'dashboard',
             status: null,
             lang: {},
@@ -63,11 +118,11 @@ export default {
 
         this.setProps();
 
-        $(window).on('popstate', function(e) {
-            t.switchTab({link:window.location.pathname.replace('/','')})
-        });
-
-        jQuery(document).on('submit', 'form',function (e) {
+        // $(window).on('popstate', function(e) {
+        //     t.switchTab({link:window.location.pathname.replace('/','')})
+        // });
+        
+        $(document).on('submit', 'form',function (e) {
             e.preventDefault();
             t.submit(this, e)
         })
@@ -76,7 +131,7 @@ export default {
 
         // Check if Native notifications enabled  from Master
         if (this.system_setting && this.system_setting.enable_notifications)
-            this.notify()
+            // this.notify()
 
         this.checkMobileMenu()    
 
@@ -128,19 +183,6 @@ export default {
             if (this.system_setting.notifications_welcome_message)
                 return null;
 
-            if ("Notification" in window) 
-            {
-                if (Notification.permission !== "granted") {
-                    Notification.requestPermission().then(permission => {
-                        if (permission === "granted") {
-                            const notification = new Notification(this.system_setting.notifications_welcome_subject, {
-                                body: this.system_setting.notifications_welcome_message,
-                                icon: this.system_setting.notifications_welcome_icon
-                            });
-                        }
-                    });
-                }
-            }
         },
 
 
@@ -149,7 +191,9 @@ export default {
          */
         setProps()
         {
-            const mountEl = document.querySelector("#root-parent");
+            console.log('set props')
+
+            const mountEl = document.getElementById("root-parent");
             let props = { ...mountEl.dataset };
             this.auth = props ? JSON.parse(props.auth) : {};
             this.main_menu = props ? JSON.parse(props.menu) : {};
@@ -158,9 +202,10 @@ export default {
             this.system_setting = props ? JSON.parse(props.system_setting) : {};
             this.conf = props ? JSON.parse(props.conf) : {};
             this.activeTab = (props && props.page) ? props.page : this.defaultPage();
-            this.component = (props && props.component) ? props.component : this.defaultPage();
-            this.typesList = (props && props.typesList) ? props.typesList : [];
+            this.activeComponent = (props && props.component) ? props.component : this.defaultPage();
             this.show = true
+            console.log(this.activeComponent);
+
         },
 
 
@@ -170,11 +215,12 @@ export default {
         switchTab(tab) {
             if (!tab.sub)
             {
+                console.log('switch')
                 this.show = false
                 this.activeTab = (tab && tab.link) ? tab.link : this.defaultPage();
-                this.component = (tab && tab.component) ? tab.component : this.activeTab;
+                this.activeComponent = (tab && tab.component) ? tab.component : this.activeTab;
                 this.show = true
-                history.pushState({menu: tab}, '', this.conf.url+this.activeTab);
+                history.pushState({menu: JSON.parse(JSON.stringify(tab))}, '', this.conf.url+this.activeTab);
                 this.checkMobileMenu()
             }
         },
@@ -201,45 +247,6 @@ export default {
             this.content = JSON.parse(JSON.stringify(data)); return this
         },
 
-        delete(item, type) {
-            
-            if (!window.confirm(this.__('confirm_delete')))
-            {
-                return null;
-            }
-
-            var params = new URLSearchParams();
-            params.append('type', type)
-            params.append('params[id]', item.id)
-            this.handleRequest(params, '/api/delete').then(response => {
-                this.$alert(response.result).then(() => {
-                    if (response && response.reload)
-                    {
-                        location.reload();
-                    }
-                })
-            })
-        },
-
-        deleteByKey(itemKey, itemValue, type) {
-            
-            if (!window.confirm(this.__('confirm_delete')))
-            {
-                return null;
-            }
-
-            var params = new URLSearchParams();
-            params.append('type', type)
-            params.append('params['+itemKey+']', itemValue[itemKey])
-            this.handleRequest(params, '/api/delete').then(response => {
-                this.$alert(response.result).then(() => {
-                    if (response && response.reload)
-                    {
-                        location.reload();
-                    }
-                });
-            })
-        },
 
         /**
          * Handle login access result 
@@ -249,14 +256,13 @@ export default {
         {
             if (response && (response.success && response.reload))
             {
-                console.log('reload response');
-                this.$alert(response.result).then(() => {
+                showAlert(response.result, 3500);
+                setTimeout(() => {
                     location.reload();
-                });
+                }, 2000);
 
             } else {
-                console.log(response);
-                response ? this.$alert(response.error ? response.error : response.result) : '';
+                response ? showAlert(response.result, 3000) : null;
             }
 
 
@@ -264,51 +270,22 @@ export default {
 
         submit(element, props)
         {
-            let Things = jQuery(element).serializeArray()
+            let Things = $(element).serializeArray()
             var params = new URLSearchParams();
             Things.map(function(n){
                 params.append([n['name']],  n['value']);
             });
 
-            this.handleRequest(params, jQuery(element).attr('action')).then(response => {
+            handleRequest(params, $(element).attr('action')).then(response => {
                 this.handleAccess(response)
             })
         },
-        async handleRequest(params, url = '/api') {
 
-            // Demo json data
-            return await axios.post(url, params.toString()).then(response => {
-                return response.data;
-            });
-        },
-
-        async handleGetRequest(url) {
-
-            var t = this;
-            // Demo json data
-            return await axios.get(url).then(response => {
-                t.showLoader = false;
-
-                if (response.data.status)
-                    return response.data.result;
-                else
-                    return response.data;
-            });
-        },
-        __(i) {
-                
-            let key = i.toLowerCase().replaceAll(' ', '_');
-            let k = i.replaceAll('_', ' ');
-            let un_key = k.charAt(0).toUpperCase() + k.slice(1);
-
-            return this.lang[key] ? this.lang[key] : un_key;
-
-        }
     }
 }
 </script>
 <style>
-@import './assets/webfonts/fontawesome.min.css';
+/* @import './assets/webfonts/fontawesome.min.css'; */
 @import './assets/bootstrap-grid.min.css';
 @import './assets/tailwind.min.css';
 @import './assets/media-library.css';

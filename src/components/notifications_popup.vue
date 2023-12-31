@@ -5,7 +5,7 @@
             <notification_icon class="mt-4 mx-2" ></notification_icon>
         </div>
         <div class="drop-ul overflow-y-auto h-80 w-80 mx-auto bg-white px-4 py-6 absolute mt-4" v-if="showPopup && content.items">
-            <span v-if="content.new_count" class="font-semibold pb-4 block " v-if="content.items && content.items.length" v-text="__('New notifications')"></span>
+            <span class="font-semibold pb-4 block " v-if="content.items && content.items.length" v-text="__('New notifications')"></span>
             <div  v-if="notification && notification.status == 'new'" v-for="(notification, index) in content.items" :key="index" class="w-full hover:bg-gray-50">
                 <div v-if="notification" class="hover:text-purple-600 ">
                     <div :class="notification.status == 'new' ? '' : 'text-gray-400'" @click="setRead(notification)" class="cursor-pointer w-full flex  gap-6">
@@ -46,11 +46,12 @@
 </template>
 <script>
 
-import notification_icon from './svgs/notification.vue'
-import expense from './svgs/expense.vue'
-import device from './svgs/device.vue'
-import customer from './svgs/customer.vue'
-import orderdevice from './svgs/orderdevice.vue'
+import notification_icon from '@/components/svgs/notification.vue'
+import expense from '@/components/svgs/expense.vue'
+import device from '@/components/svgs/device.vue'
+import customer from '@/components/svgs/customer.vue'
+import orderdevice from '@/components/svgs/orderdevice.vue'
+import {translate, handleGetRequest, handleRequest} from '@/utils.vue';
 
 export default 
 {
@@ -123,7 +124,7 @@ export default
         {
             var params = new URLSearchParams();
             params.append('params[last_id]', this.content.last_id)
-            this.$root.$children[0].handleRequest(params, '/admin/check_notification' ).then(response=> {
+            handleRequest(params, '/admin/check_notification' ).then(response=> {
                 if (response)
                     this.setValues(response).handleNotifications(response)
 
@@ -137,7 +138,7 @@ export default
         {
             var params = new URLSearchParams();
             params.append('params[id]', notification.id)
-            this.$root.$children[0].handleRequest(params, '/admin/read_notification' ).then(response=> {
+            handleRequest(params, '/admin/read_notification' ).then(response=> {
                 if (response)
                     this.load()
 
@@ -162,7 +163,7 @@ export default
 
         load()
         {
-            this.$root.$children[0].handleGetRequest( this.url ).then(response=> {
+            handleGetRequest( this.url ).then(response=> {
                 this.setValues(response)
                 // this.$alert(response)
             });
@@ -200,7 +201,7 @@ export default
         },
         __(i)
         {
-            return this.$root.$children[0].__(i);
+            return translate(i);
         }
     }
 };

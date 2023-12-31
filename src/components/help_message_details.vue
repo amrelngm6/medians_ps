@@ -112,47 +112,47 @@
                     <!--end card-->
                 </div>
                 <!--end col-->
-                <div class="col-xxl-3 ">
+                <div class="w-96">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title mb-0" v-text="__('Ticket Details')"></h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table-card">
-                                <table class="table table-borderless align-middle mb-0">
+                                <table class="table table-borderless align-middle mb-0 w-full">
                                     <tbody>
                                         <tr>
-                                            <td class="fw-medium" v-text="__('Ticket')"></td>
-                                            <td>#<span id="t-no" v-text="item.message_id"></span> </td>
+                                            <td class="fw-medium py-2 " v-text="__('Ticket')"></td>
+                                            <td class="py-2" >#<span id="t-no" v-text="item.message_id"></span> </td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium" v-text="__('User')"></td>
-                                            <td id="t-client" v-text="item.user ? item.user.name : ''"></td>
+                                            <td class="fw-medium py-2 " v-text="__('User')"></td>
+                                            <td id="t-client" class="py-2" v-text="item.user ? item.user.name : ''"></td>
                                         </tr>
 
                                         <tr>
-                                            <td class="fw-medium" v-text="__('Status')"></td>
-                                            <td>
+                                            <td class="fw-medium py-2 " v-text="__('Status')"></td>
+                                            <td class="py-2" >
                                                 <span class="font-bold" id="t-status" v-text="item.status"></span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium" v-text="__('Priority')"></td>
-                                            <td>
+                                            <td class="fw-medium py-2 " v-text="__('Priority')"></td>
+                                            <td class="py-2" >
                                                 <span class="badge bg-danger" id="t-priority" v-text="item.priority"></span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium" v-text="__('Created at')"></td>
-                                            <td id="c-date" v-text="item.date"></td>
+                                            <td class="fw-medium py-2" v-text="__('Created at')"></td>
+                                            <td id="c-date" class="py-2" v-text="item.date"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium" v-text="__('Last update')"></td>
-                                            <td id="d-date" v-text="item.last_update"></td>
+                                            <td class="fw-medium py-2 " v-text="__('Last update')"></td>
+                                            <td id="d-date" class="py-2" v-text="item.last_update"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium" v-text="__('Close ticket')"></td>
-                                            <td id="d-date">
+                                            <td class="fw-medium py-2 " v-text="__('Close ticket')"></td>
+                                            <td id="d-date" class="py-2" >
                                                 <span @click="close" class="cursor-pointer hover:bg-red-800 hover:text-gray-100 px-3 py-2 text-sm border-red-600 border-1 rounded border mt-2 block text-center" id="t-close" v-text="__('Close')"></span>
                                             </td>
                                         </tr>
@@ -173,6 +173,7 @@
 </div>
 </template>
 <script>
+import {translate, handleGetRequest} from '@/utils.vue';
 
 export default
     {
@@ -188,7 +189,7 @@ export default
         methods: {
 
             __(i) {
-                return this.$root.$children[0].__(i);
+                return translate(i);
             },
             
             close() {
@@ -202,7 +203,7 @@ export default
                 params.append('type', 'HelpMessage.close')
                 params.append('params[message_id]', this.item.message_id)
                 params.append('params[status]', 'completed')
-                this.$root.$children[0].handleRequest(params, '/api/handle').then(response => {
+                handleRequest(params, '/api/handle').then(response => {
                     this.$alert(response.result)
                 })
             },

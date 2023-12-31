@@ -5,9 +5,13 @@
 </template>
 <script>
 
+import data_table_page from './data_table_page.vue';
+
 export default 
 {
-
+    components: {
+        data_table_page,
+    },
     props: [
         'path',
         'lang',

@@ -6,62 +6,139 @@
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg menu-dark hover:bg-purple-800" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; ">{{__('add_new')}}</a>
+                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg menu-dark hover:bg-purple-800" @click="openCreate()">{{translate('add_new')}}</a>
                 </div>
                 <hr class="mt-2" />
-                <div class="w-full flex gap gap-6">
-                    <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/>
+                <div class="w-full ">
+                    
+                    <datatabble :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
-                    <side-form-create :conf="conf" :model="object_name+'.create'" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
+                        <template #item-picture="item">
+                            <img :src="item.picture" class="w-8 h-8 rounded-full" />
+                        </template>
 
-                    <side-form-update :conf="conf" :model="object_name+'.update'" :item="activeItem" :model_id="activeItem[object_key]" :index="object_key" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
-
+                        <template #item-edit="item">
+                            <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </template>
+                        <template #item-delete="item">
+                            <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-purple" @click="handleAction('delete', item)">
+                                <close_icon class="w-4"/>
+                            </button>
+                        </template>
+                    </datatabble>
                 </div>
-                <!-- END New releases -->
+                
+                <side_form_create ref="activeFormCreate" @callback="closeSide" :conf="conf" :model="object_name+'.create'" v-if="showAddSide && !showEditSide" :columns="content.fillable"  class="col-md-3" />
+            
+                <side-form-update ref="activeFormUpdate" @callback="closeSide" :key="activeItem" :conf="conf" :model="object_name+'.update'" v-if="showEditSide && !showAddSide" :item="activeItem" :model_id="activeItem[object_key]" :index="object_key"  :columns="content.fillable"  class="col-md-3" />
+
             </main>
-        </div>
+        </div> 
     </div>
 </template>
 <script>
-import dataTableActions from './includes/data-table-actions.vue';
+
+import 'vue3-easy-data-table/dist/style.css';
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+import {defineAsyncComponent, ref} from 'vue';
+const SideFormCreate = defineAsyncComponent(() =>
+  import('@/components/includes/side-form-create.vue')
+);
+const SideFormUpdate = defineAsyncComponent(() =>
+  import('@/components/includes/side-form-update.vue')
+);
+
+import close_icon from '@/components/svgs/trash.vue';
+import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
+
+
 
 export default 
 {
     components:{
-        dataTableActions,
+        'datatabble': Vue3EasyDataTable,
+        'side_form_create': SideFormCreate,
+        SideFormUpdate,
+        translate,
+        close_icon
     },
-    data() {
-        return {
-            url: this.conf.url+this.path+'?load=json',
-            content: {
+    setup(props) {
+        
+        const showAddSide = ref(false);
+        const showEditSide = ref(false);
+
+        const url =  props.conf.url+props.path+'?load=json';
+
+        const content =  ref({
                 title: '',
                 items: [],
                 columns: [],
-            },
-            
-            activeItem:{},
-            showAddSide:false,
-            showEditSide:false,
-            showLoader: true,
+            });
+        
+        const activeItem = ref({});
+
+        const showLoader = ref(null);
+
+        function openCreate() 
+        {
+            showAddSide.value = true; 
+            showEditSide.value = false; 
         }
-    },
 
-    computed: {
-        bindings() {
+        function load()
+        {
+            handleGetRequest( url ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+            });
+        }
+        
+        load();
 
-            this.content.columns.push({
-                    key: this.__("actions"),
-                    component: dataTableActions,
-                    sortable: false,
-                });
+        function closeSide (data) 
+        {
+            showAddSide.value = false;
+            showEditSide.value = false;
+        }
 
-            return {
+        /**
+         * Handle actions from datatable buttons
+         * Called From 'dataTableActions' component
+         * 
+         * @param String actionName 
+         * @param Object data
+         */  
+        function  handleAction(actionName, data) {
+            switch(actionName) 
+            {
+                case 'edit':
+                    console.log(data)
+                    activeItem.value = data;
+                    showAddSide.value = false; 
+                    showEditSide.value = true; 
+                    break;  
 
-                columns: this.content.columns,
-                fillable: this.content.fillable,
-                data: this.content.items
+                case 'delete':
+                    deleteByKey(props.object_key, data, props.object_name + '.delete');
+                    break;  
             }
         }
+
+        
+        return {
+            showAddSide,
+            showEditSide,
+            closeSide,
+            openCreate,
+            url ,
+            content,
+            activeItem,
+            showLoader,
+            translate,
+            handleAction
+        }
+        
     },
     props: [
         'path',
@@ -72,56 +149,6 @@ export default
         'object_name',
         'object_key',
     ],
-    mounted() 
-    {
-        this.load()
-    },
-
-    methods: 
-    {
-
-        /**
-         * Handle actions from datatable buttons
-         * Called From 'dataTableActions' component
-         * 
-         * @param String actionName 
-         * @param Object data
-         */  
-        handleAction(actionName, data) {
-            switch(actionName) 
-            {
-                case 'view':
-                    // window.open(this.conf.url+data.content.prefix)
-                    break;  
-
-                case 'edit':
-                    this.showEditSide = true; 
-                    this.showAddSide = false; 
-                    this.activeItem = data
-                    break;  
-
-                case 'delete':
-                    this.$root.$children[0].deleteByKey(this.object_key, data, this.object_name + '.delete');
-                    break;  
-            }
-        },
-
-        load()
-        {
-            this.showLoader = true;
-            this.$root.$children[0].handleGetRequest( this.url ).then(response=> {
-                this.setValues(response)
-                this.showLoader = false;
-            });
-        },
-        
-        setValues(data) {
-            this.content = JSON.parse(JSON.stringify(data)); return this
-        },
-        __(i)
-        {
-            return this.$root.$children[0].__(i);
-        }
-    }
+    
 };
 </script>

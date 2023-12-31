@@ -65,6 +65,7 @@
 </template>
 <script>
 import dataTableActions from './includes/data-table-actions.vue';
+import {handleGetRequest, deleteByKey, translate} from '@/utils.vue';
 
 export default
     {
@@ -170,14 +171,14 @@ export default
                         break;
 
                     case 'delete':
-                        this.$parent.deleteByKey('destination_id', data, 'Destination.delete');
+                        deleteByKey('destination_id', data, 'Destination.delete');
                         break;
                 }
             },
 
             load() {
                 this.showLoader = true;
-                this.$parent.handleGetRequest(this.url).then(response => {
+                handleGetRequest(this.url).then(response => {
                     this.setValues(response)
                     this.showLoader = false;
                     this.searchTextChanged()
@@ -207,7 +208,7 @@ export default
                 return data;
             },  
             __(i) {
-                return this.$root.$children[0].__(i);
+                return translate(i);
             }
         }
     };

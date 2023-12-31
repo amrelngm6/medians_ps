@@ -292,6 +292,11 @@ class APIController extends CustomController
 					return response((new Notifications\Application\NotificationEventController())->delete());
 					break;
 			
+
+				case 'Event.delete':
+					return response((new Events\Application\EventController())->delete());
+					break;
+			
 			}
 
 		} catch (Exception $e) {
