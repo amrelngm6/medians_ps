@@ -53,7 +53,8 @@ export default
         name: 'Map',
         setup(props) 
         {
-            
+            console.log(props.waypoints);
+
             const reload = ref(null);
             const render = ref(null);
             const travelMode = ref('Driving');
