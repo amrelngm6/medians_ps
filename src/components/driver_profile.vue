@@ -13,7 +13,7 @@
                         <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
                             v-text="translate('Edit')"></button>
                         <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
-                            ><i class="fa fa-close px-2"></i> <span v-text="translate('Back')"></span></button>
+                            > <close_icon /> <span v-text="translate('Back')"></span></button>
                     </div>
 
                     <hr class="mt-5 dark:border-gray-600">
@@ -192,6 +192,7 @@
 
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import help_icon from '@/components/svgs/help.vue';
+import close_icon from '@/components/svgs/Close.vue';
 import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
 
@@ -199,6 +200,7 @@ export default
 {
     components: {
         help_icon,
+        close_icon,
         dashboard_card_white,
     },  
     emits: [
