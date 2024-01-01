@@ -107,7 +107,7 @@ export default
         {
 
             console.log(props.filepath)
-            
+
             const showManager = ref();
             const file = ref();
             const content = ref();
@@ -144,6 +144,7 @@ export default
                 insert,
                 clear,
                 change,
+                showLibrary,
                 showManager,
                 file,
                 content,
