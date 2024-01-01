@@ -20,7 +20,7 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('help_messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
                     <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts && content.trips_charts.length">
-                        <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
+                        <ag-charts-vue ref="lines" :key="line_options" :options="line_options"> </ag-charts-vue>
                     </div>
                     <div class="row mt-6">
                         <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-success" :title="translate('Vehciles')" :value="content.vehicles_count"></dashboard_card>
@@ -36,7 +36,7 @@
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_drivers_who_have_most_trips')"></p>
                         <div class="card-body w-full">
                             <div class="w-full">
-                                <ag-charts-vue :key="column_options" :options="column_options"> </ag-charts-vue>
+                                <ag-charts-vue ref="columns" :key="column_options" :options="column_options"> </ag-charts-vue>
                             </div>
                         </div>
                     </div>
@@ -233,9 +233,9 @@ export default
 
 
         return {
+            translate,
             dates_filters,
             content,
-            translate,
             activeDate,
             date:null,
             dateTimeFormat,
