@@ -90,6 +90,7 @@ export default
 
             const  checkMarker = async (i, event) =>  {
                 console.log(i)
+                console.log(event)
                 console.log(flightPlanCoordinates)
                 activeMarkerIndex.value = i;
                 emit('click-marker', props.waypoints[i], i, event);
