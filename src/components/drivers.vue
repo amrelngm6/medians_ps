@@ -1,5 +1,9 @@
 <template>
-    <div class=" w-full pb-20">
+    <div class=" w-full pb-20"> 
+
+        1
+        <vue-feather type="feather"></vue-feather>
+
 
         <driver_profile v-if="activeItem.driver_id" :key="activeItem" @edit="handleAction" @close="handleAction" :conf="conf" :item="activeItem" ></driver_profile>
 

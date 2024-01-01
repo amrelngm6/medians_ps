@@ -16,15 +16,17 @@ import $ from "jquery";
 window.$ = $;
 
 
-function pushScreenshotToServer(dataURL, err, info) {  
-    $.ajax({ 
-        url: "/api/bug_report",  
-        type: "POST",  
-        data: {info:info, err: err, image: dataURL},  
-        dataType: "html", 
-        success: function() {}  
-    });  
-}   
+// function pushScreenshotToServer(dataURL, err, info) {  
+//     $.ajax({ 
+//         url: "/api/bug_report",  
+//         type: "POST",  
+//         data: {info:info, err: err, image: dataURL},  
+//         dataType: "html", 
+//         success: function() {}  
+//     });  
+// }   
+
+
 // app.config.errorHandler = function (err, vm, info)  {
 //   console.log(vm);
 //   console.log('[Global Error Handler]: Error in ' + info + ': ' + err);
