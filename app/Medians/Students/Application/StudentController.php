@@ -43,6 +43,7 @@ class StudentController extends CustomController
             [ 'value'=> "first_name", 'text'=> __('first_name'), 'sortable'=> true ],
             [ 'value'=> "picture", 'text'=> __('picture'),  ],
             [ 'value'=> "parent.first_name", 'text'=> __('parent_name'), 'sortable'=> true ],
+            [ 'value'=> "route.route_name", 'text'=> __('route'), 'sortable'=> true ],
             [ 'value'=> "contact_number", 'text'=> __('contact_number'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('edit')  ],
             [ 'value'=> "delete", 'text'=> __('delete')  ],
