@@ -1,13 +1,13 @@
 <template>
     <div class=" w-full">
-        <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6" v-if="!showLoader && trip">
+        <div class="grid xl:grid-cols-12 lg:grid-cols-12 grid-cols-1 gap-6" v-if="trip">
             <div class="xl:col-span-3 lg:col-span-5">
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center" v-if="activeItem && activeItem.driver">
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="translate('Trip') + translate(' #') + activeItem.trip_id"></h4>
                         <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2 flex text-danger"><close_icon /> <span v-text="translate('Back')"></span></button>
                     </div>
-                    {{ activeStatus }}
+
                     <hr class="mt-5 dark:border-gray-600">
 
                     <div class="text-start mt-6 text-sm">
@@ -24,6 +24,7 @@
                                 <span class="ms-2" v-text="activeItem.driver_name"></span>
                             </p>
                         </div>
+                        <span :key="activeStatus" v-text="activeStatus"></span>
                     </div>
                     <hr class="my-5 dark:border-gray-600">
 
