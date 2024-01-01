@@ -214,7 +214,7 @@ export default
         
         const handleObject = (data) =>
         {
-            data.icon =  this.conf.url+'uploads/images/blue_pin.gif'
+            data.icon =  props.conf.url+'uploads/images/blue_pin.gif'
             data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) } 
             data.drag = true; 
             return data;
