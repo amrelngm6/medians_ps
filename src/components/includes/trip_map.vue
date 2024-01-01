@@ -71,9 +71,7 @@ export default
         'setting',
         'conf',
         'auth',
-        'trip',
         'waypoints',
-        'showroute',
         'center',
     ]
 
