@@ -215,9 +215,7 @@ export default
 
         const clickMarker = (item, index, event) =>
         {
-            console.log(item)
-            console.log(index)
-            console.log(event)
+            activeItem.value = event;
             activeItem.value.latitude = event.destination.lat;
             activeItem.value.longitude = event.destination.lng;
             handleAction('edit', activeItem.value);
