@@ -253,6 +253,7 @@ export default
 
 
         return {
+            switchDate,
             optionsbar,
             translate,
             line_options,
