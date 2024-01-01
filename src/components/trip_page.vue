@@ -89,7 +89,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="w-full border-b border-gray-100"  v-if="activeStatus == 'info'">
+                                    <div class="w-full border-b border-gray-100" :key="activeStatus" v-if="activeStatus == 'info'">
                                         <div class="mt-6 w-full">
                                             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
                                                 <dashboard_card_white icon="/uploads/img/products_icome.png"
@@ -250,7 +250,7 @@ export default
             }
 
             setActiveStatus('info');
-            
+
             /**
             * Handle object
             * @param {Model Object} i 
