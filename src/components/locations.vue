@@ -3,7 +3,7 @@
         <div class=" w-full">
 
             <main v-if="content" class="relative flex-1 overflow-x-hidden overflow-y-auto  w-full">
-                <maps @update-marker="updateMarker" @click-marker="clickMarker" v-if="locations.length" :setting="setting" :key="center" :center="center" :waypoints="locations" :showroute="false"></maps>
+                <maps @update-marker="updateMarker" @click-marker="clickMarker" v-if="locations.length" :setting="setting" :key="center" :center="center" :waypoints="locations" :showroute="activeItem ? true : false"></maps>
                 <div :key="content.items" v-if="content.items" :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                     <div class="self-stretch py-4 flex-col justify-center items-start flex">
                         <div class="text-black text-lg font-semibold" v-text="translate('Pickup locations')"></div>
@@ -208,8 +208,9 @@ export default
         
         const updateMarker = (item, index, event) =>
         {
-            item.latitude = item.destination.lat;
-            item.longitude = item.destination.lng;
+            activeItem.value = event;
+            activeItem.value.latitude = event.destination.lat;
+            activeItem.value.longitude = event.destination.lng;
             handleAction('edit', item)
         } 
 

@@ -98,8 +98,7 @@ export default
             
             
             const  updateMarker = async (marker, i ) =>  {
-                checkMarker(marker, i)
-
+                emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
                     
