@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="media-library-field">
-
+            {{ file }}
             <input v-if="file" :key="file" :name="name" type="hidden" :value="file">
 
             <div class="media-library-field__selector" v-if="content == null">
