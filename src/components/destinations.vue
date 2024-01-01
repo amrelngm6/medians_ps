@@ -157,15 +157,15 @@ export default
             locations.value = array;
         } 
 
-        const setLocationsMarkers = (pickupLocation, i) => 
+        const setLocationsMarkers = (destination, i) => 
         {
-            activeItem.value = pickupLocation;
+            activeItem.value = destination;
 
             for (let a = 0; a < content.value.items.length; a++) 
                 content.value.items[a].selected = false;
                 
             content.value.items[i].selected = true; 
-            let newObject = handleObject(pickupLocation);
+            let newObject = handleObject(destination);
             locations.value = [newObject];
             center.value = newObject.destination;
         }
@@ -250,7 +250,7 @@ export default
                     break;
 
                 case 'delete':
-                    deleteByKey('pickup_id', data, 'PickupLocation.delete');
+                    deleteByKey('destination_id', data, 'Destination.delete');
                     break;
             }
         }
