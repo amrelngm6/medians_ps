@@ -103,7 +103,7 @@ export default
                 newObject.address = await handlePositionToPlaceId(newObject.latitude, newObject.longitude);
 
                 showDrag.value = null;
-                emit('update-marker', JSON.parse(JSON.stringify(marker)));
+                emit('update-marker', newObject);
             }
             
             
