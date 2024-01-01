@@ -10,7 +10,7 @@
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
 
-                    <div v-if="content.users" class="w-full">
+                    <div v-if="content.users" :key="content.users" class="w-full">
                         <div v-for="role in content.roles" class="w-full pb-4">
                             <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span class="pt-2 text-sm text-muted" v-text="role.id > 1 ? translate('Theese users can manage your account only') : ''"></span></h3>
                             <hr />
