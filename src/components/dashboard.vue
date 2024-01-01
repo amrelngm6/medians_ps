@@ -133,9 +133,7 @@ export default
 
     setup(props) {
 
-        console.log(props.conf)
-        console.log(props.path)
-        const url =  ref(props.conf.url + props.path + '?load=json');
+        const url =  ref(props.path + '?load=json');
 
         const line_options = ref();
         const pie_options = ref();
