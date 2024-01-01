@@ -24,7 +24,6 @@
                                 <span class="ms-2" v-text="activeItem.driver_name"></span>
                             </p>
                         </div>
-                        <span :key="activeStatus" v-text="activeStatus"></span>
                     </div>
                     <hr class="my-5 dark:border-gray-600">
 
@@ -242,7 +241,7 @@ export default
             }
 
             setLocations();
-            
+
             const activeStatus = ref('info');
             const showLoadMore = ref(true);
 
@@ -283,7 +282,7 @@ export default
                 loadmore,
                 handlePickup,
                 setLocations,
-                translate,
+                translate
             }
         },
 
