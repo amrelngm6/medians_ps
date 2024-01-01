@@ -235,11 +235,11 @@ export default
                 center.value = locationsList[0];
 
                 let icon1, icon2;
-                for (let i = 0; i < props.trippickup_locations.length; i++) {
-                    icon1 = props.trippickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                for (let i = 0; i < props.trip.pickup_locations.length; i++) {
+                    icon1 = props.trip.pickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
                     icon2 = props.tripdestinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    locationsList.push(handlePickup(props.trippickup_locations[i], props.tripdestinations[i], icon1));
-                    locationsList.push(handlePickup(props.tripdestinations[i], props.trippickup_locations[i], icon2));
+                    locationsList.push(handlePickup(props.trip.pickup_locations[i], props.tripdestinations[i], icon1));
+                    locationsList.push(handlePickup(props.tripdestinations[i], props.trip.pickup_locations[i], icon2));
                 }
 
                 locationsList.push(handlePickup(props.triproute, props.tripvehicle, 'destination.svg'));
@@ -278,7 +278,7 @@ export default
 
             
             setLocations();
-            
+
             return {
                 url,
                 locations,
