@@ -215,7 +215,6 @@ export default
          * @param Object data
          */  
         const handleAction =  (actionName, data) =>  {
-            console.log(actionName);
             switch(actionName) 
             {
 

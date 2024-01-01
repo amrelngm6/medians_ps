@@ -116,7 +116,6 @@ export default
         
         const savePermissions = (data) =>
         {
-            console.log(data);
             var params = new URLSearchParams();
             params.append('type', 'Role.updatePermissions')
             params.append('params', JSON.stringify(data))
@@ -133,7 +132,6 @@ export default
          * @param Object data
          */  
         const handleAction =  (actionName, data) =>  {
-            console.log(actionName);
             switch(actionName) 
             {
 

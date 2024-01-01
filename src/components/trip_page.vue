@@ -236,7 +236,6 @@ export default
                 center.value = locationsList[0];
 
                 let icon1, icon2;
-                console.log(props.trip)
 
                 if (props.trip.pickup_locations)
                 {
@@ -266,7 +265,6 @@ export default
             }
 
             const setActiveStatus = (newstatus) => {
-                console.log(newstatus)
                 activeStatus.value = newstatus;
             }
 

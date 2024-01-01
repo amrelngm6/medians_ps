@@ -51,7 +51,6 @@ export default {
                     location.reload();
                 });
             }
-            console.log(response)
             if (response && response.error)
             {
                 this.$alert(response.error);

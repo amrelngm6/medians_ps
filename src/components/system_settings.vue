@@ -225,8 +225,6 @@ export default
 
         const switchTab = (tab) => 
         {
-            console.log(tab)
-            console.log(tab.link)
             activeTab.value = tab.link;
         }
 

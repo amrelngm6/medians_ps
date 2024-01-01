@@ -131,8 +131,6 @@ export default
     name:'categories',
     setup(props) {
 
-        console.log(props.conf);
-
         const url =  ref(props.path + '?load=json');
 
         const line_options = ref();
@@ -175,7 +173,6 @@ export default
             // Update active date filters
             activeDate.value = start;
 
-            console.log(url)
             // Load new data
             load(url.value + filters); 
         }

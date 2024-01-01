@@ -224,7 +224,6 @@ export default
 
         const load = () => {
             handleGetRequest( url ).then(response=> {
-                console.log(response)
                 activeItem.value = JSON.parse(JSON.stringify(response))
             });
         }
@@ -267,7 +266,6 @@ export default
          * @param Object data
          */  
         function handleAction  (actionName, data)   {
-            console.log(actionName);
             switch(actionName) 
             {
 

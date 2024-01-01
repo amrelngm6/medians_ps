@@ -126,7 +126,6 @@ export default
             switch(actionName) 
             {
                 case 'edit':
-                    console.log(data)
                     activeItem.value = data;
                     showAddSide.value = false; 
                     showEditSide.value = true; 

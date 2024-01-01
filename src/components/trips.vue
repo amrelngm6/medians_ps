@@ -190,7 +190,6 @@ export default
             loc[loc.length] = {drag:true, icon: destinationIcon, origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
             
             center.value = loc[0].destination;
-            console.log(loc)
             locations.value = loc;
             return loc;
         }
@@ -202,7 +201,6 @@ export default
         {
 
             if (navigator.geolocation) {
-                console.log('position 1')
                  navigator.geolocation.getCurrentPosition(
                     position => {
                         center.value = {lat: position.coords.latitude, lng: position.coords.longitude};

@@ -174,7 +174,6 @@ export default
         {
 
             if (navigator.geolocation) {
-                console.log('position 1')
                  navigator.geolocation.getCurrentPosition(
                     position => {
                         center.value = {lat: position.coords.latitude, lng: position.coords.longitude};
@@ -224,12 +223,6 @@ export default
 
         const clickMarker = (item, index, event) =>
         {
-            console.log(item)
-            console.log(index)
-            console.log(event)
-            // activeItem.value.latitude = event.latLng.lat();
-            // activeItem.value.longitude = event.latLng.lng();
-            // handleAction('edit', activeItem.value);
         }
 
         const setLocationsPickups = (route) => 

@@ -116,7 +116,6 @@ export default
                     this.$parent.delete(data, 'Page.delete');
                     break;  
             }
-            console.log(actionName, data);
         },
 
         load()

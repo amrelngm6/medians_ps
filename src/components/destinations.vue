@@ -177,7 +177,6 @@ export default
         {
 
             if (navigator.geolocation) {
-                console.log('position 1')
                  navigator.geolocation.getCurrentPosition(
                     position => {
                         center.value = {lat: position.coords.latitude, lng: position.coords.longitude};
