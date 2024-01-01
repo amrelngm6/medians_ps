@@ -22,7 +22,7 @@
                         position: marker.destination,
                     }"
                     v-if="!showDrag"
-                    :key="index" 
+                    :key="showDrag" 
                     :draggable="true"
                     @click="showDrag.value = true"
                     @drag="activeMarkerIndex.value = index" 
@@ -38,7 +38,7 @@
                         position: marker.destination,
                         draggable: true
                     }"
-                    :key="index" 
+                    :key="showDrag" 
                     :draggable="true"
                     v-if="showDrag"
                     @click="checkMarker(marker, index)"
