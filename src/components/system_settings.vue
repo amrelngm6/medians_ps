@@ -23,7 +23,7 @@
                                                 <input name="params[logo]" type="hidden" :value="content.setting.logo">
                                                 <div class="w-full block  cursor-pointer">
                                                     <span class="text-gray-700 w-20">{{translate('Logo')}} <span class="star-red">*</span></span>
-                                                    <vue-medialibrary-field name="params[logo]" :api_url="conf.url" v-model="content.setting.logo"></vue-medialibrary-field>
+                                                    <vue-medialibrary-field name="params[logo]" :api_url="conf.url" :filepath="content.setting.logo"></vue-medialibrary-field>
                                                 </div>
 
                                             </label>
