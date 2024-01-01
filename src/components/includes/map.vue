@@ -102,6 +102,8 @@ export default
                 newObject.longitude = event.latLng.lng()
                 newObject.address = await handlePositionToPlaceId(newObject.latitude, newObject.longitude);
 
+                props.waypoints[activeMarkerIndex.value].destination = {lat: newObject.latitude, lng: newObject.longitude};
+
                 showDrag.value = null;
                 emit('update-marker', newObject);
             }
