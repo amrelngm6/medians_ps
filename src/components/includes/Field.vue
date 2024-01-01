@@ -11,7 +11,7 @@
                 >Attach {{ types.images && types.files ? 'file' : (types.images && !types.files) ? 'image' : 'file' }}</span>
 
             </div>
-            <div v-if="file && content" class="media-library-field__selected">
+            <div v-if="file && content" :key="file" class="media-library-field__selected">
                 <div class="media-library-field__selected__inner">
                     <div class="w-full">
                         <div>
