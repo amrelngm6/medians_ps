@@ -260,7 +260,6 @@ export default
             dates_filters,
             content,
             activeDate,
-            date,
             dateTimeFormat,
             
         }
