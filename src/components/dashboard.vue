@@ -235,6 +235,7 @@ export default
         return {
             dates_filters,
             content,
+            translate,
             activeDate,
             date:null,
             dateTimeFormat,
