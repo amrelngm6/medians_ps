@@ -134,7 +134,7 @@ export default
 
     setup(props) {
 
-        const url =  props.conf.url+props.path+'?load=json';
+        const url =  ref(props.conf.url+props.path+'?load=json');
 
         const line_options = ref();
         const pie_options = ref();
@@ -177,7 +177,7 @@ export default
             activeDate.value = start;
 
             // Load new data
-            load(url + filters); 
+            load(url.value + filters); 
         }
 
         switchDate('today');
