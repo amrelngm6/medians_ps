@@ -141,7 +141,7 @@ export default
 
         const content = ref({});
 
-        const activeDate = ref('-30days');
+        const activeDate = ref();
 
         const dates_filters = [
             {title: translate('Today'), value: 'today'},
