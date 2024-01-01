@@ -49,10 +49,10 @@ export default
         'click-marker',
         'update-marker',
     ],
-    setup(props, {emit}) 
+    setup(props) 
     {
         
-        const zoom = ref(13);
+        const zoom = ref(14);
         const newcenter = ref({});
         
         newcenter.value = {lat: props.center.destination.lat, lng: props.center.destination.lng};
