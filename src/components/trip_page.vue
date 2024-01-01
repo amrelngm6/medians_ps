@@ -224,7 +224,8 @@ export default
 
             const setLocations = () => {
                 
-                let locationsList = [handlePickup(props.trip.vehicle, props.trip.route, 'car.svg')];
+                let locationsList = [];
+                locationsList[0] = handlePickup(props.trip.vehicle, props.trip.route, 'car.svg');
 
                 let icon1, icon2;
                 for (let i = 0; i < activeItem.value.pickup_locations.length; i++) {
