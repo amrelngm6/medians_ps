@@ -160,7 +160,6 @@ export default
             for (let i = 0; i < items.length; i++) {
                 array[i] = handleObject(items[i]);
             }
-            locations.value = array;
         } 
 
         const setLocationsMarkers = (trip, i) => 
