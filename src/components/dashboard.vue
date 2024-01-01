@@ -110,6 +110,7 @@
     </div>
 </template>
 <script>
+import {ref} from 'vue';
 import moment from 'moment';
 import dashboard_card from '@/components/includes/dashboard_card.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
