@@ -27,7 +27,7 @@
 div > svg,
 span > svg {
   vertical-align: sub;
-  fill: rgba(0,0,0,.7);
+  fill: rgba(31,41,55,.7);
 }
 
 .h-screen 
