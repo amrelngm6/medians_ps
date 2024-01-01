@@ -272,18 +272,19 @@ export default
         const setLocationsPickups = (trip) =>
         {
             activeTrip = trip
-            let a, o;
-            this.locations = [];
-            this.locations[this.locations.length] = {drag:true, status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
+            let a, o,loc;
+            loc = [];
+            loc[0] = {drag:true, status: 'waiting', icon: props.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
             for (let i = 0; i < trip.pickup_locations.length; i++) {
                 a = trip.pickup_locations[i].location;
                 o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
-                this.locations[i+1] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+                loc[i+1] = {status: trip.pickup_locations[i].status, icon: props.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
-            this.locations[this.locations.length] = {drag:true, icon: this.conf.url+'uploads/images/destination.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
-            this.showMap = !this.showMap
-            this.center = this.locations[0].destination;
-            return this.locations;
+            loc[loc.length] = {drag:true, icon: props.conf.url+'uploads/images/destination.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
+            showMap.value = !showMap.value
+            center = loc[0].destination;
+            console.log(loc)
+            return loc;
         }
         
         return {
