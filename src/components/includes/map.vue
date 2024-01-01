@@ -21,7 +21,7 @@
                         draggable: true,
                         position: marker.destination,
                     }"
-                    v-if="marker && !marker.drag"
+                    v-if="waypoints && waypoints.length > 0"
                     :key="index" 
                     :draggable="true"
                     @click="checkMarker(marker, index)"
