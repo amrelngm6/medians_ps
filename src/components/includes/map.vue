@@ -21,7 +21,7 @@
                         draggable: true,
                         position: marker.destination,
                     }"
-                    v-if="waypoints && waypoints.length > 0"
+                    v-if="!showDrag"
                     :key="index" 
                     :draggable="true"
                     @click="checkMarker(marker, index)"
@@ -40,7 +40,7 @@
                     }"
                     :key="index" 
                     :draggable="true"
-                    v-if="marker && marker.drag"
+                    v-if="showDrag"
                     @click="checkMarker(marker, index)"
                     @drag="activeMarkerIndex = index" 
                     @dragend="updateMarker" >
@@ -77,6 +77,7 @@ export default
 
             const reload = ref(null);
             const render = ref(null);
+            const showDrag = ref(null);
             const travelMode = ref('Driving');
             const zoom = ref(14);
             const markers = ref([]);
@@ -102,6 +103,7 @@ export default
                 updateMarker,
                 reload,
                 render,
+                showDrag,
                 travelMode,
                 origin: { lat: 0, lng: 0 }, // Replace with your origin location
                 destination: { lat: 0, lng: 0 }, // Replace with your destination location
