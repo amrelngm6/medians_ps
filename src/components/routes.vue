@@ -237,8 +237,7 @@ export default
             // = parseFloat(location.latitude);
             for (let i = 0; i < route.pickup_locations.length; i++) {
                 a = route.pickup_locations[i];
-                let icon = (route.pickup_locations[i].student && route.pickup_locations[i].student.picture) ? ( props.conf.url+route.pickup_locations[i].student.picture ) : blueIcon; 
-                locations_[i] = {title: route.pickup_locations[i].student_name, icon:  icon, origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+                locations_[i] = {title: route.pickup_locations[i].student_name, icon:  blueIcon, origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
             locations_[locations_.length] = {icon: props.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
             center.value = locations_[0].destination;
