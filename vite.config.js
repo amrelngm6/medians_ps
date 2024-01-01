@@ -11,8 +11,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         entryFileNames: 'z.min.js',
-        chunkFileNames: '[name]-[hash].min.js',
-        assetFileNames: '[name]-[hash].[ext]',
+        chunkFileNames: '/js/[name]-[hash].min.js',
+        assetFileNames: '/js/[name]-[hash].[ext]',
       },
     },
   },
