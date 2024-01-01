@@ -61,7 +61,8 @@ class AuthService
 	public function loginPage()
 	{
 		try {
-				
+			
+			echo 1;
 			$this->app = new \config\APP;
 
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
