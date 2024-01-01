@@ -4,23 +4,23 @@
             <div class="xl:col-span-3 lg:col-span-5">
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center" v-if="activeItem && activeItem.driver">
-                        <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="__('Trip') + __(' #') + activeItem.trip_id"></h4>
-                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"><i class="fa fa-close px-2"></i> <span v-text="__('Back')"></span></button>
+                        <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="translate('Trip') + translate(' #') + activeItem.trip_id"></h4>
+                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"><i class="fa fa-close px-2"></i> <span v-text="translate('Back')"></span></button>
                     </div>
 
                     <hr class="mt-5 dark:border-gray-600">
 
                     <div class="text-start mt-6 text-sm">
                         <div class="space-y-7">
-                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Duration')"></strong>
+                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Duration')"></strong>
                                 <span class="ms-2" v-text="activeItem.duration"></span></p>
                             <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong
-                                    v-text="__('Pickup locations')"></strong> <span class="ms-2"
+                                    v-text="translate('Pickup locations')"></strong> <span class="ms-2"
                                     v-text="activeItem.pickup_locations_count"></span></p>
-                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Route')"></strong>
+                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Route')"></strong>
                                 <span class="ms-2" v-text="activeItem.route ? activeItem.route.route_name : ''"></span>
                             </p>
-                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="__('Driver')"></strong>
+                            <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Driver')"></strong>
                                 <span class="ms-2" v-text="activeItem.driver_name"></span>
                             </p>
                         </div>
@@ -36,21 +36,21 @@
                         <div class="w-full">
                             <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
-                                <button @click="setActiveStatus('info')" type="button" v-text="__('Info')"
+                                <button @click="setActiveStatus('info')" type="button" v-text="translate('Info')"
                                     :class="activeStatus == 'info' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
                                 </button> <!-- button-end -->
                                 <button @click="setActiveStatus('pickup_locations')" type="button"
-                                    v-text="__('Pickup locations')"
+                                    v-text="translate('Pickup locations')"
                                     :class="activeStatus == 'pickup_locations' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white">
                                 </button> <!-- button-end -->
                                 <button type="button" @click="setActiveStatus('map')"
                                     :class="activeStatus == 'map' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
-                                    v-text="__('Map')"
+                                    v-text="translate('Map')"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white">
                                 </button> <!-- button-end -->
-                                <button @click="setActiveStatus('reviews')" type="button" v-text="__('Reviews')"
+                                <button @click="setActiveStatus('reviews')" type="button" v-text="translate('Reviews')"
                                     :class="activeStatus == 'reviews' ? 'menu-dark text-white font-semibold' : 'text-gray-500'"
                                     class="hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full flex justify-center py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white">
                                 </button> <!-- button-end -->
@@ -79,7 +79,7 @@
                                                         <p class="text-content3 text-2xs truncate"
                                                             v-text="help_message.message"></p>
                                                     </div>
-                                                    <div :class="__('lang') == 'ar' ? 'left-0' : 'right-0'"
+                                                    <div :class="translate('lang') == 'ar' ? 'left-0' : 'right-0'"
                                                         class="absolute   flex items-center justify-between gap-1">
                                                         <span
                                                             class="bg-blue-50 px-4 py-1 text-secondary badge-sm rounded-5 "
@@ -94,16 +94,16 @@
                                             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
                                                 <dashboard_card_white icon="/uploads/img/products_icome.png"
                                                     classes="bg-gradient-success" class="border border-1"
-                                                    :title="__('Duration')"
+                                                    :title="translate('Duration')"
                                                     :value="activeItem.duration ? activeItem.duration : '0'">
                                                 </dashboard_card_white>
                                                 <dashboard_card_white icon="/uploads/img/products_icome.png"
                                                     classes="bg-gradient-info" class="border border-1"
-                                                    :title="__('Pickup locations')"
+                                                    :title="translate('Pickup locations')"
                                                     :value="activeItem.pickup_locations_count"></dashboard_card_white>
                                                 <dashboard_card_white icon="/uploads/img/products_icome.png"
                                                     classes="bg-gradient-danger" class="border border-1"
-                                                    :title="__('Distance')" :value="activeItem.distance">
+                                                    :title="translate('Distance')" :value="activeItem.distance">
                                                 </dashboard_card_white>
                                             </div>
                                         </div>
@@ -111,25 +111,25 @@
                                     <div class="w-full border-b border-gray-100"
                                         v-if="activeStatus == 'pickup_locations' && trip">
 
-                                        <div :class="__('lang') == 'ar' ? 'right-4' : 'left-4'"
+                                        <div :class="translate('lang') == 'ar' ? 'right-4' : 'left-4'"
                                             class="absolute border-s-2  border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10">
                                         </div>
 
                                         <div class="md:text-start lg:flex mb-5 mt-5">
                                             <div class="w-full">
                                                 <h5 class="font-semibold bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded "
-                                                    v-text="__('Trip number') + ' #' + trip.trip_id"></h5>
+                                                    v-text="translate('Trip number') + ' #' + trip.trip_id"></h5>
                                                 <p class="text-muted text-sm" v-text="trip.trip_date"></p>
                                             </div>
                                             <div class="w-full">
                                                 <h5 class="font-semibold bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded "
                                                     v-text="trip.duration"></h5>
-                                                <p class="text-muted text-sm" v-text="__('Duration')"></p>
+                                                <p class="text-muted text-sm" v-text="translate('Duration')"></p>
                                             </div>
                                             <div class="w-full">
                                                 <h5 class="font-semibold bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded "
                                                     v-text="trip.distance + ' KM'"></h5>
-                                                <p class="text-muted text-sm" v-text="__('Distance')"></p>
+                                                <p class="text-muted text-sm" v-text="translate('Distance')"></p>
                                             </div>
                                         </div>
 
@@ -152,9 +152,9 @@
                                                         <div
                                                             class="flex md:flex-nowrap  items-center gap-6 ms-10 md:mt-0 mt-5">
                                                             <div class="ms-10">
-                                                                <h2 :class="__('lang') == 'ar' ? 'bg-gradient-to-l' : 'bg-gradient-to-r'"
+                                                                <h2 :class="translate('lang') == 'ar' ? 'bg-gradient-to-l' : 'bg-gradient-to-r'"
                                                                     class="font-semibold p-2 rounded  text-primary flex items-center justify-center text-sm mx-16 "
-                                                                    v-text="location.boarding_time ? location.time : __('Waiting')"></h2>
+                                                                    v-text="location.boarding_time ? location.time : translate('Waiting')"></h2>
                                                             </div>
                                                             <div class="relative me-5 md:ps-0 ps-10  overflow-auto">
                                                                 <div class="pt-3">
@@ -193,28 +193,67 @@
 </template>
 <script>
 
-import dashboard_card_white from './includes/dashboard_card_white.vue';
-import help_icon from './svgs/help.vue';
+import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
+import help_icon from '@/components/svgs/help.vue';
+
+import {defineAsyncComponent, ref} from 'vue';
+import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
 
 export default
     {
         components: {
             dashboard_card_white,
             help_icon,
+            
         },
-        data() {
+        setup(props) {
+            
+    
+            const url =  props.conf.url+props.path+'?load=json';
+
+            
+            const activeItem = ref({});
+            const content = ref({});
+            const center = ref({});
+            
+            activeItem.value = props.trip;
+
+            const setLocations = () => {
+                
+                activeItem.value.locations = [handlePickup(activeItem.value.vehicle, activeItem.value.route, 'car.svg')];
+
+                let icon1, icon2;
+                for (let i = 0; i < activeItem.value.pickup_locations.length; i++) {
+                    icon1 = activeItem.value.pickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    icon2 = activeItem.value.destinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    activeItem.value.locations.push(handlePickup(activeItem.value.pickup_locations[i], activeItem.value.destinations[i], icon1));
+                    activeItem.value.locations.push(handlePickup(activeItem.value.destinations[i], activeItem.value.pickup_locations[i], icon2));
+                }
+
+                activeItem.value.locations.push(handlePickup(activeItem.value.route, activeItem.value.vehicle, 'destination.svg'));
+            }
+
+            const activeStatus = ref('info');
+            const showLoadMore = ref(true);
+
+            const loadmore = () => {
+                limitCount.value += 5;
+                if (limitCount.value > activeItem.value.last_trips.length) {
+                    showLoadMore.value = false;
+                }
+            }
+
+            const setActiveStatus = (status) => {
+                activeStatus.value = status;
+            }
+
+
             return {
-                content: {
-                    items: []
-                },
-                locations: [],
-                activeItem: {},
-                showAddSide: false,
-                showEditSide: false,
-                showLoader: false,
-                showLoadMore: true,
-                limitCount: 3,
-                activeStatus: 'info',
+                url,
+                activeItem,
+                setActiveStatus,
+                loadmore,
+                setLocations
             }
         },
 
@@ -227,11 +266,6 @@ export default
             'trip',
         ],
         mounted() {
-            this.activeItem = this.trip;
-
-            if (this.trip) {
-                this.setLocations();
-            }
         },
 
         methods:
@@ -242,21 +276,6 @@ export default
 
             close() {
                 this.$emit('close', 'close', this.activeItem, false);
-            },
-
-            loadmore() {
-                this.showLoader = true;
-                this.limitCount += 5;
-                if (this.limitCount > this.activeItem.last_trips.length) {
-                    this.showLoadMore = false;
-                }
-                this.showLoader = false;
-            },
-
-            setActiveStatus(status) {
-                this.showLoader = true;
-                this.activeStatus = status;
-                this.showLoader = false;
             },
 
 
@@ -297,21 +316,7 @@ export default
                 this.content = JSON.parse(JSON.stringify(data)); return this
             },
 
-            setLocations() {
-                this.activeItem.locations = [this.handlePickup(this.activeItem.vehicle, this.activeItem.route, 'car.svg')];
-                let a=this.activeItem.pickup_locations.length;
-                let icon1, icon2;
-                for (let i = 0; i < this.activeItem.pickup_locations.length; i++) {
-                    icon1 = this.activeItem.pickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    icon2 = this.activeItem.destinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    this.activeItem.locations.push(this.handlePickup(this.activeItem.pickup_locations[i], this.activeItem.destinations[i], icon1));
-                    this.activeItem.locations.push(this.handlePickup(this.activeItem.destinations[i], this.activeItem.pickup_locations[i], icon2));
-                    a++ 
-                }
-                this.activeItem.locations.push(this.handlePickup(this.activeItem.route, this.activeItem.vehicle, 'destination.svg'));
-
-                return this
-            },
+            
 
             /**
             * Handle object
@@ -328,8 +333,8 @@ export default
 
             
 
-            __(i) {
-                return this.$root.$children[0].__(i);
+            translate(i) {
+                return this.$root.$children[0].translate(i);
             }
         }
     };
