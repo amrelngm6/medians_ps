@@ -40,7 +40,7 @@
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
-                    @dragend="updateMarker(marker, index)"
+                    @dragend="updateMarker(marker)"
                     @click="checkMarker(marker, index)"
                     >
 
@@ -97,14 +97,15 @@ export default
             }
             
             
-            const  updateMarker = async (marker, i ) =>  {
+            const  updateMarker = event => (marker ) =>  {
                 console.log('deagged')
+                console.log(event)
+                console.log(marker)
                 emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
             const  checkMarkers = async (marker, i ) =>  {
-                console.log('deagged')
-                emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
+                console.log('deagged 2')
             }
             
                     
