@@ -71,7 +71,8 @@
 
 import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
-import delete_icon from ('@/components/svgs/trash.vue')
+
+import delete_icon from '@/components/svgs/trash.vue';
 
 const SideFormCreate = defineAsyncComponent(() =>
   import('@/components/includes/side-form-create.vue')
