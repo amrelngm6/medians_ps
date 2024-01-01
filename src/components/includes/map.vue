@@ -15,7 +15,7 @@
                 <!-- <Polyline v-if="showroute" :options="flightPath" /> -->
 
                 <CustomMarker
-                    v-for="(marker, index) in waypoints" 
+                    v-for="(marker, index) in markers" 
 
                     :options="{
                         draggable: true,
@@ -32,7 +32,7 @@
                 </CustomMarker>
 
                 <Marker
-                    v-for="(marker, index) in waypoints" 
+                    v-for="(marker, index) in markers" 
                     :options="{
                         position: marker.destination,
                         draggable: true,
@@ -49,7 +49,6 @@
     </div>
 </template>
 <script>
-// import DirectionsRenderer from "./map_direction.vue";
 import { ref } from "vue";
 import { GoogleMap,  CustomMarker, InfoWindow , Marker,Polyline } from "vue3-google-map";
 
