@@ -128,13 +128,14 @@ export default
         dashboard_card_white,
         dashboard_card,
         AgChartsVue,
-        // medians_datepicker,
     },
     name:'categories',
 
     setup(props) {
 
-        const url =  ref(props.conf.url+props.path+'?load=json');
+        console.log(props.conf)
+        console.log(props.path)
+        const url =  ref(props.conf.url + props.path + '?load=json');
 
         const line_options = ref();
         const pie_options = ref();
