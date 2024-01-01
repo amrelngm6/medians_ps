@@ -56,7 +56,7 @@
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.latest_students"  :key="content.latest_students">
-                                            <tr :key="index" v-for="(student, index) in content.latest_students" class="text-center" v-if="student">
+                                            <tr :key="index" v-for="(student, index) in content.latest_students" class="text-center" >
                                                 <td><img width="48" height="48" class="rounded" :src="'/app/image.php?w=50&h=50&src='+student.picture" /></td>
                                                 <td v-text="student.first_name"></td>
                                                 <td  v-text="student.contact_number"></td>
