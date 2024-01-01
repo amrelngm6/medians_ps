@@ -54,24 +54,6 @@ class TripController extends CustomController
         ];
 	}
 
-	
-
-	/**
-	 * Columns list to view at DataTable 
-	 *  
-	 */ 
-	public function fillable( ) 
-	{
-		return [
-            [ 'key'=> "trip_id", 'title'=> "#", 'fillable'=>true, 'column_type'=>'hidden'],
-            [ 'key'=> "trip_date", 'title'=> __('trip_date'), 'fillable'=> true, 'column_type'=>'date' ],
-            [ 'key'=> "trip_status", 'title'=> __('trip_status'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "trip_id", 'title'=> __('trip_status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-        ];
-	}
-
-	
-
 	/**
 	 * Admin index items
 	 * 
@@ -88,7 +70,6 @@ class TripController extends CustomController
 		        'load_vue' => true,
 		        'title' => __('Trips'),
 		        'columns' => $this->columns(),
-		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
 		    ]);
 		} catch (\Exception $e) {
