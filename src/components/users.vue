@@ -17,7 +17,7 @@
                             <div class="w-full grid lg:grid-cols-3 gap gap-6">
 
                                 <div v-for="user in content.users" class="mb-2 rounded-lg   bg-white p-4 "   >
-                                    <div v-for="user in content.users" class="flex items-center space-x-4 gap gap-4 "   >
+                                    <div v-if="sameRole(user, role)" class="flex items-center space-x-4 gap gap-4 "   >
                                         <div class="flex-shrink-0 ">
                                             <div class="relative">
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
