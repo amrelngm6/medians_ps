@@ -71,6 +71,7 @@ export default
     setup(props, {emit}) 
     {
         console.log(props.waypoints);
+        console.log(props.center);
 
 
         const reload = ref(null);

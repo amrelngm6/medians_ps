@@ -179,12 +179,12 @@
                 </div>
                 <p class="text-center" v-if="activeStatus == 'map'">
                     <trip_map  
-                        :trip="trip" 
                         :conf="conf"
-                        :center="center"
-                        :key="activeItem.locations"
-                        :waypoints="activeItem.locations"
                         :setting="setting"
+                        :trip="trip" 
+                        :center="center"
+                        :key="locations"
+                        :waypoints="locations"
                         @interval-callback="callback"></trip_map>
 
                 </p>
