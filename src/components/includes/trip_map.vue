@@ -53,13 +53,15 @@ export default
     {
         console.log(props.waypoints);
         console.log(props.center);
-
-
+        
         const zoom = ref(5);
-             
+        const newcenter = ref({});
+        
+        newcenter.value = {lat: props.center.destination.lat, lng: props.center.destination.lng};
+
         return {
             zoom,
-            newcenter: props.center.value,
+            newcenter,
             markers: props.waypoints,
         }
     },
