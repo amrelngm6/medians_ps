@@ -180,7 +180,7 @@ export default
             load(url.value + filters); 
         }
 
-        switchDate('today');
+        switchDate('-30days');
 
         /**
          * Date Time format 
