@@ -13,7 +13,7 @@
                         <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
                             v-text="translate('Edit')"></button>
                         <button type="button" @click="close" class="flex hover:bg-primary mb-3 px-6 py-2  text-danger"
-                            > <close_icon class="w-4" /> <span v-text="translate('Back')"></span></button>
+                            >  <span v-text="translate('Back')"></span></button>
                     </div>
 
                     <hr class="mt-5 dark:border-gray-600">
