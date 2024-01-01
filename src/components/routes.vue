@@ -25,7 +25,7 @@
                                     <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
                                         <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
                                             <div class="text-center text-white   uppercase tracking-tight text-sm"> 
-                                                <vue-feather type="edit"></vue-feather>
+                                                <vue-feather class="w-5" type="edit"></vue-feather>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
 
                         <template #item-edit="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
-                                <vue-feather type="edit"></vue-feather>
+                                <vue-feather class="w-5" type="edit"></vue-feather>
                             </button>
                         </template>
                         <template #item-delete="item">
