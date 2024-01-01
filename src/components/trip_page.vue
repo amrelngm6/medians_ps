@@ -244,7 +244,7 @@ export default
                     locationsList.push(handlePickup(props.trip.destinations[i], props.trip.pickup_locations[i], icon2));
                 }
 
-                locationsList.push(handlePickup(props.trip.route, props.tripvehicle, 'destination.svg'));
+                locationsList.push(handlePickup(props.trip.route, props.trip.vehicle, 'destination.svg'));
                 
                 locations.value = locationsList
             }
