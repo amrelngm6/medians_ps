@@ -129,8 +129,7 @@ export default
         AgChartsVue,
     },
     name:'categories',
-    emits: ['callback'],
-    setup(props, {emit}) {
+    setup(props) {
 
         console.log(props.conf);
 

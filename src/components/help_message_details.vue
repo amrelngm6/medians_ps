@@ -183,7 +183,8 @@ export default
     components: {
         translate
     },
-    setup() {
+    emits: ['callback'],
+    setup(props, {emit}) {
         
         const close = () =>  {
             
@@ -203,6 +204,7 @@ export default
 
         return  {
             translate,
+            emit,
             close
         }
     },
