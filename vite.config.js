@@ -9,7 +9,7 @@ export default defineConfig({
   build:{
     outDir: './dist'
   },
-  root: '/src',
+  root: './src',
   rollupOptions: {
     output: {
       entryFileNames: 'index.min.js',
