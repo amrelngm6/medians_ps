@@ -36,7 +36,7 @@ class ParentRepository
 
 	public function get($limit = 100)
 	{
-		return Parents::with('pickup_location')->limit($limit)->get();
+		return Parents::with('pickup_location', 'students')->limit($limit)->get();
 	}
 
 	public function checkLogin($email, $password)

@@ -17,6 +17,10 @@
                             <img :src="item.picture" class="w-8 h-8 rounded-full" />
                         </template>
 
+                        <template #item-students="item">
+                            {{ item }}
+                        </template>
+
                         <template #item-edit="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
                                 <vue-feather class="w-5" type="edit"></vue-feather>
