@@ -24,8 +24,8 @@
                     v-if="!showDrag"
                     :key="index" 
                     :draggable="true"
-                    @click="checkMarker(marker, index)"
-                    @drag="activeMarkerIndex = index" 
+                    @click="showDrag.value = true"
+                    @drag="activeMarkerIndex.value = index" 
                     @dragend="updateMarker" >
                     <div style="text-align: center">
                         <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
