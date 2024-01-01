@@ -19,7 +19,7 @@
                                     <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
                                         :src="(destination.student && destination.student.picture) ? destination.student.picture : 'https://via.placeholder.com/60x6'" />
                                 </div>
-                                <div @click="setDestinationsMarkers(destination)" class="grow shrink basis-0 flex-col justify-center items-start gap-[3px] inline-flex cursor-pointer">
+                                <div @click="setLocationsMarkers(destination, i)" class="grow shrink basis-0 flex-col justify-center items-start gap-[3px] inline-flex cursor-pointer">
                                     <div class="text-black font-semibold text-base " v-text="destination.student_name"></div>
                                     <div class="self-stretch text-slate-500 text-sm font-normal " v-text="destination.location_name + ' - ' + destination.address"></div>
                                 </div>
