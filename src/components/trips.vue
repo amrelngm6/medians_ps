@@ -128,8 +128,7 @@ export default
 
         const url =  props.conf.url+props.path+'?load=json';
 
-        const showAddSide = ref(false);
-        const showEditSide = ref(false);
+        const activeTrip = ref(null);
         const showProfilePage = ref(null);
         const activeItem = ref({});
         const content = ref({});
@@ -141,8 +140,6 @@ export default
         const collapsed =  ref(false);
 
         const closeSide = () => {
-            showAddSide.value = false;
-            showEditSide.value = false;
         }
 
 
@@ -165,9 +162,9 @@ export default
             locations.value = array;
         } 
 
-        const setLocationsMarkers = (destination, i) => 
+        const setLocationsMarkers = (trip, i) => 
         {
-            activeItem.value = destination;
+            activeItem.value = trip;
 
             for (let a = 0; a < content.value.items.length; a++) 
                 content.value.items[a].selected = false;
@@ -251,8 +248,6 @@ export default
                     break;
 
                 case 'edit':
-                    showEditSide.value = true;
-                    showAddSide.value = false;
                     activeItem.value = data
                     break;
 
@@ -262,11 +257,40 @@ export default
             }
         }
 
+        const filterLocations = (locationsList, newstatus) =>
+        {
+            let data = [];
+            
+            for (let i = 0; i < locationsList.length; i++) {
+                (locationsList[i].status == newstatus) ?? data.push(locationsList[i]);
+            }
+
+            return data;
+        }   
+
+        
+        const setLocationsPickups = (trip) =>
+        {
+            activeTrip = trip
+            let a, o;
+            this.locations = [];
+            this.locations[this.locations.length] = {drag:true, status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
+            for (let i = 0; i < trip.pickup_locations.length; i++) {
+                a = trip.pickup_locations[i].location;
+                o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
+                this.locations[i+1] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+            }
+            this.locations[this.locations.length] = {drag:true, icon: this.conf.url+'uploads/images/destination.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
+            this.showMap = !this.showMap
+            this.center = this.locations[0].destination;
+            return this.locations;
+        }
         
         return {
+            activeTrip,
+            setLocationsPickups,
+            filterLocations,
             locations,
-            showAddSide,
-            showEditSide,
             url,
             content,
             center,
@@ -316,7 +340,6 @@ export default
 //             center:{lat:31, lng:30},
 //             activeTrip:null,
 //             showAddSide:false,
-//             showEditSide:false,
 //             showLoader: true,
 //             locations: [],
 //             showList: true,
@@ -354,7 +377,6 @@ export default
 //     mounted() 
 //     {
 //         this.load()
-//         this.getUserLocation()
 //         setInterval(() => {
 //             // this.load()
 //         }, 10000);
@@ -363,27 +385,6 @@ export default
 //     methods: 
 //     {
         
-//         /**
-//          * Get current location
-//          */
-//         getUserLocation() 
-//         {
-//             if (navigator.geolocation) {
-
-//                 navigator.geolocation.getCurrentPosition(
-//                     position => {
-//                         this.center.lat = position.coords.latitude;
-//                         this.center.lng = position.coords.longitude;
-//                     },
-//                     error => {
-//                         this.locationError = "Error: " + error.message;
-//                     }
-//                 );
-//             } else {
-//                 this.locationError = "Geolocation is not supported by this browser.";
-//             }
-//         },
-            
 //         editFields(data, show = true)
 //         {
 //             this.showTrip = show;
@@ -408,24 +409,6 @@ export default
 //             return data;
 //         },
 
-//         searchTextChanged()
-//         {
-//             this.showList = false;
-//             if (this.activeTrip && this.content && this.content.items)
-//             {
-//                 for (let i = 0; i < this.content.items.length; i++) {
-//                     this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
-//                 }
-//             }
-
-//             this.showList = true;
-//         },
-
-//         checkSimilar(item)
-//         {
-//             let a = (item.driver.name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
-//             return a ? a : ((item.vehicle.plate_number).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
-//         },
 //         setLocationsMarkers(trip, i)
 //         {   
 
