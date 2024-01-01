@@ -31,7 +31,7 @@
                         draggable: true
                     }"
                     :key="marker" 
-                    @click="checkMarker(this, index)"
+                    @click="checkMarker($this, index)"
                     @drag="activeMarkerIndex = index" 
                     @dragend="updateMarker" >
                     <div style="text-align: center">
