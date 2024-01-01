@@ -20,7 +20,7 @@
                             <vue-feather :type="menu.icon"></vue-feather>
                         </span>
                         <span class="w-full text-base " v-text="menu.title"></span>
-                        <i v-if="menu.sub && !menu.show_sub" class="text-sm fa fa-caret-down"></i>
+                        <i v-if="menu.sub && !menu.show_sub" type="arrow-down"></i>
                     </a>
                     <ul v-if="menu.sub && menu.show_sub " class="pb-4" >
                         <li v-for="submenu in menu.sub" >
