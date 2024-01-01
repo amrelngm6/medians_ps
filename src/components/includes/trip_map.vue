@@ -1,6 +1,6 @@
 <template>
     <div class="w-full  overflow-auto" style="height: 85vh; z-index: 9999;">
-        <GoogleMap :api-key="setting.google_map_api" ref="trip_map" :center="center" :key="center" 
+        <GoogleMap :api-key="setting.google_map_api" ref="trip_map" :center="newcenter" :key="newcenter" 
             :options="{
                 zoomControl: true,
                 mapTypeControl: true,
@@ -53,14 +53,17 @@ export default
     setup(props, {emit}) 
     {
         console.log(props.waypoints);
-        console.log(props.center);
+        console.log(props.center.value);
 
 
         const zoom = ref(14);
+        const newcenter = ref({});
         
+        newcenter.value = props.center.value;
              
         return {
             zoom,
+            newcenter,
             markers: props.waypoints,
         }
     },
