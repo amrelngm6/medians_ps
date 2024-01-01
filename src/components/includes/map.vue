@@ -108,8 +108,8 @@ export default
                 console.log(event)
                 console.log(props.waypoints[activeMarkerIndex.value])
                 let newObject = props.waypoints[activeMarkerIndex.value]
-                newObject.latitude = event.latlng.lat()
-                newObject.longitude = event.latlng.lng()
+                newObject.latitude = event.latLng.lat()
+                newObject.longitude = event.latLng.lng()
                 
             }
             
