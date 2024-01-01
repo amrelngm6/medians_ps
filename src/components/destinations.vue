@@ -6,11 +6,11 @@
                 <maps :showroute="false" @update-marker="updatedDestination" @click-marker="updatedDestination" :setting="setting" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
                 <div  v-if="locations.length"  :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                     <div class="self-stretch py-4 flex-col justify-center items-start flex">
-                        <div class="text-black text-lg font-semibold" v-text="__('Destinations')"></div>
-                        <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Destinations description')"></div>
+                        <div class="text-black text-lg font-semibold" v-text="translate('Destinations')"></div>
+                        <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="translate('Destinations description')"></div>
                     </div>
                     <div v-if="!collapsed" class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
-                        <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
+                        <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="translate('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
                     <div :key="collapsed" v-if="!collapsed" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
                         <div v-for="destination in content.items" :key="destination.active" v-if="showList && destination.active"  class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
@@ -33,8 +33,8 @@
                     </div>
                     <div
                         class="flex self-stretch grow shrink basis-0 justify-between items-center inline-flex">
-                        <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
-                        <div @click="collapsed = !collapsed" class="cursor-pointer p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? __('Expand') : __('Collapse')"></p></div>
+                        <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="translate('add new')"></div>
+                        <div @click="collapsed = !collapsed" class="cursor-pointer p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? translate('Expand') : translate('Collapse')"></p></div>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
                     <a href="javascript:;"
                         class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg menu-dark hover:bg-purple-800"
-                        @click="showLoader = true, showAddSide = true, activeItem = {}, showLoader = false;">{{ __('add_new') }}</a>
+                        @click="showLoader = true, showAddSide = true, activeItem = {}, showLoader = false;">{{ translate('add_new') }}</a>
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
