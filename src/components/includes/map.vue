@@ -40,7 +40,7 @@
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
-                    @dragend="checkMarkers"
+                    @dragend="checkMarkers(marker)"
                     @click="checkMarkerDraggable(marker, index)"
                     >
 
@@ -103,9 +103,10 @@ export default
                 emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
-            const  checkMarkers =  (event) =>  {
+            const  checkMarkers =  event => marker =>  {
                 console.log('deagged 2')
                 console.log(event)
+                console.log(marker)
 
             }
             
