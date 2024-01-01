@@ -33,7 +33,7 @@
                     
                     <vue-medialibrary-field :key="item" v-if="column.column_type == 'file'" :name="'params['+column.key+']'"  v-model="item.picture" :api_url="conf.url"></vue-medialibrary-field>
 
-                    <vue-medialibrary-field :key="item" v-if="column.column_type == 'profile_image' " :name="'params['+column.key+']'" filepath="" v-model="file" :api_url="conf.url"></vue-medialibrary-field>
+                    <vue-medialibrary-field :key="item" v-if="column.column_type == 'profile_image' " :name="'params['+column.key+']'" :api_url="conf.url"></vue-medialibrary-field>
 
                 </div>
 
