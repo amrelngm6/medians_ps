@@ -153,7 +153,7 @@
                                         <tr>
                                             <td class="fw-medium py-2 " v-text="__('Close ticket')"></td>
                                             <td id="d-date" class="py-2 flex" >
-                                                <div @click="close" class="cursor-pointer hover:bg-red-800 hover:text-gray-100 px-3 py-2 text-sm border-red-600 border-1 rounded border mt-2 block text-center" id="t-close" v-text="__('Close')"></span>
+                                                <div @click="close" class="cursor-pointer hover:bg-red-800 hover:text-gray-100 px-3 py-2 text-sm border-red-600 border-1 rounded border mt-2 block text-center" ></span>
                                                     <vue-feather type="power"></vue-feather>
                                                     <span @click="close"  v-text="__('Close')"></span>
                                                 </div>
