@@ -40,7 +40,7 @@
                     :key="showDrag" 
                     v-if="showDrag"
                     @dragstart="onMarkerDragStart(index)"
-                    @dragend="checkMarkers"
+                    @dragend="updateMarker"
                     >
 
                 </Marker>
@@ -96,18 +96,14 @@ export default
             }
             
             
-            const  updateMarker = (marker)  =>  {
-                emit('update-marker', JSON.parse(JSON.stringify(marker)));
-            }
-            
-            const  checkMarkers = async (event) =>  {
+            const  updateMarker = async (event) =>  {
                 let newObject = props.waypoints[activeMarkerIndex.value]
                 newObject.latitude = event.latLng.lat()
                 newObject.longitude = event.latLng.lng()
                 newObject.address = await handlePositionToPlaceId(newObject.latitude, newObject.longitude);
 
                 showDrag.value = false
-                updateMarker(newObject);
+                emit('update-marker', JSON.parse(JSON.stringify(marker)));
             }
             
             
@@ -146,7 +142,6 @@ export default
                     
             return {
                 checkMarker,
-                checkMarkers,
                 onMarkerDragStart,
                 enableDrag,
                 updateMarker,
