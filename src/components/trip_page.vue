@@ -207,6 +207,7 @@ export default
             dashboard_card_white,
             help_icon,
             trip_map,
+            close_icon,
             translate
             
         },
