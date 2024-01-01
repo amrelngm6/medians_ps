@@ -290,17 +290,23 @@ export default
             activeItem.value = data
         }
 
+        const callback = () =>
+        {
+            editFields(null, false)
+            showTrip.value = false;
+        }
 
         return {
             editFields,
             showTrip,
             activeTrip,
-            filterLocations,
             locations,
             url,
             content,
             center,
             activeItem,
+            callback,
+            filterLocations,
             translate,
             clickMarker,
             updateMarker,
