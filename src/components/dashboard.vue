@@ -11,7 +11,7 @@
         </div>
 
         <div class="block w-full overflow-x-auto py-2">
-            <div v-if="lang && !showLoader && setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
+            <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_trips')" :value="content.active_trips_count"></dashboard_card_white>
@@ -128,35 +128,116 @@ export default
         // medians_datepicker,
     },
     name:'categories',
-    data() {
-        return {
-            url: '/dashboard?load=json',
-            content: {
 
-                pie_options:{},
-                column_options:{},
-                line_options:{},
-                most_played_devices: [],
-                latest_paid_order_devices: [],
-                latest_order_products: [],
-                trips_charts: [],
-                revenue: 0,
-                most_played_games: [],
-                latest_paid_bookings: 0,
-                latest_sold_products: 0,
-            },
-            dates_filters:[
-                {title: this.__('Today'), value: 'today'},
-                {title: this.__('Yesterday'), value: 'yesterday'},
-                {title: this.__('Last week'), value: '-7days'},
-                {title: this.__('Last month'), value: '-30days'},
-                {title: this.__('Last year'), value: '-365days'}
-            ],
-            activeDate:'today',
+    setup(props) {
+
+        const url =  props.conf.url+props.path+'?load=json';
+
+        const line_options = ref();
+        const pie_options = ref();
+        const column_options = ref();
+
+        const content = ref({});
+
+        const activeDate = ref('today');
+
+        const dates_filters = [
+            {title: this.__('Today'), value: 'today'},
+            {title: this.__('Yesterday'), value: 'yesterday'},
+            {title: this.__('Last week'), value: '-7days'},
+            {title: this.__('Last month'), value: '-30days'},
+            {title: this.__('Last year'), value: '-365days'}
+        ];
+
+        
+        const load = (url) =>
+        {
+            handleGetRequest( url ).then(response=> {
+                setCharts(response)
+                content.value = JSON.parse(JSON.stringify(data)); 
+            });
+        }
+
+        load();
+
+    
+        /**
+         * Switch date filters
+         * 
+         */
+        const switchDate = (start) =>
+        {
+            let filters = '&'
+            filters += 'start=' + start 
+            filters += '&end='
+            filters += (start == 'yesterday') ? 'yesterday' : 'today';
+
+            // Update active date filters
+            activeDate.value = start;
+
+            // Load new data
+            load(url.value + filters); 
+        }
+
+        /**
+         * Date Time format 
+         */
+        const dateTimeFormat = (date) =>
+        {
+            return moment(date).format('YYYY-MM-DD HH:mm a');
+        }
+
+
+        
+        /**
+         * Set charts based on their values type
+         */ 
+        const setCharts = (data) => {
+            
+            // Pie charts for most played Games
+            pie_options.value = JSON.parse(JSON.stringify(charts_options.value));
+            pie_options.value.data[0] = {
+                type: "pie",
+                yValueFormatString: "#,### "+this.__('booking'),
+                dataPoints: this.content.most_played_games
+            }
+            
+            // Column charts for most played on devices
+            let columnOptions = JSON.parse(JSON.stringify(charts_options.value));
+            columnOptions.axisY.title = this.__('Trips count')
+            columnOptions.data[0] = {
+                type: "column",
+                yValueFormatString: "#,### "+this.__('Trips count'),
+                dataPoints: content.value.top_drivers
+            }
+
+            column_options.value = columnOptions;
+
+            // Line charts for sales in last days 
+            let lineOptions = JSON.parse(JSON.stringify(charts_options.value));
+            lineOptions.theme = 'light2'
+            lineOptions.axisY.suffix = ''
+            lineOptions.axisY.title = this.__('Trips')
+            lineOptions.toolTip = {shared: true}
+            lineOptions.data[0] = {
+                type: "line",
+                color: '#003c58',
+                showInLegend: true,
+                yValueFormatString: "#,### "+this.__('Trips'),
+                dataPoints: content.value.trips_charts
+            }
+            
+            line_options.value = lineOptions;
+        }
+
+
+        return {
+            dates_filters,
+            content,
+            activeDate,
             date:null,
-            filters:null,
-            showLoader: false,
-            showCharts: false,
+            dateTimeFormat,
+
             charts_options:{
                 animationEnabled: true,
                 exportEnabled: true,
@@ -165,7 +246,7 @@ export default
                 },
 
                 axisY: {
-                  title: this.__('trips_count'),
+                  title: translate('trips_count'),
                   suffix: ""
                 },
                 data: [{}]
@@ -177,109 +258,6 @@ export default
         'setting',
         'conf',
         'auth',
-    ],
-    mounted: function() 
-    {
-        this.load(this.url)
-    },
-
-    methods: 
-    {
-        /**
-         * Switch date filters
-         * 
-         */
-        switchDate(start)
-        {
-            this.filters = '&'
-            this.filters += 'start=' + start 
-            this.filters += '&end='
-            this.filters += (start == 'yesterday') ? 'yesterday' : 'today';
-
-            // Update active date filters
-            this.activeDate = start;
-
-            // Load new data
-            this.load(this.url+this.filters); 
-        },
-
-
-        /**
-         * Date Time format 
-         */
-        dateFormat(date)
-        {
-            return moment(date).format('YYYY-MM-DD');
-        },
-
-        /**
-         * Date Time format 
-         */
-        dateTimeFormat(date)
-        {
-            return moment(date).format('YYYY-MM-DD HH:mm a');
-        },
-
-        load(url)
-        {
-            // this.showLoader = true;
-            handleGetRequest( url ).then(response=> {
-                this.setValues(response).setCharts(response)
-            });
-        },
-
-        setValues(data) {
-            this.content = JSON.parse(JSON.stringify(data)); 
-            return this
-
-        },
-
-        /**
-         * Set charts based on their values type
-         */ 
-        setCharts(data) {
-            
-            this.showCharts = false
-            
-            // Pie charts for most played Games
-            this.pie_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.pie_options.data[0] = {
-                type: "pie",
-                yValueFormatString: "#,### "+this.__('booking'),
-                dataPoints: this.content.most_played_games
-            }
-            
-            // Column charts for most played on devices
-            this.column_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.column_options.axisY.title = this.__('Trips count')
-            this.column_options.data[0] = {
-                type: "column",
-                yValueFormatString: "#,### "+this.__('Trips count'),
-                dataPoints: this.content.top_drivers
-            }
-
-            // Line charts for sales in last days 
-            this.line_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.line_options.theme = 'light2'
-            this.line_options.axisY.suffix = ''
-            this.line_options.axisY.title = this.__('Trips')
-            this.line_options.toolTip = {shared: true}
-            this.line_options.data[0] = {
-                type: "line",
-                color: '#003c58',
-                showInLegend: true,
-                yValueFormatString: "#,### "+this.__('Trips'),
-                dataPoints: this.content.trips_charts
-            }
-            
-            this.showCharts = true
-        },
-
-        __(i)
-        {
-            return translate(i);
-        }
-
     }
 };
 </script>
