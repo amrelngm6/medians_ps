@@ -181,6 +181,7 @@
                     <trip_map  
                         :trip="trip" 
                         :conf="conf"
+                        :center=""
                         :key="activeItem.locations"
                         :waypoint="activeItem.locations"
                         :setting="setting"
@@ -220,32 +221,34 @@ export default
             const activeItem = ref({});
             const content = ref({});
             const center = ref({});
-            
-            activeItem.value = props.trip;
+            const locations = ref([]);
+            const activeStatus = ref('info');
+            const showLoadMore = ref(true);
+
 
             const setLocations = () => {
                 
+                activeItem.value = props.trip;
+                
                 let locationsList = [];
                 locationsList[0] = handlePickup(props.trip.vehicle, props.trip.route, 'car.svg');
+                
+                center.value = locationsList[0];
 
                 let icon1, icon2;
-                for (let i = 0; i < activeItem.value.pickup_locations.length; i++) {
-                    icon1 = activeItem.value.pickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    icon2 = activeItem.value.destinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    locationsList.push(handlePickup(activeItem.value.pickup_locations[i], activeItem.value.destinations[i], icon1));
-                    locationsList.push(handlePickup(activeItem.value.destinations[i], activeItem.value.pickup_locations[i], icon2));
+                for (let i = 0; i < props.trippickup_locations.length; i++) {
+                    icon1 = props.trippickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    icon2 = props.tripdestinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    locationsList.push(handlePickup(props.trippickup_locations[i], props.tripdestinations[i], icon1));
+                    locationsList.push(handlePickup(props.tripdestinations[i], props.trippickup_locations[i], icon2));
                 }
 
-                locationsList.push(handlePickup(activeItem.value.route, activeItem.value.vehicle, 'destination.svg'));
-
-                activeItem.value.locations = locationsList;
+                locationsList.push(handlePickup(props.triproute, props.tripvehicle, 'destination.svg'));
                 
+                locations.value = locationsList
             }
 
-            setLocations();
 
-            const activeStatus = ref('info');
-            const showLoadMore = ref(true);
 
             const loadmore = () => {
                 limitCount.value += 5;
@@ -278,6 +281,7 @@ export default
 
             return {
                 url,
+                locations,
                 activeItem,
                 activeStatus,
                 setActiveStatus,
