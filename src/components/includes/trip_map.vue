@@ -18,7 +18,6 @@
                     v-for="(marker, index) in markers" 
 
                     :options="{
-                        draggable: true,
                         position: marker.destination,
                     }"
                     >
@@ -56,11 +55,11 @@ export default
         console.log(props.center);
 
 
-        const zoom = ref(14);
+        const zoom = ref(1);
              
         return {
             zoom,
-            newcenter: props.center,
+            newcenter: props.center.value,
             markers: props.waypoints,
         }
     },
