@@ -41,9 +41,9 @@
                         </div>
                     </div>
                     
-                    <side-form-create :conf="conf" model="User.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
+                    <side-form-create @callback="closeSide" :conf="conf" model="User.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
 
-                    <side-form-update :conf="conf" model="User.update" :item="activeItem" :model_id="activeItem.id" index="id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
+                    <side-form-update @callback="closeSide" :conf="conf" model="User.update" :item="activeItem" :model_id="activeItem.id" index="id" v-if="showEditSide && !showAddSide " :columns="content.fillable"  class="col-md-3" />
 
                 </div>
                 <!-- END New releases -->
