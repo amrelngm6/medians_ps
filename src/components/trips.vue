@@ -170,9 +170,16 @@ export default
                 content.value.items[a].selected = false;
                 
             content.value.items[i].selected = true; 
-            let newObject = handleObject(trip);
-            locations.value = [newObject];
-            center.value = newObject.destination;
+
+            for (let i = 0; i < trip.pickup_locations.length; i++) {
+                const pickup = trip.pickup_locations[i];
+                console.log(pickup)
+                
+            }
+            
+            // let newObject = handleObject(trip);
+            // locations.value = [newObject];
+            // center.value = newObject.destination;
         }
 
         /**
