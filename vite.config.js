@@ -18,7 +18,7 @@ export default defineConfig({
   },
   root: './src',
   
-  base: '/dist',
+  base: '/dist/assets',
   plugins: [
     vue(),
     vueJsx(),
