@@ -53,13 +53,13 @@ export default
     setup(props, {emit}) 
     {
         console.log(props.waypoints);
-        console.log(props.center.value);
+        console.log(props.center);
 
 
         const zoom = ref(14);
         const newcenter = ref({});
         
-        newcenter.value = props.center.value;
+        newcenter.value = props.center;
              
         return {
             zoom,
