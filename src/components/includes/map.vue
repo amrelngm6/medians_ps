@@ -105,7 +105,6 @@ export default
                 travelMode,
                 origin: { lat: 0, lng: 0 }, // Replace with your origin location
                 destination: { lat: 0, lng: 0 }, // Replace with your destination location
-                setting,
                 zoom,
                 markers: props.waypoints,
                 polylineCoordinates,
