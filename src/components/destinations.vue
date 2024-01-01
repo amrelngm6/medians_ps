@@ -208,7 +208,6 @@ export default
         
         const updateMarker = (item) =>
         {
-            console.log('updated')
             activeItem.value = item;
             handleAction('edit', item)
         } 

@@ -97,6 +97,7 @@ export default
             
             
             const  updateMarker = (marker)  =>  {
+                showDrag.value = false
                 emit('update-marker', JSON.parse(JSON.stringify(marker)));
             }
             
