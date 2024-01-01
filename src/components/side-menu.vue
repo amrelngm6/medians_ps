@@ -17,7 +17,7 @@
                 <li v-for="(menu, i) in pages">
                     <a v-on:click.prevent="openPage(menu)" class="w-full font-thin uppercase flex items-center p-4 my-2 transition-colors duration-200 justify-start text-gray-500 " :class="menu.class" :href="url+menu.link">
                         <span class="text-left" >
-                            <i class="fa" :class="menu.icon"></i>
+                            <vue-feather :type="menu.icon"></vue-feather>
                         </span>
                         <span class="w-full text-base " v-text="menu.title"></span>
                         <i v-if="menu.sub && !menu.show_sub" class="text-sm fa fa-caret-down"></i>

@@ -1,9 +1,6 @@
 <template>
     <div class=" w-full pb-20"> 
 
-        <vue-feather type="home"></vue-feather>
-
-
         <driver_profile v-if="activeItem.driver_id" :key="activeItem" @edit="handleAction" @close="handleAction" :conf="conf" :item="activeItem" ></driver_profile>
 
         <main v-if="content && !showProfilePage" class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
