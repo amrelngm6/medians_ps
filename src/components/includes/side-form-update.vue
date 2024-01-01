@@ -33,8 +33,8 @@
                         </select>
                         
                         <vue-medialibrary-field :key="item" v-if="column.column_type == 'file'" :name="'params['+column.key+']'" key="upload-file" v-model="item.picture" :api_url="conf.url"></vue-medialibrary-field>
-                        
-                        <vue-medialibrary-field :key="item" v-if="column.column_type == 'profile_image' " :name="'params['+column.key+']'" key="upload-file" v-model="item.profile_image" :api_url="conf.url"></vue-medialibrary-field>
+{{ item.profile_image }}
+                        <vue-medialibrary-field :key="item" v-if="column.column_type == 'profile_image' " :name="'params['+column.key+']'" key="upload-file" :filepath="item.profile_image" v-model="item.profile_image" :api_url="conf.url"></vue-medialibrary-field>
                     </div>
                 </div>
 
@@ -103,6 +103,7 @@ export default
             isInput,
             setActiveStatus,
             emitClose,
+            itemData: props.item,
             translate
         }
     }
