@@ -64,152 +64,210 @@
     </div>
 </template>
 <script>
-import dataTableActions from './includes/data-table-actions.vue';
-import {handleGetRequest, deleteByKey, translate} from '@/utils.vue';
+
+import delete_icon from '@/components/svgs/trash.vue';
+import route_icon from '@/components/svgs/route.vue';
+import car_icon from '@/components/svgs/car.vue';
+
+import 'vue3-easy-data-table/dist/style.css';
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+
+import {defineAsyncComponent, ref} from 'vue';
+import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
+
+const maps = defineAsyncComponent(() =>
+  import('@/components/includes/map.vue')
+);
+const SideFormCreate = defineAsyncComponent(() =>
+  import('@/components/includes/side-form-create.vue')
+);
+
+const SideFormUpdate = defineAsyncComponent(() =>
+  import('@/components/includes/side-form-update.vue')
+);
+
 
 export default
-    {
-        components: {
-            dataTableActions,
-        },
-        name: 'Destinations',
-        data() {
-            return {
-                url: this.conf.url + this.path + '?load=json',
-                content: {
-                    title: '',
-                    items: [],
-                    columns: [],
-                },
+{
+    components: {
+        'datatabble': Vue3EasyDataTable,
+        SideFormCreate,
+        SideFormUpdate,
+        maps,
+        delete_icon,
+        car_icon,
+        route_icon,
+    },
+    name: 'Destinations',
+    
+    setup(props) {
+
+        const url =  props.conf.url+props.path+'?load=json';
+
+        const showAddSide = ref(false);
+        const showEditSide = ref(false);
+        const showProfilePage = ref(null);
+        const activeItem = ref({});
+        const content = ref({});
+        const center = ref({});
+        const locations =  ref([]);
+        const showList =  ref(true);
+        const searchText =  ref('');
+        const locationError =  ref(null);
+        const collapsed =  ref(false);
+
+        const closeSide = () => {
+            showAddSide.value = false;
+            showEditSide.value = false;
+        }
+
+
+        const load = () => {
+            handleGetRequest( url ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+                setAllLocations(content.value.items);
+                searchTextChanged();
+            });
+        }
+        
+        load();
+
+        const setAllLocations = (items) =>
+        {
+            let array = [];
+            for (let i = 0; i < items.length; i++) {
+                array[i] = handleObject(items[i]);
+            }
+            locations.value = array;
+        } 
+
+        const setLocationsMarkers = (pickupLocation, i) => 
+        {
+            activeItem.value = pickupLocation;
+
+            for (let a = 0; a < content.value.items.length; a++) 
+                content.value.items[a].selected = false;
                 
-                destinations: [],
-                activeItem: {},
-                showAddSide: false,
-                showEditSide: false,
-                showLoader: true,
-                collapsed: false,
-                searchText: '',
-            }
-        },
+            content.value.items[i].selected = true; 
+            let newObject = handleObject(pickupLocation);
+            locations.value = [newObject];
+            center.value = newObject.destination;
+        }
 
-        computed: {
-            bindings() {
-
-                this.content.columns.push({
-                    key: this.__("actions"),
-                    component: dataTableActions,
-                    sortable: false,
-                });
-
-                return {
-
-                    columns: this.content.columns,
-                    fillable: this.content.fillable,
-                    data: this.content.items
-                }
-            }
-        },
-        props: [
-            'path',
-            'lang',
-            'setting',
-            'conf',
-            'auth',
-        ],
-        mounted() {
-            this.load()
-        },
-
-        methods:
+        /**
+         * Get current location
+         */
+         const getUserLocation = async () => 
         {
 
-            searchTextChanged()
-            {
-                this.showList = false;
-                for (let i = 0; i < this.content.items.length; i++) {
-                    this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
-                }
-                this.showList = true;
-            },
+            if (navigator.geolocation) {
+                console.log('position 1')
+                 navigator.geolocation.getCurrentPosition(
+                    position => {
+                        center.value = {lat: position.coords.latitude, lng: position.coords.longitude};
+                    },
+                    error => {
+                        showAlert(error.message, 5000)
 
-            checkSimilar(item)
-            {
-                let a = (item.student_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
-                return a ? a : ((item.location_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
-            },
-
-            updatedDestination(item, index)
-            {
-                item.latitude = item.destination.lat;
-                item.longitude = item.destination.lng;
-                this.handleAction('edit', item)
-                console.log(item);
-            },  
-            setDestinationsMarkers(destination)
-            {   
-                this.destinations = [this.handleObject(destination)];
-                this.center = this.destinations[0].destination;
-            },  
-
-            /**
-             * Handle actions from datatable buttons
-             * Called From 'dataTableActions' component
-             * 
-             * @param String actionName 
-             * @param Object data
-             */
-            handleAction(actionName, data) {
-                switch (actionName) {
-                    case 'view':
-                        // window.open(this.conf.url+data.content.prefix)
-                        break;
-
-                    case 'edit':
-                        this.showEditSide = true;
-                        this.showAddSide = false;
-                        this.activeItem = data
-                        break;
-
-                    case 'delete':
-                        deleteByKey('destination_id', data, 'Destination.delete');
-                        break;
-                }
-            },
-
-            load() {
-                this.showLoader = true;
-                handleGetRequest(this.url).then(response => {
-                    this.setValues(response)
-                    this.showLoader = false;
-                    this.searchTextChanged()
-                    // this.$alert(response)
-                });
-            },
-
-            setValues(data) {
-
-                this.content = JSON.parse(JSON.stringify(data));
-                for (let i = 0; i < this.content.items.length; i++) {
-                    this.destinations[i] = this.handleObject(this.content.items[i]);
-                }
-                this.center = this.destinations[0] ? this.destinations[0].destination : {lat:30, lng:31};
-                return this
-            },
-
-            /**
-             * Handle object
-             * @param {Model Object} i 
-             */
-            handleObject(data)
-            {
-                data.icon =  this.conf.url+'uploads/images/blue_pin.gif'
-                data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) } 
-                data.drag = true; 
-                return data;
-            },  
-            __(i) {
-                return translate(i);
+                    }
+                );
             }
         }
-    };
+        
+        getUserLocation();
+
+        const searchTextChanged = () =>
+        {   
+            for (let i = 0; i < content.value.items.length; i++) {
+                content.value.items[i].active = searchText.value.trim() ? checkSimilar(content.value.items[i]) : 1;
+            }
+        }
+
+        const checkSimilar = (item) =>
+        {
+            let a = (item.student_name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+            return a ? a : ((item.location_name).toLowerCase().includes(searchText.toLowerCase()) ? true : false);
+        } 
+
+        
+        const updateMarker = (item) =>
+        {
+            console.log('updated')
+            activeItem.value = item;
+            handleAction('edit', item)
+        } 
+
+        const clickMarker = (item, index, event) =>
+        {
+            activeItem.value = event;
+            activeItem.value.latitude = event.destination.lat;
+            activeItem.value.longitude = event.destination.lng;
+            handleAction('edit', activeItem.value);
+        }
+        
+        const handleObject = (data) =>
+        {
+            data.icon =  props.conf.url+'uploads/images/blue_pin.gif'
+            data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) } 
+            data.drag = true; 
+            return data;
+        }
+
+        /**
+         * Handle actions from datatable buttons
+         * Called From 'dataTableActions' component
+         * 
+         * @param String actionName 
+         * @param Object data
+         */
+        const handleAction = (actionName, data) => 
+        {
+            switch (actionName) 
+            {
+                case 'view':
+                    break;
+
+                case 'edit':
+                    showEditSide.value = true;
+                    showAddSide.value = false;
+                    activeItem.value = data
+                    break;
+
+                case 'delete':
+                    deleteByKey('pickup_id', data, 'PickupLocation.delete');
+                    break;
+            }
+        }
+
+        
+        return {
+            locations,
+            showAddSide,
+            showEditSide,
+            url,
+            content,
+            center,
+            activeItem,
+            translate,
+            clickMarker,
+            updateMarker,
+            setLocationsMarkers,
+            checkSimilar,
+            searchTextChanged,
+            searchText,
+            getUserLocation,
+            collapsed,
+            closeSide,
+            handleAction
+        };
+    },
+    
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+    ],
+};
 </script>
