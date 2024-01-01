@@ -28,7 +28,7 @@
 
                     :options="{
                         position: marker.destination,
-                        draggable= marker.drag ? true : false
+                        draggable: marker.drag ? true : false
                     }"
                     :key="marker" 
                     @click="checkMarker(this, index)"
