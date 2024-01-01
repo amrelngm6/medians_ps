@@ -142,11 +142,11 @@ export default
         const activeDate = ref('today');
 
         const dates_filters = [
-            {title: this.__('Today'), value: 'today'},
-            {title: this.__('Yesterday'), value: 'yesterday'},
-            {title: this.__('Last week'), value: '-7days'},
-            {title: this.__('Last month'), value: '-30days'},
-            {title: this.__('Last year'), value: '-365days'}
+            {title: translate('Today'), value: 'today'},
+            {title: translate('Yesterday'), value: 'yesterday'},
+            {title: translate('Last week'), value: '-7days'},
+            {title: translate('Last month'), value: '-30days'},
+            {title: translate('Last year'), value: '-365days'}
         ];
 
         
@@ -258,7 +258,7 @@ export default
         'setting',
         'conf',
         'auth',
-    }
+    ]
 };
 </script>
 <style lang="css">
