@@ -98,19 +98,14 @@ export default
             
             
             const  updateMarker = (marker)  =>  {
-                console.log('deagged')
-                console.log(marker)
-                emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
+                emit('update-marker', JSON.parse(JSON.stringify(marker)));
             }
             
             const  checkMarkers = (event) =>  {
-                console.log('dragged 2')
-                console.log(event)
-                console.log(props.waypoints[activeMarkerIndex.value])
                 let newObject = props.waypoints[activeMarkerIndex.value]
                 newObject.latitude = event.latLng.lat()
                 newObject.longitude = event.latLng.lng()
-                
+                updateMarker(newObject);
             }
             
             
