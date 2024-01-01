@@ -7,7 +7,7 @@
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="translate('Trip') + translate(' #') + activeItem.trip_id"></h4>
                         <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2 flex text-danger"><close_icon /> <span v-text="translate('Back')"></span></button>
                     </div>
-
+                    {{ activeStatus }}
                     <hr class="mt-5 dark:border-gray-600">
 
                     <div class="text-start mt-6 text-sm">
