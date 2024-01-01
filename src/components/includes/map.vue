@@ -40,7 +40,7 @@
                     :key="showDrag" 
                     v-if="showDrag"
                     @dragstart="onMarkerDragStart(marker, index)"
-                    @dragend="activeMarkerIndex = index, checkMarkers"
+                    @dragend="checkMarkers"
                     @click="checkMarkerDraggable(marker, index)"
                     >
 
@@ -112,15 +112,14 @@ export default
             const  checkMarkerDraggable =  (event) =>  {
                 console.log('click dragged ')
                 console.log(event)
-
+                
             }
             
                     
             
-            const  onMarkerDragStart =  (event) =>  {
+            const  onMarkerDragStart =  (event, i) =>  {
                 console.log('Start drag ')
-                console.log(event)
-
+                activeMarkerIndex.value = i
             }
             
                     
