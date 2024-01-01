@@ -218,8 +218,8 @@ export default
             console.log(item)
             console.log(index)
             console.log(event)
-            activeItem.value.latitude = event.latLng.lat();
-            activeItem.value.longitude = event.latLng.lng();
+            activeItem.value.latitude = event.destination.lat;
+            activeItem.value.longitude = event.destination.lng;
             handleAction('edit', activeItem.value);
         }
         
