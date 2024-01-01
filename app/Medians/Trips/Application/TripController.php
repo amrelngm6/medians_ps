@@ -51,6 +51,7 @@ class TripController extends CustomController
             [ 'value'=> "distance", 'text'=> __('Distance').'-KM', 'sortable'=> true ],
             [ 'value'=> "trip_date", 'text'=> __('trip_date'), 'sortable'=> true ],
             [ 'value'=> "trip_status", 'text'=> __('trip_status'), 'sortable'=> true ],
+            [ 'value'=> "delete", 'text'=> __('Delete') ],
         ];
 	}
 
