@@ -94,11 +94,14 @@ export default
 
             const  checkMarker = async (i) =>  {
                 console.log(i)
+                console.log(flightPlanCoordinates)
+                activeMarkerIndex = i;
+
                 // this.activeDestination = props.waypoints[i].destination;
                 // props.waypoints[i].address = await this.handlePositionToPlaceId(props.waypoints[i].destination.lat, props.waypoints[i].destination.lng);
                 emit('click-marker', props.waypoints[i], i);
 
-                flightPlanCoordinates[activeMarkerIndex.value].address = await handlePositionToPlaceId(flightPlanCoordinates[activeMarkerIndex.value].destination.lat, flightPlanCoordinates[activeMarkerIndex.value].destination.lng);
+                flightPlanCoordinates[i].address = await handlePositionToPlaceId(flightPlanCoordinates[i].destination.lat, flightPlanCoordinates[i].destination.lng);
 
                 console.log(waypoints.value)
                 // props.showroute ?? calculateAndDisplayRoute()
