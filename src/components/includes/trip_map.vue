@@ -51,10 +51,8 @@ export default
     ],
     setup(props, {emit}) 
     {
-        console.log(props.waypoints);
-        console.log(props.center);
         
-        const zoom = ref(5);
+        const zoom = ref(13);
         const newcenter = ref({});
         
         newcenter.value = {lat: props.center.destination.lat, lng: props.center.destination.lng};
