@@ -195,24 +195,24 @@ export default
          */ 
         const setCharts = (data) => {
             
-            // Pie charts for most played Games
-            pie_options.value = JSON.parse(JSON.stringify(charts_options.value));
-            pie_options.value.data[0] = {
-                type: "pie",
-                yValueFormatString: "#,### "+translate('Students'),
-                dataPoints: content.value.latest_students
-            }
+            // // Pie charts for most played Games
+            // pie_options.value = JSON.parse(JSON.stringify(charts_options.value));
+            // pie_options.value.data[0] = {
+            //     type: "pie",
+            //     yValueFormatString: "#,### "+translate('Students'),
+            //     dataPoints: content.value.latest_students
+            // }
             
-            // Column charts for most played on devices
-            let columnOptions = JSON.parse(JSON.stringify(charts_options.value));
-            columnOptions.axisY.title = translate('Trips count')
-            columnOptions.data[0] = {
-                type: "column",
-                yValueFormatString: "#,### "+translate('Trips count'),
-                dataPoints: content.value.top_drivers
-            }
+            // // Column charts for most played on devices
+            // let columnOptions = JSON.parse(JSON.stringify(charts_options.value));
+            // columnOptions.axisY.title = translate('Trips count')
+            // columnOptions.data[0] = {
+            //     type: "column",
+            //     yValueFormatString: "#,### "+translate('Trips count'),
+            //     dataPoints: content.value.top_drivers
+            // }
 
-            column_options.value = columnOptions;
+            // column_options.value = columnOptions;
 
             // Line charts for sales in last days 
             let lineOptions =  {
