@@ -204,6 +204,7 @@ export default
         components: {
             dashboard_card_white,
             help_icon,
+            translate
             
         },
         setup(props) {
