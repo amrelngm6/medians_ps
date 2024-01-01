@@ -15,7 +15,7 @@
                 <div class="media-library-field__selected__inner">
                     <div class="w-full">
                         <div>
-                            <img :src="file" style="width: auto; height: auto; max-width: 180px;">
+                            <img :src="file" style="width: auto; height: auto; max-width: 100px;">
                         </div>
                         <div class="block w-full">
                             <div class="w-full flex" style="  margin: 2rem -0.5rem 0 -0.5rem;">
