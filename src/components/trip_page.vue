@@ -236,15 +236,15 @@ export default
 
                 let icon1, icon2;
                 console.log(props.trip)
-                
+
                 for (let i = 0; i < props.trip.pickup_locations.length; i++) {
-                    icon1 = props.trip.pickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    icon2 = props.tripdestinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    locationsList.push(handlePickup(props.trip.pickup_locations[i], props.tripdestinations[i], icon1));
-                    locationsList.push(handlePickup(props.tripdestinations[i], props.trip.pickup_locations[i], icon2));
+                    icon1 = props.trip.pickup_locations[i].status != 'waiting' ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    icon2 = props.trip.destinations[i].status != 'waiting'  ? 'yellow_pin.gif' : 'blue_pin.gif';
+                    locationsList.push(handlePickup(props.trip.pickup_locations[i], props.trip.destinations[i], icon1));
+                    locationsList.push(handlePickup(props.trip.destinations[i], props.trip.pickup_locations[i], icon2));
                 }
 
-                locationsList.push(handlePickup(props.triproute, props.tripvehicle, 'destination.svg'));
+                locationsList.push(handlePickup(props.trip.route, props.tripvehicle, 'destination.svg'));
                 
                 locations.value = locationsList
             }
