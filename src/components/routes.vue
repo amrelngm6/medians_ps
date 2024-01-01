@@ -231,15 +231,15 @@ export default
 
         const setLocationsPickups = (route) => 
         {
-            let a;
+            let loc;
             let locations_ = [];
             let blueIcon = props.conf.url+'uploads/images/blue_pin.gif';
             let vehicleIcon = props.conf.url+'uploads/images/car.svg';
             let destinationIcon = props.conf.url+'uploads/images/destination.svg';
 
             for (let i = 0; i < route.pickup_locations.length; i++) {
-                a = route.pickup_locations[i];
-                locations_[i] = {title: route.pickup_locations[i].student_name, icon:  blueIcon, origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+                loc = route.pickup_locations[i];
+                locations_[i] = {title: loc.student_name, icon:  blueIcon, origin: { lat: parseFloat(loc.latitude), lng: parseFloat(loc.longitude) }, destination: { lat: parseFloat(loc.latitude), lng: parseFloat(loc.longitude) } }
             }
 
             // Add Vehicle current location marker
@@ -250,7 +250,7 @@ export default
 
             // Update center to first Pickup location
             center.value = locations_[0].destination;
-            
+
             return locations_;
         }
 
