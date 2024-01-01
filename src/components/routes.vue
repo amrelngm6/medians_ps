@@ -73,7 +73,7 @@
                         </template>
                         <template #item-delete="item">
                             <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-purple" @click="handleAction('delete', item)">
-                                <close_icon class="w-4"/>
+                                <delete_icon class="w-4"/>
                             </button>
                         </template>
                     </datatabble>
@@ -89,6 +89,7 @@
 </template>
 <script>
 
+import delete_icon from '@/components/svgs/trash.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
@@ -115,6 +116,7 @@ export default
         SideFormCreate,
         SideFormUpdate,
         maps,
+        delete_icon,
     },
     name:'Students',
     setup(props) {
