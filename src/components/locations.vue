@@ -156,7 +156,7 @@ export default
                 content.value.items[a].selected = false;
                 
             content.value.items[i].selected = true; 
-            locations.value = handleObject(pickupLocation);
+            locations.value = [handleObject(pickupLocation)];
         }
 
         /**
