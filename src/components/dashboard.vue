@@ -132,6 +132,8 @@ export default
 
     setup(props) {
 
+        console.log(props.conf);
+        
         const url =  ref(props.path + '?load=json');
 
         const line_options = ref();
