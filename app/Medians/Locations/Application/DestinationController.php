@@ -48,11 +48,11 @@ class DestinationController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "destination_id", 'title'=> "#"],
-            [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true ],
-            [ 'key'=> "student_name", 'title'=> __('student_name'), 'sortable'=> true ],
-            [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true ],
-            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true ],
+            [ 'value'=> "destination_id", 'text'=> "#"],
+            [ 'value'=> "location_name", 'text'=> __('location_name'), 'sortable'=> true ],
+            [ 'value'=> "student_name", 'text'=> __('student_name'), 'sortable'=> true ],
+            [ 'value'=> "latitude", 'text'=> __('latitude'), 'sortable'=> true ],
+            [ 'value'=> "longitude", 'text'=> __('longitude'), 'sortable'=> true ],
         ];
 	}
 
