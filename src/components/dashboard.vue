@@ -22,7 +22,6 @@
                     
                     <div class="w-full bg-white p-4 mb-4 rounded-lg">
                         <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
-                        <ag-charts-vue :key="optionsbar" :options="optionsbar"> </ag-charts-vue>
                     </div>
                     <div class="row mt-6">
                         <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-success" :title="translate('Vehciles')" :value="content.vehicles_count"></dashboard_card>
@@ -198,51 +197,17 @@ export default
          * Set charts based on their values type
          */ 
         const setCharts = (data) => {
-            
-            // // Pie charts for most played Games
-            // pie_options.value = JSON.parse(JSON.stringify(charts_options.value));
-            // pie_options.value.data[0] = {
-            //     type: "pie",
-            //     yValueFormatString: "#,### "+translate('Students'),
-            //     dataPoints: content.value.latest_students
-            // }
-            
-            // // Column charts for most played on devices
-            // let columnOptions = JSON.parse(JSON.stringify(charts_options.value));
-            // columnOptions.axisY.title = translate('Trips count')
-            // columnOptions.data[0] = {
-            //     type: "column",
-            //     yValueFormatString: "#,### "+translate('Trips count'),
-            //     dataPoints: content.value.top_drivers
-            // }
 
-            // column_options.value = columnOptions;
-            optionsbar.value = {
-                // Data: Data to be displayed in the chart
-                data: [
-                    { month: 'Jan', avgTemp: 2.3, iceCreamSales: 162000 },
-                    { month: 'Mar', avgTemp: 6.3, iceCreamSales: 302000 },
-                    { month: 'May', avgTemp: 16.2, iceCreamSales: 800000 },
-                    { month: 'Jul', avgTemp: 22.8, iceCreamSales: 1254000 },
-                    { month: 'Sep', avgTemp: 14.5, iceCreamSales: 950000 },
-                    { month: 'Nov', avgTemp: 8.9, iceCreamSales: 200000 },
-                ],
-                // Series: Defines which chart type and data to use
-                series: [{ type: 'bar', xKey: 'month', yKey: 'iceCreamSales' }],
-            };
-
-            
-            console.log(content.value.trips_charts)
             // Line charts for sales in last days 
-            let lineOptions =  {
+            line_options.value  =  {
+
+                // Line charts Data 
                 data: content.value.trips_charts,
+
                 // Series: Defines which chart type and data to use
                 series: [{ type: 'bar', xKey: 'label', yKey: 'y' }],
                 
             };
-            console.log(lineOptions)
-
-            line_options.value = lineOptions;
         }
 
 
