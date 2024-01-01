@@ -118,10 +118,9 @@ export default
 {
     components: {
         'datatabble': Vue3EasyDataTable,
-        SideFormCreate,
-        SideFormUpdate,
         maps,
         delete_icon,
+        trip_page,
         car_icon,
         route_icon,
     },
