@@ -5,7 +5,7 @@
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center" v-if="activeItem && activeItem.driver">
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="translate('Trip') + translate(' #') + activeItem.trip_id"></h4>
-                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2 flex text-danger gap gap-6"><close_icon class="w-4" /> <span class="text-base" v-text="translate('Back')"></span></button>
+                        <button type="button" @click="close" class=" mx-auto text-center w-full  hover:bg-primary mb-3 px-6 py-2 flex text-danger gap gap-6"><close_icon class="w-4" /> <span class="text-base" v-text="translate('Back')"></span></button>
                     </div>
 
                     <hr class="mt-5 dark:border-gray-600">
