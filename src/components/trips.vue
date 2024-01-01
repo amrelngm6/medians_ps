@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
 
         <div  v-if="showTrip" :key="showTrip" class=" w-full relative">
-            <trip_page :conf="conf" @close="callback" :trip="activeItem"></trip_page>
+            <trip_page :setting="setting" :conf="conf" @close="callback" :trip="activeItem"></trip_page>
         </div>    
             
         <div  v-if="content && !showTrip " class=" w-full relative">
