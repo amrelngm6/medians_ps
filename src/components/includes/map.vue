@@ -32,7 +32,7 @@
                     :key="marker" 
                     @click="checkMarker(index)"
                     @drag="activeMarkerIndex = index" 
-                    :draggable="marker.drag ? true : false" 
+                    :draggable="true"
                     @dragend="updateMarker" >
                     <div style="text-align: center">
                         <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
