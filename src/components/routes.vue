@@ -84,8 +84,8 @@
                             </button>
                         </template>
                         <template #item-delete="item">
-                            <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-purple" @click="handleAction('delete', item)">
-                                <delete_icon class="w-4"/>
+                            <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-red-500" @click="handleAction('delete', item)">
+                                <delete_icon class="w-5"/>
                             </button>
                         </template>
                     </datatabble>
