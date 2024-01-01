@@ -39,6 +39,7 @@
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
+                    @dragstart="onMarkerDragStart(marker, index)"
                     @dragend="activeMarkerIndex = index, checkMarkers"
                     @click="checkMarkerDraggable(marker, index)"
                     >
@@ -103,13 +104,21 @@ export default
             }
             
             const  checkMarkers = (event) =>  {
-                console.log('deagged 2')
+                console.log('dragged 2')
                 console.log(event)
             }
             
             
             const  checkMarkerDraggable =  (event) =>  {
-                console.log('click deagged ')
+                console.log('click dragged ')
+                console.log(event)
+
+            }
+            
+                    
+            
+            const  onMarkerDragStart =  (event) =>  {
+                console.log('Start drag ')
                 console.log(event)
 
             }
@@ -119,6 +128,7 @@ export default
                 checkMarker,
                 checkMarkers,
                 checkMarkerDraggable,
+                onMarkerDragStart,
                 enableDrag,
                 updateMarker,
                 reload,
