@@ -41,7 +41,7 @@
                     :key="showDrag" 
                     v-if="showDrag"
                     @dragend="checkMarkers"
-                    @click="checkMarker(marker, index)"
+                    @click="checkMarkerDraggable(marker, index)"
                     >
 
                 </Marker>
@@ -109,10 +109,18 @@ export default
 
             }
             
+            
+            const  checkMarkerDraggable =  (event) =>  {
+                console.log('click deagged ')
+                console.log(event)
+
+            }
+            
                     
             return {
                 checkMarker,
                 checkMarkers,
+                checkMarkerDraggable,
                 enableDrag,
                 updateMarker,
                 reload,
