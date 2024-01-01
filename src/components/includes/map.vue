@@ -87,7 +87,7 @@ export default
             
             const  enableDrag = (marker, i) =>  {
                 showDrag.value = true
-                emit('click-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
+                checkMarker(marker, i)
             }
             
             
