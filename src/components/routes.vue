@@ -37,7 +37,7 @@
                                         <img v-if="i < 3" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
                                     </div>
                                     <span class="absolute pt-2" :style="'left: '+((20 * (route.pickup_locations.length < 3 ? route.pickup_locations.length : 3) ) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span></span>
-                                    <div class="right-0 absolute  self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car px-2"></i><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
+                                    <div class="right-0 absolute flex self-stretch text-slate-500 text-base font-normal "> <route_icon /><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
                                 </div>
                             </div>
                         </div>
