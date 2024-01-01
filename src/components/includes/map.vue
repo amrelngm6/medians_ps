@@ -101,10 +101,12 @@ export default
                 emit('update-marker', JSON.parse(JSON.stringify(marker)));
             }
             
-            const  checkMarkers = (event) =>  {
+            const  checkMarkers = async (event) =>  {
                 let newObject = props.waypoints[activeMarkerIndex.value]
                 newObject.latitude = event.latLng.lat()
                 newObject.longitude = event.latLng.lng()
+                newObject.address = await handlePositionToPlaceId(newObject.latitude, newObject.longitude);
+
                 updateMarker(newObject);
             }
             
@@ -116,6 +118,35 @@ export default
             }
             
                     
+
+            const  getPlaceIdFromPosition = async (lat, lng) => {
+                const geocoder = new google.maps.Geocoder();
+
+                const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+                return new Promise((resolve, reject) => {
+                    geocoder.geocode({ location: latLng }, (results, status) => {
+                    if (status === 'OK') {
+                        results[0] ? resolve(results[0]) : reject('No results found');
+                    } else {
+                        reject(`Geocoder failed due to: ${status}`);
+                    }
+                    });
+                });
+            }
+
+            const handlePositionToPlaceId = async (lat, lng) => {
+
+                try {
+                    const place = await getPlaceIdFromPosition(lat, lng);
+                    console.log('Place ID:', place.formatted_address);
+                    return place.formatted_address;
+                    // Perform actions with the retrieved placeId
+                } catch (error) {
+                    console.error(error);
+                    // Handle error if geocoding fails
+                }
+            }
             
             const  onMarkerDragStart =  (event, i) =>  {
                 console.log('Start drag ')
