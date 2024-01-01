@@ -12,16 +12,7 @@
             
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
             
-            <Polyline v-if="showroute" :options="flightPath" />
-
-            <!--             
-            <DirectionsRenderer 
-                v-if="showroute && directionPoints"
-                :destination="directionPoints.destination" 
-                :origin="directionPoints.origin"
-                :key="directionPoints" 
-                :travelMode="travelMode" 
-                 /> -->
+                <!-- <Polyline v-if="showroute" :options="flightPath" /> -->
 
                 <CustomMarker
                     v-for="(marker, index) in waypoints" 
@@ -30,6 +21,7 @@
                         draggable: true,
                         position: marker.destination,
                     }"
+                    v-if="!showroute"
                     :key="marker" 
                     :draggable="true"
                     @click="checkMarker(marker, index)"
@@ -41,16 +33,16 @@
                 </CustomMarker>
 
                 <Marker
-                :options="{
-                    position:center,
-                    draggable: true
-                }"
-                :key="marker" 
-                :draggable="true"
-                v-if="showroute"
-                @click="checkMarker(marker, index)"
-                @drag="activeMarkerIndex = index" 
-                @dragend="updateMarker" >
+                    :options="{
+                        position:center,
+                        draggable: true
+                    }"
+                    :key="marker" 
+                    :draggable="true"
+                    v-if="showroute"
+                    @click="checkMarker(marker, index)"
+                    @drag="activeMarkerIndex = index" 
+                    @dragend="updateMarker" >
 
                 </Marker>
 
@@ -92,99 +84,15 @@ export default
             const activeDestination = ref({});
             const activeMarkerIndex = ref({});
             
-            function updateMarker  (event, i)  
-            {
-                console.log(event)
-                console.log(i)
-
-                // waypoints[activeMarkerIndex.value].destination = {
-                //     lat: event.latLng.lat(), lng: event.latLng.lng()
-                // };
-
-                // props.waypoints[this.activeMarkerIndex].address = await this.handlePositionToPlaceId(props.waypoints[this.activeMarkerIndex].destination.lat, props.waypoints[this.activeMarkerIndex].destination.lng);
-
-                // this.$emit('update-marker', props.waypoints[this.activeMarkerIndex], this.activeMarkerIndex, event);
-            }
-
             const  checkMarker = async (marker, i ) =>  {
                 activeMarkerIndex.value = i;
                 emit('click-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
-            const onMapReady = () =>
-            {
-                console.log(window.google)
-
-                if (!window.google)
-                {
-                    return null;
-                }
-
-                directionsService.value = new window.google.maps.DirectionsService();
-                directionsDisplay.value = new window.google.maps.DirectionsRenderer();
-
-                var map = this.$refs.gmap.$mapObject;
-                directionsDisplay.value.setMap(map);
-
-                setInterval(() => {
-                    if (props.waypoints != $parent.locations && $parent.locations) {
-                        props.waypoints = $parent.locations;
-                        // calculateAndDisplayRoute();
-                    }
-                }, 2000);
-            }
-
-            const markerOptions = { position: props.center, label: "L", title: "LADY LIBERTY" };
-            
                     
-            const flightPlanCoordinates = ref([]);
-
-            for (let i = 0; i < props.waypoints.length; i++) {
-                flightPlanCoordinates.value[i] = props.waypoints[i].destination;
-            }
-
-            const flightPath = {
-                path: flightPlanCoordinates.value,
-                geodesic: true,
-                strokeColor: "#FF0000",
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-            };
-
-            const handlePositionToPlaceId = async (lat, lng) => {
-
-                try {
-                    const place = await getPlaceIdFromPosition(lat, lng);
-                    console.log('Place ID:', place.formatted_address);
-                    return place.formatted_address;
-                    // Perform actions with the retrieved placeId
-                } catch (error) {
-                    console.error(error);
-                    // Handle error if geocoding fails
-                }
-            }
-
-            const getPlaceIdFromPosition = (lat, lng) => {
- 
-                const geocoder = new google.maps.Geocoder();
-
-                const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
-
-                return new Promise((resolve, reject) => {
-                    geocoder.geocode({ location: latLng }, (results, status) => {
-                    if (status === 'OK') {
-                        results[0] ? resolve(results[0]) : reject('No results found');
-                    } else {
-                        reject(`Geocoder failed due to: ${status}`);
-                    }
-                    });
-                });
-            } 
-            
             return {
                 checkMarker,
                 updateMarker,
-                markerOptions,
                 flightPath,
                 reload,
                 render,
