@@ -1,6 +1,5 @@
 <template>
     <div class="w-full overflow-auto" style="height: 85vh; z-index: 9999;">
-        <ag-charts-vue :options="optionsbar"> </ag-charts-vue>
 
         <div class="top-0 py-2 w-full px-4 bg-gray-50 mt-0 sticky rounded" style="z-index:9">
             <div class="w-full flex gap-6">
@@ -22,7 +21,8 @@
                     </div>
                     
                     <div class="w-full bg-white p-4 mb-4 rounded-lg">
-                        <!-- <ag-charts-vue ref="lines" :key="line_options" :options="line_options"> </ag-charts-vue> -->
+                        <ag-charts-vue :options="optionsbar"> </ag-charts-vue>
+                        <ag-charts-vue :options="line_options"> </ag-charts-vue>
                     </div>
                     <div class="row mt-6">
                         <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-success" :title="translate('Vehciles')" :value="content.vehicles_count"></dashboard_card>
