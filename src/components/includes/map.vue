@@ -33,8 +33,9 @@
                 </CustomMarker>
 
                 <Marker
+                    v-for="(marker, index) in waypoints" 
                     :options="{
-                        position:center,
+                        position: marker.destination,
                         draggable: true
                     }"
                     :key="marker" 
