@@ -77,6 +77,10 @@ const destinations = defineAsyncComponent(() =>
   import('@/components/destinations.vue')
 );
 
+const users = defineAsyncComponent(() =>
+  import('@/components/users.vue')
+);
+
 export default {
     name: 'app',
     components: {
@@ -96,6 +100,7 @@ export default {
         destinations,
         events,
         notifications_events,
+        users,
         translate,
         'help_messages':HelpMessages,
     },
