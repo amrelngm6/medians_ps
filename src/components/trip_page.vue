@@ -277,7 +277,8 @@ export default
             }
 
             
-
+            setLocations();
+            
             return {
                 url,
                 locations,
