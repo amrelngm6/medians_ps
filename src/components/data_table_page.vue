@@ -24,7 +24,7 @@
                                 <div  v-for="(student, i) in item.students" :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
                                     <img v-if="i < 3" :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(student && student.picture) ? student.picture : 'https://via.placeholder.com/37x37'" /> 
                                 </div>
-                                <span class="flex absolute pt-2" :style="'left: '+((20 * (item.students.length < 3 ? item.students.length : 3) ) + 20)+'px'"> <route_icon /><span class="font-semibold  px-1" v-if="item.pickup_locations" v-text="item.pickup_locations.length"></span></span>
+                                <span class="flex absolute pt-2" :style="'left: '+((20 * (item.students.length < 3 ? item.students.length : 3) ) + 20)+'px'"> <route_icon /><span class="font-semibold  px-1" v-if="item.students" v-text="item.students.length"></span></span>
                             </div>
                             
                         </template>
