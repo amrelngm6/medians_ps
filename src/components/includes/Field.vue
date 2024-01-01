@@ -77,7 +77,7 @@ export default
             type: String,
             required: false
         },
-        value: {
+        fieldname: {
             type: Object|String,
             required: false,
             default: () => ({
@@ -133,14 +133,9 @@ export default
                 emit('input', file);
             }
 
-            content.value = props.value ? props.value : null;
+            content.value = props.fieldname ? props.fieldname : null;
+            file.value = content.value;
 
-            if (content.value ) {
-                file.value = content.value;
-            } else {
-                content.value = null;
-            }
-            
             return {
 
                 insert,
