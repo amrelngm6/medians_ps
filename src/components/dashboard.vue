@@ -156,8 +156,8 @@ export default
         const load = (url) =>
         {
             handleGetRequest( url ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response)); 
                 setCharts(response)
-                content.value = JSON.parse(JSON.stringify(data)); 
             });
         }
 
@@ -260,21 +260,9 @@ export default
             dates_filters,
             content,
             activeDate,
-            date:null,
+            date,
             dateTimeFormat,
-            charts_options:{
-                animationEnabled: true,
-                exportEnabled: true,
-                axisX: {
-                  labelTextAlign: "right"
-                },
-
-                axisY: {
-                  title: translate('trips_count'),
-                  suffix: ""
-                },
-                data: [{}]
-            }
+            
         }
     },
     props: [
