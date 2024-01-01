@@ -230,9 +230,9 @@ export default
                 series: [{ type: 'bar', xKey: 'month', yKey: 'iceCreamSales' }],
                 
             };
+            console.log(lineOptions)
 
             line_options.value = lineOptions;
-            console.log(line_options)
         }
 
 
