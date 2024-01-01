@@ -152,17 +152,6 @@ export default
             };
         }
     },
-    watch: {
-        value() {
-            if (typeof this.file == 'undefined') {
-                this.loading = true;
-            }
-        },
-        showManager()
-        {
-            console.log('changed')
-        }
-    },
     
 }
 </script>
