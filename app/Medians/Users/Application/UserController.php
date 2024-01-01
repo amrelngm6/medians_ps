@@ -49,7 +49,7 @@ class UserController extends CustomController
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->rolesRepo->get()
 			],
-            [ 'key'=> "profile_image", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "profile_image", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'profile_image' ],
         ];
 	}
 
