@@ -30,7 +30,7 @@
                         position: marker.destination,
                     }"
                     :key="marker" 
-                    @click="checkMarker(index)"
+                    @click="checkMarker(this, index)"
                     @drag="activeMarkerIndex = index" 
                     :draggable="true"
                     @dragend="updateMarker" >
