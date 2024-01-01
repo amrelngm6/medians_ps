@@ -8,7 +8,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig({
   build:{
     outDir: '../dist',
-    manifest: 'z.min.js',
     rollupOptions: {
       output: {
         entryFileNames: 'z.min.js',
