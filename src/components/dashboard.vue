@@ -205,7 +205,10 @@ export default
                 data: content.value.trips_charts,
 
                 // Series: Defines which chart type and data to use
-                series: [{ type: 'bar', xKey: 'label', yKey: 'y' }],
+                series: [
+                    { type: 'line', xKey: 'label', yKey: 'y' },
+                    { type: 'bar', xKey: 'label', yKey: 'y' }
+                ],
                 
             };
         }
