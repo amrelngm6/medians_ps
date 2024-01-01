@@ -23,15 +23,12 @@
                                         <div class="py-1 self-stretch text-slate-500 text-sm font-semibold leading-relaxed tracking-wide"  v-text="route.description"></div>
                                     </div>
                                     <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
-                                        <div class="px-3 py-2 bg-purple-800 rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(route, index)" >
-                                            <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-location-dot"></i></div>
-                                        </div>
                                         <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
-                                            <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-edit"></i></div>
+                                            <div class="text-center text-white   uppercase tracking-tight text-sm"> <i class="fa fa-edit"></i></div>
                                         </div>
                                     </div>
                                 </div>
-                                <hr class="w-full" />
+                                <hr class="w-full" /> 
                                 <div class="w-full h-8 relative flex">
                                     <div class="rounded-full left-0 top-0 absolute " :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" >
                                         <img v-if="i < 3" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
