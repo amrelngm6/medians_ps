@@ -172,14 +172,29 @@ export default
                 
             content.value.items[i].selected = true; 
 
-            for (let i = 0; i < trip.pickup_locations.length; i++) {
-                const pickup = trip.pickup_locations[i];
-                console.log(pickup)
-            }
             
-            // let newObject = handleObject(trip);
-            // locations.value = [newObject];
-            // center.value = newObject.destination;
+            let a, o, loc;
+            let yellowIcon = props.conf.url+'uploads/images/yellow_pin.gif';
+            let blueIcon = props.conf.url+'uploads/images/blue_pin.gif';
+            let vehicleIcon = props.conf.url+'uploads/images/car.svg';
+            let destinationIcon = props.conf.url+'uploads/images/destination.svg';
+
+            let vehcileLocation = { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) };
+            loc[0] = {drag:true, status: 'waiting', icon: vehicleIcon, origin: vehcileLocation, destination: vehcileLocation }
+
+            for (let i = 0; i < trip.pickup_locations.length; i++) {
+                a = trip.pickup_locations[i];
+                o = i ? trip.pickup_locations[i-1].location : a.location;
+                loc[i+1] = {status: a.status, icon: (a.status == 'waiting' ? blueIcon : yellowIcon), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.location.latitude), lng: parseFloat(a.location.longitude) } }
+            }
+
+            loc[loc.length] = {drag:true, icon: destinationIcon, origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
+            
+            showMap.value = !showMap.value
+            center = loc[0].destination;
+            console.log(loc)
+            
+            return loc;
         }
 
         /**
@@ -279,27 +294,6 @@ export default
         const setLocationsPickups = (trip) =>
         {
             activeTrip.value = trip
-            let a, o, loc;
-            let yellowIcon = props.conf.url+'uploads/images/yellow_pin.gif';
-            let blueIcon = props.conf.url+'uploads/images/blue_pin.gif';
-            let vehicleIcon = props.conf.url+'uploads/images/car.svg';
-            let destinationIcon = props.conf.url+'uploads/images/destination.svg';
-
-            let vehcileLocation = { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) };
-            loc[0] = {drag:true, status: 'waiting', icon: vehicleIcon, origin: vehcileLocation, destination: vehcileLocation }
-
-            for (let i = 0; i < trip.pickup_locations.length; i++) {
-                a = trip.pickup_locations[i];
-                o = i ? trip.pickup_locations[i-1].location : a.location;
-                loc[i+1] = {status: a.status, icon: (a.status == 'waiting' ? blueIcon : yellowIcon), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.location.latitude), lng: parseFloat(a.location.longitude) } }
-            }
-
-            loc[loc.length] = {drag:true, icon: destinationIcon, origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
-            
-            showMap.value = !showMap.value
-            center = loc[0].destination;
-            console.log(loc)
-            return loc;
         }
         
 
