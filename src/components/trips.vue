@@ -173,12 +173,13 @@ export default
             content.value.items[i].selected = true; 
 
             
-            let a, o, loc;
+            let a, o;
             let yellowIcon = props.conf.url+'uploads/images/yellow_pin.gif';
             let blueIcon = props.conf.url+'uploads/images/blue_pin.gif';
             let vehicleIcon = props.conf.url+'uploads/images/car.svg';
             let destinationIcon = props.conf.url+'uploads/images/destination.svg';
-
+            
+            let loc = [];
             let vehcileLocation = { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) };
             loc[0] = {drag:true, status: 'waiting', icon: vehicleIcon, origin: vehcileLocation, destination: vehcileLocation }
 
