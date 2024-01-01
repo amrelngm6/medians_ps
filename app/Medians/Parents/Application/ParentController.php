@@ -41,6 +41,7 @@ class ParentController extends CustomController
 		return [
             [ 'value'=> "parent_id", 'text'=> "#"],
             [ 'value'=> "parent_name", 'text'=> __('Name'), 'sortable'=> true ],
+            [ 'value'=> "students", 'text'=> __('Students'), 'sortable'=> true ],
             [ 'value'=> "email", 'text'=> __('Email'), 'sortable'=> true ],
             [ 'value'=> "contact_number", 'text'=> __('Mobile'), 'sortable'=> false ],
 			['value'=>'edit', 'text'=>__('Edit')],
@@ -60,7 +61,6 @@ class ParentController extends CustomController
 		return [
             [ 'key'=> "parent_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "students", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "email", 'title'=> __('Email'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'email' ],
             [ 'key'=> "contact_number", 'title'=> __('Mobile'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
             [ 'key'=> "picture", 'title'=> __('picture'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'file' ],

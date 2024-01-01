@@ -18,7 +18,7 @@
                         </template>
 
                         <template #item-students="item">
-                            {{ item }}
+                            {{ item.length }}
                         </template>
 
                         <template #item-edit="item">
