@@ -138,6 +138,7 @@ export default
         const searchText =  ref('');
         const locationError =  ref(null);
         const collapsed =  ref(false);
+        const showMap =  ref(false);
 
         const closeSide = () => {
         }
@@ -174,7 +175,6 @@ export default
             for (let i = 0; i < trip.pickup_locations.length; i++) {
                 const pickup = trip.pickup_locations[i];
                 console.log(pickup)
-                
             }
             
             // let newObject = handleObject(trip);
@@ -279,15 +279,23 @@ export default
         const setLocationsPickups = (trip) =>
         {
             activeTrip.value = trip
-            let a, o,loc;
-            loc = [];
-            loc[0] = {drag:true, status: 'waiting', icon: props.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
+            let a, o, loc;
+            let yellowIcon = props.conf.url+'uploads/images/yellow_pin.gif';
+            let blueIcon = props.conf.url+'uploads/images/blue_pin.gif';
+            let vehicleIcon = props.conf.url+'uploads/images/car.svg';
+            let destinationIcon = props.conf.url+'uploads/images/destination.svg';
+
+            let vehcileLocation = { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) };
+            loc[0] = {drag:true, status: 'waiting', icon: vehicleIcon, origin: vehcileLocation, destination: vehcileLocation }
+
             for (let i = 0; i < trip.pickup_locations.length; i++) {
-                a = trip.pickup_locations[i].location;
-                o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
-                loc[i+1] = {status: trip.pickup_locations[i].status, icon: props.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+                a = trip.pickup_locations[i];
+                o = i ? trip.pickup_locations[i-1].location : a.location;
+                loc[i+1] = {status: a.status, icon: (a.status == 'waiting' ? blueIcon : yellowIcon), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.location.latitude), lng: parseFloat(a.location.longitude) } }
             }
-            loc[loc.length] = {drag:true, icon: props.conf.url+'uploads/images/destination.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
+
+            loc[loc.length] = {drag:true, icon: destinationIcon, origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
+            
             showMap.value = !showMap.value
             center = loc[0].destination;
             console.log(loc)
@@ -311,6 +319,7 @@ export default
             url,
             content,
             center,
+            showMap,
             activeItem,
             translate,
             clickMarker,
