@@ -36,7 +36,7 @@
                     :options="{
                         position: marker.destination,
                         draggable: true,
-                        dragend: updateMarker
+                        dragend: checkMarkers
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
@@ -102,9 +102,15 @@ export default
                 emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
+            const  checkMarkers = async (marker, i ) =>  {
+                console.log('deagged')
+                emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
+            }
+            
                     
             return {
                 checkMarker,
+                checkMarkers,
                 enableDrag,
                 updateMarker,
                 reload,
