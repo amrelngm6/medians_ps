@@ -98,7 +98,7 @@ export default
                 // props.waypoints[i].address = await this.handlePositionToPlaceId(props.waypoints[i].destination.lat, props.waypoints[i].destination.lng);
                 emit('click-marker', props.waypoints[i], i);
 
-                waypoints.value[activeMarkerIndex.value].address = await this.handlePositionToPlaceId(waypoints.value[activeMarkerIndex.value].destination.lat, waypoints.value[activeMarkerIndex.value].destination.lng);
+                waypoints[activeMarkerIndex.value].address = await this.handlePositionToPlaceId(waypoints[activeMarkerIndex.value].destination.lat, waypoints[activeMarkerIndex.value].destination.lng);
 
                 console.log(waypoints.value)
                 // props.showroute ?? calculateAndDisplayRoute()
@@ -143,7 +143,6 @@ export default
             for (let i = 0; i < props.waypoints.length; i++) {
                 flightPlanCoordinates[i] = props.waypoints[i].destination;
             }
-            console.log(flightPlanCoordinates);
 
             const flightPath = {
                 path: flightPlanCoordinates,
