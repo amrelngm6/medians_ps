@@ -98,11 +98,8 @@ export default
             
             
             const  updateMarker = async (marker, i ) =>  {
-                console.log('dragged')
-                console.log(i)
-                console.log(marker)
-                // activeMarkerIndex.value = i;
-                // emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
+                checkMarker(marker, i)
+
             }
             
                     
