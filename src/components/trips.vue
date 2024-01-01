@@ -300,6 +300,7 @@ export default
 
         return {
             editFields,
+            showTrip,
             activeTrip,
             setLocationsPickups,
             filterLocations,
