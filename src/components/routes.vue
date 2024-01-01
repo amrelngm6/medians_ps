@@ -66,6 +66,10 @@
                             <img :src="item.picture" class="w-8 h-8 rounded-full" />
                         </template>
 
+                        <template #item-pickup_locations="item">
+                            <img v-for="pickup in item.pickup_locations" :src="item.picture" class="w-8 h-8 rounded-full" />
+                        </template>
+
                         <template #item-edit="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
                                 <i class="fa fa-edit"></i>
