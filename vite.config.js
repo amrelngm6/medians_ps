@@ -14,13 +14,9 @@ export default defineConfig({
       assetFileNames: '[name]-[hash].[ext]',
     },
   },
-  // Use Vite-plugin-legacy to minify the output
+  
   base: '/dist',
   plugins: [
-    minify({
-      target: 'es2015',
-      // other minification options...
-    }),
     vue(),
     vueJsx(),
   ],
