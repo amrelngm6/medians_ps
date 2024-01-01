@@ -46,16 +46,32 @@
                         @click="showLoader = true, showAddSide = true, activeItem = {}, showLoader = false;">{{ translate('add_new') }}</a>
                 </div>
                 <hr class="mt-2" />
-                <div class="w-full flex gap gap-6">
+                <div class="w-full">
                     
-                    <data-table ref="destinations" @actionTriggered="handleAction" v-bind="bindings" />
+                    <datatabble :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
-                    <side-form-create :conf="conf" model="Destination.create"
-                        v-if="showAddSide && content && content.fillable" :columns="content.fillable" class="col-md-3" />
+                        <template #item-picture="item">
+                            <img :src="item.picture" class="w-8 h-8 rounded-full" />
+                        </template>
 
-                    <side-form-update :conf="conf" model="Destination.update" :item="activeItem"
-                        :model_id="activeItem.destination_id" index="destination_id" v-if="showEditSide && !showAddSide"
-                        :columns="content.fillable" class="col-md-3" />
+                        <template #item-edit="item">
+                            <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </template>
+                        <template #item-delete="item">
+                            <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-purple" @click="handleAction('delete', item)">
+                                <delete_icon class="w-4"/>
+                            </button>
+                        </template>
+                    </datatabble>
+
+                    <side-form-create @callback="closeSide" :conf="conf" model="PickupLocation.create"
+                    v-if="showAddSide && content && content.fillable" :columns="content.fillable" class="col-md-3" />
+
+                    <side-form-update @callback="closeSide" :conf="conf" model="PickupLocation.update" :item="activeItem"
+                    :model_id="activeItem.pickup_id" index="pickup_id" v-if="showEditSide && !showAddSide"
+                    :columns="content.fillable" class="col-md-3" />
 
                 </div>
                 <!-- END New releases -->
