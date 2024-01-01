@@ -36,7 +36,7 @@
                     :options="{
                         position: marker.destination,
                         draggable: true,
-                        dragend: checkMarkers
+                        dragend: updateMarker
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
@@ -97,7 +97,7 @@ export default
             }
             
             
-            const  updateMarker = event => (marker ) =>  {
+            const  updateMarker = event => marker  =>  {
                 console.log('deagged')
                 console.log(event)
                 console.log(marker)
