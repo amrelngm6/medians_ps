@@ -176,6 +176,7 @@ export default
             // Update active date filters
             activeDate.value = start;
 
+            console.log(url)
             // Load new data
             load(url.value + filters); 
         }
