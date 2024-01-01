@@ -57,7 +57,7 @@
                             </nav> <!-- nav-end -->
 
                             <div class="mt-3 overflow-hidden">
-                                <div id="basic-tabs-1" class="transition-all duration-300 transform">
+                                <div :key="activeStatus" id="basic-tabs-1" class="transition-all duration-300 transform">
                                     <div class="grid grid-cols-1 lg:grid-cols-2  gap-6 w-full border-b border-gray-100"
                                         v-if="activeStatus == 'help_messages'">
 
@@ -89,7 +89,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="w-full border-b border-gray-100" v-if="activeStatus == 'info'">
+                                    <div class="w-full border-b border-gray-100"  v-if="activeStatus == 'info'">
                                         <div class="mt-6 w-full">
                                             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
                                                 <dashboard_card_white icon="/uploads/img/products_icome.png"
