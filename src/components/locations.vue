@@ -66,10 +66,10 @@
                         </template>
                     </datatabble>
 
-                    <side-form-create :conf="conf" model="PickupLocation.create"
+                    <side-form-create @callback="closeSide" :conf="conf" model="PickupLocation.create"
                         v-if="showAddSide && content && content.fillable" :columns="content.fillable" class="col-md-3" />
 
-                    <side-form-update :conf="conf" model="PickupLocation.update" :item="activeItem"
+                    <side-form-update @callback="closeSide" :conf="conf" model="PickupLocation.update" :item="activeItem"
                         :model_id="activeItem.pickup_id" index="pickup_id" v-if="showEditSide && !showAddSide"
                         :columns="content.fillable" class="col-md-3" />
 
