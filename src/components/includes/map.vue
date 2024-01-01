@@ -24,7 +24,7 @@
                     v-if="!showDrag"
                     :key="showDrag" 
                     :draggable="true"
-                    @click="enableDrag"
+                    @click="enableDrag(marker, index)"
                     >
                     <div style="text-align: center">
                         <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
@@ -85,9 +85,11 @@ export default
             const activeDestination = ref({});
             const activeMarkerIndex = ref({});
             
-            const  enableDrag = () =>  {
+            const  enableDrag = (marker, i) =>  {
                 showDrag.value = true
+                emit('click-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
+            
             
             const  checkMarker = async (marker, i ) =>  {
                 activeMarkerIndex.value = i;
