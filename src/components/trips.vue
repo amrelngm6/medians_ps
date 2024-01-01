@@ -284,13 +284,6 @@ export default
             return data;
         }   
 
-        
-        const setLocationsPickups = (trip) =>
-        {
-            activeTrip.value = trip
-        }
-        
-
         const editFields = (data, show = true) =>
         {
             showTrip.value = show;
@@ -302,7 +295,6 @@ export default
             editFields,
             showTrip,
             activeTrip,
-            setLocationsPickups,
             filterLocations,
             locations,
             url,
