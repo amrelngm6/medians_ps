@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <p class="text-center" v-if="activeStatus == 'map'">
-                    <trip_map :key="trip" 
+                    <trip_map  
                         :trip="trip" 
                         :conf="conf"
                         :key="activeItem.locations"
