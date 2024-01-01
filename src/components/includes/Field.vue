@@ -55,107 +55,116 @@
 </template>
 
 <script>
-    import Loader from './Loader.vue';
-    import Manager from './Manager.vue';
-    import axios from 'axios';
+import Loader from './Loader.vue';
+import Manager from './Manager.vue';
+import axios from 'axios';
 
-    export default {
-        name: 'vue-medialibrary-field',
+export default 
+{
+    name: 'vue-medialibrary-field',
 
-        components: {
-            'vue-medialibrary-manager': Manager,
-            'app-medialibrary-loader': Loader
+    components: {
+        'vue-medialibrary-manager': Manager,
+        'app-medialibrary-loader': Loader
+    },
+
+    props: {
+        name: {
+            type: String,
+            required: false
         },
-
-        props: {
-            name: {
-                type: String,
-                required: false
-            },
-            api_url: {
-                type: String,
-                required: false
-            },
-            value: {
-                type: Object|String,
-                required: false,
-                default: () => ({
-                })
-            },
-            types: {
-                type: Object,
-                required: false,
-                default: () => ({
-                    images: true,
-                    files: true
-                })
-            },
-            filetypes: {
-                type: Array,
-                required: false,
-                default: () => ([])
-            },
-            helper: {
-                type: String,
-                required: false
-            }
+        api_url: {
+            type: String,
+            required: false
         },
-
-        data: () => ({
-            loading: true,
-            showManager: false,
-            file: {},
-            content: null,
-        }),
-
-        mounted() {
-            this.content = this.value ? this.value : this.content;
-            if (this.content ) {
-                this.file = this.content;
-            } else {
-                this.content = null;
-            }
-            this.loading = false;
+        value: {
+            type: Object|String,
+            required: false,
+            default: () => ({
+            })
         },
+        types: {
+            type: Object,
+            required: false,
+            default: () => ({
+                images: true,
+                files: true
+            })
+        },
+        filetypes: {
+            type: Array,
+            required: false,
+            default: () => ([])
+        },
+        helper: {
+            type: String,
+            required: false
+        }
+    },
 
-        methods: {
-            showLibrary()
+        setup(props) 
+        {
+
+            const showManager = ref();
+            const file = ref();
+            const content = ref();
+
+            const showLibrary = () => {
             {
-                this.showManager = !this.showManager;
-            },
-            insert(value) {
+                showManager.value = !showManager.value;
+            }
 
-                this.loading = false;
-                this.showManager = false;
+            const insert = (value) => {
+
+                showManager.value = false;
                 
-                this.file = value.file_name;
-                this.content = value.file_name;
+                file.value = value.file_name;
+                content.value = value.file_name;
 
-                this.change();
-            },
-            clear() {
-                this.loading = false;
-                this.content = this.file = null;
+                change();
+            }
 
-                this.$emit('input', null);
-            },
-            change() {
-                this.$emit('input', this.file);
+            const clear = () => {
+                content = file = null;
+                emit('input', null);
+            }
+
+            const change = () => {
+                emit('input', file);
+            }
+
+            content.value = props.value ? props.value : null;
+
+            if (content.value ) {
+                file.value = content.value;
+            } else {
+                content.value = null;
+            }
+            
+            return {
+
+                insert,
+                clear,
+                change,
+                showManager,
+                file,
+                content,
+            };
+        }
+    },
+    watch: {
+        value() {
+            if (typeof this.file == 'undefined') {
+                this.loading = true;
             }
         },
-
-        watch: {
-            value() {
-                if (typeof this.file == 'undefined') {
-                    this.loading = true;
-                }
-            },
-            showManager()
-            {
-                console.log('changed')
-            }
-        },
-    }
+        showManager()
+        {
+            console.log('changed')
+        }
+    },
+    
+}
 </script>
 
 
