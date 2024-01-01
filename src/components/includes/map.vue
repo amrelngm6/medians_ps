@@ -39,7 +39,7 @@
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
-                    @dragend="checkMarkers"
+                    @dragend="activeMarkerIndex = index, checkMarkers"
                     @click="checkMarkerDraggable(marker, index)"
                     >
 
