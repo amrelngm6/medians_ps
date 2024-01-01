@@ -238,7 +238,6 @@ export default
             activeDate,
             date:null,
             dateTimeFormat,
-            translate,
             charts_options:{
                 animationEnabled: true,
                 exportEnabled: true,
