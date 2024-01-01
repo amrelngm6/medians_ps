@@ -234,14 +234,23 @@ export default
             let a;
             let locations_ = [];
             let blueIcon = props.conf.url+'uploads/images/blue_pin.gif';
-            // = parseFloat(location.latitude);
+            let vehicleIcon = props.conf.url+'uploads/images/car.svg';
+            let destinationIcon = props.conf.url+'uploads/images/destination.svg';
+
             for (let i = 0; i < route.pickup_locations.length; i++) {
                 a = route.pickup_locations[i];
                 locations_[i] = {title: route.pickup_locations[i].student_name, icon:  blueIcon, origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
-            locations_[locations_.length] = {icon: props.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
+
+            // Add Vehicle current location marker
+            locations_[locations_.length] = {icon: vehicleIcon, origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
+
+            // Add Route destination location marker
+            locations_[locations_.length] = {drag:true, icon: destinationIcon, origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.latitude), lng: parseFloat(route.longitude) } }
+
+            // Update center to first Pickup location
             center.value = locations_[0].destination;
-            locations_[locations_.length] = {drag:true, icon: props.conf.url+'uploads/images/destination.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.latitude), lng: parseFloat(route.longitude) } }
+            
             return locations_;
         }
 
