@@ -1,7 +1,7 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div class=" w-full">
-            <main v-if="content " class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
+            <main v-if="content" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
@@ -10,12 +10,12 @@
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
 
-                    <div v-if="content.users" :key="content.users" class="w-full">
+                    <div v-if="content && content.users" :key="content.users" class="w-full">
                         <div v-for="role in content.roles" class="w-full pb-4">
                             <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span class="pt-2 text-sm text-muted" v-text="role.id > 1 ? translate('Theese users can manage your account only') : ''"></span></h3>
                             <hr />
                             <div class="w-full grid lg:grid-cols-3 gap gap-6">
-                                <div v-if="user && user.role_id == role.id" :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
+                                <div v-if="user && role && user.role_id == role.id" :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
                                     <div class="flex-shrink-0 ">
                                         <div class="relative">
                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
