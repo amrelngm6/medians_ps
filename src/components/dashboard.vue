@@ -240,7 +240,7 @@ export default
             };
             console.log(lineOptions)
 
-            line_options.value = optionsbar.value;
+            line_options.value = lineOptions;
         }
 
 
