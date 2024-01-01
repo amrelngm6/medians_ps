@@ -5,7 +5,7 @@
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center" v-if="activeItem && activeItem.driver">
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="translate('Trip') + translate(' #') + activeItem.trip_id"></h4>
-                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"><i class="fa fa-close px-2"></i> <span v-text="translate('Back')"></span></button>
+                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"><close_icon /> <span v-text="translate('Back')"></span></button>
                     </div>
 
                     <hr class="mt-5 dark:border-gray-600">
@@ -192,6 +192,7 @@
 
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import help_icon from '@/components/svgs/help.vue';
+import close_icon from '@/components/svgs/Close.vue';
 import trip_map from '@/components/includes/trip_map.vue';
 
 import {defineAsyncComponent, ref} from 'vue';
