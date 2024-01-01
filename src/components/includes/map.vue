@@ -172,7 +172,8 @@ export default
                     }
                     });
                 });
-            },
+            } 
+            
             return {
                 checkMarker,
                 updateMarker,
