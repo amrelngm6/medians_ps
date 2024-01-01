@@ -182,6 +182,7 @@
                     <trip_map :key="trip" 
                         :trip="trip" 
                         :conf="conf"
+                        :waypoint="activeItem.locations"
                         :setting="setting"
                         @interval-callback="callback"></trip_map>
 
