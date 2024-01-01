@@ -141,12 +141,21 @@ export default
         const load = () => {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
-                locations.value = content.value.items;
+                setAllLocations(content.value.items);
                 searchTextChanged();
             });
         }
         
         load();
+
+        const setAllLocations = (items) =>
+        {
+            let array = [];
+            for (let i = 0; i < items.length; i++) {
+                array[i] = handleObject(items[i]);
+            }
+            locations.value = array;
+        } 
 
         const setLocationsMarkers = (pickupLocation, i) => 
         {
