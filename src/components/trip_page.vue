@@ -264,8 +264,6 @@ export default
                 activeStatus.value = newstatus;
             }
 
-            setActiveStatus('map');
-
             /**
             * Handle object
             * @param {Model Object} i 
