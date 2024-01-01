@@ -28,11 +28,11 @@
 
                     :options="{
                         position: marker.destination,
+                        draggable= marker.drag ? true : false
                     }"
                     :key="marker" 
                     @click="checkMarker(this, index)"
                     @drag="activeMarkerIndex = index" 
-                    :draggable="true"
                     @dragend="updateMarker" >
                     <div style="text-align: center">
                         <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
