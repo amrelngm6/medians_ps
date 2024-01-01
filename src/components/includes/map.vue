@@ -88,7 +88,7 @@ export default
                 // this.$emit('update-marker', props.waypoints[this.activeMarkerIndex], this.activeMarkerIndex, event);
             }
 
-            const  checkMarker = async (i, event) =>  {
+            const  checkMarker = async (event, i ) =>  {
                 console.log(i)
                 console.log(event)
                 console.log(flightPlanCoordinates)
