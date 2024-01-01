@@ -21,8 +21,11 @@
                         <template #item-students="item">
                             
                             <div class="w-full h-8 relative flex">
-                                <div  v-for="(student, i) in item" :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
-                                    <img :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(student && student.picture) ? student.picture : 'https://via.placeholder.com/37x37'" /> 
+                                <div  v-for="(student, i) in item" >
+                                    {{ i }}
+                                    <div  :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
+                                        <img :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(student && student.picture) ? student.picture : 'https://via.placeholder.com/37x37'" /> 
+                                    </div>
                                 </div>
                                 <span class="flex absolute pt-2" :style="'left: '+((20 * (item.length < 3 ? item.length : 3) ) + 20)+'px'"> <route_icon /><span class="font-semibold  px-1" v-if="item.pickup_locations" v-text="item.pickup_locations.length"></span></span>
                             </div>
