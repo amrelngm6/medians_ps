@@ -248,12 +248,27 @@ export default
                 activeStatus.value = status;
             }
 
+            /**
+            * Handle object
+            * @param {Model Object} i 
+            */
+            const handlePickup = (origin, destination, icon) => {
+                let data = {}
+                data.icon = props.conf.url + 'uploads/images/' + icon
+                data.origin = { lat: parseFloat(origin.latitude), lng: parseFloat(origin.longitude) }
+                data.destination = { lat: parseFloat(destination.latitude), lng: parseFloat(destination.longitude) }
+                data.drag = false;
+                return data;
+            }
+
+            
 
             return {
                 url,
                 activeItem,
                 setActiveStatus,
                 loadmore,
+                handlePickup,
                 setLocations,
                 translate,
             }
@@ -320,20 +335,6 @@ export default
 
             
 
-        //     /**
-        //     * Handle object
-        //     * @param {Model Object} i 
-        //     */
-        //     handlePickup(origin, destination, icon) {
-        //         let data = {}
-        //         data.icon = this.conf.url + 'uploads/images/' + icon
-        //         data.origin = { lat: parseFloat(origin.latitude), lng: parseFloat(origin.longitude) }
-        //         data.destination = { lat: parseFloat(destination.latitude), lng: parseFloat(destination.longitude) }
-        //         data.drag = false;
-        //         return data;
-        //     },
-
-            
 
         //     translate(i) {
         //         return this.$root.$children[0].translate(i);
