@@ -24,7 +24,9 @@
                                     </div>
                                     <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
                                         <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
-                                            <div class="text-center text-white   uppercase tracking-tight text-sm"> <i class="fa fa-edit"></i></div>
+                                            <div class="text-center text-white   uppercase tracking-tight text-sm"> 
+                                                <vue-feather type="edit"></vue-feather>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
