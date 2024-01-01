@@ -31,9 +31,7 @@
                                         </div>
                                     </div>
                                     <div  class="gap-2 py-2  justify-start items-start gap-2.5 inline-flex">
-                                        <div class="mb-2 px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="setLocationsMarkers(trip, index)" >
-                                            <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-location-dot"></i></div>
-                                        </div>
+                                        
                                         <div class="mb-2 px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="handleAction('edit', trip)" >
                                             <div class="text-center text-xs text-white   uppercase tracking-tight "> <i class="fa fa-edit"></i></div>
                                         </div>
