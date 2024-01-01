@@ -45,8 +45,12 @@
                     position:center,
                     draggable: true
                 }"
+                :key="marker" 
                 :draggable="true"
-                >
+                v-if="showroute"
+                @click="checkMarker(marker, index)"
+                @drag="activeMarkerIndex = index" 
+                @dragend="updateMarker" >
 
                 </Marker>
 
@@ -88,9 +92,10 @@ export default
             const activeDestination = ref({});
             const activeMarkerIndex = ref({});
             
-            function updateMarker  (event)  
+            function updateMarker  (event, i)  
             {
                 console.log(event)
+                console.log(i)
 
                 // waypoints[activeMarkerIndex.value].destination = {
                 //     lat: event.latLng.lat(), lng: event.latLng.lng()
