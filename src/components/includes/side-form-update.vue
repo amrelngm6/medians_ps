@@ -68,8 +68,6 @@ export default
 
     setup(props, {emit}) {
 
-        console.log(props.item);
-
         const emitClose = (model) => 
         {
             model ? emit('callback', model) : '';

@@ -69,9 +69,6 @@ export default
     ],
     setup(props, {emit}) 
     {
-        console.log(props.waypoints);
-
-
         const reload = ref(null);
         const render = ref(null);
         const showDrag = ref(null);

@@ -104,8 +104,6 @@ export default
     setup(props) 
     {
 
-        console.log(props.filepath)
-
         const showManager = ref();
         const file = ref();
         const content = ref();
