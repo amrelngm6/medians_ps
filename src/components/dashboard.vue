@@ -153,9 +153,9 @@ export default
         ];
 
         
-        const load = (url) =>
+        const load = (path) =>
         {
-            handleGetRequest( url ).then(response=> {
+            handleGetRequest( path ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response)); 
                 // setCharts(response)
             });
