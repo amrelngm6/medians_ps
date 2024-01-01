@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <div class="justify-center items-center flex">
-                                <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex mr-2 cursor-pointer"  @click="handleAction('edit', destination)">
+                                <div class="w-10 h-10 p-2  bg-purple-800 rounded justify-center items-center flex mr-2 cursor-pointer"  @click="handleAction('edit', destination)">
                                     <div class="text-center text-xs text-white   uppercase tracking-tight"> <vue-feather class="w-5" type="edit"></vue-feather></div>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                     <div
                         class="flex self-stretch grow shrink basis-0 justify-between items-center inline-flex">
                         <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="translate('add new')"></div>
-                        <div @click="collapsed = !collapsed" class="cursor-pointer p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? translate('Expand') : translate('Collapse')"></p></div>
+                        <div @click="collapsed = !collapsed" class="cursor-pointer p-2 block text-center "> <i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? translate('Expand') : translate('Collapse')"></p></div>
                     </div>
                 </div>
 

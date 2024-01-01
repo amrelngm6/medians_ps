@@ -23,7 +23,7 @@
                                         <div class="py-1 self-stretch text-slate-500 text-sm font-semibold leading-relaxed tracking-wide"  v-text="route.description"></div>
                                     </div>
                                     <div  class="gap-2 py-2 flex justify-start items-start gap-2.5 inline-flex">
-                                        <div class="px-3 py-2 bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
+                                        <div class="w-10 h-10 p-2  bg-purple-800 rounded justify-center items-center flex cursor-pointer"  @click="handleAction('edit', route)">
                                             <div class="text-center text-white   uppercase tracking-tight text-sm"> 
                                                 <vue-feather class="w-5" type="edit"></vue-feather>
                                             </div>
