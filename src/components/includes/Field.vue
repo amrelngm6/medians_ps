@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import {ref} from 'vue';
 import Loader from './Loader.vue';
 import Manager from './Manager.vue';
 import axios from 'axios';
