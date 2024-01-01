@@ -192,7 +192,7 @@ export default
             loc[loc.length] = {drag:true, icon: destinationIcon, origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
             
             showMap.value = !showMap.value
-            center = loc[0].destination;
+            center.value = loc[0].destination;
             console.log(loc)
             
             return loc;
