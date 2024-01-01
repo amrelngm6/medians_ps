@@ -84,7 +84,7 @@ export default
         const activeMarkerIndex = ref({});
         
         const  enableDrag = (marker, i) =>  {
-            showDrag.value = true
+            showDrag.value = props.dragggable ? true : false
             checkMarker(marker, i)
         }
         
@@ -169,6 +169,7 @@ export default
         'auth',
         'waypoints',
         'showroute',
+        'dragggable',
         'center',
     ],
 
