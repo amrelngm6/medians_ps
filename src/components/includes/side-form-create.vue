@@ -31,7 +31,7 @@
                         <input v-model="column.active"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
                     </div>
                     
-                    <vue-medialibrary-field :key="item" v-if="column.column_type == 'file'" :name="'params['+column.key+']'"  :api_url="conf.url"></vue-medialibrary-field>
+                    <vue-medialibrary-field :key="item" v-if="column.column_type == 'file'" :name="'params['+column.key+']'" :filepath="null" :api_url="conf.url"></vue-medialibrary-field>
 
                     <vue-medialibrary-field :key="item" v-if="column.column_type == 'profile_image' " :name="'params['+column.key+']'" :filepath="null"  :api_url="conf.url"></vue-medialibrary-field>
 
