@@ -59,7 +59,7 @@ export default
         const zoom = ref(14);
         const newcenter = ref({});
         
-        newcenter.value = props.center;
+        newcenter.value = props.center.value;
              
         return {
             zoom,
