@@ -1,6 +1,6 @@
 <template>
     <div class="w-full  overflow-auto" style="height: 85vh; z-index: 9999;">
-        <GmapMap ref="trip_map" :center="center" :key="waypoints" 
+        <GoogleMap :api-key="setting.google_map_api" ref="trip_map" :center="center" :key="reload" 
             :options="{
                 zoomControl: true,
                 mapTypeControl: true,
@@ -9,28 +9,43 @@
                 rotateControl: true,
                 fullscreenControl: true
             }"
-            :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
-
             
-            <DirectionsRenderer 
-                v-if="showroute && directionPoints"
-                :destination="directionPoints.destination" 
-                :origin="directionPoints.origin"
-                :key="directionPoints" 
-                :travelMode="travelMode"  ></DirectionsRenderer>
-                
-            <GmapMarker
-                v-for="(marker, index) in waypoints" 
-                :key="waypoints" 
-                :position="marker.origin"
-                :clickable="true" 
-                :draggable="false" 
-                :icon="marker.icon ? marker.icon : null" 
-                @click="checkMarker(index)"
-                >
-            </GmapMarker> 
+            :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
+            
+                <!-- <Polyline v-if="showroute" :options="flightPath" /> -->
 
-        </GmapMap>
+                <CustomMarker
+                    v-for="(marker, index) in markers" 
+
+                    :options="{
+                        draggable: true,
+                        position: marker.destination,
+                    }"
+                    v-if="!showDrag"
+                    :key="showDrag" 
+                    :draggable="true"
+                    @click="enableDrag(marker, index)"
+                    >
+                    <div style="text-align: center">
+                        <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
+                    </div>
+                </CustomMarker>
+
+                <Marker
+                    v-for="(marker, index) in markers" 
+                    :options="{
+                        position: marker.destination,
+                        draggable: true,
+                    }"
+                    :key="showDrag" 
+                    v-if="showDrag"
+                    @dragstart="onMarkerDragStart(index)"
+                    @dragend="updateMarker"
+                    >
+
+                </Marker>
+
+        </GoogleMap>
     </div>
 </template>
 <script>
