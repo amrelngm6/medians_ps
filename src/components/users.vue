@@ -15,7 +15,7 @@
                             <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span class="pt-2 text-sm text-muted" v-text="role.id > 1 ? translate('Theese users can manage your account only') : ''"></span></h3>
                             <hr />
                             <div class="w-full grid lg:grid-cols-3 gap gap-6">
-                                <div v-if="user && role && user.role_id == role.id" :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
+                                <div  :key="user" v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 ">
                                     <div class="flex-shrink-0 ">
                                         <div class="relative">
                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
