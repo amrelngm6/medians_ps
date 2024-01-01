@@ -53,6 +53,8 @@ class DestinationController extends CustomController
             [ 'value'=> "student_name", 'text'=> __('student_name'), 'sortable'=> true ],
             [ 'value'=> "latitude", 'text'=> __('latitude'), 'sortable'=> true ],
             [ 'value'=> "longitude", 'text'=> __('longitude'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> __('Edit') ],
+            [ 'value'=> "delete", 'text'=> __('delete') ],
         ];
 	}
 
