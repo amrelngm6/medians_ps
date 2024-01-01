@@ -106,13 +106,14 @@ export default
             const  checkMarkers = (event) =>  {
                 console.log('dragged 2')
                 console.log(event)
+                console.log(props.waypoints[activeMarkerIndex.value])
             }
             
             
             const  checkMarkerDraggable =  (event) =>  {
                 console.log('click dragged ')
                 console.log(event)
-                
+
             }
             
                     
