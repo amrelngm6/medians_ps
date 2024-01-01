@@ -243,11 +243,13 @@ export default
             }
 
             // Add Vehicle current location marker
-            locations_[locations_.length] = {icon: vehicleIcon, origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
+            let VehicleMarker = {icon: vehicleIcon, origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
+            locations_[locations_.length] = VehicleMarker;
 
             // Add Route destination location marker
-            locations_[locations_.length] = {drag:true, icon: destinationIcon, origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.latitude), lng: parseFloat(route.longitude) } }
-
+            let DestinationMarker = {drag:true, icon: destinationIcon, origin: VehicleMarker.origin, destination: { lat: parseFloat(route.latitude), lng: parseFloat(route.longitude) } }
+            locations_[locations_.length] = DestinationMarker;
+            
             // Update center to first Pickup location
             center.value = locations_[0].destination;
 
