@@ -181,7 +181,7 @@
                     <trip_map  
                         :trip="trip" 
                         :conf="conf"
-                        :center=""
+                        :center="center"
                         :key="activeItem.locations"
                         :waypoint="activeItem.locations"
                         :setting="setting"
@@ -219,7 +219,6 @@ export default
 
             
             const activeItem = ref({});
-            const content = ref({});
             const center = ref({});
             const locations = ref([]);
             const activeStatus = ref('info');
@@ -282,6 +281,7 @@ export default
             return {
                 url,
                 locations,
+                center,
                 activeItem,
                 activeStatus,
                 setActiveStatus,
