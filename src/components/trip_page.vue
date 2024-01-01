@@ -270,6 +270,7 @@ export default
             return {
                 url,
                 activeItem,
+                activeStatus,
                 setActiveStatus,
                 loadmore,
                 handlePickup,
