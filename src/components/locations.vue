@@ -246,8 +246,8 @@ export default
                     break;
 
                 case 'edit':
-                    showEditSide = true;
-                    showAddSide = false;
+                    showEditSide.value = true;
+                    showAddSide.value = false;
                     activeItem.value = data
                     break;
 
