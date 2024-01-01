@@ -19,7 +19,9 @@
                         <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="translate('total_trips')" :value="content.total_trips_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('help_messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
-                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts && content.trips_charts.length">
+                    
+                    <div class="w-full bg-white p-4 mb-4 rounded-lg">
+                        <ag-charts-vue ref="lines" :key="line_options" :options="line_options"> </ag-charts-vue>
                     </div>
                     <div class="row mt-6">
                         <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-success" :title="translate('Vehciles')" :value="content.vehicles_count"></dashboard_card>
