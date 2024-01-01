@@ -191,7 +191,9 @@ export default
         }
 
 
-        const optionsbar = ref({
+        const optionsbar = ref();
+
+        optionsbar.value = {
             // Data: Data to be displayed in the chart
             data: [
                 { month: 'Jan', avgTemp: 2.3, iceCreamSales: 162000 },
@@ -203,8 +205,8 @@ export default
             ],
             // Series: Defines which chart type and data to use
             series: [{ type: 'bar', xKey: 'month', yKey: 'iceCreamSales' }],
-        });
-
+        };
+        
         
         /**
          * Set charts based on their values type
