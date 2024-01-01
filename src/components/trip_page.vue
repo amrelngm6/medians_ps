@@ -183,7 +183,7 @@
                         :conf="conf"
                         :center="center"
                         :key="activeItem.locations"
-                        :waypoint="activeItem.locations"
+                        :waypoints="activeItem.locations"
                         :setting="setting"
                         @interval-callback="callback"></trip_map>
 
