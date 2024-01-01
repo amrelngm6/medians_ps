@@ -228,7 +228,7 @@ export default
         const handleObject = (data) =>
         {
             data.icon =  props.conf.url+'uploads/images/blue_pin.gif'
-            data.origin = data.destination = { lat: parseFloat(data.vehicle.last_latitude), lng: parseFloat(data.vehicle.last_longitude) } 
+            data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) } 
             data.drag = true; 
             return data;
         }
@@ -271,7 +271,7 @@ export default
         
         const setLocationsPickups = (trip) =>
         {
-            activeTrip = trip
+            activeTrip.value = trip
             let a, o,loc;
             loc = [];
             loc[0] = {drag:true, status: 'waiting', icon: props.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
@@ -287,7 +287,16 @@ export default
             return loc;
         }
         
+
+        const editFields = (data, show = true) =>
+        {
+            showTrip.value = show;
+            activeItem.value = data
+        }
+
+
         return {
+            editFields,
             activeTrip,
             setLocationsPickups,
             filterLocations,
@@ -479,26 +488,7 @@ export default
 //             }
 //         },
 
-//         load()
-//         {
-//             let t = this;
-//             handleGetRequest( this.url ).then(response=> {
-//                 t.setValues(response)
-//                 t.searchTextChanged()
-//             });
-//         },
 
-//         filterKeys(object)
-//         {
-//             let filledData = Object.keys(object).reduce((acc, curr) => {
-//                 if (object[curr]) {
-//                     acc[curr] = object[curr];
-//                 }
-//                 return acc;
-//             }, {});
-//             return filledData;
-//         },
-        
 //         setValues(data) {
 //             this.content = JSON.parse(JSON.stringify(data)); 
 //             if (this.activeTrip && this.content && this.content.items)
@@ -515,10 +505,5 @@ export default
 //             return this
 //         },
         
-//         translate(i)
-//         {
-//             return translate(i);
-//         }
-//     }
-// };
+
 </script>
