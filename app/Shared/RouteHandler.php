@@ -71,7 +71,8 @@ class RouteHandler {
     self::$routes = preg_replace('/\/+/', '/', self::$routes);
     
     // $uri = (substr($uri, -1) == '/') ? substr($uri, 0,-1) : $uri;
-
+    echo $uri;
+    
     // Check if route is defined without regex
     if (in_array($uri, self::$routes)) {
       $route_pos = array_keys(self::$routes, $uri);
