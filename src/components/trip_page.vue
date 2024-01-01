@@ -265,77 +265,77 @@ export default
             'auth',
             'trip',
         ],
-        mounted() {
-        },
+        // mounted() {
+        // },
 
-        methods:
-        {
-            update() {
-                this.$emit('edit', 'edit', this.activeItem);
-            },
+        // methods:
+        // {
+        //     update() {
+        //         this.$emit('edit', 'edit', this.activeItem);
+        //     },
 
-            close() {
-                this.$emit('close', 'close', this.activeItem, false);
-            },
+        //     close() {
+        //         this.$emit('close', 'close', this.activeItem, false);
+        //     },
 
 
-            /**
-             * Handle actions from datatable buttons
-             * Called From 'dataTableActions' component
-             * 
-             * @param String actionName 
-             * @param Object data
-             */
-            handleAction(actionName, data) {
-                switch (actionName) {
-                    case 'view':
-                        // window.open(this.conf.url+data.content.prefix)
-                        break;
+        //     /**
+        //      * Handle actions from datatable buttons
+        //      * Called From 'dataTableActions' component
+        //      * 
+        //      * @param String actionName 
+        //      * @param Object data
+        //      */
+        //     handleAction(actionName, data) {
+        //         switch (actionName) {
+        //             case 'view':
+        //                 // window.open(this.conf.url+data.content.prefix)
+        //                 break;
 
-                    case 'edit':
-                        this.showEditSide = true;
-                        this.showAddSide = false;
-                        this.activeItem = data
-                        break;
+        //             case 'edit':
+        //                 this.showEditSide = true;
+        //                 this.showAddSide = false;
+        //                 this.activeItem = data
+        //                 break;
 
-                    case 'delete':
-                        this.$root.$children[0].deleteByKey('driver_id', data, 'Driver.delete');
-                        break;
-                }
-            },
+        //             case 'delete':
+        //                 this.$root.$children[0].deleteByKey('driver_id', data, 'Driver.delete');
+        //                 break;
+        //         }
+        //     },
 
-            load() {
-                this.showLoader = true;
-                this.$root.$children[0].handleGetRequest(this.url).then(response => {
-                    this.setValues(response)
-                    this.showLoader = false;
-                });
-            },
+        //     load() {
+        //         this.showLoader = true;
+        //         this.$root.$children[0].handleGetRequest(this.url).then(response => {
+        //             this.setValues(response)
+        //             this.showLoader = false;
+        //         });
+        //     },
 
-            setValues(data) {
-                this.content = JSON.parse(JSON.stringify(data)); return this
-            },
-
-            
-
-            /**
-            * Handle object
-            * @param {Model Object} i 
-            */
-            handlePickup(origin, destination, icon) {
-                let data = {}
-                data.icon = this.conf.url + 'uploads/images/' + icon
-                data.origin = { lat: parseFloat(origin.latitude), lng: parseFloat(origin.longitude) }
-                data.destination = { lat: parseFloat(destination.latitude), lng: parseFloat(destination.longitude) }
-                data.drag = false;
-                return data;
-            },
+        //     setValues(data) {
+        //         this.content = JSON.parse(JSON.stringify(data)); return this
+        //     },
 
             
 
-            translate(i) {
-                return this.$root.$children[0].translate(i);
-            }
-        }
+        //     /**
+        //     * Handle object
+        //     * @param {Model Object} i 
+        //     */
+        //     handlePickup(origin, destination, icon) {
+        //         let data = {}
+        //         data.icon = this.conf.url + 'uploads/images/' + icon
+        //         data.origin = { lat: parseFloat(origin.latitude), lng: parseFloat(origin.longitude) }
+        //         data.destination = { lat: parseFloat(destination.latitude), lng: parseFloat(destination.longitude) }
+        //         data.drag = false;
+        //         return data;
+        //     },
+
+            
+
+        //     translate(i) {
+        //         return this.$root.$children[0].translate(i);
+        //     }
+        // }
     };
 </script>
