@@ -13,13 +13,13 @@
                         <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="translate('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
                     <div :key="collapsed" v-if="!collapsed" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
-                        <div v-for="location in content.items" :key="location" class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
+                        <div v-for="(location, i) in content.items" :key="location" class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
                             <div v-if="location.active" class="grow shrink basis-0 gap-4 justify-start items-center flex">
                                 <div class="justify-start items-center flex">
                                     <img class="w-10 h-10 rounded-full shadow-inner border-2 border-black"
                                         :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/60x6'" />
                                 </div>
-                                <div @click="setLocationsMarkers(location)" class="grow shrink basis-0 flex-col justify-center items-start gap-[3px] inline-flex cursor-pointer">
+                                <div @click="setLocationsMarkers(location, i)" class="grow shrink basis-0 flex-col justify-center items-start gap-[3px] inline-flex cursor-pointer">
                                     <div class="text-black font-semibold text-base " v-text="location.student_name"></div>
                                     <div class="self-stretch text-slate-500 text-sm font-normal " v-text="location.location_name + ' - ' + location.address"></div>
                                 </div>
@@ -148,14 +148,14 @@ export default
         
         load();
 
-        const setLocationsMarkers = (pickupLocation) => 
+        const setLocationsMarkers = (pickupLocation, i) => 
         {
             activeItem.value = pickupLocation;
 
             for (let a = 0; a < content.value.items.length; a++) 
                 content.value.items[a].selected = false;
                 
-            content.value.items[a].selected = true; 
+            content.value.items[i].selected = true; 
             locations.value = handleObject(pickupLocation);
         }
 
