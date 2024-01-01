@@ -35,7 +35,8 @@
                     v-for="(marker, index) in waypoints" 
                     :options="{
                         position: marker.destination,
-                        draggable: true
+                        draggable: true,
+                        dragend: updateMarker(marker, index)
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
