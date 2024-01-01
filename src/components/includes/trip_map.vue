@@ -57,13 +57,10 @@ export default
 
 
         const zoom = ref(14);
-        const newcenter = ref({});
-        
-        newcenter.value = props.center.value;
              
         return {
             zoom,
-            newcenter,
+            newcenter: props.center,
             markers: props.waypoints,
         }
     },
