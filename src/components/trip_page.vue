@@ -33,7 +33,7 @@
             <div class="xl:col-span-9 lg:col-span-7">
                 <div class="card">
                     <div class="p-6">
-                        <div class="w-full">
+                        <div class="w-full" :key="activeStatus">
                             <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
                                 <button @click="setActiveStatus('info')" type="button" v-text="translate('Info')"
