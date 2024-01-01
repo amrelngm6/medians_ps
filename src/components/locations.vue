@@ -46,7 +46,7 @@
                         @click="showLoader = true, showAddSide = true, activeItem = {}, showLoader = false;">{{ translate('add_new') }}</a>
                 </div>
                 <hr class="mt-2" />
-                <div class="w-full flex gap gap-6">
+                <div class="w-full">
                     
                     <datatabble :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
