@@ -251,7 +251,7 @@ export default
                 activeStatus.value = newstatus;
             }
 
-            setActiveStatus('info');
+            setActiveStatus('map');
 
             /**
             * Handle object
