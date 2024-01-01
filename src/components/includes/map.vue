@@ -97,7 +97,6 @@ export default
             
             
             const  updateMarker = (marker)  =>  {
-                showDrag.value = false
                 emit('update-marker', JSON.parse(JSON.stringify(marker)));
             }
             
@@ -107,6 +106,7 @@ export default
                 newObject.longitude = event.latLng.lng()
                 newObject.address = await handlePositionToPlaceId(newObject.latitude, newObject.longitude);
 
+                showDrag.value = false
                 updateMarker(newObject);
             }
             
