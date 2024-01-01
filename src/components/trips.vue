@@ -32,7 +32,7 @@
                                     </div>
                                     <div  class="gap-2 py-2  justify-start items-start gap-2.5 inline-flex">
                                         
-                                        <div class="mb-2 px-3 py-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="handleAction('edit', trip)" >
+                                        <div class="mb-2 w-10 h-10 p-2 bg-primary rounded-full justify-center items-center flex cursor-pointer"  @click="handleAction('edit', trip)" >
                                             <div class="text-center text-xs text-white   uppercase tracking-tight "> <vue-feather class="w-5" type="edit"></vue-feather></div>
                                         </div>
                                    </div>
