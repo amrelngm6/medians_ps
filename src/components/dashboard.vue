@@ -269,6 +269,7 @@ export default
         'lang',
         'setting',
         'conf',
+        'path',
         'auth',
     ]
 };
