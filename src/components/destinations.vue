@@ -3,7 +3,7 @@
         <div class=" w-full">
 
             <main v-if="content && !showLoader" class="relative flex-1 overflow-x-hidden overflow-y-auto  w-full">
-                <maps :showroute="false" @update-marker="updateMarker" @click-marker="clickMarker" :setting="setting" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
+                <maps :showroute="false" @update-marker="updateMarker" @click-marker="clickMarker" :setting="setting" :draggable="true" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
                 <div :key="content.items" v-if="content.items" :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                     <div class="self-stretch py-4 flex-col justify-center items-start flex">
                         <div class="text-black text-lg font-semibold" v-text="translate('Destinations')"></div>
