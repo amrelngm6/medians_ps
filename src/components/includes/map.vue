@@ -42,8 +42,10 @@
 
                 <Marker
                 :options="{
-                    position:center
+                    position:center,
+                    draggable: true
                 }"
+                :draggable="true"
                 >
 
                 </Marker>
