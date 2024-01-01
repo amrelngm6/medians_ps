@@ -31,7 +31,7 @@
                         draggable: true
                     }"
                     :key="marker" 
-                    @click="checkMarker($this, index)"
+                    @click="checkMarker(marker, index)"
                     @drag="activeMarkerIndex = index" 
                     @dragend="updateMarker" >
                     <div style="text-align: center">
@@ -88,12 +88,12 @@ export default
                 // this.$emit('update-marker', props.waypoints[this.activeMarkerIndex], this.activeMarkerIndex, event);
             }
 
-            const  checkMarker = async (event, i ) =>  {
+            const  checkMarker = async (marker, i ) =>  {
                 console.log(i)
-                console.log(event)
+                console.log(marker)
                 console.log(flightPlanCoordinates)
                 activeMarkerIndex.value = i;
-                emit('click-marker', props.waypoints[i], i, event);
+                emit('click-marker', props.waypoints[i], i, marker);
             }
             
             const onMapReady = () =>
