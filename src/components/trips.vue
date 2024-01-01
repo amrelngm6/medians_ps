@@ -26,8 +26,8 @@
                                         <img :src="trip.driver.picture" class="w-10 h-10" />
                                         <div :class="trip.selected ? 'text-purple-600' : 'text-gray-800'" v-if="trip.driver.name" class="self-stretch text-base font-semibold  tracking-tight">
                                             <span  v-text="trip.driver.name" ></span>
-                                            <div class="self-stretch text-slate-500 text-base font-normal "> <i class="fa fa-car "></i><span v-if="trip.vehicle" class="font-semibold text-sm px-2" v-text="trip.vehicle.plate_number"></span></div>
-                                            <div class="self-stretch text-slate-500 text-sm text-muted "> <i class="fa fa-map-location "></i><span v-if="trip.route" class="font-semibold text-sm px-2" v-text="trip.route.route_name"></span></div>
+                                            <div class="self-stretch text-slate-500 text-base font-normal "><car_icon /><span v-if="trip.vehicle" class="font-semibold text-sm px-2" v-text="trip.vehicle.plate_number"></span></div>
+                                            <div class="self-stretch text-slate-500 text-sm text-muted "> <route_icon /><span v-if="trip.route" class="font-semibold text-sm px-2" v-text="trip.route.route_name"></span></div>
                                         </div>
                                     </div>
                                     <div  class="gap-2 py-2  justify-start items-start gap-2.5 inline-flex">
@@ -97,6 +97,8 @@
 <script>
 
 import delete_icon from '@/components/svgs/trash.vue';
+import car_icon from '@/components/svgs/car_icon.vue';
+import route_icon from '@/components/svgs/route.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
@@ -118,6 +120,8 @@ export default
         'datatabble': Vue3EasyDataTable,
         maps,
         delete_icon,
+        car_icon,
+        route_icon,
         trip_page,
     },
     name: 'Destinations',
