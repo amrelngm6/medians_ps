@@ -193,6 +193,7 @@ export default
             showMap.value = !showMap.value
             center.value = loc[0].destination;
             console.log(loc)
+            locations.value = loc;
             return loc;
         }
 
