@@ -26,7 +26,7 @@
                                         <img :src="trip.driver.picture" class="w-10 h-10" />
                                         <div :class="trip.selected ? 'text-purple-600' : 'text-gray-800'" v-if="trip.driver.name" class="self-stretch text-base font-semibold  tracking-tight">
                                             <span  v-text="trip.driver.name" ></span>
-                                            <div class="self-stretch text-slate-500 text-base font-normal flex"><car_icon class="w-8" /><span v-if="trip.vehicle" class="font-semibold text-sm px-2" v-text="trip.vehicle.plate_number"></span></div>
+                                            <div class="self-stretch text-slate-500 text-base font-normal flex"><car_icon class="w-8" /><span v-if="trip.vehicle" class="font-semibold text-sm p-2" v-text="trip.vehicle.plate_number"></span></div>
                                             <div class="self-stretch text-slate-500 text-sm text-muted "> <route_icon /><span v-if="trip.route" class="font-semibold text-sm px-2" v-text="trip.route.route_name"></span></div>
                                         </div>
                                     </div>
