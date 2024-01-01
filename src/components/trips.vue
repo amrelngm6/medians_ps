@@ -97,7 +97,7 @@
 <script>
 
 import delete_icon from '@/components/svgs/trash.vue';
-import car_icon from '@/components/svgs/car_icon.vue';
+import car_icon from '@/components/svgs/car.vue';
 import route_icon from '@/components/svgs/route.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
