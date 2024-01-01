@@ -135,9 +135,8 @@ export default
             emit('input', file);
         }
 
+        content.value = props.filepath;
         file.value = content.value;
-        
-        content;
 
         return {
 
