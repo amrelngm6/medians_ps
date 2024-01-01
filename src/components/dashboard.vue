@@ -215,20 +215,20 @@ export default
             column_options.value = columnOptions;
 
             // Line charts for sales in last days 
-            let lineOptions = JSON.parse(JSON.stringify(charts_options.value));
-            lineOptions.theme = 'light2'
-            lineOptions.axisY.suffix = ''
-            lineOptions.axisY.title = translate('Trips')
-            lineOptions.toolTip = {shared: true}
-            lineOptions.data[0] = {
-                type: "line",
-                color: '#003c58',
-                showInLegend: true,
-                yValueFormatString: "#,### "+translate('Trips'),
-                dataPoints: content.value.trips_charts
-            }
-            
-            line_options.value = lineOptions;
+            let lineOptions =  {
+                data: [
+                    { month: 'Jan', avgTemp: 2.3, iceCreamSales: 162000 },
+                    { month: 'Mar', avgTemp: 6.3, iceCreamSales: 302000 },
+                    { month: 'May', avgTemp: 16.2, iceCreamSales: 800000 },
+                    { month: 'Jul', avgTemp: 22.8, iceCreamSales: 1254000 },
+                    { month: 'Sep', avgTemp: 14.5, iceCreamSales: 950000 },
+                    { month: 'Nov', avgTemp: 8.9, iceCreamSales: 200000 },
+                ],
+                // Series: Defines which chart type and data to use
+                series: [{ type: 'bar', xKey: 'month', yKey: 'iceCreamSales' }],
+                
+            };
+
         }
 
 
