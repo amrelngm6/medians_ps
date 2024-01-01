@@ -13,7 +13,7 @@ export default defineConfig({
         
         entryFileNames: 'index.min.js',
         chunkFileNames: '[name]-[hash].min.js',
-        assetFileNames: '[name].[ext]',
+        assetFileNames: '[name].min.[ext]',
       },
     },
   },
