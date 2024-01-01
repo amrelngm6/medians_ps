@@ -2,12 +2,12 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
 
         <div  v-if="showTrip" class=" w-full relative">
-            <!-- <trip_page :conf="conf" @close="callback" :trip="activeItem"></trip_page> -->
+            <trip_page :conf="conf" @close="callback" :trip="activeItem"></trip_page>
         </div>    
             
         <div  v-if="content && !showTrip " class=" w-full relative">
 
-            <!-- <maps v-if="center" :conf="conf" :key="center" :center="center" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations" @interval-callback="callback"></maps> -->
+            <maps v-if="center" :conf="conf" :key="center" :setting="setting" :center="center" @click-marker="clickMarker" @update-marker="updateMarker" :showroute="false" :waypoints="locations" @interval-callback="callback"></maps>
 
             <div :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'"  class="mx-14 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
@@ -72,20 +72,50 @@
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6" >
-                    <!-- <data-table ref="devices_orders" @actionTriggered="handleAction" v-bind="bindings"/> -->
+                    
+                    <datatabble :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
+
+                        <template #item-picture="item">
+                            <img :src="item.picture" class="w-8 h-8 rounded-full" />
+                        </template>
+
+                        <template #item-edit="item">
+                            <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </template>
+                        <template #item-delete="item">
+                            <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-purple" @click="handleAction('delete', item)">
+                                <delete_icon class="w-4"/>
+                            </button>
+                        </template>
+                    </datatabble>
+
                 </div>
             </main>
         </div>
     </div>
 </template>
 <script>
-import dataTableSideActions from '@/components/includes/data-table-side-actions.vue';
-import {translate, handleGetRequest} from '@/utils.vue';
+
+import delete_icon from '@/components/svgs/trash.vue';
+
+import 'vue3-easy-data-table/dist/style.css';
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+
+import {defineAsyncComponent, ref} from 'vue';
+import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
+
+const maps = defineAsyncComponent(() =>
+  import('@/components/includes/map.vue')
+);
 
 export default 
 {
     components:{
-        dataTableSideActions,
+        'datatabble': Vue3EasyDataTable,
+        trip_page,
+        maps,
     },
     name:'Trips',
     data() {
