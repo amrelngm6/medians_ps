@@ -105,9 +105,9 @@ export default {
 
         
         return {
+            url,
             showAddSide,
             showEditSide,
-            url,
             content,
             activeItem,
             setActiveStatus,
