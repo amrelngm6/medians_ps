@@ -129,11 +129,11 @@ export default
         AgChartsVue,
     },
     name:'categories',
-
-    setup(props) {
+    emits: ['callback'],
+    setup(props, {emit}) {
 
         console.log(props.conf);
-        
+
         const url =  ref(props.path + '?load=json');
 
         const line_options = ref();
