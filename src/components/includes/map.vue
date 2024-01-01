@@ -1,6 +1,6 @@
 <template>
     <div class="w-full  overflow-auto" style="height: 85vh; z-index: 9999;">
-        <GoogleMap :api-key="settings.google_map_api" ref="gmap" :center="center" :key="reload" 
+        <GoogleMap :api-key="setting.google_map_api" ref="gmap" :center="center" :key="reload" 
             :options="{
                 zoomControl: true,
                 mapTypeControl: true,
@@ -99,13 +99,12 @@ export default
             return {
                 checkMarker,
                 updateMarker,
-                flightPath,
                 reload,
                 render,
                 travelMode,
                 origin: { lat: 0, lng: 0 }, // Replace with your origin location
                 destination: { lat: 0, lng: 0 }, // Replace with your destination location
-                settings: props.setting,
+                setting,
                 zoom,
                 markers: props.waypoints,
                 polylineCoordinates,
