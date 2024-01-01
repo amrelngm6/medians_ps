@@ -37,8 +37,7 @@
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_drivers_who_have_most_trips')"></p>
                         <div class="card-body w-full">
                             <div class="w-full">
-                        <ag-charts-vue :key="pie_options" :options="pie_options"> </ag-charts-vue>
-
+                                <ag-charts-vue :key="pie_options" :options="pie_options"> </ag-charts-vue>
                                 <!-- <ag-charts-vue ref="columns" :key="column_options" :options="column_options"> </ag-charts-vue> -->
                             </div>
                         </div>
@@ -222,7 +221,7 @@ export default
 
                 // Series: Defines which chart type and data to use
                 series: [
-                    { type: 'bar', xKey: 'first_name', yKey: 'y' },
+                    { type: 'pie', xKey: 'first_name', yKey: 'y' },
                 ],
             };
         }
