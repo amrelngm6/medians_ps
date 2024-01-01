@@ -206,8 +206,8 @@ export default
 
                 // Series: Defines which chart type and data to use
                 series: [
+                    { type: 'bar', xKey: 'label', yKey: 'y' },
                     { type: 'line', xKey: 'label', yKey: 'y' },
-                    { type: 'bar', xKey: 'label', yKey: 'y' }
                 ],
                 
             };
