@@ -98,7 +98,7 @@ export default
                 // props.waypoints[i].address = await this.handlePositionToPlaceId(props.waypoints[i].destination.lat, props.waypoints[i].destination.lng);
                 emit('click-marker', props.waypoints[i], i);
 
-                flightPlanCoordinates[activeMarkerIndex.value].address = await this.handlePositionToPlaceId(flightPlanCoordinates[activeMarkerIndex.value].destination.lat, flightPlanCoordinates[activeMarkerIndex.value].destination.lng);
+                flightPlanCoordinates[activeMarkerIndex.value].address = await handlePositionToPlaceId(flightPlanCoordinates[activeMarkerIndex.value].destination.lat, flightPlanCoordinates[activeMarkerIndex.value].destination.lng);
 
                 console.log(waypoints.value)
                 // props.showroute ?? calculateAndDisplayRoute()
@@ -144,7 +144,35 @@ export default
                 strokeWeight: 2,
             };
 
+            const handlePositionToPlaceId = async (lat, lng) => {
 
+                try {
+                    const place = await getPlaceIdFromPosition(lat, lng);
+                    console.log('Place ID:', place.formatted_address);
+                    return place.formatted_address;
+                    // Perform actions with the retrieved placeId
+                } catch (error) {
+                    console.error(error);
+                    // Handle error if geocoding fails
+                }
+            }
+
+            const getPlaceIdFromPosition = (lat, lng) => {
+ 
+                const geocoder = new google.maps.Geocoder();
+
+                const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+                return new Promise((resolve, reject) => {
+                    geocoder.geocode({ location: latLng }, (results, status) => {
+                    if (status === 'OK') {
+                        results[0] ? resolve(results[0]) : reject('No results found');
+                    } else {
+                        reject(`Geocoder failed due to: ${status}`);
+                    }
+                    });
+                });
+            },
             return {
                 checkMarker,
                 updateMarker,
@@ -262,34 +290,6 @@ export default
         //     },
 
 
-
-        //     async getPlaceIdFromPosition(lat, lng) {
-        //         const geocoder = new google.maps.Geocoder();
-
-        //         const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
-
-        //         return new Promise((resolve, reject) => {
-        //             geocoder.geocode({ location: latLng }, (results, status) => {
-        //             if (status === 'OK') {
-        //                 results[0] ? resolve(results[0]) : reject('No results found');
-        //             } else {
-        //                 reject(`Geocoder failed due to: ${status}`);
-        //             }
-        //             });
-        //         });
-        //     },
-        //     async handlePositionToPlaceId(lat, lng) {
-
-        //         try {
-        //             const place = await this.getPlaceIdFromPosition(lat, lng);
-        //             console.log('Place ID:', place.formatted_address);
-        //             return place.formatted_address;
-        //             // Perform actions with the retrieved placeId
-        //         } catch (error) {
-        //             console.error(error);
-        //             // Handle error if geocoding fails
-        //         }
-        //     },
 
         // }
     };
