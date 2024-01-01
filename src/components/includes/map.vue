@@ -40,6 +40,7 @@
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
+                    @dragend="updateMarker(marker, index)"
                     @click="checkMarker(marker, index)"
                     >
 
