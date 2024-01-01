@@ -77,7 +77,7 @@ export default
             type: String,
             required: false
         },
-        fieldname: {
+        filepath: {
             type: Object|String,
             required: false,
             default: () => ({
@@ -133,7 +133,7 @@ export default
                 emit('input', file);
             }
 
-            content.value = props.fieldname ? props.fieldname : null;
+            content.value = props.filepath ? props.filepath : null;
             file.value = content.value;
 
             return {
