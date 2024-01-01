@@ -20,7 +20,7 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('help_messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
                     <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts && content.trips_charts.length">
-                        <!-- <CanvasJSChart v-if="showCharts && content.trips_charts.length" :key="line_options" :options="line_options"/> -->
+                        <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
                     </div>
                     <div class="row mt-6">
                         <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-success" :title="__('Vehciles')" :value="content.vehicles_count"></dashboard_card>
@@ -36,7 +36,7 @@
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_drivers_who_have_most_trips')"></p>
                         <div class="card-body w-full">
                             <div class="w-full">
-                                <!-- <CanvasJSChart v-if="showCharts && content.top_drivers && content.top_drivers.length" :key="column_options" :options="column_options"/> -->
+                                <ag-charts-vue :key="column_options" :options="column_options"> </ag-charts-vue>
                             </div>
                         </div>
                     </div>
@@ -116,12 +116,15 @@ import dashboard_card_white from '@/components/includes/dashboard_card_white.vue
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest} from '@/utils.vue';
 
+import { AgChartsVue } from 'ag-charts-vue3';
+
 export default 
 {
     components:{
         dashboard_center_squares,
         dashboard_card_white,
         dashboard_card,
+        AgChartsVue,
         // medians_datepicker,
     },
     name:'categories',
