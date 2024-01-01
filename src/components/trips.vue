@@ -1,7 +1,7 @@
 <template>
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
 
-        <div  v-if="showTrip" class=" w-full relative">
+        <div  v-if="showTrip" :key="showTrip" class=" w-full relative">
             <trip_page :conf="conf" @close="callback" :trip="activeItem"></trip_page>
         </div>    
             
@@ -268,7 +268,7 @@ export default
                     break;
 
                 case 'edit':
-                    activeItem.value = data
+                    editFields(data, true);
                     break;
 
                 case 'delete':
