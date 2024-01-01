@@ -121,8 +121,6 @@ export default
         maps,
         delete_icon,
         trip_page,
-        car_icon,
-        route_icon,
     },
     name: 'Destinations',
     
