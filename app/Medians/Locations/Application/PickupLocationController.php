@@ -53,6 +53,8 @@ class PickupLocationController extends CustomController
             [ 'value'=> "latitude", 'text'=> __('latitude'), 'sortable'=> true ],
             [ 'value'=> "longitude", 'text'=> __('longitude'), 'sortable'=> true ],
             [ 'value'=> "status_text", 'text'=> __('Status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> __('Edit') ],
+            [ 'value'=> "delete", 'text'=> __('delete') ],
         ];
 	}
 
