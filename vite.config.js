@@ -7,7 +7,13 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // https://vitejs.dev/config/
 export default defineConfig({
   root: './src',
-
+  rollupOptions: {
+    output: {
+      entryFileNames: 'index.min.js',
+      chunkFileNames: '[name]-[hash].min.js',
+      assetFileNames: '[name]-[hash].[ext]',
+    },
+  },
   base: '/dist',
   plugins: [
     vue(),
