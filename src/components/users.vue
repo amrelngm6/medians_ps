@@ -110,11 +110,9 @@ export default {
             url,
             content,
             activeItem,
-            showProfilePage,
             setActiveStatus,
             closeSide,
             translate,
-            handleAction
         };
     },
 
