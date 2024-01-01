@@ -249,6 +249,8 @@ export default
                 activeStatus.value = newstatus;
             }
 
+            setActiveStatus('info');
+            
             /**
             * Handle object
             * @param {Model Object} i 
