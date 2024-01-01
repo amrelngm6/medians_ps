@@ -212,7 +212,8 @@ export default
             translate
             
         },
-        setup(props) {
+        emits: ['close'],
+        setup(props, {emit}) {
             
     
             const url =  props.conf.url+props.path+'?load=json';
@@ -281,12 +282,17 @@ export default
             
             setLocations();
 
+            const close = () => {
+                emit('close')
+            }
+
             return {
                 url,
                 locations,
                 center,
                 activeItem,
                 activeStatus,
+                close,
                 setActiveStatus,
                 loadmore,
                 handlePickup,
