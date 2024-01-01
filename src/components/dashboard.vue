@@ -199,16 +199,16 @@ export default
             pie_options.value = JSON.parse(JSON.stringify(charts_options.value));
             pie_options.value.data[0] = {
                 type: "pie",
-                yValueFormatString: "#,### "+this.translate('booking'),
-                dataPoints: this.content.most_played_games
+                yValueFormatString: "#,### "+translate('Students'),
+                dataPoints: content.value.latest_students
             }
             
             // Column charts for most played on devices
             let columnOptions = JSON.parse(JSON.stringify(charts_options.value));
-            columnOptions.axisY.title = this.translate('Trips count')
+            columnOptions.axisY.title = translate('Trips count')
             columnOptions.data[0] = {
                 type: "column",
-                yValueFormatString: "#,### "+this.translate('Trips count'),
+                yValueFormatString: "#,### "+translate('Trips count'),
                 dataPoints: content.value.top_drivers
             }
 
@@ -218,13 +218,13 @@ export default
             let lineOptions = JSON.parse(JSON.stringify(charts_options.value));
             lineOptions.theme = 'light2'
             lineOptions.axisY.suffix = ''
-            lineOptions.axisY.title = this.translate('Trips')
+            lineOptions.axisY.title = translate('Trips')
             lineOptions.toolTip = {shared: true}
             lineOptions.data[0] = {
                 type: "line",
                 color: '#003c58',
                 showInLegend: true,
-                yValueFormatString: "#,### "+this.translate('Trips'),
+                yValueFormatString: "#,### "+translate('Trips'),
                 dataPoints: content.value.trips_charts
             }
             
