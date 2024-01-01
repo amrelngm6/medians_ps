@@ -34,7 +34,7 @@
                     @drag="activeMarkerIndex = index" 
                     @dragend="updateMarker" >
                     <div style="text-align: center">
-                        <img :src="marker.icon" width="50" height="50" style="margin-top: 8px" />
+                        <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
                     </div>
                     <InfoWindow v-model="infowindow">
         <div id="content">
