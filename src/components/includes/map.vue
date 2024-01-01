@@ -92,12 +92,16 @@ export default
                 // this.$emit('update-marker', props.waypoints[this.activeMarkerIndex], this.activeMarkerIndex, event);
             }
 
-            const  checkMarker = (i) =>  {
+            const  checkMarker = async (i) =>  {
                 console.log(i)
                 // this.activeDestination = props.waypoints[i].destination;
                 // props.waypoints[i].address = await this.handlePositionToPlaceId(props.waypoints[i].destination.lat, props.waypoints[i].destination.lng);
                 emit('click-marker', props.waypoints[i], i);
-                props.showroute ?? calculateAndDisplayRoute()
+
+                waypoints.value[activeMarkerIndex.value].address = await this.handlePositionToPlaceId(waypoints.value[activeMarkerIndex.value].destination.lat, waypoints.value[activeMarkerIndex.value].destination.lng);
+
+                console.log(waypoints.value)
+                // props.showroute ?? calculateAndDisplayRoute()
             }
             
             const onMapReady = () =>
