@@ -15,25 +15,28 @@
                             <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span class="pt-2 text-sm text-muted" v-text="role.id > 1 ? translate('Theese users can manage your account only') : ''"></span></h3>
                             <hr />
                             <div class="w-full grid lg:grid-cols-3 gap gap-6">
-                                <div v-for="user in content.users" class="mb-2 rounded-lg flex items-center space-x-4 gap gap-4  bg-white p-4 "  v-if="user &&  sameRole(user, role)" >
-                                    <div class="flex-shrink-0 ">
-                                        <div class="relative">
-                                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                            <img class="relative w-12 h-12 rounded-full" :src="user.photo" alt="User avatar">
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow w-full">
-                                        <div class="text-lg font-medium text-gray-900">{{user.first_name}} {{user.last_name}}</div>
-                                        <div class="text-sm font-medium text-gray-500" v-text="user.phone"></div>
-                                        <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(user)">
-                                            <span :class="!user.active ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: user.active ? '16px' : 0}"></a></span>
-                                            <span  v-text="user.active ? translate('Active') : translate('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
-                                        </div>
 
-                                        <span  v-text="translate('edit')" class="hover:bg-purple-800 hover:text-gray-100 my-2 inline-flex items-center px-6  py-1 rounded-full text-xs pb-2 font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user"></span>
+                                <div v-for="user in content.users" class="mb-2 rounded-lg   bg-white p-4 "   >
+                                    <div v-for="user in content.users" class="flex items-center space-x-4 gap gap-4 "   >
+                                        <div class="flex-shrink-0 ">
+                                            <div class="relative">
+                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                                                <img class="relative w-12 h-12 rounded-full" :src="user.photo" alt="User avatar">
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow w-full">
+                                            <div class="text-lg font-medium text-gray-900">{{user.first_name}} {{user.last_name}}</div>
+                                            <div class="text-sm font-medium text-gray-500" v-text="user.phone"></div>
+                                            <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(user)">
+                                                <span :class="!user.active ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: user.active ? '16px' : 0}"></a></span>
+                                                <span  v-text="user.active ? translate('Active') : translate('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                                            </div>
+
+                                            <span  v-text="translate('edit')" class="hover:bg-purple-800 hover:text-gray-100 my-2 inline-flex items-center px-6  py-1 rounded-full text-xs pb-2 font-medium bg-blue-100 text-blue-800 cursor-pointer" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
