@@ -1,6 +1,6 @@
 <template>
     <div class="w-full  overflow-auto" style="height: 85vh; z-index: 9999;">
-        <GoogleMap :api-key="setting.google_map_api" ref="trip_map" :center="center" :key="reload" 
+        <GoogleMap :api-key="setting.google_map_api" ref="trip_map" :center="center" :key="center" 
             :options="{
                 zoomControl: true,
                 mapTypeControl: true,
