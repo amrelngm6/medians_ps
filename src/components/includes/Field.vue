@@ -102,52 +102,52 @@ export default
         }
     },
 
-        setup(props) 
+    setup(props) 
+    {
+
+        console.log(props.filepath)
+
+        const showManager = ref();
+        const file = ref();
+        const content = ref();
+
+        const showLibrary = () => 
         {
+            showManager.value = !showManager.value;
+        }
 
-            console.log(props.filepath)
+        const insert = (value) => {
 
-            const showManager = ref();
-            const file = ref();
-            const content = ref();
+            showManager.value = false;
+            
+            file.value = value.file_name;
+            content.value = value.file_name;
 
-            const showLibrary = () => {
-            {
-                showManager.value = !showManager.value;
-            }
+            change();
+        }
 
-            const insert = (value) => {
+        const clear = () => {
+            content = file = null;
+            emit('input', null);
+        }
 
-                showManager.value = false;
-                
-                file.value = value.file_name;
-                content.value = value.file_name;
+        const change = () => {
+            emit('input', file);
+        }
 
-                change();
-            }
+        file.value = content.value;
+        
+        content;
 
-            const clear = () => {
-                content = file = null;
-                emit('input', null);
-            }
+        return {
 
-            const change = () => {
-                emit('input', file);
-            }
-
-            content.value = props.filepath ? props.filepath : null;
-            file.value = content.value;
-
-            return {
-
-                insert,
-                clear,
-                change,
-                showLibrary,
-                showManager,
-                file,
-                content,
-            };
+            insert,
+            clear,
+            change,
+            showLibrary,
+            showManager,
+            file,
+            content,
         }
     },
     
