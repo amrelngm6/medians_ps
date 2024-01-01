@@ -6,7 +6,7 @@
             
             <div class="w-full relative">
                 <navbar v-if="auth" style="z-index: 9999;" :setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
-                <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><i class="fa fa-bars"></i></a>
+                <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><vue-feather type="menu"></vue-feather></a>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden pt-6 px-4 bg-white ">
                     <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999"></side-menu>
 

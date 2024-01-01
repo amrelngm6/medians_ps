@@ -10,7 +10,6 @@ export default defineConfig({
     outDir: '../dist/assets',
     rollupOptions: {
       output: {
-        
         entryFileNames: 'index.min.js',
         chunkFileNames: '[name]-[hash].min.js',
         assetFileNames: '[name].min.[ext]',

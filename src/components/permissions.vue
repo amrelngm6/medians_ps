@@ -6,7 +6,7 @@
                     <div class="text-center pb-4" >
                         <h4 class="mb-6 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
                         <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
-                            ><i class="fa fa-close px-2"></i> <span v-text="translate('Back')"></span></button>
+                            ><vue-feather class="px-2" type="x-circle"></vue-feather> <span v-text="translate('Back')"></span></button>
                     </div>
                     <hr class="mt-5 dark:border-gray-600">
                 </div> <!-- end card -->
