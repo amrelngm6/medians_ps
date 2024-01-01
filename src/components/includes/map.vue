@@ -98,7 +98,7 @@ export default
                 // props.waypoints[i].address = await this.handlePositionToPlaceId(props.waypoints[i].destination.lat, props.waypoints[i].destination.lng);
                 emit('click-marker', props.waypoints[i], i);
 
-                waypoints[activeMarkerIndex.value].address = await this.handlePositionToPlaceId(waypoints[activeMarkerIndex.value].destination.lat, waypoints[activeMarkerIndex.value].destination.lng);
+                flightPlanCoordinates[activeMarkerIndex.value].address = await this.handlePositionToPlaceId(flightPlanCoordinates[activeMarkerIndex.value].destination.lat, flightPlanCoordinates[activeMarkerIndex.value].destination.lng);
 
                 console.log(waypoints.value)
                 // props.showroute ?? calculateAndDisplayRoute()
@@ -130,22 +130,14 @@ export default
             const markerOptions = { position: props.center, label: "L", title: "LADY LIBERTY" };
             
                     
-            const flightPlanCoordinates = [];
+            const flightPlanCoordinates = ref([]);
 
-            // () => {
-            //     return [
-            //         { lat: 37.772, lng: -122.214 },
-            //         { lat: 21.291, lng: -157.821 },
-            //         { lat: -18.142, lng: 178.431 },
-            //         { lat: -27.467, lng: 153.027 },
-            //     ]};
-            
             for (let i = 0; i < props.waypoints.length; i++) {
-                flightPlanCoordinates[i] = props.waypoints[i].destination;
+                flightPlanCoordinates.value[i] = props.waypoints[i].destination;
             }
 
             const flightPath = {
-                path: flightPlanCoordinates,
+                path: flightPlanCoordinates.value,
                 geodesic: true,
                 strokeColor: "#FF0000",
                 strokeOpacity: 1.0,
@@ -299,10 +291,6 @@ export default
         //         }
         //     },
 
-                
-        //     __(i) {
-        //         return this.$root.$children[0].__(i);
-        //     }
         // }
     };
 </script>
