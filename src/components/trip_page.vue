@@ -181,9 +181,6 @@
                     <trip_map :key="trip" 
                         :trip="trip" 
                         :conf="conf"
-                        :showroute="true" 
-                        @click-marker="clickMarker" 
-                        @update-marker="updateMarker" 
                         @interval-callback="callback"></trip_map>
 
                 </p>
