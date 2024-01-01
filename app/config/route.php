@@ -33,7 +33,7 @@ RouteHandler::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@s
  * Authentication
  */
 RouteHandler::get('/', \Medians\Auth\Application\AuthService::class.'@loginPage');
-RouteHandler::get('', \Medians\Auth\Application\AuthService::class.'@loginPage');
+RouteHandler::get(null, \Medians\Auth\Application\AuthService::class.'@loginPage');
 RouteHandler::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 RouteHandler::get('/signup', \Medians\Auth\Application\AuthService::class.'@signup');
 
