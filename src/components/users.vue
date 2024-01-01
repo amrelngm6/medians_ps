@@ -107,8 +107,6 @@ export default {
         
         const sameRole = (user, role) => 
         {
-            console.log(user)
-            console.log(role)
             if (user.role_id == role.role_id)
             {
                 return true 
