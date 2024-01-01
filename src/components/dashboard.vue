@@ -177,7 +177,7 @@ export default
             activeDate.value = start;
 
             // Load new data
-            load(url.value + filters); 
+            load(url + filters); 
         }
 
         switchDate('today');
