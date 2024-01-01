@@ -39,9 +39,8 @@
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
-                    @dragstart="onMarkerDragStart(marker, index)"
+                    @dragstart="onMarkerDragStart(index)"
                     @dragend="checkMarkers"
-                    @click="checkMarkerDraggable(marker, index)"
                     >
 
                 </Marker>
@@ -111,14 +110,6 @@ export default
             }
             
             
-            const  checkMarkerDraggable =  (event) =>  {
-                console.log('click dragged ')
-                console.log(event)
-
-            }
-            
-                    
-
             const  getPlaceIdFromPosition = async (lat, lng) => {
                 const geocoder = new google.maps.Geocoder();
 
@@ -139,7 +130,6 @@ export default
 
                 try {
                     const place = await getPlaceIdFromPosition(lat, lng);
-                    console.log('Place ID:', place.formatted_address);
                     return place.formatted_address;
                     // Perform actions with the retrieved placeId
                 } catch (error) {
@@ -148,8 +138,7 @@ export default
                 }
             }
             
-            const  onMarkerDragStart =  (event, i) =>  {
-                console.log('Start drag ')
+            const  onMarkerDragStart =  (i) =>  {
                 activeMarkerIndex.value = i
             }
             
@@ -157,7 +146,6 @@ export default
             return {
                 checkMarker,
                 checkMarkers,
-                checkMarkerDraggable,
                 onMarkerDragStart,
                 enableDrag,
                 updateMarker,
