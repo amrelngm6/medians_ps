@@ -235,7 +235,7 @@ export default
             let lineOptions =  {
                 data: content.value.trips_charts,
                 // Series: Defines which chart type and data to use
-                series: [{ type: 'bar', xKey: 'month', yKey: 'iceCreamSales' }],
+                series: [{ type: 'bar', xKey: 'label', yKey: 'y' }],
                 
             };
             console.log(lineOptions)
