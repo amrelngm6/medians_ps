@@ -126,7 +126,6 @@ export default
         dashboard_card_white,
         dashboard_card,
         AgChartsVue,
-        translate,
         // medians_datepicker,
     },
     name:'categories',
