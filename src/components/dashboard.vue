@@ -21,7 +21,7 @@
                     </div>
                     
                     <div class="w-full bg-white p-4 mb-4 rounded-lg">
-                        <ag-charts-vue :options="optionsbar"> </ag-charts-vue>
+                        <ag-charts-vue :options="line_options"> </ag-charts-vue>
                         <ag-charts-vue :options="optionsbar"> </ag-charts-vue>
                     </div>
                     <div class="row mt-6">
@@ -155,6 +155,7 @@ export default
         
         const load = (url) =>
         {
+            console.log(url)
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response)); 
                 // setCharts(response)
