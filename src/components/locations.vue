@@ -156,7 +156,9 @@ export default
                 content.value.items[a].selected = false;
                 
             content.value.items[i].selected = true; 
-            locations.value = [handleObject(pickupLocation)];
+            let newObject = handleObject(pickupLocation);
+            locations.value = [newObject];
+            center.value = newObject.destination;
         }
 
         /**
