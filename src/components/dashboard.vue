@@ -20,7 +20,7 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('help_messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
                     
-                    <div class="w-full bg-white p-4 mb-4 rounded-lg">
+                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
                         <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
                     </div>
                     <div class="row mt-6">
