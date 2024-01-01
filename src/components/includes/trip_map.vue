@@ -55,7 +55,7 @@ export default
         console.log(props.center);
 
 
-        const zoom = ref(1);
+        const zoom = ref(5);
              
         return {
             zoom,
