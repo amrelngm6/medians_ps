@@ -247,7 +247,7 @@ export default
                 
                     for (let i = 0; i < props.trip.destinations.length; i++) {
                         icon2 = (props.props.trip.destinations[i] && trip.destinations[i].status != 'waiting')  ? 'yellow_pin.gif' : 'blue_pin.gif';
-                        props.trip.destinations[i] ?? locationsList.push(handlePickup(props.trip.destinations[i], props.trip.pickup_locations[i], icon2));
+                        props.trip.destinations[i] ?? locationsList.push(handlePickup(props.trip.destinations[i], props.trip.destinations[i], icon2));
                     }
                 }
 
