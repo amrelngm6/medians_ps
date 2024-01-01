@@ -235,6 +235,8 @@ export default
                 center.value = locationsList[0];
 
                 let icon1, icon2;
+                console.log(props.trip)
+                
                 for (let i = 0; i < props.trip.pickup_locations.length; i++) {
                     icon1 = props.trip.pickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
                     icon2 = props.tripdestinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
