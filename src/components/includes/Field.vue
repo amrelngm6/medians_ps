@@ -56,9 +56,8 @@
 
 <script>
 import {ref} from 'vue';
-import Loader from './Loader.vue';
-import Manager from './Manager.vue';
-import axios from 'axios';
+import Loader from '@/components/includes/Loader.vue';
+import Manager from '@/components/includes/Manager.vue';
 
 export default 
 {
