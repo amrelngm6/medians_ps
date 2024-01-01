@@ -2,7 +2,7 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div  v-if="content " class=" w-full relative">
 
-            <maps v-if="center" :conf="conf" :setting="setting" :key="center" :center="center" @update-marker="updateMarker" @click-marker="clickMarker" :waypoints="waypoints" :showroute="false"></maps>
+            <maps v-if="center" :conf="conf" :setting="setting" :key="center" :center="center"  @click-marker="clickMarker" :waypoints="waypoints" :showroute="false"></maps>
 
             <div :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4   bg-white rounded-xl flex-col justify-start items-start inline-flex">
                 <div class="self-stretch py-4 flex-col justify-center items-start flex">
@@ -67,7 +67,14 @@
                         </template>
 
                         <template #item-pickup_locations="item">
-                            <img v-for="pickup in item.pickup_locations" :src="item.picture" class="w-8 h-8 rounded-full" />
+                            
+                            <div class="w-full h-8 relative flex">
+                                <div  v-for="(location, i) in item.pickup_locations" :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
+                                    <img v-if="i < 3" :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
+                                </div>
+                                <span class="flex absolute pt-2" :style="'left: '+((20 * (item.pickup_locations.length < 3 ? item.pickup_locations.length : 3) ) + 20)+'px'"> <route_icon /><span class="font-semibold  px-1" v-if="item.pickup_locations" v-text="item.pickup_locations.length"></span></span>
+                            </div>
+                            
                         </template>
 
                         <template #item-edit="item">
@@ -94,6 +101,7 @@
 <script>
 
 import delete_icon from '@/components/svgs/trash.vue';
+import route_icon from '@/components/svgs/route.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
@@ -121,6 +129,7 @@ export default
         SideFormUpdate,
         maps,
         delete_icon,
+        route_icon,
     },
     name:'Students',
     setup(props) {
@@ -208,26 +217,28 @@ export default
         
         const updateMarker = (item, index, event) =>
         {
-            activeItem.value.latitude = event.latLng.lat();
-            activeItem.value.longitude = event.latLng.lng();
-            handleAction('edit', activeItem.value);
         } 
 
         const clickMarker = (item, index, event) =>
         {
-            activeItem.value.latitude = event.latLng.lat();
-            activeItem.value.longitude = event.latLng.lng();
-            handleAction('edit', activeItem.value);
+            console.log(item)
+            console.log(index)
+            console.log(event)
+            // activeItem.value.latitude = event.latLng.lat();
+            // activeItem.value.longitude = event.latLng.lng();
+            // handleAction('edit', activeItem.value);
         }
 
         const setLocationsPickups = (route) => 
         {
             let a;
             let locations_ = [];
+            let blueIcon = props.conf.url+'uploads/images/blue_pin.gif';
             // = parseFloat(location.latitude);
             for (let i = 0; i < route.pickup_locations.length; i++) {
                 a = route.pickup_locations[i];
-                locations_[i] = {icon: props.conf.url+'uploads/images/blue_pin.gif', origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+                let icon = (route.pickup_locations[i].student && route.pickup_locations[i].student.picture) ? ( props.conf.url+route.pickup_locations[i].student.picture ) : blueIcon; 
+                locations_[i] = {title: route.pickup_locations[i].student_name, icon:  icon, origin: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
             }
             locations_[locations_.length] = {icon: props.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) }, destination: { lat: parseFloat(route.vehicle.last_latitude), lng: parseFloat(route.vehicle.last_longitude) } }
             center.value = locations_[0].destination;

@@ -11,8 +11,10 @@
             }"
             
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
+            
+            <Polyline v-if="showroute" :options="flightPath" />
 
-<!--             
+            <!--             
             <DirectionsRenderer 
                 v-if="showroute && directionPoints"
                 :destination="directionPoints.destination" 
@@ -20,18 +22,26 @@
                 :key="directionPoints" 
                 :travelMode="travelMode" 
                  /> -->
-                 
-            <Marker
-                v-for="(marker, index) in markers" 
-                :key="waypoints" 
-                :position="marker.destination"
-                :clickable="true" 
-                :draggable="marker.drag ? true : false" 
-                :icon="marker.icon ? marker.icon : null" 
-                @click="checkMarker(index)"
-                @drag="activeMarkerIndex = index" 
-                @dragend="updateMarker" >
-                </Marker>
+
+                <CustomMarker
+                    v-for="(marker, index) in waypoints" 
+
+                    :options="{
+                        position: marker.destination,
+                    }"
+                    :key="marker" 
+                    @click="checkMarker(index)"
+                    @drag="activeMarkerIndex = index" 
+                    @dragend="updateMarker" >
+                    <div style="text-align: center">
+                        <img :src="marker.icon" width="50" height="50" style="margin-top: 8px" />
+                    </div>
+                    <InfoWindow v-model="infowindow">
+        <div id="content">
+          {{marker.title}}
+        </div>
+      </InfoWindow>
+                </CustomMarker>
 
         </GoogleMap>
     </div>
@@ -39,19 +49,27 @@
 <script>
 // import DirectionsRenderer from "./map_direction.vue";
 import { ref } from "vue";
-import { GoogleMap, Marker } from "vue3-google-map";
+import { GoogleMap,  CustomMarker, InfoWindow , Marker,Polyline } from "vue3-google-map";
 
 export default
     {
         components: {
             GoogleMap, 
             Marker,
+            Polyline,
+            InfoWindow,
+            CustomMarker 
             // DirectionsRenderer,
         },
         name: 'Map',
-        setup(props) 
+        emits:[
+            'click-marker',
+            'update-marker',
+        ],
+        setup(props, {emit}) 
         {
             console.log(props.waypoints);
+
 
             const reload = ref(null);
             const render = ref(null);
@@ -61,6 +79,7 @@ export default
             const polylineCoordinates = ref([]);
             const directionPoints = ref({});
             const activeDestination = ref({});
+            const activeMarkerIndex = ref({});
             
             function updateMarker  (event)  
             {
@@ -74,10 +93,11 @@ export default
             }
 
             const  checkMarker = (i) =>  {
+                console.log(i)
                 // this.activeDestination = props.waypoints[i].destination;
                 // props.waypoints[i].address = await this.handlePositionToPlaceId(props.waypoints[i].destination.lat, props.waypoints[i].destination.lng);
-                // this.$emit('click-marker', props.waypoints[i], i);
-                // this.calculateAndDisplayRoute()
+                emit('click-marker', props.waypoints[i], i);
+                props.showroute ?? calculateAndDisplayRoute()
             }
             
             const onMapReady = () =>
@@ -103,9 +123,38 @@ export default
                 }, 2000);
             }
 
+            const markerOptions = { position: props.center, label: "L", title: "LADY LIBERTY" };
+            
+                    
+            const flightPlanCoordinates = [];
+
+            // () => {
+            //     return [
+            //         { lat: 37.772, lng: -122.214 },
+            //         { lat: 21.291, lng: -157.821 },
+            //         { lat: -18.142, lng: 178.431 },
+            //         { lat: -27.467, lng: 153.027 },
+            //     ]};
+            
+            for (let i = 0; i < props.waypoints.length; i++) {
+                flightPlanCoordinates[i] = props.waypoints[i].destination;
+            }
+            console.log(flightPlanCoordinates);
+
+            const flightPath = {
+                path: flightPlanCoordinates,
+                geodesic: true,
+                strokeColor: "#FF0000",
+                strokeOpacity: 1.0,
+                strokeWeight: 2,
+            };
+
+
             return {
                 checkMarker,
                 updateMarker,
+                markerOptions,
+                flightPath,
                 reload,
                 render,
                 travelMode,
@@ -115,6 +164,7 @@ export default
                 zoom,
                 markers: props.waypoints,
                 polylineCoordinates,
+                activeMarkerIndex,
                 directionPoints,
                 activeDestination,
             }
