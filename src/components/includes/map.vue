@@ -27,10 +27,11 @@
                     v-for="(marker, index) in waypoints" 
 
                     :options="{
+                        draggable: true,
                         position: marker.destination,
-                        draggable: true
                     }"
                     :key="marker" 
+                    :draggable="true"
                     @click="checkMarker(marker, index)"
                     @drag="activeMarkerIndex = index" 
                     @dragend="updateMarker" >
