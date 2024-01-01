@@ -19,7 +19,7 @@
                 </div>
                 <div :key="collapsed" v-if="content.items" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
                     <div v-if="!collapsed" v-for="(trip, index) in content.items" :key="trip.active" class="w-full">
-                        <div  v-if="showList  && trip.active  && trip.trip_status == 'Scheduled'" :class="trip.selected ? 'text-gray-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
+                        <div  v-if="trip.active  && trip.trip_status == 'Scheduled'" :class="trip.selected ? 'text-gray-600' : 'bg-gray-50'"  class="mb-4 w-full  rounded-lg justify-start items-center inline-flex">
                             <div  class="w-full grow shrink basis-0 px-6 py-4 flex-col justify-center items-start gap-4 inline-flex" v-if="trip.vehicle">
                                 <div class="w-full self-stretch justify-start items-start inline-flex cursor-pointer">
                                     <div @click="setLocationsMarkers(trip, index)"  class="w-full grow shrink basis-0 justify-start items-start flex gap-4">
@@ -114,182 +114,130 @@ const trip_page = defineAsyncComponent(() =>
   import('@/components/trip_page.vue')
 );
 
-export default 
+export default
 {
-    components:{
+    components: {
         'datatabble': Vue3EasyDataTable,
-        trip_page,
-        translate,
+        SideFormCreate,
+        SideFormUpdate,
         maps,
+        delete_icon,
+        car_icon,
+        route_icon,
     },
-    name:'Trips',
-    data() {
-        return {
-            url: this.conf.url+this.path+'?load=json',
-            content: {
-                title: '',
-                items: [],
-                columns: [],
-            },
+    name: 'Destinations',
+    
+    setup(props) {
 
-            activeItem:{},
-            center:{lat:31, lng:30},
-            activeTrip:null,
-            showAddSide:false,
-            showEditSide:false,
-            showLoader: true,
-            locations: [],
-            showList: true,
-            showMap: true,
-            showTrip: false,
-            collapsed: false,
-            searchText: '',
+        const url =  props.conf.url+props.path+'?load=json';
+
+        const showAddSide = ref(false);
+        const showEditSide = ref(false);
+        const showProfilePage = ref(null);
+        const activeItem = ref({});
+        const content = ref({});
+        const center = ref({});
+        const locations =  ref([]);
+        const showList =  ref(true);
+        const searchText =  ref('');
+        const locationError =  ref(null);
+        const collapsed =  ref(false);
+
+        const closeSide = () => {
+            showAddSide.value = false;
+            showEditSide.value = false;
         }
-    },
 
-    computed: {
-        bindings() {
 
-            this.content.columns.push({
-                    key: this.__("actions"),
-                    component: dataTableSideActions,
-                    sortable: false,
-                });
-
-            return {
-
-                columns: this.content.columns,
-                fillable: this.content.fillable,
-                data: this.content.items
-            }
+        const load = () => {
+            handleGetRequest( url ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+                setAllLocations(content.value.items);
+                searchTextChanged();
+            });
         }
-    },
-    props: [
-        'path',
-        'lang',
-        'setting',
-        'conf',
-        'auth',
-    ],
-    mounted() 
-    {
-        this.load()
-        this.getUserLocation()
-        setInterval(() => {
-            // this.load()
-        }, 10000);
-    },
-
-    methods: 
-    {
         
+        load();
+
+        const setAllLocations = (items) =>
+        {
+            let array = [];
+            for (let i = 0; i < items.length; i++) {
+                array[i] = handleObject(items[i]);
+            }
+            locations.value = array;
+        } 
+
+        const setLocationsMarkers = (destination, i) => 
+        {
+            activeItem.value = destination;
+
+            for (let a = 0; a < content.value.items.length; a++) 
+                content.value.items[a].selected = false;
+                
+            content.value.items[i].selected = true; 
+            let newObject = handleObject(destination);
+            locations.value = [newObject];
+            center.value = newObject.destination;
+        }
+
         /**
          * Get current location
          */
-        getUserLocation() 
+         const getUserLocation = async () => 
         {
-            if (navigator.geolocation) {
 
-                navigator.geolocation.getCurrentPosition(
+            if (navigator.geolocation) {
+                console.log('position 1')
+                 navigator.geolocation.getCurrentPosition(
                     position => {
-                        this.center.lat = position.coords.latitude;
-                        this.center.lng = position.coords.longitude;
+                        center.value = {lat: position.coords.latitude, lng: position.coords.longitude};
                     },
                     error => {
-                        this.locationError = "Error: " + error.message;
+                        showAlert(error.message, 5000)
+
                     }
                 );
-            } else {
-                this.locationError = "Geolocation is not supported by this browser.";
             }
-        },
-            
-        editFields(data, show = true)
-        {
-            this.showTrip = show;
-            this.activeItem = data
-        },
-        callback()
-        {
-            this.editFields(null, false)
-            this.showTrip = false;
-        },
-        filterLocations(locations, status)
-        {
-            let data = [];
-            
-            for (let i = 0; i < locations.length; i++) {
-                if (locations[i].status == status)
-                {
-                    data.push(locations[i]);
-                }
-            }
+        }
+        
+        getUserLocation();
 
-            return data;
-        },
-
-        searchTextChanged()
-        {
-            this.showList = false;
-            if (this.activeTrip && this.content && this.content.items)
-            {
-                for (let i = 0; i < this.content.items.length; i++) {
-                    this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
-                }
-            }
-
-            this.showList = true;
-        },
-
-        checkSimilar(item)
-        {
-            let a = (item.driver.name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
-            return a ? a : ((item.vehicle.plate_number).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
-        },
-        setLocationsMarkers(trip, i)
+        const searchTextChanged = () =>
         {   
-
-            for (let a = 0; a < this.content.items.length; a++) 
-                this.content.items[a].selected = false;
-                
-            this.content.items[i].selected = true; 
-            this.locations = this.setLocationsPickups(trip);
-        },  
-        
-        clickMarker(item, event)
-        {
-            
-        },
-
-        updateMarker(item, event)
-        {
-            var params = new URLSearchParams();
-            params.append('type', 'Vehicle.update')
-            params.append('params[vehicle_id]', this.activeTrip.vehicle_id)
-            params.append('params[last_latitude]', item.destination.lat)
-            params.append('params[last_longitude]', item.destination.lng)
-            handleRequest(params, '/api/update').then(response => {
-                this.$alert(response.result)
-            })
-
-        },  
-        
-        setLocationsPickups(trip)
-        {
-            this.activeTrip = trip
-            let a, o;
-            this.locations = [];
-            this.locations[this.locations.length] = {drag:true, status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
-            for (let i = 0; i < trip.pickup_locations.length; i++) {
-                a = trip.pickup_locations[i].location;
-                o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
-                this.locations[i+1] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+            for (let i = 0; i < content.value.items.length; i++) {
+                content.value.items[i].active = searchText.value.trim() ? checkSimilar(content.value.items[i]) : 1;
             }
-            this.locations[this.locations.length] = {drag:true, icon: this.conf.url+'uploads/images/destination.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
-            this.showMap = !this.showMap
-            this.center = this.locations[0].destination;
-            return this.locations;
-        },  
+        }
+
+        const checkSimilar = (item) =>
+        {
+            let a = (item.student_name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+            return a ? a : ((item.location_name).toLowerCase().includes(searchText.toLowerCase()) ? true : false);
+        } 
+
+        
+        const updateMarker = (item) =>
+        {
+            activeItem.value = item;
+            handleAction('edit', item)
+        } 
+
+        const clickMarker = (item, index, event) =>
+        {
+            activeItem.value = event;
+            activeItem.value.latitude = event.destination.lat;
+            activeItem.value.longitude = event.destination.lng;
+            handleAction('edit', activeItem.value);
+        }
+        
+        const handleObject = (data) =>
+        {
+            data.icon =  props.conf.url+'uploads/images/blue_pin.gif'
+            data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) } 
+            data.drag = true; 
+            return data;
+        }
 
         /**
          * Handle actions from datatable buttons
@@ -297,64 +245,299 @@ export default
          * 
          * @param String actionName 
          * @param Object data
-         */  
-        handleAction(actionName, data) {
-            switch(actionName) 
+         */
+        const handleAction = (actionName, data) => 
+        {
+            switch (actionName) 
             {
                 case 'view':
-                    // window.open(this.conf.url+data.content.prefix)
-                    break;  
+                    break;
 
                 case 'edit':
-                    this.editFields(data);
-                    break;  
+                    showEditSide.value = true;
+                    showAddSide.value = false;
+                    activeItem.value = data
+                    break;
 
                 case 'delete':
-                    this.$parent.deleteByKey('vehicle_id', data.vehicle_id, 'Vehicle.delete');
-                    break;  
+                    deleteByKey('destination_id', data, 'Destination.delete');
+                    break;
             }
-        },
-
-        load()
-        {
-            let t = this;
-            handleGetRequest( this.url ).then(response=> {
-                t.setValues(response)
-                t.searchTextChanged()
-            });
-        },
-
-        filterKeys(object)
-        {
-            let filledData = Object.keys(object).reduce((acc, curr) => {
-                if (object[curr]) {
-                    acc[curr] = object[curr];
-                }
-                return acc;
-            }, {});
-            return filledData;
-        },
-        
-        setValues(data) {
-            this.content = JSON.parse(JSON.stringify(data)); 
-            if (this.activeTrip && this.content && this.content.items)
-            {
-                for (let i = 0; i < this.content.items.length; i++) {
-                    const a = this.content.items[i];
-                    if (a.trip_id == this.activeTrip.trip_id)
-                    {
-                        this.setLocationsPickups(a); 
-                    }
-                }
-                
-            }
-            return this
-        },
-        
-        __(i)
-        {
-            return translate(i);
         }
-    }
+
+        
+        return {
+            locations,
+            showAddSide,
+            showEditSide,
+            url,
+            content,
+            center,
+            activeItem,
+            translate,
+            clickMarker,
+            updateMarker,
+            setLocationsMarkers,
+            checkSimilar,
+            searchTextChanged,
+            searchText,
+            getUserLocation,
+            collapsed,
+            closeSide,
+            handleAction
+        };
+    },
+    
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+    ],
 };
+
+// export default 
+// {
+//     components:{
+//         'datatabble': Vue3EasyDataTable,
+//         trip_page,
+//         translate,
+//         maps,
+//     },
+//     name:'Trips',
+//     data() {
+//         return {
+//             url: this.conf.url+this.path+'?load=json',
+//             content: {
+//                 title: '',
+//                 items: [],
+//                 columns: [],
+//             },
+
+//             activeItem:{},
+//             center:{lat:31, lng:30},
+//             activeTrip:null,
+//             showAddSide:false,
+//             showEditSide:false,
+//             showLoader: true,
+//             locations: [],
+//             showList: true,
+//             showMap: true,
+//             showTrip: false,
+//             collapsed: false,
+//             searchText: '',
+//         }
+//     },
+
+//     computed: {
+//         bindings() {
+
+//             this.content.columns.push({
+//                     key: this.__("actions"),
+//                     component: dataTableSideActions,
+//                     sortable: false,
+//                 });
+
+//             return {
+
+//                 columns: this.content.columns,
+//                 fillable: this.content.fillable,
+//                 data: this.content.items
+//             }
+//         }
+//     },
+//     props: [
+//         'path',
+//         'lang',
+//         'setting',
+//         'conf',
+//         'auth',
+//     ],
+//     mounted() 
+//     {
+//         this.load()
+//         this.getUserLocation()
+//         setInterval(() => {
+//             // this.load()
+//         }, 10000);
+//     },
+
+//     methods: 
+//     {
+        
+//         /**
+//          * Get current location
+//          */
+//         getUserLocation() 
+//         {
+//             if (navigator.geolocation) {
+
+//                 navigator.geolocation.getCurrentPosition(
+//                     position => {
+//                         this.center.lat = position.coords.latitude;
+//                         this.center.lng = position.coords.longitude;
+//                     },
+//                     error => {
+//                         this.locationError = "Error: " + error.message;
+//                     }
+//                 );
+//             } else {
+//                 this.locationError = "Geolocation is not supported by this browser.";
+//             }
+//         },
+            
+//         editFields(data, show = true)
+//         {
+//             this.showTrip = show;
+//             this.activeItem = data
+//         },
+//         callback()
+//         {
+//             this.editFields(null, false)
+//             this.showTrip = false;
+//         },
+//         filterLocations(locations, status)
+//         {
+//             let data = [];
+            
+//             for (let i = 0; i < locations.length; i++) {
+//                 if (locations[i].status == status)
+//                 {
+//                     data.push(locations[i]);
+//                 }
+//             }
+
+//             return data;
+//         },
+
+//         searchTextChanged()
+//         {
+//             this.showList = false;
+//             if (this.activeTrip && this.content && this.content.items)
+//             {
+//                 for (let i = 0; i < this.content.items.length; i++) {
+//                     this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
+//                 }
+//             }
+
+//             this.showList = true;
+//         },
+
+//         checkSimilar(item)
+//         {
+//             let a = (item.driver.name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
+//             return a ? a : ((item.vehicle.plate_number).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
+//         },
+//         setLocationsMarkers(trip, i)
+//         {   
+
+//             for (let a = 0; a < this.content.items.length; a++) 
+//                 this.content.items[a].selected = false;
+                
+//             this.content.items[i].selected = true; 
+//             this.locations = this.setLocationsPickups(trip);
+//         },  
+        
+//         clickMarker(item, event)
+//         {
+            
+//         },
+
+//         updateMarker(item, event)
+//         {
+//             var params = new URLSearchParams();
+//             params.append('type', 'Vehicle.update')
+//             params.append('params[vehicle_id]', this.activeTrip.vehicle_id)
+//             params.append('params[last_latitude]', item.destination.lat)
+//             params.append('params[last_longitude]', item.destination.lng)
+//             handleRequest(params, '/api/update').then(response => {
+//                 this.$alert(response.result)
+//             })
+
+//         },  
+        
+//         setLocationsPickups(trip)
+//         {
+//             this.activeTrip = trip
+//             let a, o;
+//             this.locations = [];
+//             this.locations[this.locations.length] = {drag:true, status: 'waiting', icon: this.conf.url+'uploads/images/car.svg', origin: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) }, destination: { lat: parseFloat(trip.vehicle.last_latitude), lng: parseFloat(trip.vehicle.last_longitude) } }
+//             for (let i = 0; i < trip.pickup_locations.length; i++) {
+//                 a = trip.pickup_locations[i].location;
+//                 o = i ? trip.pickup_locations[i-1].location : trip.pickup_locations[i].location;
+//                 this.locations[i+1] = {status: trip.pickup_locations[i].status, icon: this.conf.url+ 'uploads/images/'+ (trip.pickup_locations[i].status == 'waiting' ? 'blue_pin.gif' : 'yellow_pin.gif'), origin: { lat: parseFloat(o.latitude), lng: parseFloat(o.longitude) }, destination: { lat: parseFloat(a.latitude), lng: parseFloat(a.longitude) } }
+//             }
+//             this.locations[this.locations.length] = {drag:true, icon: this.conf.url+'uploads/images/destination.svg', origin: { lat: 0, lng: 0 }, destination: { lat: parseFloat(trip.route.latitude), lng: parseFloat(trip.route.longitude) } }
+//             this.showMap = !this.showMap
+//             this.center = this.locations[0].destination;
+//             return this.locations;
+//         },  
+
+//         /**
+//          * Handle actions from datatable buttons
+//          * Called From 'dataTableActions' component
+//          * 
+//          * @param String actionName 
+//          * @param Object data
+//          */  
+//         handleAction(actionName, data) {
+//             switch(actionName) 
+//             {
+//                 case 'view':
+//                     // window.open(this.conf.url+data.content.prefix)
+//                     break;  
+
+//                 case 'edit':
+//                     this.editFields(data);
+//                     break;  
+
+//                 case 'delete':
+//                     this.$parent.deleteByKey('vehicle_id', data.vehicle_id, 'Vehicle.delete');
+//                     break;  
+//             }
+//         },
+
+//         load()
+//         {
+//             let t = this;
+//             handleGetRequest( this.url ).then(response=> {
+//                 t.setValues(response)
+//                 t.searchTextChanged()
+//             });
+//         },
+
+//         filterKeys(object)
+//         {
+//             let filledData = Object.keys(object).reduce((acc, curr) => {
+//                 if (object[curr]) {
+//                     acc[curr] = object[curr];
+//                 }
+//                 return acc;
+//             }, {});
+//             return filledData;
+//         },
+        
+//         setValues(data) {
+//             this.content = JSON.parse(JSON.stringify(data)); 
+//             if (this.activeTrip && this.content && this.content.items)
+//             {
+//                 for (let i = 0; i < this.content.items.length; i++) {
+//                     const a = this.content.items[i];
+//                     if (a.trip_id == this.activeTrip.trip_id)
+//                     {
+//                         this.setLocationsPickups(a); 
+//                     }
+//                 }
+                
+//             }
+//             return this
+//         },
+        
+//         __(i)
+//         {
+//             return translate(i);
+//         }
+//     }
+// };
 </script>
