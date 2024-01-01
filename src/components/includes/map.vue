@@ -40,6 +40,14 @@
                     </div>
                 </CustomMarker>
 
+                <Marker
+                :options="{
+                    position:center
+                }"
+                >
+
+                </Marker>
+
         </GoogleMap>
     </div>
 </template>
