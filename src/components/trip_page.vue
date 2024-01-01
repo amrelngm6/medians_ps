@@ -225,19 +225,24 @@ export default
 
             const setLocations = () => {
                 
-                activeItem.value.locations = [handlePickup(activeItem.value.vehicle, activeItem.value.route, 'car.svg')];
+                let locationsList = [handlePickup(activeItem.value.vehicle, activeItem.value.route, 'car.svg')];
 
                 let icon1, icon2;
                 for (let i = 0; i < activeItem.value.pickup_locations.length; i++) {
                     icon1 = activeItem.value.pickup_locations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
                     icon2 = activeItem.value.destinations[i].time ? 'yellow_pin.gif' : 'blue_pin.gif';
-                    activeItem.value.locations.push(handlePickup(activeItem.value.pickup_locations[i], activeItem.value.destinations[i], icon1));
-                    activeItem.value.locations.push(handlePickup(activeItem.value.destinations[i], activeItem.value.pickup_locations[i], icon2));
+                    locationsList.push(handlePickup(activeItem.value.pickup_locations[i], activeItem.value.destinations[i], icon1));
+                    locationsList.push(handlePickup(activeItem.value.destinations[i], activeItem.value.pickup_locations[i], icon2));
                 }
 
-                activeItem.value.locations.push(handlePickup(activeItem.value.route, activeItem.value.vehicle, 'destination.svg'));
+                locationsList.push(handlePickup(activeItem.value.route, activeItem.value.vehicle, 'destination.svg'));
+
+                activeItem.value.locations = locationsList;
+                
             }
 
+            setLocations();
+            
             const activeStatus = ref('info');
             const showLoadMore = ref(true);
 
