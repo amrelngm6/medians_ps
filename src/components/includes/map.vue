@@ -36,7 +36,7 @@
                     :options="{
                         position: marker.destination,
                         draggable: true,
-                        dragend: updateMarker(marker, index)
+                        dragend: updateMarker
                     }"
                     :key="showDrag" 
                     v-if="showDrag"
