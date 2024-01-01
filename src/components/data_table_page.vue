@@ -19,7 +19,7 @@
 
                         <template #item-edit="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
-                                <i class="fa fa-edit"></i>
+                                <vue-feather type="edit"></vue-feather>
                             </button>
                         </template>
                         <template #item-delete="item">
