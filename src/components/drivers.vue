@@ -51,11 +51,11 @@
                                         class="fa fa-edit py-1"></i> <span class="text-base  "
                                         v-text="translate('Edit')"></span></span></div>
                             <div class="sm:col-span-2 col-span-4">
-                                <div class="hs-dropdown ti-dropdown flex justify-end"><span
+                                <div class="hs-dropdown ti-dropdown flex justify-end"><div
                                         @click="handleAction('delete', driver)" class="cursor-pointer hs-dropdown-toggle ti-dropdown-toggle inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-red-500 hover:text-red-400 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10">
 
                                         <delete_icon class="w-4" />
-                                    </span>
+                                    </div>
                                 </div>
                             </div> 
                         </div>
@@ -75,7 +75,7 @@
 <script>
 import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
-import delete_icon from '@/components/svgs/delete_icon.vue';
+import delete_icon from '@/components/svgs/trash.vue';
 
 const SideFormCreate = defineAsyncComponent(() =>
   import('@/components/includes/side-form-create.vue')
