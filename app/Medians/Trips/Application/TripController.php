@@ -43,14 +43,14 @@ class TripController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "trip_id", 'title'=> "#"],
-            [ 'key'=> "car_plate", 'title'=> __('vehicle'), 'sortable'=> true ],
-            [ 'key'=> "driver_name", 'title'=> __('driver'), 'sortable'=> true ],
-			[ 'key'=> "pickup_locations_count", 'title'=> __('pickup Locations'), 'sortable'=> true],
-            [ 'key'=> "duration", 'title'=> __('Duration'), 'sortable'=> true ],
-            [ 'key'=> "distance", 'title'=> __('Distance').'-KM', 'sortable'=> true ],
-            [ 'key'=> "trip_date", 'title'=> __('trip_date'), 'sortable'=> true ],
-            [ 'key'=> "trip_status", 'title'=> __('trip_status'), 'sortable'=> true ],
+            [ 'value'=> "trip_id", 'text'=> "#"],
+            [ 'value'=> "car_plate", 'text'=> __('vehicle'), 'sortable'=> true ],
+            [ 'value'=> "driver_name", 'text'=> __('driver'), 'sortable'=> true ],
+			[ 'value'=> "pickup_locations_count", 'text'=> __('pickup Locations'), 'sortable'=> true],
+            [ 'value'=> "duration", 'text'=> __('Duration'), 'sortable'=> true ],
+            [ 'value'=> "distance", 'text'=> __('Distance').'-KM', 'sortable'=> true ],
+            [ 'value'=> "trip_date", 'text'=> __('trip_date'), 'sortable'=> true ],
+            [ 'value'=> "trip_status", 'text'=> __('trip_status'), 'sortable'=> true ],
         ];
 	}
 
