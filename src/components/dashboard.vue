@@ -209,7 +209,19 @@ export default
                     { type: 'bar', xKey: 'label', yKey: 'y' },
                     { type: 'line', xKey: 'label', yKey: 'y' },
                 ],
-                
+            };
+
+            
+            // Line charts for sales in last days 
+            pie_options.value  =  {
+
+                // Line charts Data 
+                data: content.value.top_drivers,
+
+                // Series: Defines which chart type and data to use
+                series: [
+                    { type: 'bar', xKey: 'first_name', yKey: 'y' },
+                ],
             };
         }
 
