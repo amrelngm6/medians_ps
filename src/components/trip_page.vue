@@ -254,7 +254,8 @@ export default
                 activeItem,
                 setActiveStatus,
                 loadmore,
-                setLocations
+                setLocations,
+                translate,
             }
         },
 
