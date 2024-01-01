@@ -208,6 +208,7 @@ export default
         
         const updateMarker = (item, index, event) =>
         {
+            console.log('updated')
             activeItem.value = event;
             activeItem.value.latitude = event.destination.lat;
             activeItem.value.longitude = event.destination.lng;

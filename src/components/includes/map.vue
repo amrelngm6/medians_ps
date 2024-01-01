@@ -97,6 +97,7 @@ export default
             
             
             const  updateMarker = async (marker, i ) =>  {
+                console.log('deagged')
                 emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
