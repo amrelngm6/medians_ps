@@ -32,15 +32,11 @@
                     :key="marker" 
                     @click="checkMarker(index)"
                     @drag="activeMarkerIndex = index" 
+                    :draggable="marker.drag ? true : false" 
                     @dragend="updateMarker" >
                     <div style="text-align: center">
                         <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
                     </div>
-                    <InfoWindow v-model="infowindow">
-        <div id="content">
-          {{marker.title}}
-        </div>
-      </InfoWindow>
                 </CustomMarker>
 
         </GoogleMap>
@@ -96,15 +92,7 @@ export default
                 console.log(i)
                 console.log(flightPlanCoordinates)
                 activeMarkerIndex.value = i;
-
-                // this.activeDestination = props.waypoints[i].destination;
-                // props.waypoints[i].address = await this.handlePositionToPlaceId(props.waypoints[i].destination.lat, props.waypoints[i].destination.lng);
                 emit('click-marker', props.waypoints[i], i);
-
-                flightPlanCoordinates[i].address = await handlePositionToPlaceId(flightPlanCoordinates[i].destination.lat, flightPlanCoordinates[i].destination.lng);
-
-                console.log(waypoints.value)
-                // props.showroute ?? calculateAndDisplayRoute()
             }
             
             const onMapReady = () =>
