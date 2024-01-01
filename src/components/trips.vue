@@ -110,6 +110,10 @@ const maps = defineAsyncComponent(() =>
   import('@/components/includes/map.vue')
 );
 
+const trip_page = defineAsyncComponent(() =>
+  import('@/components/includes/trip_page.vue')
+);
+
 export default 
 {
     components:{
