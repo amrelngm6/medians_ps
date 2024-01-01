@@ -119,6 +119,7 @@ export default
     components:{
         'datatabble': Vue3EasyDataTable,
         trip_page,
+        translate,
         maps,
     },
     name:'Trips',
