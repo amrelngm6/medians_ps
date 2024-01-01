@@ -12,7 +12,7 @@
 
                         <button type="button" @click="update" class="bg-gray-50 border  border-1 hover:bg-primary mb-3 px-6 py-2 rounded-lg text-primary"
                             v-text="translate('Edit')"></button>
-                        <button type="button" @click="close" class="flex hover:bg-primary mb-3 px-6 py-2  text-danger"
+                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
                             >  <span v-text="translate('Back')"></span></button>
                     </div>
 
