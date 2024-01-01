@@ -176,11 +176,36 @@
 </div>
 </template>
 <script>
-import {translate, handleGetRequest} from '@/utils.vue';
+import {translate, handleGetRequest, showAlert} from '@/utils.vue';
 
 export default
     {
+        components: {
+            translate
+        },
+        setup() {
+            
+            const close = () =>  {
+                
+                if (!window.confirm(translate('confirm_close_ticket')))
+                {
+                    return null;
+                }
 
+                var params = new URLSearchParams();
+                params.append('type', 'HelpMessage.close')
+                params.append('params[message_id]', props.item.message_id)
+                params.append('params[status]', 'completed')
+                handleRequest(params, '/api/handle').then(response => {
+                    showAlert(response.result)
+                })
+            }
+
+            return  {
+                translate,
+                close
+            }
+        },
         props: [
             'path',
             'lang',
@@ -190,26 +215,6 @@ export default
             'item'
         ],
         methods: {
-
-            __(i) {
-                return translate(i);
-            },
-            
-            close() {
-                
-                if (!window.confirm(this.__('confirm_close_ticket')))
-                {
-                    return null;
-                }
-
-                var params = new URLSearchParams();
-                params.append('type', 'HelpMessage.close')
-                params.append('params[message_id]', this.item.message_id)
-                params.append('params[status]', 'completed')
-                handleRequest(params, '/api/handle').then(response => {
-                    this.$alert(response.result)
-                })
-            },
 
         }
     };
