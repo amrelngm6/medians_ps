@@ -176,46 +176,43 @@
 </div>
 </template>
 <script>
-import {translate, handleGetRequest, showAlert} from '@/utils.vue';
+import {translate, handleGetRequest, handleRequest, showAlert} from '@/utils.vue';
 
 export default
-    {
-        components: {
-            translate
-        },
-        setup() {
+{
+    components: {
+        translate
+    },
+    setup() {
+        
+        const close = () =>  {
             
-            const close = () =>  {
-                
-                if (!window.confirm(translate('confirm_close_ticket')))
-                {
-                    return null;
-                }
-
-                var params = new URLSearchParams();
-                params.append('type', 'HelpMessage.close')
-                params.append('params[message_id]', props.item.message_id)
-                params.append('params[status]', 'completed')
-                handleRequest(params, '/api/handle').then(response => {
-                    showAlert(response.result)
-                })
+            if (!window.confirm(translate('confirm_close_ticket')))
+            {
+                return null;
             }
 
-            return  {
-                translate,
-                close
-            }
-        },
-        props: [
-            'path',
-            'lang',
-            'setting',
-            'conf',
-            'auth',
-            'item'
-        ],
-        methods: {
-
+            var params = new URLSearchParams();
+            params.append('type', 'HelpMessage.close')
+            params.append('params[message_id]', props.item.message_id)
+            params.append('params[status]', 'completed')
+            handleRequest(params, '/api/handle').then(response => {
+                showAlert(response.result)
+            })
         }
-    };
+
+        return  {
+            translate,
+            close
+        }
+    },
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+        'item'
+    ],
+};
 </script>
