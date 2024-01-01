@@ -36,8 +36,8 @@
                                     <div class="rounded-full left-0 top-0 absolute " :style="'left: '+(20 * i)+'px'" v-for="(location, i) in route.pickup_locations" >
                                         <img v-if="i < 3" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
                                     </div>
-                                    <span class="absolute pt-2" :style="'left: '+((20 * (route.pickup_locations.length < 3 ? route.pickup_locations.length : 3) ) + 20)+'px'"><i class="fa fa-location-dot text-sm"></i> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span></span>
-                                    <div class="right-0 absolute flex self-stretch text-slate-500 text-base font-normal "> <route_icon /><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
+                                    <span class="absolute pt-2" :style="'left: '+((20 * (route.pickup_locations.length < 3 ? route.pickup_locations.length : 3) ) + 20)+'px'"><route_icon /> <span class="font-semibold  px-1" v-if="route.pickup_locations" v-text="route.pickup_locations.length"></span></span>
+                                    <div class="right-0 absolute flex self-stretch text-slate-500 text-base font-normal "> <car_icon /><span v-if="route.vehicle" class="font-semibold text-sm" v-text="route.vehicle.plate_number"></span></div>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +104,7 @@
 
 import delete_icon from '@/components/svgs/trash.vue';
 import route_icon from '@/components/svgs/route.vue';
+import car_icon from '@/components/svgs/car.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
@@ -131,6 +132,7 @@ export default
         SideFormUpdate,
         maps,
         delete_icon,
+        car_icon,
         route_icon,
     },
     name:'Students',
