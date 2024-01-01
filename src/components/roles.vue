@@ -12,16 +12,6 @@
                 <!-- <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg menu-dark hover:bg-purple-800" @click="showAddSide = true,activeItem = {} ">{{translate('add_new')}}</a> -->
             </div>
 
-            <div class="relative card ribbon-box border shadow-none mb-lg-0" >
-                <div class="card-body">
-                    <div class="ribbon ribbon-primary round-shape" v-text="translate('Important')"></div>
-                    <h5 class="fs-14 text-end ml-20" v-text="translate('Before Create Account')"></h5>
-                    <div class="ribbon-content mt-4 text-muted">
-                        <div class="mb-0" v-html="translate('Before Create role note')"></div>
-                    </div>
-                </div>
-            </div>
-
             <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6" >
 
                 <div class="box mb-0 overflow-hidden p-4 bg-white rounded-xl" v-for="role in content.items">
