@@ -89,6 +89,12 @@ export default
                 emit('click-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
+            
+            const  updateMarker = async (marker, i ) =>  {
+                activeMarkerIndex.value = i;
+                emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
+            }
+            
                     
             return {
                 checkMarker,
