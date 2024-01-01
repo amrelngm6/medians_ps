@@ -21,10 +21,10 @@
                                                         class="ri-building-line align-bottom me-1"></i><span
                                                         id="ticket-client" v-text="item.user ? item.user.name : ''"></span></div>
                                                 <div class="vr"></div>
-                                                <div class="text-muted"><span v-text="__('Created at')"></span> : <span
+                                                <div class="text-muted"><span v-text="translate('Created at')"></span> : <span
                                                         class="fw-medium " id="create-date" v-text="item.date"></span></div>
                                                 <div class="vr"></div>
-                                                <div class="text-muted"><span v-text="__('Last update')"></span> : <span
+                                                <div class="text-muted"><span v-text="translate('Last update')"></span> : <span
                                                         class="fw-medium " id="update-date"
                                                         v-text="item.last_update"></span></div>
                                                 <div class="vr"></div>
@@ -35,7 +35,7 @@
                                             </div>
                                         </div>
                                         <!--end col-->
-                                        <span class="w-auto py-2 px-4 cursor-pointer text-lg" @click="$emit('callback')"><vue-feather class="w-5" type="x-circle"></vue-feather></span>
+                                        <span class="w-auto py-2 px-4 cursor-pointer text-lg" @click="emit('callback')"><vue-feather class="w-5" type="x-circle"></vue-feather></span>
                                     </div>
                                     <!--end row-->
                                 </div>
@@ -51,12 +51,12 @@
                 <div class="col-xxl-9 w-full">
                     <div class="card">
                         <div class="card-body p-4">
-                            <h6 class="fw-semibold text-uppercase mb-3" v-text="__('Ticket Discripation')"></h6>
+                            <h6 class="fw-semibold text-uppercase mb-3" v-text="translate('Ticket Discripation')"></h6>
                             <p class="text-muted" v-text="item.message"></p>
                         </div>
                         <!--end card-body-->
                         <div class="card-body p-4">
-                            <h5 class="card-title text-sm font-semibold mb-4" v-text="__('Comments')"></h5>
+                            <h5 class="card-title text-sm font-semibold mb-4" v-text="translate('Comments')"></h5>
 
                             <div data-simplebar="init" style="max-height: 300px;" class="overflow-y-auto">
                                 <div class="simplebar-wrapper" >
@@ -96,13 +96,13 @@
                                 <div class="row g-3">
                                     <div class="col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label"
-                                            v-text="__('WRITE_COMMENT')"></label>
+                                            v-text="translate('WRITE_COMMENT')"></label>
                                         <textarea name="params[comment]" class="form-control bg-light border-light"
                                             id="exampleFormControlTextarea1" rows="3"
                                             placeholder="Enter comments"></textarea>
                                     </div>
                                     <div class="col-lg-12 text-end mt-4">
-                                        <button type="submit" href="javascript:void(0);" class="btn btn-primary" v-text="__('Send')"></button>
+                                        <button type="submit" href="javascript:void(0);" class="btn btn-primary" v-text="translate('Send')"></button>
                                     </div>
                                 </div>
                             </form>
@@ -115,47 +115,47 @@
                 <div class="w-96">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0" v-text="__('Ticket Details')"></h5>
+                            <h5 class="card-title mb-0" v-text="translate('Ticket Details')"></h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table-card">
                                 <table class="table table-borderless align-middle mb-0 w-full">
                                     <tbody>
                                         <tr>
-                                            <td class="fw-medium py-2 " v-text="__('Ticket')"></td>
+                                            <td class="fw-medium py-2 " v-text="translate('Ticket')"></td>
                                             <td class="py-2" >#<span id="t-no" v-text="item.message_id"></span> </td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium py-2 " v-text="__('User')"></td>
+                                            <td class="fw-medium py-2 " v-text="translate('User')"></td>
                                             <td id="t-client" class="py-2" v-text="item.user ? item.user.name : ''"></td>
                                         </tr>
 
                                         <tr>
-                                            <td class="fw-medium py-2 " v-text="__('Status')"></td>
+                                            <td class="fw-medium py-2 " v-text="translate('Status')"></td>
                                             <td class="py-2" >
                                                 <span class="font-bold" id="t-status" v-text="item.status"></span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium py-2 " v-text="__('Priority')"></td>
+                                            <td class="fw-medium py-2 " v-text="translate('Priority')"></td>
                                             <td class="py-2" >
                                                 <span class="badge bg-danger" id="t-priority" v-text="item.priority"></span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium py-2" v-text="__('Created at')"></td>
+                                            <td class="fw-medium py-2" v-text="translate('Created at')"></td>
                                             <td id="c-date" class="py-2" v-text="item.date"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium py-2 " v-text="__('Last update')"></td>
+                                            <td class="fw-medium py-2 " v-text="translate('Last update')"></td>
                                             <td id="d-date" class="py-2" v-text="item.last_update"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-medium py-2 " v-text="__('Close ticket')"></td>
+                                            <td class="fw-medium py-2 " v-text="translate('Close ticket')"></td>
                                             <td id="d-date" class="py-2 flex" >
                                                 <div @click="close" class="cursor-pointer hover:bg-red-800 hover:text-gray-100 px-3 py-2 text-sm border-red-600 border-1 rounded border mt-2 block text-center" >
                                                     <vue-feather class="w-4 mx-1" type="power"></vue-feather>
-                                                    <span @click="close"  v-text="__('Close')"></span>
+                                                    <span @click="close"  v-text="translate('Close')"></span>
                                                 </div>
                                             </td>
                                         </tr>
