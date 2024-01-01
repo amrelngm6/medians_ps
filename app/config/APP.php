@@ -195,38 +195,38 @@ class APP
 		
 		$data = array(
 			
-			array('permission'=> 'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'fa-dashboard', 'link'=>'dashboard', 'component'=>'dashboard'),
-			array('permission'=>'Dashboard.index', 'title'=>__('Customers'),  'icon'=>'fa-user', 'link'=>'#customers', 'sub'=>
+			array('permission'=> 'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'dashboard'),
+			array('permission'=>'Dashboard.index', 'title'=>__('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
 			[
-				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'fa-user', 'link'=>'admin/parents', 'component'=>'parents'),
-				array('permission'=>'Students.index', 'title'=>__('Students'),  'icon'=>'fa-user', 'link'=>'admin/students', 'component'=>'students'),
+				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'user', 'link'=>'admin/parents', 'component'=>'parents'),
+				array('permission'=>'Students.index', 'title'=>__('Students'),  'icon'=>'user', 'link'=>'admin/students', 'component'=>'students'),
 				]
 			),
 			
-			array('permission'=>'Vehicles.index', 'title'=>__('Cars'),  'icon'=>'fa-car', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
-			array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'fa-id-card', 'link'=>'admin/drivers', 'component'=>'drivers'),
-			array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'#route', 'sub'=>
+			array('permission'=>'Vehicles.index', 'title'=>__('Cars'),  'icon'=>'truck', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
+			array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
+			array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'map', 'link'=>'#route', 'sub'=>
 				[
-					array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'fa-map', 'link'=>'admin/routes', 'component'=>'routes'),
-					array('permission'=>'PickupLocations.index', 'title'=>__('Locations'),  'icon'=>'fa-map', 'link'=>'admin/locations', 'component'=>'locations'),
-					array('permission'=>'Destinations.index', 'title'=>__('Destinations'),  'icon'=>'fa-map', 'link'=>'admin/destinations', 'component'=>'destinations'),
+					array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'map', 'link'=>'admin/routes', 'component'=>'routes'),
+					array('permission'=>'PickupLocations.index', 'title'=>__('Locations'),  'icon'=>'map', 'link'=>'admin/locations', 'component'=>'locations'),
+					array('permission'=>'Destinations.index', 'title'=>__('Destinations'),  'icon'=>'map', 'link'=>'admin/destinations', 'component'=>'destinations'),
 					]
 			),
 
-			array('permission'=>'Trips.index', 'title'=>__('trips'),  'icon'=>'fa-suitcase-rolling', 'link'=>'admin/trips', 'component'=>'trips'),
-			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'fa-circle-info', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
-			array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'fa-circle-info', 'link'=>'admin/events', 'component'=>'events'),
-	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
+			array('permission'=>'Trips.index', 'title'=>__('trips'),  'icon'=>'briefcase', 'link'=>'admin/trips', 'component'=>'trips'),
+			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'check-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+			array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
+	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
 			
-			array('permission'=>'NotificationEvent.index', 'title'=>__('Management'),  'icon'=>'fa-cogs', 'link'=>'#management', 'sub'=>
+			array('permission'=>'NotificationEvent.index', 'title'=>__('Management'),  'icon'=>'tool', 'link'=>'#management', 'sub'=>
 			[
-				array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'fa-bell-concierge', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
-				// array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'fa-bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
-				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'fa-cogs', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
-				array('permission'=> 'Roles.index', 'title'=> __('ROLES MANAEGMENT'),  'icon'=>'fa-chain', 'link'=>'admin/roles', 'component'=>'roles'),
+				array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
+				// array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
+				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
+				array('permission'=> 'Roles.index', 'title'=> __('ROLES MANAEGMENT'),  'icon'=>'chain', 'link'=>'admin/roles', 'component'=>'roles'),
 			]
 			),
-			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'fa-sign-out', 'link'=>'logout'),
+			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'log-out', 'link'=>'logout'),
 		);
 
 		return $data;
