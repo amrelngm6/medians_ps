@@ -10,9 +10,10 @@ export default defineConfig({
     outDir: '../dist/assets',
     rollupOptions: {
       output: {
-        entryFileNames: 'z.min.js',
+        
+        entryFileNames: 'index.min.js',
         chunkFileNames: '[name]-[hash].min.js',
-        assetFileNames: '[name]-[hash].[ext]',
+        assetFileNames: '[name].[ext]',
       },
     },
   },
