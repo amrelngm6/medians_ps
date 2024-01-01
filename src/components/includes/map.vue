@@ -93,7 +93,7 @@ export default
                 console.log(marker)
                 console.log(flightPlanCoordinates)
                 activeMarkerIndex.value = i;
-                emit('click-marker', props.waypoints[i], i, marker.value);
+                emit('click-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
             const onMapReady = () =>
