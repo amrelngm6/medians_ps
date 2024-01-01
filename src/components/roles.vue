@@ -49,8 +49,8 @@
                             <div class="sm:col-span-2 col-span-4">
                                 <div class="hs-dropdown ti-dropdown flex justify-end"><span
                                         @click="handleAction('delete', role)"
-                                        class="cursor-pointer hs-dropdown-toggle ti-dropdown-toggle inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10"><i
-                                            class="fa fa-trash text-danger py-1 px-2"></i></span>
+                                        class="cursor-pointer hs-dropdown-toggle ti-dropdown-toggle inline-flex !p-1 flex-shrink-0 justify-center items-center gap-2 rounded-sm border font-medium bg-white text-gray-500 shadow-sm align-middle focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-white focus:ring-primary transition-all text-xs dark:bg-bgdark dark:border-white/10 dark:text-white/70 dark:focus:ring-offset-white/10">
+                                        <delete_icon /></span>
                                 </div>
                             </div>
                         </div>
@@ -71,6 +71,7 @@
 
 import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
+import delete_icon from ('@/components/svgs/trash.vue')
 
 const SideFormCreate = defineAsyncComponent(() =>
   import('@/components/includes/side-form-create.vue')
@@ -89,7 +90,8 @@ export default
     components: {
         SideFormCreate,
         SideFormUpdate,
-        permissions
+        permissions,
+        delete_icon
     },  
     setup(props) {
 

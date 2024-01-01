@@ -54,6 +54,7 @@
     </div>
 </template>
 <script>
+
 import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
 
@@ -71,6 +72,7 @@ export default {
     components: {
         SideFormCreate,
         SideFormUpdate,
+        
     },  
     name: 'Users',
     setup(props) {
