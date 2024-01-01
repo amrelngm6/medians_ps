@@ -241,8 +241,9 @@ export default
                 }
             }
 
-            const setActiveStatus = (status) => {
-                activeStatus.value = status;
+            const setActiveStatus = (newstatus) => {
+                console.log(newstatus)
+                activeStatus.value = newstatus;
             }
 
             /**
