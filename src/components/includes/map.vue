@@ -42,7 +42,7 @@
                     v-if="showDrag"
                     @click="checkMarker(marker, index)"
                     @drag="activeMarkerIndex = index" 
-                    @dragend="updateMarker" >
+                    @dragend="updateMarker(marker, index)" >
 
                 </Marker>
 
@@ -98,8 +98,11 @@ export default
             
             
             const  updateMarker = async (marker, i ) =>  {
-                activeMarkerIndex.value = i;
-                emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
+                console.log('dragged')
+                console.log(i)
+                console.log(marker)
+                // activeMarkerIndex.value = i;
+                // emit('update-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
             
                     
