@@ -15,14 +15,12 @@ export default defineConfig({
     },
   },
   // Use Vite-plugin-legacy to minify the output
+  base: '/dist',
   plugins: [
     minify({
       target: 'es2015',
       // other minification options...
     }),
-  ],
-  base: '/dist',
-  plugins: [
     vue(),
     vueJsx(),
   ],
