@@ -79,6 +79,8 @@ export default
             
             function updateMarker  (event)  
             {
+                console.log(event)
+
                 // waypoints[activeMarkerIndex.value].destination = {
                 //     lat: event.latLng.lat(), lng: event.latLng.lng()
                 // };
@@ -89,9 +91,6 @@ export default
             }
 
             const  checkMarker = async (marker, i ) =>  {
-                console.log(i)
-                console.log(marker)
-                console.log(flightPlanCoordinates)
                 activeMarkerIndex.value = i;
                 emit('click-marker', props.waypoints[i], i, JSON.parse(JSON.stringify(marker)));
             }
