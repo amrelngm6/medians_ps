@@ -125,6 +125,7 @@ export default
         dashboard_card_white,
         dashboard_card,
         AgChartsVue,
+        translate,
         // medians_datepicker,
     },
     name:'categories',
@@ -237,7 +238,7 @@ export default
             activeDate,
             date:null,
             dateTimeFormat,
-
+            translate,
             charts_options:{
                 animationEnabled: true,
                 exportEnabled: true,
