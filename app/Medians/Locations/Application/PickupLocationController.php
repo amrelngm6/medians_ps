@@ -47,12 +47,12 @@ class PickupLocationController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "pickup_id", 'title'=> "#"],
-            [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true ],
-            [ 'key'=> "student_name", 'title'=> __('student_name'), 'sortable'=> true ],
-            [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true ],
-            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true ],
-            [ 'key'=> "status_text", 'title'=> __('Status'), 'sortable'=> true ],
+            [ 'value'=> "pickup_id", 'text'=> "#"],
+            [ 'value'=> "location_name", 'text'=> __('location_name'), 'sortable'=> true ],
+            [ 'value'=> "student_name", 'text'=> __('student_name'), 'sortable'=> true ],
+            [ 'value'=> "latitude", 'text'=> __('latitude'), 'sortable'=> true ],
+            [ 'value'=> "longitude", 'text'=> __('longitude'), 'sortable'=> true ],
+            [ 'value'=> "status_text", 'text'=> __('Status'), 'sortable'=> true ],
         ];
 	}
 

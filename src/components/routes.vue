@@ -132,7 +132,7 @@ export default
         car_icon,
         route_icon,
     },
-    name:'Students',
+    name:'Routes',
     setup(props) {
 
         const url =  props.conf.url+props.path+'?load=json';

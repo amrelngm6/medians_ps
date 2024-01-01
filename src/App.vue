@@ -69,6 +69,10 @@ const routes = defineAsyncComponent(() =>
   import('@/components/routes.vue')
 );
 
+const locations = defineAsyncComponent(() =>
+  import('@/components/locations.vue')
+);
+
 export default {
     name: 'app',
     components: {
@@ -84,6 +88,7 @@ export default {
         routes,
         system_settings,
         settings,
+        locations,
         events,
         notifications_events,
         translate,

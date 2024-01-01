@@ -2,15 +2,15 @@
     <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
         <div class=" w-full">
 
-            <main v-if="content && !showLoader" class="relative flex-1 overflow-x-hidden overflow-y-auto  w-full">
-                <maps @update-marker="updatedLocation" @click-marker="updatedLocation" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
-                <div v-if="locations.length" :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
+            <main v-if="content" class="relative flex-1 overflow-x-hidden overflow-y-auto  w-full">
+                <maps @update-marker="updateMarker" @click-marker="clickMarker" v-if="locations.length" :key="center" :center="center" :waypoints="locations"></maps>
+                <div :key="content.items" v-if="content.items" :style="collapsed ? 'max-height:240px' : 'max-height:calc(100vh - 140px)'" class="mx-16 h-full absolute top-4 rounded-lg p-4 w-96  bg-white rounded-xl flex-col justify-start items-start inline-flex">
                     <div class="self-stretch py-4 flex-col justify-center items-start flex">
-                        <div class="text-black text-lg font-semibold" v-text="__('Pickup locations')"></div>
-                        <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="__('Pickup locations description')"></div>
+                        <div class="text-black text-lg font-semibold" v-text="translate('Pickup locations')"></div>
+                        <div class="py-2 self-stretch text-zinc-600 text-base  tracking-wide" v-text="translate('Pickup locations description')"></div>
                     </div>
                     <div v-if="!collapsed" class="w-full self-stretch pt-2 flex-col justify-center items-start flex">
-                        <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="__('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
+                        <input class="w-full bg-gray-100 rounded-lg px-4 py-2 " :placeholder="translate('find by name and address')" v-model="searchText" v-on:change="searchTextChanged"  v-on:input="searchTextChanged" v-on:keydown="searchTextChanged" />
                     </div>
                     <div :key="collapsed" v-if="!collapsed" class=" max-h-[400px] overflow-auto my-4 w-full self-stretch py-4  ">
                         <div v-for="location in content.items" :key="location.active" v-if="showList && location.active"  class="pt-2 w-full self-stretch justify-start items-center inline-flex ">
@@ -33,8 +33,8 @@
                     </div>
                     <div
                         class="flex self-stretch grow shrink basis-0 justify-between items-center inline-flex">
-                        <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="__('add new')"></div>
-                        <div @click="collapsed = !collapsed" class="cursor-pointer p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? __('Expand') : __('Collapse')"></p></div>
+                        <div class="menu-dark rounded-lg text-white text-xs font-medium px-4 py-3 uppercase cursor-pointer" @click="showLoader = true, showAddSide = true,activeItem = {}, showLoader = false; " v-text="translate('add new')"></div>
+                        <div @click="collapsed = !collapsed" class="cursor-pointer p-2 block text-center "><i class="fa " :class="collapsed ? 'fa-circle-down' : 'fa-circle-up'"></i><p class="font-semibold" v-text="collapsed ? translate('Expand') : translate('Collapse')"></p></div>
                     </div>
                 </div>
 
@@ -43,12 +43,28 @@
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
                     <a href="javascript:;"
                         class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg menu-dark hover:bg-purple-800"
-                        @click="showLoader = true, showAddSide = true, activeItem = {}, showLoader = false;">{{ __('add_new') }}</a>
+                        @click="showLoader = true, showAddSide = true, activeItem = {}, showLoader = false;">{{ translate('add_new') }}</a>
                 </div>
                 <hr class="mt-2" />
                 <div class="w-full flex gap gap-6">
                     
-                    <data-table ref="locations" @actionTriggered="handleAction" v-bind="bindings" />
+                    <datatabble :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
+
+                        <template #item-picture="item">
+                            <img :src="item.picture" class="w-8 h-8 rounded-full" />
+                        </template>
+                        
+                        <template #item-edit="item">
+                            <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </template>
+                        <template #item-delete="item">
+                            <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-purple" @click="handleAction('delete', item)">
+                                <delete_icon class="w-4"/>
+                            </button>
+                        </template>
+                    </datatabble>
 
                     <side-form-create :conf="conf" model="PickupLocation.create"
                         v-if="showAddSide && content && content.fillable" :columns="content.fillable" class="col-md-3" />
@@ -64,153 +80,201 @@
     </div>
 </template>
 <script>
-import dataTableActions from './includes/data-table-actions.vue';
+
+import delete_icon from '@/components/svgs/trash.vue';
+import route_icon from '@/components/svgs/route.vue';
+import car_icon from '@/components/svgs/car.vue';
+
+import 'vue3-easy-data-table/dist/style.css';
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+
+import {defineAsyncComponent, ref} from 'vue';
+import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
+
+const maps = defineAsyncComponent(() =>
+  import('@/components/includes/map.vue')
+);
+const SideFormCreate = defineAsyncComponent(() =>
+  import('@/components/includes/side-form-create.vue')
+);
+
+const SideFormUpdate = defineAsyncComponent(() =>
+  import('@/components/includes/side-form-update.vue')
+);
+
 
 export default
-    {
-        components: {
-            dataTableActions,
-        },
-        name: 'Locations',
-        data() {
-            return {
-                url: this.conf.url + this.path + '?load=json',
-                content: {
-                    title: '',
-                    items: [],
-                    columns: [],
-                },
+{
+    components: {
+        'datatabble': Vue3EasyDataTable,
+        SideFormCreate,
+        SideFormUpdate,
+        maps,
+        delete_icon,
+        car_icon,
+        route_icon,
+    },
+    name: 'Locations',
+    
+    setup(props) {
+
+        const url =  props.conf.url+props.path+'?load=json';
+
+        const showAddSide = ref(false);
+        const showEditSide = ref(false);
+        const showProfilePage = ref(null);
+        const activeItem = ref({});
+        const content = ref({});
+        const center = ref({});
+        const locations =  ref([]);
+        const showList =  ref(true);
+        const searchText =  ref('');
+        const locationError =  ref(null);
+        const collapsed =  ref(false);
+
+        const closeSide = () => {
+            showAddSide.value = false;
+            showEditSide.value = false;
+        }
+
+
+        const load = () => {
+            handleGetRequest( url ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+                locations.value = content.value.items;
+                searchTextChanged();
+            });
+        }
+        
+        load();
+
+        const setLocationsMarkers = (pickupLocation) => 
+        {
+            activeItem.value = pickupLocation;
+
+            for (let a = 0; a < content.value.items.length; a++) 
+                content.value.items[a].selected = false;
                 
-                locations: [],
-                activeItem: {},
-                showAddSide: false,
-                showEditSide: false,
-                showLoader: true,
-                collapsed: false,
-                searchText: '',
-            }
-        },
+            content.value.items[i].selected = true; 
+            locations.value = handleObject(pickupLocation);
+        }
 
-        computed: {
-            bindings() {
-
-                this.content.columns.push({
-                    key: this.__("actions"),
-                    component: dataTableActions,
-                    sortable: false,
-                });
-
-                return {
-
-                    columns: this.content.columns,
-                    fillable: this.content.fillable,
-                    data: this.content.items
-                }
-            }
-        },
-        props: [
-            'path',
-            'lang',
-            'setting',
-            'conf',
-            'auth',
-        ],
-        mounted() {
-            this.load()
-        },
-
-        methods:
+        /**
+         * Get current location
+         */
+         const getUserLocation = async () => 
         {
 
-            searchTextChanged()
-            {
-                this.showList = false;
-                for (let i = 0; i < this.content.items.length; i++) {
-                    this.content.items[i].active = this.searchText.trim() ? this.checkSimilar(this.content.items[i]) : 1;
-                }
-                this.showList = true;
-            },
+            if (navigator.geolocation) {
+                console.log('position 1')
+                 navigator.geolocation.getCurrentPosition(
+                    position => {
+                        center.value = {lat: position.coords.latitude, lng: position.coords.longitude};
+                    },
+                    error => {
+                        showAlert(error.message, 5000)
 
-            checkSimilar(item)
-            {
-                let a = (item.student_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false;
-                return a ? a : ((item.location_name).toLowerCase().includes(this.searchText.toLowerCase()) ? true : false);
-            },
-
-            updatedLocation(item, index, placeId)
-            {
-                console.log(placeId);
-
-                item.latitude = item.destination.lat;
-                item.longitude = item.destination.lng;
-                this.handleAction('edit', item)
-                console.log(item);
-            },  
-            setLocationsMarkers(location)
-            {   
-                this.locations = [this.handleObject(location)];
-                this.center = this.locations[0].destination;
-            },  
-
-            /**
-             * Handle actions from datatable buttons
-             * Called From 'dataTableActions' component
-             * 
-             * @param String actionName 
-             * @param Object data
-             */
-            handleAction(actionName, data) {
-                switch (actionName) {
-                    case 'view':
-                        // window.open(this.conf.url+data.content.prefix)
-                        break;
-
-                    case 'edit':
-                        this.showEditSide = true;
-                        this.showAddSide = false;
-                        this.activeItem = data
-                        break;
-
-                    case 'delete':
-                        this.$parent.deleteByKey('pickup_id', data, 'PickupLocation.delete');
-                        break;
-                }
-            },
-
-            load() {
-                this.showLoader = true;
-                this.$parent.handleGetRequest(this.url).then(response => {
-                    this.setValues(response)
-                    this.showLoader = false;
-                    this.searchTextChanged()
-                    // this.$alert(response)
-                });
-            },
-
-            setValues(data) {
-
-                this.content = JSON.parse(JSON.stringify(data));
-                for (let i = 0; i < this.content.items.length; i++) {
-                    this.locations[i] = this.handleObject(this.content.items[i]);
-                }
-                this.center = this.locations[0] ? this.locations[0].destination : {lat:30, lng:31};
-                return this
-            },
-
-            /**
-             * Handle object
-             * @param {Model Object} i 
-             */
-            handleObject(data)
-            {
-                data.icon =  this.conf.url+'uploads/images/blue_pin.gif'
-                data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) } 
-                data.drag = true; 
-                return data;
-            },  
-            __(i) {
-                return this.$root.$children[0].__(i);
+                    }
+                );
             }
         }
-    };
+        
+        getUserLocation();
+
+        const searchTextChanged = () =>
+        {   
+            for (let i = 0; i < content.value.items.length; i++) {
+                content.value.items[i].active = searchText.value.trim() ? checkSimilar(content.value.items[i]) : 1;
+            }
+        }
+
+        const checkSimilar = (item) =>
+        {
+            let a = (item.student_name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+            return a ? a : ((item.location_name).toLowerCase().includes(searchText.toLowerCase()) ? true : false);
+        } 
+
+        
+        const updateMarker = (item, index, event) =>
+        {
+            item.latitude = item.destination.lat;
+            item.longitude = item.destination.lng;
+            handleAction('edit', item)
+        } 
+
+        const clickMarker = (item, index, event) =>
+        {
+            console.log(item)
+            console.log(index)
+            console.log(event)
+            // activeItem.value.latitude = event.latLng.lat();
+            // activeItem.value.longitude = event.latLng.lng();
+            // handleAction('edit', activeItem.value);
+        }
+        
+        const handleObject = (data) =>
+        {
+            data.icon =  this.conf.url+'uploads/images/blue_pin.gif'
+            data.origin = data.destination = { lat: parseFloat(data.latitude), lng: parseFloat(data.longitude) } 
+            data.drag = true; 
+            return data;
+        }
+
+        /**
+         * Handle actions from datatable buttons
+         * Called From 'dataTableActions' component
+         * 
+         * @param String actionName 
+         * @param Object data
+         */
+        const handleAction = (actionName, data) => 
+        {
+            switch (actionName) 
+            {
+                case 'view':
+                    break;
+
+                case 'edit':
+                    showEditSide = true;
+                    showAddSide = false;
+                    activeItem.value = data
+                    break;
+
+                case 'delete':
+                    deleteByKey('pickup_id', data, 'PickupLocation.delete');
+                    break;
+            }
+        }
+
+        
+        return {
+            locations,
+            showAddSide,
+            showEditSide,
+            url,
+            content,
+            center,
+            activeItem,
+            translate,
+            clickMarker,
+            updateMarker,
+            setLocationsMarkers,
+            checkSimilar,
+            searchTextChanged,
+            searchText,
+            getUserLocation,
+            collapsed,
+            closeSide,
+            handleAction
+        };
+    },
+    
+    props: [
+        'path',
+        'lang',
+        'setting',
+        'conf',
+        'auth',
+    ],
+};
 </script>
