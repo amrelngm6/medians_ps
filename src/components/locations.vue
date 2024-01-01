@@ -155,7 +155,7 @@ export default
             for (let a = 0; a < content.value.items.length; a++) 
                 content.value.items[a].selected = false;
                 
-            content.value.items[i].selected = true; 
+            content.value.items[a].selected = true; 
             locations.value = handleObject(pickupLocation);
         }
 
