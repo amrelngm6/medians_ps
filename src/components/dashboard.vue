@@ -155,14 +155,11 @@ export default
         
         const load = (url) =>
         {
-            console.log(url)
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response)); 
                 // setCharts(response)
             });
         }
-
-        load();
 
     
         /**
@@ -182,6 +179,8 @@ export default
             // Load new data
             load(url.value + filters); 
         }
+
+        switchDate('today');
 
         /**
          * Date Time format 
