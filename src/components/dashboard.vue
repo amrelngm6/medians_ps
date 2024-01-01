@@ -231,6 +231,7 @@ export default
             };
 
             line_options.value = lineOptions;
+            console.log(line_options)
         }
 
 
