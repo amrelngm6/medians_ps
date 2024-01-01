@@ -221,7 +221,7 @@ export default
 
                 // Series: Defines which chart type and data to use
                 series: [
-                    { type: 'pie', xKey: 'first_name', yKey: 'y' },
+                    { type: 'pie', legendItemKey: 'first_name', angleKey: 'y' },
                 ],
             };
         }
