@@ -21,7 +21,7 @@
                         draggable: true,
                         position: marker.destination,
                     }"
-                    v-if="!marker.drag"
+                    v-if="marker && !marker.drag"
                     :key="marker" 
                     :draggable="true"
                     @click="checkMarker(marker, index)"
@@ -40,7 +40,7 @@
                     }"
                     :key="marker" 
                     :draggable="true"
-                    v-if="marker.drag"
+                    v-if="marker && marker.drag"
                     @click="checkMarker(marker, index)"
                     @drag="activeMarkerIndex = index" 
                     @dragend="updateMarker" >
