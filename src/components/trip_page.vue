@@ -278,7 +278,7 @@ export default
                 let data = {}
                 data.icon = props.conf.url + 'uploads/images/' + icon
                 data.origin = { lat: parseFloat(origin.latitude), lng: parseFloat(origin.longitude) }
-                data.destination = { lat: parseFloat(destination.latitude), lng: parseFloat(destination.longitude) }
+                data.destination = destination ? { lat: parseFloat(destination.latitude), lng: parseFloat(destination.longitude)} : data.origin;
                 data.drag = false;
                 return data;
             }
