@@ -38,7 +38,6 @@
                         draggable: true
                     }"
                     :key="showDrag" 
-                    :draggable="true"
                     v-if="showDrag"
                     @dragend="updateMarker(marker, index)"
                     @click="checkMarker(marker, index)"
