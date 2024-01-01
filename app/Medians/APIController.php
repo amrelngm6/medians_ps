@@ -51,11 +51,7 @@ class APIController extends CustomController
 			case 'HelpMessage.close':
 				return (new Help\Application\HelpMessageController())->close();
 				break;
-				
-			case 'User.updateStatus':
-				return (new Users\Application\UserController())->updateStatus();
-				break;
-	
+					
 		}
 
 		$return = isset($controller) ? $controller->find($this->app->request()->get('id')) : $return;
@@ -224,6 +220,11 @@ class APIController extends CustomController
 			case 'Destination.update':
 				$controller =  new Locations\Application\DestinationController; 
 				break;
+
+			case 'User.updateStatus':
+				return (new Users\Application\UserController())->updateStatus();
+				break;
+	
 
 		}
 
