@@ -73,7 +73,10 @@ export default
         load();
 
         const setActiveStatus = (permission) => {
-            permission.value.access = permission.value ? !permission.value.access : true;
+            if (permission.value)
+            {
+                permission.value.access = !permission.value.access;
+            }
         }
 
 
