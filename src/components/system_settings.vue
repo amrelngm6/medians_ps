@@ -64,6 +64,30 @@
                                 </div>
                             </div>
 
+                            <div class="w-full " v-if="activeTab == 'onesignal'">
+                                
+                                <div class="card w-full " >                             
+                                    <div class="card-header pt-0">
+                                        <span class="text-gray-700 font-semibold"><span v-text="translate('OneSingal API')"></span></span> 
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="settings-form mt-2">
+                                            <label class="block pb-3">
+                                                <span class="text-gray-700"><span v-text="translate('OneSingal APP ID')"></span></span>
+                                                <input name="params[onesignal_app_id]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="translate('OneSingal APP ID')"  v-model="content.setting.onesignal_app_id">
+                                            </label>
+                                            <hr />
+                                            <label class="block pb-3">
+                                                <span class="text-gray-700"><span v-text="translate('OneSingal API Key Token')"></span></span>
+                                                <input name="params[onesignal_app_key_token]" type="text" class="h-10 mt-3 rounded w-full border px-3 text-gray-400  focus:border-blue-100 dark:bg-gray-800 dark:border-gray-600" :placeholder="translate('OneSingal API Key Token')"  v-model="content.setting.onesignal_app_key_token">
+                                            </label>
+                                            <hr />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="w-full " v-if="activeTab == 'notifications'">
                                 <div class="card w-full " >                             
                                     <div class="card-header pt-0">
@@ -208,9 +232,10 @@ export default
         
         const setting_tabs =  [
             {title:translate('Basic Details'), link:'basic'},
-            {title:translate('Notifications'), link:'notifications'},
             {title:translate('SMTP setting'), link:'smtp'},
             {title:translate('Google Map API'), link:'map'},
+            {title:translate('OneSignal API'), link:'onesignal'},
+            {title:translate('Notifications'), link:'notifications'},
         ];
 
         const load = () => {
