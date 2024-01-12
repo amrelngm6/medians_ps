@@ -20,6 +20,7 @@ class Parents extends CustomModel
     protected $primaryKey = 'parent_id';
 	
 	public $fillable = [
+		'business_id',
 		'first_name',
 		'last_name',
 		'picture',

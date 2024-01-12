@@ -21,6 +21,7 @@ class Student extends CustomModel
     protected $primaryKey = 'student_id';
 	
 	public $fillable = [
+		'business_id',
 		'first_name',
 		'last_name',
 		'picture',

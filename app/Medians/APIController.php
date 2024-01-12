@@ -131,6 +131,20 @@ class APIController extends CustomController
 				case 'Vacation.create':
 					$return =  (new Vacations\Application\VacationController())->store(); 
 					break;
+					
+				case 'Company.create':
+				case 'School.create':
+					$return =  (new Businesses\Application\BusinessController())->store(); 
+					break;
+					
+				case 'Plan.create':
+					$return =  (new Plans\Application\PlanController())->store(); 
+					break;
+				
+				case 'PlanFeature.create':
+					$return =  (new Plans\Application\PlanFeatureController())->store(); 
+					break;
+				
 	
 			}
 
@@ -211,6 +225,19 @@ class APIController extends CustomController
 
 			case 'Role.update':
 				$controller =  new Roles\Application\RoleController; 
+				break;			
+
+			case 'School.update':
+			case 'Company.update':
+				$controller =  new Businesses\Application\BusinessController; 
+				break;			
+				
+			case 'Plan.update':
+				$controller =  new Plans\Application\PlanController; 
+				break;
+			
+			case 'PlanFeature.update':
+				$controller =  new Plans\Application\PlanFeatureController; 
 				break;
 			
 			case 'Role.updatePermissions':
@@ -293,11 +320,22 @@ class APIController extends CustomController
 					return response((new Notifications\Application\NotificationEventController())->delete());
 					break;
 			
-
 				case 'Event.delete':
 					return response((new Events\Application\EventController())->delete());
 					break;
 			
+				case 'School.delete':
+				case 'Company.delete':
+					return response((new Businesses\Application\BusinessController())->delete());
+					break;
+			
+				case 'Plan.delete':
+					return response((new Plans\Application\PlanController())->delete());
+					break;
+			
+				case 'PlanFeature.delete':
+					return response((new Plans\Application\PlanFeatureController())->delete());
+					break;
 			}
 
 		} catch (Exception $e) {

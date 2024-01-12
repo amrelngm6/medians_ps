@@ -17,6 +17,7 @@ class Vehicle extends CustomModel
     protected $primaryKey = 'vehicle_id';
 	
 	public $fillable = [
+		'business_id',
 		'vehicle_name',
 		'maintenance_status',
 		'capacity',

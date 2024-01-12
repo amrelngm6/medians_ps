@@ -21,6 +21,7 @@ class Trip extends CustomModel
     protected $primaryKey = 'trip_id';
 	
 	public $fillable = [
+		'business_id',
 		'driver_id',
 		'vehicle_id',
 		'route_id',

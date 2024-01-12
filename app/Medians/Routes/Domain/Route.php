@@ -21,6 +21,7 @@ class Route extends CustomModel
     protected $primaryKey = 'route_id';
 	
 	public $fillable = [
+		'business_id',
 		'route_name',
 		'description',
 		'latitude',

@@ -17,6 +17,7 @@ class Vacation extends CustomModel
     protected $primaryKey = 'vacation_id';
 	
 	public $fillable = [
+		'business_id',
 		'title',
 		'date',
 		'model_id',

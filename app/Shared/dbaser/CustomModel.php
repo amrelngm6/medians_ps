@@ -15,11 +15,7 @@ class CustomModel extends Model
 {
 
 
-	function __construct()
-	{
-		$this->orderBy('id', 'DESC');
-	}
-
+	
 	public function getId()
 	{
 		$k = $this->getPrimaryKey();

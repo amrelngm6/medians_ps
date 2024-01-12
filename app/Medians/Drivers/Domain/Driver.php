@@ -22,6 +22,7 @@ class Driver extends CustomModel
     protected $primaryKey = 'driver_id';
 	
 	public $fillable = [
+		'business_id',
 		'first_name',
 		'last_name',
 		'picture',

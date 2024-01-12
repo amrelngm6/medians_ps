@@ -19,6 +19,7 @@ class PickupLocation extends CustomModel
     protected $primaryKey = 'pickup_id';
 	
 	public $fillable = [
+		'business_id',
 		'model_type',
 		'model_id',
 		'route_id',

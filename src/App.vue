@@ -12,7 +12,7 @@
 
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 999;">
                         <div class="w-full">
-                            <transition   :duration="550">
+                            <transition name="fade"   :duration="50">
                                 <component ref="activeTab" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent"></component>
                             </transition>
                         </div>
@@ -81,6 +81,30 @@ const users = defineAsyncComponent(() =>
   import('@/components/users.vue')
 );
 
+const companies = defineAsyncComponent(() =>
+  import('@/components/companies.vue')
+);
+
+const schools = defineAsyncComponent(() =>
+  import('@/components/schools.vue')
+);
+
+const plans = defineAsyncComponent(() =>
+  import('@/components/plans.vue')
+);
+
+const plan_features = defineAsyncComponent(() =>
+  import('@/components/plan_features.vue')
+);
+
+const plan_subscriptions = defineAsyncComponent(() =>
+  import('@/components/plan_subscriptions.vue')
+);
+
+const employees = defineAsyncComponent(() =>
+  import('@/components/employees.vue')
+);
+
 export default {
     name: 'app',
     components: {
@@ -101,6 +125,12 @@ export default {
         events,
         notifications_events,
         users,
+        schools,
+        companies,
+        plans,
+        plan_features,
+        plan_subscriptions,
+        employees,
         translate,
         'help_messages':HelpMessages,
     },
@@ -121,7 +151,6 @@ export default {
             conf: {},
             main_menu: [],
             typesList: [],
-            show: false,
             showSide: true,
             showModal: false,
             activeModal: null,
@@ -218,8 +247,7 @@ export default {
             this.conf = props ? JSON.parse(props.conf) : {};
             this.activeTab = (props && props.page) ? props.page : this.defaultPage();
             this.activeComponent = (props && props.component) ? props.component : this.defaultPage();
-            this.show = true
-            console.log(this.activeComponent);
+            // console.log(this.activeComponent);
 
         },
 
@@ -230,11 +258,8 @@ export default {
         switchTab(tab) {
             if (!tab.sub)
             {
-                console.log('switch')
-                this.show = false
                 this.activeTab = (tab && tab.link) ? tab.link : this.defaultPage();
                 this.activeComponent = (tab && tab.component) ? tab.component : this.activeTab;
-                this.show = true
                 history.pushState({menu: JSON.parse(JSON.stringify(tab))}, '', this.conf.url+this.activeTab);
                 this.checkMobileMenu()
             }
@@ -307,5 +332,13 @@ export default {
 @import './assets/style.css';
 @import './assets/theme.css';
 @import './assets/plugins.css';
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
 
 </style>

@@ -17,6 +17,7 @@ class PickupAlarm extends CustomModel
     protected $primaryKey = 'alarm_id';
 	
 	public $fillable = [
+		'business_id',
 		'driver_id',
 		'car_id',
 		'student_id',

@@ -17,6 +17,7 @@ class Event extends CustomModel
     protected $primaryKey = 'event_id';
 	
 	public $fillable = [
+		'business_id',
 		'title',
 		'description',
 		'picture',

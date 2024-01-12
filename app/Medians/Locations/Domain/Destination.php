@@ -19,6 +19,7 @@ class Destination extends CustomModel
     protected $primaryKey = 'destination_id';
 	
 	public $fillable = [
+		'business_id',
 		'model_type',
 		'model_id',
 		'route_id',

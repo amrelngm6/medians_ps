@@ -196,36 +196,51 @@ class APP
 		$data = array(
 			
 			array('permission'=> 'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'dashboard'),
-			array('permission'=>'Dashboard.index', 'title'=>__('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
+			array( 'title'=>__('Businesses'),  'icon'=>'wind', 'link'=>'#businesses', 'sub'=>
 			[
-				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'user', 'link'=>'admin/parents', 'component'=>'parents'),
-				array('permission'=>'Students.index', 'title'=>__('Students'),  'icon'=>'user', 'link'=>'admin/students', 'component'=>'students'),
-				]
+				array('permission'=>'Companies.index', 'title'=>__('Companies'),  'icon'=>'user', 'link'=>'admin/companies', 'component'=>'companies'),
+				array('permission'=>'Schools.index', 'title'=>__('Schools'),  'icon'=>'user', 'link'=>'admin/schools', 'component'=>'schools'),
+			]
 			),
 			
+			array('title'=>__('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
+			[
+				array('permission'=>'Employees.index', 'title'=>__('Employees'),  'icon'=>'user', 'link'=>'admin/employees', 'component'=>'employees'),
+				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'user', 'link'=>'admin/parents', 'component'=>'parents'),
+				array('permission'=>'Students.index', 'title'=>__('Students'),  'icon'=>'user', 'link'=>'admin/students', 'component'=>'students'),
+			]
+			),
+			
+			array( 'title'=>__('Plans'),  'icon'=>'check-circle', 'link'=>'#plan', 'sub'=>
+			[
+				array('permission'=>'Plans.index', 'title'=>__('Plans'),  'icon'=>'tool', 'link'=>'admin/plans', 'component'=>'plans'),
+				array('permission'=>'PlanFeature.index', 'title'=>__('Plan features'),  'icon'=>'tool', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
+				array('permission'=>'PlanSubscription.index', 'title'=>__('Plan subscriptions'),  'icon'=>'tool', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
+			]
+			),
 			array('permission'=>'Vehicles.index', 'title'=>__('Cars'),  'icon'=>'truck', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
 			array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
-			array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'map', 'link'=>'#route', 'sub'=>
-				[
-					array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'map', 'link'=>'admin/routes', 'component'=>'routes'),
-					array('permission'=>'PickupLocations.index', 'title'=>__('Locations'),  'icon'=>'map', 'link'=>'admin/locations', 'component'=>'locations'),
-					array('permission'=>'Destinations.index', 'title'=>__('Destinations'),  'icon'=>'map', 'link'=>'admin/destinations', 'component'=>'destinations'),
-					]
+			array('title'=>__('Routes'),  'icon'=>'map', 'link'=>'#route', 'sub'=>
+			[
+				array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'map', 'link'=>'admin/routes', 'component'=>'routes'),
+				array('permission'=>'PickupLocations.index', 'title'=>__('Locations'),  'icon'=>'map', 'link'=>'admin/locations', 'component'=>'locations'),
+				array('permission'=>'Destinations.index', 'title'=>__('Destinations'),  'icon'=>'map', 'link'=>'admin/destinations', 'component'=>'destinations'),
+			]
 			),
 
 			array('permission'=>'Trips.index', 'title'=>__('trips'),  'icon'=>'briefcase', 'link'=>'admin/trips', 'component'=>'trips'),
-			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'check-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
 	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
 			
-			array('permission'=>'NotificationEvent.index', 'title'=>__('Management'),  'icon'=>'tool', 'link'=>'#management', 'sub'=>
+			array( 'title'=>__('Management'),  'icon'=>'tool', 'link'=>'#management', 'sub'=>
 			[
 				array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
-				// array('permission'=>'Notification.index', 'title'=>__('notifications_log'),  'icon'=>'bell', 'link'=>'admin/notifications', 'component'=>'notifications'),
 				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
 				array('permission'=> 'Roles.index', 'title'=> __('ROLES MANAEGMENT'),  'icon'=>'chain', 'link'=>'admin/roles', 'component'=>'roles'),
 			]
 			),
+			
 			array('permission'=>'Logout', 'title'=> __('Logout'),  'icon'=>'log-out', 'link'=>'logout'),
 		);
 

@@ -17,6 +17,7 @@ class HelpMessage extends CustomModel
     protected $primaryKey = 'message_id';
 	
 	public $fillable = [
+		'business_id',
 		'user_id',
 		'user_type',
 		'subject',

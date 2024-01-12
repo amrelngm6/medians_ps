@@ -170,9 +170,6 @@ if(isset($app->auth()->id))
     /** @return vacations */
     RouteHandler::get('/admin/vacations', Medians\Vacations\Application\VacationController::class.'@index');
 
-    /** @return roles */
-    RouteHandler::get('/admin/roles', Medians\Roles\Application\RoleController::class.'@index');
-
 
 
     /**
@@ -194,7 +191,26 @@ if(isset($app->auth()->id))
     */
     RouteHandler::get('/admin/notifications_events', \Medians\Notifications\Application\NotificationEventController::class.'@index');
 
+    /** @return roles */
+    RouteHandler::get('/admin/roles', Medians\Roles\Application\RoleController::class.'@index');
 
+    /** @return companies */
+    RouteHandler::get('/admin/companies', Medians\Businesses\Application\BusinessController::class.'@companies');
+
+    /** @return schools */
+    RouteHandler::get('/admin/schools', Medians\Businesses\Application\BusinessController::class.'@schools');
+
+    /** @return Plans */
+    RouteHandler::get('/admin/plans', Medians\Plans\Application\PlanController::class.'@index');
+
+    /** @return Plan Feature */
+    RouteHandler::get('/admin/plan_features', Medians\Plans\Application\PlanFeatureController::class.'@index');
+
+    /** @return Plan subscriptions */
+    RouteHandler::get('/admin/plan_subscriptions', Medians\Plans\Application\PlanSubscriptionController::class.'@index');
+
+    /** @return Plan employees */
+    RouteHandler::get('/admin/employees', Medians\Employees\Application\EmployeeController::class.'@index');
 
 
 }

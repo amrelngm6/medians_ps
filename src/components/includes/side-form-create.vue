@@ -9,31 +9,34 @@
                 <input name="type" type="hidden" :value="model">
                 <input name="params[active]" type="hidden" value="1">
                 
-                <input v-if="model_id && column && column.column_type == 'hidden'" :name="'params['+column.key+']'" type="hidden" v-model="column.default">
                 
-                <div class="py-1 w-full" v-for="column in columns" v-if="columns">
+                <div  v-for="column in columns" v-if="columns">
+                    <div class="py-1 w-full">
 
-                    <input :required="column.required" v-if="isInput(column.column_type)" :name="'params['+column.key+']'"  autocomplete="off" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
+                        <input v-if="column && column.column_type == 'hidden'" :name="'params['+column.key+']'" type="hidden" v-model="column.default">
 
-                    <input v-if="column.column_type == 'password'" autocomplete="off" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
+                        <input :required="column.required" v-if="isInput(column.column_type)" :name="'params['+column.key+']'"  autocomplete="off" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
 
-                    <textarea  :required="column.required"  v-if="column.column_type == 'textarea'" :name="'params['+column.key+']'" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title"></textarea>
+                        <input v-if="column.column_type == 'password'" autocomplete="off" :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mb-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title">
 
-                    <select :name="'params['+column.key+']'" :type="column.column_type" class="h-12 mt-3 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-if="column.data && column.column_type == 'select'"  :placeholder="column.title">
-                        <option value="0" v-if="!column.required" v-text="__('-- Choose') +' '+ column.title"></option>
-                        <option v-for="option in column.data" :value="option[column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
-                    </select>
+                        <textarea  :required="column.required"  v-if="column.column_type == 'textarea'" :name="'params['+column.key+']'" rows="4" class="mt-3 rounded-lg w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" :placeholder="column.title"></textarea>
 
-                    <div v-if="column.column_type == 'checkbox' && !showLoader"  class="flex gap gap-2 cursor-pointer" @click="setActiveStatus(column)">
-                        <span :for="column.key" class="block" v-text="column.title"></span>
-                        <span :class="!column.active ? 'bg-inverse-dark' : ''" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: column.active ? '16px' : 0}"></a></span>
-                        <span  v-text="column.active ? __('Active') : __('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
-                        <input v-model="column.active"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
+                        <select :required="column.required"  :name="'params['+column.key+']'" :type="column.column_type" class="h-12 my-4 rounded w-full border px-3 text-gray-700  focus:border-blue-100 dark:bg-gray-800  dark:border-gray-600" v-if="column.data && column.column_type == 'select'"  :placeholder="column.title">
+                            <option value="0" v-if="!column.required" v-text="__('-- Choose') +' '+ column.title"></option>
+                            <option v-for="option in column.data" :value="option[column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
+                        </select>
+
+                        <div v-if="column.column_type == 'checkbox' && !showLoader"  class="flex gap gap-2 cursor-pointer my-2" @click="setActiveStatus(column)">
+                            <span :for="column.key" class="block" v-text="column.title"></span>
+                            <span :class="!column.active ? 'bg-inverse-dark' : ''" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: column.active ? '16px' : 0}"></a></span>
+                            <span v-if="!column.without_text" v-text="column.active ? __('Active') : __('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                            <input v-model="column.active"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
+                        </div>
+                        
+                        <vue-medialibrary-field :key="item" v-if="column.column_type == 'file'" :name="'params['+column.key+']'" :filepath="null" :api_url="conf.url"></vue-medialibrary-field>
+
+                        <vue-medialibrary-field :key="item" v-if="column.column_type == 'profile_image' " :name="'params['+column.key+']'" :filepath="null"  :api_url="conf.url"></vue-medialibrary-field>
                     </div>
-                    
-                    <vue-medialibrary-field :key="item" v-if="column.column_type == 'file'" :name="'params['+column.key+']'" :filepath="null" :api_url="conf.url"></vue-medialibrary-field>
-
-                    <vue-medialibrary-field :key="item" v-if="column.column_type == 'profile_image' " :name="'params['+column.key+']'" :filepath="null"  :api_url="conf.url"></vue-medialibrary-field>
 
                 </div>
 
