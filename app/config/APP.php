@@ -113,8 +113,11 @@ class APP
 	 */
 	public function checkAPISession()
 	{
+		error_log('Checking');
 		if (!empty($this->request()->headers->get('token')))
 		{
+		error_log('!Empty');
+
 			return  (new AuthService())->checkAPISession($this->request()->headers->get('token'), $this->request()->headers->get('userType'));
 		}
 	}  
