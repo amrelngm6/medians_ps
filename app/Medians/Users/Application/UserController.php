@@ -5,6 +5,10 @@ use \Shared\dbaser\CustomController;
 
 use Medians\Users\Infrastructure\UserRepository;
 use Medians\Roles\Infrastructure\RoleRepository;
+use Medians\Vehicles\Infrastructure\VehicleRepository;
+use Medians\Drivers\Infrastructure\DriverRepository;
+use Medians\Trips\Infrastructure\TripRepository;
+use Medians\Routes\Infrastructure\RouteRepository;
 
 
 class UserController extends CustomController
@@ -39,6 +43,7 @@ class UserController extends CustomController
 
 		return [
             [ 'key'=> "id", 'title'=> __('id'), 'fillable'=> true, 'column_type'=>'hidden' ],
+            [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "email", 'title'=> __('email'), 'fillable'=> true, 'column_type'=>'email', 'required'=>true  ],
@@ -49,7 +54,27 @@ class UserController extends CustomController
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->rolesRepo->get()
 			],
-            [ 'key'=> "profile_image", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'profile_image' ],
+        ];
+	}
+
+	
+
+	/**
+	 * Columns list to view in Overview page 
+	 * for User Profile page
+	 */ 
+	public function overview( ) 
+	{
+		$user = $this->app->auth();
+
+		return [
+            [ 'key'=> $user->id, 'title'=> __('id') ],
+            [ 'key'=> $user->first_name, 'title'=> __('first_name'),  ],
+            [ 'key'=> $user->last_name, 'title'=> __('last_name'),  ],
+            [ 'key'=> $user->email, 'title'=> __('email')   ],
+            [ 'key'=> $user->phone, 'title'=> __('phone')  ],
+            [ 'key'=> $user->active ? 'Yes' : 'No', 'title'=> __('status') ],
+			[ 'key'=> $user->role->name, 'title'=> __('Role') ],
         ];
 	}
 
@@ -65,10 +90,11 @@ class UserController extends CustomController
 		$query = ($this->app->auth()->role_id == 1) ? $this->repo->getAll() : $this->repo->get();
 
 		return render('users', [
+	        'title' => __('Users'),
 			'load_vue'=> true,
 			'users' =>   $query,
-			'roles' =>   $this->rolesRepo->get(),
-	        'title' => __('Users'),
+			'roles' =>   $this->rolesRepo->getWithUsers(),
+	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
 	    ]);
 	} 
@@ -78,53 +104,39 @@ class UserController extends CustomController
 	 * Index page
 	 * 
 	 */
-	public function index_users()
+	public function profile()
 	{
-		return render('users', [
+		
+		$user = $this->app->auth();
+		
+		return render('profile', [
 			'load_vue'=> true,
-			'users' =>   $this->repo->getAll(),
 	        'title' => __('Users'),
+			'user' =>   $user,
+            'stats' => $this->getStats($user->business),
+	        'overview' => $this->overview(),
+	        'fillable' => $this->fillable(),
 	    ]);
 	} 
 
+	
+	
+	public function getStats($business) 
+	{	
 
-	/** 
-	 * Query users
-	 */
-	public function queryByRole($role_id)
-	{
-		return	$this->repo->getModel()->with('Role')->where('role_id', $role_id)->get();
+		$data = [];
 
-	} 
+        $driverRepo = new DriverRepository($business);
+        $data['drivers_count'] = count($driverRepo->get(null));
+        $vehicleRepo = new VehicleRepository($business);
+        $data['vehicles_count'] = count($vehicleRepo->get(null));
+        $routesRepo = new RouteRepository($business);
+        $data['routes_count'] = count($routesRepo->get(null));
+		$tripsRepo = new TripRepository($business);
+        $data['trips_count'] = count($tripsRepo->get(null));
 
-
-
-	/**
-	 * Create page
-	 * 
-	 */
-	public function create()
-	{
-		return render('views/admin/users/create.html.twig', [
-	        'title' => __('Users'),
-	        'Model' => $this->repo->getModel(),
-	    ]);
-	} 
-
-	/**
-	 * Create page
-	 * 
-	 */
-	public function edit($id)
-	{
-
-		return render('views/admin/users/create.html.twig', [
-	        'title' => __('Users'),
-	        'Model' => $this->repo->find($id),
-	    ]);
-	} 
-
-
+		return $data;
+	}
 
 
 	/**
@@ -139,9 +151,6 @@ class UserController extends CustomController
 
 			if ($this->validate($params)) 
 				return $this->validate($params);
-
-			if (isset($params['id'])) 
-				return __('ERR');
 
 			$params['role_id'] = !empty($params['role_id']) ? $params['role_id'] : 3;
 
@@ -213,6 +222,10 @@ class UserController extends CustomController
 	        	return  $this->validateUpdate($params);
 			}			
 
+			if (empty($params['password']))
+			{
+				unset($params['password']);
+			}
 
 			$update = $this->repo->update($params);
 

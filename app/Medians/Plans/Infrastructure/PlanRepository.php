@@ -20,11 +20,6 @@ class PlanRepository
 		$this->app = new \config\APP;
 	}
 
-	public function getModel()
-	{
-		return new Plan;
-	}
-
 	/**
 	* Find item by `id` 
 	*/
@@ -39,7 +34,7 @@ class PlanRepository
 	*/
 	public function get($params = null) 
 	{
-		return Plan::get();
+		return Plan::with('plan_features')->get();
 	}
 
 

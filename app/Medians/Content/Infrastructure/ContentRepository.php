@@ -3,6 +3,7 @@
 namespace Medians\Content\Infrastructure;
 
 use Medians\Content\Domain\Content;
+use Medians\Pages\Domain\Page;
 
 
 class ContentRepository 
@@ -21,14 +22,14 @@ class ContentRepository
 	}
 
 
-	public static function getModel()
-	{
-		return new Content();
-	}
-
 	public function find($prefix)
 	{
 		return Content::where('prefix', $prefix)->first();
+	}
+
+	public function findPage($page_id)
+	{
+		return Content::where('item_id', $page_id)->where('model_type', Page::class)->first();
 	}
 
 	public function switch_lang($item)

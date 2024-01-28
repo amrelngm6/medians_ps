@@ -5,10 +5,9 @@
                 <div class="card px-4 py-6 mb-6">
                     <div class="text-center pb-4" >
                         <h4 class="mb-6 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
-                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger"
-                            ><vue-feather class="px-2" type="x-circle"></vue-feather> <span v-text="translate('Back')"></span></button>
+                        <button type="button" @click="close" class=" hover:bg-primary mb-3 px-6 py-2  text-danger inline-flex "
+                            ><vue-feather class="px-2" type="x-circle"></vue-feather> <span class="pt-1" v-text="translate('Back')"></span></button>
                     </div>
-                    <hr class="mt-5 dark:border-gray-600">
                 </div> <!-- end card -->
             </div>
 
@@ -27,9 +26,9 @@
                         <div class="py-6 w-full" v-if="activeItem">
                             <nav class="max-w-xl space-y-3 bg-gray-100 p-4 dark:bg-gray-900/30"
                                 aria-label="Tabs" role="tablist">
-                                <label @click="setActiveStatus(permission)" :class="permission.access ? 'menu-dark text-white font-semibold' : 'text-gray-500'" v-for="permission in activeItem.permissions" 
-                                class="cursor-pointer px-4 flex gap gap-4 mb-2 hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full  py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all text-sm whitespace-nowrap dark:text-white active">
-                                    <span :class="!permission.access ? 'bg-inverse-dark' : ''" class="bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: permission.access ? '16px' : 0}"></a></span>
+                                <label @click="setActiveStatus(permission)" :class="permission.access ? 'menu-dark  font-semibold' : 'text-gray-500'" v-for="permission in activeItem.permissions" 
+                                class="text-lg cursor-pointer px-4 flex gap gap-4 mb-2 hover:bg-white hover:text-blue-800 hs-tab-active:font-semibold hs-tab-active:bg-white dark:hs-tab-active:bg-gray-700 w-full  py-2 rounded items-center gap-2 border-b-2 border-transparent -mb-px transition-all whitespace-nowrap dark:text-white active">
+                                    <span :class="!permission.access ? 'bg-gray-200' : 'bg-red-400'" class=" block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: permission.access ? '16px' : 0}"></a></span>
                                     <span type="button" v-text="translate(permission.model)"></span>
                                 </label>
                                  <!-- button-end -->

@@ -10,6 +10,7 @@ use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripPickup;
 use Medians\Help\Domain\HelpMessage;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Businesses\Domain\Business;
 
 class Driver extends CustomModel
 {
@@ -25,13 +26,14 @@ class Driver extends CustomModel
 		'business_id',
 		'first_name',
 		'last_name',
-		'picture',
-		'driver_license_number',
-		'vehicle_plate_number',
 		'email',
+		'picture',
+		'mobile',
+		'vehicle_id',
+		'birth_date',
+		'driver_license_number',
 		'password',
 		'generated_password',
-		'contact_number',
 		'status',
 		'created_by'
 	];
@@ -65,15 +67,19 @@ class Driver extends CustomModel
     	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
 	}
 
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
 
 	public function vehicle() 
 	{
-		return $this->hasOne(Vehicle::class, 'driver_id', 'driver_id')->with('route');	
+		return $this->hasOne(Vehicle::class, 'vehicle_id', 'vehicle_id');	
 	}
 
 	public function trip() 
 	{
-		return $this->hasOne(Trip::class, 'driver_id', 'driver_id')->withCount('waiting_locations','moving_locations')->with('pickup_locations')->where('trip_status', '!=', 'Completed')->where('trip_date', date('Y-m-d'));	
+		return $this->hasOne(Trip::class, 'driver_id', 'driver_id')->withCount('waiting_locations','moving_locations')->with('route_locations')->where('trip_status', '!=', 'Completed')->where('trip_date', date('Y-m-d'));	
 	}
 
 	public function help_messages() 
@@ -83,7 +89,7 @@ class Driver extends CustomModel
 
 	public function last_trips() 
 	{
-		return $this->hasMany(Trip::class, 'driver_id', 'driver_id')->with('pickup_locations')->orderBy('trip_id', 'DESC');	
+		return $this->hasMany(Trip::class, 'driver_id', 'driver_id')->with('route_locations')->orderBy('trip_id', 'DESC');	
 	}
 
 	public function total_pickups() 
@@ -106,7 +112,7 @@ class Driver extends CustomModel
 
 		$delete = CustomField::where('code', $code)
 		->where('model_type', Driver::class)
-		->where('model_id', $this->parent_id)
+		->where('model_id', $this->customer_id)
 		->delete();
 
     	// Insert activation code 

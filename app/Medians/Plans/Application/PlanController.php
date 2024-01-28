@@ -4,6 +4,7 @@ namespace Medians\Plans\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Plans\Infrastructure\PlanRepository;
+use Medians\Plans\Infrastructure\PlanFeatureRepository;
 
 class PlanController extends CustomController
 {
@@ -15,10 +16,13 @@ class PlanController extends CustomController
 
 	protected $app;
 
+	protected $featuresRepo;
+
 
 	function __construct()
 	{
 		$this->repo = new PlanRepository();
+		$this->featuresRepo = new PlanFeatureRepository();
 	}
 
 
@@ -80,6 +84,7 @@ class PlanController extends CustomController
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
 	        'items' => $this->repo->get(),
+	        'features' => $this->featuresRepo->getGrouped(),
 	    ]);
 	}
 

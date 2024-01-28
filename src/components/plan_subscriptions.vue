@@ -1,13 +1,42 @@
 <template>
     <div class="w-full " >
         
-        <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
+        <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
         </div>
-        <hr class="mt-2" />
-        <div class="w-full">
+        <div class="mx-2 bg-white px-4 rounded shadow-sm py-2 ">
             
-            <datatabble :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
+            <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex ">
+                <!--begin::Card title-->
+                <div class="card-title">
+                    <!--begin::Search-->
+                    <div class="d-flex align-items-center position-relative my-1">
+                        <input type="text"  v-model="searchValue" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Report">
+                    </div>
+                    <!--end::Search-->
+
+                    <!--begin::Export buttons-->
+                    <div id="kt_ecommerce_report_views_export" class="d-none"><div class="dt-buttons btn-group flex-wrap">      <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>Excel</span></button> <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>CSV</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>PDF</span></button> </div></div>
+                    <!--end::Export buttons-->
+                </div>
+                <!--end::Card title-->
+
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+
+                    <div class="w-150px">
+                        <select v-model="searchField" class="form-select form-select-solid select2-hidden-accessible" data-control="select2" data-hide-search="true" data-placeholder="Rating" data-kt-ecommerce-order-filter="rating" data-select2-id="select2-data-9-zple" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
+                            <option v-for="col in content.columns" v-text="col.text" :value="col.value"></option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <datatabble 
+                :search-field="searchField"
+                :search-value="searchValue"  alternating class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
                 <template #item-picture="item">
                     <img :src="item.picture" class="w-8 h-8 rounded-full" />
@@ -69,12 +98,17 @@ export default
 
         const showLoader = ref(null);
 
+        const searchField = ref("payment_id");
+        const searchValue = ref("");
+
         function load()
         {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
+                searchField.value = content.value.columns[1].value;
             });
         }
+        
         
         load();
 
@@ -113,6 +147,8 @@ export default
             activeItem,
             showLoader,
             translate,
+            searchField,
+            searchValue,
             handleAction
         };
     },

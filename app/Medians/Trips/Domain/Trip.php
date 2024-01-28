@@ -6,8 +6,9 @@ use Shared\dbaser\CustomModel;
 use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Drivers\Domain\Driver;
-use Medians\Parents\Domain\Parents;
+use Medians\Customers\Domain\Parents;
 use Medians\Students\Domain\Student;
+use Medians\Businesses\Domain\Business;
 
 
 class Trip extends CustomModel
@@ -46,6 +47,16 @@ class Trip extends CustomModel
 		return isset($this->vehicle->plate_number) ? $this->vehicle->plate_number : '';	
 	}
 
+	
+	/**
+	 * Relations with onother Models
+	 */
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+
+	
 	public function route() 
 	{
 		return $this->hasOne(Route::class, 'route_id', 'route_id');	

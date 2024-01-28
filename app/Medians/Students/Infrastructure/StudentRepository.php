@@ -4,54 +4,45 @@ namespace Medians\Students\Infrastructure;
 
 use Medians\Students\Domain\Student;
 use Medians\Students\Domain\Content;
-use Medians\Locations\Domain\PickupLocation;
-use Medians\Locations\Domain\Destination;
+use Medians\Locations\Domain\RouteLocation;
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Locations\Infrastructure\PickupLocationRepository;
-use Medians\Locations\Infrastructure\DestinationRepository;
+use Medians\Locations\Infrastructure\RouteLocationRepository;
 
 
 class StudentRepository 
 {
 
-
 	/**
-	 * Load app for Sessions and helpful
-	 * methods for authentication and
-	 * settings for branch
+	 * Business id
 	 */ 
-	protected $app ;
+	protected $business_id ;
 
-	protected $pickupLocationRepository ;
-	protected $destinationRepository ;
+	protected $routeLocationRepository ;
 
-
-	function __construct()
+	function __construct($business)
 	{
-		$this->pickupLocationRepository = new PickupLocationRepository;
-		$this->destinationRepository = new DestinationRepository;
+		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		$this->routeLocationRepository = new RouteLocationRepository($business);
 	}
 
-
-	public static function getModel()
+	public function getClassName()
 	{
-		return new Student();
+		return Student::class;
 	}
-
 
 	public function find($id)
 	{
-		return Student::find($id);
+		return Student::where('business_id', $this->business_id)->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Student::with('pickup_location','parent','route')->limit($limit)->orderBy('student_id', 'DESC')->get();
+		return Student::where('business_id', $this->business_id)->with('route_location','parent','route')->limit($limit)->orderBy('student_id', 'DESC')->get();
 	}
 
 	public function findWithLocations($student_id, $parent_id)
 	{
-		return Student::where('parent_id', $parent_id)->with('pickup_location', 'destination')->find($student_id);
+		return Student::where('business_id', $this->business_id)->where('parent_id', $parent_id)->with('route_location')->find($student_id);
 	}
 
 
@@ -67,7 +58,7 @@ class StudentRepository
 		
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}
@@ -85,7 +76,7 @@ class StudentRepository
     public function update($data)
     {
 
-		$Object = Student::find($data['student_id']);
+		$Object = Student::where('business_id', $this->business_id)->find($data['student_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -103,7 +94,7 @@ class StudentRepository
 	{
 		try {
 			
-			$delete = Student::find($id)->delete();
+			$delete = Student::where('business_id', $this->business_id)->find($id)->delete();
 
 			return true;
 
@@ -131,27 +122,17 @@ class StudentRepository
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
-		if (isset($data['pickup_location']))
+		if (isset($data['route_location']))
 		{
-			$this->pickupLocationRepository->deleteByStudent($Object->student_id);
+			$this->routeLocationRepository->deleteByStudent($Object->student_id);
 
-			$location = (array) $data['pickup_location'];
+			$location = (array) $data['route_location'];
 			$location['model_id'] = $data['student_id'];
 			$location['model_type'] = Student::class;
-			$this->pickupLocationRepository->store($location);
+			$this->routeLocationRepository->store($location);
 		}
 		
-		if (isset($data['destination']))
-		{
-			$this->destinationRepository->deleteByStudent($Object->student_id);
-
-			$destination = (array)  $data['destination'];
-			$destination['model_id'] = $data['student_id'];
-			$destination['model_type'] = Student::class;
-			$this->destinationRepository->store($destination);
-		}
-
-    	return $Object->with('pickup_location','destination')->find($Object->student_id);
+    	return $Object->with('route_location')->find($Object->student_id);
     }
 
 	

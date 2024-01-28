@@ -21,11 +21,6 @@ class PlanFeatureRepository
 		$this->app = new \config\APP;
 	}
 
-	public function getModel()
-	{
-		return new PlanFeature;
-	}
-
 	/**
 	* Find item by `id` 
 	*/
@@ -38,9 +33,18 @@ class PlanFeatureRepository
 	/**
 	* Find items by `params` 
 	*/
-	public function get($params = null) 
+	public function get() 
 	{
 		return PlanFeature::with('plan')->get();
+	}
+
+
+	/**
+	* Find items by `params` 
+	*/
+	public function getGrouped() 
+	{
+		return PlanFeature::with('plan')->groupBy('title')->get();
 	}
 
 

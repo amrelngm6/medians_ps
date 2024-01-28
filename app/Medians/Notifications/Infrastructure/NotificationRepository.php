@@ -6,7 +6,7 @@ use Medians\Notifications\Domain\Notification;
 
 use Medians\Drivers\Domain\Driver;
 use Medians\Users\Domain\User;
-use Medians\Parents\Domain\Parents;
+use Medians\Customers\Domain\Parents;
 
 
 /**
@@ -20,11 +20,6 @@ class NotificationRepository
 
 	function __construct ()
 	{
-	}
-
-	public function getModel()
-	{
-		return new Notification;
 	}
 
 	/**

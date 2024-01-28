@@ -11,13 +11,6 @@ use Medians\Users\Domain\User;
 class EventRepository 
 {
 
-
-	public static function getModel()
-	{
-		return new Event();
-	}
-
-
 	public function find($id)
 	{
 		return Event::find($id);

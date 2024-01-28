@@ -4,11 +4,11 @@ namespace Medians\Students\Domain;
 
 use Shared\dbaser\CustomModel;
 
-use Medians\Locations\Domain\PickupLocation;
-use Medians\Locations\Domain\Destination;
-use Medians\Parents\Domain\Parents;
+use Medians\Locations\Domain\RouteLocation;
+use Medians\Customers\Domain\Parents;
 use Medians\Routes\Domain\Route;
 use Medians\Trips\Domain\TripPickup;
+use Medians\Businesses\Domain\Business;
 
 class Student extends CustomModel
 {
@@ -65,34 +65,37 @@ class Student extends CustomModel
 	}
 
 
+	/**
+	 * Relations with onother Models
+	 */
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+
 	public function trips() 
 	{
     	return $this->hasMany(TripPickup::class, 'model_id', 'student_id')->where('model_type', Student::class)->with('trip');
 	}
 
-	public function pickup_location() 
+	public function route_location() 
 	{
-    	return $this->hasOne(PickupLocation::class, 'model_id', 'student_id')->where('model_type', Student::class);
+    	return $this->hasOne(RouteLocation::class, 'model_id', 'student_id')->where('model_type', Student::class);
 	}
 
 	public function route() 
 	{
-		return $this->hasOneThrough(Route::class, PickupLocation::class, 'model_id', 'route_id', 'student_id', 'route_id');	
-	}
-
-	public function destination() 
-	{
-    	return $this->hasOne(Destination::class, 'model_id', 'student_id')->where('model_type', Student::class);
+		return $this->hasOneThrough(Route::class, RouteLocation::class, 'model_id', 'route_id', 'student_id', 'route_id');	
 	}
 
 	public function parent() 
 	{
-		return $this->belongsTo(Parents::class, 'parent_id', 'parent_id');
+		return $this->belongsTo(Parents::class, 'parent_id', 'customer_id');
 	}
 
 	public function parent_name() 
 	{
-		return $this->belongsTo(Parents::class, 'parent_id', 'parent_id');
+		return $this->belongsTo(Parents::class, 'parent_id', 'customer_id');
 	}
 	
 	

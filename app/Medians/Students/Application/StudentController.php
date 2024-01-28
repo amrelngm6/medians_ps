@@ -4,7 +4,7 @@ namespace Medians\Students\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Students\Infrastructure\StudentRepository;
-use Medians\Parents\Infrastructure\ParentRepository;
+use Medians\Customers\Infrastructure\ParentRepository;
 
 class StudentController extends CustomController 
 {
@@ -24,8 +24,8 @@ class StudentController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new StudentRepository();
-		$this->parentRepo = new ParentRepository();
+		$this->repo = new StudentRepository($this->app->auth()->business);
+		$this->parentRepo = new ParentRepository($this->app->auth()->business);
 	}
 
 
@@ -42,7 +42,7 @@ class StudentController extends CustomController
             [ 'value'=> "student_id", 'text'=> "#"],
             [ 'value'=> "first_name", 'text'=> __('first_name'), 'sortable'=> true ],
             [ 'value'=> "picture", 'text'=> __('picture'),  ],
-            [ 'value'=> "parent.first_name", 'text'=> __('parent_name'), 'sortable'=> true ],
+            [ 'value'=> "parent.name", 'text'=> __('parent_name'), 'sortable'=> true ],
             [ 'value'=> "route.route_name", 'text'=> __('route'), 'sortable'=> true ],
             [ 'value'=> "contact_number", 'text'=> __('contact_number'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('edit')  ],
@@ -62,7 +62,7 @@ class StudentController extends CustomController
 		return [
             [ 'key'=> "student_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "parent_id", 'title'=> __('Parent'), 
-				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'parent_name', 
+				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->parentRepo->get()  
 			],
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
@@ -144,9 +144,9 @@ class StudentController extends CustomController
 	        	return array('result'=>$e->getMessage(), 'error'=>1);
 			}
 
+        	$params['business_id'] = $this->app->auth()->business->business_id;
         	$params['created_by'] = $this->app->auth()->id;
         	$params['status'] = isset($params['status']) ? 1 : 0;
-        	
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
@@ -198,26 +198,21 @@ class StudentController extends CustomController
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
 			}
             
-
         } catch (Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
-        	
         }
-
 	}
 	
 	
 	/**
-	 * getPickupLocation
+	 * getRouteLocation
 	 */
 	public function loadLocations()
 	{
 		
-		
-
 		$params = (array) json_decode($this->app->request()->get('params'));
 
-		$data =  $this->repo->findWithLocations($params['student_id'], $this->app->auth()->parent_id);
+		$data =  $this->repo->findWithLocations($params['student_id'], $this->app->auth()->customer_id);
 
 		return $data;
 	}
@@ -228,7 +223,7 @@ class StudentController extends CustomController
 		$params = (array) json_decode($this->app->request()->get('params'));
         try {	
 
-			$params['parent_id'] =  $this->app->auth()->parent_id;
+			$params['parent_id'] =  $this->app->auth()->customer_id;
 			$params['last_name'] =  $this->app->auth()->first_name;
 
 			$save = $this->repo->store($params);
@@ -252,7 +247,7 @@ class StudentController extends CustomController
 		$params = (array) json_decode($this->app->request()->get('params'));
         try {	
 
-			$params['parent_id'] =  $this->app->auth()->parent_id;
+			$params['parent_id'] =  $this->app->auth()->customer_id;
 			$params['last_name'] =  $this->app->auth()->first_name;
 
 			$save = $this->repo->updateStudentInfo($params);

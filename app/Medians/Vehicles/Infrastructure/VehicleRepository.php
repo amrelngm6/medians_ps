@@ -9,57 +9,32 @@ use Medians\CustomFields\Domain\CustomField;
 class VehicleRepository 
 {
 
-
 	/**
-	 * Load app for Sessions and helpful
-	 * methods for authentication and
-	 * settings for branch
+	 * Business id
 	 */ 
-	protected $app ;
+	protected $business_id ;
 
+	protected $business;
 
-	function __construct()
+	function __construct($business)
 	{
+		$this->business = $business;
+
+		$this->business_id = isset($business->business_id) ? $business->business_id : null;
 	}
 
 
-	public static function getModel()
-	{
-		return new Vehicle();
-	}
 
 
 	public function find($id)
 	{
-		return Vehicle::find($id);
+		return Vehicle::with('type')->where('business_id', $this->business_id)->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Vehicle::limit($limit) ->with('route')->get();
+		return Vehicle::with('type')->where('business_id', $this->business_id)->limit($limit)->get();
 	}
-
-	public function search($request, $limit = 20)
-	{
-		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['vehicle_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
-
-		return $this->similar( $arr, $limit);
-	}
-
-
-	public function similar($item, $limit = 3)
-	{
-		$title = str_replace([' ','-'], '%', $item->content->title);
-
-		return Vehicle::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
-			}
-		})
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
-	}
-
 
 
 
@@ -69,11 +44,17 @@ class VehicleRepository
 	public function store($data) 
 	{
 
+		$permission = 'Vehicle.count';
+		if (count($this->get()) == $this->business->subscription->features[$permission])
+		{
+			return throw new \Exception(__('Access limit exceeded'), 1);
+		}
+
 		$Model = new Vehicle();
 		
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}
@@ -96,7 +77,7 @@ class VehicleRepository
     public function update($data)
     {
 
-		$Object = Vehicle::find($data['vehicle_id']);
+		$Object = Vehicle::where('business_id', $this->business_id)->find($data['vehicle_id']);
 		
 		// Return the  object with the new data
     	$update = $Object->update( (array) $data);
@@ -118,7 +99,7 @@ class VehicleRepository
 	{
 		try {
 			
-			$delete = Vehicle::find($id)->delete();
+			$delete = Vehicle::where('business_id', $this->business_id)->find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

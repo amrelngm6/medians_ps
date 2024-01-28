@@ -14,49 +14,46 @@ class DriverRepository
 
 
 	/**
-	 * Load app for Sessions and helpful
-	 * methods for authentication and
+	 * Business id
 	 */ 
-	protected $app ;
+	protected $business_id ;
 
+	protected $business;
 
-	function __construct()
+	function __construct($business)
 	{
-	}
+		$this->business = $business;
 
-
-	public static function getModel()
-	{
-		return new Driver();
+		$this->business_id = isset($business->business_id) ? $business->business_id : null;
 	}
 
 
 	public function find($id)
 	{
-		return Driver::find($id);
+		return Driver::where('business_id', $this->business_id)->find($id);
 	}
 
 	public function getDriver($id)
 	{
-		return Driver::with('trip', 'vehicle')->with(['last_trips'=>function($q){
+		return Driver::where('business_id', $this->business_id)->with('trip')->with(['last_trips'=>function($q){
 			return $q->limit(3);
 		}])->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Driver::limit($limit)->orderBy('driver_id', 'DESC')->get();
+		return Driver::where('business_id', $this->business_id)->limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 
 	public function getAll($limit = 100)
 	{
 		
-		return Driver::with('last_trips','help_messages')->withCount('total_pickups')->limit($limit)->orderBy('driver_id', 'DESC')->get();
+		return Driver::where('business_id', $this->business_id)->with('last_trips','help_messages')->withCount('total_pickups')->limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 
 	public function topDrivers($limit = 100)
 	{
-		return Driver::withCount('last_trips')->having('last_trips_count', '>', 0)->orderBy('last_trips_count', 'DESC')->limit($limit)->get();
+		return Driver::where('business_id', $this->business_id)->withCount('last_trips')->having('last_trips_count', '>', 0)->orderBy('last_trips_count', 'DESC')->limit($limit)->get();
 	}
 
 	
@@ -66,7 +63,7 @@ class DriverRepository
 	public function mostTrips($params, $limit = 5)
 	{
 
-		return  Driver::withCount(['last_trips as y'=>function($q)use($params){
+		return  Driver::where('business_id', $this->business_id)->withCount(['last_trips as y'=>function($q)use($params){
 			if (isset($params['start']))
 			{
 				$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
@@ -170,13 +167,13 @@ class DriverRepository
 		if (empty($findByEmail))
 			return __('User not found');
 		
-		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $findByEmail->parent_id)->where('code', 'reset_token')->delete();
+		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $findByEmail->customer_id)->where('code', 'reset_token')->delete();
 		
 		$fields = [];
 		$fields['model_type'] = Parents::class;	
-		$fields['model_id'] = $findByEmail->parent_id;	
+		$fields['model_id'] = $findByEmail->customer_id;	
 		$fields['code'] = 'reset_token';	
-		$fields['value'] = $this->randomPassword();
+		$fields['value'] = $Model->randomPassword();
 
 		$Model = CustomField::create($fields);
 		
@@ -187,24 +184,16 @@ class DriverRepository
     }
     	
 	/**
-	 * Generate random password
-	 */
-	public function randomPassword() {
-		$alphabet = '12345678900';
-		$pass = array(); //remember to declare $pass as an array
-		$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-		for ($i = 0; $i < 8; $i++) {
-			$n = rand(0, $alphaLength);
-			$pass[] = $alphabet[$n];
-		}
-		return implode($pass); //turn the array into a string
-	}
-
-	/**
 	* Save item to database
 	*/
 	public function store($data) 
 	{
+
+		$permission = 'Driver.count';
+		if (count($this->get()) == $this->business->subscription->features[$permission])
+		{
+			return throw new \Exception(__('Access limit exceeded'), 1);
+		}
 
 		$Model = new Driver();
 		
@@ -213,7 +202,7 @@ class DriverRepository
 		$data['password'] = $Auth->encrypt($data['generated_password']);
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}
@@ -235,7 +224,7 @@ class DriverRepository
     public function update($data)
     {
 
-		$Object = Driver::find($data['driver_id']);
+		$Object = Driver::where('business_id', $this->business_id)->find($data['driver_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -257,7 +246,7 @@ class DriverRepository
 	{
 		try {
 			
-			$delete = Driver::find($id)->delete();
+			$delete = Driver::where('business_id', $this->business_id)->find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);
@@ -317,6 +306,8 @@ class DriverRepository
 			return $Model;		
 		}
 	}
+
+
 
 
  

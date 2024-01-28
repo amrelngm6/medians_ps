@@ -24,12 +24,6 @@ class BusinessRepository
 	}
 
 
-	public static function getModel()
-	{
-		return new Business();
-	}
-
-
 	public function find($id)
 	{
 		return Business::find($id);
@@ -79,7 +73,7 @@ class BusinessRepository
 		
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}

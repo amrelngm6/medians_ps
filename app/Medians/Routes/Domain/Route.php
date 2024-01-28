@@ -3,10 +3,11 @@
 namespace Medians\Routes\Domain;
 
 use Medians\Trips\Domain\Trip;
-use Medians\Locations\Domain\PickupLocation;
-use Medians\Locations\Domain\Destination;
+use Medians\Locations\Domain\RouteLocation;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Drivers\Domain\Driver;
+use Medians\Customers\Domain\SuperVisor;
+use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
 
 
@@ -24,9 +25,13 @@ class Route extends CustomModel
 		'business_id',
 		'route_name',
 		'description',
-		'latitude',
-		'longitude',
-		'created_by'
+		'morning_trip_time',
+		'afternoon_trip_time',
+		'supervisor_id',
+		'vehicle_id',
+		'driver_id',
+		'created_by',
+		'status',
 	];
 
 
@@ -39,44 +44,43 @@ class Route extends CustomModel
         return $this->driver->name ?? '';
     }
 
-	public function photo() : String
+	/**
+	 * Relations with onother Models
+	 */
+	public function business() 
 	{
-		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.png';
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
 	}
-
-	public function getFields()
-	{
-		return $this->fillable;
-	}
-
-	public function thumbnail() 
-	{
-    	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
-	}
-
+	
 	public function trip() 
 	{
 		return $this->hasOne(Trip::class, 'route_id', 'route_id');	
 	}
 
-	public function pickup_locations() 
+	public function position()
 	{
-		return $this->hasMany(PickupLocation::class, 'route_id', 'route_id')->where('status', 1)->with('student');	
+		return $this->hasOne(RoutePosition::class, 'route_id', 'route_id');
 	}
 
-	public function destinations() 
+	public function route_locations() 
 	{
-		return $this->hasMany(Destination::class, 'route_id', 'route_id');	
+		return $this->hasMany(RouteLocation::class, 'route_id', 'route_id')->where('status', 'on')->with('student');	
 	}
+
 
 	public function driver() 
 	{
-		return $this->hasOneThrough(Driver::class, Vehicle::class, 'route_id', 'driver_id', 'route_id', 'driver_id');	
+		return $this->hasOne(Driver::class, 'driver_id', 'driver_id');	
+	}
+
+	public function supervisor() 
+	{
+		return $this->hasOne(SuperVisor::class, 'customer_id', 'supervisor_id')->where('model', SuperVisor::class);	
 	}
 
 	public function vehicle() 
 	{
-		return $this->hasOne(Vehicle::class , 'route_id', 'route_id');	
+		return $this->hasOne(Vehicle::class , 'vehicle_id', 'vehicle_id');	
 	}
 
 }

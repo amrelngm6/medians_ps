@@ -4,8 +4,10 @@ namespace Medians\Routes\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Routes\Infrastructure\RouteRepository;
+use Medians\Customers\Infrastructure\SuperVisorRepository;
 use Medians\Vehicles\Infrastructure\VehicleRepository;
-use Medians\Categories\Infrastructure\CategoryRepository;
+use Medians\Drivers\Infrastructure\DriverRepository;
+use Medians\Locations\Infrastructure\StateRepository;
 
 class RouteController extends CustomController 
 {
@@ -17,8 +19,13 @@ class RouteController extends CustomController
 
 	protected $app;
 
-	public $categoryRepo;
-	public $vehicleRepository;
+	public $vehicleRepo;
+
+	public $driverRepo;
+
+	public $stateRepo;
+
+	public $supervisorRepo;
 	
 
 	function __construct()
@@ -26,9 +33,11 @@ class RouteController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new RouteRepository();
-		$this->categoryRepo = new CategoryRepository();
-		$this->vehicleRepository = new VehicleRepository();
+		$this->repo = new RouteRepository($this->app->auth()->business);
+		$this->supervisorRepo = new SuperVisorRepository($this->app->auth()->business);
+		$this->vehicleRepo = new VehicleRepository($this->app->auth()->business);
+		$this->driverRepo = new DriverRepository($this->app->auth()->business);
+		$this->stateRepo = new StateRepository();
 	}
 
 
@@ -45,7 +54,12 @@ class RouteController extends CustomController
             [ 'value'=> "route_id", 'text'=> "#"],
             [ 'value'=> "route_name", 'text'=> __('route_name'), 'sortable'=> true ],
             [ 'value'=> "driver_name", 'text'=> __('driver_name'), 'sortable'=> true ],
-            [ 'value'=> "pickup_locations", 'text'=> __('pickup_locations'), 'sortable'=> true ],
+            [ 'value'=> "vehicle.plate_number", 'text'=> __('vehicle'), 'sortable'=> true ],
+            [ 'value'=> "supervisor.name", 'text'=> __('supervisor'), 'sortable'=> true ],
+            [ 'value'=> "route_locations", 'text'=> __('route_locations'), 'sortable'=> true ],
+            [ 'value'=> "morning_trip_time", 'text'=> __('Morning Trip'), 'sortable'=> true ],
+            [ 'value'=> "afternoon_trip_time", 'text'=> __('Afternoon Trip'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> __('Status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('Edit') ],
             [ 'value'=> "delete", 'text'=> __('Delete') ],
         ];
@@ -59,14 +73,6 @@ class RouteController extends CustomController
 	 */ 
 	public function fillable( ) 
 	{
-
-		return [
-            [ 'key'=> "route_id", 'title'=> "#",'column_type'=>'hidden'],
-            [ 'key'=> "route_name", 'title'=> __('route_name'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-            [ 'key'=> "latitude", 'title'=> __('Latitude'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-            [ 'key'=> "longitude", 'title'=> __('Longitude'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-            [ 'key'=> "description", 'title'=> __('description'), 'fillable'=>true, 'column_type'=>'text' ],
-        ];
 	}
 
 	
@@ -81,20 +87,24 @@ class RouteController extends CustomController
 	public function index( ) 
 	{
 		try {
-			
-		    return render('routes', [
+
+			return render('routes', [
 		        'load_vue' => true,
 		        'title' => __('Routes'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+		        'supervisors' => $this->supervisorRepo->get(),
+		        'drivers' => $this->driverRepo->get(),
+		        'vehicles' => $this->vehicleRepo->get(),
+		        'cities' => $this->stateRepo->getWithCities(),
+
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
 			
 		}
 	}
-
 
 	/**
 	 * getRoute
@@ -121,22 +131,31 @@ class RouteController extends CustomController
 
 
 	public function store() 
-	{
+	{	
 
 		$params = $this->app->request()->get('params');
 
         try {	
+			
+			$user = $this->app->auth();
 
 			// Administrator user id
-        	$params['created_by'] = $this->app->auth()->id;
-        	
+			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
+        	$params['business_id'] = $user->business->business_id;
+        	$params['created_by'] = $user->id;
 
-            $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+			try {
+				
+				$returnData = (!empty($this->repo->store($params))) 
+				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				: array('success'=>0, 'result'=>'Error', 'error'=>1);
+	
+			} catch (\Throwable $th) {
+				return array('error'=>$th->getMessage());
+			}
 
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	return array('error'=>$e->getMessage());
         }
 
 		return $returnData;
@@ -146,20 +165,20 @@ class RouteController extends CustomController
 
 	public function update()
 	{
+
 		$params = $this->app->request()->get('params');
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
+			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
-        
 
         } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+        	return array('error'=>$e->getMessage());
         	
         }
 

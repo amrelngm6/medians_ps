@@ -79,14 +79,14 @@ class GoogleService
 			$params['first_name'] = $user_info['givenName'];
 			$params['last_name'] = $user_info['familyName'];
 			$params['role_id'] = '3';
-			$params['profile_image'] = $user_info['picture'];
+			$params['picture'] = $user_info['picture'];
 
 			// $params['field']['google_id'] = $user_info['id'];
 
 			$user = $this->repo->getByEmail($params['email']);
 
 			if (isset($user->id))
-				$user->update(['profile_image' => $user_info['picture']]);
+				$user->update(['picture' => $user_info['picture']]);
 			else 
 				$user = $this->repo->store($params);
 

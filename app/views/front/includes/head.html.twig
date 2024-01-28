@@ -5,49 +5,35 @@
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{item.content.seo_title ? item.content.seo_title : (item.content ? item.content.title : 'Medians PS & gaming Cafe Booking System')}}</title>
-    <meta name="description" content="{{item.content.seo_desc ? item.content.seo_desc : 'Medians PS is a solution that manage cyber cafes, gaming & playstation lounges branches witn inventory management and booking system.'}}">
+    <title>{{item.content.seo_title ? item.content.seo_title : (item.content ? item.content.title : 'Medians SaaS Routes Transportation System')}}</title>
+    <meta name="description" content="{{item.content.seo_desc ? item.content.seo_desc : 'Medians SaaS Routes Transportation System, with custom trips feature.'}}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="canonical" href="{{app.request.uri}}">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ app.request.uri}}">
-    <meta property="og:title" content="{{item.content.seo_title ? item.content.seo_title : item.content.title}}">
-    <meta property="og:image" content="https://bedaya.medianssolutions.com/route/image.php?src=1253926083_1828277228_581308477.jpg&img=pic&w=800">
-    <meta property="og:description" content="{{item.content.seo_desc ? item.content.seo_desc : 'Medians PS is a solution that manage cyber cafes, gaming & playstation lounges branches witn inventory management and booking system'}}">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="{{item.content.seo_title ? item.content.seo_title : item.content.title}}">
-    <!-- <meta property="twitter:image" content=""> -->
-    <meta property="twitter:description" content="{{item.content.seo_desc ? item.content.seo_desc : 'Medians PS is a solution that manage cyber cafes, gaming & playstation lounges branches witn inventory management and booking system'}}">
-
+ 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/uploads/images/favicon.webp">
     <link rel="icon" type="image.webp" sizes="32x32" href="/uploads/images/favicon.webp">
     <link rel="icon" type="image.webp" sizes="16x16" href="/uploads/images/favicon.webp">
 
     <!-- CSS -->
-   <link rel="stylesheet" href="/src/front_assets/css/main.css">
+   <link rel="stylesheet" href="/src/assets/tailwind.min.css">
     
+   <link rel="stylesheet" type="text/css" href="/src/front_assets/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="/src/front_assets/css/fontawesome.min.css">
+   <link rel="stylesheet" href="/src/front_assets/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/src/front_assets/css/owl.theme.default.min.css">
+   <!-- fancybox -->
+   <link rel="stylesheet" href="/src/front_assets/css/jquery.fancybox.min.css">
+   <link rel="stylesheet" href="/src/front_assets/css/slick.css">
+   <link rel="stylesheet" href="/src/front_assets/css/slick-theme.css">
+   <!-- style -->
+   <link rel="stylesheet" href="/src/front_assets/css/style.css">
+   <link rel="stylesheet" href="/src/front_assets/css/responsive.css">
+   <!-- responsive -->
+   <!-- color -->
+   <link rel="stylesheet" href="/src/front_assets/css/color.css">
+   <script src="/src/front_assets/js/jquery-3.6.0.min.js"></script>
+   <script src="/src/front_assets/js/preloader.js"></script>
 
-    <!-- JS -->
-    <script type="text/javascript">
-    var rootURL = 'https://bedaya.medianssolutions.com/';
-    var imageURL = 'https://bedaya.medianssolutions.com/route/image.php?';
-    </script>
-    
-    <!-- JS -->
-    <script src="/src/assets/analytics.js"></script>
-    <!-- <script src="./assets/modernizr-custom.js"></script> -->
-
-        <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCF6FWPCBS"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-NCF6FWPCBS');
-    </script>
 </head>
-<body class="p-0 m-0 {{lang.__('dir')}}">
+<body class="p-0 m-0 {{page.lang == 'ar' ? 'rtl' : 'ltr'}}">

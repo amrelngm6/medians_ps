@@ -5,6 +5,7 @@ namespace Medians\Pages\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Content\Domain\Content;
+use Medians\CustomFields\Domain\CustomField;
 
 class Page extends CustomModel
 {
@@ -14,15 +15,35 @@ class Page extends CustomModel
 	*/
 	protected $table = 'pages';
 
+    protected $primaryKey = 'page_id';
+
 	public $fillable = [
 		'title', 
-		'order', 
-		'home', 
+		'prefix', 
+		'homepage', 
+		'status', 
+		'created_by', 
 	];
 
 
-	protected $appends = ['photo','field','name', 'data'];
+	public $appends = ['photo','field','name', 'data','show_header_menu','show_footer_menu1','show_footer_menu2'];
 
+
+
+	public function getShowHeaderMenuAttribute() 
+	{
+		return isset($this->field['show_header_menu']) ? $this->field['show_header_menu'] : null;
+	}
+
+	public function getShowFooterMenu1Attribute() 
+	{
+		return isset($this->field['show_footer_menu1']) ? $this->field['show_footer_menu1'] : null;
+	}
+
+	public function getShowFooterMenu2Attribute() 
+	{
+		return isset($this->field['show_footer_menu2']) ? $this->field['show_footer_menu2'] : null;
+	}
 
 
 	public function getDataAttribute() 
@@ -56,19 +77,14 @@ class Page extends CustomModel
 		return $this->fillable;
 	}
 
-	public function category()
-	{
-		return $this->hasOne(Category::getClass(), 'id', 'category_id')->with('content');
-	}
-
 	public function content()
 	{
-		return $this->hasOne(Content::class, 'item_id', 'id')->where('item_type', Page::class);
+		return $this->hasOne(Content::class, 'item_id', 'page_id')->where('item_type', Page::class)->where('lang',__('lang'));
 	}
 
 	public function custom_fields()
 	{
-		return $this->morphMany(CustomFields::class, 'model')->with('field');
+		return $this->morphMany(CustomField::class, 'model');
 	}
 
 

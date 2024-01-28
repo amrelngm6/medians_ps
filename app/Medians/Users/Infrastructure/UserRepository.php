@@ -12,19 +12,14 @@ class UserRepository
 
 
 
-	public function getModel()
-	{
-		return new User;
-	}
-
 	public function find($id)
 	{
-		return User::with('Role')->find($id);
+		return User::with('Role','business')->find($id);
 	}
 
 	public function findItem($id)
 	{
-		return User::with('Role')->find($id);
+		return User::with('Role','business')->find($id);
 	}
 
 	public function findByActivationCode($code)
@@ -36,7 +31,7 @@ class UserRepository
 
 	public function findByToken($token)
 	{
-		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($token) {
+		return User::with('custom_fields','business')->whereHas('custom_fields', function($q) use ($token) {
 			$q->where('code','API_token')->where('value',$token);
 		})->first();
 
@@ -71,15 +66,41 @@ class UserRepository
 
 	public function get($limit = 100)
 	{
-		return User::with('Role')->limit($limit)->get();
+		return User::with('Role','business')->limit($limit)->get();
 	}
+
 
 	public function getAll()
 	{
-		return User::with('Role')->get();
+		return User::with('Role','business')->get();
 	}
 
 
+
+	/**
+	* Save item to database
+	*/
+	public function signup($data) 
+	{
+
+		$Model = new User();
+
+		$data['password'] = $Model->encrypt($data['password']);
+		$data['role_id'] = 3;
+		$data['active'] = 0;
+		$Model = $Model->firstOrCreate($data);
+
+    	/**
+		* Set token for activation by User
+		*/
+		$value = User::encrypt(strtotime(date('YmdHis')).$Model->id);
+    	$this->setCustomCode((object) $Model, 'activation_token', $value);
+
+		// Return the Model object with the new data
+    	return $this->find($Model->id);
+
+	}
+	
 
 	/**
 	* Save item to database

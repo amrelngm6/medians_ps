@@ -9,8 +9,10 @@ class CustomField extends CustomModel
 
 	protected $table = 'custom_fields';
 
-	public $fillable = ['title', 'code','model_type', 'model_id', 'value', 'field_id'];
+	protected $primaryKey = 'field_id';
 
-	public $timestamps = false;
+	public $fillable = ['code','value', 'model_type', 'model_id'];
+
+	public $timestamps = true;
 
 }

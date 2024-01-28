@@ -21,6 +21,13 @@ class RoleRepository
 		return Role::with('permissions','permissions_group')->withCount('users')->limit($limit)->get();
 	}
 
+	
+	public function getWithUsers($limit = 100)
+	{
+		return Role::with(['users'=>function($q){
+			return $q->with('business');
+		}])->limit($limit)->get();
+	}
 
 	/**
 	* Save item to database

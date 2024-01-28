@@ -28,12 +28,6 @@ class BlogRepository
 	}
 
 
-	public static function getModel()
-	{
-		return new Blog();
-	}
-
-
 	public function find($id)
 	{
 		return Blog::with('content')->find($id);
@@ -91,7 +85,7 @@ class BlogRepository
 		
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}

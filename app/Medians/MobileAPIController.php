@@ -72,10 +72,6 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Trips\Infrastructure\TripRepository())->updateTripPickup($params);
 				break;
 
-			case 'update_destination':
-				$return = (new \Medians\Trips\Infrastructure\TripRepository())->updateTripDestination($params);
-				break;
-			
 			case 'trips':
 				$return = (new \Medians\Trips\Application\TripController())->loadTrips($params);
 				break;
@@ -89,11 +85,11 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Parent.signup':
-				$return =  (new Parents\Application\ParentController())->signup(); 
+				$return =  (new Customers\Application\ParentController())->signup(); 
 				break;
 
 			case 'Parent.login':
-				$return =  (new Parents\Application\ParentController())->login(); 
+				$return =  (new Customers\Application\ParentController())->login(); 
 				break;
 
 			case 'Driver.login':
@@ -101,7 +97,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Parents.resetPassword':
-				$return =  (new Parents\Application\ParentController())->resetPassword(); 
+				$return =  (new Customers\Application\ParentController())->resetPassword(); 
 				break;
 
 			case 'Drivers.resetPassword':
@@ -113,7 +109,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'student_pickup':
-				$return =  (new Locations\Application\PickupLocationController())->loadPickup(); 
+				$return =  (new Locations\Application\RouteLocationController())->loadPickup(); 
 				break;
 				
 			case 'student_locations':
@@ -129,7 +125,7 @@ class MobileAPIController extends CustomController
 				break;
 				
 			case 'Parents.changePassword':
-				$return =  (new Parents\Application\ParentController())->changePassword(); 
+				$return =  (new Customers\Application\ParentController())->changePassword(); 
 				break;
 				
 			case 'Parents.getActiveParentTrip':
@@ -138,7 +134,7 @@ class MobileAPIController extends CustomController
 				
 				
 			case 'Parents.resetChangePassword':
-				$return =  (new Parents\Application\ParentController())->resetChangePassword(); 
+				$return =  (new Customers\Application\ParentController())->resetChangePassword(); 
 				break;
 				
 			case 'Driver.changePassword':
@@ -218,7 +214,7 @@ class MobileAPIController extends CustomController
                 break;
 
             case 'Parent.update':
-				$return = (new Parents\Application\ParentController())->updateMobile(); 
+				$return = (new Customers\Application\ParentController())->updateMobile(); 
                 break;
 
             case 'Driver.update':
@@ -233,8 +229,8 @@ class MobileAPIController extends CustomController
 				$return =  (new Students\Application\StudentController())->updateStudentInfo(); 
 				break;
 
-			case 'PickupLocation.update':
-				$return =  (new Locations\Application\PickupLocationController())->updateDays(); 
+			case 'RouteLocation.update':
+				$return =  (new Locations\Application\RouteLocationController())->updateDays(); 
 				break;
 
 		}
@@ -267,11 +263,11 @@ class MobileAPIController extends CustomController
 					break;
 
 				case 'Parents.delete':
-					return response((new Parents\Application\ParentController())->delete());
+					return response((new Customers\Application\ParentController())->delete());
 					break;
 
-				case 'PickupLocation.delete':
-					return response((new Locations\Application\PickupLocationController())->delete());
+				case 'RouteLocation.delete':
+					return response((new Locations\Application\RouteLocationController())->delete());
 					break;
 
 				case 'Student.delete':

@@ -3,10 +3,8 @@
 namespace Medians\Customers\Domain;
 
 use Shared\dbaser\CustomModel;
+use Medians\Locations\Domain\RouteLocation;
 
-use Medians\Orders\Domain\Order;
-use Medians\Devices\Domain\OrderDevice;
-use Medians\Notifications\Domain\NotificationEvent;
 
 class Customer extends CustomModel
 {
@@ -16,17 +14,25 @@ class Customer extends CustomModel
 	*/
 	protected $table = 'customers';
 
+	protected $primaryKey = 'customer_id';
+
 	public $fillable = [
+		'business_id',
 		'name',
+		'email',
 		'mobile',
-		'photo',
+		'picture',
 		'gender',
-		'created_by',
+		'model',
+		'birth_date',
+		'generated_password',
+		'password',
+		'status'
 	];
 
 
 
-	protected $appends = [ 'photo', 'not_removeable'];
+	public $appends = [ 'photo', 'not_removeable'];
 
 	public function getNotRemoveableAttribute() 
 	{
@@ -35,37 +41,18 @@ class Customer extends CustomModel
 
 	public function getPhotoAttribute() : ?String
 	{
-		return $this->photo();
+		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.png';
 	}
 
-
-	public function photo() : String
-	{
-		return !empty($this->profile_image) ? $this->profile_image : '/uploads/images/default_profile.png';
-	}
 
 	public function getFields()
 	{
-		return array_filter(array_map(function ($q) 
-		{
-			return $q;
-		}, $this->fillable));
+		return $this->fillable;
 	}
 
-
-	/** 
-	 * Render options values
-	 */ 
-	public function renderOptions($category)
-	{
-		return (object) array_column(
-				array_map(function($q) use ($category) {
-					if ($q->category == $category) { return $q; }
-				}, (array) json_decode($this->SelectedOption))
-			, 'value', 'code');
-
-	}
-
-
+    public function route_locations()
+    {
+        return $this->morphMany(RouteLocation::class, 'notifiable');
+    }
 
 }

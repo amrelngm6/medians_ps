@@ -49,13 +49,13 @@ class NotificationEventController extends CustomController
                 'value'=> "model",
                 'text'=> __('model'),
                 'sortable'=> true,
-				'width' => 150,
+				'width' => 300,
 				'fixed'=>true,
             ],
             [
                 'value'=> "receiver_model",
                 'text'=> __('receiver_model'),
-				'width' => 150,
+				'width' => 250,
                 'sortable'=> true,
             ],
             [
@@ -76,6 +76,37 @@ class NotificationEventController extends CustomController
         ];
 	}
 
+
+	
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function fillable( ) 
+	{
+
+		return [
+            [ 'key'=> "event_id", 'title'=> "#",'column_type'=>'hidden'],
+			[ 'key'=> "receiver_model", 'title'=> __('Receiver model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title', 'data'=>$this->loadReceiverModels('receiver_model') ],
+			[ 'key'=> "model", 'title'=> __('Model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data'=>$this->loadModels('model') ],
+			
+			[ 'key'=> "action", 'title'=> __('Action'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 'data'=>[
+				['action'=>'create','title'=>__('On Create')],
+				['action'=>'update','title'=>__('On Update')],
+				['action'=>'delete','title'=>__('On delete')],
+			] ],
+			[ 'key'=> "action_field", 'title'=> __('action_field'), 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "action_value", 'title'=> __('action_value'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "title", 'title'=> __('title'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
+            [ 'key'=> "subject", 'title'=> __('subject'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
+            [ 'key'=> "body", 'title'=> __('Notification email'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
+            [ 'key'=> "body_text", 'title'=> __('Notification text'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
+            [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+        ];
+	}
+
+
+
 	/**
 	 * Admin index items
 	 * 
@@ -90,7 +121,7 @@ class NotificationEventController extends CustomController
 	        'title' => __('Notifications events'),
 	        'items' => $this->repo->get(),
 	        'columns' => $this->columns(),
-	        'models' => $this->repo->loadModels(),
+			'fillable' => $this->fillable(),
 	    ]);
 	}
 
@@ -99,8 +130,28 @@ class NotificationEventController extends CustomController
 	 * Supported models for events
 	 *
 	 */
-	public function loadModels()
+	public function loadModels($key)
 	{
+		$models = $this->repo->loadModels();
+		$data = [];
+		foreach ($models as $i => $value) {
+			$data[$i] = [$key=>$value, 'title'=>$i] ;
+		}
+		return $data;
+	}  
+
+
+	/**
+	 * Supported receivers models for events
+	 */
+	public function loadReceiverModels($key)
+	{
+		$models = $this->repo->loadReceiverModels();
+		$data = [];
+		foreach ($models as $i => $value) {
+			$data[$i] = [$key=>$value, 'title'=>$i] ;
+		}
+		return $data;
 	}  
 
 

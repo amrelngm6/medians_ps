@@ -3,168 +3,143 @@
         <help_message_details :item="activeItem" v-if="showEditSide" ref="activeHelpMessage" @callback="closeMessage" />
         <div class="container-fluid" v-if="!showEditSide">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card mt-n4 mx-n4 card-border-effect-none">
-                        <div class="bg-primary-subtle" v-if="!showLoader">
-
-                            <div class="card-body pb-0 px-4">
-                                <span v-text="content.title" class="text-lg font-semibold "></span>
-                            </div>
-                            <!-- end card body -->
-                        </div>
-                    </div>
-                    <!-- end card -->
-                </div>
-                <!-- end col -->
-            </div>
-            <!-- end row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="tab-content text-muted">
+            <div class="card">
+                <!--begin::Card body-->
+                <div class="card-body">
+                    <!--begin::Layout-->
+                    <div class="d-flex flex-column flex-xl-row p-7">
+                        <!--begin::Content-->
+                        <div class="flex-lg-row-fluid me-xl-15 mb-20 mb-xl-0">
 
 
-                        <!-- end tab pane -->
-                        <div class="w-full">
-                            <div class="lg:flex g-4 mb-3">
-                                <div class="w-full">
-                                    <ul class=" pt-2 gap-6 flex nav nav-tabs-custom border-bottom-0" role="tablist">
-                                        <li v-for="option in statusList" @click="switchStatus(option)" class="nav-item"
-                                            role="presentation">
-                                            <span :class="option.status == activeStatus ? 'font-bold' : ''"
-                                                v-text="option.text" class="nav-link fw-semibold cursor-pointer"></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="w-auto">
-                                    <div class="d-flex">
-                                        <div class="search-box me-2">
-                                            <!-- <input type="text" class="form-control" placeholder="Search member..."> -->
-                                            <!-- <i class="ri-search-line search-icon"></i> -->
-                                        </div>
+
+                            <!--begin::Tickets-->
+                            <div class="mb-0">
+                                <!--begin::Search form-->
+                                <form method="post" action="#" class="form mb-15">
+                                    <!--begin::Input wrapper-->
+                                    <div class="position-relative">
+                                        <i
+                                            class="ki-duotone ki-magnifier fs-1 text-primary position-absolute top-50 translate-middle ms-9"><span
+                                                class="path1"></span><span class="path2"></span></i>
+                                        <input type="text" class="form-control form-control-lg form-control-solid ps-14"
+                                            name="search" value="" placeholder="Search">
                                     </div>
-                                </div>
-                            </div>
-                            <!-- end row -->
+                                    <!--end::Input wrapper-->
+                                </form>
+                                <!--end::Search form-->
 
-                            <div class="team-list list-view-filter" v-for="item in content.items">
-                                <div class="card team-box"
-                                    v-if="!showLoader && (activeStatus == 'all' || item.status == activeStatus)">
-                                    <div class="card-body px-4">
-                                        <div class="row align-items-center team-row">
-                                            <div class="col-lg-4 col">
-                                                <div class="team-profile-img gap-4 flex">
-                                                    <div class="avatar-lg img-thumbnail rounded-circle">
-                                                        <img v-if="item.user" :src="item.user.picture" alt=""
-                                                            class="img-fluid d-block rounded-circle">
-                                                    </div>
-                                                    <div class="team-content">
-                                                        <div href="#" class="d-block">
-                                                            <h5 v-if="item.user" class="fs-16 mb-1 font-semibold"
-                                                                v-text="item.user.name"></h5>
-                                                        </div>
-                                                        <p v-text="item.message" class="text-muted mb-0"></p>
-                                                    </div>
-                                                </div>
+                                <!--begin::Heading-->
+                                <h1 class="text-gray-900 mb-10" v-text="content.title"></h1>
+                                <!--end::Heading-->
+
+                                <!--begin::Tickets List-->
+                                <div class="w-full " v-for="ticket in content.items">
+                                    <!--begin::Ticket-->
+                                    <div class="d-flex mb-10 gap-4" v-if="ticket.status == activeStatus" >
+                                        <!--begin::Symbol-->
+                                        <vue-feather type="bell" class="mt-5"></vue-feather>
+
+                                        <div class="d-flex flex-column ">
+                                            <!--begin::Content-->
+                                            <div class="d-flex align-items-center mb-2">
+                                                <a @click="activeItem = ticket, showEditSide = true" href="javascript:;" class="font-semibold text-gray-800 text-hover-primary fs-4 me-3 " v-text="ticket.title"></a>
+                                                <span class="badge badge-light my-1 bg-gray-100" v-text="ticket.subject"></span>
+                                                <span class="badge badge-light my-1 text-white" :class="{'bg-primary': ticket.status == 'new', 'bg-danger':ticket.status == 'completed'}" v-text="ticket.status"></span>
                                             </div>
-                                            <div class="col-lg-6 col">
-                                                <div class="row text-muted text-center">
-                                                    <div class="col-4 border-end border-end-dashed">
-                                                        <h5 class="mb-1 font-semibold" v-text="__('Created at')"></h5>
-                                                        <p class="text-muted mb-0" v-text="item.date"></p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="mb-1 font-semibold" v-text="__('Updated at')"></h5>
-                                                        <p class="text-muted mb-0" v-text="item.last_update"></p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="mb-1 font-semibold" v-text="__('Status')"></h5>
-                                                        <p class="text-muted mb-0" v-text="item.status"></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 col">
-                                                <div class="text-end">
-                                                    <a href="javascript:;" @click="showDetails(item)"
-                                                        class="menu-dark text-white px-4 py-2 rounded-lg"
-                                                        v-text="__('Details')"></a>
-                                                </div>
-                                            </div>
+                                            <span class="text-muted fw-semibold fs-6" v-text="ticket.message"></span>
                                         </div>
+                                        <!--end::Section-->
                                     </div>
+                                    <!--end::Ticket-->
                                 </div>
+                                <!--end::Tickets List-->
                             </div>
-                            <!-- end team list -->
+                            <!--end::Tickets-->
                         </div>
-                        <!-- end tab pane -->
+                        <!--end::Content-->
+                        <!--begin::Sidebar-->
+                        <div class="flex-column flex-lg-row-auto w-100 mw-lg-300px mw-xxl-350px">
+
+                            <!--begin::More channels-->
+                            <div class="card-rounded bg-primary bg-opacity-5 p-10 mb-15">
+                                <!--begin::Title-->
+                                <h2 class="text-gray-900 fw-bold mb-11" v-text="translate('Status')"></h2>
+
+                                <div class="d-flex align-items-center mb-10 gap-4" v-for="statusItem in statusList">
+                                    <!--begin::Icon-->
+                                    <vue-feather :type="statusItem.icon"></vue-feather>
+                                    <!--end::Icon-->
+
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column cursor-pointer "
+                                        @click="switchStatus(statusItem.status)" >
+                                        <h5 class="" :class="statusItem.status == activeStatus ? 'text-gray-800' : 'text-gray-500'" v-text="statusItem.text"></h5>
+
+                                        <!--begin::Section-->
+                                        <div class="fw-semibold">
+                                            <!--begin::Desc-->
+                                            <span class="text-muted" v-text="statusItem.desc"></span>
+                                            <!--end::Desc-->
+                                        </div>
+                                        <!--end::Section-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Item-->
+
+                            </div>
+                            <!--end::More channels-->
+                        </div>
+                        <!--end::Sidebar-->
                     </div>
+                    <!--end::Layout-->
                 </div>
-                <!-- end col -->
+                <!--end::Card body-->
             </div>
-            <!-- end row -->
+            
         </div>
     </div>
 </template>
 <script>
 
 import help_message_details from '@/components/help_message_details.vue';
-import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
+
+
+import { defineAsyncComponent, ref } from 'vue';
+import { translate, handleGetRequest, handleRequest, deleteByKey, showAlert } from '@/utils.vue';
 
 export default
     {
         components: {
-            help_message_details
+            help_message_details,
+            translate
         },
-        data() {
-            return {
-                url: this.conf.url + this.path + '?load=json',
-                content: {
-                    title: '',
-                    items: [],
-                    columns: [],
-                },
 
-                activeItem: {},
-                showAddSide: false,
-                showEditSide: false,
-                showLoader: true,
-                activeStatus: 'new',
-                statusList: [{ text: this.__('New'), status: 'new' }, { text: this.__('Active'), status: 'active' }, { text: this.__('Completed'), status: 'completed' }],
+        setup(props) {
+
+            const url = props.conf.url + props.path + '?load=json';
+
+            const content = ref({});
+            const activeItem = ref({});
+            const showAddSide = ref(false);
+            const showEditSide = ref(false);
+            const activeStatus = ref('new');
+
+
+            const closeMessage = () => {
+                showEditSide.value = false;
+                activeItem.value = null;
             }
-        },
-        props: [
-            'path',
-            'lang',
-            'setting',
-            'conf',
-            'auth',
-        ],
-        mounted() {
-            this.load()
-        },
 
-        methods:
-        {
-            closeMessage()
-            {
-                this.showLoader = true;
-                this.showEditSide = false;
-                this.activeItem = null;
-                this.showLoader = false;
-            },
+            const switchStatus = (option) => {
+                activeStatus.value = option
+            }
 
-            switchStatus(option) {
-                this.showLoader = true;
-                this.activeStatus = option.status
-                this.showLoader = false;
-            },
-
-            showDetails(item) {
-                this.showLoader = true
-                this.showEditSide = true;
-                this.activeItem = item;
-                this.showLoader = false
-            },
+            const showDetails = (item) => {
+                showEditSide.value = true;
+                activeItem.value = item;
+            }
 
 
             /**
@@ -174,38 +149,51 @@ export default
              * @param String actionName 
              * @param Object data
              */
-            handleAction(actionName, data) {
+            const handleAction = (actionName, data) => {
                 switch (actionName) {
                     case 'view':
-                        // window.open(this.conf.url+data.content.prefix)
+                        // window.open(conf.url+data.content.prefix)
                         break;
 
                     case 'edit':
-                        this.showEditSide = true;
-                        this.showAddSide = false;
-                        this.activeItem = data
+                        activeItem.value = data
                         break;
 
                     case 'delete':
-                        deleteByKey(this.object_key, data, this.object_name + '.delete');
+                        deleteByKey(props.object_key, data, props.object_name + '.delete');
                         break;
                 }
-            },
-
-            load() {
-                this.showLoader = true;
-                handleGetRequest(this.url).then(response => {
-                    this.setValues(response)
-                    this.showLoader = false;
-                });
-            },
-
-            setValues(data) {
-                this.content = JSON.parse(JSON.stringify(data)); return this
-            },
-            __(i) {
-                return translate(i);
             }
-        }
+
+            const load = () => {
+                handleGetRequest(url).then(response => {
+                    content.value = JSON.parse(JSON.stringify(response));
+                });
+            }
+
+            load();
+
+            let statusList = [{ text: translate('New'), status: 'new', icon: 'check', desc: translate('New tickets those not opened yet') }, { text: translate('Active'), status: 'active', icon: 'check-square', desc: translate('Tickets needs customer reply') }, { text: translate('Completed'), status: 'completed', icon: 'check-circle', desc: translate('Completed tickets') }];
+
+            return {
+                content,
+                activeItem,
+                closeMessage,
+                switchStatus,
+                showDetails,
+                showAddSide,
+                showEditSide,
+                activeStatus,
+                statusList,
+                translate
+            }
+        },
+        props: [
+            'path',
+            'lang',
+            'setting',
+            'conf',
+            'auth',
+        ],
     };
 </script>

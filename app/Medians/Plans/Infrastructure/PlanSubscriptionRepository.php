@@ -21,10 +21,6 @@ class PlanSubscriptionRepository
 		$this->app = new \config\APP;
 	}
 
-	public function getModel()
-	{
-		return new PlanSubscription;
-	}
 
 	/**
 	* Find item by `id` 
@@ -38,17 +34,18 @@ class PlanSubscriptionRepository
 	/**
 	* Find items by `params` 
 	*/
-	public function get($params = null) 
+	public function get() 
 	{
 		return PlanSubscription::with('user', 'business', 'plan')->get();
 	}
 
+
 	/**
 	* Find items by `params` 
 	*/
-	public function getByBranch($branch_id) 
+	public function getByBusiness($business_id) 
 	{
-		return PlanSubscription::where('branch_id', $branch_id)->get();
+		return PlanSubscription::where('business_id', $business_id)->get();
 	}
 
 

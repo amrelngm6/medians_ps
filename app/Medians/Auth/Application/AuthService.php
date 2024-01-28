@@ -13,6 +13,9 @@ use Google_Service_Oauth2;
 class AuthService 
 {
 
+	
+	private $app;
+
 	/**
 	 * Minimum length of the user password
 	 * 
@@ -40,18 +43,11 @@ class AuthService
 	*/
 	protected $parentRepo;
 
-	/**
-	* @var Instance App
-	*/
-	protected $app;
-
-
 
 	function __construct()
 	{
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
-		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository();
-		$this->parentRepo = new \Medians\Parents\Infrastructure\ParentRepository();
+		$this->parentRepo = new \Medians\Customers\Infrastructure\ParentRepository(null);
 	}
  
 
@@ -73,6 +69,29 @@ class AuthService
 		        'app' => $this->app,
 		        'google_login' => $this->loginWithGoogle(),
 		        'formAction' => '/login',
+		    ]);
+		    
+		} catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
+		}
+	}
+
+	
+	/**
+	 * Display login page 
+	 */
+	public function signupPage()
+	{
+		try {
+			
+			$this->app = new \config\APP;
+
+			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
+
+			return render('views/front/signup.html.twig', [
+		        'title' => __('Login page'),
+		        'app' => $this->app,
+		        'google_login' => $this->loginWithGoogle(),
 		    ]);
 		    
 		} catch (Exception $e) {
@@ -115,7 +134,7 @@ class AuthService
 			$params['email'] = $user_info['email'];
 			$params['first_name'] = $user_info['givenName'];
 			$params['last_name'] = $user_info['familyName'];
-			$params['profile_image'] = $user_info['picture'];
+			$params['picture'] = $user_info['picture'];
 			$params['role_id'] = 3;
 
 			// $params['field']['google_id'] = $user_info['id'];
@@ -123,7 +142,7 @@ class AuthService
 			$user = $this->repo->getByEmail($params['email']);
 
 			if (isset($user->id))
-				$user->update(['profile_image' => $user_info['picture']]);
+				$user->update(['picture' => $user_info['picture']]);
 			else 
 				$user = $this->repo->store($params);
 
@@ -194,6 +213,41 @@ class AuthService
 
 
 	/**
+	 * User Signup request
+	 */ 
+	public function userSignup()
+	{
+		$this->app = new \config\APP;
+		
+        $params = $this->app->request()->get('params');
+
+        try {
+            
+            $checkUser = $this->checkSignup($params);
+
+            if (empty($checkUser))
+            {
+				$checkUser = $this->repo->signup($params);
+
+				if (!empty($checkUser->id))
+				{
+					$this->setSession($checkUser);
+					echo json_encode(array('success'=>1, 'result'=>__('Logged in'), 'redirect'=>$this->app->CONF['url'].'dashboard'));
+				}
+
+            } else {
+	            echo json_encode(array('error'=>$checkUser));
+            }
+
+
+        } catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
+        	
+        }
+	}
+
+
+	/**
 	 * Check login credentials
 	 * 
 	 * @return Object / String 
@@ -217,12 +271,32 @@ class AuthService
 
 
 	/**
+	 * Check Signup credentials
+	 * 
+	 * @return Object / String 
+	 */ 
+	public function checkSignup($params)
+	{
+		$getByEmail = $this->repo->getByEmail($params['email']);
+		
+		if (isset($getByEmail->id))
+		{
+            return __("EMAIL_FOUND");
+		}
+	}
+
+
+	/**
 	 * Check login credentials
 	 * 
 	 * @return Object / String 
 	 */ 
 	public function checkDriverLogin($email, $password)
 	{
+		$this->app = new \config\APP;
+		
+		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository($this->app->auth()->business);
+		
 		$checkDriverLogin = $this->driverRepo->checkLogin($email, $password);
 
 		if (empty($checkDriverLogin->id))
@@ -325,6 +399,10 @@ class AuthService
 	 */ 
 	public function checkAPISession($token = null, $userType = null) 
 	{
+		$this->app = new \config\APP;
+		
+		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository($this->app->auth()->business);
+		
 		switch ($userType) {
 			case 'Driver':
 				return $this->driverRepo->findByToken($token);

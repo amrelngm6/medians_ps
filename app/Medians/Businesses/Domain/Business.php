@@ -4,6 +4,7 @@ namespace Medians\Businesses\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
+use Medians\Plans\Domain\PlanSubscription;
 
 
 class Business extends CustomModel
@@ -28,5 +29,10 @@ class Business extends CustomModel
 	{
 		return $this->fillable;
 	}
+
+    public function subscription()
+    {
+		return $this->hasOne(PlanSubscription::class, 'business_id', 'business_id')->with('plan')->orderBy('end_date', 'DESC');	
+    }
 
 }

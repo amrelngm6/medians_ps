@@ -6,61 +6,67 @@ use Medians\Help\Domain\HelpMessage;
 use Medians\Help\Domain\HelpMessageComment;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Drivers\Domain\Driver;
-use Medians\Parents\Domain\Parents;
+use Medians\Customers\Domain\Parents;
 use Medians\Users\Domain\User;
 
 
 class HelpMessageRepository 
 {
 
-
 	/**
-	 * Load app for Sessions and helpful
-	 * methods for authentication and
+	 * Business id
 	 */ 
-	protected $app ;
+	protected $business_id ;
 
 
-	function __construct()
+	function __construct($business)
 	{
-	}
-
-
-	public static function getModel()
-	{
-		return new HelpMessage();
+		$this->business_id = isset($business->business_id) ? $business->business_id : null;
 	}
 
 
 	public function find($id)
 	{
-		return HelpMessage::find($id);
+		return HelpMessage::where('business_id', $this->business_id)->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return HelpMessage::with('comments')->with('user')->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::where('business_id', $this->business_id)->with('comments')->with('user')->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 
 	public function loadDriverMessages($user, $limit = 100)
 	{
-		return HelpMessage::with('user','comments' )->where('user_id', $user->driver_id)->where('user_type', Driver::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::where('business_id', $this->business_id)->with('user','comments' )->where('user_id', $user->driver_id)->where('user_type', Driver::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 
 	public function loadParentMessages($user, $limit = 100)
 	{
-		return HelpMessage::with('user','comments' )->where('user_id', $user->parent_id)->where('user_type', Parents::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::where('business_id', $this->business_id)->with('user','comments' )->where('user_id', $user->customer_id)->where('user_type', Parents::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 
 	public function load($limit = 100)
 	{
-		return HelpMessage::with('user','comments' )->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::where('business_id', $this->business_id)->with('user','comments' )->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
+	
+	public function eventsByDate($params)
+	{
+		$query = HelpMessage::where('business_id', $this->business_id)->whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+	public function allEventsByDate($params)
+	{
+		$query = Trip::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
 
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['pickup_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
+		$arr =  json_decode(json_encode(['location_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
 
 		return $this->similar( $arr, $limit);
 	}
@@ -69,7 +75,7 @@ class HelpMessageRepository
 	{
 		$title = str_replace([' ','-'], '%', $item->content->title);
 
-		return HelpMessage::whereHas('content', function($q) use ($title){
+		return HelpMessage::where('business_id', $this->business_id)->whereHas('content', function($q) use ($title){
 			foreach (explode('%', $title) as $i) {
 				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
 			}
@@ -79,13 +85,8 @@ class HelpMessageRepository
 
 
 
-	public function eventsByDate($params)
-	{
-		$query = HelpMessage::whereBetween('created_at', [$params['start'], $params['end']]);
-		return $query;
-	}
 
-
+	
 	/**
 	* Save item to database
 	*/
@@ -216,7 +217,7 @@ class HelpMessageRepository
     public function update($data)
     {
 
-		$Object = HelpMessage::find($data['message_id']);
+		$Object = HelpMessage::where('business_id', $this->business_id)->find($data['message_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -238,7 +239,7 @@ class HelpMessageRepository
 	{
 		try {
 			
-			$delete = HelpMessage::find($id)->delete();
+			$delete = HelpMessage::where('business_id', $this->business_id)->find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

@@ -19,12 +19,6 @@ class CategoryRepository
 	}
 
 
-	public static function getModel()
-	{
-		return new Category();
-	}
-
-
 	public function find($id)
 	{
 		return Category::find($id);
@@ -69,7 +63,7 @@ class CategoryRepository
 		
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}

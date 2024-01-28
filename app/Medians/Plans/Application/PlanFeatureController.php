@@ -53,12 +53,12 @@ class PlanFeatureController extends CustomController
 
 		return [
             [ 'key'=> "feature_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "plan_id", 'title'=> __('Plan'), 
+			[ 'key'=> "code", 'title'=> __('Feature code'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "access", 'title'=> __('Access'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
+			[ 'key'=> "plan_id", 'title'=> __('Plan'),  'withLabel'=>true,
 				'sortable'=> true, 'fillable'=> true, 'required'=>true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->planRepo->get()  
 			],
-			[ 'key'=> "code", 'title'=> __('Feature code'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "access", 'title'=> __('Access'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
 
         ];
 	}

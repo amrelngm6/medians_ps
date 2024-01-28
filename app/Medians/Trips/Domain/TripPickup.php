@@ -3,10 +3,11 @@
 namespace Medians\Trips\Domain;
 
 use Medians\Routes\Domain\Route;
-use Medians\Locations\Domain\PickupLocation;
+use Medians\Locations\Domain\RouteLocation;
 use Medians\Vehicles\Domain\Vehicle;
-use Medians\Parents\Domain\Parents;
+use Medians\Customers\Domain\Parents;
 use Medians\Students\Domain\Student;
+use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
 
 
@@ -50,9 +51,17 @@ class TripPickup extends CustomModel
 		return isset($this->location->longitude) ? $this->location->longitude : 0;
 	}
 
+	/**
+	 * Relations with onother Models
+	 */
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+
 	public function location() 
 	{
-		return $this->hasOne(PickupLocation::class, 'pickup_id', 'pickup_id');	
+		return $this->hasOne(RouteLocation::class, 'pickup_id', 'pickup_id');	
 	}
 
 	public function trip() 

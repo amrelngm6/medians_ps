@@ -6,7 +6,6 @@ use Shared\dbaser\CustomController;
 use Medians\Businesses\Infrastructure\BusinessRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
 use Medians\Drivers\Infrastructure\DriverRepository;
-use Medians\Categories\Infrastructure\CategoryRepository;
 
 class BusinessController extends CustomController 
 {
@@ -18,7 +17,6 @@ class BusinessController extends CustomController
 
 	protected $app;
 
-	public $categoryRepo;
 	public $routeRepo;
 	public $driverRepo;
 	
@@ -27,11 +25,11 @@ class BusinessController extends CustomController
 	{
 
 		$this->app = new \config\APP;
-
-		$this->repo = new BusinessRepository();
-		$this->categoryRepo = new CategoryRepository();
-		$this->routeRepo = new RouteRepository();
-		$this->driverRepo = new DriverRepository();
+		$user = $this->app->auth();
+		
+		$this->repo = new BusinessRepository($user->business);
+		$this->routeRepo = new RouteRepository($user->business);
+		$this->driverRepo = new DriverRepository($user->business);
 	}
 
 
@@ -43,7 +41,6 @@ class BusinessController extends CustomController
 	 */ 
 	public function columns( ) 
 	{
-
 		return [
             [ 'value'=> "business_id", 'text'=> "#"],
             [ 'value'=> "business_name", 'text'=> __('business_name'), 'sortable'=> true ],
@@ -54,7 +51,6 @@ class BusinessController extends CustomController
         ];
 	}
 
-	
 
 	/**
 	 * Columns list to view at DataTable 
@@ -66,11 +62,7 @@ class BusinessController extends CustomController
 		return [
             [ 'key'=> "business_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "type", 'title'=> "", 'column_type'=>'hidden', 'default'=>$type],
-			// [ 'key'=> "type", 'title'=> __('Type'), 
-			// 	'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
-			// 	'data' => [['name'=>'Company', 'type'=>'company'], ['name'=>'School', 'type'=>'school']]
-			// ],
-			[ 'key'=> "business_name", 'title'=> __('business_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "business_name", 'title'=> __('name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "status", 'title'=> __('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
 
         ];

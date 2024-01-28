@@ -10,6 +10,7 @@ use Medians\Drivers\Domain\Driver;
 use Medians\Roles\Domain\Role;
 use Medians\Roles\Domain\Permission;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Businesses\Domain\Business;
 
 class User extends CustomModel
 {
@@ -22,17 +23,23 @@ class User extends CustomModel
 
 	protected $fillable = [
     	'first_name',
+    	'password',
     	'last_name',
     	'email',
     	'phone',
-    	'profile_image',
+    	'picture',
     	'role_id',
     	'active',
 	];
 
-	protected $appends = ['name', 'photo', 'password', 'field', 'permissions', 'user_id'];
+	public $appends = ['name', 'photo', 'mobile', 'password', 'field', 'permissions', 'user_id'];
 
 
+	public function getMobileAttribute() 
+	{
+		return $this->phone;
+	}
+	
 	public function getUserIdAttribute() 
 	{
         return $this->id;
@@ -70,33 +77,12 @@ class User extends CustomModel
 
 	public function photo() : String
 	{
-		return !empty($this->profile_image) ? $this->profile_image : '/uploads/images/default_profile.png';
+		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.png';
 	}
 
 	public function name() : String
 	{
 		return $this->first_name.' '.$this->last_name;
-	}
-
-
-	public function setId($id) : void
-	{
-		$this->id = $id;
-	}
-
-	public function setName($name) : void
-	{
-		$this->name = $name;
-	}
-
-	public function setEmail($email) : void
-	{
-		$this->email = $email;
-	}
-
-	public function setPublish($publish) : void
-	{
-		$this->publish = $publish;
 	}
 
 
@@ -108,9 +94,9 @@ class User extends CustomModel
 	{
 		return $this->hasOne(Role::class, 'id', 'role_id');
 	}
-
+	
 	/**
-	 * Relation with role 
+	 * Other Relations 
 	 */
 	public function driver() 
 	{
@@ -122,6 +108,11 @@ class User extends CustomModel
         return $this->hasOne(CustomField::class, 'model_id', 'id')->where('model_type', User::class);
 	}
 
+	public function business()
+	{
+        return $this->hasOne(Business::class, 'user_id', 'id')->with('subscription');
+	}
+
     public function custom_fields()
     {
         return $this->morphMany(CustomField::class, 'model');
@@ -131,16 +122,10 @@ class User extends CustomModel
     {
 		return $this->hasMany(Permission::class, 'role_id', 'role_id')->where('access', 1);
     }
+    
+
 
 	
-	/**
-	 * Password encryption method
-	 * @param $value String 
-	 */ 	
-	public static function encrypt(String $value ) : String 
-	{
-		return sha1(md5($value));
-	}
 
 
 	/**

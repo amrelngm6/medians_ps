@@ -5,19 +5,23 @@
             <!-- component -->
             
             <div class="w-full relative">
-                <navbar v-if="auth" style="z-index: 9999;" :setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
-                <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><vue-feather type="menu"></vue-feather></a>
-                <div class="gap gap-6 h-full flex w-full overflow-hidden pt-6 px-4 bg-white ">
-                    <side-menu :samepage="activeTab" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="auth  && showSide" class="sidebar mx-1" id="sidebar" style="z-index:999"></side-menu>
+                <navbar v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
+                <!-- <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><vue-feather type="menu"></vue-feather></a> -->
+                <div class="gap gap-6 h-full flex w-full overflow-hidden   ">
+                    <side-menu @callback="switchTab" :samepage="activeTab" :system_setting="system_setting" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="showSide" class="sidebar " id="sidebar" style="z-index:999"></side-menu>
 
-                    <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" style="height: 85vh; z-index: 999;">
-                        <div class="w-full">
-                            <transition name="fade"   :duration="50">
-                                <component ref="activeTab" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent"></component>
+                    <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
+                        <div class="w-full" v-if="checkAccess()">
+                            <transition  :duration="1000">
+                                <component class="pt-8 px-1" ref="activeTab" :business_setting="business_setting" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent"></component>
                             </transition>
                         </div>
+                        <div class="w-full" v-if="!checkAccess()">
+                          <get_started :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></get_started>
+                        </div>
+
                     </div>
-                    <div v-else class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+                    <div v-else class="w-full flex overflow-auto" >
                         <login form_action="/" ></login>
                     </div>
                 </div>
@@ -36,74 +40,71 @@ import trips from '@/components/trips.vue';
 import vehicles from '@/components/vehicles.vue'; 
 import HelpMessages from '@/components/help_messages.vue'; 
 import notifications_events from '@/components/notifications_events.vue'; 
-import {translate, handleRequest, showAlert} from '@/utils.vue';
+import {translate, handleAccess, handleRequest, showAlert} from '@/utils.vue';
 
-const students = defineAsyncComponent(() =>
-  import('@/components/students.vue')
-);
-const parents = defineAsyncComponent(() =>
-  import('@/components/parents.vue')
-);
+const students = defineAsyncComponent(() => import('@/components/students.vue') );
 
-const drivers = defineAsyncComponent(() =>
-  import('@/components/drivers.vue')
-);
+const parents = defineAsyncComponent(() => import('@/components/parents.vue') );
 
-const events = defineAsyncComponent(() =>
-  import('@/components/events.vue')
-);
+const drivers = defineAsyncComponent(() => import('@/components/drivers.vue') );
 
-const roles = defineAsyncComponent(() =>
-  import('@/components/roles.vue')
-);
+const events = defineAsyncComponent(() => import('@/components/events.vue') );
 
-const settings = defineAsyncComponent(() =>
-  import('@/components/settings.vue')
-);
+const roles = defineAsyncComponent(() => import('@/components/roles.vue') );
 
-const system_settings = defineAsyncComponent(() =>
-  import('@/components/system_settings.vue')
-);
+const settings = defineAsyncComponent(() => import('@/components/settings.vue') );
 
-const routes = defineAsyncComponent(() =>
-  import('@/components/routes.vue')
-);
+const system_settings = defineAsyncComponent(() => import('@/components/system_settings.vue') );
 
-const locations = defineAsyncComponent(() =>
-  import('@/components/locations.vue')
-);
+const routes = defineAsyncComponent(() => import('@/components/routes.vue') );
 
-const destinations = defineAsyncComponent(() =>
-  import('@/components/destinations.vue')
-);
+const routeWizard = defineAsyncComponent(() => import('@/components/wizards/routeWizard.vue') );
 
-const users = defineAsyncComponent(() =>
-  import('@/components/users.vue')
-);
+const locations = defineAsyncComponent(() => import('@/components/locations.vue') );
 
-const companies = defineAsyncComponent(() =>
-  import('@/components/companies.vue')
-);
+const destinations = defineAsyncComponent(() => import('@/components/destinations.vue') );
 
-const schools = defineAsyncComponent(() =>
-  import('@/components/schools.vue')
-);
+const users = defineAsyncComponent(() => import('@/components/users.vue') );
 
-const plans = defineAsyncComponent(() =>
-  import('@/components/plans.vue')
-);
+const companies = defineAsyncComponent(() => import('@/components/companies.vue') );
 
-const plan_features = defineAsyncComponent(() =>
-  import('@/components/plan_features.vue')
-);
+const schools = defineAsyncComponent(() => import('@/components/schools.vue') );
 
-const plan_subscriptions = defineAsyncComponent(() =>
-  import('@/components/plan_subscriptions.vue')
-);
+const plans = defineAsyncComponent(() => import('@/components/plans.vue') );
 
-const employees = defineAsyncComponent(() =>
-  import('@/components/employees.vue')
-);
+const plan_features = defineAsyncComponent(() => import('@/components/plan_features.vue') );
+
+const plan_subscriptions = defineAsyncComponent(() => import('@/components/plan_subscriptions.vue') );
+
+const employees = defineAsyncComponent(() => import('@/components/employees.vue') );
+
+const pages = defineAsyncComponent(() => import('@/components/pages.vue') );
+
+const payments = defineAsyncComponent(() => import('@/components/payments.vue') );
+
+const get_started = defineAsyncComponent(() => import('@/components/wizards/get-started.vue') );
+
+const private_trips = defineAsyncComponent(() => import('@/components/private_trips.vue') );
+
+const app_settings = defineAsyncComponent(() => import('@/components/app_settings.vue') );
+
+const profile = defineAsyncComponent(() => import('@/components/profile.vue') );
+
+const cities = defineAsyncComponent(() => import('@/components/cities.vue') );
+
+const countries = defineAsyncComponent(() => import('@/components/countries.vue') );
+
+const states = defineAsyncComponent(() => import('@/components/states.vue') );
+
+const packages = defineAsyncComponent(() => import('@/components/packages.vue') );
+
+const payment_methods = defineAsyncComponent(() => import('@/components/payment_methods.vue') );
+
+const package_subscriptions = defineAsyncComponent(() => import('@/components/package_subscriptions.vue') );
+
+const vehicle_types = defineAsyncComponent(() => import('@/components/vehicle_types.vue') );
+
+const supervisors = defineAsyncComponent(() => import('@/components/supervisors.vue') );
 
 export default {
     name: 'app',
@@ -112,12 +113,15 @@ export default {
         navbar,
         dashboard,
         trips,
+        private_trips,
         vehicles,
+        vehicle_types,
         students,
         parents,
         drivers,
         roles,
         routes,
+        routeWizard,
         system_settings,
         settings,
         locations,
@@ -131,10 +135,22 @@ export default {
         plan_features,
         plan_subscriptions,
         employees,
+        payments,
+        pages,
+        countries,
+        cities,
+        states,
+        packages,
+        app_settings,
+        profile,
+        payment_methods,
+        package_subscriptions,
+        supervisors,
+        get_started,
         translate,
         'help_messages':HelpMessages,
-    },
-    data() {
+      },
+      data() {
         return {
             date: '',
             activeItem: null,
@@ -148,7 +164,9 @@ export default {
             auth: {},
             setting: {},
             system_setting: {},
+            business_setting: {},
             conf: {},
+            url: '/',
             main_menu: [],
             typesList: [],
             showSide: true,
@@ -196,12 +214,24 @@ export default {
                 
             return null;
         },
-        checkAccess(currentPermissions, permission)
+        checkAccess()
         {
-            if (currentPermissions)
-                return currentPermissions[permission];
-            
-            return null;
+          if (this.auth && this.auth.role_id == 1)
+            return true;
+
+          if (!this.auth)
+            return false;
+
+          if (!this.auth.business)
+            return false;
+          
+          if (!this.auth.business.subscription)
+            return false;
+          
+          if (this.auth.business.subscription.is_expired)
+            return false;
+
+          return true;
         },
 
         /**
@@ -235,19 +265,19 @@ export default {
          */
         setProps()
         {
-            console.log('set props')
 
             const mountEl = document.getElementById("root-parent");
-            let props = { ...mountEl.dataset };
-            this.auth = props ? JSON.parse(props.auth) : {};
-            this.main_menu = props ? JSON.parse(props.menu) : {};
-            this.lang = props ? JSON.parse(props.lang) : {};
-            this.setting = props ? JSON.parse(props.setting) : {};
-            this.system_setting = props ? JSON.parse(props.system_setting) : {};
-            this.conf = props ? JSON.parse(props.conf) : {};
-            this.activeTab = (props && props.page) ? props.page : this.defaultPage();
-            this.activeComponent = (props && props.component) ? props.component : this.defaultPage();
-            // console.log(this.activeComponent);
+            let propsSet = { ...mountEl.dataset };
+            this.auth = propsSet ? JSON.parse(propsSet.auth) : {};
+            this.main_menu = propsSet ? JSON.parse(propsSet.menu) : {};
+            this.lang = propsSet ? JSON.parse(propsSet.lang) : {};
+            this.setting = propsSet ? JSON.parse(propsSet.setting) : {};
+            this.system_setting = propsSet ? JSON.parse(propsSet.system_setting) : {};
+            this.business_setting = (propsSet && propsSet.business_setting) ? JSON.parse(propsSet.business_setting) : {};
+            this.conf = propsSet ? JSON.parse(propsSet.conf) : {};
+            this.url = propsSet ? propsSet.url : '/';
+            this.activeTab = (propsSet && propsSet.page) ? propsSet.page : this.defaultPage();
+            this.activeComponent = (propsSet && propsSet.component) ? propsSet.component : this.defaultPage();
 
         },
 
@@ -288,25 +318,6 @@ export default {
         },
 
 
-        /**
-         * Handle login access result 
-         * 
-         */
-        handleAccess(response) 
-        {
-            if (response && (response.success && response.reload))
-            {
-                showAlert(response.result, 3500);
-                setTimeout(() => {
-                    location.reload();
-                }, 2000);
-
-            } else {
-                response ? showAlert(response.result, 3000) : null;
-            }
-
-
-        },
 
         submit(element, props)
         {
@@ -317,28 +328,38 @@ export default {
             });
 
             handleRequest(params, $(element).attr('action')).then(response => {
-                this.handleAccess(response)
+                handleAccess(response)
             })
         },
 
     }
 }
 </script>
+<style src="@vueform/multiselect/themes/default.css"></style>
+
 <style>
 /* @import './assets/webfonts/fontawesome.min.css'; */
 @import './assets/bootstrap-grid.min.css';
 @import './assets/tailwind.min.css';
 @import './assets/media-library.css';
-@import './assets/style.css';
-@import './assets/theme.css';
-@import './assets/plugins.css';
+@import './asset/css/style.bundle.css';
+/* @import './assets/style.css'; */
+/* @import './assets/theme.css'; */
+/* @import './assets/plugins.css'; */
 
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.8s ease-in-out;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+
+.v-enter-from,
+.v-leave-to {
   opacity: 0;
+  position: absolute ;
+  /* top:0; */
+  transition: all 0.1s ease-in-out;
 }
 
 </style>

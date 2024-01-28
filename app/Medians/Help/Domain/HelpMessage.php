@@ -5,6 +5,7 @@ namespace Medians\Help\Domain;
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
+use Medians\Businesses\Domain\Business;
 
 class HelpMessage extends CustomModel
 {
@@ -47,6 +48,16 @@ class HelpMessage extends CustomModel
 		return ($this->user_type == Driver::class && isset($this->driver->first_name)) ? $this->driver->first_name : '';
 	}
 
+	
+	/**
+	 * Relations with onother Models
+	 */
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+	
+	
     public function user() {
         return $this->morphTo();
     }

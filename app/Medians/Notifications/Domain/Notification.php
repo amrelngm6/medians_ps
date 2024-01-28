@@ -6,7 +6,7 @@ use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
-use Medians\Parents\Domain\Parents;
+use Medians\Customers\Domain\Parents;
 use Medians\Mail\Application\MailService;
 
 
@@ -37,7 +37,7 @@ class Notification extends CustomModel
 	];
 
 
-	protected $appends = ['receiver_name', 'notification_model', 'date', 'model_short_name', 'short_date', 'url'];
+	public $appends = ['receiver_name', 'notification_model', 'date', 'model_short_name', 'short_date', 'url'];
 
 	public function getNotificationModelAttribute()
 	{

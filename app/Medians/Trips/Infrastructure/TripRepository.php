@@ -16,39 +16,32 @@ class TripRepository
 
 
 	/**
-	 * Load app for Sessions and helpful
-	 * methods for authentication and
-	 * settings for branch
+	 * Business id
 	 */ 
-	protected $app ;
+	protected $business_id ;
+	
 	protected $routeRepo;
 
-
-	function __construct()
+	function __construct($business)
 	{
-		$this->routeRepo = new RouteRepository();
-	}
-
-
-	public static function getModel()
-	{
-		return new Trip();
+		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		$this->routeRepo = new RouteRepository($business);
 	}
 
 
 	public function find($id)
 	{
-		return Trip::find($id);
+		return Trip::where('business_id', $this->business_id)->find($id);
 	}
 
 	public function getTrip($id)
 	{
-		return Trip::withCount('moving_locations','done_locations','waiting_locations')->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')->find($id);
+		return Trip::where('business_id', $this->business_id)->withCount('moving_locations','done_locations','waiting_locations')->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')->find($id);
 	}
 
 	public function getParentTrip($trip_id, $parent_id)
 	{
-		return Trip::with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
+		return Trip::where('business_id', $this->business_id)->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
 		->with([
 			'student_location' => function($q) use ($parent_id){
 				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
@@ -65,11 +58,11 @@ class TripRepository
 
 	public function getActiveParentTrip($parent_id)
 	{
-		$ids = Student::where('parent_id', $parent_id)->select('student_id')->get();
+		$ids = Student::where('business_id', $this->business_id)->where('parent_id', $parent_id)->select('student_id')->get();
 
 		$students =  array_column($ids->toArray(), 'student_id');
 
-		return Trip::with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
+		return Trip::where('business_id', $this->business_id)->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
 		->whereHas(
 			'student_location' , function($q) use ($students){
 				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
@@ -87,14 +80,14 @@ class TripRepository
 	public function getDriverTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
-		return Trip::where('trip_id', $v, $lastId)->with(['pickup_locations'=> function($q){
+		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with(['pickup_locations'=> function($q){
 			$q->with('model');
 		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
 	public function getActiveDriverTrip($driver_id, $lastId = 0)
 	{
-		return Trip::with(['pickup_locations'=> function($q){
+		return Trip::where('business_id', $this->business_id)->with(['pickup_locations'=> function($q){
 			$q->with('model');
 		}])->with(['destinations'=> function($q){
 			$q->with('model');
@@ -108,7 +101,7 @@ class TripRepository
 	public function getStudentTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
-		return Trip::where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
 				$q->where('model_id', $id);
 			}
@@ -118,7 +111,7 @@ class TripRepository
 	public function getParentStudentsTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
-		return Trip::where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'pickup_locations', function($q) use ($id){
 				return $q->with('location')->whereHas('student', function($q) use ($id){
 					return $q->where('parent_id', $id);
@@ -140,10 +133,16 @@ class TripRepository
 
 	public function get($limit = 100)
 	{
-		return Trip::withCount('moving_locations')->withCount('pickup_locations')->with('route', 'pickup_locations', 'destinations', 'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
+		return Trip::where('business_id', $this->business_id)->withCount('moving_locations')->withCount('pickup_locations')->with('route', 'pickup_locations', 'destinations', 'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
 	}
 
 	public function eventsByDate($params)
+	{
+		$query = Trip::where('business_id', $this->business_id)->whereBetween('trip_date', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+	public function allEventsByDate($params)
 	{
 		$query = Trip::whereBetween('trip_date', [$params['start'], $params['end']]);
 		return $query;
@@ -151,9 +150,22 @@ class TripRepository
 
 	
 	/**
-	* Find all items between two days 
+	* Find By Business between two days 
 	*/
 	public function getByDateCharts($params )
+	{
+
+	  	$check = Trip::where('business_id', $this->business_id)->whereBetween('trip_date' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, trip_date as label');
+
+  		return $check->groupBy('trip_date')->orderBy('trip_date', 'ASC')->get();
+	}
+
+	
+	/**
+	* Find all items between two days 
+	*/
+	public function getAllByDateCharts($params )
 	{
 
 	  	$check = Trip::whereBetween('trip_date' , [$params['start'] , $params['end']])
@@ -169,7 +181,7 @@ class TripRepository
 		$dataArray = [];
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}
@@ -201,7 +213,7 @@ class TripRepository
     public function update($data)
     {
 
-		$Object = Trip::find($data['trip_id']);
+		$Object = Trip::where('business_id', $this->business_id)->find($data['trip_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -220,7 +232,7 @@ class TripRepository
 	{
 		try {
 			
-			$delete = Trip::find($id)->delete();
+			$delete = Trip::where('business_id', $this->business_id)->find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

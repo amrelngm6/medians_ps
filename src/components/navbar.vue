@@ -1,66 +1,148 @@
 <template>
-    <nav id="header" class="rounded-lg px-4 flex w-auto bg-white shadow-lg border-b border-gray-300 relative " >
-        <div class="w-full flex items-center justify-between mt-0 px-6 ">
-            <div class=" md:flex flex lg:flex  md:w-auto w-full order-3 md:order-1" id="menu">
-                <div class="inline-flex mx-4">
-                    <!-- Logo -->
-                    <div class="mx-auto h-16  py-2 w-auto ">
-                        <img style="max-height: 100%" :src="(setting.logo ? setting.logo : '/uploads/img/logo.png')" height="40">
-                        <!--end logo -->
+    <div id="header" class="relative w-full" >
+
+            <!--begin::Header-->
+            <div id="kt_app_header" class="app-header bg-white shadow" data-kt-sticky="true"
+                data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize"
+                data-kt-sticky-offset="{default: '200px', lg: '0'}" data-kt-sticky-animation="false" style="max-height:50px">
+
+                <!--begin::Header container-->
+                <div class="app-container  container-fluid d-flex align-items-stretch justify-content-between "
+                    id="kt_app_header_container">
+
+                    <div class="d-flex align-items-center d-lg-none ms-n3 me-1 me-md-2" title="Show sidebar menu">
+                        <div class="btn btn-icon btn-active-color-primary w-35px h-35px"
+                            id="kt_app_sidebar_mobile_toggle">
+                            Menu
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+                        <a href="/dashboard" class="d-lg-none">
+                            <img alt="Logo" :src="system_setting.logo" class="h-30px" />
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
+                        <div class=" app-header-menu  app-header-mobile-drawer  align-items-stretch ">
+                            <div class="menu  menu-rounded  menu-column  menu-lg-row my-5  my-lg-0  align-items-stretch fw-semibold px-2 px-lg-0 " id="kt_app_header_menu" data-kt-menu="true">
+                                <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                    <span class="menu-link">
+                                        <span class="menu-title" v-text="system_setting.sitename"></span>
+                                        <span class="menu-arrow d-lg-none"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-navbar flex-shrink-0" >
+                            <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle" @mouseover="showSubMenu = true"  >
+                                <div  class="cursor-pointer symbol symbol-35px flex gap-4">
+                                    <span class="pt-4" v-text="auth.name"></span>
+                                    <img v-if="auth" :src="auth.photo" class="rounded-3" alt="user">
+                                </div>
+
+                                <div v-if="showSubMenu" @mouseleave="showSubMenu = false" class="shadow bg-white menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px show" data-kt-menu="true" data-popper-placement="bottom-end" style="z-index: 107; position: fixed; inset: 0px 0px auto auto; margin: 0px; transform: translate(-30px, 74px);">
+                                    <div class="menu-item px-3">
+                                        <div class="menu-content d-flex align-items-center px-3">
+                                            <div class="symbol symbol-50px me-5">
+                                                <img :alt="auth.name" :src="auth.photo">
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <div class="fw-bold d-flex align-items-center fs-5"><span v-text="auth.name"></span><span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
+                                                </div>
+                                                <a href="#" class="fw-semibold text-muted text-hover-primary fs-7" v-text="auth.email"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="separator my-2"></div>
+
+                                    <div class="menu-item px-5">
+                                        <a href="/admin/profile" class="menu-link px-5" v-text="translate('Profile')"></a>
+                                    </div>
+                                    <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
+                                        <a href="#" class="menu-link px-5">
+                                            <span class="menu-title position-relative">
+                                                <span v-text="translate('Language')"></span>
+                                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">
+                                                    English <img class="w-15px h-15px rounded-1 ms-2" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/flags/united-states.svg" alt="">
+                                                </span>
+                                            </span>
+                                        </a>
+
+                                        <!--begin::Menu sub-->
+                                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="javascript:;" class="menu-link d-flex px-5 active">
+                                                    <span class="symbol symbol-20px me-4">
+                                                        <img class="rounded-1" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/flags/united-states.svg" alt="">
+                                                    </span>
+                                                    English
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="javascript:;" class="menu-link d-flex px-5">
+                                                    <span class="symbol symbol-20px me-4">
+                                                        <img class="rounded-1" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/flags/spain.svg" alt="">
+                                                    </span>
+                                                    Arabic
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                        </div>
+                                        <!--end::Menu sub-->
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5 my-1">
+                                        <a href="/admin/settings" class="menu-link px-5" v-text="translate('Settings')"></a>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="/logout" class="menu-link px-5" v-text="translate('Logout')"></a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="lg:inline-flex no-mobile">
-                    <ul class="md:flex items-center justify-center text-base text-gray-400  py-4  ">
-                        <li>
-                            <a :href="conf.url"  v-text="setting.sitename"></a>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
-        </div>
-        <!-- <ul class="nav user-menu w-96 flex"> -->
-        <ul class="nav user-menu flex relative">
-            <li v-if="auth && auth.role_id > 1">
-                <notifications_popup :auth="auth" :conf="conf" :lang="lang" :setting="setting"></notifications_popup>
-            </li>
-            <li v-if="auth && lang"  class="nav-item has-arrow main-drop relative ">
-                <span class="py-4 text-gray-600 flex w-14 gap gap-2 cursor-pointer" onclick="$('.dropped2').toggleClass('hidden'); $('.dropped').addClass('hidden')">
-                    <svg fill="#666" height="25px" width="25px" version="1.1" id="XMLID_275_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><g id="language"><g><path d="M12,24C5.4,24,0,18.6,0,12S5.4,0,12,0s12,5.4,12,12S18.6,24,12,24z M9.5,17c0.6,3.1,1.7,5,2.5,5s1.9-1.9,2.5-5H9.5zM16.6,17c-0.3,1.7-0.8,3.3-1.4,4.5c2.3-0.8,4.3-2.4,5.5-4.5H16.6z M3.3,17c1.2,2.1,3.2,3.7,5.5,4.5c-0.6-1.2-1.1-2.8-1.4-4.5H3.3z M16.9,15h4.7c0.2-0.9,0.4-2,0.4-3s-0.2-2.1-0.5-3h-4.7c0.2,1,0.2,2,0.2,3S17,14,16.9,15z M9.2,15h5.7c0.1-0.9,0.2-1.9,0.2-3 S15,9.9,14.9,9H9.2C9.1,9.9,9,10.9,9,12C9,13.1,9.1,14.1,9.2,15z M2.5,15h4.7c-0.1-1-0.1-2-0.1-3s0-2,0.1-3H2.5C2.2,9.9,2,11,2,12 S2.2,14.1,2.5,15z M16.6,7h4.1c-1.2-2.1-3.2-3.7-5.5-4.5C15.8,3.7,16.3,5.3,16.6,7z M9.5,7h5.1c-0.6-3.1-1.7-5-2.5-5 C11.3,2,10.1,3.9,9.5,7z M3.3,7h4.1c0.3-1.7,0.8-3.3,1.4-4.5C6.5,3.3,4.6,4.9,3.3,7z"/></g></g></svg>
-                </span>
-                <ul class="absolute bg-white border border-gray-300 drop-ul hidden dropped2 flex gap-4 left-1 px-2 py-4 rounded-lg top-14 w- w-32 w-full w-sm" style="z-index: 9999;">
-                    <li class="py-2" :class="lang.lang == 'ar' ? 'font-semibold' : ''"><a href="/switch-lang/arabic">Arabic</a></li>
-                    <li class="py-2" :class="lang.lang == 'en' ? 'font-semibold border-b border-gray-300' : ''"><a href="/switch-lang/english">English</a></li>
-                </ul>
-            </li>
-            <li v-if="auth && lang"  class="nav-item  has-arrow main-drop ">
-                <span class="cursor-pointer flex  gap gap-2 mt-1" onclick="$('.dropped1').toggleClass('hidden'); $('.dropped2').addClass('hidden')">
-                    <span class="user-img mt-3 ">
-                        <img :src="auth.photo" width="25" height="25" alt="">
-                        <span class="status online absolute top-0 right-0"></span>
-                    </span>
-                    <span  class="mt-4 no-mobile " v-text="auth.name"></span>
-                </span>
-                <ul class="drop-ul py-4 px-2 w-full bg-white border border-gray-300 rounded-lg  absolute top-14 left-1 hidden dropped1" style="z-index: 9999; top:60px">
-                    <li class="py-2 border-b border-gray-300"><a  :href="'/admin/'+ auth.role_id == 3 ? 'settings' : 'system_settings'" v-text="lang.setting"></a></li>
-                    <li class="py-2"><a href="/logout" v-text="lang.logout"></a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+            <!--end::Header-->
+            
+    </div>
 </template>
 
 <script>
 import notifications_popup from './notifications_popup.vue'
+import {ref} from 'vue'
+import { translate } from '@/utils.vue';
 
 export default {
   name: 'navbar',
   components: {
     notifications_popup,
   },
+  setup(props) {
+
+    const showSubMenu = ref(); 
+
+    return {
+        showSubMenu,
+        translate
+    };
+
+  },
   props: {
     auth:[Object, null],
     lang:[Object, null],
-    setting:[Object, null],
+    system_setting:[Object, null],
     conf:[Object, null]
   }
 }

@@ -3,11 +3,12 @@
 namespace Medians\Trips\Domain;
 
 use Medians\Routes\Domain\Route;
-use Medians\Locations\Domain\PickupLocation;
+use Medians\Locations\Domain\RouteLocation;
 use Medians\Locations\Domain\Destination;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Students\Domain\Student;
-use Medians\Parents\Domain\Parents;
+use Medians\Customers\Domain\Parents;
+use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
 
 
@@ -49,6 +50,16 @@ class TripDestination extends CustomModel
 	{
 		return isset($this->destination->longitude) ? $this->destination->longitude : 0;
 	}
+
+	
+	/**
+	 * Relations with onother Models
+	 */
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+
 
 	public function destination() 
 	{

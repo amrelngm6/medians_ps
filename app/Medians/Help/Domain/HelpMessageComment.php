@@ -5,6 +5,7 @@ namespace Medians\Help\Domain;
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
+use Medians\Businesses\Domain\Business;
 
 class HelpMessageComment extends CustomModel
 {
@@ -43,6 +44,16 @@ class HelpMessageComment extends CustomModel
 		return date('Y-m-d H:i', strtotime($this->created_at));
 	}
 
+	
+	/**
+	 * Relations with onother Models
+	 */
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+	
+	
     public function message() {
         return $this->hasOne(HelpMessage::class, 'message_id', 'message_id');
     }

@@ -75,8 +75,24 @@ class APIController extends CustomController
 			switch ($request->get('type')) 
 			{
 
+				case 'Payment.paypal_payment_confirmation':
+					$return = (new Payments\Application\PaymentController())->confirmPayPalPlanPayment();
+					break;
+
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
+					break;
+
+				case 'User.get_started_save_business':
+					$return = (new Users\Application\GetStartedController())->saveBusiness();
+					break;
+
+				case 'User.get_started_save_plan':
+					$return = (new Users\Application\GetStartedController())->saveSelectedPlan();
+					break;
+
+				case 'User.get_started_save_free_plan':
+					$return = (new Users\Application\GetStartedController())->saveFreePlan();
 					break;
 
 				case 'Student.create':
@@ -87,7 +103,7 @@ class APIController extends CustomController
 					$return = (new Drivers\Application\DriverController())->store();
 					break;
 
-				case 'Routes.create':
+				case 'Route.create':
 					$return = (new Routes\Application\RouteController())->store();
 					break;
 
@@ -96,12 +112,12 @@ class APIController extends CustomController
 					break;
 					break;
 
-				case 'PickupLocation.create':
-					$return = (new Locations\Application\PickupLocationController())->store();
+				case 'RouteLocation.create':
+					$return = (new Locations\Application\RouteLocationController())->store();
 					break;
 
 				case 'Parents.create':
-					return response((new Parents\Application\ParentController())->store());
+					return response((new Customers\Application\ParentController())->store());
 					break;
 
 				case 'HelpMessage.create':
@@ -124,10 +140,6 @@ class APIController extends CustomController
 					$return =  (new Help\Application\HelpMessageController())->storeComment(); 
 					break;
 	
-				case 'Destination.create':
-					$return =  (new Locations\Application\DestinationController())->store(); 
-					break;
-
 				case 'Vacation.create':
 					$return =  (new Vacations\Application\VacationController())->store(); 
 					break;
@@ -145,7 +157,51 @@ class APIController extends CustomController
 					$return =  (new Plans\Application\PlanFeatureController())->store(); 
 					break;
 				
+				case 'Employee.create':
+					$return =  (new Customers\Application\EmployeeController())->store(); 
+					break;
+				
+				case 'Page.create':
+					$return =  (new Pages\Application\PageController())->store(); 
+					break;
+
+				case 'City.create':
+					$return = (new Locations\Application\CityController)->store();
+					break;
 	
+				case 'Country.create':
+					$return = (new Locations\Application\CountryController)->store();
+					break;
+		
+				case 'State.create':
+					$return = (new Locations\Application\StateController)->store();
+					break;
+		
+				case 'Package.create':
+					$return = (new Packages\Application\PackageController)->store();
+					break;
+		
+		
+				case 'PaymentMethod.create':
+					$return = (new PaymentMethods\Application\PaymentMethodController)->store();
+					break;
+		
+				case 'PackageSubscription.create':
+					$return = (new Packages\Application\PackageSubscriptionController)->store();
+					break;
+		
+				case 'VehicleType.create':
+					$return = (new Vehicles\Application\VehicleTypeController)->store();
+					break;
+		
+				case 'SuperVisor.create':
+					$return = (new Customers\Application\SuperVisorController)->store();
+					break;
+		
+				case 'PrivateTrip.create':
+					$return = (new Trips\Application\PrivateTripController)->store();
+					break;
+		
 			}
 
 			return response(json_encode($return));
@@ -170,6 +226,10 @@ class APIController extends CustomController
                 $controller =  new Settings\Application\SystemSettingsController; 
 				break;
 
+			case 'AppSettings.update':
+                $controller =  new Settings\Application\AppSettingsController; 
+				break;
+
 			case 'Student.update':
 				$controller = new Students\Application\StudentController;
 				break;
@@ -178,7 +238,7 @@ class APIController extends CustomController
 				$controller = new Drivers\Application\DriverController;
 				break;
 
-			case 'Routes.update':
+			case 'Route.update':
 				$controller = new Routes\Application\RouteController;
 				break;
 
@@ -186,17 +246,16 @@ class APIController extends CustomController
 				$controller = new Vehicles\Application\VehicleController;
 				break;
 
-			case 'PickupLocation.update':
-				$controller = new Locations\Application\PickupLocationController;
+			case 'RouteLocation.update':
+				$controller = new Locations\Application\RouteLocationController;
 				break;
 
 			case 'HelpMessage.update':
 				$controller =  new Help\Application\HelpMessageController;
 				break;
-
-
+	
 			case 'Parents.update':
-				$controller = new Parents\Application\ParentController;
+				$controller = new Customers\Application\ParentController;
 				break;
 
             case 'Settings.update':
@@ -227,6 +286,7 @@ class APIController extends CustomController
 				$controller =  new Roles\Application\RoleController; 
 				break;			
 
+			case 'Business.update':
 			case 'School.update':
 			case 'Company.update':
 				$controller =  new Businesses\Application\BusinessController; 
@@ -240,19 +300,59 @@ class APIController extends CustomController
 				$controller =  new Plans\Application\PlanFeatureController; 
 				break;
 			
+			case 'Employee.update':
+				$controller =  new Customers\Application\EmployeeController; 
+				break;
+			
+			case 'Page.update':
+				$controller =  new Pages\Application\PageController; 
+				break;
+			
 			case 'Role.updatePermissions':
 				return (new Roles\Application\RoleController)->updatePermissions(); 
 				break;
 		
-			case 'Destination.update':
-				$controller =  new Locations\Application\DestinationController; 
-				break;
-
 			case 'User.updateStatus':
 				return (new Users\Application\UserController())->updateStatus();
 				break;
 	
 
+			case 'City.update':
+				$controller = new Locations\Application\CityController;
+				break;
+
+			case 'Country.update':
+				$controller = new Locations\Application\CountryController;
+				break;
+
+			case 'State.update':
+				$controller = new Locations\Application\StateController;
+				break;
+
+			case 'Package.update':
+				$controller = new Packages\Application\PackageController;
+				break;
+			
+			case 'PaymentMethod.update':
+				$controller = new PaymentMethods\Application\PaymentMethodController;
+				break;
+			
+			case 'PackageSubscription.update':
+				$controller = new Packages\Application\PackageSubscriptionController;
+				break;
+			
+			case 'VehicleType.update':
+				$controller = new Vehicles\Application\VehicleTypeController;
+				break;
+			
+			case 'SuperVisor.update':
+				$controller = new Customers\Application\SuperVisorController;
+				break;
+			
+			case 'PrivateTrip.update':
+				$controller = new Trips\Application\PrivateTripController;
+				break;
+			
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
@@ -285,19 +385,15 @@ class APIController extends CustomController
 					break;
 
 				case 'Parents.delete':
-					return response((new Parents\Application\ParentController())->delete());
+					return response((new Customers\Application\ParentController())->delete());
 					break;
 
 				case 'Route.delete':
 					return response((new Routes\Application\RouteController())->delete());
 					break;
 
-				case 'PickupLocation.delete':
-					return response((new Locations\Application\PickupLocationController())->delete());
-					break;
-
-				case 'Destination.delete':
-					return response((new Locations\Application\DestinationController())->delete());
+				case 'RouteLocation.delete':
+					return response((new Locations\Application\RouteLocationController())->delete());
 					break;
 
 				case 'Student.delete':
@@ -336,6 +432,54 @@ class APIController extends CustomController
 				case 'PlanFeature.delete':
 					return response((new Plans\Application\PlanFeatureController())->delete());
 					break;
+			
+				case 'Employee.delete':
+					return response((new Customers\Application\EmployeeController())->delete());
+					break;
+					break;
+			
+				case 'Page.delete':
+					return response((new Pages\Application\PageController())->delete());
+					break;
+		
+				case 'City.delete':
+					return response((new Locations\Application\CityController())->delete());
+					break;
+
+				case 'Country.delete':
+					return response((new Locations\Application\CountryController())->delete());
+					break;
+
+				case 'State.delete':
+					return response((new Locations\Application\StateController())->delete());
+					break;
+			
+				case 'Package.delete':
+					return response((new Packages\Application\PackageController())->delete());
+					break;
+			
+			
+				case 'PaymentMethod.delete':
+					return response((new PaymentMethods\Application\PaymentMethodController())->delete());
+					break;
+			
+				case 'PackageSubscription.delete':
+					return response((new Packages\Application\PackageSubscriptionController())->delete());
+					break;
+			
+				case 'VehicleType.delete':
+					return response((new Vehicles\Application\VehicleTypeController())->delete());
+					break;
+			
+				case 'SuperVisor.delete':
+					return response((new Customers\Application\SuperVisorController())->delete());
+					break;
+			
+				case 'PrivateTrip.delete':
+					return response((new Trips\Application\PrivateTripController())->delete());
+					break;
+			
+
 			}
 
 		} catch (Exception $e) {

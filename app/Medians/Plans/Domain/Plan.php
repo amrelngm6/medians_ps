@@ -28,7 +28,7 @@ class Plan extends CustomModel
 
 	// public $timestamps = false;
 
-	// protected $appends = ['features'];
+	// public $appends = ['features'];
 
 
 	// public function getFeaturesAttribute()
@@ -44,7 +44,7 @@ class Plan extends CustomModel
 
 	public function plan_features()
 	{
-		return $this->hasMany(PlanFeature::class, 'plan_id', 'id');
+		return $this->hasMany(PlanFeature::class, 'plan_id', 'plan_id');
 	}
 
 }

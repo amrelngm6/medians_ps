@@ -89,7 +89,7 @@ class CustomerController extends CustomController
 	{
 		return render('views/admin/customers/create.html.twig', [
 	        'title' => 'Customers',
-	        'Model' => $this->repo->getModel(),
+	        'Model' => $this->repo->getClassName(),
 	        'app' => $this->app,
 	    ]);
 	} 

@@ -3,6 +3,8 @@
 namespace Medians\Routes\Infrastructure;
 
 use Medians\Routes\Domain\Route;
+use Medians\Routes\Domain\RoutePosition;
+use Medians\Routes\Domain\RouteState;
 use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
 
@@ -12,57 +14,49 @@ class RouteRepository
 
 
 	/**
-	 * Load app for Sessions and helpful
-	 * methods for authentication and
-	 * settings for branch
+	 * Business id
 	 */ 
-	protected $app ;
+	protected $business_id ;
 
+	protected $business;
 
-	function __construct()
+	function __construct($business)
 	{
+		$this->business = $business;
+		$this->business_id = isset($business->business_id) ? $business->business_id : null;
 	}
 
-
-	public static function getModel()
-	{
-		return new Route();
-	}
 
 
 	public function find($id)
 	{
-		return Route::with('pickup_locations','destinations', 'driver')->find($id);
+		return Route::where('business_id', $this->business_id)->with('route_locations', 'position', 'driver')->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Route::with('pickup_locations', 'vehicle', 'driver')->limit($limit)->get();
+		return Route::where('business_id', $this->business_id)->with('route_locations', 'position', 'supervisor', 'vehicle', 'driver')->limit($limit)->get();
 	}
 	
 	public function getRouteStudents($route_id)
 	{
 		$dayName = strtolower(date('l'));
 		
-		return Route::with(['pickup_locations'=> function($q) use ($dayName, $route_id){
+		return Route::where('business_id', $this->business_id)->with(['route_locations'=> function($q) use ($dayName, $route_id){
 			return $q->where($dayName, '>',0)->where('route_id', $route_id);
-		}])->with(['destinations'=> function($q) use ($route_id, $dayName){
-			return $q->where('route_id', $route_id)->where('model_type',Student::class)->whereHas('active_pickup', function($Q) use ($dayName){
-				return $Q->where($dayName, '>' ,0);
-			});
 		}])->find($route_id);
 	}
 
 
 	public function getDriverRoutes($driver_id)
 	{
-		return Route::with(['driver'=> function($q) use ($driver_id){
+		return Route::where('business_id', $this->business_id)->with(['driver'=> function($q) use ($driver_id){
 			
 			return $q->where('vehicles.driver_id', $driver_id)->with('vehicle');
 
 		}])->whereHas('driver', function($q) use ($driver_id){
 			return $q->where('vehicles.driver_id', $driver_id);
-		})->with('pickup_locations','destinations','vehicle')->get();
+		})->with('route_locations','vehicle')->get();
 	}
 
 
@@ -74,11 +68,17 @@ class RouteRepository
 	public function store($data) 
 	{
 
+		$permission = 'Route.count';
+		if (count($this->get()) == $this->business->subscription->features[$permission])
+		{
+			return throw new \Exception(__('Access limit exceeded'), 1);
+		}
+
 		$Model = new Route();
 		
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}
@@ -86,11 +86,13 @@ class RouteRepository
 
 		// Return the  object with the new data
     	$Object = Route::create($dataArray);
-    	$Object->update($dataArray);
 
     	// Store Custom fields
 		if (isset($data['field']))
 	    	$this->storeCustomFields($data['field'], $Object->id);
+		
+		if (isset($data['states']))
+			$this->storeRouteStates($data['states'], $Object->id);
 
     	return $Object;
     }
@@ -101,13 +103,15 @@ class RouteRepository
     public function update($data)
     {
 
-		$Object = Route::find($data['route_id']);
+		$Object = Route::where('business_id', $this->business_id)->find($data['route_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields
     	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['route_id']) : '';
+    	!empty($data['states']) ? $this->storeRouteStates($data['states'], $data['route_id']) : '';
+    	!empty($data['position']) ? $this->storeRoutePosition($data['position'], $data['route_id']) : '';
 
     	return $Object;
 
@@ -123,10 +127,11 @@ class RouteRepository
 	{
 		try {
 			
-			$delete = Route::find($id)->delete();
+			$delete = Route::where('business_id', $this->business_id)->find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);
+				$this->storeRouteStates(null, $id);
 			}
 
 			return true;
@@ -164,6 +169,67 @@ class RouteRepository
 		}
 	}
 
+	/**
+	* Save related items to database
+	*/
+	public function storeRoutePosition($data, $id) 
+	{
+		global $capsule;
+
+		RoutePosition::where('route_id', $id)->delete();
+
+		$data = json_decode($data);
+
+		$Model = new RoutePosition;
+		
+		$save = $capsule->getConnection()->insert("INSERT INTO ".$Model->getTable()." (start_location, end_location) VALUES (POINT({$data->start_latitude}, {$data->start_longitude}), POINT({$data->end_latitude}, {$data->end_longitude}))");
+		
+		$insertedId = $capsule->getConnection()->getPdo()->lastInsertId();
+
+		if ($data)
+		{
+			
+			$data->route_id = $id;	
+			$data->business_id = $this->business_id;	
+			
+			$dataArray = [];
+			foreach ($data as $key => $value) 
+			{
+				if (in_array($key, $Model->getFields()))
+				{
+					$dataArray[$key] = $value;
+				}
+			}		
+			
+			$item = $Model->find($insertedId);
+			
+			$Model = $item->update($dataArray);
+	
+			return $Model;		
+		}
+	}
+
+	
+	public function getNearestRoute($data)
+	{
+		global $capsule;
+		
+		// Assuming your current location coordinates
+		$currentLocation = "POINT({$data->latitude} {$data->longitude})";
+
+		// Run the SQL query using Capsule's getConnection method
+		$results = $capsule->getConnection()->select("
+			SELECT route_id, 
+			ST_Distance_Sphere(start_location, ST_GeomFromText(?)) AS start_distance, 
+			ST_Distance_Sphere(end_location, ST_GeomFromText(?)) AS end_distance 
+			FROM route_position
+			HAVING start_distance < 100 OR end_distance < 100
+		", [$currentLocation, $currentLocation]);
+
+		$ids = array_column($results, 'route_id');
+		$list = Route::whereIn('route_id',$ids)->get();
+		print_r($list);
+	}
 
  
 }

@@ -19,6 +19,7 @@ class Settings extends CustomModel
     	'code',
     	'value',
     	'model',
+    	'business_id',
     	'created_by',
 	];
 

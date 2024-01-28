@@ -4,12 +4,20 @@ import axios from 'axios'
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 
+export function today() {
+  return moment().format('YYYY-MM-DD');
+}
 export function formatDate(date) {
   return moment(date).format('YYYY-MM-DD');
 }
 
 export function formatDateTime(date) {
   return moment(date).format('YYYY-MM-DD HH:mm a');
+}
+
+export function durationMonthsDate(date, value) {
+    
+    return moment(date).add(value, 'months').format("YYYY-MM-DD");
 }
 
 
@@ -86,5 +94,231 @@ export function showAlert(response,duration = 3000)
         autoClose: duration,
     });
 }
+
+export function setActiveStatus (item, key) 
+{
+    item[key] = !item[key];
+}
+
+export function checkAccess (auth) 
+{
+    if (auth && auth.role_id == 1)
+        return true;
+
+    if (!auth)
+        return false;
+
+    if (!auth.business)
+        return false;
+    
+    if (!auth.business.subscription)
+        return false;
+    
+    if (auth.business.subscription.is_expired)
+        return false;
+
+    return true;
+}
+
+/**
+ * Handle login access result 
+ * 
+ */
+export function handleAccess (response)  
+{
+    
+    if (response && (response.success && response.reload))
+    {
+        showAlert(response.result, 3500);
+        setTimeout(() => {
+            location.reload();
+        }, 2000);
+
+    } else if (response && (response.error || response.success) && response.result) {
+        response ? showAlert(response.result, 3000) : null;
+    } else {
+        response ? showAlert(response.error, 3000) : null;
+    }
+}
+
+export async function findPlaces  (googleMapsApiKey, text, countries)
+{
+    let options = {
+        componentRestrictions: { country: countries },
+        apiKey: googleMapsApiKey,
+        language: 'en',
+    };
+    const autocompleteService = new google.maps.places.AutocompleteService(options);
+    return await autocompleteService.getPlacePredictions(
+        { input: text },
+        (predictions, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+                // Assuming the first prediction is the most relevant one
+                return predictions
+            }
+        }
+    );
+
+}  
+
+export async function getPositionAddress  (lat, lng)  
+{
+    
+    try {
+        const place = await getPlaceIdFromPosition(lat, lng);
+        return place.formatted_address;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+/**
+ * Get place information from Lat & Lng
+ */
+export async function getPlaceIdFromPosition  (lat, lng)  
+{
+    const geocoder = new google.maps.Geocoder();
+
+    const latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+    return new Promise((resolve, reject) => {
+        geocoder.geocode({ location: latLng }, (results, status) => {
+        if (status === 'OK') {
+            results[0] ? resolve(results[0]) : reject('No results found');
+        } else {
+            reject(`Geocoder failed due to: ${status}`);
+        }
+        });
+    });
+}
+
+
+/**
+ * Get Lat & Lng from Place_id
+ */
+
+export async function getPlaceDetails   (placeId)  
+{
+    
+    const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+
+    return placesService.getDetails({ placeId }, (place, status) => 
+    {
+        if (status === google.maps.places.PlacesServiceStatus.OK && place) 
+        {
+            const location = place.geometry.location;
+            return { lat: location.lat(), lng: location.lng() };
+        } else {
+            console.error('Failed to fetch place details');
+        }
+    });
+}
+
+
+export function sameRole (user, role)  
+{
+    if (user.role_id == role.role_id) 
+    {
+        return true
+    }
+    return false;
+}
+
+    
+export function handleTabName (index) 
+{
+    return index.replace('_', ' ').toUpperCase();
+}
+
+export function handleName (column) 
+{
+    return  (column && column.custom_field) ? 'params[field]['+column.key+']' : 'params['+column.key+']';
+}
+
+
+export function isInput (val) 
+{
+    switch (val) 
+    {
+        case 'text':
+        case 'number':
+        case 'email':
+        case 'time':
+        case 'date':
+        case 'phone':
+        case 'number':
+        case '':
+            return true;
+            break;
+    }
+    return false;
+}
+
+export function getProgressWidth  (requiredData = [], activeItem)  
+{
+    let progress = 0;
+    
+    let addVal = 100 / requiredData.length;
+
+    for (let i = 0; i < requiredData.length; i++) 
+    {
+        if ( activeItem && activeItem.value)
+        {
+            if (activeItem.value[requiredData[i]])
+                progress += addVal
+    
+            if (activeItem.value.position && activeItem.value.position[requiredData[i]])
+                progress += addVal
+        }
+    }
+
+    return progress;
+}
+
+export function decodePoly  (encodedString)  
+{
+      const polylinePoints = [];
+      let index = 0;
+      const len = encodedString.length;
+      let lat = 0;
+      let lng = 0;
+
+      while (index < len) {
+        let b;
+        let shift = 0;
+        let result = 0;
+
+        do {
+          b = encodedString.charCodeAt(index++) - 63;
+          result |= (b & 0x1F) << shift;
+          shift += 5;
+        } while (b >= 0x20);
+
+        const dlat = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
+        lat += dlat;
+
+        shift = 0;
+        result = 0;
+
+        do {
+          b = encodedString.charCodeAt(index++) - 63;
+          result |= (b & 0x1F) << shift;
+          shift += 5;
+        } while (b >= 0x20);
+
+        const dlng = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
+        lng += dlng;
+
+        const latitude = lat / 1E5;
+        const longitude = lng / 1E5;
+
+        const position = { lat: latitude, lng: longitude };
+        polylinePoints.push(position);
+      }
+
+      return polylinePoints;
+}
+
 
 </script>

@@ -12,10 +12,13 @@ class BuilderController extends CustomController
 
 	
 	protected $app;
+	protected $repo;
 	public $contentRepo;
 
 	function __construct()
 	{
+		$this->app = new \Config\APP;
+
 		$this->repo = new BuilderRepository;
 		$this->contentRepo = new ContentRepository;
 
@@ -28,6 +31,7 @@ class BuilderController extends CustomController
 	{
 
 		try {
+			
 
 			$request = $this->app->request();
 			$check = $this->contentRepo->find($request->get('prefix'));
@@ -59,15 +63,6 @@ class BuilderController extends CustomController
 			switch ($page) {
 				case 'blocks':
 					echo json_encode($this->repo->get());
-					// $blocks = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/src/builder/assets/blocks.json');
-					// foreach (json_decode($blocks) as $k => $row) 
-					// {
-					// 	foreach ($row as $value) 
-					// 	{
-					// 		// $k != 'columns' ? '' : $this->repo->store(['category'=>$k, 'content'=>$value->html]);
-					// 	}
-					// }
-					// echo $blocks;
 					break;
 			}
 
@@ -95,9 +90,90 @@ class BuilderController extends CustomController
 		}
 	}
 
+	/**
+	 * Load builder scrab page
+	 */ 
+	public function scrab_get()
+	{
 
+		try {
+			
+			$request = $this->app->request();
+			$check = $this->contentRepo->find($request->get('prefix'));
 
+			render('views/admin/builder/templates/scrab.html.twig',['page'=>$check]);
 
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	}
+
+	
+	/**
+	 * Extract sections from html page
+	 */
+	public function scrapeAndExtractSections($url) 
+	{
+		// Initialize cURL session
+		$ch = curl_init($url);
+		
+		// Set cURL options
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	
+		// Execute cURL session and get the HTML content
+		$htmlContent = curl_exec($ch);
+	
+		// Check for cURL errors
+		if (curl_errno($ch)) {
+			echo 'Curl error: ' . curl_error($ch);
+			curl_close($ch);
+			return;
+		}
+	
+		// Close cURL session
+		curl_close($ch);
+	
+		// Create a SimpleHTMLDom object
+		$dom = new simple_html_dom();
+		
+		// Load HTML content into the DOM parser
+		$dom->load($htmlContent);
+	
+		// Find and extract section elements
+		$sections = array();
+		foreach ($dom->find('section') as $section) {
+			// Add section content to the array
+			$sections[] = $section->outertext;
+		}
+	
+		// Clean up the DOM parser
+		$dom->clear();
+		
+		// Output the extracted sections
+		return $sections;
+	}
+
+	/**
+	 * Scrab sections
+	 */
+	public function scrab()
+	{
+		$request = $this->app->request();
+
+		$url = $request->get('url');
+		$category = $request->get('category');
+
+		$sections = $this->scrapeAndExtractSections($url);
+
+		foreach ($sections as $key => $section) {
+			$section = str_replace('assets/','https://winsfolio.net/html/sasnio/assets/', $section);
+			$this->repo->store(['content'=>$section, 'category'=>$category]);
+		}
+
+		echo __('Done');
+	}
+
+	
 	/**
 	 * Submit builder requests
 	 */ 

@@ -22,8 +22,6 @@
         "phpseclib/phpseclib": "~3.0",
         "phpmailer/phpmailer": "^6.8",
         "google/apiclient": "^2.15",
-        "omnipay/paypal": "*",
-        "paypal/rest-api-sdk-php": "*",
         "php-http/message-factory": "^1.1",
         "onesignal/onesignal-php-api": "*@dev",
         "php-http/httplug": "^2.4"

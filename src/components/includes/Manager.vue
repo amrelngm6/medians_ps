@@ -125,28 +125,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="media-library__manager__content__info__section" v-if="type == 'images'">
-                                <div>
-                                    <label class="media-library__manager__content__info__label" for="alt-text">
-                                        Alt text
-                                    </label>
-                                    <input v-model="openFile.alt_text" class="media-library__manager__content__info__input" id="alt-text" type="text">
-                                </div>
-                                <div>
-                                    <label class="media-library__manager__content__info__label" for="caption">
-                                        Caption
-                                    </label>
-                                    <textarea v-model="openFile.caption" class="media-library__manager__content__info__input" id="caption" rows="3" />
-                                </div>
-                            </div>
-                            <div class="media-library__manager__content__info__section" style="display: flex; margin: 0 -0.5rem;">
-                                <div style="padding: 0 0.5rem;" :style="`width: ${type != 'images' ? 100 : 50}%;`">
-                                    <button @click="toggles.file = false; clearSelected('images');" class="media-library__manager__content__info__button media-library__manager__content__info__button--close">Close</button>
-                                </div>
-                                <div v-if="type == 'images'" style="width: 50%; padding: 0 0.5rem;">
-                                    <button @click="save" class="media-library__manager__content__info__button media-library__manager__content__info__button--save">Save</button>
-                                </div>
-                            </div> -->
                             <div class="media-library__manager__content__info__section" style="display: flex; margin: 0 -0.5rem;" v-if="selectable">
                                 <a href="javascript:;" @click="select(openFile)" class="media-library__manager__content__info__button media-library__manager__content__info__button--success">Insert</a>
                             </div>

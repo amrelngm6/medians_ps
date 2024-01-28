@@ -4,7 +4,6 @@ namespace Medians\Trips\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Trips\Infrastructure\TripRepository;
-use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Users\Infrastructure\UserRepository;
 
 class TripController extends CustomController 
@@ -17,8 +16,6 @@ class TripController extends CustomController
 
 	protected $app;
 
-	public $categoryRepo;
-
 	public $userRepo;
 	
 
@@ -27,8 +24,7 @@ class TripController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new TripRepository();
-		$this->categoryRepo = new CategoryRepository();
+		$this->repo = new TripRepository($this->app->auth()->business);
 		$this->userRepo = new UserRepository();
 	}
 
@@ -161,7 +157,7 @@ class TripController extends CustomController
 		
 		$user = $this->app->auth();		
 
-		$trip =  $this->repo->getParentTrip($id, $user->parent_id);
+		$trip =  $this->repo->getParentTrip($id, $user->customer_id);
 
 		echo  json_encode( $trip );
 	}
@@ -174,7 +170,7 @@ class TripController extends CustomController
 		
 		$user = $this->app->auth();		
 
-		return   $this->repo->getActiveParentTrip($user->parent_id);
+		return   $this->repo->getActiveParentTrip($user->customer_id);
 	}
 
 	/**
@@ -200,9 +196,9 @@ class TripController extends CustomController
 			return  $this->repo->getDriverTrips($user->driver_id, $this->app->request()->get('lastId'));
 		}
 		
-		if  (isset($user->parent_id))
+		if  (isset($user->customer_id))
 		{
-			return  $this->repo->getParentStudentsTrips($user->parent_id, $this->app->request()->get('lastId'));
+			return  $this->repo->getParentStudentsTrips($user->customer_id, $this->app->request()->get('lastId'));
 		}
 
 		return [];

@@ -34,7 +34,7 @@ class PlanFeature extends CustomModel
 	*/
 	// public $timestamps = false;
 
-	protected $appends = ['plan_name', 'access_value'];
+	public $appends = ['plan_name', 'access_value'];
 
 
 	public  function getAccessValueAttribute()

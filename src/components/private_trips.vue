@@ -1,0 +1,169 @@
+<template>
+    <div class="w-full overflow-auto" >
+
+        <private_trip_wizard @callback="showWizard = false" :conf="conf"
+                v-if="showWizard && activeItem.usertype" :usertype="activeItem.usertype"
+                :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
+                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+
+        <usertype_picker :alias="translate('Need private trip')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
+        
+        <div  v-if="!showWizard && !showOptions && content && !showTrip " class=" w-full relative">
+
+            <main v-if="content"  :key="content.items" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
+                <!-- New releases -->
+                <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
+                    <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
+                    <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg bg-danger" @click="showOptions = true" v-text="translate('add_new')"></a>
+                </div>
+                <hr class="mt-2" />
+                <div class="w-full bg-white" >
+                    
+                    <datatabble  class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
+
+                        <template #item-picture="item">
+                            <img :src="item.picture" class="w-8 h-8 rounded-full" />
+                        </template>
+
+                        <template #item-details="item">
+                            <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
+                                <vue-feather class="w-5" type="edit"></vue-feather>
+                            </button>
+                        </template>
+                        <template #item-delete="item">
+                            <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-red-500" @click="handleAction('delete', item)">
+                                <delete_icon class="w-5"/>
+                            </button>
+                        </template>
+                    </datatabble>
+                </div>
+            </main>
+        </div>
+    </div>
+</template>
+<script>
+
+import delete_icon from '@/components/svgs/trash.vue';
+import car_icon from '@/components/svgs/car.vue';
+import route_icon from '@/components/svgs/route.vue';
+
+import 'vue3-easy-data-table/dist/style.css';
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+
+import {defineAsyncComponent, ref} from 'vue';
+import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
+
+const maps = defineAsyncComponent(() =>
+  import('@/components/includes/map.vue')
+);
+
+const trip_page = defineAsyncComponent(() => import('@/components/trip_page.vue') );
+const usertype_picker = defineAsyncComponent(() => import('@/components/includes/usertype_picker.vue') );
+const private_trip_wizard = defineAsyncComponent(() => import('@/components/wizards/privateTripWizard.vue') );
+
+export default
+{
+    components: {
+        'datatabble': Vue3EasyDataTable,
+        maps,
+        delete_icon,
+        car_icon,
+        route_icon,
+        trip_page,
+        usertype_picker,
+        private_trip_wizard,
+    },
+    name: 'Private trips',
+    
+    setup(props) {
+
+        const url =  props.conf.url+props.path+'?load=json';
+
+        const activeTrip = ref(null);
+        const activeItem = ref({});
+        const content = ref({});
+        const usersList = ref([]);
+        const showTrip =  ref(false);
+        const showWizard =  ref(false);
+        const showOptions =  ref(false);
+
+        const load = () => {
+            handleGetRequest( url ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+            });
+        }
+        
+        load();
+
+
+        /**
+         * Handle actions from datatable buttons
+         * Called From 'dataTableActions' component
+         * 
+         * @param String actionName 
+         * @param Object data
+         */
+        const handleAction = (actionName, data) => 
+        {
+            switch (actionName) 
+            {
+                case 'view':
+                    break;
+
+                case 'edit':
+                    activeItem.value = data;
+                    showWizard.value = true;
+                    break;
+
+                case 'delete':
+                    deleteByKey('trip_id', data, 'PrivateTrip.delete');
+                    break;
+            }
+        }
+
+        
+
+        const handleUsersList = () => {
+            
+            if (activeItem.value.usertype == 'employee')
+                usersList.value = content.value.employees;
+            
+            
+            if (activeItem.value.usertype == 'supervisor')
+                usersList.value = content.value.supervisors;
+        }
+
+
+        const setType = (type) => {
+            activeItem.value.usertype = type;
+            showOptions.value = false;
+            showWizard.value = true;
+            handleUsersList();
+        }
+
+
+        return {
+            usersList,
+            showWizard,
+            setType,
+            showOptions,
+            showTrip,
+            url,
+            content,
+            activeItem,
+            translate,
+            handleAction
+        };
+    },
+    
+    props: [
+        'path',
+        'lang',
+        'business_setting',
+        'system_setting',
+        'conf',
+        'auth',
+    ],
+};
+
+</script>

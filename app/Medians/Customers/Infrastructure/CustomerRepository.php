@@ -15,10 +15,72 @@ class CustomerRepository
 	{
 	}
 
-	public function getModel()
+	public function getClassName()
 	{
-		return new Customer;
+		return Customer::class;
 	}
+
+	public function findByEmail($email)
+	{
+		return Customer::where('email' , $email)->first();
+	}
+
+	
+	/**
+	 * Check user session by his token
+	 */
+	public function findByToken($token, $code = 'API_token')
+	{
+		return Customer::with('custom_fields')->whereHas('custom_fields', function($q) use ($token, $code) {
+			$q->where('code', $code)->where('value',$token);
+		})->first();
+	}
+
+	/**
+	 * Login with email & password 
+	 */	
+	public function checkLogin($email, $password)
+	{
+		return Customer::where('password', $password)->where('email' , $email)->first();
+	}
+
+
+	/**
+	 * Generate random password
+	 */
+	public function randomPassword() {
+		$alphabet = '12345678900';
+		$pass = array(); //remember to declare $pass as an array
+		$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+		for ($i = 0; $i < 8; $i++) {
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return implode($pass); //turn the array into a string
+	}
+
+
+    /**
+     * Reset & Update password 
+     */
+    public function resetChangePassword($data)
+    {
+		$Auth = new \Medians\Auth\Application\AuthService;
+
+		$Object = $this->findByToken($data['reset_token'], 'reset_token');
+		
+		if (!$Object)
+		{
+			return __('Sent toen is not valid');
+		}
+
+		$newPassword = $Auth->encrypt($data['password']);
+
+		// Return the  object with the new data
+    	$Object->update( ['password'=> $newPassword]);
+
+    	return $Object;
+    }
 
 
 	/**
@@ -79,6 +141,20 @@ class CustomerRepository
 		} catch (\Exception $e) {
 			return $e->getMessage();
 		}
+	}
+
+	
+	/**
+	* validate Email 
+	*/
+	public function validateEmail($email, $id = 0) 
+	{
+		if (!empty($email))
+		{
+			$check = Customer::where('email', $email)->where('customer_id', '!=', $id)->first();
+		}
+
+		return  (empty($check)) ? null : __('EMAIL_FOUND');
 	}
 
 

@@ -4,6 +4,7 @@ namespace Medians\Vehicles\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Routes\Domain\Route;
+use Medians\Businesses\Domain\Business;
 
 
 class Vehicle extends CustomModel
@@ -23,9 +24,7 @@ class Vehicle extends CustomModel
 		'capacity',
 		'picture',
 		'plate_number',
-		'vehicle_type',
-		'driver_id',
-		'route_id',
+		'type_id',
 		'last_latitude',
 		'last_longitude',
 		'created_by'
@@ -48,20 +47,18 @@ class Vehicle extends CustomModel
 		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.png';
 	}
 
-	public function getFields()
+
+	/**
+	 * Relations with onother Models
+	 */
+	public function business() 
 	{
-		return $this->fillable;
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
 	}
 
-	public function thumbnail() 
+
+	public function type() 
 	{
-    	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
+		return $this->hasOne(VehicleType::class, 'type_id', 'type_id');	
 	}
-
-
-	public function route() 
-	{
-		return $this->hasOne(Route::class, 'route_id', 'route_id')->with('pickup_locations');	
-	}
-
 }

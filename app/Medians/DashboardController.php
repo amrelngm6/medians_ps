@@ -14,7 +14,7 @@ class DashboardController extends CustomController
 	public  $TripRepository;
 	public  $RouteRepository;
 	public  $DriverRepository;
-	public  $PickupLocationRepository;
+	public  $RouteLocationRepository;
 	public  $VehicleRepository;
 	public  $StudentRepository;
 	public  $HelpMessageRepository;
@@ -28,15 +28,16 @@ class DashboardController extends CustomController
 	function __construct()
 	{
 		$this->app = new \config\APP;
-		
-		$this->contentRepo = new Content\Infrastructure\ContentRepository();
-		$this->TripRepository = new Trips\Infrastructure\TripRepository();
-		$this->VehicleRepository = new Vehicles\Infrastructure\VehicleRepository();
-		$this->RouteRepository = new Routes\Infrastructure\RouteRepository();
-		$this->DriverRepository = new Drivers\Infrastructure\DriverRepository();
-		$this->PickupLocationRepository = new Locations\Infrastructure\PickupLocationRepository();
-		$this->StudentRepository = new Students\Infrastructure\StudentRepository();
-		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository();
+		$user = $this->app->auth();
+
+		$this->contentRepo = new Content\Infrastructure\ContentRepository($user->business);
+		$this->TripRepository = new Trips\Infrastructure\TripRepository($user->business);
+		$this->VehicleRepository = new Vehicles\Infrastructure\VehicleRepository($user->business);
+		$this->RouteRepository = new Routes\Infrastructure\RouteRepository($user->business);
+		$this->DriverRepository = new Drivers\Infrastructure\DriverRepository($user->business);
+		$this->RouteLocationRepository = new Locations\Infrastructure\RouteLocationRepository($user->business);
+		$this->StudentRepository = new Students\Infrastructure\StudentRepository($user->business);
+		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository($user->business);
 
 		$this->start = $this->app->request()->get('start') ? date('Y-m-d', strtotime($this->app->request()->get('start'))) : date('Y-m-d');
 		$this->end = $this->app->request()->get('end') ? date('Y-m-d', strtotime($this->app->request()->get('end'))) : date('Y-m-d');
@@ -88,7 +89,8 @@ class DashboardController extends CustomController
 
 		try {
 
-			$trips_charts = $this->TripRepository->getByDateCharts(['start'=>$this->app->request()->get('start') ? $this->start : $this->month_first, 'end'=>$this->end]);
+			// $trips_charts = $this->TripRepository->getByDateCharts(['start'=>$this->app->request()->get('start') ? $this->start : $this->month_first, 'end'=>$this->end]);
+			$trips_charts = $this->TripRepository->getAllByDateCharts(['start'=>$this->app->request()->get('start') ? $this->start : $this->month_first, 'end'=>$this->end]);
 
 			$counts = $this->loadCounts();
             /**
@@ -124,7 +126,33 @@ class DashboardController extends CustomController
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['drivers_count'] = $this->DriverRepository->get()->count();
         $data['routes_count'] = $this->RouteRepository->get()->count();
-        $data['pickup_locations_count'] = $this->PickupLocationRepository->get()->count();
+        $data['route_locations_count'] = $this->RouteLocationRepository->get()->count();
+        $data['vehicles_count'] = $this->VehicleRepository->get()->count();
+        $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
+        $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
+        $data['latest_students'] = $this->StudentRepository->get(5);
+        $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
+
+        return $data;
+
+	}  
+
+
+	
+	/**
+	 * Load countable statstics
+	 */
+	public function loadAllCounts()
+	{
+		$data = [];
+
+        $data['active_trips_count'] = $this->TripRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('trip_status', 'Scheduled')->count();
+        $data['completed_trips_count'] = $this->TripRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('trip_status', 'Completed')->count();
+        $data['total_trips_count'] = $this->TripRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['help_messages_count'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['drivers_count'] = $this->DriverRepository->get()->count();
+        $data['routes_count'] = $this->RouteRepository->get()->count();
+        $data['route_locations_count'] = $this->RouteLocationRepository->get()->count();
         $data['vehicles_count'] = $this->VehicleRepository->get()->count();
         $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
         $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);

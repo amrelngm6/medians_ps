@@ -2,6 +2,7 @@
 
 namespace Medians\Users\Application;
 
+use Medians\Businesses\Infrastructure\BusinessRepository;
 use Medians\Plans\Infrastructure\PlanRepository;
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 
@@ -15,7 +16,7 @@ class GetStartedController
 	/*
 	/ @var new CustomerRepository
 	*/
-	private $repo;
+	private $businessRepo;
 
 	protected $app;
 
@@ -27,6 +28,7 @@ class GetStartedController
 	{
 		$this->app = new \config\APP;		
 
+		$this->businessRepo = new BusinessRepository();
 
 		$this->planSubscriptionRepo = new PlanSubscriptionRepository();
 
@@ -53,9 +55,6 @@ class GetStartedController
 	}
 
 
-
-
-
 	/**
 	*  Store setting for new user
 	*/
@@ -65,14 +64,55 @@ class GetStartedController
 	}
 
 
-
-	
 	/**
-	 * Save the created branch 
+	*  Store business for new user
+	*/
+	public function saveBusiness() 
+	{
+		$params = (array)  $this->app->request()->get('params');
+
+		try {
+
+			$params['status'] = 'on';
+			$params['user_id'] = $this->app->auth()->id;
+			$save = $this->businessRepo->store($params);
+
+			if (isset($save->business_id))
+				$this->saveActiveBusiness($save);
+
+        	return isset($save->business_id) 
+           	? array('success'=>1, 'result'=> $save, 'reload'=>1)
+        	: array('error'=> $save );
+
+        } catch (Exception $e) {
+        	return array('error'=> $e->getMessage() );
+        }
+	}
+
+
+	/**
+	 * Save the created business 
 	 * for the active session
 	 * 
 	 */ 
-	public function saveActivePlan()
+	public function saveActiveBusiness($business)
+	{
+
+		$user = $this->app->auth();
+
+		$user->update(['active_business'=>$business->business_id]);
+
+		return $this;
+	} 
+
+
+
+	/**
+	 * Save the created business 
+	 * for the active session
+	 * 
+	 */ 
+	public function saveSelectedPlan()
 	{
 
 		try {
@@ -87,12 +127,12 @@ class GetStartedController
 				return null;
 
 			// Check if plan is free
-			if (!empty($plan->paid))
+			if ($plan->type == 'paid')
 				return $this->subscribePaidPlan($plan, $params['payment_type']);
 
 			$save = $this->savePlan($plan, $params['payment_type']);
 
-        	return isset($save->id) 
+        	return isset($save->plan_id) 
            	? array('success'=>1, 'result'=>__('Created'))
         	: array('error'=> $save );
 
@@ -105,20 +145,31 @@ class GetStartedController
 	 * Subscribe to paid plan
 	 * 
 	 */
-	public function savePlan($plan, $paymentType='monthly')
+	public function saveFreePlan()
 	{
+		try {
 
-		$days = ($paymentType == 'monthly') ? 30 : 365;
+			$params = $this->app->request()->get('params');
+			$user = $this->app->auth();
 
-		$params = [];
-		// Store new subscription 
-    	$params['plan_id'] = $plan->id;
-    	$params['user_id'] = $this->app->auth()->id;
-    	$params['start_date'] = date('Y-m-d');
-    	$params['end_date'] = date('Y-m-d', strtotime('+'.$days.' days', strtotime(date('Y-m-d'))));
+			// Store new subscription 
+			$planSubscription = [];
+			$planSubscription['plan_id'] = $params['plan_id'];
+			$planSubscription['business_id'] = $user->business->business_id;
+			$planSubscription['payment_type'] = $params['payment_type'];
+			$planSubscription['user_id'] = $user->id;
+			$planSubscription['start_date'] = date('Y-m-d');
+			$planSubscription['end_date'] = date('Y-m-d', strtotime('+1 '.($params['payment_type'] == 'monthly' ? 'month' : 'year'))) ;
+	
+			$save = $this->planSubscriptionRepo->store($planSubscription);
 
-		return $this->planSubscriptionRepo->store($params);
+			return isset($save->plan_id) 
+			? array('success'=>1, 'result'=>__('Subscribed successfully'))
+			: array('error'=> $save );
 
+		} catch (Exception $e) {
+			return  $e->getMessage();
+		}
 	} 
 
 	/**
@@ -128,22 +179,20 @@ class GetStartedController
 	public function subscribePaidPlan($plan, $paymentType='monthly')
 	{
 
-		$payment = new PaymentService;
+		$systemSetting = $this->app->SystemSetting();
+		$payment = new PaymentService('PayPal');
 
 		$price = number_format($paymentType == 'monthly' ? $plan->monthly_cost : $plan->yearly_cost, 2);
 
 		$payment->title = __('Plan subscription');
 		$payment->item_name = $plan->name;
 		$payment->item_price = $price;
-		$payment->currency = 'USD';
-		$payment->sku = 'Plan-'. $plan->id;
+		$payment->currency = isset($systemSetting['currency']) ? $systemSetting['currency'] : 'USD';
+		$payment->sku = 'Plan-'. $plan->plan_id;
 		$payment->subtotal = $price;
 		$payment->totalcost = $price;
 
-		$payment_url = $payment->getPaymentUrl($payment);
-
-		$_SESSION['payment_plan_id'] = $plan->id;
-		$_SESSION['payment_plan_type'] = $paymentType;
+		$payment_url = $payment->saveSessions($plan->plan_id, $paymentType);
 
     	return !empty($payment_url) 
        	? array('success'=>1, 'result'=>__('Will be redirected to payment page'), 'payment_url'=>$payment_url)

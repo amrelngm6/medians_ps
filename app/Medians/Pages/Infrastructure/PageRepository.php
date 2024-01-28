@@ -5,6 +5,7 @@ namespace Medians\Pages\Infrastructure;
 use Medians\Pages\Domain\Page;
 
 use Medians\Content\Domain\Content;
+use Medians\CustomFields\Domain\CustomField;
 
 class PageRepository 
 {
@@ -23,35 +24,29 @@ class PageRepository
 	}
 
 
-	public static function getModel()
-	{
-		return new Page();
-	}
-
-
-	public function find($id, $prefix = null)
+	public function find($page_id, $prefix = null)
 	{
 		return Page::with(['content'=>function($q) use ($prefix){
 			$prefix ? $q->where('prefix', $prefix) : $q->where('lang', $_SESSION['lang']);
-		}])->find($id);
+		}])->find($page_id);
 	}
 
 
 	public function homepage()
 	{
-		return Page::where('home', 1)->with(['content'=>function($q) {
+		return Page::where('homepage', 'on')->with(['content'=>function($q) {
 			$q->where('lang', __('lang'));
 		}])->first();
 	}
 
 	public function get($limit = 100)
 	{
-		return Page::with('content','user')->limit($limit)->orderBy('id', 'DESC')->get();
+		return Page::with('content','user')->limit($limit)->orderBy('page_id', 'DESC')->get();
 	}
 
-	public function getByCategory($id, $limit = 100)
+	public function getByCategory($page_id, $limit = 100)
 	{
-		return Page::with('content','user')->where('category_id', $id)->limit($limit)->orderBy('id', 'DESC')->get();
+		return Page::with('content','user')->where('category_id', $page_id)->limit($limit)->orderBy('page_id', 'DESC')->get();
 	}
 
 	public function getFeatured($limit = 1)
@@ -59,10 +54,22 @@ class PageRepository
 		return Page::with('content','user')->orderBy('updated_at', 'DESC')->first();
 	}
 
+	public function getMenuPages($position)
+	{
+		return Page::where('status', 'on')
+		->with(['content'=>function($q){
+			return $q->select('title', 'prefix', 'item_id');
+		}])
+		->whereHas('custom_fields',function($q) use ($position){
+			return $q->where('code', $position);
+		})
+		->get();
+	}
+
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['id'=>0, 'content'=>['title'=>$title]]));
+		$arr =  json_decode(json_encode(['page_id'=>0, 'content'=>['title'=>$title]]));
 
 		return $this->similar( $arr, $limit);
 	}
@@ -80,7 +87,7 @@ class PageRepository
 				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
 			}
 		})
-		->where('id', '!=', $item->id)
+		->where('page_id', '!=', $item->page_id)
 		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
 	}
 
@@ -97,7 +104,7 @@ class PageRepository
 		
 		foreach ($data as $key => $value) 
 		{
-			if (in_array($key, $this->getModel()->getFields()))
+			if (in_array($key, $Model->getFields()))
 			{
 				$dataArray[$key] = $value;
 			}
@@ -105,29 +112,48 @@ class PageRepository
 
 		// Return the  object with the new data
     	$Object = Page::create($dataArray);
-    	$Object->update($dataArray);
 
     	// Store Custom fields
-    	$this->storeContent($data['content'], $Object->id);
+    	isset($data['field']) ? $this->storeFields($data['field'], $Object->page_id) : '';
+
+    	// Store Lang content
+    	isset($data['content']) ? $this->storeContent($data['content'], $Object->page_id) : '';
 
     	return $Object;
     }
     	
+	
+    /**
+     * Update Lead
+     */
+    public function update($data)
+    {
 
+		$Object = Page::find($data['page_id']);
+		
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+		// Store Custom fields
+    	isset($data['field']) ? $this->storeFields($data['field'], $Object->page_id) : '';
+
+    	return $Object;
+
+    }
 
 	/**
 	* Delete item to database
 	*
 	* @Returns Boolen
 	*/
-	public function delete($id) 
+	public function delete($page_id) 
 	{
 		try {
 			
-			$delete = Page::find($id)->delete();
+			$delete = Page::find($page_id)->delete();
 
 			if ($delete){
-				$this->storeContent(null, $id);
+				$this->storeContent(null, $page_id);
 			}
 
 			return true;
@@ -143,22 +169,46 @@ class PageRepository
 	/**
 	* Save related items to database
 	*/
-	public function storeContent($data, $id) 
+	public function storeContent($data, $page_id) 
 	{
-		Content::where('item_type', Page::class)->where('item_id', $id)->delete();
+		Content::where('item_type', Page::class)->where('item_id', $page_id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
 				$fields = $value;
 				$fields['item_type'] = Page::class;	
-				$fields['item_id'] = $id;	
+				$fields['item_id'] = $page_id;	
 				$fields['lang'] = $key;	
 				$fields['prefix'] = isset($value['prefix']) ? $value['prefix'] : Content::generatePrefix($value['title']);	
 				$fields['created_by'] = $this->app->auth()->id;
 
 				$Model = Content::create($fields);
 				$Model->update($fields);
+			}
+	
+			return $Model;		
+		}
+	}
+
+
+	/**
+	* Save related items to database
+	*/
+	public function storeFields($data, $page_id) 
+	{
+		CustomField::where('model_type', Page::class)->where('model_id', $page_id)->delete();
+		if ($data)
+		{
+			foreach ($data as $key => $value)
+			{
+				$fields = array();
+				$fields['model_type'] = Page::class;	
+				$fields['model_id'] = $page_id;	
+				$fields['code'] = $key;	
+				$fields['value'] = $value;	
+
+				$Model = CustomField::create($fields);
 			}
 	
 			return $Model;		

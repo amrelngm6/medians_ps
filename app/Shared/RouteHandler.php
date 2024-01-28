@@ -75,6 +75,7 @@ class RouteHandler {
     
     // Check if route is defined without regex
     if (in_array($uri, self::$routes)) {
+      
       $route_pos = array_keys(self::$routes, $uri);
       foreach ($route_pos as $route) {
 
@@ -98,8 +99,8 @@ class RouteHandler {
             $controller = new $segments[0]();
 
             // Call method
-            $controller->{$segments[1]}();
-
+            $cache = $controller->{$segments[1]}();
+                        
             if (self::$halts) return;
           } else {
             // Call closure
@@ -109,6 +110,7 @@ class RouteHandler {
           }
         }
       }
+      
     } else {
       // Check if defined with regex
       $pos = 0;

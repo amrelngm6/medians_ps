@@ -8,6 +8,7 @@ const app = createApp(App)
 import VueFeather from 'vue-feather';
 app.component(VueFeather.name, VueFeather);
 
+
 app.config.productionTip = false
 import $ from "jquery";
 window.$ = $;

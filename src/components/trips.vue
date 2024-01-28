@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex overflow-auto" style="height: 85vh; z-index: 9999;">
+    <div class="w-full flex overflow-auto" >
 
         <div  v-if="showTrip" :key="showTrip" class=" w-full relative">
             <trip_page :setting="setting" :conf="conf" @close="callback" :trip="activeItem"></trip_page>
@@ -65,13 +65,13 @@
 
             <main v-if="content"  :key="content.items" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->
-                <div class="px-4 mb-6 py-4 rounded-lg shadow-lg bg-white dark:bg-gray-700 flex w-full">
+                <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
                 </div>
                 <hr class="mt-2" />
-                <div class="w-full " >
+                <div class="w-full bg-white" >
                     
-                    <datatabble :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
+                    <datatabble class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
                         <template #item-picture="item">
                             <img :src="item.picture" class="w-8 h-8 rounded-full" />

@@ -5,6 +5,7 @@ use Shared\dbaser\CustomController;
 
 use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Users\Infrastructure\UserRepository;
+use Medians\Vehicles\Infrastructure\VehicleRepository;
 
 class DriverController extends CustomController 
 {
@@ -16,7 +17,9 @@ class DriverController extends CustomController
 
 	protected $app;
 
-	public $userRepo;
+	protected $userRepo;
+
+	protected $vehicleRepo;
 	
 
 	function __construct()
@@ -24,8 +27,9 @@ class DriverController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new DriverRepository();
 		$this->userRepo = new UserRepository();
+		$this->repo = new DriverRepository($this->app->auth()->business);
+		$this->vehicleRepo = new VehicleRepository($this->app->auth()->business);
 	}
 
 
@@ -44,9 +48,12 @@ class DriverController extends CustomController
 			[ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' , 'required'=>true ],
             [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "email", 'title'=> __('email'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'email', 'required'=>true ],
-            [ 'key'=> "contact_number", 'title'=> __('contact_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone', 'required'=>true ],
+            [ 'key'=> "mobile", 'title'=> __('mobile'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone', 'required'=>true ],
             [ 'key'=> "driver_license_number", 'title'=> __('driver_license_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "vehicle_plate_number", 'title'=> __('vehicle_plate_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "vehicle_id", 'title'=> __('Vehicle'), 
+				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'vehicle_id', 'text_key'=>'vehicle_name', 
+				'data' => $this->vehicleRepo->get()
+			],
             [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
         ];
 	}
@@ -88,17 +95,23 @@ class DriverController extends CustomController
 			if ($this->validate($params)) 
 				return $this->validate($params);
 
-        	$params['created_by'] = $this->app->auth()->id;
+			$user = $this->app->auth();
+			$params['business_id'] = $user->business->business_id;
+        	$params['created_by'] = $user->id;
         	
-            $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
-
+			try {
+				
+				return (!empty($this->repo->store($params))) 
+				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				: array('success'=>0, 'result'=>'Error', 'error'=>1);
+	
+			} catch (\Throwable $th) {
+				return array('error'=>$th->getMessage());
+			}
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	return array('error'=>$e->getMessage());
         }
 
-		return $returnData;
 	}
 
 
@@ -224,18 +237,18 @@ class DriverController extends CustomController
 	*/
 	public function validate($params) 
 	{
-		$check = $this->repo->validateEmail($params['email'], isset($params['driver_id']) ? $params['driver_id'] : 0);
 
 		if (empty($params['first_name']))
-			return ['result'=> __('Name required')];
+			return ['error'=> __('Name required')];
 
 		if (empty($params['email']))
-			return ['result'=> __('Email required')];
+			return ['error'=> __('Email required')];
+
+		
+		$check = $this->repo->validateEmail($params['email'], isset($params['driver_id']) ? $params['driver_id'] : 0);
 
 		if ($check)
-			return ['result'=>$check];
-
-
+			return ['error'=>$check];
 	}
 
 

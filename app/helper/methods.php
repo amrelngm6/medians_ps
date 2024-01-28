@@ -3,6 +3,8 @@
 $app = new \config\APP;
 $app->setLang();
 
+use Shared\simple_html_dom;
+
 /** 
  * Render function
  * @param String twig file path
@@ -16,7 +18,7 @@ function render($template, $data, $responseType = 'html')
         
         $app = new \config\APP;
             
-        $settings = $app->Settings();
+        $business_setting = $app->BusinessSettings();
         
             
     } catch (\Exception $e) {
@@ -37,18 +39,22 @@ function render($template, $data, $responseType = 'html')
      * Response will be override only
      * In case the system works In Vue APP
      */ 
+    $isFront = strpos($template, 'front/');
+    
     $path = isset($data['load_vue']) ? 'views/admin/vue.html.twig' : $template;
     $app = new \config\APP;
     $data['component'] = $template;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
-    $data['app']->Settings = $settings;
+    $data['app']->business_setting = $business_setting;
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
     $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
     $data['lang'] = (new helper\Lang($_SESSION['lang']))->load();
     $data['lang_key'] = __('lang');
-    
-    echo $app->template()->render($path, $data);
+    $output =  $app->template()->render($path, $data);
+
+    $isFront ? file_put_contents($_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html', $output) : '';
+    echo $output;
  } 
 
 
@@ -110,3 +116,48 @@ function __($langkey = null)
 }
 
 
+
+
+/**
+ * Extract sections from html page
+ */
+function scrapeAndExtractSections($url) 
+{
+    // Initialize cURL session
+    $ch = curl_init($url);
+    
+    // Set cURL options
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    // Execute cURL session and get the HTML content
+    $htmlContent = curl_exec($ch);
+
+    // Check for cURL errors
+    if (curl_errno($ch)) {
+        echo 'Curl error: ' . curl_error($ch);
+        curl_close($ch);
+        return;
+    }
+
+    // Close cURL session
+    curl_close($ch);
+
+    // Create a SimpleHTMLDom object
+    $dom = new simple_html_dom();
+    
+    // Load HTML content into the DOM parser
+    $dom->load($htmlContent);
+
+    // Find and extract section elements
+    $sections = array();
+    foreach ($dom->find('section') as $section) {
+        // Add section content to the array
+        $sections[] = $section->outertext;
+    }
+
+    // Clean up the DOM parser
+    $dom->clear();
+    
+    // Output the extracted sections
+    return $sections;
+}

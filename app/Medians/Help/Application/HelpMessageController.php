@@ -22,7 +22,7 @@ class HelpMessageController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new HelpMessageRepository	();
+		$this->repo = new HelpMessageRepository	($this->app->auth()->business);
 	}
 
 
@@ -81,8 +81,7 @@ class HelpMessageController extends CustomController
 		        'items' => $this->repo->get(),
 		    ]);
 		} catch (\Exception $e) {
-			throw new \Exception($e->getMessage(), 1);
-			
+        	return array('error'=>$e->getMessage());
 		}
 	}
 
@@ -95,14 +94,15 @@ class HelpMessageController extends CustomController
 
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;        	
+			$user = $this->app->auth();
+			$params['business_id'] = $user->business->business_id;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	return array('error'=>$e->getMessage());
         }
 
 		return $returnData;
@@ -121,7 +121,7 @@ class HelpMessageController extends CustomController
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	return array('error'=>$e->getMessage());
         }
 
 		return $returnData;
@@ -166,7 +166,7 @@ class HelpMessageController extends CustomController
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	return array('error'=>$e->getMessage());
         }
 
 		echo json_encode($returnData);
@@ -185,7 +185,7 @@ class HelpMessageController extends CustomController
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	return array('error'=>$e->getMessage());
         }
 
 		return $returnData;
@@ -198,14 +198,14 @@ class HelpMessageController extends CustomController
 		$params = (array) json_decode($this->app->request()->get('params'));
 		$user = $this->app->auth();
         try {	
-			$params['user_id'] = $user->parent_id;
+			$params['user_id'] = $user->customer_id;
 
             $returnData = (!empty($this->repo->parentStore($params))) 
             ? array('success'=>1, 'result'=>__('THNKS_MSG'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	return array('error'=>$e->getMessage());
         }
 
 		return $returnData;
@@ -240,7 +240,7 @@ class HelpMessageController extends CustomController
 
         try {	
 
-        	$params['user_id'] = $this->app->auth()->parent_id;        	
+        	$params['user_id'] = $this->app->auth()->customer_id;        	
 
             $returnData = (!empty($this->repo->storeParentComment($params))) 
             ? array('success'=>1, 'result'=>__('Added'))
@@ -285,10 +285,10 @@ class HelpMessageController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['pickup_id']);
+        	$check = $this->repo->find($params['message_id']);
 
 
-            if ($this->repo->delete($params['pickup_id']))
+            if ($this->repo->delete($params['message_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
             }

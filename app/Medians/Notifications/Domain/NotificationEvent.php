@@ -8,9 +8,9 @@ use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
 use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripPickup;
-use Medians\Locations\Domain\PickupLocation;
+use Medians\Locations\Domain\RouteLocation;
 use Medians\Help\Domain\HelpMessageComment;
-use Medians\Parents\Domain\Parents;
+use Medians\Customers\Domain\Parents;
 
 /**
  * NotificationEvent class database queries
@@ -90,17 +90,11 @@ class NotificationEvent extends CustomModel
 				return [$model->message->user];
 				break;
 
-			case PickupLocation::class:
-				$location =  $model->with('route')->find($model->pickup_id);
+			case RouteLocation::class:
+				$location =  $model->with('route')->find($model->location_id);
 				return isset($location->route->driver) ? [$location->route->driver] : null;
 				break;
 
-			case Destination::class:
-				$location =  $model->with('route')->find($model->destination_id);
-				return isset($location->route->driver) ? [$location->route->driver] : null;
-				break;
-
-			
 			default:
 				return [$model];
 				break;
@@ -124,15 +118,11 @@ class NotificationEvent extends CustomModel
 				return [$model->message->user];
 				break;
 
-			case PickupLocation::class:
-				$location =  $model->with('parent')->find($model->pickup_id);
+			case RouteLocation::class:
+				$location =  $model->with('parent')->find($model->location_id);
 				return isset($location->parent) ? [$location->parent] : null;
 				break;
 
-			case Destination::class:
-				$location =  $model->with('parent')->find($model->destination_id);
-				return isset($location->parent) ? [$location->parent] : null;
-				break;
 			
 			case TripPickup::class:
 				$object =  $model->whereHas('parent')->with('parent')->find($model->trip_pickup_id);

@@ -4,9 +4,8 @@ namespace Medians\Vehicles\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Vehicles\Infrastructure\VehicleRepository;
+use Medians\Vehicles\Infrastructure\VehicleTypeRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
-use Medians\Drivers\Infrastructure\DriverRepository;
-use Medians\Categories\Infrastructure\CategoryRepository;
 
 class VehicleController extends CustomController 
 {
@@ -18,9 +17,7 @@ class VehicleController extends CustomController
 
 	protected $app;
 
-	public $categoryRepo;
-	public $routeRepo;
-	public $driverRepo;
+	public $vehicleTypeRepo;
 	
 
 	function __construct()
@@ -28,10 +25,8 @@ class VehicleController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new VehicleRepository();
-		$this->categoryRepo = new CategoryRepository();
-		$this->routeRepo = new RouteRepository();
-		$this->driverRepo = new DriverRepository();
+		$this->repo = new VehicleRepository($this->app->auth()->business);
+		$this->vehicleTypeRepo = new VehicleTypeRepository($this->app->auth()->business);
 	}
 
 
@@ -46,10 +41,9 @@ class VehicleController extends CustomController
 
 		return [
             [ 'value'=> "vehicle_id", 'text'=> "#"],
-            [ 'value'=> "route.route_name", 'text'=> __('Route')],
             [ 'value'=> "vehicle_name", 'text'=> __('vehicle_name'), 'sortable'=> true ],
             [ 'value'=> "plate_number", 'text'=> __('plate_number'), 'sortable'=> true ],
-            [ 'value'=> "maintenance_status", 'text'=> __('maintenance_status'), 'sortable'=> true ],
+            [ 'value'=> "type.name", 'text'=> __('Type')],
             [ 'value'=> "edit", 'text'=> __('edit')  ],
             [ 'value'=> "delete", 'text'=> __('delete')  ],
         ];
@@ -67,14 +61,9 @@ class VehicleController extends CustomController
 		return [
             [ 'key'=> "vehicle_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "vehicle_name", 'title'=> __('vehicle_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "maintenance_status", 'title'=> __('maintenance_status'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "route_id", 'title'=> __('Route'), 
-				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'route_name', 
-				'data' => $this->routeRepo->get()
-			],
-            [ 'key'=> "driver_id", 'title'=> __('Driver'), 
-				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
-				'data' => $this->driverRepo->get()
+			[ 'key'=> "type_id", 'title'=> __('Vehicle type'), 
+				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'type_id', 'text_key'=>'name', 'withLabel'=>true,
+				'data' => $this->vehicleTypeRepo->get()
 			],
             [ 'key'=> "plate_number", 'title'=> __('plate_number'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
             [ 'key'=> "capacity", 'title'=> __('capacity'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
@@ -133,10 +122,12 @@ class VehicleController extends CustomController
         try {	
 
 			try {
-				
+
+				$params['business_id'] = $this->app->auth()->business->business_id;
+
 				$this->validate($params);
 
-			} catch (\Exception $e) {
+			} catch (\Throwable $e) {
 	        	return array('result'=>$e->getMessage(), 'error'=>1);
 			}
 

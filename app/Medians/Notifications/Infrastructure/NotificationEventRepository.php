@@ -19,11 +19,6 @@ class NotificationEventRepository
 	{
 	}
 
-	public function getModel()
-	{
-		return new NotificationEvent;
-	}
-
 	/**
 	* Find item by `id` 
 	*/
@@ -108,16 +103,30 @@ class NotificationEventRepository
 	public function loadModels()
 	{
 		return [
-			'PickupLocation' => \Medians\Locations\Domain\PickupLocation::class,
-			'Destination' => \Medians\Locations\Domain\Destination::class,
+			'RouteLocation' => \Medians\Locations\Domain\RouteLocation::class,
 			'Student' => \Medians\Students\Domain\Student::class,
 			'User' => \Medians\Users\Domain\User::class,
 			'Driver' => \Medians\Drivers\Domain\Driver::class,
 			'Vehicle' => \Medians\Vehicles\Domain\Vehicle::class,
 			'Trip' => \Medians\Trips\Domain\TripPickup::class,
-			'Parents' => \Medians\Parents\Domain\Parents::class,
+			'Parents' => \Medians\Customers\Domain\Parents::class,
 			'HelpMessage' => \Medians\Help\Domain\HelpMessage::class,
 			'HelpMessageComment' => \Medians\Help\Domain\HelpMessageComment::class,
+		];
+	}   
+
+
+	/**
+	 * Load all receiveable Models for 
+	 * Dynamic events 
+	 * 
+	 */
+	public function loadReceiverModels()
+	{
+		return [
+			'User' => \Medians\Users\Domain\User::class,
+			'Driver' => \Medians\Drivers\Domain\Driver::class,
+			'Customer' => \Medians\Customers\Domain\Customer::class,
 		];
 	}   
 }

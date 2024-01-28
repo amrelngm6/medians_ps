@@ -9,17 +9,17 @@
                         <div class="card-body pb-4 mb-0">
                             <div class="row">
                                 <div class="col-md">
-                                    <div class="row align-items-center">
+                                    <div class="flex align-items-center">
                                         <div class="px-1 pt-1">
                                             <img v-if="item" :src="item.user ? item.user.photo : ''" alt="" width="36" height="36" class="rounded">
                                         </div>
                                         <!--end col-->
                                         <div class="col-md">
-                                            <h4 class="fw-semibold" id="ticket-title" v-text="item.subject"></h4>
-                                            <div class="hstack gap-3 flex" >
+                                            <h4 class="fw-semibold px-1" id="ticket-title" v-text="item.user ? item.user.name : ''"></h4>
+                                            <div class="hstack gap-3 flex h-8" >
                                                 <div class="text-muted"><i
                                                         class="ri-building-line align-bottom me-1"></i><span
-                                                        id="ticket-client" v-text="item.user ? item.user.name : ''"></span></div>
+                                                        id="ticket-client" v-text="item.subject"></span></div>
                                                 <div class="vr"></div>
                                                 <div class="text-muted"><span v-text="translate('Created at')"></span> : <span
                                                         class="fw-medium " id="create-date" v-text="item.date"></span></div>
@@ -28,9 +28,9 @@
                                                         class="fw-medium " id="update-date"
                                                         v-text="item.last_update"></span></div>
                                                 <div class="vr"></div>
-                                                <div class="badge rounded-pill bg-info fs-12" id="ticket-status"
-                                                    v-if="item.status" v-text="item.status"></div>
-                                                <div class="badge rounded-pill bg-danger fs-12" id="ticket-priority"
+                                                <div class="badge rounded-pill fs-12 text-white" id="ticket-status"
+                                                    v-if="item.status" v-text="item.status" :class="item.status == 'new' ? 'bg-info' : 'bg-success'"></div>
+                                                <div class="badge rounded-pill bg-danger fs-12 text-white" id="ticket-priority"
                                                     v-if="item.priority" v-text="item.priority"></div>
                                             </div>
                                         </div>
@@ -47,7 +47,7 @@
                 </div><!-- end col -->
             </div><!-- end row -->
 
-            <div class="lg:flex gap-6">
+            <div class="lg:flex gap-6 mt-4">
                 <div class="col-xxl-9 w-full">
                     <div class="card">
                         <div class="card-body p-4">
@@ -71,7 +71,7 @@
                                                     <div class="flex gap-2 mb-4" v-for="comment in item.comments">
                                                         <div class="flex-shrink-0" v-if="comment.user">
                                                             <img :src="comment.user.photo" alt=""
-                                                                class="mt-2 avatar-xs rounded-circle">
+                                                                class="h-10 w-10 mt-2 avatar-xs rounded-circle">
                                                         </div>
                                                         <div class="flex-grow-1 ms-3" v-if="comment.user">
                                                             <h5 class="fs-13 flex gap-2"><span v-text="comment.user.name"></span>
@@ -139,7 +139,7 @@
                                         <tr>
                                             <td class="fw-medium py-2 " v-text="translate('Priority')"></td>
                                             <td class="py-2" >
-                                                <span class="badge bg-danger" id="t-priority" v-text="item.priority"></span>
+                                                <span class="badge bg-danger text-white" id="t-priority" v-text="item.priority"></span>
                                             </td>
                                         </tr>
                                         <tr>
