@@ -9,7 +9,6 @@ class AppSettingsRepository
 {
 
 
-
 	/**
 	* Find item by `id` 
 	*/

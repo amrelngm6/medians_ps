@@ -89,7 +89,7 @@ class AppSettingsController extends CustomController
 	{	
 		$app = $this->request()->headers->get('userType');
 		 
-		return $this->getAll($app);
+		return $this->getAll($app ? $app : 'driver');
 	}
 
 
