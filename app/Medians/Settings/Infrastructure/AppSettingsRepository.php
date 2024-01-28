@@ -17,7 +17,7 @@ class AppSettingsRepository
 	{
 		try {
 			
-			$check = AppSettings::where('app', $app)->where('code', $code)->first();
+			$check = AppSettings::where('app', strtolower($app))->where('code', $code)->first();
 			return isset($check->value) ? $check->value : '';
 		} catch (\Exception $e) {
     		throw new \Exception($e->getMessage(), 1);
