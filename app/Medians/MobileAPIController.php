@@ -31,7 +31,6 @@ class MobileAPIController extends CustomController
 	 */
 	public function handle($model = null)
 	{
-
 		$this->app = new \config\APP;
 		$return = [];
 		$model = empty($model) ? $this->app->request()->get('model') : $model;

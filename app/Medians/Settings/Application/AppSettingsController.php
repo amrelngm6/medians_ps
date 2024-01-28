@@ -87,7 +87,7 @@ class AppSettingsController extends CustomController
      */    
 	public function loadSetting() 
 	{	
-		$app = $this->request()->headers->get('userType');
+		$app = $this->app->request()->headers->get('userType');
 		 
 		return $this->getAll($app ? $app : 'driver');
 	}
