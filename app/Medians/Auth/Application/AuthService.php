@@ -401,9 +401,8 @@ class AuthService
 	 */ 
 	public function checkAPISession($token = null, $userType = null) 
 	{
-		$this->app = new \config\APP;
-		
-		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository($this->app->auth()->business);
+				
+		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository(null);
 		
 		switch ($userType) {
 			case 'Driver':
