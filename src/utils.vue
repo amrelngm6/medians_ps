@@ -241,6 +241,7 @@ export function isInput (val)
 {
     switch (val) 
     {
+        case 'color':
         case 'text':
         case 'number':
         case 'email':

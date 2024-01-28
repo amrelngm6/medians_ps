@@ -44,6 +44,7 @@ class AppSettingsController extends CustomController
 			'basic'=> [	
 	            [ 'key'=> "logo", 'title'=> __('logo'), 'fillable'=>true, 'column_type'=>'file' ],
 				[ 'key'=> "app_name", 'title'=> __('App Name'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "color", 'title'=> __('Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "default_lang", 'title'=> __('Languange'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['default_lang'=>'arabic','title'=>__('Arabic')], ['default_lang'=>'english','title'=>__('English')]]  
