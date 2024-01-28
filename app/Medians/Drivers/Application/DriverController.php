@@ -29,8 +29,8 @@ class DriverController extends CustomController
 		$user = $this->app->auth();
 
 		$this->userRepo = new UserRepository();
-		$this->repo = new DriverRepository($user->business);
-		$this->vehicleRepo = new VehicleRepository($user->business);
+		$this->repo = new DriverRepository(isset($user->business) ? $user->business : null);
+		$this->vehicleRepo = new VehicleRepository(isset($user->business) ? $user->business : null);
 	}
 
 
