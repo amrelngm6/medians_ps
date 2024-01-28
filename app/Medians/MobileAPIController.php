@@ -43,6 +43,10 @@ class MobileAPIController extends CustomController
 			case 'APP':
 				$return = ['app'=>$this->app, 'lang'=>(new \helper\Lang($this->app->default_lang))->load()->vueLang()];
 				break;
+		
+			case 'app_settings':
+				$return = (new \Medians\Settings\Application\AppSettingsController())->loadSetting();
+				break;
 
 			case 'help_message':
 				$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();

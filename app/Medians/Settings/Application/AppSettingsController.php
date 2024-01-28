@@ -81,6 +81,16 @@ class AppSettingsController extends CustomController
 		return $data ? array_column(json_decode($data), 'value', 'code') :  [];
 	}
 
+    /**
+     * Load APP Settings 
+     */    
+	public function loadSetting() 
+	{	
+		$app = $this->request()->headers->get('userType');
+		 
+		return $this->getAll($app);
+	}
+
 
 	/**
 	* Return the Settings
