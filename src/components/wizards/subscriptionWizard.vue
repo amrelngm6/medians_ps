@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="w-100 relative mb-5" autocomplete="off">
 
-                                    <vue-feather type="search"
+                                    <vue-feather type="user"
                                         class="text-gray-500 position-absolute top-50 ms-5 translate-middle-y"></vue-feather>
 
                                     <input type="text" @change="findUser" @input="findUser" v-model="searchText"
