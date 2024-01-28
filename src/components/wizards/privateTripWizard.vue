@@ -205,6 +205,8 @@
                                                 <a href="javascript:;" :key="driver.show" v-if="driver && driver.show"
                                                     class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
                                                     
+                                                    <car_icon  v-if="!driver.picture" /> 
+                                                    <img alt="Pic" v-if="driver.picture" :src="driver.picture">
                                                     <div class="fw-semibold w-full">
                                                         <span class="text-lg text-danger font-semibold me-2"
                                                             v-text="driver.name"></span>
