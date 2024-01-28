@@ -191,7 +191,7 @@
   text-align: left;
   overflow-x: hidden;
   overflow-y: auto;
-  z-index: 50;
+  z-index: 9999;
   padding-top: 80px;
 }
 .media-library * {
