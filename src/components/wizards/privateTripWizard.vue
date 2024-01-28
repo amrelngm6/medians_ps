@@ -218,7 +218,8 @@
 
                                             <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
                                                 class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
-                                                <vue-feather type="map-pin" class="w-3"></vue-feather>
+                                                <car_icon  v-if="!activeItem.driver.picture" /> 
+                                                <img alt="Pic" v-if="activeItem.driver.picture" :src="activeItem.driver.picture">
                                                 <div class="fw-semibold w-full">
                                                     <span class="text-lg text-danger font-semibold me-2"
                                                         v-text="activeItem.driver.name"></span>
