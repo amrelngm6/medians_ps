@@ -293,9 +293,8 @@ class AuthService
 	 */ 
 	public function checkDriverLogin($email, $password)
 	{
-		$this->app = new \config\APP;
 		
-		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository($this->app->auth()->business);
+		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository(null);
 		
 		$checkDriverLogin = $this->driverRepo->checkLogin($email, $password);
 

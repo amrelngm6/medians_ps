@@ -160,17 +160,17 @@ class DriverRepository
 	public function resetPassword($data) 
 	{
 
-		$Model = new Parents();
+		$Model = new Driver();
 		
 		$findByEmail = $this->findByEmail($data['email']);
 
 		if (empty($findByEmail))
 			return __('User not found');
 		
-		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $findByEmail->customer_id)->where('code', 'reset_token')->delete();
+		$deleteOld = CustomField::where('model_type', Driver::class)->where('model_id', $findByEmail->customer_id)->where('code', 'reset_token')->delete();
 		
 		$fields = [];
-		$fields['model_type'] = Parents::class;	
+		$fields['model_type'] = Driver::class;	
 		$fields['model_id'] = $findByEmail->customer_id;	
 		$fields['code'] = 'reset_token';	
 		$fields['value'] = $Model->randomPassword();
