@@ -92,23 +92,33 @@ export default {
 
       try {
 
+        axios.get(url)
+        .then(response => {
+          
+          if (response.data) {
+            const data = response.data;
+            const points = decodePoly(data.routes[0].overview_polyline.points);
+            routeCoordinates.value = points;
+
+            polylinePath.value = {
+              path: points,
+              geodesic: true,
+              strokeColor: "#000",
+              strokeOpacity: .9,
+              strokeWeight: 2,
+            };
+          } else {
+            console.error('Failed to fetch route:', response.statusText);
+          }
+          
+        })
+        .catch(error => {
+          // Handle errors here
+          console.error('Error fetching data:', error);
+        });
+
         const response = await fetch(url);
 
-        if (response.ok) {
-          const data = await response.json();
-          const points = decodePoly(data.routes[0].overview_polyline.points);
-          routeCoordinates.value = points;
-
-          polylinePath.value = {
-            path: points,
-            geodesic: true,
-            strokeColor: "#000",
-            strokeOpacity: .9,
-            strokeWeight: 2,
-          };
-        } else {
-          console.error('Failed to fetch route:', response.statusText);
-        }
       } catch (error) {
         console.error('Error fetching route:', error);
       }
