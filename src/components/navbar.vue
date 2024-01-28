@@ -39,7 +39,7 @@
                                     <img v-if="auth" :src="auth.photo" class="rounded-3" alt="user">
                                 </div>
 
-                                <div v-if="showSubMenu" @mouseleave="showSubMenu = false" class="shadow bg-white menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px show right-4 left-4 top-20" data-kt-menu="true" :class="translate('lang') == 'ar' ? 'left-4' : 'right-4'" data-popper-placement="bottom-end" style="z-index: 107; position: fixed;">
+                                <div v-if="showSubMenu" @mouseleave="showSubMenu = false" class="shadow bg-white menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px show top-20" data-kt-menu="true" :class="translate('lang') == 'ar' ? 'left-4' : 'right-4'" data-popper-placement="bottom-end" style="z-index: 107; position: fixed;">
                                     <div class="menu-item px-3">
                                         <div class="menu-content d-flex align-items-center px-3">
                                             <div class="symbol symbol-50px me-5">
