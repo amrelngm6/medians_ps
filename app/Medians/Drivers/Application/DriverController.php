@@ -24,8 +24,8 @@ class DriverController extends CustomController
 
 	function __construct()
 	{
-
 		$this->app = new \config\APP;
+
 		$user = $this->app->auth();
 
 		$this->userRepo = new UserRepository();

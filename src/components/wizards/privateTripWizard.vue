@@ -254,12 +254,12 @@
                                         :placeholder="translate('Search by name, plate number')">
                                 </div>
                                 <div class="w-full " v-for="vehicle in vehicles" v-if="searchText">
-                                    <a href="javascript:;" :key="vehicle.show" v-if="vehicle.show"
+                                    <a href="javascript:;" :key="vehicle.show" v-if="vehicle && vehicle.show"
                                         class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
                                         
                                         <div class="symbol symbol-35px symbol-circle me-5">
                                             <car_icon  v-if="!vehicle.picture" /> 
-                                            <img alt="Pic" v-if="vehicle.picture" :src="activeItem.vehicle.picture">
+                                            <img alt="Pic" v-if="vehicle.picture" :src="vehicle.picture">
                                         </div>
                                         <div class="fw-semibold w-full">
                                             <span class="text-lg text-danger font-semibold me-2"
