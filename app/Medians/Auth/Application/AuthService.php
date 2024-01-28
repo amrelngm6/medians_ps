@@ -294,9 +294,12 @@ class AuthService
 	public function checkDriverLogin($email, $password)
 	{
 		
+		error_log(json_encode([$email,$password]));
+
 		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository(null);
 		
 		$checkDriverLogin = $this->driverRepo->checkLogin($email, $password);
+		error_log(json_encode($checkDriverLogin));
 
 		if (empty($checkDriverLogin->id))
 		{
