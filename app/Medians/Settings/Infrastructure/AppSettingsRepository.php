@@ -32,7 +32,7 @@ class AppSettingsRepository
 	{
 		try {
 
-			return AppSettings::where('app', $app)->get();
+			return AppSettings::where('app', strtolower($app))->get();
 
 		} catch (\Exception $e) {
     		throw new \Exception($e->getMessage(), 1);
@@ -60,7 +60,7 @@ class AppSettingsRepository
 	*/
 	public function delete($app, $code) 
 	{
-		return AppSettings::where('app', $app)->where('code', $code)->delete();
+		return AppSettings::where('app', strtolower($app))->where('code', $code)->delete();
 	}
 
 
