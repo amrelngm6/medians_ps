@@ -257,9 +257,7 @@ class DriverController extends CustomController
 	 */
 	public function getDriver($id)
 	{
-		$data =  $this->repo->getDriver($id);
-
-		echo  json_encode($data);
+		return    $this->repo->find($id);
 	}
 
 

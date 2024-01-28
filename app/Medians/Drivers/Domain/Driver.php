@@ -77,6 +77,11 @@ class Driver extends CustomModel
 		return $this->hasOne(Vehicle::class, 'vehicle_id', 'vehicle_id');	
 	}
 
+	public function route() 
+	{
+		return $this->hasOne(Route::class, 'driver_id', 'driver_id');	
+	}
+
 	public function trip() 
 	{
 		return $this->hasOne(Trip::class, 'driver_id', 'driver_id')->withCount('waiting_locations','moving_locations')->with('route_locations')->where('trip_status', '!=', 'Completed')->where('trip_date', date('Y-m-d'));	

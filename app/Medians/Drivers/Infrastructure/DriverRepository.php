@@ -30,7 +30,7 @@ class DriverRepository
 
 	public function find($id)
 	{
-		return Driver::where('business_id', $this->business_id)->find($id);
+		return Driver::with('vehicle','route')->find($id);
 	}
 
 	public function getDriver($id)
