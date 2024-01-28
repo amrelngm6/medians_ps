@@ -514,7 +514,7 @@ export default
                     navigator.geolocation.getCurrentPosition
                         (
                             position => {
-                                if (activeItem.value.trip_id < 1)
+                                if (!activeItem.value.trip_id)
                                 {
                                     activeItem.value.pickup_latitude = position.coords.latitude;
                                     activeItem.value.pickup_longitude = position.coords.longitude;
@@ -524,7 +524,7 @@ export default
                             },
                             error => {
 
-                                if (activeItem.value.trip_id < 1)
+                                if (!activeItem.value.trip_id)
                                 {
                                     activeItem.value.pickup_latitude = activeItem.value.pickup_latitude ?? 30.06;
                                     activeItem.value.pickup_longitude = activeItem.value.pickup_longitude ?? 31.21;
