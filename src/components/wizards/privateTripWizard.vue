@@ -510,21 +510,27 @@ export default
              * Get current location
              */
             const getUserLocation = async () => {
-                if (navigator.geolocation) {
+                if (navigator.geolocation )  {
                     navigator.geolocation.getCurrentPosition
                         (
                             position => {
-                                activeItem.value.pickup_latitude = position.coords.latitude;
-                                activeItem.value.pickup_longitude = position.coords.longitude;
-                                activeItem.value.destination_latitude = position.coords.latitude;
-                                activeItem.value.destination_longitude = position.coords.longitude;
+                                if (activeItem.value.trip_id < 1)
+                                {
+                                    activeItem.value.pickup_latitude = position.coords.latitude;
+                                    activeItem.value.pickup_longitude = position.coords.longitude;
+                                    activeItem.value.destination_latitude = position.coords.latitude;
+                                    activeItem.value.destination_longitude = position.coords.longitude;
+                                }
                             },
                             error => {
 
-                                activeItem.value.pickup_latitude = activeItem.value.pickup_latitude ?? 30.06;
-                                activeItem.value.pickup_longitude = activeItem.value.pickup_longitude ?? 31.21;
-                                activeItem.value.destination_latitude = activeItem.value.destination_latitude ?? 30.06;
-                                activeItem.value.destination_longitude = activeItem.value.destination_longitude ?? 31.21;
+                                if (activeItem.value.trip_id < 1)
+                                {
+                                    activeItem.value.pickup_latitude = activeItem.value.pickup_latitude ?? 30.06;
+                                    activeItem.value.pickup_longitude = activeItem.value.pickup_longitude ?? 31.21;
+                                    activeItem.value.destination_latitude = activeItem.value.destination_latitude ?? 30.06;
+                                    activeItem.value.destination_longitude = activeItem.value.destination_longitude ?? 31.21;
+                                }
                                 showAlert(error.message)
                             }
                         );
