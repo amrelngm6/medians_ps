@@ -497,7 +497,6 @@ export default
                         );
 
                 } else {
-                    showAlert('location error')
                     locationError.value = "Geolocation is not supported by this browser.";
                 }
             }
