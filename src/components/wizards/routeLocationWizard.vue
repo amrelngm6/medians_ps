@@ -477,7 +477,7 @@ export default
              * Get current location
              */
             const getUserLocation = async () => {
-                if (navigator.geolocation) {
+                if (navigator.geolocation && !activeItem.value.location_id) {
                     navigator.geolocation.getCurrentPosition
                         (
                             position => {
