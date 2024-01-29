@@ -72,7 +72,7 @@ export default {
       markers.value = [handlePickup(route.value.position, 'start_latitude', 'start_longitude', 'car.svg')];
       
       let array = route.value.route_locations;
-      if (array.length)
+      if (array && array.length)
       {
         for (let i = 0; i < array.length; i++) {
           markers.value[i + 1] = handlePickup(array[i], 'start_latitude', 'start_longitude', 'yellow_pin.gif');
