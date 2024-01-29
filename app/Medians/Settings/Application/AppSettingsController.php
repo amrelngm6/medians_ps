@@ -53,6 +53,7 @@ class AppSettingsController extends CustomController
 	            [ 'key'=> "header_bg", 'title'=> __('Header background'), 'fillable'=>true, 'column_type'=>'file' ],
 			],
 			'Style colors'=> [	
+				[ 'key'=> "main_bg", 'title'=> __('Main BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "section_bg", 'title'=> __('Section BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "border_color", 'title'=> __('Border Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "icon_color", 'title'=> __('Icon Color'), 'fillable'=> true, 'column_type'=>'color' ],
