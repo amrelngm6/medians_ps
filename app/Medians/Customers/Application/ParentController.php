@@ -220,7 +220,7 @@ class ParentController extends CustomController
 	public function login()
 	{
 		$Auth = new \Medians\Auth\Application\AuthService;
-		$repo = new \Medians\Customers\Infrastructure\ParentRepository;
+		$repo = new \Medians\Customers\Infrastructure\ParentRepository(null);
 
 		$this->app = new \config\APP;
 		$request = $this->app->request();

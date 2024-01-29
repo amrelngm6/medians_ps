@@ -52,14 +52,11 @@ class Employee extends Customer
 	{
 		return $this->morphOne(RouteLocation::class, 'model', 'model_type', 'model_id');	
 	}
-
 	
     public function custom_fields()
     {
         return $this->morphMany(CustomField::class, 'model');
     }
-
-
 	
 
 	/**

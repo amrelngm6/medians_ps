@@ -30,7 +30,6 @@ class Vehicle extends CustomModel
 		'created_by'
 	];
 
-
 	public $appends = ['latitude', 'longitude'];
 
 	public function getLatitudeAttribute()
@@ -47,7 +46,6 @@ class Vehicle extends CustomModel
 		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.png';
 	}
 
-
 	/**
 	 * Relations with onother Models
 	 */
@@ -55,7 +53,6 @@ class Vehicle extends CustomModel
 	{
 		return $this->hasOne(Business::class, 'business_id', 'business_id');	
 	}
-
 
 	public function type() 
 	{
