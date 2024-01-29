@@ -106,10 +106,10 @@ export default {
 
 
     onMounted(() => {
-      mapCenter.value = { lat: 30.0649, lng: 31.21 };
-      mapOrigin.value = { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; // Example coordinates (New York)
-      mapDestination.value = { lat: trip.value.destination_latitude, lng: trip.value.destination_longitude }; // Example coordinates (Los Angeles)
-      fetchRoute();
+        mapOrigin.value = { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; // Example coordinates (New York)
+        mapCenter.value = mapOrigin.value;
+        mapDestination.value = { lat: trip.value.destination_latitude, lng: trip.value.destination_longitude }; // Example coordinates (Los Angeles)
+        fetchRoute();
     });
 
     const markerClicked = (marker) => 
