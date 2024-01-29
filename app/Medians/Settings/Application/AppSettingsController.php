@@ -44,14 +44,25 @@ class AppSettingsController extends CustomController
 			'basic'=> [	
 	            [ 'key'=> "logo", 'title'=> __('logo'), 'fillable'=>true, 'column_type'=>'file' ],
 				[ 'key'=> "app_name", 'title'=> __('App Name'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "color", 'title'=> __('Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "default_lang", 'title'=> __('Languange'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['default_lang'=>'arabic','title'=>__('Arabic')], ['default_lang'=>'english','title'=>__('English')]]  
 				]
 			],
-			'app_setting'=> [	
-
+			'Header'=> [
+	            [ 'key'=> "header_bg", 'title'=> __('Header background'), 'fillable'=>true, 'column_type'=>'file' ],
+			],
+			'Style colors'=> [	
+				[ 'key'=> "section_bg", 'title'=> __('Section BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "border_color", 'title'=> __('Border Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "icon_color", 'title'=> __('Icon Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "text_color", 'title'=> __('Text Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h1_color", 'title'=> __('H! Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h2_color", 'title'=> __('H2 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h3_color", 'title'=> __('H3 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h4_color", 'title'=> __('H4 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h5_color", 'title'=> __('H5 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h6_color", 'title'=> __('H6 Color'), 'fillable'=> true, 'column_type'=>'color' ],
             ],
         ];
 	}
