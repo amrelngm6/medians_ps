@@ -11,7 +11,6 @@
       }" :zoom="mapZoom" style="width: 100%; height: calc(100vh - 100px)">
       <Polyline :options="polylinePath" />
 
-
       <CustomMarker v-for="(marker, index) in markers" :options="{
         position: marker.marker_position,
       }" @click="markerClicked(marker)">
@@ -128,7 +127,7 @@ export default {
 
 
     onMounted(() => {
-      mapCenter.value = { lat: 30.0649, lng: 31.21 };
+      mapCenter.value = { lat: route.value.position.start_latitude, lng: route.value.position.start_longitude };
       mapOrigin.value = { lat: route.value.position.start_latitude, lng: route.value.position.start_longitude }; // Example coordinates (New York)
       mapDestination.value = { lat: route.value.position.end_latitude, lng: route.value.position.end_longitude }; // Example coordinates (Los Angeles)
       fetchRoute();
