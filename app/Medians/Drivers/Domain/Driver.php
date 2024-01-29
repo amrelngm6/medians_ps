@@ -79,7 +79,7 @@ class Driver extends CustomModel
 
 	public function route() 
 	{
-		return $this->hasOne(Route::class, 'driver_id', 'driver_id');	
+		return $this->hasOne(Route::class, 'driver_id', 'driver_id')->with('position');	
 	}
 
 	public function trip() 
