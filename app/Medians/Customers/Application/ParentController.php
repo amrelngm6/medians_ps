@@ -20,7 +20,9 @@ class ParentController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new ParentRepository($this->app->auth()->business);
+		$user = $this->app->auth();
+
+		$this->repo = new ParentRepository(isset($user->business) ? $user->business : null);
 	}
 
 
