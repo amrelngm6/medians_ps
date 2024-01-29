@@ -320,7 +320,7 @@ export default
          */
         const getUserLocation = async () => 
         {
-            if (navigator.geolocation) 
+            if (navigator.geolocation && !activeItem.route_id) 
             {
                 navigator.geolocation.getCurrentPosition
                 (
