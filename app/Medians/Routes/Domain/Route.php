@@ -35,7 +35,7 @@ class Route extends CustomModel
 	];
 
 
-	public $appends = ['driver_name'];
+	// public $appends = ['driver_name'];
 
 
     // Define an accessor to fetch the driver's name

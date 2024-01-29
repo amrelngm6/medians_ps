@@ -68,7 +68,6 @@ export default {
 
     const setValues = () => {
 
-      
       markers.value = [handlePickup(route.value.position, 'start_latitude', 'start_longitude', 'car.svg')];
       
       let array = route.value.route_locations;
