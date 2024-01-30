@@ -173,7 +173,8 @@ class PrivateTripController extends CustomController
 			return null;
 		}
 		
-		$trip = $this->repo->getUpcomingDriverTrip($driver_id);
+		$trip = $this->repo->getUpcomingDriverTrip($user->driver_id);
+		
 		echo $trip ? json_encode( $trip) : '';
 	}
 
