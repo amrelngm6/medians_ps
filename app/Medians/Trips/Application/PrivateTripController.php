@@ -175,7 +175,7 @@ class PrivateTripController extends CustomController
 		
 		$trip = $this->repo->getUpcomingDriverTrip($this->app->request()->get('driver_id'));
 		// $trip = $this->repo->getUpcomingDriverTrip($driver_id);
-		
+		print_r($trip);
 		return $trip;
 	}
 
