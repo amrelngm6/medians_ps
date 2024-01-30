@@ -110,7 +110,7 @@ class PrivateTripRepository
 		return PrivateTrip::where('business_id', $this->business_id)
 		->where('driver_id', $driver_id)
 		->where('status',  'scheduled')
-		->where('date', '>=', date('Y-m-d'))
+		->whereDate('date', '>=', date('Y-m-d'))
 		->first();
 	}
 
