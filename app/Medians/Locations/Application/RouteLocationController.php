@@ -75,7 +75,7 @@ class RouteLocationController extends CustomController
             [ 'key'=> "location_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "model_type", 'title'=> "#", 'default'=> $this->studentRepo->getClassName(), 'column_type'=>'hidden'],
 			[ 'key'=> "model_id", 'title'=> __('Student'), 
-				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'student_id', 'text_key'=>'student_name', 
+				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'student_id', 'text_key'=>'name', 
 				'data' => $this->studentRepo->get()
 			],
 			[ 'key'=> "route_id", 'title'=> __('Route'), 

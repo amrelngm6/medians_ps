@@ -41,7 +41,7 @@ class RouteLocation extends CustomModel
 		'status',
 	];
 
-	public $appends = ['contact_number', 'usertype', 'student_name', 'picture', 'status_text','saturdays','sundays','mondays','tuesdays','wednesdays','thursdays','fridays'];
+	public $appends = ['contact_number', 'usertype', 'picture', 'status_text','saturdays','sundays','mondays','tuesdays','wednesdays','thursdays','fridays'];
 
 	public function getUsertypeAttribute() {
 		$parts = explode('\\', $this->model_type);
@@ -84,9 +84,6 @@ class RouteLocation extends CustomModel
 		return isset($this->model->contact_number) ? $this->model->contact_number : '0';
 	}
 
-	public function getStudentNameAttribute() {
-		return isset($this->model->first_name) ? $this->model->first_name.' '. $this->model->last_name : '0';
-	}
 
 	public function photo() : String
 	{

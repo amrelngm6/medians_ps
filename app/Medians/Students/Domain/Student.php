@@ -21,33 +21,16 @@ class Student extends CustomModel
     protected $primaryKey = 'student_id';
 	
 	public $fillable = [
-		'business_id',
-		'first_name',
-		'last_name',
-		'picture',
-		'date_of_birth',
-		'address',
 		'parent_id',
-		'contact_number',
-		'transfer_status',
-		'status',
+		'business_id',
+		'name',
+		'mobile',
+		'picture',
+		'birth_date',
 		'gender',
+		'status',
 		'created_by'
 	];
-
-
-	public $appends = ['student_name', 'name'];
-
-
-	public function getNameAttribute() : String
-	{
-		return $this->first_name .' '.$this->last_name;
-	}
-
-	public function getStudentNameAttribute() : String
-	{
-		return $this->first_name .' '.$this->last_name;
-	}
 
 	public function photo() : String
 	{
