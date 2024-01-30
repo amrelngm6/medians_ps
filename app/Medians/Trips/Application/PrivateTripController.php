@@ -158,7 +158,25 @@ class PrivateTripController extends CustomController
         } catch (Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
         }
+	}
 
+
+	/**
+	 * Load upcoming trip for Driver
+	 */
+	public function upcomingTrip()
+	{
+		$user = $this->app->auth();
+
+		if (empty($user->driver_id))
+		{
+			return null;
+		}
+		
+		$trip = $this->repo->getUpcomingDriverTrip($this->app->request()->get('driver_id'));
+		// $trip = $this->repo->getUpcomingDriverTrip($driver_id);
+		
+		return $trip;
 	}
 
 }
