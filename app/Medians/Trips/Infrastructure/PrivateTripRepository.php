@@ -108,7 +108,7 @@ class PrivateTripRepository
 	public function getUpcomingDriverTrip($driver_id)
 	{
 		return PrivateTrip::where('driver_id', $driver_id)
-		->where('status',  'scheduled')
+		// ->where('status',  'scheduled')
 		->whereDate('date', '>=', date('Y-m-d'))
 		->first();
 	}
