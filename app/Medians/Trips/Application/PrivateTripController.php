@@ -182,7 +182,7 @@ class PrivateTripController extends CustomController
 	{
 		$user = $this->app->auth();
 
-		if (empty($user->driver_id)) { return null; }
+		// if (empty($user->driver_id)) { return null; }
 		
 		$trip = $this->repo->getPrivateTrip($tripId);
 
