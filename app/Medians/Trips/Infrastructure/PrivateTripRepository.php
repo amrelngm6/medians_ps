@@ -111,6 +111,7 @@ class PrivateTripRepository
 		->where('driver_id', $driver_id)
 		->where('status',  'scheduled')
 		->where('date', '>=', date('Y-m-d'))
+        ->with('model','driver','vehicle')
 		->first();
 	}
 
