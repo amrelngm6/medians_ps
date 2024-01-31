@@ -43,7 +43,7 @@ class PrivateTripRepository
 
 	public function getPrivateTrip($id)
 	{
-		return PrivateTrip::where('business_id', $this->business_id)->withCount('moving_locations','done_locations','waiting_locations')->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')->find($id);
+		return PrivateTrip::where('business_id', $this->business_id)->withCount('driver','vehicle','model')->find($id);
 	}
 
 	public function getParentPrivateTrip($trip_id, $parent_id)

@@ -168,13 +168,24 @@ class PrivateTripController extends CustomController
 	{
 		$user = $this->app->auth();
 
-		if (empty($user->driver_id))
-		{
-			return null;
-		}
+		if (empty($user->driver_id)) { return null; }
 		
 		$trip = $this->repo->getUpcomingDriverTrip($user->driver_id);
+
+		echo $trip ? json_encode( $trip) : '';
+	}
+
+	/**
+	 * Load upcoming trip for Driver
+	 */
+	public function getTrip($tripId)
+	{
+		$user = $this->app->auth();
+
+		if (empty($user->driver_id)) { return null; }
 		
+		$trip = $this->repo->getPrivateTrip($tripId);
+
 		echo $trip ? json_encode( $trip) : '';
 	}
 
