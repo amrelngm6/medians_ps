@@ -178,7 +178,7 @@ class PrivateTripController extends CustomController
 	/**
 	 * Load upcoming trip for Driver
 	 */
-	public function getTrip($tripId)
+	public function getPrivateTrip($tripId)
 	{
 		$user = $this->app->auth();
 
