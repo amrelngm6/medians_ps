@@ -43,7 +43,7 @@ class PrivateTrip extends CustomModel
 	];
 
 
-	public $appends = ['distance', 'usertype', 'duration'];
+	public $appends = ['distance', 'usertype', 'time', 'duration'];
 
 	
 	public function getUsertypeAttribute() {
@@ -51,16 +51,12 @@ class PrivateTrip extends CustomModel
 		return strtolower(end($parts));
 	}
 
-
-	public function getDriverNameAttribute() 
+	public function getTimeAttribute() 
 	{
-		return isset($this->driver->first_name) ? $this->driver->first_name. ' ' .$this->driver->last_name : '';	
+		$dateTime = DateTime::createFromFormat('H:i:s', $this->start_time);
+		return $dateTime->format('H:i');
 	}
 
-	public function getCarPlateAttribute() 
-	{
-		return isset($this->vehicle->plate_number) ? $this->vehicle->plate_number : '';	
-	}
 
 	
 	/**
