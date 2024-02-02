@@ -49,7 +49,6 @@ class RouteController extends CustomController
 	 */ 
 	public function columns( ) 
 	{
-
 		return [
             [ 'value'=> "route_id", 'text'=> "#"],
             [ 'value'=> "route_name", 'text'=> __('route_name'), 'sortable'=> true ],

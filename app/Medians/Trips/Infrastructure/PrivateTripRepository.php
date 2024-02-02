@@ -215,7 +215,20 @@ class PrivateTripRepository
     	$Object->update( (array) $data);
 
     	return $Object;
+    }
+    
+    /**
+     * Update Status
+     */
+    public function updateStatus($data)
+    {
 
+		$Object = PrivateTrip::where('business_id', $this->business_id)->find($data['trip_id']);
+		
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
     }
 
 

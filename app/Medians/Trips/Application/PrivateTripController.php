@@ -160,6 +160,26 @@ class PrivateTripController extends CustomController
         }
 	}
 
+	
+	public function updateStatus()
+	{
+		$params = $this->app->request()->get('params');
+		$driver = $this->app->auth();
+		
+        try 
+		{
+            if ($this->repo->updateStatus($params))
+            {
+                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+            }
+        
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        	
+        }
+	}
+
+
 
 	/**
 	 * Load upcoming trip for Driver
