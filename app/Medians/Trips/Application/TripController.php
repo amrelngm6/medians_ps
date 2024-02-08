@@ -14,7 +14,7 @@ class TripController extends CustomController
 	*/
 	protected $repo;
 
-	protected $app;
+	protected $app; 
 
 	public $userRepo;
 	
