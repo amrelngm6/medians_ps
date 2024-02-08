@@ -161,11 +161,8 @@ class PrivateTripController extends CustomController
 	}
 
 	
-	public function updateStatus()
+	public function updateStatus($params)
 	{
-		$params = $this->app->request()->get('params');
-		$driver = $this->app->auth();
-		
         try 
 		{
             if ($this->repo->updateStatus($params))
@@ -180,23 +177,22 @@ class PrivateTripController extends CustomController
 	}
 
 	
+	public function endTrip()
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+		
+		$params['status'] = 'completed';
+
+		return $this->updateStatus($params);
+	}
+
 	public function startTrip()
 	{
 		$params = (array) json_decode($this->app->request()->get('params'));
 		
-        try 
-		{
-			$params['status'] = 'started';
+		$params['status'] = 'started';
 
-            if ($this->repo->updateStatus($params))
-            {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
-            }
-        
-        } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
-        	
-        }
+		return $this->updateStatus($params);
 	}
 
 
