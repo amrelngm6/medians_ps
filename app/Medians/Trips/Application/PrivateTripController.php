@@ -182,7 +182,7 @@ class PrivateTripController extends CustomController
 	
 	public function startTrip()
 	{
-		$params = json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->request()->get('params'));
 		
         try 
 		{
