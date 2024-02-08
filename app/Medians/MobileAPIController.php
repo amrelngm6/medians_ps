@@ -151,6 +151,10 @@ class MobileAPIController extends CustomController
 			case 'Driver.getActiveDriverTrip':
 				$return =  (new Trips\Application\TripController())->getActiveDriverTrip(); 
 				break;
+				
+			case 'Driver.start_trip':
+				$return =  (new Trips\Application\PrivateTripController())->startTrip(); 
+				break;
 
 		}
 

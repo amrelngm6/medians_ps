@@ -35,14 +35,14 @@ class Route extends CustomModel
 	];
 
 
-	public $appends = ['position'];
+	// public $appends = ['position'];
 
 
-    // Define an accessor to fetch the driver's name
-    public function getPositionAttribute()
-    {
-        return $this->route ?? '';
-    }
+    // // Define an accessor to fetch the driver's name
+    // public function getPositionAttribute()
+    // {
+    //     return $this->route ?? '';
+    // }
 
 	/**
 	 * Relations with onother Models

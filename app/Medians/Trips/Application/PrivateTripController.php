@@ -179,6 +179,26 @@ class PrivateTripController extends CustomController
         }
 	}
 
+	
+	public function startTrip()
+	{
+		$params = $this->app->request()->get('params');
+		
+        try 
+		{
+			$params['status'] = 'started';
+
+            if ($this->repo->updateStatus($params))
+            {
+                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+            }
+        
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        	
+        }
+	}
+
 
 
 	/**
