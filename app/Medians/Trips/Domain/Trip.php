@@ -75,7 +75,7 @@ class Trip extends CustomModel
 
 	public function supervisor() 
 	{
-		return $this->hasOne(SuperVisor::class, 'supervisor_id', 'supervisor_id');	
+		return $this->hasOne(SuperVisor::class, 'customer_id', 'supervisor_id');	
 	}
 
 	public function locations() 
