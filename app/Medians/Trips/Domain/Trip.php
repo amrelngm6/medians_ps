@@ -7,6 +7,7 @@ use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Drivers\Domain\Driver;
 use Medians\Customers\Domain\Parents;
+use Medians\Customers\Domain\SuperVisor;
 use Medians\Students\Domain\Student;
 use Medians\Businesses\Domain\Business;
 
@@ -70,6 +71,11 @@ class Trip extends CustomModel
 	public function driver() 
 	{
 		return $this->hasOne(Driver::class, 'driver_id', 'driver_id');	
+	}
+
+	public function supervisor() 
+	{
+		return $this->hasOne(SuperVisor::class, 'supervisor_id', 'supervisor_id');	
 	}
 
 	public function locations() 
