@@ -26,7 +26,7 @@ class TripDestination extends CustomModel
 		'trip_id',
 		'model_type',
 		'model_id',
-		'destination_id',
+		'location_id',
 		'status',
 		'dropoff_time',
 		'created_by'

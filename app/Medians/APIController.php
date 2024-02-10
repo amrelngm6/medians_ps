@@ -48,6 +48,10 @@ class APIController extends CustomController
 		$return = [];
 		switch ($this->app->request()->get('type')) 
 		{
+			case 'create_trip':
+				return (new \Medians\Trips\Application\TripController())->createTrip();
+				break;
+
 			case 'HelpMessage.close':
 				return (new Help\Application\HelpMessageController())->close();
 				break;

@@ -11,15 +11,15 @@ use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
 
 
-class TripPickup extends CustomModel
+class TripLocation extends CustomModel
 {
 
 	/*
 	/ @var String
 	*/
-	protected $table = 'trip_pickups';
+	protected $table = 'trip_locations';
 
-    protected $primaryKey = 'trip_pickup_id';
+    protected $primaryKey = 'trip_location_id';
 	
 	public $fillable = [
 		'trip_id',
@@ -54,31 +54,10 @@ class TripPickup extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
-
 	public function location() 
 	{
-		return $this->hasOne(RouteLocation::class, 'pickup_id', 'pickup_id');	
+		return $this->hasOne(RouteLocation::class, 'location_id', 'location_id');	
 	}
-
-	public function trip() 
-	{
-		return $this->hasOne(Trip::class, 'trip_id', 'trip_id');	
-	}
-
-	public function student() 
-	{
-		return $this->hasOne(Student::class, 'student_id', 'model_id');	
-	}
-
-	public function parent() 
-	{
-		return $this->hasOneThrough(Parents::class, Student::class, 'student_id', 'parent_id', 'model_id', 'parent_id');	
-	}
-
 
 	public function model() 
 	{

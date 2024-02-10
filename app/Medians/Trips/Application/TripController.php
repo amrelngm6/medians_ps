@@ -229,6 +229,24 @@ class TripController extends CustomController
 	
 		return $distance*1000;
 	}
+
 	
+	public function createTrip()
+	{
+		$params = json_decode($this->app->request()->get('params'));
+
+        try 
+		{
+			$trip = $this->repo->createTrip($params);
+
+            if (isset($trip->trip_id))
+            {
+                echo json_encode(array('success'=>1, 'result'=>$trip, 'reload'=>1));
+            }
+
+        } catch (Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
 
 }

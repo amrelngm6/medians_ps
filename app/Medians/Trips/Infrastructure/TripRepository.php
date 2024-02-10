@@ -3,8 +3,7 @@
 namespace Medians\Trips\Infrastructure;
 
 use Medians\Trips\Domain\Trip;
-use Medians\Trips\Domain\TripPickup;
-use Medians\Trips\Domain\TripDestination;
+use Medians\Trips\Domain\TripLocation;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Students\Domain\Student;
 
@@ -24,6 +23,7 @@ class TripRepository
 
 	function __construct($business)
 	{
+		
 		$this->business_id = isset($business->business_id) ? $business->business_id : null;
 		$this->routeRepo = new RouteRepository($business);
 	}
@@ -36,12 +36,12 @@ class TripRepository
 
 	public function getTrip($id)
 	{
-		return Trip::where('business_id', $this->business_id)->withCount('moving_locations','done_locations','waiting_locations')->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')->find($id);
+		return Trip::where('business_id', $this->business_id)->withCount('moving_locations','done_locations','waiting_locations')->with('locations',  'driver', 'vehicle', 'route')->find($id);
 	}
 
 	public function getParentTrip($trip_id, $parent_id)
 	{
-		return Trip::where('business_id', $this->business_id)->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
+		return Trip::where('business_id', $this->business_id)->with('locations',  'driver', 'vehicle', 'route')
 		->with([
 			'student_location' => function($q) use ($parent_id){
 				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
@@ -62,7 +62,7 @@ class TripRepository
 
 		$students =  array_column($ids->toArray(), 'student_id');
 
-		return Trip::where('business_id', $this->business_id)->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
+		return Trip::where('business_id', $this->business_id)->with('locations',  'driver', 'vehicle', 'route')
 		->whereHas(
 			'student_location' , function($q) use ($students){
 				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
@@ -73,36 +73,36 @@ class TripRepository
 			'student_destination' => function($q) use ($students){
 			return $q->with('destination')->whereIn('model_id', $students)->orderBy('status','DESC');
 		}])
-		->where('trip_status','Scheduled')
+		->where('status','Scheduled')
 		->first();
 	}
 
 	public function getDriverTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
-		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with(['pickup_locations'=> function($q){
+		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with(['locations'=> function($q){
 			$q->with('model');
 		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
 	public function getActiveDriverTrip($driver_id, $lastId = 0)
 	{
-		return Trip::where('business_id', $this->business_id)->with(['pickup_locations'=> function($q){
+		return Trip::where('business_id', $this->business_id)->with(['locations'=> function($q){
 			$q->with('model');
 		}])->with(['destinations'=> function($q){
 			$q->with('model');
 		}])
 		->where('driver_id', $driver_id)
-		->whereDate('trip_date', date('Y-m-d'))
-		->where('trip_status', '!=', 'Completed')
+		->whereDate('date', date('Y-m-d'))
+		->where('status', '!=', 'Completed')
 		->first();
 	}
 
 	public function getStudentTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
-		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
-			'pickup_locations', function($q) use ($id){
+		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with('locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+			'locations', function($q) use ($id){
 				$q->where('model_id', $id);
 			}
 		)->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
@@ -111,8 +111,8 @@ class TripRepository
 	public function getParentStudentsTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
-		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with('pickup_locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
-			'pickup_locations', function($q) use ($id){
+		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with('locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+			'locations', function($q) use ($id){
 				return $q->with('location')->whereHas('student', function($q) use ($id){
 					return $q->where('parent_id', $id);
 				})->orderBy('status','DESC');
@@ -133,18 +133,18 @@ class TripRepository
 
 	public function get($limit = 100)
 	{
-		return Trip::where('business_id', $this->business_id)->withCount('moving_locations')->withCount('pickup_locations')->with('route', 'pickup_locations', 'destinations', 'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
+		return Trip::where('business_id', $this->business_id)->withCount('moving_locations')->withCount('locations')->with('route', 'locations',  'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
 	}
 
 	public function eventsByDate($params)
 	{
-		$query = Trip::where('business_id', $this->business_id)->whereBetween('trip_date', [$params['start'], $params['end']]);
+		$query = Trip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
 	public function allEventsByDate($params)
 	{
-		$query = Trip::whereBetween('trip_date', [$params['start'], $params['end']]);
+		$query = Trip::whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -155,10 +155,10 @@ class TripRepository
 	public function getByDateCharts($params )
 	{
 
-	  	$check = Trip::where('business_id', $this->business_id)->whereBetween('trip_date' , [$params['start'] , $params['end']])
-		->selectRaw('COUNT(*) as y, trip_date as label');
+	  	$check = Trip::where('business_id', $this->business_id)->whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, date as label');
 
-  		return $check->groupBy('trip_date')->orderBy('trip_date', 'ASC')->get();
+  		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
 	}
 
 	
@@ -168,10 +168,10 @@ class TripRepository
 	public function getAllByDateCharts($params )
 	{
 
-	  	$check = Trip::whereBetween('trip_date' , [$params['start'] , $params['end']])
-		->selectRaw('COUNT(*) as y, trip_date as label');
+	  	$check = Trip::whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, date as label');
 
-  		return $check->groupBy('trip_date')->orderBy('trip_date', 'ASC')->get();
+  		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
 	}
 
 	
@@ -250,65 +250,72 @@ class TripRepository
 
 
 	/**
-	 * Create trip
+	 * Store trip
 	 */
 	public function createTrip($data)
 	{
-		$data['trip_date'] =  date('Y-m-d');
+
+		// Load route with locations
+		$route = $this->routeRepo->getRouteForTrip($data['route_id']);
+
+		$data['date'] =  date('Y-m-d');
+		$data['business_id'] =  $this->business_id;
+		$data['route_id'] =  $route->route_id;
+		$data['driver_id'] =  $route->driver_id;
+		$data['vehicle_id'] =  $route->vehicle_id;
+		$data['supervisor_id'] =  $route->supervisor_id;
+		// Create the Trip
 		$save = Trip::firstOrCreate($data);
 
+		// Stop if duplicated
 		if (empty($save->wasRecentlyCreated))
 			return $save;
 
-
-		$checkRoute = $this->routeRepo->getRouteStudents($data['route_id']);
-
-		foreach ($checkRoute->pickup_locations as $key => $value) 
+		// Handle trip waypoints
+		foreach ($route->route_locations as $key => $value) 
 		{
 			$value['trip_id'] = $save->trip_id;
 			$value['status'] = 'waiting';
-			$this->savePickup($value);
+			// Store trip location
+			$this->saveLocation($value);
 		}
 
-		foreach ($checkRoute->destinations as $key => $value) 
-		{
-			$value['trip_id'] = $save->trip_id;
-			$value['status'] = 'waiting';
-			$this->saveDestination($value);
-		}
-
+		// Return the trip
 		return $this->getTrip($save->trip_id);
 	}
 	
 
-
 	/**
-	 * update trip
+	 * Store Trip Location
 	 */
-	public function updateTripPickup($data)
+	public function saveLocation($data)
 	{
-		
-		$trip = Trip::find($data['trip_id']);
 
-		$pickup = TripPickup::find($data['trip_pickup_id']);
-		$data['boarding_time'] = date('Y-m-d h:i:s');
-		$update = $pickup->update($data);
+		$fieldsData = [
+			'trip_id' => $data['trip_id'],
+			'model_type' => $data['model_type'],
+			'model_id' => $data['model_id'],
+			'location_id' => $data['location_id'],
+			'status' => $data['status'],
+		];
 
-		return $update ? true : false;
+		$check = TripLocation::create($fieldsData);
+
+		return $check;
 	}
 	
 
 	/**
 	 * update trip
 	 */
-	public function updateTripDestination($data)
+	public function updateTripLocationStatus($data)
 	{
 		
 		$trip = Trip::find($data['trip_id']);
 
-		$pickup = TripDestination::find($data['trip_destination_id']);
-		$data['dropoff_time'] = date('Y-m-d h:i:s');
-		$update = $pickup->update($data);
+		$location = TripLocation::find($data['trip_location_id']);
+		$data['boarding_time'] = date('Y-m-d h:i:s');
+		$update = $location->update($data);
 
 		return $update ? true : false;
 	}
@@ -324,50 +331,12 @@ class TripRepository
 
 		$update = $trip->update($data);
 
-		TripPickup::where('trip_id', $data['trip_id'])->update(['status'=> 'done', 'dropoff_time'=> date('Y-m-d h:i:s')]);
+		TripLocation::where('trip_id', $data['trip_id'])->update(['status'=> 'done', 'dropoff_time'=> date('Y-m-d h:i:s')]);
 
 		return $update ? true : false;
 	}
 	
     	
-	/**
-	 * Create Trip Pickup
-	 */
-	public function savePickup($data)
-	{
-
-		$fieldsData = [
-			'trip_id' => $data['trip_id'],
-			'model_type' => $data['model_type'],
-			'model_id' => $data['model_id'],
-			'pickup_id' => $data['pickup_id'],
-			'status' => $data['status'],
-		];
-
-		$check = TripPickup::create($fieldsData);
-
-		return $check;
-	}
-	
     	
-	/**
-	 * Create Trip Pickup
-	 */
-	public function saveDestination($data)
-	{
-
-		$fieldsData = [
-			'trip_id' => $data['trip_id'],
-			'model_type' => $data['model_type'],
-			'model_id' => $data['model_id'],
-			'destination_id' => $data['destination_id'],
-			'status' => $data['status'],
-		];
-
-		return TripDestination::create($fieldsData);
-	}
-	
-    	
-
  
 }

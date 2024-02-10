@@ -38,12 +38,12 @@ class RouteRepository
 		return Route::where('business_id', $this->business_id)->with('route_locations', 'position', 'supervisor', 'vehicle', 'driver')->limit($limit)->get();
 	}
 	
-	public function getRouteStudents($route_id)
+	public function getRouteForTrip($route_id)
 	{
 		$dayName = strtolower(date('l'));
 		
-		return Route::where('business_id', $this->business_id)->with(['route_locations'=> function($q) use ($dayName, $route_id){
-			return $q->where($dayName, '>',0)->where('route_id', $route_id);
+		return Route::with(['route_locations'=> function($q) use ($dayName, $route_id){
+			return $q->where($dayName, 'on')->where('route_id', $route_id);
 		}])->find($route_id);
 	}
 

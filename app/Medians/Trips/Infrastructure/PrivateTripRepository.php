@@ -80,7 +80,7 @@ class PrivateTripRepository
 			'student_destination' => function($q) use ($students){
 			return $q->with('destination')->whereIn('model_id', $students)->orderBy('status','DESC');
 		}])
-		->where('trip_status','Scheduled')
+		->where('status','Scheduled')
 		->first();
 	}
 
@@ -92,18 +92,7 @@ class PrivateTripRepository
 		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
-	public function getActiveDriverPrivateTrip($driver_id, $lastId = 0)
-	{
-		return PrivateTrip::where('business_id', $this->business_id)->with(['pickup_locations'=> function($q){
-			$q->with('model');
-		}])->with(['destinations'=> function($q){
-			$q->with('model');
-		}])
-		->where('driver_id', $driver_id)
-		->whereDate('trip_date', date('Y-m-d'))
-		->where('trip_status', '!=', 'Completed')
-		->first();
-	}
+    
 
 	public function getUpcomingDriverTrip($driver_id)
 	{
@@ -117,13 +106,13 @@ class PrivateTripRepository
 
 	public function eventsByDate($params)
 	{
-		$query = PrivateTrip::where('business_id', $this->business_id)->whereBetween('trip_date', [$params['start'], $params['end']]);
+		$query = PrivateTrip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
 	public function allEventsByDate($params)
 	{
-		$query = PrivateTrip::whereBetween('trip_date', [$params['start'], $params['end']]);
+		$query = PrivateTrip::whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -134,10 +123,10 @@ class PrivateTripRepository
 	public function getByDateCharts($params )
 	{
 
-	  	$check = PrivateTrip::where('business_id', $this->business_id)->whereBetween('trip_date' , [$params['start'] , $params['end']])
-		->selectRaw('COUNT(*) as y, trip_date as label');
+	  	$check = PrivateTrip::where('business_id', $this->business_id)->whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, date as label');
 
-  		return $check->groupBy('trip_date')->orderBy('trip_date', 'ASC')->get();
+  		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
 	}
 
 	
@@ -147,10 +136,10 @@ class PrivateTripRepository
 	public function getAllByDateCharts($params )
 	{
 
-	  	$check = PrivateTrip::whereBetween('trip_date' , [$params['start'] , $params['end']])
-		->selectRaw('COUNT(*) as y, trip_date as label');
+	  	$check = PrivateTrip::whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, date as label');
 
-  		return $check->groupBy('trip_date')->orderBy('trip_date', 'ASC')->get();
+  		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
 	}
 
 	

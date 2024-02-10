@@ -27,8 +27,8 @@ class Trip extends CustomModel
 		'vehicle_id',
 		'route_id',
 		'supervisor_id',
-		'trip_date',
-		'trip_status',
+		'date',
+		'status',
 		'created_by'
 	];
 
@@ -62,7 +62,6 @@ class Trip extends CustomModel
 		return $this->hasOne(Route::class, 'route_id', 'route_id');	
 	}
 
-
 	public function vehicle() 
 	{
 		return $this->hasOne(Vehicle::class, 'vehicle_id', 'vehicle_id');	
@@ -73,45 +72,24 @@ class Trip extends CustomModel
 		return $this->hasOne(Driver::class, 'driver_id', 'driver_id');	
 	}
 
-
-	public function trip_pickup() 
+	public function locations() 
 	{
-		return $this->hasMany(TripPickup::class);	
-	}
-
-	public function student_location() 
-	{
-		return $this->hasOne(TripPickup::class, 'trip_id', 'trip_id');	
-	}
-
-	public function student_destination() 
-	{
-		return $this->hasOne(TripDestination::class, 'trip_id', 'trip_id');	
-	}
-
-	public function pickup_locations() 
-	{
-		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->with('location','model')->orderBy('boarding_time', 'asc');	
-	}
-
-	public function destinations() 
-	{
-		return $this->hasMany(TripDestination::class, 'trip_id', 'trip_id')->with('destination','model')->orderBy('dropoff_time', 'asc');	
+		return $this->hasMany(TripLocation::class, 'trip_id', 'trip_id')->with('location','model')->orderBy('boarding_time', 'asc');	
 	}
 
 	public function waiting_locations() 
 	{
-		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->where('status', 'waiting');	
+		return $this->hasMany(TripLocation::class, 'trip_id', 'trip_id')->where('status', 'waiting');	
 	}
 
 	public function moving_locations() 
 	{
-		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->where('status', 'moving');	
+		return $this->hasMany(TripLocation::class, 'trip_id', 'trip_id')->where('status', 'moving');	
 	}
 	
 	public function done_locations() 
 	{
-		return $this->hasMany(TripPickup::class, 'trip_id', 'trip_id')->where('status', 'done');	
+		return $this->hasMany(TripLocation::class, 'trip_id', 'trip_id')->where('status', 'done');	
 	}
 
 
@@ -143,15 +121,15 @@ class Trip extends CustomModel
 	}
 	
 	public function getDistanceAttribute() {
-		$locations = $this->pickup_locations;
+		$locations = $this->route_locations;
 		$route = $this->route;
 		$totalDistance = 0;
-		for ($i = 0; $i < count($locations); $i++) {
-			$totalDistance += $this->haversineDistance($locations[$i]['latitude'], $locations[$i]['longitude'], $locations[($i + 1) % count($locations)]['latitude'], $locations[($i + 1) % count($locations)]['longitude']);
-		}
 		
-		if (count($locations) > 0)
+		if ($locations && count($locations) > 0)
 		{
+			for ($i = 0; $i < count($locations); $i++) {
+				$totalDistance += $this->haversineDistance($locations[$i]['latitude'], $locations[$i]['longitude'], $locations[($i + 1) % count($locations)]['latitude'], $locations[($i + 1) % count($locations)]['longitude']);
+			}
 
 			$totalDistance += $this->haversineDistance($locations[(count($locations) - 1)]['latitude'], $locations[(count($locations) - 1)]['longitude'], $route->latitude, $route->longitude);
 		}
