@@ -241,9 +241,9 @@ class TripController extends CustomController
 
             if (isset($trip->trip_id))
             {
-                return json_encode(array('success'=>1, 'result'=>$trip));
+                return array('success'=>1, 'result'=>$trip);
             } else {
-                return json_encode(array('error'=>1, 'result'=>__('Not available')));
+                return array('error'=>1, 'result'=>__('Not available'));
 			}
 
         } catch (Exception $e) {
