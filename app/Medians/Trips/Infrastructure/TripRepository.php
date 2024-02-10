@@ -255,6 +255,8 @@ class TripRepository
 	public function createTrip($data)
 	{
 
+		$data = (array) $data;
+
 		// Load route with locations
 		$route = $this->routeRepo->getRouteForTrip($data['route_id']);
 
