@@ -258,6 +258,10 @@ class TripRepository
 		// Load route with locations
 		$route = $this->routeRepo->getRouteForTrip($data['route_id']);
 
+		// Stop if no locations for this route today
+		if (empty($route->route_locations))
+			return null;
+
 		$data['date'] =  date('Y-m-d');
 		$data['business_id'] =  $this->business_id;
 		$data['route_id'] =  $route->route_id;

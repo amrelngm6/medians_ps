@@ -241,8 +241,10 @@ class TripController extends CustomController
 
             if (isset($trip->trip_id))
             {
-                echo json_encode(array('success'=>1, 'result'=>$trip, 'reload'=>1));
-            }
+                return json_encode(array('success'=>1, 'result'=>$trip));
+            } else {
+                return json_encode(array('error'=>1, 'result'=>__('Not available')));
+			}
 
         } catch (Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
