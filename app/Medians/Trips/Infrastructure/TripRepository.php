@@ -90,7 +90,7 @@ class TripRepository
 		return Trip::where('business_id', $this->business_id)->with(['locations'=> function($q){
 			$q->with('model');
 		}])
-		->where('driver_id', 1)
+		->where('driver_id', $driver_id)
 		->whereDate('date', date('Y-m-d'))
 		->where('status', 'started')
 		->first();
