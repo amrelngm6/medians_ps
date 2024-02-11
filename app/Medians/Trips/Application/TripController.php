@@ -267,7 +267,7 @@ class TripController extends CustomController
 
 	public function updateLocation()
 	{
-		$params = json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->request()->get('params'));
 
         try 
 		{
