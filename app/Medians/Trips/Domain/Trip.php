@@ -30,6 +30,7 @@ class Trip extends CustomModel
 		'supervisor_id',
 		'date',
 		'status',
+		'trip_type',
 		'created_by'
 	];
 
