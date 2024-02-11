@@ -60,7 +60,7 @@ class Trip extends CustomModel
 	
 	public function route() 
 	{
-		return $this->hasOne(Route::class, 'route_id', 'route_id');	
+		return $this->hasOne(Route::class, 'route_id', 'route_id')->with('position');	
 	}
 
 	public function vehicle() 
