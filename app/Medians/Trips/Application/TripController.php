@@ -265,4 +265,24 @@ class TripController extends CustomController
         }
 	}
 
+	public function updateLocation()
+	{
+		$params = json_decode($this->app->request()->get('params'));
+
+        try 
+		{
+			$location = $this->repo->updateTripLocationStatus($params);
+
+            if ($location)
+            {
+                return array('success'=>1, 'result'=>$location);
+            } else {
+                return array('error'=>1, 'result'=>__('Not available'));
+			}
+
+        } catch (Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
+
 }
