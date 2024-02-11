@@ -268,6 +268,7 @@ class TripRepository
 		$data['driver_id'] =  $route->driver_id;
 		$data['vehicle_id'] =  $route->vehicle_id;
 		$data['supervisor_id'] =  $route->supervisor_id;
+		$data['status'] =  'started';
 		// Create the Trip
 		$save = Trip::firstOrCreate($data);
 
