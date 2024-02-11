@@ -36,12 +36,14 @@ class PrivateTripController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new PrivateTripRepository($this->app->auth()->business);
-		$this->employeeRepo = new EmployeeRepository($this->app->auth()->business);
-		$this->supervisorRepo = new SuperVisorRepository($this->app->auth()->business);
-		$this->parentRepo = new ParentRepository($this->app->auth()->business);
-		$this->vehicleRepo = new VehicleRepository($this->app->auth()->business);
-		$this->driverRepo = new DriverRepository($this->app->auth()->business);
+		$user = $this->app->auth();
+
+		$this->repo = new PrivateTripRepository(isset($user->business) ? $user->business : null);
+		$this->employeeRepo = new EmployeeRepository(isset($user->business) ? $user->business : null);
+		$this->supervisorRepo = new SuperVisorRepository(isset($user->business) ? $user->business : null);
+		$this->parentRepo = new ParentRepository(isset($user->business) ? $user->business : null);
+		$this->vehicleRepo = new VehicleRepository(isset($user->business) ? $user->business : null);
+		$this->driverRepo = new DriverRepository(isset($user->business) ? $user->business : null);
 	}
 
 
@@ -101,10 +103,12 @@ class PrivateTripController extends CustomController
 
 		$params = $this->app->request()->get('params');
 
+		$user = $this->app->auth();
+
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;
-        	$params['business_id'] = $this->app->auth()->business->business_id;
+        	$params['created_by'] = $user->id;
+        	$params['business_id'] = $user->business->business_id;
 
 			$returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
