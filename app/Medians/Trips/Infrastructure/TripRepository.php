@@ -88,7 +88,7 @@ class TripRepository
 	public function getActiveDriverTrip($driver_id)
 	{
 		return Trip::where('business_id', $this->business_id)
-		->with('route','driver','vehicle')
+		->with('route','driver','vehicle','supervisor')
 		->with(['locations'=> function($q){
 			$q->with('model');
 		}])
