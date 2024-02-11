@@ -64,6 +64,7 @@ RouteHandler::get('/upcoming_private_trip', \Medians\Trips\Application\PrivateTr
 RouteHandler::get('/getParentTrip/(:all)', \Medians\Trips\Application\TripController::class.'@getParentTrip');
 RouteHandler::get('/events', \Medians\Events\Application\EventController::class.'@index');
 RouteHandler::get('/routes', \Medians\Routes\Application\RouteController::class.'@index');
+RouteHandler::get('/Route_active_trip', \Medians\Trips\Application\TripController::class.'@getActiveTrip');
 
 
 

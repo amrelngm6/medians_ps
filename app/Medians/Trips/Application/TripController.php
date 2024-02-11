@@ -238,7 +238,7 @@ class TripController extends CustomController
 
 		try 
 		{
-			return $this->repo->getActiveTrip($user->driver_id, $params['route_id']);
+			return $this->repo->getActiveDriverTrip($user->driver_id);
 			
 		} catch (Exception $e) {
 			throw new \Exception("Error Processing Request", 1);
