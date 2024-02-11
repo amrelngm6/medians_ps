@@ -231,6 +231,21 @@ class TripController extends CustomController
 	}
 
 	
+	public function getActiveTrip()
+	{
+		$params = json_decode($this->app->request()->get('params'));
+		$user = $this->app->auth();
+
+		try 
+		{
+			return $this->repo->getActiveTrip($user->driver_id, $params['route_id']);
+			
+		} catch (Exception $e) {
+			throw new \Exception("Error Processing Request", 1);
+		}
+	}
+
+
 	public function createTrip()
 	{
 		$params = json_decode($this->app->request()->get('params'));

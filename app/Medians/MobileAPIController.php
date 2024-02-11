@@ -63,12 +63,12 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadParentHelpMessages();
 				break;
 
-			case 'create_trip':
-				$return = (new \Medians\Trips\Infrastructure\TripRepository())->createTrip($params);
+			case 'Route.start_trip':
+				$return = (new \Medians\Trips\Application\TripController())->createTrip();
 				break;
 
-			case 'Route.start_trip':
-				$return = (new \Medians\Trips\Application\TripController())->createTrip($params);
+			case 'Route.active_trip':
+				$return = (new \Medians\Trips\Application\TripController())->getActiveTrip();
 				break;
 
 			case 'end_trip':
