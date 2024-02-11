@@ -233,7 +233,6 @@ class TripController extends CustomController
 	
 	public function getActiveTrip()
 	{
-		$params = json_decode($this->app->request()->get('params'));
 		$user = $this->app->auth();
 
 		try 
