@@ -145,9 +145,9 @@ class DriverRepository
     {
 		$Auth = new \Medians\Auth\Application\AuthService;
 
-		$Object = Driver::find($data['driver_id']);
+		$Object = $this->findByToken($data['reset_token'], 'reset_token');
 		
-		if (!$this->findByToken($data['reset_token'], 'reset_token'))
+		if (!$Object)
 		{
 			return __('PASSWORD_ERROR');
 		}
