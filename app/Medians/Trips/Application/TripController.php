@@ -142,10 +142,10 @@ class TripController extends CustomController
 	public function endTrip()
 	{
 		$params = (array) json_decode($this->app->request()->get('params'));
-
+		$user = $this->app->auth();
         try 
 		{
-            if ($this->repo->endTrip($params))
+            if ($this->repo->endTrip($params, $user->driver_id))
             {
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
