@@ -276,8 +276,6 @@ class DriverController extends CustomController
 
         try {
 			
-			$params['driver_id'] = $this->app->auth()->driver_id;
-
 			$check = $this->repo->resetChangePassword($params);
             return isset($check->driver_id)
 			 ? array('success'=>1, 'result'=>__('Password Updated'), 'reload'=>1)
