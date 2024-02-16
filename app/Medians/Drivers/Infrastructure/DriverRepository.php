@@ -4,6 +4,7 @@ namespace Medians\Drivers\Infrastructure;
 
 use Medians\Drivers\Domain\Driver;
 use Medians\Drivers\Domain\Content;
+use Medians\Mail\Application\MailService;
 use Medians\CustomFields\Domain\CustomField;
 
 
@@ -163,24 +164,24 @@ class DriverRepository
 	public function resetPassword($data) 
 	{
 
-		$Model = new Parents();
+		$Model = new Driver();
 		
 		$findByEmail = $this->findByEmail($data['email']);
 
 		if (empty($findByEmail))
 			return __('User not found');
 		
-		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $findByEmail->parent_id)->where('code', 'reset_token')->delete();
+		$deleteOld = CustomField::where('model_type', Driver::class)->where('model_id', $findByEmail->driver_id)->where('code', 'reset_token')->delete();
 		
 		$fields = [];
-		$fields['model_type'] = Parents::class;	
-		$fields['model_id'] = $findByEmail->parent_id;	
+		$fields['model_type'] = Driver::class;	
+		$fields['model_id'] = $findByEmail->driver_id;	
 		$fields['code'] = 'reset_token';	
 		$fields['value'] = $this->randomPassword();
 
 		$Model = CustomField::create($fields);
 		
-		$sendMail = new MailService($findByEmail->email, $findByEmail->parent_name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
+		$sendMail = new MailService($findByEmail->email, $findByEmail->name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
 		$sendMail->sendMail();
 
 		return  1;
@@ -221,6 +222,9 @@ class DriverRepository
 
 		// Return the  object with the new data
     	$Object = Driver::create($dataArray);
+
+		// $sendMail = new MailService($Object->email, $Object->first_name, 'Your account password', "Here is the password for your generated Driver account \n\n ".$Object->generated_password);
+		// $sendMail->sendMail();
 
     	// Store Custom fields
 		if (isset($data['field']))

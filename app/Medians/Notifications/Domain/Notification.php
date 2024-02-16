@@ -111,8 +111,8 @@ class Notification extends CustomModel
 			return null;
 		}
 
-		$receiverPK = method_exists($receiver, 'getPrimaryKey') ?? $receiver->getPrimaryKey();
-		$modelPK =  method_exists($model, 'getPrimaryKey') ?? $model->getPrimaryKey();
+		$receiverPK = $receiver->getPrimaryKey();
+		$modelPK =  $model->getPrimaryKey();
 
 		if (empty($receiver->$receiverPK))
 		{
@@ -143,12 +143,13 @@ class Notification extends CustomModel
 	public function sendNotification(Notification $notification, $receiver)
 	{
 		
+		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
+		$send = $sendMail->sendMail();
+		
 		$id = ($notification->receiver_type == Driver::class) ? "D-".$notification->receiver_id : "P-".$notification->receiver_id;
 		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($id);
 		$send = $sendOneSignalNotification->sendNotification($notification->subject, $notification->body_text);
 
-		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
-
-		return $sendMail->sendMail();
+		return true;
 	}
 }
