@@ -147,14 +147,12 @@ class DriverRepository
 
 		$Object = Driver::find($data['driver_id']);
 		
-		$current = $Auth->encrypt($data['current_password']);
-
 		if (!$this->findByToken($data['reset_token'], 'reset_token'))
 		{
 			return __('PASSWORD_ERROR');
 		}
 
-		$data['password'] = $Auth->encrypt($data['new_password']);
+		$data['password'] = $Auth->encrypt($data['password']);
 
 		// Return the  object with the new data
     	$Object->update( (array) $data);

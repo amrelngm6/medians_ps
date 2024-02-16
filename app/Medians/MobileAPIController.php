@@ -145,6 +145,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Drivers\Application\DriverController())->changePassword(); 
 				break;
 				
+			case 'Drivers.resetChangePassword':
+				$return =  (new Drivers\Application\DriverController())->resetChangePassword(); 
+				break;
+				
 			case 'Driver.getActiveDriverTrip':
 				$return =  (new Trips\Application\TripController())->getActiveDriverTrip(); 
 				break;

@@ -280,7 +280,7 @@ class DriverController extends CustomController
 
 			$check = $this->repo->resetChangePassword($params);
             return isset($check->driver_id)
-			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+			 ? array('success'=>1, 'result'=>__('Password Updated'), 'reload'=>1)
 			 : array('error'=>$check, 'result'=>__('Error'));
 
         } catch (\Exception $e) {
