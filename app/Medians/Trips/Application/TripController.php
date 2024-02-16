@@ -136,6 +136,26 @@ class TripController extends CustomController
 
 	}
 
+	/**
+	 * End Route trip
+	 */
+	public function endTrip()
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+        try 
+		{
+            if ($this->repo->endTrip($params))
+            {
+                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+            }
+        
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        	
+        }
+	}
+
 	
 	/**
 	 * get Trip

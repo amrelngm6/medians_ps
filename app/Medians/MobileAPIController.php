@@ -75,7 +75,7 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Trips\Application\TripController())->updateLocation();
 				break;
 
-			case 'end_trip':
+			case 'Route.end_trip':
 				$return = (new \Medians\Trips\Infrastructure\TripRepository())->endTrip($params);
 				break;
 

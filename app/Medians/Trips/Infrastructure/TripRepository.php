@@ -331,14 +331,14 @@ class TripRepository
 	/**
 	 * End trip
 	 */
-	public function endTrip($data)
+	public function endTrip($data, $driverId)
 	{
 		
-		$trip = Trip::find($data['trip_id']);
+		$trip = Trip::where('driver_id', $driverId)->where('trip_id', $data['trip_id'])->first();
 
 		$update = $trip->update($data);
 
-		TripLocation::where('trip_id', $data['trip_id'])->update(['status'=> 'done', 'dropoff_time'=> date('Y-m-d h:i:s')]);
+		$updateLocations = TripLocation::where('trip_id', $data['trip_id'])->update(['status'=> 'done', 'dropoff_time'=> date('Y-m-d h:i:s')]);
 
 		return $update ? true : false;
 	}
