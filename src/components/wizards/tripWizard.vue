@@ -361,7 +361,7 @@ import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 
 import { defineAsyncComponent, ref } from 'vue';
-import { translate, getProgressWidth, handleRequest, deleteByKey, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails, today } from '@/utils.vue';
+import { translate, getProgressWidth, handleRequest, formatCustomTime, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails, today } from '@/utils.vue';
 
 const SideFormCreate = defineAsyncComponent(() =>
     import('@/components/includes/side-form-create.vue')
@@ -655,6 +655,7 @@ export default
                 activeItem,
                 activeTab,
                 translate,
+                formatCustomTime,
                 updatePickupMarker,
                 updateDestinationMarker,
                 searchText,
