@@ -192,7 +192,7 @@
 
                                             <div class="w-full flex gap-4" v-if="activeItem">
 
-                                                <div class="flex gap-4 min-w-250px  " v-if="activeItem.driver">
+                                                <div class="flex gap-4 min-w-175px  " v-if="activeItem.driver">
                                                     <img :src="activeItem.driver.picture"
                                                         class="rounded-full bg-white border-1 border border-gray-600 p-1 w-12 h-12" />
                                                     <div class="block gap-4 w-full">
