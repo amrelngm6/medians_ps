@@ -76,7 +76,11 @@
                                                             <a href="javascript:;" class="text-gray-800 text-hover-primary fs-6 fw-bold" v-text="item.model.name"></a>
                                                             <span class="text-muted fw-semibold d-block fs-7" v-text="item.location.start_address"></span>
                                                         </div>
-                                                        <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
+                                                        <div>
+                                                            <p class="text-center" v-text="translate('Time')"></p>
+                                                            <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
