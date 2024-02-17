@@ -23,10 +23,10 @@
                                 <hr class="block mt-6 my-2 opacity-10" />
                                 <div class="mb-6 mx-auto  flex">
                                     <label class="w-200px col-form-label required fw-semibold fs-6"
-                                        v-text="translate('Pickup time')"></label>
+                                        v-text="translate('Start time')"></label>
                                     <input :required="true" autocomplete="off" name="params[start_time]"
                                         class="form-control form-control-solid" :placeholder="translate('Pickup time')"
-                                        type="time" v-value="formatCustomTime(activeItem.created_at, 'HH:mm a')">
+                                        type="time" :value="formatCustomTime(activeItem.created_at, 'hh:mm:ss')">
                                 </div>
                                 <div class="mb-6 mx-auto  flex">
 
