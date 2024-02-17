@@ -71,7 +71,7 @@
                                                         <img :src="item.model.picture" class="h-50 align-self-center" alt="">
                                                     </div>
 
-                                                    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                                    <div class="flex align-items-center ">
                                                         <div class="flex-grow-1 me-2">
                                                             <a href="javascript:;" class="text-gray-800 text-hover-primary fs-6 fw-bold" v-text="item.model.name"></a>
                                                             <span class="text-muted fw-semibold d-block fs-7" v-text="item.location.start_address"></span>
