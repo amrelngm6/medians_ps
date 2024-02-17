@@ -74,7 +74,7 @@
                             <div class="card-body pt-0">
                                 <div class="settings-form">
                                     <div class="px-10 mb-6 mx-auto row">
-                                        <div class="lg:flex w-full ">
+                                        <div class="lg:flex w-full gap-6">
                                             <div class="mt-10 w-full">
                                                 <div class="flex gap-6">
                                                     <h3 class="mb-3 w-full" v-text="translate('Location Address')"></h3>
@@ -110,63 +110,9 @@
                             </div>
                             <p class="text-center"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Destination'" v-text="translate('Destination')"></a></p>
+                                    @click="activeTab = 'Confirm'" v-text="translate('Confirm')"></a></p>
                         </div>
 
-
-
-
-                        <div class="" v-if="activeTab == 'Vehicle'" :key="activeTab">
-
-                            <div class="card-body pt-0 mx-auto max-w-xl" :key="vehicles">
-                                <div class="text-center mb-13">
-                                    <h1 class="mb-3" v-text="translate('Find vehicle')"></h1>
-
-                                    <div class="text-gray-400 font-semibold " v-text="translate('Search by name')"></div>
-                                </div>
-                                <div class="w-100 relative mb-5" autocomplete="off">
-
-                                    <vue-feather type="truck"
-                                        class="text-gray-500 position-absolute top-50 ms-5 translate-middle-y"></vue-feather>
-
-                                    <input type="text" @type="findVehicle" @input="findVehicle" v-model="searchText"
-                                        class="form-control form-control-lg form-control-solid px-15"
-                                        :placeholder="translate('Search by name, plate number')">
-                                </div>
-                                <div class="w-full " v-for="vehicle in vehicles" v-if="searchText">
-                                    <a href="javascript:;" :key="vehicle.show" v-if="vehicle && vehicle.show"
-                                        class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
-
-                                        <div class="symbol symbol-35px symbol-circle me-5">
-                                            <car_icon v-if="!vehicle.picture" />
-                                            <img alt="Pic" v-if="vehicle.picture" :src="vehicle.picture">
-                                        </div>
-                                        <div class="fw-semibold w-full">
-                                            <span class="text-lg text-danger font-semibold me-2"
-                                                v-text="vehicle.vehicle_name"></span>
-                                            <span class="block text-gray-500 text-sm" v-text="vehicle.plate_number"></span>
-                                        </div>
-                                        <span @click="setVehicle(vehicle)" class="btn btn-danger btn-sm text-white"
-                                            v-text="translate('Choose')"></span>
-                                    </a>
-                                </div>
-                                
-                            </div>
-
-                            <p class="text-center"><a href="javascript:;"
-                                    class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Time'" v-text="translate('Set Time')"></a></p>
-                        </div>
-
-                        <div class="" v-if="activeTab == 'Time'" :key="activeTab">
-                            <div class="card-body pt-0">
-                                <div class="settings-form">
-                                </div>
-                            </div>
-                            <p class="text-center mt-10"><a href="javascript:;"
-                                    class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
-                        </div>
 
                         <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
 
@@ -350,7 +296,7 @@ export default
             const searchText = ref('');
             const locationError = ref(null);
             const collapsed = ref(false);
-            const fillable = ref(['Info', 'Locations', 'Driver', 'Vehicle', 'Time', 'Confirm']);
+            const fillable = ref(['Info', 'Locations', 'Confirm']);
             const places = ref([]);
             const showPlaceSearch = ref(false);
             const pickup_placeSearch = ref('');
