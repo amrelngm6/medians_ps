@@ -107,16 +107,15 @@
                                                             <span class="text-muted fw-semibold d-block fs-7" v-text="item.location.start_address"></span>
                                                         </div>
                                                         <div>
-                                                            <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
-
+                                                            <a href="javascript:;" @click="activeItem.currentLat = item.location.start_latitude, activeItem.currentLng = item.location.start_longitude" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class=" w-full">
                                                 <editable_map_location :system_setting="system_setting" :item="activeItem"
-                                                    @setlocation="updatePickupMarker" :key="activeItem.route"
-                                                    :location="{ lat: activeItem.route.position.start_latitude, lng: activeItem.route.position.start_longitude }">
+                                                    @setlocation="updatePickupMarker" :key="activeItem.currentLat"
+                                                    :location="activeItem.currentLat ? { lat: activeItem.currentLat, lng: activeItem.currentLng } : {lat:activeItem.route.position.start_latitude, lng:activeItem.route.position.start_longitude}">
                                                 </editable_map_location>
                                             </div>
                                         </div>
