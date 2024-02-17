@@ -2,7 +2,7 @@
     <div class="w-full overflow-auto" >
 
         <trip_wizard @callback="showWizard = false" :conf="conf"
-                v-if="showWizard && activeItem.usertype" :usertype="activeItem.usertype"
+                v-if="showWizard" 
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 

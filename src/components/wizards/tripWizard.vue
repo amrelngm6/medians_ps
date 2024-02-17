@@ -60,7 +60,7 @@
                                     @click="activeTab = 'Pickup location'" v-text="translate('Pickup location')"></a></p>
                         </div>
 
-                        <div class="" v-if="activeTab == 'Pickup location'" :key="activeTab">
+                        <div class="" v-if="activeTab == 'Locations'" :key="activeTab">
                             <div class="card-body pt-0">
                                 <div class="settings-form">
                                     <div class="px-10 mb-6 mx-auto row">
@@ -120,64 +120,7 @@
                                 class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                 @click="activeTab = 'Destination'" v-text="translate('Destination')"></a></p>
                         </div>
-                        <div class="" v-if="activeTab == 'Destination'" :key="activeTab">
-                            <div class="card-body pt-0">
-                                <div class="px-10 mb-6 mx-auto row">
-                                    <div class="lg:flex w-full">
-                                        <div class="mt-10 w-full">
-                                            <h3 class="mb-3" v-text="translate('Location Address')"></h3>
-
-                                            <div class="fw-semibold text-gray-600 fs-6">
-                                                <span class="d-block fw-bold pb-3 text-gray-400"
-                                                    :key="activeItem.destination_address" v-text="activeItem.destination_address"></span>
-                                                <a class="fw-bold" @click="showPlaceSearch = true" href="javascript:;"
-                                                    v-text="translate('Change')"></a>
-                                            </div>
-                                            <div v-if="showPlaceSearch" :key="showPlaceSearch">
-                                                <input autocomplete="off" @change="destinationPlaceChanged"
-                                                    v-model="destination_placeSearch" type="text"
-                                                    class="form-control form-control-solid"
-                                                    :placeholder="translate('Find Location')">
-
-                                                <div class="mt-3 w-full card-body" v-if="places && destination_placeSearch.length"
-                                                    :key="places">
-                                                    <div class="w-full" v-for="place in places">
-                                                        <div class="d-flex align-items-center mb-8" v-if="place">
-                                                            <span class="bullet bullet-vertical h-40px bg-success"></span>
-                                                            <div class="form-check form-check-custom form-check-solid mx-5 cursor-pointer"
-                                                                @click="setPlaceMarker(place, 'destination')">
-                                                                <input class="form-check-input" type="checkbox" value="">
-                                                            </div>
-                                                            <div class="flex-grow-1 cursor-pointer"
-                                                                @click="setPlaceMarker(place, 'destination')">
-                                                                <a href="#"
-                                                                    class="text-gray-800 text-hover-primary fw-bold fs-6"
-                                                                    v-if="place.structured_formatting"
-                                                                    v-text="place.structured_formatting.main_text"></a>
-                                                                <span class="text-muted fw-semibold d-block"
-                                                                    v-text="place.description"></span>
-                                                            </div>
-                                                            <span class="badge badge-light-success fs-8 fw-bold"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class=" w-full">
-                                            <editable_map_location :system_setting="system_setting" :item="activeItem"
-                                                @setlocation="updateDestinationMarker" :key="activeItem.destination_latitude"
-                                                :location="{ lat: activeItem.destination_latitude, lng: activeItem.destination_longitude }">
-                                            </editable_map_location>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-center"><a href="javascript:;"
-                                    class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Driver'" v-text="translate('Driver')"></a></p>
-                        </div>
-
-
+                      
                         
 
                         <div class="" v-if="activeTab == 'Driver'" :key="activeTab">
@@ -473,13 +416,13 @@ export default
             const showAddSide = ref(false);
             const showEditSide = ref(false);
             const activeItem = ref({});
-            const activeTab = ref(props.usertype);
+            const activeTab = ref('Info');
             const content = ref({});
             const center = ref({});
             const searchText = ref('');
             const locationError = ref(null);
             const collapsed = ref(false);
-            const fillable = ref([props.usertype, 'Locations', 'Driver', 'Vehicle', 'Time', 'Confirm']);
+            const fillable = ref(['Info', 'Locations', 'Driver', 'Vehicle', 'Time', 'Confirm']);
             const places = ref([]);
             const showPlaceSearch = ref(false);
             const pickup_placeSearch = ref('');
@@ -621,7 +564,7 @@ export default
             const setUser = (user) => {
                 activeItem.value.model_id = props.usertype == 'student' ? user.student_id : user.customer_id;
                 activeItem.value.model = user;
-                activeTab.value = 'Pickup location';
+                activeTab.value = 'Locations';
                 searchText.value = null;
             }
 
