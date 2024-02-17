@@ -11,45 +11,22 @@
                         </div>
                     </div>
                     <div class="w-full">
-                        <div class="" v-if="activeTab == usertype" :key="activeTab">
+                        <div class="" v-if="activeTab == 'Info'" :key="activeTab">
                             <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
-                                <div class="text-center mb-13">
-                                    <h1 class="mb-3" v-text="translate('Find ' + usertype)"></h1>
+                                
+                                <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
+                                    class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
+                                    <div class="symbol symbol-35px symbol-circle me-5">
+                                        <car_icon v-if="!activeItem.driver.picture" />
+                                        <img alt="Pic" v-if="activeItem.driver.picture"
+                                            :src="activeItem.driver.picture">
+                                    </div>
 
-                                    <div class="text-gray-400 font-semibold "
-                                        v-text="translate('Search by name, email or mobile')"></div>
-                                </div>
-                                <div class="w-100 relative mb-5" autocomplete="off">
-
-                                    <vue-feather type="smile"
-                                        class="text-gray-500 position-absolute top-50 ms-5 translate-middle-y"></vue-feather>
-
-                                    <input type="text" @type="findUser" @input="findUser" v-model="searchText"
-                                        class="form-control form-control-lg form-control-solid px-15"
-                                        :placeholder="translate('Search by name, parent name')">
-                                </div>
-                                <div class="w-full " v-for="usermodel in userslist" v-if="searchText">
-                                    <a href="javascript:;" :key="usermodel.show" v-if="usermodel.show"
-                                        class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
-                                        <div class="symbol symbol-35px symbol-circle me-5"><img alt="Pic"
-                                                :src="usermodel.picture"></div>
-                                        <div class="fw-semibold w-full">
-                                            <span class="text-lg text-danger font-semibold me-2"
-                                                v-text="usermodel.name"></span>
-                                            <span class="block text-gray-500 text-sm" v-text="usermodel.mobile"></span>
-                                        </div>
-                                        <span @click="setUser(usermodel)" class="btn btn-danger btn-sm text-white"
-                                            v-text="translate('Choose')"></span>
-                                    </a>
-                                </div>
-                                <a href="javascript:;" :key="activeItem.model" v-if="activeItem.model"
-                                    class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
-                                    <div class="symbol symbol-35px symbol-circle me-5"><img alt="Pic"
-                                            :src="activeItem.model.picture"></div>
                                     <div class="fw-semibold w-full">
                                         <span class="text-lg text-danger font-semibold me-2"
-                                            v-text="activeItem.model.name"></span>
-                                        <span class="block text-gray-500 text-sm" v-text="activeItem.model.mobile"></span>
+                                            v-text="activeItem.driver.name"></span>
+                                        <span class="block text-gray-500 text-sm truncate"
+                                            v-text="activeItem.driver.mobile"></span>
                                     </div>
                                 </a>
                             </div>
