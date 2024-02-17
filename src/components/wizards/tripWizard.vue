@@ -47,6 +47,23 @@
                                         </div>
                                     </a>
                                 </div>
+                                <div class="mb-6 mx-auto  flex">
+
+                                    <label class="w-200px my-2 col-form-label required fw-semibold fs-6" v-text="translate('Vehicle')"></label>
+                                    <a href="javascript:;" :key="activeItem.vehicle" v-if="activeItem.vehicle"
+                                        class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
+                                        <div class="symbol symbol-35px symbol-circle me-5">
+                                            <car_icon v-if="!activeItem.vehicle.picture" />
+                                            <img alt="Pic" v-if="activeItem.vehicle.picture" :src="activeItem.vehicle.picture">
+                                        </div>
+                                        <div class="fw-semibold w-full">
+                                            <span class="text-lg text-danger font-semibold me-2"
+                                                v-text="activeItem.vehicle.vehicle_name"></span>
+                                            <span class="block text-gray-500 text-sm"
+                                                v-text="activeItem.vehicle.plate_number"></span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                             <p class="text-center"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
@@ -98,70 +115,6 @@
 
 
 
-                        <div class="" v-if="activeTab == 'Driver'" :key="activeTab">
-                            <div class="card-body pt-0">
-                                <div class="settings-form">
-                                    <div class="max-w-xl mb-6 mx-auto row">
-                                        <div class="card-body pt-0 mx-auto max-w-xl" :key="drivers">
-
-                                            <div class="text-center mb-13">
-                                                <h1 class="mb-3" v-text="translate('Find Driver')"></h1>
-
-                                                <div class="text-gray-400 font-semibold "
-                                                    v-text="translate('Search by name or mobile')"></div>
-                                            </div>
-                                            <div class="w-100 relative mb-5" autocomplete="off">
-
-                                                <vue-feather type="user"
-                                                    class="text-gray-500 position-absolute top-50 ms-5 translate-middle-y"></vue-feather>
-
-                                                <input type="text" @change="findDriver" @input="findDriver"
-                                                    v-model="searchText"
-                                                    class="form-control form-control-lg form-control-solid px-15"
-                                                    :placeholder="translate('Search by name or mobile')">
-                                            </div>
-                                            <div class="w-full " v-for="driver in drivers" v-if="searchText">
-                                                <a href="javascript:;" :key="driver.show" v-if="driver && driver.show"
-                                                    class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
-                                                    <div class="symbol symbol-35px symbol-circle me-5">
-                                                        <car_icon v-if="!driver.picture" />
-                                                        <img alt="Pic" v-if="driver.picture" :src="driver.picture">
-                                                    </div>
-                                                    <div class="fw-semibold w-full">
-                                                        <span class="text-lg text-danger font-semibold me-2"
-                                                            v-text="driver.name"></span>
-                                                        <span class="block text-gray-500 text-sm"
-                                                            v-text="driver.mobile"></span>
-                                                    </div>
-                                                    <span @click="setDriver(driver)"
-                                                        class="btn btn-danger btn-sm text-white"
-                                                        v-text="translate('Choose')"></span>
-                                                </a>
-                                            </div>
-
-                                            <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
-                                                class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
-                                                <div class="symbol symbol-35px symbol-circle me-5">
-                                                    <car_icon v-if="!activeItem.driver.picture" />
-                                                    <img alt="Pic" v-if="activeItem.driver.picture"
-                                                        :src="activeItem.driver.picture">
-                                                </div>
-
-                                                <div class="fw-semibold w-full">
-                                                    <span class="text-lg text-danger font-semibold me-2"
-                                                        v-text="activeItem.driver.name"></span>
-                                                    <span class="block text-gray-500 text-sm truncate"
-                                                        v-text="activeItem.driver.mobile"></span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-center"><a href="javascript:;"
-                                    class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Vehicle'" v-text="translate('Vehicle')"></a></p>
-                        </div>
 
                         <div class="" v-if="activeTab == 'Vehicle'" :key="activeTab">
 
@@ -197,19 +150,7 @@
                                             v-text="translate('Choose')"></span>
                                     </a>
                                 </div>
-                                <a href="javascript:;" :key="activeItem.vehicle" v-if="activeItem.vehicle"
-                                    class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
-                                    <div class="symbol symbol-35px symbol-circle me-5">
-                                        <car_icon v-if="!activeItem.vehicle.picture" />
-                                        <img alt="Pic" v-if="activeItem.vehicle.picture" :src="activeItem.vehicle.picture">
-                                    </div>
-                                    <div class="fw-semibold w-full">
-                                        <span class="text-lg text-danger font-semibold me-2"
-                                            v-text="activeItem.vehicle.vehicle_name"></span>
-                                        <span class="block text-gray-500 text-sm"
-                                            v-text="activeItem.vehicle.plate_number"></span>
-                                    </div>
-                                </a>
+                                
                             </div>
 
                             <p class="text-center"><a href="javascript:;"
