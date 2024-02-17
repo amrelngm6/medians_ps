@@ -14,6 +14,21 @@
                         <div class="" v-if="activeTab == 'Info'" :key="activeTab">
                             <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
                                 
+                                <div class="mb-6 mx-auto ">
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                        v-text="translate('Trip Date')"></label>
+                                    <input :required="true" autocomplete="off" name="params[date]"
+                                        class="form-control form-control-solid" :placeholder="translate('Trip date')"
+                                        type="date" v-model="activeItem.date">
+                                    <hr class="block mt-6 my-2 opacity-10" />
+
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                        v-text="translate('Pickup time')"></label>
+                                    <input :required="true" autocomplete="off" name="params[start_time]"
+                                        class="form-control form-control-solid" :placeholder="translate('Pickup time')"
+                                        type="time" v-model="activeItem.start_time">
+
+                                </div>
                                 <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
                                     class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
                                     <div class="symbol symbol-35px symbol-circle me-5">
@@ -202,21 +217,6 @@
                         <div class="" v-if="activeTab == 'Time'" :key="activeTab">
                             <div class="card-body pt-0">
                                 <div class="settings-form">
-                                    <div class="max-w-xl mb-6 mx-auto row">
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                            v-text="translate('Trip Date')"></label>
-                                        <input :required="true" autocomplete="off" name="params[date]"
-                                            class="form-control form-control-solid" :placeholder="translate('Trip date')"
-                                            type="date" v-model="activeItem.date">
-                                        <hr class="block mt-6 my-2 opacity-10" />
-
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                            v-text="translate('Pickup time')"></label>
-                                        <input :required="true" autocomplete="off" name="params[start_time]"
-                                            class="form-control form-control-solid" :placeholder="translate('Pickup time')"
-                                            type="time" v-model="activeItem.start_time">
-
-                                    </div>
                                 </div>
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
