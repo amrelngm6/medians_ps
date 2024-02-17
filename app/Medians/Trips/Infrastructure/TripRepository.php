@@ -338,7 +338,7 @@ class TripRepository
 
 		$update = $trip->update($data);
 
-		$updateLocations = TripLocation::where('trip_id', $data['trip_id'])->update(['status'=> 'done', 'dropoff_time'=> date('Y-m-d h:i:s')]);
+		$updateLocations = TripLocation::where('trip_id', $data['trip_id'])->where('status', 'moving')->update(['status'=> 'done', 'dropoff_time'=> date('Y-m-d h:i:s')]);
 
 		return $update ? true : false;
 	}
