@@ -15,8 +15,7 @@
                             <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
                                 
                                 <div class="mb-6 mx-auto ">
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                        v-text="translate('Trip Date')"></label>
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Trip Date')"></label>
                                     <input :required="true" autocomplete="off" name="params[date]"
                                         class="form-control form-control-solid" :placeholder="translate('Trip date')"
                                         type="date" v-model="activeItem.date">
@@ -28,6 +27,8 @@
                                         class="form-control form-control-solid" :placeholder="translate('Pickup time')"
                                         type="time" v-value="formatCustomTime(activeItem.created_at, 'HH:mm a')">
                                 </div>
+
+                                <label class="my-2 col-form-label required fw-semibold fs-6" v-text="translate('Driver')"></label>
                                 <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
                                     class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
                                     <div class="symbol symbol-35px symbol-circle me-5">
