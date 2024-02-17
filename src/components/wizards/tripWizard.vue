@@ -315,27 +315,6 @@
                             <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
                         </div>
 
-                        <div class="" v-if="activeTab == 'Cost'" :key="activeTab">
-                            <div class="card-body pt-0"  >
-                                <div class="settings-form" >
-                                    <div class="max-w-xl mb-6 mx-auto row" >
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Subtotal')" ></label>
-                                        <input :required="true" autocomplete="off" name="params[subtotal]" class="form-control form-control-solid" :placeholder="translate('Trip subtotal')" type="number" v-model="activeItem.subtotal">
-                                        <hr class="block mt-6 my-2 opacity-10" />
-
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Discount')" ></label>
-                                        <input :required="true" autocomplete="off" name="params[discount]" class="form-control form-control-solid" :placeholder="translate('Trip discount')" type="number" v-model="activeItem.discount">
-                                        <hr class="block mt-6 my-2 opacity-10" />
-
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Discount')" ></label>
-                                        <input :required="true" autocomplete="off" name="params[total_cost]" class="form-control form-control-solid" :placeholder="translate('Trip total cost')" type="number" v-model="activeItem.total_cost">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
-                        </div>
-
                         <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
                             
                             <div class="w-full flex gap-10">
@@ -450,7 +429,6 @@
 
 import close_icon from '@/components/svgs/Close.vue';
 import delete_icon from '@/components/svgs/trash.vue';
-import route_icon from '@/components/svgs/route.vue';
 import car_icon from '@/components/svgs/car.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
@@ -504,7 +482,7 @@ export default
             const searchText = ref('');
             const locationError = ref(null);
             const collapsed = ref(false);
-            const fillable = ref([props.usertype, 'Pickup location', 'Destination',  'Driver', 'Vehicle', 'Time', 'Cost', 'Confirm']);
+            const fillable = ref([props.usertype, 'Locations', 'Driver', 'Vehicle', 'Time', 'Confirm']);
             const places = ref([]);
             const showPlaceSearch = ref(false);
             const pickup_placeSearch = ref('');
