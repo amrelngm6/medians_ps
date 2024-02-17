@@ -26,8 +26,7 @@
                                         v-text="translate('Pickup time')"></label>
                                     <input :required="true" autocomplete="off" name="params[start_time]"
                                         class="form-control form-control-solid" :placeholder="translate('Pickup time')"
-                                        type="time" v-model="activeItem.start_time">
-
+                                        type="time" v-value="formatCustomTime(activeItem.created_at, 'HH:mm a')">
                                 </div>
                                 <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
                                     class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
@@ -377,6 +376,7 @@ const form_field = defineAsyncComponent(() =>
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import tooltip from '@/components/includes/tooltip.vue';
 import trip_map from '@/components/maps/trip_map.vue';
+import moment from 'moment';
 
 export default
     {

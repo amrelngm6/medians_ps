@@ -15,6 +15,10 @@ export function formatDateTime(date) {
   return moment(date).format('YYYY-MM-DD HH:mm a');
 }
 
+export function formatCustomTime(date, format = 'HH:mm a') {
+  return moment(date).format(format);
+}
+
 export function durationMonthsDate(date, value) {
     
     return moment(date).add(value, 'months').format("YYYY-MM-DD");
