@@ -116,11 +116,7 @@
 
                         <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
 
-                            <div class="w-full flex gap-10">
-                                <div class="w-full">
-                                    <trip_map @markerclicked="markerClicked" class="rounded-xl shadow-md mx-4"
-                                        :system_setting="system_setting" :conf="conf" :trip="activeItem" />
-                                </div>
+                            <div class="max-w-xl mx-auto">
                                 <div class="w-full">
                                     <hr class="block mt-6 my-2 opacity-10" />
                                     <div class="bg-gray-200 shadow-md mb-10 rounded-xl">
