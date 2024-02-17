@@ -107,7 +107,10 @@
                                                             <span class="text-muted fw-semibold d-block fs-7" v-text="item.location.start_address"></span>
                                                         </div>
                                                         <div>
-                                                            <a href="javascript:;" @click="activeItem.currentLat = item.location.start_latitude, activeItem.currentLng = item.location.start_longitude" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
+                                                            <div @mouseover="item.showTip = true" @mouseleave="item.showTip = false"  >
+                                                                <a href="javascript:;" @click="activeItem.currentLat = item.location.start_latitude, activeItem.currentLng = item.location.start_longitude" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
+                                                                <tooltip v-if="item.showTip" :key="item.showTip" :title="translate('Show location at map')" ></tooltip></div>
+
                                                         </div>
                                                     </div>
                                                 </div>
