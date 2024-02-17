@@ -14,36 +14,39 @@
                         <div class="" v-if="activeTab == 'Info'" :key="activeTab">
                             <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
                                 
-                                <div class="mb-6 mx-auto ">
+                                <div class="mb-6 mx-auto  flex">
                                     <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Trip Date')"></label>
                                     <input :required="true" autocomplete="off" name="params[date]"
-                                        class="form-control form-control-solid" :placeholder="translate('Trip date')"
-                                        type="date" v-model="activeItem.date">
-                                    <hr class="block mt-6 my-2 opacity-10" />
-
+                                    class="form-control form-control-solid" :placeholder="translate('Trip date')"
+                                    type="date" v-model="activeItem.date">
+                                </div>
+                                <hr class="block mt-6 my-2 opacity-10" />
+                                <div class="mb-6 mx-auto  flex">
                                     <label class="col-lg-4 col-form-label required fw-semibold fs-6"
                                         v-text="translate('Pickup time')"></label>
                                     <input :required="true" autocomplete="off" name="params[start_time]"
                                         class="form-control form-control-solid" :placeholder="translate('Pickup time')"
                                         type="time" v-value="formatCustomTime(activeItem.created_at, 'HH:mm a')">
                                 </div>
+                                <div class="mb-6 mx-auto  flex">
 
-                                <label class="my-2 col-form-label required fw-semibold fs-6" v-text="translate('Driver')"></label>
-                                <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
-                                    class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
-                                    <div class="symbol symbol-35px symbol-circle me-5">
-                                        <car_icon v-if="!activeItem.driver.picture" />
-                                        <img alt="Pic" v-if="activeItem.driver.picture"
-                                            :src="activeItem.driver.picture">
-                                    </div>
+                                    <label class="my-2 col-form-label required fw-semibold fs-6" v-text="translate('Driver')"></label>
+                                    <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
+                                        class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
+                                        <div class="symbol symbol-35px symbol-circle me-5">
+                                            <car_icon v-if="!activeItem.driver.picture" />
+                                            <img alt="Pic" v-if="activeItem.driver.picture"
+                                                :src="activeItem.driver.picture">
+                                        </div>
 
-                                    <div class="fw-semibold w-full">
-                                        <span class="text-lg text-danger font-semibold me-2"
-                                            v-text="activeItem.driver.name"></span>
-                                        <span class="block text-gray-500 text-sm truncate"
-                                            v-text="activeItem.driver.mobile"></span>
-                                    </div>
-                                </a>
+                                        <div class="fw-semibold w-full">
+                                            <span class="text-lg text-danger font-semibold me-2"
+                                                v-text="activeItem.driver.name"></span>
+                                            <span class="block text-gray-500 text-sm truncate"
+                                                v-text="activeItem.driver.mobile"></span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                             <p class="text-center"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
