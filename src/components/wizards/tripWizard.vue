@@ -12,6 +12,21 @@
                     </div>
                     <div class="w-full">
                         <div class="" v-if="activeTab == 'Info'" :key="activeTab">
+                            <div class="text-start mt-6 text-sm">
+                                <div class="space-y-7">
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Duration')"></strong>
+                                        <span class="ms-2" v-text="activeItem.duration"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong
+                                            v-text="translate('Pickup locations')"></strong> <span class="ms-2"
+                                            v-text="activeItem.pickup_locations_count"></span></p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Route')"></strong>
+                                        <span class="ms-2" v-text="activeItem.route ? activeItem.route.route_name : ''"></span>
+                                    </p>
+                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Driver')"></strong>
+                                        <span class="ms-2" v-text="activeItem.driver_name"></span>
+                                    </p>
+                                </div>
+                            </div>
                             <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
                                 
                                 <div class="mb-6 mx-auto  flex">
