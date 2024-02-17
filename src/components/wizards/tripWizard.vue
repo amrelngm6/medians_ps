@@ -13,18 +13,22 @@
                     <div class="w-full">
                         <div class="" v-if="activeTab == 'Info'" :key="activeTab">
                             <div class="text-start mt-6 text-sm">
-                                <div class="space-y-7">
-                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Duration')"></strong>
-                                        <span class="ms-2" v-text="activeItem.duration"></span></p>
-                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong
-                                            v-text="translate('Pickup locations')"></strong> <span class="ms-2"
-                                            v-text="activeItem.pickup_locations_count"></span></p>
-                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Route')"></strong>
-                                        <span class="ms-2" v-text="activeItem.route ? activeItem.route.route_name : ''"></span>
-                                    </p>
-                                    <p class="text-zinc-400 dark:text-gray-400 flex gap-4"><strong v-text="translate('Driver')"></strong>
-                                        <span class="ms-2" v-text="activeItem.driver_name"></span>
-                                    </p>
+                                <div class="mt-6 w-full">
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+                                        <dashboard_card_white icon="/uploads/img/products_icome.png"
+                                            classes="bg-gradient-success" class="border border-1"
+                                            :title="translate('Duration')"
+                                            :value="activeItem.duration ? activeItem.duration : '0'">
+                                        </dashboard_card_white>
+                                        <dashboard_card_white icon="/uploads/img/products_icome.png"
+                                            classes="bg-gradient-info" class="border border-1"
+                                            :title="translate('Pickup locations')"
+                                            :value="activeItem.pickup_locations_count"></dashboard_card_white>
+                                        <dashboard_card_white icon="/uploads/img/products_icome.png"
+                                            classes="bg-gradient-danger" class="border border-1"
+                                            :title="translate('Distance')" :value="activeItem.distance">
+                                        </dashboard_card_white>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
@@ -255,7 +259,7 @@
 </template>
 <script>
 
-
+import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import close_icon from '@/components/svgs/Close.vue';
 import delete_icon from '@/components/svgs/trash.vue';
 import car_icon from '@/components/svgs/car.vue';
@@ -294,6 +298,7 @@ export default
             car_icon,
             form_field,
             editable_map_location,
+            dashboard_card_white,
             tooltip,
         },
         name: 'Route trips',
