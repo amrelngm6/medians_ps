@@ -40,7 +40,7 @@ class TripController extends CustomController
 
 		return [
             [ 'value'=> "trip_id", 'text'=> "#"],
-            [ 'value'=> "car_plate", 'text'=> __('vehicle'), 'sortable'=> true ],
+            [ 'value'=> "vehicle.plate_number", 'text'=> __('vehicle'), 'sortable'=> true ],
             [ 'value'=> "driver_name", 'text'=> __('driver'), 'sortable'=> true ],
 			[ 'value'=> "locations_count", 'text'=> __('pickup Locations'), 'sortable'=> true],
             [ 'value'=> "duration", 'text'=> __('Duration'), 'sortable'=> true ],
