@@ -64,7 +64,10 @@
                                     <div class="px-10 mb-6 mx-auto row">
                                         <div class="lg:flex w-full ">
                                             <div class="mt-10 w-full">
-                                                <h3 class="mb-3" v-text="translate('Location Address')"></h3>
+                                                <div class="flex gap-6">
+                                                    <h3 class="mb-3" v-text="translate('Location Address')"></h3>
+                                                    <p class="text-center" v-text="translate('Time')"></p>
+                                                </div>
 
                                                 <div class="d-flex flex-stack pt-4" v-for="item in activeItem.locations">
                                                     <div class="symbol symbol-40px me-5">
@@ -77,7 +80,6 @@
                                                             <span class="text-muted fw-semibold d-block fs-7" v-text="item.location.start_address"></span>
                                                         </div>
                                                         <div>
-                                                            <p class="text-center" v-text="translate('Time')"></p>
                                                             <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
 
                                                         </div>
