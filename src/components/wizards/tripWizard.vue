@@ -65,7 +65,7 @@
                                         <div class="lg:flex w-full ">
                                             <div class="mt-10 w-full">
                                                 <div class="flex gap-6">
-                                                    <h3 class="mb-3" v-text="translate('Location Address')"></h3>
+                                                    <h3 class="mb-3 w-full" v-text="translate('Location Address')"></h3>
                                                     <p class="text-center" v-text="translate('Time')"></p>
                                                 </div>
 
