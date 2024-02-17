@@ -466,19 +466,16 @@ export default
             editable_map_location,
             tooltip,
         },
-        name: 'Private trips',
+        name: 'Route trips',
         emits: ['callback'],
         setup(props, { emit }) {
 
             const showAddSide = ref(false);
             const showEditSide = ref(false);
-            const showProfilePage = ref(null);
             const activeItem = ref({});
             const activeTab = ref(props.usertype);
             const content = ref({});
             const center = ref({});
-            const locations = ref([]);
-            const showList = ref(true);
             const searchText = ref('');
             const locationError = ref(null);
             const collapsed = ref(false);
@@ -563,7 +560,7 @@ export default
                     params.append('params[' + k + ']', d)
                 }
                 let type = array.trip_id > 0 ? 'update' : 'create';
-                params.append('type', 'PrivateTrip.' + type)
+                params.append('type', 'Trip.' + type)
                 handleRequest(params, '/api/' + type).then(response => {
                     handleAccess(response)
                 })
