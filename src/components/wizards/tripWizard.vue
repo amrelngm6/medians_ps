@@ -159,7 +159,7 @@
                                                     <div class="timeline-content mb-10 mt-n2">
                                                         <div class="overflow-auto pe-3">
                                                             <div class="fs-5 fw-semibold mb-2" v-if="activeItem"
-                                                                v-text="activeItem.pickup_address"></div>
+                                                                v-text="activeItem.route.position.start_address"></div>
 
                                                             <div class="d-flex align-items-center mt-1 fs-6">
                                                                 <div class="text-muted me-2 fs-7"
@@ -178,7 +178,7 @@
                                                     <div class="timeline-content mb-10 mt-n2">
                                                         <div class="overflow-auto pe-3">
                                                             <div class="fs-5 fw-semibold mb-2" v-if="activeItem"
-                                                                v-text="activeItem.destination_address"></div>
+                                                                v-text="activeItem.route.position.end_address"></div>
 
                                                             <div class="d-flex align-items-center mt-1 fs-6">
                                                                 <div class="text-muted me-2 fs-7"
