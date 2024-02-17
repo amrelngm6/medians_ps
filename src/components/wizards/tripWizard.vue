@@ -115,8 +115,8 @@
                                             </div>
                                             <div class=" w-full">
                                                 <editable_map_location :system_setting="system_setting" :item="activeItem"
-                                                    @setlocation="updatePickupMarker" :key="activeItem.pickup_latitude"
-                                                    :location="{ lat: activeItem.pickup_latitude, lng: activeItem.pickup_longitude }">
+                                                    @setlocation="updatePickupMarker" :key="activeItem.route"
+                                                    :location="{ lat: activeItem.route.position.start_latitude, lng: activeItem.route.position.start_longitude }">
                                                 </editable_map_location>
                                             </div>
                                         </div>
