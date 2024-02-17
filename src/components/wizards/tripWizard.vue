@@ -51,7 +51,7 @@
 
                                     <label class="w-200px my-2 col-form-label required fw-semibold fs-6" v-text="translate('Vehicle')"></label>
                                     <a href="javascript:;" :key="activeItem.vehicle" v-if="activeItem.vehicle"
-                                        class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
+                                        class="w-full d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
                                         <div class="symbol symbol-35px symbol-circle me-5">
                                             <car_icon v-if="!activeItem.vehicle.picture" />
                                             <img alt="Pic" v-if="activeItem.vehicle.picture" :src="activeItem.vehicle.picture">
