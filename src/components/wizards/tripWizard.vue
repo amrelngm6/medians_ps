@@ -32,7 +32,7 @@
                             </div>
                             <p class="text-center"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Pickup location'" v-text="translate('Pickup location')"></a></p>
+                                    @click="activeTab = 'Locations'" v-text="translate('Locations')"></a></p>
                         </div>
 
                         <div class="" v-if="activeTab == 'Locations'" :key="activeTab">
