@@ -30,9 +30,9 @@
                                 </div>
                                 <div class="mb-6 mx-auto  flex">
 
-                                    <label class="my-2 col-form-label required fw-semibold fs-6" v-text="translate('Driver')"></label>
+                                    <label class="w-200px my-2 col-form-label required fw-semibold fs-6" v-text="translate('Driver')"></label>
                                     <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
-                                        class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
+                                        class="w-full d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
                                         <div class="symbol symbol-35px symbol-circle me-5">
                                             <car_icon v-if="!activeItem.driver.picture" />
                                             <img alt="Pic" v-if="activeItem.driver.picture"
