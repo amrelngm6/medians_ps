@@ -66,7 +66,7 @@
                                             <div class="mt-10 w-full">
                                                 <h3 class="mb-3" v-text="translate('Location Address')"></h3>
 
-                                                <div class="d-flex flex-stack" v-for="item in activeItem.locations">
+                                                <div class="d-flex flex-stack pt-4" v-for="item in activeItem.locations">
                                                     <div class="symbol symbol-40px me-5">
                                                         <img :src="item.model.picture" class="h-50 align-self-center" alt="">
                                                     </div>
