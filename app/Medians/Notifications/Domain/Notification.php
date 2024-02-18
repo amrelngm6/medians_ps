@@ -112,8 +112,8 @@ class Notification extends CustomModel
 			return null;
 		}
 
-		$receiverPK = method_exists($receiver, 'getPrimaryKey') ?? $receiver->getPrimaryKey();
-		$modelPK =  method_exists($model, 'getPrimaryKey') ?? $model->getPrimaryKey();
+		$receiverPK = $receiver->getPrimaryKey();
+		$modelPK =  $model->getPrimaryKey();
 
 		if (empty($receiver->$receiverPK))
 		{
