@@ -212,6 +212,9 @@ class NotificationController extends CustomController
 			$items = $this->repo->loadDriverNotifications($user->driver_id, 10, 0);
 		}
 		
+		if (empty($items))
+			return null;
+
 		$firstitem = $items->first();
 		return [
 	        'last_id' => !empty($firstitem) ? $firstitem->id : 0,
