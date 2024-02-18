@@ -31,6 +31,8 @@ class Trip extends CustomModel
 		'date',
 		'status',
 		'trip_type',
+		'start_time',
+		'end_time',
 		'created_by'
 	];
 

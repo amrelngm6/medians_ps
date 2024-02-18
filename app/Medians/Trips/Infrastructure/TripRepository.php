@@ -271,6 +271,8 @@ class TripRepository
 		$data['vehicle_id'] =  $route->vehicle_id;
 		$data['supervisor_id'] =  $route->supervisor_id;
 		$data['status'] =  'started';
+		$data['start_time'] = date('H:i:s');
+
 		// Create the Trip
 		$save = Trip::firstOrCreate($data);
 
@@ -335,7 +337,7 @@ class TripRepository
 	{
 		
 		$trip = Trip::where('driver_id', $driverId)->where('trip_id', $data['trip_id'])->first();
-
+		$trip->end_time = date('H:i:s');
 		$update = $trip->update($data);
 
 		$updateLocations = TripLocation::where('trip_id', $data['trip_id'])->where('status', 'moving')->update(['status'=> 'done', 'dropoff_time'=> date('Y-m-d h:i:s')]);
