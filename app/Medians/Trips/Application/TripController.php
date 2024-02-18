@@ -101,8 +101,6 @@ class TripController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
-
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);

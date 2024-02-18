@@ -12,25 +12,6 @@
                     </div>
                     <div class="w-full">
                         <div class="" v-if="activeTab == 'Info'" :key="activeTab">
-                            <div class="text-start mt-6 text-sm">
-                                <div class="mt-6 w-full">
-                                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
-                                        <dashboard_card_white icon="/uploads/img/products_icome.png"
-                                            classes="bg-gradient-success" class="border border-1"
-                                            :title="translate('Duration')"
-                                            :value="activeItem.duration ? activeItem.duration : '0'">
-                                        </dashboard_card_white>
-                                        <dashboard_card_white icon="/uploads/img/products_icome.png"
-                                            classes="bg-gradient-info" class="border border-1"
-                                            :title="translate('Pickup locations')"
-                                            :value="activeItem.pickup_locations_count"></dashboard_card_white>
-                                        <dashboard_card_white icon="/uploads/img/products_icome.png"
-                                            classes="bg-gradient-danger" class="border border-1"
-                                            :title="translate('Distance')" :value="activeItem.distance">
-                                        </dashboard_card_white>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
                                 
                                 <div class="mb-6 mx-auto  flex">
@@ -284,7 +265,6 @@ const form_field = defineAsyncComponent(() =>
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import tooltip from '@/components/includes/tooltip.vue';
 import trip_map from '@/components/maps/trip_map.vue';
-import moment from 'moment';
 
 export default
     {
