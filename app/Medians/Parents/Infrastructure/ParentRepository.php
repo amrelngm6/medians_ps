@@ -258,6 +258,19 @@ class ParentRepository
 
 
 	/**
+	* validate Email 
+	*/
+	public function validateEmail($email, $id = 0) 
+	{
+		if (!empty($email))
+		{
+			$check = Parents::where('email', $email)->where('parent_id', '!=', $id)->first();
+		}
+
+		return  (empty($check)) ? null : __('EMAIL_FOUND');
+	}
+
+	/**
 	* Save related items to database
 	*/
 	public function storeCustomFields($data, $id) 

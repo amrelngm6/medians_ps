@@ -22,9 +22,14 @@ class OneSignalService
 
     function __construct($id)
 	{
-		$this->app = new \config\APP;
-        $this->APP_ID = $this->app->Settings['onesignal_app_id'];
-        $this->APP_KEY_TOKEN = $this->app->Settings['onesignal_app_key_token'];
+
+        $this->app = new \config\APP;
+        $Settings = $this->SystemSetting();
+        if ($Settings)
+        {
+            $this->APP_ID = $Settings['onesignal_app_id'];
+            $this->APP_KEY_TOKEN = $Settings['onesignal_app_key_token'];
+        }
 
         $this->receiver_id = $id;
 	}
@@ -32,8 +37,10 @@ class OneSignalService
 
     public function send($subject, $messageText)
     {
-
-        $this->sendNotification($subject, $messageText);
+        if ($this->APP_ID)
+        {
+            return $this->sendNotification($subject, $messageText);
+        }
     }
 
 

@@ -60,9 +60,9 @@ class ParentController extends CustomController
 
 		return [
             [ 'key'=> "parent_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "email", 'title'=> __('Email'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'email' ],
-            [ 'key'=> "contact_number", 'title'=> __('Mobile'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
+            [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "email", 'title'=> __('Email'), 'sortable'=> true, 'required'=>true, 'fillable'=> true, 'column_type'=>'email' ],
+            [ 'key'=> "contact_number", 'title'=> __('Mobile'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
             [ 'key'=> "picture", 'title'=> __('picture'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'file' ],
         ];
 	}
@@ -228,6 +228,12 @@ class ParentController extends CustomController
 
         try {	
 
+			$validate = $this->validate($params);
+
+			if ($validate) {
+				return $validate;
+			} 
+
         	$params['created_by'] = $this->app->auth()->id;
         	
             $returnData = (!empty($this->repo->store($params))) 
@@ -286,6 +292,26 @@ class ParentController extends CustomController
         	
         }
 
+	}
+
+
+	
+	/**
+	*  Validate item store
+	*/
+	public function validate($params) 
+	{
+		$check = $this->repo->validateEmail($params['email'], isset($params['parent_id']) ? $params['parent_id'] : 0);
+
+		if (empty($params['first_name']))
+			return ['result'=> __('Name required')];
+
+		if (empty($params['email']))
+			return ['result'=> __('Email required')];
+
+		if ($check) {
+			return ['result'=>$check];
+		}
 	}
 
 
