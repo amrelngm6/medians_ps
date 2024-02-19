@@ -140,7 +140,7 @@ class NotificationEvent extends CustomModel
 				break;
 			
 			default:
-				return $model;
+				return [$model];
 				break;
 			
 		}
