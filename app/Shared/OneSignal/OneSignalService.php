@@ -18,13 +18,11 @@ class OneSignalService
 
     protected $receiver_id;
 
-
-
     function __construct($id)
 	{
 
         $this->app = new \config\APP;
-        $Settings = $this->SystemSetting();
+        $Settings = $this->app->SystemSetting();
         if ($Settings)
         {
             $this->APP_ID = $Settings['onesignal_app_id'];
