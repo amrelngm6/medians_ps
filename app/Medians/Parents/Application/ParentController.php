@@ -255,6 +255,12 @@ class ParentController extends CustomController
 
         try {
 
+			$validate = $this->validate($params);
+
+			if ($validate) {
+				return $validate;
+			} 
+
         	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
 
             if ($this->repo->update($params))

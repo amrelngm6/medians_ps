@@ -85,8 +85,11 @@ class DriverController extends CustomController
 
         try {	
 
-			if ($this->validate($params)) 
-				return $this->validate($params);
+			$validate = $this->validate($params);
+
+			if ($validate) {
+				return $validate;
+			} 
 
         	$params['created_by'] = $this->app->auth()->id;
         	
@@ -110,6 +113,12 @@ class DriverController extends CustomController
 		$params =  is_array($params) ?  $params : (array) json_decode($params);
 
         try {
+
+			$validate = $this->validate($params);
+
+			if ($validate) {
+				return $validate;
+			} 
 
         	$params['status'] = !empty($params['status']) ? 1 : 0;
 
@@ -232,10 +241,9 @@ class DriverController extends CustomController
 		if (empty($params['email']))
 			return ['result'=> __('Email required')];
 
-		if ($check)
+		if ($check) {
 			return ['result'=>$check];
-
-
+		}
 	}
 
 
