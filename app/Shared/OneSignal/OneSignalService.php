@@ -36,8 +36,9 @@ class OneSignalService
 
     public function send($subject, $messageText)
     {
-
-        $this->sendNotification($subject, $messageText);
+        if ($this->APP_ID) {
+            $this->sendNotification($subject, $messageText);
+        }
     }
 
 
