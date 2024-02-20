@@ -47,10 +47,6 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Settings\Application\AppSettingsController())->loadSetting();
 				break;
 
-			case 'help_message':
-				$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
-				break;
-
 			case 'help_messages':
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessages();
 				break;
@@ -203,6 +199,10 @@ class MobileAPIController extends CustomController
 					return  (new Help\Application\HelpMessageController())->storeDriverComment(); 
 					break;
 			
+				case 'HelpMessage.create':
+					$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
+					break;
+
 				case 'HelpMessageComment.parent_comment':
 					return  (new Help\Application\HelpMessageController())->storeParentComment(); 
 					break;

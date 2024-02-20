@@ -124,7 +124,7 @@ export default
         }
 
         const clear = () => {
-            content = file = null;
+            content.value = file.value = null;
             emit('input', null);
         }
 

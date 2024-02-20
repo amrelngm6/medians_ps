@@ -58,55 +58,38 @@
                                         <a href="/admin/profile" class="menu-link px-5" v-text="translate('Profile')"></a>
                                     </div>
                                     <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
-                                        <a href="#" class="menu-link px-5">
+                                        <a href="#" @click="showLangs = !showLangs" class="menu-link px-5">
                                             <span class="menu-title position-relative">
                                                 <span v-text="translate('Language')"></span>
-                                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">
-                                                    English <img class="w-15px h-15px rounded-1 ms-2" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/flags/united-states.svg" alt="">
+                                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 flex"  :class="translate('lang') == 'ar' ? 'left-0' : 'right-0'">
+                                                    <span v-text="translate('lang') == 'ar' ? 'Arabic' : 'English'"></span> <img class="w-15px h-15px rounded-1 ms-2" :src="translate('lang') == 'ar' ? '/uploads/img/flags/egypt.svg' : '/uploads/img/flags/united-states.svg'" alt="">
                                                 </span>
                                             </span>
                                         </a>
 
-                                        <!--begin::Menu sub-->
-                                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                            <!--begin::Menu item-->
+                                        <div class="menu-sub menu-sub-dropdown w-175px py-4 bg-white absolute show active" v-if="showLangs" style="display:block;">
                                             <div class="menu-item px-3">
-                                                <a href="javascript:;" class="menu-link d-flex px-5 active">
+                                                <a href="/switch-lang/english" class="menu-link d-flex px-5 active">
                                                     <span class="symbol symbol-20px me-4">
-                                                        <img class="rounded-1" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/flags/united-states.svg" alt="">
-                                                    </span>
-                                                    English
+                                                        <img class="rounded-1" :src="'/uploads/img/flags/united-states.svg'" alt="">
+                                                    </span> English
                                                 </a>
                                             </div>
-                                            <!--end::Menu item-->
-
-                                            <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="javascript:;" class="menu-link d-flex px-5">
+                                                <a href="/switch-lang/arabic" class="menu-link d-flex px-5">
                                                     <span class="symbol symbol-20px me-4">
-                                                        <img class="rounded-1" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/flags/spain.svg" alt="">
-                                                    </span>
-                                                    Arabic
+                                                        <img class="rounded-1" :src="'/uploads/img/flags/egypt.svg'" alt="">
+                                                    </span> Arabic
                                                 </a>
                                             </div>
-                                            <!--end::Menu item-->
-
                                         </div>
-                                        <!--end::Menu sub-->
                                     </div>
-                                    <!--end::Menu item-->
-
-                                    <!--begin::Menu item-->
                                     <div class="menu-item px-5 my-1">
                                         <a href="/admin/settings" class="menu-link px-5" v-text="translate('Settings')"></a>
                                     </div>
-                                    <!--end::Menu item-->
-
-                                    <!--begin::Menu item-->
                                     <div class="menu-item px-5">
                                         <a href="/logout" class="menu-link px-5" v-text="translate('Logout')"></a>
                                     </div>
-                                    <!--end::Menu item-->
                                 </div>
                             </div>
                         </div>
@@ -132,9 +115,11 @@ export default {
   setup(props) {
 
     const showSubMenu = ref(); 
+    const showLangs = ref(false); 
 
     return {
         showSubMenu,
+        showLangs,
         translate
     };
 
