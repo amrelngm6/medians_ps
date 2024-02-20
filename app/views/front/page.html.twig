@@ -4,6 +4,7 @@
 {% include 'views/front/includes/head.html.twig' %}
 {% include 'views/front/includes/header.html.twig' %}
 
+
 <div id="root" class="mx-auto">
 
 <!-- loader -->
@@ -15,7 +16,6 @@
 {{app.renderTemplate(page.content, item).render( {'lang':lang, 'page': page }  )|raw}}
 {% endif %}
 
-
 <!-- progress -->
 <div id="progress">
       <span id="progress-value"><i class="fa-solid fa-up-long"></i></span>
@@ -24,7 +24,6 @@
 
 <!-- Footer -->
 {% include 'views/front/includes/footer.html.twig' %}
-
 
 <script src="/src/front_assets/js/bootstrap.min.js"></script>
 <script src="/src/front_assets/js/owl.carousel.min.js"></script>
