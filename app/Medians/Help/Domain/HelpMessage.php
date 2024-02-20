@@ -21,6 +21,7 @@ class HelpMessage extends CustomModel
 		'business_id',
 		'user_id',
 		'user_type',
+		'title',
 		'subject',
 		'message',
 		'priority',
