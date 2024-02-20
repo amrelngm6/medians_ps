@@ -177,8 +177,10 @@ class HelpMessageController extends CustomController
 
 		$params = (array) json_decode($this->app->request()->get('params'));
 
-        try {	
+        try 
+		{	
 			$params['user_id'] = $this->app->auth()->driver_id;
+			$params['business_id'] = $this->app->auth()->business->business_id;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('THNKS_MSG'), 'reload'=>1)
