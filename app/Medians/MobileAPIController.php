@@ -302,7 +302,7 @@ class MobileAPIController extends CustomController
 					break;
 
 				case 'Notification.delete':
-					return response((new Notifications\Application\NotificationController())->delete());
+					return response((new Notifications\Application\NotificationController())->delete_notification());
 					break;
 
 
