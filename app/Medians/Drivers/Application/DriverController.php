@@ -56,6 +56,7 @@ class DriverController extends CustomController
 				'data' => $this->vehicleRepo->get()
 			],
             [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
 
