@@ -122,7 +122,7 @@ class DriverController extends CustomController
 	{
 		
 		$params = $this->app->request()->get('params');
-		$params =  is_array($params) ?  $params : (array) json_decode($params);
+		$params = (array)   is_array($params) ?  $params : json_decode($params);
 
         try {
 
@@ -135,7 +135,7 @@ class DriverController extends CustomController
         
 
         } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+        	throw new \Exception("Error Processing Request".$e->getMessage(), 1);
         	
         }
 	}
