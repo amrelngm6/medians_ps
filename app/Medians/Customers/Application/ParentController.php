@@ -130,7 +130,7 @@ class ParentController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
+        	$params['status'] = !empty($params['status']) ? $params['status'] : null;
 
             if ($this->repo->update($params))
             {

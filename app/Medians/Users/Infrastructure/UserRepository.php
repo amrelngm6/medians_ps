@@ -142,7 +142,7 @@ class UserRepository
 			
 			$Object = User::find($data['id']);
 			
-    		$Object->update(['active'=>$data['active'] ? 'on' : 0]);	
+    		$Object->update(['active'=>$data['active'] ? 'on' : null]);	
 
     		return $Object;	
 
@@ -170,7 +170,7 @@ class UserRepository
 				return $validateEmail;	
 			}
 
-			$data['active'] = isset($data['active']) ? 'on' : 0;
+			$data['active'] = isset($data['active']) ? 'on' : null;
 
 			// Return the Model object with the new data
 	    	$Object->update( (array) $data);

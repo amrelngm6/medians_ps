@@ -69,7 +69,7 @@ class CategoryRepository
 			}
 		}	
 
-		$dataArray['status'] = isset($dataArray['status']) ? 'on' : 0;
+		$dataArray['status'] = isset($dataArray['status']) ? 'on' : null;
 		// Return the Model object with the new data
     	$Object = Category::firstOrCreate($dataArray);
 

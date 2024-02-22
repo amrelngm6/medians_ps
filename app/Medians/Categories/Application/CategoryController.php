@@ -81,7 +81,7 @@ class CategoryController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
+        	$params['status'] = !empty($params['status']) ? $params['status'] : null;
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
