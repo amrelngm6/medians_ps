@@ -87,7 +87,7 @@ class UserRepository
 
 		$data['password'] = $Model->encrypt($data['password']);
 		$data['role_id'] = 3;
-		$data['active'] = 0;
+		$data['active'] = null;
 		$Model = $Model->firstOrCreate($data);
 
     	/**
@@ -142,7 +142,7 @@ class UserRepository
 			
 			$Object = User::find($data['id']);
 			
-    		$Object->update(['active'=>$data['active'] ? 1 : 0]);	
+    		$Object->update(['active'=>$data['active'] ? 'on' : 0]);	
 
     		return $Object;	
 
@@ -170,7 +170,7 @@ class UserRepository
 				return $validateEmail;	
 			}
 
-			$data['active'] = isset($data['active']) ? 1 : 0;
+			$data['active'] = isset($data['active']) ? 'on' : 0;
 
 			// Return the Model object with the new data
 	    	$Object->update( (array) $data);

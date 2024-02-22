@@ -133,7 +133,7 @@ class CityController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? 1 : 0;
+        	$params['status'] = !empty($params['status']) ? 'on' : 0;
 
             if ($this->repo->update($params))
             {

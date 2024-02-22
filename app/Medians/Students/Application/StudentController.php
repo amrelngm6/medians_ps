@@ -146,7 +146,7 @@ class StudentController extends CustomController
 
         	$params['business_id'] = $this->app->auth()->business->business_id;
         	$params['created_by'] = $this->app->auth()->id;
-        	$params['status'] = isset($params['status']) ? 1 : 0;
+        	$params['status'] = isset($params['status']) ? 'on' : 0;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
@@ -167,7 +167,7 @@ class StudentController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? 1 : 0;
+        	$params['status'] = !empty($params['status']) ? 'on' : 0;
 
             if ($this->repo->update($params))
             {
