@@ -86,9 +86,9 @@ class NotificationController extends CustomController
 	public function delete() 
 	{
 		
-		$this->app = new \config\APP;
+		$app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $app->request()->get('params');
 
         try {
 
@@ -113,9 +113,9 @@ class NotificationController extends CustomController
 	public function read_notification() 
 	{
 		
-		$this->app = new \config\APP;
+		$app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $app->request()->get('params');
 
         try {
            	
@@ -138,13 +138,13 @@ class NotificationController extends CustomController
 	public function check_notification() 
 	{
 		
-		$this->app = new \config\APP;
+		$app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $app->request()->get('params');
 
         try {
 
-        	$check = $this->repo->get($this->app->auth(), $params['last_id']);
+        	$check = $this->repo->get($app->auth(), $params['last_id']);
 
            	echo  (count($check))
             ? json_encode($this->loadLatestNotifications($check))
@@ -168,9 +168,9 @@ class NotificationController extends CustomController
 	 */ 
 	public function latest_notifications($last_id=0) 
 	{
-		$this->app = new \config\APP;
+		$app = new \config\APP;
 
-		$items = $this->repo->get($this->app->auth(), 50, $last_id);
+		$items = $this->repo->get($app->auth(), 50, $last_id);
 
 		return render('notifications', $this->loadLatestNotifications($items));
 	}
@@ -203,7 +203,7 @@ class NotificationController extends CustomController
 	{
 		$app = new \config\APP;
 		$user = $app->auth();
-		
+
 		if (isset($user->customer_id))
 		{
 			$items = $this->repo->loadParentNotifications($user->customer_id, 10, 0);
@@ -241,9 +241,9 @@ class NotificationController extends CustomController
 	public function update() 
 	{
 
-		$this->app = new \config\APP;
+		$app = new \config\APP;
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($app->request()->get('params'));
 
         try {
 
