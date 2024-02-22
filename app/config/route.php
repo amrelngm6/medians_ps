@@ -46,6 +46,7 @@ RouteHandler::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin
 RouteHandler::post('/mobile_api/login', \Medians\MobileAPIController::class.'@login');
 RouteHandler::post('/mobile_api/create', \Medians\MobileAPIController::class.'@create');
 RouteHandler::post('/mobile_api/update', \Medians\MobileAPIController::class.'@update');
+RouteHandler::post('/mobile_api/delete', \Medians\MobileAPIController::class.'@delete');
 RouteHandler::post('/mobile_api', \Medians\MobileAPIController::class.'@handle');
 
 // Get requests
