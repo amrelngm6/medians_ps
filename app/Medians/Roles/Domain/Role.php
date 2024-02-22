@@ -37,7 +37,7 @@ class Role extends CustomModel
 
 	public function permissions_group()
 	{
-		return $this->hasMany(Permission::class, 'role_id', 'id')->groupBy('model');
+		return $this->hasMany(Permission::class, 'role_id', 'id');
 	}
 
 	public function getRoleIdAttribute()

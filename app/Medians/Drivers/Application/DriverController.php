@@ -48,6 +48,7 @@ class DriverController extends CustomController
             [ 'key'=> "driver_license_number", 'title'=> __('driver_license_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "vehicle_plate_number", 'title'=> __('vehicle_plate_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
 
@@ -120,7 +121,7 @@ class DriverController extends CustomController
 				return $validate;
 			} 
 
-        	$params['status'] = !empty($params['status']) ? 1 : 0;
+			$params['status'] = !empty($params['status']) ? 1 : 0;
 
             if ($this->repo->update($params))
             {
@@ -134,6 +135,7 @@ class DriverController extends CustomController
         }
 	}
 
+	
 
 	public function updateMobile()
 	{
@@ -233,17 +235,22 @@ class DriverController extends CustomController
 	*/
 	public function validate($params) 
 	{
-		$check = $this->repo->validateEmail($params['email'], isset($params['driver_id']) ? $params['driver_id'] : 0);
+		if (isset($params['picture']))
+		{
 
-		if (empty($params['first_name']))
-			return ['result'=> __('Name required')];
+			$check = $this->repo->validateEmail($params['email'], isset($params['driver_id']) ? $params['driver_id'] : 0);
 
-		if (empty($params['email']))
-			return ['result'=> __('Email required')];
+			if (empty($params['first_name']))
+				return ['result'=> __('Name required')];
 
-		if ($check) {
-			return ['result'=>$check];
+			if (empty($params['email']))
+				return ['result'=> __('Email required')];
+
+			if ($check) {
+				return ['result'=>$check];
+			}
 		}
+
 	}
 
 

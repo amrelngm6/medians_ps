@@ -63,6 +63,7 @@ class ParentController extends CustomController
             [ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "email", 'title'=> __('Email'), 'sortable'=> true, 'required'=>true, 'fillable'=> true, 'column_type'=>'email' ],
             [ 'key'=> "contact_number", 'title'=> __('Mobile'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
+            [ 'key'=> "status", 'title'=> __('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
             [ 'key'=> "picture", 'title'=> __('picture'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'file' ],
         ];
 	}
