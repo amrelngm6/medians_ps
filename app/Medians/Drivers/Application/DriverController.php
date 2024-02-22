@@ -126,7 +126,7 @@ class DriverController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? 'on' : 0;
+        	$params['status'] = !empty($params['status']) ? 'on' : null;
 
             if ($this->repo->update($params))
             {
@@ -134,8 +134,7 @@ class DriverController extends CustomController
             }
 
         } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request".$e->getMessage(), 1);
-        	
+			throw new \Exception($e->getMessage(), 1);
         }
 	}
 
