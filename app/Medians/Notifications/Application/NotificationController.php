@@ -106,7 +106,9 @@ class NotificationController extends CustomController
 	}
 
 	/**
-	 * Delete item from database
+	 * Update item status at database 
+	 * 
+	 * from Web
 	 * 
 	 * @return [] 
 	*/
@@ -128,6 +130,7 @@ class NotificationController extends CustomController
         }
 
 	}
+
 
 
 	/**
@@ -261,4 +264,34 @@ class NotificationController extends CustomController
 	}
 
 	
+	/**
+	 * Delete item from database
+	 * 
+	 * from App
+	 * 
+	 * @return [] 
+	*/
+	public function delete_notification() 
+	{
+		
+		$app = new \config\APP;
+
+		$params = (array) json_decode($app->request()->get('params'));
+
+		$user = $app->auth();
+
+        try {
+
+           	$returnData =  ($this->repo->delete($params['id']))
+           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+           	: array('error'=>'Not allowed');
+
+
+        } catch (Exception $e) {
+            $returnData = array('error'=>$e->getMessage());
+        }
+
+        return $returnData;
+	}
+
 }

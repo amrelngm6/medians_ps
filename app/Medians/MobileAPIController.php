@@ -301,6 +301,10 @@ class MobileAPIController extends CustomController
 					return response((new Students\Application\StudentController())->delete());
 					break;
 
+				case 'Notification.delete':
+					return response((new Notifications\Application\NotificationController())->delete());
+					break;
+
 
 			}
 

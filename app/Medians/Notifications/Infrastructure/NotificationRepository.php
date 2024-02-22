@@ -125,7 +125,7 @@ class NotificationRepository
 
 		} catch (\Exception $e) {
 
-			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);
+			throw new \Exception($e->getMessage(), 1);
 			
 		}
 	}
