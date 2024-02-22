@@ -281,22 +281,9 @@ class MobileAPIController extends CustomController
 		try {
 			
 			$return = [];
-			switch ($request->get('type')) 
+			switch ($request->get('model')) 
 			{
 				
-				
-				case 'Driver.delete':
-					return response((new Drivers\Application\DriverController())->delete());
-					break;
-
-				case 'Parents.delete':
-					return response((new Customers\Application\ParentController())->delete());
-					break;
-
-				case 'RouteLocation.delete':
-					return response((new Locations\Application\RouteLocationController())->delete());
-					break;
-
 				case 'Student.delete':
 					return response((new Students\Application\StudentController())->delete());
 					break;
@@ -304,7 +291,6 @@ class MobileAPIController extends CustomController
 				case 'Notification.delete':
 					return response((new Notifications\Application\NotificationController())->delete_notification());
 					break;
-
 
 			}
 
