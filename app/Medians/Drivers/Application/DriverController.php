@@ -132,7 +132,6 @@ class DriverController extends CustomController
             {
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
-        
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request".$e->getMessage(), 1);
