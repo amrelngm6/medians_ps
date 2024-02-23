@@ -9,6 +9,11 @@ class OneSignalService
     /**
      * OneSignal APP ID
      */
+    protected $app;
+
+    /**
+     * OneSignal APP ID
+     */
     protected $APP_ID;
 
     /**
