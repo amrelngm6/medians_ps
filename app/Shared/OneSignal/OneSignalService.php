@@ -18,26 +18,26 @@ class OneSignalService
 
     protected $receiver_id;
 
-    protected $external_id;
-
-    protected $config;
-
-    protected $apiInstance;
-
     function __construct($id)
 	{
-		$this->app = new \config\APP;
-        $this->APP_ID = '8c316c75-1878-4bf9-99ad-3964bb83f525';
-        $this->APP_KEY_TOKEN = 'ZDE4MGQ3YmEtZjljZS00ZWFmLThkMDQtNjMzYzk0YjlmMWZk';
 
-        $this->external_id = $id;
+        $this->app = new \config\APP;
+        $Settings = $this->app->SystemSetting();
+        if ($Settings)
+        {
+            $this->APP_ID = $Settings['onesignal_app_id'];
+            $this->APP_KEY_TOKEN = $Settings['onesignal_app_key_token'];
+        }
+
+        $this->receiver_id = $id;
 	}
 
 
     public function send($subject, $messageText)
     {
-        if ($this->APP_ID) {
-            $this->sendNotification($subject, $messageText);
+        if ($this->APP_ID)
+        {
+            return $this->sendNotification($subject, $messageText);
         }
     }
 
@@ -54,15 +54,10 @@ class OneSignalService
     
         $fields = array(
             'app_id' => $this->APP_ID,
-            // 'included_segments' => , // Send to all subscribers
-            // 'included_segments' => ['segment D-23'], // Send to all subscribers
             'headings' => $headings,
             'contents' => $content,
-            // 'include_external_user_ids' => [$receiverId],
-            // 'data' => $receiver,
             'target_channel' => 'push',
-            'include_aliases' => ['external_id'=>[$this->external_id]]
-            // 'include_aliases' => ['external_id'=>[$this->external_id]]
+            'include_aliases' => ['external_id'=>[$this->receiver_id]]
         );
         
         
@@ -84,11 +79,10 @@ class OneSignalService
         
         $responseObject =  json_decode($response);
 
-        error_log($response);
-        // if (isset($responseObject->errors))
-        // {
-        //     return throw new \Exception($responseObject->errors, 1);
-        // }
+        if (isset($responseObject->errors))
+        {
+            error_log($response);
+        }
 
         return $response;
     }
