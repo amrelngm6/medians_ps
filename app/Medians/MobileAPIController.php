@@ -99,6 +99,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Customers\Application\ParentController())->signup(); 
 				break;
 
+			case 'Driver.signup':
+				$return =  (new Drivers\Application\DriverController())->signup(); 
+				break;
+			
 			case 'Parent.login':
 				$return =  (new Customers\Application\ParentController())->login(); 
 				break;
