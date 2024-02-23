@@ -169,8 +169,8 @@ class DriverController extends CustomController
             ? array('success'=>1, 'result'=>__('Confirmation code sent through email'), 'reload'=>1)
             : array('success'=>0, 'result'=> $check, 'error'=>1);
 			
-        } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        } catch (\Exception $e) {
+        	throw new \Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
 
 		return $returnData;
@@ -204,6 +204,35 @@ class DriverController extends CustomController
 			'driver_id'=> isset($checkLogin->driver_id) ? $checkLogin->driver_id : null, 
 			'token'=>$generateToken->value
 		];
+	}  
+
+	/**
+	 * Driver signup through Mobile API
+	 */
+	public function signup()
+	{
+		try {
+
+			$Auth = new \Medians\Auth\Application\AuthService;
+			$this->app = new \config\APP;
+			$request = $this->app->request();
+			
+			$params = (array) json_decode($request->get('params'));		
+			
+			if ($this->validate($params)) 
+				return $this->validate($params);
+
+			$checkLogin = $this->repo->signup($params);
+			
+			return 
+			[
+				'success'=>true, 
+				'result'=> isset($checkLogin->driver_id) ? __('Password sent through email') : __('Error'), 
+			];
+
+		} catch (\Exception $e) {
+			return ['error' => $e->getMessage()];
+		}
 	}  
 
 

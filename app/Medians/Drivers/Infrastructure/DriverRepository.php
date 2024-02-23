@@ -218,6 +218,32 @@ class DriverRepository
     	return $Object;
     }
     	
+	
+	/**
+	* Save item to database
+	*/
+	public function signup($data) 
+	{
+
+		$Model = new Driver();
+		
+		$Auth = new \Medians\Auth\Application\AuthService;
+		$data['generated_password'] = $Model->randomPassword();
+		$data['password'] = $Auth->encrypt($data['generated_password']);
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+		
+		$data['business_id'] = 0;
+
+		// Return the  object with the new data
+    	return  Driver::create($dataArray);
+    }
+    	
     /**
      * Update Lead
      */
