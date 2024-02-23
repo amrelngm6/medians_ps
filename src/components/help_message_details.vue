@@ -52,7 +52,7 @@
                     <div class="card">
                         <div class="card-body p-4">
                             <h6 class="fw-semibold text-uppercase mb-3" v-text="translate('Ticket Discripation')"></h6>
-                            <p class="text-muted" v-text="item.message"></p>
+                            <p class="text-muted font-bold pt-10" v-text="item.message"></p>
                         </div>
                         <!--end card-body-->
                         <div class="card-body p-4">

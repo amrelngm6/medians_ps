@@ -43,14 +43,31 @@
                 v-if="content.items && content.items.length && !showWizard">
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
-                    <a href="javascript:;" v-if="!showWizard"
-                        class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg bg-danger"
-                        @click="showOptions = true, activeItem = {}" v-text="translate('add_new')"></a>
                 </div>
-                <hr class="mt-2" />
                 <div class="w-full bg-white">
 
-                    <datatabble class="align-middle fs-6 gy-5 table table-row-dashed px-6"
+                    <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex px-4">
+                        <div class="card-title">
+                            <div class="d-flex align-items-center position-relative my-1">
+                                <input type="text"  v-model="searchValue" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Report">
+                            </div>
+                        </div>
+                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+
+                            <div class="w-150px">
+                                <select v-model="searchField" class="form-select form-select-solid select2-hidden-accessible" data-control="select2" data-hide-search="true" data-placeholder="Rating" data-kt-ecommerce-order-filter="rating" data-select2-id="select2-data-9-zple" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
+                                    <option v-for="col in content.columns" v-text="col.text" :value="col.value"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <a href="javascript:;" v-if="!showWizard"
+                            class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg bg-danger"
+                            @click="showOptions = true, activeItem = {}" v-text="translate('add_new')"></a>
+
+                    </div>
+                    <datatabble 
+                        :search-field="searchField"
+                        :search-value="searchValue" alternating class="align-middle fs-6 gy-5 table table-row-dashed px-6"
                         :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox
                         v-if="content.columns" :headers="content.columns" :items="content.items">
 
@@ -132,20 +149,23 @@ export default
             const showPlaceSearch = ref(false);
             const start_placeSearch = ref('');
             const showOptions = ref(false);
+            const searchValue = ref("");
+            const searchField = ref("#");
+        
+
+            const load = () => {
+                handleGetRequest(url).then(response => {
+                    content.value = JSON.parse(JSON.stringify(response))
+                    searchField.value = content.value.columns[1].value;
+                });
+            }
+
+            load();
 
 
             const closeSide = () => {
                 showEditSide.value = false;
             }
-
-
-            const load = () => {
-                handleGetRequest(url).then(response => {
-                    content.value = JSON.parse(JSON.stringify(response))
-                });
-            }
-
-            load();
 
             /**
              * Get current location
@@ -252,6 +272,8 @@ export default
                 content,
                 center,
                 activeItem,
+                searchValue,
+                searchField,
                 translate,
                 clickMarker,
                 updateStartMarker,
