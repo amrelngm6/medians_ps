@@ -54,7 +54,13 @@ function render($template, $data, $responseType = 'html')
     $output =  $app->template()->render($path, $data);
 
     $isFront ? file_put_contents($_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html', $output) : '';
-    echo $output;
+    
+    if ($responseType == 'html')
+    {
+        echo $output;
+    } else {
+        return $output;
+    }
  } 
 
 
