@@ -251,8 +251,6 @@ class BusinessController extends CustomController
 
 	public function loadSchoolsForDrivers()
 	{
-		$params = (array)  json_decode($this->app->request()->get('params'));
-
 		$auth = $this->app->auth();
 
         try {
@@ -270,8 +268,6 @@ class BusinessController extends CustomController
 	
 	public function loadCompaniesForDrivers()
 	{
-		$params = (array)  json_decode($this->app->request()->get('params'));
-
 		$auth = $this->app->auth();
 
         try {
