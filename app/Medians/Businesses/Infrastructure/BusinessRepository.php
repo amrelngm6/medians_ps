@@ -39,6 +39,10 @@ class BusinessRepository
 	{
 		return School::where('type', 'school')
 		->withCount('routes', 'locations', 'drivers')
+		->whereHas('Settings', function($q) {
+			$q->where('code', 'allow_applicants')->where('value','on');	
+		})
+		->where('status', 'on')
 		->limit($limit)->get();
 	}
 

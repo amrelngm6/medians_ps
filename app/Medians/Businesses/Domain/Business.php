@@ -3,6 +3,7 @@
 namespace Medians\Businesses\Domain;
 
 use Shared\dbaser\CustomModel;
+use Medians\Settings\Domain\Settings;
 use Medians\Users\Domain\User;
 use Medians\Routes\Domain\Route;
 use Medians\Drivers\Domain\Driver;
@@ -51,6 +52,11 @@ class Business extends CustomModel
     public function locations()
     {
 		return $this->hasMany(RouteLocation::class, 'business_id', 'business_id');	
+    }
+
+    public function settings()
+    {
+		return $this->hasMany(Settings::class, 'business_id', 'business_id');	
     }
 
 }

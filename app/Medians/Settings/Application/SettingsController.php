@@ -71,6 +71,10 @@ class SettingsController extends CustomController
 				[ 'key'=> "morning_trip", 'title'=> __('Morning trip'), 'fillable'=> true, 'column_type'=>'time' ],
 				[ 'key'=> "afternoon_trip", 'title'=> __('Afternoon trip'), 'fillable'=> true, 'column_type'=>'time' ],
 			],
+
+			'drivers'=> [	
+				[ 'key'=> "allow_applicants", 'title'=> __('Allow Driver Applicants'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			],
 			
         ];
 	}
