@@ -249,7 +249,7 @@ class BusinessController extends CustomController
 	}
 	
 
-	public function getBusinesses()
+	public function loadForDrivers()
 	{
 		$params = (array)  json_decode($this->app->request()->get('params'));
 
