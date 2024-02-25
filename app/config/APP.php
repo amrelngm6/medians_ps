@@ -220,7 +220,7 @@ class APP
 			]
 			),
 			
-			array('title'=>__('Private Trips'),  'icon'=>'map', 'link'=>'#PrivateTrips', 'sub'=>
+			array('title'=>__('Trips'),  'icon'=>'map', 'link'=>'#PrivateTrips', 'sub'=>
 			[
 				array('permission'=>'Trips.index', 'title'=>__('Route trips'),  'icon'=>'map-pin', 'link'=>'admin/trips', 'component'=>'trips'),
 				array('permission'=>'PrivateTrips.index', 'title'=>__('Private Trips'),  'icon'=>'map', 'link'=>'admin/private_trips', 'component'=>'private_trips'),
@@ -234,7 +234,13 @@ class APP
 			]
 			),
 
-			array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
+			array('title'=>__('Vehicles'),  'icon'=>'truck', 'link'=>'#vehicles', 'sub'=>
+			[
+				array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
+				array('permission'=>'DriverApplicants.index', 'title'=>__('Driver applicants'),  'icon'=>'users', 'link'=>'admin/driver_applicants', 'component'=>'driver_applicants'),
+			]
+			),
+
 			array('title'=>__('Routes'),  'icon'=>'map', 'link'=>'#route', 'sub'=>
 			[
 				array('permission'=>'Routes.index', 'title'=>__('Routes'),  'icon'=>'map', 'link'=>'admin/routes', 'component'=>'routes'),
