@@ -248,5 +248,25 @@ class BusinessController extends CustomController
         }
 	}
 	
+
+	public function getBusinesses()
+	{
+		$params = (array)  json_decode($this->app->request()->get('params'));
+
+		$auth = $this->app->auth();
+
+        try {
+
+			if (!empty($auth))
+			{
+				$check = $this->repo->get(10);
+				echo json_encode($check);
+			}
+
+        } catch (Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
+	
 	
 }

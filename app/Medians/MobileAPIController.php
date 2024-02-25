@@ -173,7 +173,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Driver.load_business':
-				$controller = new Businesses\Application\BusinessController;
+				$controller = (new Businesses\Application\BusinessController)->loadForDrivers();
 				break;
 		}
 
