@@ -259,7 +259,7 @@ class BusinessController extends CustomController
 
 			if (!empty($auth))
 			{
-				$check = $this->repo->get(10);
+				$check = $this->repo->getCompanies(10);
 				echo json_encode($check);
 			}
 
