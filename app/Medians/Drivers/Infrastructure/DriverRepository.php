@@ -261,6 +261,23 @@ class DriverRepository
     	return $Object;
 
     }
+    	
+    /**
+     * Update Lead
+     */
+    public function updateDriverBusiness($data)
+    {
+
+		$Object = Driver::find($data['driver_id']);
+		
+		$data['business_id'] = $this->business_id;
+
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+
+    }
 
 
 	/**

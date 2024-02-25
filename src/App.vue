@@ -106,6 +106,8 @@ const vehicle_types = defineAsyncComponent(() => import('@/components/vehicle_ty
 
 const supervisors = defineAsyncComponent(() => import('@/components/supervisors.vue') );
 
+const driver_applicants = defineAsyncComponent(() => import('@/components/driver_applicants.vue') );
+
 export default {
     name: 'app',
     components: {
@@ -146,6 +148,7 @@ export default {
         payment_methods,
         package_subscriptions,
         supervisors,
+        driver_applicants,
         get_started,
         translate,
         'help_messages':HelpMessages,

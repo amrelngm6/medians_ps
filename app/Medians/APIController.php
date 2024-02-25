@@ -356,9 +356,13 @@ class APIController extends CustomController
 			case 'PrivateTrip.update':
 				$controller = new Trips\Application\PrivateTripController;
 				break;
-
+				
 			case 'Trip.update':
 				$controller = new Trips\Application\TripController;
+				break;
+			
+			case 'DriverApplicant.update':
+				$controller = new Drivers\Application\DriverApplicantController;
 				break;
 			
 		}

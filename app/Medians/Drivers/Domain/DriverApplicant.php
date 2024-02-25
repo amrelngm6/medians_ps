@@ -4,23 +4,18 @@ namespace Medians\Drivers\Domain;
 
 use Shared\dbaser\CustomModel;
 
-use Medians\Routes\Domain\Route;
-use Medians\Vehicles\Domain\Vehicle;
-use Medians\Trips\Domain\Trip;
-use Medians\Trips\Domain\TripPickup;
-use Medians\Help\Domain\HelpMessage;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Businesses\Domain\Business;
 
-class DriverApplicantion extends CustomModel
+class DriverApplicant extends CustomModel
 {
 
 	/*
 	/ @var String
 	*/
-	protected $table = 'drivers_applications';
+	protected $table = 'drivers_applicants';
 
-    protected $primaryKey = 'application_id';
+    protected $primaryKey = 'applicant_id';
 	
 	public $fillable = [
 		'business_id',
@@ -40,6 +35,11 @@ class DriverApplicantion extends CustomModel
 		return $this->hasOne(Business::class, 'business_id', 'business_id');	
 	}
 
+	public function driver() 
+	{
+		return $this->hasOne(Driver::class, 'driver_id', 'driver_id');	
+	}
+
 
     public function custom_fields()
     {
@@ -48,20 +48,20 @@ class DriverApplicantion extends CustomModel
 
 
 	/**
-	 * Create Custom filed for Session of DriverApplication
+	 * Create Custom filed for Session of DriverApplicant
 	 */
 	public function insertCustomField($code, $value)
 	{
 
 		$delete = CustomField::where('code', $code)
-		->where('model_type', DriverApplication::class)
+		->where('model_type', DriverApplicant::class)
 		->where('model_id', $this->customer_id)
 		->delete();
 
     	// Insert activation code 
 		$fillable = [
 			'code'=>$code,
-			'model_type'=>DriverApplication::class, 
+			'model_type'=>DriverApplicant::class, 
 			'model_id'=>$this->application_id, 
 			'value'=>$value
 		];
