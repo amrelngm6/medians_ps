@@ -172,6 +172,9 @@ class MobileAPIController extends CustomController
 				$return =  (new Trips\Application\PrivateTripController())->endTrip(); 
 				break;
 
+			case 'Driver.load_business':
+				$controller = new Businesses\Application\BusinessController;
+				break;
 		}
 
 		echo json_encode($return);
