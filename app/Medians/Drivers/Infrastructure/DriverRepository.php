@@ -289,11 +289,7 @@ class DriverRepository
 	{
 		try {
 			
-			$delete = Driver::where('business_id', $this->business_id)->find($id)->delete();
-
-			if ($delete){
-				$this->storeCustomFields(null, $id);
-			}
+			$delete = Driver::where('business_id', $this->business_id)->find($id)->update(['business_id'=> 0]);
 
 			return true;
 

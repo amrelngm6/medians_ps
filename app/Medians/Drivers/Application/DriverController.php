@@ -244,8 +244,6 @@ class DriverController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['driver_id']);
-
 
             if ($this->repo->delete($params['driver_id']))
             {
