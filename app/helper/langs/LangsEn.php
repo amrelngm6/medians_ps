@@ -929,6 +929,7 @@ class LangsEn
 			,'Remaining Plan Days' => 'Days remaining until your plan requires update'
 			,'Trips description' => 'List of the active Trips list.'
 			,'Before Create driver note' => 'When you create new driver you should make sure that you have the right <b>Email</b>. <br />Because the generated password will be sent to him'
+			,'Drivers applicants note' => 'You can enable or disable your business from receiving <b>applcants as drivers</b>. <br />You can manage it from Business Setting'
 			,'upgrade_notification_note' => 'We will send you a notification upon Subscription expiration '
 
 

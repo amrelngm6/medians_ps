@@ -25,6 +25,19 @@
                     
                     <h1  class="font-bold text-lg w-full" v-text="content.title"></h1>
                 </div>
+                    
+                <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-12 p-6">
+                    <vue-feather type="alert-octagon" class="ki-duotone ki-information fs-2tx text-warning me-4"></vue-feather>        
+                    <div class="d-flex flex-stack flex-grow-1 ">
+                        <div class=" fw-semibold">
+                            <h4 class="text-gray-900 fw-bold" v-text="translate('Important')"></h4>
+                            <div class="fs-6 text-gray-700 "  >
+                                <div v-html="translate('Drivers applicants note')"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="w-full bg-white" >
                     <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex px-4">
                         <div class="card-title">
