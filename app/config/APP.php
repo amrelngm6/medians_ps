@@ -234,7 +234,7 @@ class APP
 			]
 			),
 
-			array('title'=>__('Vehicles'),  'icon'=>'truck', 'link'=>'#vehicles', 'sub'=>
+			array('title'=>__('Drivers'),  'icon'=>'users', 'link'=>'#drivers', 'sub'=>
 			[
 				array('permission'=>'Drivers.index', 'title'=>__('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
 				array('permission'=>'DriverApplicants.index', 'title'=>__('Driver applicants'),  'icon'=>'users', 'link'=>'admin/driver_applicants', 'component'=>'driver_applicants'),
