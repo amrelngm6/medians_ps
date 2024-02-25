@@ -9,20 +9,20 @@ class Company extends Business
     
 	function __construct()
 	{
-        $this->where('type', 'Company');
+        $this->where('type', 'company');
 	}
 
     /*
 	/ @var String
 	*/
-    public $type = 'Company';
+    public $type = 'company';
 
 	/*
 	/ return String
 	*/
 	public function type()
 	{
-		return 'Company';
+		return 'company';
 	}
 
 }

@@ -56,7 +56,7 @@ class BusinessController extends CustomController
 	 * Columns list to view at DataTable 
 	 *  
 	 */ 
-	public function fillable( $type = 'School') 
+	public function fillable( $type = 'school') 
 	{
 
 		return [
@@ -86,7 +86,7 @@ class BusinessController extends CustomController
 		        'load_vue' => true,
 		        'title' => __('Schools'),
 		        'columns' => $this->columns(),
-		        'fillable' => $this->fillable('School'),
+		        'fillable' => $this->fillable('school'),
 		        'items' => $this->repo->getSchools(),
 		    ]);
 		} catch (\Exception $e) {
@@ -112,7 +112,7 @@ class BusinessController extends CustomController
 		        'load_vue' => true,
 		        'title' => __('Companies'),
 		        'columns' => $this->columns(),
-		        'fillable' => $this->fillable('Company'),
+		        'fillable' => $this->fillable('company'),
 		        'items' => $this->repo->getCompanies(),
 		    ]);
 

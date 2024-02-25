@@ -10,14 +10,14 @@ class School extends Business
     
 	function __construct()
 	{
-        $this->where('type', 'School');
+        $this->where('type', 'school');
 	}
 
 
     /*
 	/ @var String
 	*/
-    public $type = 'School';
+    public $type = 'school';
 	
 
 	/*
@@ -25,7 +25,7 @@ class School extends Business
 	*/
 	public function type()
 	{
-		return 'School';
+		return 'school';
 	}
 
 }

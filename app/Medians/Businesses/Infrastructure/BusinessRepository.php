@@ -31,12 +31,12 @@ class BusinessRepository
 
 	public function getCompanies($limit = 100)
 	{
-		return Company::where('type', 'Company')->limit($limit)->select('*', 'business_id as company_id')->get();
+		return Company::where('type', 'company')->limit($limit)->select('*', 'business_id as company_id')->get();
 	}
 
 	public function getSchools($limit = 100)
 	{
-		return Company::where('type', 'School')->limit($limit)->select('*', 'business_id as school_id')->get();
+		return Company::where('type', 'school')->limit($limit)->select('*', 'business_id as school_id')->get();
 	}
 
 	public function search($request, $limit = 20)
