@@ -289,6 +289,10 @@ class DriverRepository
 	{
 		try {
 			
+			/**
+			 * Soft-Delete
+			 * Remove relation between the business and the Driver
+			 */
 			$delete = Driver::where('business_id', $this->business_id)->find($id)->update(['business_id'=> 0]);
 
 			return true;
