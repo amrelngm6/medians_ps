@@ -10,6 +10,7 @@ use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Trips\Infrastructure\TripRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
 use Medians\Locations\Infrastructure\CountryRepository;
+use Medians\Locations\Infrastructure\CityRepository;
 
 class SettingsController extends CustomController
 {
@@ -24,6 +25,8 @@ class SettingsController extends CustomController
 	protected $updated;
 
 	protected $countriesRepo;
+	
+	protected $citiesRepo;
 
 
 
@@ -36,6 +39,7 @@ class SettingsController extends CustomController
 
 		$this->repo = new SettingsRepository(isset($user->business) ? $user->business : null);
 		$this->countriesRepo = new CountryRepository(isset($user->business) ? $user->business : null);
+		$this->citiesRepo = new CityRepository(isset($user->business) ? $user->business : null);
 
 	}
 
@@ -50,10 +54,10 @@ class SettingsController extends CustomController
 		return [
             
 			'Service Area'=> [	
-				[ 'key'=> "country", 'title'=> __('Country'), 
-					'sortable'=> true, 'column_key'=>'country_id', 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
-					'data' => $this->countriesRepo->get(),   
-					// 'multiple'=>true
+				[ 'key'=> "cities", 'title'=> __('Cities'), 
+					'sortable'=> true, 'column_key'=>'city_id', 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
+					'data' => $this->citiesRepo->get(),   
+					'multiple'=>true
 				],
 			],
 			'basic'=> [	
@@ -68,8 +72,6 @@ class SettingsController extends CustomController
 
 			'trips'=> [	
 				[ 'key'=> "allow_private_trip", 'title'=> __('Allow Private Trips'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "morning_trip", 'title'=> __('Morning trip'), 'fillable'=> true, 'column_type'=>'time' ],
-				[ 'key'=> "afternoon_trip", 'title'=> __('Afternoon trip'), 'fillable'=> true, 'column_type'=>'time' ],
 			],
 
 			'drivers'=> [	
