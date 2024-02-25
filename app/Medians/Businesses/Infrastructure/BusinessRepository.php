@@ -4,6 +4,7 @@ namespace Medians\Businesses\Infrastructure;
 
 use Medians\Businesses\Domain\Business;
 use Medians\Businesses\Domain\Company;
+use Medians\Businesses\Domain\School;
 use Medians\CustomFields\Domain\CustomField;
 
 
@@ -31,12 +32,14 @@ class BusinessRepository
 
 	public function getCompanies($limit = 100)
 	{
-		return Company::where('type', 'company')->limit($limit)->select('*', 'business_id as company_id')->get();
+		return Company::where('type', 'company')->limit($limit)->get();
 	}
 
 	public function getSchools($limit = 100)
 	{
-		return Company::where('type', 'school')->limit($limit)->select('*', 'business_id as school_id')->get();
+		return School::where('type', 'school')
+		->withCount('routes', 'locations', 'drivers')
+		->limit($limit)->get();
 	}
 
 	public function search($request, $limit = 20)
