@@ -257,8 +257,7 @@ class BusinessController extends CustomController
 
 			if (!empty($auth))
 			{
-				$check = $this->repo->getSchools(10);
-				echo json_encode($check);
+				return $this->repo->getSchools(10);
 			}
 
         } catch (Exception $e) {
@@ -274,8 +273,7 @@ class BusinessController extends CustomController
 
 			if (!empty($auth))
 			{
-				$check = $this->repo->getCompanies(10);
-				echo json_encode($check);
+				return $this->repo->getCompanies(10);
 			}
 
         } catch (Exception $e) {
