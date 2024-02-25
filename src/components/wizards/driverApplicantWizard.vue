@@ -27,6 +27,7 @@
                                             <div class="table-responsive table-card">
                                                 <table class="table table-borderless align-middle mb-0 w-full">
                                                     <tbody  v-if="activeItem.driver">
+                                                        
                                                         <tr>
                                                             <td class="fw-medium py-2" v-text="translate('ID')"></td>
                                                             <td class="py-2">#<span id="t-no" v-text="activeItem.applicant_id"></span></td>
@@ -50,6 +51,14 @@
                                                         <tr>
                                                             <td class="fw-medium py-2" v-text="translate('License number')"></td>
                                                             <td id="d-date" class="py-2" v-text="activeItem.driver.driver_license_number"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-bold py-2" ><span class="font-bold text-lg" v-text="translate('Application info')"></span></td>
+                                                            <td class="font-bold py-2" ><hr /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-medium py-2" v-text="translate('Message')"></td>
+                                                            <td id="d-date" class="py-2 font-bold" v-text="activeItem.message"></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="fw-medium py-2" v-text="translate('Status')"></td>

@@ -50,6 +50,12 @@
                             <img :src="item.driver.picture" class="w-8 h-8 rounded-full" />
                         </template>
 
+                        <template #item-status="item">
+                            <span v-if="item.status == 'approved'" class="bg-success px-2 py-1 rounded-lg  text-white" v-text="item.status"></span>
+                            <span v-if="item.status == 'rejected'" class="bg-danger px-2 py-1 rounded-lg text-white" v-text="item.status"></span>
+                            <span v-if="item.status == 'new'" class="bg-info px-2 py-1 rounded-lg text-white" v-text="item.status"></span>
+                        </template>
+
 
                         <template #item-edit="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
