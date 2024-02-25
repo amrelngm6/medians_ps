@@ -255,10 +255,10 @@ class BusinessController extends CustomController
 
         try {
 
-			// if (!empty($auth))
-			// {
+			if (!empty($auth))
+			{
 				return $this->repo->getSchools(10);
-			// }
+			}
 
         } catch (Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
