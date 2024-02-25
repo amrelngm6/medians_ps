@@ -249,7 +249,26 @@ class BusinessController extends CustomController
 	}
 	
 
-	public function loadForDrivers()
+	public function loadSchoolsForDrivers()
+	{
+		$params = (array)  json_decode($this->app->request()->get('params'));
+
+		$auth = $this->app->auth();
+
+        try {
+
+			if (!empty($auth))
+			{
+				$check = $this->repo->getSchools(10);
+				echo json_encode($check);
+			}
+
+        } catch (Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
+	
+	public function loadCompaniesForDrivers()
 	{
 		$params = (array)  json_decode($this->app->request()->get('params'));
 
