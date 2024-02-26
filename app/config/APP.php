@@ -304,6 +304,7 @@ class APP
 				array('permission'=>'Payments.index', 'title'=>__('Plan Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
 			]
 			),
+			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array( 'title'=>__('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Pages.index', 'title'=>__('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
