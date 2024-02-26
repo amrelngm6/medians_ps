@@ -179,8 +179,10 @@ class HelpMessageController extends CustomController
 
         try 
 		{	
-			$params['user_id'] = $this->app->auth()->driver_id;
-			$params['business_id'] = $this->app->auth()->business->business_id;
+			$user = $this->app->auth();
+
+			$params['user_id'] = $user->driver_id;
+			$params['business_id'] = isset($user->business->business_id) ? $user->business->business_id : 0;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('THNKS_MSG'), 'reload'=>1)
