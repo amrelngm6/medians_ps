@@ -260,7 +260,7 @@ class BusinessController extends CustomController
 				return $this->repo->getSchools(10);
 			}
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
         }
 	}
