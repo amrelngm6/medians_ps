@@ -86,7 +86,7 @@ class NotificationEventController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "event_id", 'title'=> "#",'column_type'=>'hidden'],
+            [ 'key'=> "id", 'title'=> "#",'column_type'=>'hidden'],
 			[ 'key'=> "receiver_model", 'title'=> __('Receiver model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title', 'data'=>$this->loadReceiverModels('receiver_model') ],
 			[ 'key'=> "model", 'title'=> __('Model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data'=>$this->loadModels('model') ],
 			
