@@ -95,6 +95,11 @@ class NotificationEvent extends CustomModel
 				return isset($location->route->driver) ? [$location->route->driver] : null;
 				break;
 
+			case Trip::class:
+				$object =  $model->whereHas('driver')->with('driver')->find($model->trip_id);
+				return isset($object->driver) ? [$object->driver] : null;
+				break;
+
 			default:
 				return [$model];
 				break;
@@ -166,7 +171,7 @@ class NotificationEvent extends CustomModel
 
 	public function saveNotification($event, $model, $receiver)
 	{
-		error_log(is_string($receiver) ? $receiver : json_encode($receiver));
+		// error_log(is_string($receiver) ? $receiver : json_encode($receiver));
     	$app = new \config\APP;
     	$params = [];
 
