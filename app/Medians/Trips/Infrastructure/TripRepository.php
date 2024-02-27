@@ -34,6 +34,11 @@ class TripRepository
 		return Trip::where('business_id', $this->business_id)->find($id);
 	}
 
+	public function findLocation($id)
+	{
+		return TripLocation::find($id);
+	}
+
 	public function getTrip($id)
 	{
 		return Trip::where('business_id', $this->business_id)->withCount('moving_locations','done_locations','waiting_locations')->with('locations',  'driver', 'vehicle', 'route','supervisor')->find($id);
@@ -305,33 +310,21 @@ class TripRepository
 		// Load route with locations
 		$trip = $this->find($data['trip_id']);
 
+		$tripLocation = $this->findLocation($data['trip_location_id']);
+
 		// Stop if no locations for this route today
 		if (empty($trip->trip_id))
 			return null;
 
 		$data['business_id'] =  $this->business_id;
 		$data['trip_id'] =  $trip->trip_id;
-		$data['model_id'] =  $params['model_id'];
-		$data['model_type'] =  $params['model_type'];
+		$data['model_id'] =  $tripLocation->model_id;
+		$data['model_type'] =  $tripLocation->model_type;
 
 		// Create the Trip
 		$save = TripAlarm::firstOrCreate($data);
 
-		// Stop if duplicated
-		if (empty($save->wasRecentlyCreated))
-			return $save;
-
-		// Handle trip waypoints
-		foreach ($route->route_locations as $key => $value) 
-		{
-			$value['trip_id'] = $save->trip_id;
-			$value['status'] = 'waiting';
-			// Store trip location
-			$this->saveLocation($value);
-		}
-
-		// Return the trip
-		return $this->getTrip($save->trip_id);
+		return $save;
 	}
 	
 
