@@ -222,6 +222,10 @@ class MobileAPIController extends CustomController
 	            case 'Student.create':
 	                return  (new Students\Application\StudentController())->addStudent(); 
 	                break;
+						
+	            case 'DriverApplicant.create':
+	                return  (new Drivers\Application\DriverApplicantController())->addStudent(); 
+	                break;
 
 
 			}
