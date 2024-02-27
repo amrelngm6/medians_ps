@@ -35,6 +35,8 @@ class APP
 	public $capsule;
 
 	public $session;
+	
+	public $setting;
 
 
 	function __construct()
