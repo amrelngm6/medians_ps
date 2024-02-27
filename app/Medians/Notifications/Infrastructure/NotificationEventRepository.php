@@ -108,7 +108,7 @@ class NotificationEventRepository
 			'User' => \Medians\Users\Domain\User::class,
 			'Driver' => \Medians\Drivers\Domain\Driver::class,
 			'Vehicle' => \Medians\Vehicles\Domain\Vehicle::class,
-			'Trip' => \Medians\Trips\Domain\TripPickup::class,
+			'Trip' => \Medians\Trips\Domain\Trip::class,
 			'Parents' => \Medians\Customers\Domain\Parents::class,
 			'HelpMessage' => \Medians\Help\Domain\HelpMessage::class,
 			'HelpMessageComment' => \Medians\Help\Domain\HelpMessageComment::class,
