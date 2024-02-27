@@ -207,14 +207,18 @@ class MobileAPIController extends CustomController
 					$return = (new Users\Application\UserController())->store();
 					break;
 					
-				case 'HelpMessageComment.create':
-					return  (new Help\Application\HelpMessageController())->storeDriverComment(); 
+				case 'DriverApplicant.create':
+					$return =  (new Drivers\Application\DriverApplicantController())->store(); 
 					break;
-			
+					
 				case 'HelpMessage.create':
 					$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
 					break;
 
+				case 'HelpMessageComment.create':
+					return  (new Help\Application\HelpMessageController())->storeDriverComment(); 
+					break;
+			
 				case 'HelpMessageComment.parent_comment':
 					return  (new Help\Application\HelpMessageController())->storeParentComment(); 
 					break;
@@ -223,9 +227,6 @@ class MobileAPIController extends CustomController
 	                return  (new Students\Application\StudentController())->addStudent(); 
 	                break;
 						
-	            case 'DriverApplicant.create':
-	                return  (new Drivers\Application\DriverApplicantController())->addStudent(); 
-	                break;
 
 
 			}
