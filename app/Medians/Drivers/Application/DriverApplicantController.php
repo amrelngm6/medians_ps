@@ -96,8 +96,8 @@ class DriverApplicantController extends CustomController
 			$params['driver_id'] = $user->driver_id;
 			$params['status'] = 'new';
 
-			if ($this->validate($params)) {
-				return $this->validate($params);
+			if ($this->validateDuplication($params)) {
+				return $this->validateDuplication($params);
             }
 
 
