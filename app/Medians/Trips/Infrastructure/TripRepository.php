@@ -323,7 +323,7 @@ class TripRepository
 		$data['model_type'] =  $tripLocation->model_type;
 
 		// Create the Trip
-		$save = TripAlarm::firstOrCreate($data);
+		$save = TripAlarm::create($data);
 
 		return $save;
 	}
