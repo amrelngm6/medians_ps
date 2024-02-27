@@ -70,10 +70,6 @@ class DriverApplicantRepository
 		// Return the  object with the new data
     	$Object = DriverApplicant::create($dataArray);
 
-    	// Store Custom fields
-		if (isset($data['field']))
-	    	$this->storeCustomFields($data['field'], $Object->id);
-
     	return $Object;
     }
     	
