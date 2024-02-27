@@ -3,6 +3,7 @@
 namespace Medians\Trips\Infrastructure;
 
 use Medians\Trips\Domain\Trip;
+use Medians\Trips\Domain\TripAlarm;
 use Medians\Trips\Domain\TripLocation;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Students\Domain\Student;
