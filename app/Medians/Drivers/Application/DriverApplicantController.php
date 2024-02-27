@@ -144,7 +144,7 @@ class DriverApplicantController extends CustomController
 
 
 	/**
-	*  Validate item store
+	*  Validate item update
 	*/
 	public function validate($params) 
 	{
@@ -184,6 +184,32 @@ class DriverApplicantController extends CustomController
 					return ['error' => __('Driver working at another business')];
 				}
 			}
+
+		} catch (\Exception $e) {
+			return ['error'=>$e->getMessage()];
+		}
+
+	}
+
+	
+	/**
+	*  Validate item update
+	*/
+	public function validateDuplication($params) 
+	{
+		try {
+			
+			/**
+			 * Allow update if duplicated
+			 */
+			$check = $this->repo->checkDuplicate($params['business_id'], $params['driver_id']);
+			
+			/**
+			 * Check if applied already exists
+			 */
+			return (!empty($check->business_id)) 
+				? ['error' => __('Already applied to this business')]
+				: null;
 
 		} catch (\Exception $e) {
 			return ['error'=>$e->getMessage()];
