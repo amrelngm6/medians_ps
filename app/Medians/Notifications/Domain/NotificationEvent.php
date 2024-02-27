@@ -7,6 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
 use Medians\Trips\Domain\Trip;
+use Medians\Trips\Domain\TripAlarm;
 use Medians\Trips\Domain\TripPickup;
 use Medians\Locations\Domain\RouteLocation;
 use Medians\Help\Domain\HelpMessageComment;
@@ -128,12 +129,16 @@ class NotificationEvent extends CustomModel
 				return isset($location->parent) ? [$location->parent] : null;
 				break;
 
-			
+			case TripAlarm::class:
+				$object =  $model->whereHas('model')->with('model')->find($model->alarm_id);
+				return isset($object->model) ? [$object->model] : null;
+				break;
+
 			case Trip::class:
 				$object =  $model->whereHas('parent')->with('parent')->find($model->trip_id);
 				return isset($object->parent) ? [$object->parent] : null;
 				break;
-			
+						
 			default:
 				return $model;
 				break;
