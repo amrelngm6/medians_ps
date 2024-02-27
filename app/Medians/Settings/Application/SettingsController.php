@@ -25,7 +25,7 @@ class SettingsController extends CustomController
 	protected $updated;
 
 	protected $countriesRepo;
-	
+
 	protected $citiesRepo;
 
 
@@ -69,6 +69,13 @@ class SettingsController extends CustomController
 				],
 			],
 			
+
+			'email'=> [	
+				[ 'key'=> "email", 'title'=> __('Email'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "address", 'title'=> __('Footer Address'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "mobile", 'title'=> __('Footer mobile'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "phone", 'title'=> __('Footer phone'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			],
 
 			'trips'=> [	
 				[ 'key'=> "allow_private_trip", 'title'=> __('Allow Private Trips'), 'fillable'=> true, 'column_type'=>'checkbox' ],
