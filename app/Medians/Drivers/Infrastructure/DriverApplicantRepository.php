@@ -59,9 +59,6 @@ class DriverApplicantRepository
 
 		$Model = new DriverApplicant();
 		
-		$Auth = new \Medians\Auth\Application\AuthService;
-		$data['generated_password'] = $Model->randomPassword();
-		$data['password'] = $Auth->encrypt($data['generated_password']);
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $Model->getFields()))

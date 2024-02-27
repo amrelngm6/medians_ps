@@ -94,8 +94,13 @@ class DriverApplicantController extends CustomController
 				return $this->validate($params);
             }
 
+
 			try 
             {
+				$user = $this->app->auth();
+
+				$params['driver_id'] = $user->driver_id;
+
 				return (!empty($this->repo->store($params))) 
 				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
