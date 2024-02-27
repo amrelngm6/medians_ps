@@ -45,6 +45,11 @@ class DriverApplicantRepository
 		return DriverApplicant::where('business_id', $this->business_id)->limit($limit)->orderBy('applicant_id', 'DESC')->get();
 	}
 
+	public function checkDuplicate($businessId, $driverId)
+	{
+		return DriverApplicant::where('business_id', $business_id)->where('driver_id', $driverId)->first();
+	}
+
 	public function getDriver($driverId)
 	{
 		return Driver::find($driverId);
