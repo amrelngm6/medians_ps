@@ -12,7 +12,7 @@ use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
 
 
-class TripLocation extends CustomModel
+class TripAlarm extends CustomModel
 {
 
 	/*

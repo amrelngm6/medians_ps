@@ -295,6 +295,47 @@ class TripRepository
 	
 
 	/**
+	 * Store trip
+	 */
+	public function createAlarm($data)
+	{
+
+		$data = (array) $data;
+
+		// Load route with locations
+		$trip = $this->find($data['trip_id']);
+
+		// Stop if no locations for this route today
+		if (empty($trip->trip_id))
+			return null;
+
+		$data['business_id'] =  $this->business_id;
+		$data['trip_id'] =  $trip->trip_id;
+		$data['model_id'] =  $params['model_id'];
+		$data['model_type'] =  $params['model_type'];
+
+		// Create the Trip
+		$save = TripAlarm::firstOrCreate($data);
+
+		// Stop if duplicated
+		if (empty($save->wasRecentlyCreated))
+			return $save;
+
+		// Handle trip waypoints
+		foreach ($route->route_locations as $key => $value) 
+		{
+			$value['trip_id'] = $save->trip_id;
+			$value['status'] = 'waiting';
+			// Store trip location
+			$this->saveLocation($value);
+		}
+
+		// Return the trip
+		return $this->getTrip($save->trip_id);
+	}
+	
+
+	/**
 	 * Store Trip Location
 	 */
 	public function saveLocation($data)

@@ -302,4 +302,30 @@ class TripController extends CustomController
         }
 	}
 
+
+
+	/**
+	 * Send alarm to Pickup user
+	 */
+	
+	 public function createAlarm()
+	 {
+		 $params = (array) json_decode($this->app->request()->get('params'));
+ 
+		 try 
+		 {
+			 $trip = $this->repo->createAlarm($params);
+ 
+			 if (isset($trip->trip_id))
+			 {
+				 return array('success'=>1, 'result'=>$trip);
+			 } else {
+				 return array('error'=>1, 'result'=>__('Not available'));
+			 }
+ 
+		 } catch (Exception $e) {
+			 throw new \Exception("Error Processing Request", 1);
+		 }
+	 }
+ 
 }

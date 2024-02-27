@@ -72,7 +72,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Trip.alarm_location':
-				$return = (new \Medians\Trips\Application\TripController())->alarmLocation();
+				$return = (new \Medians\Trips\Application\TripController())->createAlarm();
 				break;
 
 			case 'Route.end_trip':
