@@ -211,8 +211,7 @@ class TripController extends CustomController
 
 		if  (isset($user->driver_id))
 		{
-			$data =  $this->repo->getDriverTrips($user->driver_id, 0);
-			return $data;
+			return   $this->repo->getDriverTrips($user->driver_id, 0);
 		}
 		
 		if  (isset($user->customer_id))
