@@ -181,7 +181,9 @@ class MobileAPIController extends CustomController
 				$return = (new Businesses\Application\BusinessController)->loadCompaniesForDrivers();
 				break;
 		}
-
+		error_log(json_encode('$return'));
+		error_log(json_encode($return));
+		
 		echo json_encode($return);
 		
 		return true;
