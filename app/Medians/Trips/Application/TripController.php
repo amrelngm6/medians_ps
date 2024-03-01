@@ -205,7 +205,7 @@ class TripController extends CustomController
 	/**
 	 * Load Trips of driver
 	 */
-	public function loadTrips($params)
+	public function loadTrips()
 	{
 		$user = $this->app->auth();
 		error_log(json_encode($user));
