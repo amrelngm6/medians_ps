@@ -4,6 +4,7 @@ namespace Medians\Customers\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Locations\Domain\RouteLocation;
+use Medians\CustomFields\Domain\CustomField;
 
 
 class Customer extends CustomModel
