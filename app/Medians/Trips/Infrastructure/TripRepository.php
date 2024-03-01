@@ -88,7 +88,7 @@ class TripRepository
 		return Trip::with(['locations'=> function($q){
 			$q->with('model');
 		}])
-		// where('business_id', $this->business_id)->
+		->where('business_id', $this->business_id)
 		->with('driver', 'vehicle')
 		->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
