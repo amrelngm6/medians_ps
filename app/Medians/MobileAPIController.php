@@ -84,7 +84,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'trips':
-				$return = (new \Medians\Trips\Application\TripController())->loadTrips($params);
+				$return = (new \Medians\Trips\Application\TripController())->loadTrips();
 				break;
 			
 			case 'student_trips':
