@@ -91,6 +91,21 @@ class AppSettingsController extends CustomController
 	    ]);
 	} 
 
+	/**
+	 * Index settings page
+	 * 
+	 */
+	public function parent_index()
+	{
+		return render('app_settings', [
+            'load_vue' => true,
+            'app_type' => 'Parents',
+            'app_setting' => $this->getAll('Parent'),
+            'fillable' => $this->fillable(),
+            'title' => __('Parents app Settings'),
+	    ]);
+	} 
+
     /**
      * Get APP Settings 
      */    

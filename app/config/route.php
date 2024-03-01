@@ -229,6 +229,11 @@ if(isset($app->auth()->id))
     RouteHandler::get('/admin/app_settings', \Medians\Settings\Application\AppSettingsController::class.'@index');
 
     /**
+    * @return AppSettings
+    */
+    RouteHandler::get('/admin/parent_app_settings', \Medians\Settings\Application\AppSettingsController::class.'@parent_index');
+
+    /**
     * @return Notifications events 
     */
     RouteHandler::get('/admin/notifications_events', \Medians\Notifications\Application\NotificationEventController::class.'@index');
