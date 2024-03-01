@@ -85,8 +85,7 @@ class TripRepository
 
 	public function getDriverTrips($id, $lastId = 0)
 	{
-		$v = $lastId ? '<' : '>';
-		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with(['locations'=> function($q){
+		return Trip::where('business_id', $this->business_id)->with(['locations'=> function($q){
 			$q->with('model');
 		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
