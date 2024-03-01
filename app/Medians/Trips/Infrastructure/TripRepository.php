@@ -87,9 +87,11 @@ class TripRepository
 	{
 		error_log($id);
 		error_log($this->business_id);
-		return Trip::where('business_id', $this->business_id)->with(['locations'=> function($q){
+		return Trip::with(['locations'=> function($q){
 			$q->with('model');
-		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
+		}])
+		// where('business_id', $this->business_id)->
+		->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
 	public function getActiveDriverTrip($driver_id)
