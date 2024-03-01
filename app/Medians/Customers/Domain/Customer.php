@@ -55,4 +55,32 @@ class Customer extends CustomModel
         return $this->morphMany(RouteLocation::class, 'notifiable');
     }
 
+    public function custom_fields()
+    {
+        return $this->morphMany(CustomField::class, 'model');
+    }
+
+
+	/**
+	 * Create Custom filed for Session of driver
+	 */
+	public function insertCustomField($code, $value)
+	{
+
+		$delete = CustomField::where('code', $code)
+		->where('model_type', Driver::class)
+		->where('model_id', $this->customer_id)
+		->delete();
+
+    	// Insert activation code 
+		$fillable = [
+			'code'=>$code,
+			'model_type'=>Driver::class, 
+			'model_id'=>$this->driver_id, 
+			'value'=>$value
+		];
+
+		return CustomField::firstOrCreate($fillable);
+
+	}  
 }
