@@ -208,6 +208,8 @@ class TripController extends CustomController
 	public function loadTrips($params)
 	{
 		$user = $this->app->auth();
+		error_log(json_encode($user));
+
 		if  (isset($user->driver_id))
 		{
 			return  $this->repo->getDriverTrips($user->driver_id, 0);
