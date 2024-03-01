@@ -42,7 +42,6 @@ class AppSettingsController extends CustomController
 		return [
             
 			'basic'=> [	
-	            [ 'key'=> "app", 'column_type'=>'hidden' ],
 	            [ 'key'=> "logo", 'title'=> __('logo'), 'fillable'=>true, 'column_type'=>'file' ],
 				[ 'key'=> "app_name", 'title'=> __('App Name'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "default_lang", 'title'=> __('Languange'), 
@@ -51,7 +50,6 @@ class AppSettingsController extends CustomController
 				]
 			],
 			'Header'=> [
-	            [ 'key'=> "app", 'column_type'=>'hidden' ],
 				[ 'key'=> "header", 'title'=> __('Header style'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['header'=>'header1','title'=>__('Header 1')], ['header'=>'header2','title'=>__('Header 2')],['header'=>'header3','title'=>__('Header 3')]]  
@@ -60,7 +58,6 @@ class AppSettingsController extends CustomController
 	            [ 'key'=> "header_bg", 'title'=> __('Header background'), 'fillable'=>true, 'column_type'=>'file' ],
 			],
 			'Style colors'=> [	
-	            [ 'key'=> "app", 'column_type'=>'hidden' ],
 				[ 'key'=> "main_bg", 'title'=> __('Main BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "section_bg", 'title'=> __('Section BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "border_color", 'title'=> __('Border Color'), 'fillable'=> true, 'column_type'=>'color' ],
@@ -102,7 +99,7 @@ class AppSettingsController extends CustomController
 	{
 		return render('app_settings', [
             'load_vue' => true,
-            'app_type' => 'Parents',
+            'app_type' => 'Parent',
             'app_setting' => $this->getAll('Parent'),
             'fillable' => $this->fillable(),
             'title' => __('Parents app Settings'),
