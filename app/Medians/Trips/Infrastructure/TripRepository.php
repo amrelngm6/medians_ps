@@ -85,13 +85,12 @@ class TripRepository
 
 	public function getDriverTrips($id, $lastId = 0)
 	{
-		error_log($id);
-		error_log($this->business_id);
 		return Trip::with(['locations'=> function($q){
 			$q->with('model');
 		}])
 		// where('business_id', $this->business_id)->
-		->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
+		->with('driver', 'vehicle')
+		->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
 	public function getActiveDriverTrip($driver_id)
