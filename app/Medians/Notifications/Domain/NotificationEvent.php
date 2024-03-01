@@ -8,7 +8,6 @@ use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
 use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripAlarm;
-use Medians\Trips\Domain\TripPickup;
 use Medians\Locations\Domain\RouteLocation;
 use Medians\Help\Domain\HelpMessageComment;
 use Medians\Customers\Domain\Parents;

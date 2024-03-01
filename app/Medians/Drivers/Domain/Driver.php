@@ -7,7 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Trips\Domain\Trip;
-use Medians\Trips\Domain\TripPickup;
+use Medians\Trips\Domain\TripLocation;
 use Medians\Help\Domain\HelpMessage;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Businesses\Domain\Business;
@@ -99,7 +99,7 @@ class Driver extends CustomModel
 
 	public function total_pickups() 
 	{
-		return $this->hasManyThrough(TripPickup::class, Trip::class, 'driver_id', 'trip_id', 'driver_id', 'trip_id');
+		return $this->hasManyThrough(TripLocation::class, Trip::class, 'driver_id', 'trip_id', 'driver_id', 'trip_id');
 	}
 
 

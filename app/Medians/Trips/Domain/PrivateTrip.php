@@ -94,7 +94,7 @@ class PrivateTrip extends CustomModel
 
 	public function pickup_location() 
 	{
-		return $this->hasOne(TripPickup::class, 'trip_id', 'trip_id')->with('location','model')->orderBy('boarding_time', 'asc');	
+		return $this->hasOne(TripLocation::class, 'trip_id', 'trip_id')->with('location','model')->orderBy('boarding_time', 'asc');	
 	}
 
 	public function destinations() 

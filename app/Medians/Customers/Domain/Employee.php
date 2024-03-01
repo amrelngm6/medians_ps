@@ -5,7 +5,7 @@ namespace Medians\Customers\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Locations\Domain\RouteLocation;
-use Medians\Trips\Domain\TripPickup;
+use Medians\Trips\Domain\TripLocation;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Businesses\Domain\Business;
 
@@ -45,7 +45,7 @@ class Employee extends Customer
 	
 	public function trip_route_location() 
 	{
-		return $this->hasOne(TripPickup::class, 'employee_id', 'model_id', 'employee_id', 'student_id');	
+		return $this->hasOne(TripLocation::class, 'employee_id', 'model_id', 'employee_id', 'student_id');	
 	}
 
 	public function route_location() 

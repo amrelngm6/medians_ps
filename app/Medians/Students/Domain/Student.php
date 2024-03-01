@@ -7,7 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Locations\Domain\RouteLocation;
 use Medians\Customers\Domain\Parents;
 use Medians\Routes\Domain\Route;
-use Medians\Trips\Domain\TripPickup;
+use Medians\Trips\Domain\TripLocation;
 use Medians\Businesses\Domain\Business;
 
 class Student extends CustomModel
@@ -58,7 +58,7 @@ class Student extends CustomModel
 
 	public function trips() 
 	{
-    	return $this->hasMany(TripPickup::class, 'model_id', 'student_id')->where('model_type', Student::class)->with('trip');
+    	return $this->hasMany(TripLocation::class, 'model_id', 'student_id')->where('model_type', Student::class)->with('trip');
 	}
 
 	public function route_location() 
