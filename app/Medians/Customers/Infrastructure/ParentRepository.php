@@ -47,6 +47,16 @@ class ParentRepository  extends CustomerRepository
 		}])->find($customer_id);
 	}
 
+	/**
+	 * Check user session by his token
+	 */
+	public function findByToken($token, $code = 'API_token')
+	{
+		return Parents::with('custom_fields')->whereHas('custom_fields', function($q) use ($token, $code) {
+			$q->where('code', $code)->where('value',$token);
+		})->first();
+	}
+
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search');
