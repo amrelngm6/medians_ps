@@ -5,7 +5,7 @@ namespace Medians\Customers\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Locations\Domain\RouteLocation;
-use Medians\Trips\Domain\TripPickup;
+use Medians\Trips\Domain\TripLocation;
 use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Businesses\Domain\Business;
@@ -51,7 +51,7 @@ class Parents extends Customer
 
 	public function trip_route_location() 
 	{
-		return $this->hasOneThrough(TripPickup::class, Student::class, 'customer_id', 'model_id', 'customer_id', 'student_id');	
+		return $this->hasOneThrough(TripLocation::class, Student::class, 'customer_id', 'model_id', 'customer_id', 'student_id');	
 	}
 
 	public function route_location() 
