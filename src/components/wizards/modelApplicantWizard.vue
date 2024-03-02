@@ -7,9 +7,14 @@
                     
                     <div class="w-full" v-if="activeItem">
                         <div class="" >
-                            <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
+                            <div class="card-body pt-0 mx-auto max-w-xl" :key="activeItem">
 
-                                <div class="max-w-xxl mx-auto ">
+                                <div class="flex w-full gap-6 ">
+                                    <div  v-if="activeItem.model">
+                                        <static_map  v-if="activeItem.model.location" :system_setting="system_setting" :item="activeItem"
+                                                    :key="activeItem.model.location.start_latitude"
+                                                    :location="{ lat: activeItem.model.location.start_latitude, lng: activeItem.model.location.start_longitude }"></static_map>
+                                    </div>
                                     <div class="card">
                                         <div class="card-header">
                                             
