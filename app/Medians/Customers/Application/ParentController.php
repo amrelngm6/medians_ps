@@ -312,8 +312,11 @@ class ParentController extends CustomController
 		$params = $this->app->request()->get('params');
 		$params = is_array($params) ?  $params : (array) json_decode($params);
 
+		$user = $this->app->auth();
+
         try {
 
+			$params['customer_id'] = $user->customer_id;
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
