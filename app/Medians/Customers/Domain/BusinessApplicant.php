@@ -1,6 +1,6 @@
 <?php
 
-namespace Medians\Drivers\Domain;
+namespace Medians\Customers\Domain;
 
 use Shared\dbaser\CustomModel;
 
