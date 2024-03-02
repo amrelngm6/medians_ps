@@ -149,6 +149,11 @@ if(isset($app->auth()->id))
     */
     RouteHandler::get('/admin/driver_applicants', Medians\Drivers\Application\DriverApplicantController::class.'@index');
 
+    /**
+    * @return Business Applicants
+    */
+    RouteHandler::get('/admin/business_applicants', Medians\Customers\Application\BusinessApplicantController::class.'@index');
+
     /** @return Routes */
     RouteHandler::get('/admin/routes', Medians\Routes\Application\RouteController::class.'@index');
     
