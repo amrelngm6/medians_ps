@@ -157,7 +157,7 @@ class RouteLocationRepository
 	{
 		try {
 			
-			$delete = RouteLocation::where('business_id', $this->business_id)->where('model_id',$student_id)->where('model_type',Student::class)->delete();
+			$delete = RouteLocation::where('model_id',$student_id)->where('model_type',Student::class)->delete();
 
 			return true;
 

@@ -65,8 +65,7 @@ class StudentController extends CustomController
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->parentRepo->get()  
 			],
-            [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "last_name", 'title'=> __('last_name'), 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "transfer_status", 'title'=> __('Transfer status'), 
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 				'data' => [['transfer_status'=>'Approved','title'=>__('Approved')], ['transfer_status'=>'Pending','title'=>__('Pending')]]  
@@ -110,7 +109,7 @@ class StudentController extends CustomController
 	public function validate($params) 
 	{
 
-		if (empty($params['first_name']))
+		if (empty($params['name']))
 		{
 			throw new \Exception(__('NAME_EMPTY'), 0);
 		}
@@ -120,7 +119,7 @@ class StudentController extends CustomController
 			throw new \Exception(__('parent_required'), 0);
 		}
 
-		if (empty($params['contact_number']))
+		if (empty($params['mobile']))
 		{
 			throw new \Exception(__('MOBILE_ERR'), 0);
 		}
@@ -192,7 +191,6 @@ class StudentController extends CustomController
 
         	$check = $this->repo->find($params['student_id']);
 
-
             if ($this->repo->delete($params['student_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
@@ -224,7 +222,7 @@ class StudentController extends CustomController
         try {	
 
 			$params['parent_id'] =  $this->app->auth()->customer_id;
-			$params['last_name'] =  $this->app->auth()->first_name;
+			$params['name'] =  $this->app->auth()->name;
 
 			$save = $this->repo->store($params);
 
@@ -248,7 +246,7 @@ class StudentController extends CustomController
         try {	
 
 			$params['parent_id'] =  $this->app->auth()->customer_id;
-			$params['last_name'] =  $this->app->auth()->first_name;
+			$params['name'] =  $this->app->auth()->name;
 
 			$save = $this->repo->updateStudentInfo($params);
 

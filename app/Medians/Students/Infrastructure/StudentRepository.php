@@ -76,7 +76,7 @@ class StudentRepository
     public function update($data)
     {
 
-		$Object = Student::where('business_id', $this->business_id)->find($data['student_id']);
+		$Object = Student::find($data['student_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -94,7 +94,7 @@ class StudentRepository
 	{
 		try {
 			
-			$delete = Student::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = Student::find($id)->delete();
 
 			return true;
 
