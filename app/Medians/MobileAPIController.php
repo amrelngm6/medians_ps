@@ -211,6 +211,10 @@ class MobileAPIController extends CustomController
 					$return =  (new Drivers\Application\DriverApplicantController())->store(); 
 					break;
 					
+				case 'BusinessApplicant.create':
+					$return =  (new Customers\Application\BusinessApplicantController())->store(); 
+					break;
+					
 				case 'HelpMessage.create':
 					$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();
 					break;

@@ -1,0 +1,162 @@
+<?php
+
+namespace Medians\Customers\Infrastructure;
+
+use Medians\Students\Domain\Student;
+use Medians\Customers\Domain\BusinessApplicant;
+use Medians\CustomFields\Domain\CustomField;
+
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+class BusinessApplicantRepository 
+{
+
+
+	/**
+	 * Business id
+	 */ 
+	protected $business_id ;
+
+	protected $business;
+
+	function __construct($business)
+	{
+		$this->business = $business;
+
+		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+	}
+
+
+	public function find($id)
+	{
+		return BusinessApplicant::find($id);
+	}
+
+	
+	public function get($limit = 100)
+	{
+		return BusinessApplicant::with('model')->where('business_id', $this->business_id)->limit($limit)->orderBy('applicant_id', 'DESC')->get();
+	}
+
+	public function getAll($limit = 100)
+	{
+		return BusinessApplicant::where('business_id', $this->business_id)->limit($limit)->orderBy('applicant_id', 'DESC')->get();
+	}
+
+	public function checkDuplicate($businessId, $modelId)
+	{
+		return BusinessApplicant::where('business_id', $businessId)->where('model_id', $modelId)->first();
+	}
+
+	public function getStudent($modelId)
+	{
+		return Student::find($modelId);
+	}
+	
+	
+	/**
+	* Save item to database
+	*/
+	public function store($data) 
+	{
+
+		$Model = new BusinessApplicant();
+		
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+
+		// Return the  object with the new data
+    	$Object = BusinessApplicant::create($dataArray);
+
+    	return $Object;
+    }
+    	
+	
+	
+    /**
+     * Update Lead
+     */
+    public function update($data)
+    {
+
+		$Object = BusinessApplicant::where('business_id', $this->business_id)->find($data['applicant_id']);
+		
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	// Store Custom fields
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['applicant_id']) : '';
+
+    	return $Object;
+
+    }
+
+
+	/**
+	* Delete item to database
+	*
+	* @Returns Boolen
+	*/
+	public function delete($id) 
+	{
+		try {
+			
+			$delete = BusinessApplicant::where('business_id', $this->business_id)->find($id)->delete();
+
+			if ($delete){
+				$this->storeCustomFields(null, $id);
+			}
+
+			return true;
+
+		} catch (\Exception $e) {
+
+			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);
+			
+		}
+	}
+
+
+
+	/**
+	* Save related items to database
+	*/
+	public function storeCustomFields($data, $id) 
+	{
+		if ($data)
+		{
+			foreach ($data as $key => $value)
+			{
+				$fields = [];
+				$fields['model_type'] = BusinessApplicant::class;	
+				$fields['model_id'] = $id;	
+				$fields['code'] = $key;	
+
+				if (is_array($value))
+				{
+					CustomField::where('model_type', BusinessApplicant::class)->where('code',$key)->where('model_id', $id)->delete();
+					foreach ($value as $k => $v) {
+						$Model = CustomField::firstOrCreate($fields);
+						$Model->update(['value'=>$v]);
+					}
+				} else {
+					$Model = CustomField::firstOrCreate($fields);
+					$Model->update(['value'=>$value]);
+				}
+			}
+	
+			return $Model;		
+		}
+	}
+
+
+
+
+ 
+}
