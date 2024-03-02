@@ -164,7 +164,7 @@ class ParentRepository  extends CustomerRepository
 
 		$Object = Parents::find($data['customer_id']);
 		
-		if ($this->validateEmail($data['email'], $data['customer_id']))
+		if (isset($data['email']) && $this->validateEmail($data['email'], $data['customer_id']))
 		{
 			return throw new \Exception(__('Email found'), 1);
 		}
