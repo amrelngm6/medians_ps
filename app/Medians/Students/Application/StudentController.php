@@ -40,7 +40,7 @@ class StudentController extends CustomController
 
 		return [
             [ 'value'=> "student_id", 'text'=> "#"],
-            [ 'value'=> "first_name", 'text'=> __('first_name'), 'sortable'=> true ],
+            [ 'value'=> "name", 'text'=> __('first_name'), 'sortable'=> true ],
             [ 'value'=> "picture", 'text'=> __('picture'),  ],
             [ 'value'=> "parent.name", 'text'=> __('parent_name'), 'sortable'=> true ],
             [ 'value'=> "route.route_name", 'text'=> __('route'), 'sortable'=> true ],
