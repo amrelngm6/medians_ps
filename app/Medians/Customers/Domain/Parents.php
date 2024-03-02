@@ -66,7 +66,7 @@ class Parents extends Customer
 
 	public function pending_student() 
 	{
-		return $this->hasOne(Student::class, 'student_id', 'customer_id')->where('transfer_status', 'Pending')->with('route_location');
+		return $this->hasOne(Student::class, 'parent_id', 'customer_id')->where('transfer_status', 'Pending')->with('route_location');
 	}
 
     public function custom_fields()
