@@ -251,7 +251,7 @@ class StudentController extends CustomController
 			$save = $this->repo->updateStudentInfo($params);
 
             $returnData =  (!empty($save)) 
-            ? array('success'=>1, 'result'=>$save, 'reload'=>1)
+            ? array('success'=>1, 'result'=>$save, 'error'=> null, 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 			
         } catch (Exception $e) {

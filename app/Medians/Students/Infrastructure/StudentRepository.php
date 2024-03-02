@@ -110,7 +110,8 @@ class StudentRepository
      * Update Lead
      */
     public function updateStudentInfo($data)
-    {
+    {	
+		$data = (array) $data;
 
 		$Object = Student::find($data['student_id']);
 		
@@ -120,13 +121,13 @@ class StudentRepository
 		}
 
 		// Return the  object with the new data
-    	$Object->update( (array) $data);
+    	$Object->update( $data);
 
-		if (isset($data['route_location']))
+		if (isset($data['location']))
 		{
 			$this->routeLocationRepository->deleteByStudent($Object->student_id);
 
-			$location = (array) $data['route_location'];
+			$location = (array) $data['location'];
 			$location['model_id'] = $data['student_id'];
 			$location['model_type'] = Student::class;
 			$this->routeLocationRepository->store($location);
