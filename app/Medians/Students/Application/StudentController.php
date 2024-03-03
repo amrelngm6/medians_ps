@@ -215,6 +215,19 @@ class StudentController extends CustomController
 		return $data;
 	}
 	
+	/**
+	 * getRouteLocation
+	 */
+	public function loadStudent()
+	{
+		
+		$studentId = $this->app->request()->get('student_id');
+
+		$data =  $this->repo->findWithLocations($studentId, $this->app->auth()->customer_id);
+
+		return $data;
+	}
+	
 	public function addStudent() 
 	{
 
