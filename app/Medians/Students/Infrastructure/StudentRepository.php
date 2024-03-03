@@ -42,7 +42,7 @@ class StudentRepository
 
 	public function findWithLocations($student_id, $parent_id)
 	{
-		return Student::where('business_id', $this->business_id)->where('parent_id', $parent_id)->with('route_location')->find($student_id);
+		return Student::where('parent_id', $parent_id)->with('route_location')->find($student_id);
 	}
 
 
