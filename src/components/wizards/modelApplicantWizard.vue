@@ -7,15 +7,15 @@
                     
                     <div class="w-full" v-if="activeItem">
                         <div class="" >
-                            <div class="card-body pt-0 mx-auto max-w-xl" :key="activeItem">
+                            <div class="card-body pt-0 mx-auto " :key="activeItem">
 
                                 <div class="flex w-full gap-6 ">
-                                    <div  v-if="activeItem.model">
-                                        <static_map  v-if="activeItem.model.location" :system_setting="system_setting" :item="activeItem"
-                                                    :key="activeItem.model.location.start_latitude"
-                                                    :location="{ lat: activeItem.model.location.start_latitude, lng: activeItem.model.location.start_longitude }"></static_map>
+                                    <div class="w-full" v-if="activeItem.model">
+                                        <static_map  v-if="activeItem.model.route_location" :system_setting="system_setting" :item="activeItem.model.route_location"
+                                                    :key="activeItem" :conf="conf"
+                                                    ></static_map>
                                     </div>
-                                    <div class="card">
+                                    <div class="card w-full">
                                         <div class="card-header">
                                             
                                             <div class="card-title m-0 flex  gap-4" v-if="activeItem.model">
@@ -124,7 +124,7 @@ const SideFormUpdate = defineAsyncComponent(() =>
 const form_field = defineAsyncComponent(() =>
     import('@/components/includes/form_field.vue')
 );
-import editable_map_location from '@/components/includes/editable_map_location.vue';
+import static_map from '@/components/maps/static_map.vue';
 import tooltip from '@/components/includes/tooltip.vue';
 
 export default
@@ -137,7 +137,7 @@ export default
             delete_icon,
             car_icon,
             form_field,
-            editable_map_location,
+            static_map,
             dashboard_card_white,
             tooltip,
         },

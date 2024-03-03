@@ -39,7 +39,7 @@ class BusinessApplicant extends CustomModel
 	
     public function model()
     {
-        return $this->morphTo();
+        return $this->morphTo()->with('route_location');
     }
 
 

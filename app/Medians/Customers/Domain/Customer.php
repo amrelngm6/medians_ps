@@ -56,6 +56,11 @@ class Customer extends CustomModel
         return $this->morphMany(RouteLocation::class, 'notifiable');
     }
 
+    public function route_location()
+    {
+        return $this->morphOne(RouteLocation::class, 'notifiable');
+    }
+
     public function custom_fields()
     {
         return $this->morphMany(CustomField::class, 'model');

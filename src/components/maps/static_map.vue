@@ -50,7 +50,7 @@
         strokeWeight: 2,
       });
   
-      const location = ref(props.location);
+      const location = ref(props.item);
   
   
       /**
@@ -68,7 +68,7 @@
       const setValues = () => {
   
         markers.value = [
-            handlePickup(location.value, 'start_latitude', 'start_longitude', 'car.svg'), 
+            handlePickup(location.value, 'start_latitude', 'start_longitude', 'yellow_pin.gif'), 
             handlePickup(location.value, 'end_latitude', 'end_longitude', 'destination.svg')
         ];
         
@@ -76,14 +76,11 @@
   
       setValues();
   
-      const mapOrigin = ref({ lat: 0, lng: 0 }); // Set initial values
-      const mapDestination = ref({ lat: 0, lng: 0 }); // Set initial values
-  
       const fetchRoute = async () => {
-        // const baseUrl = 'http://localhost:3000/directions'; // Use your server's URL
+        const baseUrl = 'http://localhost:3000/directions'; // Use your server's URL
         // const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&apiKey=${props.system_setting.google_map_api}`;
-        const baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
-        const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&key=${props.system_setting.google_map_api}`;
+        // const baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
+        const url = `${baseUrl}?origin=${location.value.start_latitude},${location.value.start_longitude}&destination=${location.value.end_latitude},${location.value.end_longitude}&key=${props.system_setting.google_map_api}`;
   
         try {
   
@@ -122,8 +119,6 @@
   
       onMounted(() => {
         mapCenter.value = { lat: location.value.start_latitude, lng: location.value.start_longitude };
-        mapOrigin.value = { lat: location.value.start_latitude, lng: location.value.start_longitude }; // Example coordinates (New York)
-        mapDestination.value = { lat: location.value.end_latitude, lng: location.value.end_longitude }; // Example coordinates (Los Angeles)
         fetchRoute();
       });
   
@@ -142,6 +137,6 @@
         polylineOptions,
       };
     },
-    props: ['system_setting', 'location', 'conf'],
+    props: ['system_setting', 'item', 'conf'],
   };
   </script>

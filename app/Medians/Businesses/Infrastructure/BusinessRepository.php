@@ -42,7 +42,7 @@ class BusinessRepository
 		->whereHas('Settings', function($q) {
 			$q->where('code', 'allow_applicants')->where('value','on');	
 		})
-		->with('settings')
+		->with('settings','packages')
 		->where('status', 'on')
 		->limit($limit)->get();
 	}
