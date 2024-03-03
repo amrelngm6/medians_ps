@@ -135,6 +135,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Students\Application\StudentController())->uploadPicture(); 
 				break;
 				
+			case 'Student.get_student':
+				$return =  (new Students\Application\StudentController())->loadStudent(); 
+				break;
+				
 			case 'Driver.upload_picture':
 				$return =  (new Drivers\Application\DriverController())->uploadPicture(); 
 				break;
