@@ -121,6 +121,7 @@ class HelpMessageRepository
 		$Model = new HelpMessage();
 
 		$data['user_type'] = Parents::class;
+		$data['business_id'] = $data['business_id'] ?? null;
 		
 		foreach ($data as $key => $value) 
 		{
