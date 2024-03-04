@@ -167,7 +167,7 @@ class BusinessApplicantController extends CustomController
 				 */
 				if ($check->business_id == $user->business->business_id)
 				{
-					return ['error' => __('Business already exists')];
+					return ['error' => __('Student already exists')];
 				}
 				
 				/**
@@ -176,7 +176,7 @@ class BusinessApplicantController extends CustomController
 				 */
 				if ($check->business_id != $user->business->business_id)
 				{
-					return ['error' => __('Business working at another business')];
+					return ['error' => __('Student approved by another business')];
 				}
 			}
 
