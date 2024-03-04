@@ -365,6 +365,10 @@ class APIController extends CustomController
 				$controller = new Drivers\Application\DriverApplicantController;
 				break;
 			
+			case 'BusinessApplicant.update':
+				$controller = new Customers\Application\BusinessApplicantController;
+				break;
+			
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
