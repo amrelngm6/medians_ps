@@ -46,7 +46,7 @@ class BusinessApplicantController extends CustomController
 		return [
             [ 'value'=> "applicant_id", 'text'=> "#"],
             [ 'value'=> "model.name", 'text'=> __('Name'), 'sortable'=> true ],
-            [ 'value'=> "message", 'text'=> __('message'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('edit')  ],
             [ 'value'=> "delete", 'text'=> __('delete')  ],
         ];
