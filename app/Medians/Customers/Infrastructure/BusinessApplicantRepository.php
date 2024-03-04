@@ -129,6 +129,7 @@ class BusinessApplicantRepository
 		$Object = Student::find($data['model_id']);
 		
 		$data['business_id'] = $this->business_id;
+		$data['transfer_status'] = 'Approved';
 
 		// Return the  object with the new data
     	$Object->update( (array) $data);
