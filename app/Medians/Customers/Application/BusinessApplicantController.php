@@ -127,7 +127,7 @@ class BusinessApplicantController extends CustomController
 
             if ($this->repo->update($params))
             {
-				$this->driverRepo->updateBusinessBusiness($params);
+				$this->repo->updateStudentBusiness($params);
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
 

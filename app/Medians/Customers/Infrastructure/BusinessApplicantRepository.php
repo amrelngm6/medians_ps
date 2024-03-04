@@ -120,6 +120,24 @@ class BusinessApplicantRepository
 	}
 
 
+    /**
+     * Update Lead
+     */
+    public function updateStudentBusiness($data)
+    {
+
+		$Object = Student::find($data['student_id']);
+		
+		$data['business_id'] = $this->business_id;
+
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+
+    }
+
+
 
 	/**
 	* Save related items to database
