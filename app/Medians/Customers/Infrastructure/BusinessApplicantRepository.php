@@ -139,7 +139,7 @@ class BusinessApplicantRepository
 			$fields['end_date'] = $data['end_date'];
 			$fields['payment_type'] = $data['payment_type'];
 			$fields['payment_status'] = 'unpaid';
-			$fields['daily_trips'] = $data['daily_trips'];
+			$fields['daily_trips'] = 2;
 			$fields['total_cost'] = $data['total_cost'];
 			$fields['notes'] = $data['notes'];
 
