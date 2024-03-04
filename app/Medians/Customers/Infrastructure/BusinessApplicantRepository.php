@@ -75,9 +75,8 @@ class BusinessApplicantRepository
 		// Return the  object with the new data
     	$Object = BusinessApplicant::create($dataArray);
 
-		
     	// Store subscription
-    	!empty($data['subscription']) ? $this->saveSubscription($data['subscription'], $Object) : '';
+    	!empty($data['subscription']) ? $this->saveSubscription((array) $data['subscription'], $Object) : '';
 
     	return $Object;
     }
