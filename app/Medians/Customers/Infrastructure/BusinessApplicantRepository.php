@@ -126,7 +126,7 @@ class BusinessApplicantRepository
     public function updateStudentBusiness($data)
     {
 
-		$Object = Student::find($data['student_id']);
+		$Object = Student::find($data['model_id']);
 		
 		$data['business_id'] = $this->business_id;
 
