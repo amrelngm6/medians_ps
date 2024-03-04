@@ -110,7 +110,7 @@ class TripRepository
 	{
 		return Trip::with('locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
 			'locations', function($q) use ($id){
-				$q->where('model_id', $id);
+				$q->where('model_id', $id)->with('model');
 			}
 		)->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}

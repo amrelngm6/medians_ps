@@ -5,6 +5,7 @@ namespace Medians\Customers\Infrastructure;
 use Medians\Students\Domain\Student;
 use Medians\Customers\Domain\BusinessApplicant;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Packages\Domain\PackageSubscription;
 
 
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -74,6 +75,10 @@ class BusinessApplicantRepository
 		// Return the  object with the new data
     	$Object = BusinessApplicant::create($dataArray);
 
+		
+    	// Store subscription
+    	!empty($data['subscription']) ? $this->saveSubscription($data['subscription'], $Object) : '';
+
     	return $Object;
     }
     	
@@ -89,9 +94,6 @@ class BusinessApplicantRepository
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
-
-    	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['applicant_id']) : '';
 
     	return $Object;
 
@@ -109,10 +111,6 @@ class BusinessApplicantRepository
 			
 			$delete = BusinessApplicant::where('business_id', $this->business_id)->find($id)->delete();
 
-			if ($delete){
-				$this->storeCustomFields(null, $id);
-			}
-
 			return true;
 
 		} catch (\Exception $e) {
@@ -127,29 +125,25 @@ class BusinessApplicantRepository
 	/**
 	* Save related items to database
 	*/
-	public function storeCustomFields($data, $id) 
+	public function saveSubscription($data, $Object) 
 	{
 		if ($data)
 		{
-			foreach ($data as $key => $value)
-			{
-				$fields = [];
-				$fields['model_type'] = BusinessApplicant::class;	
-				$fields['model_id'] = $id;	
-				$fields['code'] = $key;	
+			$fields = [];
 
-				if (is_array($value))
-				{
-					CustomField::where('model_type', BusinessApplicant::class)->where('code',$key)->where('model_id', $id)->delete();
-					foreach ($value as $k => $v) {
-						$Model = CustomField::firstOrCreate($fields);
-						$Model->update(['value'=>$v]);
-					}
-				} else {
-					$Model = CustomField::firstOrCreate($fields);
-					$Model->update(['value'=>$value]);
-				}
-			}
+			$fields['business_id'] = $Object->business_id;
+			$fields['model_id'] = $Object->model_id;
+			$fields['model_type'] = $Object->model_type;
+			$fields['package_id'] = $data['package_id'];
+			$fields['start_date'] = $data['start_date'];
+			$fields['end_date'] = $data['end_date'];
+			$fields['payment_type'] = $data['payment_type'];
+			$fields['payment_status'] = 'unpaid';
+			$fields['daily_trips'] = $data['daily_trips'];
+			$fields['total_cost'] = $data['total_cost'];
+			$fields['notes'] = $data['notes'];
+
+			$Model = PackageSubscription::firstOrCreate($fields);
 	
 			return $Model;		
 		}
