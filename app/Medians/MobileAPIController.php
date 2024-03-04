@@ -111,7 +111,7 @@ class MobileAPIController extends CustomController
 				$return =  (new Drivers\Application\DriverController())->getDriver($this->app->request()->get('driver_id')); 
 				break;
 
-			case 'Parents.resetPassword':
+			case 'Parent.resetPassword':
 				$return =  (new Customers\Application\ParentController())->resetPassword(); 
 				break;
 
