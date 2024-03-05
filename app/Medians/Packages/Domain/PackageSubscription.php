@@ -47,7 +47,7 @@ class PackageSubscription extends CustomModel
 
 	public function business() 
 	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+		return $this->hasOne(Business::class, 'business_id', 'business_id')->withCount('routes', 'locations', 'drivers');	
 	}
 
     public function model()
