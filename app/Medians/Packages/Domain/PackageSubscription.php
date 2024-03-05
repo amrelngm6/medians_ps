@@ -2,6 +2,7 @@
 
 namespace Medians\Packages\Domain;
 
+use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
 
 /**
