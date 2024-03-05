@@ -9,6 +9,7 @@ use Medians\Customers\Domain\Parents;
 use Medians\Routes\Domain\Route;
 use Medians\Trips\Domain\TripLocation;
 use Medians\Businesses\Domain\Business;
+use Medians\Packages\Domain\PackageSubscription;
 
 class Student extends CustomModel
 {
@@ -54,6 +55,11 @@ class Student extends CustomModel
 	public function business() 
 	{
 		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+
+	public function subscription() 
+	{
+		return $this->morphOne(PackageSubscription::class, 'model')->with('package');	
 	}
 
 	public function trips() 
