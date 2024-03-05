@@ -59,7 +59,7 @@ class Student extends CustomModel
 
 	public function subscription() 
 	{
-		return $this->morphOne(PackageSubscription::class, 'model')->with('package');	
+		return $this->morphOne(PackageSubscription::class, 'model')->with('package','business');	
 	}
 
 	public function trips() 

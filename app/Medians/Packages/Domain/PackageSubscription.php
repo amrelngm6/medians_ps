@@ -44,6 +44,11 @@ class PackageSubscription extends CustomModel
 		return strtolower(end($parts));
 	}
 
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+
     public function model()
     {
         return $this->morphTo();
