@@ -24,15 +24,16 @@ class City extends CustomModel
 	];
 	public $timestamps = false;
 
+	public $appends = ['country_id'];
 
-    public function country()
-    {
-        return $this->hasOne(Country::class, 'country_id', 'country_id');   
-    }
+    public function getCountryIdAttribute()
+	{
+		return $this->state->country_id;
+	}
 	
     public function state()
     {
-        return $this->hasOne(State::class, 'state_id', 'state_id');   
+        return $this->hasOne(State::class, 'state_id', 'state_id')->with('country');   
     }
 	
 }

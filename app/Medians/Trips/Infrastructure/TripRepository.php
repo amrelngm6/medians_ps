@@ -108,7 +108,7 @@ class TripRepository
 
 	public function getStudentTrips($id, $lastId = 0)
 	{
-		return Trip::with('locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+		return Trip::with('locations', 'driver', 'vehicle', 'route')->whereHas(
 			'locations', function($q) use ($id){
 				$q->where('model_id', $id)->with('model');
 			}

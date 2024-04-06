@@ -36,6 +36,7 @@ class CountryController extends CustomController
 		return [
             [ 'value'=> "country_id", 'text'=> "#",'sortable'=> true ],
             [ 'value'=> "name", 'text'=> __('name'), 'sortable'=> true ],
+            [ 'value'=> "picture", 'text'=> __('Flag'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('Edit') ],
             [ 'value'=> "delete", 'text'=> __('delete') ],
@@ -53,6 +54,8 @@ class CountryController extends CustomController
 		return [
             [ 'key'=> "country_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "name", 'title'=> __('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "code", 'title'=> __('Code'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "picture", 'title'=> __('Flag'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'file' ],
             [ 'key'=> "status", 'title'=> __('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox', 'withlabel'=>true ],
         ];
 	}

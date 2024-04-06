@@ -110,9 +110,15 @@ class RouteController extends CustomController
 	 */
 	public function getRoute($id)
 	{
-		$data =  $this->repo->find($id);
+		try {
+			
+			$data =  $this->repo->find($id);
 
-		echo  json_encode($data);
+			echo  json_encode($data);
+
+		} catch (\Throwable $th) {
+			echo $th->getMessage();
+		}
 	}
 
 

@@ -17,6 +17,7 @@ class Country extends CustomModel
 	
 	public $fillable = [
 		'name',
+		'picture',
 		'code',
 		'status',
 		'created_by',

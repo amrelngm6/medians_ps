@@ -66,6 +66,10 @@ class CityController extends CustomController
 
 		return [
             [ 'key'=> "city_id", 'title'=> "#", 'column_type'=>'hidden'],
+			[ 'key'=> "country_id", 'title'=> __('Country'),  
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'disabled'=>true, 'withLabel'=>true, 
+				'data' => $this->countriesRepo->get()
+			],
 			[ 'key'=> "state_id", 'title'=> __('State'), 
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'required'=>true, 'withLabel'=>true, 
 				'data' => $this->stateRepo->get()
