@@ -33,7 +33,12 @@ class Customer extends CustomModel
 
 
 
-	public $appends = [ 'photo', 'not_removeable'];
+	public $appends = [ 'photo', 'not_removeable', 'field'];
+
+	public function getFieldAttribute()
+	{
+		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+	}
 
 	public function getNotRemoveableAttribute() 
 	{
