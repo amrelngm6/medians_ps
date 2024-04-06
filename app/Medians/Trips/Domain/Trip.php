@@ -39,8 +39,6 @@ class Trip extends CustomModel
 
 	public $appends = ['driver_name', 'car_plate', 'distance', 'duration'];
 
-
-
 	public function getDriverNameAttribute() 
 	{
 		return isset($this->driver->first_name) ? $this->driver->first_name. ' ' .$this->driver->last_name : '';	
@@ -50,6 +48,11 @@ class Trip extends CustomModel
 	{
 		return isset($this->vehicle->plate_number) ? $this->vehicle->plate_number : '';	
 	}
+
+    public function custom_fields()
+    {
+        return $this->morphMany(CustomField::class, 'model');
+    }
 
 	
 	/**

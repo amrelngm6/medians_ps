@@ -10,6 +10,7 @@ use Medians\Routes\Domain\Route;
 use Medians\Trips\Domain\TripLocation;
 use Medians\Businesses\Domain\Business;
 use Medians\Packages\Domain\PackageSubscription;
+use Medians\CustomFields\Domain\CustomFIeld;
 
 class Student extends CustomModel
 {
@@ -32,6 +33,13 @@ class Student extends CustomModel
 		'status',
 		'created_by'
 	];
+
+	public $appends = ['field'];
+
+	public function getFieldAttribute()
+	{
+		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+	}
 
 	public function photo() : String
 	{
