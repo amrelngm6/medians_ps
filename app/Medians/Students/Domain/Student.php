@@ -77,7 +77,7 @@ class Student extends CustomModel
 
 	public function route_location() 
 	{
-    	return $this->hasOne(RouteLocation::class, 'model_id', 'student_id')->where('model_type', Student::class);
+    	return $this->hasOne(RouteLocation::class, 'model_id', 'student_id')->where('model_type', Student::class)->with('route');
 	}
 
 	public function route() 
