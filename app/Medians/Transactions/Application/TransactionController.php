@@ -25,7 +25,7 @@ class TransactionController extends CustomController
 	{
         $this->app = new \config\APP;
 		
-		$user = $app->auth();
+		$user = $this->app->auth();
 		$this->repo = new TransactionRepository(isset($user->business) ? $user->business : null);
 
 		$this->planRepo = new PlanRepository();
