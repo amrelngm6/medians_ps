@@ -3,6 +3,7 @@
 namespace Medians\Transactions\Infrastructure;
 
 use Medians\Transactions\Domain\Transaction;
+use Medians\CustomFields\Domain\CustomField;
 
 
 /**
@@ -81,6 +82,9 @@ class TransactionRepository
 		// Return the Model object with the new data
     	$Object = Transaction::firstOrCreate($dataArray);
 
+    	// Store Custom fields
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $Object->transaction_id) : '';
+
     	return $Object;
 	}
 
@@ -95,6 +99,9 @@ class TransactionRepository
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
+
+    	// Store Custom fields
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $Object->transaction_id) : '';
 
     	return $Object;
     } 
@@ -120,4 +127,27 @@ class TransactionRepository
 	}
 
 
+	/**
+	* Save related items to database
+	*/
+	public function storeCustomFields($data, $id) 
+	{
+		CustomField::where('model_type', Transaction::class)->where('model_id', $id)->delete();
+		if ($data)
+		{
+			foreach ($data as $key => $value)
+			{
+				$fields = [];
+				$fields['model_type'] = Transaction::class;	
+				$fields['model_id'] = $id;	
+				$fields['code'] = $key;	
+				$fields['value'] = $value;
+
+				$Model = CustomField::create($fields);
+				$Model->update($fields);
+			}
+	
+			return $Model;		
+		}
+	}
 }
