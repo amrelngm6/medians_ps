@@ -31,6 +31,7 @@ class PaymentService
 			$this->transactionRepo = new TransactionRepository($params['business']);
 
 			$studentClass = new \Medians\Students\Domain\Student;
+			$routeLocationClass = new \Medians\Locations\Domain\RouteLocation;
 			
 			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
 
@@ -44,6 +45,8 @@ class PaymentService
 			$transactionStored = $this->transactionRepo->store($transaction);
 			
 			$updateStudent = $studentClass->find($params['student_id'])->update(['business_id' => $transactionStored->business_id]);
+
+			$updateRouteLocationClass = $routeLocationClass->where('student_id', $params['student_id'])->update(['business_id' => $transactionStored->business_id]);
 
 			return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
 
