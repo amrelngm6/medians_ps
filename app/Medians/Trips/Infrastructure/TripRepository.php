@@ -49,13 +49,13 @@ class TripRepository
 	{
 		return Trip::where('business_id', $this->business_id)->with('locations',  'driver', 'vehicle', 'route')
 		->with([
-			'student_location' => function($q) use ($parent_id){
+			'locatiobs' => function($q) use ($parent_id){
 				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
 					return $q->where('parent_id', $parent_id);
 				})->orderBy('status','DESC');
 		}])->with([
-			'student_destination' => function($q) use ($parent_id){
-				return $q->with('destination')->whereHas('student', function($q) use ($parent_id){
+			'locatiobs' => function($q) use ($parent_id){
+				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
 					return $q->where('parent_id', $parent_id);
 				})->orderBy('status','DESC');
 		}])
@@ -68,19 +68,14 @@ class TripRepository
 
 		$students =  array_column($ids->toArray(), 'student_id');
 
-		return Trip::where('business_id', $this->business_id)->with('locations',  'driver', 'vehicle', 'route')
-		->whereHas(
-			'student_location' , function($q) use ($students){
+		return Trip::where('business_id', $this->business_id)->with('driver', 'vehicle', 'route')
+		->whereHas('locations' , function($q) use ($students){
 				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
-		})->with([
-			'student_location' => function($q) use ($students){
+		})->with(['locations' => function($q) use ($students){
 				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
-		}])->with([
-			'student_destination' => function($q) use ($students){
-			return $q->with('destination')->whereIn('model_id', $students)->orderBy('status','DESC');
 		}])
-		->where('status','Scheduled')
-		->first();
+		->where('status','started')
+		->withCount('moving_locations')->withCount('waiting_locations')->first();
 	}
 
 	public function getDriverTrips($id, $lastId = 0)
@@ -130,20 +125,6 @@ class TripRepository
 	}
 
 	
-	public function getActiveParentStudentsTrip()
-	{
-		return Trip::where('business_id', $this->business_id)
-			->with('locations', 'driver', 'vehicle', 'route')
-			->whereHas(
-			'locations', function($q) use ($id){
-				return $q->with('location')->whereHas('student', function($q) use ($id){
-					return $q->where('parent_id', $id);
-				})->orderBy('status','DESC');
-			})
-			->withCount('moving_locations')->withCount('waiting_locations')->first();
-	}
-
-
 	public function get($limit = 100)
 	{
 		return Trip::where('business_id', $this->business_id)->withCount('moving_locations')->withCount('locations')->with('route', 'locations',  'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
