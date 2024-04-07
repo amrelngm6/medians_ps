@@ -34,7 +34,7 @@ class PaymentService
 			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
 
 			$transaction = (array) $params['transaction'];
-			$transaction['model_id'] = $transaction['student_id'];
+			$transaction['model_id'] = $params['student_id'];
 			$transaction['model_type'] = $studentClass::class;
 			$transaction['item_id'] = $transaction['subscription_id'];
 			$transaction['model_type'] = $packageSubscriptionClass::class;
