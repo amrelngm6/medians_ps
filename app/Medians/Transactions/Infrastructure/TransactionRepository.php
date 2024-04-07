@@ -28,6 +28,7 @@ class TransactionRepository
 	public function get($limit = 500) 
 	{
 		return Transaction::with('model', 'item')
+		->where('business_id', $this->business_id)
 		->limit($limit)
 		->get();
 	}
@@ -39,7 +40,7 @@ class TransactionRepository
 	public function getByDate($params )
 	{
 
-	  	$check = Transaction::with('model', 'item');
+	  	$check = Transaction::with('model', 'item')->where('business_id', $this->business_id);
 
 	  	if (!empty($params["date"]))
 	  	{
@@ -59,6 +60,7 @@ class TransactionRepository
 	public function getLatest($params, $limit = 10 ) 
 	{
 	  	return Transaction::whereBetween('created_at' , [$params['start'] , $params['end']])
+		->where('business_id', $this->business_id)
 	  	->limit($limit)
 	  	->orderBy('created_at', 'DESC');
 	}

@@ -22,7 +22,6 @@ class PaymentService
 		$this->payment_method = $payment_method;
 		
 		$this->transactionRepo = new TransactionRepository();
-		$this->packageSubscriptionRepo = new PackageSubscriptionRepository();
 	}
 
 
@@ -55,11 +54,13 @@ class PaymentService
 	{
 		try {
 			
+			$this->packageSubscriptionRepo = new PackageSubscriptionRepository($params['business']);
+			
 			// Update subscription status
 			$packageSubscription = $this->packageSubscriptionRepo->update((array) $params['subscription']);
 
 			return $packageSubscription;
-			
+
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
 		}
