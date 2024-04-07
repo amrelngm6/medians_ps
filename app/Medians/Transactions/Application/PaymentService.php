@@ -21,13 +21,14 @@ class PaymentService
 
 		$this->payment_method = $payment_method;
 		
-		$this->transactionRepo = new TransactionRepository();
 	}
 
 
 	public function storeTransaction($params)
 	{
 		try {
+
+			$this->transactionRepo = new TransactionRepository($params['business']);
 
 			$studentClass = new \Medians\Students\Domain\Student;
 			
