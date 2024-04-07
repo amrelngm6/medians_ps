@@ -240,7 +240,6 @@ class TripController extends CustomController
 	 */
 	public function loadParentTrips($params)
 	{
-		$studentId = $this->app->request()->get('student_id'); 
 		$lastId = $this->app->request()->get('lastId'); 
 		
 		$user = $this->app->auth();
