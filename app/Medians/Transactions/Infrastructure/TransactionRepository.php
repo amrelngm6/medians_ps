@@ -13,6 +13,19 @@ class TransactionRepository
 {
 
 
+	/**
+	 * Business id
+	 */ 
+	protected $business_id ;
+
+	protected $business ;
+
+	function __construct($business)
+	{
+		$this->business = $business;
+		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+	}
+
 
 	/**
 	* Find item by `transaction_id` 
