@@ -118,22 +118,14 @@ class TripRepository
 	public function getParentStudentsTrips($id, $lastId = 0)
 	{
 		$v = $lastId ? '<' : '>';
-		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with('locations', 'driver', 'vehicle', 'route','destinations')->whereHas(
+		return Trip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)
+			->with('locations', 'driver', 'vehicle', 'route','destinations')
+			->whereHas(
 			'locations', function($q) use ($id){
 				return $q->with('location')->whereHas('student', function($q) use ($id){
 					return $q->where('parent_id', $id);
 				})->orderBy('status','DESC');
-			})->with([
-				'student_location' => function($q) use ($id){
-					return $q->with('location')->whereHas('student', function($q) use ($id){
-						return $q->where('parent_id', $id);
-				})->orderBy('status','DESC');
-			}])->with([
-				'student_destination' => function($q) use ($id){
-					return $q->with('destination')->whereHas('student', function($q) use ($id){
-						return $q->where('parent_id', $id);
-				})->orderBy('status','DESC');
-			}])
+			})
 			->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
