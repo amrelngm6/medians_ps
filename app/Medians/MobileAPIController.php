@@ -235,8 +235,8 @@ class MobileAPIController extends CustomController
 	                return  (new Students\Application\StudentController())->addStudent(); 
 	                break;
 						
-	            case 'Payment.create':
-	                return  (new Payments\Application\PaymentController())->addPayment(); 
+	            case 'Transaction.create':
+	                return  (new Transactions\Application\TransactionController())->addTransaction(); 
 	                break;
 						
 

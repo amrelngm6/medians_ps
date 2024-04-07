@@ -26,10 +26,10 @@ class PaymentService
 	}
 
 
-	public function updatePackageSubscription($params)
+	public function storeTransaction($params)
 	{
 		try {
-			
+
 			$studentClass = new \Medians\Student\Domain\Student;
 			
 			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
@@ -43,11 +43,23 @@ class PaymentService
 			
 			$transactionStored = $this->transactionRepo->store($transaction);
 			
+			return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
+
+		} catch (\Throwable $th) {
+			return array('error'=>$th->getMessage());
+		}
+	}
+
+
+	public function updatePackageSubscription($params)
+	{
+		try {
+			
 			// Update subscription status
 			$packageSubscription = $this->packageSubscriptionRepo->update((array) $params['subscription']);
 
-			return array('success'=>true, 'result'=> $packageSubscription);
-
+			return $packageSubscription;
+			
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
 		}

@@ -174,37 +174,27 @@ class PaymentController extends CustomController
 	}
 
 
-	public function confirmPayPalPlanPayment()
+	public function addTransaction()
 	{
-		$user = $this->app->auth();
 		
-		$params = $this->app->request()->get('params');
+		$params = (array) json_decode($this->app->request()->get('params'));
 
-		$order = json_decode($params['order']);
-		
-		if ($order->status == 'COMPLETED')
-		{
+		try {
 			
-			try {
-				
-				$paymentService = new PaymentService('PayPal');
+			$paymentService = new PaymentService('PayPal');
 
-				$savedSubscription = $paymentService->updatePackageSubscription($order, $user); 
-
-				$savePackagePayment = $paymentService->storeTransaction($order, $savedSubscription, $user); 
-	
-				return (isset($savePackagePayment->payment_id))
-				? array('success'=>1, 'result'=>__('PAYMENT_MADE_SECCUESS'), 'reload'=>1)
-				: array('error'=>__('Not allowed'));
- 
-	
-			} catch (Exception $e) {
-				return array('error'=>$e->getMessage());
-			}
+			$saveTransaction = $paymentService->storeTransaction($params); 
 			
+			$savedSubscription = isset($saveTransaction['success']) ? $paymentService->updatePackageSubscription($params) : null; 
+
+			return (isset($saveTransaction['success']))
+			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
+			: array('error'=>$saveTransaction['error']);
+
+		} catch (Exception $e) {
+			return array('error'=>$e->getMessage());
 		}
 		
-		return array('error'=>__('Error'));
 		
 	}
 
