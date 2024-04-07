@@ -213,6 +213,9 @@ if(isset($app->auth()->id))
     /** @return Admin profile */
     RouteHandler::get('/admin/profile', Medians\Users\Application\UserController::class.'@profile');
 
+    /** @return Payments */
+    RouteHandler::get('/admin/transactions', Medians\Transactions\Application\TransactionController::class.'@index');
+
 
     /**
      * Master requests
@@ -257,9 +260,6 @@ if(isset($app->auth()->id))
 
     /** @return Payments */
     RouteHandler::get('/admin/payments', Medians\Payments\Application\PaymentController::class.'@index');
-
-    /** @return Payments */
-    RouteHandler::get('/admin/transactions', Medians\Transactions\Application\TransactionController::class.'@index');
 
     /** @return companies */
     RouteHandler::get('/admin/companies', Medians\Businesses\Application\BusinessController::class.'@companies');
