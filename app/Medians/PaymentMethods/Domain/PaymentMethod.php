@@ -18,7 +18,6 @@ class PaymentMethod extends CustomModel
     protected $primaryKey = 'payment_method_id';
 
 	protected $fillable = [
-		'business_id',
     	'name',
 		'description',
 		'picture',

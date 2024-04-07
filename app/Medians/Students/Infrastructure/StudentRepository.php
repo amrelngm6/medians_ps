@@ -7,6 +7,7 @@ use Medians\Students\Domain\Content;
 use Medians\Locations\Domain\RouteLocation;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Locations\Infrastructure\RouteLocationRepository;
+use Medians\Packages\Infrastructure\PackageSubscriptionRepository;
 
 
 class StudentRepository 
@@ -23,6 +24,7 @@ class StudentRepository
 	{
 		$this->business_id = isset($business->business_id) ? $business->business_id : null;
 		$this->routeLocationRepository = new RouteLocationRepository($business);
+		$this->subscriptionRepository = new PackageSubscriptionRepository($business);
 	}
 
 	public function getClassName()
@@ -71,7 +73,7 @@ class StudentRepository
     }
     	
     /**
-     * Update Lead
+     * Update Student
      */
     public function update($data)
     {
@@ -107,7 +109,7 @@ class StudentRepository
 
     	
     /**
-     * Update Lead
+     * Update Student
      */
     public function updateStudentInfo($data)
     {	

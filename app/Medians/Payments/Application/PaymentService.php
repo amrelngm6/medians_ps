@@ -42,12 +42,11 @@ class PaymentService
 		$planSubscription['end_date'] = $item->custom_id == 'monthly' ? date('Y-m-d', strtotime('+1 month')) : date('Y-m-d', strtotime('+1 year')) ;
 
 		return $this->planSubscriptionRepo->store($planSubscription);
-
 	}
+	
 	
 	public function storePlanPayment($order, $planSubscription, $user)
 	{
-
 		$item = $order->purchase_units[0];
 
 		$payment['payment_code'] = $order->id;

@@ -235,6 +235,10 @@ class MobileAPIController extends CustomController
 	                return  (new Students\Application\StudentController())->addStudent(); 
 	                break;
 						
+	            case 'Payment.create':
+	                return  (new Payments\Application\PaymentController())->addPayment(); 
+	                break;
+						
 
 
 			}
@@ -279,6 +283,10 @@ class MobileAPIController extends CustomController
 
 			case 'Student.updateStudentInfo':
 				$return =  (new Students\Application\StudentController())->updateStudentInfo(); 
+				break;
+
+			case 'Student.updateStudentSubscription':
+				$return =  (new Students\Application\StudentController())->updateStudentSubscription(); 
 				break;
 
 			case 'RouteLocation.update':
