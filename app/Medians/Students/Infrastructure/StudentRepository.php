@@ -24,7 +24,6 @@ class StudentRepository
 	{
 		$this->business_id = isset($business->business_id) ? $business->business_id : null;
 		$this->routeLocationRepository = new RouteLocationRepository($business);
-		$this->subscriptionRepository = new PackageSubscriptionRepository($business);
 	}
 
 	public function getClassName()
