@@ -46,7 +46,8 @@ class TransactionController extends CustomController
             [ 'value'=> "model.name", 'text'=> __('User'), 'sortable'=> false ],
             [ 'value'=> "payment_method", 'text'=> __('Payment method'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
-            [ 'value'=> "item.plan.name", 'text'=> __('Plan'), 'sortable'=> false ],
+            [ 'value'=> "package_subscription.package.name", 'text'=> __('Package'), 'sortable'=> false ],
+            [ 'value'=> "item.subscription_id", 'text'=> __('Subscription'), 'sortable'=> false ],
 			['value'=>'delete', 'text'=>__('Delete')],
         ];
 	}
