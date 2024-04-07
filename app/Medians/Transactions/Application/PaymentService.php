@@ -43,7 +43,7 @@ class PaymentService
 			
 			$transactionStored = $this->transactionRepo->store($transaction);
 			
-			$updateStudent = $studentClass->find($params['student_id'])->update('business_id', $transactionStored->business_id);
+			$updateStudent = $studentClass->find($params['student_id'])->update(['business_id' => $transactionStored->business_id]);
 
 			return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
 
