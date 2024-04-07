@@ -38,7 +38,7 @@ class PaymentService
 			$transaction['model_id'] = $params['student_id'];
 			$transaction['model_type'] = $studentClass::class;
 			$transaction['item_id'] = $transaction['subscription_id'];
-			$transaction['model_type'] = $packageSubscriptionClass::class;
+			$transaction['item_type'] = $packageSubscriptionClass::class;
 			$transaction['date'] = date('Y-m-d');
 			
 			$transactionStored = $this->transactionRepo->store($transaction);
