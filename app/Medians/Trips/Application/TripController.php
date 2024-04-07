@@ -224,7 +224,7 @@ class TripController extends CustomController
 
 
 	/**
-	 * Load Trips of driver
+	 * Load Trips of Student
 	 */
 	public function loadStudentTrips($params)
 	{
@@ -232,6 +232,19 @@ class TripController extends CustomController
 		$lastId = $this->app->request()->get('lastId'); 
 
 		return  $this->repo->getStudentTrips($studentId, $lastId);
+	}
+
+
+	/**
+	 * Load Trips of driver
+	 */
+	public function loadParentTrips($params)
+	{
+		$studentId = $this->app->request()->get('student_id'); 
+		$lastId = $this->app->request()->get('lastId'); 
+		
+		$user = $this->app->auth();
+		return  $this->repo->getParentStudentsTrips($user->customer_id, $lastId);
 	}
 
 	function haversineDistance($lat1, $lon1, $lat2 = 30.950765, $lon2 = 31.921556)  {
