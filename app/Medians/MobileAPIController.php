@@ -285,10 +285,6 @@ class MobileAPIController extends CustomController
 				$return =  (new Students\Application\StudentController())->updateStudentInfo(); 
 				break;
 
-			case 'Student.updateStudentSubscription':
-				$return =  (new Students\Application\StudentController())->updateStudentSubscription(); 
-				break;
-
 			case 'RouteLocation.update':
 				$return =  (new Locations\Application\RouteLocationController())->updateDays(); 
 				break;
