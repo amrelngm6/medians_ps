@@ -46,7 +46,7 @@ class PaymentService
 			
 			$updateStudent = $studentClass->find($params['student_id'])->update(['business_id' => $transactionStored->business_id]);
 
-			$updateRouteLocationClass = $routeLocationClass->where('student_id', $params['student_id'])->update(['business_id' => $transactionStored->business_id]);
+			$updateRouteLocationClass = $routeLocationClass->where('model_id', $params['student_id'])->where('model_type', $studentClass::class)->update(['business_id' => $transactionStored->business_id]);
 
 			return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
 
