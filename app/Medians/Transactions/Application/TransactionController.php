@@ -9,7 +9,7 @@ use Medians\Transactions\Infrastructure\TransactionRepository;
 use Medians\Plans\Infrastructure\PlanRepository;
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 
-class PaymentController extends CustomController
+class TransactionController extends CustomController
 {
 
 	/**
