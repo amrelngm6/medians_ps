@@ -181,7 +181,7 @@ class PaymentController extends CustomController
 
 		try {
 			
-			$paymentService = new PaymentService('PayPal');
+			$paymentService = new PaymentService($params['payment_method']);
 
 			$saveTransaction = $paymentService->storeTransaction($params); 
 			
