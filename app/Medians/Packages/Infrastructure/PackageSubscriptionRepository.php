@@ -93,7 +93,7 @@ class PackageSubscriptionRepository
     public function update($data)
     {
 
-		$Object = PackageSubscription::where('business_id', $this->business_id)->find($data['subscription_id']);
+		$Object = PackageSubscription::find($data['subscription_id']);
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
