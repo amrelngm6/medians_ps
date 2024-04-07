@@ -40,6 +40,11 @@ class Customer extends CustomModel
 		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
 	}
 
+	public function custom_fields()
+	{
+		return $this->morphMany(CustomFields::class, 'model');
+	}
+
 	public function getNotRemoveableAttribute() 
 	{
 		return true;
@@ -66,10 +71,6 @@ class Customer extends CustomModel
         return $this->morphOne(RouteLocation::class, 'notifiable');
     }
 
-    public function custom_fields()
-    {
-        return $this->morphMany(CustomField::class, 'model');
-    }
 
 
 	/**
