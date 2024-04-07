@@ -13,7 +13,7 @@ class PaymentService
 	
 	public $payment_method;
 	public $packageSubscriptionRepo;
-	public $paymentRepo;
+	public $transactionRepo;
 	
 
 	function __construct($payment_method)
