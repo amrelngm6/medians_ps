@@ -49,6 +49,7 @@ class TransactionController extends CustomController
             [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
             [ 'value'=> "package_subscription.package.name", 'text'=> __('Package'), 'sortable'=> false ],
             [ 'value'=> "item.subscription_id", 'text'=> __('Subscription'), 'sortable'=> false ],
+            [ 'value'=> "item.payment_type", 'text'=> __('payment type'), 'sortable'=> false ],
 			['value'=>'delete', 'text'=>__('Delete')],
         ];
 	}
