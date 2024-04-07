@@ -129,6 +129,20 @@ class TripRepository
 			->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
+	
+	public function getActiveParentStudentsTrip()
+	{
+		return Trip::where('business_id', $this->business_id)
+			->with('locations', 'driver', 'vehicle', 'route')
+			->whereHas(
+			'locations', function($q) use ($id){
+				return $q->with('location')->whereHas('student', function($q) use ($id){
+					return $q->where('parent_id', $id);
+				})->orderBy('status','DESC');
+			})
+			->withCount('moving_locations')->withCount('waiting_locations')->first();
+	}
+
 
 	public function get($limit = 100)
 	{
