@@ -110,6 +110,8 @@ const driver_applicants = defineAsyncComponent(() => import('@/components/driver
 
 const business_applicants = defineAsyncComponent(() => import('@/components/business_applicants.vue') );
 
+const transactions = defineAsyncComponent(() => import('@/components/transactions.vue') );
+
 export default {
     name: 'app',
     components: {
@@ -152,6 +154,7 @@ export default {
         supervisors,
         driver_applicants,
         business_applicants,
+        transactions,
         get_started,
         translate,
         'help_messages':HelpMessages,
