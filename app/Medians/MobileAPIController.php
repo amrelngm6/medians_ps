@@ -236,7 +236,7 @@ class MobileAPIController extends CustomController
 	                break;
 						
 	            case 'Transaction.create':
-	                return  (new Transactions\Application\TransactionController())->addTransaction(); 
+	                $return = (new Transactions\Application\TransactionController())->addTransaction(); 
 	                break;
 						
 
