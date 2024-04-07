@@ -29,7 +29,7 @@ class PaymentService
 	{
 		try {
 
-			$studentClass = new \Medians\Student\Domain\Student;
+			$studentClass = new \Medians\Students\Domain\Student;
 			
 			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
 
