@@ -141,6 +141,18 @@ class HelpMessageController extends CustomController
 
 	
 	/**
+	 * Load HelpMessage at mobile
+	 * 
+	 */
+	public function loadHelpMessage()
+	{
+		$this->app = new \config\APP;
+		$messageId = $this->app->request()->get('message_id');
+		return $this->repo->find($messageId);
+	}  
+
+	
+	/**
 	 * Load latest notifications at mobile
 	 * 
 	 */

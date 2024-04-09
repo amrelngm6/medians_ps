@@ -51,6 +51,10 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessages();
 				break;
 					
+			case 'help_message':
+				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessage();
+				break;
+					
 			case 'parent_help_messages':
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadParentHelpMessages();
 				break;
