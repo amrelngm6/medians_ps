@@ -121,7 +121,7 @@ class TripRepository
 		->whereHas('locations' , function($q) use ($students){
 				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
 		})->with(['locations' => function($q) use ($students){
-				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
+				return $q->with('location')->orderBy('status','DESC');
 		}])
 		->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}
