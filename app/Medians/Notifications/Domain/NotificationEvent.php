@@ -5,6 +5,7 @@ namespace Medians\Notifications\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
+use Medians\Customers\Domain\Customer;
 use Medians\Drivers\Domain\Driver;
 use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripAlarm;
@@ -181,7 +182,7 @@ class NotificationEvent extends CustomModel
 	 * @param $event Object
 	 * @param $model Object Event related model
 	 */
-	public function filterRecivers($event, $model)
+	public function filterReceivers($event, $model)
 	{	
 		switch ($event->receivers_model) 
 		{
@@ -211,7 +212,7 @@ class NotificationEvent extends CustomModel
 	public function renderNotification($event, $model)
 	{
 
-    	$receivers = $this->filterRecivers($event, $model);
+    	$receivers = $this->filterReceivers($event, $model);
 
 		if (!$receivers)
 			return null;
