@@ -27,7 +27,9 @@ class BusinessRepository
 
 	public function find($id)
 	{
-		return Business::find($id);
+		return Business::with('settings','packages')
+		->withCount('routes', 'locations', 'drivers')
+		->find($id);
 	}
 
 	public function getCompanies($limit = 100)
