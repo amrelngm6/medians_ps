@@ -11,7 +11,7 @@
                                 <div class="col-md">
                                     <div class="flex align-items-center">
                                         <div class="px-1 pt-1">
-                                            <img v-if="item" :src="item.user ? (item.user.photo != '' ? item.user.photo : item.user.picture) : ''" alt="" width="36" height="36" class="rounded">
+                                            <img v-if="item" :src="item.user ? (item.user.photo ? item.user.photo : item.user.picture) : ''" alt="" width="36" height="36" class="rounded">
                                         </div>
                                         <!--end col-->
                                         <div class="col-md">
@@ -70,7 +70,7 @@
                                                 <div class="simplebar-content" >
                                                     <div class="flex gap-2 mb-4" v-for="comment in item.comments">
                                                         <div class="flex-shrink-0" v-if="comment.user">
-                                                            <img :src="comment.user.photo" alt=""
+                                                            <img :src="item.user.photo ? item.user.photo : item.user.picture" alt=""
                                                                 class="h-10 w-10 mt-2 avatar-xs rounded-circle">
                                                         </div>
                                                         <div class="flex-grow-1 ms-3" v-if="comment.user">
