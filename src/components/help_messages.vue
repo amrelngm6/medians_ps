@@ -40,10 +40,10 @@
                                         <!--begin::Symbol-->
                                         <vue-feather type="bell" class="mt-5"></vue-feather>
 
-                                        <div class="d-flex flex-column ">
+                                        <div class="d-flex flex-column " @click="activeItem = ticket, showEditSide = true" >
                                             <!--begin::Content-->
                                             <div class="d-flex align-items-center mb-2">
-                                                <a @click="activeItem = ticket, showEditSide = true" href="javascript:;" class="font-semibold text-gray-800 text-hover-primary fs-4 me-3 " v-text="ticket.title"></a>
+                                                <a  href="javascript:;" class="font-semibold text-gray-800 text-hover-primary fs-4 me-3 " v-text="ticket.title"></a>
                                                 <span class="badge badge-light my-1 bg-gray-100" v-text="ticket.subject"></span>
                                                 <span class="badge badge-light my-1 text-white" :class="{'bg-primary': ticket.status == 'new', 'bg-danger':ticket.status == 'completed'}" v-text="ticket.status"></span>
                                             </div>
