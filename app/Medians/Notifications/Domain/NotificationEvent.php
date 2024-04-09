@@ -146,6 +146,62 @@ class NotificationEvent extends CustomModel
 	}
 
 
+	
+	/**
+	 * Prepare notification content 
+	 * 
+	 * @param $event Object
+	 * @param $model Object Event related model
+	 */
+	public function filterUser($event, $model)
+	{
+		switch (get_class($model)) 
+		{
+			case HelpMessageComment::class:
+				return [$model->message->user];
+				break;
+
+			case RouteLocation::class:
+				$location =  $model->with('parent')->find($model->location_id);
+				return isset($location->parent) ? [$location->parent] : null;
+				break;
+
+			default:
+				return $model;
+				break;
+			
+		}
+	}
+
+	
+
+	/**
+	 * Prepare notification receiver 
+	 * 
+	 * @param $event Object
+	 * @param $model Object Event related model
+	 */
+	public function filterRecivers($event, $model)
+	{	
+		switch ($event->receivers_model) 
+		{
+			case Driver::class:
+				return $this->filterDriver($event, $model);
+				break;
+				
+			case Customer::class:
+				return $this->filterParent($event, $model);
+				break;
+				
+			case User::class:
+				return $this->filterUser($event, $model);
+				break;
+			
+		}
+	}
+
+	
+
 	/**
 	 * Prepare notification content 
 	 * 
@@ -155,9 +211,7 @@ class NotificationEvent extends CustomModel
 	public function renderNotification($event, $model)
 	{
 
-    	$receivers = $event->receiver_model == Driver::class 
-		? $this->filterDriver($event, $model)
-		: $this->filterParent($event, $model);
+    	$receivers = $this->filterRecivers($event, $model);
 
 		if (!$receivers)
 			return null;
