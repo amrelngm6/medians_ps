@@ -228,7 +228,7 @@
 
                                     </div>
 
-                                    <div class="card mb-6 mb-xl-9 bg-inverse-warning">
+                                    <!-- <div class="card mb-6 mb-xl-9 bg-inverse-warning">
 
                                         <div class="card-header border-0">
                                             <div class="card-title">
@@ -278,7 +278,7 @@
 
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                 </div>
                             </div>
