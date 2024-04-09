@@ -88,9 +88,10 @@
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Single trip'" v-text="translate('Next')"></a></p>
+                                    @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
                         </div>
-                        <div class="" v-if="activeTab == 'Single trip'" :key="activeTab">
+
+                        <!-- <div class="" v-if="activeTab == 'Single trip'" :key="activeTab">
                             <div class="card-body pt-0">
                                 <div class="settings-form">
                                     <div class="max-w-xl mb-6 mx-auto">
@@ -142,7 +143,7 @@
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                     @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
-                        </div>
+                        </div> -->
 
                         <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
 
@@ -344,7 +345,7 @@ export default
             const activeItem = ref({});
             const activeTab = ref('Info');
             const content = ref({});
-            const fillable = ref(['Info', 'Double trips', 'Single trip', 'Confirm']);
+            const fillable = ref(['Info', 'Double trips' /*,'Single trip'*/, 'Confirm']);
 
             if (props.item) {
                 activeItem.value = props.item
@@ -374,7 +375,7 @@ export default
 
 
             const progressWidth = () => {
-                let requiredData = ['name', 'description', 'single_cost_month', 'single_cost_querter', 'single_cost_year', 'double_cost_month', 'double_cost_quarter', 'double_cost_year', 'status'];
+                let requiredData = ['name', 'description', /* 'single_cost_month', 'single_cost_querter', 'single_cost_year',*/ 'double_cost_month', 'double_cost_quarter', 'double_cost_year', 'status'];
 
                 return getProgressWidth(requiredData, activeItem);
             }
