@@ -27,7 +27,7 @@ class HelpMessageRepository
 
 	public function find($id)
 	{
-		return HelpMessage::where('business_id', $this->business_id)->find($id);
+		return HelpMessage::find($id);
 	}
 
 	public function get($limit = 100)
