@@ -34,7 +34,15 @@ class BusinessRepository
 
 	public function getCompanies($limit = 100)
 	{
-		return Company::where('type', 'company')->limit($limit)->get();
+		
+		return Company::where('type', 'company')
+		->withCount('routes', 'locations', 'drivers')
+		->whereHas('Settings', function($q) {
+			$q->where('code', 'allow_applicants')->where('value','on');	
+		})
+		->with('settings','packages')
+		->where('status', 'on')
+		->limit($limit)->get();
 	}
 
 	public function getSchools($limit = 100)
