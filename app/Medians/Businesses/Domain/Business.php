@@ -29,11 +29,22 @@ class Business extends CustomModel
 		'user_id',
 	];
 	
+	public $append = ['owner'];
+
+	public function getOwnerAttribute ()
+	{
+		return $this->owner();
+	}
 
 	public function getFields()
 	{
 		return $this->fillable;
 	}
+
+    public function owner()
+    {
+		return $this->hasOne(User::class, 'user_id', 'user_id');	
+    }
 
     public function subscription()
     {

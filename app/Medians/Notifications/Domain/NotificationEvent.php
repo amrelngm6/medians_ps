@@ -162,6 +162,10 @@ class NotificationEvent extends CustomModel
 				return [$model->message->user];
 				break;
 
+			case HelpMessage::class:
+				return [$model->message->user];
+				break;
+
 			case RouteLocation::class:
 				$location =  $model->with('parent')->find($model->location_id);
 				return isset($location->parent) ? [$location->parent] : null;
