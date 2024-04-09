@@ -5,14 +5,15 @@
             <!-- component -->
             
             <div class="w-full relative">
+                
+                <div v-if="loader" class="bg-white absolute w-full h-full top-0 " style="z-index:9999; opacity: .8;">
+                    <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
+                </div>
                 <navbar v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <!-- <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><vue-feather type="menu"></vue-feather></a> -->
                 <div class="gap gap-6 h-full flex w-full overflow-hidden   ">
                     <side-menu @callback="switchTab" :samepage="activeTab" :system_setting="system_setting" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="showSide" class="sidebar " id="sidebar" style="z-index:999"></side-menu>
                     
-                    <div v-if="loader" class="bg-white absolute w-full h-full top-0 " style="z-index:9; opacity: .8;">
-                        <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
-                    </div>
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
                         <div class="w-full" v-if="checkAccess()">
                             <transition  :duration="1000">
