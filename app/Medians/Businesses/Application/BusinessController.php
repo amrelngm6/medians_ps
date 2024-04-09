@@ -245,8 +245,7 @@ class BusinessController extends CustomController
 
 			if (!empty($auth))
 			{
-				$check = $this->repo->find($business_id);
-				echo json_encode($check);
+				return  $this->repo->find($business_id);
 			}
 
         } catch (Exception $e) {
