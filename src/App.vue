@@ -6,7 +6,7 @@
             
             <div class="w-full relative">
                 
-                <div v-if="loader" class="bg-white absolute w-full h-full top-0 " style="z-index:9999; opacity: .8;">
+                <div v-if="loader" class="bg-white absolute w-full h-full top-0 " style="z-index:99999; opacity: .8;">
                     <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
                 </div>
                 <navbar v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
