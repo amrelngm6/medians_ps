@@ -216,6 +216,9 @@ if(isset($app->auth()->id))
     /** @return Payments */
     RouteHandler::get('/admin/transactions', Medians\Transactions\Application\TransactionController::class.'@index');
 
+    /** @return Invoices */
+    RouteHandler::get('/admin/invoices', Medians\Invoices\Application\InvoiceController::class.'@index');
+
 
     /**
      * Master requests
