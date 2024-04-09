@@ -163,7 +163,7 @@ class NotificationEvent extends CustomModel
 				break;
 
 			case HelpMessage::class:
-				return [$model->business->owner];
+				return isset($model->business->owner) ?  [$model->business->owner] : null;
 				break;
 
 			case RouteLocation::class:
