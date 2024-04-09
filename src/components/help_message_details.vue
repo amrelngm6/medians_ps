@@ -11,7 +11,7 @@
                                 <div class="col-md">
                                     <div class="flex align-items-center">
                                         <div class="px-1 pt-1">
-                                            <img v-if="item" :src="item.user ? item.user.photo : ''" alt="" width="36" height="36" class="rounded">
+                                            <img v-if="item" :src="item.user ? (item.user.photo ? item.user.photo : item.user.picture) : ''" alt="" width="36" height="36" class="rounded">
                                         </div>
                                         <!--end col-->
                                         <div class="col-md">
