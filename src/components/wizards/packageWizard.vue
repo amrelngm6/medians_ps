@@ -173,7 +173,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-full lg:flex gap-10">
+                                <div class="max-w-xl mx-auto gap-10">
 
                                     <div class="card mb-6 mb-xl-9 bg-inverse-success">
 
