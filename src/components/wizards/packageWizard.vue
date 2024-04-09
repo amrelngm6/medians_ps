@@ -149,7 +149,7 @@
 
                             <div class="max-w-6xl mx-auto">
                                 
-                                <div class="card mb-6 mb-xl-9">
+                                <div class="max-w-xl mx-auto gap-10">
                                     <div class="w-full flex">
                                         <div class="w-full">
                                             <div class="card-header border-0">
@@ -160,7 +160,7 @@
                                                 <div class="fs-5 fw-semibold text-gray-500 mb-4" v-text="activeItem.description"></div>
                                             </div>
                                         </div>
-                                        <div class="flex-end pt-10">
+                                        <div class="mx-auto pt-10">
 
                                             <label class=" flex gap-2 cursor-pointer">
                                                 <form_field class="flex-end" :item="activeItem"
