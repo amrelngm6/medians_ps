@@ -185,6 +185,10 @@ class MobileAPIController extends CustomController
 				$return = (new Businesses\Application\BusinessController)->loadSchoolsForDrivers();
 				break;
 
+			case 'load_business':
+				$return = (new Businesses\Application\BusinessController)->loadBusiness();
+				break;
+
 			case 'Driver.load_companies':
 				$return = (new Businesses\Application\BusinessController)->loadCompaniesForDrivers();
 				break;

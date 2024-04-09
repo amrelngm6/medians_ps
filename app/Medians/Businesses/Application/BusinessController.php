@@ -230,6 +230,12 @@ class BusinessController extends CustomController
 
 	
 
+	public function loadBusiness()
+	{
+		$business_id = $this->app->request()->get('business_id');
+		return $this->getBusiness($business_id);
+	}
+
 	public function getBusiness($business_id)
 	{
 
