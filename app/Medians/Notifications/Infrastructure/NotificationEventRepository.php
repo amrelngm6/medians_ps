@@ -113,6 +113,8 @@ class NotificationEventRepository
 			'Trip alarm' => \Medians\Trips\Domain\TripAlarm::class,
 			'Parents' => \Medians\Customers\Domain\Parents::class,
 			'HelpMessage' => \Medians\Help\Domain\HelpMessage::class,
+			'PackageSubscription' => \Medians\Packages\Domain\PackageSubscription::class,
+			'Payment' => \Medians\Payments\Domain\Payment::class,
 			'HelpMessageComment' => \Medians\Help\Domain\HelpMessageComment::class,
 		];
 	}   
