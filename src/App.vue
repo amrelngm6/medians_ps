@@ -9,7 +9,8 @@
                 <!-- <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><vue-feather type="menu"></vue-feather></a> -->
                 <div class="gap gap-6 h-full flex w-full overflow-hidden   ">
                     <side-menu @callback="switchTab" :samepage="activeTab" :system_setting="system_setting" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="showSide" class="sidebar " id="sidebar" style="z-index:999"></side-menu>
-
+                    
+                    <div v-if="loader" class="bg-white absolute w-full h-full top-0 "></div>
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
                         <div class="w-full" v-if="checkAccess()">
                             <transition  :duration="1000">
@@ -162,6 +163,7 @@ export default {
       data() {
         return {
             date: '',
+            loader: false,
             activeItem: null,
             showAddSide: false,
             showEditSide: false,
@@ -330,14 +332,19 @@ export default {
 
         submit(element, props)
         {
+            this.loader = true;
             let Things = $(element).serializeArray()
             var params = new URLSearchParams();
             Things.map(function(n){
                 params.append([n['name']],  n['value']);
             });
+            
+            var t = this;
 
             handleRequest(params, $(element).attr('action')).then(response => {
+                t.loader = false;
                 handleAccess(response)
+
             })
         },
 
