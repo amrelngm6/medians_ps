@@ -27,6 +27,7 @@ class Invoice extends CustomModel
 	public $fillable = [
 		'invoice_id'	
 		,'business_id'	
+		,'code'	
 		,'model_id'	
 		,'model_type'	
 		,'payment_method'	
