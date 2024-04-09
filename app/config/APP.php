@@ -254,7 +254,7 @@ class APP
 			[
 				array('permission'=>'Packages.index', 'title'=>__('Manage Packages'),  'icon'=>'credit-card', 'link'=>'admin/packages', 'component'=>'packages'),
 				array('permission'=>'PackageSubscriptions.index', 'title'=>__('Subscriptions'),  'icon'=>'credit-card', 'link'=>'admin/package_subscriptions', 'component'=>'package_subscriptions'),
-				array('permission'=> 'Transactions.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
+				array('permission'=> 'Transaction.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
 				array('permission'=> 'PaymentMethods.index', 'title'=> __('Payment Methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
 			]
 			),
