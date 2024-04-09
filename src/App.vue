@@ -11,7 +11,7 @@
                     <side-menu @callback="switchTab" :samepage="activeTab" :system_setting="system_setting" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="showSide" class="sidebar " id="sidebar" style="z-index:999"></side-menu>
                     
                     <div v-if="loader" class="bg-white absolute w-full h-full top-0 " style="z-index:9; opacity: .8;">
-                        <img class="m-auto" src="/uploads/loader.png" />
+                        <img class="m-auto" src="/uploads/loader.gif" />
                     </div>
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
                         <div class="w-full" v-if="checkAccess()">
