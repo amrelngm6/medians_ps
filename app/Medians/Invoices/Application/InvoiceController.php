@@ -42,13 +42,11 @@ class InvoiceController extends CustomController
 
 		return [
             [ 'value'=> "invoice_id", 'text'=> "#"],
-            [ 'value'=> "field.order_id", 'text'=> __('Invoice code'), 'sortable'=> true ],
             [ 'value'=> "model.name", 'text'=> __('User'), 'sortable'=> false ],
             [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
             [ 'value'=> "payment_method", 'text'=> __('Gateway'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
-            [ 'value'=> "package_subscription.package.name", 'text'=> __('Package'), 'sortable'=> false ],
-            [ 'value'=> "item.payment_type", 'text'=> __('duration'), 'sortable'=> false ],
+            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> false ],
 			['value'=>'delete', 'text'=>__('Delete')],
         ];
 	}
