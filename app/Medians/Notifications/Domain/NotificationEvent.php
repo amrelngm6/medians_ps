@@ -188,7 +188,7 @@ class NotificationEvent extends CustomModel
 	 */
 	public function filterReceivers($event, $model)
 	{	
-		switch ($event->receivers_model) 
+		switch ($event->receiver_model) 
 		{
 			case Driver::class:
 				return $this->filterDriver($event, $model);
