@@ -27,7 +27,7 @@ class HelpMessageRepository
 
 	public function find($id)
 	{
-		return HelpMessage::find($id);
+		return HelpMessage::with('comments','user')->find($id);
 	}
 
 	public function get($limit = 100)
