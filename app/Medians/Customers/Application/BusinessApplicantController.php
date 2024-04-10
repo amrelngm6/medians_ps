@@ -223,7 +223,7 @@ class BusinessApplicantController extends CustomController
 	{
 		$user = $this->app->auth();
 		$studentId = $this->app->request()->get('student_id');
-		$data = $this->repo->getStudentApplicants( $user->business->businessId, $studentId);
+		$data = $this->repo->getStudentApplicants( $studentId);
 
 		return $data;
 
