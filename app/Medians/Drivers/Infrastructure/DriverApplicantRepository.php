@@ -107,8 +107,11 @@ class DriverApplicantRepository
 		$data = [];
 		$data['business_id'] = $this->business_id;
 
+
 		// Return the  object with the new data
     	$Object->update( (array) $data);
+
+		(strtolower($Object->status) == 'approved') ? $this->repo->updateDriverBusiness() : null;
 
     	return $Object;
 
