@@ -53,19 +53,20 @@ class SettingsController extends CustomController
 
 		return [
             
-			'Service Area'=> [	
-				[ 'key'=> "cities", 'title'=> __('Cities'), 
-					'sortable'=> true, 'column_key'=>'city_id', 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
-					'data' => $this->citiesRepo->get(),   
-					'multiple'=>true
-				],
-			],
 			'basic'=> [	
 	            [ 'key'=> "logo", 'title'=> __('logo'), 'fillable'=>true, 'column_type'=>'file' ],
 				[ 'key'=> "allow_notifications", 'title'=> __('Allow Notifications'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "lang", 'title'=> __('Languange'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['lang'=>'arabic','title'=>__('Arabic')], ['lang'=>'english','title'=>__('English')]]  
+				],
+			],
+			
+			'Service Area'=> [	
+				[ 'key'=> "cities", 'title'=> __('Cities'), 
+					'sortable'=> true, 'column_key'=>'city_id', 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
+					'data' => $this->citiesRepo->get(),   
+					'multiple'=>true
 				],
 			],
 			
