@@ -259,7 +259,7 @@ class AuthService
 
             if (!empty($checkUser))
             {
-				$updated = $checkUser->updae(['status'=>'on']);
+				$updated = $checkUser->update(['status'=>'on']);
 			}
 
 			return render('views/front/activate.html.twig', [
