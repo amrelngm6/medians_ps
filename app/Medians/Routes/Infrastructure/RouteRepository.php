@@ -67,7 +67,7 @@ class RouteRepository
 		$permission = 'Route.count';
 		if (Route::where('business_id', $data['business_id'])->count() == $this->business->subscription->features[$permission])
 		{
-			return throw new \Exception(__('Access limit exceeded'), 1);
+			return throw new \Exception(json_encode($this->business) . __('Access limit exceeded'), 1);
 		}
 
 		$Model = new Route();

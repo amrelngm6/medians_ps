@@ -32,11 +32,12 @@ class RouteController extends CustomController
 	{
 
 		$this->app = new \config\APP;
+		$user = $user;
 
-		$this->repo = new RouteRepository($this->app->auth()->business);
-		$this->supervisorRepo = new SuperVisorRepository($this->app->auth()->business);
-		$this->vehicleRepo = new VehicleRepository($this->app->auth()->business);
-		$this->driverRepo = new DriverRepository($this->app->auth()->business);
+		$this->repo = new RouteRepository($user->business);
+		$this->supervisorRepo = new SuperVisorRepository($user->business);
+		$this->vehicleRepo = new VehicleRepository($user->business);
+		$this->driverRepo = new DriverRepository($user->business);
 		$this->stateRepo = new StateRepository();
 	}
 
