@@ -160,13 +160,13 @@ class StudentRepository
 			foreach ($data as $key => $value)
 			{
 				$fields = [];
-				$fields['model_type'] = Stident::class;	
+				$fields['model_type'] = Student::class;	
 				$fields['model_id'] = $id;	
 				$fields['code'] = $key;	
 
 				if (is_array($value))
 				{
-					CustomField::where('model_type', Stident::class)->where('code',$key)->where('model_id', $id)->delete();
+					CustomField::where('model_type', Student::class)->where('code',$key)->where('model_id', $id)->delete();
 					foreach ($value as $k => $v) {
 						$Model = CustomField::firstOrCreate($fields);
 						$Model->update(['value'=>$v]);
