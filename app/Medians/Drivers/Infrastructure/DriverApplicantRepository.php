@@ -88,6 +88,10 @@ class DriverApplicantRepository
 
 		$Object = DriverApplicant::where('business_id', $this->business_id)->find($data['applicant_id']);
 		
+		$data = [];
+		$data['business_id'] = $this->business_id;
+		$data['status'] = 'on';
+		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
