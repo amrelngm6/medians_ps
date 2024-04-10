@@ -141,12 +141,11 @@ class DriverController extends CustomController
 
 	public function updateMobile()
 	{
-		$params = $this->app->request()->get('params');
-		$params = is_array($params) ?  (array) $params : json_decode($params);
+		$params = json_decode($this->app->request()->get('params'));
 
         try {
 
-            if ($this->repo->update($params))
+            if ($this->repo->update((array) $params))
             {
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
