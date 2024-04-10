@@ -41,6 +41,11 @@ class Student extends CustomModel
 		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
 	}
 
+	public function custom_fields()
+	{
+		return $this->morphMany(CustomFields::class, 'model');
+	}
+	
 	public function photo() : String
 	{
 		return !empty($this->picture) ? $this->picture : '/uploads/images/default_profile.png';
