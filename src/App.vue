@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div v-if="loader" class="bg-white fixed w-full h-full top-0 " style="z-index:99999; opacity: .8;">
+        <div v-if="loader" class="bg-white fixed w-full h-full top-0 " style="z-index:99999; ">
             <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
         </div>
         <div class="left-4">
