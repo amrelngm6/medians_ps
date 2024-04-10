@@ -108,6 +108,7 @@ class NotificationEventRepository
 			'Customer' => \Medians\Customers\Domain\Customer::class,
 			'User' => \Medians\Users\Domain\User::class,
 			'Driver' => \Medians\Drivers\Domain\Driver::class,
+			'DriverApplicant' => \Medians\Drivers\Domain\DriverApplicant::class,
 			'Vehicle' => \Medians\Vehicles\Domain\Vehicle::class,
 			'Trip' => \Medians\Trips\Domain\Trip::class,
 			'Trip alarm' => \Medians\Trips\Domain\TripAlarm::class,
