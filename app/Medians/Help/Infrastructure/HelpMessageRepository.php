@@ -37,7 +37,7 @@ class HelpMessageRepository
 
 	public function loadDriverMessages($user, $limit = 100)
 	{
-		return HelpMessage::where('business_id', $this->business_id)->with('user','comments' )->where('user_id', $user->driver_id)->where('user_type', Driver::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::with('user','comments' )->where('user_id', $user->driver_id)->where('user_type', Driver::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 
 	public function loadParentMessages($user, $limit = 100)
