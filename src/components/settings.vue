@@ -154,7 +154,7 @@ export default
             showEditSide.value = false;
         }
 
-        const activeTab =  ref('Service Area');
+        const activeTab =  ref('basic');
 
         const switchTab = (tab) => 
         {
