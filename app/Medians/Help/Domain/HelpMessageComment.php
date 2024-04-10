@@ -55,7 +55,7 @@ class HelpMessageComment extends CustomModel
 	
 	
     public function message() {
-        return $this->hasOne(HelpMessage::class, 'message_id', 'message_id');
+        return $this->hasOne(HelpMessage::class, 'message_id', 'message_id')->with('business');
     }
 
     public function user() {
