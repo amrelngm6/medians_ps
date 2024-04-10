@@ -96,6 +96,7 @@ class HelpMessageRepository
 		$Model = new HelpMessage();
 
 		$data['user_type'] = Driver::class;
+		$data['business_id'] = $data['business_id'] ?? null;
 		
 		foreach ($data as $key => $value) 
 		{
@@ -155,7 +156,7 @@ class HelpMessageRepository
 				$dataArray[$key] = $value;
 			}
 		}		
-
+		
 		// Return the  object with the new data
     	$Object = HelpMessageComment::create($dataArray);
 
