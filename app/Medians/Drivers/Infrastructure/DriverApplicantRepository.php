@@ -102,7 +102,7 @@ class DriverApplicantRepository
     public function updateDriverBusiness($params)
     {
 
-		$Object = Driver::find($params['model_id']);
+		$Object = Driver::find($params['driver_id']);
 		
 		$data = [];
 		$data['business_id'] = $this->business_id;
