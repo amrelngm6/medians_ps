@@ -113,11 +113,11 @@ class TripRepository
 	public function getParentStudentsTrips($parent_id)
 	{
 		
-		$ids = Student::where('business_id', $this->business_id)->where('parent_id', $parent_id)->select('student_id')->get();
+		$ids = Student::where('parent_id', $parent_id)->select('student_id')->get();
 
 		$students =  array_column($ids->toArray(), 'student_id');
 
-		return Trip::where('business_id', $this->business_id)->with('driver', 'vehicle', 'route')
+		return Trip::with('driver', 'vehicle', 'route')
 		->whereHas('locations' , function($q) use ($students){
 				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
 		})->with(['locations' => function($q) use ($students){

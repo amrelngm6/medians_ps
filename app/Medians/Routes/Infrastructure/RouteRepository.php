@@ -55,6 +55,17 @@ class RouteRepository
 		->with('route_locations','position', 'vehicle')->get();
 	}
 
+	public function getParentRoutes($parent_id)
+	{
+		$ids = Student::where('parent_id', $parent_id)->select('student_id')->get();
+		return Route::with('route_locations','position', 'vehicle')
+		->where('parent_id', $parent_id)
+		->whereHas('route_locations', function($q) {
+			$q->where('');
+		})
+		->get();
+	}
+
 
 
 
