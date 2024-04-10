@@ -71,6 +71,11 @@ class SystemSettingsController extends CustomController
 				[ 'key'=> "onesignal_app_key_token", 'title'=> __('OneSingal API Key Token'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
+			'google'=> [	
+				[ 'key'=> "google_client_id", 'title'=> __('Google Client ID'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "google_client_secret", 'title'=> __('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
+			],
+			
 			'paypal'=> [	
 				[ 'key'=> "paypal_api_key", 'title'=> __('PayPal API Key'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "paypal_api_secret", 'title'=> __('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'text' ],
