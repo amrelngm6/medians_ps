@@ -257,24 +257,17 @@ class AuthService
             
             $checkUser = $this->repo->findByActivationCode($code);
 
-            if (empty($checkUser))
+            if (!empty($checkUser))
             {
-				try 
-				{
-					return render('views/front/page.html.twig', [
-						// 'load_vue' => true,
-						'title' => __('Activation page'),
-						'app' => $this->app,
-					]);
-					
-				} catch (Exception $e) {
-					throw new Exception("Error Processing Request", 1);
-				}
+				$updated = $checkUser->updae(['status'=>'on']);
+			}
 
-            } else {
-	            echo json_encode(array('error'=>$checkUser));
-            }
-
+			return render('views/front/activate.html.twig', [
+				// 'load_vue' => true,
+				'title' => __('Activation page'),
+				'app' => $this->app,
+				'msg' => isset($updated) ? __('Account activated successfully') : __('Code not valid'),
+			]);
 
         } catch (Exception $e) {
         	throw new Exception("Error Processing Request", 1);
