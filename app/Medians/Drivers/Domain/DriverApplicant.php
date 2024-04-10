@@ -41,35 +41,4 @@ class DriverApplicant extends CustomModel
 	}
 
 
-    public function custom_fields()
-    {
-        return $this->morphMany(CustomField::class, 'model');
-    }
-
-
-	/**
-	 * Create Custom filed for Session of DriverApplicant
-	 */
-	public function insertCustomField($code, $value)
-	{
-
-		$delete = CustomField::where('code', $code)
-		->where('model_type', DriverApplicant::class)
-		->where('model_id', $this->customer_id)
-		->delete();
-
-    	// Insert activation code 
-		$fillable = [
-			'code'=>$code,
-			'model_type'=>DriverApplicant::class, 
-			'model_id'=>$this->application_id, 
-			'value'=>$value
-		];
-
-		return CustomField::firstOrCreate($fillable);
-
-	}  
-
-
-
 }

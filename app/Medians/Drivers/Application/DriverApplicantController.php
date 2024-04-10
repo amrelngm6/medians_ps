@@ -132,7 +132,7 @@ class DriverApplicantController extends CustomController
 
             if ($this->repo->update($params))
             {
-				$this->driverRepo->updateDriverBusiness($params);
+				$this->repo->updateDriverBusiness($params);
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
 

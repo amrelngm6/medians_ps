@@ -83,20 +83,32 @@ class DriverApplicantRepository
     /**
      * Update Lead
      */
-    public function update($data)
+    public function update($params)
     {
 
-		$Object = DriverApplicant::where('business_id', $this->business_id)->find($data['applicant_id']);
+		$Object = DriverApplicant::where('business_id', $this->business_id)->find($params['applicant_id']);
+		
+		
+		// Return the  object with the new data
+    	$Object->update( (array) $params);
+
+    	return $Object;
+
+    }
+
+    /**
+     * Update Lead
+     */
+    public function updateDriverBusiness($params)
+    {
+
+		$Object = Driver::find($params['model_id']);
 		
 		$data = [];
 		$data['business_id'] = $this->business_id;
-		$data['status'] = 'on';
-		
+
 		// Return the  object with the new data
     	$Object->update( (array) $data);
-
-    	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['applicant_id']) : '';
 
     	return $Object;
 
@@ -114,10 +126,6 @@ class DriverApplicantRepository
 			
 			$delete = DriverApplicant::where('business_id', $this->business_id)->find($id)->delete();
 
-			if ($delete){
-				$this->storeCustomFields(null, $id);
-			}
-
 			return true;
 
 		} catch (\Exception $e) {
@@ -126,54 +134,6 @@ class DriverApplicantRepository
 			
 		}
 	}
-
-
-
-	/**
-	* validate Email 
-	*/
-	public function validateEmail($email, $id = 0) 
-	{
-		if (!empty($email))
-		{
-			$check = DriverApplicant::where('email', $email)->where('applicant_id', '!=', $id)->first();
-		}
-
-		return  (empty($check)) ? null : __('EMAIL_FOUND');
-	}
-
-	/**
-	* Save related items to database
-	*/
-	public function storeCustomFields($data, $id) 
-	{
-		if ($data)
-		{
-			foreach ($data as $key => $value)
-			{
-				$fields = [];
-				$fields['model_type'] = DriverApplicant::class;	
-				$fields['model_id'] = $id;	
-				$fields['code'] = $key;	
-
-				if (is_array($value))
-				{
-					CustomField::where('model_type', DriverApplicant::class)->where('code',$key)->where('model_id', $id)->delete();
-					foreach ($value as $k => $v) {
-						$Model = CustomField::firstOrCreate($fields);
-						$Model->update(['value'=>$v]);
-					}
-				} else {
-					$Model = CustomField::firstOrCreate($fields);
-					$Model->update(['value'=>$value]);
-				}
-			}
-	
-			return $Model;		
-		}
-	}
-
-
 
 
  
