@@ -246,6 +246,42 @@ class AuthService
         }
 	}
 
+	/**
+	 * User Signup request
+	 */ 
+	public function activate($code)
+	{
+		$this->app = new \config\APP;
+		
+        try {
+            
+            $checkUser = $this->findByActivationCode($code);
+
+            if (empty($checkUser))
+            {
+				try 
+				{
+					return render('views/front/page.html.twig', [
+						// 'load_vue' => true,
+						'title' => __('Activation page'),
+						'app' => $this->app,
+					]);
+					
+				} catch (Exception $e) {
+					throw new Exception("Error Processing Request", 1);
+				}
+
+            } else {
+	            echo json_encode(array('error'=>$checkUser));
+            }
+
+
+        } catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
+        	
+        }
+	}
+
 
 	/**
 	 * Check login credentials
@@ -293,13 +329,10 @@ class AuthService
 	 */ 
 	public function checkDriverLogin($email, $password)
 	{
-		
-		error_log(json_encode([$email,$password]));
 
 		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository(null);
 		
 		$checkDriverLogin = $this->driverRepo->checkLogin($email, $password);
-		error_log(json_encode($checkDriverLogin));
 
 		if (empty($checkDriverLogin->id))
 		{
