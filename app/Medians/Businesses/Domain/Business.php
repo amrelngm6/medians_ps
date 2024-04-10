@@ -33,7 +33,7 @@ class Business extends CustomModel
 
 	public function getOwnerAttribute ()
 	{
-		return $this->with('owner_user')->owner_user;
+		return isset($this->owner_user) ? $this->owner_user : null;
 	}
 
 	public function getFields()
