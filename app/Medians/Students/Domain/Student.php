@@ -43,7 +43,7 @@ class Student extends CustomModel
 
 	public function custom_fields()
 	{
-		return $this->morphMany(CustomFields::class, 'model');
+		return $this->morphMany(CustomField::class, 'model');
 	}
 	
 	public function photo() : String
