@@ -255,7 +255,7 @@ class AuthService
 		
         try {
             
-            $checkUser = $this->findByActivationCode($code);
+            $checkUser = $this->repo->findByActivationCode($code);
 
             if (empty($checkUser))
             {
