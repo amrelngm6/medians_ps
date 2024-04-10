@@ -35,6 +35,7 @@ RouteHandler::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@s
 RouteHandler::get('/', \Medians\Pages\Application\PageController::class.'@homepage');
 RouteHandler::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 RouteHandler::get('/signup', \Medians\Auth\Application\AuthService::class.'@signupPage');
+RouteHandler::get('/google_login_redirect', \Medians\Auth\Application\AuthService::class.'@verifyLoginWithGoogle');
 
 // Login as admin
 RouteHandler::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');

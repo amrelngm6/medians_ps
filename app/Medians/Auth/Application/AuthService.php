@@ -113,7 +113,7 @@ class AuthService
 
 			$settings = $SystemSettings->getAll();
 
-			$Google = new GoogleService($settings['google_login_key'], $settings['google_login_secret']);
+			$Google = new GoogleService($settings['google_client_id'], $settings['google_client_secret']);
 
 			$code = $this->app->request()->get('code');
 
