@@ -50,7 +50,7 @@ class BusinessApplicantRepository
 		return BusinessApplicant::where('business_id', $businessId)->where('model_id', $modelId)->first();
 	}
 
-	public function getStudentApplicants($businessId, $modelId)
+	public function getStudentApplicants($modelId)
 	{
 		return BusinessApplicant::where('model_type', Student::class)->where('model_id', $modelId)->first();
 	}
