@@ -7,6 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Customers\Domain\Customer;
 use Medians\Drivers\Domain\Driver;
+use Medians\Drivers\Domain\DriverApplicant;
 use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripAlarm;
 use Medians\Locations\Domain\RouteLocation;
@@ -163,11 +164,17 @@ class NotificationEvent extends CustomModel
 				break;
 
 			case HelpMessage::class:
+				$item =  $model->with('business')->find($model->message_id);
 				return isset($model->business->owner) ?  [$model->business->owner] : null;
 				break;
 
 			case RouteLocation::class:
-				$location =  $model->with('parent')->find($model->location_id);
+				$location =  $model->with('business')->find($model->route_location);
+				return isset($model->business->owner) ?  [$model->business->owner] : null;
+				break;
+
+			case DriverApplicant::class:
+				$item =  $model->with('business')->find($model->applicant_id);
 				return isset($location->parent) ? [$location->parent] : null;
 				break;
 
