@@ -52,7 +52,7 @@ class BusinessApplicantRepository
 
 	public function getStudentApplicants($businessId, $modelId)
 	{
-		return BusinessApplicant::where('business_id', $businessId)->where('model', Student::class)->where('model_id', $modelId)->first();
+		return BusinessApplicant::where('business_id', $businessId)->where('model_type', Student::class)->where('model_id', $modelId)->first();
 	}
 
 	public function getStudent($modelId)
