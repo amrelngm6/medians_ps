@@ -192,6 +192,10 @@ class MobileAPIController extends CustomController
 			case 'Driver.load_companies':
 				$return = (new Businesses\Application\BusinessController)->loadCompaniesForDrivers();
 				break;
+				
+			case 'student_applicants':
+				$return =  (new Customers\Application\BusinessApplicantController())->loadStudentApplicants(); 
+				break;
 		}
 		
 		echo json_encode($return);
@@ -226,6 +230,7 @@ class MobileAPIController extends CustomController
 				case 'BusinessApplicant.create':
 					$return =  (new Customers\Application\BusinessApplicantController())->store(); 
 					break;
+					
 					
 				case 'HelpMessage.create':
 					$return = (new \Medians\Help\Application\HelpMessageController())->storeMobile();

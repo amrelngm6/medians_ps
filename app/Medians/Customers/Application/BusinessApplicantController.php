@@ -212,5 +212,21 @@ class BusinessApplicantController extends CustomController
 
 	}
 
+	/**
+	 * Find old applicants
+	 * 
+	 * @param String
+	 * 
+	 * @return JSON
+	 */
+	public function loadStudentApplicants()
+	{
+		$studentId = $this->app->request()->get('student_id');
+		$data = $this->repo->getStudentApplicants( $businessId, $studentId);
+
+		return $data;
+
+	}  
+
 
 }
