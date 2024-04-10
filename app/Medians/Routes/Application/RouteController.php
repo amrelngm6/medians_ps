@@ -32,7 +32,7 @@ class RouteController extends CustomController
 	{
 
 		$this->app = new \config\APP;
-		$user = $user;
+		$user = $this->app->auth();
 
 		$this->repo = new RouteRepository($user->business);
 		$this->supervisorRepo = new SuperVisorRepository($user->business);
