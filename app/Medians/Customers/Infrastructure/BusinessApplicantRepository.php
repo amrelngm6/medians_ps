@@ -128,11 +128,12 @@ class BusinessApplicantRepository
     /**
      * Update Lead
      */
-    public function updateStudentBusiness($data)
+    public function updateStudentBusiness($params)
     {
 
-		$Object = Student::find($data['model_id']);
+		$Object = Student::find($params['model_id']);
 		
+		$data = [];
 		$data['business_id'] = $this->business_id;
 		$data['transfer_status'] = 'Approved';
 
