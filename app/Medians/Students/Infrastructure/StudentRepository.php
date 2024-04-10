@@ -88,7 +88,7 @@ class StudentRepository
     	$Object->update( (array) $data);
 
     	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['driver_id']) : '';
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['student_id']) : '';
 
     	return $Object;
     }
