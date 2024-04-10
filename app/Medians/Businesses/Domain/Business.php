@@ -43,7 +43,7 @@ class Business extends CustomModel
 
     public function owner_user()
     {
-		return $this->hasOne(User::class, 'user_id', 'user_id');	
+		return $this->hasOne(User::class, 'id', 'user_id');	
     }
 
     public function subscription()
