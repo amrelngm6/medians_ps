@@ -142,6 +142,9 @@ class StudentRepository
 			$this->routeLocationRepository->store($location);
 		}
 		
+    	// Store Custom fields
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $Object->student_id) : '';
+
     	return $Object->with('route_location')->find($Object->student_id);
     }
 
