@@ -92,6 +92,8 @@ class DriverApplicantRepository
 		// Return the  object with the new data
     	$Object->update( (array) $params);
 
+		(strtolower($params['status']) == 'approved') ? $this->updateDriverBusiness() : null;
+
     	return $Object;
 
     }
@@ -110,8 +112,6 @@ class DriverApplicantRepository
 
 		// Return the  object with the new data
     	$Object->update( (array) $data);
-
-		(strtolower($params['status']) == 'approved') ? $this->updateDriverBusiness() : null;
 
     	return $Object;
 
