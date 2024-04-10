@@ -175,7 +175,7 @@ class NotificationEvent extends CustomModel
 
 			case DriverApplicant::class:
 				$item =  $model->with('business')->find($model->applicant_id);
-				return isset($location->parent) ? [$location->parent] : null;
+				return isset($model->business->owner) ?  [$model->business->owner] : null;
 				break;
 
 			default:
