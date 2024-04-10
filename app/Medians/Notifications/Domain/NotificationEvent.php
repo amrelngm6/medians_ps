@@ -160,7 +160,8 @@ class NotificationEvent extends CustomModel
 		switch (get_class($model)) 
 		{
 			case HelpMessageComment::class:
-				return [$model->message->user];
+				$item =  $model->with('message')->find($model->message_id);
+				return isset($model->message->business->owner) ?  [$model->message->business->owner] : null;
 				break;
 
 			case HelpMessage::class:
