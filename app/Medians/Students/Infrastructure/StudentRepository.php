@@ -68,6 +68,11 @@ class StudentRepository
 		// Return the  object with the new data
     	$Object = Student::create($dataArray);
 
+    	// Store Custom fields
+		if (isset($data['field'])) {
+	    	$this->storeCustomFields($data['field'], $Object->id);
+		}
+
     	return $Object;
     }
     	
@@ -81,6 +86,9 @@ class StudentRepository
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
+
+    	// Store Custom fields
+    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['driver_id']) : '';
 
     	return $Object;
     }
@@ -136,6 +144,41 @@ class StudentRepository
 		
     	return $Object->with('route_location')->find($Object->student_id);
     }
+
+
+	
+	/**
+	* Save related items to database
+	*/
+	public function storeCustomFields($data, $id) 
+	{
+		if ($data)
+		{
+			foreach ($data as $key => $value)
+			{
+				$fields = [];
+				$fields['model_type'] = Stident::class;	
+				$fields['model_id'] = $id;	
+				$fields['code'] = $key;	
+
+				if (is_array($value))
+				{
+					CustomField::where('model_type', Stident::class)->where('code',$key)->where('model_id', $id)->delete();
+					foreach ($value as $k => $v) {
+						$Model = CustomField::firstOrCreate($fields);
+						$Model->update(['value'=>$v]);
+					}
+				} else {
+					$Model = CustomField::firstOrCreate($fields);
+					$Model->update(['value'=>$value]);
+				}
+			}
+	
+			return $Model;		
+		}
+	}
+
+
 
 	
 }
