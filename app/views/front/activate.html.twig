@@ -19,7 +19,8 @@
                     <h3>{{lang.__('Activate account')}}</h3>
                     <div class="boder"></div>
                     <p>{{msg | raw}}</p>
-                    <form action="/login" method="POST" id="login-form">
+                    {% if valid %}
+                    <form  action="/login" method="POST" id="login-form">
                         <label class="relative block  "><input required="true" type="email" name="params[email]"
                                 class="rounded-input with-icon" placeholder="Enter your Email address..."><i
                                 class="fa fa-envelope py-2 w-4 absolute right-4 left-4 top-5"></i></label>
@@ -31,6 +32,7 @@
                           <a href="/login" class="mt-3 font-semibold text-white">{{lang.__('Login')}}</a>
                         </div>
                     </form>
+                    {% endif %}
                 </div>
 
             </div>

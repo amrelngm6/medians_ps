@@ -267,6 +267,7 @@ class AuthService
 				'title' => __('Activation page'),
 				'app' => $this->app,
 				'msg' => isset($updated) ? __('Account activated successfully') : __('Code not valid'),
+				'valid' => isset($updated) ? true : false,
 			]);
 
         } catch (Exception $e) {
