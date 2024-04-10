@@ -33,7 +33,7 @@ class Business extends CustomModel
 
 	public function getOwnerAttribute ()
 	{
-		return $this->owner();
+		return $this->owner_user();
 	}
 
 	public function getFields()
@@ -41,7 +41,7 @@ class Business extends CustomModel
 		return $this->fillable;
 	}
 
-    public function owner()
+    public function owner_user()
     {
 		return $this->hasOne(User::class, 'user_id', 'user_id');	
     }
