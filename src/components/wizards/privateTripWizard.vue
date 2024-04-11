@@ -1,7 +1,7 @@
 <template>
     <div class="w-full ">
         
-        <div v-if="loading" class="bg-white fixed w-full h-full top-0 left-0" style="z-index:99999; opacity: .9;">
+        <div v-if="loading" :key="loading" class="bg-white fixed w-full h-full top-0 left-0" style="z-index:99999; opacity: .9;">
             <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
         </div>
         <div class="w-full flex overflow-auto">
@@ -596,8 +596,8 @@ export default
                 params.append('type', 'PrivateTrip.' + type)
                 handleRequest(params, '/api/' + type).then(response => {
                     handleAccess(response)
+                    loading.value = false;
                 })
-                loading.value = false;
             }
 
             const updatePickupMarker = async (position) => {
