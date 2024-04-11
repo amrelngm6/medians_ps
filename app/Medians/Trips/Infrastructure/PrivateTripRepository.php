@@ -231,6 +231,21 @@ class PrivateTripRepository
 
     	return $Object;
     }
+    
+
+    /**
+     * cancel Trip
+     */
+    public function cancelTrip($data)
+    {
+
+		$Object = PrivateTrip::find($data['trip_id']);
+		
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+    }
 
 
 	/**

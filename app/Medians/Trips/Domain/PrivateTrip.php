@@ -40,6 +40,7 @@ class PrivateTrip extends CustomModel
 			'discount_amount',
 			'total_cost',
 			'status',
+			'cancel_reason',
 	];
 
 

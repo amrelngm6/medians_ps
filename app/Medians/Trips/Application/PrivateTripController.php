@@ -206,6 +206,15 @@ class PrivateTripController extends CustomController
 	}
 
 
+	public function cancelTrip()
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+		
+		$params['status'] = 'canceled';
+
+		return $this->repo->cancelTrip($params);
+	}
+
 	public function endTrip()
 	{
 		$params = (array) json_decode($this->app->request()->get('params'));
