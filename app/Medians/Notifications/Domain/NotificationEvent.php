@@ -215,6 +215,12 @@ class NotificationEvent extends CustomModel
 				return isset($model->business->owner) ?  [$model->business->owner] : null;
 				break;
 
+			case PrivateTrip::class:
+				$object =  $model->with('business')->find($model->trip_id);
+				// $object =  $model->with(['business'=>function($q){return $q->with('owner');}])->find($model->trip_id);
+				return isset($model->business->owner) ?  [$model->business->owner] : null;
+				break;
+				
 			default:
 				return $model;
 				break;
