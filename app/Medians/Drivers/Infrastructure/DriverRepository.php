@@ -162,7 +162,7 @@ class DriverRepository
 
 		$Model = new Driver();
 		
-		$findByEmail = $this->findByEmail($data['email']);
+		$findByEmail = Driver::where('email', $data['email'])->first();
 
 		if (empty($findByEmail))
 			return __('User not found');
