@@ -43,7 +43,7 @@ class PrivateTripRepository
 
 	public function getPrivateTrip($id)
 	{
-		return PrivateTrip::where('business_id', $this->business_id)->with('driver','vehicle','model')->find($id);
+		return PrivateTrip::with('driver','vehicle','model')->find($id);
 	}
 
 	public function getParentPrivateTrip($trip_id, $parent_id)
