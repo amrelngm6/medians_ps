@@ -247,9 +247,9 @@ class PrivateTripController extends CustomController
 	{
 		$user = $this->app->auth();
 
-		if (empty($user->parent_id)) { return null; }
+		if (empty($user->customer_id)) { return null; }
 		
-		$trip = $this->repo->getUpcomingParentTrip($user->parent_id);
+		$trip = $this->repo->getUpcomingParentTrip($user->customer_id);
 
 		echo $trip ? json_encode( $trip) : '';
 	}
