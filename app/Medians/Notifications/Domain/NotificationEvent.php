@@ -9,6 +9,7 @@ use Medians\Customers\Domain\Customer;
 use Medians\Drivers\Domain\Driver;
 use Medians\Drivers\Domain\DriverApplicant;
 use Medians\Trips\Domain\Trip;
+use Medians\Trips\Domain\PrivateTrip;
 use Medians\Trips\Domain\TripAlarm;
 use Medians\Locations\Domain\RouteLocation;
 use Medians\Help\Domain\HelpMessageComment;
@@ -135,11 +136,16 @@ class NotificationEvent extends CustomModel
 				return isset($object->model) ? [$object->model] : null;
 				break;
 
+			case PrivateTrip::class:
+				$object =  $model->with('model')->find($model->trip_id);
+				return isset($object->model) ? [$object->model] : null;
+				break;
+				
 			case Trip::class:
 				$object =  $model->whereHas('parent')->with('parent')->find($model->trip_id);
 				return isset($object->parent) ? [$object->parent] : null;
 				break;
-						
+							
 			default:
 				return $model;
 				break;
