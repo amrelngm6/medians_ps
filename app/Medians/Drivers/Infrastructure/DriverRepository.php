@@ -5,6 +5,7 @@ namespace Medians\Drivers\Infrastructure;
 use Medians\Drivers\Domain\Driver;
 use Medians\Drivers\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Mail\Application\MailService;
 
 
 use Illuminate\Database\Capsule\Manager as Capsule;
