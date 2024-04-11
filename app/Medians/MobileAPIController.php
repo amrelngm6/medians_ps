@@ -173,7 +173,7 @@ class MobileAPIController extends CustomController
 				break;
 				
 			case 'Parents.create_trip':
-				$return =  (new Trips\Application\PrivateTripController())->store(); 
+				$return =  (new Trips\Application\PrivateTripController())->createTrip(); 
 				break;
 				
 			case 'Driver.start_trip':
