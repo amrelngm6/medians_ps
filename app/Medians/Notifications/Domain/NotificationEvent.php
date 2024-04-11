@@ -87,7 +87,6 @@ class NotificationEvent extends CustomModel
 	 */ 
 	public function handleEventUpdate($model, $action, $updatedFields = null)
 	{
-		print_r($updatedFields);
 		if ($updatedFields  )
 		{
 			$events = json_decode(NotificationEvent::whereIn('action_field', $updatedFields)->where('action',$action)->where('model',get_class($model))->get());
