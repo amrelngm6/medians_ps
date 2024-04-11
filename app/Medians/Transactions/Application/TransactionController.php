@@ -208,7 +208,7 @@ class TransactionController extends CustomController
 		$settings = $this->app->SystemSetting(); 
 		$amount = $this->app->request()->get('amount');
 
-		$stripe = new \Stripe\StripeClient($settings['stripe_publish_key']);
+		$stripe = new \Stripe\StripeClient($settings['stripe_live_key']);
 		$res = $stripe->paymentIntents->create([
 		  'amount' => $amount ?? 0,
 		  'currency' => 'usd',

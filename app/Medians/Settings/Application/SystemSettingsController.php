@@ -86,6 +86,7 @@ class SystemSettingsController extends CustomController
 			],
 			'stripe'=> [	
 				[ 'key'=> "stripe_publish_key", 'title'=> __('Stripe publishable key'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "stripe_live_key", 'title'=> __('Stripe live key'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "stripe_mode", 'title'=> __('Stripe mode'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['stripe_mode'=>'live','title'=>'Live'], ['stripe_mode'=>'sandbox','title'=>'Sandbox']]  
