@@ -181,6 +181,31 @@ class PrivateTripController extends CustomController
 	}
 
 	
+	/**
+	 * Customers create private trip
+	 */
+	public function createTrip() 
+	{
+
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+		$user = $this->app->auth();
+
+        try {	
+
+
+			$returnData = (!empty($this->repo->store($params))) 
+            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		return $returnData;
+	}
+
+
 	public function endTrip()
 	{
 		$params = (array) json_decode($this->app->request()->get('params'));

@@ -174,6 +174,9 @@ class PrivateTripRepository
 		if (strtolower($data) == 'supervisor')
 			return SuperVisor::class;
 
+		if (strtolower($data) == 'parent')
+			return Parents::class;
+
 	}
 	
 	/**
