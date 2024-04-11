@@ -327,7 +327,7 @@
                                         <input :required="true" autocomplete="off" name="params[discount]" class="form-control form-control-solid" :placeholder="translate('Trip discount')" type="number" v-model="activeItem.discount">
                                         <hr class="block mt-6 my-2 opacity-10" />
 
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Discount')" ></label>
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Total cost')" ></label>
                                         <input :required="true" autocomplete="off" name="params[total_cost]" class="form-control form-control-solid" :placeholder="translate('Trip total cost')" type="number" v-model="activeItem.total_cost">
 
                                     </div>
