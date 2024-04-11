@@ -320,11 +320,11 @@
                                 <div class="settings-form" >
                                     <div class="max-w-xl mb-6 mx-auto row" >
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Subtotal')" ></label>
-                                        <input @change="(activeItem.total_cost = activeItem.subtotal + activeItem.discount_amount)" :required="true" autocomplete="off" name="params[subtotal]" class="form-control form-control-solid" :placeholder="translate('Trip subtotal')" type="number" v-model="activeItem.subtotal">
+                                        <input @change="(activeItem.total_cost = activeItem.subtotal - activeItem.discount_amount)" :required="true" autocomplete="off" name="params[subtotal]" class="form-control form-control-solid" :placeholder="translate('Trip subtotal')" type="number" v-model="activeItem.subtotal">
                                         <hr class="block mt-6 my-2 opacity-10" />
 
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Discount')" ></label>
-                                        <input @change="(activeItem.total_cost = activeItem.subtotal + activeItem.discount_amount)"  :required="true" min="0" :max="activeItem.subtotal" autocomplete="off" name="params[discount]" class="form-control form-control-solid" :placeholder="translate('Trip discount')" type="number" v-model="activeItem.discount_amount">
+                                        <input @change="(activeItem.total_cost = activeItem.subtotal - activeItem.discount_amount)"  :required="true" min="0" :max="activeItem.subtotal" autocomplete="off" name="params[discount]" class="form-control form-control-solid" :placeholder="translate('Trip discount')" type="number" v-model="activeItem.discount_amount">
                                         <hr class="block mt-6 my-2 opacity-10" />
 
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Total cost')" ></label>
