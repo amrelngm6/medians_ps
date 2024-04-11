@@ -167,7 +167,6 @@ class CustomModel extends Model
     	if (empty($updatedFields))
     		return null;
 
-		array_push($updatedFields, ['']);
     	// Handle update event for model 
     	return (new NotificationEvent)->handleEventUpdate($this, 'update', array_keys($updatedFields));
 
