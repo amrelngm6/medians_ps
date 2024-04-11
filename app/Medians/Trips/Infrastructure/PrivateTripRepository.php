@@ -104,6 +104,15 @@ class PrivateTripRepository
 		->first();
 	}
 
+	public function getUpcomingParentTrip($parent_id)
+	{
+		return PrivateTrip::where('driver_id', $parent_id)
+		->whereIn('status',  ['scheduled','started'])
+		->where('date', '>=', date('Y-m-d'))
+        ->with('model','driver','vehicle')
+		->first();
+	}
+
 	public function eventsByDate($params)
 	{
 		$query = PrivateTrip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);

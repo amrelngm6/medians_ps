@@ -64,6 +64,7 @@ RouteHandler::get('/vehicle/(:all)', \Medians\Vehicles\Application\VehicleContro
 RouteHandler::get('/trip/(:all)', \Medians\Trips\Application\TripController::class.'@getTrip');
 RouteHandler::get('/private_trip/(:all)', \Medians\Trips\Application\PrivateTripController::class.'@getPrivateTrip');
 RouteHandler::get('/upcoming_private_trip', \Medians\Trips\Application\PrivateTripController::class.'@upcomingTrip');
+RouteHandler::get('/upcoming_parent_trip', \Medians\Trips\Application\PrivateTripController::class.'@upcomingParentTrip');
 RouteHandler::get('/getParentTrip/(:all)', \Medians\Trips\Application\TripController::class.'@getParentTrip');
 RouteHandler::get('/events', \Medians\Events\Application\EventController::class.'@index');
 RouteHandler::get('/routes', \Medians\Routes\Application\RouteController::class.'@index');

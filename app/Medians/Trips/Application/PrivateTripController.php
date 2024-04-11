@@ -243,6 +243,20 @@ class PrivateTripController extends CustomController
 	/**
 	 * Load upcoming trip for Driver
 	 */
+	public function upcomingParentTrip()
+	{
+		$user = $this->app->auth();
+
+		if (empty($user->parent_id)) { return null; }
+		
+		$trip = $this->repo->getUpcomingParentTrip($user->parent_id);
+
+		echo $trip ? json_encode( $trip) : '';
+	}
+
+	/**
+	 * Load upcoming trip for Driver
+	 */
 	public function getPrivateTrip($tripId)
 	{
 		$user = $this->app->auth();
