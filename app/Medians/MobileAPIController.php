@@ -123,7 +123,7 @@ class MobileAPIController extends CustomController
 				$return =  (new Customers\Application\ParentController())->resetPassword(); 
 				break;
 
-			case 'Drivers.resetPassword':
+			case 'Driver.resetPassword':
 				$return =  (new Drivers\Application\DriverController())->resetPassword(); 
 				break;
 			
@@ -162,6 +162,10 @@ class MobileAPIController extends CustomController
 				
 			case 'Parent.resetChangePassword':
 				$return =  (new Customers\Application\ParentController())->resetChangePassword(); 
+				break;
+				
+			case 'Driver.resetChangePassword':
+				$return =  (new Drivers\Application\DriverController())->resetChangePassword(); 
 				break;
 				
 			case 'Driver.changePassword':
