@@ -128,6 +128,11 @@ class NotificationEvent extends CustomModel
 				return isset($object->driver) ? [$object->driver] : null;
 				break;
 
+			case PrivateTrip::class:
+				$object =  $model->with('driver')->find($model->trip_id);
+				return isset($object->driver) ? [$object->driver] : null;
+				break;
+				
 			default:
 				return [$model];
 				break;
