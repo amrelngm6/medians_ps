@@ -167,17 +167,17 @@ class DriverRepository
 		if (empty($findByEmail))
 			return __('User not found');
 		
-		$deleteOld = CustomField::where('model_type', Driver::class)->where('model_id', $findByEmail->customer_id)->where('code', 'reset_token')->delete();
+		$deleteOld = CustomField::where('model_type', Driver::class)->where('model_id', $findByEmail->driver_id)->where('code', 'reset_token')->delete();
 		
 		$fields = [];
 		$fields['model_type'] = Driver::class;	
-		$fields['model_id'] = $findByEmail->customer_id;	
+		$fields['model_id'] = $findByEmail->driver_id;	
 		$fields['code'] = 'reset_token';	
 		$fields['value'] = $Model->randomPassword();
 
 		$Model = CustomField::create($fields);
 		
-		$sendMail = new MailService($findByEmail->email, $findByEmail->parent_name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
+		$sendMail = new MailService($findByEmail->email, $findByEmail->name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
 		$sendMail->sendMail();
 
 		return  1;
