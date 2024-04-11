@@ -106,7 +106,7 @@ class PrivateTripRepository
 
 	public function getUpcomingParentTrip($parent_id)
 	{
-		return PrivateTrip::where('driver_id', $parent_id)
+		return PrivateTrip::where('model_id', $parent_id)->where('model_type', Parents::class)
 		->whereIn('status',  ['scheduled','started'])
 		->where('date', '>=', date('Y-m-d'))
         ->with('model','driver','vehicle')
