@@ -5,7 +5,7 @@ namespace Medians\Trips\Infrastructure;
 use Medians\Trips\Domain\PrivateTrip;
 use Medians\Customers\Domain\Employee;
 use Medians\Customers\Domain\SuperVisor;
-use Medians\Parents\Domain\Parents;
+use Medians\Customers\Domain\Parents;
 use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
 
