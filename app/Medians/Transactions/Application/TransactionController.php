@@ -207,6 +207,16 @@ class TransactionController extends CustomController
 	{
 		$amount = $this->app->request()->get('amount');
 
-		echo $amount;
+		$stripe = new \Stripe\StripeClient('sk_test_N3rZxiXVowuHQTrwtOQOOJgz');
+		$res = $stripe->paymentIntents->create([
+		  'amount' => 2000,
+		  'currency' => 'usd',
+		  'automatic_payment_methods' => ['enabled' => true],
+		]);
+
+		$return = json_encode($res);
+
+		error_log($return);
+		echo $return;
 	}
 }
