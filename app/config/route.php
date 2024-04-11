@@ -69,6 +69,7 @@ RouteHandler::get('/getParentTrip/(:all)', \Medians\Trips\Application\TripContro
 RouteHandler::get('/events', \Medians\Events\Application\EventController::class.'@index');
 RouteHandler::get('/routes', \Medians\Routes\Application\RouteController::class.'@index');
 RouteHandler::get('/Route_active_trip', \Medians\Trips\Application\TripController::class.'@getActiveTrip');
+RouteHandler::get('/create-payment-intent', \Medians\Transactions\Application\TransactionController::class.'@createPaymentIntent');
 
 
 

@@ -203,4 +203,10 @@ class TransactionController extends CustomController
 	}
 
 
+	public function createPaymentIntent()
+	{
+		$amount = $this->app->request()->get('amount');
+
+		echo $amount;
+	}
 }
