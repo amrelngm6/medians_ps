@@ -167,9 +167,10 @@ class CustomModel extends Model
     	if (empty($updatedFields))
     		return null;
 
+		
 
-    	// Insert activation code 
-    	return (new NotificationEvent)->handleEvent($this, 'update');
+    	// Handle update event for model 
+    	return (new NotificationEvent)->handleEventUpdate($this, 'update', $updatedFields);
 
     }  
 

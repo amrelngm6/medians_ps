@@ -60,19 +60,44 @@ class NotificationEvent extends CustomModel
 
 
 	/**
-	 * handle event and process the Notification
+	 * handle create event and process the Notification
 	 * Body and information
 	 * 
 	 * @param $model Object Event related model
 	 * @param $action String action type at CRUD
 	 */ 
-	public function handleEvent($model, $action)
+	public function handleEvent($model, $action, $updatedFields = null)
 	{
-    	$events = json_decode(NotificationEvent::where('action',$action)->where('model',get_class($model))->get());
+		$events = json_decode(NotificationEvent:: where('action',$action)->where('model',get_class($model))->get());
 
     	foreach ($events as $event) 
     	{
-    		$event = $this->renderNotification($event, $model);
+			$event = $this->renderNotification($event, $model);
+    	}
+
+    	return true;
+	}
+
+	/**
+	 * handle update event and process the Notification
+	 * Body and information
+	 * 
+	 * @param $model Object Event related model
+	 * @param $action String action type at CRUD
+	 */ 
+	public function handleEventUpdate($model, $action, $updatedFields = null)
+	{
+		if (!$updatedFields  )
+		{
+			print($updatedFields);
+			$events = json_decode(NotificationEvent::whereIn('action_field', $updatedFields)->where('action',$action)->where('model',get_class($model))->get());
+		} else {
+	    	$events = json_decode(NotificationEvent::where('action',$action)->where('model',get_class($model))->get());
+		}
+
+    	foreach ($events as $event) 
+    	{
+			$event = $this->renderNotification($event, $model);
     	}
 
     	return true;
