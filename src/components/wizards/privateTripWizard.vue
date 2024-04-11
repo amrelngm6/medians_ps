@@ -320,15 +320,15 @@
                                 <div class="settings-form" >
                                     <div class="max-w-xl mb-6 mx-auto row" >
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Subtotal')" ></label>
-                                        <input :required="true" autocomplete="off" name="params[subtotal]" class="form-control form-control-solid" :placeholder="translate('Trip subtotal')" type="number" v-model="activeItem.subtotal">
+                                        <input @change="(activeItem.total_cost = activeItem.subtotal + activeItem.discount_amount)" :required="true" autocomplete="off" name="params[subtotal]" class="form-control form-control-solid" :placeholder="translate('Trip subtotal')" type="number" v-model="activeItem.subtotal">
                                         <hr class="block mt-6 my-2 opacity-10" />
 
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Discount')" ></label>
-                                        <input :required="true" autocomplete="off" name="params[discount]" class="form-control form-control-solid" :placeholder="translate('Trip discount')" type="number" v-model="activeItem.discount_amount">
+                                        <input @change="(activeItem.total_cost = activeItem.subtotal + activeItem.discount_amount)"  :required="true" autocomplete="off" name="params[discount]" class="form-control form-control-solid" :placeholder="translate('Trip discount')" type="number" v-model="activeItem.discount_amount">
                                         <hr class="block mt-6 my-2 opacity-10" />
 
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Total cost')" ></label>
-                                        <input :required="true" autocomplete="off" name="params[total_cost]" class="form-control form-control-solid" :placeholder="translate('Trip total cost')" :disabled="true" type="number" :value="activeItem.subtotal + activeItem.discount_amount">
+                                        <input name="params[total_cost]" class="form-control form-control-solid" :placeholder="translate('Trip total cost')" :disabled="true" type="number" v-model="activeItem.total_cost">
 
                                     </div>
                                 </div>
