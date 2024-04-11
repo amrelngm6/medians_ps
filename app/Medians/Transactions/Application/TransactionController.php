@@ -205,11 +205,12 @@ class TransactionController extends CustomController
 
 	public function createPaymentIntent()
 	{
+		$settings = $this->app->SystemSetting(); 
 		$amount = $this->app->request()->get('amount');
 
-		$stripe = new \Stripe\StripeClient('sk_test_N3rZxiXVowuHQTrwtOQOOJgz');
+		$stripe = new \Stripe\StripeClient($settings['stripe_publish_key']);
 		$res = $stripe->paymentIntents->create([
-		  'amount' => 2000,
+		  'amount' => $amount ?? 0,
 		  'currency' => 'usd',
 		  'automatic_payment_methods' => ['enabled' => true],
 		]);
