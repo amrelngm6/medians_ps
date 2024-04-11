@@ -168,10 +168,8 @@ class CustomModel extends Model
     		return null;
 
 		
-			print_r($updatedFields);
-
     	// Handle update event for model 
-    	return (new NotificationEvent)->handleEventUpdate($this, 'update', $updatedFields);
+    	return (new NotificationEvent)->handleEventUpdate($this, 'update', array_keys($updatedFields));
 
     }  
 
