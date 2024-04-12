@@ -135,7 +135,7 @@ class PrivateTrip extends CustomModel
 
 		$totalDistance = 0;
 		
-		$totalDistance += $this->haversineDistance($this->pickup_latitude, $this->pickup_longitude, $this->destination_latitude, $this->destination_longitude);
+		$totalDistance += (!empty($this->pickup_latitude) && !empty($this->pickup_latitude)) ? $this->haversineDistance($this->pickup_latitude, $this->pickup_longitude, $this->destination_latitude, $this->destination_longitude) : 0;
 
 		return number_format($totalDistance, 3);
 	}
