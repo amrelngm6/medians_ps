@@ -439,6 +439,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="flex gap-6">
+                                            <div v-text="lang.translate('Total cost')"></div>
+                                            <div v-text="activeItem.total_cost"></div>
+                                        </div>
+                                        <div class="flex gap-6">
+                                            <div v-text="lang.translate('Payment status')"></div>
+                                            <div v-text="activeItem.payment_status"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="saveTrip" v-text="translate('Submit')"></a></p>
