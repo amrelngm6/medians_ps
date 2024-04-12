@@ -187,9 +187,38 @@ class TransactionController extends CustomController
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
-			$saveTransaction = $paymentService->storeTransaction($params); 
+			$saveTransaction = $paymentService->storeSubscriptionTransaction($params); 
 			
-			$savedSubscription = isset($saveTransaction['success']) ? $paymentService->updatePackageSubscription($params) : null; 
+			$updateStudentBusiness = isset($updateStudentBusiness['success']) ? $paymentService->updateStudentBusiness($params) : null; 
+
+			$savedSubscription = isset($updateStudentBusiness['success']) ? $paymentService->updatePackageSubscription($params) : null; 
+
+			return (isset($saveTransaction['success']))
+			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
+			: array('error'=>$saveTransaction['error']);
+
+		} catch (Exception $e) {
+			return array('error'=>$e->getMessage());
+		}
+		
+		
+	}
+
+
+	public function addTripTransaction()
+	{
+		
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+		try {
+			
+			$paymentService = new PaymentService($params['payment_method']);
+
+			$saveTransaction = $paymentService->storeTripTransaction($params); 
+			
+			$updateTrip = isset($updateStudentBusiness['success']) ? $paymentService->updateTrip($params) : null; 
+
+			$savedSubscription = isset($updateStudentBusiness['success']) ? $paymentService->updatePackageSubscription($params) : null; 
 
 			return (isset($saveTransaction['success']))
 			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
