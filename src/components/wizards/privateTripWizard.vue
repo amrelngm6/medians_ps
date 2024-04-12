@@ -439,7 +439,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="flex gap-6">
+                                        <div class="flex gap-6 py-2 font-semibold text-lg">
                                                 
                                             <div class="flex gap-6">
                                                 <div v-text="translate('Subtotal')"></div>
