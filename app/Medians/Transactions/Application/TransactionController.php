@@ -216,7 +216,7 @@ class TransactionController extends CustomController
 
 			$saveTransaction = $paymentService->storeTripTransaction($params); 
 			
-			$updateTrip = isset($updateStudentBusiness['success']) ? $paymentService->updateTrip($params) : null; 
+			$updateTrip = isset($saveTransaction['success']) ? $paymentService->updateTrip($params) : null; 
 
 			return (isset($saveTransaction['success']))
 			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
