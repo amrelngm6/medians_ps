@@ -10,6 +10,7 @@ use Medians\Customers\Domain\Parents;
 use Medians\Students\Domain\Student;
 use Medians\Employees\Domain\Employee;
 use Medians\Businesses\Domain\Business;
+use Medians\Transactions\Domain\Transaction;
 
 
 class PrivateTrip extends CustomModel
@@ -91,6 +92,16 @@ class PrivateTrip extends CustomModel
 	public function driver() 
 	{
 		return $this->hasOne(Driver::class, 'driver_id', 'driver_id');	
+	}
+
+	public function transaction() 
+	{
+		return $this->hasOne(Transaction::class, 'item_id', 'trip_id')->where('item_type', PrivateTrip::class);	
+	}
+
+	public function transactions() 
+	{
+		return $this->hasMany(Transaction::class, 'item_id', 'trip_id')->where('item_type', PrivateTrip::class);	
 	}
 
 

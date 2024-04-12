@@ -32,7 +32,7 @@ class PrivateTripRepository
 
 	public function find($id)
 	{
-		return PrivateTrip::where('business_id', $this->business_id)->find($id);
+		return PrivateTrip::with('transaction')->find($id);
 	}
 
 
