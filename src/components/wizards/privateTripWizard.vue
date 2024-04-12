@@ -440,11 +440,11 @@
                                             </div>
                                         </div>
                                         <div class="flex gap-6">
-                                            <div v-text="lang.translate('Total cost')"></div>
+                                            <div v-text="translate('Total cost')"></div>
                                             <div v-text="activeItem.total_cost"></div>
                                         </div>
                                         <div class="flex gap-6">
-                                            <div v-text="lang.translate('Payment status')"></div>
+                                            <div v-text="translate('Payment status')"></div>
                                             <div v-text="activeItem.payment_status"></div>
                                         </div>
                                     </div>
