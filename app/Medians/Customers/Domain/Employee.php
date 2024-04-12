@@ -12,7 +12,12 @@ use Medians\Businesses\Domain\Business;
 class Employee extends Customer
 {
 
-	public $appends = ['employee_name'];
+	public $appends = ['employee_name','field'];
+
+	public function getFieldAttribute()
+	{
+		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+	}
 
     public function route_locations()
     {

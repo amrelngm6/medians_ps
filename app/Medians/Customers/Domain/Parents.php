@@ -13,7 +13,12 @@ use Medians\Businesses\Domain\Business;
 class Parents extends Customer
 {
 
-	public $appends = ['parent_name', 'parent_id'];
+	public $appends = ['parent_name', 'parent_id','field'];
+
+	public function getFieldAttribute()
+	{
+		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+	}
 
 	public function getParentIdAttribute() 
 	{
