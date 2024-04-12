@@ -76,6 +76,7 @@ class PrivateTripRepository
 	{
 		return PrivateTrip::where('model_id', $parent_id)->where('model_type', Parents::class)
         ->with('model','driver','vehicle')
+		->orderBy('trip_id','DESC')
 		->get();
 	}
 
