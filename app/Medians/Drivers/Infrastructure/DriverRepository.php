@@ -137,24 +137,19 @@ class DriverRepository
     {
 		$Auth = new \Medians\Auth\Application\AuthService;
 
-		$Object = Driver::find($data['driver_id']);
+		$Object = $this->findByToken($data['reset_token'], 'reset_token');
 		
 		$newPassword = $Auth->encrypt($data['password']);
 
-		$validateToken = $this->findByToken($data['reset_token'], 'reset_token');
-
-		if (!$validateToken)
+		if (!$Object)
 		{
 			return __('PASSWORD_ERROR');
 		}
 
-		if ($validateToken->driver_id == $Object->driver_id)
-		{
-			$data['password'] = $Auth->encrypt($newPassword);
+		$data['password'] = $newPassword;
 
-			// Return the  object with the new data
-			$Object->update( (array) $data);
-		}
+		// Return the  object with the new data
+		$Object->update( (array) $data);
 
     	return $Object;
     }
