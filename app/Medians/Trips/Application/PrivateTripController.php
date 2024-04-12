@@ -242,9 +242,7 @@ class PrivateTripController extends CustomController
 
 		if (empty($user->driver_id)) { return null; }
 		
-		$trips = $this->repo->getDriverTrips($user->driver_id);
-
-		echo $trips ? json_encode( $trips) : '';
+		return $this->repo->getDriverTrips($user->driver_id);
 	}
 
 	
@@ -257,9 +255,8 @@ class PrivateTripController extends CustomController
 
 		if (empty($user->customer_id)) { return null; }
 		
-		$trip = $this->repo->getParentTrips($user->customer_id);
+		return $this->repo->getParentTrips($user->customer_id);
 
-		echo $trip ? json_encode( $trip) : '';
 	}
 
 	
