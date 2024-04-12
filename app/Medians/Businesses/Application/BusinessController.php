@@ -45,6 +45,7 @@ class BusinessController extends CustomController
             [ 'value'=> "business_id", 'text'=> "#"],
             [ 'value'=> "business_name", 'text'=> __('business_name'), 'sortable'=> true ],
             [ 'value'=> "type", 'text'=> __('Type'), 'sortable'=> true ],
+            [ 'value'=> "owner.name", 'text'=> __('owner'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('edit')  ],
             [ 'value'=> "delete", 'text'=> __('delete')  ],
@@ -63,7 +64,6 @@ class BusinessController extends CustomController
             [ 'key'=> "business_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "type", 'title'=> "", 'column_type'=>'hidden', 'default'=>$type],
 			[ 'key'=> "business_name", 'title'=> __('name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "owner.name", 'title'=> __('Owner'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "status", 'title'=> __('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
 
         ];
