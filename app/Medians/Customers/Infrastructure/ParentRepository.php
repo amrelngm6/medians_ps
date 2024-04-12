@@ -172,6 +172,10 @@ class ParentRepository  extends CustomerRepository
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
+    	// Store Custom fields
+		if (isset($data['field']))
+	    	$this->storeCustomFields($data['field'], $Object->customer_id);
+
     	return $Object;
 
     }

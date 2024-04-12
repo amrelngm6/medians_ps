@@ -126,7 +126,7 @@ class CustomerRepository
 	{
 		try {
 			
-			$Object = Customer::find($data['id']);
+			$Object = Customer::find($data['customer_id']);
 			
 			if (!$Object) {
 				return __('this user not found');	
