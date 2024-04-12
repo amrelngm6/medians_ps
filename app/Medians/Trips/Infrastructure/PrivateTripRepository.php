@@ -210,7 +210,7 @@ class PrivateTripRepository
     public function update($data)
     {
 
-		$Object = PrivateTrip::where('business_id', $this->business_id)->find($data['trip_id']);
+		$Object = PrivateTrip::find($data['trip_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
