@@ -2,6 +2,8 @@
 
 namespace Medians\Businesses\Domain;
 
+use Medians\Users\Domain\User;
+
 
 class School extends Business
 {
