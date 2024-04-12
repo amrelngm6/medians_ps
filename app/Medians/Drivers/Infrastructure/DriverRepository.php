@@ -141,15 +141,20 @@ class DriverRepository
 		
 		$newPassword = $Auth->encrypt($data['password']);
 
-		if (!$this->findByToken($data['reset_token'], 'reset_token'))
+		$validateToken = $this->findByToken($data['reset_token'], 'reset_token');
+
+		if (!$validateToken)
 		{
 			return __('PASSWORD_ERROR');
 		}
 
-		$data['password'] = $Auth->encrypt($newPassword);
+		if ($validateToken->driver_id == $Object->driver_id)
+		{
+			$data['password'] = $Auth->encrypt($newPassword);
 
-		// Return the  object with the new data
-    	$Object->update( (array) $data);
+			// Return the  object with the new data
+			$Object->update( (array) $data);
+		}
 
     	return $Object;
     }
