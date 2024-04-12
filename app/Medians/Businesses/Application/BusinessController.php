@@ -63,6 +63,7 @@ class BusinessController extends CustomController
             [ 'key'=> "business_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "type", 'title'=> "", 'column_type'=>'hidden', 'default'=>$type],
 			[ 'key'=> "business_name", 'title'=> __('name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "owner.name", 'title'=> __('Owner'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "status", 'title'=> __('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
 
         ];
