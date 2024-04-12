@@ -134,4 +134,21 @@ class PaymentService
 	
 	
 
+	public function updateTrip($params)
+	{
+		try {
+			
+			$privateTripRepo = new \Medians\Trips\Infrastructure\PrivateTripRepository($params['business']);
+			
+			$trip = $privateTripRepo->update((array) $params['trip']);
+
+			return array('success'=> true);
+
+		} catch (\Throwable $th) {
+			return array('error'=>$th->getMessage());
+		}
+	}
+	
+	
+
 }
