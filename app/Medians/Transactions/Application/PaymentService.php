@@ -52,7 +52,7 @@ class PaymentService
 
 
 	
-	public function storeTripTransaction($params, $class)
+	public function storeTripTransaction($params)
 	{
 		try {
 
