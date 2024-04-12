@@ -188,6 +188,14 @@ class MobileAPIController extends CustomController
 				$return = (new Transactions\Application\TransactionController())->addTripTransaction(); 
 				break;
 				
+			case 'Parent.private_trips':
+				$return =  (new Trips\Application\PrivateTripController())->parentPrivateTrips(); 
+				break;
+				
+			case 'Driver.private_trips':
+				$return =  (new Trips\Application\PrivateTripController())->driverPrivateTrips(); 
+				break;
+
 			case 'Parents.cancel_trip':
 				$return =  (new Trips\Application\PrivateTripController())->cancelTrip(); 
 				break;

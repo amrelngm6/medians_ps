@@ -46,50 +46,9 @@ class PrivateTripRepository
 		return PrivateTrip::with('transaction','driver','vehicle','model')->find($id);
 	}
 
-	public function getParentPrivateTrip($trip_id, $parent_id)
-	{
-		return PrivateTrip::where('business_id', $this->business_id)->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
-		->with([
-			'student_location' => function($q) use ($parent_id){
-				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
-					return $q->where('parent_id', $parent_id);
-				})->orderBy('status','DESC');
-		}])->with([
-			'student_destination' => function($q) use ($parent_id){
-				return $q->with('destination')->whereHas('student', function($q) use ($parent_id){
-					return $q->where('parent_id', $parent_id);
-				})->orderBy('status','DESC');
-		}])
-		->find($trip_id);
-	}
-
-	public function getActiveParentPrivateTrip($parent_id)
-	{
-		$ids = Student::where('business_id', $this->business_id)->where('parent_id', $parent_id)->select('student_id')->get();
-
-		$students =  array_column($ids->toArray(), 'student_id');
-
-		return PrivateTrip::where('business_id', $this->business_id)->with('pickup_locations', 'destinations', 'driver', 'vehicle', 'route')
-		->whereHas(
-			'student_location' , function($q) use ($students){
-				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
-		})->with([
-			'student_location' => function($q) use ($students){
-				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
-		}])->with([
-			'student_destination' => function($q) use ($students){
-			return $q->with('destination')->whereIn('model_id', $students)->orderBy('status','DESC');
-		}])
-		->where('status','Scheduled')
-		->first();
-	}
-
 	public function getDriverPrivateTrips($id, $lastId = 0)
 	{
-		$v = $lastId ? '<' : '>';
-		return PrivateTrip::where('business_id', $this->business_id)->where('trip_id', $v, $lastId)->with(['pickup_locations'=> function($q){
-			$q->with('model');
-		}])->with('driver', 'vehicle')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
+		return PrivateTrip::where('business_id', $this->business_id)->with('driver', 'vehicle', 'model')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
     
@@ -111,6 +70,13 @@ class PrivateTripRepository
 		->where('date', '>=', date('Y-m-d'))
         ->with('model','driver','vehicle')
 		->first();
+	}
+
+	public function getParentTrips($parent_id)
+	{
+		return PrivateTrip::where('model_id', $parent_id)->where('model_type', Parents::class)
+        ->with('model','driver','vehicle')
+		->get();
 	}
 
 	public function eventsByDate($params)

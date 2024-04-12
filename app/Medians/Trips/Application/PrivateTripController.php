@@ -234,6 +234,37 @@ class PrivateTripController extends CustomController
 
 
 	/**
+	 * Load private trip for Driver
+	 */
+	public function driverPrivateTrips()
+	{
+		$user = $this->app->auth();
+
+		if (empty($user->driver_id)) { return null; }
+		
+		$trips = $this->repo->getDriverTrips($user->driver_id);
+
+		echo $trips ? json_encode( $trips) : '';
+	}
+
+	
+		/**
+	 * Load private trip for Driver
+	 */
+	public function parentPrivateTrips()
+	{
+		$user = $this->app->auth();
+
+		if (empty($user->customer_id)) { return null; }
+		
+		$trip = $this->repo->getParentTrips($user->customer_id);
+
+		echo $trip ? json_encode( $trip) : '';
+	}
+
+	
+
+	/**
 	 * Load upcoming trip for Driver
 	 */
 	public function upcomingTrip()
@@ -246,6 +277,7 @@ class PrivateTripController extends CustomController
 
 		echo $trip ? json_encode( $trip) : '';
 	}
+
 
 	/**
 	 * Load upcoming trip for Driver
