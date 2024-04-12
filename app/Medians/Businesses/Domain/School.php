@@ -6,13 +6,22 @@ namespace Medians\Businesses\Domain;
 class School extends Business
 {
 
-	public $appends = ['school_id'];
+	public $appends = ['school_id','owner'];
     
 	function __construct()
 	{
         $this->where('type', 'school');
 	}
 
+	public function getOwnerAttribute ()
+	{
+		return isset($this->owner_user) ? $this->owner_user : null;
+	}
+
+    public function owner_user()
+    {
+		return $this->hasOne(User::class, 'id', 'user_id');	
+    }
 
 	public function getSchoolIdAttribute()
 	{
