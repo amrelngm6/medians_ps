@@ -347,4 +347,16 @@ class ParentController extends CustomController
         }
 	}
 
+	
+	public function uploadPicture()
+	{
+		$customer_id = $this->app->request()->get('customer_id');
+		$media = new \Medians\Media\Application\MediaController;
+		$pictureName =  $media->uploadFile('students');
+		$student =  $this->repo->find($customer_id);
+		$student->picture = '/uploads/students/'.$pictureName;
+		$student->save();
+		return  $student->picture;
+	} 
+
 }
