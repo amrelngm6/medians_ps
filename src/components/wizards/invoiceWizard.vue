@@ -65,8 +65,8 @@
 
                                                 <!--end::Description-->
                                                 <div class="fw-semibold fs-7 text-gray-600" >
-                                                    <span v-text="activeItem.user.address"></span>
-                                                    <span v-text="activeItem.user.country"></span>
+                                                    <span v-text="activeItem.user.field.address"></span>
+                                                    <span v-text="activeItem.user.field.country"></span>
                                                 </div>
                                                 <!--end::Description-->
                                             </div>
