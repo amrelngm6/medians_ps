@@ -111,8 +111,8 @@ class PaymentService
 
 			$update = $updateStudent->update(['business_id' => $this->transactionRepo->business_id]);
 
-			return $this->updateRouteLocation($params);
-
+			return true;
+			
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
 		}
