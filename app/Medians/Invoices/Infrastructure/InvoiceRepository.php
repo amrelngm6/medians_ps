@@ -3,6 +3,7 @@
 namespace Medians\Invoices\Infrastructure;
 
 use Medians\Invoices\Domain\Invoice;
+use Medians\Invoices\Domain\InvoiceItem;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Packages\Domain\PackageSubscription;
 
