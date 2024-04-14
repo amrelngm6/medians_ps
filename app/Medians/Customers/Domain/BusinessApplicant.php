@@ -6,6 +6,7 @@ use Shared\dbaser\CustomModel;
 
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Businesses\Domain\Business;
+use Medians\Packages\Domain\PackageSubscription;
 
 class BusinessApplicant extends CustomModel
 {
