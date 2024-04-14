@@ -6,6 +6,7 @@ namespace Medians\Invoices\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
+use Medians\Students\Domain\Student;
 use Medians\Branches\Domain\Branch;
 use Medians\Packages\Domain\PackageSubscription;
 use Medians\CustomFields\Domain\CustomField;
