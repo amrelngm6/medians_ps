@@ -249,11 +249,24 @@ class APP
 				array('permission'=>'RouteLocations.index', 'title'=>__('Locations'),  'icon'=>'map', 'link'=>'admin/locations', 'component'=>'locations'),
 				]
 			),
-
+			
 			array('title'=>__('Packages'),  'icon'=>'credit-card', 'link'=>'#packages', 'sub'=>
 			[
 				array('permission'=>'Packages.index', 'title'=>__('Manage Packages'),  'icon'=>'credit-card', 'link'=>'admin/packages', 'component'=>'packages'),
 				array('permission'=>'PackageSubscriptions.index', 'title'=>__('Subscriptions'),  'icon'=>'credit-card', 'link'=>'admin/package_subscriptions', 'component'=>'package_subscriptions'),
+				]
+			),
+			
+
+			array('title'=>__('Business'),  'icon'=>'credit-card', 'link'=>'#business', 'sub'=>
+			[
+				array('permission'=>'business_applicants.index', 'title'=>__('Business applicants'),  'icon'=>'credit-card', 'link'=>'admin/business_applicants', 'component'=>'business_applicants'),
+			]
+			),
+			
+
+			array('title'=>__('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
+			[
 				array('permission'=> 'Transaction.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
 				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'transactions'),
 			]
