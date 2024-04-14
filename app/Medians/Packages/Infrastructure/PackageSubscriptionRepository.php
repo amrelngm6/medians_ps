@@ -149,7 +149,7 @@ class PackageSubscriptionRepository
 
 			if (isset($check->payment_status) && $check->payment_status == 'unpaid')
 			{
-				return PackageSubscription::find($id)->delete();
+				return PackageSubscription::find($subscriptionId)->delete();
 			}
 
 			if (isset($check->payment_status) && $check->payment_status == 'paid')
