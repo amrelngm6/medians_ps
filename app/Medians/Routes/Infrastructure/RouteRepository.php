@@ -56,9 +56,8 @@ class RouteRepository
 	}
 
 	
-	public function getDriverBusinessRoutes()
+	public function getBusinessRoutes()
 	{
-		// return Route::where('driver_id', $driver_id)
 		return Route::where('business_id', $this->business_id)
 		->where('status', 'on')
 		->with('route_locations','position', 'vehicle')
