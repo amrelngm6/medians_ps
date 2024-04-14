@@ -230,7 +230,7 @@ class PackageSubscriptionController extends CustomController
 		
 		$data = $this->repo->cancelSubscription( $subscriptionId);
 
-		return $data;
+		return $data == true ? array('success'=>true, 'result'=>__('Subscription canceled')) : $data;
 
 	}  
 
