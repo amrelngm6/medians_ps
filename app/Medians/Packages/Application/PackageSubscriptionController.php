@@ -209,9 +209,9 @@ class PackageSubscriptionController extends CustomController
 	 */
 	public function getSubscription()
 	{
-		$user = $this->app->auth();
+		$subscriptionId = $this->app->request()->get('subscription_id');
 		
-		$data = $this->repo->find( $user->customer_id);
+		$data = $this->repo->find( $subscriptionId);
 
 		return $data;
 
