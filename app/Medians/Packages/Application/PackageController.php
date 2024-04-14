@@ -183,7 +183,7 @@ class PackageController extends CustomController
 
 		if (empty($user)) { return null; }
 		
-		$businessId = $this->app->request()->get('busness_id');
+		$businessId = $this->app->request()->get('business_id');
 
 		return $this->repo->loadByBusiness($businessId);
 
