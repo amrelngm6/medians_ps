@@ -180,6 +180,8 @@ class PaymentService
 			// return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
 
 		} catch (\Throwable $th) {
+			
+			error_log($th->getMessage());
 			return array('error'=>$th->getMessage());
 		}
 	}
