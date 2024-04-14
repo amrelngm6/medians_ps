@@ -145,7 +145,7 @@ class RouteController extends CustomController
 
 		$businessId = $this->app->request()->get('business_id');
 
-		if(empty($user->driver_id)) {return null;}
+		if(empty($user)) {return null;}
 
 		$data =  $this->repo->getBusinessRoutes($businessId);
 		echo  json_encode($data);
