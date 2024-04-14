@@ -52,7 +52,7 @@ class ParentRepository  extends CustomerRepository
 	 */
 	public function findByToken($token, $code = 'API_token')
 	{
-		return Parents::with('custom_fields')->whereHas('custom_fields', function($q) use ($token, $code) {
+		return Parents::where('model', Parents::class)->with('custom_fields')->whereHas('custom_fields', function($q) use ($token, $code) {
 			$q->where('code', $code)->where('value',$token);
 		})->first();
 	}
