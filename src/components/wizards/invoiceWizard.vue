@@ -205,32 +205,18 @@
                         <div class="d-flex flex-column flex-xl-row">
                             <!--begin::Content-->
                             <div class="flex-lg-row-fluid me-xl-18 mb-10 mb-xl-0">
-                                <!--begin::Invoice 2 content-->
                                 <div class="mt-n1">
-                                    <!--begin::Top-->
                                     <div class="d-flex flex-stack pb-10">
-                                        <!--begin::Logo-->
                                         <a href="#">
                                             <img alt="Logo"
                                                 :src="'/metronic8/demo1/assets/media/svg/brand-logos/code-lab.svg'">
                                         </a>
-                                        <!--end::Logo-->
-
-                                        <!--begin::Action-->
                                         <a href="#" class="btn btn-sm btn-success">Pay Now</a>
-                                        <!--end::Action-->
                                     </div>
-                                    <!--end::Top-->
-
-                                    <!--begin::Wrapper-->
                                     <div class="m-0">
                                         
                                         <div class="fw-bold fs-3 text-gray-800 mb-8">Invoice #34782</div>
-                                        
-
-                                        <!--begin::Row-->
                                         <div class="row g-5 mb-11">
-                                            <!--end::Col-->
                                             <div class="col-sm-6">
                                                 
                                                 <div class="fw-semibold fs-7 text-gray-600 mb-1">Issue Date:</div>
