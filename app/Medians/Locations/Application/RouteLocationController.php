@@ -53,7 +53,7 @@ class RouteLocationController extends CustomController
 
 		return [
             [ 'value'=> "location_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> __('Name'), 'sortable'=> true ],
+            [ 'value'=> "model", 'text'=> __('User'), 'sortable'=> true ],
             [ 'value'=> "route.route_name", 'text'=> __('Route'), 'sortable'=> true ],
             [ 'value'=> "start_address", 'text'=> __('Pickup address'), 'sortable'=> true ],
             [ 'value'=> "status_text", 'text'=> __('Status'), 'sortable'=> true ],

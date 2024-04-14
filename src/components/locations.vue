@@ -71,7 +71,7 @@
                         :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox
                         v-if="content.columns" :headers="content.columns" :items="content.items">
 
-                        <template #item-name="item">
+                        <template #item-model="item">
                             <div class="w-full flex gap-4" v-if="item.model">
                                 <img :src="item.model.picture" class="w-8 h-8 rounded-full" />
                                 <span v-text="item.model.name"></span>
