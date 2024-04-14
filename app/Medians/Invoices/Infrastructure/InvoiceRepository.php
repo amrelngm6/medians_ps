@@ -192,4 +192,15 @@ class InvoiceRepository
 			return $Model;		
 		}
 	}
+
+
+	/**
+	 * Generate invoice code
+	 */
+	public function generateCode()
+	{
+		$count = Invoice::where('business_id', $this->business_id)->count();
+		$prefix = "I-".$this->business_id."-";
+		return $prefix.($count + 1);
+	}
 }

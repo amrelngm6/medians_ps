@@ -112,7 +112,7 @@ class PaymentService
 			$update = $updateStudent->update(['business_id' => $this->transactionRepo->business_id]);
 
 			return true;
-			
+
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
 		}
@@ -161,14 +161,15 @@ class PaymentService
 
 			$data = array();
 			$data['business_id'] = $params['business']->business_id;
-			$data['code'] = $invoiceInfo['code'];
+			$data['code'] = $invoiceRepo->generateCode();
 			$data['user_id'] = $invoiceInfo['model_id'];
 			$data['user_type'] = Student::class;
 			$data['payment_method'] = $invoiceInfo['payment_method'];
 			$data['subtotal'] = $invoiceInfo['subtotal'];
-			$data['discount_amount'] = $invoiceInfo['discount_amount'];
+			$data['discount_amount'] = 0;
+			// $data['discount_amount'] = $invoiceInfo['discount_amount'];
 			$data['total_amount'] = $invoiceInfo['total_amount'];
-			$data['date'] = $invoiceInfo['date'];
+			$data['date'] = date('Y-m-d');
 			$data['status'] = $invoiceInfo['status'];
 			$data['notes'] = $invoiceInfo['notes'];
 
