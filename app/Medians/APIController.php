@@ -494,7 +494,11 @@ class APIController extends CustomController
 				case 'PrivateTrip.delete':
 					return response((new Trips\Application\PrivateTripController())->delete());
 					break;
-			
+
+				case 'BusinessApplicant.delete':
+					return response((new Customers\Application\BusinessApplicantController())->delete());
+					break;
+	
 
 			}
 

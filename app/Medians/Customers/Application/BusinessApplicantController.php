@@ -137,6 +137,25 @@ class BusinessApplicantController extends CustomController
 	}
 
 
+	public function delete()
+	{
+		
+		$params = $this->app->request()->get('params');
+
+        try {
+
+            if ($this->repo->delete($params))
+            {
+				$this->repo->clearStudentBusiness($params);
+                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+            }
+
+        } catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+        }
+	}
+
+
 
 	/**
 	*  Validate item update
