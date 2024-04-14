@@ -4,6 +4,7 @@ namespace Medians\Invoices\Infrastructure;
 
 use Medians\Invoices\Domain\Invoice;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Packages\Domain\PackageSubscription;
 
 
 /**
@@ -180,7 +181,7 @@ class InvoiceRepository
 			foreach ($data as $key => $value)
 			{
 				$fields = [];
-				$fields['item_type'] = Invoice::class;	
+				$fields['item_type'] = PackageSubscription::class;	
 				$fields['item_id'] = $id;
 				$fields['code'] = $key;
 				$fields['value'] = $value;
