@@ -55,9 +55,21 @@ class RouteRepository
 		->with('route_locations','position', 'vehicle')->get();
 	}
 
+	
+	public function getDriverBusinessRoutes($driver_id)
+	{
+		// return Route::where('driver_id', $driver_id)
+		return Route::where('business_id', $this->business_id)->where('driver_id', $driver_id)
+		->with('route_locations','position', 'vehicle')->get();
+	}
+
 	public function getParentRoutes($parent_id)
 	{
+		
 		$ids = Student::where('parent_id', $parent_id)->select('student_id')->get();
+
+		$students =  array_column($ids->toArray(), 'student_id');
+		
 		return Route::with('route_locations','position', 'vehicle')
 		->where('parent_id', $parent_id)
 		->whereHas('route_locations', function($q) {
