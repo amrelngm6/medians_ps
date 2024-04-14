@@ -45,6 +45,23 @@ class PackageSubscriptionRepository
 		return PackageSubscription::with('model','package')->where('business_id', $this->business_id)->get();
 	}
 
+	/**
+	* Find pending students subscriptions
+	* Filter all students based on Parent 
+	*/
+	public function loadPendingStudentsSubscription($parentId = null) 
+	{
+		return PackageSubscription::where('payment_status', 'unpaid')
+		->where('model_type', Student::class)
+		->whereHas('model', function($q) use  ($parentId) {
+			return $q->where('parent_id', $parentId);
+		})
+		->whereDate('payment_status', 'unpaid')
+		->whereDate('end_date' , [date('Y-m-d') , date('Y-m-d', strtotime("+1 year", date('Y-m-d')))])
+		->with('model','package')
+		->first();
+	}
+
 
 	/**
 	* Save item to database

@@ -55,6 +55,7 @@ class BusinessApplicantRepository
 		return BusinessApplicant::with('model', 'business')->where('model_type', Student::class)->where('model_id', $modelId)->get();
 	}
 
+
 	public function getStudent($modelId)
 	{
 		return Student::find($modelId);

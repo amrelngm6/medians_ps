@@ -183,5 +183,21 @@ class PackageSubscriptionController extends CustomController
 	}
 
 
+	/**
+	 * Find old applicants
+	 * 
+	 * @param String
+	 * 
+	 * @return JSON
+	 */
+	public function loadPendingStudentsSubscription()
+	{
+		$user = $this->app->auth();
+		
+		$data = $this->repo->loadPendingStudentsSubscription( $user->customer_id);
+
+		return $data;
+
+	}  
 
 }
