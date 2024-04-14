@@ -175,7 +175,7 @@ class PaymentService
 			$data['status'] = $invoiceInfo['status'];
 			$data['notes'] = $invoiceInfo['notes'];
 
-			return $invoiceRepo->store($data);
+			return $invoiceRepo->store((array) $data);
 
 			// return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
 

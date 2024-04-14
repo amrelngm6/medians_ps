@@ -99,7 +99,7 @@ class InvoiceRepository
     	$Object = Invoice::firstOrCreate($dataArray);
 
     	// Store invoice items
-    	!empty($data['items']) ? $this->storeItems((array) $data['items'], $Object->invoice_id) : '';
+    	!empty($data['items']) ? $this->storeItems((array) $data['items'], $Object) : '';
 
     	// Store Custom fields
     	!empty($data['field']) ? $this->storeCustomFields((array) $data['field'], $Object->invoice_id) : '';
@@ -174,20 +174,23 @@ class InvoiceRepository
 	/**
 	* Save related items to database
 	*/
-	public function storeItems($data, $id) 
+	public function storeItems($data, $invoice) 
 	{
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
-				$fields = [];
+				$fields = array();
+				$fields['business_id'] = $invoice->business_id;
+				$fields['invoice_id'] = $invoice->invoice_id;
+				$fields['subtotal'] = $invoice->subtotal;
+				$fields['discount_amount'] = 0;
+				$fields['total_amount'] = $invoice->total_amount;
+				$fields['item_id'] = $invoice->item_id;
 				$fields['item_type'] = PackageSubscription::class;	
-				$fields['item_id'] = $id;
-				$fields['code'] = $key;
-				$fields['value'] = $value;
-
+				$fields['date'] = date('Y-m-d');
+				$fields['status'] = $invoice->status;
 				$Model = InvoiceItem::create($fields);
-				$Model->update($fields);
 			}
 	
 			return $Model;		
