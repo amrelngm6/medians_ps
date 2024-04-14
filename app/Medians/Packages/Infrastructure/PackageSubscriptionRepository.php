@@ -152,7 +152,10 @@ class PackageSubscriptionRepository
 				return PackageSubscription::find($id)->delete();
 			}
 
-			return array('error'=>__('Not allowed'));
+			if (isset($check->payment_status) && $check->payment_status == 'paid')
+			{
+				return array('error'=>__('Paid subscriptions not cancelable'));
+			}
 
 
 		} catch (\Exception $e) {
