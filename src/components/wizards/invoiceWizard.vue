@@ -116,7 +116,7 @@
 
                                                             <td class="pt-6" v-text="invoiceItem.subtotal"></td>
                                                             <td class="pt-6" v-text="invoiceItem.discount_amount"></td>
-                                                            <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount"></td>
+                                                            <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount+syste"></td>
                                                         </tr>
 
                                                     </tbody>
