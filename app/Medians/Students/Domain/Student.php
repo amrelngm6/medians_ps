@@ -10,7 +10,7 @@ use Medians\Routes\Domain\Route;
 use Medians\Trips\Domain\TripLocation;
 use Medians\Businesses\Domain\Business;
 use Medians\Packages\Domain\PackageSubscription;
-use Medians\CustomFields\Domain\CustomFIeld;
+use Medians\CustomFields\Domain\CustomField;
 
 class Student extends CustomModel
 {
