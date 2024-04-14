@@ -228,6 +228,10 @@ class MobileAPIController extends CustomController
 			case 'Parent.pending_subscription':
 				$return =  (new Packages\Application\PackageSubscriptionController())->loadPendingStudentsSubscription(); 
 				break;
+
+			case 'get_subscription':
+				$return =  (new Packages\Application\PackageSubscriptionController())->getSubscription(); 
+				break;
 				
 			case 'business_packages':
 				$return = (new Packages\Application\PackageController)->load_business_packages();

@@ -184,7 +184,7 @@ class PackageSubscriptionController extends CustomController
 
 
 	/**
-	 * Find old applicants
+	 * Find unpaid subscription for payment
 	 * 
 	 * @param String
 	 * 
@@ -195,6 +195,23 @@ class PackageSubscriptionController extends CustomController
 		$user = $this->app->auth();
 		
 		$data = $this->repo->loadPendingStudentsSubscription( $user->customer_id);
+
+		return $data;
+
+	}  
+
+	/**
+	 * Get subscription
+	 * 
+	 * @param String
+	 * 
+	 * @return JSON
+	 */
+	public function getSubscription()
+	{
+		$user = $this->app->auth();
+		
+		$data = $this->repo->find( $user->customer_id);
 
 		return $data;
 

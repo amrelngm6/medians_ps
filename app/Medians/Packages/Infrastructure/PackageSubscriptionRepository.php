@@ -34,7 +34,7 @@ class PackageSubscriptionRepository
 	public function find($id) 
 	{
 
-		return PackageSubscription::find($id);
+		return PackageSubscription::with('model','package', 'business')->find($id);
 	}
 
 	/**
