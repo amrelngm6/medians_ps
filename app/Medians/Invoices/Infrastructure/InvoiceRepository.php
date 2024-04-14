@@ -184,13 +184,13 @@ class InvoiceRepository
 				$fields = array();
 				$fields['business_id'] = $invoice->business_id;
 				$fields['invoice_id'] = $invoice->invoice_id;
-				$fields['subtotal'] = $invoice->subtotal;
+				$fields['subtotal'] = $value->subtotal;
 				$fields['discount_amount'] = 0;
-				$fields['total_amount'] = $invoice->total_amount;
-				$fields['item_id'] = $invoice->item_id;
+				$fields['total_amount'] = $value->total_amount;
+				$fields['item_id'] = $value->item_id;
 				$fields['item_type'] = PackageSubscription::class;	
 				$fields['date'] = date('Y-m-d');
-				$fields['status'] = $invoice->status;
+				$fields['status'] = $value->status;
 				$Model = InvoiceItem::create($fields);
 			}
 	
