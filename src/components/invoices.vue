@@ -46,6 +46,12 @@
                     </div>
                 </template>
 
+                <template #item-edit="item">
+                    <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
+                        <vue-feather class="w-5" type="edit"></vue-feather>
+                    </button>
+                </template>
+                
                 <template #item-delete="item">
                     <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-red-500" @click="handleAction('delete', item)">
                         <vue-feather class="w-5" type="x-circle"></vue-feather>
