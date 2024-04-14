@@ -146,7 +146,7 @@ class BusinessApplicantController extends CustomController
 
             if ($this->repo->delete($params['applicant_id']))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
