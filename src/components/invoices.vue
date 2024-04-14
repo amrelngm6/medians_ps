@@ -1,6 +1,8 @@
 <template>
     <div class="w-full " >
         
+        <invoice_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting" :conf="conf" ></invoice_wizard>
+        
         <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
         </div>
@@ -59,16 +61,18 @@ import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
+import invoice_wizard from '@/components/wizards/invoiceWizard.vue';
     
 export default
 {
     components: {
         'datatabble': Vue3EasyDataTable,
+        invoice_wizard
     },
     
     setup(props) {
         
-        const showEditSide = ref(false);
+        const showWizard = ref(false);
 
         const url =  props.conf.url+props.path+'?load=json';
 
@@ -85,6 +89,11 @@ export default
         const searchField = ref("invoice_id");
         const searchValue = ref("");
 
+        
+        const closeSide = () => {
+            showWizard.value = false;
+        }
+
         function load()
         {
             handleGetRequest( url ).then(response=> {
@@ -97,7 +106,7 @@ export default
 
         function closeSide (data) 
         {
-            showEditSide.value = false;
+            showWizard.value = false;
         }
 
         /**
@@ -112,7 +121,7 @@ export default
             {
                 case 'edit':
                     activeItem.value = data;
-                    showEditSide.value = true; 
+                    showWizard.value = true; 
                     break;  
 
                 case 'delete':
@@ -123,7 +132,7 @@ export default
 
         
         return {
-            showEditSide,
+            showWizard,
             closeSide,
             url ,
             content,
