@@ -82,15 +82,14 @@ class PaymentService
 	{
 		try {
 
-			$this->transactionRepo = new TransactionRepository($params['business']);
-
 			$class = new \Medians\Students\Domain\Student;
 
 			$routeLocationClass = new \Medians\Locations\Domain\RouteLocation;
 			
-			$updateRouteLocationClass = $routeLocationClass->where('model_id', $params['model_id'])->where('model_type', $class::class)->update(['business_id' => $this->transactionRepo->business_id]);
+			$updateRouteLocationClass = $routeLocationClass->where('model_id', $params['model_id'])->where('model_type', $class::class)->update(['business_id' => $params['business']->business_id]);
 
-			return array('success'=>true);
+			error_log('Updated');
+			return array('success'=>$updateRouteLocationClass);
 
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
