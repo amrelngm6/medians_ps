@@ -251,7 +251,7 @@ class DriverRepository
     public function update($data)
     {
 
-		$Object = Driver::where('business_id', $this->business_id)->find($data['driver_id']);
+		$Object = Driver::find($data['driver_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
