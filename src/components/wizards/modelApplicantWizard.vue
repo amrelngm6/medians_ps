@@ -66,12 +66,20 @@
                                                             <td id="d-date" class="py-2 font-bold" v-text="activeItem.status"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-medium py-2" v-text="translate('Created at')"></td>
-                                                            <td id="d-date" class="py-2" v-text="activeItem.created_at"></td>
+                                                            <td class="font-bold py-2" ><span class="font-bold text-lg" v-text="translate('Subscription info')"></span></td>
+                                                            <td class="font-bold py-2" ><hr /></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-medium py-2" v-text="translate('Last update')"></td>
-                                                            <td id="d-date" class="py-2" v-text="activeItem.updated_at"></td>
+                                                            <td class="fw-medium py-2" v-text="translate('Package')"></td>
+                                                            <td id="d-date" class="py-2 font-bold" v-if="activeItem.subscription && activeItem.subscription.package" v-text="activeItem.subscription.package.name"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-medium py-2" v-text="translate('total_cost')"></td>
+                                                            <td id="d-date" class="py-2 font-bold" v-if="activeItem.subscription" v-text="activeItem.subscription.total_cost"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="fw-medium py-2" v-text="translate('payment_type')"></td>
+                                                            <td id="d-date" class="py-2 font-bold" v-if="activeItem.subscription" v-text="activeItem.subscription.payment_type"></td>
                                                         </tr>
                                                         
                                                     </tbody>
