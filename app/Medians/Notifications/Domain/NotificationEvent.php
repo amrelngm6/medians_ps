@@ -244,8 +244,16 @@ class NotificationEvent extends CustomModel
 				return $this->filterDriver($event, $model);
 				break;
 				
-			case Customer::class:
+			case Parents::class:
 				return $this->filterParent($event, $model);
+				break;
+			
+			case Employee::class:
+				return $this->filterEmployee($event, $model);
+				break;
+				
+			case SuperVisor::class:
+				return $this->filterSuperVisor($event, $model);
 				break;
 				
 			case User::class:
