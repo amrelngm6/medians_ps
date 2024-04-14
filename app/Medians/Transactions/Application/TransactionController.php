@@ -193,6 +193,8 @@ class TransactionController extends CustomController
 
 			$savedSubscription = $paymentService->updatePackageSubscription($params); 
 
+			$updateRouteLocation = $paymentService->updateRouteLocation($params); 
+
 			$addInvoice = $paymentService->addInvoice($params); 
 
 			return (isset($saveTransaction['success']))

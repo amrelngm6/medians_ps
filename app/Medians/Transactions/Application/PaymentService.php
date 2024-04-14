@@ -78,11 +78,13 @@ class PaymentService
 	}
 
 
-	public function updateRouteLocation($params, $class)
+	public function updateRouteLocation($params)
 	{
 		try {
 
 			$this->transactionRepo = new TransactionRepository($params['business']);
+
+			$class = new \Medians\Students\Domain\Student;
 
 			$routeLocationClass = new \Medians\Locations\Domain\RouteLocation;
 			
@@ -109,7 +111,7 @@ class PaymentService
 
 			$update = $updateStudent->update(['business_id' => $this->transactionRepo->business_id]);
 
-			return $this->updateRouteLocation($params, $class);
+			return $this->updateRouteLocation($params);
 
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
