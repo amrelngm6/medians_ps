@@ -217,4 +217,21 @@ class PackageSubscriptionController extends CustomController
 
 	}  
 
+	/**
+	 * Cancel subscription
+	 * 
+	 * @param String
+	 * 
+	 * @return JSON
+	 */
+	public function cancelSubscription()
+	{
+		$subscriptionId = $this->app->request()->get('subscription_id');
+		
+		$data = $this->repo->cancelSubscription( $subscriptionId);
+
+		return $data;
+
+	}  
+
 }

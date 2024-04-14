@@ -149,6 +149,36 @@ class PaymentService
 		}
 	}
 	
+	public function addInvoice($params)
+	{
+		try {
+			
+			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository($params['business']);
+			
+			$transaction = (array) $params['invoice'];
+
+			$data = array();
+			$data['business_id'] = $params['business']->business_id;
+			$data['code'] = $invoiceInfo['code'];
+			$data['user_id'] = $invoiceInfo['model_id'];
+			$data['user_type'] = Student::class;
+			$data['payment_method'] = $invoiceInfo['payment_method'];
+			$data['subtotal'] = $invoiceInfo['subtotal'];
+			$data['discount_amount'] = $invoiceInfo['discount_amount'];
+			$data['total_amount'] = $invoiceInfo['total_amount'];
+			$data['date'] = $invoiceInfo['date'];
+			$data['status'] = $invoiceInfo['status'];
+			$data['notes'] = $invoiceInfo['notes'];
+
+			$trip = $invoiceRepo->update($data);
+
+			return array('success'=> true);
+
+		} catch (\Throwable $th) {
+			return array('error'=>$th->getMessage());
+		}
+	}
+	
 	
 
 }

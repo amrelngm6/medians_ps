@@ -25,11 +25,10 @@ class Invoice extends CustomModel
 	* @var Array
 	*/
 	public $fillable = [
-		'invoice_id'	
-		,'business_id'	
+		'business_id'	
 		,'code'	
-		,'model_id'	
-		,'model_type'	
+		,'user_id'	
+		,'user_type'	
 		,'payment_method'	
 		,'subtotal'	
 		,'discount_amount'	
@@ -37,7 +36,6 @@ class Invoice extends CustomModel
 		,'date'	
 		,'status'	
 		,'notes'
-		,'created_by'
 	];
 
 	public $appends = ['field'];

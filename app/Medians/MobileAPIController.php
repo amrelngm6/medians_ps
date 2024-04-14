@@ -378,6 +378,10 @@ class MobileAPIController extends CustomController
 					return response((new Notifications\Application\NotificationController())->delete_notification());
 					break;
 
+				case 'Subscription.cancel':
+					return response((new Packages\Application\PackageSubscriptionController())->cancelSubscription());
+					break;
+
 			}
 
 			echo json_encode($return);

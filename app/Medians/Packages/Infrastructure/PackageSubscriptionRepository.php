@@ -136,5 +136,31 @@ class PackageSubscriptionRepository
 		}
 	}
 
+	/**
+	* Delete item to database
+	*
+	* @Returns Boolen
+	*/
+	public function cancelSubscription($subscriptionId) 
+	{
+		try {
+			
+			$check = PackageSubscription::find($subscriptionId);
+
+			if (isset($check->payment_status) && $check->payment_status == 'unpaid')
+			{
+				return PackageSubscription::find($id)->delete();
+			}
+
+			return array('error'=>__('Not allowed'));
+
+
+		} catch (\Exception $e) {
+
+			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);
+			
+		}
+	}
+
 
 }
