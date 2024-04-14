@@ -43,7 +43,7 @@ class TransactionController extends CustomController
 		return [
             [ 'value'=> "transaction_id", 'text'=> "#"],
             [ 'value'=> "field.order_id", 'text'=> __('Transaction code'), 'sortable'=> true ],
-            [ 'value'=> "model.name", 'text'=> __('User'), 'sortable'=> false ],
+            [ 'value'=> "model", 'text'=> __('User'), 'sortable'=> false ],
             [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
             [ 'value'=> "payment_method", 'text'=> __('Gateway'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
