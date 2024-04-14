@@ -197,7 +197,7 @@ class TransactionController extends CustomController
 
 			return (isset($saveTransaction->invoice_id))
 			? array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'))
-			: array('error'=>$addInvoice['error']);
+			: array('error'=>$saveTransaction['error']);
 
 		} catch (Exception $e) {
 			return array('error'=>$e->getMessage());
