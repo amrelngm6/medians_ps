@@ -41,7 +41,7 @@ class InvoiceRepository
 	*/
 	public function get($limit = 500) 
 	{
-		return Invoice::with('user', 'items','business', 'transactions')
+		return Invoice::with('user', 'items','business', 'transaction')
 		->where('business_id', $this->business_id)
 		->limit($limit)
 		->get();
