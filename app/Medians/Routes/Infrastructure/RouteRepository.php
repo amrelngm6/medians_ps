@@ -30,7 +30,7 @@ class RouteRepository
 
 	public function find($id)
 	{
-		return Route::where('business_id', $this->business_id)->with('route_locations', 'position', 'driver')->find($id);
+		return Route::with('route_locations', 'position', 'driver')->find($id);
 	}
 
 	public function get($limit = 100)
