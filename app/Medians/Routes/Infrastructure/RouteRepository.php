@@ -57,9 +57,9 @@ class RouteRepository
 	}
 
 	
-	public function getBusinessRoutes()
+	public function getBusinessRoutes($businessId)
 	{
-		return Route::where('business_id', $this->business_id)
+		return Route::where('business_id', $businessId)
 		->where('status', 'on')
 		->with('route_locations','position', 'vehicle')
 		->get();
