@@ -38,19 +38,12 @@
                                             <!--end::Col-->
                                             <div class="col-sm-6">
                                                 
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1">Due Date:</div>
+                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
                                                 
 
                                                 <!--end::Info-->
-                                                <div
-                                                    class="fw-bold fs-6 text-gray-800 d-flex align-items-center flex-wrap">
-                                                    <span class="pe-2">02 May 2021</span>
-
-                                                    <span class="fs-7 text-danger d-flex align-items-center">
-                                                        <span class="bullet bullet-dot bg-danger me-2"></span>
-
-                                                        Due in 7 days
-                                                    </span>
+                                                <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center flex-wrap">
+                                                    <span class="pe-2" v-text="activeItem.date"></span>
                                                 </div>
                                                 <!--end::Info-->
                                             </div>
@@ -61,19 +54,19 @@
                                         <!--begin::Row-->
                                         <div class="row g-5 mb-12">
                                             <!--end::Col-->
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6" v-if="activeItem.user">
                                                 
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1">Issue For:</div>
+                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issue For')"></div>
                                                 
 
                                                 <!--end::Text-->
-                                                <div class="fw-bold fs-6 text-gray-800">KeenThemes Inc.</div>
+                                                <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.user.name"></div>
                                                 <!--end::Text-->
 
                                                 <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600">
-                                                    8692 Wild Rose Drive <br>
-                                                    Livonia, MI 48150
+                                                <div class="fw-semibold fs-7 text-gray-600" >
+                                                    <span v-text="activeItem.user.address"></span>
+                                                    <span v-text="activeItem.user.country"></span>
                                                 </div>
                                                 <!--end::Description-->
                                             </div>
@@ -82,17 +75,16 @@
                                             <!--end::Col-->
                                             <div class="col-sm-6">
                                                 
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1">Issued By:</div>
+                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issued By')"></div>
                                                 
 
                                                 <!--end::Text-->
-                                                <div class="fw-bold fs-6 text-gray-800">CodeLab Inc.</div>
+                                                <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.name"></div>
                                                 <!--end::Text-->
 
                                                 <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600">
-                                                    9858 South 53rd Ave.<br>
-                                                    Matthews, NC 28104
+                                                <div class="fw-semibold fs-7 text-gray-600" v-text="business_setting.address">
+                                                    
                                                 </div>
                                                 <!--end::Description-->
                                             </div>
@@ -108,49 +100,25 @@
                                                 <table class="table mb-3">
                                                     <thead>
                                                         <tr class="border-bottom fs-6 fw-bold text-muted">
-                                                            <th class="min-w-175px pb-2">Description</th>
-                                                            <th class="min-w-70px text-end pb-2">Hours</th>
-                                                            <th class="min-w-80px text-end pb-2">Rate</th>
-                                                            <th class="min-w-100px text-end pb-2">Amount</th>
+                                                            <th class="min-w-175px pb-2" v-text="translate('Description')"></th>
+                                                            <th class="min-w-70px text-end pb-2" v-text="translate('Subtotal')"></th>
+                                                            <th class="min-w-80px text-end pb-2"  v-text="translate('Discount amount')"></th>
+                                                            <th class="min-w-100px text-end pb-2"  v-text="translate('Total Amount')"></th>
                                                         </tr>
                                                     </thead>
 
-                                                    <tbody>
-                                                        <tr class="fw-bold text-gray-700 fs-5 text-end">
-                                                            <td class="d-flex align-items-center pt-6">
+                                                    <tbody v-if="activeItem.items">
+                                                        <tr class="fw-bold text-gray-700 fs-5 text-end" v-for="invoiceItem in activeItem.items">
+                                                            <td class="d-flex align-items-center pt-6" v-if="invoiceItem">
                                                                 <i class="fa fa-genderless text-danger fs-2 me-2"></i>
-
-                                                                Creative Design
+                                                                <span v-text="invoiceItem.item.name"></span>
                                                             </td>
 
-                                                            <td class="pt-6">80</td>
-                                                            <td class="pt-6">$40.00</td>
-                                                            <td class="pt-6 text-gray-900 fw-bolder">$3200.00</td>
+                                                            <td class="pt-6" v-text="invoiceItem.subtotal"></td>
+                                                            <td class="pt-6" v-text="invoiceItem.discount_amount"></td>
+                                                            <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount"></td>
                                                         </tr>
 
-                                                        <tr class="fw-bold text-gray-700 fs-5 text-end">
-                                                            <td class="d-flex align-items-center">
-                                                                <i class="fa fa-genderless text-success fs-2 me-2"></i>
-
-                                                                Logo Design
-                                                            </td>
-
-                                                            <td>120</td>
-                                                            <td>$40.00</td>
-                                                            <td class="fs-5 text-gray-900 fw-bolder">$4800.00</td>
-                                                        </tr>
-
-                                                        <tr class="fw-bold text-gray-700 fs-5 text-end">
-                                                            <td class="d-flex align-items-center">
-                                                                <i class="fa fa-genderless text-primary fs-2 me-2"></i>
-
-                                                                Web Development
-                                                            </td>
-
-                                                            <td>210</td>
-                                                            <td>$60.00</td>
-                                                            <td class="fs-5 text-gray-900 fw-bolder">$12600.00</td>
-                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
