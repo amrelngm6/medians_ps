@@ -173,6 +173,22 @@ class PackageController extends CustomController
 
 	}
 
+	
+	/**
+	 * Load private trip for Driver
+	 */
+	public function load_business_packages()
+	{
+		$user = $this->app->auth();
 
+		if (empty($user)) { return null; }
+		
+		$businessId = (array) $this->app->request()->get('busness_id');
+
+		return $this->repo->loadByBusiness($businessId);
+
+	}
+
+	
 
 }

@@ -43,6 +43,16 @@ class PackageRepository
 	}
 
 
+	
+	/**
+	* Find items by `params` 
+	*/
+	public function loadByBusiness($business_id) 
+	{
+		return Package::where('business_id', $business_id)->get();
+	}
+
+
 	/**
 	* Save item to database
 	*/

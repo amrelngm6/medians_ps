@@ -246,7 +246,7 @@ class PrivateTripController extends CustomController
 	}
 
 	
-		/**
+	/**
 	 * Load private trip for Driver
 	 */
 	public function parentPrivateTrips()
