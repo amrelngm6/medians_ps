@@ -37,7 +37,7 @@
                 alternating
                 class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
-                <template #item-user="item">
+                <template #item-model="item">
                     <div class="flex gap-2" v-if="item.user" >
                         <img :src="item.user.picture" class="w-8 h-8 rounded-full" />
                         <span class="py-2" v-text="item.user.name"></span>
