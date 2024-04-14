@@ -193,6 +193,8 @@ class TransactionController extends CustomController
 
 			$savedSubscription = $paymentService->updatePackageSubscription($params); 
 
+			$addInvoice = $paymentService->addInvoice($params); 
+
 			return (isset($saveTransaction['success']))
 			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
 			: array('error'=>$saveTransaction['error']);

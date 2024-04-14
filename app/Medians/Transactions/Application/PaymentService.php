@@ -155,7 +155,7 @@ class PaymentService
 			
 			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository($params['business']);
 			
-			$transaction = (array) $params['invoice'];
+			$invoiceInfo = (array) $params['invoice'];
 
 			$data = array();
 			$data['business_id'] = $params['business']->business_id;
@@ -170,7 +170,7 @@ class PaymentService
 			$data['status'] = $invoiceInfo['status'];
 			$data['notes'] = $invoiceInfo['notes'];
 
-			$trip = $invoiceRepo->update($data);
+			$invoice = $invoiceRepo->store($data);
 
 			return array('success'=> true);
 
