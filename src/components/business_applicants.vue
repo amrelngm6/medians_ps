@@ -242,7 +242,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('route_id', data, 'Route.delete');
+                    deleteByKey('applicant_id', data, 'BusinessApplicant.delete');
                     break;  
 
                     
