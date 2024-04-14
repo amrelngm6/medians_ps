@@ -60,7 +60,7 @@ class InvoiceController extends CustomController
 	public function index() 
 	{
 
-		return render('transactions', [
+		return render('invoices', [
 			'load_vue'=> true,
 	        'title' => __('Invoices list'),
 	        'items' => $this->repo->get(),
