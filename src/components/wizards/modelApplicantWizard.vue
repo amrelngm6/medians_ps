@@ -20,7 +20,7 @@
                                             
                                             <div class="card-title m-0 flex  gap-4" v-if="activeItem.model">
                                                 <div class="bg-light overflow-hidden rounded-full symbol-50px w-50px">
-                                                    <img :src="activeItem.model.picture" alt="image" class="">
+                                                    <img :src="activeItem.model.picture" width="50" height="50" alt="image" class="">
                                                 </div>
                                                 <div class="w-full ">
                                                     <h5 class="text-sm mb-0" v-text="translate('Customer Info')"></h5>
