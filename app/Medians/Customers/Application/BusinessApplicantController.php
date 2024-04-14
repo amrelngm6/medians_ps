@@ -64,9 +64,7 @@ class BusinessApplicantController extends CustomController
 	 */ 
 	public function index( ) 
 	{
-		
 		try {
-			
 		    return render('business_applicants', [
 		        'load_vue' => true,
 		        'title' => __('Businesss Applicants'),

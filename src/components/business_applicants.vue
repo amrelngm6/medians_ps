@@ -244,10 +244,8 @@ export default
                 case 'delete':
                     deleteByKey('applicant_id', data, 'BusinessApplicant.delete');
                     break;  
-
                     
                 case 'close':
-                    
                     showEditSide.value = false;
                     activeItem.value = {};
                     break;
