@@ -56,6 +56,9 @@ class PackageSubscriptionRepository
 		->whereHas('model', function($q) use  ($parentId) {
 			return $q->where('parent_id', $parentId);
 		})
+		->whereHas('applicant', function($q) use  ($parentId) {
+			return $q->where('status', 'approved');
+		})
 		->with('model','package', 'business')
 		->first();
 	}

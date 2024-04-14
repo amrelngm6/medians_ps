@@ -2,8 +2,9 @@
 
 namespace Medians\Packages\Domain;
 
-use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
+use Medians\Businesses\Domain\Business;
+use Medians\Customers\Domain\BusinessApplicant;
 
 /**
  * Subscription class database queries
@@ -58,6 +59,11 @@ class PackageSubscription extends CustomModel
     public function package()
     {
         return $this->hasOne(Package::class, 'package_id', 'package_id');
+    }
+
+    public function applicant()
+    {
+        return $this->hasOne(BusinessApplicant::class, 'subscription_id', 'subscription_id');
     }
 
 }
