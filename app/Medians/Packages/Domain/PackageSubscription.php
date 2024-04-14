@@ -34,7 +34,12 @@ class PackageSubscription extends CustomModel
     	'created_by',
 	];
 
-    public $appends = ['is_paid','usertype'];
+    public $appends = ['is_paid','usertype','name'];
+
+    public function getNameAttribute()
+    {
+        return isset($this->package->name) ? $this->package->name : '';
+    }
 
     public function getIsPaidAttribute()
     {
