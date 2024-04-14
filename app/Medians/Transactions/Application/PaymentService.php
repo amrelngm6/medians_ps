@@ -6,6 +6,7 @@ use \Shared\dbaser\CustomController;
 use Medians\Packages\Infrastructure\PackageSubscriptionRepository;
 use Medians\Payments\Infrastructure\PaymentsRepository;
 use Medians\Transactions\Infrastructure\TransactionRepository;
+use Medians\Students\Domain\Student;
 
 class PaymentService
 {
@@ -32,7 +33,7 @@ class PaymentService
 
 			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
 
-			$class = new \Medians\Students\Domain\Student;
+			$class = new Student;
 
 			$transaction = (array) $params['transaction'];
 			$transaction['model_id'] = $params['model_id'];
@@ -82,7 +83,7 @@ class PaymentService
 	{
 		try {
 
-			$class = new \Medians\Students\Domain\Student;
+			$class = new Student;
 
 			$routeLocationClass = new \Medians\Locations\Domain\RouteLocation;
 			
@@ -104,7 +105,7 @@ class PaymentService
 
 			$this->transactionRepo = new TransactionRepository($params['business']);
 
-			$class = new \Medians\Students\Domain\Student;
+			$class = new Student;
 
 			$updateStudent = $class->find($params['model_id']);
 
