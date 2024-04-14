@@ -192,14 +192,14 @@ export default
             }
 
             const confirmItem = () => {
-                if (window.confirm(translate('Confirm and add driver to your team'))) {
+                if (window.confirm(translate('Confirm and add subscription to your business'))) {
                     activeItem.value.status = 'approved';
                     saveItem();
                 }
             }
 
             const rejectItem = () => {
-                if (window.confirm(translate('Confirm and reject this driver'))) {
+                if (window.confirm(translate('Confirm and reject this member'))) {
                     activeItem.value.status = 'rejected';
                     saveItem();
                 }
