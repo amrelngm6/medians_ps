@@ -33,7 +33,7 @@ class StudentRepository
 
 	public function find($id)
 	{
-		return Student::where('business_id', $this->business_id)->find($id);
+		return Student::find($id);
 	}
 
 	public function get($limit = 100)
