@@ -250,7 +250,7 @@ class APP
 				]
 			),
 			
-			array('title'=>__('Packages'),  'icon'=>'credit-card', 'link'=>'#packages', 'sub'=>
+			array('title'=>__('Subscriptions'),  'icon'=>'credit-card', 'link'=>'#packages', 'sub'=>
 			[
 				array('permission'=>'Packages.index', 'title'=>__('Manage Packages'),  'icon'=>'credit-card', 'link'=>'admin/packages', 'component'=>'packages'),
 				array('permission'=>'PackageSubscriptions.index', 'title'=>__('Subscriptions'),  'icon'=>'credit-card', 'link'=>'admin/package_subscriptions', 'component'=>'package_subscriptions'),
@@ -259,18 +259,12 @@ class APP
 			),
 			
 
-			array('title'=>__('Business'),  'icon'=>'credit-card', 'link'=>'#business', 'sub'=>
+			array('title'=>__('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
 			[
-				array('title'=>__('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
-				[
-					array('permission'=> 'Transaction.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
-					array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-				]
-				),
+				array('permission'=> 'Transaction.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
+				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
 			]
 			),
-			
-
 			
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
