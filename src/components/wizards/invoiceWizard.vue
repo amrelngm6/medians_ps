@@ -212,7 +212,7 @@
                                         <!--begin::Logo-->
                                         <a href="#">
                                             <img alt="Logo"
-                                                src="/metronic8/demo1/assets/media/svg/brand-logos/code-lab.svg">
+                                                :src="'/metronic8/demo1/assets/media/svg/brand-logos/code-lab.svg'">
                                         </a>
                                         <!--end::Logo-->
 
