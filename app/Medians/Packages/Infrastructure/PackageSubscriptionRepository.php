@@ -56,7 +56,7 @@ class PackageSubscriptionRepository
 		->whereHas('model', function($q) use  ($parentId) {
 			return $q->where('parent_id', $parentId);
 		})
-		->with('model','package')
+		->with('model','package', 'business')
 		->first();
 	}
 
