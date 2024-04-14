@@ -250,7 +250,7 @@ class APP
 				]
 			),
 			
-			array('title'=>__('Subscriptions'),  'icon'=>'cart', 'link'=>'#packages', 'sub'=>
+			array('title'=>__('Subscriptions'),  'icon'=>'cloud-lightning', 'link'=>'#packages', 'sub'=>
 			[
 				array('permission'=>'Packages.index', 'title'=>__('Manage Packages'),  'icon'=>'credit-card', 'link'=>'admin/packages', 'component'=>'packages'),
 				array('permission'=>'PackageSubscriptions.index', 'title'=>__('Subscriptions'),  'icon'=>'credit-card', 'link'=>'admin/package_subscriptions', 'component'=>'package_subscriptions'),
