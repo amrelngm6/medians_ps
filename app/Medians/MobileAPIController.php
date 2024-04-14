@@ -379,7 +379,7 @@ class MobileAPIController extends CustomController
 					break;
 
 				case 'Subscription.cancel':
-					return response((new Packages\Application\PackageSubscriptionController())->cancelSubscription());
+					$return = (new Packages\Application\PackageSubscriptionController())->cancelSubscription();
 					break;
 
 			}
