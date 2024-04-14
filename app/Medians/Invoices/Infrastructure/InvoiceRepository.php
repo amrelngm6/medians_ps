@@ -99,10 +99,10 @@ class InvoiceRepository
     	$Object = Invoice::firstOrCreate($dataArray);
 
     	// Store invoice items
-    	!empty($data['items']) ? $this->storeItems($data['items'], $Object->invoice_id) : '';
+    	!empty($data['items']) ? $this->storeItems((array) $data['items'], $Object->invoice_id) : '';
 
     	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $Object->invoice_id) : '';
+    	!empty($data['field']) ? $this->storeCustomFields((array) $data['field'], $Object->invoice_id) : '';
 
     	return $Object;
 	}
@@ -120,7 +120,7 @@ class InvoiceRepository
     	$Object->update( (array) $data);
 
     	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $Object->invoice_id) : '';
+    	!empty($data['field']) ? $this->storeCustomFields((array) $data['field'], $Object->invoice_id) : '';
 
     	return $Object;
     } 
