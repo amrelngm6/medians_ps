@@ -67,5 +67,10 @@ class Invoice extends CustomModel
 		return $this->hasOne(Business::class, 'business_id', 'business_id');
 	}
 
+	public function items()
+	{
+		return $this->hasOne(InvoiceItem::class, 'invoice_id', 'invoice_id');
+	}
+
 
 }

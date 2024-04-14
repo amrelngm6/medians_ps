@@ -33,7 +33,7 @@ class InvoiceRepository
 	*/
 	public function find($invoice_id) 
 	{
-		return Invoice::find($invoice_id);
+		return Invoice::with('user', 'items')->find($invoice_id);
 	}
 
 	/**
@@ -41,7 +41,7 @@ class InvoiceRepository
 	*/
 	public function get($limit = 500) 
 	{
-		return Invoice::with('user', 'package_subscription', 'item')
+		return Invoice::with('user', 'items')
 		->where('business_id', $this->business_id)
 		->limit($limit)
 		->get();
@@ -54,7 +54,7 @@ class InvoiceRepository
 	public function getByDate($params )
 	{
 
-	  	$check = Invoice::with('user', 'item')->where('business_id', $this->business_id);
+	  	$check = Invoice::with('user', 'items')->where('business_id', $this->business_id);
 
 	  	if (!empty($params["date"]))
 	  	{
