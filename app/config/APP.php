@@ -268,7 +268,7 @@ class APP
 			array('title'=>__('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
 			[
 				array('permission'=> 'Transaction.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
-				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'transactions'),
+				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
 			]
 			),
 			
