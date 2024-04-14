@@ -18,7 +18,7 @@ class BusinessApplicantController extends CustomController
 
 	protected $userRepo;
 
-	protected $driverRepo;
+	protected $routeRepo;
 	
 
 	function __construct()
@@ -29,6 +29,7 @@ class BusinessApplicantController extends CustomController
 
 		$this->userRepo = new UserRepository();
 		$this->repo = new BusinessApplicantRepository(isset($user->business) ? $user->business : null);
+		$this->routeRepo = new RouteRepository(isset($user->business) ? $user->business : null);
 	}
 
 
@@ -70,6 +71,7 @@ class BusinessApplicantController extends CustomController
 		        'title' => __('Businesss Applicants'),
 		        'columns' => $this->columns(),
 		        'items' => $this->repo->get(),
+		        'routes' => $this->routeRepo->get(),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
