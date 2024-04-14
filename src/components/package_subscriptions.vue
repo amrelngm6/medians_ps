@@ -109,7 +109,7 @@ export default
         employee_location_wizard, 
         usertype_picker, 
     },
-    name:'Routes',
+    name:'Package Subscriptions',
     setup(props) {
 
         const url =  props.conf.url+props.path+'?load=json';
