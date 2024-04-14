@@ -186,7 +186,50 @@ class NotificationEvent extends CustomModel
 
 	
 	/**
-	 * Prepare notification content 
+	 * Filter Employee notification  
+	 * 
+	 * @param $event Object
+	 * @param $model Object Event related model
+	 */
+	public function filterSupervisor($event, $model)
+	{
+		switch (get_class($model)) 
+		{
+			case HelpMessageComment::class:
+				return [$model->message->user];
+				break;
+
+			case RouteLocation::class:
+				$location =  $model->with('supervisor')->find($model->location_id);
+				return isset($location->supervisor) ? [$location->supervisor] : null;
+				break;
+
+			case TripAlarm::class:
+				$object =  $model->whereHas('model')->with('model')->find($model->alarm_id);
+				return isset($object->model) ? [$object->model] : null;
+				break;
+
+			case PrivateTrip::class:
+				$object =  $model->with('model')->find($model->trip_id);
+				return isset($object->model) ? [$object->model] : null;
+				break;
+				
+			case Trip::class:
+				$object =  $model->whereHas('supervisor')->with('supervisor')->find($model->trip_id);
+				return isset($object->supervisor) ? [$object->supervisor] : null;
+				break;
+							
+			default:
+				return $model;
+				break;
+			
+		}
+	}
+
+
+	
+	/**
+	 * Filter Users notification 
 	 * 
 	 * @param $event Object
 	 * @param $model Object Event related model
@@ -228,7 +271,47 @@ class NotificationEvent extends CustomModel
 		}
 	}
 
-	
+	/**
+	 * Filter Employee notification  
+	 * 
+	 * @param $event Object
+	 * @param $model Object Event related model
+	 */
+	public function filterEmployee($event, $model)
+	{
+		switch (get_class($model)) 
+		{
+			case HelpMessageComment::class:
+				return [$model->message->user];
+				break;
+
+			case RouteLocation::class:
+				$location =  $model->with('model')->find($model->location_id);
+				return isset($location->model) ? [$location->model] : null;
+				break;
+
+			case TripAlarm::class:
+				$object =  $model->whereHas('model')->with('model')->find($model->alarm_id);
+				return isset($object->model) ? [$object->model] : null;
+				break;
+
+			case PrivateTrip::class:
+				$object =  $model->with('model')->find($model->trip_id);
+				return isset($object->model) ? [$object->model] : null;
+				break;
+				
+			case Trip::class:
+				$object =  $model->whereHas('supervisor')->with('supervisor')->find($model->trip_id);
+				return isset($object->supervisor) ? [$object->supervisor] : null;
+				break;
+							
+			default:
+				return $model;
+				break;
+			
+		}
+	}
+
 
 	/**
 	 * Prepare notification receiver 

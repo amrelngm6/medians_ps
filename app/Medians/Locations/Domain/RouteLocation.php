@@ -115,21 +115,10 @@ class RouteLocation extends CustomModel
 		return $this->hasOneThrough(Parents::class, Student::class, 'student_id', 'customer_id', 'model_id', 'customer_id');	
 	}
 	
-	public function student() 
-	{
-    	return $this->hasOne(Student::class, 'student_id', 'model_id');
-	}
-	
-	public function employee() 
-	{
-    	return $this->hasOne(Employee::class, 'customer_id', 'model_id');
-	}
-	
 	public function route() 
 	{
     	return $this->hasOne(Route::class, 'route_id', 'route_id')->with('driver');
 	}
-	
 	
 	
     public function model()
