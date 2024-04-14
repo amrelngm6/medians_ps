@@ -152,6 +152,7 @@ class PackageSubscriptionRepository
 
 			if (isset($check->payment_status) && $check->payment_status == 'unpaid')
 			{
+				$chech->model->update(['business_id'=>null]);
 				return PackageSubscription::find($subscriptionId)->delete();
 			}
 
