@@ -42,7 +42,7 @@ class InvoiceController extends CustomController
 
 		return [
             [ 'value'=> "invoice_id", 'text'=> "#"],
-            [ 'value'=> "user", 'text'=> __('User'), 'sortable'=> false ],
+            [ 'value'=> "model", 'text'=> __('User'), 'sortable'=> false ],
             [ 'value'=> "subtotal", 'text'=> __('Subtotal'), 'sortable'=> true ],
             [ 'value'=> "total_amount", 'text'=> __('Total Amount'), 'sortable'=> true ],
             [ 'value'=> "payment_method", 'text'=> __('Gateway'), 'sortable'=> true ],
