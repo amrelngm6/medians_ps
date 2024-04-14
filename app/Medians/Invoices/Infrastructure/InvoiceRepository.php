@@ -40,7 +40,7 @@ class InvoiceRepository
 	*/
 	public function get($limit = 500) 
 	{
-		return Invoice::with('model', 'package_subscription', 'item')
+		return Invoice::with('user', 'package_subscription', 'item')
 		->where('business_id', $this->business_id)
 		->limit($limit)
 		->get();
@@ -53,7 +53,7 @@ class InvoiceRepository
 	public function getByDate($params )
 	{
 
-	  	$check = Invoice::with('model', 'item')->where('business_id', $this->business_id);
+	  	$check = Invoice::with('user', 'item')->where('business_id', $this->business_id);
 
 	  	if (!empty($params["date"]))
 	  	{
