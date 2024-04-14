@@ -166,7 +166,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('location_id', data, 'RouteLocation.delete');
+                    deleteByKey('subscription_id', data, 'PackageSubscription.delete');
                     break;  
 
                     
