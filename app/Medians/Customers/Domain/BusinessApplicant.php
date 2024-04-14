@@ -19,6 +19,7 @@ class BusinessApplicant extends CustomModel
 	
 	public $fillable = [
 		'business_id',
+		'subscription_id',
 		'model_id',
 		'model_type',
 		'message',

@@ -169,7 +169,9 @@ class BusinessApplicantRepository
 			$fields['notes'] = $data['notes'];
 
 			$Model = PackageSubscription::firstOrCreate($fields);
-	
+			
+			$Object->update(['subscription_id'=>$Model->subscription_id]);
+
 			return $Model;		
 		}
 	}
