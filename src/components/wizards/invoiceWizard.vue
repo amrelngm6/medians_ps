@@ -196,52 +196,38 @@
                             <!--begin::Sidebar-->
                             <div class="m-0">
                                 <!--begin::Invoice 2 sidebar-->
-                                <div
+                                <div v-if="activeItem.transaction"
                                     class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
                                     <!--begin::Labels-->
                                     <div class="mb-8">
-                                        <span class="badge badge-light-success me-2">Approved</span>
+                                        <span class="badge badge-light-success me-2" v-text="activeItem.status"></span>
 
-                                        <span class="badge badge-light-warning">Pending Payment</span>
+                                        <span class="badge badge-light-warning" v-text="translate('Pending Payment')"></span>
                                     </div>
                                     <!--end::Labels-->
 
                                     <!--begin::Title-->
-                                    <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary">PAYMENT DETAILS</h6>
+                                    <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('PAYMENT DETAILS')"></h6>
                                     <!--end::Title-->
 
                                     <!--begin::Item-->
                                     <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7">Paypal:</div>
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
 
-                                        <div class="fw-bold text-gray-800 fs-6">codelabpay@codelab.co</div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_name"></div>
                                     </div>
-            
-
                                     <!--begin::Item-->
                                     <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7">Account:</div>
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Payer name')"></div>
 
-                                        <div class="fw-bold text-gray-800 fs-6">
-                                            Nl24IBAN34553477847370033 <br>
-                                            AMB NLANBZTC
-                                        </div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_name"></div>
                                     </div>
             
-
                                     <!--begin::Item-->
-                                    <div class="mb-15">
-                                        <div class="fw-semibold text-gray-600 fs-7">Payment Term:</div>
+                                    <div class="mb-6">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="activeItem.transaction.date"></div>
 
-                                        <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center">
-                                            14 days
-
-                                            <span class="fs-7 text-danger d-flex align-items-center">
-                                                <span class="bullet bullet-dot bg-danger mx-2"></span>
-
-                                                Due in 7 days
-                                            </span>
-                                        </div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_name"></div>
                                     </div>
             
 
@@ -249,17 +235,6 @@
                                     <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary">PROJECT OVERVIEW</h6>
                                     <!--end::Title-->
 
-                                    <!--begin::Item-->
-                                    <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7">Project Name</div>
-
-                                        <div class="fw-bold fs-6 text-gray-800">
-                                            SaaS App Quickstarter
-
-                                            <a href="#" class="link-primary ps-1">View Project</a>
-                                        </div>
-                                    </div>
-            
 
                                     <!--begin::Item-->
                                     <div class="mb-6">
@@ -271,16 +246,9 @@
 
                                     <!--begin::Item-->
                                     <div class="m-0">
-                                        <div class="fw-semibold text-gray-600 fs-7">Time Spent:</div>
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Date')"></div>
 
-                                        <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center">
-                                            230 Hours
-
-                                            <span class="fs-7 text-success d-flex align-items-center">
-                                                <span class="bullet bullet-dot bg-success mx-2"></span>
-
-                                                35$/h Rate
-                                            </span>
+                                        <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center" v-text="activeItem.date"> 
                                         </div>
                                     </div>
             

@@ -11,6 +11,7 @@ use Medians\Students\Domain\Student;
 use Medians\Branches\Domain\Branch;
 use Medians\Packages\Domain\PackageSubscription;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Transactions\Domain\Transaction;
 
 class Invoice extends CustomModel
 {
@@ -71,6 +72,16 @@ class Invoice extends CustomModel
 	public function items()
 	{
 		return $this->hasOne(InvoiceItem::class, 'invoice_id', 'invoice_id');
+	}
+
+	public function transactions()
+	{
+		return $this->hasMany(Transaction::class, 'invoice_id', 'invoice_id');
+	}
+
+	public function transaction()
+	{
+		return $this->hasOne(Transaction::class, 'invoice_id', 'invoice_id');
 	}
 
 
