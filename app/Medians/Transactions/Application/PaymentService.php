@@ -169,11 +169,11 @@ class PaymentService
 			$data['payment_method'] = $invoiceInfo['payment_method'];
 			$data['subtotal'] = $invoiceInfo['subtotal'];
 			$data['discount_amount'] = 0;
-			// $data['discount_amount'] = $invoiceInfo['discount_amount'];
 			$data['total_amount'] = $invoiceInfo['total_amount'];
 			$data['date'] = date('Y-m-d');
 			$data['status'] = $invoiceInfo['status'];
 			$data['notes'] = $invoiceInfo['notes'];
+			$data['items'] = (array) $invoiceInfo['items'];
 
 			return $invoiceRepo->store((array) $data);
 
