@@ -50,7 +50,7 @@ class RouteState extends CustomModel
 
 	public function route_locations() 
 	{
-		return $this->hasMany(RouteLocation::class, 'route_id', 'route_id')->where('status', 1)->with('student');	
+		return $this->hasMany(RouteLocation::class, 'route_id', 'route_id')->where('status', 1)->with('model');	
 	}
 
 

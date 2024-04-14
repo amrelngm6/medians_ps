@@ -50,12 +50,12 @@ class TripRepository
 		return Trip::where('business_id', $this->business_id)->with('locations',  'driver', 'vehicle', 'route')
 		->with([
 			'locatiobs' => function($q) use ($parent_id){
-				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
+				return $q->with('location')->where('model_type', Student::class)->whereHas('model', function($q) use ($parent_id){
 					return $q->where('parent_id', $parent_id);
 				})->orderBy('status','DESC');
 		}])->with([
 			'locatiobs' => function($q) use ($parent_id){
-				return $q->with('location')->whereHas('student', function($q) use ($parent_id){
+				return $q->with('location')->where('model_type', Student::class)->whereHas('model', function($q) use ($parent_id){
 					return $q->where('parent_id', $parent_id);
 				})->orderBy('status','DESC');
 		}])
