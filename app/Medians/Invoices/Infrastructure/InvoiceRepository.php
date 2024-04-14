@@ -97,6 +97,9 @@ class InvoiceRepository
 		// Return the Model object with the new data
     	$Object = Invoice::firstOrCreate($dataArray);
 
+    	// Store invoice items
+    	!empty($data['items']) ? $this->storeItems($data['items'], $Object->invoice_id) : '';
+
     	// Store Custom fields
     	!empty($data['field']) ? $this->storeCustomFields($data['field'], $Object->invoice_id) : '';
 
@@ -159,6 +162,30 @@ class InvoiceRepository
 				$fields['value'] = $value;
 
 				$Model = CustomField::create($fields);
+				$Model->update($fields);
+			}
+	
+			return $Model;		
+		}
+	}
+
+
+	/**
+	* Save related items to database
+	*/
+	public function storeItems($data, $id) 
+	{
+		if ($data)
+		{
+			foreach ($data as $key => $value)
+			{
+				$fields = [];
+				$fields['item_type'] = Invoice::class;	
+				$fields['item_id'] = $id;
+				$fields['code'] = $key;
+				$fields['value'] = $value;
+
+				$Model = InvoiceItem::create($fields);
 				$Model->update($fields);
 			}
 	

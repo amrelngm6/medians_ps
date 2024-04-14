@@ -10,16 +10,16 @@ use Medians\Branches\Domain\Branch;
 use Medians\Packages\Domain\PackageSubscription;
 use Medians\CustomFields\Domain\CustomField;
 
-class Invoice extends CustomModel
+class InvoiceItem extends CustomModel
 {
 
 
 	/**
 	* @var String
 	*/
-	protected $table = 'invoices';
+	protected $table = 'invoice_items';
 
-	protected $primaryKey = 'invoice_id';
+	protected $primaryKey = 'invoice_item_id';
 
 	/**
 	* @var Array
@@ -27,17 +27,12 @@ class Invoice extends CustomModel
 	public $fillable = [
 		'invoice_id'	
 		,'business_id'	
-		,'code'	
-		,'model_id'	
-		,'model_type'	
-		,'payment_method'	
+		,'item_id'	
+		,'item_type'	
 		,'subtotal'	
 		,'discount_amount'	
 		,'total_amount'	
-		,'date'	
 		,'status'	
-		,'notes'
-		,'created_by'
 	];
 
 	public $appends = ['field'];
@@ -58,7 +53,7 @@ class Invoice extends CustomModel
 		return $this->fillable;
 	}
 	
-    public function user()
+    public function item()
     {
         return $this->morphTo();
     }

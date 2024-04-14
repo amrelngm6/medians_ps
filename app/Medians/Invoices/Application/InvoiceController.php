@@ -83,8 +83,7 @@ class InvoiceController extends CustomController
 		$params = $this->app->request()->get('params');
 
         try {
-        	$params['branch_id'] = $this->app->branch->id;
-        	$params['created_by'] = $this->app->auth()->id;
+        	$params['business_id'] = $this->app->business->business_id;
         	
             return ($this->repo->store($params))
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
@@ -112,11 +111,9 @@ class InvoiceController extends CustomController
 
         try {
 
-
            	$returnData =  ($this->repo->update($params))
            	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
            	: array('error'=>__('Not allowed'));
-
 
         } catch (Exception $e) {
             $returnData = array('error'=>$e->getMessage());
@@ -141,7 +138,7 @@ class InvoiceController extends CustomController
 
         try {
 
-           	$returnData =  $this->repo->delete($params['id'])
+           	$returnData =  $this->repo->delete($params['invoice_id'])
            	? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
            	: array('error'=>__('Not allowed'));
 
@@ -162,11 +159,7 @@ class InvoiceController extends CustomController
 
 		try {
 			
-			$paymentService = new PaymentService($params['payment_method']);
-
-			$saveInvoice = $paymentService->storeInvoice($params); 
-			
-			$savedSubscription = isset($saveInvoice['success']) ? $paymentService->updatePackageSubscription($params) : null; 
+			$saveInvoice = $this->repo->store($params); 
 
 			return (isset($saveInvoice['success']))
 			? array('success'=>1, 'result'=>$saveInvoice['result'], 'reload'=>1)
