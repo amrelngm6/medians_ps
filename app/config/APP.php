@@ -260,7 +260,7 @@ class APP
 
 			array('title'=>__('Business'),  'icon'=>'credit-card', 'link'=>'#business', 'sub'=>
 			[
-				array('permission'=>'business_applicants.index', 'title'=>__('Business applicants'),  'icon'=>'credit-card', 'link'=>'admin/business_applicants', 'component'=>'business_applicants'),
+				array('permission'=>'BusinessApplicants.index', 'title'=>__('Business applicants'),  'icon'=>'credit-card', 'link'=>'admin/business_applicants', 'component'=>'business_applicants'),
 			]
 			),
 			
