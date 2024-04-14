@@ -50,7 +50,6 @@ class RouteRepository
 
 	public function getDriverRoutes($driver_id)
 	{
-		// return Route::where('business_id', $this->business_id)->where('driver_id', $driver_id)
 		return Route::where('driver_id', $driver_id)
 		->where('status', 'on')
 		->with('route_locations','position', 'vehicle')

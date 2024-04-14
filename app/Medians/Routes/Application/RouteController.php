@@ -126,6 +126,19 @@ class RouteController extends CustomController
 	/**
 	 * getRoute
 	 */
+	public function getDriverRoutes()
+	{
+		$user = $this->app->auth();		
+
+		if(empty($user->driver_id)) {return null;}
+
+		$data =  $this->repo->getDriverRoutes($user->driver_id);
+		echo  json_encode($data);
+	}
+
+	/**
+	 * get Business Routes
+	 */
 	public function getBusinessRoutes()
 	{
 		$user = $this->app->auth();		
