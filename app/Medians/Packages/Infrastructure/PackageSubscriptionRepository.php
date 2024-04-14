@@ -57,7 +57,7 @@ class PackageSubscriptionRepository
 			return $q->where('parent_id', $parentId);
 		})
 		->whereDate('payment_status', 'unpaid')
-		->whereDate('end_date' , [date('Y-m-d') , date('Y-m-d', strtotime("+1 year", date('Y-m-d')))])
+		->whereDate('end_date' , [date('Y-m-d') , date('Y-m-d', strtotime("+1 year"))])
 		->with('model','package')
 		->first();
 	}
