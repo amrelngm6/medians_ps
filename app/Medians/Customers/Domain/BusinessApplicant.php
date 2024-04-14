@@ -37,6 +37,11 @@ class BusinessApplicant extends CustomModel
 		return $this->hasOne(Business::class, 'business_id', 'business_id');	
 	}
 	
+	public function subscription() 
+	{
+		return $this->hasOne(PackageSubscription::class, 'subscription_id', 'subscription_id');	
+	}
+	
 	
     public function model()
     {
