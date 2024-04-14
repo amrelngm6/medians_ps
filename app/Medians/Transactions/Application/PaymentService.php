@@ -92,7 +92,6 @@ class PaymentService
 			
 			$updateRouteLocationClass = $routeLocationClass->where('model_id', $params['model_id'])->where('model_type', $class::class)->update(['business_id' => $params['business']->business_id]);
 
-			error_log('Updated');
 			return array('success'=>$updateRouteLocationClass);
 
 		} catch (\Throwable $th) {

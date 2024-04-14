@@ -219,7 +219,6 @@ class RouteLocationController extends CustomController
 	{
 		$params = (array)  json_decode($this->app->request()->get('params'));
 
-		error_log($this->app->request()->get('params'));
         try {
 
             if ($this->repo->update($params))

@@ -246,7 +246,6 @@ class TransactionController extends CustomController
 
 		// $return = json_encode($res);
 
-		// error_log($return);
 		// echo $return;
 	}
 }

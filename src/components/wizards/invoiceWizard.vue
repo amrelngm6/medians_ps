@@ -237,7 +237,7 @@
                                     <div class="mb-6">
                                         <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Payer name')"></div>
 
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_name"></div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_first_name"></div>
                                     </div>
 
                                     <!--begin::Item-->
@@ -245,6 +245,12 @@
                                         <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Payer email')"></div>
 
                                         <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_email"></div>
+                                    </div>
+                                    
+                                    <div class="m-0">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Order id')"></div>
+                                        
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.order_id"></div>
                                     </div>
                                     
                                     <div class="m-0">
