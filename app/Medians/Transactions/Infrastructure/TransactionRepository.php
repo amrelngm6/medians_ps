@@ -95,7 +95,7 @@ class TransactionRepository
 		}	
 
 		// Return the Model object with the new data
-    	$Object = Transaction::firstOrCreate($dataArray);
+    	$Object = Transaction::create($dataArray);
 
     	// Store Custom fields
     	!empty($data['field']) ? $this->storeCustomFields($data['field'], $Object->transaction_id) : '';
