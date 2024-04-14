@@ -52,7 +52,9 @@ class RouteRepository
 	{
 		// return Route::where('business_id', $this->business_id)->where('driver_id', $driver_id)
 		return Route::where('driver_id', $driver_id)
-		->with('route_locations','position', 'vehicle')->get();
+		->where('status', 'on')
+		->with('route_locations','position', 'vehicle')
+		->get();
 	}
 
 	
