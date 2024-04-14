@@ -56,7 +56,7 @@ RouteHandler::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@ha
 RouteHandler::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
 RouteHandler::post('/signup', \Medians\Auth\Application\AuthService::class.'@userSignup');
 RouteHandler::get('/route/(:all)', \Medians\Routes\Application\RouteController::class.'@getRoute');
-RouteHandler::get('/driver_routes', \Medians\Routes\Application\RouteController::class.'@getDriverRoutes');
+RouteHandler::get('/driver_routes', \Medians\Routes\Application\RouteController::class.'@getBusinessRoutes');
 RouteHandler::get('/parent/(:all)', \Medians\Customers\Application\ParentController::class.'@checkParent');
 RouteHandler::get('/get_parent', \Medians\Customers\Application\ParentController::class.'@getParent');
 RouteHandler::get('/driver/(:all)', \Medians\Drivers\Application\DriverController::class.'@getDriver');
