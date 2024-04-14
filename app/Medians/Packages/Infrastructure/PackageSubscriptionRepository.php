@@ -56,7 +56,6 @@ class PackageSubscriptionRepository
 		->whereHas('model', function($q) use  ($parentId) {
 			return $q->where('parent_id', $parentId);
 		})
-		->whereDate('payment_status', 'unpaid')
 		->with('model','package')
 		->first();
 	}
