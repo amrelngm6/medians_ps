@@ -27,7 +27,7 @@ class Invoice extends CustomModel
 	* @var Array
 	*/
 	public $fillable = [
-		'business_id'	
+		'business_id'
 		,'code'	
 		,'user_id'	
 		,'user_type'	

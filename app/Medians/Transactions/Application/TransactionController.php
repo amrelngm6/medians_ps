@@ -195,11 +195,11 @@ class TransactionController extends CustomController
 
 			$updateRouteLocation = $paymentService->updateRouteLocation($params); 
 
-			$addInvoice = $paymentService->addInvoice($params); 
+			$addInvoice = $paymentService->addInvoice($params, $saveTransaction); 
 
-			return (isset($saveTransaction['success']))
-			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
-			: array('error'=>$saveTransaction['error']);
+			return (isset($addInvoice['success']))
+			? array('success'=>1, 'result'=>$addInvoice['result'], 'reload'=>1)
+			: array('error'=>$addInvoice['error']);
 
 		} catch (Exception $e) {
 			return array('error'=>$e->getMessage());

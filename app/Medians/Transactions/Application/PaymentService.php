@@ -35,8 +35,11 @@ class PaymentService
 
 			$class = new Student;
 
+			$invoice = $this->addInvoice($params);
+
 			$transaction = (array) $params['transaction'];
 			$transaction['model_id'] = $params['model_id'];
+			$transaction['invoice_id'] = $invoice->invoice_id;
 			$transaction['model_type'] = $class::class;
 			$transaction['item_id'] = $transaction['subscription_id'];
 			$transaction['item_type'] = $packageSubscriptionClass::class;
@@ -44,7 +47,7 @@ class PaymentService
 			
 			$transactionStored = $this->transactionRepo->store($transaction);
 			
-			return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
+			return $transactionStored;
 
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
@@ -173,9 +176,9 @@ class PaymentService
 			$data['status'] = $invoiceInfo['status'];
 			$data['notes'] = $invoiceInfo['notes'];
 
-			$invoice = $invoiceRepo->store($data);
+			return $invoiceRepo->store($data);
 
-			return array('success'=> true);
+			// return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
 
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());

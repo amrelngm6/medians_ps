@@ -26,6 +26,7 @@ class Transaction extends CustomModel
 	*/
 	public $fillable = [
 		'transaction_id'	
+		,'invoice_id'
 		,'business_id'	
 		,'subscription_id'	
 		,'model_id'	
