@@ -193,10 +193,10 @@ class BusinessApplicantController extends CustomController
 				 * Check if driver already 
 				 * working with another business
 				 */
-				if ($check->business_id != $user->business->business_id)
-				{
-					return ['error' => __('Student approved by another business')];
-				}
+				// if ($check->business_id != $user->business->business_id)
+				// {
+				// 	return ['error' => __('Student approved by another business')];
+				// }
 			}
 
 		} catch (\Exception $e) {
