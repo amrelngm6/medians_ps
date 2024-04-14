@@ -34,7 +34,7 @@ class PackageSubscriptionRepository
 	public function find($id) 
 	{
 
-		return PackageSubscription::with('model','package', 'business')->find($id);
+		return PackageSubscription::with('model','package', 'business','applicant')->find($id);
 	}
 
 	/**
@@ -42,7 +42,7 @@ class PackageSubscriptionRepository
 	*/
 	public function get($params = null) 
 	{
-		return PackageSubscription::with('model','package')->where('business_id', $this->business_id)->get();
+		return PackageSubscription::with('model','package','applicant')->where('business_id', $this->business_id)->get();
 	}
 
 	/**
@@ -59,7 +59,7 @@ class PackageSubscriptionRepository
 		->whereHas('applicant', function($q) use  ($parentId) {
 			return $q->where('status', 'approved');
 		})
-		->with('model','package', 'business')
+		->with('model','package', 'business','applicant')
 		->first();
 	}
 
