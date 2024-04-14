@@ -144,9 +144,8 @@ class BusinessApplicantController extends CustomController
 
         try {
 
-            if ($this->repo->delete($params))
+            if ($this->repo->delete($params['applicant_id']))
             {
-				$this->repo->clearStudentBusiness($params);
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
 
