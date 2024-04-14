@@ -45,6 +45,7 @@ class InvoiceRepository
 		return Invoice::with('user', 'items','business', 'transaction')
 		->where('business_id', $this->business_id)
 		->limit($limit)
+		->orderBy('invoice_id', 'DESC')
 		->get();
 	}
 
