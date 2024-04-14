@@ -189,7 +189,7 @@ class TransactionController extends CustomController
 
 			$saveTransaction = $paymentService->storeSubscriptionTransaction($params); 
 			
-			$updateStudentBusiness = isset($updateStudentBusiness['success']) ? $paymentService->updateStudentBusiness($params) : null; 
+			$updateStudentBusiness = isset($saveTransaction['success']) ? $paymentService->updateStudentBusiness($params) : null; 
 
 			$savedSubscription = isset($updateStudentBusiness['success']) ? $paymentService->updatePackageSubscription($params) : null; 
 
