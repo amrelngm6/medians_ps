@@ -5,7 +5,9 @@
         <div id="kt_app_content" class="app-content  flex-column-fluid ">
 
             <!--begin::Content container-->
-            <div id="kt_app_content_container" class="app-container  container-xxl ">
+            <div id="kt_app_content_container" class="app-container  container-xxl relative">
+                <close_icon class="absolute top-4 right-4 z-10 cursor-pointer" @click="back" />
+
                 <!--begin::Invoice 2 main-->
                 <div class="card">
                     <!--begin::Body-->

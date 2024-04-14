@@ -3,10 +3,10 @@
         
         <invoice_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting"  :system_setting="system_setting" :conf="conf" ></invoice_wizard>
         
-        <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
+        <div  v-if="!showWizard"  class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
         </div>
-        <div class="mx-2 bg-white px-4 rounded shadow-sm py-2 ">
+        <div class="mx-2 bg-white px-4 rounded shadow-sm py-2 "  v-if="!showWizard" >
             <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex ">
                 <!--begin::Card title-->
                 <div class="card-title">
