@@ -116,6 +116,8 @@ const business_applicants = defineAsyncComponent(() => import('@/components/busi
 
 const transactions = defineAsyncComponent(() => import('@/components/transactions.vue') );
 
+const invoices = defineAsyncComponent(() => import('@/components/invoices.vue') );
+
 export default {
     name: 'app',
     components: {
@@ -159,6 +161,7 @@ export default {
         driver_applicants,
         business_applicants,
         transactions,
+        invoices,
         get_started,
         translate,
         'help_messages':HelpMessages,
