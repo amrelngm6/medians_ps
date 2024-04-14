@@ -28,7 +28,6 @@ class Transaction extends CustomModel
 		'transaction_id'	
 		,'invoice_id'
 		,'business_id'	
-		,'subscription_id'	
 		,'model_id'	
 		,'model_type'	
 		,'item_id'	
@@ -51,11 +50,6 @@ class Transaction extends CustomModel
 	public function custom_fields()
 	{
 		return $this->morphMany(CustomField::class, 'model');
-	}
-
-	public function package_subscription()
-	{
-		return $this->hasOne(PackageSubscription::class, 'subscription_id', 'subscription_id')->with('package');
 	}
 
 	public function getFields()
