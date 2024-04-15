@@ -4,9 +4,14 @@
         <div class="top-0 py-2 w-full px-4 bg-gray-50 mt-0 sticky rounded" style="z-index:9">
             <div class="w-full flex gap-6">
                 <h3 class="text-base lg:text-lg whitespace-nowrap" v-text="translate('Dashboard Reports')"></h3> 
-                <ul class="w-full flex gap-4 ">
-                    <li v-for="item in dates_filters" @click="switchDate(item.value)" :class="(activeDate == item.value) ? 'font-semibold' : ''" class="cursor-pointer" v-text="translate(item.title)"></li>
-                </ul>
+                
+                <div class="w-full">
+                    <vue-tailwind-datepicker 
+                        :formatter="formatter"
+                        @update:model-value="handleSelectedDate($event)"
+                        :separator="' - '+translate('To')+' - '"
+                        v-model="dateValue" />
+                </div>
             </div>
         </div>
 
