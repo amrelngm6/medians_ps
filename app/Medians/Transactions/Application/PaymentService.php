@@ -35,7 +35,7 @@ class PaymentService
 
 			$class = new Student;
 
-			$invoice = $this->addInvoice($params);
+			$invoice = $this->addInvoice($params, $class::class);
 
 			$transaction = (array) $params['transaction'];
 			$transaction['model_id'] = $params['model_id'];
@@ -65,7 +65,7 @@ class PaymentService
 			$PrivateTrip = new \Medians\Trips\Domain\PrivateTrip;
 			$class = new \Medians\Customers\Domain\Parents;
 
-			$invoice = $this->addInvoice($params);
+			$invoice = $this->addInvoice($params, $class::class);
 
 			$transaction = (array) $params['transaction'];
 			$transaction['model_id'] = $params['model_id'];
@@ -156,7 +156,7 @@ class PaymentService
 		}
 	}
 	
-	public function addInvoice($params)
+	public function addInvoice($params, $user_type)
 	{
 		try {
 			
@@ -168,7 +168,7 @@ class PaymentService
 			$data['business_id'] = $params['business']->business_id;
 			$data['code'] = $invoiceRepo->generateCode();
 			$data['user_id'] = $invoiceInfo['model_id'];
-			$data['user_type'] = Student::class;
+			$data['user_type'] = $user_type;
 			$data['payment_method'] = $invoiceInfo['payment_method'];
 			$data['subtotal'] = $invoiceInfo['subtotal'];
 			$data['discount_amount'] = 0;
