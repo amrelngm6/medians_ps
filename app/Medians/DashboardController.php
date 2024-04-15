@@ -15,6 +15,7 @@ class DashboardController extends CustomController
 	public  $PrivateTripRepository;
 	public  $RouteRepository;
 	public  $DriverRepository;
+	public  $DriverApplicantRepository;
 	public  $RouteLocationRepository;
 	public  $VehicleRepository;
 	public  $StudentRepository;
@@ -41,6 +42,7 @@ class DashboardController extends CustomController
 		$this->VehicleRepository = new Vehicles\Infrastructure\VehicleRepository($user->business);
 		$this->RouteRepository = new Routes\Infrastructure\RouteRepository($user->business);
 		$this->DriverRepository = new Drivers\Infrastructure\DriverRepository($user->business);
+		$this->DriverApplicantRepository = new Drivers\Infrastructure\DriverApplicantRepository($user->business);
 		$this->RouteLocationRepository = new Locations\Infrastructure\RouteLocationRepository($user->business);
 		$this->StudentRepository = new Students\Infrastructure\StudentRepository($user->business);
 		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository($user->business);
@@ -145,7 +147,8 @@ class DashboardController extends CustomController
         $data['vehicles_count'] = $this->VehicleRepository->get()->count();
         $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
         $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
-        $data['latest_students'] = $this->StudentRepository->get(5);
+        $data['latest_subscriptions'] = $this->PackageSubscriptionRepository->get(5);
+        $data['driver_applicants'] = $this->DriverApplicantRepository->get(5);
         $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
         $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['transactions_count'] = $this->TransactionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();

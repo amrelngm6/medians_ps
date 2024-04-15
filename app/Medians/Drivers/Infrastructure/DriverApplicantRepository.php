@@ -37,7 +37,11 @@ class DriverApplicantRepository
 	
 	public function get($limit = 100)
 	{
-		return DriverApplicant::with('driver')->where('business_id', $this->business_id)->limit($limit)->orderBy('applicant_id', 'DESC')->get();
+		return DriverApplicant::with('driver')
+		->where('business_id', $this->business_id)
+		->limit($limit)
+		->orderBy('applicant_id', 'DESC')
+		->get();
 	}
 
 	public function getAll($limit = 100)

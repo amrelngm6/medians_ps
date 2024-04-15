@@ -51,7 +51,7 @@
                 </div>
                 
                 <div class="w-full lg:flex gap gap-6 pb-6">
-                    <div class="card mb-0 w-2/3">
+                    <div class="card mb-0 w-1/3">
                         <h4 class="p-4 ml-4" v-text="translate('Top drivers')"></h4>
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_drivers_who_have_most_trips')"></p>
                         <div class="card-body w-full">
@@ -61,8 +61,8 @@
                         </div>
                     </div>
                     <div class="card w-1/3 lg:w-1/3 lg:mb-0">
-                        <h4 class="p-4 ml-4" v-text="translate('New applicants')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('latest_students_has_been_added')"></p>
+                        <h4 class="p-4 ml-4" v-text="translate('New subscriptions')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('Latest subscriptions request has been sent')"></p>
                         <div class="card-body w-full">
                             <div class="w-full ">
                                 <div class="table-responsive w-full">
@@ -81,6 +81,38 @@
                                                         <div class="text-left">
                                                             <p class="m-0" v-text="applicant.model.name"></p>
                                                             <p class="m-0" v-text="applicant.model.mobile"></p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td v-text="applicant.status"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-1/3 lg:w-1/3 lg:mb-0">
+                        <h4 class="p-4 ml-4" v-text="translate('New Driver applicants')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('Latest drivers request has been sent')"></p>
+                        <div class="card-body w-full">
+                            <div class="w-full ">
+                                <div class="table-responsive w-full">
+                                    <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
+                                        <thead>
+                                            <tr>
+                                                <th v-text="translate('User')"></th>
+                                                <th class="text-center" v-text="translate('status')"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody v-if="content.driver_applicants"  :key="content.driver_applicants">
+                                            <tr :key="index" v-for="(applicant, index) in content.driver_applicants" class="text-center" >
+                                                <td>
+                                                    <div class="flex gap-4 w-full">
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+applicant.driver.picture" />
+                                                        <div class="text-left">
+                                                            <p class="m-0" v-text="applicant.driver.name"></p>
+                                                            <p class="m-0" v-text="applicant.driver.mobile"></p>
                                                         </div>
                                                     </div>
                                                 </td>
