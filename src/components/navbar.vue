@@ -46,14 +46,16 @@
                                                 <img :alt="auth.name" :src="auth.photo">
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <div class="fw-bold d-flex align-items-center fs-5"><span v-text="auth.name"></span><span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
-                                                </div>
+                                                <div class="fw-bold d-flex align-items-center fs-5"><span v-text="auth.name"></span></div>
                                                 <a href="#" class="fw-semibold text-muted text-hover-primary fs-7" v-text="auth.email"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="separator my-2"></div>
 
+                                    <div class="menu-item px-5" v-if="auth.business">
+                                        <span class="menu-link px-5" v-text="auth.business.name"></span>
+                                    </div>
                                     <div class="menu-item px-5">
                                         <a href="/admin/profile" class="menu-link px-5" v-text="translate('Profile')"></a>
                                     </div>
