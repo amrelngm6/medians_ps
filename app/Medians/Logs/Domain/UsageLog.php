@@ -25,6 +25,10 @@ class UsageLog extends CustomModel
 
 	public static function addItem($model)
 	{
+		if ($model::class == UsageLog::class)
+		{
+			return null;
+		}
 		$data = array();
 		$data['model'] = $model::class;
 		$data['action'] = 'create';
