@@ -23,7 +23,7 @@
             {{ picker.startDate | date }} - {{ picker.endDate | date }}
         </template>
     </date-range-picker>
-    
+
         <invoice_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting"  :system_setting="system_setting" :conf="conf" ></invoice_wizard>
         
         <div  v-if="!showWizard"  class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
@@ -87,7 +87,6 @@ import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 import invoice_wizard from '@/components/wizards/invoiceWizard.vue';
 import DateRangePicker from 'vue3-daterange-picker'
-import 'vue3-daterange-picker/dist/vue3-daterange-picker.css'
 
 export default
 {
