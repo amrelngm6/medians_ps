@@ -116,7 +116,7 @@
                                                                 <span v-if="invoiceItem.item" v-text="invoiceItem.item.name"></span>
                                                             </td>
 
-                                                            <td class="pt-6" v-text="invoiceItem.subtotal"></td>
+                                                            <td class="pt-6" v-text="invoiceItem.subtotal+ '' + system_setting.currency"></td>
                                                             <td class="pt-6" v-text="invoiceItem.discount_amount"></td>
                                                             <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount + '' + system_setting.currency"></td>
                                                         </tr>
@@ -137,7 +137,7 @@
                                                         <!--end::Accountname-->
 
                                                         
-                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.subtotal"></div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.subtotal + '' + system_setting.currency"></div>
                                                         
                                                     </div>
                             
@@ -149,7 +149,7 @@
                                                         <!--end::Accountname-->
 
                                                         
-                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.discount_amount"></div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.discount_amount+ '' + system_setting.currency"></div>
                                                         
                                                     </div>
                             
@@ -161,7 +161,7 @@
                                                         <!--end::Accountnumber-->
 
                                                         <!--begin::Number-->
-                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.total_amount"></div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.total_amount+ '' + system_setting.currency"></div>
                                                         <!--end::Number-->
                                                     </div>
                             
