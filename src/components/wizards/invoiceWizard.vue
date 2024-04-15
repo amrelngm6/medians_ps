@@ -62,7 +62,10 @@
                                                 
 
                                                 <!--end::Text-->
-                                                <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.user.name"></div>
+                                                <div class="flex gap-2" >
+                                                    <img :src="activeItem.user.picture" class="w-10 h-10" />
+                                                    <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.user.name"></div>
+                                                </div>
                                                 <div class="text-gray-800" v-text="activeItem.user.mobile"></div>
                                                 <!--end::Text-->
 
