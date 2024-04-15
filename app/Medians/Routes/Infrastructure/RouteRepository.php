@@ -110,10 +110,10 @@ class RouteRepository
     	$Object = Route::create($dataArray);
 
     	// Store Custom fields
-		isset($data['field']) ? $this->storeCustomFields($data['field'], $Object->id) : '';
+		isset($data['field']) ? $this->storeCustomFields($data['field'], $Object->route_id) : '';
 				
     	// Store Postition
-		!empty($data['position']) ? $this->storeRoutePosition($data['position'], $Object->id) : '';
+		!empty($data['position']) ? $this->storeRoutePosition($data['position'], $Object->route_id) : '';
 		// isset($data['states']) ? $this->storeRouteStates($data['states'], $Object->id) : '';
 
     	return $Object;
