@@ -205,6 +205,13 @@
             
                                     <!--begin::Item-->
                                     <div class="mb-6">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Transaction number')"></div>
+
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.transaction_id"></div>
+                                    </div>
+            
+                                    <!--begin::Item-->
+                                    <div class="mb-6">
                                         <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
 
                                         <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.amount"></div>
