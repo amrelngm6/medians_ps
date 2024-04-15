@@ -145,7 +145,7 @@ export default
 
         const handleSelectedDate = (event) => {
             console.log(event);
-            handleGetRequest( props.conf.url+props.path+'?start_date'+event.startDate+'&end_date'+event.endDate+'&load=json' ).then(response=> {
+            handleGetRequest( props.conf.url+props.path+'?start_date='+event.startDate+'&end_date='+event.endDate+'&load=json' ).then(response=> {
             console.log(response);
                 content.value = JSON.parse(JSON.stringify(response))
             });
