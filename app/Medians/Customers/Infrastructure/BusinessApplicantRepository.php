@@ -42,7 +42,7 @@ class BusinessApplicantRepository
 
 	public function getAll($limit = 100)
 	{
-		return BusinessApplicant::with('subscription','model')->where('business_id', $this->business_id)->limit($limit)->orderBy('applicant_id', 'DESC')->get();
+		return BusinessApplicant::with('model','subscription')->where('business_id', $this->business_id)->limit($limit)->orderBy('applicant_id', 'DESC')->get();
 	}
 
 	public function checkDuplicate($businessId, $modelId)
