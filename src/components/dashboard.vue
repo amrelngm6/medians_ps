@@ -114,7 +114,7 @@
                                             </tr>
                                         </thead>
                                         <tbody >
-                                            <tr :key="index" v-for="(message, index) in content.latest_help_messages" class="text-center">
+                                            <tr :key="index" v-for="(message, index) in content.latest_help_messages" >
                                                 <td class="flex gap-2">
                                                     <img v-if="message.user" :src="message.user.picture" width="24" height="24" class="rounded" />
                                                     <span v-if="message.user" v-text="message.user.name"></span>
