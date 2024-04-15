@@ -71,13 +71,21 @@
                                             <tr>
                                                 <th colspan="2" v-text="translate('User')"></th>
                                                 <th v-text="translate('Contact')"></th>
+                                                <th v-text="translate('status')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.applicants"  :key="content.applicants">
                                             <tr :key="index" v-for="(applicant, index) in content.applicants" class="text-center" >
-                                                <td><img width="48" height="48" class="rounded" :src="'/app/image.php?w=50&h=50&src='+applicant.model.picture" /></td>
-                                                <td v-text="applicant.model.name"></td>
-                                                <td  v-text="applicant.model.mobile"></td>
+                                                <td>
+                                                    <div class="flex gap-2 w-full">
+                                                        <img width="48" height="48" class="rounded" :src="'/app/image.php?w=50&h=50&src='+applicant.model.picture" />
+                                                        <div>
+                                                            <p v-text="applicant.model.name"></p>
+                                                            <p v-text="applicant.model.mobile"></p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td  v-text="applicant.status"></td>
                                             </tr>
                                         </tbody>
                                     </table>
