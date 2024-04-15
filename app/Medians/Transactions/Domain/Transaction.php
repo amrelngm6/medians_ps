@@ -9,6 +9,7 @@ use Medians\Users\Domain\User;
 use Medians\Branches\Domain\Branch;
 use Medians\Packages\Domain\PackageSubscription;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Invoices\Domain\Invoice;
 
 class Transaction extends CustomModel
 {
@@ -70,6 +71,11 @@ class Transaction extends CustomModel
 	public function business()
 	{
 		return $this->hasOne(Business::class, 'business_id', 'business_id');
+	}
+
+	public function invoice()
+	{
+		return $this->hasOne(Invoice::class, 'invoice_id', 'invoice_id');
 	}
 
 

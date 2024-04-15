@@ -53,7 +53,7 @@ class TransactionRepository
 	public function getByDate($params )
 	{
 
-	  	$check = Transaction::with('model', 'item')->where('business_id', $this->business_id);
+	  	$check = Transaction::with('model', 'item','invoice')->where('business_id', $this->business_id);
 
 	  	if (!empty($params["start_date"]))
 	  	{
