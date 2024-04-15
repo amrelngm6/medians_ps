@@ -48,6 +48,8 @@ class SystemSettingsController extends CustomController
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['lang'=>'arabic','title'=>__('Arabic')], ['lang'=>'english','title'=>__('English')]]  
 				],
+				[ 'key'=> "currency", 'title'=> __('Currency'), 'fillable'=> true, 'column_type'=>'text' ],
+
 			],
 			'site_setting'=> [	
 				[ 'key'=> "footer_email", 'title'=> __('Footer email'), 'fillable'=> true, 'column_type'=>'email' ],
