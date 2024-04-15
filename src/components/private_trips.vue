@@ -161,7 +161,14 @@ export default
         }
 
 
+        const handleSelectedDate = (event) => {
+            handleGetRequest( props.conf.url+props.path+'?start_date='+event.startDate+'&end_date='+event.endDate+'&load=json' ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+            });
+        }
+        
         return {
+            handleSelectedDate,
             usersList,
             showWizard,
             setType,

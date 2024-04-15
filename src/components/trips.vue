@@ -88,6 +88,7 @@ const maps = defineAsyncComponent(() =>
 const trip_page = defineAsyncComponent(() => import('@/components/trip_page.vue') );
 const usertype_picker = defineAsyncComponent(() => import('@/components/includes/usertype_picker.vue') );
 const trip_wizard = defineAsyncComponent(() => import('@/components/wizards/tripWizard.vue') );
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
 export default
 {
@@ -100,10 +101,21 @@ export default
         trip_page,
         usertype_picker,
         trip_wizard,
+        VueTailwindDatepicker
     },
     name: 'Route trips',
     
     setup(props) {
+
+        const dateValue = ref({
+            startDate: "",
+            endDate: "",
+        });
+
+        const formatter = ref({
+            date: "YYYY-MM-DD",
+            month: "MMM",
+        });
 
         const url =  props.conf.url+props.path+'?load=json';
 
