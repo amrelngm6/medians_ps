@@ -2,6 +2,8 @@
     <div class="w-full " >
         <vue-tailwind-datepicker 
         :formatter="formatter"
+        @change="handleSelectedDate($event)"
+        @update="handleSelectedDate($event)"
         :separator="' - '+translate('To')+' - '"
         @select-month="handleSelectedDate($event)"
         @select-right-month="handleSelectedDate($event)"
