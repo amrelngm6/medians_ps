@@ -151,6 +151,8 @@ class DashboardController extends CustomController
         $data['driver_applicants'] = $this->DriverApplicantRepository->get(5);
         $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
         $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['latest_invoices'] = $this->InvoiceRepository->get(5);
+        $data['latest_transactions'] = $this->TransactionRepository->get(5);
         $data['transactions_count'] = $this->TransactionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['subscriptions_count'] = $this->PackageSubscriptionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
 

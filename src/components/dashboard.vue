@@ -162,6 +162,39 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card  w-full  no-mobile">
+                        <div class="w-full flex p-4">
+                            <h4 class="w-full " v-text="translate('Latest Transactions')"></h4>
+                            <a href="/admin/transactions" class="w-20" v-text="translate('View all')"></a>
+                        </div>
+                        <div class="card-body w-full">
+                            <div class="w-full">
+                                <div class="table-responsive w-full">
+                                    <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
+                                        <thead>
+                                            <tr>
+                                                <th v-text="translate('User')"></th>
+                                                <th v-text="translate('Amount')"></th>
+                                                <th v-text="translate('Invoice')"></th>
+                                                <th v-text="translate('date')"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr :key="index" v-for="(transaction, index) in content.latest_transactions" >
+                                                <td class="flex gap-2">
+                                                    <img v-if="transaction.model" :src="transaction.model.picture" width="24" height="24" class="rounded" />
+                                                    <span v-if="transaction.model" v-text="transaction.model.name"></span>
+                                                </td>
+                                                <td v-text="transaction.amount"></td>
+                                                <td v-text="transaction.invoice ? transaction.invoice.code : ''"></td>
+                                                <td v-text="dateTimeFormat(transaction.created_at)"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
