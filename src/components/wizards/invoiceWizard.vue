@@ -63,6 +63,7 @@
 
                                                 <!--end::Text-->
                                                 <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.user.name"></div>
+                                                <div class="text-gray-800" v-text="activeItem.user.mobile"></div>
                                                 <!--end::Text-->
 
                                                 <!--end::Description-->
@@ -317,7 +318,7 @@ export default
             const searchText = ref('');
 
             console.log(props.business_setting);
-            
+
             if (props.item) {
                 activeItem.value = props.item
             }
