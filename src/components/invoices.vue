@@ -173,7 +173,7 @@ export default
 {
     .flex.flex-wrap.lg.flex-nowrap
     {
-        flex-wrap: nowrap;
+        flex-wrap: nowrap !important;
     }
 }
 
