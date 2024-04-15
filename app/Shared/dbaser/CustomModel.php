@@ -147,7 +147,7 @@ class CustomModel extends Model
     	if (!$this->wasRecentlyCreated)
     		return true;
 		
-		UsageLog::addItem($this);
+		UsageLog::addItem($this, 'create');
 
     	// Insert activation code 
     	return (new NotificationEvent)->handleEvent($this, 'create');
@@ -160,7 +160,7 @@ class CustomModel extends Model
      */
     public function updatedEvent()
     {
-		UsageLog::addItem($this);
+		UsageLog::addItem($this, 'update');
 
 		$PK = $this->getPrimaryKey();
 
