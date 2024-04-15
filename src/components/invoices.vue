@@ -120,7 +120,6 @@ export default
         {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
-                searchField.value = content.value.columns[1].value;
             });
         }
         
