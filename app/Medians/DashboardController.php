@@ -20,6 +20,10 @@ class DashboardController extends CustomController
 	public  $StudentRepository;
 	public  $HelpMessageRepository;
 	public  $BusinessApplicantRepository;
+	public  $BusinessApplicantRepository;
+	public  $InvoiceRepository;
+	public  $TransactionRepository;
+	public  $PackageSubscriptionsRepository;
 
 	protected $app;
 	public $start;
@@ -42,6 +46,9 @@ class DashboardController extends CustomController
 		$this->StudentRepository = new Students\Infrastructure\StudentRepository($user->business);
 		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository($user->business);
 		$this->BusinessApplicantRepository = new Customers\Infrastructure\BusinessApplicantRepository($user->business);
+		$this->InvoiceRepository = new Invoices\Infrastructure\InvoiceRepository($user->business);
+		$this->TransactionRepository = new Transactions\Infrastructure\TransactionRepository($user->business);
+		$this->PackageSubscriptionsRepository = new Packages\Infrastructure\PackageSubscriptionsRepository($user->business);
 
 		$this->start = $this->app->request()->get('start_date') ? date('Y-m-d', strtotime($this->app->request()->get('start_date'))) : date('Y-m-d');
 		$this->end = $this->app->request()->get('end_date') ? date('Y-m-d', strtotime($this->app->request()->get('end_date'))) : date('Y-m-d');
@@ -137,6 +144,9 @@ class DashboardController extends CustomController
         $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
         $data['latest_students'] = $this->StudentRepository->get(5);
         $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
+        $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['transactions_count'] = $this->TransactionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['subscriptions_count'] = $this->PackageSubscriptionsRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
 
         return $data;
 
