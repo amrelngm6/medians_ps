@@ -105,7 +105,7 @@ class TripRepository
 	{
 		return Trip::with('locations', 'driver', 'vehicle', 'route')->whereHas(
 			'locations', function($q) use ($id){
-				$q->where('model_id', $id)->with('model');
+				$q->where('model_id', $id)->where('model_type', Student::class)->with('model');
 			}
 		)->withCount('moving_locations')->withCount('waiting_locations')->orderBy('trip_id','DESC')->limit(10)->get();
 	}
@@ -142,7 +142,8 @@ class TripRepository
 	public function getByDate($params)
 	{
 		
-		$check = Trip::with('locations',  'driver', 'vehicle', 'route','supervisor')->where('business_id', $this->business_id)
+		$check = Trip::with('locations',  'driver', 'vehicle', 'route','supervisor')
+		->where('business_id', $this->business_id)
 		->withCount('moving_locations')->withCount('locations');
 
 		if (!empty($params["start_date"]))
@@ -155,7 +156,8 @@ class TripRepository
 
 	public function allEventsByDate($params)
 	{
-		$query = Trip::whereBetween('date', [$params['start'], $params['end']]);
+		$query = Trip::where('business_id', $this->business_id)
+		->whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -179,7 +181,8 @@ class TripRepository
 	public function getAllByDateCharts($params )
 	{
 
-	  	$check = Trip::whereBetween('date' , [$params['start'] , $params['end']])
+	  	$check = Trip::where('business_id', $this->business_id)
+		->whereBetween('date' , [$params['start'] , $params['end']])
 		->selectRaw('COUNT(*) as y, date as label')
 		->where('business_id', $this->business_id);
 

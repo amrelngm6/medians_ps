@@ -103,7 +103,7 @@ class PrivateTripRepository
 
 	public function allEventsByDate($params)
 	{
-		$query = PrivateTrip::whereBetween('date', [$params['start'], $params['end']]);
+		$query = PrivateTrip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
