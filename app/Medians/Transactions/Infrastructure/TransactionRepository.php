@@ -55,13 +55,12 @@ class TransactionRepository
 
 	  	$check = Transaction::with('model', 'item')->where('business_id', $this->business_id);
 
-	  	if (!empty($params["date"]))
+	  	if (!empty($params["start_date"]))
 	  	{
-	  		$check = $check->whereDate('date' , [$params['start'] , $params['end']]);
+	  		$check = $check->whereBetween('date' , [$params['start_date'] , $params['end_date']]);
 	  	}
-  		
 
-  		return $check->orderBy('created_at', 'DESC');
+  		return $check->orderBy('created_at', 'DESC')->get();
 	}
 
 

@@ -60,11 +60,12 @@ class TransactionController extends CustomController
 	 */ 
 	public function index() 
 	{
+		$params = $this->app->request()->query->all();
 
 		return render('transactions', [
 			'load_vue'=> true,
 	        'title' => __('Transaction list'),
-	        'items' => $this->repo->get(),
+	        'items' => $this->repo->getByDate($params),
 	        'columns' => $this->columns(),
 	    ]);
 	}
