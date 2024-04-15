@@ -1,10 +1,6 @@
 <template>
     <div class="w-full " >
-        <vue-tailwind-datepicker 
-        :formatter="formatter"
-        @update:model-value="handleSelectedDate($event)"
-        :separator="' - '+translate('To')+' - '"
-        v-model="dateValue" />
+        
 
         <invoice_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting"  :system_setting="system_setting" :conf="conf" ></invoice_wizard>
         
@@ -34,6 +30,19 @@
                         <select v-model="searchField" class="form-select form-select-solid select2-hidden-accessible" data-control="select2" data-hide-search="true" data-placeholder="Rating" data-kt-ecommerce-order-filter="rating" data-select2-id="select2-data-9-zple" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
                             <option v-for="col in content.columns" v-text="col.text" :value="col.value"></option>
                         </select>
+                    </div>
+
+                </div>
+
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-end justify-content-end gap-5">
+
+                    <div class="w-250px">
+                        <vue-tailwind-datepicker 
+                            :formatter="formatter"
+                            @update:model-value="handleSelectedDate($event)"
+                            :separator="' - '+translate('To')+' - '"
+                            v-model="dateValue" />
                     </div>
 
                 </div>
