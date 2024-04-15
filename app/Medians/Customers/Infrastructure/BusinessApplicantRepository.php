@@ -69,11 +69,24 @@ class BusinessApplicantRepository
 	
 	public function allEventsByDate($params)
 	{
-		$query = BusinessApplicant::whereBetween('created_at', [$params['start'], $params['end']]);
+		$query = BusinessApplicant::where('business_id', $this->business_id)->whereBetween('created_at', [$params['start'], $params['end']]);
 		return $query;
 	}
 
 
+	/**
+	* Find all items between two days 
+	*/
+	public function getAllByDateCharts($params )
+	{
+
+	  	$check = BusinessApplicant::where('business_id', $this->business_id)
+		->whereBetween('created_at' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, created_at as label');
+
+  		return $check->groupBy('created_at')->orderBy('created_at', 'ASC')->get();
+	}
+	
 	
 	/**
 	* Save item to database
