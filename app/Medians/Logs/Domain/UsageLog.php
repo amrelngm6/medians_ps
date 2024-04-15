@@ -32,7 +32,7 @@ class UsageLog extends CustomModel
 		$data = array();
 		$data['model'] = $model::class;
 		$data['action'] = 'create';
-		$data['data'] = json_encode($model);
+		$data['data'] = json_encode(json_decode($model));
 		$save = UsageLog::create($data);
 		return $save;
 	}
