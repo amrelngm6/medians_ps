@@ -127,7 +127,8 @@ class PrivateTripRepository
 	public function getAllByDateCharts($params )
 	{
 
-	  	$check = PrivateTrip::whereBetween('date' , [$params['start'] , $params['end']])
+	  	$check = PrivateTrip::where('business_id', $this->business_id)
+		->whereBetween('date' , [$params['start'] , $params['end']])
 		->selectRaw('COUNT(*) as y, date as label');
 
   		return $check->groupBy('date')->orderBy('date', 'ASC')->get();

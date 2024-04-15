@@ -168,7 +168,8 @@ class TripRepository
 	public function getByDateCharts($params )
 	{
 
-	  	$check = Trip::where('business_id', $this->business_id)->whereBetween('date' , [$params['start'] , $params['end']])
+	  	$check = Trip::where('business_id', $this->business_id)
+		->whereBetween('date' , [$params['start'] , $params['end']])
 		->selectRaw('COUNT(*) as y, date as label');
 
   		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
@@ -183,8 +184,7 @@ class TripRepository
 
 	  	$check = Trip::where('business_id', $this->business_id)
 		->whereBetween('date' , [$params['start'] , $params['end']])
-		->selectRaw('COUNT(*) as y, date as label')
-		->where('business_id', $this->business_id);
+		->selectRaw('COUNT(*) as y, date as label');
 
   		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
 	}
