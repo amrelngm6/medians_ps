@@ -13,7 +13,7 @@
                 <div class="card-title">
                     <!--begin::Search-->
                     <div class="d-flex align-items-center position-relative my-1">
-                        <input type="text"  v-model="searchValue" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Report">
+                        <input type="text"  v-model="searchValue" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-150px ps-12" placeholder="Search Report">
                     </div>
                     <!--end::Search-->
 
@@ -35,7 +35,7 @@
                 </div>
 
                 <!--begin::Card toolbar-->
-                <div class="card-toolbar flex-end">
+                <div class="card-toolbar w-full flex-end">
 
                     <div class="w-full">
                         <vue-tailwind-datepicker 
