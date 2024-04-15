@@ -142,19 +142,17 @@
                                                 <th v-text="translate('subject')"></th>
                                                 <th v-text="translate('message')"></th>
                                                 <th v-text="translate('date')"></th>
-                                                <th v-text="translate('status')"></th>
                                             </tr>
                                         </thead>
                                         <tbody >
                                             <tr :key="index" v-for="(message, index) in content.latest_help_messages" >
                                                 <td class="flex gap-2">
-                                                    <img v-if="message.user" :src="message.user.picture" width="24" height="24" class="rounded" />
+                                                    <img v-if="message.user" :src="message.user.picture" width="40" height="40" class="w-10 h-10 rounded" />
                                                     <span v-if="message.user" v-text="message.user.name"></span>
                                                 </td>
                                                 <td v-text="message.subject"></td>
                                                 <td class="text-red-500" v-text="message.message"></td>
                                                 <td v-text="dateTimeFormat(message.created_at)"></td>
-                                                <td v-text="message.status"></td>
                                             </tr>
                                         </tbody>
                                     </table>
