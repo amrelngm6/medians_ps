@@ -384,4 +384,11 @@ export default {
   transition: all 0.1s ease-in-out;
 }
 
+@media (min-width: 1024px)
+{
+    .flex.flex-wrap.lg\:flex-nowrap
+    {
+        flex-wrap: nowrap !important;
+    }
+}
 </style>
