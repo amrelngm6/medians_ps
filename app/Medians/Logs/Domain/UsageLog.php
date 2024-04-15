@@ -33,7 +33,7 @@ class UsageLog extends CustomModel
 		$pk = $model->getPrimaryKey();
 		$data = array();
 		$data['model_type'] = $model::class;
-		$data['model_type'] = $model->$pk;
+		$data['model_id'] = $model->$pk;
 		$data['action'] = $action;
 		$data['data'] = json_encode(json_decode($model));
 		$save = UsageLog::create($data);
