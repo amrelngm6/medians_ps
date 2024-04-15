@@ -41,8 +41,8 @@ class DashboardController extends CustomController
 		$this->StudentRepository = new Students\Infrastructure\StudentRepository($user->business);
 		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository($user->business);
 
-		$this->start = $this->app->request()->get('start') ? date('Y-m-d', strtotime($this->app->request()->get('start'))) : date('Y-m-d');
-		$this->end = $this->app->request()->get('end') ? date('Y-m-d', strtotime($this->app->request()->get('end'))) : date('Y-m-d');
+		$this->start = $this->app->request()->get('start_date') ? date('Y-m-d', strtotime($this->app->request()->get('start_date'))) : date('Y-m-d');
+		$this->end = $this->app->request()->get('end_date') ? date('Y-m-d', strtotime($this->app->request()->get('end_date'))) : date('Y-m-d');
 		$this->month_first = date('Y-m-01');
 	}
 
@@ -122,9 +122,9 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
-        $data['active_trips_count'] = $this->TripRepository->eventsByDate(['start_date'=>$this->start, 'end_date'=>$this->end])->where('status', 'scheduled')->count();
-        $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start_date'=>$this->start, 'end_date'=>$this->end])->count();
-        $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start_date'=>$this->start, 'end_date'=>$this->end])->count();
+        $data['active_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('status', 'scheduled')->count();
+        $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['drivers_count'] = $this->DriverRepository->get()->count();
         $data['routes_count'] = $this->RouteRepository->get()->count();
