@@ -92,6 +92,7 @@ const maps = defineAsyncComponent(() =>
 const trip_page = defineAsyncComponent(() => import('@/components/trip_page.vue') );
 const usertype_picker = defineAsyncComponent(() => import('@/components/includes/usertype_picker.vue') );
 const private_trip_wizard = defineAsyncComponent(() => import('@/components/wizards/privateTripWizard.vue') );
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
 export default
 {
@@ -104,6 +105,7 @@ export default
         trip_page,
         usertype_picker,
         private_trip_wizard,
+        VueTailwindDatepicker
     },
     name: 'Private trips',
     
