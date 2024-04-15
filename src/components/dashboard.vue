@@ -25,8 +25,13 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Business applicants')" :value="content.business_applicant_count"></dashboard_card_white>
                     </div>
                     
-                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
-                        <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
+                    <div class="w-full gap-4 lg:flex">
+                        <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
+                            <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
+                        </div>
+                        <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
+                            <ag-charts-vue :key="line_options2" :options="line_options2"> </ag-charts-vue>
+                        </div>
                     </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
@@ -143,6 +148,7 @@ export default
         const url =  ref(props.path + '?load=json');
 
         const line_options = ref();
+        const line_options2 = ref();
         const pie_options = ref();
         const column_options = ref();
 
@@ -218,6 +224,19 @@ export default
                 ],
             };
 
+            // Line charts for sales in last days 
+            line_options2.value  =  {
+
+                // Line charts Data 
+                data: content.value.private_trips_charts,
+
+                // Series: Defines which chart type and data to use
+                series: [
+                    { type: 'bar', xKey: 'label', yKey: 'y' },
+                    { type: 'line', xKey: 'label', yKey: 'y' },
+                ],
+            };
+
             
             // Line charts for sales in last days 
             pie_options.value  =  {
@@ -257,6 +276,7 @@ export default
             optionsbar,
             translate,
             line_options,
+            line_options2,
             pie_options,
             dates_filters,
             content,
