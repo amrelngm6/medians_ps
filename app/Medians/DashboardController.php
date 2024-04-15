@@ -100,8 +100,8 @@ class DashboardController extends CustomController
 		try {
 
 			// $trips_charts = $this->TripRepository->getByDateCharts(['start'=>$this->app->request()->get('start') ? $this->start : $this->month_first, 'end'=>$this->end]);
-			$trips_charts = $this->TripRepository->getAllByDateCharts(['start'=>$this->app->request()->get('start') ? $this->start : $this->month_first, 'end'=>$this->end]);
-			$private_trips_charts = $this->PrivateTripRepository->getAllByDateCharts(['start'=>$this->app->request()->get('start') ? $this->start : $this->month_first, 'end'=>$this->end]);
+			$trips_charts = $this->TripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+			$private_trips_charts = $this->PrivateTripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 			$applicants = $this->BusinessApplicantRepository->get(5);
 
 			$counts = $this->loadCounts();
