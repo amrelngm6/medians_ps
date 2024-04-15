@@ -38,7 +38,7 @@ class PackageSubscription extends CustomModel
 
     public function getNameAttribute()
     {
-        return isset($this->package->name) ? $this->package->name : '';
+        return isset($this->with('package')->package->name) ? $this->package->name : '';
     }
 
     public function getIsPaidAttribute()
