@@ -50,6 +50,10 @@ class PrivateTrip extends CustomModel
 
 	
 	public function getUsertypeAttribute() {
+		if (empty($this->model_type))
+		{
+			return '';
+		}
 		$parts = explode('\\', $this->model_type);
 		return strtolower(end($parts));
 	}
