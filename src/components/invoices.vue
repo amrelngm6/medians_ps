@@ -168,3 +168,13 @@ export default
     ],
 };
 </script>
+<style type="css">
+@media (min-width: 1024px)
+{
+    .flex.flex-wrap.lg.flex-nowrap
+    {
+        flex-wrap: nowrap;
+    }
+}
+
+</style>
