@@ -26,11 +26,17 @@
                     </div>
                     
                     <div class="w-full gap-4 lg:flex">
-                        <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
-                            <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
+                        <div class="w-full">
+                            <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
+                                <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
+                            </div>
                         </div>
-                        <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
-                            <ag-charts-vue :key="line_options2" :options="line_options2"> </ag-charts-vue>
+                        <div class="w-full">
+                            <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
+                                <ag-charts-vue :key="line_options2" :options="line_options2"> </ag-charts-vue>
+                            </div>
                         </div>
                     </div>
                     
