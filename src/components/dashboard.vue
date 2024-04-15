@@ -70,7 +70,6 @@
                                         <thead>
                                             <tr>
                                                 <th colspan="2" v-text="translate('User')"></th>
-                                                <th v-text="translate('Contact')"></th>
                                                 <th v-text="translate('status')"></th>
                                             </tr>
                                         </thead>
