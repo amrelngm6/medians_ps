@@ -60,7 +60,6 @@
                                                 
                                                 <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issue For')"></div>
                                                 
-
                                                 <!--end::Text-->
                                                 <div class="flex gap-2" >
                                                     <img :src="activeItem.user.picture" class="w-10 h-10" />
@@ -115,9 +114,9 @@
 
                                                     <tbody v-if="activeItem.items">
                                                         <tr class="fw-bold text-gray-700 fs-5 text-end" v-for="invoiceItem in activeItem.items">
-                                                            <td class="d-flex align-items-center pt-6 gap-2" v-if="invoiceItem">
+                                                            <td class="d-flex align-items-center pt-6 gap-2" v-if="invoiceItem" >
                                                                 <vue-feather type="cloud-lightning" ></vue-feather>
-                                                                <span v-if="invoiceItem.item" v-text="invoiceItem.item.name"></span>
+                                                                <a :href="'./package_subscriptions'+" v-if="invoiceItem.item" v-text="invoiceItem.item.name"></a>
                                                             </td>
 
                                                             <td class="pt-6" v-text="invoiceItem.subtotal+ '' + system_setting.currency"></td>

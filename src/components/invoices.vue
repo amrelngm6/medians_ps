@@ -75,8 +75,8 @@ export default
         'datatabble': Vue3EasyDataTable,
         invoice_wizard
     },
-    
-    setup(props) {
+    emits: ['callback'],
+    setup(props, {emit}) {
         
         const showWizard = ref(false);
 
@@ -94,7 +94,6 @@ export default
 
         const searchField = ref("invoice_id");
         const searchValue = ref("");
-
         
         function load()
         {

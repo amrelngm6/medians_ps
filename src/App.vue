@@ -17,7 +17,7 @@
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
                         <div class="w-full" v-if="checkAccess()">
                             <transition  :duration="1000">
-                                <component class="pt-8 px-1" ref="activeTab" :business_setting="business_setting" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent"></component>
+                                <component @callback="switchTab" class="pt-8 px-1" ref="activeTab" :business_setting="business_setting" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent"></component>
                             </transition>
                         </div>
                         <div class="w-full" v-if="!checkAccess()">
