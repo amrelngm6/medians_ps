@@ -62,7 +62,7 @@ class InvoiceRepository
 	  		$check = $check->whereDate('date' , [$params['start_date'] , $params['end_date']]);
 	  	}
 
-  		return $check->orderBy('created_at', 'DESC');
+  		return $check->orderBy('created_at', 'DESC')->get();
 	}
 
 
