@@ -153,7 +153,7 @@ class RouteRepository
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);
-				$this->storeRouteStates(null, $id);
+				$this->storeRoutePosition(null, $id);
 			}
 
 			return true;
