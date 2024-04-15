@@ -94,6 +94,13 @@ class PrivateTripRepository
 		return $check->orderBy('created_at', 'DESC')->get();
 	}
 
+	
+	public function eventsByDate($params)
+	{
+		$query = PrivateTrip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);
+		return $query;
+	}
+	
 	public function allEventsByDate($params)
 	{
 		$query = PrivateTrip::whereBetween('date', [$params['start'], $params['end']]);

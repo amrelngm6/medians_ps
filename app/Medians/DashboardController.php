@@ -12,6 +12,7 @@ class DashboardController extends CustomController
 	*/
 	public  $contentRepo;
 	public  $TripRepository;
+	public  $PrivateTripRepository;
 	public  $RouteRepository;
 	public  $DriverRepository;
 	public  $RouteLocationRepository;
@@ -32,6 +33,7 @@ class DashboardController extends CustomController
 
 		$this->contentRepo = new Content\Infrastructure\ContentRepository($user->business);
 		$this->TripRepository = new Trips\Infrastructure\TripRepository($user->business);
+		$this->PrivateTripRepository = new Trips\Infrastructure\PrivateTripRepository($user->business);
 		$this->VehicleRepository = new Vehicles\Infrastructure\VehicleRepository($user->business);
 		$this->RouteRepository = new Routes\Infrastructure\RouteRepository($user->business);
 		$this->DriverRepository = new Drivers\Infrastructure\DriverRepository($user->business);
@@ -121,7 +123,7 @@ class DashboardController extends CustomController
 		$data = [];
 
         $data['active_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('status', 'scheduled')->count();
-        $data['completed_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('status', 'completed')->count();
+        $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['drivers_count'] = $this->DriverRepository->get()->count();

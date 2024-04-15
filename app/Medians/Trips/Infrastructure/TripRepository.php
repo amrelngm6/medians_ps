@@ -132,6 +132,13 @@ class TripRepository
 		return Trip::where('business_id', $this->business_id)->withCount('moving_locations')->withCount('locations')->with('route', 'locations',  'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
 	}
 
+	
+	public function eventsByDate($params)
+	{
+		$query = Trip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);
+		return $query;
+	}
+
 	public function getByDate($params)
 	{
 		
