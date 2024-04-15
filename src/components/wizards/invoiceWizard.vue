@@ -316,6 +316,8 @@ export default
             const fillable = ref([props.usertype, 'Package', 'Subscription', 'Confirm']);
             const searchText = ref('');
 
+            console.log(props.business_setting);
+            
             if (props.item) {
                 activeItem.value = props.item
             }
