@@ -59,7 +59,7 @@ class PrivateTripRepository
 		->where('driver_id', $driver_id)
 		->whereIn('status',  ['scheduled','started'])
 		->where('date', '>=', date('Y-m-d'))
-        ->with('model','driver','vehicle')
+        ->with('model','driver','vehicle','business')
 		->first();
 	}
 
@@ -68,14 +68,14 @@ class PrivateTripRepository
 		return PrivateTrip::where('model_id', $parent_id)->where('model_type', Parents::class)
 		->whereIn('status',  ['scheduled','started'])
 		->where('date', '>=', date('Y-m-d'))
-        ->with('model','driver','vehicle')
+        ->with('model','driver','vehicle','business')
 		->first();
 	}
 
 	public function getParentTrips($parent_id)
 	{
 		return PrivateTrip::where('model_id', $parent_id)->where('model_type', Parents::class)
-        ->with('model','driver','vehicle')
+        ->with('model','driver','vehicle','business')
 		->orderBy('trip_id','DESC')
 		->get();
 	}
@@ -100,7 +100,7 @@ class PrivateTripRepository
 		$query = PrivateTrip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
-	
+
 	public function allEventsByDate($params)
 	{
 		$query = PrivateTrip::whereBetween('date', [$params['start'], $params['end']]);
