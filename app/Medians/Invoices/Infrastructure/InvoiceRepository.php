@@ -80,6 +80,21 @@ class InvoiceRepository
 	}
 	
 
+	
+	public function eventsByDate($params)
+	{
+		$query = Invoice::where('business_id', $this->business_id)
+		->whereBetween('date', [$params['start'], $params['end']]);
+		return $query;
+	}
+	
+	public function allEventsByDate($params)
+	{
+		$query = Invoice::whereBetween('date', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+
 	/**
 	* Save item to database
 	*/

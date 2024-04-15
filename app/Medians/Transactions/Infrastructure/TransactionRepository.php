@@ -77,6 +77,21 @@ class TransactionRepository
 	  	->orderBy('created_at', 'DESC');
 	}
 	
+	
+	public function eventsByDate($params)
+	{
+		$query = Transaction::where('business_id', $this->business_id)
+		->whereBetween('date', [$params['start'], $params['end']]);
+		return $query;
+	}
+	
+	public function allEventsByDate($params)
+	{
+		$query = Transaction::whereBetween('date', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+
 
 	/**
 	* Save item to database

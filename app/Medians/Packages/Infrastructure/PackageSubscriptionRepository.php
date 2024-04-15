@@ -63,6 +63,20 @@ class PackageSubscriptionRepository
 		->first();
 	}
 
+	
+	public function eventsByDate($params)
+	{
+		$query = PackageSubscription::where('business_id', $this->business_id)
+		->whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+	
+	public function allEventsByDate($params)
+	{
+		$query = PackageSubscription::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
 
 	/**
 	* Save item to database
