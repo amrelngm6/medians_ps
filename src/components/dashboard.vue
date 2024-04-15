@@ -302,4 +302,7 @@ export default
         right: auto;
         left:0;
     }
+    canvas {
+        max-width: 100%;
+    }
 </style>
