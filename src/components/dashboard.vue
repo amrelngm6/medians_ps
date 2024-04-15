@@ -19,15 +19,23 @@
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
-                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="translate('active_trips')" :value="content.active_trips_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="translate('total route trips')" :value="content.total_trips_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="translate('Private trips')" :value="content.private_trips_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="translate('Transactions')" :value="content.transactions_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="translate('Subscriptions')" :value="content.subscriptions_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Business applicants')" :value="content.business_applicant_count"></dashboard_card_white>
                     </div>
                     
                     <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
                         <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
                     </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="translate('active_trips')" :value="content.active_trips_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="translate('total route trips')" :value="content.total_trips_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="translate('Private trips')" :value="content.private_trips_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Help messages')" :value="content.help_messages_count"></dashboard_card_white>
+                    </div>
+
                     <div class="row mt-6">
                         <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-success" :title="translate('Vehciles')" :value="content.vehicles_count"></dashboard_card>
                         <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-danger" :title="translate('Drivers')" :value="content.drivers_count"></dashboard_card>
