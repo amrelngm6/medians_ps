@@ -119,6 +119,7 @@ import dashboard_center_squares from '@/components/includes/dashboard_center_squ
 import {translate, handleGetRequest} from '@/utils.vue';
 
 import { AgChartsVue } from 'ag-charts-vue3';
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
 export default 
 {
@@ -127,6 +128,7 @@ export default
         dashboard_card_white,
         dashboard_card,
         AgChartsVue,
+        VueTailwindDatepicker
     },
     name:'categories',
     setup(props) {
@@ -225,8 +227,24 @@ export default
 
 
 
+        const dateValue = ref({
+            startDate: "",
+            endDate: "",
+        });
 
+        const formatter = ref({
+            date: "YYYY-MM-DD",
+            month: "MMM",
+        });
+
+        const handleSelectedDate = (event) => {
+            handleGetRequest( props.conf.url+props.path+'?start_date='+event.startDate+'&end_date='+event.endDate+'&load=json' ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+            });
+        }
+        
         return {
+            handleSelectedDate,
             switchDate,
             optionsbar,
             translate,
@@ -236,6 +254,8 @@ export default
             content,
             activeDate,
             dateTimeFormat,
+            dateValue,
+            formatter,
             
         }
     },

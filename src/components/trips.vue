@@ -107,15 +107,6 @@ export default
     
     setup(props) {
 
-        const dateValue = ref({
-            startDate: "",
-            endDate: "",
-        });
-
-        const formatter = ref({
-            date: "YYYY-MM-DD",
-            month: "MMM",
-        });
 
         const url =  props.conf.url+props.path+'?load=json';
 
@@ -186,6 +177,17 @@ export default
             handleUsersList();
         }
 
+        
+        const dateValue = ref({
+            startDate: "",
+            endDate: "",
+        });
+
+        const formatter = ref({
+            date: "YYYY-MM-DD",
+            month: "MMM",
+        });
+        
         const handleSelectedDate = (event) => {
             handleGetRequest( props.conf.url+props.path+'?start_date='+event.startDate+'&end_date='+event.endDate+'&load=json' ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
