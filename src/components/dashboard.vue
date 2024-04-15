@@ -36,12 +36,6 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Help messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
 
-                    <div class="row mt-6">
-                        <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-success" :title="translate('Vehciles')" :value="content.vehicles_count"></dashboard_card>
-                        <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-danger" :title="translate('Drivers')" :value="content.drivers_count"></dashboard_card>
-                        <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-primary" :title="translate('Routes')" :value="content.routes_count"></dashboard_card>
-                        <dashboard_card class="col-md-3 col-sm-12" classes="bg-gradient-purple" :title="translate('Pickup locations')" :value="content.pickup_locations_count" ></dashboard_card>
-                    </div>
                 </div>
                 
                 <div class="w-full lg:flex gap gap-6 pb-6">
