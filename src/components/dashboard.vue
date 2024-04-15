@@ -219,14 +219,14 @@ export default
 
             // Line charts for sales in last days 
             line_options.value  =  {
-
+                
                 // Line charts Data 
                 data: content.value.trips_charts,
 
                 // Series: Defines which chart type and data to use
                 series: [
                     { type: 'bar', xKey: 'label', yKey: 'y' },
-                    { type: 'line', xKey: 'label', yKey: 'y' },
+                    // { type: 'line', xKey: 'label', yKey: 'y' },
                 ],
             };
 
@@ -239,7 +239,7 @@ export default
                 // Series: Defines which chart type and data to use
                 series: [
                     { type: 'bar', xKey: 'label', yKey: 'y' },
-                    { type: 'line', xKey: 'label', yKey: 'y' },
+                    // { type: 'line', xKey: 'label', yKey: 'y' },
                 ],
             };
 
