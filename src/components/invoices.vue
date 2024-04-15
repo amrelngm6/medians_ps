@@ -86,7 +86,6 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 import invoice_wizard from '@/components/wizards/invoiceWizard.vue';
-import DateRangePicker from 'vue3-daterange-picker'
 
 export default
 {
