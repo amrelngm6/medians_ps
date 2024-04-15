@@ -148,7 +148,8 @@
                                                 <td>
                                                     <div v-if="message.user" class="flex gap-2">
                                                         <img :src="message.user.picture" width="40" height="40" class="w-10 h-10 rounded" />
-                                                        <span v-text="message.user.name"></span>
+                                                        <p v-text="message.user.name"></p>
+                                                        <span v-text="message.user.usertype"></span>
                                                     </div>
                                                 </td>
                                                 <td class="text-red-500" v-text="message.message"></td>
