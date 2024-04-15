@@ -86,7 +86,7 @@ export default
         });
 
         const formatter = ref({
-            date: "DD MMM YYYY",
+            date: "YYYY-mm-DD",
             month: "MMM",
         });
 
