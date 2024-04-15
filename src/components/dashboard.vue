@@ -7,6 +7,7 @@
                 
                 <div class="w-full">
                     <vue-tailwind-datepicker 
+                        class="text-lg"
                         :formatter="formatter"
                         @update:model-value="handleSelectedDate($event)"
                         :separator="' - '+translate('To')+' - '"
@@ -219,7 +220,7 @@ export default
 
             // Line charts for sales in last days 
             line_options.value  =  {
-                
+
                 // Line charts Data 
                 data: content.value.trips_charts,
 
