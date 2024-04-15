@@ -113,7 +113,7 @@ export default
 
         const showLoader = ref(null);
 
-        const searchField = ref("invoice_id");
+        const searchField = ref("code");
         const searchValue = ref("");
         
         function load()
