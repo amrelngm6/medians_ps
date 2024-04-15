@@ -111,6 +111,16 @@ export default
     
     setup(props) {
 
+        const dateValue = ref({
+            startDate: "",
+            endDate: "",
+        });
+
+        const formatter = ref({
+            date: "YYYY-MM-DD",
+            month: "MMM",
+        });
+
         const url =  props.conf.url+props.path+'?load=json';
 
         const activeTrip = ref(null);
@@ -198,7 +208,9 @@ export default
             searchValue,
             searchField,
             translate,
-            handleAction
+            handleAction,
+            dateValue,
+            formatter,
         };
     },
     

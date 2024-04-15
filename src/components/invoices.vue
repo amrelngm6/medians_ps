@@ -159,7 +159,6 @@ export default
         
         return {
             handleSelectedDate,
-            formatter,
             showWizard,
             closeSide,
             url ,
@@ -170,7 +169,8 @@ export default
             searchField,
             searchValue,
             handleAction,
-            dateValue
+            dateValue,
+            formatter,
         };
     },
     props: [

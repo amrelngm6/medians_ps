@@ -205,7 +205,9 @@ export default
             searchValue,
             searchField,
             translate,
-            handleAction
+            handleAction,
+            dateValue,
+            formatter,
         };
     },
     
