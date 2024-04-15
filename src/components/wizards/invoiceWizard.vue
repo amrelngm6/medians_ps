@@ -111,7 +111,7 @@
 
                                                     <tbody v-if="activeItem.items">
                                                         <tr class="fw-bold text-gray-700 fs-5 text-end" v-for="invoiceItem in activeItem.items">
-                                                            <td class="d-flex align-items-center pt-6" v-if="invoiceItem">
+                                                            <td class="d-flex align-items-center pt-6 gap-2" v-if="invoiceItem">
                                                                 <vue-feather type="cloud-lightning" ></vue-feather>
                                                                 <span v-if="invoiceItem.item" v-text="invoiceItem.item.name"></span>
                                                             </td>
