@@ -86,13 +86,14 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 import invoice_wizard from '@/components/wizards/invoiceWizard.vue';
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
 export default
 {
     components: {
         'datatabble': Vue3EasyDataTable,
         invoice_wizard,
-        DateRangePicker
+        VueTailwindDatepicker
     },
     emits: ['callback'],
     setup(props, {emit}) {
