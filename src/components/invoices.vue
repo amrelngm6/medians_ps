@@ -78,7 +78,10 @@ export default
     emits: ['callback'],
     setup(props, {emit}) {
 
-        const dateValue = ref([]);
+        const dateValue = ref({
+            startDate: "",
+            endDate: "",
+        });
 
         const showWizard = ref(false);
 
