@@ -8,6 +8,7 @@ use Medians\Users\Domain\User;
 use Medians\Content\Domain\Content;
 use Medians\Views\Domain\View;
 use Medians\Notifications\Domain\NotificationEvent;
+use Medians\Logs\Domain\UsageLog;
 
 use \config\APP;
 
@@ -145,7 +146,9 @@ class CustomModel extends Model
 
     	if (!$this->wasRecentlyCreated)
     		return true;
-    	
+		
+		UsageLog::addItem($this);
+
     	// Insert activation code 
     	return (new NotificationEvent)->handleEvent($this, 'create');
     }  
@@ -157,6 +160,8 @@ class CustomModel extends Model
      */
     public function updatedEvent()
     {
+		UsageLog::addItem($this);
+
 		$PK = $this->getPrimaryKey();
 
     	if (empty($this->$PK))
