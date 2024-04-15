@@ -84,7 +84,7 @@ class BusinessApplicantRepository
 		->whereBetween('created_at' , [$params['start'] , $params['end']])
 		->selectRaw('COUNT(*) as y, created_at as label');
 
-  		return $check->groupBy('created_at')->orderBy('created_at', 'ASC')->get();
+  		return $check->limit(5)->groupBy('created_at')->orderBy('created_at', 'ASC')->get();
 	}
 	
 	
