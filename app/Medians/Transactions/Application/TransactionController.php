@@ -217,6 +217,9 @@ class TransactionController extends CustomController
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
+			
+			$paymentService = new PaymentService($params['payment_method']);
+
 			$saveTransaction = $paymentService->storeTripTransaction($params); 
 			
 			$updateTrip = isset($saveTransaction['success']) ? $paymentService->updateTrip($params) : null; 

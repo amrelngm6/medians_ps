@@ -65,8 +65,11 @@ class PaymentService
 			$PrivateTrip = new \Medians\Trips\Domain\PrivateTrip;
 			$class = new \Medians\Customers\Domain\Parents;
 
+			$invoice = $this->addInvoice($params);
+
 			$transaction = (array) $params['transaction'];
 			$transaction['model_id'] = $params['model_id'];
+			$transaction['invoice_id'] = $invoice->invoice_id;
 			$transaction['model_type'] = $class::class;
 			$transaction['item_id'] = $transaction['item_id'];
 			$transaction['item_type'] = $PrivateTrip::class;
