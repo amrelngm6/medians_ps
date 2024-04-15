@@ -180,7 +180,8 @@ class TripRepository
 	{
 
 	  	$check = Trip::whereBetween('date' , [$params['start'] , $params['end']])
-		->selectRaw('COUNT(*) as y, date as label');
+		->selectRaw('COUNT(*) as y, date as label')
+		->where('business_id', $this->business_id);
 
   		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
 	}
