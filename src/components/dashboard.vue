@@ -146,9 +146,11 @@
                                         </thead>
                                         <tbody >
                                             <tr :key="index" v-for="(message, index) in content.latest_help_messages" >
-                                                <td class="flex gap-2">
-                                                    <img v-if="message.user" :src="message.user.picture" width="40" height="40" class="w-10 h-10 rounded" />
-                                                    <span v-if="message.user" v-text="message.user.name"></span>
+                                                <td>
+                                                    <div v-if="message.user" class="flex gap-2">
+                                                        <img :src="message.user.picture" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <span v-text="message.user.name"></span>
+                                                    </div>
                                                 </td>
                                                 <td v-text="message.subject"></td>
                                                 <td class="text-red-500" v-text="message.message"></td>
@@ -179,9 +181,11 @@
                                         </thead>
                                         <tbody >
                                             <tr :key="index" v-for="(transaction, index) in content.latest_transactions" >
-                                                <td class="flex gap-2">
-                                                    <img v-if="transaction.model" :src="transaction.model.picture" width="24" height="24" class="rounded" />
-                                                    <span v-if="transaction.model" v-text="transaction.model.name"></span>
+                                                <td>
+                                                    <div v-if="transaction.model" class="flex gap-2">
+                                                        <img :src="transaction.model.picture" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <span v-text="transaction.model.name"></span>
+                                                    </div>
                                                 </td>
                                                 <td v-text="transaction.amount"></td>
                                                 <td v-text="transaction.invoice ? transaction.invoice.code : ''"></td>
