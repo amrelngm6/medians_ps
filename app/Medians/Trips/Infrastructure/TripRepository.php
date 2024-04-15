@@ -135,7 +135,8 @@ class TripRepository
 	public function getByDate($params)
 	{
 		
-		$check = Trip::with('locations',  'driver', 'vehicle', 'route','supervisor')->where('business_id', $this->business_id);
+		$check = Trip::with('locations',  'driver', 'vehicle', 'route','supervisor')->where('business_id', $this->business_id)
+		->withCount('moving_locations')->withCount('locations');
 
 		if (!empty($params["start_date"]))
 		{
