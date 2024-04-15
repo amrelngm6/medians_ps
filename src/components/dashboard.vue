@@ -70,7 +70,7 @@
                                         <thead>
                                             <tr>
                                                 <th v-text="translate('User')"></th>
-                                                <th v-text="translate('status')"></th>
+                                                <th class="text-center" v-text="translate('status')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.applicants"  :key="content.applicants">
@@ -84,7 +84,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td  v-text="applicant.status"></td>
+                                                <td v-text="applicant.status"></td>
                                             </tr>
                                         </tbody>
                                     </table>
