@@ -19,7 +19,7 @@
                                 <div class="mt-n1">
                                     <div class="d-flex flex-stack pb-10">
                                         <a href="#">
-                                            <img alt="Logo" :src="business_setting.logo">
+                                            <img alt="Logo" :src="business_setting['logo']">
                                         </a>
                                     </div>
                                     <div class="m-0">
@@ -186,8 +186,6 @@
                                     <!--begin::Labels-->
                                     <div class="mb-8">
                                         <span class="badge badge-light-success me-2" v-text="activeItem.status"></span>
-
-                                        <span class="badge badge-light-warning" v-text="translate('Pending Payment')"></span>
                                     </div>
                                     <!--end::Labels-->
 
