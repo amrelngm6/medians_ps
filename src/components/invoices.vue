@@ -35,9 +35,9 @@
                 </div>
 
                 <!--begin::Card toolbar-->
-                <div class="card-toolbar flex-end justify-content-end gap-5">
+                <div class="card-toolbar flex-end">
 
-                    <div class="w-250px">
+                    <div class="w-full">
                         <vue-tailwind-datepicker 
                             :formatter="formatter"
                             @update:model-value="handleSelectedDate($event)"
