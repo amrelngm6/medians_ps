@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="card w-1/3 lg:w-1/3 lg:mb-0">
-                        <h4 class="p-4 ml-4" v-text="translate('Latest students')"></h4>
+                        <h4 class="p-4 ml-4" v-text="translate('New applicants')"></h4>
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('latest_students_has_been_added')"></p>
                         <div class="card-body w-full">
                             <div class="w-full ">
@@ -69,15 +69,15 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th colspan="2" v-text="translate('Student')"></th>
+                                                <th colspan="2" v-text="translate('User')"></th>
                                                 <th v-text="translate('Contact')"></th>
                                             </tr>
                                         </thead>
-                                        <tbody v-if="content.latest_students"  :key="content.latest_students">
-                                            <tr :key="index" v-for="(student, index) in content.latest_students" class="text-center" >
-                                                <td><img width="48" height="48" class="rounded" :src="'/app/image.php?w=50&h=50&src='+student.picture" /></td>
-                                                <td v-text="student.first_name"></td>
-                                                <td  v-text="student.contact_number"></td>
+                                        <tbody v-if="content.applicants"  :key="content.applicants">
+                                            <tr :key="index" v-for="(applicant, index) in content.applicants" class="text-center" >
+                                                <td><img width="48" height="48" class="rounded" :src="'/app/image.php?w=50&h=50&src='+applicant.model.picture" /></td>
+                                                <td v-text="applicant.model.name"></td>
+                                                <td  v-text="applicant.model.mobile"></td>
                                             </tr>
                                         </tbody>
                                     </table>

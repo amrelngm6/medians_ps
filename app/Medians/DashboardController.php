@@ -114,6 +114,7 @@ class DashboardController extends CustomController
 		        'load_vue' => true,
 				'trips_charts'=>$trips_charts,
 				'private_trips_charts'=>$private_trips_charts,
+				'applicants'=>$applicants,
 	        ];
 
 			return array_merge($counts, $array);
