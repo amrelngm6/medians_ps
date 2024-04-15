@@ -103,7 +103,7 @@ class StudentRepository
 	{
 		try {
 			
-			$delete = Student::find($id)->update(['business_id', null]);
+			$delete = Student::find($id)->update(['business_id' => 0]);
 
 			return true;
 
