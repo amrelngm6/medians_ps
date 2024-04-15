@@ -80,10 +80,18 @@ class PrivateTripRepository
 		->get();
 	}
 
-	public function eventsByDate($params)
+	
+	public function getByDate($params)
 	{
-		$query = PrivateTrip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);
-		return $query;
+		
+		$check = PrivateTrip::with('model',  'driver', 'vehicle')->where('business_id', $this->business_id);
+
+		if (!empty($params["start_date"]))
+		{
+			$check = $check->whereBetween('date' , [$params['start_date'] , $params['end_date']]);
+		}
+
+		return $check->orderBy('created_at', 'DESC')->get();
 	}
 
 	public function allEventsByDate($params)

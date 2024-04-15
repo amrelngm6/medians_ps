@@ -78,6 +78,7 @@ class PrivateTripController extends CustomController
 	 */ 
 	public function index( ) 
 	{
+		$params = $this->app->request()->query->all();
 		
 		try {
 			
@@ -85,7 +86,7 @@ class PrivateTripController extends CustomController
 		        'load_vue' => true,
 		        'title' => __('Private Trips'),
 		        'columns' => $this->columns(),
-		        'items' => $this->repo->get(),
+		        'items' => $this->repo->getByDate($params),
 		        'employees' => $this->employeeRepo->get(),
 		        'drivers' => $this->driverRepo->get(),
 		        'vehicles' => $this->vehicleRepo->get(),
