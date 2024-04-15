@@ -14,22 +14,36 @@
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
                 </div>
                 <div class="w-full bg-white" >
-
-                    <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex px-4">
+                    <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex ">
+                        <!--begin::Card title-->
                         <div class="card-title">
+                            <!--begin::Search-->
                             <div class="d-flex align-items-center position-relative my-1">
-                                <input type="text"  v-model="searchValue" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Report">
+                                <input type="text"  v-model="searchValue" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-125px " placeholder="Search Report">
                             </div>
+                            <div id="kt_ecommerce_report_views_export" class="d-none"><div class="dt-buttons btn-group flex-wrap">      <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>Excel</span></button> <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>CSV</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>PDF</span></button> </div></div>
                         </div>
-                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5 w-200px">
 
                             <div class="w-150px">
                                 <select v-model="searchField" class="form-select form-select-solid select2-hidden-accessible" data-control="select2" data-hide-search="true" data-placeholder="Rating" data-kt-ecommerce-order-filter="rating" data-select2-id="select2-data-9-zple" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
-                                    <option v-for="col in content.columns" v-text="col.text" :value="col.value"></option>
+                                    <option v-for="col in content.columns" v-text="col.text"  :value="col.value" ></option>
                                 </select>
                             </div>
+
                         </div>
 
+                        <div class="card-toolbar w-full flex-end">
+
+                            <div class="w-full">
+                                <vue-tailwind-datepicker 
+                                    :formatter="formatter"
+                                    @update:model-value="handleSelectedDate($event)"
+                                    :separator="' - '+translate('To')+' - '"
+                                    v-model="dateValue" />
+                            </div>
+
+                        </div>
                     </div>
                     <datatabble 
                         :search-field="searchField"
@@ -160,8 +174,14 @@ export default
             handleUsersList();
         }
 
-
+        const handleSelectedDate = (event) => {
+            handleGetRequest( props.conf.url+props.path+'?start_date='+event.startDate+'&end_date='+event.endDate+'&load=json' ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+            });
+        }
+        
         return {
+            handleSelectedDate,
             usersList,
             showWizard,
             setType,
