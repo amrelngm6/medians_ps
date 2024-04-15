@@ -60,11 +60,12 @@ class InvoiceController extends CustomController
 	 */ 
 	public function index() 
 	{
+		$params = $this->app->request()->get('params');
 
 		return render('invoices', [
 			'load_vue'=> true,
 	        'title' => __('Invoices list'),
-	        'items' => $this->repo->get(),
+	        'items' => $this->repo->getByDate($params),
 	        'columns' => $this->columns(),
 	    ]);
 	}
@@ -79,8 +80,6 @@ class InvoiceController extends CustomController
 	public function store() 
 	{	
         
-        $this->app = new \config\APP;
-
 		$params = $this->app->request()->get('params');
 
         try {
@@ -106,8 +105,6 @@ class InvoiceController extends CustomController
 	*/
 	public function update() 
 	{
-        $this->app = new \config\APP;
-
 		$params = $this->app->request()->get('params');
 
         try {
@@ -132,8 +129,6 @@ class InvoiceController extends CustomController
 	*/
 	public function delete() 
 	{
-
-        $this->app = new \config\APP;
 
 		$params = $this->app->request()->get('params');
 
