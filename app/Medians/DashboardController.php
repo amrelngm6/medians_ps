@@ -19,6 +19,7 @@ class DashboardController extends CustomController
 	public  $VehicleRepository;
 	public  $StudentRepository;
 	public  $HelpMessageRepository;
+	public  $BusinessApplicantRepository;
 
 	protected $app;
 	public $start;
@@ -40,6 +41,7 @@ class DashboardController extends CustomController
 		$this->RouteLocationRepository = new Locations\Infrastructure\RouteLocationRepository($user->business);
 		$this->StudentRepository = new Students\Infrastructure\StudentRepository($user->business);
 		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository($user->business);
+		$this->BusinessApplicantRepository = new Customers\Infrastructure\BusinessApplicantRepository($user->business);
 
 		$this->start = $this->app->request()->get('start_date') ? date('Y-m-d', strtotime($this->app->request()->get('start_date'))) : date('Y-m-d');
 		$this->end = $this->app->request()->get('end_date') ? date('Y-m-d', strtotime($this->app->request()->get('end_date'))) : date('Y-m-d');
@@ -125,6 +127,7 @@ class DashboardController extends CustomController
         $data['active_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('status', 'scheduled')->count();
         $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['business_applicant_count'] = $this->BusinessApplicantRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['drivers_count'] = $this->DriverRepository->get()->count();
         $data['routes_count'] = $this->RouteRepository->get()->count();

@@ -61,6 +61,19 @@ class BusinessApplicantRepository
 		return Student::find($modelId);
 	}
 	
+	public function eventsByDate($params)
+	{
+		$query = BusinessApplicant::where('business_id', $this->business_id)->whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+	
+	public function allEventsByDate($params)
+	{
+		$query = BusinessApplicant::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+
 	
 	/**
 	* Save item to database
