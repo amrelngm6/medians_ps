@@ -59,7 +59,7 @@ class InvoiceRepository
 
 	  	if (!empty($params["start_date"]))
 	  	{
-	  		$check = $check->whereDate('date' , [$params['start_date'] , $params['end_date']]);
+	  		$check = $check->whereBetween('date' , [$params['start_date'] , $params['end_date']]);
 	  	}
 
   		return $check->orderBy('created_at', 'DESC')->get();
