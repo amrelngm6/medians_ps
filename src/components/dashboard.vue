@@ -184,8 +184,8 @@
                                                     <div v-if="transaction.model" class="flex gap-2">
                                                         <img :src="transaction.model.picture" width="40" height="40" class="w-10 h-10 rounded" />
                                                         <p v-text="transaction.model.name"></p>
-                                                        <span v-text="transaction.model.usertype"></span>
                                                     </div>
+                                                    <small class="text-xs"v-text="transaction.model.usertype"></small>
                                                 </td>
                                                 <td v-text="transaction.amount"></td>
                                                 <td v-text="transaction.invoice ? transaction.invoice.code : ''"></td>
