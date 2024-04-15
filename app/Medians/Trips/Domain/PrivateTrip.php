@@ -56,6 +56,10 @@ class PrivateTrip extends CustomModel
 
 	public function getTimeAttribute() 
 	{
+		if (empty($this->start_time))
+		{
+			return '';
+		}
 		$dateTime = \DateTime::createFromFormat('H:i:s', $this->start_time);
 		return $dateTime->format('H:i');
 	}
