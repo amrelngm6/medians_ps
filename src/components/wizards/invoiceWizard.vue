@@ -112,13 +112,13 @@
                                                     <tbody v-if="activeItem.items">
                                                         <tr class="fw-bold text-gray-700 fs-5 text-end" v-for="invoiceItem in activeItem.items">
                                                             <td class="d-flex align-items-center pt-6" v-if="invoiceItem">
-                                                                <i class="fa fa-genderless text-danger fs-2 me-2"></i>
+                                                                <vue-feather type="cloud-lightning" ></vue-feather>
                                                                 <span v-if="invoiceItem.item" v-text="invoiceItem.item.name"></span>
                                                             </td>
 
                                                             <td class="pt-6" v-text="invoiceItem.subtotal"></td>
                                                             <td class="pt-6" v-text="invoiceItem.discount_amount"></td>
-                                                            <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount + ' ' + system_setting.currency"></td>
+                                                            <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount + '' + system_setting.currency"></td>
                                                         </tr>
 
                                                     </tbody>
