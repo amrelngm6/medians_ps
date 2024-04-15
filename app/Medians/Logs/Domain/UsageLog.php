@@ -23,7 +23,7 @@ class UsageLog extends CustomModel
     	'data',
 	];
 
-	public function addItem($model)
+	public static function addItem($model)
 	{
 		$data = array();
 		$data['model'] = $model::class;
