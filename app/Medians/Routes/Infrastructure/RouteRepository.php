@@ -113,7 +113,7 @@ class RouteRepository
 		isset($data['field']) ? $this->storeCustomFields($data['field'], $Object->id) : '';
 				
     	// Store Postition
-		!empty($data['position']) ? $this->storeRoutePosition($data['position'], $data['route_id']) : '';
+		!empty($data['position']) ? $this->storeRoutePosition($data['position'], $Object->id) : '';
 		// isset($data['states']) ? $this->storeRouteStates($data['states'], $Object->id) : '';
 
     	return $Object;
