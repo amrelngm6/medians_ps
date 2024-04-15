@@ -3,7 +3,8 @@
         <vue-tailwind-datepicker 
         :formatter="formatter"
         @change="handleSelectedDate($event)"
-        @update="handleSelectedDate($event)"
+        @update:model-value="handleSelectedDate($event)"
+        @update:modelValue="handleSelectedDate($event)"
         :separator="' - '+translate('To')+' - '"
         @select-month="handleSelectedDate($event)"
         @select-right-month="handleSelectedDate($event)"
