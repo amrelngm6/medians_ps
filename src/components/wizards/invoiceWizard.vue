@@ -133,13 +133,11 @@
                                                     <!--begin::Item-->
                                                     <div class="d-flex flex-stack mb-3">
                                                         <!--begin::Accountname-->
-                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7">Subtotal:
-                                                        </div>
+                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Subtotal')"></div>
                                                         <!--end::Accountname-->
 
                                                         
-                                                        <div class="text-end fw-bold fs-6 text-gray-800">$ 20,600.00
-                                                        </div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.subtotal"></div>
                                                         
                                                     </div>
                             
@@ -147,11 +145,11 @@
                                                     <!--begin::Item-->
                                                     <div class="d-flex flex-stack mb-3">
                                                         <!--begin::Accountname-->
-                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7">VAT 0%</div>
+                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Discount')"></div>
                                                         <!--end::Accountname-->
 
                                                         
-                                                        <div class="text-end fw-bold fs-6 text-gray-800">0.00</div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.discount_amount"></div>
                                                         
                                                     </div>
                             
@@ -159,27 +157,12 @@
                                                     <!--begin::Item-->
                                                     <div class="d-flex flex-stack mb-3">
                                                         <!--begin::Accountnumber-->
-                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7">Subtotal + VAT
-                                                        </div>
+                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Total amount')"></div>
                                                         <!--end::Accountnumber-->
 
                                                         <!--begin::Number-->
-                                                        <div class="text-end fw-bold fs-6 text-gray-800">$ 20,600.00
-                                                        </div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.total_amount"></div>
                                                         <!--end::Number-->
-                                                    </div>
-                            
-
-                                                    <!--begin::Item-->
-                                                    <div class="d-flex flex-stack">
-                                                        <!--begin::Code-->
-                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7">Total</div>
-                                                        <!--end::Code-->
-
-                                                        
-                                                        <div class="text-end fw-bold fs-6 text-gray-800">$ 20,600.00
-                                                        </div>
-                                                        
                                                     </div>
                             
                                                 </div>
