@@ -2,13 +2,8 @@
     <div class="w-full " >
         <vue-tailwind-datepicker 
         :formatter="formatter"
-        @change="handleSelectedDate($event)"
         @update:model-value="handleSelectedDate($event)"
-        @update:modelValue="handleSelectedDate($event)"
         :separator="' - '+translate('To')+' - '"
-        @select-month="handleSelectedDate($event)"
-        @select-right-month="handleSelectedDate($event)"
-        @select-year="handleSelectedDate($event)"
         v-model="dateValue" />
 
         <invoice_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting"  :system_setting="system_setting" :conf="conf" ></invoice_wizard>
