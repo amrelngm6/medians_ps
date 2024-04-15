@@ -13,7 +13,11 @@ module.exports = {
     },
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "vtd-primary": colors.purple, // Light mode Datepicker color
+        "vtd-secondary": colors.gray, // Dark mode Datepicker color
+      },},
   },
   plugins: [
   ]
