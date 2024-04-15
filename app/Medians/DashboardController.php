@@ -20,7 +20,6 @@ class DashboardController extends CustomController
 	public  $StudentRepository;
 	public  $HelpMessageRepository;
 	public  $BusinessApplicantRepository;
-	public  $BusinessApplicantRepository;
 	public  $InvoiceRepository;
 	public  $TransactionRepository;
 	public  $PackageSubscriptionsRepository;
