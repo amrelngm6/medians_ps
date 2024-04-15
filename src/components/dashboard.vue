@@ -77,7 +77,7 @@
                                             <tr :key="index" v-for="(applicant, index) in content.applicants" class="text-center" >
                                                 <td>
                                                     <div class="flex gap-2 w-full">
-                                                        <img width="48" height="48" class="rounded" :src="'/app/image.php?w=50&h=50&src='+applicant.model.picture" />
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+applicant.model.picture" />
                                                         <div>
                                                             <p v-text="applicant.model.name"></p>
                                                             <p v-text="applicant.model.mobile"></p>
