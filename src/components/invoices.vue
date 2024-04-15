@@ -1,6 +1,8 @@
 <template>
     <div class="w-full " >
-        <vue-tailwind-datepicker v-model="dateValue" />
+        <vue-tailwind-datepicker 
+        :separator="' - '+translate('To')+' - '"
+        v-model="dateValue" />
 
         <invoice_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting"  :system_setting="system_setting" :conf="conf" ></invoice_wizard>
         
