@@ -1,6 +1,8 @@
 <template>
     <div class="w-full " >
         <vue-tailwind-datepicker 
+        as-single
+        :formatter="formatter"
         :separator="' - '+translate('To')+' - '"
         @select-month="handleSelectedDate($event)"
         @select-right-month="handleSelectedDate($event)"
@@ -86,6 +88,11 @@ export default
             endDate: "",
         });
 
+        const formatter = ref({
+            date: "DD MMM YYYY",
+            month: "MMM",
+        });
+
         const showWizard = ref(false);
 
         const url =  props.conf.url+props.path+'?load=json';
@@ -145,6 +152,7 @@ export default
         
         return {
             handleSelectedDate,
+            formatter,
             showWizard,
             closeSide,
             url ,
