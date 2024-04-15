@@ -69,7 +69,7 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th colspan="2" v-text="translate('User')"></th>
+                                                <th v-text="translate('User')"></th>
                                                 <th v-text="translate('status')"></th>
                                             </tr>
                                         </thead>
