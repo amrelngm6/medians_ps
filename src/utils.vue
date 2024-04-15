@@ -67,6 +67,11 @@ export function deleteByKey(itemKey, itemValue, type) {
 }
 
 export async function handleGetRequest(url) {
+    
+    let secondQuestionMarkIndex = url.indexOf('?', url.indexOf('?') + 1);
+    if (secondQuestionMarkIndex !== -1) {
+        url = url.slice(0, secondQuestionMarkIndex) + '&' + url.slice(secondQuestionMarkIndex + 1);
+    }
     return await axios.get(url).then(response => {
         if (response.data.status)
             return response.data.result ? response.data.result : response.data;
