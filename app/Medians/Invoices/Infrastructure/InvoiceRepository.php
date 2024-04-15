@@ -40,13 +40,21 @@ class InvoiceRepository
 	/**
 	* Find items by `params` 
 	*/
-	public function get($limit = 500) 
+	public function get($params = 500) 
 	{
-		return Invoice::with('user', 'items','business', 'transaction')
-		->where('business_id', $this->business_id)
-		->limit($limit)
-		->orderBy('invoice_id', 'DESC')
+		$model = Invoice::with('user', 'items','business', 'transaction')
+		->where('business_id', $this->business_id);
+
+		if (isset($params['start_data']) && isset($params['start_data']))
+		{
+			$model = $model->whereDate('date', [$params['start_date'], $params['end_date']]);
+		}
+		
+		$model = $model->orderBy('invoice_id', 'DESC')
 		->get();
+		
+		return $model;
+
 	}
 
 
