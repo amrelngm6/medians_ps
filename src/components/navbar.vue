@@ -54,7 +54,7 @@
                                     <div class="separator my-2"></div>
 
                                     <div class="menu-item px-5" v-if="auth.business">
-                                        <span class="menu-link px-5" v-text="auth.business.name"></span>
+                                        <span class="menu-link px-5" v-text="auth.business.business_name"></span>
                                     </div>
                                     <div class="menu-item px-5">
                                         <a href="/admin/profile" class="menu-link px-5" v-text="translate('Profile')"></a>
