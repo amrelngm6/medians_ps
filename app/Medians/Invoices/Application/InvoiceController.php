@@ -49,7 +49,7 @@ class InvoiceController extends CustomController
             [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> false ],
 			['value'=>'edit', 'text'=>__('View')],
-			['value'=>'delete', 'text'=>__('Delete')],
+			// ['value'=>'delete', 'text'=>__('Delete')],
         ];
 	}
 
