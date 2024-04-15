@@ -60,6 +60,7 @@ class TripController extends CustomController
 	 */ 
 	public function index( ) 
 	{
+		$params = $this->app->request()->query->all();
 		
 		try {
 			
@@ -67,7 +68,7 @@ class TripController extends CustomController
 		        'load_vue' => true,
 		        'title' => __('Trips'),
 		        'columns' => $this->columns(),
-		        'items' => $this->repo->get(),
+		        'items' => $this->repo->getByDate($params),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
