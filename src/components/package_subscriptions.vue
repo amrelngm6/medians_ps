@@ -144,6 +144,13 @@ export default
         const content = ref({});
         const showWizard =  ref(false);
         const showOptions =  ref(false);
+        const searchField = ref("subscription_id");
+        const searchValue = ref("");
+
+        if (props.subscripion_id)
+        {
+            searchValue.value = props.subscripion_id;
+        }
 
         const closeSide = () => {
             showWizard.value = false;
@@ -153,6 +160,7 @@ export default
         const load = () => {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
+                searchField.value = content.value.columns[1].value;
             });
         }
         
@@ -215,6 +223,8 @@ export default
             closeSide,
             addLocationWizard,
             handleAction,
+            searchField,
+            searchValue
         };
     },
 
@@ -226,6 +236,7 @@ export default
         'setting',
         'conf',
         'auth',
+        'subscripion_id',
     ],
     
 };
