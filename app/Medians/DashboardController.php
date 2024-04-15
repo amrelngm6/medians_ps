@@ -122,9 +122,9 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
-        $data['active_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('status', 'scheduled')->count();
-        $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['active_trips_count'] = $this->TripRepository->eventsByDate(['start_date'=>$this->start, 'end_date'=>$this->end])->where('status', 'scheduled')->count();
+        $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start_date'=>$this->start, 'end_date'=>$this->end])->count();
+        $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start_date'=>$this->start, 'end_date'=>$this->end])->count();
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['drivers_count'] = $this->DriverRepository->get()->count();
         $data['routes_count'] = $this->RouteRepository->get()->count();
