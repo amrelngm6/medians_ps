@@ -60,7 +60,7 @@ class InvoiceController extends CustomController
 	 */ 
 	public function index() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->request()->query->all();
 
 		return render('invoices', [
 			'load_vue'=> true,
