@@ -13,7 +13,13 @@ use Medians\Businesses\Domain\Business;
 class Parents extends Customer
 {
 
-	public $appends = ['parent_name', 'parent_id','field'];
+	public $appends = ['parent_name', 'parent_id','field','usertype'];
+
+	public function getUsertypeAttribute()
+	{
+		return 'parents';
+	}
+
 
 	public function getFieldAttribute()
 	{

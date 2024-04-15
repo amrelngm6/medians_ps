@@ -5,7 +5,12 @@ namespace Medians\Customers\Domain;
 class SuperVisor extends Customer
 {
 
-	public $appends = ['supervisor_name','supervisor_id'];
+	public $appends = ['supervisor_name','supervisor_id','usertype'];
+
+	public function getUsertypeAttribute()
+	{
+		return 'supervisor';
+	}
 
 	public function getSupervisorNameAttribute() : String
 	{

@@ -39,8 +39,12 @@ class Driver extends CustomModel
 	];
 
 
-	public $appends = ['name', 'photo','password', 'field'];
+	public $appends = ['name', 'photo','password', 'field','usertype'];
 
+	public function getUsertypeAttribute()
+	{
+		return 'driver';
+	}
 	
 	public function getFieldAttribute()
 	{

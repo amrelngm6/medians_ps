@@ -12,7 +12,12 @@ use Medians\Businesses\Domain\Business;
 class Employee extends Customer
 {
 
-	public $appends = ['employee_name','field'];
+	public $appends = ['employee_name','field','usertype'];
+
+	public function getUsertypeAttribute()
+	{
+		return 'employee';
+	}
 
 	public function getFieldAttribute()
 	{

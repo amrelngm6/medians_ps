@@ -34,7 +34,12 @@ class Student extends CustomModel
 		'created_by'
 	];
 
-	public $appends = ['field'];
+	public $appends = ['field','usertype'];
+
+	public function getUsertypeAttribute()
+	{
+		return 'student';
+	}
 
 	public function getFieldAttribute()
 	{
