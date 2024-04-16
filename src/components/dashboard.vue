@@ -147,7 +147,7 @@
                                             <tr :key="index" v-for="(message, index) in content.latest_help_messages" >
                                                 <td>
                                                     <div v-if="message.user" class="flex gap-2">
-                                                        <img :src="message.user.picture" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <img :src="message.user.picture ?? '/uploads/image/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
                                                         <div>
                                                             <p class="m-0" v-text="message.user.name"></p>
                                                             <span class="text-xs"v-text="message.user.usertype"></span>
@@ -184,7 +184,7 @@
                                             <tr :key="index" v-for="(transaction, index) in content.latest_transactions" >
                                                 <td>
                                                     <div v-if="transaction.model" class="flex gap-2">
-                                                        <img :src="transaction.model.picture" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <img :src="transaction.model.picture ?? '/uploads/image/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
                                                         <div>
                                                             <p class="m-0" v-text="transaction.model.name"></p>
                                                             <small  v-if="transaction.model" class="text-xs" v-text="transaction.model.usertype"></small>
