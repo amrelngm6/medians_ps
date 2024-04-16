@@ -60,7 +60,7 @@ class PrivateTrip extends CustomModel
 
 	public function getTimeAttribute() 
 	{
-		if (empty($this->start_time))
+		if (empty($this->start_time) && is_bool($this->start_time))
 		{
 			return '';
 		}
