@@ -77,7 +77,7 @@
                                             <tr :key="index" v-for="(applicant, index) in content.applicants" class="text-center" >
                                                 <td>
                                                     <div class="flex gap-4 w-full">
-                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+applicant.model.picture" />
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.model.picture ?? '/uploads/image/default_profile.png')" />
                                                         <div class="text-left">
                                                             <p class="m-0" v-text="applicant.model.name"></p>
                                                             <p class="m-0" v-text="applicant.model.mobile"></p>
@@ -109,7 +109,7 @@
                                             <tr :key="index" v-for="(applicant, index) in content.driver_applicants" class="text-center" >
                                                 <td>
                                                     <div class="flex gap-4 w-full">
-                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+applicant.driver.picture" />
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.driver.picture ?? '/uploads/image/default_profile.png')" />
                                                         <div class="text-left">
                                                             <p class="m-0" v-text="applicant.driver.name"></p>
                                                             <p class="m-0" v-text="applicant.driver.mobile"></p>
