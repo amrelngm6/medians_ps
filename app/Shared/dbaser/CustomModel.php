@@ -160,20 +160,23 @@ class CustomModel extends Model
      */
     public function updatedEvent()
     {
-		UsageLog::addItem($this, 'update');
 
 		$PK = $this->getPrimaryKey();
 
-    	if (empty($this->$PK))
+    	if (empty($this->$PK)) {
     		return null;
+		}
 
     	$fields = array_fill_keys($this->fillable,1);
     	$updatedFields = array_intersect_key($fields, $this->getDirty());
     	if (empty($updatedFields))
+		{
     		return null;
+		}
 
-    	// Handle update event for model 
-    	return (new NotificationEvent)->handleEventUpdate($this, 'update', array_keys($updatedFields));
+		$updateEvent = (new NotificationEvent)->handleEventUpdate($this, 'update', array_keys($updatedFields));
+
+    	return  UsageLog::addItem($this, 'update', $updatedFields);
 
     }  
 

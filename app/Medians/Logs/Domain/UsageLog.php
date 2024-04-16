@@ -24,7 +24,7 @@ class UsageLog extends CustomModel
     	'data',
 	];
 
-	public static function addItem($model, $action)
+	public static function addItem($model, $action, $updatedFields = null)
 	{
 		if ($model::class == UsageLog::class)
 		{
@@ -35,7 +35,7 @@ class UsageLog extends CustomModel
 		$data['model_type'] = $model::class;
 		$data['model_id'] = $model->$pk;
 		$data['action'] = $action;
-		$data['data'] = json_encode(json_decode($model));
+		$data['data'] = $updatedFields ?? json_encode(json_decode($model));
 		$save = UsageLog::create($data);
 		return $save;
 	}
