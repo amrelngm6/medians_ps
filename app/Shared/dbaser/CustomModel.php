@@ -176,7 +176,7 @@ class CustomModel extends Model
 
 		$updateEvent = (new NotificationEvent)->handleEventUpdate($this, 'update', array_keys($updatedFields));
 
-    	return  UsageLog::addItem($this, 'update', $updatedFields);
+    	return  UsageLog::addItem($this, 'update', json_encode($updatedFields));
 
     }  
 
