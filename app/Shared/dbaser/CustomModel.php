@@ -173,6 +173,7 @@ class CustomModel extends Model
 		{
     		return null;
 		}
+		error_log(json_encode($updatedFields));
 
 		$updateEvent = (new NotificationEvent)->handleEventUpdate($this, 'update', array_keys($updatedFields));
 
