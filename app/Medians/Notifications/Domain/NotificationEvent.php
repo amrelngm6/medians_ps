@@ -120,6 +120,10 @@ class NotificationEvent extends CustomModel
 			case HelpMessageComment::class:
 				return [$model->message->user];
 				break;
+				
+			case Driver::class:
+				return [$model];
+				break;
 
 			case RouteLocation::class:
 				$location =  $model->with('route')->find($model->location_id);
