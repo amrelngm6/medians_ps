@@ -78,7 +78,7 @@
                                             <tr :key="index" v-for="(applicant, index) in content.applicants" class="text-center" >
                                                 <td>
                                                     <div class="flex gap-4 w-full">
-                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.model.picture ?? '/uploads/image/default_profile.png')" />
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.model.picture ?? '/uploads/images/default_profile.png')" />
                                                         <div class="text-left">
                                                             <p class="m-0" v-text="applicant.model.name"></p>
                                                             <p class="m-0" v-text="applicant.model.mobile"></p>
@@ -111,7 +111,7 @@
                                             <tr :key="index" v-for="(applicant, index) in content.driver_applicants" class="text-center" >
                                                 <td>
                                                     <div class="flex gap-4 w-full">
-                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.driver.picture ?? '/uploads/image/default_profile.png')" />
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.driver.picture ?? '/uploads/images/default_profile.png')" />
                                                         <div class="text-left">
                                                             <p class="m-0" v-text="applicant.driver.name"></p>
                                                             <p class="m-0" v-text="applicant.driver.mobile"></p>
@@ -149,7 +149,7 @@
                                             <tr :key="index" v-for="(message, index) in content.latest_help_messages" >
                                                 <td>
                                                     <div v-if="message.user" class="flex gap-2">
-                                                        <img :src="message.user.picture ?? '/uploads/image/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <img :src="message.user.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
                                                         <div>
                                                             <p class="m-0" v-text="message.user.name"></p>
                                                             <span class="text-xs"v-text="message.user.usertype"></span>
@@ -186,7 +186,7 @@
                                             <tr :key="index" v-for="(transaction, index) in content.latest_transactions" >
                                                 <td>
                                                     <div v-if="transaction.model" class="flex gap-2">
-                                                        <img :src="transaction.model.picture ?? '/uploads/image/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <img :src="transaction.model.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
                                                         <div>
                                                             <p class="m-0" v-text="transaction.model.name"></p>
                                                             <small  v-if="transaction.model" class="text-xs" v-text="transaction.model.usertype"></small>
