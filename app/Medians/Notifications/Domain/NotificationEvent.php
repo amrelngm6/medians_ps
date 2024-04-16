@@ -73,6 +73,7 @@ class NotificationEvent extends CustomModel
 	{
 		$events = json_decode(NotificationEvent:: where('action',$action)->where('model',get_class($model))->get());
 
+		error_log(json_encode($events));
     	foreach ($events as $event) 
     	{
 			$event = $this->renderNotification($event, $model);
