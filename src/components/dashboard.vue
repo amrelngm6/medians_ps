@@ -176,6 +176,7 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
+                                                <th v-text="translate('ID')"></th>
                                                 <th v-text="translate('User')"></th>
                                                 <th v-text="translate('Amount')"></th>
                                                 <th v-text="translate('Invoice')"></th>
@@ -184,6 +185,7 @@
                                         </thead>
                                         <tbody >
                                             <tr :key="index" v-for="(transaction, index) in content.latest_transactions" >
+                                                <td v-text="transaction.transaction_id ?? ''"></td>
                                                 <td>
                                                     <div v-if="transaction.model" class="flex gap-2">
                                                         <img :src="transaction.model.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
