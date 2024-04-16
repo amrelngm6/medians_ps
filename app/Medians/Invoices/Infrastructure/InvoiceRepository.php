@@ -6,6 +6,7 @@ use Medians\Invoices\Domain\Invoice;
 use Medians\Invoices\Domain\InvoiceItem;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Packages\Domain\PackageSubscription;
+use Medians\Trips\Domain\PrivateTrip;
 
 
 /**
@@ -185,7 +186,25 @@ class InvoiceRepository
 		}
 	}
 
+	
+	/**
+	* Save related items to database
+	*/
+	public function handleClass($value)
+	{
+		switch ($value) 
+		{
+			case 'PackageSubscription':
+				return PackageSubscription::class;
+				break;
 
+			case 'PrivateTrip':
+				return PrivateTrip::class;
+				break;
+		}
+	}
+
+	
 	/**
 	* Save related items to database
 	*/
@@ -202,7 +221,7 @@ class InvoiceRepository
 				$fields['discount_amount'] = 0;
 				$fields['total_amount'] = $value->total_amount;
 				$fields['item_id'] = $value->item_id;
-				$fields['item_type'] = PackageSubscription::class;	
+				$fields['item_type'] = $this->handleClass($value->model_type);	
 				$fields['date'] = date('Y-m-d');
 				$fields['status'] = $value->status;
 				$Model = InvoiceItem::create($fields);
