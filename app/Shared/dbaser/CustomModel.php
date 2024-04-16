@@ -171,6 +171,7 @@ class CustomModel extends Model
     	$updatedFields = array_intersect_key($fields, $this->getDirty());
     	if (empty($updatedFields))
 		{
+			error_log('Empty updates');
     		return null;
 		}
 		error_log(json_encode($updatedFields));
