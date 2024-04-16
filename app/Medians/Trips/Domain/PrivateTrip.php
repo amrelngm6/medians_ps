@@ -65,7 +65,7 @@ class PrivateTrip extends CustomModel
 			return '';
 		}
 		$dateTime = \DateTime::createFromFormat('H:i:s', $this->start_time);
-		return $dateTime->format('H:i');
+		return $dateTime ? $dateTime->format('H:i') : '';
 	}
 
 
