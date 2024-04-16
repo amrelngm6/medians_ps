@@ -19,7 +19,7 @@
                                 <div class="mt-n1">
                                     <div class="d-flex flex-stack pb-10">
                                         <a href="#">
-                                            <img alt="Logo" class="w-250px" src="business_setting['logo']">
+                                            <img alt="Logo" class="w-250px" :src="business_setting['logo']">
                                         </a>
                                     </div>
                                     <div class="m-0">
