@@ -109,14 +109,23 @@ class RouteLocationRepository
 	public function update($data)
 	{
 		try {
+
+			$Model = new RouteLocation();
 			
 			$data['model_type'] = $this->handleClassType($data['usertype']);
 
 			$Object = RouteLocation::where('business_id', $this->business_id)->find($data['location_id']);
-			
-			print_r($data);
+				
+			foreach ($data as $key => $value) 
+			{
+				if (in_array($key, $Model->getFields()))
+				{
+					$dataArray[$key] = $value;
+				}
+			}		
+
 			// Return the  object with the new data
-			$Object->update( (array) $data);
+			$Object->update( (array) $dataArray);
 
 			// Store Custom fields
 			!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['location_id']) : '';
@@ -192,7 +201,6 @@ class RouteLocationRepository
 				$fields['value'] = $value;
 
 				$Model = CustomField::create($fields);
-				$Model->update($fields);
 			}
 	
 			return $Model;		
