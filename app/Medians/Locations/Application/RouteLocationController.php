@@ -184,7 +184,6 @@ class RouteLocationController extends CustomController
 		$params = $this->app->request()->get('params');
 
         try {
-
 			
         	$params['status'] = $this->checkboxValue($params, 'status');
         	$params['saturday'] = $this->checkboxValue($params, 'saturday');
@@ -194,7 +193,6 @@ class RouteLocationController extends CustomController
         	$params['wednesday'] = $this->checkboxValue($params, 'wednesday');
         	$params['thursday'] = $this->checkboxValue($params, 'thursday');
         	$params['friday'] = $this->checkboxValue($params, 'friday');
-			
 			
             if ($this->repo->update($params))
             {

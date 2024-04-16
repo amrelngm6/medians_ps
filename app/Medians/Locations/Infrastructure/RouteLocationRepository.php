@@ -108,19 +108,23 @@ class RouteLocationRepository
 	 */
 	public function update($data)
 	{
-		
-		$data['model_type'] = $this->handleClassType($data['usertype']);
+		try {
+			
+			$data['model_type'] = $this->handleClassType($data['usertype']);
 
-		$Object = RouteLocation::where('business_id', $this->business_id)->find($data['location_id']);
-		
-		// Return the  object with the new data
-    	$Object->update( (array) $data);
+			$Object = RouteLocation::where('business_id', $this->business_id)->find($data['location_id']);
+			
+			// Return the  object with the new data
+			$Object->update( (array) $data);
 
-    	// Store Custom fields
-    	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['location_id']) : '';
+			// Store Custom fields
+			!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['location_id']) : '';
 
-    	return $Object;
+			return $Object;
 
+		} catch (\Exception $e) {
+			throw new \Exception("Error Update " . $e->getMessage(), 1);
+		}
     }
 
 
