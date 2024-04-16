@@ -180,8 +180,6 @@ class PaymentService
 
 			return $invoiceRepo->store((array) $data);
 
-			// return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
-
 		} catch (\Throwable $th) {
 			
 			return array('error'=>$th->getMessage());
