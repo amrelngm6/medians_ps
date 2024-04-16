@@ -40,7 +40,7 @@ class TransactionRepository
 	*/
 	public function get($limit = 500) 
 	{
-		return Transaction::with('model', 'item')
+		return Transaction::with('model', 'item', 'invoice')
 		->where('business_id', $this->business_id)
 		->limit($limit)
 		->get();
