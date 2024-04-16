@@ -42,7 +42,7 @@ class TripRepository
 
 	public function getTrip($id)
 	{
-		return Trip::where('business_id', $this->business_id)->withCount('moving_locations','done_locations','waiting_locations')->with('locations',  'driver', 'vehicle', 'route','supervisor')->find($id);
+		return Trip::withCount('moving_locations','done_locations','waiting_locations')->with('locations',  'driver', 'vehicle', 'route','supervisor')->find($id);
 	}
 
 	public function getParentTrip($trip_id, $parent_id)
