@@ -203,8 +203,7 @@ class RouteLocationController extends CustomController
             }
         
         } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
-        	
+        	throw new \Exception("Error Processing Request " . $e->getMessage(), 1);
         }
 	}
 
