@@ -221,7 +221,7 @@ class InvoiceRepository
 				$fields['discount_amount'] = 0;
 				$fields['total_amount'] = $value->total_amount;
 				$fields['item_id'] = $value->item_id;
-				$fields['item_type'] = $this->handleClass($value->model_type);	
+				$fields['item_type'] = $this->handleClass($value->item_type);	
 				$fields['date'] = date('Y-m-d');
 				$fields['status'] = $value->status;
 				$Model = InvoiceItem::create($fields);
