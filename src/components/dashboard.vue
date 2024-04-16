@@ -70,6 +70,7 @@
                                         <thead>
                                             <tr>
                                                 <th v-text="translate('User')"></th>
+                                                <th v-text="translate('subscription')"></th>
                                                 <th class="text-center" v-text="translate('status')"></th>
                                             </tr>
                                         </thead>
@@ -84,6 +85,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
+                                                <td v-text="applicant.subscription ? applicant.subscription.name : ''"></td>
                                                 <td v-text="applicant.status"></td>
                                             </tr>
                                         </tbody>
