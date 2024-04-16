@@ -114,6 +114,7 @@ class RouteLocationRepository
 
 			$Object = RouteLocation::where('business_id', $this->business_id)->find($data['location_id']);
 			
+			print_r($data);
 			// Return the  object with the new data
 			$Object->update( (array) $data);
 

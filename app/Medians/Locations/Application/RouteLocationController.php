@@ -196,7 +196,6 @@ class RouteLocationController extends CustomController
 			
             if ($this->repo->update($params))
             {
-
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
             }
         
