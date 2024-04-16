@@ -124,7 +124,6 @@
                                                                 <vue-feather type="cloud-lightning" ></vue-feather>
                                                                 <a :href="'./package_subscriptions'" v-if="invoiceItem.item" v-text="invoiceItem.item.name"></a>
                                                             </td>
-
                                                             <td class="pt-6" v-text="invoiceItem.subtotal+ '' + system_setting.currency"></td>
                                                             <td class="pt-6" v-text="invoiceItem.discount_amount"></td>
                                                             <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount + '' + system_setting.currency"></td>
@@ -139,39 +138,19 @@
                                             <div class="d-flex justify-content-end">
                                                 <!--begin::Section-->
                                                 <div class="mw-300px">
-                                                    <!--begin::Item-->
                                                     <div class="d-flex flex-stack mb-3">
-                                                        <!--begin::Accountname-->
                                                         <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Subtotal')"></div>
-                                                        <!--end::Accountname-->
-
-                                                        
                                                         <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.subtotal + '' + system_setting.currency"></div>
-                                                        
                                                     </div>
-                            
-
-                                                    <!--begin::Item-->
+                                                        
                                                     <div class="d-flex flex-stack mb-3">
-                                                        <!--begin::Accountname-->
                                                         <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Discount')"></div>
-                                                        <!--end::Accountname-->
-
-                                                        
                                                         <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.discount_amount+ '' + system_setting.currency"></div>
-                                                        
                                                     </div>
                             
-
-                                                    <!--begin::Item-->
                                                     <div class="d-flex flex-stack mb-3">
-                                                        <!--begin::Accountnumber-->
                                                         <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Total amount')"></div>
-                                                        <!--end::Accountnumber-->
-
-                                                        <!--begin::Number-->
                                                         <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.total_amount+ '' + system_setting.currency"></div>
-                                                        <!--end::Number-->
                                                     </div>
                             
                                                 </div>
