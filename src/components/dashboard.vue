@@ -71,7 +71,7 @@
                                             <tr>
                                                 <th v-text="translate('User')"></th>
                                                 <th v-text="translate('subscription')"></th>
-                                                <th class="text-center" v-text="translate('status')"></th>
+                                                <th v-text="translate('status')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.applicants"  :key="content.applicants">
@@ -104,11 +104,11 @@
                                         <thead>
                                             <tr>
                                                 <th v-text="translate('User')"></th>
-                                                <th class="text-center" v-text="translate('status')"></th>
+                                                <th v-text="translate('status')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.driver_applicants"  :key="content.driver_applicants">
-                                            <tr :key="index" v-for="(applicant, index) in content.driver_applicants" class="text-center" >
+                                            <tr :key="index" v-for="(applicant, index) in content.driver_applicants" >
                                                 <td>
                                                     <div class="flex gap-4 w-full">
                                                         <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.driver.picture ?? '/uploads/images/default_profile.png')" />
