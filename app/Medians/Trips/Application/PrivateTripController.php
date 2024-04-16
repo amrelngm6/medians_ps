@@ -64,6 +64,7 @@ class PrivateTripController extends CustomController
             [ 'value'=> "distance", 'text'=> __('Distance').'-KM', 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> __('trip_date'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
+            [ 'value'=> "payment_status", 'text'=> __('Payment'), 'sortable'=> true ],
             [ 'value'=> "details", 'text'=> __('Details') ],
             [ 'value'=> "delete", 'text'=> __('Delete') ],
         ];
