@@ -46,9 +46,13 @@ class PrivateTrip extends CustomModel
 	];
 
 
-	public $appends = ['distance', 'usertype', 'time', 'duration'];
+	public $appends = ['distance', 'usertype', 'time','name', 'duration'];
 
 	
+	public function getNameAttribute() {
+		return 'Private Trip #'.$this->trip_id;
+	}
+
 	public function getUsertypeAttribute() {
 		if (empty($this->model_type))
 		{
