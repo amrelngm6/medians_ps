@@ -180,7 +180,7 @@ class NotificationEvent extends CustomModel
 				break;
 				
 			case Student::class:
-				$object =  $model->with('parent')->find($model->trip_id);
+				$object =  $model->with('parent')->find($model->student_id);
 				$return =  isset($object->parent) ? [$object->parent] : null;
 				break;
 						
