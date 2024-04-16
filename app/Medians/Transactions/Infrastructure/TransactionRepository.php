@@ -43,6 +43,7 @@ class TransactionRepository
 		return Transaction::with('model', 'item', 'invoice')
 		->where('business_id', $this->business_id)
 		->limit($limit)
+		->orderBy('created_at', 'DESC')
 		->get();
 	}
 
