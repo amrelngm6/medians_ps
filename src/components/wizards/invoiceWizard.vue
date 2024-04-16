@@ -11,7 +11,7 @@
                 <!--begin::Invoice 2 main-->
                 <div class="card">
                     <!--begin::Body-->
-                    <div class="card-body p-lg-20">
+                    <div class="card-body py-lg-20">
                         <!--begin::Layout-->
                         <div class="d-flex flex-column flex-xl-row">
                             <!--begin::Content-->
