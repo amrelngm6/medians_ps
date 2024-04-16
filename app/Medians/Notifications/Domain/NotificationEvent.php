@@ -178,7 +178,12 @@ class NotificationEvent extends CustomModel
 				$object =  $model->with('model')->find($model->trip_id);
 				$return =  isset($object->model) ? [$object->model] : null;
 				break;
-					
+				
+			case Student::class:
+				$object =  $model->with('parent')->find($model->trip_id);
+				$return =  isset($object->parent) ? [$object->parent] : null;
+				break;
+						
 			default:
 				$return =  $model;
 				break;
