@@ -184,7 +184,6 @@ class PaymentService
 
 		} catch (\Throwable $th) {
 			
-			error_log($th->getMessage());
 			return array('error'=>$th->getMessage());
 		}
 	}
