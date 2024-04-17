@@ -6,6 +6,37 @@
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
             <a href="javascript:;" class="menu-dark uppercase p-2 mx-2 text-center text-white w-32 rounded bg-danger" @click="showAddSide = true, activeItem = {}; " v-text="translate('add_new')"></a>
         </div>
+        <div class="w-full row g-6 mb-6 g-xl-9 mb-xl-9">
+            <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
+                <div class="col-md-6 col-xxl-4">
+                    <div class="card ">
+                        <div class="card-body d-flex flex-center flex-column py-9 px-5">
+                            <div class="symbol symbol-65px symbol-circle mb-5">
+                                <img src="/metronic8/demo1/assets/media//avatars/300-6.jpg" alt="image">
+                            </div>
+                            <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">Olivia Larson</a>
+                            <div class="fw-semibold text-gray-500 mb-6">Art Director at Seal Inc.</div>
+                            <div class="d-flex flex-center flex-wrap mb-5">
+                                <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                                    <div class="fs-6 fw-bold text-gray-700">$14,560</div>
+                                    <div class="fw-semibold text-gray-500">Earnings</div>
+                                </div>
+                                <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                                    <div class="fs-6 fw-bold text-gray-700">$236,400</div>
+                                    <div class="fw-semibold text-gray-500">Sales</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-light btn-flex btn-center" data-kt-follow-btn="true">
+                                <i class="ki-duotone ki-plus follow fs-3"></i> 	
+                                <i class="ki-duotone ki-check following fs-3 d-none"></i> 	
+                                <span class="indicator-label"> Follow</span>
+                                <span class="indicator-progress"> Please wait...    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="w-full flex gap gap-6">
 
             <div v-if="content && content.users" :key="content.users" class="w-full">
