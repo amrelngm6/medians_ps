@@ -254,24 +254,24 @@
         <!--end::Card header-->
 
         <!--begin::Card body-->
-        <div class="card-body pt-2">
+        <div class="card-body pt-2" v-if="content.invoices">
             <table id="kt_customer_details_invoices_table_1" class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                 <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
                     <tr class="text-start text-gray-500">
-                        <th class="min-w-100px">Order ID</th>
+                        <th class="min-w-100px">Code</th>
                         <th class="min-w-100px">Amount</th>
                         <th class="min-w-100px">Status</th>                                    
                         <th class="min-w-125px">Date</th>
-                        <th class="w-100px">Invoice</th>
+                        <th class="w-100px">Plan</th>
                     </tr>
                 </thead>
                 <tbody class="fs-6 fw-semibold text-gray-600">
-                    <tr>
-                        <td><a href="#" class="text-gray-600 text-hover-primary">102445788</a></td>
-                        <td class="text-success">$38.00</td>
-                        <td><span class="badge badge-light-warning">Pending</span></td>
-                        <td>Nov 01, 2020</td>
-                        <td class=""><button class="btn btn-sm btn-light btn-active-light-primary">Download</button></td>
+                    <tr v-for="invoice in content.invoices">
+                        <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.code"></a></td>
+                        <td class="text-success"  v-text="invoice.code+''+system_setting.currency"></td>
+                        <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
+                        <td v-text="invoice.date"></td>
+                        <td v-text="invoice.item.plan_name"></td>
                     </tr>
                 </tbody>
             </table>
