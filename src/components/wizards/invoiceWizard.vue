@@ -18,7 +18,7 @@
                             <div class="flex-lg-row-fluid me-xl-18 mb-10 mb-xl-0">
                                 <div class="mt-n1">
                                     <div class="d-flex flex-stack pb-10" >
-                                        <a href="#">
+                                        <a href="#" v-if="business_setting">
                                             <img alt="Logo" class="w-250px" :src="business_setting['logo'] ?? system_setting.logo">
                                         </a>
                                     </div>
