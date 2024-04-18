@@ -37,7 +37,7 @@ class PaymentService
 	}
 
 
-	public function storePlanSubscription($order, $user)
+	public function storePlanSubscription($params, $order, $user)
 	{
 
 		$item = $order->purchase_units[0];
@@ -46,6 +46,7 @@ class PaymentService
 		$planSubscription['plan_id'] = $item->reference_id;
 		$planSubscription['business_id'] = $user->business->business_id;
 		$planSubscription['user_id'] = $user->id;
+		$planSubscription['type'] = $params['payment_type'];
 		$planSubscription['start_date'] = date('Y-m-d');
 		$planSubscription['end_date'] = $item->custom_id == 'monthly' ? date('Y-m-d', strtotime('+1 month')) : date('Y-m-d', strtotime('+1 year')) ;
 
@@ -72,7 +73,7 @@ class PaymentService
 	}
 	
 	
-	public function addInvoice($order, $savedSubscription, $user)
+	public function addInvoice($params, $order, $savedSubscription, $user)
 	{
 		try {
 			
@@ -84,13 +85,13 @@ class PaymentService
 			$data['user_id'] = $user->id;
 			$data['user_type'] = User::class;
 			$data['payment_method'] = 'PayPal';
-			$data['subtotal'] = $savedSubscription->subtotal;
+			$data['subtotal'] = $params['cost'];
 			$data['discount_amount'] = 0;
-			$data['total_amount'] = $invoiceInfo['total_amount'];
+			$data['total_amount'] = $params['cost'];
 			$data['date'] = date('Y-m-d');
-			$data['status'] = $invoiceInfo['status'];
+			$data['status'] = $params['status'];
 			$data['notes'] = '';
-			$data['items'] = $this->handleItems($order, $savedSubscription, $user);
+			$data['items'] = $this->handleItems($params, $order, $savedSubscription, $user);
 
 			return $invoiceRepo->store((array) $data);
 
@@ -102,16 +103,15 @@ class PaymentService
 	}
 	
 	
-	public function handleItems($order, $savedSubscription, $user)
+	public function handleItems($params, $order, $savedSubscription, $user)
 	{
-		$item = $purchase_units[0]->amount;
 		$items = [
 			[
-				'subtotal'=> $item->value,
-				'total_amount'=> $savedSubscription->item->value,
-				'item_id'=> $savedSubscription->subscription_id,
+				'subtotal'=> $params['cost'],
+				'total_amount'=> $params['cost'],
+				'item_id'=> $savedSubscription->plan_id,
+				'item_type'=> 'Plan',
 				'status'=> 'paid',
-				'item_type'=> 'PlanSubscription'
 			]
 		];
 		

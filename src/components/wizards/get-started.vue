@@ -616,7 +616,10 @@ export default
                 const params = new URLSearchParams([]);
                 params.append('type', 'Payment.paypal_payment_confirmation');
                 params.append('params[plan_id]', activePlan.value.plan_id);
+                params.append('params[payment_type]', activePrice.value);
+                params.append('params[status]', 'paid');
                 params.append('params[cost]', cost());
+                params.append('params[order]', JSON.stringify(order));
                 handleRequest(params, '/api/create').then(data => {
                     if (data.success) {
                         showAlert(data.result);
