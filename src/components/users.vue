@@ -14,7 +14,7 @@
 
                 <div class="row g-6 mb-6 g-xl-9 mb-xl-9" :key="role.users" >
 
-                    <div v-for="user in role.users" class="col-md-6 col-xxl-4">
+                    <div v-for="user in role.users" class="col-md-4  col-sm-6 col-xxl-4">
                         <div class="card ">
                             <div class="card-body d-flex flex-center flex-column py-9 px-5">
                                 <div class="symbol symbol-65px symbol-circle mb-5">
