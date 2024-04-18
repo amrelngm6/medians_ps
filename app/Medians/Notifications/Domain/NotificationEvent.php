@@ -169,46 +169,52 @@ class NotificationEvent extends CustomModel
 	 */
 	public function filterParent($event, $model)
 	{
-		$return = null;
+		try {
+			
+			$return = null;
 
-		switch (get_class($model)) 
-		{
-			case HelpMessageComment::class:
-				$return = [$model->message->user];
-				break;
+			switch (get_class($model)) 
+			{
+				case HelpMessageComment::class:
+					$return = [$model->message->user];
+					break;
 
-			case RouteLocation::class:
-				$location =  $model->where('model_type', Student::class)->with('parent')->find($model->location_id);
-				$return =  isset($location->parent) ? [$location->parent] : null;
-				break;
+				case RouteLocation::class:
+					$location =  $model->where('model_type', Student::class)->with('parent')->find($model->location_id);
+					$return =  isset($location->parent) ? [$location->parent] : null;
+					break;
 
-			case TripAlarm::class:
-				$object =  $model->whereHas('model')->with('model')->find($model->alarm_id);
-				$return =  isset($object->model->parent) ? [$object->model->parent] : null;
-				break;
+				case TripAlarm::class:
+					$object =  $model->whereHas('model')->with('model')->find($model->alarm_id);
+					$return =  isset($object->model->parent) ? [$object->model->parent] : null;
+					break;
 
-			case PrivateTrip::class:
-				$object =  $model->with('model')->find($model->trip_id);
-				$return =  isset($object->model) ? [$object->model] : null;
-				break;
-				
-			case Student::class:
-				$object =  $model->with('parent')->find($model->student_id);
-				$return =  isset($object->parent) ? [$object->parent] : null;
-				break;
-				
-			case TripLocation::class:
-				$object =  $model->where('model_type', Student::class)->with('model')->find($model->trip_location_id);
-				$return =  isset($object->model) ? [Student::with('parent')->where('student_id', $object->model_id)->first()->parent] : null;
-				break;
-				
-			default:
-				$return =  $model;
-				break;
+				case PrivateTrip::class:
+					$object =  $model->with('model')->find($model->trip_id);
+					$return =  isset($object->model) ? [$object->model] : null;
+					break;
+					
+				case Student::class:
+					$object =  $model->with('parent')->find($model->student_id);
+					$return =  isset($object->parent) ? [$object->parent] : null;
+					break;
+					
+				case TripLocation::class:
+					$object =  $model->where('model_type', Student::class)->with('model')->find($model->trip_location_id);
+					$return =  isset($object->model) ? [Student::with('parent')->where('student_id', $object->model_id)->first()->parent] : null;
+					break;
+					
+				default:
+					$return =  $model;
+					break;
+			}
+			
+			
+			return $return;
+		} catch (\Throwable $th) {
+			error_log($th->getMessage());
+			return null;
 		}
-		
-		
-		return $return;
 	}
 
 
