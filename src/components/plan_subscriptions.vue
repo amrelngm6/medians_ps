@@ -6,10 +6,10 @@
                 :userslist="content.users" :key="showWizard" :plans="content.plans"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 
-        <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
+        <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full" v-if="!showWizard">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
         </div>
-        <div class="mx-2 bg-white px-4 rounded shadow-sm py-2 ">
+        <div class="mx-2 bg-white px-4 rounded shadow-sm py-2 "  v-if="!showWizard">
             
             <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex ">
                 <!--begin::Card title-->
