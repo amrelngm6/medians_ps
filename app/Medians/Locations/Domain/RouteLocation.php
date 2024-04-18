@@ -112,7 +112,7 @@ class RouteLocation extends CustomModel
 
 	public function parent() 
 	{
-		return $this->hasOneThrough(Parents::class, Student::class, 'student_id', 'customer_id', 'model_id', 'customer_id');	
+		return $this->hasOneThrough(Parents::class, Student::class, 'student_id', 'customer_id', 'model_id', 'parent_id');	
 	}
 	
 	public function route() 
