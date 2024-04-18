@@ -214,12 +214,13 @@
 
 
                                 <div class="card-body p-9" v-if="activeItem.business">
-                                    <div class="fs-3 fw-bold text-gray-900" v-text="translate('Business')"></div>
-                                    <p class="text-gray-500 fw-semibold fs-5 mt-1 mb-2"
+                                    <div class="text-gray-500 fw-semibold fs-5 " v-text="translate('Business')"></div>
+                                    <p class="fs-3 fw-bold text-gray-900 mt-1 mb-2"
                                     v-text="activeItem.business.business_name"></p>
                                 </div>
                                     
                                 <div class="card-body p-9" v-if="activeItem.plan">
+                                    <div class="text-gray-500 fw-semibold fs-5 " v-text="translate('Plan')"></div>
                                     <div class="fs-3 fw-bold text-gray-900" v-text="activeItem.plan.name"></div>
                                     <p class="text-gray-500 fw-semibold fs-5 mt-1 mb-7"
                                         v-text="activeItem.plan.description"></p>
