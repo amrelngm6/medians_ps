@@ -64,7 +64,7 @@
                         <div class="w-full p-4">
                             <div class="w-full flex ">
                                 <h4 class="w-full ml-4" v-text="translate('New subscriptions')"></h4>
-                                <a href="/admin/help_messages" class="w-20" v-text="translate('View all')"></a>
+                                <a href="/admin/plan_subscriptions" class="w-20" v-text="translate('View all')"></a>
                             </div>
                             <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest subscriptions request has been sent')"></p>
                         </div>
