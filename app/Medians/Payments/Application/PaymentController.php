@@ -40,7 +40,8 @@ class PaymentController extends CustomController
 	{
 
 		return [
-            [ 'value'=> "payment_id", 'text'=> "#"],
+            [ 'value'=> "*", 'text'=> "*"],
+            [ 'value'=> "payment_id", 'text'=> ""],
             [ 'value'=> "user", 'text'=> __('User'), 'sortable'=> true ],
             [ 'value'=> "plan_subscription.plan.name", 'text'=> __('Plan'), 'sortable'=> false ],
             [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
