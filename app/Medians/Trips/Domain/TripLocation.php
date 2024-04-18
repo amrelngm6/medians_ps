@@ -4,6 +4,7 @@ namespace Medians\Trips\Domain;
 
 use Medians\Routes\Domain\Route;
 use Medians\Locations\Domain\RouteLocation;
+use Medians\Drivers\Domain\Driver;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Customers\Domain\Parents;
 use Medians\Students\Domain\Student;
@@ -57,6 +58,16 @@ class TripLocation extends CustomModel
 	public function location() 
 	{
 		return $this->hasOne(RouteLocation::class, 'location_id', 'location_id');	
+	}
+
+	public function trip() 
+	{
+		return $this->hasOne(Trip::class, 'trip_id', 'trip_id');	
+	}
+
+	public function driver() 
+	{
+		return $this->hasOneThrough(Driver::class, Trip::class, 'trip_id', 'driver_id', 'trip_id', 'driver_id');	
 	}
 
 	public function model() 

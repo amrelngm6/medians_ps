@@ -86,7 +86,7 @@ class Trip extends CustomModel
 
 	public function locations() 
 	{
-		return $this->hasMany(TripLocation::class, 'trip_id', 'trip_id')->with('location','model')->orderBy('boarding_time', 'asc');	
+		return $this->hasMany(TripLocation::class, 'trip_id', 'trip_id')->with('location','model', 'driver')->orderBy('boarding_time', 'asc');	
 	}
 
 	public function waiting_locations() 

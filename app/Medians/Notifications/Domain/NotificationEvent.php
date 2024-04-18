@@ -9,6 +9,7 @@ use Medians\Customers\Domain\Customer;
 use Medians\Drivers\Domain\Driver;
 use Medians\Drivers\Domain\DriverApplicant;
 use Medians\Trips\Domain\Trip;
+use Medians\Trips\Domain\TripLocation;
 use Medians\Trips\Domain\PrivateTrip;
 use Medians\Trips\Domain\TripAlarm;
 use Medians\Locations\Domain\RouteLocation;
@@ -141,6 +142,11 @@ class NotificationEvent extends CustomModel
 				return isset($object->driver) ? [$object->driver] : null;
 				break;
 				
+			case TripLocation::class:
+				$object =  $model->with('driver')->find($model->trip_location_id);
+				return isset($object->driver) ? [$object->driver] : null;
+				break;
+				
 			default:
 				return [$model];
 				break;
@@ -184,7 +190,12 @@ class NotificationEvent extends CustomModel
 				$object =  $model->with('parent')->find($model->student_id);
 				$return =  isset($object->parent) ? [$object->parent] : null;
 				break;
-						
+				
+			case TripLocation::class:
+				$object =  $model->where('model_type', Student::class)->with('model')->find($model->trip_location_id);
+				$return =  isset($object->model) ? [Student::with('parent')->where('student_id', $object->model_id)->first()->parent] : null;
+				break;
+				
 			default:
 				$return =  $model;
 				break;
@@ -232,6 +243,11 @@ class NotificationEvent extends CustomModel
 				return isset($object->supervisor) ? [$this->validateUserType($event, $object->supervisor)] : null;
 				break;
 							
+			case TripLocation::class:
+				$object =  $model->with('model')->find($model->trip_location_id);
+				return isset($object->model) ? [$object->model] : null;
+				break;
+
 			default:
 				return $model;
 				break;
@@ -315,6 +331,11 @@ class NotificationEvent extends CustomModel
 				return isset($object->model) ? [$this->validateUserType($event, $object->model)] : null;
 				break;
 							
+			case TripLocation::class:
+				$object =  $model->with('model')->find($model->trip_location_id);
+				return isset($object->model) ? [$object->model] : null;
+				break;
+
 			default:
 				return $model;
 				break;
