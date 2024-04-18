@@ -147,7 +147,7 @@ export function handleAccess (response)
         response ? showAlert(response.result, 3000) : null;
         if (response.result == 'Access limit exceeded')
         {
-            showAlert(__('Upgrade plan now'), 5000);
+            showAlert(translate('Upgrade plan now'), 5000);
         }
     } else {
         response ? showAlert(response.error, 3000) : null;
