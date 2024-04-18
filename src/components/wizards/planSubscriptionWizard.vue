@@ -132,8 +132,8 @@
                                     <!--begin::Col-->
                                     <div class="col-lg-6" @click="setType('month')">
                                         <input type="radio" class="btn-check" value="month"
-                                            :checked="activeItem.payment_type == 'month' ? true : false"
-                                            name="payment_type" />
+                                            :checked="activeItem.type == 'month' ? true : false"
+                                            name="type" />
                                         <label
                                             class="gap-6 btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-10">
                                             <vue-feather type="server"></vue-feather>
@@ -149,8 +149,8 @@
 
                                     <div class="col-lg-6" @click="setType('year')">
                                         <input type="radio" class="btn-check" value="year"
-                                            :checked="activeItem.payment_type == 'year' ? true : false"
-                                            name="payment_type" />
+                                            :checked="activeItem.type == 'year' ? true : false"
+                                            name="type" />
                                         <label
                                             class="gap-6 btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-10">
                                             <vue-feather type="server"></vue-feather>
@@ -353,7 +353,7 @@ export default
 
 
             const progressWidth = () => {
-                let requiredData = ['model_id', 'plan_id', 'start_date', 'payment_type', 'daily_trips', 'payment_status'];
+                let requiredData = ['model_id', 'plan_id', 'start_date', 'type', 'daily_trips', 'payment_status'];
 
                 return getProgressWidth(requiredData, activeItem);
             }
@@ -399,7 +399,7 @@ export default
             }
 
             const setType = (val) => {
-                activeItem.value.payment_type = val;
+                activeItem.value.type = val;
                 dateChanged()
             }
 
@@ -409,13 +409,13 @@ export default
                     return null;
 
                 let value = 0;
-                if (activeItem.value.payment_type == 'month')
+                if (activeItem.value.type == 'month')
                     value = 1;
 
-                if (activeItem.value.payment_type == 'quarter')
+                if (activeItem.value.type == 'quarter')
                     value = 3;
 
-                if (activeItem.value.payment_type == 'year')
+                if (activeItem.value.type == 'year')
                     value = 12;
 
                 activeItem.value.end_date = durationMonthsDate(activeItem.value.start_date, value);
@@ -425,7 +425,7 @@ export default
 
             const totalCost = () => {
 
-                switch (activeItem.value.payment_type) 
+                switch (activeItem.value.type) 
                 {
                     case 'year':
                         return activeItem.value.plan.yearly_cost;
