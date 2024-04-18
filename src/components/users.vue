@@ -27,7 +27,7 @@
                                 <div class="w-full flex gap-4">
                                     
                                     <button class="btn btn-sm btn-light btn-flex btn-center gap-4" data-kt-follow-btn="true" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
-                                        <vue-feather class="w-6" type="edit"></vue-feather>
+                                        <vue-feather class="w-8" type="edit"></vue-feather>
                                         <span class="indicator-label" > Edit</span>
                                     </button>
                                     <div class="w-full"></div>
