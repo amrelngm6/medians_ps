@@ -57,9 +57,9 @@ class DashboardController extends CustomController
 		$this->PackageSubscriptionRepository = new Packages\Infrastructure\PackageSubscriptionRepository($user->business);
 		$this->PlanSubscriptionRepository = new Plans\Infrastructure\PlanSubscriptionRepository($user->business);
 
-		$this->start = $this->app->request()->get('start_date') ? date('Y-m-d', strtotime($this->app->request()->get('start_date'))) : date('Y-m-d');
-		$this->end = $this->app->request()->get('end_date') ? date('Y-m-d', strtotime($this->app->request()->get('end_date'))) : date('Y-m-d');
 		$this->month_first = date('Y-m-01');
+		$this->start = $this->app->request()->get('start_date') ? date('Y-m-d', strtotime($this->app->request()->get('start_date'))) : $this->month_first;
+		$this->end = $this->app->request()->get('end_date') ? date('Y-m-d', strtotime($this->app->request()->get('end_date'))) : date('Y-m-d');
 	}
 
 	/**
