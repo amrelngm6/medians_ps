@@ -40,6 +40,7 @@ import {defineAsyncComponent} from 'vue';
 import SideMenu from '@/components/side-menu.vue'; 
 import navbar from '@/components/navbar.vue'; 
 import dashboard from '@/components/dashboard.vue'; 
+import master_dashboard from '@/components/master_dashboard.vue'; 
 import trips from '@/components/trips.vue'; 
 import vehicles from '@/components/vehicles.vue'; 
 import HelpMessages from '@/components/help_messages.vue'; 
@@ -124,6 +125,7 @@ export default {
         SideMenu,
         navbar,
         dashboard,
+        master_dashboard,
         trips,
         private_trips,
         vehicles,
