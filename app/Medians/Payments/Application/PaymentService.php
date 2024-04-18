@@ -80,7 +80,7 @@ class PaymentService
 			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository($user->business);
 			
 			$data = array();
-			$data['business_id'] = $user->business->business_id;
+			$data['business_id'] = '0';
 			$data['code'] = $this->paymentRepo->generateCode();
 			$data['user_id'] = $user->id;
 			$data['user_type'] = User::class;
