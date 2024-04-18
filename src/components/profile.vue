@@ -310,8 +310,8 @@
                             <div class="mb-7" v-if="activeItem.business && activeItem.business.subscription">
                                 <h5 class="mb-4" v-text="translate('Plan')"></h5>
                                 <div class="mb-0">
-                                    <span class="badge badge-light-info me-2" v-text="activeItem.business.subscription.plan_name"></span>
-                                    <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? activeItem.business.subscription.plan.yearly_cost : ''"></span>
+                                    <span class="text-lg me-2" v-text="activeItem.business.subscription.plan_name"></span>
+                                    <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? (activeItem.business.subscription.plan.yearly_cost + '/'+ activeItem.business.subscription.type) : ''"></span>
                                 </div>
                             </div>
                             <!--end::Section-->
