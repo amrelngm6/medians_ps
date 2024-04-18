@@ -17,9 +17,9 @@
                             <!--begin::Content-->
                             <div class="flex-lg-row-fluid me-xl-18 mb-10 mb-xl-0">
                                 <div class="mt-n1">
-                                    <div class="d-flex flex-stack pb-10">
+                                    <div class="d-flex flex-stack pb-10" >
                                         <a href="#">
-                                            <img alt="Logo" class="w-250px" :src="business_setting['logo']">
+                                            <img alt="Logo" class="w-250px" :src="business_setting['logo'] ?? system_setting.logo">
                                         </a>
                                     </div>
                                     <div class="m-0">
@@ -86,7 +86,7 @@
                                                 
 
                                                 <!--end::Text-->
-                                                <div class="flex gap-2" >
+                                                <div class="flex gap-2" v-if="business_setting">
                                                     <img :src="business_setting.logo" class="w-10 h-10" />
                                                     <div class="fw-bold fs-6 text-gray-800">
                                                         <div class="text-gray-800" v-text="activeItem.business.name"></div>
@@ -94,9 +94,7 @@
                                                 </div>
 
                                                 <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600" v-text="business_setting.address">
-                                                    
-                                                </div>
+                                                <div class="fw-semibold fs-7 text-gray-600"  v-if="business_setting" v-text="business_setting.address"></div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Col-->
