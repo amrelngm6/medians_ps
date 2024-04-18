@@ -234,10 +234,12 @@
                                 <!--begin::Details-->
                                 <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
                                     <!--begin::Row-->
-                                    <tbody><tr class="">
+                                    <tbody>
+                                        <tr class="">
                                         <td class="text-gray-500" v-text="translate('Subscription ID')"></td>
                                         <td class="text-gray-800" v-text="activeItem.business.subscription.subscription_id"></td>
                                     </tr>
+                                    </tbody>
                                     <tbody><tr class="">
                                         <td class="text-gray-500" v-text="translate('Upcoming renewal')"></td>
                                         <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
