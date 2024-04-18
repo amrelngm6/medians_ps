@@ -205,11 +205,11 @@
 
                             <div class="bg-gray-200 shadow-md mb-10 rounded-xl">
                                 <div class="card-header border-0 pt-9">
-                                    <div class="card-title m-0 flex  gap-4" v-if="activeItem && activeItem.model">
+                                    <div class="card-title m-0 flex  gap-4" v-if="activeItem && activeItem.user">
                                         <div class="symbol symbol-50px w-50px bg-light">
-                                            <img :src="activeItem.model.picture" alt="image" class="p-3">
+                                            <img :src="activeItem.user.picture" alt="image" class="p-3">
                                         </div>
-                                        <span class="" v-text="activeItem.model.name"></span>
+                                        <span class="" v-text="activeItem.user.name"></span>
                                     </div>
                                     <label class=" flex gap-2 cursor-pointer">
                                         <form_field class="flex-end" :item="activeItem"
@@ -376,7 +376,7 @@ export default
 
             const setUser = (model) => {
                 activeItem.value.model_id = model.id;
-                activeItem.value.model = model;
+                activeItem.value.user = model;
                 activeItem.value.user_type = props.usertype;
                 activeTab.value = 'Plan';
                 searchText.value = null;
