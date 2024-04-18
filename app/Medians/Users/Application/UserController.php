@@ -118,7 +118,7 @@ class UserController extends CustomController
             'stats' => $this->getStats($user->business),
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
-	        'invoices' => $invoiceRepo->getUserInvoices($user->id),
+	        'invoices' => $invoicesRepo->getUserInvoices($user->id),
 	    ]);
 	} 
 
