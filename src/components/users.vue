@@ -24,10 +24,16 @@
                                 <div class="fw-semibold text-gray-500 mb-6" v-text="user.email"></div>
                                 <div class="fw-semibold text-gray-500 mb-6" v-if="user.business" v-text="user.business.business_name"></div>
                                 
-                                <button class="btn btn-sm btn-light btn-flex btn-center gap-4" data-kt-follow-btn="true">
-                                    <vue-feather type="edit"></vue-feather>
-                                    <span class="indicator-label"> Edit</span>
-                                </button>
+                                <div class="w-full flex gap-6">
+                                    <div class="flex gap gap-2 cursor-pointer flex-end" @click="setActiveStatus(user)">
+                                        <span :class="!user.active ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: user.active ? '16px' : 0}"></a></span>
+                                        <span  v-text="user.active ? translate('Active') : translate('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                                    </div>
+                                    <button class="btn btn-sm btn-light btn-flex btn-center gap-4" data-kt-follow-btn="true">
+                                        <vue-feather type="edit"></vue-feather>
+                                        <span class="indicator-label"> Edit</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
