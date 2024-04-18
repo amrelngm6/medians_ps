@@ -76,10 +76,12 @@ class PaymentService
 	public function addInvoice($params, $order, $savedSubscription, $user)
 	{
 		try {
+
+			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository($user->business);
 			
 			$data = array();
 			$data['business_id'] = $user->business->business_id;
-			$data['code'] = $this->paymentRepo->generateCode();
+			$data['code'] = $invoiceRepo->generateCode();
 			$data['user_id'] = $user->id;
 			$data['user_type'] = User::class;
 			$data['payment_method'] = 'PayPal';
@@ -91,7 +93,7 @@ class PaymentService
 			$data['notes'] = '';
 			$data['items'] = $this->handleItems($params, $order, $savedSubscription, $user);
 
-			return $this->paymentRepo->store((array) $data);
+			return $invoiceRepo->store((array) $data);
 
 		} catch (\Throwable $th) {
 			error_log($th->getMessage());
