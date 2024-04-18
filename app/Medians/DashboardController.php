@@ -123,6 +123,8 @@ class DashboardController extends CustomController
 				'trips_charts'=>$trips_charts,
 				'private_trips_charts'=>$private_trips_charts,
 				'applicants'=>$applicants,
+				'start'=>$this->start,
+				'end'=>$this->end,
 	        ];
 
 			return array_merge($counts, $array);

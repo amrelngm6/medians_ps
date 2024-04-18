@@ -178,14 +178,6 @@ export default
 
         const activeDate = ref();
 
-        const dates_filters = [
-            {title: translate('Today'), value: 'today'},
-            {title: translate('Yesterday'), value: 'yesterday'},
-            {title: translate('Last week'), value: '-7days'},
-            {title: translate('Last month'), value: '-30days'},
-            {title: translate('Last year'), value: '-365days'}
-        ];
-
         
         const load = (path) =>
         {
@@ -308,7 +300,6 @@ export default
             line_options,
             line_options2,
             pie_options,
-            dates_filters,
             content,
             activeDate,
             dateTimeFormat,
