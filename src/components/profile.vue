@@ -72,12 +72,11 @@
                                         
                                         <div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.routes_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/</div>
-                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Route')"></div>
+                                                <div class="fs-2 fw-bold" v-text="content.stats.trips_count"></div>
+                                                <div class="fs-6 fw-bold px-1" >/ --</div>
                                             </div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Routes')"></div>
+                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Trips')"></div>
                                     </div>
                                     <!--end::Stat-->
 
