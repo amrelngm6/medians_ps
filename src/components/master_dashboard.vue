@@ -247,11 +247,11 @@ export default
             pie_options.value  =  {
 
                 // Line charts Data 
-                data: content.value.top_drivers,
+                data: content.value.top_businesses,
 
                 // Series: Defines which chart type and data to use
                 series: [
-                    { type: 'pie', legendItemKey: 'first_name', angleKey: 'y' },
+                    { type: 'pie', legendItemKey: 'business_name', angleKey: 'y' },
                 ],
             };
         }

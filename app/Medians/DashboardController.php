@@ -175,7 +175,7 @@ class DashboardController extends CustomController
 		$data = [];
 
         $data['businesses_count'] = $this->BusinessRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        $data['top_businesses'] = $this->BusinessRepository->masterByDate(['start'=>$this->start, 'end'=>$this->end]);
+        $data['top_businesses'] = $this->BusinessRepository->masterByDate(['start'=>$this->start, 'end'=>$this->end], 5);
         $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
