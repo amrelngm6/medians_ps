@@ -28,7 +28,7 @@ class InvoiceRepository
 	function __construct($business)
 	{
 		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		$this->business_id = isset($business->business_id) ? $business->business_id : 0;
 	}
 
 
