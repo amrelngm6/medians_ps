@@ -623,7 +623,7 @@ export default
                 handleRequest(params, '/api/create').then(data => {
                     if (data.success) {
                         showAlert(data.result);
-                        window.location.reload()
+                        window.location.href = props.conf.url+'/dashboard'
                     }
                 });
             }
