@@ -79,27 +79,121 @@
             <!--begin:::Tab content-->
             <div class="tab-content" id="myTabContent">
 
-                <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'account'">
-                    <div class="card-body p-9">
-                        <div class="row py-4 my-2 border-b border-gray-200" >
-                            <label class="col-lg-4 fw-semibold text-muted" v-text="translate('id')"></label>
-                            <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.id"></span></div>
-                        </div>
-                        <div class="row py-4 my-2 border-b border-gray-200" >
-                            <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Name')"></label>
-                            <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.name"></span></div>
-                        </div>
-                        <div class="row py-4 my-2 border-b border-gray-200" >
-                            <label class="col-lg-4 fw-semibold text-muted" v-text="translate('email')"></label>
-                            <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.email"></span></div>
-                        </div>
-                        <div class="row py-4 my-2 border-b border-gray-200" >
-                            <label class="col-lg-4 fw-semibold text-muted" v-text="translate('mobile')"></label>
-                            <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.mobile"></span></div>
-                        </div>
-                        <div class="row py-4 my-2 border-b border-gray-200" >
-                            <label class="col-lg-4 fw-semibold text-muted" v-text="translate('status')"></label>
-                            <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.active ? 'Yes' : 'No'"></span></div>
+                <div class="d-flex flex-column flex-lg-row" id="kt_profile_details_view" v-if="activeTab == 'account'">
+                    <div class="flex-lg-row-fluid me-lg-15 order-2 order-lg-1 mb-10 mb-lg-0">
+                        <div class="card card-flush pt-3 mb-5 mb-xl-10">
+    <!--begin::Card header-->
+    <div class="card-header">
+        <!--begin::Card title-->
+        <div class="card-title">
+            <h2 class="fw-bold">Product Details</h2>
+        </div>
+        <!--begin::Card title-->
+
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar">
+            <a href="/metronic8/demo1/apps/subscriptions/add.html" class="btn btn-light-primary">Update Product</a>
+        </div>
+        <!--end::Card toolbar-->
+    </div>
+    <!--end::Card header-->
+
+    <!--begin::Card body-->
+    <div class="card-body pt-3">
+        <!--begin::Section-->
+        <div class="mb-10">
+            <!--begin::Title-->
+            <h5 class="mb-4">Billing Address:</h5>
+            <!--end::Title-->
+
+            <!--begin::Details-->
+            <div class="d-flex flex-wrap py-5">
+                <!--begin::Row-->
+                <div class="flex-equal me-5">
+                    <!--begin::Details-->
+                    <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
+                        <!--begin::Row-->
+                        <tbody><tr>
+                            <td class="text-gray-500 min-w-175px w-175px">Bill to:</td>
+                            <td class="text-gray-800 min-w-200px">
+                                <a href="/metronic8/demo1/pages/apps/customers/view.html" class="text-gray-800 text-hover-primary">smith@kpmg.com</a>
+                            </td>
+                        </tr>
+                        <!--end::Row-->
+
+                        <!--begin::Row-->
+                        <tr>
+                            <td class="text-gray-500">Customer Name:</td>
+                            <td class="text-gray-800">
+                                Emma Smith                            </td>
+                        </tr>
+                        <!--end::Row-->
+
+                        <!--begin::Row-->
+                        <tr>
+                            <td class="text-gray-500">Address:</td>
+                            <td class="text-gray-800">
+                                Floor 10, 101 Avenue of 
+                                the Light Square, New York, NY, 10050.
+                            </td>
+                        </tr>
+                        <!--end::Row-->
+
+                        <!--begin::Row-->
+                        <tr>
+                            <td class="text-gray-500">Phone:</td>
+                            <td class="text-gray-800">(555) 555-1234</td>
+                        </tr>
+                        <!--end::Row-->
+                    </tbody></table>
+                    <!--end::Details-->
+                </div>
+                <!--end::Row-->
+
+                <!--begin::Row-->
+                <div class="flex-equal" v-if="activeItem.business && activeItem.business.subscription">
+                    <!--begin::Details-->
+                    <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
+                        <!--begin::Row-->
+                        <tbody><tr>
+                            <td class="text-gray-500" v-text="translate('Plan')"></td>
+                            <td class="text-gray-800" v-text="activeItem.business.subscription.plan_name"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-500" v-text="translate('Start date')"></td>
+                            <td class="text-gray-800" v-text="activeItem.business.subscription.start_date"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-500" v-text="translate('End date')"></td>
+                            <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                        <div class="card card-flush pt-3 mb-5 mb-xl-10">
+                            <div class="row py-4 my-2 border-b border-gray-200" >
+                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('id')"></label>
+                                <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.id"></span></div>
+                            </div>
+                            <div class="row py-4 my-2 border-b border-gray-200" >
+                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Name')"></label>
+                                <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.name"></span></div>
+                            </div>
+                            <div class="row py-4 my-2 border-b border-gray-200" >
+                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('email')"></label>
+                                <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.email"></span></div>
+                            </div>
+                            <div class="row py-4 my-2 border-b border-gray-200" >
+                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('mobile')"></label>
+                                <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.mobile"></span></div>
+                            </div>
+                            <div class="row py-4 my-2 border-b border-gray-200" >
+                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('status')"></label>
+                                <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" v-text="activeItem.active ? 'Yes' : 'No'"></span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -210,9 +304,6 @@ const SideFormUpdate = defineAsyncComponent(() =>
     import('@/components/includes/side-form-update.vue')
 );
 
-const field = defineAsyncComponent(() =>
-    import('@/components/includes/field.vue')
-);
 
 const form_field = defineAsyncComponent(() =>
     import('@/components/includes/form_field.vue')
@@ -229,7 +320,6 @@ export default {
         SideFormUpdate,
         form_field,
         close_icon,
-        'vue-medialibrary-field': field,
 
     },
     name: 'Users',
