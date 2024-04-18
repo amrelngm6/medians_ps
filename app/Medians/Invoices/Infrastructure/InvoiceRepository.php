@@ -61,7 +61,7 @@ class InvoiceRepository
 		return Invoice::with('user', 'items','business', 'transaction')
 		->where('user_id', $userId)
 		->where('user_type', User::class)
-		->limit($limit)
+		->limit(10)
 		->orderBy('invoice_id', 'DESC')
 		->get();
 	}
