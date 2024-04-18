@@ -228,17 +228,6 @@
                                     <p class="text-gray-500 fw-semibold fs-5 mt-1 mb-7"
                                         v-text="activeItem.plan.description"></p>
                                     
-                                    <div class="mb-8 gap-4 notice d-flex bg-inverse-default rounded border-primary border border-dashed  p-6">
-                                        <vue-feather type="map"></vue-feather>
-                                        <div class="d-flex flex-stack flex-grow-1 flex-wrap flex-md-nowrap">
-                                            <div class="mb-3 mb-md-0 fw-semibold">
-                                                <h4 class="text-gray-900 fw-bold" v-text="activeItem.daily_trips == 1 ? translate('Single trip') : translate('Double trips')"></h4>
-                                                <div class="fs-6 text-gray-700 pe-7"  v-text="activeItem.daily_trips == 1 ? translate('Single trip per day') : translate('Two trips per day going and return')"></div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    
                                     <div class="h-4px w-100 bg-light mb-5">
                                         <div class="rounded h-4px" role="progressbar"
                                             :class="progressWidth() < 100 ? 'bg-info' : 'bg-success'"
