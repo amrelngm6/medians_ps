@@ -41,6 +41,7 @@ class PlanSubscriptionController extends CustomController
             [ 'value'=> "plan.name", 'text'=> __('Plan'), 'sortable'=> true ],
             [ 'value'=> "business.business_name", 'text'=> __('Business'), 'sortable'=> true ],
             [ 'value'=> "user", 'text'=> __('User'), 'sortable'=> true ],
+            [ 'value'=> "type", 'text'=> __('Type'), 'sortable'=> true ],
             [ 'value'=> "start_date", 'text'=> __('From'), 'sortable'=> true ],
             [ 'value'=> "end_date", 'text'=> __('To'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('edit')  ],

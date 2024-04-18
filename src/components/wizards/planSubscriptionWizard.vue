@@ -210,15 +210,6 @@
                                         </div>
                                         <span class="" v-text="activeItem.user.name"></span>
                                     </div>
-                                    <label class=" flex gap-2 cursor-pointer">
-                                        <form_field class="flex-end" :item="activeItem"
-                                            :column="{ key: 'is_paid',  column_type: 'checkbox', hide_text: true }">
-                                        </form_field>
-                                        <div class="pt-3">
-                                            <span class="badge badge-light fw-bold me-auto px-4 py-3"
-                                                v-text="activeItem.is_paid ? 'Paid' : 'Unpaid'"></span>
-                                        </div>
-                                    </label>
                                 </div>
 
 
@@ -234,14 +225,7 @@
                                     </div>
 
                                     <div class="w-full flex gap-4" v-if="activeItem.plan">
-                                        <div class="w-full flex gap-4">
-                                            <vue-feather type="credit-card"></vue-feather>
-                                            <div class="block gap-4">
-                                                <span class="w-full block font-semibold"
-                                                    v-text="translate('Total cost')"></span>
-                                                <span class="w-full block" v-text="totalCost()"></span>
-                                            </div>
-                                        </div>
+                                       
                                         <div class="w-full block gap-4" v-if="activeItem.start_date">
                                             <span class="w-full block font-semibold"
                                                 v-text="translate('Start date')"></span>
