@@ -235,7 +235,7 @@ export default {
         },
         checkAccess()
         {
-          if (this.auth && this.auth.role_id == 1)
+          if (this.auth && this.auth.role_id == '1')
             return true;
 
           if (!this.auth)
