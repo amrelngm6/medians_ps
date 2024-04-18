@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="row">
                                     <!--begin::Col-->
-                                    <div class="col-lg-6" @click="setType('month')">
+                                    <div class="col-lg-6" @click="setType('monthly')">
                                         <input type="radio" class="btn-check" value="monthly"
                                             :checked="activeItem.type == 'monthly' ? true : false"
                                             name="type" />
@@ -146,7 +146,7 @@
                                     </div>
 
 
-                                    <div class="col-lg-6" @click="setType('year')">
+                                    <div class="col-lg-6" @click="setType('yearly')">
                                         <input type="radio" class="btn-check" value="yearly"
                                             :checked="activeItem.type == 'yearly' ? true : false"
                                             name="type" />
