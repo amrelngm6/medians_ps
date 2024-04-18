@@ -40,7 +40,7 @@ class UsageLog extends CustomModel
 		$data['user_id'] = $user->$userpk;
 		$data['action'] = $action;
 		$data['data'] = $updatedFields ?? json_encode(json_decode($model));
-		$save = UsageLog::firstOrCreate($data);
+		$save = UsageLog::create($data);
 		return $save;
 	}
 
