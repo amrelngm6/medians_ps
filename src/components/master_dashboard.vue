@@ -46,7 +46,7 @@
                     <div class="card mb-0 w-1/3">
                         
                         <div class="w-full p-4">
-                            <div class="w-full flex ">
+                            <div class="w-full flex gap-2">
                                 <h4 class="w-full ml-4" v-text="translate('Top businesses')"></h4>
                                 <a href="/admin/companies" class="w-24" v-text="translate('Companies')"></a>
                                 <a href="/admin/schools" class="w-24" v-text="translate('Schools')"></a>
