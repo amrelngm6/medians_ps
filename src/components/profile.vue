@@ -660,7 +660,7 @@
             <div class="d-flex align-items-center">
                 <!--begin::Avatar-->
                 <div class="symbol symbol-60px symbol-circle me-3">
-                                                                <img alt="Pic" src="/metronic8/demo1/assets/media/avatars/300-5.jpg">
+                                                                <img alt="Pic" :src="'/metronic8/demo1/assets/media/avatars/300-5.jpg'">
                                     </div>
                 <!--end::Avatar-->
 
@@ -720,7 +720,7 @@
                 <div class="fw-semibold text-gray-600 d-flex align-items-center">
                     Mastercard
 
-                    <img src="/metronic8/demo1/assets/media/svg/card-logos/mastercard.svg" class="w-35px ms-2" alt="">
+                    <img :src="'/metronic8/demo1/assets/media/svg/card-logos/mastercard.svg'" class="w-35px ms-2" alt="">
                 </div>
                 <!--end::Card info-->
 
@@ -778,7 +778,7 @@
 
         <!--begin::Actions-->
         <div class="mb-0">
-            <a href="/metronic8/demo1/apps/subscriptions/add.html" class="btn btn-primary" id="kt_subscriptions_create_button">                
+            <a href="" class="btn btn-primary" id="kt_subscriptions_create_button">                
                 Edit Subscription
             </a>
         </div>
