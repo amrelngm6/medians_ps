@@ -342,7 +342,7 @@ export default
 
 
             const progressWidth = () => {
-                let requiredData = ['model_id', 'plan_id', 'start_date', 'type'];
+                let requiredData = ['user_id', 'plan_id', 'start_date', 'type'];
 
                 return getProgressWidth(requiredData, activeItem);
             }
@@ -353,7 +353,7 @@ export default
             }
 
             const setUser = (model) => {
-                activeItem.value.model_id = model.id;
+                activeItem.value.user_id = model.id;
                 activeItem.value.user = model;
                 activeItem.value.user_type = props.usertype;
                 activeTab.value = 'Plan';
