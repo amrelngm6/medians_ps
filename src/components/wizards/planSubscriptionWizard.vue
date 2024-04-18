@@ -146,21 +146,6 @@
                                         </label>
                                     </div>
 
-                                    <div class="col-lg-4" @click="setType('quarter')">
-                                        <input type="radio" class="btn-check" value="quarter"
-                                            :checked="activeItem.payment_type == 'quarter' ? true : false"
-                                            name="payment_type" />
-                                        <label
-                                            class="gap-6 btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-10">
-                                            <vue-feather type="server"></vue-feather>
-                                            <span class="d-block fw-semibold text-start">
-                                                <span class="text-gray-900 fw-bold d-block fs-4 mb-2"
-                                                    v-text="translate('Quarter')"></span>
-                                                <span class="text-muted fw-semibold fs-6"
-                                                    v-text="translate('Subscribe for quarter')"></span>
-                                            </span>
-                                        </label>
-                                    </div>
 
                                     <div class="col-lg-4" @click="setType('year')">
                                         <input type="radio" class="btn-check" value="year"
@@ -182,54 +167,9 @@
 
                             <div class="relative py-4 max-w-xl mx-auto">
 
-                                <label class="nui-label w-full pb-2 px-5 block font-semibold text-lg"
-                                    v-text="translate('Route type')"></label>
-
+                                
                                 <div class="fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
 
-                                    <label class="d-flex flex-stack mb-5 cursor-pointer"
-                                        @click="activeItem.daily_trips = 2">
-                                        <span class="d-flex align-items-center me-2">
-                                            <span class="symbol symbol-50px me-6">
-                                                <span class="symbol-label bg-light-danger  ">
-                                                    <vue-feather type="map-pin"></vue-feather>
-                                                </span>
-                                            </span>
-                                            <span class="d-flex flex-column">
-                                                <span class="fw-bold fs-6">Double trips</span>
-                                                <span class="fs-7 text-muted"
-                                                    v-text="translate('Two trips per day going and return')"></span>
-                                            </span>
-                                        </span>
-                                        <span class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" v-model="activeItem.daily_trips" type="radio"
-                                                name="daily_trips" value="2">
-                                        </span>
-                                    </label>
-
-                                    <label class="d-flex flex-stack mb-5 cursor-pointer"
-                                        @click="activeItem.daily_trips = 1">
-                                        <span class="d-flex align-items-center me-2">
-                                            <span class="symbol symbol-50px me-6">
-                                                <span class="symbol-label bg-light-danger  ">
-                                                    <vue-feather type="map-pin"></vue-feather>
-                                                </span>
-                                            </span>
-                                            <span class="d-flex flex-column">
-                                                <span class="fw-bold fs-6">Single trip</span>
-                                                <span class="fs-7 text-muted"
-                                                    v-text="translate('One trip per day going')"></span>
-                                            </span>
-                                        </span>
-                                        <span class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" v-model="activeItem.daily_trips" type="radio"
-                                                name="daily_trips" value="1">
-                                        </span>
-                                    </label>
-
-                                    <div
-                                        class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                    </div>
 
                                     <div class="pt-0">
                                         <div class="settings-form">
@@ -496,11 +436,16 @@ export default
 
             const totalCost = () => {
 
-                let priceType = (activeItem.value.daily_trips == 1) ? ('single_cost_' + activeItem.value.payment_type) : ('double_cost_' + activeItem.value.payment_type);
-
-                activeItem.value.total_cost = activeItem.value.plan[priceType];
-
-                return activeItem.value.total_cost;
+                switch (activeItem.value.payment_type) 
+                {
+                    case 'year':
+                        return activeItem.value.plan.yearly_cost;
+                        break;
+                
+                    default:
+                        return activeItem.value.plan.monthly_cost;
+                        break;
+                }
             }
 
 
