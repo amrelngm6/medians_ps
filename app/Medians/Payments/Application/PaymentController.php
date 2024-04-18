@@ -191,9 +191,10 @@ class PaymentController extends CustomController
 
 				$savedSubscription = $paymentService->storePlanSubscription($params, $order, $user); 
 
-				$savePlanPayment = $paymentService->storePlanPayment($order, $savedSubscription, $user); 
-
 				$addInvoice = $paymentService->addInvoice($params, $order, $savedSubscription, $user); 
+
+				$savePlanPayment = $paymentService->storePlanPayment($addInvoice, $order, $savedSubscription, $user); 
+
 	
 				return ($addInvoice && isset($savePlanPayment->payment_id))
 				? array('success'=>1, 'result'=>__('PAYMENT_MADE_SECCUESS'), 'reload'=>1)
