@@ -150,6 +150,7 @@ export default
             translate,
             searchField,
             searchValue,
+            showWizard,
             handleAction
         };
     },
