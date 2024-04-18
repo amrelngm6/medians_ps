@@ -53,8 +53,14 @@
                         </div>
                     </div>
                     <div class="card w-1/3 lg:w-1/3 lg:mb-0">
-                        <h4 class="p-4 ml-4" v-text="translate('New subscriptions')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('Latest subscriptions request has been sent')"></p>
+                        
+                        <div class="w-full p-4">
+                            <div class="w-full flex ">
+                                <h4 class="p-4 ml-4" v-text="translate('New subscriptions')"></h4>
+                                <a href="/admin/help_messages" class="w-20" v-text="translate('View all')"></a>
+                            </div>
+                            <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('Latest subscriptions request has been sent')"></p>
+                        </div>
                         <div class="card-body w-full">
                             <div class="w-full ">
                                 <div class="table-responsive w-full">
