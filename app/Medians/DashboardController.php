@@ -26,6 +26,7 @@ class DashboardController extends CustomController
 	public  $PackageSubscriptionRepository;
 	public  $BusinessRepository;
 	public  $CustomerRepository;
+	public  $PlanSubscriptionRepository;
 
 	protected $app;
 	public $start;
@@ -54,6 +55,7 @@ class DashboardController extends CustomController
 		$this->InvoiceRepository = new Invoices\Infrastructure\InvoiceRepository($user->business);
 		$this->TransactionRepository = new Transactions\Infrastructure\TransactionRepository($user->business);
 		$this->PackageSubscriptionRepository = new Packages\Infrastructure\PackageSubscriptionRepository($user->business);
+		$this->PlanSubscriptionRepository = new Plans\Infrastructure\PlanSubscriptionRepository($user->business);
 
 		$this->start = $this->app->request()->get('start_date') ? date('Y-m-d', strtotime($this->app->request()->get('start_date'))) : date('Y-m-d');
 		$this->end = $this->app->request()->get('end_date') ? date('Y-m-d', strtotime($this->app->request()->get('end_date'))) : date('Y-m-d');
@@ -177,6 +179,7 @@ class DashboardController extends CustomController
         $data['businesses_count'] = $this->BusinessRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         $data['top_businesses'] = $this->BusinessRepository->masterByDate(['start'=>$this->start, 'end'=>$this->end], 5);
         $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
+        $data['plan_subscriptions'] = $this->PlanSubscriptionRepository->getLatest(['start'=>$this->start, 'end'=>$this->end], 5);
         $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['business_applicant_count'] = $this->BusinessApplicantRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();

@@ -70,10 +70,10 @@
                                             <tr :key="index" v-for="(subscription, index) in content.plan_subscriptions"  >
                                                 <td>
                                                     <div class="flex gap-4 w-full">
-                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.model.picture ?? '/uploads/images/default_profile.png')" />
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.user.picture ?? '/uploads/images/default_profile.png')" />
                                                         <div class="text-left">
-                                                            <p class="m-0" v-text="subscription.model.name"></p>
-                                                            <p class="m-0" v-text="subscription.model.mobile"></p>
+                                                            <p class="m-0" v-text="subscription.user.name"></p>
+                                                            <p class="m-0" v-text="subscription.user.phone"></p>
                                                         </div>
                                                     </div>
                                                 </td>
