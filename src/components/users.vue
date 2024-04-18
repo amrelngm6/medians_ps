@@ -20,14 +20,13 @@
                                 <div class="symbol symbol-65px symbol-circle mb-5">
                                     <img :src="user.photo" alt="image">
                                 </div>
-                                <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">Olivia Larson</a>
-                                <div class="fw-semibold text-gray-500 mb-6">Art Director at Seal Inc.</div>
+                                <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{user.first_name}} {{user.last_name}}</a>
+                                <div class="fw-semibold text-gray-500 mb-6" v-text="user.email"></div>
+                                <div class="fw-semibold text-gray-500 mb-6" v-if="user.business" v-text="user.business.business_name"></div>
                                 
-                                <button class="btn btn-sm btn-light btn-flex btn-center" data-kt-follow-btn="true">
-                                    <i class="ki-duotone ki-plus follow fs-3"></i> 	
-                                    <i class="ki-duotone ki-check following fs-3 d-none"></i> 	
-                                    <span class="indicator-label"> Follow</span>
-                                    <span class="indicator-progress"> Please wait...    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                <button class="btn btn-sm btn-light btn-flex btn-center gap-4" data-kt-follow-btn="true">
+                                    <vue-feather type="edit"></vue-feather>
+                                    <span class="indicator-label"> Edit</span>
                                 </button>
                             </div>
                         </div>
