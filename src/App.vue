@@ -235,6 +235,7 @@ export default {
         },
         checkAccess()
         {
+            console.log(this.auth);
           if (this.auth && this.auth.role_id == '1')
             return true;
 
