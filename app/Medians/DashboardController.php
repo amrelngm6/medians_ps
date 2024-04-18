@@ -65,8 +65,10 @@ class DashboardController extends CustomController
 	{
 		try {
 			
+			$user = $this->app->auth();
+
 			// Name of the Vue components
-	        return  render('dashboard', $this->data());
+	        return $user->role_id == 1 ?  render('master_dashboard', $this->data()) :   render('dashboard', $this->data());
 	        
 		} catch (Exception $e) {
 			return $e->getMessage();
