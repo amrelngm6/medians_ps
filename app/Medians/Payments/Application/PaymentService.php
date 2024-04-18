@@ -54,11 +54,12 @@ class PaymentService
 	}
 	
 	
-	public function storePlanPayment($order, $planSubscription, $user)
+	public function storePlanPayment($invoice, $order, $planSubscription, $user)
 	{
 		$item = $order->purchase_units[0];
 
 		$payment['payment_code'] = $order->id;
+		$payment['invoice_id'] = $invoice->invoice_id;
 		$payment['business_id'] = $user->business->business_id;
 		$payment['amount'] = $item->amount->value;
 		$payment['model_id'] = $planSubscription->subscription_id;
