@@ -56,10 +56,10 @@ class HelpMessageRepository
 		return $query;
 	}
 
-	public function allEventsByDate($params)
+	public function allEventsByDate($params, $limit = 5)
 	{
-		$query = Trip::whereBetween('created_at', [$params['start'], $params['end']]);
-		return $query;
+		$query = HelpMessage::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query->orderBy('created_at','DESC')->limit($limit)->get();
 	}
 
 
