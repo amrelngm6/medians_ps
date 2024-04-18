@@ -30,7 +30,8 @@
                                         <vue-feather class="w-6" type="edit"></vue-feather>
                                         <span class="indicator-label"> Edit</span>
                                     </button>
-                                    <div class="flex gap gap-2 cursor-pointer flex-end" @click="setActiveStatus(user)">
+                                    <div class="w-full"></div>
+                                    <div class="mb-4 flex gap gap-2 cursor-pointer flex-end" @click="setActiveStatus(user)">
                                         <span :class="!user.active ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: user.active ? '16px' : 0}"></a></span>
                                         <span  v-text="user.active ? translate('Active') : translate('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
                                     </div>
