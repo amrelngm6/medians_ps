@@ -423,25 +423,6 @@
         </div>
     </div>
 </div>
-             <!--begin::Row-->
-             <div class="flex-equal" v-if="activeTab == 'account' && activeItem.business && activeItem.business.subscription">
-                    <!--begin::Details-->
-                    <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
-                        <!--begin::Row-->
-                        <tbody><tr>
-                            <td class="text-gray-500" v-text="translate('Plan')"></td>
-                            <td class="text-gray-800" v-text="activeItem.business.subscription.plan_name"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-500" v-text="translate('Start date')"></td>
-                            <td class="text-gray-800" v-text="activeItem.business.subscription.start_date"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-gray-500" v-text="translate('End date')"></td>
-                            <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
-                        </tr>
-                    </tbody></table>
-                </div>
             <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'account'">
                 <div class="card-body p-9">
                     <div class="row my-4 py-4 border-b border-gray-200" v-for="field in content.overview">
