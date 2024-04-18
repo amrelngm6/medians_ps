@@ -182,22 +182,10 @@ class DashboardController extends CustomController
         $data['plan_subscriptions'] = $this->PlanSubscriptionRepository->getLatest(['start'=>$this->start, 'end'=>$this->end], 5);
         $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['business_applicant_count'] = $this->BusinessApplicantRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['drivers_count'] = $this->DriverRepository->get()->count();
-        $data['routes_count'] = $this->RouteRepository->get()->count();
-        $data['route_locations_count'] = $this->RouteLocationRepository->get()->count();
-        $data['vehicles_count'] = $this->VehicleRepository->get()->count();
-        $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
-        $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
-        $data['latest_subscriptions'] = $this->PackageSubscriptionRepository->get(5);
-        $data['driver_applicants'] = $this->DriverApplicantRepository->get(5);
         $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
         $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['latest_invoices'] = $this->InvoiceRepository->get(5);
-        $data['latest_transactions'] = $this->TransactionRepository->get(5);
-        $data['transactions_count'] = $this->TransactionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['subscriptions_count'] = $this->PackageSubscriptionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
 
         return $data;
 
