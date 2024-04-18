@@ -6,7 +6,7 @@ namespace Medians\Payments\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
-use Medians\Branches\Domain\Branch;
+use Medians\Invoices\Domain\Invoice;
 use Medians\Plans\Domain\PlanSubscription;
 
 class Payment extends CustomModel
@@ -25,6 +25,7 @@ class Payment extends CustomModel
 	*/
 	public $fillable = [
 		'business_id',
+		'invoice_id',
 		'amount',
 		'model_id',
 		'model_type',
@@ -53,6 +54,11 @@ class Payment extends CustomModel
 	public function business()
 	{
 		return $this->hasOne(Business::class, 'business_id', 'business_id');
+	}
+
+	public function invoice()
+	{
+		return $this->hasOne(Invoice::class, 'invoice_id', 'invoice_id');
 	}
 
 
