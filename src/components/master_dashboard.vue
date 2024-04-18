@@ -45,7 +45,7 @@
                 <div class="w-full lg:flex gap gap-6 pb-6">
                     <div class="card mb-0 w-1/3">
                         <h4 class="p-4 ml-4" v-text="translate('Top businesses')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_businesses_who_have_most_trips')"></p>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_businesses_who_have_most_route_locations')"></p>
                         <div class="card-body w-full">
                             <div class="w-full" v-if="content.top_businesses">
                                 <ag-charts-vue :key="pie_options" :options="pie_options"> </ag-charts-vue>
