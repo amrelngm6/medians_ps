@@ -103,18 +103,13 @@ class DashboardController extends CustomController
 
 		try {
 
-			// $trips_charts = $this->TripRepository->getByDateCharts(['start'=>$this->app->request()->get('start') ? $this->start : $this->month_first, 'end'=>$this->end]);
 			$trips_charts = $this->TripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 			$private_trips_charts = $this->PrivateTripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 			$applicants = $this->BusinessApplicantRepository->get(5);
 
 			$counts = $this->loadCounts();
-            /**
-            * Order repository to get
-            * Sales for last ( 90 ) Days
-            */ 
 
-	        $array = [
+			$array = [
 	            'title' => 'Dashboard',
 		        'load_vue' => true,
 				'trips_charts'=>$trips_charts,
@@ -128,6 +123,41 @@ class DashboardController extends CustomController
 			return $e->getMessage();
 		}
 	} 
+
+
+
+	
+	/**
+	 * Dashboard response for Master
+	 * 
+	 * @return Array  
+	 */
+	public function master_data()
+	{
+
+		try {
+
+			$trips_charts = $this->TripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+			$private_trips_charts = $this->PrivateTripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+			$applicants = $this->BusinessApplicantRepository->get(5);
+
+			$counts = $this->loadCounts();
+
+			$array = [
+	            'title' => 'Dashboard',
+		        'load_vue' => true,
+				'trips_charts'=>$trips_charts,
+				'private_trips_charts'=>$private_trips_charts,
+				'applicants'=>$applicants,
+	        ];
+
+			return array_merge($counts, $array);
+	        
+		} catch (Exception $e) {
+			return $e->getMessage();
+		}
+	} 
+
 
 
 

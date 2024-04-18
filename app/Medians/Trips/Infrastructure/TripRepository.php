@@ -161,6 +161,12 @@ class TripRepository
 		return $query;
 	}
 
+	public function masterByDate($params)
+	{
+		$query = Trip::whereBetween('date', [$params['start'], $params['end']]);
+		return $query;
+	}
+
 	
 	/**
 	* Find By Business between two days 
@@ -184,6 +190,20 @@ class TripRepository
 
 	  	$check = Trip::where('business_id', $this->business_id)
 		->whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, date as label');
+
+  		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
+	}
+
+	
+	
+	/**
+	* Find all items between two days 
+	*/
+	public function masterByDateCharts($params )
+	{
+
+	  	$check = Trip::whereBetween('date' , [$params['start'] , $params['end']])
 		->selectRaw('COUNT(*) as y, date as label');
 
   		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
