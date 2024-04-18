@@ -398,13 +398,10 @@ export default
                     return null;
 
                 let value = 0;
-                if (activeItem.value.type == 'month')
+                if (activeItem.value.type == 'monthly')
                     value = 1;
 
-                if (activeItem.value.type == 'quarter')
-                    value = 3;
-
-                if (activeItem.value.type == 'year')
+                if (activeItem.value.type == 'yearly')
                     value = 12;
 
                 activeItem.value.end_date = durationMonthsDate(activeItem.value.start_date, value);
@@ -412,23 +409,8 @@ export default
 
             const showTip = ref(false);
 
-            const totalCost = () => {
-
-                switch (activeItem.value.type) 
-                {
-                    case 'year':
-                        return activeItem.value.plan.yearly_cost;
-                        break;
-                
-                    default:
-                        return activeItem.value.plan.monthly_cost;
-                        break;
-                }
-            }
-
 
             return {
-                totalCost,
                 showTip,
                 dateChanged,
                 setType,
