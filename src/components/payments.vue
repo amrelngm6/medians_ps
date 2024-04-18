@@ -44,9 +44,9 @@
                     </div>
                 </template>
 
-                <template #expand="item">
-                    <div class="p-6" style="padding: 15px">
-                        Its invoice has code {{item.invoice.code}} 
+                <template #expand="item" v-if="item.invoice">
+                    <div class="p-6"  style="padding: 15px">
+                        {{item.invoice ? item.invoice.code : ''}} 
                     </div>
                 </template>
 
