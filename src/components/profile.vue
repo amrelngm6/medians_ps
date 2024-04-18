@@ -206,73 +206,25 @@
                         <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2">
                                 <!--begin::Card-->
                             <div class="card card-flush mb-0" data-kt-sticky="true" data-kt-sticky-name="subscription-summary" data-kt-sticky-offset="{default: false, lg: '200px'}" data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto" data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
-                                <!--begin::Card header-->
                                 <div class="card-header">
-                                    <!--begin::Card title-->
-                                    <div class="card-title">
-                                        <h2>Summary</h2>
-                                    </div>
-                                    <!--end::Card title-->
-
-                                    <!--begin::Card toolbar-->
-                                    <div class="card-toolbar">
-                                        <!--begin::More options-->
-                                        <a href="#" class="btn btn-sm btn-light btn-icon" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            <i class="ki-duotone ki-dots-square fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>            </a>
-                                        <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-6 w-200px py-4" data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3">
-                                        Pause Subscription
-                                    </a>
+                                    <div class="card-title"><h2>Summary</h2></div>
                                 </div>
-                                <!--end::Menu item-->
-                                
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-subscriptions-view-action="delete">
-                                    Edit Subscription
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link text-danger px-3" data-kt-subscriptions-view-action="edit">
-                                        Cancel Subscription
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
-                                        <!--end::More options-->
-                                    </div>
-                                    <!--end::Card toolbar-->
-                                </div>
-                                <!--end::Card header-->
-
-                                <!--begin::Card body-->
                                 <div class="card-body pt-0 fs-6">
-                                    <!--begin::Section-->
                                     <div class="mb-7">
-                                                    
-                                        <!--begin::Details-->
                                         <div class="d-flex align-items-center">
-                                            <!--begin::Avatar-->
                                             <div class="symbol symbol-60px symbol-circle me-3">
-                                                                                            <img alt="Pic" :src="'/metronic8/demo1/assets/media/avatars/300-5.jpg'">
-                                                                </div>
+                                                <img alt="Pic" :src="activeItem.picture">
+                                            </div>
                                             <!--end::Avatar-->
 
                                             <!--begin::Info-->
                                             <div class="d-flex flex-column">
                                                 <!--begin::Name-->
-                                                <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2">Sean Bean</a>
+                                                <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2" v-text="activeItem.name"></a>
                                                 <!--end::Name-->
 
                                                 <!--begin::Email-->
-                                                <a href="#" class="fw-semibold text-gray-600 text-hover-primary">sean@dellito.com</a>
+                                                <a href="#" class="fw-semibold text-gray-600 text-hover-primary" v-text="activeItem.email"></a>
                                                 <!--end::Email-->
                                             </div>
                                             <!--end::Info-->
@@ -286,19 +238,19 @@
                                     <!--end::Seperator-->
 
                                     <!--begin::Section-->
-                                    <div class="mb-7">
+                                    <div class="mb-7" v-if="activeItem.business && activeItem.business.subscription">
                                         <!--begin::Title-->
-                                        <h5 class="mb-4">Product details</h5>
+                                        <h5 class="mb-4" v-text="translate('Plan')"></h5>
                                         <!--end::Title-->
 
                                         <!--begin::Details-->
                                         <div class="mb-0">
                                             <!--begin::Plan-->
-                                            <span class="badge badge-light-info me-2">Basic Bundle</span>
+                                            <span class="badge badge-light-info me-2" v-text="activeItem.business.subscription.plan_name"></span>
                                             <!--end::Plan-->
 
                                             <!--begin::Price-->
-                                            <span class="fw-semibold text-gray-600">$149.99 / Year</span>
+                                            <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan.yearly_cost ?? ''"></span>
                                             <!--end::Price-->
                                         </div>
                                         <!--end::Details-->
