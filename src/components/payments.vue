@@ -89,7 +89,7 @@ export default
         {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
-                searchField.value = content.value.columns;
+                searchField.value = content.value.columns.value;
             });
         }
         
