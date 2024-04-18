@@ -40,7 +40,7 @@
                         <tbody>
                         <tr>
                             <td class="text-gray-500" v-text="translate('first name')"></td>
-                            <td class="text-gray-800" v-text="activeItem.first_name"></td>
+                            <td class="text-gray-800 fw-bold" v-text="activeItem.first_name"></td>
                         </tr>
                         <tr>
                             <td class="text-gray-500" v-text="translate('last name')"></td>
@@ -70,11 +70,11 @@
                         <!--begin::Row-->
                         <tbody><tr>
                             <td class="text-gray-500" v-text="translate('Plan')"></td>
-                            <td class="text-gray-800" v-text="activeItem.business.subscription.plan_name"></td>
+                            <td class="text-gray-800 fw-bold" v-text="activeItem.business.subscription.plan_name"></td>
                         </tr>
                         <tr>
                             <td class="text-gray-500" v-text="translate('Start date')"></td>
-                            <td class="text-gray-800" v-text="activeItem.business.subscription.start_date"></td>
+                            <td class="text-gray-800 fw-semibold" v-text="activeItem.business.subscription.start_date"></td>
                         </tr>
                         <tr>
                             <td class="text-gray-500" v-text="translate('End date')"></td>
