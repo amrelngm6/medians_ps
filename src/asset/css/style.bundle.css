@@ -170,3 +170,9 @@
 	background: linear-gradient(to left, #fff 0, #dbeafa 100%);
 	border-left:4px solid #1f2937;
 }
+
+.vue3-easy-data-table__main table td, .vue3-easy-data-table__main table th {
+    border-top: transparent !important;
+    border-right: transparent !important;
+    border-left: transparent !important;
+}
