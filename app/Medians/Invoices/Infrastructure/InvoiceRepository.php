@@ -8,6 +8,7 @@ use Medians\CustomFields\Domain\CustomField;
 use Medians\Packages\Domain\PackageSubscription;
 use Medians\Trips\Domain\PrivateTrip;
 use Medians\Plans\Domain\Plan;
+use Medians\Users\Domain\User;
 use Medians\Plans\Domain\PlanSubscription;
 
 
@@ -47,6 +48,19 @@ class InvoiceRepository
 	{
 		return Invoice::with('user', 'items','business', 'transaction')
 		->where('business_id', $this->business_id)
+		->limit($limit)
+		->orderBy('invoice_id', 'DESC')
+		->get();
+	}
+
+	/**
+	* Find items by `params` 
+	*/
+	public function getUserInvoices($userId) 
+	{
+		return Invoice::with('user', 'items','business', 'transaction')
+		->where('user_id', $userId)
+		->where('user_type', User::class)
 		->limit($limit)
 		->orderBy('invoice_id', 'DESC')
 		->get();

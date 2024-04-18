@@ -9,6 +9,7 @@ use Medians\Vehicles\Infrastructure\VehicleRepository;
 use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Trips\Infrastructure\TripRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
+use Medians\Invoices\Infrastructure\InvoiceRepository;
 
 
 class UserController extends CustomController
@@ -108,7 +109,8 @@ class UserController extends CustomController
 	{
 		
 		$user = $this->app->auth();
-		
+		$invoicesRepo = new InvoiceRepository($user->business);
+
 		return render('profile', [
 			'load_vue'=> true,
 	        'title' => __('Users'),
@@ -116,6 +118,7 @@ class UserController extends CustomController
             'stats' => $this->getStats($user->business),
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
+	        'invoices' => $this->invoiceRepo->getUserInvoices($user->id),
 	    ]);
 	} 
 
