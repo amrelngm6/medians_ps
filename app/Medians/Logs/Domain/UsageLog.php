@@ -26,17 +26,21 @@ class UsageLog extends CustomModel
 
 	public static function addItem($model, $action, $updatedFields = null)
 	{
+		$user = (new \config\APP)->auth();
 		if ($model::class == UsageLog::class)
 		{
 			return null;
 		}
 		$pk = $model->getPrimaryKey();
+		$userpk = $user->getPrimaryKey();
 		$data = array();
 		$data['model_type'] = $model::class;
 		$data['model_id'] = $model->$pk;
+		$data['user_type'] = $user::class;
+		$data['user_id'] = $user->$userpk;
 		$data['action'] = $action;
 		$data['data'] = $updatedFields ?? json_encode(json_decode($model));
-		$save = UsageLog::create($data);
+		$save = UsageLog::firstOrCreate($data);
 		return $save;
 	}
 
