@@ -1,5 +1,109 @@
 <template>
     <div class="w-full mb-5 mb-xl-10">
+        
+            <!--begin::Details-->
+            <div class="d-flex flex-wrap flex-sm-nowrap">
+                <!--begin: Pic-->
+                <div class="me-7 mb-4">
+                    <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                        <img :src="auth.photo" class="w-20" alt="image" />
+                        <div
+                            class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px">
+                        </div>
+                    </div>
+                </div>
+                <!--end::Pic-->
+
+                <!--begin::Info-->
+                <div class="flex-grow-1">
+                    <!--begin::Title-->
+                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                        <!--begin::User-->
+                        <div class="d-flex flex-column">
+                            <!--begin::Name-->
+                            <div class="d-flex align-items-center mb-2">
+                                <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1"
+                                    v-text="auth.name"></a>
+                            </div>
+                            <!--end::Name-->
+
+                            <!--begin::Info-->
+                            <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    <vue-feather class="w-5 mx-1" type="eye"></vue-feather>
+                                    <span v-text="auth.role.name"></span>
+                                </a>
+                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    <vue-feather class="w-5 mx-1" type="smartphone"></vue-feather>
+                                    <span v-text="auth.phone"></span>
+                                </a>
+                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    <vue-feather class="w-5 mx-1" type="at-sign"></vue-feather>
+                                    <span v-text="auth.email"></span>
+                                </a>
+                            </div>
+                            <!--end::Info-->
+                        </div>
+                        <!--end::User-->
+
+                        <!--begin::Actions-->
+                        <div class="d-flex my-4">
+                            <a @click="showEditSide = true" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Edit')"></a>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Title-->
+
+                    <!--begin::Stats-->
+                    <div class="d-flex flex-wrap flex-stack">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column flex-grow-1 pe-8">
+                            <!--begin::Stats-->
+                            <div class="d-flex flex-wrap" v-if="activeItem.business && content">
+                                <!--begin::Stat-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bold" v-text="activeItem.business.subscription.plan_name"></div>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Plan')"></div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bold" v-text="content.stats.drivers_count"></div>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Drivers')"></div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bold" v-text="content.stats.vehicles_count"></div>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicles')"></div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bold" v-text="content.stats.trips_count"></div>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Trips')"></div>
+                                </div>
+                                <!--end::Stat-->
+
+                            </div>
+                            <!--end::Stats-->
+                        </div>
+                        <!--end::Wrapper-->
+
+                    </div>
+                    <!--end::Stats-->
+                </div>
+                <!--end::Info-->
+            </div>
+            <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+                <li class="nav-item mt-2" v-for="tab in tabsList">
+                    <a v-if="checkRole(activeItem.role_id, tab.link)" @click="setActiveTab(tab.link)" :class="activeTab == tab.link ? 'active' : ''"
+                        class="nav-link text-active-primary ms-0 me-10 py-5 " href="javascript:;" v-text="tab.title"></a>
+                </li>
+            </ul>
+
         <div class="w-full pt-9 pb-0">
             <div class="d-flex flex-column flex-lg-row">
     <!--begin::Content-->
@@ -131,303 +235,194 @@
     
 
 
-</div>  
+    </div>  
 
-<div class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2">
-        <!--begin::Card-->
-<div class="card card-flush mb-0" data-kt-sticky="true" data-kt-sticky-name="subscription-summary" data-kt-sticky-offset="{default: false, lg: '200px'}" data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto" data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
-    <!--begin::Card header-->
-    <div class="card-header">
-        <!--begin::Card title-->
-        <div class="card-title">
-            <h2>Summary</h2>
-        </div>
-        <!--end::Card title-->
-
-        <!--begin::Card toolbar-->
-        <div class="card-toolbar">
-            <!--begin::More options-->
-            <a href="#" class="btn btn-sm btn-light btn-icon" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                <i class="ki-duotone ki-dots-square fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>            </a>
-            <!--begin::Menu-->
-<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-6 w-200px py-4" data-kt-menu="true">
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link px-3">
-            Pause Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-    
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link px-3" data-kt-subscriptions-view-action="delete">
-           Edit Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link text-danger px-3" data-kt-subscriptions-view-action="edit">
-            Cancel Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-</div>
-<!--end::Menu-->
-            <!--end::More options-->
-        </div>
-        <!--end::Card toolbar-->
-    </div>
-    <!--end::Card header-->
-
-    <!--begin::Card body-->
-    <div class="card-body pt-0 fs-6">
-        <!--begin::Section-->
-        <div class="mb-7">
-                        
-            <!--begin::Details-->
-            <div class="d-flex align-items-center">
-                <!--begin::Avatar-->
-                <div class="symbol symbol-60px symbol-circle me-3">
-                                                                <img alt="Pic" :src="'/metronic8/demo1/assets/media/avatars/300-5.jpg'">
-                                    </div>
-                <!--end::Avatar-->
-
-                <!--begin::Info-->
-                <div class="d-flex flex-column">
-                    <!--begin::Name-->
-                    <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2">Sean Bean</a>
-                    <!--end::Name-->
-
-                    <!--begin::Email-->
-                    <a href="#" class="fw-semibold text-gray-600 text-hover-primary">sean@dellito.com</a>
-                    <!--end::Email-->
+    <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2">
+            <!--begin::Card-->
+        <div class="card card-flush mb-0" data-kt-sticky="true" data-kt-sticky-name="subscription-summary" data-kt-sticky-offset="{default: false, lg: '200px'}" data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto" data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
+            <!--begin::Card header-->
+            <div class="card-header">
+                <!--begin::Card title-->
+                <div class="card-title">
+                    <h2>Summary</h2>
                 </div>
-                <!--end::Info-->
+                <!--end::Card title-->
+
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::More options-->
+                    <a href="#" class="btn btn-sm btn-light btn-icon" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                        <i class="ki-duotone ki-dots-square fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>            </a>
+                    <!--begin::Menu-->
+        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-6 w-200px py-4" data-kt-menu="true">
+            <!--begin::Menu item-->
+            <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3">
+                    Pause Subscription
+                </a>
             </div>
-            <!--end::Details-->
-        </div>
-        <!--end::Section-->
-
-        <!--begin::Seperator-->
-        <div class="separator separator-dashed mb-7"></div>
-        <!--end::Seperator-->
-
-        <!--begin::Section-->
-        <div class="mb-7">
-            <!--begin::Title-->
-            <h5 class="mb-4">Product details</h5>
-            <!--end::Title-->
-
-            <!--begin::Details-->
-            <div class="mb-0">
-                <!--begin::Plan-->
-                <span class="badge badge-light-info me-2">Basic Bundle</span>
-                <!--end::Plan-->
-
-                <!--begin::Price-->
-                <span class="fw-semibold text-gray-600">$149.99 / Year</span>
-                <!--end::Price-->
-            </div>
-            <!--end::Details-->
-        </div>
-        <!--end::Section-->
-
-        <!--begin::Seperator-->
-        <div class="separator separator-dashed mb-7"></div>
-        <!--end::Seperator-->
-
-        <!--begin::Section-->
-        <div class="mb-10">
-            <!--begin::Title-->
-            <h5 class="mb-4">Payment Details</h5>
-            <!--end::Title-->
-
-            <!--begin::Details-->
-            <div class="mb-0">
-                <!--begin::Card info-->
-                <div class="fw-semibold text-gray-600 d-flex align-items-center">
-                    Mastercard
-
-                    <img :src="'/metronic8/demo1/assets/media/svg/card-logos/mastercard.svg'" class="w-35px ms-2" alt="">
-                </div>
-                <!--end::Card info-->
-
-                <!--begin::Card expiry-->
-                <div class="fw-semibold text-gray-600">Expires Dec 2024</div>
-                <!--end::Card expiry-->
-            </div>
-            <!--end::Details-->
-        </div>
-        <!--end::Section-->
-
-        <!--begin::Seperator-->
-        <div class="separator separator-dashed mb-7"></div>
-        <!--end::Seperator-->
-
-        <!--begin::Section-->
-        <div class="mb-10">
-            <!--begin::Title-->
-            <h5 class="mb-4">Subscription Details</h5>
-            <!--end::Title-->
-
-            <!--begin::Details-->
-            <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
-                <!--begin::Row-->
-                <tbody><tr class="">
-                    <td class="text-gray-500">Subscription ID:</td>
-                    <td class="text-gray-800">sub_4567_8765</td>
-                </tr>
-                <!--end::Row-->
-
-                <!--begin::Row-->
-                <tr class="">
-                    <td class="text-gray-500">Started:</td>
-                    <td class="text-gray-800">15 Apr 2021</td>
-                </tr>
-                <!--end::Row-->
-
-                <!--begin::Row-->
-                <tr class="">
-                    <td class="text-gray-500">Status:</td>
-                    <td><span class="badge badge-light-success">Active</span></td>
-                </tr>
-                <!--end::Row-->
-
-                <!--begin::Row-->
-                <tr class="">
-                    <td class="text-gray-500">Next Invoice:</td>
-                    <td class="text-gray-800">15 Apr 2022</td>
-                </tr>
-                <!--end::Row-->
-            </tbody></table>
-            <!--end::Details-->
-        </div>
-        <!--end::Section-->
-
-        <!--begin::Actions-->
-        <div class="mb-0">
-            <a href="" class="btn btn-primary" id="kt_subscriptions_create_button">                
+            <!--end::Menu item-->
+            
+            <!--begin::Menu item-->
+            <div class="menu-item px-3">
+                <a href="#" class="menu-link px-3" data-kt-subscriptions-view-action="delete">
                 Edit Subscription
-            </a>
-        </div>
-        <!--end::Actions-->
-    </div>
-    <!--end::Card body-->
-</div>
-<!--end::Card-->    </div>
-    <!--end::Sidebar-->
-</div>
-            <!--begin::Details-->
-            <div class="d-flex flex-wrap flex-sm-nowrap">
-                <!--begin: Pic-->
-                <div class="me-7 mb-4">
-                    <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                        <img :src="auth.photo" class="w-20" alt="image" />
-                        <div
-                            class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px">
-                        </div>
-                    </div>
-                </div>
-                <!--end::Pic-->
+                </a>
+            </div>
+            <!--end::Menu item-->
 
-                <!--begin::Info-->
-                <div class="flex-grow-1">
-                    <!--begin::Title-->
-                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                        <!--begin::User-->
+            <!--begin::Menu item-->
+            <div class="menu-item px-3">
+                <a href="#" class="menu-link text-danger px-3" data-kt-subscriptions-view-action="edit">
+                    Cancel Subscription
+                </a>
+            </div>
+            <!--end::Menu item-->
+        </div>
+        <!--end::Menu-->
+                    <!--end::More options-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+
+            <!--begin::Card body-->
+            <div class="card-body pt-0 fs-6">
+                <!--begin::Section-->
+                <div class="mb-7">
+                                
+                    <!--begin::Details-->
+                    <div class="d-flex align-items-center">
+                        <!--begin::Avatar-->
+                        <div class="symbol symbol-60px symbol-circle me-3">
+                                                                        <img alt="Pic" :src="'/metronic8/demo1/assets/media/avatars/300-5.jpg'">
+                                            </div>
+                        <!--end::Avatar-->
+
+                        <!--begin::Info-->
                         <div class="d-flex flex-column">
                             <!--begin::Name-->
-                            <div class="d-flex align-items-center mb-2">
-                                <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1"
-                                    v-text="auth.name"></a>
-                            </div>
+                            <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2">Sean Bean</a>
                             <!--end::Name-->
 
-                            <!--begin::Info-->
-                            <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                    <vue-feather class="w-5 mx-1" type="eye"></vue-feather>
-                                    <span v-text="auth.role.name"></span>
-                                </a>
-                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                    <vue-feather class="w-5 mx-1" type="smartphone"></vue-feather>
-                                    <span v-text="auth.phone"></span>
-                                </a>
-                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                    <vue-feather class="w-5 mx-1" type="at-sign"></vue-feather>
-                                    <span v-text="auth.email"></span>
-                                </a>
-                            </div>
-                            <!--end::Info-->
+                            <!--begin::Email-->
+                            <a href="#" class="fw-semibold text-gray-600 text-hover-primary">sean@dellito.com</a>
+                            <!--end::Email-->
                         </div>
-                        <!--end::User-->
-
-                        <!--begin::Actions-->
-                        <div class="d-flex my-4">
-                            <a @click="showEditSide = true" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Edit')"></a>
-                        </div>
-                        <!--end::Actions-->
+                        <!--end::Info-->
                     </div>
+                    <!--end::Details-->
+                </div>
+                <!--end::Section-->
+
+                <!--begin::Seperator-->
+                <div class="separator separator-dashed mb-7"></div>
+                <!--end::Seperator-->
+
+                <!--begin::Section-->
+                <div class="mb-7">
+                    <!--begin::Title-->
+                    <h5 class="mb-4">Product details</h5>
                     <!--end::Title-->
 
-                    <!--begin::Stats-->
-                    <div class="d-flex flex-wrap flex-stack">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-column flex-grow-1 pe-8">
-                            <!--begin::Stats-->
-                            <div class="d-flex flex-wrap" v-if="activeItem.business && content">
-                                <!--begin::Stat-->
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="fs-2 fw-bold" v-text="activeItem.business.subscription.plan_name"></div>
-                                    </div>
-                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Plan')"></div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="fs-2 fw-bold" v-text="content.stats.drivers_count"></div>
-                                    </div>
-                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Drivers')"></div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="fs-2 fw-bold" v-text="content.stats.vehicles_count"></div>
-                                    </div>
-                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicles')"></div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <div class="d-flex align-items-center">
-                                        <div class="fs-2 fw-bold" v-text="content.stats.trips_count"></div>
-                                    </div>
-                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Trips')"></div>
-                                </div>
-                                <!--end::Stat-->
+                    <!--begin::Details-->
+                    <div class="mb-0">
+                        <!--begin::Plan-->
+                        <span class="badge badge-light-info me-2">Basic Bundle</span>
+                        <!--end::Plan-->
 
-                            </div>
-                            <!--end::Stats-->
-                        </div>
-                        <!--end::Wrapper-->
-
+                        <!--begin::Price-->
+                        <span class="fw-semibold text-gray-600">$149.99 / Year</span>
+                        <!--end::Price-->
                     </div>
-                    <!--end::Stats-->
+                    <!--end::Details-->
                 </div>
-                <!--end::Info-->
-            </div>
-            <!--end::Details-->
+                <!--end::Section-->
 
-            <!--begin::Navs-->
-            <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
-                <!--begin::Nav item-->
-                <li class="nav-item mt-2" v-for="tab in tabsList">
-                    <a v-if="checkRole(activeItem.role_id, tab.link)" @click="setActiveTab(tab.link)" :class="activeTab == tab.link ? 'active' : ''"
-                        class="nav-link text-active-primary ms-0 me-10 py-5 " href="javascript:;" v-text="tab.title"></a>
-                </li>
-                <!--end::Nav item-->
-            </ul>
-            <!--begin::Navs-->
+                <!--begin::Seperator-->
+                <div class="separator separator-dashed mb-7"></div>
+                <!--end::Seperator-->
+
+                <!--begin::Section-->
+                <div class="mb-10">
+                    <!--begin::Title-->
+                    <h5 class="mb-4">Payment Details</h5>
+                    <!--end::Title-->
+
+                    <!--begin::Details-->
+                    <div class="mb-0">
+                        <!--begin::Card info-->
+                        <div class="fw-semibold text-gray-600 d-flex align-items-center">
+                            Mastercard
+
+                            <img :src="'/metronic8/demo1/assets/media/svg/card-logos/mastercard.svg'" class="w-35px ms-2" alt="">
+                        </div>
+                        <!--end::Card info-->
+
+                        <!--begin::Card expiry-->
+                        <div class="fw-semibold text-gray-600">Expires Dec 2024</div>
+                        <!--end::Card expiry-->
+                    </div>
+                    <!--end::Details-->
+                </div>
+                <!--end::Section-->
+
+                <!--begin::Seperator-->
+                <div class="separator separator-dashed mb-7"></div>
+                <!--end::Seperator-->
+
+                <!--begin::Section-->
+                <div class="mb-10">
+                    <!--begin::Title-->
+                    <h5 class="mb-4">Subscription Details</h5>
+                    <!--end::Title-->
+
+                    <!--begin::Details-->
+                    <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
+                        <!--begin::Row-->
+                        <tbody><tr class="">
+                            <td class="text-gray-500">Subscription ID:</td>
+                            <td class="text-gray-800">sub_4567_8765</td>
+                        </tr>
+                        <!--end::Row-->
+
+                        <!--begin::Row-->
+                        <tr class="">
+                            <td class="text-gray-500">Started:</td>
+                            <td class="text-gray-800">15 Apr 2021</td>
+                        </tr>
+                        <!--end::Row-->
+
+                        <!--begin::Row-->
+                        <tr class="">
+                            <td class="text-gray-500">Status:</td>
+                            <td><span class="badge badge-light-success">Active</span></td>
+                        </tr>
+                        <!--end::Row-->
+
+                        <!--begin::Row-->
+                        <tr class="">
+                            <td class="text-gray-500">Next Invoice:</td>
+                            <td class="text-gray-800">15 Apr 2022</td>
+                        </tr>
+                        <!--end::Row-->
+                    </tbody></table>
+                    <!--end::Details-->
+                </div>
+                <!--end::Section-->
+
+                <!--begin::Actions-->
+                <div class="mb-0">
+                    <a href="" class="btn btn-primary" id="kt_subscriptions_create_button">                
+                        Edit Subscription
+                    </a>
+                </div>
+                <!--end::Actions-->
+            </div>
+            <!--end::Card body-->
+        </div>
+    </div>
+</div>
              <!--begin::Row-->
              <div class="flex-equal" v-if="activeTab == 'account' && activeItem.business && activeItem.business.subscription">
                     <!--begin::Details-->
