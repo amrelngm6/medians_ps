@@ -113,7 +113,7 @@
                                 <h2 class="fw-bold" v-text="translate('Profile')"></h2>
                             </div>
                         </div>
-                        <div class="card-body pt-3">
+                        <div class="card-body pt-3" v-if="activeTab == 'account'">
                             <!--begin::Section-->
                             <div class="mb-10">
                                 <!--begin::Title-->
@@ -155,192 +155,190 @@
                                 </div>
                             </div>
                         </div>
-                        <!--end::Card body-->
                         
-                        <!--begin::Card-->
-                        <div class="card card-flush pt-3 mb-5 mb-xl-10" v-if="activeTab == 'invoices'">
-                            <!--begin::Card header-->
-                            <div class="card-header">
-                                <!--begin::Card title-->
-                                <div class="card-title">
-                                    <h2 v-text="translate('Invoices')"></h2>
-                                </div>
-                                <!--end::Card title-->
-                            </div>
-                            <!--end::Card header-->
-
-                            <!--begin::Card body-->
-                            <div class="card-body pt-2" v-if="content.invoices">
-                                <table id="kt_customer_details_invoices_table_1" class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
-                                    <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
-                                        <tr class="text-start text-gray-500">
-                                            <th class="min-w-100px" v-text="translate('Code')"></th>
-                                            <th class="min-w-100px" v-text="translate('Amount')"></th>
-                                            <th class="min-w-100px" v-text="translate('Status')"></th>                                    
-                                            <th class="min-w-125px" v-text="translate('Date')"></th>
-                                            <th class="w-100px" v-text="translate('Plan')"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="fs-6 fw-semibold text-gray-600">
-                                        <tr v-for="invoice in content.invoices">
-                                            <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.code"></a></td>
-                                            <td class="text-success"  v-text="invoice.total_amount+''+system_setting.currency"></td>
-                                            <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
-                                            <td v-text="invoice.date"></td>
-                                            <td v-text="invoice.item && invoice.item.item ? invoice.item.item.name : ''"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                        
-                                <!--end::Tab Content-->
-                            </div>
-                            <!--end::Card body-->
-                        </div>
                     </div>
                     <!--end::Card-->
                         
 
-
-                        </div>  
-
-                        <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2">
-                                <!--begin::Card-->
-                            <div class="card card-flush mb-0" data-kt-sticky="true" data-kt-sticky-name="subscription-summary" data-kt-sticky-offset="{default: false, lg: '200px'}" data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto" data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
-                                <div class="card-header">
-                                    <div class="card-title"><h2>Summary</h2></div>
-                                </div>
-                                <div class="card-body pt-0 fs-6">
-                                    <div class="mb-7">
-                                        <div class="d-flex align-items-center">
-                                            <div class="symbol symbol-60px symbol-circle me-3">
-                                                <img alt="Pic" :src="activeItem.picture">
-                                            </div>
-                                            <!--end::Avatar-->
-
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column">
-                                                <!--begin::Name-->
-                                                <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2" v-text="activeItem.name"></a>
-                                                <!--end::Name-->
-
-                                                <!--begin::Email-->
-                                                <a href="#" class="fw-semibold text-gray-600 text-hover-primary" v-text="activeItem.email"></a>
-                                                <!--end::Email-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Section-->
-
-                                    <!--begin::Seperator-->
-                                    <div class="separator separator-dashed mb-7"></div>
-                                    <!--end::Seperator-->
-
-                                    <!--begin::Section-->
-                                    <div class="mb-7" v-if="activeItem.business && activeItem.business.subscription">
-                                        <!--begin::Title-->
-                                        <h5 class="mb-4" v-text="translate('Plan')"></h5>
-                                        <!--end::Title-->
-
-                                        <!--begin::Details-->
-                                        <div class="mb-0">
-                                            <!--begin::Plan-->
-                                            <span class="badge badge-light-info me-2" v-text="activeItem.business.subscription.plan_name"></span>
-                                            <!--end::Plan-->
-
-                                            <!--begin::Price-->
-                                            <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? activeItem.business.subscription.plan.yearly_cost : ''"></span>
-                                            <!--end::Price-->
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Section-->
-
-                                    <!--begin::Seperator-->
-                                    <div class="separator separator-dashed mb-7"></div>
-                                    <!--end::Seperator-->
-
-                                    <!--begin::Section-->
-                                    <div class="mb-10">
-                                        <!--begin::Title-->
-                                        <h5 class="mb-4">Payment Details</h5>
-                                        <!--end::Title-->
-
-                                        <!--begin::Details-->
-                                        <div class="mb-0">
-                                            <!--begin::Card info-->
-                                            <div class="fw-semibold text-gray-600 d-flex align-items-center">
-                                                Mastercard
-
-                                                <img :src="'/metronic8/demo1/assets/media/svg/card-logos/mastercard.svg'" class="w-35px ms-2" alt="">
-                                            </div>
-                                            <!--end::Card info-->
-
-                                            <!--begin::Card expiry-->
-                                            <div class="fw-semibold text-gray-600">Expires Dec 2024</div>
-                                            <!--end::Card expiry-->
-                                        </div>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Section-->
-
-                                    <!--begin::Seperator-->
-                                    <div class="separator separator-dashed mb-7"></div>
-                                    <!--end::Seperator-->
-
-                                    <!--begin::Section-->
-                                    <div class="mb-10">
-                                        <!--begin::Title-->
-                                        <h5 class="mb-4">Subscription Details</h5>
-                                        <!--end::Title-->
-
-                                        <!--begin::Details-->
-                                        <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
-                                            <!--begin::Row-->
-                                            <tbody><tr class="">
-                                                <td class="text-gray-500">Subscription ID:</td>
-                                                <td class="text-gray-800">sub_4567_8765</td>
-                                            </tr>
-                                            <!--end::Row-->
-
-                                            <!--begin::Row-->
-                                            <tr class="">
-                                                <td class="text-gray-500">Started:</td>
-                                                <td class="text-gray-800">15 Apr 2021</td>
-                                            </tr>
-                                            <!--end::Row-->
-
-                                            <!--begin::Row-->
-                                            <tr class="">
-                                                <td class="text-gray-500">Status:</td>
-                                                <td><span class="badge badge-light-success">Active</span></td>
-                                            </tr>
-                                            <!--end::Row-->
-
-                                            <!--begin::Row-->
-                                            <tr class="">
-                                                <td class="text-gray-500">Next Invoice:</td>
-                                                <td class="text-gray-800">15 Apr 2022</td>
-                                            </tr>
-                                            <!--end::Row-->
-                                        </tbody></table>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Section-->
-
-                                    <!--begin::Actions-->
-                                    <div class="mb-0">
-                                        <a href="" class="btn btn-primary" id="kt_subscriptions_create_button">                
-                                            Edit Subscription
-                                        </a>
-                                    </div>
-                                    <!--end::Actions-->
-                                </div>
-                                <!--end::Card body-->
+                    <div class="card card-flush pt-3 mb-5 mb-xl-10" v-if="activeTab == 'invoices'">
+                        <!--begin::Card header-->
+                        <div class="card-header">
+                            <!--begin::Card title-->
+                            <div class="card-title">
+                                <h2 v-text="translate('Invoices')"></h2>
                             </div>
+                            <!--end::Card title-->
                         </div>
+                        <!--end::Card header-->
+
+                        <!--begin::Card body-->
+                        <div class="card-body pt-2" v-if="content.invoices">
+                            <table id="kt_customer_details_invoices_table_1" class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
+                                <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
+                                    <tr class="text-start text-gray-500">
+                                        <th class="min-w-100px" v-text="translate('Code')"></th>
+                                        <th class="min-w-100px" v-text="translate('Amount')"></th>
+                                        <th class="min-w-100px" v-text="translate('Status')"></th>                                    
+                                        <th class="min-w-125px" v-text="translate('Date')"></th>
+                                        <th class="w-100px" v-text="translate('Plan')"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fs-6 fw-semibold text-gray-600">
+                                    <tr v-for="invoice in content.invoices">
+                                        <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.code"></a></td>
+                                        <td class="text-success"  v-text="invoice.total_amount+''+system_setting.currency"></td>
+                                        <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
+                                        <td v-text="invoice.date"></td>
+                                        <td v-text="invoice.item && invoice.item.item ? invoice.item.item.name : ''"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                                    
+                            <!--end::Tab Content-->
+                        </div>
+                        <!--end::Card body-->
                     </div>
+
+                </div>  
+
+                <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2">
+                        <!--begin::Card-->
+                    <div class="card card-flush mb-0" data-kt-sticky="true" data-kt-sticky-name="subscription-summary" data-kt-sticky-offset="{default: false, lg: '200px'}" data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto" data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
+                        <div class="card-header">
+                            <div class="card-title"><h2>Summary</h2></div>
+                        </div>
+                        <div class="card-body pt-0 fs-6">
+                            <div class="mb-7">
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-60px symbol-circle me-3">
+                                        <img alt="Pic" :src="activeItem.picture">
+                                    </div>
+                                    <!--end::Avatar-->
+
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Name-->
+                                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2" v-text="activeItem.name"></a>
+                                        <!--end::Name-->
+
+                                        <!--begin::Email-->
+                                        <a href="#" class="fw-semibold text-gray-600 text-hover-primary" v-text="activeItem.email"></a>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::Section-->
+
+                            <!--begin::Seperator-->
+                            <div class="separator separator-dashed mb-7"></div>
+                            <!--end::Seperator-->
+
+                            <!--begin::Section-->
+                            <div class="mb-7" v-if="activeItem.business && activeItem.business.subscription">
+                                <!--begin::Title-->
+                                <h5 class="mb-4" v-text="translate('Plan')"></h5>
+                                <!--end::Title-->
+
+                                <!--begin::Details-->
+                                <div class="mb-0">
+                                    <!--begin::Plan-->
+                                    <span class="badge badge-light-info me-2" v-text="activeItem.business.subscription.plan_name"></span>
+                                    <!--end::Plan-->
+
+                                    <!--begin::Price-->
+                                    <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? activeItem.business.subscription.plan.yearly_cost : ''"></span>
+                                    <!--end::Price-->
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::Section-->
+
+                            <!--begin::Seperator-->
+                            <div class="separator separator-dashed mb-7"></div>
+                            <!--end::Seperator-->
+
+                            <!--begin::Section-->
+                            <div class="mb-10">
+                                <!--begin::Title-->
+                                <h5 class="mb-4">Payment Details</h5>
+                                <!--end::Title-->
+
+                                <!--begin::Details-->
+                                <div class="mb-0">
+                                    <!--begin::Card info-->
+                                    <div class="fw-semibold text-gray-600 d-flex align-items-center">
+                                        Mastercard
+
+                                        <img :src="'/metronic8/demo1/assets/media/svg/card-logos/mastercard.svg'" class="w-35px ms-2" alt="">
+                                    </div>
+                                    <!--end::Card info-->
+
+                                    <!--begin::Card expiry-->
+                                    <div class="fw-semibold text-gray-600">Expires Dec 2024</div>
+                                    <!--end::Card expiry-->
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::Section-->
+
+                            <!--begin::Seperator-->
+                            <div class="separator separator-dashed mb-7"></div>
+                            <!--end::Seperator-->
+
+                            <!--begin::Section-->
+                            <div class="mb-10">
+                                <!--begin::Title-->
+                                <h5 class="mb-4">Subscription Details</h5>
+                                <!--end::Title-->
+
+                                <!--begin::Details-->
+                                <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
+                                    <!--begin::Row-->
+                                    <tbody><tr class="">
+                                        <td class="text-gray-500">Subscription ID:</td>
+                                        <td class="text-gray-800">sub_4567_8765</td>
+                                    </tr>
+                                    <!--end::Row-->
+
+                                    <!--begin::Row-->
+                                    <tr class="">
+                                        <td class="text-gray-500">Started:</td>
+                                        <td class="text-gray-800">15 Apr 2021</td>
+                                    </tr>
+                                    <!--end::Row-->
+
+                                    <!--begin::Row-->
+                                    <tr class="">
+                                        <td class="text-gray-500">Status:</td>
+                                        <td><span class="badge badge-light-success">Active</span></td>
+                                    </tr>
+                                    <!--end::Row-->
+
+                                    <!--begin::Row-->
+                                    <tr class="">
+                                        <td class="text-gray-500">Next Invoice:</td>
+                                        <td class="text-gray-800">15 Apr 2022</td>
+                                    </tr>
+                                    <!--end::Row-->
+                                </tbody></table>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::Section-->
+
+                            <!--begin::Actions-->
+                            <div class="mb-0">
+                                <a href="" class="btn btn-primary" id="kt_subscriptions_create_button">                
+                                    Edit Subscription
+                                </a>
+                            </div>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                </div>
+            </div>
             <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'account'">
                 <div class="card-body p-9">
                     <div class="row my-4 py-4 border-b border-gray-200" v-for="field in content.overview">
