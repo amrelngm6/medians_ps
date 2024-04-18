@@ -1,6 +1,11 @@
 <template>
     <div class="w-full " >
         
+        <plan_subscription_wizard @callback="showWizard = false"
+                v-if="showWizard" :usertype="activeItem.usertype"
+                :userslist="content.users" :key="showWizard" :plans="content.plans"
+                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+
         <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
         </div>
@@ -69,11 +74,13 @@ import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
+import plan_subscription_wizard from '@/components/wizards/planSubscriptionWizard.vue';
     
 export default
 {
     components: {
         'datatabble': Vue3EasyDataTable,
+        plan_subscription_wizard
     },
     
     setup(props) {
