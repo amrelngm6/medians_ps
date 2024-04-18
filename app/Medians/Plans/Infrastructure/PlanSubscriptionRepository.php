@@ -57,6 +57,7 @@ class PlanSubscriptionRepository
 	public function getLatest($params, $limit = 10 ) 
 	{
 	  	return PlanSubscription::whereBetween('created_at' , [$params['start'], $params['end']])
+	  	->with('user')
 	  	->limit($limit)
 	  	->orderBy('created_at', 'DESC')
 		->get();
