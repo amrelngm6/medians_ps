@@ -232,10 +232,10 @@
                                         <div class="w-full">
                                             <h2 class="text-base font-semibold leading-7 text-slate-900"
                                                 v-text="activePlan.name"></h2>
-                                            <p class="text-sm leading-6 text-slate-700"></p>
+                                            <p class="text-lg leading-6 text-slate-700"></p>
                                         </div>
                                         <h3 class="sr-only">All-access features</h3>
-                                        <ul class="mt-8 space-y-8 text-sm leading-6 text-slate-700">
+                                        <ul class="mt-8 space-y-8 text-lg leading-6 text-slate-700">
                                             <li class="flex py-2">
                                                 <p class="w-full ml-6"><strong class="font-semibold text-slate-900"
                                                         v-text="translate('Start date')"></strong>— <span
@@ -285,18 +285,18 @@
                                                 <p class="flex items-center justify-center gap-6"><span
                                                         class="text-[2.5rem] leading-none text-slate-900"><span
                                                             v-text="setting.currency"></span><span class="font-bold"
-                                                            v-text="cost()"></span></span><span class="ml-3 text-sm"><span
+                                                            v-text="cost()"></span></span><span class="ml-3 text-lg"><span
                                                             class="font-semibold text-slate-900"
                                                             v-text="translate('yearly payment')"></span><br><span
                                                             class="text-slate-500"
                                                             v-text="translate('include local taxes')"></span></span></p>
                                                 <p
-                                                    class="order-last -mx-1 mt-4 flex justify-center text-sm leading-6 text-slate-500 sm:space-x-2">
+                                                    class="order-last -mx-1 mt-4 flex justify-center text-lg leading-6 text-slate-500 sm:space-x-2">
                                                     <span class="sm:hidden"
                                                         v-text="translate('Includes free updates and technical support')"></span>
                                                 </p>
                                                 <div id="paypal-button-container"><a @click="complete()"
-                                                        class="inline-flex justify-center rounded-lg text-sm font-semibold py-2 px-3 bg-slate-900 text-white hover:bg-slate-700 mt-6 w-full"
+                                                        class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-slate-900 text-white hover:bg-slate-700 mt-6 w-full"
                                                         href="javascript:;"><span v-text="translate('subscribe')"></span></a></div>
                                             </div>
                                         </div>
