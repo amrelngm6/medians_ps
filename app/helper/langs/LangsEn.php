@@ -931,7 +931,7 @@ class LangsEn
 			,'Before Create driver note' => 'When you create new driver you should make sure that you have the right <b>Email</b>. <br />Because the generated password will be sent to him'
 			,'Drivers applicants note' => 'You can enable or disable your business from receiving <b>applcants as drivers</b>. <br />You can manage it from Business Setting'
 			,'upgrade_notification_note' => 'We will send you a notification upon Subscription expiration '
-			,'users applicants note' => 'This list of the users who requested to join our routes. Once you review their info and approve it , they would be able to pay for the subscribed package'
+			,'users applicants note' => 'This list of the users who requested to join our routes. Once you review their info and approve the request, they would be able to pay for the subscribed package'
 
 
 			,'COPYRIGHTS' => 'Copyrights are reserved'
