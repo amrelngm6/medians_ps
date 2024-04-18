@@ -16,6 +16,13 @@ class PaymentService
 	public $planSubscriptionRepo;
 	public $paymentRepo;
 	
+	public $title;
+	public $item_name;
+	public $item_price;
+	public $currency;
+	public $sku;
+	public $subtotal;
+	public $totalcost;
 
 	function __construct($payment_method)
 	{

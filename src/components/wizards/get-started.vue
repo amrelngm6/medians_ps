@@ -615,7 +615,8 @@ export default
             const validateOrderPayment = (order) => {
                 const params = new URLSearchParams([]);
                 params.append('type', 'Payment.paypal_payment_confirmation');
-                params.append('params[order]', JSON.stringify(order));
+                params.append('params[plan_id]', activePlan.value.plan_id);
+                params.append('params[cost]', cost());
                 handleRequest(params, '/api/create').then(data => {
                     if (data.success) {
                         showAlert(data.result);
