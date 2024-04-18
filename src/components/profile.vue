@@ -481,12 +481,12 @@ export default {
 
         const checkFeatureLimit = (features, code) => 
         {
-            console.log(features)
+            console.log(features.value)
 
-            if ( features )
+            if ( features.value )
             {
                 for (let i = 0; i < features.length; i++) {
-                    const element = features[i];
+                    const element = features[i].value;
                     console.log(element)
                     if (element.code == code)
                     {
