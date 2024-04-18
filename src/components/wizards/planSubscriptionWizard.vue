@@ -336,7 +336,7 @@ export default
 
 
             const progressWidth = () => {
-                let requiredData = ['model_id', 'plan_id', 'start_date', 'type', 'daily_trips', 'payment_status'];
+                let requiredData = ['model_id', 'plan_id', 'start_date', 'type'];
 
                 return getProgressWidth(requiredData, activeItem);
             }
