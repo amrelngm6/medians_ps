@@ -69,7 +69,7 @@ class UserController extends CustomController
 		$user = $this->app->auth();
 
 		return [
-            [ 'key'=> $user->id, 'title'=> __('id') ],
+            // [ 'key'=> $user->id, 'title'=> __('id') ],
             [ 'key'=> $user->first_name, 'title'=> __('first_name'),  ],
             [ 'key'=> $user->last_name, 'title'=> __('last_name'),  ],
             [ 'key'=> $user->email, 'title'=> __('email')   ],
