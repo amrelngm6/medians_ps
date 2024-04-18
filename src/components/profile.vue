@@ -52,23 +52,32 @@
                                         <div>
                                             <div class="d-flex align-items-center">
                                                 <div class="fs-2 fw-bold" v-text="content.stats.drivers_count"></div>
-                                                <div class="fs-2 fw-bold" >/</div>
-                                                <div class="fs-2 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Driver')"></div>
+                                                <div class="fs-6 fw-bold px-1" >/</div>
+                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Driver')"></div>
                                             </div>
                                         </div>
                                         <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Drivers')"></div>
                                     </div>
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" v-text="content.stats.vehicles_count"></div>
+                                        <div>
+                                            <div class="d-flex align-items-center">
+                                                <div class="fs-2 fw-bold" v-text="content.stats.vehicles_count"></div>
+                                                <div class="fs-6 fw-bold px-1" >/</div>
+                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Vehicle')"></div>
+                                            </div>
                                         </div>
                                         <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicles')"></div>
                                     </div>
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" v-text="content.stats.trips_count"></div>
+                                        
+                                        <div>
+                                            <div class="d-flex align-items-center">
+                                                <div class="fs-2 fw-bold" v-text="content.stats.routes_count"></div>
+                                                <div class="fs-6 fw-bold px-1" >/</div>
+                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Route')"></div>
+                                            </div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Trips')"></div>
+                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Routes')"></div>
                                     </div>
                                     <!--end::Stat-->
 
