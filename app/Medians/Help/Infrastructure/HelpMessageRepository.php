@@ -59,6 +59,7 @@ class HelpMessageRepository
 	public function allEventsByDate($params, $limit = 5)
 	{
 		return HelpMessage::whereBetween('created_at', [$params['start'], $params['end']])
+		->with('user')
 		->orderBy('created_at','DESC')
 		->limit($limit)
 		->get();
