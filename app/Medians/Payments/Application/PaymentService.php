@@ -5,6 +5,7 @@ use \Shared\dbaser\CustomController;
 
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 use Medians\Payments\Infrastructure\PaymentsRepository;
+use Medians\Users\Infrastructure\User;
 
 class PaymentService
 {
@@ -61,6 +62,53 @@ class PaymentService
 		return $this->paymentRepo->store($payment);
 
 
+	}
+	
+	
+	public function addInvoice($order, $savedSubscription, $user)
+	{
+		try {
+			
+			$invoiceRepo = new \Medians\Payments\Infrastructure\PaymentRepository($user->business);
+			
+			$data = array();
+			$data['business_id'] = $user->business->business_id;
+			$data['code'] = $invoiceRepo->generateCode();
+			$data['user_id'] = $user->id;
+			$data['user_type'] = User::class;
+			$data['payment_method'] = 'PayPal';
+			$data['subtotal'] = $savedSubscription->subtotal;
+			$data['discount_amount'] = 0;
+			$data['total_amount'] = $invoiceInfo['total_amount'];
+			$data['date'] = date('Y-m-d');
+			$data['status'] = $invoiceInfo['status'];
+			$data['notes'] = '';
+			$data['items'] = $this->handleItems($order, $savedSubscription, $user);
+
+			return $invoiceRepo->store((array) $data);
+
+		} catch (\Throwable $th) {
+			
+			return array('error'=>$th->getMessage());
+		}
+		
+	}
+	
+	
+	public function handleItems($order, $savedSubscription, $user)
+	{
+		$item = $purchase_units[0]->amount;
+		$items = [
+			[
+				'subtotal'=> $item->value,
+				'total_amount'=> $savedSubscription->item->value,
+				'item_id'=> $savedSubscription->subscription_id,
+				'status'=> 'paid',
+				'item_type'=> 'PlanSubscription'
+			]
+		];
+		
+		return $items;
 	}
 	
 

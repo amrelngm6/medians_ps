@@ -7,6 +7,7 @@ use Medians\Invoices\Domain\InvoiceItem;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Packages\Domain\PackageSubscription;
 use Medians\Trips\Domain\PrivateTrip;
+use Medians\Plans\Domain\PlanSubscription;
 
 
 /**
@@ -201,6 +202,10 @@ class InvoiceRepository
 			case 'PrivateTrip':
 				return PrivateTrip::class;
 				break;
+
+			case 'PlanSubscription':
+				return PlanSubscription::class;
+				break;
 		}
 	}
 
@@ -214,6 +219,7 @@ class InvoiceRepository
 		{
 			foreach ($data as $key => $value)
 			{
+				$value = (object) $value;
 				$fields = array();
 				$fields['business_id'] = $invoice->business_id;
 				$fields['invoice_id'] = $invoice->invoice_id;

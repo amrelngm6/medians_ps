@@ -3,6 +3,7 @@
 namespace Medians\Payments\Infrastructure;
 
 use Medians\Payments\Domain\Payment;
+use Medians\Invoices\Domain\Invoice;
 
 
 /**
@@ -136,5 +137,16 @@ class PaymentsRepository
 		}
 	}
 
+
+	
+	/**
+	 * Generate invoice code
+	 */
+	public function generateCode()
+	{
+		$count = Invoice::where('business_id', '0')->count();
+		$prefix = "I-";
+		return $prefix.($count + 1);
+	}
 
 }
