@@ -48,8 +48,8 @@
                         <div class="w-full p-4">
                             <div class="w-full flex ">
                                 <h4 class="w-full ml-4" v-text="translate('Top businesses')"></h4>
-                                <a href="/admin/companies" class="w-20" v-text="translate('Companies')"></a>
-                                <a href="/admin/schools" class="w-20" v-text="translate('Schools')"></a>
+                                <a href="/admin/companies" class="w-24" v-text="translate('Companies')"></a>
+                                <a href="/admin/schools" class="w-24" v-text="translate('Schools')"></a>
                             </div>
                             <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_businesses_who_have_most_route_locations')"></p>
                         </div>
