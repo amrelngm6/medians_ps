@@ -131,7 +131,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-red-500" v-text="message.title"></td>
-                                                <td v-text="dateTimeFormat(message.created_at)"></td>
+                                                <td v-text="dateFormat(message.created_at)"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -219,9 +219,17 @@ export default
         /**
          * Date Time format 
          */
-        const dateTimeFormat = (date) =>
+         const dateTimeFormat = (date) =>
         {
             return moment(date).format('YYYY-MM-DD HH:mm a');
+        }
+
+        /**
+         * Date Time format 
+         */
+         const dateFormat = (date) =>
+        {
+            return moment(date).format('YYYY-MM-DD');
         }
 
 
@@ -304,6 +312,7 @@ export default
             content,
             activeDate,
             dateTimeFormat,
+            dateFormat,
             dateValue,
             formatter,
             
