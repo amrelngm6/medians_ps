@@ -112,142 +112,19 @@
                         </tr>
                         <!--end::Row-->
                     </tbody></table>
-                    <!--end::Details-->
                 </div>
-                <!--end::Row-->
             </div>
-            <!--end::Row-->
         </div>
-        <!--end::Section-->
-
-        <!--begin::Section-->
-        <div class="mb-0">
-            <!--begin::Title-->
-            <h5 class="mb-4">Subscribed Products:</h5>
-            <!--end::Title-->
-
-            <!--begin::Product table-->
-            <div class="table-responsive">
-                <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
-                    <!--begin::Table head-->
-                    <thead>
-                        <!--begin::Table row-->
-                        <tr class="border-bottom border-gray-200 text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Product</th>
-                            <th class="min-w-125px">Subscription ID</th>
-                            <th class="min-w-125px">Qty</th>
-                            <th class="min-w-125px">Total</th>
-                            <th class="text-end min-w-70px">Actions</th>
-                        </tr>
-                        <!--end::Table row-->
-                    </thead>
-                    <!--end::Table head-->
-
-                    <!--begin::Table body-->
-                    <tbody class="fw-semibold text-gray-800">
-                        <tr>
-                            <td>
-                                <label class="w-150px">Basic Bundle</label>
-                                <div class="fw-normal text-gray-600">Basic yearly bundle</div>
-                            </td>
-                            <td><span class="badge badge-light-danger">sub_4567_8765</span></td>
-                            <td>1</td>
-                            <td>$149.99 / Year</td>
-                            <td class="text-end">
-                                <!--begin::Action-->
-                                <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <i class="ki-duotone ki-setting-3 fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>                                </a>
-                                <!--begin::Menu-->
-<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-6 w-200px py-4" data-kt-menu="true">
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link px-3">
-            Pause Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-    
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link px-3" data-kt-subscriptions-view-action="delete">
-           Edit Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link text-danger px-3" data-kt-subscriptions-view-action="edit">
-            Cancel Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-</div>
-<!--end::Menu-->
-                                <!--end::Action-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="w-150px">Pro Bundle</label>
-                                <div class="fw-normal text-gray-500">Basic yearly bundle</div>
-                            </td>
-                            <td><span class="badge badge-light-danger">sub_4567_3433</span></td>
-                            <td>5</td>
-                            <td>$949.99 / Year</td>
-                            <td class="text-end">
-                                <!--begin::Action-->
-                                <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <i class="ki-duotone ki-setting-3 fs-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>                                </a>
-                                <!--begin::Menu-->
-<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-6 w-200px py-4" data-kt-menu="true" style="">
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link px-3">
-            Pause Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-    
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link px-3" data-kt-subscriptions-view-action="delete">
-           Edit Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-
-    <!--begin::Menu item-->
-    <div class="menu-item px-3">
-        <a href="#" class="menu-link text-danger px-3" data-kt-subscriptions-view-action="edit">
-            Cancel Subscription
-        </a>
-    </div>
-    <!--end::Menu item-->
-</div>
-<!--end::Menu-->
-                                <!--end::Action-->
-                            </td>
-                        </tr>
-                    </tbody>
-                    <!--end::Table body-->
-                </table>
-                <!--end::Table-->
-            </div>
-            <!--end::Product table-->
-        </div>
-        <!--end::Section-->
     </div>
     <!--end::Card body-->
     
     <!--begin::Card-->
-    <div class="card card-flush pt-3 mb-5 mb-xl-10">
+    <div class="card card-flush pt-3 mb-5 mb-xl-10" v-if="activeTab == 'invoices'">
         <!--begin::Card header-->
         <div class="card-header">
             <!--begin::Card title-->
             <div class="card-title">
-                <h2>Invoices</h2>
+                <h2 v-text="translate('Invoices')"></h2>
             </div>
             <!--end::Card title-->
         </div>
@@ -258,11 +135,11 @@
             <table id="kt_customer_details_invoices_table_1" class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                 <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
                     <tr class="text-start text-gray-500">
-                        <th class="min-w-100px">Code</th>
-                        <th class="min-w-100px">Amount</th>
-                        <th class="min-w-100px">Status</th>                                    
-                        <th class="min-w-125px">Date</th>
-                        <th class="w-100px">Plan</th>
+                        <th class="min-w-100px" v-text="translate('Code')"></th>
+                        <th class="min-w-100px" v-text="translate('Amount')"></th>
+                        <th class="min-w-100px" v-text="translate('Status')"></th>                                    
+                        <th class="min-w-125px" v-text="translate('Date')"></th>
+                        <th class="w-100px" v-text="translate('Plan')"></th>
                     </tr>
                 </thead>
                 <tbody class="fs-6 fw-semibold text-gray-600">
@@ -771,6 +648,7 @@ export default {
             { title: translate('Settings'), link: 'settings' },
             { title: translate('Business info'), link: 'business_info' },
             { title: translate('Subscriptions'), link: 'subscriptions' },
+            { title: translate('Invoices'), link: 'invoices' },
         ]);
 
         const calcDaysWidth = () => {
