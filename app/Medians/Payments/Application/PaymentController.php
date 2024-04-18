@@ -195,7 +195,7 @@ class PaymentController extends CustomController
 
 				$addInvoice = $paymentService->addInvoice($params, $order, $savedSubscription, $user); 
 	
-				return (isset($savePlanPayment->payment_id))
+				return ($addInvoice && isset($savePlanPayment->payment_id))
 				? array('success'=>1, 'result'=>__('PAYMENT_MADE_SECCUESS'), 'reload'=>1)
 				: array('error'=>__('Not allowed'));
  
