@@ -14,10 +14,10 @@
                         <div class="" v-if="activeTab == 'User'" :key="activeTab">
                             <div class="card-body pt-0 mx-auto max-w-xl" :key="userslist">
                                 <div class="text-center mb-13">
-                                    <h1 class="mb-3" v-text="translate('Find ' + usertype)"></h1>
+                                    <h1 class="mb-3" v-text="translate('Find user')"></h1>
 
                                     <div class="text-gray-400 font-semibold "
-                                        v-text="translate('Search by name, parent name or contact number')"></div>
+                                        v-text="translate('Search by name, contact number')"></div>
                                 </div>
                                 <div class="w-100 relative mb-5" autocomplete="off">
 
@@ -26,7 +26,7 @@
 
                                     <input type="text" @change="findUser" @input="findUser" v-model="searchText"
                                         class="form-control form-control-lg form-control-solid px-15"
-                                        :placeholder="translate('Search by name, parent name')">
+                                        :placeholder="translate('Search by name')">
                                 </div>
                                 <div class="w-full " v-for="usermodel in userslist" v-if="searchText">
                                     <a href="javascript:;" :key="usermodel.show" v-if="usermodel.show"
@@ -36,7 +36,7 @@
                                         <div class="fw-semibold w-full">
                                             <span class="text-lg text-danger font-semibold me-2"
                                                 v-text="usermodel.name"></span>
-                                            <span class="block text-gray-500 text-sm" v-text="usermodel.mobile"></span>
+                                            <span class="block text-gray-500 text-sm" v-text="usermodel.phone"></span>
                                         </div>
                                         <span @click="setUser(usermodel)" class="btn btn-danger btn-sm text-white"
                                             v-text="translate('Choose')"></span>
@@ -50,7 +50,7 @@
                                     <div class="fw-semibold w-full">
                                         <span class="text-lg text-danger font-semibold me-2"
                                             v-text="activeItem.model.name"></span>
-                                        <span class="block text-gray-500 text-sm" v-text="activeItem.model.mobile"></span>
+                                        <span class="block text-gray-500 text-sm" v-text="activeItem.model.phone"></span>
                                     </div>
                                 </a>
                             </div>
@@ -431,12 +431,11 @@ export default
 
             const checkSimilarUser = (item) => {
                 let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                let email = name ? name : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return email ? email : ((item.parent.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false);
+                return name ?? (item.phone).toLowerCase().includes(searchText.value.toLowerCase());
             }
 
             const setUser = (model) => {
-                activeItem.value.model_id = props.usertype == 'student' ? model.student_id :  model.customer_id;
+                activeItem.value.model_id = model.id;
                 activeItem.value.model = model;
                 activeItem.value.user_type = props.usertype;
                 activeTab.value = 'Plan';
