@@ -5,7 +5,7 @@ use \Shared\dbaser\CustomController;
 
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 use Medians\Payments\Infrastructure\PaymentRepository;
-use Medians\Users\Infrastructure\User;
+use Medians\Users\Domain\User;
 
 class PaymentService
 {
