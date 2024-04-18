@@ -250,7 +250,7 @@
                                             <!--end::Plan-->
 
                                             <!--begin::Price-->
-                                            <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan.yearly_cost ?? ''"></span>
+                                            <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? activeItem.business.subscription.plan.yearly_cost : ''"></span>
                                             <!--end::Price-->
                                         </div>
                                         <!--end::Details-->
