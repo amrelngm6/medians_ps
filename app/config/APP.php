@@ -286,7 +286,7 @@ class APP
 		
 		$data = array(
 			
-			array('permission'=> 'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'dashboard'),
+			array('permission'=> 'Dashboard.index', 'title'=>__('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
 			array( 'title'=>__('Businesses'),  'icon'=>'wind', 'link'=>'#businesses', 'sub'=>
 			[
 				array('permission'=>'Companies.index', 'title'=>__('Companies'),  'icon'=>'user', 'link'=>'admin/companies', 'component'=>'companies'),
