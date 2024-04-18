@@ -115,7 +115,7 @@
                                         <thead>
                                             <tr>
                                                 <th v-text="translate('name')"></th>
-                                                <th v-text="translate('message')"></th>
+                                                <th v-text="translate('title')"></th>
                                                 <th v-text="translate('date')"></th>
                                             </tr>
                                         </thead>
@@ -130,7 +130,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="text-red-500" v-text="message.message"></td>
+                                                <td class="text-red-500" v-text="message.title"></td>
                                                 <td v-text="dateTimeFormat(message.created_at)"></td>
                                             </tr>
                                         </tbody>
