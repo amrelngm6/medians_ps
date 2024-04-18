@@ -48,7 +48,7 @@ class Business extends CustomModel
 
     public function subscription()
     {
-		return $this->hasOne(PlanSubscription::class, 'business_id', 'business_id')->with('plan')->orderBy('end_date', 'DESC');	
+		return $this->hasOne(PlanSubscription::class, 'business_id', 'business_id')->with('plan', 'plan_features')->orderBy('end_date', 'DESC');	
     }
 
     public function drivers()
