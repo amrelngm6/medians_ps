@@ -240,6 +240,46 @@
         <!--end::Section-->
     </div>
     <!--end::Card body-->
+    
+    <!--begin::Card-->
+    <div class="card card-flush pt-3 mb-5 mb-xl-10">
+        <!--begin::Card header-->
+        <div class="card-header">
+            <!--begin::Card title-->
+            <div class="card-title">
+                <h2>Invoices</h2>
+            </div>
+            <!--end::Card title-->
+        </div>
+        <!--end::Card header-->
+
+        <!--begin::Card body-->
+        <div class="card-body pt-2">
+            <table id="kt_customer_details_invoices_table_1" class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
+                <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
+                    <tr class="text-start text-gray-500">
+                        <th class="min-w-100px">Order ID</th>
+                        <th class="min-w-100px">Amount</th>
+                        <th class="min-w-100px">Status</th>                                    
+                        <th class="min-w-125px">Date</th>
+                        <th class="w-100px">Invoice</th>
+                    </tr>
+                </thead>
+                <tbody class="fs-6 fw-semibold text-gray-600">
+                    <tr>
+                        <td><a href="#" class="text-gray-600 text-hover-primary">102445788</a></td>
+                        <td class="text-success">$38.00</td>
+                        <td><span class="badge badge-light-warning">Pending</span></td>
+                        <td>Nov 01, 2020</td>
+                        <td class=""><button class="btn btn-sm btn-light btn-active-light-primary">Download</button></td>
+                    </tr>
+                </tbody>
+            </table>
+                    
+            <!--end::Tab Content-->
+        </div>
+        <!--end::Card body-->
+    </div>
 </div>
 <!--end::Card-->
     
