@@ -268,7 +268,7 @@
                 <tbody class="fs-6 fw-semibold text-gray-600">
                     <tr v-for="invoice in content.invoices">
                         <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.code"></a></td>
-                        <td class="text-success"  v-text="invoice.code+''+system_setting.currency"></td>
+                        <td class="text-success"  v-text="invoice.total_amount+''+system_setting.currency"></td>
                         <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
                         <td v-text="invoice.date"></td>
                         <td v-text="invoice.item && invoice.item.item ? invoice.item.item.name : ''"></td>
