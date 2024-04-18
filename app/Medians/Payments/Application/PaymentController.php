@@ -65,6 +65,7 @@ class PaymentController extends CustomController
 	        'title' => __('Payments list'),
 	        'items' => $this->repo->get(),
 	        'columns' => $this->columns(),
+	        'columns_keys' => array_column($this->columns(),'value'),
 	    ]);
 	}
 
