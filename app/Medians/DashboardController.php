@@ -183,7 +183,7 @@ class DashboardController extends CustomController
         $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
+        $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
         $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['latest_invoices'] = $this->InvoiceRepository->get(5);
 
@@ -211,7 +211,6 @@ class DashboardController extends CustomController
         $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
         $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
         $data['latest_students'] = $this->StudentRepository->get(5);
-        $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
 
         return $data;
 
