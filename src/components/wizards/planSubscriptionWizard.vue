@@ -215,8 +215,7 @@
 
                                 <div class="card-body p-9" v-if="activeItem.business">
                                     <div class="text-gray-500 fw-semibold fs-5 " v-text="translate('Business')"></div>
-                                    <p class="fs-3 fw-bold text-gray-900 mt-1 mb-2"
-                                    v-text="activeItem.business.business_name"></p>
+                                    <p class="fs-3 fw-bold text-gray-900 mt-1 mb-0" v-text="activeItem.business.business_name"></p>
                                 </div>
                                     
                                 <div class="card-body p-9" v-if="activeItem.plan">
