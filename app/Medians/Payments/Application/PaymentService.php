@@ -111,7 +111,7 @@ class PaymentService
 				'subtotal'=> $params['cost'],
 				'total_amount'=> $params['cost'],
 				'item_id'=> $savedSubscription->plan_id,
-				'item_type'=> 'Plan',
+				'item_type'=> 'PlanSubscription',
 				'status'=> 'paid',
 			]
 		];
