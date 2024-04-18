@@ -846,6 +846,8 @@ export default {
         'path',
         'lang',
         'setting',
+        'system_setting',
+        'business_setting',
         'conf',
         'auth',
     ]
