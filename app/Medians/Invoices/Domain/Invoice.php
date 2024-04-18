@@ -74,6 +74,11 @@ class Invoice extends CustomModel
 		return $this->hasMany(InvoiceItem::class, 'invoice_id', 'invoice_id')->with('item');
 	}
 
+	public function item()
+	{
+		return $this->hasOne(InvoiceItem::class, 'invoice_id', 'invoice_id')->with('item');
+	}
+
 	public function transactions()
 	{
 		return $this->hasMany(Transaction::class, 'invoice_id', 'invoice_id');

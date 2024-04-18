@@ -271,7 +271,7 @@
                         <td class="text-success"  v-text="invoice.code+''+system_setting.currency"></td>
                         <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
                         <td v-text="invoice.date"></td>
-                        <td v-text="invoice.item.plan_name"></td>
+                        <td v-text="invoice.item.name"></td>
                     </tr>
                 </tbody>
             </table>

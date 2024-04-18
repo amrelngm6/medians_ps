@@ -58,7 +58,7 @@ class InvoiceRepository
 	*/
 	public function getUserInvoices($userId) 
 	{
-		return Invoice::with('user', 'items','business', 'transaction')
+		return Invoice::with('user', 'item','business', 'transaction')
 		->where('user_id', $userId)
 		->where('user_type', User::class)
 		->limit(10)
