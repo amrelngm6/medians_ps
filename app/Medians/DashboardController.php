@@ -151,7 +151,7 @@ class DashboardController extends CustomController
 			$private_trips_charts = $this->PrivateTripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 			$applicants = $this->BusinessApplicantRepository->get(5);
 
-			$counts = $this->loadCounts();
+			$counts = $this->loadMasterCounts();
 
 			$array = [
 	            'title' => 'Master Dashboard',
@@ -179,15 +179,25 @@ class DashboardController extends CustomController
 		$data = [];
 
         $data['businesses_count'] = $this->BusinessRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        $data['top_businesses'] = $this->BusinessRepository->masterByDate(['start'=>$this->start, 'end'=>$this->end], 5);
         $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        $data['plan_subscriptions'] = $this->PlanSubscriptionRepository->getLatest(['start'=>$this->start, 'end'=>$this->end], 5);
         $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['business_applicant_count'] = $this->BusinessApplicantRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
+        $data['drivers_count'] = $this->DriverRepository->get()->count();
+        $data['routes_count'] = $this->RouteRepository->get()->count();
+        $data['route_locations_count'] = $this->RouteLocationRepository->get()->count();
+        $data['vehicles_count'] = $this->VehicleRepository->get()->count();
+        $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
+        $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
+        $data['latest_subscriptions'] = $this->PackageSubscriptionRepository->get(5);
+        $data['driver_applicants'] = $this->DriverApplicantRepository->get(5);
+        $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
         $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['latest_invoices'] = $this->InvoiceRepository->get(5);
+        $data['latest_transactions'] = $this->TransactionRepository->get(5);
+        $data['transactions_count'] = $this->TransactionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['subscriptions_count'] = $this->PackageSubscriptionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
 
         return $data;
 
@@ -198,21 +208,20 @@ class DashboardController extends CustomController
 	/**
 	 * Load countable statstics
 	 */
-	public function loadAllCounts()
+	public function loadMasterCounts()
 	{
 		$data = [];
 
-        $data['active_trips_count'] = $this->TripRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('status', 'scheduled')->count();
-        $data['completed_trips_count'] = $this->TripRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('status', 'completed')->count();
-        $data['total_trips_count'] = $this->TripRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['help_messages_count'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['drivers_count'] = $this->DriverRepository->get()->count();
-        $data['routes_count'] = $this->RouteRepository->get()->count();
-        $data['route_locations_count'] = $this->RouteLocationRepository->get()->count();
-        $data['vehicles_count'] = $this->VehicleRepository->get()->count();
-        $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
-        $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
-        $data['latest_students'] = $this->StudentRepository->get(5);
+        $data['businesses_count'] = $this->BusinessRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
+        $data['top_businesses'] = $this->BusinessRepository->masterByDate(['start'=>$this->start, 'end'=>$this->end], 5);
+        $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
+        $data['plan_subscriptions'] = $this->PlanSubscriptionRepository->getLatest(['start'=>$this->start, 'end'=>$this->end], 5);
+        $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
+        $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['latest_invoices'] = $this->InvoiceRepository->get(5);
 
         return $data;
 
