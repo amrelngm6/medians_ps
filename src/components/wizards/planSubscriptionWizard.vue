@@ -99,7 +99,7 @@
 
                                             <a href="javascript:;" :key="activeItem.plan" v-if="activeItem.plan"
                                                 class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
-                                                <vue-feather type="map" ></vue-feather>
+                                                <vue-feather type="database" ></vue-feather>
                                                 <div class="fw-semibold ">
                                                     <span class="text-lg text-danger font-semibold me-2"
                                                         v-text="activeItem.plan.name"></span>
