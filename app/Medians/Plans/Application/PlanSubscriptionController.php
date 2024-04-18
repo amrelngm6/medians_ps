@@ -82,7 +82,7 @@ class PlanSubscriptionController extends CustomController
 	        'columns' => $this->columns(),
 	        'fillable' => $this->fillable(),
 	        'plans' => $this->planRepo->get(),
-	        'users' => $this->userRepo->get(),
+	        'users' => $this->userRepo->getModerators(),
 	    ]);
 	}
 
