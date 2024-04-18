@@ -395,23 +395,24 @@ class NotificationEvent extends CustomModel
 		try {
 			$receivers = $this->filterReceivers($event, $model);
 
+			if (!$receivers)
+				return null;
+
+			foreach ($receivers as $key => $receiver) 
+			{
+				if ($receiver)
+				{
+					$this->saveNotification($event, $model, $receiver);
+				}
+			}
+
+			return true;
+			
 		} catch (\Throwable $th) {
 			error_log($th->getMessage());
 			return null;
 		}
 
-		if (!$receivers)
-			return null;
-
-		foreach ($receivers as $key => $receiver) 
-		{
-			if ($receiver)
-			{
-				$this->saveNotification($event, $model, $receiver);
-			}
-		}
-
-		return true;
 	}  
 
 	public function saveNotification($event, $model, $receiver)
