@@ -75,6 +75,11 @@ class UserRepository
 		return User::with('Role','business')->get();
 	}
 
+	public function getModerators()
+	{
+		return User::where('role_id', '>', 3)->with('Role','business')->get();
+	}
+
 
 
 	/**

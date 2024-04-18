@@ -5,6 +5,7 @@ use \Shared\dbaser\CustomController;
 
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 use Medians\Plans\Infrastructure\PlanRepository;
+use Medians\Users\Infrastructure\UserRepository;
 
 class PlanSubscriptionController extends CustomController
 {
@@ -18,10 +19,13 @@ class PlanSubscriptionController extends CustomController
 
 	protected $planRepo;
 
+	protected $userRepo;
+
 	function __construct()
 	{
 		$this->repo = new PlanSubscriptionRepository();
 		$this->planRepo = new PlanRepository();
+		$this->userRepo = new UserRepository();
 	}
 
 
@@ -77,6 +81,8 @@ class PlanSubscriptionController extends CustomController
 	        'items' => $this->repo->get(),
 	        'columns' => $this->columns(),
 	        'fillable' => $this->fillable(),
+	        'plans' => $this->planRepo->get(),
+	        'users' => $this->userRepo->get(),
 	    ]);
 	}
 
