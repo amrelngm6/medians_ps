@@ -192,6 +192,119 @@
                         </div>
                     </div>
 
+                    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'subscriptions'">
+
+                        <div class="card  mb-5 mb-xl-10">
+                            <!--begin::Card body-->
+                            <div class="card-body">
+
+                                <!--begin::Row-->
+                                <div class="row">
+                                    <!--begin::Col-->
+                                    <div class="col-lg-7">
+                                        <!--begin::Heading-->
+                                        <h3 class="mb-2"><span v-text="translate('Active until')"></span> <span v-text="activeItem.business.subscription.end_date"></span></h3>
+                                        <p class="fs-6 text-gray-600 fw-semibold mb-6 mb-lg-15" v-text="translate('Upgrade Notification Note')"></p>
+                                        <!--end::Heading-->
+
+                                        <!--begin::Info-->
+                                        <div class="fs-5 mb-2">
+                                            <span class="text-gray-800 fw-bold me-1" >$<span v-text="activeItem.business.subscription.plan.monthly_cost"></span></span>
+                                            <span class="text-gray-600 fw-semibold" v-text="translate('Monthly')"></span>
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Notice-->
+                                        <div class="flex fs-6 text-gray-600 fw-semibold gap-4"  v-if="activeItem.business">
+                                            <span v-text="translate('Your current plan') "></span>
+                                            <span class="font-semibold" v-text="activeItem.business.subscription.plan_name "></span>
+                                        </div>
+                                        <!--end::Notice-->
+                                    </div>
+                                    <!--end::Col-->
+
+                                    <!--begin::Col-->
+                                    <div class="col-lg-5">
+                                        <!--begin::Heading-->
+                                        <div class="d-flex text-muted fw-bold fs-5 mb-3">
+                                            <span class="flex-grow-1 text-gray-800" v-text="translate('Plan Subscription Days')"></span>
+                                            <span class="text-gray-800"><span v-text="activeItem.business.subscription.past_days"></span> of <span v-text="activeItem.business.subscription.total_days"></span> <span v-text="translate('Days')"></span></span>
+                                        </div>
+                                        <!--end::Heading-->
+
+                                        <!--begin::Progress-->
+                                        <div class="progress h-8px bg-light-primary mb-2">                                    
+                                            <div class="progress-bar bg-danger" role="progressbar" :style="{width: calcDaysWidth(activeItem)+'%'}" ></div>
+                                        </div>
+                                        <!--end::Progress-->
+
+                                        <!--begin::Description-->
+                                        <div class="fs-6 text-gray-600 fw-semibold mb-10"><span v-text="activeItem.business.subscription.left_days"></span> <span v-text="translate('Remaining Plan Days')"></span></div>
+                                        <!--end::Description-->
+
+                                        <!--begin::Action-->
+                                        <div class="d-flex justify-content-end pb-0 px-0">
+                                            <button class="btn btn-danger text-white" @click="upgradePlan" v-text="translate('Upgrade Plan')"></button>
+                                        </div>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Row-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                    </div>
+
+                    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'business_info'">
+                        <div class="card-body p-9">
+                            <div class="row my-4 py-4 border-b border-gray-200" >
+                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Business name')"></label>
+                                <div class="col-lg-8">
+                                    <span class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.business_name"></span>
+                                </div>
+                            </div>
+                            <div class="row my-4 py-4 " >
+                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Business type')"></label>
+                                <div class="col-lg-8">
+                                    <span class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.type"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'settings'">
+                        <div class="card-body p-9">
+                            <form action="/api/update" method="POST" data-refresh="1" id="system-setting-form"
+                                class="action  px-4 m-auto rounded-lg pb-10">
+
+                                <input name="type" type="hidden" value="User.update">
+
+                                <div class="w-full " v-for="(field, i) in content.fillable">
+                                    <div class="card w-full ">
+                                        <div class="card-body pt-0">
+                                            <div class="settings-form">
+                                                <div class="row mb-6">
+                                                    
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                                        :for="'input' + i" v-text="field.title"
+                                                        v-if="field.column_type != 'hidden'"></label>
+                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                        <form_field :callback="closeSide" :column="field" :model="null"  :item="activeItem" :conf="conf"></form_field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="uppercase mt-3 text-white mx-auto rounded-lg bg-purple-800 hover:bg-red-800 px-4 py-2">{{ translate('Save') }}</button>
+                            </form>
+
+                        </div>
+                    </div>
+
                 </div>  
 
                 <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2">
@@ -258,130 +371,8 @@
                     </div>
                 </div>
             </div>
-            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'account'">
-                <div class="card-body p-9">
-                    <div class="row my-4 py-4 border-b border-gray-200" v-for="field in content.overview">
-                        <label class="col-lg-4 fw-semibold text-muted" v-text="field.title"></label>
-                        <div class="col-lg-8">
-                            <span class="fw-bold fs-6 text-gray-800" v-text="field.key"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'business_info'">
-                <div class="card-body p-9">
-                    <div class="row my-4 py-4 border-b border-gray-200" >
-                        <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Business name')"></label>
-                        <div class="col-lg-8">
-                            <span class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.business_name"></span>
-                        </div>
-                    </div>
-                    <div class="row my-4 py-4 " >
-                        <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Business type')"></label>
-                        <div class="col-lg-8">
-                            <span class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.type"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'subscriptions'">
-
-                <div class="card  mb-5 mb-xl-10">
-                    <!--begin::Card body-->
-                    <div class="card-body">
-
-                        <!--begin::Row-->
-                        <div class="row">
-                            <!--begin::Col-->
-                            <div class="col-lg-7">
-                                <!--begin::Heading-->
-                                <h3 class="mb-2"><span v-text="translate('Active until')"></span> <span v-text="activeItem.business.subscription.end_date"></span></h3>
-                                <p class="fs-6 text-gray-600 fw-semibold mb-6 mb-lg-15" v-text="translate('Upgrade Notification Note')"></p>
-                                <!--end::Heading-->
-
-                                <!--begin::Info-->
-                                <div class="fs-5 mb-2">
-                                    <span class="text-gray-800 fw-bold me-1" >$<span v-text="activeItem.business.subscription.plan.monthly_cost"></span></span>
-                                    <span class="text-gray-600 fw-semibold" v-text="translate('Monthly')"></span>
-                                </div>
-                                <!--end::Info-->
-
-                                <!--begin::Notice-->
-                                <div class="flex fs-6 text-gray-600 fw-semibold gap-4"  v-if="activeItem.business">
-                                    <span v-text="translate('Your current plan') "></span>
-                                    <span class="font-semibold" v-text="activeItem.business.subscription.plan_name "></span>
-                                </div>
-                                <!--end::Notice-->
-                            </div>
-                            <!--end::Col-->
-
-                            <!--begin::Col-->
-                            <div class="col-lg-5">
-                                <!--begin::Heading-->
-                                <div class="d-flex text-muted fw-bold fs-5 mb-3">
-                                    <span class="flex-grow-1 text-gray-800" v-text="translate('Plan Subscription Days')"></span>
-                                    <span class="text-gray-800"><span v-text="activeItem.business.subscription.past_days"></span> of <span v-text="activeItem.business.subscription.total_days"></span> <span v-text="translate('Days')"></span></span>
-                                </div>
-                                <!--end::Heading-->
-
-                                <!--begin::Progress-->
-                                <div class="progress h-8px bg-light-primary mb-2">                                    
-                                    <div class="progress-bar bg-danger" role="progressbar" :style="{width: calcDaysWidth(activeItem)+'%'}" ></div>
-                                </div>
-                                <!--end::Progress-->
-
-                                <!--begin::Description-->
-                                <div class="fs-6 text-gray-600 fw-semibold mb-10"><span v-text="activeItem.business.subscription.left_days"></span> <span v-text="translate('Remaining Plan Days')"></span></div>
-                                <!--end::Description-->
-
-                                <!--begin::Action-->
-                                <div class="d-flex justify-content-end pb-0 px-0">
-                                    <button class="btn btn-danger text-white" @click="upgradePlan" v-text="translate('Upgrade Plan')"></button>
-                                </div>
-                                <!--end::Action-->
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <!--end::Row-->
-                    </div>
-                    <!--end::Card body-->
-                </div>
-
-            </div>
-
-            <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'settings'">
-                <div class="card-body p-9">
-                    <form action="/api/update" method="POST" data-refresh="1" id="system-setting-form"
-                        class="action  px-4 m-auto rounded-lg pb-10">
-
-                        <input name="type" type="hidden" value="User.update">
-
-                        <div class="w-full " v-for="(field, i) in content.fillable">
-                            <div class="card w-full ">
-                                <div class="card-body pt-0">
-                                    <div class="settings-form">
-                                        <div class="row mb-6">
-                                            
-                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                                :for="'input' + i" v-text="field.title"
-                                                v-if="field.column_type != 'hidden'"></label>
-                                            <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                                <form_field :callback="closeSide" :column="field" :model="null"  :item="activeItem" :conf="conf"></form_field>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button
-                            class="uppercase mt-3 text-white mx-auto rounded-lg bg-purple-800 hover:bg-red-800 px-4 py-2">{{ translate('Save') }}</button>
-                    </form>
-
-                </div>
-            </div>
+            
         </div>
         <side-form-update @callback="closeSide" :conf="conf" model="User.update" :item="activeItem"
             :model_id="activeItem.id" index="id" v-if="showEditSide" :columns="content.fillable" class="col-md-3" />
