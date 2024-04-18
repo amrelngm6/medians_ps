@@ -29,6 +29,7 @@ class Student extends CustomModel
 		'mobile',
 		'picture',
 		'birth_date',
+		'transfer_status',
 		'gender',
 		'status',
 		'created_by'
