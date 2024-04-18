@@ -485,6 +485,7 @@ export default {
             {
                 for (let i = 0; i < features.length; i++) {
                     const element = features[i];
+                    console.log(element)
                     if (element.code == code+'.count')
                     {
                         return element.value;
