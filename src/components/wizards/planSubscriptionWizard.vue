@@ -120,7 +120,6 @@
 
                             <div class="relative py-4">
 
-
                                 <div class="text-center mb-13">
                                     <h1 class="mb-3" v-text="translate('Subscription duration')"></h1>
 
@@ -131,8 +130,8 @@
                                 <div class="row">
                                     <!--begin::Col-->
                                     <div class="col-lg-6" @click="setType('month')">
-                                        <input type="radio" class="btn-check" value="month"
-                                            :checked="activeItem.type == 'month' ? true : false"
+                                        <input type="radio" class="btn-check" value="monthly"
+                                            :checked="activeItem.type == 'monthly' ? true : false"
                                             name="type" />
                                         <label
                                             class="gap-6 btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-10">
@@ -148,8 +147,8 @@
 
 
                                     <div class="col-lg-6" @click="setType('year')">
-                                        <input type="radio" class="btn-check" value="year"
-                                            :checked="activeItem.type == 'year' ? true : false"
+                                        <input type="radio" class="btn-check" value="yearly"
+                                            :checked="activeItem.type == 'yearly' ? true : false"
                                             name="type" />
                                         <label
                                             class="gap-6 btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-10">
