@@ -86,7 +86,7 @@
                                                 
 
                                                 <!--end::Text-->
-                                                <div class="flex gap-2" v-if="business_setting">
+                                                <div class="flex gap-2" v-if="business_setting && activeItem.business">
                                                     <img :src="business_setting.logo" class="w-10 h-10" />
                                                     <div class="fw-bold fs-6 text-gray-800">
                                                         <div class="text-gray-800" v-text="activeItem.business.name"></div>
