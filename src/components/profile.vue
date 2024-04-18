@@ -462,7 +462,7 @@ export default {
         {
             if ( activeItem.value.business && activeItem.value.business.subscription && activeItem.value.business.subscription.plan )
             {
-                return  activeItem.value.type == 'monthly' ? activeItem.value.business.subscription.plan.monthly_cost : activeItem.value.business.subscription.plan.yearly_cost;
+                return  activeItem.value.business.subscription.type == 'monthly' ? activeItem.value.business.subscription.plan.monthly_cost : activeItem.value.business.subscription.plan.yearly_cost;
             }
             return 0;
         }
