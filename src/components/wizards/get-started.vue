@@ -9,8 +9,8 @@
                 class="card d-flex justify-content-center justify-content-xl-start flex-row-auto w-100 w-xl-300px w-xxl-400px">
                 <div class="card-body px-6 px-xxl-15 py-20">
                     <div class="stepper-nav">
-                        <div class="stepper-item " data-kt-stepper-element="nav" v-for="step in steps" :key="step.active">
-                            <div class="stepper-wrapper flex gap-6" :class="step.active ? '' : 'text-gray-300'"
+                        <div class="stepper-item cursor-pointer" data-kt-stepper-element="nav" v-for="step in steps" :key="step.active">
+                            <div class="stepper-wrapper flex gap-6 " :class="step.active ? '' : 'text-gray-300'"
                                 @click="setActiveStep(step.id)">
                                 <div class="stepper-icon w-40px h-40px rounded-lg  text-center bg-inverse-primary   "
                                     :class="step.active ? 'bg-primary' : ''">
