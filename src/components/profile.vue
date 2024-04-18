@@ -2,7 +2,7 @@
     <div class="w-full mb-5 mb-xl-10">
         
             <!--begin::Details-->
-            <div class="d-flex flex-wrap flex-sm-nowrap">
+            <div class="card d-flex flex-wrap flex-sm-nowrap">
                 <!--begin: Pic-->
                 <div class="me-7 mb-4">
                     <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
