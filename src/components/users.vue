@@ -12,9 +12,9 @@
                 
                 <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span class="pt-2 text-sm text-muted" v-text="role.id > 1 ? translate('Theese users can manage your account only') : ''"></span></h3>
 
-                <div class="row g-6 mb-6 g-xl-9 mb-xl-9" :key="role.users" v-for="role in content.roles">
+                <div class="row g-6 mb-6 g-xl-9 mb-xl-9" :key="role.users" >
 
-                    <div v-for="role in role.roles" class="col-md-6 col-xxl-4">
+                    <div v-for="user in role.users" class="col-md-6 col-xxl-4">
                         <div class="card ">
                             <div class="card-body d-flex flex-center flex-column py-9 px-5">
                                 <div class="symbol symbol-65px symbol-circle mb-5">
