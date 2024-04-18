@@ -65,6 +65,7 @@ class OneSignalService
             'include_aliases' => ['external_id'=>[$this->receiver_id]]
         );
         
+        error_log($this->receiver_id);
         
         $fields = json_encode($fields);
     
