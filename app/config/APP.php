@@ -310,9 +310,16 @@ class APP
 				array('permission'=>'Plans.index', 'title'=>__('Plans'),  'icon'=>'tool', 'link'=>'admin/plans', 'component'=>'plans'),
 				array('permission'=>'PlanFeatures.index', 'title'=>__('Plan features'),  'icon'=>'tool', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
 				array('permission'=>'PlanSubscriptions.index', 'title'=>__('Plan subscriptions'),  'icon'=>'tool', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
-				array('permission'=>'Payments.index', 'title'=>__('Plan Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
 			]
 			),
+			
+			array('title'=>__('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
+			[
+				array('permission'=>'Payments.index', 'title'=>__('Plan Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
+				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
+			]
+			),
+			
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array( 'title'=>__('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
