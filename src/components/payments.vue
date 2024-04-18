@@ -46,7 +46,7 @@
 
                 <template #expand="item">
                     <div class="p-6"   v-if="item.invoice" style="padding: 15px">
-                        {{item.invoice ? item.invoice.code : ''}} 
+                        {{ translate('This payment has invoice code : ') }} {{item.invoice ? item.invoice.code : ''}} 
                     </div>
                 </template>
 
