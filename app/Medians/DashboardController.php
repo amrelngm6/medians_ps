@@ -86,7 +86,9 @@ class DashboardController extends CustomController
 
 		try {
 			
-	        echo  json_encode( $this->data());
+			$user = $this->app->auth();
+			
+	        return json_encode($user->role_id == 1 ?  $this->master_data() :   $this->data());
 	        
 		} catch (Exception $e) {
 			return $e->getMessage();
