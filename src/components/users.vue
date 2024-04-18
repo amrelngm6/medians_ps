@@ -6,32 +6,30 @@
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
             <a href="javascript:;" class="menu-dark uppercase p-2 mx-2 text-center text-white w-32 rounded bg-danger" @click="showAddSide = true, activeItem = {}; " v-text="translate('add_new')"></a>
         </div>
-        <div class="w-full row g-6 mb-6 g-xl-9 mb-xl-9">
-            <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
-                <div class="col-md-6 col-xxl-4">
-                    <div class="card ">
-                        <div class="card-body d-flex flex-center flex-column py-9 px-5">
-                            <div class="symbol symbol-65px symbol-circle mb-5">
-                                <img src="/metronic8/demo1/assets/media//avatars/300-6.jpg" alt="image">
-                            </div>
-                            <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">Olivia Larson</a>
-                            <div class="fw-semibold text-gray-500 mb-6">Art Director at Seal Inc.</div>
-                            <div class="d-flex flex-center flex-wrap mb-5">
-                                <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
-                                    <div class="fs-6 fw-bold text-gray-700">$14,560</div>
-                                    <div class="fw-semibold text-gray-500">Earnings</div>
+        <div class="w-full " v-if="content && content.roles" >
+
+            <div class="w-full" :key="role.users" v-for="role in content.roles">
+                
+                <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span class="pt-2 text-sm text-muted" v-text="role.id > 1 ? translate('Theese users can manage your account only') : ''"></span></h3>
+
+                <div class="row g-6 mb-6 g-xl-9 mb-xl-9" :key="role.users" v-for="role in content.roles">
+
+                    <div v-for="role in role.roles" class="col-md-6 col-xxl-4">
+                        <div class="card ">
+                            <div class="card-body d-flex flex-center flex-column py-9 px-5">
+                                <div class="symbol symbol-65px symbol-circle mb-5">
+                                    <img :src="user.photo" alt="image">
                                 </div>
-                                <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
-                                    <div class="fs-6 fw-bold text-gray-700">$236,400</div>
-                                    <div class="fw-semibold text-gray-500">Sales</div>
-                                </div>
+                                <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">Olivia Larson</a>
+                                <div class="fw-semibold text-gray-500 mb-6">Art Director at Seal Inc.</div>
+                                
+                                <button class="btn btn-sm btn-light btn-flex btn-center" data-kt-follow-btn="true">
+                                    <i class="ki-duotone ki-plus follow fs-3"></i> 	
+                                    <i class="ki-duotone ki-check following fs-3 d-none"></i> 	
+                                    <span class="indicator-label"> Follow</span>
+                                    <span class="indicator-progress"> Please wait...    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
                             </div>
-                            <button class="btn btn-sm btn-light btn-flex btn-center" data-kt-follow-btn="true">
-                                <i class="ki-duotone ki-plus follow fs-3"></i> 	
-                                <i class="ki-duotone ki-check following fs-3 d-none"></i> 	
-                                <span class="indicator-label"> Follow</span>
-                                <span class="indicator-progress"> Please wait...    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -39,7 +37,7 @@
         </div>
         <div class="w-full flex gap gap-6">
 
-            <div v-if="content && content.users" :key="content.users" class="w-full">
+            <div v-if="content && content.roles" :key="content.roles" class="w-full">
                 <div v-for="role in content.roles" class="w-full pb-4">
                     <h3  class="pb-b flex gap-4"><span v-text="role.name"></span> <span class="pt-2 text-sm text-muted" v-text="role.id > 1 ? translate('Theese users can manage your account only') : ''"></span></h3>
                     <div class="w-full grid lg:grid-cols-3 gap gap-6">
