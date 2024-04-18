@@ -86,7 +86,7 @@
                                                         <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(subscription.user.picture ?? '/uploads/images/default_profile.png')" />
                                                         <div class="text-left">
                                                             <p class="m-0" v-text="subscription.user.name"></p>
-                                                            <p class="m-0" v-text="subscription.user.phone"></p>
+                                                            <p class="m-0" v-text="subscription.user.business ? subscription.user.business.business_name : ''"></p>
                                                         </div>
                                                     </div>
                                                 </td>
