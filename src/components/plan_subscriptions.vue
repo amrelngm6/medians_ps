@@ -130,7 +130,7 @@ export default
             {
                 case 'edit':
                     activeItem.value = data;
-                    showEditSide.value = true; 
+                    showWizard.value = true
                     break;  
 
                 case 'delete':
