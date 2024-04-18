@@ -69,7 +69,7 @@
                                         <tbody v-if="content.plan_subscriptions"  :key="content.plan_subscriptions">
                                             <tr :key="index" v-for="(subscription, index) in content.plan_subscriptions"  >
                                                 <td>
-                                                    <div class="flex gap-4 w-full">
+                                                    <div class="flex gap-4 w-full" v-if="subscription && subscription.user">
                                                         <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.user.picture ?? '/uploads/images/default_profile.png')" />
                                                         <div class="text-left">
                                                             <p class="m-0" v-text="subscription.user.name"></p>
