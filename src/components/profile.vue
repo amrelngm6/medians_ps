@@ -476,13 +476,12 @@ export default {
             if ( features )
             {
                 for (let i = 0; i < features.length; i++) {
-                    const element = array[i];
+                    const element = features[i];
                     if (element.code == code)
                     {
                         return element.value;
                     }
                 }
-                return  activeItem.value.business.subscription.type == 'monthly' ? activeItem.value.business.subscription.plan.monthly_cost : activeItem.value.business.subscription.plan.yearly_cost;
             }
             return 0;
         }
