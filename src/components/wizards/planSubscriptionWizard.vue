@@ -43,14 +43,14 @@
                                     </a>
                                 </div>
 
-                                <a href="javascript:;" :key="activeItem.model" v-if="activeItem.model"
+                                <a href="javascript:;" :key="activeItem.user" v-if="activeItem.user"
                                     class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
                                     <div class="symbol symbol-35px symbol-circle me-5"><img alt="Pic"
-                                            :src="activeItem.model.picture"></div>
+                                            :src="activeItem.user.picture"></div>
                                     <div class="fw-semibold w-full">
                                         <span class="text-lg text-danger font-semibold me-2"
-                                            v-text="activeItem.model.name"></span>
-                                        <span class="block text-gray-500 text-sm" v-text="activeItem.model.phone"></span>
+                                            v-text="activeItem.user.name"></span>
+                                        <span class="block text-gray-500 text-sm" v-text="activeItem.user.phone"></span>
                                     </div>
                                 </a>
                             </div>
