@@ -37,80 +37,49 @@
                     <!--begin::Details-->
                     <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
                         <!--begin::Row-->
-                        <tbody><tr>
-                            <td class="text-gray-500 min-w-175px w-175px">Bill to:</td>
-                            <td class="text-gray-800 min-w-200px">
-                                <a href="/metronic8/demo1/pages/apps/customers/view.html" class="text-gray-800 text-hover-primary">smith@kpmg.com</a>
-                            </td>
-                        </tr>
-                        <!--end::Row-->
-
-                        <!--begin::Row-->
+                        <tbody>
                         <tr>
-                            <td class="text-gray-500">Customer Name:</td>
-                            <td class="text-gray-800">
-                                Emma Smith                            </td>
+                            <td class="text-gray-500" v-text="translate('first name')"></td>
+                            <td class="text-gray-800" v-text="activeItem.first_name"></td>
                         </tr>
-                        <!--end::Row-->
-
-                        <!--begin::Row-->
                         <tr>
-                            <td class="text-gray-500">Address:</td>
-                            <td class="text-gray-800">
-                                Floor 10, 101 Avenue of 
-                                the Light Square, New York, NY, 10050.
-                            </td>
+                            <td class="text-gray-500" v-text="translate('last name')"></td>
+                            <td class="text-gray-800" v-text="activeItem.last_name"></td>
                         </tr>
-                        <!--end::Row-->
-
-                        <!--begin::Row-->
                         <tr>
-                            <td class="text-gray-500">Phone:</td>
-                            <td class="text-gray-800">(555) 555-1234</td>
+                            <td class="text-gray-500" v-text="translate('email')"></td>
+                            <td class="text-gray-800" v-text="activeItem.email"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-500" v-text="translate('Address')"></td>
+                            <td class="text-gray-800" v-text="activeItem.address"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-500" v-text="translate('Phone')"></td>
+                            <td class="text-gray-800" v-text="activeItem.phone"></td>
                         </tr>
                         <!--end::Row-->
                     </tbody></table>
                     <!--end::Details-->
                 </div>
                 <!--end::Row-->
-
                 <!--begin::Row-->
-                <div class="flex-equal">
+                <div class="flex-equal" v-if="activeItem.business && activeItem.business.subscription">
                     <!--begin::Details-->
                     <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
                         <!--begin::Row-->
                         <tbody><tr>
-                            <td class="text-gray-500 min-w-175px w-175px">Subscribed Product:</td>
-                            <td class="text-gray-800 min-w-200px">
-                                <a href="#" class="text-gray-800 text-hover-primary">Basic Bundle</a>
-                            </td>
+                            <td class="text-gray-500" v-text="translate('Plan')"></td>
+                            <td class="text-gray-800" v-text="activeItem.business.subscription.plan_name"></td>
                         </tr>
-                        <!--end::Row-->
-
-                        <!--begin::Row-->
                         <tr>
-                            <td class="text-gray-500">Subscription Fees:</td>
-                            <td class="text-gray-800">
-                                $149.99 / Year
-                            </td>
+                            <td class="text-gray-500" v-text="translate('Start date')"></td>
+                            <td class="text-gray-800" v-text="activeItem.business.subscription.start_date"></td>
                         </tr>
-                        <!--end::Row-->
-
-                        <!--begin::Row-->
                         <tr>
-                            <td class="text-gray-500">Billing method:</td>
-                            <td class="text-gray-800">
-                                Annually
-                            </td>
+                            <td class="text-gray-500" v-text="translate('End date')"></td>
+                            <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
                         </tr>
-                        <!--end::Row-->
-
-                        <!--begin::Row-->
-                        <tr>
-                            <td class="text-gray-500">Currency:</td>
-                            <td class="text-gray-800">USD - US Dollar</td>
-                        </tr>
-                        <!--end::Row-->
                     </tbody></table>
                 </div>
             </div>
