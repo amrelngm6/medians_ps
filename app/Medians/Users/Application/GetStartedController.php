@@ -179,24 +179,7 @@ class GetStartedController
 	public function subscribePaidPlan($plan, $paymentType='monthly')
 	{
 
-		$systemSetting = $this->app->SystemSetting();
-		$payment = new PaymentService('PayPal');
-
-		$price = number_format($paymentType == 'monthly' ? $plan->monthly_cost : $plan->yearly_cost, 2);
-
-		$payment->title = __('Plan subscription');
-		$payment->item_name = $plan->name;
-		$payment->item_price = $price;
-		$payment->currency = isset($systemSetting['currency']) ? $systemSetting['currency'] : 'USD';
-		$payment->sku = 'Plan-'. $plan->plan_id;
-		$payment->subtotal = $price;
-		$payment->totalcost = $price;
-
-		$payment_url = $payment->saveSessions($plan->plan_id, $paymentType);
-
-    	return !empty($payment_url) 
-       	? array('success'=>1, 'result'=>__('Will be redirected to payment page'), 'payment_url'=>$payment_url)
-    	: array('error'=> __('invalid Plan') );
+	
 	} 
 
 
