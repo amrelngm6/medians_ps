@@ -99,6 +99,7 @@ export default
 
         const showLoader = ref(null);
 
+        const showWizard =  ref(false);
         const searchField = ref("payment_id");
         const searchValue = ref("");
 
