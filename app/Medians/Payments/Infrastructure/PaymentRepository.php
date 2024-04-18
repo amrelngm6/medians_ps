@@ -29,6 +29,7 @@ class PaymentRepository
 	{
 		return Payment::with('user', 'plan_subscription')
 		->limit($limit)
+		->orderBy('payment_id', 'DESC')
 		->get();
 	}
 
@@ -52,7 +53,7 @@ class PaymentRepository
 	  	}
   		
 
-  		return $check->orderBy('id', 'DESC');
+  		return $check->orderBy('payment_id', 'DESC');
 	}
 
 
@@ -64,7 +65,7 @@ class PaymentRepository
 	{
 		$check = Payment::where('branch_id' , $this->app->branch->id)->with('user');
   		$check = $check->whereBetween('created_at' , [isset($start) ? $start : date('Y-m-d') , isset($end) ? $end : date('Y-m-d')]);
-  		return $check->orderBy('id', 'DESC')->sum($sumField);
+  		return $check->orderBy('payment_id', 'DESC')->sum($sumField);
 	} 
 
 
@@ -77,7 +78,7 @@ class PaymentRepository
 	{
 	  	return Payment::whereBetween('created_at' , [$params['start'] , $params['end']])
 	  	->limit($limit)
-	  	->orderBy('id', 'DESC');
+	  	->orderBy('payment_id', 'DESC');
 	}
 	
 
