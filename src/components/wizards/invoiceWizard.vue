@@ -120,7 +120,7 @@
                                                         <tr class="fw-bold text-gray-700 fs-5 text-end" v-for="invoiceItem in activeItem.items">
                                                             <td class="d-flex align-items-center pt-6 gap-2" v-if="invoiceItem" >
                                                                 <vue-feather type="cloud-lightning" ></vue-feather>
-                                                                <a :href="invoiceItem.item.trip_id ? './private_trips' : './package_subscription'" v-if="invoiceItem.item" v-text="invoiceItem.item.name"></a>
+                                                                <a href="javascript:;" v-if="invoiceItem.item" v-text="invoiceItem.item.name"></a>
                                                             </td>
                                                             <td class="pt-6" v-text="invoiceItem.subtotal+ '' + system_setting.currency"></td>
                                                             <td class="pt-6" v-text="invoiceItem.discount_amount"></td>
