@@ -9,7 +9,7 @@ use Medians\Invoices\Domain\Invoice;
 /**
  * Payment class database queries
  */
-class PaymentsRepository 
+class PaymentRepository 
 {
 
 

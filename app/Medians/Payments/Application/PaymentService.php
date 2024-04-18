@@ -4,7 +4,7 @@ namespace Medians\Payments\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
-use Medians\Payments\Infrastructure\PaymentsRepository;
+use Medians\Payments\Infrastructure\PaymentRepository;
 use Medians\Users\Infrastructure\User;
 
 class PaymentService
@@ -32,7 +32,7 @@ class PaymentService
 		$this->payment_method = $payment_method;
 		
 		$this->planSubscriptionRepo = new PlanSubscriptionRepository();
-		$this->paymentRepo = new PaymentsRepository();
+		$this->paymentRepo = new PaymentRepository();
 
 	}
 
@@ -77,11 +77,9 @@ class PaymentService
 	{
 		try {
 			
-			$invoiceRepo = new \Medians\Payments\Infrastructure\PaymentRepository($user->business);
-			
 			$data = array();
 			$data['business_id'] = $user->business->business_id;
-			$data['code'] = $invoiceRepo->generateCode();
+			$data['code'] = $this->paymentRepo->generateCode();
 			$data['user_id'] = $user->id;
 			$data['user_type'] = User::class;
 			$data['payment_method'] = 'PayPal';
@@ -93,7 +91,7 @@ class PaymentService
 			$data['notes'] = '';
 			$data['items'] = $this->handleItems($params, $order, $savedSubscription, $user);
 
-			return $invoiceRepo->store((array) $data);
+			return $this->paymentRepo->store((array) $data);
 
 		} catch (\Throwable $th) {
 			error_log($th->getMessage());

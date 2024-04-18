@@ -4,7 +4,7 @@ namespace Medians\Transactions\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Packages\Infrastructure\PackageSubscriptionRepository;
-use Medians\Payments\Infrastructure\PaymentsRepository;
+use Medians\Payments\Infrastructure\PaymentRepository;
 use Medians\Transactions\Infrastructure\TransactionRepository;
 use Medians\Students\Domain\Student;
 

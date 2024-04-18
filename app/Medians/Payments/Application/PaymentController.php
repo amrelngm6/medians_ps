@@ -5,7 +5,7 @@ use \Shared\dbaser\CustomController;
 
 use Medians\Users\Application\GetStartedController;
 
-use Medians\Payments\Infrastructure\PaymentsRepository;
+use Medians\Payments\Infrastructure\PaymentRepository;
 use Medians\Plans\Infrastructure\PlanRepository;
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 
@@ -25,7 +25,7 @@ class PaymentController extends CustomController
 	{
         $this->app = new \config\APP;
 		
-		$this->repo = new PaymentsRepository();
+		$this->repo = new PaymentRepository();
 
 		$this->planRepo = new PlanRepository();
 	}
