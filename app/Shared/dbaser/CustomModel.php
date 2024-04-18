@@ -147,10 +147,10 @@ class CustomModel extends Model
     	if (!$this->wasRecentlyCreated)
     		return true;
 		
-		UsageLog::addItem($this, 'create');
-
     	// Insert activation code 
-    	return (new NotificationEvent)->handleEvent($this, 'create');
+		$updateEvent = (new NotificationEvent)->handleEvent($this, 'create');
+
+		return UsageLog::addItem($this, 'create');
     }  
 
     /**
