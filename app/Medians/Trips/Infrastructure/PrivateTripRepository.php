@@ -135,6 +135,17 @@ class PrivateTripRepository
 	}
 
 	
+	/**
+	* Find all items between two days 
+	*/
+	public function masterByDateCharts($params )
+	{
+
+	  	$check = PrivateTrip::whereBetween('date' , [$params['start'] , $params['end']])
+		->selectRaw('COUNT(*) as y, date as label');
+  		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
+	}
+
 
 	public function filterData($data)
 	{

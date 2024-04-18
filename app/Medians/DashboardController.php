@@ -24,6 +24,8 @@ class DashboardController extends CustomController
 	public  $InvoiceRepository;
 	public  $TransactionRepository;
 	public  $PackageSubscriptionRepository;
+	public  $BusinessRepository;
+	public  $CustomerRepository;
 
 	protected $app;
 	public $start;
@@ -36,6 +38,7 @@ class DashboardController extends CustomController
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
 
+		$this->BusinessRepository = new Businesses\Infrastructure\BusinessRepository();
 		$this->contentRepo = new Content\Infrastructure\ContentRepository($user->business);
 		$this->TripRepository = new Trips\Infrastructure\TripRepository($user->business);
 		$this->PrivateTripRepository = new Trips\Infrastructure\PrivateTripRepository($user->business);
@@ -46,6 +49,7 @@ class DashboardController extends CustomController
 		$this->RouteLocationRepository = new Locations\Infrastructure\RouteLocationRepository($user->business);
 		$this->StudentRepository = new Students\Infrastructure\StudentRepository($user->business);
 		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository($user->business);
+		$this->CustomerRepository = new Customers\Infrastructure\CustomerRepository();
 		$this->BusinessApplicantRepository = new Customers\Infrastructure\BusinessApplicantRepository($user->business);
 		$this->InvoiceRepository = new Invoices\Infrastructure\InvoiceRepository($user->business);
 		$this->TransactionRepository = new Transactions\Infrastructure\TransactionRepository($user->business);
@@ -68,7 +72,7 @@ class DashboardController extends CustomController
 			$user = $this->app->auth();
 
 			// Name of the Vue components
-	        return $user->role_id == 1 ?  render('master_dashboard', $this->data()) :   render('dashboard', $this->data());
+	        return $user->role_id == 1 ?  render('master_dashboard', $this->master_data()) :   render('dashboard', $this->data());
 	        
 		} catch (Exception $e) {
 			return $e->getMessage();
@@ -85,7 +89,7 @@ class DashboardController extends CustomController
 	{
 
 		try {
-			
+
 			$user = $this->app->auth();
 			
 	        return json_encode($user->role_id == 1 ?  $this->master_data() :   $this->data());
@@ -140,17 +144,17 @@ class DashboardController extends CustomController
 		try {
 
 			$trips_charts = $this->TripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
-			$private_trips_charts = $this->PrivateTripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+			$private_trips_charts = $this->PrivateTripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 			$applicants = $this->BusinessApplicantRepository->get(5);
 
 			$counts = $this->loadCounts();
 
 			$array = [
-	            'title' => 'Dashboard',
+	            'title' => 'Master Dashboard',
 		        'load_vue' => true,
 				'trips_charts'=>$trips_charts,
 				'private_trips_charts'=>$private_trips_charts,
-				'applicants'=>$applicants,
+				'businesses'=>$applicants,
 	        ];
 
 			return array_merge($counts, $array);
@@ -170,7 +174,9 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
-        $data['active_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->where('status', 'scheduled')->count();
+        $data['businesses_count'] = $this->BusinessRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
+        $data['top_businesses'] = $this->BusinessRepository->masterByDate(['start'=>$this->start, 'end'=>$this->end]);
+        $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['business_applicant_count'] = $this->BusinessApplicantRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();

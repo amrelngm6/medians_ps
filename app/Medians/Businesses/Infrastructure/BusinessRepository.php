@@ -79,6 +79,26 @@ class BusinessRepository
 	}
 
 
+	
+	/**
+	* Find all items between two days 
+	*/
+	public function masterByDateCount($params )
+	{
+
+	  	return Business::whereBetween('created_at' , [$params['start'] , $params['end']])->count();
+
+	}
+
+	
+	/**
+	* Find all items between two days 
+	*/
+	public function masterByDate($params )
+	{
+	  	return Business::whereBetween('created_at' , [$params['start'] , $params['end']])->get();
+	}
+
 
 
 	/**

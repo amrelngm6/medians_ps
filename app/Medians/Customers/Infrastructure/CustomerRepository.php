@@ -11,9 +11,15 @@ class CustomerRepository
 	protected $app;
 
 
-	function __construct()
+	/**
+	* Find all items between two days 
+	*/
+	public function masterByDateCount($params )
 	{
+	  	return Customer::whereBetween('created_at' , [$params['start'] , $params['end']])->count();
 	}
+
+
 
 	public function getClassName()
 	{
