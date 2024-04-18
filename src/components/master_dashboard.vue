@@ -1,93 +1,120 @@
 <template>
     <div class="w-full overflow-auto" >
 
-
-        <div class="top-0 py-2 w-full px-2 bg-gray-100 mt-0 sticky" style="z-index:9">
+        <div class="top-0 py-2 w-full px-4 bg-gray-50 mt-0 sticky rounded" style="z-index:9">
             <div class="w-full flex gap-6">
-                <h3 class="whitespace-nowrap" v-text="__('Dashboard Reports')"></h3> 
-                <ul class="w-full flex gap-4 mt-2">
-                    <li v-for="item in dates_filters" v-if="item" @click="switchDate(item.value)" :class="(activeDate == item.value) ? 'font-semibold' : ''" class="cursor-pointer" v-text="__(item.title)"></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="block w-full overflow-x-auto py-2">
-            <div v-if="lang && !showLoader && system_setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
-                <div class="pb-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
-                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('new_branches')" :value="content.new_branches"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('new_subscribers')" :value="content.new_subscribers"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('new_customers')" :value="content.new_customers"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('Subscription Payments')" :value="system_setting.currency ? system_setting.currency +''+ content.total_payments : 0"></dashboard_card_white>
-                    </div>
-                    <div class="w-full bg-white p-4 mb-4 rounded-lg">
-                        <CanvasJSChart v-if="showCharts && content.branches_charts.length" :key="line_options" :options="line_options"/>
-                    </div>
+                <h3 class="text-base lg:text-lg whitespace-nowrap" v-text="translate('Dashboard Reports')"></h3> 
+                
+                <div class="w-full">
+                    <vue-tailwind-datepicker 
+                        class="text-lg"
+                        :formatter="formatter"
+                        @update:model-value="handleSelectedDate($event)"
+                        :separator="' - '+translate('To')+' - '"
+                        v-model="dateValue" />
                 </div>
             </div>
         </div>
 
-
         <div class="block w-full overflow-x-auto py-2">
-            <div v-if="lang && !showLoader && setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
+            <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
-                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="__('active_bookings')" :value="content.active_order_devices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="__('bookings')" :value="content.order_devices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="__('sold_products')" :value="setting.currency +''+ content.order_products_revenue"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="__('bookings_income')" :value="setting.currency +''+ content.bookings_income"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="translate('Businesses')" :value="content.businesses_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="translate('Customers')" :value="content.customers_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Help messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
-                    <div class="w-full bg-white p-4 mb-4 rounded-lg">
-                        <CanvasJSChart v-if="showCharts && content.orders_charts.length" :key="line_options" :options="line_options"/>
-                    </div>
-                    <div class="row mt-6">
-                        <dashboard_card classes="bg-gradient-success" :title="__('income')" :value="setting.currency +''+ content.income"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-danger" :title="__('expenses')" :value="setting.currency +''+ content.expenses"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-primary" :title="__('tax')" :value="setting.currency +''+ content.tax"></dashboard_card>
-                        <dashboard_card classes="bg-gradient-purple" :title="__('revenue')" :value="setting.currency +''+ content.revenue" ></dashboard_card>
-                    </div>
-                </div>
-                <div class="w-full lg:flex gap gap-6 pb-6">
-                    <dashboard_center_squares :content="content" :setting="setting" />
-                    <div class="card mb-0 w-full">
-                        <h4 class="p-4 ml-4" v-text="__('most_played_games')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_games_used_for_playing')"></p>
-                        <div class="card-body w-full">
-                            <div class="w-full">
-                                <CanvasJSChart v-if="showCharts && content.most_played_games.length" :key="pie_options" :options="pie_options"/>
+                    
+                    <div class="w-full gap-4 lg:flex">
+                        <div class="w-full">
+                            <h4 class="text-base lg:text-lg " v-text="translate('Routes Trips')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
+                                <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
+                                <ag-charts-vue :key="line_options2" :options="line_options2"> </ag-charts-vue>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="w-full lg:flex gap gap-6 pb-6">
-                    <div class="card mb-0 w-2/3">
-                        <h4 class="p-4 ml-4" v-text="__('most_played_devices')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('top_5_devices_used_for_playing')"></p>
+                    <div class="card mb-0 w-1/3">
+                        <h4 class="p-4 ml-4" v-text="translate('Top businesses')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_businesses_who_have_most_trips')"></p>
                         <div class="card-body w-full">
-                            <div class="w-full">
-                                <CanvasJSChart v-if="showCharts && content.most_played_devices.length" :key="column_options" :options="column_options"/>
+                            <div class="w-full" v-if="content.top_businesses">
+                                <ag-charts-vue :key="pie_options" :options="pie_options"> </ag-charts-vue>
                             </div>
                         </div>
                     </div>
                     <div class="card w-1/3 lg:w-1/3 lg:mb-0">
-                        <h4 class="p-4 ml-4" v-text="__('latest_paid_order_devices')"></h4>
-                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="__('latest_5_bookings_has_been_paid')"></p>
+                        <h4 class="p-4 ml-4" v-text="translate('New subscriptions')"></h4>
+                        <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('Latest subscriptions request has been sent')"></p>
                         <div class="card-body w-full">
                             <div class="w-full ">
                                 <div class="table-responsive w-full">
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th v-text="__('name')"></th>
-                                                <th v-text="__('duration')"></th>
-                                                <th v-text="__('total_amount')"></th>
+                                                <th v-text="translate('User')"></th>
+                                                <th v-text="translate('subscription')"></th>
+                                                <th v-text="translate('Type')"></th>
                                             </tr>
                                         </thead>
-                                        <tbody v-if="content.latest_paid_order_devices">
-                                            <tr :key="index" v-for="(item, index) in content.latest_paid_order_devices" class="text-center">
-                                                <td v-text="item.device ? item.device.name : ''"></td>
-                                                <td style="direction: ltr;">{{item.duration_time}}</td>
-                                                <td v-text="(item.total_cost ? item.total_cost : '') + setting.currency"></td>
+                                        <tbody v-if="content.plan_subscriptions"  :key="content.plan_subscriptions">
+                                            <tr :key="index" v-for="(subscription, index) in content.plan_subscriptions"  >
+                                                <td>
+                                                    <div class="flex gap-4 w-full">
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.model.picture ?? '/uploads/images/default_profile.png')" />
+                                                        <div class="text-left">
+                                                            <p class="m-0" v-text="subscription.model.name"></p>
+                                                            <p class="m-0" v-text="subscription.model.mobile"></p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td v-text="subscription.plan_name ?? ''"></td>
+                                                <td v-text="subscription.type"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card w-1/3 lg:w-1/3 lg:mb-0">
+                        <div class="w-full flex p-4">
+                            <h4 class="w-full " v-text="translate('Latest help messages')"></h4>
+                            <a href="/admin/help_messages" class="w-20" v-text="translate('View all')"></a>
+                        </div>
+                        <div class="card-body w-full">
+                            <div class="w-full">
+                                <div class="table-responsive w-full">
+                                    <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
+                                        <thead>
+                                            <tr>
+                                                <th v-text="translate('name')"></th>
+                                                <th v-text="translate('message')"></th>
+                                                <th v-text="translate('date')"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr :key="index" v-for="(message, index) in content.latest_help_messages" >
+                                                <td>
+                                                    <div v-if="message.user" class="flex gap-2">
+                                                        <img :src="message.user.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <div>
+                                                            <p class="m-0" v-text="message.user.name"></p>
+                                                            <span class="text-xs"v-text="message.user.usertype"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-red-500" v-text="message.message"></td>
+                                                <td v-text="dateTimeFormat(message.created_at)"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -99,30 +126,74 @@
                 <div class="w-full lg:flex gap gap-6 pb-6 ">
 
                     <div class="card  w-full  no-mobile">
-                        <h4 class="p-4 ml-4" v-text="__('latest_sold_products')"></h4>
-                        <hr />
+                        <div class="w-full flex p-4">
+                            <h4 class="w-full " v-text="translate('Latest help messages')"></h4>
+                            <a href="/admin/help_messages" class="w-20" v-text="translate('View all')"></a>
+                        </div>
                         <div class="card-body w-full">
                             <div class="w-full">
                                 <div class="table-responsive w-full">
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th v-text="__('name')"></th>
-                                                <th v-text="__('price')"></th>
-                                                <th v-text="__('date')"></th>
-                                                <th v-text="__('invoice')"></th>
-                                                <th v-text="__('by')"></th>
+                                                <th v-text="translate('name')"></th>
+                                                <th v-text="translate('message')"></th>
+                                                <th v-text="translate('date')"></th>
                                             </tr>
                                         </thead>
                                         <tbody >
-                                            <tr :key="index" v-for="(item, index) in content.latest_order_products" class="text-center">
+                                            <tr :key="index" v-for="(message, index) in content.latest_help_messages" >
                                                 <td>
-                                                    <a :href="'/admin/products/edit/'+item.product.id">{{item.product.name}}</a>
+                                                    <div v-if="message.user" class="flex gap-2">
+                                                        <img :src="message.user.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <div>
+                                                            <p class="m-0" v-text="message.user.name"></p>
+                                                            <span class="text-xs"v-text="message.user.usertype"></span>
+                                                        </div>
+                                                    </div>
                                                 </td>
-                                                <td class="text-red-500">{{item.product.price}} {{setting.currency}}</td>
-                                                <td v-text="dateTimeFormat(item.created_at)"></td>
-                                                <td><a target="_blank" :href="'/admin/invoices/show/'+item.invoice.code">{{item.invoice.code}}</a></td>
-                                                <td v-text="item.user ? item.user.name : ''"></td>
+                                                <td class="text-red-500" v-text="message.message"></td>
+                                                <td v-text="dateTimeFormat(message.created_at)"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card  w-full  no-mobile">
+                        <div class="w-full flex p-4">
+                            <h4 class="w-full " v-text="translate('Latest Transactions')"></h4>
+                            <a href="/admin/transactions" class="w-20" v-text="translate('View all')"></a>
+                        </div>
+                        <div class="card-body w-full">
+                            <div class="w-full">
+                                <div class="table-responsive w-full">
+                                    <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
+                                        <thead>
+                                            <tr>
+                                                <th v-text="translate('ID')"></th>
+                                                <th v-text="translate('User')"></th>
+                                                <th v-text="translate('Amount')"></th>
+                                                <th v-text="translate('Invoice')"></th>
+                                                <th v-text="translate('date')"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr :key="index" v-for="(transaction, index) in content.latest_transactions" >
+                                                <td v-text="transaction.transaction_id ?? ''"></td>
+                                                <td>
+                                                    <div v-if="transaction.model" class="flex gap-2">
+                                                        <img :src="transaction.model.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
+                                                        <div>
+                                                            <p class="m-0" v-text="transaction.model.name"></p>
+                                                            <small  v-if="transaction.model" class="text-xs" v-text="transaction.model.usertype"></small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td v-text="transaction.amount"></td>
+                                                <td v-text="transaction.invoice ? transaction.invoice.code : ''"></td>
+                                                <td v-text="dateTimeFormat(transaction.created_at)"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -136,11 +207,15 @@
     </div>
 </template>
 <script>
-import dashboard_card from './includes/dashboard_card.vue';
-import dashboard_card_white from './includes/dashboard_card_white.vue';
-import dashboard_center_squares from './includes/dashboard_center_squares.vue';
+import {ref} from 'vue';
 import moment from 'moment';
-import CanvasJSChart from './canvasjs/CanvasJSVueComponent.vue';
+import dashboard_card from '@/components/includes/dashboard_card.vue';
+import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
+import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
+import {translate, handleGetRequest} from '@/utils.vue';
+
+import { AgChartsVue } from 'ag-charts-vue3';
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
 export default 
 {
@@ -148,157 +223,161 @@ export default
         dashboard_center_squares,
         dashboard_card_white,
         dashboard_card,
-        CanvasJSChart
-        // medians_datepicker,
+        AgChartsVue,
+        VueTailwindDatepicker
     },
     name:'categories',
-    data() {
+    setup(props) {
+
+        const url =  ref(props.path + '?load=json');
+
+        const line_options = ref();
+        const line_options2 = ref();
+        const pie_options = ref();
+        const column_options = ref();
+
+        const content = ref({});
+
+        const activeDate = ref();
+
+        const dates_filters = [
+            {title: translate('Today'), value: 'today'},
+            {title: translate('Yesterday'), value: 'yesterday'},
+            {title: translate('Last week'), value: '-7days'},
+            {title: translate('Last month'), value: '-30days'},
+            {title: translate('Last year'), value: '-365days'}
+        ];
+
+        
+        const load = (path) =>
+        {
+            handleGetRequest( path ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response)); 
+                setCharts(response)
+            });
+        }
+
+    
+        /**
+         * Switch date filters
+         * 
+         */
+        const switchDate = (start) =>
+        {
+            let filters = '&'
+            filters += 'start=' + start 
+            filters += '&end='
+            filters += (start == 'yesterday') ? 'yesterday' : 'today';
+
+            // Update active date filters
+            activeDate.value = start;
+
+            // Load new data
+            load(url.value + filters); 
+        }
+
+        switchDate('-30days');
+
+        /**
+         * Date Time format 
+         */
+        const dateTimeFormat = (date) =>
+        {
+            return moment(date).format('YYYY-MM-DD HH:mm a');
+        }
+
+
+        const optionsbar = ref();
+
+        
+        /**
+         * Set charts based on their values type
+         */ 
+        const setCharts = (data) => {
+
+            // Line charts for sales in last days 
+            line_options.value  =  {
+
+                // Line charts Data 
+                data: content.value.trips_charts,
+
+                // Series: Defines which chart type and data to use
+                series: [
+                    { type: 'bar', xKey: 'label', yKey: 'y' },
+                    // { type: 'line', xKey: 'label', yKey: 'y' },
+                ],
+            };
+
+            // Line charts for sales in last days 
+            line_options2.value  =  {
+
+                // Line charts Data 
+                data: content.value.private_trips_charts,
+
+                // Series: Defines which chart type and data to use
+                series: [
+                    { type: 'bar', xKey: 'label', yKey: 'y' },
+                    // { type: 'line', xKey: 'label', yKey: 'y' },
+                ],
+            };
+
+            
+            // Line charts for sales in last days 
+            pie_options.value  =  {
+
+                // Line charts Data 
+                data: content.value.top_drivers,
+
+                // Series: Defines which chart type and data to use
+                series: [
+                    { type: 'pie', legendItemKey: 'first_name', angleKey: 'y' },
+                ],
+            };
+        }
+
+
+
+        const dateValue = ref({
+            startDate: "",
+            endDate: "",
+        });
+
+        const formatter = ref({
+            date: "YYYY-MM-DD",
+            month: "MMM",
+        });
+
+        const handleSelectedDate = (event) => {
+            handleGetRequest( props.conf.url+props.path+'?start_date='+event.startDate+'&end_date='+event.endDate+'&load=json' ).then(response=> {
+                content.value = JSON.parse(JSON.stringify(response))
+                setCharts(content);
+            });
+        }
+        
         return {
-            url: '/dashboard?load=json',
-            content: {
-
-                line_options:{},
-                branches_charts: [],
-            },
-            dates_filters:[
-                {title: this.__('Today'), value: 'today'},
-                {title: this.__('Yesterday'), value: 'yesterday'},
-                {title: this.__('Last week'), value: '-7days'},
-                {title: this.__('Last month'), value: '-30days'},
-                {title: this.__('Last year'), value: '-365days'}
-            ],
-            activeDate:'today',
-            date:null,
-            filters:null,
-            showLoader: false,
-            showCharts: false,
-            charts_options:{
-                animationEnabled: true,
-                exportEnabled: true,
-                axisX: {
-                  labelTextAlign: "right"
-                },
-
-                axisY: {
-                  title: this.__('performance'),
-                  suffix: ""
-                },
-                data: [{}]
-            }
+            handleSelectedDate,
+            switchDate,
+            optionsbar,
+            translate,
+            line_options,
+            line_options2,
+            pie_options,
+            dates_filters,
+            content,
+            activeDate,
+            dateTimeFormat,
+            dateValue,
+            formatter,
+            
         }
     },
     props: [
         'lang',
         'setting',
-        'system_setting',
         'conf',
+        'path',
         'auth',
-    ],
-    mounted: function() 
-    {
-        this.load(this.url)
-    },
-
-    methods: 
-    {
-        /**
-         * Switch date filters
-         * 
-         */
-        switchDate(start)
-        {
-            this.filters = '&'
-            this.filters += 'start=' + start 
-            this.filters += '&end=today';
-
-            // Update active date filters
-            this.activeDate = start;
-
-            // Load new data
-            this.load(this.url+this.filters); 
-        },
-
-        load(url)
-        {
-            // this.showLoader = true;
-            this.$parent.handleGetRequest( url ).then(response=> {
-                this.setValues(response).setCharts(response)
-                // this.showLoader = false;
-                // this.$alert(response)
-            });
-        },
-
-        setValues(data) {
-            this.content = JSON.parse(JSON.stringify(data)); 
-            return this
-
-        },
-
-        /**
-         * Set charts based on their values type
-         */ 
-        setCharts(data) {
-            
-            this.showCharts = false
-            
-            this.showCharts = false
-            
-            // Pie charts for most played Games
-            this.pie_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.pie_options.data[0] = {
-                type: "pie",
-                yValueFormatString: "#,### "+this.__('booking'),
-                dataPoints: this.content.most_played_games
-            }
-            
-            // Column charts for most played on devices
-            this.column_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.column_options.axisY.title = this.__('bookings_count')
-            this.column_options.data[0] = {
-                type: "column",
-                yValueFormatString: "#,### "+this.__('booking'),
-                dataPoints: this.content.most_played_devices
-            }
-            
-            // Line charts for sales in last days 
-            this.line_options = JSON.parse(JSON.stringify(this.charts_options));
-            this.line_options.theme = 'light2'
-            this.line_options.axisY.suffix = ''
-            this.line_options.axisY.title = this.__('branches_count')
-            this.line_options.toolTip = {shared: true}
-            this.line_options.data[0] = {
-                type: "line",
-                color: '#003c58',
-                showInLegend: true,
-                yValueFormatString: "#,### "+this.__('branches'),
-                dataPoints: this.content.branches_charts
-            }
-            
-            this.showCharts = true
-        },
-
-
-        /**
-         * Date Time format 
-         */
-        dateFormat(date)
-        {
-            return moment(date).format('YYYY-MM-DD');
-        },
-
-        /**
-         * Date Time format 
-         */
-        dateTimeFormat(date)
-        {
-            return moment(date).format('YYYY-MM-DD HH:mm a');
-        },
-
-        __(i)
-        {
-            return this.$parent.__(i);
-        }
-    }
+    ]
 };
 </script>
 <style lang="css">
@@ -306,5 +385,8 @@ export default
     {
         right: auto;
         left:0;
+    }
+    canvas {
+        max-width: 100%;
     }
 </style>
