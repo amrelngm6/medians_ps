@@ -62,7 +62,7 @@
                                     <div class="text-sm font-medium text-gray-500" v-text="user.phone"></div>
                                     <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center"  v-if="user.id == auth.id || auth.role_id == 1" >
                                     <div class="flex gap gap-2 cursor-pointer flex-end" @click="setActiveStatus(user)">
                                         <span :class="!user.active ? 'bg-inverse-dark' : ''" class="mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: user.active ? '16px' : 0}"></a></span>
                                         <span  v-text="user.active ? translate('Active') : translate('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
