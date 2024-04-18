@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="row">
                                     <!--begin::Col-->
-                                    <div class="col-lg-4" @click="setType('month')">
+                                    <div class="col-lg-6" @click="setType('month')">
                                         <input type="radio" class="btn-check" value="month"
                                             :checked="activeItem.payment_type == 'month' ? true : false"
                                             name="payment_type" />
@@ -147,7 +147,7 @@
                                     </div>
 
 
-                                    <div class="col-lg-4" @click="setType('year')">
+                                    <div class="col-lg-6" @click="setType('year')">
                                         <input type="radio" class="btn-check" value="year"
                                             :checked="activeItem.payment_type == 'year' ? true : false"
                                             name="payment_type" />
