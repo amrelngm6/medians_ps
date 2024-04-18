@@ -27,7 +27,7 @@
                                 <div class="w-full flex gap-4">
                                     
                                     <button class="btn btn-sm btn-light btn-flex btn-center gap-4" data-kt-follow-btn="true">
-                                        <vue-feather type="edit"></vue-feather>
+                                        <vue-feather class="w-10" type="edit"></vue-feather>
                                         <span class="indicator-label"> Edit</span>
                                     </button>
                                     <div class="flex gap gap-2 cursor-pointer flex-end" @click="setActiveStatus(user)">
