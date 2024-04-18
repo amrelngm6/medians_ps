@@ -460,7 +460,11 @@ export default {
 
         const cost = () => 
         {
-            return  activeItem.value.type == 'monthly' ? activeItem.value.business.subscription.plan.monthly_cost : activeItem.business.subscription.plan.yearly_cost;
+            if ( !activeItem.value.plan )
+            {
+                return 0;
+            }
+            return  activeItem.value.type == 'monthly' ? activeItem.value.plan.monthly_cost : activeItem.value.plan.yearly_cost;
         }
 
         return {
