@@ -72,21 +72,16 @@ class NotificationEvent extends CustomModel
 	 */ 
 	public function handleEvent($model, $action, $updatedFields = null)
 	{
-		try {
 
-			$events = json_decode(NotificationEvent:: where('action',$action)->where('model',get_class($model))->get());
+		$events = json_decode(NotificationEvent:: where('action',$action)->where('model',get_class($model))->get());
 
-			foreach ($events as $event) 
-			{
-				$event = $this->renderNotification($event, $model);
-			}
-	
-			return true;
-
-		} catch (\Throwable $th) {
-			error_log($th->getMessage());
-			return true;
+		foreach ($events as $event) 
+		{
+			$event = $this->renderNotification($event, $model);
 		}
+
+		return true;
+
 	}
 
 	/**
