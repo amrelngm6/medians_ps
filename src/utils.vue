@@ -145,6 +145,10 @@ export function handleAccess (response)
 
     } else if (response && (response.error || response.success) && response.result) {
         response ? showAlert(response.result, 3000) : null;
+        if (response.result == 'Access limit exceeded')
+        {
+            response ? showAlert(__('Upgrade plan now'), 5000) : null;
+        }
     } else {
         response ? showAlert(response.error, 3000) : null;
     }
