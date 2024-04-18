@@ -53,7 +53,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="fs-2 fw-bold" v-text="content.stats.drivers_count"></div>
                                                 <div class="fs-2 fw-bold" >/</div>
-                                                <div class="fs-2 fw-bold" v-if="activeItem.business.subscription && activeItem.business.subscription.plan_features" v-text="activeItem.business.subscription.plan_features"></div>
+                                                <div class="fs-2 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Driver')"></div>
                                             </div>
                                         </div>
                                         <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Drivers')"></div>
@@ -471,7 +471,24 @@ export default {
             return 0;
         }
 
+        const checkFeatureLimit = (features, code) => 
+        {
+            if ( features )
+            {
+                for (let i = 0; i < features.length; i++) {
+                    const element = array[i];
+                    if (element.code == code)
+                    {
+                        return element.value;
+                    }
+                }
+                return  activeItem.value.business.subscription.type == 'monthly' ? activeItem.value.business.subscription.plan.monthly_cost : activeItem.value.business.subscription.plan.yearly_cost;
+            }
+            return 0;
+        }
+
         return {
+            checkFeatureLimit,
             cost,
             upgradePlan,
             url,
