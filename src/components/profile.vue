@@ -18,9 +18,6 @@
                                     <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1"
                                         v-text="auth.name"></a>
                                 </div>
-                                <!--end::Name-->
-
-                                <!--begin::Info-->
                                 <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                     <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
                                         <vue-feather class="w-5 mx-1" type="eye"></vue-feather>
@@ -35,21 +32,12 @@
                                         <span v-text="auth.email"></span>
                                     </a>
                                 </div>
-                                <!--end::Info-->
                             </div>
-                            <!--end::User-->
-
-                            <!--begin::Actions-->
                             <div class="d-flex my-4">
                                 <a @click="showEditSide = true" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Edit')"></a>
                             </div>
-                            <!--end::Actions-->
                         </div>
-                        <!--end::Title-->
-
-                        <!--begin::Stats-->
                         <div class="d-flex flex-wrap flex-stack">
-                            <!--begin::Wrapper-->
                             <div class="d-flex flex-column flex-grow-1 pe-8">
                                 <!--begin::Stats-->
                                 <div class="d-flex flex-wrap" v-if="activeItem.business && content">
@@ -325,6 +313,12 @@
                                     <span class="badge badge-light-info me-2" v-text="activeItem.business.subscription.plan_name"></span>
                                     <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? activeItem.business.subscription.plan.yearly_cost : ''"></span>
                                 </div>
+                            </div>
+                            <!--end::Section-->
+                            <div class="separator separator-dashed mb-7"></div>
+                            <div class="mb-7" v-if="activeItem.business ">
+                                <h5 class="mb-4" v-text="translate('Business')"></h5>
+                                <div class="mb-4 fs-bold" v-text="activeItem.business.business_name"></div>
                             </div>
                             <!--end::Section-->
 
