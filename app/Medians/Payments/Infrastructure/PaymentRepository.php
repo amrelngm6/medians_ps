@@ -27,7 +27,7 @@ class PaymentRepository
 	*/
 	public function get($limit = 500) 
 	{
-		return Payment::with('user', 'plan_subscription')
+		return Payment::with('user', 'invoice', 'plan_subscription')
 		->limit($limit)
 		->orderBy('payment_id', 'DESC')
 		->get();
