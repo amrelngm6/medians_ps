@@ -99,4 +99,31 @@ class PlanSubscriptionController extends CustomController
 			return $this->repo->getByBranch($this->app->branch->id);
 	}
 
+	
+	/**
+	 * Update item to database
+	 * 
+	 * @return [] 
+	*/
+	public function update() 
+	{
+
+		$this->app = new \config\APP;
+
+		$params = $this->app->request()->get('params');
+
+        try {
+
+           	$returnData =  ($this->repo->update($params))
+           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>true)
+           	: array('error'=>'Not allowed');
+
+        } catch (Exception $e) {
+            $returnData = array('error'=>$e->getMessage());
+        }
+
+        return $returnData;
+
+	}
+
 }

@@ -92,7 +92,7 @@ class PlanSubscriptionRepository
     public function update($data)
     {
 
-		$Object = PlanSubscription::find($data['id']);
+		$Object = PlanSubscription::find($data['subscription_id']);
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
