@@ -78,6 +78,11 @@ class SystemSettingsController extends CustomController
 				[ 'key'=> "google_client_secret", 'title'=> __('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
+			'wallets'=> [	
+				[ 'key'=> "comission_free_plan", 'title'=> __('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "comission_paid_plan", 'title'=> __('Commission for paid plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+			],
+			
 			'paypal'=> [	
 				[ 'key'=> "paypal_api_key", 'title'=> __('PayPal API Key'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "paypal_api_secret", 'title'=> __('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'text' ],
