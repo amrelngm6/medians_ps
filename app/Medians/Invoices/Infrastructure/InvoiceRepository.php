@@ -72,7 +72,8 @@ class InvoiceRepository
 	*/
 	public function getByDate($params )
 	{
-	  	$check = Invoice::with('user', 'items','business', 'transaction')->where('business_id', $this->business_id);
+	  	$check = Invoice::with('user', 'items','business', 'transaction')
+		->where('business_id', $this->business_id);
 
 	  	if (!empty($params["start_date"]))
 	  	{

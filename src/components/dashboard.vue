@@ -18,6 +18,47 @@
 
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
+                <div class="w-full">
+                    <div class="card card-flush h-md-50 mb-5 mb-xl-10">
+                        <div class="card-header pt-5">
+                            <div class="card-title d-flex flex-column">   
+                                <div class="d-flex align-items-center">
+                                    <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
+                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_invoices_amount"></span>
+                                </div>
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total invoices amount')"></span>
+                            </div>
+                        </div>
+
+                        <div class="card-body pt-2 pb-4 d-flex align-items-center">
+                            <div class="d-flex flex-center me-5 pt-2">
+                            </div>
+                            <div class="d-flex flex-column content-justify-center w-100">
+                                <div class="d-flex fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
+                                    <div class="bullet w-8px h-6px rounded-2 bg-danger me-3"></div>
+                                    <div class="text-gray-500 flex-grow-1 me-4" v-text="invoice.payment_method"></div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+invoice.value"></div>
+                                </div>
+
+                                <div class="d-flex fs-6 fw-semibold align-items-center my-3">
+                                    <div class="bullet w-8px h-6px rounded-2 bg-primary me-3"></div>
+
+                                    <div class="text-gray-500 flex-grow-1 me-4">Gaming</div>
+
+                                    <div class="fw-bolder text-gray-700 text-xxl-end">$2,820</div>
+                                </div>
+
+                                <div class="d-flex fs-6 fw-semibold align-items-center">
+                                    <div class="bullet w-8px h-6px rounded-2 me-3" style="background-color: #E4E6EF"></div>
+
+                                    <div class="text-gray-500 flex-grow-1 me-4">Others</div>
+
+                                    <div class=" fw-bolder text-gray-700 text-xxl-end">$45,257</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
