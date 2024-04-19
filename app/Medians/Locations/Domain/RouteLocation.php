@@ -8,6 +8,7 @@ use Medians\Customers\Domain\Parents;
 use Medians\Routes\Domain\Route;
 use Medians\Businesses\Domain\Business;
 use Medians\Customers\Domain\Employee;
+use Medians\Vacations\Domain\Vacation;
 
 
 class RouteLocation extends CustomModel
@@ -118,6 +119,12 @@ class RouteLocation extends CustomModel
 	public function route() 
 	{
     	return $this->hasOne(Route::class, 'route_id', 'route_id')->with('driver');
+	}
+	
+	
+	public function vacation() 
+	{
+    	return $this->hasOne(Vacation::class, 'user_id', 'model_id')->where('data', date('Y-m-d'));
 	}
 	
 	
