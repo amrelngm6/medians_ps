@@ -197,6 +197,7 @@
                                     <thead>
                                         <tr>
                                             <th v-text="translate('User')"></th>
+                                            <th v-text="translate('Business')"></th>
                                             <th v-text="translate('Amount')"></th>
                                             <th v-text="translate('Code')"></th>
                                             <th v-text="translate('date')"></th>
@@ -212,6 +213,9 @@
                                                         <small  v-if="invoice.user" class="text-xs" v-text="invoice.user.usertype"></small>
                                                     </div>
                                                 </div>
+                                            </td>
+                                            <td>
+                                                <span v-if="invoice.user && invoice.user.business" v-text="invoice.user.business.business_name ?? ''"></span>
                                             </td>
                                             <td v-text="invoice.total_amount"></td>
                                             <td v-text="invoice.code"></td>
