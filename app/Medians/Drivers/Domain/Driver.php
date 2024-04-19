@@ -11,6 +11,7 @@ use Medians\Trips\Domain\TripLocation;
 use Medians\Help\Domain\HelpMessage;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Businesses\Domain\Business;
+use Medians\Wallets\Domain\Wallet;
 
 class Driver extends CustomModel
 {
@@ -111,6 +112,11 @@ class Driver extends CustomModel
 		return $this->hasManyThrough(TripLocation::class, Trip::class, 'driver_id', 'trip_id', 'driver_id', 'trip_id');
 	}
 
+
+	public function wallet() 
+	{
+        return $this->morphOne(Wallet::class, 'user');
+	}
 
     public function custom_fields()
     {
