@@ -41,7 +41,7 @@ class ParentRepository  extends CustomerRepository
 	public function getParent($customer_id)
 	{
 		return Parents::where('model', Parents::class)->with(['students'=>function($q){
-			$q->withCount('trips')->with('route');
+			$q->withCount('trips')->with('route','route_location');
 		}])->with(['pending_student'=> function($q){
 			$q->whereDoesntHave('route_location');
 		}])->find($customer_id);
