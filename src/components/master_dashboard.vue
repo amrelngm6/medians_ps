@@ -54,13 +54,7 @@
                                 </div>
                                 <div class="d-flex align-items-center flex-wrap d-grid gap-2">
                                     <div class="d-flex align-items-center me-5 me-xl-13">
-                                        <div class="symbol symbol-30px symbol-circle me-3">                                                   
-                                            <img :src="system_setting['logo'] ?? '/uploads/images/default_logo.png'" class="" alt="">                                                    
-                                        </div>
-                                        <div v-if="auth" class="m-0">                            
-                                            <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Sitename')"></span>
-                                            <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7" v-text="system_setting['sitename'] ?? ''"></a>
-                                        </div>
+                                        <img :src="system_setting['logo'] ?? '/uploads/images/default_logo.png'" class="h-20" alt="">                                                    
                                     </div>                    
                                 </div>
                             </div>
