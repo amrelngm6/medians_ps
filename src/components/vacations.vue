@@ -107,7 +107,7 @@ export default
 
         const showLoader = ref(null);
 
-        const searchField = ref("transaction_id");
+        const searchField = ref("vacation_id");
         const searchValue = ref("");
 
         function load()
