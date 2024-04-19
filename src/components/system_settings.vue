@@ -26,7 +26,10 @@
                             <div class="settings-form" >
                                 <div class="row mb-6"   v-for="(field, i) in row" >
                 
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input'+i"  v-text="field.title" v-if="field.column_type != 'hidden'"></label>
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input'+i"  v-if="field.column_type != 'hidden'">
+                                        <p v-text="field.title" ></p>
+                                        <span v-text="field.help_text" v-if="field.help_text" ></span>
+                                    </label>
 
                                     <form_field class="col-lg-8 fv-row fv-plugins-icon-container" :callback="closeSide" :column="field" :model="model"  :item="item" :conf="conf"></form_field>
                                                       
