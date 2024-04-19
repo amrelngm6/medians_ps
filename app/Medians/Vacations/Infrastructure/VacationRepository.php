@@ -74,10 +74,17 @@ class VacationRepository
      */
     public function update($data)
     {
+
+
 		unset($data['user_type']);
-		
+
 		$Object = Vacation::find($data['vacation_id']);
 		
+		if ($Object->date < date('Y-m-d'))
+		{
+			return null;
+		}
+
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
