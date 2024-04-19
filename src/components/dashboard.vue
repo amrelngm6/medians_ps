@@ -54,10 +54,11 @@
                                     <span class="text-gray-500 fs-7 fw-bold me-2 d-block lh-1 pb-1" v-text="translate('Welcome')"></span>
 
                                     <span class="text-gray-800 fs-1 fw-bold" v-text="auth.name"></span>
+                                    <span class="badge badge-light-primary flex-shrink-0 align-self-center py-3 px-4 fs-7" v-text="translate('Active')"></span>
+
                                 </div>
                                 <!--end::Title-->
 
-                                <span class="badge badge-light-primary flex-shrink-0 align-self-center py-3 px-4 fs-7" v-text="translate('Active')"></span>
                             </div>
                             <!--end::Heading-->
 
