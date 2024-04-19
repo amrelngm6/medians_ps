@@ -70,7 +70,7 @@
                                     <!--end::Symbol--> 
                                     
                                     <!--begin::Info-->
-                                    <div v-if="auh.business" class="m-0">                            
+                                    <div v-if="auth.business" class="m-0">                            
                                         <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Business')"></span>
                                         <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7" v-text="auth.business.business_name ?? ''"></a>
                                     </div>
