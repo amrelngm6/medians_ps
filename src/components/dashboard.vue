@@ -99,12 +99,8 @@
                             </span>
                             <div class="d-flex">
                                 <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
-                                    <span class="fs-6 text-gray-700 fw-bold">Feb 6, 2021</span>                                
-                                    <div class="fw-semibold text-gray-500">Due Date</div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
-                                    <span class="fs-6 text-gray-700 fw-bold">$<span class="ms-n1 counted" data-kt-countup="true" data-kt-countup-value="284,900.00" data-kt-initialized="1">284,900</span></span>                               
-                                    <div class="fw-semibold text-gray-500">Budget</div>
+                                    <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.end_date"></span>                                
+                                    <div class="fw-semibold text-gray-500" v-text="translate('Renewal date')"></div>
                                 </div>
                             </div>
                         </div>
