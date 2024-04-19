@@ -162,7 +162,32 @@ class VacationController extends CustomController
         	throw new \Exception("Error Processing Request", 1);
         	
         }
-
 	}
+
+	
+	public function create() 
+	{	
+
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+        try {	
+			
+			try {
+				
+				$returnData = (!empty($this->repo->store($params))) 
+				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				: array('success'=>0, 'result'=>'Error', 'error'=>1);
+	
+			} catch (\Throwable $th) {
+				return array('error'=>$th->getMessage());
+			}
+
+        } catch (Exception $e) {
+        	return array('error'=>$e->getMessage());
+        }
+
+		return $returnData;
+	}
+
 
 }
