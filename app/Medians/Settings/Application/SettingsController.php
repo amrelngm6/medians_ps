@@ -74,11 +74,12 @@ class SettingsController extends CustomController
 			'email'=> [	
 				[ 'key'=> "email", 'title'=> __('Email'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "address", 'title'=> __('Footer Address'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "mobile", 'title'=> __('Footer mobile'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "phone", 'title'=> __('Footer phone'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "mobile", 'title'=> __('Footer mobile'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "phone", 'title'=> __('Footer phone'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 
 			'trips'=> [	
+				[ 'key'=> "speed_limit", 'title'=> __('Driver speed limit'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "allow_private_trip", 'title'=> __('Allow Private Trips'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
 
