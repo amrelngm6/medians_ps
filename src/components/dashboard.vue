@@ -35,26 +35,11 @@
                             </div>
                             <div class="d-flex flex-column content-justify-center w-100">
                                 <div class="d-flex fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
-                                    <div class="bullet w-8px h-6px rounded-2 bg-danger me-3"></div>
+                                    <div class="bullet  rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+invoice.payment_method+'.png'" /></div>
                                     <div class="text-gray-500 flex-grow-1 me-4" v-text="invoice.payment_method"></div>
                                     <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+invoice.value"></div>
                                 </div>
 
-                                <div class="d-flex fs-6 fw-semibold align-items-center my-3">
-                                    <div class="bullet w-8px h-6px rounded-2 bg-primary me-3"></div>
-
-                                    <div class="text-gray-500 flex-grow-1 me-4">Gaming</div>
-
-                                    <div class="fw-bolder text-gray-700 text-xxl-end">$2,820</div>
-                                </div>
-
-                                <div class="d-flex fs-6 fw-semibold align-items-center">
-                                    <div class="bullet w-8px h-6px rounded-2 me-3" style="background-color: #E4E6EF"></div>
-
-                                    <div class="text-gray-500 flex-grow-1 me-4">Others</div>
-
-                                    <div class=" fw-bolder text-gray-700 text-xxl-end">$45,257</div>
-                                </div>
                             </div>
                         </div>
                     </div>
