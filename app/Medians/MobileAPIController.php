@@ -300,7 +300,7 @@ class MobileAPIController extends CustomController
 	                break;
 						
 	            case 'Vacation.create':
-	                $return = (new Vacations\Application\VacationController())->store(); 
+	                $return = (new Vacations\Application\VacationController())->create(); 
 	                break;
 
 			}
