@@ -28,7 +28,7 @@
                 
                                     <label class="col-lg-4 col-form-label " :class="field.required ? 'required' : ''" :for="'input'+i"  v-if="field.column_type != 'hidden'">
                                         <p class="inline inline-block fw-bold fs-4 w-full" v-text="field.title" ></p>
-                                        <span v-text="field.help_text" v-if="field.help_text" ></span>
+                                        <p v-text="field.help_text" v-if="field.help_text" ></p>
                                     </label>
 
                                     <form_field class="col-lg-8 fv-row fv-plugins-icon-container" :callback="closeSide" :column="field" :model="model"  :item="item" :conf="conf"></form_field>
