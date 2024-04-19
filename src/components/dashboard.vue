@@ -65,7 +65,7 @@
                                 <div class="d-flex align-items-center me-5 me-xl-13">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-30px symbol-circle me-3">                                                   
-                                        <img src="" class="" alt="">                                                    
+                                        <img :src="business_setting['logo'] ?? '/uploads/images/default_logo.png'" class="" alt="">                                                    
                                     </div>
                                     <!--end::Symbol--> 
                                     
