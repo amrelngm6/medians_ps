@@ -75,7 +75,6 @@ class VacationRepository
     public function update($data)
     {
 
-
 		unset($data['user_type']);
 
 		$Object = Vacation::find($data['vacation_id']);
