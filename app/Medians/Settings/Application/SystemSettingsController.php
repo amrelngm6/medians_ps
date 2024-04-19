@@ -76,6 +76,7 @@ class SystemSettingsController extends CustomController
 			'google'=> [	
 				[ 'key'=> "google_client_id", 'title'=> __('Google Client ID'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "google_client_secret", 'title'=> __('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "google_map_api", 'title'=> __('Google Map API'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
 			'wallets'=> [	
@@ -100,9 +101,6 @@ class SystemSettingsController extends CustomController
 				],
 			],
 			
-			'map'=> [	
-				[ 'key'=> "google_map_api", 'title'=> __('Google Map API'), 'fillable'=> true, 'column_type'=>'text' ],
-			],
         ];
 	}
 
