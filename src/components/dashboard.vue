@@ -81,8 +81,7 @@
                         </div>
                         <div class="mb-6">
                             <span class="fw-semibold text-gray-600 fs-6 mb-8 d-block">
-                                Flat cartoony illustrations with vivid 
-                                unblended colors and asymmetrical  beautiful purple hair lady
+                                <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg">
                             </span>
                             <div class="d-flex">
                                 <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
