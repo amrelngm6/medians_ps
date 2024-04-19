@@ -36,6 +36,12 @@ class VacationRepository
 		return Vacation::where('business_id', $this->business_id)->with('user')->limit($limit)->get();
 	}
 	
+
+	public function getStudentVacations($studentId)
+	{
+		return Vacation::where('user_id', $studentId)->where('user_type', Student::class)->with('user')->limit($limit)->get();
+	}
+	
 	
 
 

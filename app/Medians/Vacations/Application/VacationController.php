@@ -189,5 +189,20 @@ class VacationController extends CustomController
 		return $returnData;
 	}
 
+	
+	
+	/**
+	 * Load student vacations
+	 */
+	public function load_student_vacations()
+	{
+		$studentId = $this->app->request()->get('student_id');
+		$user = $this->app->auth();
+
+		if (empty($user->customer_id)) { return null; }
+		
+		return $this->repo->getStudentVacations($studentId);
+	}
+
 
 }
