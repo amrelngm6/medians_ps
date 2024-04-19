@@ -82,7 +82,7 @@ class WalletController extends CustomController
 	{
 		try {
 
-			return render('vacations', [
+			return render('wallets', [
 		        'load_vue' => true,
 		        'title' => __('Wallets'),
 		        'columns' => $this->columns(),
@@ -214,16 +214,15 @@ class WalletController extends CustomController
 	
 	
 	/**
-	 * Load student vacations
+	 * Load user wallets
 	 */
-	public function load_student_vacations()
+	public function getWallet()
 	{
-		$studentId = $this->app->request()->get('student_id');
 		$user = $this->app->auth();
 
 		if (empty($user->customer_id)) { return null; }
 		
-		return $this->repo->getStudentWallets($studentId);
+		return $this->repo->getWallet($user->customer_id);
 	}
 
 

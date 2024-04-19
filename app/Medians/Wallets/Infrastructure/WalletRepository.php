@@ -10,7 +10,6 @@ use Medians\Students\Domain\Student;
 class WalletRepository 
 {
 
-
 	/**
 	 * Business id
 	 */ 
@@ -37,9 +36,9 @@ class WalletRepository
 	}
 	
 
-	public function getStudentWallets($studentId)
+	public function getWallet($studentId)
 	{
-		return Wallet::where('user_id', $studentId)->where('user_type', Student::class)->with('user')->orderBy('created_at', 'DESC')->get();
+		return Wallet::where('user_id', $studentId)->where('user_type', Student::class)->with('user')->orderBy('created_at', 'DESC')->first();
 	}
 	
 	
