@@ -43,8 +43,10 @@
                     </div>
                     
                     <div class="d-flex flex-column h-100 w-full">
+                        <div class="w-full flex gap-4">
+                            
                         <!--begin::Header-->               
-                        <div class="mb-7">
+                        <div class="mb-7 w-full">
                             <!--begin::Headin-->               
                             <div class="d-flex flex-stack mb-6">
                                 <!--begin::Title-->               
@@ -79,10 +81,10 @@
                                 <!--end::Item-->  
                             </div>
                         </div>
+                        <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg">
+
+                        </div>
                         <div class="mb-6">
-                            <span class="fw-semibold text-gray-600 fs-6 mb-8 d-block">
-                                <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg">
-                            </span>
                             <div class="d-flex">
                                 <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
                                     <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.end_date"></span>                                
