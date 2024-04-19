@@ -91,7 +91,7 @@ class PaymentService
 			$data['total_amount'] = $params['cost'];
 			$data['date'] = date('Y-m-d');
 			$data['status'] = $params['status'];
-			$data['notes'] = '';
+			$data['notes'] = 'Business subscription';
 			$data['items'] = $this->handleItems($params, $order, $savedSubscription, $user);
 
 			return $invoiceRepo->store((array) $data);

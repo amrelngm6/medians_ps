@@ -214,8 +214,8 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td v-text="invoice.payment_method"></td>
                                             <td v-text="invoice.total_amount"></td>
+                                            <td v-text="invoice.payment_method"></td>
                                             <td v-text="invoice.code"></td>
                                             <td v-text="dateTimeFormat(invoice.created_at)"></td>
                                         </tr>
