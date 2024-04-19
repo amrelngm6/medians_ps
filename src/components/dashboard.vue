@@ -65,14 +65,14 @@
                                 <div class="d-flex align-items-center me-5 me-xl-13">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-30px symbol-circle me-3">                                                   
-                                        <img src="/metronic8/demo1/assets/media/avatars/300-3.jpg" class="" alt="">                                                    
+                                        <img src="" class="" alt="">                                                    
                                     </div>
                                     <!--end::Symbol--> 
                                     
                                     <!--begin::Info-->
                                     <div class="m-0">                            
                                         <span class="fw-semibold text-gray-500 d-block fs-8">Manager</span>
-                                        <a href="/metronic8/demo1/pages/user-profile/overview.html" class="fw-bold text-gray-800 text-hover-primary fs-7">Robert Fox</a>
+                                        <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7">Robert Fox</a>
                                     </div>
                                     <!--end::Info-->
                                 </div>                    
