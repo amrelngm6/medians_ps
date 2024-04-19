@@ -198,9 +198,10 @@ class VacationController extends CustomController
 
         try {	
 			
-			$returnData = (!empty($this->repo->update($params))) 
+			$check = (!empty($this->repo->update($params)));
+			$returnData = isset($check->vacation_id)
 			? array('success'=>1, 'result'=>__('updated successfully'), 'reload'=>1)
-			: array('success'=>0, 'result'=>'Error', 'error'=>1);
+			: array('success'=>0, 'result'=> $check, 'error'=>1);
 
 
         } catch (Exception $e) {
