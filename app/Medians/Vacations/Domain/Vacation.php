@@ -12,7 +12,7 @@ class Vacation extends CustomModel
 	/*
 	/ @var String
 	*/
-	protected $table = 'routes';
+	protected $table = 'vacations';
 
     protected $primaryKey = 'vacation_id';
 	
