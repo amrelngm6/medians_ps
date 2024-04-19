@@ -419,6 +419,8 @@ export default
     props: [
         'lang',
         'setting',
+        'system_setting',
+        'business_setting',
         'conf',
         'path',
         'auth',
