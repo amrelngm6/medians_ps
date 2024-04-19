@@ -82,7 +82,7 @@ class VacationRepository
 		
 		if ($Object->date < date('Y-m-d'))
 		{
-			return null;
+			return __('Not allowed');
 		}
 
 		// Return the  object with the new data
