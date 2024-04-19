@@ -107,7 +107,7 @@ export default
 
         const showLoader = ref(null);
 
-        const searchField = ref("vacation_id");
+        const searchField = ref("wallet_id");
         const searchValue = ref("");
 
         function load()
@@ -141,7 +141,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('vacation_id', data, 'Vacation.delete');
+                    deleteByKey('wallet_id', data, 'Wallet.delete');
                     break;  
             }
         }
