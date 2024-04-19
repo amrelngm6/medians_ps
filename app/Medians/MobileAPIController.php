@@ -299,7 +299,9 @@ class MobileAPIController extends CustomController
 	                $return = (new Transactions\Application\TransactionController())->addTransaction(); 
 	                break;
 						
-
+	            case 'Vacation.create':
+	                $return = (new Vacations\Application\VacationController())->store(); 
+	                break;
 
 			}
 
@@ -347,6 +349,10 @@ class MobileAPIController extends CustomController
 
 			case 'RouteLocation.update':
 				$return =  (new Locations\Application\RouteLocationController())->updateDays(); 
+				break;
+
+			case 'Vacation.update':
+				$return = (new Vacations\Application\VacationController())->update(); 
 				break;
 
 		}
