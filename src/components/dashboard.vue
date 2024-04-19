@@ -85,57 +85,28 @@
                                         <span class="symbol-label bg-success">
                                             <i class="ki-duotone ki-abstract-41 fs-5 text-white"><span class="path1"></span><span class="path2"></span></i>                                    </span>                
                                     </div>
-                                    <!--end::Symbol-->                        
-                                    
-                                    <!--begin::Info-->
                                     <div class="m-0">                            
                                         <span class="fw-semibold text-gray-500 d-block fs-8">Budget</span>
                                         <span class="fw-bold text-gray-800 fs-7">$64.800</span>
                                     </div>
-                                    <!--end::Info-->
                                 </div>                      
-                                <!--end::Item-->  
                             </div>
-                            <!--end::Items-->
                         </div>
-                        <!--end::Header-->
-
-                        <!--begin::Body-->               
                         <div class="mb-6">
-                            <!--begin::Text-->
                             <span class="fw-semibold text-gray-600 fs-6 mb-8 d-block">
                                 Flat cartoony illustrations with vivid 
                                 unblended colors and asymmetrical  beautiful purple hair lady
                             </span>
-                            <!--end::Text-->
-
-                            <!--begin::Stats-->
                             <div class="d-flex">
-                                <!--begin::Stat-->
                                 <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
-                                    <!--begin::Date-->                                     
                                     <span class="fs-6 text-gray-700 fw-bold">Feb 6, 2021</span>                                
-                                    <!--end::Date-->
-
-                                    <!--begin::Label-->
                                     <div class="fw-semibold text-gray-500">Due Date</div>
-                                    <!--end::Label-->
                                 </div>
-                                <!--end::Stat-->
-
-                                <!--begin::Stat-->
                                 <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
-                                    <!--begin::Number-->                                 
                                     <span class="fs-6 text-gray-700 fw-bold">$<span class="ms-n1 counted" data-kt-countup="true" data-kt-countup-value="284,900.00" data-kt-initialized="1">284,900</span></span>                               
-                                    <!--end::Number-->
-
-                                    <!--begin::Label-->
                                     <div class="fw-semibold text-gray-500">Budget</div>
-                                    <!--end::Label-->
                                 </div>
-                                <!--end::Stat-->                             
                             </div>
-                            <!--end::Stats-->
                         </div>
                     </div>
                 </div>
