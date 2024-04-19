@@ -109,7 +109,7 @@ class PaymentService
 	{
 		try {
 
-			$walletRepo = new \Medians\Wallets\Infrastructure\WalletRepository();
+			$walletRepo = new \Medians\Wallets\Infrastructure\BusinessWalletRepository();
 			
 			$data = array();
 			$data['user_id'] = $user->id;

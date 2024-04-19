@@ -6,17 +6,18 @@ use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
 
 
-class Wallet extends CustomModel
+class BusinessWallet extends CustomModel
 {
 
 	/*
 	/ @var String
 	*/
-	protected $table = 'wallets';
+	protected $table = 'business_wallets';
 
     protected $primaryKey = 'wallet_id';
 	
 	public $fillable = [
+		'business_id',
 		'code',
 		'credit_balance',
 		'debit_balance',
@@ -28,7 +29,14 @@ class Wallet extends CustomModel
 
 	/**
 	 * Relations with onother Models
-	 */	
+	 */
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+	
+
+	
     public function user()
     {
         return $this->morphTo();
