@@ -236,6 +236,10 @@ class MobileAPIController extends CustomController
 			case 'business_packages':
 				$return = (new Packages\Application\PackageController)->load_business_packages();
 				break;
+			
+			case 'student_vacations':
+				$return = (new Vacations\Application\VacationController)->load_student_vacations();
+				break;
 		}
 		
 		echo json_encode($return);
