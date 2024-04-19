@@ -18,6 +18,69 @@
 
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
+                <div class="w-full gap-6 flex ">
+                    <div class="card card-flush h-md-50 mb-5 mb-xl-10 w-full">
+                        <div class="card-header pt-5">
+                            <div class="card-title d-flex flex-column">   
+                                <div class="d-flex align-items-center">
+                                    <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
+                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_invoices_amount"></span>
+                                </div>
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total invoices amount')"></span>
+                            </div>
+                        </div>
+
+                        <div class="px-4 pt-2 pb-4 d-flex align-items-center">
+                            <div class="d-flex flex-center me-5 pt-2"></div>
+                            <div class="d-flex flex-column content-justify-center w-100">
+                                <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
+                                    <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+invoice.payment_method+'.png'" /></div>
+                                    <div class="text-gray-500 flex-grow-1 me-4" v-text="invoice.payment_method"></div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+invoice.value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex flex-column h-100 w-full">
+                        <div class="w-full flex gap-4">
+                            <div class="mb-7 w-full">
+                                <div class="d-flex flex-stack mb-6">
+                                    <div class="flex-shrink-0 me-5">
+                                        <span class="text-gray-500 fs-7 fw-bold me-2 d-block lh-1 pb-1" v-text="translate('Welcome')"></span>
+                                        <span class="text-gray-800 fs-1 fw-bold" v-text="auth.name"></span>
+                                        <span class="badge badge-light-primary flex-shrink-0 align-self-center py-3 px-4 fs-7" v-text="translate('Active')"></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center flex-wrap d-grid gap-2">
+                                    <div class="d-flex align-items-center me-5 me-xl-13">
+                                        <div class="symbol symbol-30px symbol-circle me-3">                                                   
+                                            <img :src="business_setting['logo'] ?? '/uploads/images/default_logo.png'" class="" alt="">                                                    
+                                        </div>
+                                        <div v-if="auth.business" class="m-0">                            
+                                            <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Business')"></span>
+                                            <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7" v-text="auth.business.business_name ?? ''"></a>
+                                        </div>
+                                    </div>                    
+                                </div>
+                            </div>
+                            <img :src="'/uploads/img/dashboard-placeholder.svg'" />
+
+                        </div>
+                        <div class="mb-6">
+                            <div class="d-flex">
+                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
+                                    <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.end_date"></span>                                
+                                    <div class="fw-semibold text-gray-500" v-text="translate('Renewal date')"></div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
+                                    <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.plan_name ?? ''"></span>                               
+                                    <div class="fw-semibold text-gray-500" v-text="translate('Plan')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
