@@ -79,7 +79,7 @@ class SystemSettingsController extends CustomController
 			],
 			
 			'wallets'=> [	
-				[ 'key'=> "comission_free_plan", 'title'=> __('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "comission_free_plan", 'help_text'=>'Comission will be calculated on withdrawal request', 'title'=> __('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
 				[ 'key'=> "comission_paid_plan", 'title'=> __('Commission for paid plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 			
