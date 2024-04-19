@@ -75,7 +75,9 @@ class VacationRepository
     public function update($data)
     {
 
-		$Object = Vacation::where('business_id', $this->business_id)->find($data['vacation_id']);
+		$Object = Vacation::find($data['vacation_id']);
+		
+		$dataArray['user_type'] = $this->handleType($data);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
