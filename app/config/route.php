@@ -224,6 +224,9 @@ if(isset($app->auth()->id))
     /** @return Invoices */
     RouteHandler::get('/admin/invoices', Medians\Invoices\Application\InvoiceController::class.'@index');
 
+    /** @return Wallets */
+    RouteHandler::get('/admin/wallets', Medians\Wallets\Application\WalletController::class.'@index');
+
 
     /**
      * Master requests
