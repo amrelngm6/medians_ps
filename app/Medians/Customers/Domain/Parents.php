@@ -9,6 +9,7 @@ use Medians\Trips\Domain\TripLocation;
 use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Businesses\Domain\Business;
+use Medians\Wallets\Domain\Wallet;
 
 class Parents extends Customer
 {
@@ -78,6 +79,11 @@ class Parents extends Customer
 	public function pending_student() 
 	{
 		return $this->hasOne(Student::class, 'parent_id', 'customer_id')->where('transfer_status', 'Pending')->with('route_location');
+	}
+
+	public function wallet() 
+	{
+        return $this->morphOne(Wallet::class, 'user');
 	}
 
     public function custom_fields()

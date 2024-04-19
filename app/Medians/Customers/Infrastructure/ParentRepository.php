@@ -29,7 +29,7 @@ class ParentRepository  extends CustomerRepository
 
 	public function get($limit = 100)
 	{
-		return Parents::where('business_id', $this->business_id)->where('model', Parents::class)->with('route_location', 'students')->limit($limit)->get();
+		return Parents::where('business_id', $this->business_id)->where('model', Parents::class)->with('route_location', 'students', 'wallet')->limit($limit)->get();
 	}
 
 	public function checkLogin($email, $password)
@@ -44,7 +44,9 @@ class ParentRepository  extends CustomerRepository
 			$q->withCount('trips')->with('route','route_location');
 		}])->with(['pending_student'=> function($q){
 			$q->whereDoesntHave('route_location');
-		}])->find($customer_id);
+		}])
+		->with('wallet')
+		->find($customer_id);
 	}
 
 	/**
