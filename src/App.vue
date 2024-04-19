@@ -119,6 +119,8 @@ const transactions = defineAsyncComponent(() => import('@/components/transaction
 
 const invoices = defineAsyncComponent(() => import('@/components/invoices.vue') );
 
+const vacations = defineAsyncComponent(() => import('@/components/vacations.vue') );
+
 export default {
     name: 'app',
     components: {
@@ -164,6 +166,7 @@ export default {
         business_applicants,
         transactions,
         invoices,
+        vacations,
         get_started,
         translate,
         'help_messages':HelpMessages,
