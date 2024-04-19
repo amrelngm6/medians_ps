@@ -190,7 +190,7 @@ class PaymentController extends CustomController
 			
 			try {
 				
-				$paymentService = new PaymentService('PayPal');
+				$paymentService = new PaymentService($params['payment_method']);
 
 				$savedSubscription = $paymentService->storePlanSubscription($params, $order, $user); 
 
@@ -211,7 +211,7 @@ class PaymentController extends CustomController
 		}
 		
 		
-		return array('error'=>__('Error'));
+		return array('error'=>$order->status ?? 'Error');
 		
 	}
 

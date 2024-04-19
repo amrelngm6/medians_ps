@@ -65,7 +65,7 @@ class PaymentService
 		$payment['model_id'] = $planSubscription->subscription_id;
 		$payment['model_type'] = PlanSubscription::class;
 		$payment['date'] = date('Y-m-d');
-		$payment['payment_method'] = 'PayPal';
+		$payment['payment_method'] = $invoice->payment_method;
 		$payment['created_by'] = $user->id;
 
 		return $this->paymentRepo->store($payment);
@@ -85,7 +85,7 @@ class PaymentService
 			$data['code'] = $this->paymentRepo->generateCode();
 			$data['user_id'] = $user->id;
 			$data['user_type'] = User::class;
-			$data['payment_method'] = 'PayPal';
+			$data['payment_method'] = $params['payment_method'];
 			$data['subtotal'] = $params['cost'];
 			$data['discount_amount'] = 0;
 			$data['total_amount'] = $params['cost'];
