@@ -42,26 +42,100 @@
                         </div>
                     </div>
                     
-                    <div class="card card-flush h-md-50 mb-5 mb-xl-10 w-full">
-                        <div class="card-header pt-5">
-                            <div class="card-title d-flex flex-column">   
-                                <div class="d-flex align-items-center">
-                                    <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
-                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_invoices_amount"></span>
-                                </div>
-                                <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total invoices amount')"></span>
-                            </div>
-                        </div>
+                    <div class="d-flex flex-column h-100 w-full">
+                        <!--begin::Header-->               
+                        <div class="mb-7">
+                            <!--begin::Headin-->               
+                            <div class="d-flex flex-stack mb-6">
+                                <!--begin::Title-->               
+                                <div class="flex-shrink-0 me-5">
+                                    <span class="text-gray-500 fs-7 fw-bold me-2 d-block lh-1 pb-1">Featured</span>
 
-                        <div class="px-4 pt-2 pb-4 d-flex align-items-center">
-                            <div class="d-flex flex-center me-5 pt-2"></div>
-                            <div class="d-flex flex-column content-justify-center w-100">
-                                <div class="d-flex fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
-                                    <div class="bullet  rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+invoice.payment_method+'.png'" /></div>
-                                    <div class="text-gray-500 flex-grow-1 me-4" v-text="invoice.payment_method"></div>
-                                    <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+invoice.value"></div>
+                                    <span class="text-gray-800 fs-1 fw-bold">9 Degree</span>
                                 </div>
+                                <!--end::Title-->
+
+                                <span class="badge badge-light-primary flex-shrink-0 align-self-center py-3 px-4 fs-7">In Process</span>
                             </div>
+                            <!--end::Heading-->
+
+                            <!--begin::Items-->               
+                            <div class="d-flex align-items-center flex-wrap d-grid gap-2">
+                                <!--begin::Item-->                  
+                                <div class="d-flex align-items-center me-5 me-xl-13">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol symbol-30px symbol-circle me-3">                                                   
+                                        <img src="/metronic8/demo1/assets/media/avatars/300-3.jpg" class="" alt="">                                                    
+                                    </div>
+                                    <!--end::Symbol--> 
+                                    
+                                    <!--begin::Info-->
+                                    <div class="m-0">                            
+                                        <span class="fw-semibold text-gray-500 d-block fs-8">Manager</span>
+                                        <a href="/metronic8/demo1/pages/user-profile/overview.html" class="fw-bold text-gray-800 text-hover-primary fs-7">Robert Fox</a>
+                                    </div>
+                                    <!--end::Info-->
+                                </div>                    
+                                <!--end::Item-->  
+
+                                <!--begin::Item-->                    
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol symbol-30px symbol-circle me-3">
+                                        <span class="symbol-label bg-success">
+                                            <i class="ki-duotone ki-abstract-41 fs-5 text-white"><span class="path1"></span><span class="path2"></span></i>                                    </span>                
+                                    </div>
+                                    <!--end::Symbol-->                        
+                                    
+                                    <!--begin::Info-->
+                                    <div class="m-0">                            
+                                        <span class="fw-semibold text-gray-500 d-block fs-8">Budget</span>
+                                        <span class="fw-bold text-gray-800 fs-7">$64.800</span>
+                                    </div>
+                                    <!--end::Info-->
+                                </div>                      
+                                <!--end::Item-->  
+                            </div>
+                            <!--end::Items-->
+                        </div>
+                        <!--end::Header-->
+
+                        <!--begin::Body-->               
+                        <div class="mb-6">
+                            <!--begin::Text-->
+                            <span class="fw-semibold text-gray-600 fs-6 mb-8 d-block">
+                                Flat cartoony illustrations with vivid 
+                                unblended colors and asymmetrical  beautiful purple hair lady
+                            </span>
+                            <!--end::Text-->
+
+                            <!--begin::Stats-->
+                            <div class="d-flex">
+                                <!--begin::Stat-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
+                                    <!--begin::Date-->                                     
+                                    <span class="fs-6 text-gray-700 fw-bold">Feb 6, 2021</span>                                
+                                    <!--end::Date-->
+
+                                    <!--begin::Label-->
+                                    <div class="fw-semibold text-gray-500">Due Date</div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Stat-->
+
+                                <!--begin::Stat-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
+                                    <!--begin::Number-->                                 
+                                    <span class="fs-6 text-gray-700 fw-bold">$<span class="ms-n1 counted" data-kt-countup="true" data-kt-countup-value="284,900.00" data-kt-initialized="1">284,900</span></span>                               
+                                    <!--end::Number-->
+
+                                    <!--begin::Label-->
+                                    <div class="fw-semibold text-gray-500">Budget</div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Stat-->                             
+                            </div>
+                            <!--end::Stats-->
                         </div>
                     </div>
                 </div>
