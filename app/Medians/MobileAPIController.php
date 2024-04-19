@@ -302,6 +302,10 @@ class MobileAPIController extends CustomController
 	            case 'Vacation.create':
 	                $return = (new Vacations\Application\VacationController())->create(); 
 	                break;
+						
+	            case 'Wallet.create':
+	                $return = (new Wallets\Application\WalletController())->create(); 
+	                break;
 
 			}
 
@@ -353,6 +357,10 @@ class MobileAPIController extends CustomController
 
 			case 'Vacation.update':
 				$return = (new Vacations\Application\VacationController())->update_student_vacation(); 
+				break;
+
+			case 'Wallet.update':
+				$return = (new Wallets\Application\WalletController())->update_wallet(); 
 				break;
 
 		}
