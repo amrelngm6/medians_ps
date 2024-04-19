@@ -31,12 +31,12 @@ class DriverRepository
 
 	public function find($id)
 	{
-		return Driver::with('vehicle','route')->find($id);
+		return Driver::with('vehicle','route','wallet')->find($id);
 	}
 
 	public function getDriver($id)
 	{
-		return Driver::where('business_id', $this->business_id)->with('trip')->with(['last_trips'=>function($q){
+		return Driver::where('business_id', $this->business_id)->with('trip','wallet')->with(['last_trips'=>function($q){
 			return $q->limit(3);
 		}])->find($id);
 	}
