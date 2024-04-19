@@ -58,7 +58,7 @@ class VacationRepository
 		$dataArray['user_type'] = $this->handleType($data);
 
 		// Return the  object with the new data
-    	$Object = Vacation::create($dataArray);
+    	$Object = Vacation::firstOrCreate($dataArray);
 
     	return $Object;
     }
