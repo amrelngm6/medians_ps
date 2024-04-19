@@ -68,7 +68,7 @@ class TripRepository
 
 		$students =  array_column($ids->toArray(), 'student_id');
 
-		return Trip::where('business_id', $this->business_id)->with('driver', 'vehicle', 'route')
+		return Trip::with('driver', 'vehicle', 'route')
 		->whereHas('locations' , function($q) use ($students){
 				return $q->with('location')->whereIn('model_id', $students)->orderBy('status','DESC');
 		})->with(['locations' => function($q) use ($students){
