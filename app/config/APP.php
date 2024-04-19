@@ -217,8 +217,8 @@ class APP
 				array('permission'=>'Parents.index', 'title'=>__('Parents'),  'icon'=>'user', 'link'=>'admin/parents', 'component'=>'parents'),
 				array('permission'=>'Students.index', 'title'=>__('Students'),  'icon'=>'user', 'link'=>'admin/students', 'component'=>'students'),
 				array('permission'=>'SuperVisors.index', 'title'=>__('Supervisors'),  'icon'=>'users', 'link'=>'admin/supervisors', 'component'=>'supervisors'),
-				array('permission'=>'Employees.index', 'title'=>__('Employees'),  'icon'=>'user', 'link'=>'admin/employees', 'component'=>'employees')
-
+				array('permission'=>'Employees.index', 'title'=>__('Employees'),  'icon'=>'user', 'link'=>'admin/employees', 'component'=>'employees'),
+				array('permission'=>'Vacations.index', 'title'=>__('Vacations'),  'icon'=>'user', 'link'=>'admin/vacations', 'component'=>'vacations')
 			]
 			),
 			
