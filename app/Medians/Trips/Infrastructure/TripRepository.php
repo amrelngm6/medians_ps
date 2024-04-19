@@ -64,7 +64,7 @@ class TripRepository
 
 	public function getActiveParentTrip($parent_id)
 	{
-		$ids = Student::where('business_id', $this->business_id)->where('parent_id', $parent_id)->select('student_id')->get();
+		$ids = Student::where('parent_id', $parent_id)->select('student_id')->get();
 
 		$students =  array_column($ids->toArray(), 'student_id');
 
