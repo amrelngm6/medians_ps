@@ -191,6 +191,27 @@ class VacationController extends CustomController
 
 	
 	
+	public function update_student_vacation() 
+	{	
+
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+        try {	
+			
+			$returnData = (!empty($this->repo->update($params))) 
+			? array('success'=>1, 'result'=>__('updated successfully'), 'reload'=>1)
+			: array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+
+        } catch (Exception $e) {
+        	return array('error'=>$e->getMessage());
+        }
+
+		return $returnData;
+	}
+
+	
+	
 	/**
 	 * Load student vacations
 	 */

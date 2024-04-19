@@ -352,7 +352,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Vacation.update':
-				$return = (new Vacations\Application\VacationController())->update(); 
+				$return = (new Vacations\Application\VacationController())->update_student_vacation(); 
 				break;
 
 		}
