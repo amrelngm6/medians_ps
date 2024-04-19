@@ -33,8 +33,8 @@
                         <div class="px-4 pt-2 pb-4 d-flex align-items-center">
                             <div class="d-flex flex-center me-5 pt-2"></div>
                             <div class="d-flex flex-column content-justify-center w-100">
-                                <div class="d-flex fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
-                                    <div class="bullet  rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+invoice.payment_method+'.png'" /></div>
+                                <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
+                                    <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+invoice.payment_method+'.png'" /></div>
                                     <div class="text-gray-500 flex-grow-1 me-4" v-text="invoice.payment_method"></div>
                                     <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+invoice.value"></div>
                                 </div>
