@@ -62,6 +62,7 @@ class WalletRepository
 		}		
 
 		$dataArray['user_type'] = $this->handleType($data);
+		$dataArray['code'] = $this->generateCode();
 
 		// Return the  object with the new data
     	$Object = Wallet::firstOrCreate($dataArray);
@@ -130,6 +131,13 @@ class WalletRepository
 				return $data['user_type'];
 				break;
 		}
+	}
+
+
+	public function generateCode() 
+	{
+		$code = date('ym').rand(9999, 999999); 
+		return Wallet::where('code', $code)->first() ? $this->generateCode() : $code;
 	}
 
 
