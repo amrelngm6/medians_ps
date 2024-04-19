@@ -74,10 +74,9 @@ class VacationRepository
      */
     public function update($data)
     {
-
-		$Object = Vacation::find($data['vacation_id']);
+		unset($data['user_type']);
 		
-		$dataArray['user_type'] = $this->handleType($data);
+		$Object = Vacation::find($data['vacation_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
