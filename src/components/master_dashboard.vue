@@ -55,11 +55,11 @@
                                 <div class="d-flex align-items-center flex-wrap d-grid gap-2">
                                     <div class="d-flex align-items-center me-5 me-xl-13">
                                         <div class="symbol symbol-30px symbol-circle me-3">                                                   
-                                            <img :src="business_setting['logo'] ?? '/uploads/images/default_logo.png'" class="" alt="">                                                    
+                                            <img :src="system_setting['logo'] ?? '/uploads/images/default_logo.png'" class="" alt="">                                                    
                                         </div>
                                         <div v-if="auth.business" class="m-0">                            
-                                            <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Business')"></span>
-                                            <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7" v-text="auth.business.business_name ?? ''"></a>
+                                            <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Sitename')"></span>
+                                            <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7" v-text="system_setting['sitename'] ?? ''"></a>
                                         </div>
                                     </div>                    
                                 </div>
@@ -375,6 +375,7 @@ export default
     props: [
         'lang',
         'setting',
+        'system_setting',
         'conf',
         'path',
         'auth',
