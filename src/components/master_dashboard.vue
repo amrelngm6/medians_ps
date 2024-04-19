@@ -185,6 +185,44 @@
                         </div>
                     </div>
                 </div>
+                <div class="card  w-full  no-mobile">
+                    <div class="w-full flex p-4">
+                        <h4 class="w-full " v-text="translate('Latest invoices')"></h4>
+                        <a href="/admin/invoices" class="w-20" v-text="translate('View all')"></a>
+                    </div>
+                    <div class="card-body w-full">
+                        <div class="w-full">
+                            <div class="table-responsive w-full">
+                                <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
+                                    <thead>
+                                        <tr>
+                                            <th v-text="translate('User')"></th>
+                                            <th v-text="translate('Amount')"></th>
+                                            <th v-text="translate('Code')"></th>
+                                            <th v-text="translate('date')"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr :key="index" v-for="(invoice, index) in content.latest_invoices" >
+                                            <td>
+                                                <div v-if="invoice.user" class="flex gap-2">
+                                                    <img :src="invoice.user.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
+                                                    <div>
+                                                        <p class="m-0" v-text="invoice.user.name"></p>
+                                                        <small  v-if="invoice.user" class="text-xs" v-text="invoice.user.usertype"></small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td v-text="invoice.total_amount"></td>
+                                            <td v-text="invoice.code"></td>
+                                            <td v-text="dateTimeFormat(invoice.created_at)"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
