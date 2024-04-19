@@ -18,7 +18,7 @@
 
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
-                <div class="w-full">
+                <div class="w-full gap-6 flex ">
                     <div class="card card-flush h-md-50 mb-5 mb-xl-10">
                         <div class="card-header pt-5">
                             <div class="card-title d-flex flex-column">   
@@ -38,7 +38,29 @@
                                     <div class="text-gray-500 flex-grow-1 me-4" v-text="invoice.payment_method"></div>
                                     <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+invoice.value"></div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-flush h-md-50 mb-5 mb-xl-10">
+                        <div class="card-header pt-5">
+                            <div class="card-title d-flex flex-column">   
+                                <div class="d-flex align-items-center">
+                                    <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
+                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_invoices_amount"></span>
+                                </div>
+                                <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total invoices amount')"></span>
+                            </div>
+                        </div>
 
+                        <div class="px-4 pt-2 pb-4 d-flex align-items-center">
+                            <div class="d-flex flex-center me-5 pt-2"></div>
+                            <div class="d-flex flex-column content-justify-center w-100">
+                                <div class="d-flex fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
+                                    <div class="bullet  rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+invoice.payment_method+'.png'" /></div>
+                                    <div class="text-gray-500 flex-grow-1 me-4" v-text="invoice.payment_method"></div>
+                                    <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+invoice.value"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
