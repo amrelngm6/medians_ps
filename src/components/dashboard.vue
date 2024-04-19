@@ -49,13 +49,13 @@
                             <div class="d-flex flex-stack mb-6">
                                 <!--begin::Title-->               
                                 <div class="flex-shrink-0 me-5">
-                                    <span class="text-gray-500 fs-7 fw-bold me-2 d-block lh-1 pb-1">Featured</span>
+                                    <span class="text-gray-500 fs-7 fw-bold me-2 d-block lh-1 pb-1" v-text="translate('Welcome')"></span>
 
-                                    <span class="text-gray-800 fs-1 fw-bold">9 Degree</span>
+                                    <span class="text-gray-800 fs-1 fw-bold" v-text="auth.name"></span>
                                 </div>
                                 <!--end::Title-->
 
-                                <span class="badge badge-light-primary flex-shrink-0 align-self-center py-3 px-4 fs-7">In Process</span>
+                                <span class="badge badge-light-primary flex-shrink-0 align-self-center py-3 px-4 fs-7" v-text="translate('Active')"></span>
                             </div>
                             <!--end::Heading-->
 
@@ -70,9 +70,9 @@
                                     <!--end::Symbol--> 
                                     
                                     <!--begin::Info-->
-                                    <div class="m-0">                            
-                                        <span class="fw-semibold text-gray-500 d-block fs-8">Manager</span>
-                                        <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7">Robert Fox</a>
+                                    <div v-if="auh.business" class="m-0">                            
+                                        <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Business')"></span>
+                                        <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7" v-text="auth.business.business_name ?? ''"></a>
                                     </div>
                                     <!--end::Info-->
                                 </div>                    
@@ -85,9 +85,9 @@
                                         <span class="symbol-label bg-success">
                                             <i class="ki-duotone ki-abstract-41 fs-5 text-white"><span class="path1"></span><span class="path2"></span></i>                                    </span>                
                                     </div>
-                                    <div class="m-0">                            
-                                        <span class="fw-semibold text-gray-500 d-block fs-8">Budget</span>
-                                        <span class="fw-bold text-gray-800 fs-7">$64.800</span>
+                                    <div class="m-0" v-if="auth.subscription">                            
+                                        <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Plan')"></span>
+                                        <span class="fw-bold text-gray-800 fs-7" v-text="auth.subscription.plan_name ?? ''"></span>
                                     </div>
                                 </div>                      
                             </div>
