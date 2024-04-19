@@ -6,6 +6,7 @@ use Medians\Wallets\Domain\Wallet;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Students\Domain\Student;
 use Medians\Customers\Domain\Parents;
+use Medians\Drivers\Domain\Driver;
 
 
 class WalletRepository 
@@ -125,6 +126,11 @@ class WalletRepository
 			case 'parent':
 			case 'parents':
 				return Parents::class;
+				break;
+	
+			case 'driver':
+			case 'drivers':
+				return Driver::class;
 				break;
 	
 			default:
