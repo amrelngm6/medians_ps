@@ -124,7 +124,7 @@ class RouteLocation extends CustomModel
 	
 	public function vacation() 
 	{
-    	return $this->hasOne(Vacation::class, 'user_id', 'model_id')->where('data', date('Y-m-d'));
+    	return $this->hasOne(Vacation::class, 'user_id', 'model_id')->where('date', date('Y-m-d'));
 	}
 	
 	
