@@ -43,8 +43,12 @@ class RouteRepository
 		$dayName = strtolower(date('l'));
 		
 		return Route::with(['route_locations'=> function($q) use ($dayName, $route_id){
-			return $q->where($dayName, 'on')->where('route_id', $route_id);
-		}])->find($route_id);
+			return $q->where($dayName, 'on')->where('route_id', $route_id)->whereDoesntHave('vacation');
+		}])
+		->whereHas(['route_locations'=> function($q) use ($dayName, $route_id){
+			return $q->where($dayName, 'on')->where('route_id', $route_id)->whereDoesntHave('vacation');
+		}])
+		->find($route_id);
 	}
 
 
