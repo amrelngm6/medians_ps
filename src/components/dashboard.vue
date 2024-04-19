@@ -19,7 +19,7 @@
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="w-full gap-6 flex ">
-                    <div class="card card-flush h-md-50 mb-5 mb-xl-10">
+                    <div class="card card-flush h-md-50 mb-5 mb-xl-10 w-full">
                         <div class="card-header pt-5">
                             <div class="card-title d-flex flex-column">   
                                 <div class="d-flex align-items-center">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     
-                    <div class="card card-flush h-md-50 mb-5 mb-xl-10">
+                    <div class="card card-flush h-md-50 mb-5 mb-xl-10 w-full">
                         <div class="card-header pt-5">
                             <div class="card-title d-flex flex-column">   
                                 <div class="d-flex align-items-center">
