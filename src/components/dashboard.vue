@@ -86,7 +86,7 @@
                                             <i class="ki-duotone ki-abstract-41 fs-5 text-white"><span class="path1"></span><span class="path2"></span></i>                                    </span>                
                                     </div>
                                     <div class="m-0" v-if="auth.business.subscription">                            
-                                        <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Plan')"></span>
+                                        <span class="fw-semibold text-gray-500 d-block fs-8" v-text=""></span>
                                         <span class="fw-bold text-gray-800 fs-7" v-text="auth.business.subscription.plan_name ?? ''"></span>
                                     </div>
                                 </div>                      
@@ -101,6 +101,10 @@
                                 <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
                                     <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.end_date"></span>                                
                                     <div class="fw-semibold text-gray-500" v-text="translate('Renewal date')"></div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
+                                    <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.plan_name ?? ''"></span>                               
+                                    <div class="fw-semibold text-gray-500" v-text="translate('Plan')"></div>
                                 </div>
                             </div>
                         </div>
