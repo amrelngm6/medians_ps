@@ -5,6 +5,7 @@ namespace Medians\Wallets\Infrastructure;
 use Medians\Wallets\Domain\Wallet;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Students\Domain\Student;
+use Medians\Customers\Domain\Parents;
 
 
 class WalletRepository 
@@ -120,6 +121,11 @@ class WalletRepository
 				return Student::class;
 				break;
 
+			case 'parent':
+			case 'parents':
+				return Parents::class;
+				break;
+	
 			default:
 				return $data['user_type'];
 				break;

@@ -17,7 +17,6 @@ class Wallet extends CustomModel
     protected $primaryKey = 'wallet_id';
 	
 	public $fillable = [
-		'business_id',
 		'code',
 		'credit_balance',
 		'debit_balance',
