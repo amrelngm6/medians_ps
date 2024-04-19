@@ -112,6 +112,7 @@ class PaymentService
 			$walletRepo = new \Medians\Wallets\Infrastructure\BusinessWalletRepository();
 			
 			$data = array();
+			$data['business_id'] = $user->business->business_id;
 			$data['user_id'] = $user->id;
 			$data['user_type'] = User::class;
 			$data['debit_balance'] = 0;
