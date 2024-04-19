@@ -4,6 +4,7 @@ namespace Medians\Vacations\Infrastructure;
 
 use Medians\Vacations\Domain\Vacation;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Students\Domain\Student;
 
 
 class VacationRepository 
@@ -54,6 +55,8 @@ class VacationRepository
 			}
 		}		
 
+		$dataArray['user_type'] = $this->handleType($data);
+
 		// Return the  object with the new data
     	$Object = Vacation::create($dataArray);
 
@@ -96,6 +99,20 @@ class VacationRepository
 		}
 	}
 
+	public function handleType($data) 
+	{
+		
+		switch (strtolower($data['user_type']))
+		{
+			case 'student':
+				return Student::class;
+				break;
+
+			default:
+				return $data['user_type'];
+				break;
+		}
+	}
 
 
  
