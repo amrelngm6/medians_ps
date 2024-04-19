@@ -30,9 +30,8 @@
                             </div>
                         </div>
 
-                        <div class="card-body pt-2 pb-4 d-flex align-items-center">
-                            <div class="d-flex flex-center me-5 pt-2">
-                            </div>
+                        <div class="px-4 pt-2 pb-4 d-flex align-items-center">
+                            <div class="d-flex flex-center me-5 pt-2"></div>
                             <div class="d-flex flex-column content-justify-center w-100">
                                 <div class="d-flex fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
                                     <div class="bullet  rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+invoice.payment_method+'.png'" /></div>
