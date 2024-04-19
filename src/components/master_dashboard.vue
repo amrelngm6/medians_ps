@@ -57,7 +57,7 @@
                                         <div class="symbol symbol-30px symbol-circle me-3">                                                   
                                             <img :src="system_setting['logo'] ?? '/uploads/images/default_logo.png'" class="" alt="">                                                    
                                         </div>
-                                        <div v-if="auth.business" class="m-0">                            
+                                        <div v-if="auth" class="m-0">                            
                                             <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Sitename')"></span>
                                             <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7" v-text="system_setting['sitename'] ?? ''"></a>
                                         </div>
@@ -66,18 +66,6 @@
                             </div>
                             <img :src="'/uploads/img/dashboard-placeholder.svg'" />
 
-                        </div>
-                        <div class="mb-6">
-                            <div class="d-flex">
-                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
-                                    <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.end_date"></span>                                
-                                    <div class="fw-semibold text-gray-500" v-text="translate('Renewal date')"></div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
-                                    <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.plan_name ?? ''"></span>                               
-                                    <div class="fw-semibold text-gray-500" v-text="translate('Plan')"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
