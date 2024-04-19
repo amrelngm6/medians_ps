@@ -43,7 +43,7 @@ class SystemSettingsController extends CustomController
             
 			'basic'=> [	
 	            [ 'key'=> "logo", 'title'=> __('logo'), 'fillable'=>true, 'column_type'=>'file' ],
-				[ 'key'=> "sitename", 'title'=> __('sitename'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "sitename", 'title'=> __('sitename'), 'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "lang", 'title'=> __('Languange'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['lang'=>'arabic','title'=>__('Arabic')], ['lang'=>'english','title'=>__('English')]]  

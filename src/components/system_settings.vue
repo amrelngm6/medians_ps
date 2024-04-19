@@ -27,7 +27,7 @@
                                 <div class="row mb-6"   v-for="(field, i) in row" >
                 
                                     <label class="col-lg-4 col-form-label " :class="field.required ? 'required' : ''" :for="'input'+i"  v-if="field.column_type != 'hidden'">
-                                        <p class="inline inline-block fw-bold fs-4 w-full" v-text="field.title" ></p>
+                                        <p class="fw-bold fs-4 w-full" v-text="field.title" ></p>
                                         <p v-text="field.help_text" v-if="field.help_text" ></p>
                                     </label>
 
