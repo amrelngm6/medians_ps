@@ -105,10 +105,6 @@ class VacationController extends CustomController
 
         try {	
 			
-			$user = $this->app->auth();
-
-        	$params['business_id'] = $user->business->business_id;
-
 			try {
 				
 				$returnData = (!empty($this->repo->store($params))) 
