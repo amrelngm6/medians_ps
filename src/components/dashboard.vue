@@ -85,9 +85,9 @@
                                         <span class="symbol-label bg-success">
                                             <i class="ki-duotone ki-abstract-41 fs-5 text-white"><span class="path1"></span><span class="path2"></span></i>                                    </span>                
                                     </div>
-                                    <div class="m-0" v-if="auth.subscription">                            
+                                    <div class="m-0" v-if="auth.business && auth.business.subscription">                            
                                         <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Plan')"></span>
-                                        <span class="fw-bold text-gray-800 fs-7" v-text="auth.subscription.plan_name ?? ''"></span>
+                                        <span class="fw-bold text-gray-800 fs-7" v-text="auth.business.subscription.plan_name ?? ''"></span>
                                     </div>
                                 </div>                      
                             </div>
