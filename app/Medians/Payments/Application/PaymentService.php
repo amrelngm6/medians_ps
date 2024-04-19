@@ -104,6 +104,30 @@ class PaymentService
 	}
 	
 	
+	
+	public function createWallet($params, $invoice, $savedSubscription, $user)
+	{
+		try {
+
+			$walletRepo = new \Medians\Wallets\Infrastructure\WalletRepository();
+			
+			$data = array();
+			$data['user_id'] = $user->id;
+			$data['user_type'] = User::class;
+			$data['debit_balance'] = 0;
+			$data['credit_balance'] = 0;
+			$data['status'] = 'new';
+
+			return $walletRepo->store($data);
+
+		} catch (\Throwable $th) {
+			error_log($th->getMessage());
+			return array('error'=>$th->getMessage());
+		}
+		
+	}
+	
+	
 	public function handleItems($params, $order, $savedSubscription, $user)
 	{
 		$items = [

@@ -198,6 +198,7 @@ class PaymentController extends CustomController
 
 				$savePlanPayment = $paymentService->storePlanPayment($addInvoice, $order, $savedSubscription, $user); 
 
+				$createWallet = $paymentService->createWallet($params, $addInvoice, $savedSubscription, $user); 
 	
 				return ($addInvoice && isset($savePlanPayment->payment_id))
 				? array('success'=>1, 'result'=>__('PAYMENT_MADE_SECCUESS'), 'reload'=>1)
