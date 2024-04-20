@@ -37,49 +37,19 @@
                                                 </div>
                                                 <!--end::Info-->
                                             </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Row-->
-
-                                        <!--begin::Row-->
-                                        <div class="row g-5 mb-12">
-                                            <!--end::Col-->
-                                            <div class="col-sm-6" v-if="activeItem.business">
-                                                
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issue For')"></div>
-                                                
-                                                <!--end::Text-->
-                                                <div class="flex gap-2" >
+                                            <div class="col-sm-6">
+                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
+                                                <div class="flex gap-2" v-if="activeItem.business" >
                                                     <img :src="activeItem.business.picture" class="w-10 h-10" />
                                                     <div class="fw-bold fs-6 text-gray-800">
                                                         <div class="text-gray-800" v-text="activeItem.business.business_name"></div>
                                                         <div class="text-gray-800 fs-normal" v-text="activeItem.business.type"></div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!--end::Col-->
-
-                                            <!--end::Col-->
-                                            <div class="col-sm-6">
-                                                
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issued By')"></div>
-                                                
-
-                                                <!--end::Text-->
-                                                <div class="flex gap-2" v-if="business_setting && activeItem.business">
-                                                    <img :src="business_setting.logo" class="w-10 h-10" />
-                                                    <div class="fw-bold fs-6 text-gray-800">
-                                                        <div class="text-gray-800" v-text="activeItem.business.name"></div>
-                                                    </div>
-                                                </div>
-
-                                                <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600"  v-if="business_setting" v-text="business_setting.address"></div>
-                                                <!--end::Description-->
+                                                <!--end::Info-->
                                             </div>
                                             <!--end::Col-->
                                         </div>
-                                        <!--end::Row-->
                                     </div>
                                     <!--end::Wrapper-->
                                 </div>
