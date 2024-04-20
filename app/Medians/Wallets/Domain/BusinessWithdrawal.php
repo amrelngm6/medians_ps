@@ -34,4 +34,10 @@ class BusinessWithdrawal extends CustomModel
         return $this->morphTo();
     }
 
+	public function business() 
+	{
+		return $this->hasOne(Business::class, 'business_id', 'business_id');	
+	}
+	
+
 }

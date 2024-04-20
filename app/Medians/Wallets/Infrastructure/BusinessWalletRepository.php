@@ -15,17 +15,17 @@ class BusinessWalletRepository
 
 	public function find($id)
 	{
-		return BusinessWallet::with('user')->find($id);
+		return BusinessWallet::with('business')->find($id);
 	}
 
 	public function getBusinessWallet($id)
 	{
-		return BusinessWallet::with('business', 'user')->where('business_id', $id)->first();
+		return BusinessWallet::with('business')->where('business_id', $id)->first();
 	}
 
 	public function get($limit = 100)
 	{
-		return BusinessWallet::with('user')->limit($limit)->get();
+		return BusinessWallet::with('business')->limit($limit)->get();
 	}
 	
 	
