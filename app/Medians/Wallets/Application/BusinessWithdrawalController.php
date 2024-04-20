@@ -145,7 +145,7 @@ class BusinessWithdrawalController extends CustomController
 
 			$delete = $this->repo->delete($params['withdrawal_id']);
 
-            if ($delete == true)
+            if ($delete === true)
             {
                 return array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1);
             } else {
