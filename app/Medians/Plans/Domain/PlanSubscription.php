@@ -38,8 +38,13 @@ class PlanSubscription extends CustomModel
 	*/
 	// public $timestamps = false;
 
-	public $appends = ['is_expired', 'plan_name','features','past_days','total_days','left_days'];
+	public $appends = ['is_expired', 'is_paid', 'plan_name','features','past_days','total_days','left_days'];
 
+
+    public function getIsPaidAttribute()
+    {
+        return ( isset($this->plan->type) && $this->plan->type == 'paid') ? true : false;
+    }
 
 	public function getLeftDaysAttribute()
 	{
