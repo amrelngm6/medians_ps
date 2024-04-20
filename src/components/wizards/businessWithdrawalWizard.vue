@@ -30,19 +30,19 @@
                                             <div class="col-sm-4">
                                                 <div class="flex gap-2" v-if="activeItem.business" >
                                                     <img :src="activeItem.business.picture" class="w-10 h-10" />
-                                                    <div class="fw-bold fs-6 text-gray-800">
+                                                    <div class="fw-bold fs-2 text-gray-800">
                                                         <div class="text-gray-800 fs-bold" v-text="activeItem.business.business_name"></div>
                                                         <div class="text-gray-800 fs-normal" v-text="activeItem.business.type"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Sent Date')"></div>
-                                                <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.date"></div>
+                                                <div class="fw-semibold fs-4 text-gray-600 mb-1" v-text="translate('Sent Date')"></div>
+                                                <div class="fw-bold fs-2 text-gray-800" v-text="activeItem.date"></div>
                                             </div>
                                             <div class="col-sm-4">
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
-                                                <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center flex-wrap">
+                                                <div class="fw-semibold fs-4 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
+                                                <div class="fw-bold fs-2 text-gray-800 d-flex align-items-center flex-wrap">
                                                     <input type="date"  v-model="activeItem.due_date" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-125px " :placeholder="translate('Due date for proceed')">
                                                 </div>
                                                 <!--end::Info-->
@@ -61,25 +61,25 @@
                                         <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Wallet Details')"></h6>
 
                                         <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Current balance')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.credit_balance"></div>
+                                            <div class="fw-semibold text-gray-600 fs-4" v-text="translate('Current balance')"></div>
+                                            <div class="fw-bold text-gray-800 fs-2" v-text="activeItem.wallet.credit_balance"></div>
                                         </div>
                 
                                         <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.status"></div>
+                                            <div class="fw-semibold text-gray-600 fs-4" v-text="translate('Status')"></div>
+                                            <div class="fw-bold text-gray-800 fs-2" v-text="activeItem.status"></div>
                                         </div>
 
                                         <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Request Details')"></h6>
 
                                         <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-if="system_setting" v-text="system_setting.currency+''+activeItem.amount"></div>
+                                            <div class="fw-semibold text-gray-600 fs-4" v-text="translate('Total amount')"></div>
+                                            <div class="fw-bold text-gray-800 fs-2" v-if="system_setting" v-text="system_setting.currency+''+activeItem.amount"></div>
                                         </div>
                                         
                                         <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.status"></div>
+                                            <div class="fw-semibold text-gray-600 fs-4" v-text="translate('Status')"></div>
+                                            <div class="fw-bold text-gray-800 fs-2" v-text="activeItem.status"></div>
                                         </div>
                                     </div>
                                     
@@ -88,14 +88,14 @@
                                         <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Payment Details')"></h6>
                 
                                         <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.payment_method"></div>
+                                            <div class="fw-semibold text-gray-600 fs-4" v-text="translate('payment method')"></div>
+                                            <div class="fw-bold text-gray-800 fs-2" v-text="activeItem.payment_method"></div>
                                         </div>
                 
                                         <div class="mb-6" v-for="(field, key) in activeItem.field">
                                             <div v-if="field">
-                                                <div class="fw-semibold text-gray-600 fs-7" v-text="translate(field)"></div>
-                                                <div class="fw-bold text-gray-800 fs-6" v-text="field"></div>
+                                                <div class="fw-semibold text-gray-600 fs-4" v-text="translate(field)"></div>
+                                                <div class="fw-bold text-gray-800 fs-2" v-text="field"></div>
                                             </div>
                                         </div>
                                     </div>
