@@ -1,7 +1,7 @@
 <template>
     <div class="w-full mb-5 mb-xl-10">
 
-        <div class="modal fade show" v-if="showWizard" :key="showWizard" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="display: block;">
+        <div class="modal fade show" v-if="showWizard" :key="showWizard" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 99999;">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
                 <!--begin::Modal content-->
