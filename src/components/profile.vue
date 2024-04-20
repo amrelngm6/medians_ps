@@ -419,7 +419,7 @@
                             <table id="kt_customer_details_invoices_table_1" class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                                 <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
                                     <tr class="text-start text-gray-500">
-                                        <th class="min-w-100px" v-text="translate('Code')"></th>
+                                        <th class="min-w-100px" v-text="translate('#')"></th>
                                         <th class="min-w-100px" v-text="translate('Amount')"></th>
                                         <th class="min-w-100px" v-text="translate('Status')"></th>                                    
                                         <th class="min-w-125px" v-text="translate('Date')"></th>
@@ -427,8 +427,8 @@
                                 </thead>
                                 <tbody class="fs-6 fw-semibold text-gray-600">
                                     <tr v-for="withdrawal in content.business_withdrawals">
-                                        <td><a href="#" class="text-gray-600 text-hover-primary" v-text="withdrawal.code"></a></td>
-                                        <td class="text-success"  v-text="withdrawal.amount+''+system_setting.currency"></td>
+                                        <td><a href="#" class="text-gray-600 text-hover-primary" v-text="withdrawal.id"></a></td>
+                                        <td class="text-success"  v-text="system_setting.currency+''+withdrawal.amount"></td>
                                         <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
                                         <td v-text="withdrawal.date"></td>
                                     </tr>
