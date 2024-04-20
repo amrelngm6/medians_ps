@@ -68,9 +68,9 @@ class BusinessWithdrawalController extends CustomController
 	{
 		try {
 
-			return render('wallets', [
+			return render('business_withdrawals', [
 		        'load_vue' => true,
-		        'title' => __('Withdrawals'),
+		        'title' => __('Business Withdrawals'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
