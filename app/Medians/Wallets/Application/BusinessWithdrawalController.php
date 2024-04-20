@@ -97,9 +97,9 @@ class BusinessWithdrawalController extends CustomController
 			
 			$validate = $this->validate($params, $user);
 
-			if ($validaet)
+			if ($validate)
 			{
-				return array('error'=>$validaet);
+				return array('error'=>$validate);
 			}
 
 			$returnData = (!empty($this->repo->store($params))) 
