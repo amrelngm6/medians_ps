@@ -26,25 +26,25 @@
                                         
                                         <div class="fw-bold fs-3 text-gray-800 mb-8" v-text="translate('Withdrawal request')+' #'+activeItem.withdrawal_id"> </div>
                                         <div class="row g-5 mb-11">
-                                            <div class="col-sm-6">
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Sent Date')"></div>
-                                                <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.date"></div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
-                                                <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center flex-wrap">
-                                                    <input type="date"  v-model="activeItem.due_date" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-125px " :placeholder="translate('Due date for proceed')">
-                                                </div>
-                                                <!--end::Info-->
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
+                                            
+                                            <div class="col-sm-4">
+                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Business')"></div>
                                                 <div class="flex gap-2" v-if="activeItem.business" >
                                                     <img :src="activeItem.business.picture" class="w-10 h-10" />
                                                     <div class="fw-bold fs-6 text-gray-800">
                                                         <div class="text-gray-800" v-text="activeItem.business.business_name"></div>
                                                         <div class="text-gray-800 fs-normal" v-text="activeItem.business.type"></div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Sent Date')"></div>
+                                                <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.date"></div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
+                                                <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center flex-wrap">
+                                                    <input type="date"  v-model="activeItem.due_date" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-125px " :placeholder="translate('Due date for proceed')">
                                                 </div>
                                                 <!--end::Info-->
                                             </div>
