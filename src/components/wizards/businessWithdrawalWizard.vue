@@ -66,16 +66,6 @@
                                         </div>
                 
                                         <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.payment_method"></div>
-                                        </div>
-
-                                        <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-if="system_setting" v-text="system_setting.currency+''+activeItem.amount"></div>
-                                        </div>
-                                        
-                                        <div class="mb-6">
                                             <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
                                             <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.status"></div>
                                         </div>
@@ -84,22 +74,22 @@
                                     <div v-if="activeItem.wallet"
                                         class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
                                         <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Payment Details')"></h6>
-
-                                        <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Current balance')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.credit_balance"></div>
-                                        </div>
                 
-                                        <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.payment_method"></div>
-                                        </div>
-
                                         <div class="mb-6">
                                             <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
                                             <div class="fw-bold text-gray-800 fs-6" v-if="system_setting" v-text="system_setting.currency+''+activeItem.amount"></div>
                                         </div>
                                         
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.payment_method"></div>
+                                        </div>
+                                        
+                                        <div class="mb-6" v-for="field in activeItem.field">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate(field.code)"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-text="field.value"></div>
+                                        </div>
+
                                         <div class="mb-6">
                                             <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
                                             <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.status"></div>
