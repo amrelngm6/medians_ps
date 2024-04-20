@@ -78,7 +78,7 @@ class BusinessWithdrawalRepository
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
-        !(isset( $data['status']) && $data['status'] == 'done') ?? $this->updateBalance($Object);
+        (isset( $data['status']) && $data['status'] == 'done') ? $this->updateBalance($Object) : '';
 
     	return $Object;
 
