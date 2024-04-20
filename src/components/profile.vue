@@ -46,13 +46,12 @@
 
                             <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
-                                <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" name="status" data-control="select2" data-placeholder="Select an option" data-hide-search="true">
+                                <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
                                     <option></option>
-                                    <option value="0">Approved</option>
-                                    <option value="1">Pending</option>
-                                    <option value="2">Rejected</option>
-                                    <option value="3">In progress</option>
-                                    <option value="4">Completed</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="paystack">PayStack</option>
+                                    <option value="bank">Bank transfer</option>
+                                    <option value="cash">Cash</option>
                             </select>
                             </div>
                             <!--end::Input group-->
