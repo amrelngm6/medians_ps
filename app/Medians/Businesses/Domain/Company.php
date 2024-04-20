@@ -7,13 +7,18 @@ use Medians\Users\Domain\User;
 class Company extends Business
 {
 
-	public $appends = ['company_id','owner'];
+	public $appends = ['company_id','owner', 'logo'];
     
 	function __construct()
 	{
         $this->where('type', 'company');
 	}
 
+	public function getLogoAttribute ()
+	{
+		return isset($this->logo_field) ? $this->logo_field->value : null;
+	}
+	
 	public function getOwnerAttribute ()
 	{
 		return isset($this->owner_user) ? $this->owner_user : null;

@@ -44,16 +44,16 @@
                                         <!--begin::Row-->
                                         <div class="row g-5 mb-12">
                                             <!--end::Col-->
-                                            <div class="col-sm-6" v-if="activeItem.user">
+                                            <div class="col-sm-6" v-if="activeItem.business">
                                                 
                                                 <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issue For')"></div>
                                                 
                                                 <!--end::Text-->
                                                 <div class="flex gap-2" >
-                                                    <img :src="activeItem.user.picture" class="w-10 h-10" />
+                                                    <img :src="activeItem.business.picture" class="w-10 h-10" />
                                                     <div class="fw-bold fs-6 text-gray-800">
-                                                        <div class="text-gray-800" v-text="activeItem.user.name"></div>
-                                                        <div class="text-gray-800 fs-normal" v-text="activeItem.user.mobile"></div>
+                                                        <div class="text-gray-800" v-text="activeItem.business.business_name"></div>
+                                                        <div class="text-gray-800 fs-normal" v-text="activeItem.business.type"></div>
                                                     </div>
                                                 </div>
                                                 <!--end::Text-->

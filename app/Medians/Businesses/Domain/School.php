@@ -8,11 +8,16 @@ use Medians\Users\Domain\User;
 class School extends Business
 {
 
-	public $appends = ['school_id','owner'];
+	public $appends = ['school_id','owner', 'logo'];
     
 	function __construct()
 	{
         $this->where('type', 'school');
+	}
+	
+	public function getLogoAttribute ()
+	{
+		return isset($this->logo_field) ? $this->logo_field->value : null;
 	}
 
 	public function getOwnerAttribute ()

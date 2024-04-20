@@ -36,6 +36,7 @@ class Business extends CustomModel
 		return isset($this->owner_user) ? $this->owner_user : null;
 	}
 
+
 	public function getFields()
 	{
 		return $this->fillable;
@@ -74,6 +75,11 @@ class Business extends CustomModel
     public function settings()
     {
 		return $this->hasMany(Settings::class, 'business_id', 'business_id');	
+    }
+
+    public function logo_field()
+    {
+		return $this->hasOne(Settings::class, 'business_id', 'business_id')->where('code','logo');	
     }
 
 }

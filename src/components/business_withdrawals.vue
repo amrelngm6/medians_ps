@@ -41,7 +41,7 @@
 
                 <template #item-business="item">
                     <div class="flex gap-2" v-if="item.business" >
-                        <img :src="item.business.picture" class="w-8 h-8 rounded-full" />
+                        <img :src="item.business.logo" class="w-8 h-8 rounded-full" />
                         <span class="py-2" v-text="item.business.business_name"></span>
                     </div>
                 </template>
