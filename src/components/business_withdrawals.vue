@@ -170,6 +170,7 @@ export default
         'path',
         'lang',
         'setting',
+        'system_setting',
         'conf',
         'auth',
     ],
