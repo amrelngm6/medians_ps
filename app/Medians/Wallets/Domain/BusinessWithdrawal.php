@@ -22,6 +22,7 @@ class BusinessWithdrawal extends CustomModel
 		'wallet_id',
 		'date',
 		'due_date',
+		'payment_method',
 		'status',
 	];
 

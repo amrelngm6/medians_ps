@@ -53,6 +53,69 @@
                                     <!--end::Wrapper-->
                                 </div>
                                 <!--end::Invoice 2 content-->
+                                
+                                <!--begin::Invoice 2 sidebar-->
+                                <div v-if="activeItem.wallet"
+                                    class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
+                                    <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Wallet DETAILS')"></h6>
+                                    <!--end::Title-->
+
+                                    <!--begin::Item-->
+                                    <div class="mb-6">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.credit_balance"></div>
+                                    </div>
+            
+                                    <!--begin::Item-->
+                                    <div class="mb-6">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.payment_method"></div>
+                                    </div>
+
+                                    <div class="mb-6">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
+
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.amount+''+system_setting.currency"></div>
+                                    </div>
+                                    
+                                    <!--begin::Item-->
+                                    <div class="mb-6">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
+
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.status"></div>
+                                    </div>
+            
+                                    <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Billing info')"></h6>
+
+                                    <!--begin::Item-->
+                                    <div class="mb-6">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Payer name')"></div>
+
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_first_name"></div>
+                                    </div>
+
+                                    <!--begin::Item-->
+                                    <div class="mb-6">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Payer email')"></div>
+
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_email"></div>
+                                    </div>
+                                    
+                                    <div class="m-0">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Order id')"></div>
+                                        
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.order_id"></div>
+                                    </div>
+                                    
+                                    <div class="m-0">
+                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Date')"></div>
+
+                                        <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center" v-text="activeItem.date"> 
+                                        </div>
+                                    </div>
+            
+                                </div>
+                                <!--end::Invoice 2 sidebar-->
                             </div>
                             <!--end::Content-->
 
