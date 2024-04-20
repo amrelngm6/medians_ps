@@ -92,8 +92,15 @@ class BusinessWithdrawalController extends CustomController
 		$user = $this->app->auth();
 		
         try {	
-			
+
 			$params['business_id'] = $user->business->business_id;
+			
+			$validate = $this->validate($params, $user);
+
+			if ($validaet)
+			{
+				return array('error'=>$validaet);
+			}
 
 			$returnData = (!empty($this->repo->store($params))) 
 			? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
@@ -208,6 +215,21 @@ class BusinessWithdrawalController extends CustomController
 		if (empty($user->customer_id)) { return null; }
 		
 		return $this->repo->getBusinessWithdrawal($user->customer_id);
+	}
+
+
+	
+	
+	/**
+	 * validate
+	 */
+	public function validate($params, $user)
+	{
+		
+		$check =  $this->repo->checkPending($user->business->business_id);
+
+		return $check ? __('Another pending request found') : null;
+		
 	}
 
 
