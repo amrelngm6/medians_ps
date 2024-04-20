@@ -45,6 +45,13 @@
                                 <span class="py-2" v-text="item.business.business_name"></span>
                             </div>
                         </template>
+
+                        <template #item-user="item">
+                            <div class="flex gap-2" v-if="item.user" >
+                                <img :src="item.user.logo" picture="w-8 h-8 rounded-full" />
+                                <span class="py-2" v-text="item.user.name"></span>
+                            </div>
+                        </template>
                         
                         <template #item-students="item">
                             
