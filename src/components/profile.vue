@@ -13,7 +13,7 @@
                         <!--end::Modal title-->
 
                         <!--begin::Close-->
-                        <div id="kt_modal_adjust_balance_close" @click="showWizard = false" class="btn btn-sm btn-active-icon-primary">
+                        <div id="kt_modal_adjust_balance_close" @click="showWizard = false" class="btn ">
                             <vue-feather type="close" />
                         </div>
                         <!--end::Close-->
