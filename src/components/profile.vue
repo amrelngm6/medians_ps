@@ -645,6 +645,11 @@ export default {
             {
                 return showAlert(translate('Amount is required'));
             }
+            
+            if (withdrawRequest.value.amount > content.value.wallet.credit_balance)
+            {
+                return showAlert(translate('Balance is not enough is required'));
+            }
             if (window.confirm(translate('Conffirm to submit')))
             {
                 var params = new URLSearchParams();
