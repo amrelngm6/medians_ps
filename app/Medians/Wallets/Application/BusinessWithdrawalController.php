@@ -99,8 +99,10 @@ class BusinessWithdrawalController extends CustomController
 
 			if ($validate)
 			{
-				return array('error'=>$validate);
+				// return array('error'=>$validate);
 			}
+
+			$params['field'] = isset($params['field']) ? (array) json_decode($params['field']) : null;
 
 			$returnData = (!empty($this->repo->store($params))) 
 			? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)

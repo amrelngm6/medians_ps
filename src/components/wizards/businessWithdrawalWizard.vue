@@ -93,8 +93,10 @@
                                         </div>
                 
                                         <div class="mb-6" v-for="field in activeItem.field">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate(field.code)"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="field.value"></div>
+                                            <div v-if="field">
+                                                <div class="fw-semibold text-gray-600 fs-7" v-text="translate(field.code)"></div>
+                                                <div class="fw-bold text-gray-800 fs-6" v-text="field.value"></div>
+                                            </div>
                                         </div>
                                     </div>
                 
