@@ -15,11 +15,6 @@
                             <div class="d-flex align-items-center position-relative my-1">
                                 <input type="text"  v-model="searchValue" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Report">
                             </div>
-                            <!--end::Search-->
-
-                            <!--begin::Export buttons-->
-                            <!-- <div id="kt_ecommerce_report_views_export" class="d-none"><div class="dt-buttons btn-group flex-wrap">      <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>Excel</span></button> <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>CSV</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="kt_ecommerce_report_views_table" type="button"><span>PDF</span></button> </div></div> -->
-                            <!--end::Export buttons-->
                         </div>
                         <!--end::Card title-->
 
@@ -44,6 +39,12 @@
                             <img :src="item.picture" class="w-8 h-8 rounded-full" />
                         </template>
 
+                        <template #item-business="item">
+                            <div class="flex gap-2" v-if="item.business" >
+                                <img :src="item.business.logo" class="w-8 h-8 rounded-full" />
+                                <span class="py-2" v-text="item.business.business_name"></span>
+                            </div>
+                        </template>
                         
                         <template #item-students="item">
                             
