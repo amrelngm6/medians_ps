@@ -17,11 +17,9 @@ class BusinessWithdrawal extends CustomModel
     protected $primaryKey = 'withdrawal_id';
 	
 	public $fillable = [
-		'code',
 		'amount',
 		'business_id',
-		'user_id',
-		'user_type',
+		'wallet_id',
 		'date',
 		'due_date',
 		'status',

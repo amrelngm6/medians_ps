@@ -48,11 +48,10 @@ class BusinessWithdrawalRepository
 			}
 		}		
 
-		$dataArray['user_type'] = $this->handleType($data);
+		$dataArray['data'] = date('Y-m-d');
 		
 		// Return the  object with the new data
     	$Object = BusinessWithdrawal::firstOrCreate($dataArray);
-    	$Object->update(['code'=>$this->generateCode()]);
 
     	return $Object;
     }
