@@ -23,6 +23,11 @@ class BusinessWithdrawalRepository
 		return BusinessWithdrawal::with('business')->where('business_id', $id)->first();
 	}
 
+	public function getBusinessWithdrawals($id)
+	{
+		return BusinessWithdrawal::with('business')->where('business_id', $id)->get();
+	}
+
 	public function get($limit = 100)
 	{
 		return BusinessWithdrawal::limit($limit)->get();
