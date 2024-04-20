@@ -433,7 +433,7 @@
                                         <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
                                         <td v-text="withdrawal.date"></td>
                                         <td>
-                                            <a href="javascript:;" @click="cancelRequest(withdrawal)" class="btn btn-primary px-6 flex-shrink-0 align-self-center" v-text="translate('Cancel')"></a>
+                                            <a href="javascript:;" @click="cancelRequest(withdrawal)" class="btn btn-danger px-6 flex-shrink-0 align-self-center" v-text="translate('Cancel')"></a>
                                         </td>
                                     </tr>
                                 </tbody>
