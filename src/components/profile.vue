@@ -698,6 +698,7 @@ export default {
                     console.log(k);
                     params.append('params[field][' + k.code + ']', k.value)
                 }
+                console.log(params);
                 handleRequest(params, '/api/create').then(response => {
                     handleAccess(response)
                 });
