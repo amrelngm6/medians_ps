@@ -151,8 +151,6 @@
                         </div>
                         
                     </div>
-                    <!--end::Card-->
-                        
 
                     <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'subscriptions'">
 
@@ -305,7 +303,7 @@
                         <div class="card  card-xxl-stretch mb-5 mb-xxl-10">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h3>Earnings</h3>
+                                    <h3 v-text="translate('Earnings')"></h3>
                                 </div>
                             </div>
                             <div class="card-body pb-0">
@@ -313,8 +311,8 @@
                                 <div class="d-flex flex-wrap justify-content-between pb-6">
                                     <div class="d-flex flex-wrap">
                                         <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">                    
-                                            <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="auth.business && auth.business.wallet">
-                                                <span data-kt-countup="true" data-kt-countup-value="6,840" data-kt-countup-prefix="$" class="counted" data-kt-initialized="1" v-text="system_setting.currency+''+auth.business.wallet.credit_balance"></span>
+                                            <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="wallet">
+                                                <span data-kt-countup="true" data-kt-countup-value="6,840" data-kt-countup-prefix="$" class="counted" data-kt-initialized="1" v-text="wallet ? (system_setting.currency+''+wallet.credit_balance) : '0'"></span>
                                             </span>
                                             <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Net Earnings')"></span>
                                         </div>
@@ -326,9 +324,9 @@
                                         </div>
                                         <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
                                             <span class="fs-2x fw-bold text-gray-800 lh-1">
-                                                <span data-kt-countup="true" data-kt-countup-value="1,240" data-kt-countup-prefix="$" class="counted" data-kt-initialized="1">$1,240</span>
+                                                <span data-kt-countup="true" data-kt-countup-value="1,240" data-kt-countup-prefix="$" class="counted" data-kt-initialized="1" v-text="wallet ? wallet.credit_balance : '0'"></span>
                                             </span>
-                                            <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2">Fees</span>
+                                            <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Balance to withdraw')"></span>
                                         </div>
                                     </div>
                                     <a href="#" class="btn btn-primary  px-6 flex-shrink-0 align-self-center" v-text="translate('Withdraw Earnings')"></a>             
@@ -338,7 +336,6 @@
                         <div class="card-header">
                             <div class="card-title flex gap-4">
                                 <h2 class="w-full" v-text="translate('Withdrawal requests')"></h2>
-                                <div class="flex-end my-4"><a href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('New request')"></a></div>
                             </div>
                         </div>
                         <div class="card-body pt-2" v-if="content.business_withdrawals">
