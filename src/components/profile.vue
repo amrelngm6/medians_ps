@@ -641,7 +641,10 @@ export default {
 
         
         const sendWithdrawRequest = () => {
-            
+            if (withdrawRequest.value.amount < 1)
+            {
+                return showAlert(translate('Amount is required'));
+            }
             if (window.confirm(translate('Conffirm to submit')))
             {
                 var params = new URLSearchParams();
