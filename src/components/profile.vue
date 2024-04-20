@@ -23,7 +23,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body mx-5 mx-xl-15 my-7"  v-if="content.wallet">
                         <!--begin::Balance preview-->
-                        <div class="d-flex text-center mb-9" v-if="content.wallet">
+                        <div class="d-flex text-center mb-9">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Current Balance')"></div>
                                 <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(content.wallet.credit_balance ?? '0')"></div>
@@ -44,7 +44,7 @@
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
                             
-                            <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
                                 <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
                                     <option value="paypal">PayPal</option>
@@ -54,10 +54,12 @@
                                 </select>
                             </div>
 
-                            <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
-                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
-                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
-                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                            <div class="w-full" v-if="withdrawRequest.payment_method" v-for="(paymentInfo, key) in payment_fields">
+                                <div class="fv-row mb-7 fv-plugins-icon-container" v-if="withdrawRequest.payment_method == key" >
+                                    <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
+                                    <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="withdrawRequest.field[key]" >
+                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                </div>
                             </div>
                             
                             <div class="fv-row mb-7">
@@ -718,6 +720,7 @@ export default {
         }
         
         return {
+            payment_fields,
             cancelRequest,
             sendWithdrawRequest,
             withdrawRequest,
