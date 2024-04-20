@@ -46,7 +46,6 @@ class BusinessWithdrawalRepository
 	*/
 	public function store($data) 
 	{
-        return null;
 		$Model = new BusinessWithdrawal();
 		
 		foreach ($data as $key => $value) 
