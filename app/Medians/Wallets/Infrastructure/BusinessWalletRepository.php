@@ -65,7 +65,7 @@ class BusinessWalletRepository
 
 		unset($data['user_type']);
 
-		$Object = BusinessWallet::find($data['vacation_id']);
+		$Object = BusinessWallet::find($data['wallet_id']);
 		
 		if ($Object->date < date('Y-m-d'))
 		{
