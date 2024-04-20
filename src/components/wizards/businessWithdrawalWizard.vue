@@ -266,7 +266,6 @@ export default
                 content,
                 activeItem,
                 translate,
-                savePackageSubscription,
                 searchText,
                 back
             };
