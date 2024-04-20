@@ -1,10 +1,11 @@
 <template>
     <div class="w-full " >
-        
-        <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
+        <withdrawal_wizard v-if="showWizard" />
+
+        <div v-if="!showWizard" class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
         </div>
-        <div class="mx-2 bg-white px-4 rounded shadow-sm py-2 ">
+        <div v-if="!showWizard" class="mx-2 bg-white px-4 rounded shadow-sm py-2 ">
             <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex ">
                 <div class="card-title">
                     <div class="d-flex align-items-center position-relative my-1">
@@ -50,6 +51,11 @@
                         <vue-feather class="w-5" type="x-circle"></vue-feather>
                     </button>
                 </template>
+                <template #item-edit="item">
+                    <button class="p-2 hover:text-gray-600 text-red-500" @click="handleAction('edit', item)">
+                        <vue-feather class="w-5" type="edit"></vue-feather>
+                    </button>
+                </template>
             </datatabble>
         </div>
     </div>
@@ -61,12 +67,14 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
+import withdrawal_wizard from '@/components/wizards/businessWithdrawalWizard.vue';
     
 export default
 {
     components: {
         'datatabble': Vue3EasyDataTable,
-        VueTailwindDatepicker
+        withdrawal_wizard,
+        VueTailwindDatepicker,
     },
     
     setup(props) {
@@ -81,7 +89,7 @@ export default
             month: "MMM",
         });
         
-        const showEditSide = ref(false);
+        const showWizard = ref(false);
 
         const url =  props.conf.url+props.path+'?load=json';
 
@@ -110,7 +118,7 @@ export default
 
         function closeSide (data) 
         {
-            showEditSide.value = false;
+            showWizard.value = false;
         }
 
         /**
@@ -125,7 +133,7 @@ export default
             {
                 case 'edit':
                     activeItem.value = data;
-                    showEditSide.value = true; 
+                    showWizard.value = true; 
                     break;  
 
                 case 'delete':
@@ -146,7 +154,7 @@ export default
             handleSelectedDate,
             dateValue,
             formatter,
-            showEditSide,
+            showWizard,
             closeSide,
             url ,
             content,
