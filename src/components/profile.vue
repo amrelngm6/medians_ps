@@ -647,6 +647,7 @@ export default {
                 var params = new URLSearchParams();
                 params.append('type', 'BusinessWithdrawal.create')
                 params.append('params[amount]', withdrawRequest.value.amount)
+                params.append('params[wallet_id]', content.value.wallet.wallet_id)
                 params.append('params[notes]', withdrawRequest.value.notes)
                 handleRequest(params, '/api/create').then(response => {
                     handleAccess(response)
