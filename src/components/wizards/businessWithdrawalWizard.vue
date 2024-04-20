@@ -56,14 +56,6 @@
                                                         <div class="text-gray-800 fs-normal" v-text="activeItem.business.type"></div>
                                                     </div>
                                                 </div>
-                                                <!--end::Text-->
-
-                                                <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600" >
-                                                    <span v-text="activeItem.user.field.address"></span>
-                                                    <span v-text="activeItem.user.field.country"></span>
-                                                </div>
-                                                <!--end::Description-->
                                             </div>
                                             <!--end::Col-->
 
