@@ -21,7 +21,7 @@
                     <!--end::Modal header-->
 
                     <!--begin::Modal body-->
-                    <div class="modal-body mx-5 mx-xl-15 my-7">
+                    <div class="modal-body mx-5 mx-xl-15 my-7"  v-if="content.wallet">
                         <!--begin::Balance preview-->
                         <div class="d-flex text-center mb-9" v-if="content.wallet">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
@@ -38,12 +38,12 @@
                         <!--begin::Form-->
                         <div id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
                             <!--begin::Input group-->
-                            <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
                                 <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
-
+                            
                             <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
                                 <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
@@ -51,16 +51,18 @@
                                     <option value="paystack">PayStack</option>
                                     <option value="bank">Bank transfer</option>
                                     <option value="vodafone_cash">Vodafone cash</option>
-                            </select>
+                                </select>
                             </div>
-                            <!--end::Input group-->
 
-                            <!--begin::Input group-->
+                            <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
+                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
+                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
+                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                            </div>
+                            
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mb-2" v-text="translate('Add notes')"></label>
                                 <textarea class="form-control form-control-solid rounded-3 mb-5" v-model="withdrawRequest.notes"></textarea>
-                                <!--end::Input-->
                             </div>
                             <!--begin::Actions-->
                             <div class="text-center">
@@ -572,7 +574,7 @@ export default {
 
 
         
-        const tabsList = ref({
+        const payment_fields = ref({
             'paypal': [[
                     { title: translate('Fullname'), type: '', code: 'fullname' },
                     { title: translate('Email'), type: '', code: 'email' },
