@@ -96,11 +96,6 @@
                                             <div class="fw-semibold text-gray-600 fs-7" v-text="translate(field.code)"></div>
                                             <div class="fw-bold text-gray-800 fs-6" v-text="field.value"></div>
                                         </div>
-
-                                        <div class="mb-6">
-                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
-                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.status"></div>
-                                        </div>
                                     </div>
                 
                                     <!--end::Invoice 2 sidebar-->
