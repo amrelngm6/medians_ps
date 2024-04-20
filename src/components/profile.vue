@@ -36,7 +36,7 @@
                         <!--end::Balance preview-->
 
                         <!--begin::Form-->
-                        <form id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#" data-select2-id="select2-data-kt_modal_adjust_balance_form">
+                        <div id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
                                 <!--begin::Label-->
@@ -68,7 +68,7 @@
                                 </button>
                             </div>
                             <!--end::Actions-->
-                        </form>
+                        </div>
                         <!--end::Form-->
                     </div>
                     <!--end::Modal body-->
