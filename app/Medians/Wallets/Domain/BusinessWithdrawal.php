@@ -2,8 +2,9 @@
 
 namespace Medians\Wallets\Domain;
 
-use Medians\Businesses\Domain\Business;
 use Shared\dbaser\CustomModel;
+use Medians\Businesses\Domain\Business;
+use Medians\CustomFields\Domain\CustomField;
 
 
 class BusinessWithdrawal extends CustomModel
@@ -27,6 +28,13 @@ class BusinessWithdrawal extends CustomModel
 	];
 
 
+	public $appends = ['field'];
+
+	public function getFieldAttribute()
+	{
+		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+	}
+
 	/**
 	 * Relations with onother Models
 	 */	
@@ -44,6 +52,11 @@ class BusinessWithdrawal extends CustomModel
 	{
 		return $this->hasOne(BusinessWallet::class, 'wallet_id', 'wallet_id');	
 	}
-	
+
+	public function custom_fields()
+	{
+		return $this->morphMany(CustomField::class, 'model');
+	}
+
 
 }
