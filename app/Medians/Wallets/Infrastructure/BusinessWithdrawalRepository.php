@@ -145,7 +145,7 @@ class BusinessWithdrawalRepository
 
 	public function updateBalance($Object) 
 	{
-        $check = $Object->with('business', 'wallet')->find($Object->withdrwal_id);
+        $check = $Object->with('business', 'wallet')->find($Object->withdrawal_id);
 
         $balance = $check->wallet->credit_balance ?? 0;
 
