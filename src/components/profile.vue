@@ -484,9 +484,12 @@ export default {
             { title: translate('Business info'), link: 'business_info' },
             { title: translate('Subscriptions'), link: 'subscriptions' },
             { title: translate('Invoices'), link: 'invoices' },
-            { title: translate('Withdrawal'), link: 'withdrawal' },
         ]);
 
+        if (props.auth.role_id == 3)
+        {
+            tabsList.value.add({ title: translate('Withdrawal'), link: 'withdrawal' });
+        }
         const calcDaysWidth = () => {
             let subscription = activeItem.value.business.subscription
 
