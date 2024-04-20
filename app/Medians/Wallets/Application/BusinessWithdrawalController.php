@@ -35,7 +35,7 @@ class BusinessWithdrawalController extends CustomController
 	{
 		return [
             [ 'value'=> "withdrawal_id", 'text'=> "#"],
-            [ 'value'=> "business.name", 'text'=> __('Business'), 'sortable'=> true ],
+            [ 'value'=> "business.business_name", 'text'=> __('Business'), 'sortable'=> true ],
             [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
             [ 'value'=> "due_date", 'text'=> __('Due Date'), 'sortable'=> true ],
