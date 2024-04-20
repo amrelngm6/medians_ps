@@ -13,8 +13,9 @@
                         <!--end::Modal title-->
 
                         <!--begin::Close-->
-                        <div id="kt_modal_adjust_balance_close" class="btn btn-icon btn-sm btn-active-icon-primary">
-                            <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>                </div>
+                        <div id="kt_modal_adjust_balance_close" @click="showWizard = false" class="btn btn-icon btn-sm btn-active-icon-primary">
+                            <vue-feather type="close" />
+                        </div>
                         <!--end::Close-->
                     </div>
                     <!--end::Modal header-->
