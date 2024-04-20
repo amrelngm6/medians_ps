@@ -45,7 +45,6 @@ class BusinessController extends CustomController
             [ 'value'=> "business_id", 'text'=> "#"],
             [ 'value'=> "business_name", 'text'=> __('business_name'), 'sortable'=> true ],
             [ 'value'=> "logo", 'text'=> __('Logo'), 'sortable'=> true ],
-            [ 'value'=> "type", 'text'=> __('Type'), 'sortable'=> true ],
             [ 'value'=> "owner.name", 'text'=> __('owner'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('edit')  ],
