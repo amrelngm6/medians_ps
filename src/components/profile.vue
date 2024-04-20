@@ -61,15 +61,10 @@
                             </div>
                             <!--begin::Actions-->
                             <div class="text-center">
-                                <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')"></button>
+                                <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showWizard = false"></button>
 
-                                <button type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
-                                    <span class="indicator-label">
-                                        Submit
-                                    </span>
-                                    <span class="indicator-progress">
-                                        Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                    </span>
+                                <button @click="sendWithdrawRequest" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
+                                    <span class="indicator-label" v-text="translate('Submit')"></span>
                                 </button>
                             </div>
                             <!--end::Actions-->
@@ -587,8 +582,19 @@ export default {
                 activeItem.value = content.value.user;
             });
         }
-
+        
         load();
+        
+        const sendWithdrawRequest = () => {
+            
+            var params = new URLSearchParams();
+            params.append('type', 'BusinessWithdrawal.create')
+            params.append('params[amount]', withdrawRequest.value.amount)
+            params.append('params[notes]', withdrawRequest.value.notes)
+            handleRequest(params, '/api/create').then(response => {
+                content.value = JSON.parse(JSON.stringify(response));
+            });
+        }
 
         const closeSide = () => {
             showAddSide.value = false;
@@ -640,6 +646,7 @@ export default {
         }
 
         return {
+            sendWithdrawRequest,
             withdrawRequest,
             checkFeatureLimit,
             cost,
