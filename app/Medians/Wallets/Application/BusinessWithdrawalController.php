@@ -3,13 +3,9 @@ namespace Medians\Wallets\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Wallets\Infrastructure\WalletRepository;
-use Medians\Customers\Infrastructure\SuperVisorRepository;
-use Medians\Vehicles\Infrastructure\VehicleRepository;
-use Medians\Drivers\Infrastructure\DriverRepository;
-use Medians\Locations\Infrastructure\StateRepository;
+use Medians\Wallets\Infrastructure\BusinessWithdrawalRepository;
 
-class WalletController extends CustomController 
+class BusinessWithdrawalController extends CustomController 
 {
 
 	/**
@@ -19,26 +15,13 @@ class WalletController extends CustomController
 
 	protected $app;
 
-	public $vehicleRepo;
-
-	public $driverRepo;
-
-	public $stateRepo;
-
-	public $supervisorRepo;
-	
-
 	function __construct()
 	{
 
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
 
-		$this->repo = new WalletRepository($user->business);
-		$this->supervisorRepo = new SuperVisorRepository($user->business);
-		$this->vehicleRepo = new VehicleRepository($user->business);
-		$this->driverRepo = new DriverRepository($user->business);
-		$this->stateRepo = new StateRepository();
+		$this->repo = new BusinessWithdrawalRepository($user->business);
 	}
 
 
@@ -51,10 +34,9 @@ class WalletController extends CustomController
 	public function columns( ) 
 	{
 		return [
-            [ 'value'=> "wallet_id", 'text'=> "#"],
+            [ 'value'=> "vacation_id", 'text'=> "#"],
+            [ 'value'=> "date", 'text'=> __('date'), 'sortable'=> true ],
             [ 'value'=> "user.name", 'text'=> __('User'), 'sortable'=> true ],
-            [ 'value'=> "credit_balance", 'text'=> __('Credit'), 'sortable'=> true ],
-            [ 'value'=> "debig_balance", 'text'=> __('Debit'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('Edit') ],
             [ 'value'=> "delete", 'text'=> __('Delete') ],
         ];
@@ -85,7 +67,7 @@ class WalletController extends CustomController
 
 			return render('wallets', [
 		        'load_vue' => true,
-		        'title' => __('Wallets'),
+		        'title' => __('BusinessWithdrawals'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -217,13 +199,13 @@ class WalletController extends CustomController
 	/**
 	 * Load user wallets
 	 */
-	public function getWallet()
+	public function getBusinessWithdrawal()
 	{
 		$user = $this->app->auth();
 
 		if (empty($user->customer_id)) { return null; }
 		
-		return $this->repo->getWallet($user->customer_id);
+		return $this->repo->getBusinessWithdrawal($user->customer_id);
 	}
 
 
