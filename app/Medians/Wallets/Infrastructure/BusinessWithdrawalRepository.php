@@ -100,7 +100,7 @@ class BusinessWithdrawalRepository
                 return $check->delete();
             }
 
-            return throw new \Exception("Not allowed to be deleted", 1);
+            return __("Not allowed to be deleted");
 
 		} catch (\Exception $e) {
 

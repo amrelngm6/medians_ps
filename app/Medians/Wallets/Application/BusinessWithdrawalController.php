@@ -143,10 +143,14 @@ class BusinessWithdrawalController extends CustomController
 
         try {
 
-            if ($this->repo->delete($params['withdrawal_id']))
+			$delete = $this->repo->delete($params['withdrawal_id']);
+
+            if ($delete == true)
             {
                 return array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1);
-            }
+            } else {
+                return array('error' => $delete);
+			}
 
         } catch (Exception $e) {
 			return array('error'=>$e->getMessage());
