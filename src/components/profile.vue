@@ -451,6 +451,7 @@ export default {
             { title: translate('Business info'), link: 'business_info' },
             { title: translate('Subscriptions'), link: 'subscriptions' },
             { title: translate('Invoices'), link: 'invoices' },
+            { title: translate('Withdrawal'), link: 'withdrawal' },
         ]);
 
         const calcDaysWidth = () => {
@@ -460,7 +461,6 @@ export default {
             {
                 return (subscription.past_days / subscription.total_days) * 100 ;
             }
-            
         }
 
         const setActiveTab = (tab) => {
