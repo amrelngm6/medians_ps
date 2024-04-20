@@ -309,7 +309,7 @@
                                 </div>
                             </div>
                             <div class="card-body pb-0">
-                                <span class="fs-5 fw-semibold text-gray-600 pb-5 d-block">Last 30 day earnings calculated. Apart from arranging the order of topics.</span>
+                                <span class="fs-5 fw-semibold text-gray-600 pb-5 d-block" v-text="translate("This is do not consider the debit balance")"></span>
                                 <div class="d-flex flex-wrap justify-content-between pb-6">
                                     <div class="d-flex flex-wrap">
                                         <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">                    
