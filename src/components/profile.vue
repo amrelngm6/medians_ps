@@ -655,12 +655,15 @@ export default {
         
         const cancelRequest = (withdrawal) => {
             
-            var params = new URLSearchParams();
-            params.append('type', 'BusinessWithdrawal.delete')
-            params.append('params[withdrawal_id]', withdrawal.withdrawal_id)
-            handleRequest(params, '/api/delete').then(response => {
-                handleAccess(response)
-            });
+            if (window.confirm(translate('confirm_delete')))
+            {
+                var params = new URLSearchParams();
+                params.append('type', 'BusinessWithdrawal.delete')
+                params.append('params[withdrawal_id]', withdrawal.withdrawal_id)
+                handleRequest(params, '/api/delete').then(response => {
+                    handleAccess(response)
+                });
+            }
         }
         
         return {
