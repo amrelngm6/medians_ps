@@ -34,9 +34,12 @@ class BusinessWithdrawalController extends CustomController
 	public function columns( ) 
 	{
 		return [
-            [ 'value'=> "vacation_id", 'text'=> "#"],
-            [ 'value'=> "date", 'text'=> __('date'), 'sortable'=> true ],
+            [ 'value'=> "withdrawal_id", 'text'=> "#"],
             [ 'value'=> "user.name", 'text'=> __('User'), 'sortable'=> true ],
+            [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
+            [ 'value'=> "due_date", 'text'=> __('Due Date'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> __('Status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> __('Edit') ],
             [ 'value'=> "delete", 'text'=> __('Delete') ],
         ];
@@ -67,7 +70,7 @@ class BusinessWithdrawalController extends CustomController
 
 			return render('wallets', [
 		        'load_vue' => true,
-		        'title' => __('BusinessWithdrawals'),
+		        'title' => __('Withdrawals'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
