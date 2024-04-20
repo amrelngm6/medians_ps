@@ -377,6 +377,10 @@ class APIController extends CustomController
 				$controller = new Plans\Application\PlanSubscriptionController;
 				break;
 			
+			case 'BusinessWithdrawal.update':
+				$controller = new Wallets\Application\BusinessWithdrawalController;
+				break;
+			
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);

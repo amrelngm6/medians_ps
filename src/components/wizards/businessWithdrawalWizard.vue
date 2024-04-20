@@ -231,7 +231,7 @@ export default
                     d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
                     params.append('params[' + k + ']', d)
                 }
-                params.append('type', 'BusinessWallet.update' )
+                params.append('type', 'BusinessWithdrawal.update' )
                 handleRequest(params, '/api/update').then(response => {
                     handleAccess(response)
                 })
