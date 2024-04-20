@@ -213,13 +213,15 @@ export default
             const content = ref({});
             const searchText = ref('');
 
-            console.log(props.business_setting);
-
             if (props.item) {
                 activeItem.value = props.item
             }
 
-            const savePackageSubscription = () => {
+            const back = () => {
+                emit('callback');
+            }
+
+            const saveItem = () => {
                 var params = new URLSearchParams();
                 let array = JSON.parse(JSON.stringify(activeItem.value));
                 let keys = Object.keys(array)
@@ -229,19 +231,11 @@ export default
                     d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
                     params.append('params[' + k + ']', d)
                 }
-
-                let type = array.subscription_id > 0 ? 'update' : 'create';
-                params.append('type', 'PackageSubscription.' + type)
-                handleRequest(params, '/api/' + type).then(response => {
+                params.append('type', 'BusinessWallet.update' )
+                handleRequest(params, '/api/update').then(response => {
                     handleAccess(response)
                 })
             }
-
-            const back = () => {
-                emit('callback');
-            }
-
-
 
             const confirmItem = () => {
                 if (window.confirm(translate('Confirm and set request as done'))) {
