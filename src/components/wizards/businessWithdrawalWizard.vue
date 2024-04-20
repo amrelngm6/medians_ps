@@ -83,7 +83,7 @@
                                     
                                     <div v-if="activeItem.wallet"
                                         class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
-                                        <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Wallet Details')"></h6>
+                                        <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Payment Details')"></h6>
 
                                         <div class="mb-6">
                                             <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Current balance')"></div>

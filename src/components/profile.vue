@@ -50,7 +50,7 @@
                                     <option value="paypal">PayPal</option>
                                     <option value="paystack">PayStack</option>
                                     <option value="bank">Bank transfer</option>
-                                    <option value="cash">Cash</option>
+                                    <option value="vodafone_cash">Vodafone cash</option>
                             </select>
                             </div>
                             <!--end::Input group-->
@@ -569,6 +569,37 @@ export default {
             { title: translate('Invoices'), link: 'invoices' },
             { title: translate('Withdrawal'), link: 'withdrawal' },
         ]);
+
+
+        
+        const tabsList = ref({
+            'paypal': [[
+                    { title: translate('Fullname'), type: '', code: 'fullname' },
+                    { title: translate('Email'), type: '', code: 'email' },
+                    { title: translate('Mobile'), type: '', code: 'mobile' },
+                ]
+            ],
+            'paystack': [[
+                    { title: translate('Fullname'), type: '', code: 'fullname' },
+                    { title: translate('Email'), type: '', code: 'email' },
+                    { title: translate('Mobile'), type: '', code: 'mobile' },
+                ]
+            ],
+            'bank': [[
+                    { title: translate('Fullname'), type: '', code: 'fullname' },
+                    { title: translate('Email'), type: '', code: 'email' },
+                    { title: translate('Mobile'), type: '', code: 'mobile' },
+                    { title: translate('Bank name'), type: '', code: 'bank_account_name' },
+                    { title: translate('Account name'), type: '', code: 'bank_name' },
+                    { title: translate('Account IBAN'), type: '', code: 'bank_iban' },
+                ]
+            ],
+            'vodafone_cash': [[
+                    { title: translate('Fullname'), type: '', code: 'fullname' },
+                    { title: translate('Mobile'), type: '', code: 'mobile' },
+                ]
+            ],
+        });
 
         const calcDaysWidth = () => {
             let subscription = activeItem.value.business.subscription
