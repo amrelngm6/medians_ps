@@ -89,12 +89,12 @@ class BusinessWithdrawalController extends CustomController
 
 		$params = $this->app->request()->get('params');
 
-		$user = $this->app>auth();
+		$user = $this->app->auth();
 		
         try {	
 			
 			$params['business_id'] = $user->business->business_id;
-			
+
 			$returnData = (!empty($this->repo->store($params))) 
 			? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
 			: array('success'=>0, 'result'=>'Error', 'error'=>1);
