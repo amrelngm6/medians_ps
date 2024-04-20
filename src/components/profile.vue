@@ -9,11 +9,11 @@
                     <!--begin::Modal header-->
                     <div class="modal-header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bold">Adjust Balance</h2>
+                        <h2 class="fw-bold" v-text="translate('Withdraw from balance')"></h2>
                         <!--end::Modal title-->
 
                         <!--begin::Close-->
-                        <div id="kt_modal_adjust_balance_close" @click="showWizard = false" class="btn btn-icon btn-sm btn-active-icon-primary">
+                        <div id="kt_modal_adjust_balance_close" @click="showWizard = false" class="btn btn-sm btn-active-icon-primary">
                             <vue-feather type="close" />
                         </div>
                         <!--end::Close-->
