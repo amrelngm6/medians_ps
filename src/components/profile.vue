@@ -523,7 +523,7 @@ export default {
 
         const checkRole = (role_id, tab) => {
             
-            if (role_id == 1 && (tab == 'business_info' || tab == 'subscriptions')) 
+            if (role_id == 1 && (tab == 'business_info' || tab == 'subscriptions' || tab == 'invoices' || tab == 'withdrawal')) 
                 return false
 
             return true;
