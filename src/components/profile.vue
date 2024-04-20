@@ -324,7 +324,7 @@
                                         </div>
                                         <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
                                             <span class="fs-2x fw-bold text-gray-800 lh-1">
-                                                <span  v-text="content.wallet ? (system_setting.currency+'-'+(content.wallet.debit_balance ?? '0')) : '0'"></span>
+                                                <span  v-text="content.wallet ? (system_setting.currency+''+('-'+content.wallet.debit_balance ?? '0')) : '0'"></span>
                                             </span>
                                             <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Debit balance')"></span>
                                         </div>
