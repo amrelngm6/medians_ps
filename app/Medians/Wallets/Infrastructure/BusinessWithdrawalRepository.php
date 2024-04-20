@@ -48,7 +48,7 @@ class BusinessWithdrawalRepository
 			}
 		}		
 
-		$dataArray['data'] = date('Y-m-d');
+		$dataArray['date'] = date('Y-m-d');
 		
 		// Return the  object with the new data
     	$Object = BusinessWithdrawal::firstOrCreate($dataArray);
