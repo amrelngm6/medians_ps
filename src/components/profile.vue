@@ -695,6 +695,7 @@ export default {
                 let k, d, value = '';
                 for (let i = 0; i < withdrawRequest.value.field.length; i++) {
                     k = withdrawRequest.value.field[i]
+                    console.log(k);
                     params.append('params[field][' + k.code + ']', k.value)
                 }
                 handleRequest(params, '/api/create').then(response => {
