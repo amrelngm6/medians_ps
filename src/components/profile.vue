@@ -23,7 +23,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                         <!--begin::Balance preview-->
-                        <div class="d-flex text-center mb-9">
+                        <div class="d-flex text-center mb-9" v-if="content.wallet">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Current Balance')"></div>
                                 <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(content.wallet.credit_balance ?? '0')"></div>
@@ -38,7 +38,7 @@
                         <!--begin::Form-->
                         <form id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#" data-select2-id="select2-data-kt_modal_adjust_balance_form">
                             <!--begin::Input group-->
-                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
                                 <!--begin::Label-->
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
 
