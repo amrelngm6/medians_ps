@@ -39,6 +39,10 @@
                             <img :src="item.picture" class="w-8 h-8 rounded-full" />
                         </template>
 
+                        <template #item-logo="item">
+                            <img :src="item.logo" class="w-8 h-8 rounded-full" />
+                        </template>
+
                         <template #item-business="item">
                             <div class="flex gap-2" v-if="item.business" >
                                 <img :src="item.business.logo" class="w-8 h-8 rounded-full" />
