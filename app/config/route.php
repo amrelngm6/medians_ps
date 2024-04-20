@@ -287,6 +287,12 @@ if(isset($app->auth()->id))
     /** @return states */
     RouteHandler::get('/admin/states', Medians\Locations\Application\StateController::class.'@index');
 
+    /** @return Business Withdrawals */
+    RouteHandler::get('/admin/business_withdrawals', Medians\Wallets\Application\BusinessWithdrawalController::class.'@index');
+
+    /** @return Business Wallets */
+    RouteHandler::get('/admin/business_wallets', Medians\Wallets\Application\BusinessWalletController::class.'@index');
+
 
     /**
     * @return Content editor
