@@ -72,12 +72,13 @@ class BusinessWithdrawalRepository
     public function update($data)
     {
 
-		unset($data['user_type']);
 
 		$Object = BusinessWithdrawal::find($data['withdrawal_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
+
+        !(isset( $data['status']) && $data['status'] == 'done') ?? $this->updateBalance($Object);
 
     	return $Object;
 
@@ -139,6 +140,20 @@ class BusinessWithdrawalRepository
 	{
 		$code = date('ym').rand(9999, 999999); 
 		return BusinessWithdrawal::where('code', $code)->first() ? $this->generateCode() : $code;
+	}
+
+
+	public function updateBalance($Object) 
+	{
+        $check = $Object->with('business', 'wallet')->find($Object->withdrwal_id);
+
+        $balance = $check->wallet->credit_balance ?? 0;
+
+        $newBalance = $balance + $check->amount;
+
+        $update = $check->wallet->update(['credit_balance'=>$newBalance]);
+
+        return $update;
 	}
 
 
