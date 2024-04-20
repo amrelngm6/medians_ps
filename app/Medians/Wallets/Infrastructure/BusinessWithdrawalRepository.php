@@ -63,6 +63,8 @@ class BusinessWithdrawalRepository
 		// Return the  object with the new data
     	$Object = BusinessWithdrawal::firstOrCreate($dataArray);
 
+        isset($data['field']) ? $this->storeCustomFields((array) $data['field'], $Object) : '';
+
     	return $Object;
     }
     	
@@ -157,5 +159,29 @@ class BusinessWithdrawalRepository
 	}
 
 
+    
+	/**
+	* Save related items to database
+	*/
+	public function storeCustomFields($data, $id) 
+	{
+		CustomField::where('model_type', BusinessWithdrawal::class)->where('model_id', $id)->delete();
+		if ($data)
+		{
+			foreach ($data as $key => $value)
+			{
+				$fields = [];
+				$fields['model_type'] = BusinessWithdrawal::class;	
+				$fields['model_id'] = $id;	
+				$fields['code'] = $key;	
+				$fields['value'] = $value;
+
+				$Model = CustomField::create($fields);
+				$Model->update($fields);
+			}
+	
+			return $Model;		
+		}
+	}
  
 }
