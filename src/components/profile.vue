@@ -406,7 +406,7 @@
                                             <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Debit balance')"></span>
                                         </div>
                                     </div>
-                                    <a href="#" @click="showWizard = true" class="btn btn-primary  px-6 flex-shrink-0 align-self-center" v-text="translate('Withdraw Earnings')"></a>             
+                                    <a href="#" @click="showWizard = true" class="btn btn-bg-info text-white text-white px-6 flex-shrink-0 align-self-center" v-text="translate('Withdraw Earnings')"></a>             
                                 </div>
                             </div>
                         </div>
