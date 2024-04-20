@@ -43,7 +43,7 @@
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
 
                                 <!--begin::Input-->
-                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.debit_balance" inputmode="text">
+                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
                                 <!--end::Input-->
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
