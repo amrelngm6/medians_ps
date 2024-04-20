@@ -24,28 +24,16 @@
                                     </div>
                                     <div class="m-0">
                                         
-                                        <div class="fw-bold fs-3 text-gray-800 mb-8" v-text="translate('Invoice')+' #'+activeItem.code"> </div>
+                                        <div class="fw-bold fs-3 text-gray-800 mb-8" v-text="translate('Withdrawal request')+' #'+activeItem.withdrawal_id"> </div>
                                         <div class="row g-5 mb-11">
                                             <div class="col-sm-6">
-                                                
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issue Date')"></div>
-                                                
-
-                                                <!--end::Col-->
+                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Sent Date')"></div>
                                                 <div class="fw-bold fs-6 text-gray-800" v-text="activeItem.date"></div>
-                                                <!--end::Col-->
                                             </div>
-                                            <!--end::Col-->
-
-                                            <!--end::Col-->
                                             <div class="col-sm-6">
-                                                
                                                 <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
-                                                
-
-                                                <!--end::Info-->
                                                 <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center flex-wrap">
-                                                    <span class="pe-2" v-text="activeItem.date"></span>
+                                                    <input type="date"  v-model="activeItem.due_date" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-125px " :placeholder="translate('Due date for proceed')">
                                                 </div>
                                                 <!--end::Info-->
                                             </div>
@@ -247,9 +235,9 @@ export default
 
             const showEditSide = ref(false);
             const activeItem = ref({});
-            const activeTab = ref(props.usertype);
+            const activeTab = ref('Business');
             const content = ref({});
-            const fillable = ref([props.usertype, 'Package', 'Subscription', 'Confirm']);
+            const fillable = ref(['Business', 'Payment', 'Confirm']);
             const searchText = ref('');
 
             console.log(props.business_setting);
@@ -281,101 +269,10 @@ export default
             }
 
 
-            const progressWidth = () => {
-                let requiredData = ['model_id', 'package_id', 'start_date', 'payment_type', 'daily_trips', 'payment_status'];
 
-                return getProgressWidth(requiredData, activeItem);
-            }
-
-            const checkSimilarUser = (item) => {
-                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                let email = name ? name : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return email ? email : ((item.parent.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false);
-            }
-
-            const setUser = (model) => {
-                activeItem.value.model_id = props.usertype == 'student' ? model.student_id : model.customer_id;
-                activeItem.value.model = model;
-                activeItem.value.user_type = props.usertype;
-                activeTab.value = 'Package';
-                searchText.value = null;
-            }
-
-            const findUser = () => {
-                for (let i = 0; i < props.userslist.length; i++) {
-                    props.userslist[i].show = searchText.value.trim() ? checkSimilarUser(props.userslist[i]) : 1;
-                }
-            }
-
-
-            const checkSimilarPackage = (item) => {
-                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return name ? name : ((item.description).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false);
-            }
-
-            const setPackage = (packageItem) => {
-                activeItem.value.package_id = packageItem.package_id;
-                activeItem.value.package = packageItem;
-                activeTab.value = 'Subscription';
-                searchText.value = null;
-            }
-
-            const findPackage = () => {
-                if (props.packages) {
-                    for (let i = 0; i < props.packages.length; i++) {
-                        props.packages[i].show = searchText.value.trim() ? checkSimilarPackage(props.packages[i]) : 1;
-                    }
-                }
-            }
-
-            const setType = (val) => {
-                activeItem.value.payment_type = val;
-                dateChanged()
-            }
-
-            const dateChanged = () => {
-
-                if (!activeItem.value.start_date)
-                    return null;
-
-                let value = 0;
-                if (activeItem.value.payment_type == 'month')
-                    value = 1;
-
-                if (activeItem.value.payment_type == 'quarter')
-                    value = 3;
-
-                if (activeItem.value.payment_type == 'year')
-                    value = 12;
-
-                activeItem.value.end_date = durationMonthsDate(activeItem.value.start_date, value);
-            }
-
-            const showTip = ref(false);
-
-            const totalCost = () => {
-
-                let priceType = (activeItem.value.daily_trips == 1) ? ('single_cost_' + activeItem.value.payment_type) : ('double_cost_' + activeItem.value.payment_type);
-
-                activeItem.value.total_cost = activeItem.value.package[priceType];
-
-                return activeItem.value.total_cost;
-            }
 
 
             return {
-                totalCost,
-                showTip,
-                dateChanged,
-                setType,
-                findPackage,
-                checkSimilarPackage,
-                setPackage,
-                findUser,
-                setUser,
-                checkSimilarUser,
-                progressWidth,
-                showEditSide,
                 content,
                 fillable,
                 activeItem,
