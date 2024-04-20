@@ -75,7 +75,7 @@
                                     <div class="mb-6">
                                         <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
 
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="system_setting.currency+''+activeItem.wallet.amount"></div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-if="system_setting" v-text="system_setting.currency+''+activeItem.wallet.amount"></div>
                                     </div>
                                     
                                     <!--begin::Item-->
