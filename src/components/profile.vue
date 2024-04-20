@@ -692,7 +692,12 @@ export default {
                 params.append('params[wallet_id]', content.value.wallet.wallet_id)
                 params.append('params[notes]', withdrawRequest.value.notes)
                 params.append('params[payment_method]', withdrawRequest.value.payment_method)
-                params.append('params[field]', JSON.stringify(withdrawRequest.value.field))
+                let k, d, value = '';
+                for (let i = 0; i < withdrawRequest.value.field.length; i++) {
+                    k = withdrawRequest.value.field[i]
+                    d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
+                    params.append('params[field][' + k + ']', d)
+                }
                 handleRequest(params, '/api/create').then(response => {
                     handleAccess(response)
                 });
