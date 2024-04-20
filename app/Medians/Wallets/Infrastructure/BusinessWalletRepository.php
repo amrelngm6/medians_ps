@@ -18,6 +18,11 @@ class BusinessWalletRepository
 		return BusinessWallet::with('user')->find($id);
 	}
 
+	public function getBusinessWallet($id)
+	{
+		return BusinessWallet::with('business', 'user')->where('business_id', $id)->first();
+	}
+
 	public function get($limit = 100)
 	{
 		return BusinessWallet::with('user')->limit($limit)->get();

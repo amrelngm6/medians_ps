@@ -25,7 +25,7 @@ class PaymentService
 	}
 
 
-	public function storeSubscriptionTransaction($params)
+	public function storeSubscriptionTransaction($params, $user)
 	{
 		try {
 
@@ -33,14 +33,12 @@ class PaymentService
 
 			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
 
-			$class = new Student;
-
-			$invoice = $this->addInvoice($params, $class::class);
+			$invoice = $this->addInvoice($params, $user);
 
 			$transaction = (array) $params['transaction'];
-			$transaction['model_id'] = $params['model_id'];
 			$transaction['invoice_id'] = $invoice->invoice_id;
-			$transaction['model_type'] = $class::class;
+			$transaction['model_id'] = $user->customer_id;
+			$transaction['model_type'] = $user::class;
 			$transaction['item_id'] = $transaction['subscription_id'];
 			$transaction['item_type'] = $packageSubscriptionClass::class;
 			$transaction['date'] = date('Y-m-d');
@@ -56,21 +54,20 @@ class PaymentService
 
 
 	
-	public function storeTripTransaction($params)
+	public function storeTripTransaction($params, $user)
 	{
 		try {
 
 			$this->transactionRepo = new TransactionRepository($params['business']);
 
 			$PrivateTrip = new \Medians\Trips\Domain\PrivateTrip;
-			$class = new \Medians\Customers\Domain\Parents;
 
-			$invoice = $this->addInvoice($params, $class::class);
+			$invoice = $this->addInvoice($params, $user);
 
 			$transaction = (array) $params['transaction'];
 			$transaction['model_id'] = $params['model_id'];
 			$transaction['invoice_id'] = $invoice->invoice_id;
-			$transaction['model_type'] = $class::class;
+			$transaction['model_type'] = $user::class;
 			$transaction['item_id'] = $transaction['item_id'];
 			$transaction['item_type'] = $PrivateTrip::class;
 			$transaction['date'] = date('Y-m-d');
@@ -156,7 +153,7 @@ class PaymentService
 		}
 	}
 	
-	public function addInvoice($params, $user_type)
+	public function addInvoice($params, $user)
 	{
 		try {
 			
@@ -167,8 +164,8 @@ class PaymentService
 			$data = array();
 			$data['business_id'] = $params['business']->business_id;
 			$data['code'] = $invoiceRepo->generateCode();
-			$data['user_id'] = $invoiceInfo['model_id'];
-			$data['user_type'] = $user_type;
+			$data['user_id'] = $user->customer_id;
+			$data['user_type'] = $user::class;
 			$data['payment_method'] = $invoiceInfo['payment_method'];
 			$data['subtotal'] = $invoiceInfo['subtotal'];
 			$data['discount_amount'] = 0;
@@ -178,7 +175,11 @@ class PaymentService
 			$data['notes'] = $invoiceInfo['notes'];
 			$data['items'] = (array) $invoiceInfo['items'];
 
-			return $invoiceRepo->store((array) $data);
+			$invoice =  $invoiceRepo->store($data);
+
+			$updateWallet = $this->updateWallet($params, $invoice, $user);
+
+			return $invoice;
 
 		} catch (\Throwable $th) {
 			
@@ -186,6 +187,26 @@ class PaymentService
 		}
 	}
 	
+	
+	
+	public function updateWallet($params, $invoice, $user)
+	{
+		try {
+
+			$walletRepo = new \Medians\Wallets\Infrastructure\BusinessWalletRepository();
+			
+			$check = $walletRepo->getBusinessWallet($invoice->business_id);
+			$data = array();
+			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + $invoice->total_amount) : $invoice->total_amount;
+
+			return isset($check->wallet_id) ? $walletRepo->update($data) : null;
+
+		} catch (\Throwable $th) {
+			error_log($th->getMessage());
+			return array('error'=>$th->getMessage());
+		}
+		
+	}
 	
 
 }

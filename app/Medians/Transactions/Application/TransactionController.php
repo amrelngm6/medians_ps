@@ -79,13 +79,9 @@ class TransactionController extends CustomController
 	public function store() 
 	{	
         
-        $this->app = new \config\APP;
-
 		$params = $this->app->request()->get('params');
 
         try {
-        	$params['branch_id'] = $this->app->branch->id;
-        	$params['created_by'] = $this->app->auth()->id;
         	
             return ($this->repo->store($params))
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
@@ -107,12 +103,10 @@ class TransactionController extends CustomController
 	*/
 	public function update() 
 	{
-        $this->app = new \config\APP;
 
 		$params = $this->app->request()->get('params');
 
         try {
-
 
            	$returnData =  ($this->repo->update($params))
            	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
@@ -135,9 +129,6 @@ class TransactionController extends CustomController
 	*/
 	public function delete() 
 	{
-
-        $this->app = new \config\APP;
-
 		$params = $this->app->request()->get('params');
 
         try {
@@ -158,42 +149,25 @@ class TransactionController extends CustomController
 
 
 
-	/**
-	 * Success payment page 
-	 */
-	public function payment_success()
-	{
-
-		return render('views/front/confirmation.html.twig',['title'=> __('Thanks for payment'),'message'=>__('payment made successfully, enjoy with the service')]);
-
-	}
-
-	/**
-	 * Failed  payment page 
-	 */
-	public function payment_failed()
-	{
-		return render('views/front/confirmation.html.twig',['title'=> __('PAYMENT_CANCELED'),'message'=>__('payment failed, Please try again')]);
-
-	}
-
 
 	public function addTransaction()
 	{
 		
 		$params = (array) json_decode($this->app->request()->get('params'));
 
+		$user = $this->app->auth();
+
 		try {
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
-			$saveTransaction = $paymentService->storeSubscriptionTransaction($params); 
+			$saveTransaction = $paymentService->storeSubscriptionTransaction($params, $user); 
 			
-			$updateStudentBusiness = $paymentService->updateStudentBusiness($params); 
+			$updateStudentBusiness = $paymentService->updateStudentBusiness($params, $user ); 
 
-			$savedSubscription = $paymentService->updatePackageSubscription($params); 
+			$savedSubscription = $paymentService->updatePackageSubscription($params, $user); 
 
-			$updateRouteLocation = $paymentService->updateRouteLocation($params); 
+			$updateRouteLocation = $paymentService->updateRouteLocation($params, $user); 
 
 			return (isset($saveTransaction->invoice_id))
 			? array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'))
@@ -212,14 +186,13 @@ class TransactionController extends CustomController
 		
 		$params = (array) json_decode($this->app->request()->get('params'));
 
+		$user = $this->app->auth();
+
 		try {
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
-			
-			$paymentService = new PaymentService($params['payment_method']);
-
-			$saveTransaction = $paymentService->storeTripTransaction($params); 
+			$saveTransaction = $paymentService->storeTripTransaction($params, $user); 
 			
 			$updateTrip = isset($saveTransaction['success']) ? $paymentService->updateTrip($params) : null; 
 
