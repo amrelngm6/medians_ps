@@ -31,7 +31,7 @@
                                                 <div class="flex gap-2" v-if="activeItem.business" >
                                                     <img :src="activeItem.business.picture" class="w-10 h-10" />
                                                     <div class="fw-bold fs-6 text-gray-800">
-                                                        <div class="text-gray-800" v-text="activeItem.business.business_name"></div>
+                                                        <div class="text-gray-800 fs-bold" v-text="activeItem.business.business_name"></div>
                                                         <div class="text-gray-800 fs-normal" v-text="activeItem.business.type"></div>
                                                     </div>
                                                 </div>
