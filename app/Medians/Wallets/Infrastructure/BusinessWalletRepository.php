@@ -67,11 +67,6 @@ class BusinessWalletRepository
 
 		$Object = BusinessWallet::find($data['wallet_id']);
 		
-		if ($Object->date < date('Y-m-d'))
-		{
-			return __('Not allowed BusinessWallet date has passed');
-		}
-
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
