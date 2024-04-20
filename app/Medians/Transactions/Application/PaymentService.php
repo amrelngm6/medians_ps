@@ -199,7 +199,7 @@ class PaymentService
 			$data = array();
 			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + $invoice->total_amount) : $invoice->total_amount;
 
-			return isset($check->wallet_id) ? $walletRepo->update($data) : null;
+			return isset($check->wallet_id) ? $check->update($data) : null;
 
 		} catch (\Throwable $th) {
 			error_log($th->getMessage());
