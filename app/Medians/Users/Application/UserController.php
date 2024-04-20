@@ -10,6 +10,8 @@ use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Trips\Infrastructure\TripRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
 use Medians\Invoices\Infrastructure\InvoiceRepository;
+use Medians\Wallets\Infrastructure\BusinessWalletRepository;
+use Medians\Wallets\Infrastructure\BusinessWithdrawalRepository;
 
 
 class UserController extends CustomController
@@ -110,6 +112,8 @@ class UserController extends CustomController
 		
 		$user = $this->app->auth();
 		$invoicesRepo = new InvoiceRepository($user->business);
+		$businessWalletRepo = new BusinessWalletRepository();
+		$businessWithdrawalRepo = new BusinessWithdrawalRepository();
 
 		return render('profile', [
 			'load_vue'=> true,
@@ -119,6 +123,8 @@ class UserController extends CustomController
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
 	        'invoices' => $invoicesRepo->getUserInvoices($user->id),
+	        'wallet' => isset($user->business) ? $businessWalletRepo->getBusinessWallet($user->business->business_id) : null,
+	        'withdrawals' => isset($user->business) ? $businessWithdrawalRepo->getBusinessWithdrawal($user->business->business_id) : null,
 	    ]);
 	} 
 
