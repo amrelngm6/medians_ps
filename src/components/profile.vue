@@ -592,7 +592,7 @@ export default {
             params.append('params[amount]', withdrawRequest.value.amount)
             params.append('params[notes]', withdrawRequest.value.notes)
             handleRequest(params, '/api/create').then(response => {
-                content.value = JSON.parse(JSON.stringify(response));
+                handleAccess(response)
             });
         }
 
