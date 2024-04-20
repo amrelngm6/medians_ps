@@ -1,6 +1,117 @@
 <template>
     <div class="w-full mb-5 mb-xl-10">
 
+        <div class="modal fade show" v-if="showWizard" :key="showWizard" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="display: block;">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
+                <!--begin::Modal content-->
+                <div class="modal-content" data-select2-id="select2-data-133-wj88">
+                    <!--begin::Modal header-->
+                    <div class="modal-header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bold">Adjust Balance</h2>
+                        <!--end::Modal title-->
+
+                        <!--begin::Close-->
+                        <div id="kt_modal_adjust_balance_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                            <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>                </div>
+                        <!--end::Close-->
+                    </div>
+                    <!--end::Modal header-->
+
+                    <!--begin::Modal body-->
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                        <!--begin::Balance preview-->
+                        <div class="d-flex text-center mb-9">
+                            <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
+                                <div class="fs-6 fw-semibold mb-2 text-muted">Current Balance</div>
+                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance">US$ 32,487.57</div>
+                            </div>
+                            <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
+                                <div class="fs-6 fw-semibold mb-2 text-muted">
+                                    New Balance
+
+                                    <span class="ms-2" data-bs-toggle="tooltip" aria-label="Enter an amount to preview the new balance." data-bs-original-title="Enter an amount to preview the new balance." data-kt-initialized="1">
+                                        <i class="ki-duotone ki-information fs-7"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>                            </span>
+                                </div>
+                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="new_balance">--</div>
+                            </div>
+                        </div>
+                        <!--end::Balance preview-->
+
+                        <!--begin::Form-->
+                        <form id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#" data-select2-id="select2-data-kt_modal_adjust_balance_form">
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                <!--begin::Label-->
+                                <label class="required fs-6 fw-semibold form-label mb-2">Adjustment type</label>
+                                <!--end::Label-->
+
+                                <!--begin::Dropdown-->
+                                <select class="form-select form-select-solid fw-bold select2-hidden-accessible" name="adjustment" aria-label="Select an option" data-control="select2" data-dropdown-parent="#kt_modal_adjust_balance" data-placeholder="Select an option" data-hide-search="true" data-select2-id="select2-data-12-eb77" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
+                                    <option data-select2-id="select2-data-14-27es"></option>
+                                    <option value="1" data-select2-id="select2-data-137-ymn5">Credit</option>
+                                    <option value="2" data-select2-id="select2-data-138-h3ic">Debit</option>
+                                </select><span class="select2 select2-container select2-container--bootstrap5 select2-container--below" dir="ltr" data-select2-id="select2-data-13-58o0" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single form-select form-select-solid fw-bold" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-adjustment-3r-container" aria-controls="select2-adjustment-3r-container"><span class="select2-selection__rendered" id="select2-adjustment-3r-container" role="textbox" aria-readonly="true" title="Select an option"><span class="select2-selection__placeholder">Select an option</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <!--end::Dropdown-->
+                            <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                                <!--begin::Label-->
+                                <label class="required fs-6 fw-semibold form-label mb-2">Amount</label>
+                                <!--end::Label-->
+
+                                <!--begin::Input-->
+                                <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" name="amount" value="" inputmode="text">
+                                <!--end::Input-->
+                            <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-semibold form-label mb-2">Add adjustment note</label>
+                                <!--end::Label-->
+
+                                <!--begin::Input-->
+                                <textarea class="form-control form-control-solid rounded-3 mb-5"></textarea>
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Disclaimer-->
+                            <div class="fs-7 text-muted mb-15">
+                                Please be aware that all manual balance changes will be audited by the financial team every fortnight. Please maintain your invoices and receipts until then. Thank you.
+                            </div>
+                            <!--end::Disclaimer-->
+
+                            <!--begin::Actions-->
+                            <div class="text-center">
+                                <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3">
+                                    Discard
+                                </button>
+
+                                <button type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
+                                    <span class="indicator-label">
+                                        Submit
+                                    </span>
+                                    <span class="indicator-progress">
+                                        Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                            </div>
+                            <!--end::Actions-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
             <div class="card p-6">
                 <div class="d-flex flex-wrap flex-sm-nowrap">
                     <div class="me-7 mb-4">
@@ -330,7 +441,7 @@
                                             <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Debit balance')"></span>
                                         </div>
                                     </div>
-                                    <a href="#" class="btn btn-primary  px-6 flex-shrink-0 align-self-center" v-text="translate('Withdraw Earnings')"></a>             
+                                    <a href="#" @click="showWizard = true" class="btn btn-primary  px-6 flex-shrink-0 align-self-center" v-text="translate('Withdraw Earnings')"></a>             
                                 </div>
                             </div>
                         </div>
@@ -473,6 +584,7 @@ export default {
 
         const showAddSide = ref(false);
         const showEditSide = ref(false);
+        const showWizard = ref(false);
         const activeItem = ref({});
         const content = ref({});
         const activeTab = ref('account');
@@ -563,6 +675,7 @@ export default {
             url,
             showAddSide,
             showEditSide,
+            showWizard,
             content,
             setActiveTab,
             tabsList,
