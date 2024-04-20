@@ -20,7 +20,7 @@ class BusinessWithdrawalRepository
     
 	public function get($limit = 100)
 	{
-		return BusinessWithdrawal::limit($limit)->get();
+		return BusinessWithdrawal::with('business')->limit($limit)->get();
 	}
 	
 	public function getBusinessWithdrawal($id)
