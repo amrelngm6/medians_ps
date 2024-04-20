@@ -105,7 +105,7 @@
                             </div>                            
                         </div>
                         
-                        <div class="mx-auto flex gap-6 w-500px py-2 text-gray-200" v-if="activeItem.status == 'pending' || activeItem.states == 'approved'">
+                        <div class="mx-auto flex gap-6 w-500px py-2 text-gray-200 pt-8" v-if="activeItem.status == 'pending' || activeItem.states == 'approved'">
                             <div class="text-center"><a href="javascript:;"
                                 class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-primary"
                                 @click="approveItem" v-text="translate('Approved')"></a></div>
