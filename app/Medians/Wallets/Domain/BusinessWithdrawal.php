@@ -42,7 +42,7 @@ class BusinessWithdrawal extends CustomModel
 
 	public function wallet() 
 	{
-		return $this->hasOne(Wallet::class, 'wallet_id', 'wallet_id');	
+		return $this->hasOne(BusinessWallet::class, 'wallet_id', 'wallet_id');	
 	}
 	
 
