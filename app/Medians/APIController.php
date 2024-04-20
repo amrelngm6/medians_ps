@@ -205,7 +205,11 @@ class APIController extends CustomController
 				case 'PrivateTrip.create':
 					$return = (new Trips\Application\PrivateTripController)->store();
 					break;
-		
+
+				case 'BusinessWithdrawal.create':
+					$return = (new Wallets\Application\BusinessWithdrawalController)->store();
+					break;
+			
 			}
 
 			return response(json_encode($return));
