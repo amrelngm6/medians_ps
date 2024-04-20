@@ -149,7 +149,7 @@ class BusinessWithdrawalRepository
 
         $balance = $check->wallet->credit_balance ?? 0;
 
-        $newBalance = $balance + $check->amount;
+        $newBalance = $balance - $check->amount;
 
         $update = $check->wallet->update(['credit_balance'=>$newBalance]);
 
