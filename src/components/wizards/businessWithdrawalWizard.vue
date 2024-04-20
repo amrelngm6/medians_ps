@@ -53,43 +53,62 @@
                                     <!--end::Wrapper-->
                                 </div>
                                 <!--end::Invoice 2 content-->
-                                
-                                <!--begin::Invoice 2 sidebar-->
-                                <div v-if="activeItem.wallet"
-                                    class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
-                                    <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Wallet DETAILS')"></h6>
-                                    <!--end::Title-->
+                                <div class="w-full flex gap-4">
+                                        
+                                    <!--begin::Invoice 2 sidebar-->
+                                    <div v-if="activeItem.wallet"
+                                        class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
+                                        <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Wallet Details')"></h6>
 
-                                    <!--begin::Item-->
-                                    <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.credit_balance"></div>
-                                    </div>
-            
-                                    <!--begin::Item-->
-                                    <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.payment_method"></div>
-                                    </div>
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Current balance')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.credit_balance"></div>
+                                        </div>
+                
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.payment_method"></div>
+                                        </div>
 
-                                    <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
-
-                                        <div class="fw-bold text-gray-800 fs-6" v-if="system_setting" v-text="system_setting.currency+''+activeItem.wallet.amount"></div>
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-if="system_setting" v-text="system_setting.currency+''+activeItem.amount"></div>
+                                        </div>
+                                        
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.status"></div>
+                                        </div>
                                     </div>
                                     
-                                    <!--begin::Item-->
-                                    <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
+                                    <div v-if="activeItem.wallet"
+                                        class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
+                                        <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Wallet Details')"></h6>
 
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.status"></div>
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Current balance')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.credit_balance"></div>
+                                        </div>
+                
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.wallet.payment_method"></div>
+                                        </div>
+
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-if="system_setting" v-text="system_setting.currency+''+activeItem.amount"></div>
+                                        </div>
+                                        
+                                        <div class="mb-6">
+                                            <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
+                                            <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.status"></div>
+                                        </div>
                                     </div>
-            
-            
+                
+                                    <!--end::Invoice 2 sidebar-->
                                 </div>
-                                <!--end::Invoice 2 sidebar-->
-                            </div>
-                            
+                            </div>                            
                         </div>
                         
                         <div class="mx-auto flex gap-6 w-500px py-2 text-gray-200" v-if="activeItem.status == 'pending' || activeItem.states == 'approved'">

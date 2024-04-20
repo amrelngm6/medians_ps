@@ -168,7 +168,6 @@ export default
     },
     props: [
         'path',
-        'lang',
         'setting',
         'system_setting',
         'conf',
