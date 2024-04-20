@@ -303,57 +303,38 @@
                     
                     <div class="card card-flush pt-3 mb-5 mb-xl-10" v-if="activeTab == 'withdrawal'">
                         <div class="card  card-xxl-stretch mb-5 mb-xxl-10">
-    <!--begin::Header-->
-    <div class="card-header">
-        <div class="card-title">
-            <h3>Earnings</h3>
-        </div>
-    </div>
-    <!--end::Header-->
-
-    <!--begin::Body-->
-    <div class="card-body pb-0">
-        <span class="fs-5 fw-semibold text-gray-600 pb-5 d-block">Last 30 day earnings calculated. Apart from arranging the order of topics.</span>
-
-        <!--begin::Left Section-->
-        <div class="d-flex flex-wrap justify-content-between pb-6">
-            <!--begin::Row-->
-            <div class="d-flex flex-wrap">
-                <!--begin::Col-->
-                <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">                    
-                    <span class="fs-2x fw-bold text-gray-800 lh-1">
-                        <span data-kt-countup="true" data-kt-countup-value="6,840" data-kt-countup-prefix="$" class="counted" data-kt-initialized="1">$6,840</span>
-                    </span>
-                    <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2">Net Earnings</span>
-                </div>
-                <!--end::Col-->
-
-                <!--begin::Col-->
-                <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">   
-                    <span class="fs-2x fw-bold text-gray-800 lh-1">
-                        <span class="counted" data-kt-countup="true" data-kt-countup-value="80" data-kt-initialized="1">80</span>%
-                    </span>
-                    <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2">Change</span>
-                </div>
-                <!--end::Col-->
-
-                <!--begin::Col-->
-                <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
-                    <span class="fs-2x fw-bold text-gray-800 lh-1">
-                        <span data-kt-countup="true" data-kt-countup-value="1,240" data-kt-countup-prefix="$" class="counted" data-kt-initialized="1">$1,240</span>
-                    </span>
-                    <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2">Fees</span>
-                </div>
-                <!--end::Col-->
-            </div>
-            <!--end::Row-->
-
-            <a href="#" class="btn btn-primary  px-6 flex-shrink-0 align-self-center">Withdraw Earnings</a>             
-        </div>
-        <!--end::Left Section-->
-    </div>
-    <!--end::Body-->
-</div>
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h3>Earnings</h3>
+                                </div>
+                            </div>
+                            <div class="card-body pb-0">
+                                <span class="fs-5 fw-semibold text-gray-600 pb-5 d-block">Last 30 day earnings calculated. Apart from arranging the order of topics.</span>
+                                <div class="d-flex flex-wrap justify-content-between pb-6">
+                                    <div class="d-flex flex-wrap">
+                                        <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">                    
+                                            <span class="fs-2x fw-bold text-gray-800 lh-1">
+                                                <span data-kt-countup="true" data-kt-countup-value="6,840" data-kt-countup-prefix="$" class="counted" data-kt-initialized="1">$6,840</span>
+                                            </span>
+                                            <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2">Net Earnings</span>
+                                        </div>
+                                        <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6" v-if="auth.business">   
+                                            <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="auth.business.subscription">
+                                                <span class="counted" data-kt-countup="true" data-kt-countup-value="80" data-kt-initialized="1" v-text="auth.business.subscription.is_paid ? system_setting.comission_paid_plan : system_setting.comission_free_plan"></span>%
+                                            </span>
+                                            <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2">Change</span>
+                                        </div>
+                                        <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
+                                            <span class="fs-2x fw-bold text-gray-800 lh-1">
+                                                <span data-kt-countup="true" data-kt-countup-value="1,240" data-kt-countup-prefix="$" class="counted" data-kt-initialized="1">$1,240</span>
+                                            </span>
+                                            <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2">Fees</span>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="btn btn-primary  px-6 flex-shrink-0 align-self-center" v-text="translate('Withdraw Earnings')"></a>             
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-header">
                             <div class="card-title flex gap-4">
                                 <h2 class="w-full" v-text="translate('Withdrawal requests')"></h2>
