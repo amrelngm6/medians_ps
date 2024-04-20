@@ -54,6 +54,7 @@ class BusinessWithdrawalRepository
 		}		
 
 		$dataArray['date'] = date('Y-m-d');
+		$dataArray['status'] = 'pending';
 		
 		// Return the  object with the new data
     	$Object = BusinessWithdrawal::firstOrCreate($dataArray);
