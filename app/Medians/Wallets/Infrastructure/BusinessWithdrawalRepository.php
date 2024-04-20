@@ -93,7 +93,7 @@ class BusinessWithdrawalRepository
 	{
 		try {
 			
-			$check = Route::find($id);
+			$check = BusinessWithdrawal::find($id);
 
             if ($check->status == 'pending')
             {

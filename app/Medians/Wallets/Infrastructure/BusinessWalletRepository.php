@@ -84,7 +84,7 @@ class BusinessWalletRepository
 	{
 		try {
 			
-			$delete = Route::find($id)->delete();
+			$delete = BusinessWallet::find($id)->delete();
 
 			return true;
 
