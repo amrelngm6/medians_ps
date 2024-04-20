@@ -123,6 +123,8 @@ const vacations = defineAsyncComponent(() => import('@/components/vacations.vue'
 
 const wallets = defineAsyncComponent(() => import('@/components/wallets.vue') );
 
+const business_withdrawals = defineAsyncComponent(() => import('@/components/business_withdrawals.vue') );
+
 export default {
     name: 'app',
     components: {
@@ -170,6 +172,7 @@ export default {
         invoices,
         vacations,
         wallets,
+        business_withdrawals,
         get_started,
         translate,
         'help_messages':HelpMessages,
