@@ -93,9 +93,14 @@ class BusinessWithdrawalRepository
 	{
 		try {
 			
-			$delete = Route::find($id)->delete();
+			$check = Route::find($id);
 
-			return true;
+            if ($check->status == 'pending')
+            {
+                return $check->delete();
+            }
+
+            return throw new \Exception("Not allowed to be deleted", 1);
 
 		} catch (\Exception $e) {
 

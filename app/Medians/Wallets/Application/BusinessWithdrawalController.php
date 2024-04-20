@@ -143,15 +143,13 @@ class BusinessWithdrawalController extends CustomController
 
         try {
 
-
-            if ($this->repo->delete($params['vacation_id']))
+            if ($this->repo->delete($params['withdrawal_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1);
             }
-            
 
         } catch (Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+			return array('error'=>$e->getMessage());
         	
         }
 	}
