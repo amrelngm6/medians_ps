@@ -427,7 +427,7 @@
                                 </thead>
                                 <tbody class="fs-6 fw-semibold text-gray-600">
                                     <tr v-for="withdrawal in content.business_withdrawals">
-                                        <td><a href="#" class="text-gray-600 text-hover-primary" v-text="withdrawal.id"></a></td>
+                                        <td><a href="#" class="text-gray-600 text-hover-primary" v-text="withdrawal ? withdrawal.withdrawal_id : ''"></a></td>
                                         <td class="text-success"  v-text="system_setting.currency+''+withdrawal.amount"></td>
                                         <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
                                         <td v-text="withdrawal.date"></td>
