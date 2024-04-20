@@ -133,8 +133,20 @@
                             </div>
                             <!--end::Sidebar-->
                         </div>
-                        <!--end::Layout-->
+                        
+                        <div class="mx-auto flex gap-6 w-300px py-2" v-if="activeItem.status == 'pending'">
+                            <div class="text-center"><a href="javascript:;"
+                                class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-info"
+                                @click="confirmItem" v-text="translate('Set as done')"></a></div>
+                            <div class="text-center"><a href="javascript:;"
+                                class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-info"
+                                @click="approveItem" v-text="translate('Approved')"></a></div>
+                            <div class="text-center"><a href="javascript:;"
+                                class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
+                                @click="rejectItem" v-text="translate('Reject')"></a></div>
+                        </div>
                     </div>
+                    
                     <!--end::Body-->
                 </div>
                 <!--end::Invoice 2 main-->
@@ -196,9 +208,7 @@ export default
 
             const showEditSide = ref(false);
             const activeItem = ref({});
-            const activeTab = ref('Business');
             const content = ref({});
-            const fillable = ref(['Business', 'Payment', 'Confirm']);
             const searchText = ref('');
 
             console.log(props.business_setting);
@@ -231,13 +241,34 @@ export default
 
 
 
+            const confirmItem = () => {
+                if (window.confirm(translate('Confirm and add subscription to your business'))) {
+                    activeItem.value.status = 'approved';
+                    saveItem();
+                }
+            }
+
+            const rejectItem = () => {
+                if (window.confirm(translate('Confirm and reject this member'))) {
+                    activeItem.value.status = 'rejected';
+                    saveItem();
+                }
+            }
+            
+            const approveItem = () => {
+                if (window.confirm(translate('Confirm and reject this member'))) {
+                    activeItem.value.status = 'rejected';
+                    saveItem();
+                }
+            }
 
 
             return {
+                approveItem,
+                rejectItem,
+                confirmItem,
                 content,
-                fillable,
                 activeItem,
-                activeTab,
                 translate,
                 savePackageSubscription,
                 searchText,
