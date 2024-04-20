@@ -54,8 +54,8 @@
                                 </select>
                             </div>
 
-                            <div class="w-full" v-if="withdrawRequest.payment_method" v-for="(paymentInfo, key) in payment_fields">
-                                <div class="fv-row mb-7 fv-plugins-icon-container" v-if="withdrawRequest.payment_method == key" >
+                            <div class="w-full" v-if="withdrawRequest.payment_method" v-for="(paymentInfo, key) in payment_fields[withdrawRequest.payment_method]">
+                                <div class="fv-row mb-7 fv-plugins-icon-container"  >
                                     <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
                                     <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="withdrawRequest.field[paymentInfo.code]" >
                                 </div>
