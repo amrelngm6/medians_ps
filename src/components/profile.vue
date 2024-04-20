@@ -47,7 +47,6 @@
                             <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
                                 <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
-                                    <option></option>
                                     <option value="paypal">PayPal</option>
                                     <option value="paystack">PayStack</option>
                                     <option value="bank">Bank transfer</option>
