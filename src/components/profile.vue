@@ -317,7 +317,7 @@
                                             <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Net Earnings')"></span>
                                         </div>
                                         <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6" v-if="auth.business">   
-                                            <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="auth.business.subscription">
+                                            <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="auth.business.supscription">
                                                 <span class="counted" data-kt-countup="true" data-kt-countup-value="80" data-kt-initialized="1" v-text="auth.business.subscription.is_paid ? system_setting.comission_paid_plan : system_setting.comission_free_plan"></span>%
                                             </span>
                                             <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Business Commisiion')"></span>
