@@ -62,7 +62,7 @@ class BusinessWithdrawalRepository
 		// Return the  object with the new data
     	$Object = BusinessWithdrawal::firstOrCreate($dataArray);
 
-        isset($data['field']) ? $this->storeCustomFields((array) $data['field'], $Object) : '';
+        isset($data['field']) ? $this->storeCustomFields((array) $data['field'], $Object->withdrawal_id) : '';
 
     	return $Object;
     }
