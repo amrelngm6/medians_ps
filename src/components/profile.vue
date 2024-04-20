@@ -423,6 +423,7 @@
                                         <th class="min-w-100px" v-text="translate('Amount')"></th>
                                         <th class="min-w-100px" v-text="translate('Status')"></th>                                    
                                         <th class="min-w-125px" v-text="translate('Date')"></th>
+                                        <th class="min-w-125px" v-text="translate('Cancel')"></th>
                                     </tr>
                                 </thead>
                                 <tbody class="fs-6 fw-semibold text-gray-600">
@@ -431,6 +432,9 @@
                                         <td class="text-success"  v-text="system_setting.currency+''+withdrawal.amount"></td>
                                         <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
                                         <td v-text="withdrawal.date"></td>
+                                        <td>
+                                            <a href="javascript:;" @click="cancelRequest(withdrawal)" class="btn btn-primary px-6 flex-shrink-0 align-self-center" v-text="translate('Cancel')"></a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -585,17 +589,6 @@ export default {
         
         load();
         
-        const sendWithdrawRequest = () => {
-            
-            var params = new URLSearchParams();
-            params.append('type', 'BusinessWithdrawal.create')
-            params.append('params[amount]', withdrawRequest.value.amount)
-            params.append('params[notes]', withdrawRequest.value.notes)
-            handleRequest(params, '/api/create').then(response => {
-                handleAccess(response)
-            });
-        }
-
         const closeSide = () => {
             showAddSide.value = false;
             showEditSide.value = false;
@@ -645,7 +638,33 @@ export default {
             return 0;
         }
 
+
+        
+        const sendWithdrawRequest = () => {
+            
+            var params = new URLSearchParams();
+            params.append('type', 'BusinessWithdrawal.create')
+            params.append('params[amount]', withdrawRequest.value.amount)
+            params.append('params[notes]', withdrawRequest.value.notes)
+            handleRequest(params, '/api/create').then(response => {
+                handleAccess(response)
+            });
+        }
+        
+        
+        
+        const cancelRequest = (withdrawal) => {
+            
+            var params = new URLSearchParams();
+            params.append('type', 'BusinessWithdrawal.delete')
+            params.append('params[withdrawal_id]', withdrawal.withdrawal_id)
+            handleRequest(params, '/api/delete').then(response => {
+                handleAccess(response)
+            });
+        }
+        
         return {
+            cancelRequest,
             sendWithdrawRequest,
             withdrawRequest,
             checkFeatureLimit,
