@@ -21,7 +21,7 @@
                     <!--end::Modal header-->
 
                     <!--begin::Modal body-->
-                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <div class="modal-body mx-5 mx-xl-15 my-7">
                         <!--begin::Balance preview-->
                         <div class="d-flex text-center mb-9" v-if="content.wallet">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
@@ -39,13 +39,16 @@
                         <div id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
-                                <!--begin::Label-->
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
-
-                                <!--begin::Input-->
                                 <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
-                                <!--end::Input-->
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                            </div>
+                            
+                            <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
+                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
+                                <select v-model="withdrawRequest.payment_method">
+
+                                </select>
                             </div>
                             <!--end::Input group-->
 
@@ -53,9 +56,6 @@
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mb-2" v-text="translate('Add notes')"></label>
-                                <!--end::Label-->
-
-                                <!--begin::Input-->
                                 <textarea class="form-control form-control-solid rounded-3 mb-5" v-model="withdrawRequest.notes"></textarea>
                                 <!--end::Input-->
                             </div>
@@ -658,6 +658,7 @@ export default {
                 params.append('params[amount]', withdrawRequest.value.amount)
                 params.append('params[wallet_id]', content.value.wallet.wallet_id)
                 params.append('params[notes]', withdrawRequest.value.notes)
+                params.append('params[payment_method]', withdrawRequest.value.payment_method)
                 handleRequest(params, '/api/create').then(response => {
                     handleAccess(response)
                 });
