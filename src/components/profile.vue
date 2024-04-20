@@ -43,12 +43,17 @@
                                 <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
-                            
+
                             <div class="fv-row mb-7 fv-plugins-icon-container" v-if="content.wallet">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
-                                <select v-model="withdrawRequest.payment_method">
-
-                                </select>
+                                <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" name="status" data-control="select2" data-placeholder="Select an option" data-hide-search="true">
+                                    <option></option>
+                                    <option value="0">Approved</option>
+                                    <option value="1">Pending</option>
+                                    <option value="2">Rejected</option>
+                                    <option value="3">In progress</option>
+                                    <option value="4">Completed</option>
+                            </select>
                             </div>
                             <!--end::Input group-->
 
