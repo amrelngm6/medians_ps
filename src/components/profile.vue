@@ -641,7 +641,7 @@ export default {
 
         
         const sendWithdrawRequest = () => {
-            if (withdrawRequest.value.amount < 1)
+            if (!withdrawRequest.value.amount || withdrawRequest.value.amount < 1)
             {
                 return showAlert(translate('Amount is required'));
             }
@@ -650,6 +650,7 @@ export default {
             {
                 return showAlert(translate('Balance is not enough is required'));
             }
+
             if (window.confirm(translate('Conffirm to submit')))
             {
                 var params = new URLSearchParams();
