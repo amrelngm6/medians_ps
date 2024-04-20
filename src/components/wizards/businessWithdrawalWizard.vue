@@ -28,7 +28,6 @@
                                         <div class="row g-5 mb-11">
                                             
                                             <div class="col-sm-4">
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Business')"></div>
                                                 <div class="flex gap-2" v-if="activeItem.business" >
                                                     <img :src="activeItem.business.picture" class="w-10 h-10" />
                                                     <div class="fw-bold fs-6 text-gray-800">
