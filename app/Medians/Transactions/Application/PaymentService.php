@@ -197,7 +197,9 @@ class PaymentService
 			
 			$check = $walletRepo->getBusinessWallet($invoice->business_id);
 			$data = array();
-			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + $invoice->total_amount) : $invoice->total_amount;
+			$commission = $this->handleCommission($invoice, $user);
+			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + ($invoice->total_amount - $commission)) : ($invoice->total_amount - $commission);
+			$data['debit_balance'] = isset($check->debit_balance) ? ($check->debit_balance + $commission) : $commission;
 
 			return isset($check->wallet_id) ? $check->update($data) : null;
 
@@ -208,5 +210,14 @@ class PaymentService
 		
 	}
 	
+	public function handleCommission($invoice, $user) 
+	{
+		$setting = (new \config\APP)->SystemSetting();
+		
+		return (isset($this->user->business->subscription) && $this->user->business->subscription->is_paid) 
+		? ($invoice->total_amount * ($setting['comission_paid_plan'] / 100))
+		: ($invoice->total_amount * ($setting['comission_free_plan'] / 100));
+
+	}
 
 }
