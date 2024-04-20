@@ -642,13 +642,17 @@ export default {
         
         const sendWithdrawRequest = () => {
             
-            var params = new URLSearchParams();
-            params.append('type', 'BusinessWithdrawal.create')
-            params.append('params[amount]', withdrawRequest.value.amount)
-            params.append('params[notes]', withdrawRequest.value.notes)
-            handleRequest(params, '/api/create').then(response => {
-                handleAccess(response)
-            });
+            if (window.confirm(translate('Conffirm to submit')))
+            {
+                var params = new URLSearchParams();
+                params.append('type', 'BusinessWithdrawal.create')
+                params.append('params[amount]', withdrawRequest.value.amount)
+                params.append('params[notes]', withdrawRequest.value.notes)
+                handleRequest(params, '/api/create').then(response => {
+                    handleAccess(response)
+                });
+            }
+
         }
         
         
