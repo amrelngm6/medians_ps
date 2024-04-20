@@ -17,7 +17,12 @@ class BusinessWithdrawalRepository
 	{
 		return BusinessWithdrawal::with('business')->find($id);
 	}
-
+    
+	public function get($limit = 100)
+	{
+		return BusinessWithdrawal::limit($limit)->get();
+	}
+	
 	public function getBusinessWithdrawal($id)
 	{
 		return BusinessWithdrawal::with('business')->where('business_id', $id)->first();
@@ -28,12 +33,11 @@ class BusinessWithdrawalRepository
 		return BusinessWithdrawal::with('business')->where('business_id', $id)->get();
 	}
 
-	public function get($limit = 100)
+	public function checkPending($id)
 	{
-		return BusinessWithdrawal::limit($limit)->get();
+		return BusinessWithdrawal::with('business')->where('status', 'pending')->where('business_id', $id)->first();
 	}
-	
-	
+
 	
 
 
