@@ -57,8 +57,7 @@
                             <div class="w-full" v-if="withdrawRequest.payment_method" v-for="(paymentInfo, key) in payment_fields">
                                 <div class="fv-row mb-7 fv-plugins-icon-container" v-if="withdrawRequest.payment_method == key" >
                                     <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
-                                    <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="withdrawRequest.field[key]" >
-                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                    <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="withdrawRequest.field[paymentInfo.code]" >
                                 </div>
                             </div>
                             
@@ -563,7 +562,7 @@ export default {
         const showWizard = ref(false);
         const activeItem = ref({});
         const content = ref({});
-        const withdrawRequest = ref({});
+        const withdrawRequest = ref({'field':{}});
         const activeTab = ref('account');
         const tabsList = ref([
             { title: translate('Account'), link: 'account' },
