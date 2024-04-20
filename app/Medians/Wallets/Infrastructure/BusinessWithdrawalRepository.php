@@ -15,17 +15,17 @@ class BusinessWithdrawalRepository
 
 	public function find($id)
 	{
-		return BusinessWithdrawal::with('business')->find($id);
+		return BusinessWithdrawal::with('business','wallet')->find($id);
 	}
     
 	public function get($limit = 100)
 	{
-		return BusinessWithdrawal::with('business')->limit($limit)->get();
+		return BusinessWithdrawal::with('business','wallet')->limit($limit)->get();
 	}
 	
 	public function getBusinessWithdrawal($id)
 	{
-		return BusinessWithdrawal::with('business')->where('business_id', $id)->first();
+		return BusinessWithdrawal::with('business','wallet')->where('business_id', $id)->first();
 	}
 
 	public function getBusinessWithdrawals($id)
