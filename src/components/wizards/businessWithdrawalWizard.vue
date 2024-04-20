@@ -242,22 +242,22 @@ export default
 
 
             const confirmItem = () => {
-                if (window.confirm(translate('Confirm and add subscription to your business'))) {
-                    activeItem.value.status = 'approved';
+                if (window.confirm(translate('Confirm and set request as done'))) {
+                    activeItem.value.status = 'done';
                     saveItem();
                 }
             }
 
             const rejectItem = () => {
-                if (window.confirm(translate('Confirm and reject this member'))) {
+                if (window.confirm(translate('Confirm to reject this request'))) {
                     activeItem.value.status = 'rejected';
                     saveItem();
                 }
             }
             
             const approveItem = () => {
-                if (window.confirm(translate('Confirm and reject this member'))) {
-                    activeItem.value.status = 'rejected';
+                if (window.confirm(translate('Approve this item until it is done'))) {
+                    activeItem.value.status = 'approved';
                     saveItem();
                 }
             }
