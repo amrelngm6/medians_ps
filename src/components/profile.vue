@@ -648,7 +648,7 @@ export default {
             
             if (withdrawRequest.value.amount > content.value.wallet.credit_balance)
             {
-                return showAlert(translate('Balance is not enough is required'));
+                return showAlert(translate('Balance is not enough'));
             }
 
             if (window.confirm(translate('Conffirm to submit')))
