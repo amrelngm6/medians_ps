@@ -65,7 +65,7 @@ export default {
 
     components: {
     },
-    setup() {
+    setup(props) {
 
         const activeItem = ref({});
 
