@@ -51,6 +51,14 @@ class BusinessWithdrawalRepository
 	}
 	
 	
+	public function totalCompletedAmount($params)
+	{
+		$query = isset($params['start']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
+
+		return $query->whereIn('status',['done'])->sum('amount');
+	}
+	
+	
 	public function pendingGroupedByPaymentMethod($params)
 	{
 		$query = isset($params['start']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
