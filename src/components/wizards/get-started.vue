@@ -295,9 +295,13 @@
                                                     <span class="sm:hidden"
                                                         v-text="translate('Includes free updates and technical support')"></span>
                                                 </p>
-                                                <div id="paypal-button-container"><a @click="complete()"
+                                                <div id="paypal-button-container">
+                                                    <a @click="complete()"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-slate-900 text-white hover:bg-slate-700 mt-6 w-full"
-                                                        href="javascript:;"><span v-text="translate('subscribe')"></span></a></div>
+                                                        href="javascript:;"><span v-text="translate('Pay with PayPal')"></span></a>
+                                                    <a @click="completePaystack()"
+                                                        class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-info text-white hover:bg-slate-700 mt-6 w-full"
+                                                        href="javascript:;"><span v-text="translate('Pay with PayStack')"></span></a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -520,7 +524,6 @@ export default
 
             /**
              * Complete and go start
-             * 
              */
             const complete = () => {
 
@@ -599,15 +602,45 @@ export default
                     }).catch((error) => {
                         console.error("failed to load the PayPal JS SDK script", error);
                     });
-
-                    // if (data.success && data.payment_url){
-                    //     showAlert(data.result).then(()=>{window.location.href = data.payment_url })
-                    // } else if (data.success) {
-                    //     showAlert(data.result); window.location.href = './dashboard'
-                    // }
+                    
                 });
             }
 
+            const completePaystack = () => {
+                
+                const params = new URLSearchParams([]);
+                params.append('type', 'User.get_started_save_plan');
+                params.append('params[plan_id]', activePlan.value.plan_id);
+                params.append('params[payment_type]', activePrice.value);
+                params.append('params[payment_method]', 'PayPal');
+                handleRequest(params, '/api/create').then(async (data)  => {
+                    try {
+                        const response = await axios.post('https://api.paystack.co/transaction/initialize', {
+                        amount: 10000,  // Amount in kobo (10000 kobo = 100 NGN)
+                        email: 'user@example.com',  // Customer's email
+                        metadata: {
+                            custom_fields: [
+                            {
+                                display_name: "Mobile Number",
+                                variable_name: "mobile_number",
+                                value: "+2348012345678"
+                            }
+                            ]
+                        }
+                        }, {
+                        headers: {
+                            'Authorization': 'Bearer sk_test_82eb9bad45ad0d54fed4b1144dbaeeb217eef4d9',
+                            'Content-Type': 'application/json'
+                        }
+                        });
+                        
+                        // Redirect to Paystack payment page
+                        window.location = response.data.data.authorization_url;
+                    } catch (error) {
+                        console.error('Error initiating payment:', error);
+                    }
+                });
+            }
 
             /**
              * Validate paypal payment
@@ -643,6 +676,7 @@ export default
                 steps,
                 pricesList,
                 paypalScriptLoaded,
+                completePaystack,
                 setActivePlan,
                 closeSide,
                 today,
