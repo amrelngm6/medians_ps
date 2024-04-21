@@ -17,22 +17,18 @@
                             <!--begin::Content-->
                             <div class="flex-lg-row-fluid me-xl-18 mb-10 mb-xl-0">
                                 <div class="mt-n1">
-                                    <div class="d-flex flex-stack pb-10" >
-                                        <a href="#" v-if="activeItem.user">
-                                            <img alt="Logo" class="w-250px" :src="activeItem.user.picture ?? '/uploads/images/default_profile.png'">
-                                        </a>
-                                    </div>
+                                    
                                     <div class="m-0">
                                         
                                         <div class="fw-bold fs-3 text-gray-800 mb-8" v-text="translate('Withdrawal request')+' #'+activeItem.withdrawal_id"> </div>
                                         <div class="row g-5 mb-11">
                                             
                                             <div class="col-sm-4">
-                                                <div class="flex gap-2" v-if="activeItem.business" >
-                                                    <img :src="activeItem.business.picture" class="w-10 h-10" />
+                                                <div class="flex gap-2" v-if="activeItem.user" >
+                                                    <img :src="activeItem.user.picture" class="w-10 h-10" />
                                                     <div class="fw-bold fs-2 text-gray-800">
-                                                        <div class="text-gray-800 fs-bold" v-text="activeItem.business.business_name"></div>
-                                                        <div class="text-gray-800 fs-normal" v-text="activeItem.business.type"></div>
+                                                        <div class="text-gray-800 fs-bold" v-text="activeItem.user.name"></div>
+                                                        <div class="text-gray-800 fs-normal" v-text="activeItem.user.mobile"></div>
                                                     </div>
                                                 </div>
                                             </div>
