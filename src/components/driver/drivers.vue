@@ -89,9 +89,6 @@ const SideFormUpdate = defineAsyncComponent(() =>
     import('@/components/includes/side-form-update.vue')
 );
 
-const DriverProfile = defineAsyncComponent(() =>
-    import('@/components/driver_profile.vue')
-);
 
 export default
     {
@@ -99,7 +96,6 @@ export default
             SideFormCreate,
             SideFormUpdate,
             delete_icon,
-            'driver_profile': DriverProfile
         },
         emits: ['switchTab'],
         setup(props, {emit}) {
