@@ -687,7 +687,7 @@ export default
 
             const verifyPaystackPayment = async (reference)  =>  
             {
-                const response = await axios.post("https://api.paystack.co/transaction/verify/"+reference, {},{
+                const response = await axios.get("https://api.paystack.co/transaction/verify/"+reference,{
                         headers: {
                             'Authorization': 'Bearer sk_test_82eb9bad45ad0d54fed4b1144dbaeeb217eef4d9',
                             'Content-Type': 'application/json'
