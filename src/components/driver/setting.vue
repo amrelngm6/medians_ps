@@ -5,7 +5,7 @@
             <form action="/api/update" method="POST" data-refresh="1" id="system-setting-form"
                 class="action  px-4 m-auto rounded-lg pb-10">
 
-                <input name="type" type="hidden" value="User.update">
+                <input name="type" type="hidden" value="Driver.update">
 
                 <div class="w-full " v-for="(field, i) in fillable">
                     <div class="card w-full ">
