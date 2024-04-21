@@ -87,9 +87,9 @@
                 <div class="card-header">
                     <div class="card-title">
                         <h3 v-text="translate('Earnings')"></h3>
-                    </div>
-                    <span class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
+                        <span class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
                         v-text="translate('This is do not consider the debit balance')"></span>
+                    </div>
                 </div>
                 <div class="card-body pb-0">
                     
