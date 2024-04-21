@@ -1,9 +1,9 @@
 <template>
     <div class="w-full mb-5 mb-xl-10">
 
-        <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'subscriptions'">
+        <div class="card mb-5 mb-xl-10" id="kt_profile_details_view">
 
-            <div class="card  mb-5 mb-xl-10">
+            <div class="card  mb-5 mb-xl-10" v-if="activeItem.business">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-7">
