@@ -24,27 +24,6 @@
                                     <td class="text-gray-800 fw-bold" v-text="field.key"></td>
                                 </tr>
                             </tbody></table>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::Row-->
-                        <!--begin::Row-->
-                        <div class="flex-equal" v-if="activeItem.business && activeItem.business.subscription">
-                            <!--begin::Details-->
-                            <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
-                                <!--begin::Row-->
-                                <tbody><tr>
-                                    <td class="text-gray-500" v-text="translate('Plan')"></td>
-                                    <td class="text-gray-800 fw-bold" v-text="activeItem.business.subscription.plan_name"></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-gray-500" v-text="translate('Start date')"></td>
-                                    <td class="text-gray-800 fw-semibold" v-text="activeItem.business.subscription.start_date"></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-gray-500" v-text="translate('End date')"></td>
-                                    <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
-                                </tr>
-                            </tbody></table>
                         </div>
                     </div>
                 </div>
