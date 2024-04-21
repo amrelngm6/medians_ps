@@ -171,6 +171,8 @@ class WithdrawalController extends CustomController
 
 		$params = (array) json_decode($this->app->request()->get('params'));
 
+		$user = $this->app->auth();
+
         try {	
 			
 			try {
