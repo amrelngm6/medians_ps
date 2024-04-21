@@ -83,15 +83,16 @@
             <!--end::Modal dialog-->
         </div>
         <div class="card card-flush pt-3 mb-5 mb-xl-10" >
-            <div class="card  card-xxl-stretch mb-5 mb-xxl-10">
+            <div class="card  flex card-xxl-stretch mb-5 mb-xxl-10">
                 <div class="card-header">
                     <div class="card-title">
                         <h3 v-text="translate('Earnings')"></h3>
                     </div>
-                </div>
-                <div class="card-body pb-0">
                     <span class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
                         v-text="translate('This is do not consider the debit balance')"></span>
+                </div>
+                <div class="card-body pb-0">
+                    
                     <div class="d-flex flex-wrap justify-content-between pb-6">
                         <div class="d-flex flex-wrap">
                             <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
@@ -120,9 +121,7 @@
                                     v-text="translate('Debit balance')"></span>
                             </div>
                         </div>
-                        <a href="#" @click="showWizard = true"
-                            class="btn btn-bg-info text-white text-white px-6 flex-shrink-0 align-self-center"
-                            v-text="translate('Withdraw Earnings')"></a>
+
                     </div>
                 </div>
             </div>
