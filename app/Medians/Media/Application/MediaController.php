@@ -30,7 +30,9 @@ class MediaController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		echo json_encode(['media'=> ($this->app->request()->get('page') == 1) ? $this->repo->getList($this->app->request()->get('media')) : []]);
+		$user = $this->app->auth();
+
+		echo json_encode(['media'=> ($this->app->request()->get('page') == 1) ? $this->repo->getList($this->app->request()->get('media'), $user) : []]);
 
 	}
 

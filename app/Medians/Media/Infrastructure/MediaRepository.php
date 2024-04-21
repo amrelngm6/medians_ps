@@ -25,12 +25,12 @@ class MediaRepository
 	public $videos_dir = '/uploads/videos/';
 
 
-	public function getList($type = 'media')
+	public function getList($type = 'media', $user = null)
 	{
 
 		$this->setDir($type);
 
-		return $this->fetchFolder($type);
+		return $this->fetchBusinessMedia($type, $user);
 	}
 
 
@@ -81,6 +81,23 @@ class MediaRepository
 	}
 
 
+	public function fetchBusinessMedia($type, $user)
+	{
+		$data = [];
+		$items = MediaUpload::where('business_id', isset($user->business->business_id) ? $user->business->business_id : '0')->get();
+		foreach ($items as $key => $value) 
+		{
+			$ext = explode('.', $value->path);
+			if (in_array(end($ext),  $this->getTypes($type)))
+			{
+				$data[] = $this->setMedia($value->path, ($key+1)); 
+			}
+		}
+
+		return $data;
+	}
+
+
 	public static function setMedia($value, $id = 1)
 	{
 		$filepath = str_replace($_SERVER['DOCUMENT_ROOT'], '', $value);
@@ -103,10 +120,6 @@ class MediaRepository
 		{
 			case 'files':
 				return ['html', 'pdf', 'doc', 'docx', 'xls', 'xlsx']; 
-				break;
-			
-			case 'media':
-				return ['png', 'jpg', 'jpeg', 'bmp']; 
 				break;
 			
 			default:
