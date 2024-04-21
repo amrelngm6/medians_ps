@@ -66,6 +66,8 @@ class BusinessWalletController extends CustomController
 	 */ 
 	public function index( ) 
 	{
+		$params = $this->app->request()->get('params');
+		
 		try {
 
 			return render('business_wallets', [
@@ -74,6 +76,7 @@ class BusinessWalletController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+		        'total_pending_amount' => $this->repo->totalPendingAmountByDate($params),
 
 		    ]);
 		} catch (\Exception $e) {

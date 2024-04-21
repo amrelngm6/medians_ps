@@ -38,6 +38,19 @@ class BusinessWithdrawalRepository
 		return BusinessWithdrawal::with('business')->where('status', 'pending')->where('business_id', $id)->first();
 	}
 
+	public function eventsByDate($params)
+	{
+		return BusinessWithdrawal::whereBetween('date', [$params['start'], $params['end']]);
+	}
+	
+	public function totalPendingAmountByDate($params)
+	{
+		$query = isset($params['start']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
+
+		return $query->whereIn('status',['pending', 'approved'])->sum('amount');
+
+	}
+	
 	
 
 

@@ -5,6 +5,54 @@
         <div v-if="!showWizard" class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
         </div>
+        
+        <div class="w-full flex gap-4">
+            <div class="card card-flush h-md-50 mb-5 mb-xl-10 w-full">
+                <div class="card-header pt-5">
+                    <div class="card-title d-flex flex-column">   
+                        <div class="d-flex align-items-center">
+                            <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
+                            <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_pending_amount"></span>
+                        </div>
+                        <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total pending amount')"></span>
+                    </div>
+                </div>
+
+                <div class="px-4 pt-2 pb-4 d-flex align-items-center">
+                    <div class="d-flex flex-center me-5 pt-2"></div>
+                    <div class="d-flex flex-column content-justify-center w-100">
+                        <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="withdrawal in content.payment_methods_pending_amount">
+                            <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+withdrawal.payment_method.toLowerCase()+'.png'" /></div>
+                            <div class="text-gray-500 flex-grow-1 me-4" v-text="withdrawal.payment_method"></div>
+                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+withdrawal.value"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-flush h-md-50 mb-5 mb-xl-10 w-full">
+                <div class="card-header pt-5">
+                    <div class="card-title d-flex flex-column">   
+                        <div class="d-flex align-items-center">
+                            <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
+                            <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_invoices_amount"></span>
+                        </div>
+                        <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total invoices amount')"></span>
+                    </div>
+                </div>
+
+                <div class="px-4 pt-2 pb-4 d-flex align-items-center">
+                    <div class="d-flex flex-center me-5 pt-2"></div>
+                    <div class="d-flex flex-column content-justify-center w-100">
+                        <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="invoice in content.payment_methods_invoices_amount">
+                            <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+invoice.payment_method.toLowerCase()+'.png'" /></div>
+                            <div class="text-gray-500 flex-grow-1 me-4" v-text="invoice.payment_method"></div>
+                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+invoice.value"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        
+        </div>
         <div v-if="!showWizard" class="mx-2 bg-white px-4 rounded shadow-sm py-2 ">
             <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex ">
                 <div class="card-title">
@@ -67,6 +115,7 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
+import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import withdrawal_wizard from '@/components/wizards/businessWithdrawalWizard.vue';
     
 export default
@@ -75,6 +124,8 @@ export default
         'datatabble': Vue3EasyDataTable,
         withdrawal_wizard,
         VueTailwindDatepicker,
+        dashboard_card_white,
+
     },
     
     setup(props) {
