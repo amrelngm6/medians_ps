@@ -24,7 +24,7 @@
                         <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="withdrawal in content.pending_by_payment_methods">
                             <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+withdrawal.payment_method.toLowerCase()+'.png'" /></div>
                             <div class="text-gray-500 flex-grow-1 me-4" v-text="withdrawal.payment_method"></div>
-                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+withdrawal.amount"></div>
+                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+withdrawal.total_amount"></div>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                         <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="withdrawal in content.completed_by_payment_methods">
                             <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+withdrawal.payment_method.toLowerCase()+'.png'" /></div>
                             <div class="text-gray-500 flex-grow-1 me-4" v-text="withdrawal.payment_method"></div>
-                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+withdrawal.amount"></div>
+                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+withdrawal.total_amount"></div>
                         </div>
                     </div>
                 </div>
