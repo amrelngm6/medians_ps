@@ -321,7 +321,7 @@ class APP
 			]
 			),
 			
-			array('title'=>__('Wallets'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
+			array('title'=>__('Wallets'),  'icon'=>'dollar-sign', 'link'=>'#finance', 'sub'=>
 			[
 				array('permission'=>'BusinessWallets.index', 'title'=>__('Business Wallets'),  'icon'=>'help-circle', 'link'=>'admin/wallets', 'component'=>'wallets'),
 				array('permission'=> 'BusinessWithdrawals.index', 'title'=> __('Business Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/business_withdrawals', 'component'=>'business_withdrawals'),
