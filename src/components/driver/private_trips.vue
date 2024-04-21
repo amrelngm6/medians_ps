@@ -12,6 +12,7 @@
                         <tr class="text-start text-gray-500">
                             
                             <th class="min-w-100px" v-text="translate('ID')"></th>
+                            <th class="min-w-100px" v-text="translate('User')"></th>
                             <th class="min-w-100px" v-text="translate('Pickup')"></th>
                             <th class="min-w-100px" v-text="translate('Destination')"></th>
                             <th class="min-w-100px" v-text="translate('Cost')"></th>
@@ -22,6 +23,7 @@
                     <tbody class="fs-6 fw-semibold text-gray-600">
                         <tr v-for="trip in trips">
                             <td v-text="trip.trip_id"></td>
+                            <td v-text="trip.model.name ?? ''"></td>
                             <td v-text="trip.pickup_address"></td>
                             <td v-text="trip.destination_address"></td>
                             <td v-text="trip.total_cost"></td>
