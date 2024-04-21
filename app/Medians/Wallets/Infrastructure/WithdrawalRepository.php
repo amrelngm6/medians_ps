@@ -32,7 +32,7 @@ class WithdrawalRepository
 
 	public function getWithdrawals($id)
 	{
-		return Withdrawal::with('business', 'user')->where('user_type', Driver::class)->where('user_id', $id)->get();
+		return Withdrawal::with('business', 'user', 'wallet')->where('user_type', Driver::class)->where('user_id', $id)->get();
 	}
 
 	public function checkPending($id)
