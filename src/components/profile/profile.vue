@@ -190,42 +190,12 @@
                     
                     <info_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem" />
 
-                    <setting_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem" />
+                    <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem" />
                     
 
                     
 
-                    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'settings'">
-                        <div class="card-body p-9">
-                            <form action="/api/update" method="POST" data-refresh="1" id="system-setting-form"
-                                class="action  px-4 m-auto rounded-lg pb-10">
-
-                                <input name="type" type="hidden" value="User.update">
-
-                                <div class="w-full " v-for="(field, i) in content.fillable">
-                                    <div class="card w-full ">
-                                        <div class="card-body pt-0">
-                                            <div class="settings-form">
-                                                <div class="row mb-6">
-                                                    
-                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                                        :for="'input' + i" v-text="field.title"
-                                                        v-if="field.column_type != 'hidden'"></label>
-                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                                        <form_field :callback="closeSide" :column="field" :model="null"  :item="activeItem" :conf="conf"></form_field>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button
-                                    class="uppercase mt-3 text-white mx-auto rounded-lg bg-purple-800 hover:bg-red-800 px-4 py-2">{{ translate('Save') }}</button>
-                            </form>
-
-                        </div>
-                    </div>
+                    
 
                     
 
@@ -394,8 +364,8 @@ const account_tab = defineAsyncComponent(() => import('@/components/profile/acco
 const subscriptions_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
 const invoices_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
 const withdrawal_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
-const setting_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
-const info_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
+const setting_tab = defineAsyncComponent(() => import('@/components/profile/setting.vue') );
+const info_tab = defineAsyncComponent(() => import('@/components/profile/info.vue') );
 
 export default {
 
