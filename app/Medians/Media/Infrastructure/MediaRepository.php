@@ -124,6 +124,7 @@ class MediaRepository
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slug($originalFilename);
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+		$store = MediaUpload::addItem($this->_dir.$fileName, $type);
 
         try {
             $file->move($this->dir, $fileName);
@@ -131,7 +132,6 @@ class MediaRepository
         	return $e->getMessage();
         }
 
-		$store = MediaUpload::addItem($this->_dir.$fileName, $type);
 
         return $fileName;
     }

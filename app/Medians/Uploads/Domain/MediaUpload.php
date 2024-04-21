@@ -24,7 +24,7 @@ class MediaUpload extends CustomModel
     	'type',
 	];
 
-	public static function addItem($filePath)
+	public static function addItem($filePath, $type)
 	{
 		try {
 			
