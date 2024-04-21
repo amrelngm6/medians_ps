@@ -318,11 +318,11 @@ class APP
 			[
 				array('permission'=>'Payments.index', 'title'=>__('Plan Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
 				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-			]
-			),
+			// ]
+			// ),
 			
-			array('title'=>__('Wallets'),  'icon'=>'dollar-sign', 'link'=>'#wallets', 'sub'=>
-			[
+			// array('title'=>__('Wallets'),  'icon'=>'dollar-sign', 'link'=>'#wallets', 'sub'=>
+			// [
 				array('permission'=>'BusinessWallets.index', 'title'=>__('Business Wallets'),  'icon'=>'help-circle', 'link'=>'admin/business_wallets', 'component'=>'business_wallets'),
 				array('permission'=> 'BusinessWithdrawals.index', 'title'=> __('Business Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/business_withdrawals', 'component'=>'business_withdrawals'),
 			]
