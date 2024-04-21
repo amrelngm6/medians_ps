@@ -37,7 +37,7 @@ class BusinessWalletController extends CustomController
 	{
 		return [
             [ 'value'=> "wallet_id", 'text'=> "#"],
-            [ 'value'=> "business", 'text'=> __('Business'), 'sortable'=> true ],
+            [ 'value'=> "business", 'text'=> __('Business')],
             [ 'value'=> "credit_balance", 'text'=> __('Credit balance'), 'sortable'=> true ],
             [ 'value'=> "debit_balance", 'text'=> __('Debit balance'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> __('Status') ],
