@@ -183,7 +183,9 @@
         <div class="w-full pt-9 pb-0">
             <div class="d-flex flex-column flex-lg-row">
                 <div class="flex-lg-row-fluid me-lg-15 order-2 order-lg-1 mb-10 mb-lg-0">
-                    <account_tab v-if="activeTab == 'account'" :item="activeItem" />
+                    
+                    <account_tab v-if="activeTab == 'account'" :overview="content.overview" :item="activeItem" />
+
                     <div class="card card-flush pt-3 mb-5 mb-xl-10"  v-if="activeTab == 'account'">
                         <div class="card-header">
                             <div class="card-title">
