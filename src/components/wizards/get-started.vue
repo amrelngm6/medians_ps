@@ -668,9 +668,9 @@ export default
                             'Content-Type': 'application/json'
                         }
                         });
-                        
+                        console.log(response.data)
                         // Redirect to Paystack payment page
-                        window.open(response.data.data.authorization_url);
+                        // window.open(response.data.data.authorization_url);
                     } catch (error) {
                         console.error('Error initiating payment:', error);
                     }
