@@ -671,16 +671,31 @@ export default
                             'Content-Type': 'application/json'
                         }
                         });
-                        console.log(response.data)
+                        
                         // Redirect to Paystack payment page
-                        var a = window.open(response.data.data.authorization_url);
-                        console.log(a)
+                        window.open(response.data.data.authorization_url);
+                        var reference = response.data.reference
+                        console.log(reference);
+                        setInterval(() => {
+                            verifyPaystackPayment(reference);
+                        }, 5000);
+
                     } catch (error) {
                         console.error('Error initiating payment:', error);
                     }
                 });
             }
 
+            const verifyPaystackPayment = async (reference)  =>  
+            {
+                const response = await axios.post("https://api.paystack.co/transaction/verify/"+reference, {},{
+                        headers: {
+                            'Authorization': 'Bearer sk_test_82eb9bad45ad0d54fed4b1144dbaeeb217eef4d9',
+                            'Content-Type': 'application/json'
+                        }});
+
+                        console.log(response);
+            }
             /**
              * Validate paypal payment
              */
