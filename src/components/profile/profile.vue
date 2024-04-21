@@ -1,6 +1,5 @@
 <template>
     <div class="w-full mb-5 mb-xl-10">
-
        
             <div class="card p-6">
                 <div class="d-flex flex-wrap flex-sm-nowrap">
@@ -218,6 +217,8 @@ const info_tab = defineAsyncComponent(() => import('@/components/profile/info.vu
 export default {
 
     components: {
+        SideFormUpdate,
+        SideFormCreate,
         account_tab,
         form_field,
         subscriptions_tab,
