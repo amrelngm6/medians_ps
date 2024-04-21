@@ -185,121 +185,9 @@
                 <div class="flex-lg-row-fluid me-lg-15 order-2 order-lg-1 mb-10 mb-lg-0">
                     
                     <account_tab v-if="activeTab == 'account'" :overview="content.overview" :item="activeItem" />
+                    <subscriptions_tab v-if="activeTab == 'subscriptions'" :overview="content.overview" :item="activeItem" />
 
-                    <div class="card card-flush pt-3 mb-5 mb-xl-10"  v-if="activeTab == 'account'">
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h2 class="fw-bold" v-text="translate('Profile')"></h2>
-                            </div>
-                        </div>
-                        <div class="card-body pt-3">
-                            <!--begin::Section-->
-                            <div class="mb-10">
-                                <!--begin::Title-->
-                                <h5 class="mb-4" v-text="translate('Account information')"></h5>
-                                <div class="d-flex flex-wrap py-5">
-                                    <!--begin::Row-->
-                                    <div class="flex-equal me-5">
-                                        <!--begin::Details-->
-                                        <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
-                                            <!--begin::Row-->
-                                            <tbody>
-                                            <tr v-for="field in content.overview">
-                                                <td class="text-gray-500" v-text="field.title"></td>
-                                                <td class="text-gray-800 fw-bold" v-text="field.key"></td>
-                                            </tr>
-                                        </tbody></table>
-                                        <!--end::Details-->
-                                    </div>
-                                    <!--end::Row-->
-                                    <!--begin::Row-->
-                                    <div class="flex-equal" v-if="activeItem.business && activeItem.business.subscription">
-                                        <!--begin::Details-->
-                                        <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
-                                            <!--begin::Row-->
-                                            <tbody><tr>
-                                                <td class="text-gray-500" v-text="translate('Plan')"></td>
-                                                <td class="text-gray-800 fw-bold" v-text="activeItem.business.subscription.plan_name"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-gray-500" v-text="translate('Start date')"></td>
-                                                <td class="text-gray-800 fw-semibold" v-text="activeItem.business.subscription.start_date"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-gray-500" v-text="translate('End date')"></td>
-                                                <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
-                                            </tr>
-                                        </tbody></table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'subscriptions'">
-
-                        <div class="card  mb-5 mb-xl-10">
-                            <!--begin::Card body-->
-                            <div class="card-body">
-
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <!--begin::Col-->
-                                    <div class="col-lg-7">
-                                        <!--begin::Heading-->
-                                        <h3 class="mb-2"><span v-text="translate('Active until')"></span> <span v-text="activeItem.business.subscription.end_date"></span></h3>
-                                        <p class="fs-6 text-gray-600 fw-semibold mb-6 mb-lg-15" v-text="translate('Upgrade Notification Note')"></p>
-                                        <!--end::Heading-->
-
-                                        <!--begin::Info-->
-                                        <div class="fs-5 mb-2">
-                                            <span class="text-gray-800 fw-bold me-1" >$<span v-text="activeItem.business.subscription.plan.monthly_cost"></span></span>
-                                            <span class="text-gray-600 fw-semibold" v-text="translate('Monthly')"></span>
-                                        </div>
-                                        <!--end::Info-->
-
-                                        <!--begin::Notice-->
-                                        <div class="flex fs-6 text-gray-600 fw-semibold gap-4"  v-if="activeItem.business">
-                                            <span v-text="translate('Your current plan') "></span>
-                                            <span class="font-semibold" v-text="activeItem.business.subscription.plan_name "></span>
-                                        </div>
-                                        <!--end::Notice-->
-                                    </div>
-                                    <!--end::Col-->
-
-                                    <!--begin::Col-->
-                                    <div class="col-lg-5">
-                                        <!--begin::Heading-->
-                                        <div class="d-flex text-muted fw-bold fs-5 mb-3">
-                                            <span class="flex-grow-1 text-gray-800" v-text="translate('Plan Subscription Days')"></span>
-                                            <span class="text-gray-800"><span v-text="activeItem.business.subscription.past_days"></span> of <span v-text="activeItem.business.subscription.total_days"></span> <span v-text="translate('Days')"></span></span>
-                                        </div>
-                                        <!--end::Heading-->
-
-                                        <!--begin::Progress-->
-                                        <div class="progress h-8px bg-light-primary mb-2">                                    
-                                            <div class="progress-bar bg-danger" role="progressbar" :style="{width: calcDaysWidth(activeItem)+'%'}" ></div>
-                                        </div>
-                                        <!--end::Progress-->
-
-                                        <!--begin::Description-->
-                                        <div class="fs-6 text-gray-600 fw-semibold mb-10"><span v-text="activeItem.business.subscription.left_days"></span> <span v-text="translate('Remaining Plan Days')"></span></div>
-                                        <!--end::Description-->
-
-                                        <!--begin::Action-->
-                                        <div class="d-flex justify-content-end pb-0 px-0">
-                                            <button class="btn btn-danger text-white" @click="upgradePlan" v-text="translate('Upgrade Plan')"></button>
-                                        </div>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                            </div>
-                            <!--end::Card body-->
-                        </div>
-                    </div>
+                    
 
                     <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'business_info'">
                         <div class="card-body p-9">
@@ -544,12 +432,14 @@ const SideFormUpdate = defineAsyncComponent(() =>
 
 const form_field = defineAsyncComponent(() => import('@/components/includes/form_field.vue') );
 const account_tab = defineAsyncComponent(() => import('@/components/profile/account.vue') );
+const subscriptions_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
 
 export default {
 
     components: {
         account_tab,
         form_field,
+        subscriptions_tab,
 
     },
     name: 'Users',
