@@ -135,7 +135,7 @@ const subscriptions_tab = defineAsyncComponent(() => import('@/components/driver
 const withdrawal_tab = defineAsyncComponent(() => import('@/components/driver/withdrawal.vue') );
 const setting_tab = defineAsyncComponent(() => import('@/components/driver/setting.vue') );
 const info_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
-const trips_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
+const trips_tab = defineAsyncComponent(() => import('@/components/driver/trips.vue') );
 const private_trips_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
 
 export default {
