@@ -35,6 +35,7 @@ class MediaUpload extends CustomModel
 			$data = array();
 			$data['user_type'] = $userpk ? $user::class : '';
 			$data['user_id'] = $userpk ? $user->$userpk : 0;
+			$data['business_id'] = isset($user->business) ? $user->business->business_id : 0;
 			$data['path'] = $filePath;
 			$data['type'] = $type;
 			$save = MediaUpload::create($data);
