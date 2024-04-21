@@ -65,7 +65,7 @@ class BusinessWithdrawalRepository
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
 
-		return $query->whereIn('status',['pending', 'approved'])->groupBy('payment_method')->get();
+		return $query->whereIn('status',['pending', 'approved'])->selectRaw('*, SUM(amount) as total_amount')->groupBy('payment_method')->get();
 	}
 	
 	public function completedGroupedByPaymentMethod($params)
