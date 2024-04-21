@@ -129,7 +129,6 @@ class SystemSettingsController extends CustomController
 	public function getAll() 
 	{	
 		$data = $this->repo->getAll();
-
 		return $data ? array_column(json_decode($data), 'value', 'code') :  [];
 	}
 

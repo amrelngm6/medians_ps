@@ -62,16 +62,7 @@ class SettingsController extends CustomController
 				],
 			],
 			
-			'Service Area'=> [	
-				[ 'key'=> "cities", 'title'=> __('Cities'), 
-					'sortable'=> true, 'column_key'=>'city_id', 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
-					'data' => $this->citiesRepo->get(),   
-					'multiple'=>true
-				],
-			],
-			
-
-			'email'=> [	
+			'information'=> [	
 				[ 'key'=> "email", 'title'=> __('Email'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "address", 'title'=> __('Footer Address'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "mobile", 'title'=> __('Footer mobile'), 'fillable'=> true, 'column_type'=>'number' ],
@@ -79,11 +70,11 @@ class SettingsController extends CustomController
 			],
 
 			'trips'=> [	
-				[ 'key'=> "speed_limit", 'title'=> __('Driver speed limit'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "allow_private_trip", 'title'=> __('Allow Private Trips'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
 
 			'drivers'=> [	
+				[ 'key'=> "speed_limit", 'title'=> __('Driver speed limit'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "allow_applicants", 'title'=> __('Allow Driver Applicants'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
 			
@@ -147,7 +138,6 @@ class SettingsController extends CustomController
 	public function getAll() 
 	{	
 		$data = $this->repo->getAll();
-
 		return $data ? array_column(json_decode($data), 'value', 'code') :  [];
 	}
 
