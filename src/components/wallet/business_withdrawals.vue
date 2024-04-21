@@ -51,7 +51,6 @@
                     </div>
                 </div>
             </div>
-                        
         </div>
         <div v-if="!showWizard" class="mx-2 bg-white px-4 rounded shadow-sm py-2 ">
             <div class="card-header align-items-center py-5 gap-2 gap-md-5 w-full flex ">
