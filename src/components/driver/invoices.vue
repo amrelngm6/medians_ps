@@ -14,7 +14,6 @@
                         <th class="min-w-100px" v-text="translate('Amount')"></th>
                         <th class="min-w-100px" v-text="translate('Status')"></th>
                         <th class="min-w-125px" v-text="translate('Date')"></th>
-                        <th class="w-100px" v-text="translate('Plan')"></th>
                     </tr>
                 </thead>
                 <tbody class="fs-6 fw-semibold text-gray-600">
@@ -23,7 +22,6 @@
                         <td class="text-success" v-text="invoice.total_amount + '' + system_setting.currency"></td>
                         <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
                         <td v-text="invoice.date"></td>
-                        <td v-text="invoice.item && invoice.item.item ? invoice.item.item.name : ''"></td>
                     </tr>
                 </tbody>
             </table>
