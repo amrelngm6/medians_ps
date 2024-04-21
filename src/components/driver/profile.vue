@@ -128,12 +128,12 @@ const SideFormUpdate = defineAsyncComponent(() =>
 );
 
 const form_field = defineAsyncComponent(() => import('@/components/includes/form_field.vue') );
-const account_tab = defineAsyncComponent(() => import('@/components/profile/account.vue') );
-const subscriptions_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
-const invoices_tab = defineAsyncComponent(() => import('@/components/profile/invoices.vue') );
-const withdrawal_tab = defineAsyncComponent(() => import('@/components/profile/withdrawal.vue') );
-const setting_tab = defineAsyncComponent(() => import('@/components/profile/setting.vue') );
-const info_tab = defineAsyncComponent(() => import('@/components/profile/info.vue') );
+const account_tab = defineAsyncComponent(() => import('@/components/driver/account.vue') );
+const subscriptions_tab = defineAsyncComponent(() => import('@/components/driver/subscriptions.vue') );
+const invoices_tab = defineAsyncComponent(() => import('@/components/driver/invoices.vue') );
+const withdrawal_tab = defineAsyncComponent(() => import('@/components/driver/withdrawal.vue') );
+const setting_tab = defineAsyncComponent(() => import('@/components/driver/setting.vue') );
+const info_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
 
 export default {
 
