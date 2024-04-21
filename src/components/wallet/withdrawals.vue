@@ -6,7 +6,7 @@
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
         </div>
         
-        <div class="w-full flex gap-4">
+        <div class="w-full flex gap-4"  v-if="!showWizard">
             <div class="card card-flush h-md-50 mb-5 mb-xl-10 w-full">
                 <div class="card-header pt-5">
                     <div class="card-title d-flex flex-column">   
