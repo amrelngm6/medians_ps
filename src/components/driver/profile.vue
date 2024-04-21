@@ -149,7 +149,7 @@ export default {
         info_tab
 
     },
-    name: 'Users',
+    name: 'Drivers',
     emits:['callback'],
     setup(props, {emit}) {
         console.log('loaded profile')
@@ -214,12 +214,6 @@ export default {
             showEditSide.value = false;
         }
 
-        const sameRole = (user, role) => {
-            if (user.role_id == role.role_id) {
-                return true
-            }
-            return false;
-        }
 
 
         const back = () => 
@@ -262,7 +256,6 @@ export default {
             activeTab,
             activeItem,
             closeSide,
-            sameRole,
             setActiveStatus,
             isInput,
             handleName,
