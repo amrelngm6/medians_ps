@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="d-flex my-4">
-                                <a @click="showEditSide = true" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Edit')"></a>
+                                <a @click="emit('callback', {link:'admin/drivers',component:'drivers'})" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Back')"></a>
                             </div>
                         </div>
                         <div class="d-flex flex-wrap flex-stack">
