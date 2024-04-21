@@ -63,8 +63,8 @@
                                 </div>
                             </div>
                             <div v-if="store[type].data.length == 0" class="media-library__error media-library__error--sml">
-                                <span class="media-library__error__ttl">Not a great start!</span>
-                                <p class="media-library__error__msg">You don't have any media yet... Upload some media above to get started!</p>
+                                <span class="media-library__error__ttl" v-text="translate('Not a great start')"></span>
+                                <p class="media-library__error__msg" v-text="translate('You do not have any media yet, Upload some media above to get started')"></p>
                                 <app-svg-media class="mx-auto" />
                             </div>
                             <div v-else>
@@ -162,6 +162,8 @@
 
     import debounce from 'lodash/debounce';
     import axios from 'axios';
+    
+    import { translate, showAlert } from '@/utils.vue';
         
     export default {
         name: 'app-medialibrary-manager',
@@ -171,7 +173,7 @@
             'app-medialibrary-loader': Loader,
             'app-svg-error': SvgError,
             'app-svg-media': SvgMedia,
-            'infinite-loading': InfiniteLoading
+            'infinite-loading': InfiniteLoading,
         },
 
         props: {
