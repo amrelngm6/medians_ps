@@ -95,8 +95,6 @@
                    
                     <subscriptions_tab :conf="conf" v-if="activeTab == 'subscriptions'" :overview="content.overview" :item="activeItem" />
 
-                    <invoices_tab :conf="conf" v-if="activeTab == 'invoices'" :invoices="content.invoices" :item="activeItem" :system_setting="system_setting" />
-                    
                     <info_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem"  />
 
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" />
@@ -130,7 +128,6 @@ const SideFormUpdate = defineAsyncComponent(() =>
 const form_field = defineAsyncComponent(() => import('@/components/includes/form_field.vue') );
 const account_tab = defineAsyncComponent(() => import('@/components/driver/account.vue') );
 const subscriptions_tab = defineAsyncComponent(() => import('@/components/driver/subscriptions.vue') );
-const invoices_tab = defineAsyncComponent(() => import('@/components/driver/invoices.vue') );
 const withdrawal_tab = defineAsyncComponent(() => import('@/components/driver/withdrawal.vue') );
 const setting_tab = defineAsyncComponent(() => import('@/components/driver/setting.vue') );
 const info_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
@@ -143,7 +140,6 @@ export default {
         account_tab,
         form_field,
         subscriptions_tab,
-        invoices_tab,
         withdrawal_tab,
         setting_tab,
         info_tab
@@ -164,7 +160,6 @@ export default {
             { title: translate('Settings'), link: 'settings' },
             { title: translate('Route Trips'), link: 'trips' },
             { title: translate('Private trips'), link: 'private_trips' },
-            { title: translate('Invoices'), link: 'invoices' },
             { title: translate('Withdrawal'), link: 'withdrawal' },
         ]);
 
