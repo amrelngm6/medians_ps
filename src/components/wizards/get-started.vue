@@ -247,7 +247,28 @@
                                             <li class="flex py-2" v-if="activePlan.type == 'paid'">
                                                 <p class="w-full ml-6"><strong class="font-semibold text-slate-900"
                                                         v-text="translate('Payment method')"></strong></p>
-                                                <p class="w-full ml-6 flex gap-2 font-semibold text-lg"><svg width="30px"
+                                                <ul class="nav nav-pills nav-pills-custom mb-3">
+                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation">
+                                                        <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_2" data-bs-toggle="pill" href="#kt_stats_widget_16_tab_2" aria-selected="false" tabindex="-1" role="tab">
+                                                            <div class="nav-icon mb-3">        
+                                                                <vue-feather type="credit-card" />
+                                                            </div>
+                                                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1" v-text="translate('PayPal')"> </span> 
+                                                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation">
+                                                        <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_2" data-bs-toggle="pill" href="#kt_stats_widget_16_tab_2" aria-selected="false" tabindex="-1" role="tab">
+                                                            <div class="nav-icon mb-3">        
+                                                                <vue-feather type="credit-card" />
+                                                            </div>
+                                                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1" v-text="translate('PayStack')"> </span> 
+                                                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <p class="w-full ml-6 flex gap-2 font-semibold text-lg">
+                                                    <svg width="30px"
                                                         height="30px" viewBox="-3.5 0 48 48" version="1.1"
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink">
