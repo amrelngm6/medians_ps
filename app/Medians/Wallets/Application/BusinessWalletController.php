@@ -66,6 +66,8 @@ class BusinessWalletController extends CustomController
 	 */ 
 	public function index( ) 
 	{
+		$params = $this->app->request()->query->all();
+		
 		try {
 
 			return render('business_wallets', [
@@ -74,6 +76,8 @@ class BusinessWalletController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+		        'total_debit_balance' => $this->repo->totalDebitBalance(),
+		        'total_credit_balance' => $this->repo->totalCreditBalance(),
 
 		    ]);
 		} catch (\Exception $e) {

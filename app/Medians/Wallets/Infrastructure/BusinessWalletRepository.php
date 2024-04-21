@@ -29,6 +29,17 @@ class BusinessWalletRepository
 	}
 	
 	
+	public function totalDebitBalance($params)
+	{
+		return BusinessWithdrawal::sum('debit_balance');
+	}
+	
+	
+	public function totalCreditBalance($params)
+	{
+		return BusinessWithdrawal::sum('credit_balance');
+	}
+	
 	
 
 
