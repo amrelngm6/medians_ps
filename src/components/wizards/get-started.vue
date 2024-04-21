@@ -692,8 +692,11 @@ export default
                             'Authorization': 'Bearer sk_test_82eb9bad45ad0d54fed4b1144dbaeeb217eef4d9',
                             'Content-Type': 'application/json'
                         }});
-
-                        console.log(response);
+                
+                if (response.data.data.status == 'success')
+                {
+                    return validateOrderPayment(response.data.data);
+                }
             }
             /**
              * Validate paypal payment
