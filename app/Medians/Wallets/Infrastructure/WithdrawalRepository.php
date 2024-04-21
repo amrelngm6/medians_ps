@@ -15,29 +15,29 @@ class WithdrawalRepository
 
 	public function find($id)
 	{
-		return Withdrawal::with('business','wallet')->find($id);
+		return Withdrawal::with('business', 'user','wallet')->find($id);
 	}
     
 	public function get($params, $limit = 1000)
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new Withdrawal;
 
-		return $query->with('business','wallet')->limit($limit)->get();
+		return $query->with('business', 'user','wallet')->limit($limit)->get();
 	}
 	
 	public function getWithdrawal($id)
 	{
-		return Withdrawal::with('business','wallet')->where('business_id', $id)->first();
+		return Withdrawal::with('business', 'user','wallet')->where('business_id', $id)->first();
 	}
 
 	public function getWithdrawals($id)
 	{
-		return Withdrawal::with('business')->where('business_id', $id)->get();
+		return Withdrawal::with('business', 'user')->where('business_id', $id)->get();
 	}
 
 	public function checkPending($id)
 	{
-		return Withdrawal::with('business')->where('status', 'pending')->where('business_id', $id)->first();
+		return Withdrawal::with('business', 'user')->where('status', 'pending')->where('business_id', $id)->first();
 	}
 
 	public function eventsByDate($params)

@@ -195,13 +195,13 @@ class WithdrawalController extends CustomController
 	/**
 	 * Load user wallets
 	 */
-	public function getWithdrawal()
+	public function getWithdrawals()
 	{
 		$user = $this->app->auth();
 
 		if (empty($user->customer_id)) { return null; }
 		
-		return $this->repo->getWithdrawal($user->customer_id);
+		return $this->repo->getWithdrawals($user->customer_id);
 	}
 
 
