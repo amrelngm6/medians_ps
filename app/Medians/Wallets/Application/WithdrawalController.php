@@ -71,7 +71,7 @@ class WithdrawalController extends CustomController
 
 		try {
 
-			return render('business_withdrawals', [
+			return render('withdrawals', [
 		        'load_vue' => true,
 		        'title' => __('Business Withdrawals'),
 		        'columns' => $this->columns(),
