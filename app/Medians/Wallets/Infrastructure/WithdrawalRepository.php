@@ -95,6 +95,7 @@ class WithdrawalRepository
 
 		$dataArray['date'] = date('Y-m-d');
 		$dataArray['status'] = 'pending';
+		$dataArray['user_type'] = $this->handleType($dataArray['user_type']);
 		
 		// Return the  object with the new data
     	$Object = Withdrawal::firstOrCreate($dataArray);
