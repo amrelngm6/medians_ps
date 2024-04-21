@@ -82,7 +82,7 @@
             </div>
             <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                 <li class="nav-item mt-2" v-for="tab in tabsList">
-                    <a v-if="checkRole(activeItem.role_id, tab.link)" @click="setActiveTab(tab.link)" :class="activeTab == tab.link ? 'active' : ''"
+                    <a @click="setActiveTab(tab.link)" :class="activeTab == tab.link ? 'active' : ''"
                         class="nav-link text-active-primary ms-0 me-10 py-5 " href="javascript:;" v-text="tab.title"></a>
                 </li>
             </ul>
@@ -220,14 +220,6 @@ export default {
             return false;
         }
 
-        const checkRole = (role_id, tab) => {
-            
-            if (role_id == 1 && (tab == 'business_info' || tab == 'subscriptions' || tab == 'invoices' || tab == 'withdrawal')) 
-                return false
-
-            return true;
-        }
-
 
         const cost = () => 
         {
@@ -268,7 +260,6 @@ export default {
             tabsList,
             activeTab,
             activeItem,
-            checkRole,
             closeSide,
             sameRole,
             setActiveStatus,
