@@ -84,17 +84,16 @@
         </div>
         <div class="card card-flush pt-3 mb-5 mb-xl-10" >
             <div class="card  flex card-xxl-stretch mb-5 mb-xxl-10">
-                <div class="card-header">
-                    <div class="card-title">
-                        <h3 v-text="translate('Earnings')"></h3>
-                        <span class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
-                        v-text="translate('This is do not consider the debit balance')"></span>
-                    </div>
-                </div>
+                
                 <div class="card-body pb-0">
                     
                     <div class="d-flex flex-wrap justify-content-between pb-6">
-                        <div class="d-flex flex-wrap">
+                        <div class="w-full">
+                            <h3 v-text="translate('Earnings')"></h3>
+                            <p class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
+                            v-text="translate('This is do not consider the debit balance')"></p>
+                        </div>
+                        <div class="d-flex flex-wrap w-full">
                             <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
                                 <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="wallet">
                                     <span
