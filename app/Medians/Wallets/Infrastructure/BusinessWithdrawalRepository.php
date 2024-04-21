@@ -18,9 +18,11 @@ class BusinessWithdrawalRepository
 		return BusinessWithdrawal::with('business','wallet')->find($id);
 	}
     
-	public function get($limit = 100)
+	public function get($params, $limit = 1000)
 	{
-		return BusinessWithdrawal::with('business','wallet')->limit($limit)->get();
+		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
+
+		return $query->with('business','wallet')->limit($limit)->get();
 	}
 	
 	public function getBusinessWithdrawal($id)
