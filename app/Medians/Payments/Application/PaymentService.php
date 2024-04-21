@@ -94,7 +94,6 @@ class PaymentService
 			return $invoiceRepo->store((array) $data);
 
 		} catch (\Throwable $th) {
-			error_log($th->getMessage());
 			return array('error'=>$th->getMessage());
 		}
 		
@@ -119,7 +118,6 @@ class PaymentService
 			return $walletRepo->store($data);
 
 		} catch (\Throwable $th) {
-			error_log($th->getMessage());
 			return array('error'=>$th->getMessage());
 		}
 		

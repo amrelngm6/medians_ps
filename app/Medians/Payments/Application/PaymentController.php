@@ -185,7 +185,7 @@ class PaymentController extends CustomController
 
 		$order = json_decode($params['order']);
 		
-		if ($order->status == 'COMPLETED')
+		if ($order->status == 'COMPLETED' || $order->status == 'success')
 		{
 			
 			try {
@@ -212,7 +212,7 @@ class PaymentController extends CustomController
 		}
 		
 		
-		return array('error'=>$order->status ?? 'Error');
+		return array('error'=> $order->status ?? 'Error');
 		
 	}
 
