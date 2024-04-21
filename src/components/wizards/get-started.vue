@@ -341,6 +341,7 @@ import { translate, handleGetRequest, handleRequest, deleteByKey, showAlert } fr
 import VueScript2 from 'vue-script2';
 import { loadScript } from "@paypal/paypal-js";
 import axios from 'axios'
+import System_settings from '../system_settings.vue';
 
 export default
     {
@@ -623,7 +624,6 @@ export default
                                     // Capture the payment when the user approves
                                     return actions.order.capture().then(function (details) {
                                         // Handle the successful payment
-
                                         validateOrderPayment(details, details.id);
                                     });
                                 },
@@ -654,20 +654,11 @@ export default
 
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
-                        amount: 10000,  // Amount in kobo (10000 kobo = 100 NGN)
-                        email: 'user@example.com',  // Customer's email
-                        metadata: {
-                            custom_fields: [
-                            {
-                                display_name: "Mobile Number",
-                                variable_name: "mobile_number",
-                                value: "+2348012345678"
-                            }
-                            ]
-                        }
+                        amount: cost(),  // Amount in kobo (10000 kobo = 100 NGN)
+                        email: props.auth.email,  // Customer's email
                         }, {
                         headers: {
-                            'Authorization': 'Bearer sk_test_82eb9bad45ad0d54fed4b1144dbaeeb217eef4d9',
+                            'Authorization': 'Bearer '+system_settings.paystack_secret_key,
                             'Content-Type': 'application/json'
                         }
                         });
@@ -689,7 +680,7 @@ export default
             {
                 const response = await axios.get("https://api.paystack.co/transaction/verify/"+reference,{
                         headers: {
-                            'Authorization': 'Bearer sk_test_82eb9bad45ad0d54fed4b1144dbaeeb217eef4d9',
+                            'Authorization': 'Bearer '+system_settings.paystack_secret_key,
                             'Content-Type': 'application/json'
                         }});
                 

@@ -86,7 +86,7 @@ class SystemSettingsController extends CustomController
 			
 			'paypal'=> [	
 				[ 'key'=> "paypal_api_key", 'title'=> __('PayPal API Key'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "paypal_api_secret", 'title'=> __('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "paypal_api_secret", 'title'=> __('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'password' ],
 				[ 'key'=> "paypal_mode", 'title'=> __('PayPal mode'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['paypal_mode'=>'live','title'=>'Live'], ['paypal_mode'=>'sandbox','title'=>'Sandbox']]  
