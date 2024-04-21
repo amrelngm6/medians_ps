@@ -46,6 +46,11 @@ class WithdrawalRepository
 		return Withdrawal::with('business', 'user', 'wallet')->where('business_id', $this->business_id)->where('user_type', Driver::class)->where('user_id', $id)->get();
 	}
 
+	public function getDriverWithdrawals($id)
+	{
+		return Withdrawal::with('business', 'user', 'wallet')->where('user_type', Driver::class)->where('user_id', $id)->get();
+	}
+
 	public function checkPending($id)
 	{
 		return Withdrawal::with('business', 'user')->where('business_id', $this->business_id)->where('user_type', Driver::class)->where('status', 'pending')->where('user_id', $id)->first();

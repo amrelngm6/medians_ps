@@ -122,7 +122,7 @@ class DriverController extends CustomController
 			'fillable' => $this->fillable(),
 			'invoices' => $invoicesRepo->getUserInvoices($user->id),
 			'wallet' => $WalletRepo->driverWallet($driver->driver_id),
-			'withdrawals' => $WithdrawalRepo->getWithdrawals($driver->driver_id),
+			'withdrawals' => $WithdrawalRepo->getDriverWithdrawals($driver->driver_id),
 		]);
 
 	} 
