@@ -192,11 +192,11 @@ class PaymentController extends CustomController
 				
 				$paymentService = new PaymentService($params['payment_method']);
 
-				$savedSubscription = $paymentService->storePlanSubscription($params, $order, $user); 
+				$savedSubscription = $paymentService->storePlanSubscription($params, $user); 
 
-				$addInvoice = $paymentService->addInvoice($params, $order, $savedSubscription, $user); 
+				$addInvoice = $paymentService->addInvoice($params, $savedSubscription, $user); 
 
-				$savePlanPayment = $paymentService->storePlanPayment($addInvoice, $order, $savedSubscription, $user); 
+				$savePlanPayment = $paymentService->storePlanPayment($params, $addInvoice, $savedSubscription, $user); 
 
 				$createWallet = $paymentService->createWallet($params, $addInvoice, $savedSubscription, $user); 
 	

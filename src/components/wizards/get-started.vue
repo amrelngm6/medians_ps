@@ -624,7 +624,7 @@ export default
                                     return actions.order.capture().then(function (details) {
                                         // Handle the successful payment
 
-                                        validateOrderPayment(details);
+                                        validateOrderPayment(details, details.id);
                                     });
                                 },
                             })
@@ -695,13 +695,13 @@ export default
                 
                 if (response.data.data.status == 'success')
                 {
-                    return validateOrderPayment(response.data.data);
+                    return validateOrderPayment(response.data.data, response.data.data.id);
                 }
             }
             /**
              * Validate paypal payment
              */
-            const validateOrderPayment = (order) => {
+            const validateOrderPayment = (order, paymentCode) => {
                 const params = new URLSearchParams([]);
                 params.append('type', 'Payment.paypal_payment_confirmation');
                 params.append('params[plan_id]', activePlan.value.plan_id);
@@ -709,6 +709,7 @@ export default
                 params.append('params[payment_method]', paymentMethod.value);
                 params.append('params[status]', 'paid');
                 params.append('params[cost]', cost());
+                params.append('params[payment_code]', paymentCode);
                 params.append('params[order]', JSON.stringify(order));
                 handleRequest(params, '/api/create').then(data => {
                     if (data.success) {

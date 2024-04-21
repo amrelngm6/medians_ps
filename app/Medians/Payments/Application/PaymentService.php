@@ -37,31 +37,28 @@ class PaymentService
 	}
 
 
-	public function storePlanSubscription($params, $order, $user)
+	public function storePlanSubscription($params, $user)
 	{
 
-		$item = $order->purchase_units[0];
-
 		$planSubscription = [];
-		$planSubscription['plan_id'] = $item->reference_id;
+		$planSubscription['plan_id'] = $params['plan_id'];
 		$planSubscription['business_id'] = $user->business->business_id;
 		$planSubscription['user_id'] = $user->id;
 		$planSubscription['type'] = $params['payment_type'];
 		$planSubscription['start_date'] = date('Y-m-d');
-		$planSubscription['end_date'] = $item->custom_id == 'monthly' ? date('Y-m-d', strtotime('+1 month')) : date('Y-m-d', strtotime('+1 year')) ;
+		$planSubscription['end_date'] = $params['payment_type'] == 'monthly' ? date('Y-m-d', strtotime('+1 month')) : date('Y-m-d', strtotime('+1 year')) ;
 
 		return $this->planSubscriptionRepo->store($planSubscription);
 	}
 	
 	
-	public function storePlanPayment($invoice, $order, $planSubscription, $user)
+	public function storePlanPayment($params, $invoice, $planSubscription, $user)
 	{
-		$item = $order->purchase_units[0];
 
-		$payment['payment_code'] = $order->id;
+		$payment['payment_code'] = $params['payment_code'];
 		$payment['invoice_id'] = $invoice->invoice_id;
 		$payment['business_id'] = $user->business->business_id;
-		$payment['amount'] = $item->amount->value;
+		$payment['amount'] = $invoice->total_amount;
 		$payment['model_id'] = $planSubscription->subscription_id;
 		$payment['model_type'] = PlanSubscription::class;
 		$payment['date'] = date('Y-m-d');
@@ -74,7 +71,7 @@ class PaymentService
 	}
 	
 	
-	public function addInvoice($params, $order, $savedSubscription, $user)
+	public function addInvoice($params, $savedSubscription, $user)
 	{
 		try {
 
@@ -92,7 +89,7 @@ class PaymentService
 			$data['date'] = date('Y-m-d');
 			$data['status'] = $params['status'];
 			$data['notes'] = 'Business subscription';
-			$data['items'] = $this->handleItems($params, $order, $savedSubscription, $user);
+			$data['items'] = $this->handleItems($params, $savedSubscription, $user);
 
 			return $invoiceRepo->store((array) $data);
 
@@ -129,7 +126,7 @@ class PaymentService
 	}
 	
 	
-	public function handleItems($params, $order, $savedSubscription, $user)
+	public function handleItems($params, $savedSubscription, $user)
 	{
 		$items = [
 			[
