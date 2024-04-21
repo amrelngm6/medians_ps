@@ -173,6 +173,7 @@ export default {
     setup(props) {
 
         const activeItem = ref({});
+        const content = ref({});
         const withdrawRequest = ref({'field':{}});
         const showWizard = ref(false);
 
