@@ -380,6 +380,10 @@ class APIController extends CustomController
 			case 'BusinessWithdrawal.update':
 				$controller = new Wallets\Application\BusinessWithdrawalController;
 				break;
+		
+			case 'Withdrawal.update':
+				$controller = new Wallets\Application\WithdrawalController;
+				break;
 			
 		}
 

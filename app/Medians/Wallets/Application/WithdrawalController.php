@@ -129,7 +129,6 @@ class WithdrawalController extends CustomController
 		$params = $this->app->request()->get('params');
 
         try {
-			
 
             if ($this->repo->update($params))
             {
