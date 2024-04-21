@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div v-if="activeItem.wallet"
+                                    <div v-if="activeItem.field"
                                         class="w-full  d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten">
                                         <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Payment Details')"></h6>
                 
