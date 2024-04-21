@@ -27,7 +27,7 @@ class WithdrawalRepository
 	
 	public function getWithdrawal($id)
 	{
-		return Withdrawal::with('business', 'user','wallet')->where('user_id', $id)->first();
+		return Withdrawal::with('business', 'user','wallet')->where('user_type', Driver::class)->where('user_id', $id)->first();
 	}
 
 	public function getWithdrawals($id)
@@ -37,7 +37,7 @@ class WithdrawalRepository
 
 	public function checkPending($id)
 	{
-		return Withdrawal::with('business', 'user')->where('status', 'pending')->where('user_id', $id)->first();
+		return Withdrawal::with('business', 'user')->where('user_type', Driver::class)->where('status', 'pending')->where('user_id', $id)->first();
 	}
 
 	public function eventsByDate($params)

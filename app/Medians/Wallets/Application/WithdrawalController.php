@@ -220,7 +220,7 @@ class WithdrawalController extends CustomController
 	public function validate($params, $user)
 	{
 		
-		$check =  $this->repo->checkPending($user->business->business_id);
+		$check =  $this->repo->checkPending($user->driver_id);
 
 		return $check ? __('Another pending request found') : null;
 		
