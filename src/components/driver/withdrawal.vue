@@ -87,7 +87,7 @@
                 
                 <div class="card-body pb-0">
                     
-                    <div class="d-flex flex-wrap justify-content-between pb-6">
+                    <div class="d-flex justify-content-between pb-6">
                         <div class="w-full">
                             <h3 v-text="translate('Earnings')"></h3>
                             <p class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
