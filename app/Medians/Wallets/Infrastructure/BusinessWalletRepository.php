@@ -29,15 +29,15 @@ class BusinessWalletRepository
 	}
 	
 	
-	public function totalDebitBalance($params)
+	public function totalDebitBalance()
 	{
-		return BusinessWithdrawal::sum('debit_balance');
+		return BusinessWallet::sum('debit_balance');
 	}
 	
 	
-	public function totalCreditBalance($params)
+	public function totalCreditBalance()
 	{
-		return BusinessWithdrawal::sum('credit_balance');
+		return BusinessWallet::sum('credit_balance');
 	}
 	
 	
