@@ -100,6 +100,10 @@
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" />
 
                     <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :withdrawals="content.withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
+
+                    <private_trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'private_trips'" :private_trips="content.private_trips"  :system_setting="system_setting" :item="activeItem" />
+                    
+                    <trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'trips'" :trips="content.trips" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
                     
 
                 </div>  
@@ -131,6 +135,8 @@ const subscriptions_tab = defineAsyncComponent(() => import('@/components/driver
 const withdrawal_tab = defineAsyncComponent(() => import('@/components/driver/withdrawal.vue') );
 const setting_tab = defineAsyncComponent(() => import('@/components/driver/setting.vue') );
 const info_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
+const trips_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
+const private_trips_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
 
 export default {
 
@@ -142,6 +148,8 @@ export default {
         subscriptions_tab,
         withdrawal_tab,
         setting_tab,
+        private_trips_tab,
+        trips_tab,
         info_tab
 
     },
