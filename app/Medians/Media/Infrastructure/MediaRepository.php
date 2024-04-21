@@ -5,6 +5,7 @@ namespace Medians\Media\Infrastructure;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Medians\Uploads\Domain\MediaUpload;
 
 class MediaRepository 
 {
