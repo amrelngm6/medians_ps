@@ -188,20 +188,11 @@
 
                     <invoices_tab :conf="conf" v-if="activeTab == 'invoices'" :invoices="content.invoices" :item="activeItem" :system_setting="system_setting" />
                     
-                    <info_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem" />
+                    <info_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem"  />
 
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" />
 
-                    <withdrawal_tab :conf="conf" v-if="activeTab == 'settings'" :business_withdrawals="content.business_withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
-                    
-
-                    
-
-                    
-
-                    
-
-                    
+                    <withdrawal_tab :conf="conf" v-if="activeTab == 'withdrawal'" :business_withdrawals="content.business_withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
                     
 
                 </div>  
