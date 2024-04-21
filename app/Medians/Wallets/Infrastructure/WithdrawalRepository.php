@@ -96,6 +96,7 @@ class WithdrawalRepository
 		$dataArray['date'] = date('Y-m-d');
 		$dataArray['status'] = 'pending';
 		$dataArray['user_type'] = $this->handleType($dataArray);
+		$dataArray['wallet_id'] = $this->handleWallet($dataArray);
 		
 		// Return the  object with the new data
     	$Object = Withdrawal::firstOrCreate($dataArray);
@@ -175,10 +176,11 @@ class WithdrawalRepository
 	}
 
 
-	public function generateCode() 
+	public function handleWallet($params) 
 	{
-		$code = date('ym').rand(9999, 999999); 
-		return Withdrawal::where('code', $code)->first() ? $this->generateCode() : $code;
+		return Wallet::where('user_type', $params['user_type'])
+		->where('user_id', $params['user_id'])
+		->first()->wallet_id ;
 	}
 
 
