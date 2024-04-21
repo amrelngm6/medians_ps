@@ -21,7 +21,7 @@
                 <div class="px-4 pt-2 pb-4 d-flex align-items-center">
                     <div class="d-flex flex-center me-5 pt-2"></div>
                     <div class="d-flex flex-column content-justify-center w-100">
-                        <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="withdrawal in content.payment_methods_pending_amount">
+                        <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="withdrawal in content.items_by_payment_methods">
                             <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+withdrawal.payment_method.toLowerCase()+'.png'" /></div>
                             <div class="text-gray-500 flex-grow-1 me-4" v-text="withdrawal.payment_method"></div>
                             <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+withdrawal.value"></div>
