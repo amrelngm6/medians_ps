@@ -184,8 +184,9 @@
             <div class="d-flex flex-column flex-lg-row">
                 <div class="flex-lg-row-fluid me-lg-15 order-2 order-lg-1 mb-10 mb-lg-0">
                     
-                    <account_tab v-if="activeTab == 'account'" :overview="content.overview" :item="activeItem" />
-                    <subscriptions_tab v-if="activeTab == 'subscriptions'" :overview="content.overview" :item="activeItem" />
+                    <account_tab  v-if="activeTab == 'account'" :overview="content.overview" :item="activeItem" />
+                   
+                    <subscriptions_tab :conf="conf" v-if="activeTab == 'subscriptions'" :overview="content.overview" :item="activeItem" />
 
                     
 
