@@ -224,17 +224,17 @@ export default {
                 return showAlert(translate('Amount is required'));
             }
             
-            if (withdrawRequest.value.amount > content.value.wallet.credit_balance)
+            if (withdrawRequest.value.amount > props.wallet.credit_balance)
             {
                 return showAlert(translate('Balance is not enough'));
             }
 
-            if (window.confirm(translate('Conffirm to submit')))
+            if (window.confirm(translate('Confirm to submit')))
             {
                 var params = new URLSearchParams();
                 params.append('type', 'BusinessWithdrawal.create')
                 params.append('params[amount]', withdrawRequest.value.amount)
-                params.append('params[wallet_id]', content.value.wallet.wallet_id)
+                params.append('params[wallet_id]', props.wallet.wallet_id)
                 params.append('params[notes]', withdrawRequest.value.notes)
                 params.append('params[field]', JSON.stringify(withdrawRequest.value.field))
                 params.append('params[payment_method]', withdrawRequest.value.payment_method)
