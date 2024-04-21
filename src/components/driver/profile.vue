@@ -162,8 +162,8 @@ export default {
         const tabsList = ref([
             { title: translate('Account'), link: 'account' },
             { title: translate('Settings'), link: 'settings' },
-            { title: translate('Business info'), link: 'business_info' },
-            { title: translate('Subscriptions'), link: 'subscriptions' },
+            { title: translate('Route Trips'), link: 'trips' },
+            { title: translate('Private trips'), link: 'private_trips' },
             { title: translate('Invoices'), link: 'invoices' },
             { title: translate('Withdrawal'), link: 'withdrawal' },
         ]);
