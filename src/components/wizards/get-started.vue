@@ -315,10 +315,10 @@
                                                         v-text="translate('Includes free updates and technical support')"></span>
                                                 </p>
                                                 <div id="paypal-button-container">
-                                                    <a @click="complete()"
+                                                    <a @click="complete()" v-if="paymentMethod == 'paypal'"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-slate-900 text-white hover:bg-slate-700 mt-6 w-full"
                                                         href="javascript:;"><span v-text="translate('Pay with PayPal')"></span></a>
-                                                    <a @click="completePaystack()"
+                                                    <a @click="completePaystack()" v-if="paymentMethod == 'paystack'"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-info text-white hover:bg-slate-700 mt-6 w-full"
                                                         href="javascript:;"><span v-text="translate('Pay with PayStack')"></span></a></div>
                                             </div>
