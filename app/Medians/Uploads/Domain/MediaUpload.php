@@ -37,7 +37,7 @@ class MediaUpload extends CustomModel
 			$data['user_id'] = $userpk ? $user->$userpk : 0;
 			$data['path'] = $filePath;
 			$data['type'] = $type;
-			$save = UsageLog::create($data);
+			$save = MediaUpload::create($data);
 			return $save;
 
 		} catch (\Throwable $th) {
