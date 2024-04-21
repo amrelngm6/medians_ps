@@ -42,12 +42,12 @@ class WithdrawalRepository
 
 	public function getWithdrawals($id)
 	{
-		return Withdrawal::with('business', 'user', 'wallet')->where('user_type', Driver::class)->where('user_id', $id)->get();
+		return Withdrawal::with('business', 'user', 'wallet')->where('business_id', $this->business_id)->where('user_type', Driver::class)->where('user_id', $id)->get();
 	}
 
 	public function checkPending($id)
 	{
-		return Withdrawal::with('business', 'user')->where('user_type', Driver::class)->where('status', 'pending')->where('user_id', $id)->first();
+		return Withdrawal::with('business', 'user')->where('business_id', $this->business_id)->where('user_type', Driver::class)->where('status', 'pending')->where('user_id', $id)->first();
 	}
 
 	public function eventsByDate($params)
@@ -59,7 +59,7 @@ class WithdrawalRepository
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new Withdrawal;
 
-		return $query->whereIn('status',['pending', 'approved'])->sum('amount');
+		return $query->whereIn('status',['pending', 'approved'])->where('business_id', $this->business_id)->sum('amount');
 	}
 	
 	
@@ -67,7 +67,7 @@ class WithdrawalRepository
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new Withdrawal;
 
-		return $query->whereIn('status',['done'])->sum('amount');
+		return $query->whereIn('status',['done'])->where('business_id', $this->business_id)->sum('amount');
 	}
 	
 	
@@ -75,14 +75,14 @@ class WithdrawalRepository
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new Withdrawal;
 
-		return $query->whereIn('status',['pending', 'approved'])->selectRaw('*, ROUND(SUM(amount), 2) as total_amount')->groupBy('payment_method')->get();
+		return $query->whereIn('status',['pending', 'approved'])->where('business_id', $this->business_id)->selectRaw('*, ROUND(SUM(amount), 2) as total_amount')->groupBy('payment_method')->get();
 	}
 	
 	public function completedGroupedByPaymentMethod($params)
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new Withdrawal;
 
-		return $query->whereIn('status',['done'])->selectRaw('*,  ROUND(SUM(amount), 2) as total_amount')->groupBy('payment_method')->get();
+		return $query->whereIn('status',['done'])->where('business_id', $this->business_id)->selectRaw('*,  ROUND(SUM(amount), 2) as total_amount')->groupBy('payment_method')->get();
 	}
 	
 	
