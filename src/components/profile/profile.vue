@@ -121,9 +121,7 @@
                         </div>
                         <div class="d-flex flex-wrap flex-stack">
                             <div class="d-flex flex-column flex-grow-1 pe-8">
-                                <!--begin::Stats-->
                                 <div class="d-flex flex-wrap" v-if="activeItem.business && content">
-                                    <!--begin::Stat-->
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                         <div class="d-flex align-items-center">
                                             <div class="fs-2 fw-bold" v-text="activeItem.business.subscription.plan_name"></div>
