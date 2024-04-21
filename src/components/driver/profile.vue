@@ -99,7 +99,7 @@
 
                     <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :withdrawals="content.withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
 
-                    <private_trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'private_trips'" :private_trips="content.private_trips"  :system_setting="system_setting" :item="activeItem" />
+                    <private_trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'private_trips'" :trips="content.private_trips"  :system_setting="system_setting" :item="activeItem" />
                     
                     <trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'trips'" :trips="content.trips" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
                     

@@ -5,7 +5,7 @@
                     <h2 class="w-full" v-text="translate('Latest private trips')"></h2>
                 </div>
             </div>
-            <div class="card-body pt-2" v-if="private_trips">
+            <div class="card-body pt-2" v-if="trips">
                 <table id="kt_customer_details_invoices_table_1"
                     class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                     <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
-                        <tr v-for="trip in private_trips">
+                        <tr v-for="trip in trips">
                             <td v-text="trip.trip_id"></td>
                             <td v-text="trip.locations.length"></td>
                             <td v-text="trip.route.route_name ?? ''"></td>
@@ -78,7 +78,7 @@ export default {
         'conf',
         'auth',
         'item',
-        'private_trips',
+        'trips',
     ]
 };
 </script>
