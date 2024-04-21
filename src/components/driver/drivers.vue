@@ -28,7 +28,7 @@
                     <div class="grid grid-cols-12 gap-x-6 bg-white p-4 rounded shadow-md">
                         <div class="d-flex gap-7 align-items-center">
                             <!--begin::Avatar-->
-                            <div class="symbol symbol-circle symbol-100px">
+                            <div class="symbol symbol-circle symbol-100px cursor-pointer" @click="handleAction('view', driver)">
                                 <img :src="driver.photo" alt="image">
                             </div>
                             <div class="d-flex flex-column gap-2">
