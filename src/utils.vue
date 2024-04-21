@@ -74,9 +74,9 @@ export async function handleGetRequest(url) {
     }
     return await axios.get(url).then(response => {
         if (response.data.status) {
-            document.title = response.data.result.title ?? document.title;
             return response.data.result ? response.data.result : response.data;
         } else {
+            document.title = response.data.result.title ?? document.title;
             return response.data;
         }
     });
