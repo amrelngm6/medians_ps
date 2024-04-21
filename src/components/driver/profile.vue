@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="d-flex my-4">
-                                <a @click="emit('callback', {link:'admin/drivers',component:'drivers'})" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Back')"></a>
+                                <a @click="back" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Back')"></a>
                             </div>
                         </div>
                         <div class="d-flex flex-wrap flex-stack">
@@ -221,9 +221,9 @@ export default {
         }
 
 
-        const cost = () => 
+        const back = () => 
         {
-            return 0;
+            return emit('callback', {link:'admin/drivers',component:'drivers'});
         }
 
         const checkFeatureLimit = (features, code) => 
@@ -251,7 +251,7 @@ export default {
         return {
             payment_fields,
             checkFeatureLimit,
-            cost,
+            back,
             url,
             showAddSide,
             showEditSide,
