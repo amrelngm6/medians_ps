@@ -31,13 +31,13 @@ class BusinessWalletRepository
 	
 	public function totalDebitBalance()
 	{
-		return BusinessWallet::sum('debit_balance');
+		return BusinessWallet::selectRaw('ROUND(SUM(debit_balance), 2) as amount')->first()->amount;
 	}
 	
 	
 	public function totalCreditBalance()
 	{
-		return BusinessWallet::sum('credit_balance');
+		return BusinessWallet::selectRaw('ROUND(SUM(credit_balance), 2) as amount')->first()->amount;
 	}
 	
 	
