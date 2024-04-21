@@ -94,7 +94,7 @@ class UserController extends CustomController
 		return render('users', [
 	        'title' => __('Users'),
 			'load_vue'=> true,
-			'roles' =>   $user->role_id == 1 ? $this->rolesRepo->getWithUsers() : $this->rolesRepo->getWithBusinessUsers($user->business),
+			'roles' =>   $user->role_id == 1 ? $this->rolesRepo->getWithUsers() : $this->rolesRepo->getWithBusinessUsers($user),
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
 	    ]);
