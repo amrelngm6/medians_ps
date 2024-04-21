@@ -306,6 +306,10 @@ class MobileAPIController extends CustomController
 	            case 'Wallet.create':
 	                $return = (new Wallets\Application\WalletController())->create(); 
 	                break;
+						
+	            case 'Withdrawal.create':
+	                $return = (new Wallets\Application\WithdrawalController())->create(); 
+	                break;
 
 			}
 
@@ -361,6 +365,10 @@ class MobileAPIController extends CustomController
 
 			case 'Wallet.update':
 				$return = (new Wallets\Application\WalletController())->update_wallet(); 
+				break;
+
+			case 'Withdrawal.update':
+				$return = (new Wallets\Application\WithdrawalController())->update_wallet(); 
 				break;
 
 		}
