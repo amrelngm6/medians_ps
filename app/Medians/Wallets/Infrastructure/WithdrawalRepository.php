@@ -13,6 +13,16 @@ class WithdrawalRepository
 {
 
 
+	/**
+	 * Business id
+	 */ 
+	protected $business_id ;
+	
+	function __construct($business = null)
+	{
+		$this->business_id = isset($business->business_id) ? $business->business_id : 0;
+	}
+
 	public function find($id)
 	{
 		return Withdrawal::with('business', 'user','wallet')->find($id);
@@ -22,7 +32,7 @@ class WithdrawalRepository
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new Withdrawal;
 
-		return $query->with('business', 'user','wallet')->limit($limit)->get();
+		return $query->with('business', 'user','wallet')->where('business_id', $this->business_id)->limit($limit)->get();
 	}
 	
 	public function getWithdrawal($id)
