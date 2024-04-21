@@ -84,7 +84,7 @@ class WithdrawalRepository
 	public function store($data) 
 	{
 		$Model = new Withdrawal();
-		print_r($data);
+		
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $Model->getFields()))
@@ -95,7 +95,7 @@ class WithdrawalRepository
 
 		$dataArray['date'] = date('Y-m-d');
 		$dataArray['status'] = 'pending';
-		$dataArray['user_type'] = $this->handleType($dataArray['user_type']);
+		$dataArray['user_type'] = $this->handleType($dataArray);
 		
 		// Return the  object with the new data
     	$Object = Withdrawal::firstOrCreate($dataArray);
