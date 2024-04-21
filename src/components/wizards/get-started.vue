@@ -247,7 +247,7 @@
                                             <li class="flex py-2" v-if="activePlan.type == 'paid'">
                                                 <p class="w-full ml-6"><strong class="font-semibold text-slate-900"
                                                         v-text="translate('Payment method')"></strong></p>
-                                                <ul class="nav nav-pills nav-pills-custom mb-3">
+                                                <ul class="flex nav-pills nav-pills-custom mb-3">
                                                     <li class="nav-item mb-3 me-3 me-lg-6" role="presentation">
                                                         <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_2" data-bs-toggle="pill" href="#kt_stats_widget_16_tab_2" aria-selected="false" tabindex="-1" role="tab">
                                                             <div class="nav-icon mb-3">        
