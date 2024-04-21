@@ -119,7 +119,7 @@ class DriverController extends CustomController
 			'load_vue'=> true,
 			'title' => __('Driver profile'),
 			'driver' =>   $driver,
-			'stats' => $this->getStats($user->business, $driver),
+			'stats' => $this->getStats($driver, $user->business),
 			'overview' => $this->overview($driver),
 			'fillable' => $this->fillable(),
 			'invoices' => $invoicesRepo->getUserInvoices($user->id),
