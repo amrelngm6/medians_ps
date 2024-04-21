@@ -16,20 +16,16 @@
                             <div class="d-flex flex-column">
                                 <div class="d-flex align-items-center mb-2">
                                     <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1"
-                                        v-text="auth.name"></a>
+                                        v-text="activeItem.name"></a>
                                 </div>
                                 <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                     <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                        <vue-feather class="w-5 mx-1" type="eye"></vue-feather>
-                                        <span v-text="auth.role.name"></span>
-                                    </a>
-                                    <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
                                         <vue-feather class="w-5 mx-1" type="smartphone"></vue-feather>
-                                        <span v-text="auth.phone"></span>
+                                        <span v-text="activeItem.mobile"></span>
                                     </a>
                                     <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
                                         <vue-feather class="w-5 mx-1" type="at-sign"></vue-feather>
-                                        <span v-text="auth.email"></span>
+                                        <span v-text="activeItem.email"></span>
                                     </a>
                                 </div>
                             </div>
@@ -39,42 +35,37 @@
                         </div>
                         <div class="d-flex flex-wrap flex-stack">
                             <div class="d-flex flex-column flex-grow-1 pe-8">
-                                <div class="d-flex flex-wrap" v-if="activeItem.business && content">
+                                <div class="d-flex flex-wrap" v-if="activeItem.route">
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                         <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" v-text="activeItem.business.subscription.plan_name"></div>
+                                            <div class="fs-2 fw-bold" v-text="activeItem.route.route_name"></div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Plan')"></div>
+                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Route')"></div>
                                     </div>
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                         <div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.drivers_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/</div>
-                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Driver')"></div>
+                                                <div class="fs-2 fw-bold" v-text="activeItem.vehicle.plate_number"></div>
                                             </div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Drivers')"></div>
+                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicle')"></div>
                                     </div>
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                         <div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.vehicles_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/</div>
-                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Vehicle')"></div>
+                                                <div class="fs-2 fw-bold" v-text="activeItem.trips_count"></div>
                                             </div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicles')"></div>
+                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Trips')"></div>
                                     </div>
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                         
                                         <div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.trips_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/ --</div>
+                                                <div class="fs-2 fw-bold" v-text="content.stats.private_trips_count"></div>
                                             </div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Trips')"></div>
+                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Private Trips')"></div>
                                     </div>
                                     <!--end::Stat-->
 
