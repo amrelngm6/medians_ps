@@ -113,7 +113,7 @@ class DriverController extends CustomController
 		$WalletRepo = new WalletRepository();
 		$WithdrawalRepo = new WithdrawalRepository($user->business);
 
-		return render('profile', [
+		return render('driver_profile', [
 			'load_vue'=> true,
 			'title' => __('Driver profile'),
 			'driver' =>   $driver,
@@ -121,8 +121,8 @@ class DriverController extends CustomController
 			'overview' => $this->overview($driver),
 			'fillable' => $this->fillable(),
 			'invoices' => $invoicesRepo->getUserInvoices($user->id),
-			'wallet' => isset($user->business) ? $businessWalletRepo->getBusinessWallet($user->business->business_id) : null,
-			'business_withdrawals' => isset($user->business) ? $businessWithdrawalRepo->getBusinessWithdrawals($user->business->business_id) : null,
+			'wallet' => $WalletRepo->driverWallet($driver->driver_id),
+			'withdrawals' => $WithdrawalRepo->getWithdrawals($driver->driver_id),
 		]);
 
 	} 

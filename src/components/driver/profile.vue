@@ -101,7 +101,7 @@
 
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" />
 
-                    <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :business_withdrawals="content.business_withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
+                    <!-- <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :business_withdrawals="content.business_withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" /> -->
                     
 
                 </div>  
@@ -232,10 +232,6 @@ export default {
 
         const cost = () => 
         {
-            if ( activeItem.value.business && activeItem.value.business.subscription && activeItem.value.business.subscription.plan )
-            {
-                return  activeItem.value.business.subscription.type == 'monthly' ? activeItem.value.business.subscription.plan.monthly_cost : activeItem.value.business.subscription.plan.yearly_cost;
-            }
             return 0;
         }
 

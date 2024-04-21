@@ -23,12 +23,10 @@ class WalletRepository
 		return Wallet::with('user')->limit($limit)->get();
 	}
 	
-
-	public function getWallet($studentId)
+	public function driverWallet($id)
 	{
-		return Wallet::where('user_id', $studentId)->where('user_type', Student::class)->with('user')->orderBy('created_at', 'DESC')->first();
+		return Wallet::where('user_id', $id)->where('user_type', Driver::class)->with('user')->first();
 	}
-	
 	
 
 
