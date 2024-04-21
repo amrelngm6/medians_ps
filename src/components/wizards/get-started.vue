@@ -318,7 +318,7 @@
                                                     <a @click="complete()" v-if="paymentMethod == 'paypal'"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-slate-900 text-white hover:bg-slate-700 mt-6 w-full"
                                                         href="javascript:;"><span v-text="translate('Pay with PayPal')"></span></a>
-                                                    <a @click="completePaystack()" v-if="paymentMethod == 'paystack'"
+                                                    <a @click="complete()" v-if="paymentMethod == 'paystack'"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-info text-white hover:bg-slate-700 mt-6 w-full"
                                                         href="javascript:;"><span v-text="translate('Pay with PayStack')"></span></a></div>
                                             </div>
@@ -642,6 +642,8 @@ export default
             }
 
             const completePaystack = () => {
+
+                showLoader.value = true;
                 
                 const params = new URLSearchParams([]);
                 params.append('type', 'User.get_started_save_plan');
@@ -649,6 +651,7 @@ export default
                 params.append('params[payment_type]', activePrice.value);
                 params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(async (data)  => {
+
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
                         amount: 10000,  // Amount in kobo (10000 kobo = 100 NGN)
@@ -670,7 +673,8 @@ export default
                         });
                         console.log(response.data)
                         // Redirect to Paystack payment page
-                        // window.open(response.data.data.authorization_url);
+                        var a = window.open(response.data.data.authorization_url);
+                        console.log(a)
                     } catch (error) {
                         console.error('Error initiating payment:', error);
                     }
