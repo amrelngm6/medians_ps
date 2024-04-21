@@ -224,6 +224,8 @@
 
             error: false,
 
+            translate: translate,
+
             store: {
                 images: {
                     data: [],
