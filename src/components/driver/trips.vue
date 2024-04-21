@@ -19,12 +19,13 @@
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
-                        <tr v-for="withdrawal in trips">
-                            <td v-text="withdrawal.trip_id"></td>
-                            <td v-text="withdrawal.locations.length"></td>
-                            <td v-text="withdrawal.route.route_name ?? ''"></td>
-                            <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
-                            <td v-text="withdrawal.date"></td>
+                        <tr v-for="trip in trips">
+                            <td v-text="trip.trip_id"></td>
+                            <td v-text="trip.locations.length"></td>
+                            <td v-text="trip.route.route_name ?? ''"></td>
+                            <td><span class="badge badge-light-warning" :class="trip.trip_type == 'going' ? 'badge-light-watning' : 'badge-light-success'" v-text="trip.status"></span></td>
+                            <td><span  v-text="trip.status"></span></td>
+                            <td v-text="trip.date"></td>
                         </tr>
                     </tbody>
                 </table>
