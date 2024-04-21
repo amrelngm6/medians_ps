@@ -100,7 +100,7 @@ class WithdrawalRepository
 		// Return the  object with the new data
     	$Object = Withdrawal::firstOrCreate($dataArray);
 
-        isset($data['field']) ? $this->storeCustomFields((array) json_decode($data['field']), $Object->withdrawal_id) : '';
+        isset($data['field']) ? $this->storeCustomFields($data['field'], $Object->withdrawal_id) : '';
 
     	return $Object;
     }
