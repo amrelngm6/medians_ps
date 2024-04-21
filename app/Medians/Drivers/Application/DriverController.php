@@ -139,7 +139,7 @@ class DriverController extends CustomController
 
 		$tripsRepo = new TripRepository($business);
         $data['trips_count'] = count($tripsRepo->getDriverTrips($driver->driver_id, 999999));
-		$tripsRepo = new PrivateTripRepository($business);
+		$privateTripsRepo = new PrivateTripRepository($business);
         $data['private_trips_count'] = count($privateTripsRepo->getDriverPrivateTrips($driver->driver_id, 999999));
 
 		return $data;
