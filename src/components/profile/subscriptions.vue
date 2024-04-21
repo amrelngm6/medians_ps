@@ -62,8 +62,13 @@ export default {
                 return (subscription.past_days / subscription.total_days) * 100 ;
             }
         }
+        const upgradePlan = () => 
+        {
+            window.location.href = props.conf.url+'admin/get_started';
+        }
 
         return {
+            upgradePlan,
             calcDaysWidth,
             activeItem,
             translate,

@@ -524,10 +524,6 @@ export default {
             return true;
         }
 
-        const upgradePlan = () => 
-        {
-            window.location.href = props.conf.url+'admin/get_started';
-        }
 
         const cost = () => 
         {
@@ -604,7 +600,6 @@ export default {
             withdrawRequest,
             checkFeatureLimit,
             cost,
-            upgradePlan,
             url,
             showAddSide,
             showEditSide,
