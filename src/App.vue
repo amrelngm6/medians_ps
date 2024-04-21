@@ -93,7 +93,7 @@ const private_trips = defineAsyncComponent(() => import('@/components/private_tr
 
 const app_settings = defineAsyncComponent(() => import('@/components/app_settings.vue') );
 
-const profile = defineAsyncComponent(() => import('@/components/profile.vue') );
+const profile = defineAsyncComponent(() => import('@/components/profile/profile.vue') );
 
 const cities = defineAsyncComponent(() => import('@/components/cities.vue') );
 
