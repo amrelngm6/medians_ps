@@ -186,26 +186,14 @@
                    
                     <subscriptions_tab :conf="conf" v-if="activeTab == 'subscriptions'" :overview="content.overview" :item="activeItem" />
 
-                    <invoices_tab :conf="conf" v-if="activeTab == 'invoice'" :overview="content.overview" :item="activeItem" />
+                    <invoices_tab :conf="conf" v-if="activeTab == 'invoices'" :invoices="content.invoices" :item="activeItem" />
+                    
+                    <info_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem" />
 
+                    <setting_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem" />
                     
 
-                    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'business_info'">
-                        <div class="card-body p-9">
-                            <div class="row my-4 py-4 border-b border-gray-200" >
-                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Business name')"></label>
-                                <div class="col-lg-8">
-                                    <span class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.business_name"></span>
-                                </div>
-                            </div>
-                            <div class="row my-4 py-4 " >
-                                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Business type')"></label>
-                                <div class="col-lg-8">
-                                    <span class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.type"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'settings'">
                         <div class="card-body p-9">
@@ -239,37 +227,7 @@
                         </div>
                     </div>
 
-                    <div class="card card-flush pt-3 mb-5 mb-xl-10" v-if="activeTab == 'invoices'">
-                        <!--begin::Card header-->
-                        <div class="card-header">
-                            <!--begin::Card title-->
-                            <div class="card-title">
-                                <h2 v-text="translate('Invoices')"></h2>
-                            </div>
-                        </div>
-                        <div class="card-body pt-2" v-if="content.invoices">
-                            <table id="kt_customer_details_invoices_table_1" class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
-                                <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
-                                    <tr class="text-start text-gray-500">
-                                        <th class="min-w-100px" v-text="translate('Code')"></th>
-                                        <th class="min-w-100px" v-text="translate('Amount')"></th>
-                                        <th class="min-w-100px" v-text="translate('Status')"></th>                                    
-                                        <th class="min-w-125px" v-text="translate('Date')"></th>
-                                        <th class="w-100px" v-text="translate('Plan')"></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="fs-6 fw-semibold text-gray-600">
-                                    <tr v-for="invoice in content.invoices">
-                                        <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.code"></a></td>
-                                        <td class="text-success"  v-text="invoice.total_amount+''+system_setting.currency"></td>
-                                        <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
-                                        <td v-text="invoice.date"></td>
-                                        <td v-text="invoice.item && invoice.item.item ? invoice.item.item.name : ''"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    
 
                     
                     <div class="card card-flush pt-3 mb-5 mb-xl-10" v-if="activeTab == 'withdrawal'">

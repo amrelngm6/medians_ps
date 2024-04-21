@@ -1,20 +1,57 @@
 <template>
-    <div class="w-full card mb-5 mb-xl-10" id="kt_profile_details_view">
+    <div class="w-full mb-5 mb-xl-10">
 
-        <div class="card-body p-9" v-if="activeItem.business">
-            <div class="row my-4 py-4 border-b border-gray-200" >
-                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Business name')"></label>
-                <div class="col-lg-8">
-                    <span class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.business_name"></span>
+        <div class="card card-flush pt-3 mb-5 mb-xl-10"  >
+            <div class="card-header">
+                <div class="card-title">
+                    <h2 class="fw-bold" v-text="translate('Profile')"></h2>
                 </div>
             </div>
-            <div class="row my-4 py-4 " >
-                <label class="col-lg-4 fw-semibold text-muted" v-text="translate('Business type')"></label>
-                <div class="col-lg-8">
-                    <span class="fw-bold fs-6 text-gray-800" v-text="activeItem.business.type"></span>
+            <div class="card-body pt-3">
+                <!--begin::Section-->
+                <div class="mb-10">
+                    <!--begin::Title-->
+                    <h5 class="mb-4" v-text="translate('Account information')"></h5>
+                    <div class="d-flex flex-wrap py-5">
+                        <!--begin::Row-->
+                        <div class="flex-equal me-5">
+                            <!--begin::Details-->
+                            <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
+                                <!--begin::Row-->
+                                <tbody>
+                                <tr v-for="field in overview">
+                                    <td class="text-gray-500" v-text="field.title"></td>
+                                    <td class="text-gray-800 fw-bold" v-text="field.key"></td>
+                                </tr>
+                            </tbody></table>
+                            <!--end::Details-->
+                        </div>
+                        <!--end::Row-->
+                        <!--begin::Row-->
+                        <div class="flex-equal" v-if="activeItem.business && activeItem.business.subscription">
+                            <!--begin::Details-->
+                            <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
+                                <!--begin::Row-->
+                                <tbody><tr>
+                                    <td class="text-gray-500" v-text="translate('Plan')"></td>
+                                    <td class="text-gray-800 fw-bold" v-text="activeItem.business.subscription.plan_name"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-gray-500" v-text="translate('Start date')"></td>
+                                    <td class="text-gray-800 fw-semibold" v-text="activeItem.business.subscription.start_date"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-gray-500" v-text="translate('End date')"></td>
+                                    <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
+                                </tr>
+                            </tbody></table>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
+
                     
     </div>  
                 
