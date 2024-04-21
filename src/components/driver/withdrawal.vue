@@ -138,7 +138,6 @@
                             <th class="min-w-100px" v-text="translate('Amount')"></th>
                             <th class="min-w-100px" v-text="translate('Status')"></th>
                             <th class="min-w-125px" v-text="translate('Date')"></th>
-                            <th class="min-w-125px" v-text="translate('Cancel')"></th>
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
@@ -147,11 +146,6 @@
                             <td class="text-success" v-text="system_setting.currency + '' + withdrawal.amount"></td>
                             <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
                             <td v-text="withdrawal.date"></td>
-                            <td>
-                                <a href="javascript:;" @click="cancelRequest(withdrawal)"
-                                    class="btn btn-danger text-white px-6 flex-shrink-0 align-self-center"
-                                    v-text="translate('Cancel')"></a>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
