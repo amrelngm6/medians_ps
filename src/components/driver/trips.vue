@@ -14,6 +14,7 @@
                             <th class="min-w-100px" v-text="translate('ID')"></th>
                             <th class="min-w-100px" v-text="translate('Locations')"></th>
                             <th class="min-w-100px" v-text="translate('Route')"></th>
+                            <th class="min-w-100px" v-text="translate('Type')"></th>
                             <th class="min-w-100px" v-text="translate('Status')"></th>
                             <th class="min-w-125px" v-text="translate('Date')"></th>
                         </tr>
