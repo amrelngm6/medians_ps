@@ -266,6 +266,7 @@ class APP
 			]
 			),
 			
+			
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
 			array('permission'=> 'Settings.index', 'title'=> __('Business Settings'),  'icon'=>'tool', 'link'=>'admin/settings', 'component'=>'settings'),
@@ -320,6 +321,12 @@ class APP
 			]
 			),
 			
+			array('title'=>__('Wallets'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
+			[
+				array('permission'=>'BusinessWallets.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+				array('permission'=> 'BusinessWithdrawals.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
+			]
+			),
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			array( 'title'=>__('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
