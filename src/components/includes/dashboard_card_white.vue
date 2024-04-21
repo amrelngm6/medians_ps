@@ -5,9 +5,9 @@
         <div class="card-body">
             <img width="25" height="25" class="mx-auto" :src="icon" />
 
-            <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5"  v-text="value"> </div>
+            <div :class="value_class" class="fw-bold fs-2 mb-2 mt-5"  v-text="value"> </div>
 
-            <div class="fw-semibold text-gray-400"  v-text="title"></div>
+            <div :class="text_class" class="fw-semibold text-gray-400"  v-text="title"></div>
         </div>
         <!--end::Body-->
     </a>
