@@ -51,11 +51,18 @@ class BusinessWithdrawalRepository
 	}
 	
 	
-	public function groupedByPaymentMethod($params)
+	public function pendingGroupedByPaymentMethod($params)
 	{
 		$query = isset($params['start']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
 
 		return $query->whereIn('status',['pending', 'approved'])->groupBy('payment_method')->get();
+	}
+	
+	public function completedGroupedByPaymentMethod($params)
+	{
+		$query = isset($params['start']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
+
+		return $query->whereIn('status',['done'])->groupBy('payment_method')->get();
 	}
 	
 	
