@@ -43,6 +43,14 @@ class RouteLocationRepository
 		->where('business_id', $this->business_id)->limit($limit)->orderBy('location_id','DESC')->get();
 	}
 
+	public function eventsByDate($params)
+	{
+		return RouteLocation::whereBetween('created_at', [$params['start'], $params['end']])
+		->where('business_id', $this->business_id)
+		->orderBy('location_id','DESC');
+
+	}
+
 	public function getRouteStudents($route_id)
 	{
 		return RouteLocation::where('business_id', $this->business_id)->whereDoesntHave('',function($q){
