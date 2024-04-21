@@ -121,9 +121,11 @@ const invoices = defineAsyncComponent(() => import('@/components/invoices.vue') 
 
 const vacations = defineAsyncComponent(() => import('@/components/vacations.vue') );
 
-const wallets = defineAsyncComponent(() => import('@/components/wallets.vue') );
+const wallets = defineAsyncComponent(() => import('@/components/wallet/wallets.vue') );
 
-const business_withdrawals = defineAsyncComponent(() => import('@/components/business_withdrawals.vue') );
+const business_wallets = defineAsyncComponent(() => import('@/components/wallet/business_wallets.vue') );
+
+const business_withdrawals = defineAsyncComponent(() => import('@/components/wallet/business_withdrawals.vue') );
 
 export default {
     name: 'app',
@@ -172,6 +174,7 @@ export default {
         invoices,
         vacations,
         wallets,
+        business_wallets,
         business_withdrawals,
         get_started,
         translate,
