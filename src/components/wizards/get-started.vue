@@ -670,7 +670,7 @@ export default
                         });
                         
                         // Redirect to Paystack payment page
-                        window.location = response.data.data.authorization_url;
+                        window.open(response.data.data.authorization_url);
                     } catch (error) {
                         console.error('Error initiating payment:', error);
                     }
