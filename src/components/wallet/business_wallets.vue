@@ -24,7 +24,7 @@
                             <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
                             <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_debit_balance"></span>
                         </div>
-                        <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total completed amount')"></span>
+                        <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total debit balance')"></span>
                     </div>
                 </div>
             </div>
