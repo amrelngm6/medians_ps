@@ -24,7 +24,7 @@
                             <td v-text="trip.trip_id"></td>
                             <td v-text="trip.locations.length"></td>
                             <td v-text="trip.route.route_name ?? ''"></td>
-                            <td><span class="badge badge-light-warning" :class="trip.trip_type == 'going' ? 'badge-light-watning' : 'badge-light-success'" v-text="trip.status"></span></td>
+                            <td><span class="badge badge-light-warning" :class="trip.trip_type == 'going' ? 'badge-light-watning' : 'badge-light-success'" v-text="trip.trip_type"></span></td>
                             <td><span  v-text="trip.status"></span></td>
                             <td v-text="trip.date"></td>
                         </tr>
