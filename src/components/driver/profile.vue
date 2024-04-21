@@ -151,7 +151,7 @@ export default {
     },
     name: 'Users',
     setup(props) {
-
+        console.log('loaded profile')
         const url = props.conf.url + props.path + '?load=json';
 
         const showAddSide = ref(false);
