@@ -76,7 +76,7 @@ export async function handleGetRequest(url) {
         if (response.data.status) {
             return response.data.result ? response.data.result : response.data;
         } else {
-            document.title = response.data.result.title ?? document.title;
+            document.title = response.data.title ?? document.title;
             return response.data;
         }
     });
