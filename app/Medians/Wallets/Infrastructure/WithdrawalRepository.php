@@ -3,6 +3,7 @@
 namespace Medians\Wallets\Infrastructure;
 
 use Medians\Wallets\Domain\Withdrawal;
+use Medians\Wallets\Domain\Wallet;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Students\Domain\Student;
 use Medians\Customers\Domain\Parents;
