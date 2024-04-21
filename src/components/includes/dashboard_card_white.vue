@@ -7,7 +7,7 @@
 
             <div :class="value_class" class="fw-bold fs-2 mb-2 mt-5"  v-text="value"> </div>
 
-            <div :class="text_class" class="fw-semibold text-gray-400"  v-text="title"></div>
+            <div :class="text_class" class="fw-semibold "  v-text="title"></div>
         </div>
         <!--end::Body-->
     </a>
@@ -21,6 +21,8 @@ export default
         'title',
         'value',
         'classes',
+        'text_class',
+        'value_class',
         'icon',
     ],
 
