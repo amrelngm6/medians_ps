@@ -340,7 +340,7 @@ import { onMounted, ref } from 'vue';
 import { translate, handleGetRequest, handleRequest, deleteByKey, showAlert } from '@/utils.vue';
 import VueScript2 from 'vue-script2';
 import { loadScript } from "@paypal/paypal-js";
-const axios = require('axios').default;
+import axios from 'axios'
 
 export default
     {
