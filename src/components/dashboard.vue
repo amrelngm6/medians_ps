@@ -102,9 +102,9 @@
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-dark" text_class="text-gray-400" value_class="text-white" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-info" text_class="text-gray-200" value_class="text-white"  :title="translate('Transactions')" :value="content.transactions_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="translate('Subscriptions')" :value="content.subscriptions_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Business applicants')" :value="content.business_applicant_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-info" text_class="text-gray-400" value_class="text-white"  :title="translate('Transactions')" :value="content.transactions_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-success" text_class="text-gray-400" value_class="text-white"  :title="translate('Subscriptions')" :value="content.subscriptions_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-primary" text_class="text-gray-400" value_class="text-white"  :title="translate('Business applicants')" :value="content.business_applicant_count"></dashboard_card_white>
                     </div>
                     
                     <div class="w-full gap-4 lg:flex">
