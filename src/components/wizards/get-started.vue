@@ -658,7 +658,7 @@ export default
                         email: props.auth.email,  // Customer's email
                         }, {
                         headers: {
-                            'Authorization': 'Bearer '+system_settings.paystack_secret_key,
+                            'Authorization': 'Bearer '+props.setting.paystack_secret_key,
                             'Content-Type': 'application/json'
                         }
                         });
@@ -680,7 +680,7 @@ export default
             {
                 const response = await axios.get("https://api.paystack.co/transaction/verify/"+reference,{
                         headers: {
-                            'Authorization': 'Bearer '+system_settings.paystack_secret_key,
+                            'Authorization': 'Bearer '+props.setting.paystack_secret_key,
                             'Content-Type': 'application/json'
                         }});
                 
