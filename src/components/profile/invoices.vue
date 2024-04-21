@@ -10,6 +10,7 @@
                 class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                 <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
                     <tr class="text-start text-gray-500">
+                        <th class="min-w-100px" v-text="translate('Payment method')"></th>
                         <th class="min-w-100px" v-text="translate('Code')"></th>
                         <th class="min-w-100px" v-text="translate('Amount')"></th>
                         <th class="min-w-100px" v-text="translate('Status')"></th>
@@ -19,6 +20,7 @@
                 </thead>
                 <tbody class="fs-6 fw-semibold text-gray-600">
                     <tr v-for="invoice in invoices">
+                        <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.payment_method"></a></td>
                         <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.code"></a></td>
                         <td class="text-success" v-text="invoice.total_amount + '' + system_setting.currency"></td>
                         <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
