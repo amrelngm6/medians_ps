@@ -51,7 +51,7 @@ const students = defineAsyncComponent(() => import('@/components/students.vue') 
 
 const parents = defineAsyncComponent(() => import('@/components/parents.vue') );
 
-const drivers = defineAsyncComponent(() => import('@/components/drivers.vue') );
+const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );
 
 const events = defineAsyncComponent(() => import('@/components/events.vue') );
 

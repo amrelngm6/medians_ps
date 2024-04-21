@@ -1,9 +1,6 @@
 <template>
     <div class=" w-full pb-20">
 
-        <driver_profile v-if="activeItem.driver_id" :key="activeItem" @edit="handleAction" @close="handleAction"
-            :conf="conf" :item="activeItem"></driver_profile>
-
         <main v-if="content && !showProfilePage" class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
             <!-- New releases -->
             <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
@@ -104,7 +101,8 @@ export default
             delete_icon,
             'driver_profile': DriverProfile
         },
-        setup(props) {
+        emits: ['switchTab'],
+        setup(props, {emit}) {
 
             const url = props.conf.url + props.path + '?load=json';
 
@@ -157,8 +155,8 @@ export default
                 switch (actionName) {
 
                     case 'view':
-                        activeItem.value = JSON.parse(JSON.stringify(data));
-                        showProfilePage.value = true;
+                        console.log({tab:'admin/driver_profile?driver_id='+data.driver_id,component:'driver_profile'});
+                        return emit('callback', {tab:'admin/driver_profile?driver_id='+data.driver_id,component:'driver_profile'});
                         break;
 
                     case 'edit':
