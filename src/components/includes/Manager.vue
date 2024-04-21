@@ -65,7 +65,7 @@
                             <div v-if="store[type].data.length == 0" class="media-library__error media-library__error--sml">
                                 <span class="media-library__error__ttl">Not a great start!</span>
                                 <p class="media-library__error__msg">You don't have any media yet... Upload some media above to get started!</p>
-                                <app-svg-media />
+                                <app-svg-media class="mx-auto" />
                             </div>
                             <div v-else>
                                 <div class="media-library__manager__content__images__grid">
