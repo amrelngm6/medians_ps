@@ -68,7 +68,7 @@ class BusinessWalletController extends CustomController
 	{
 		try {
 
-			return render('wallets', [
+			return render('business_wallets', [
 		        'load_vue' => true,
 		        'title' => __('Wallets'),
 		        'columns' => $this->columns(),

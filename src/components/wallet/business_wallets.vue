@@ -50,10 +50,10 @@
                 alternating
                 class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
-                <template #item-user="item">
-                    <div class="flex gap-2" v-if="item.user" >
-                        <img :src="item.user.picture" class="w-8 h-8 rounded-full" />
-                        <span class="py-2" v-text="item.user.name"></span>
+                <template #item-business="item">
+                    <div class="flex gap-2" v-if="item.business" >
+                        <img :src="item.business.logo" class="w-8 h-8 rounded-full" />
+                        <span class="py-2" v-text="item.business.business_name"></span>
                     </div>
                 </template>
 
@@ -141,7 +141,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('wallet_id', data, 'Wallet.delete');
+                    deleteByKey('wallet_id', data, 'BusinessWallet.delete');
                     break;  
             }
         }
