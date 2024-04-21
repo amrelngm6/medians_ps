@@ -21,7 +21,7 @@
                     <tbody class="fs-6 fw-semibold text-gray-600">
                         <tr v-for="withdrawal in trips">
                             <td v-text="withdrawal.trip_id"></td>
-                            <td v-text="withdrawal.locations_count"></td>
+                            <td v-text="withdrawal.locations.length"></td>
                             <td v-text="withdrawal.route.route_name ?? ''"></td>
                             <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
                             <td v-text="withdrawal.date"></td>
