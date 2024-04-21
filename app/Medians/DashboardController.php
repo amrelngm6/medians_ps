@@ -187,7 +187,6 @@ class DashboardController extends CustomController
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['drivers_count'] = $this->DriverRepository->get()->count();
         $data['routes_count'] = $this->RouteRepository->get()->count();
-        $data['route_locations_count'] = $this->RouteLocationRepository->get()->count();
         $data['vehicles_count'] = $this->VehicleRepository->get()->count();
         $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
         $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
