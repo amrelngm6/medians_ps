@@ -51,6 +51,11 @@ class PrivateTripRepository
 		return PrivateTrip::where('business_id', $this->business_id)->with('driver', 'vehicle', 'model','business')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
 	}
 
+	public function getDriverPrivateTrips($id, $limit = 1000)
+	{
+		return PrivateTrip::with('driver', 'vehicle', 'model','business')->where('driver_id', $id)->orderBy('trip_id','DESC')->limit($limit)->get();
+	}
+
     
 
 	public function getUpcomingDriverTrip($driver_id)
