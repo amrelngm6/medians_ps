@@ -175,7 +175,14 @@ class WithdrawalController extends CustomController
         try {	
 			
 			try {
-				
+					
+				$validate = $this->validate($params, $user);
+
+				if ($validate)
+				{
+					return array('error'=>$validate);
+				}
+
 				$returnData = (!empty($this->repo->store($params))) 
 				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
