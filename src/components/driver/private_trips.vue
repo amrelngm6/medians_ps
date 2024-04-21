@@ -22,9 +22,9 @@
                     <tbody class="fs-6 fw-semibold text-gray-600">
                         <tr v-for="trip in trips">
                             <td v-text="trip.trip_id"></td>
-                            <td v-text="trip.locations.length"></td>
-                            <td v-text="trip.route.route_name ?? ''"></td>
-                            <td><span class=" " :class="trip.trip_type == 'going' ? 'badge-light-warning' : 'badge-light-success'" v-text="trip.trip_type"></span></td>
+                            <td v-text="trip.pickup_address"></td>
+                            <td v-text="trip.destination_address"></td>
+                            <td v-text="trip.total_cost"></td>
                             <td><span  v-text="trip.status"></span></td>
                             <td v-text="trip.date"></td>
                         </tr>
