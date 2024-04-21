@@ -208,9 +208,6 @@ class APP
 				array('permission'=>'Schools.index', 'title'=>__('Schools'),  'icon'=>'user', 'link'=>'admin/schools', 'component'=>'schools'),
 			]
 			),
-			(isset($user->business->type) && strtolower($user->business->type) == 'company') 
-			? array('permission'=>'PrivateTrips.index', 'title'=>__('Private trips'),  'icon'=>'pocket', 'link'=>'admin/private_trips', 'component'=>'private_trips')
-			: null,
 			
 			array('title'=>__('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
 			[
