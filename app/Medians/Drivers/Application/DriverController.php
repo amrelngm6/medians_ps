@@ -99,26 +99,32 @@ class DriverController extends CustomController
 	 */
 	public function profile()
 	{
-		
+				
 		$user = $this->app->auth();
+
 		$driver = $this->repo->find($this->app->request()->get('driver_id'));
 		
-		print_r($driver);
+		if (empty($driver))
+		{
+			return null;
+		}
+
 		$invoicesRepo = new InvoiceRepository($user->business);
 		$WalletRepo = new WalletRepository();
 		$WithdrawalRepo = new WithdrawalRepository($user->business);
 
 		return render('profile', [
 			'load_vue'=> true,
-	        'title' => __('Driver profile'),
+			'title' => __('Driver profile'),
 			'driver' =>   $driver,
-            'stats' => $this->getStats($user->business, $driver),
-	        'overview' => $this->overview(),
-	        'fillable' => $this->fillable(),
-	        'invoices' => $invoicesRepo->getUserInvoices($user->id),
-	        'wallet' => isset($user->business) ? $businessWalletRepo->getBusinessWallet($user->business->business_id) : null,
-	        'business_withdrawals' => isset($user->business) ? $businessWithdrawalRepo->getBusinessWithdrawals($user->business->business_id) : null,
-	    ]);
+			'stats' => $this->getStats($user->business, $driver),
+			'overview' => $this->overview($driver),
+			'fillable' => $this->fillable(),
+			'invoices' => $invoicesRepo->getUserInvoices($user->id),
+			'wallet' => isset($user->business) ? $businessWalletRepo->getBusinessWallet($user->business->business_id) : null,
+			'business_withdrawals' => isset($user->business) ? $businessWithdrawalRepo->getBusinessWithdrawals($user->business->business_id) : null,
+		]);
+
 	} 
 
 
