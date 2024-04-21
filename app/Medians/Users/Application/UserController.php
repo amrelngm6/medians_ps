@@ -89,14 +89,12 @@ class UserController extends CustomController
 	 */
 	public function index()
 	{
-		
-		$query = ($this->app->auth()->role_id == 1) ? $this->repo->getAll() : $this->repo->get();
+		$user = $this->app->auth();
 
 		return render('users', [
 	        'title' => __('Users'),
 			'load_vue'=> true,
-			'users' =>   $query,
-			'roles' =>   $this->rolesRepo->getWithUsers(),
+			'roles' =>   $user->role_id == 1 ? $this->rolesRepo->getWithUsers() : $this->rolesRepo->getWithBusinessUsers($user->business),
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
 	    ]);

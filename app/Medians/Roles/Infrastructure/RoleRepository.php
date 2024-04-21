@@ -29,6 +29,20 @@ class RoleRepository
 		}])->limit($limit)->get();
 	}
 
+	public function getWithBusinessUsers($business)
+	{
+		return Role::with(['users'=>function($q){
+			return $q->with('business');
+		}])
+		->whereHas('users',function($q){
+			return $q->whereHas('business', function ($q) use ($business) {
+				return $q->where('business_id', $business->business_id);
+			});
+		})
+		->where('role_id', '>', 1)
+		->limit($limit)->get();
+	}
+
 	/**
 	* Save item to database
 	*/
