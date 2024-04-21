@@ -72,7 +72,7 @@ class BusinessWithdrawalRepository
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
 
-		return $query->whereIn('status',['done'])->selectRaw('*, SUM(amount) as total_amount')->groupBy('payment_method')->get();
+		return $query->whereIn('status',['done'])->selectRaw('*,  ROUND(SUM(amount), 2) as total_amount')->groupBy('payment_method')->get();
 	}
 	
 	
