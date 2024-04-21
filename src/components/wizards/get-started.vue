@@ -337,6 +337,7 @@ export default
             const showEditSide = ref(false);
             const activePlan = ref(false);
             const activePrice = ref('yearly');
+            const paymentMethod = ref('paypal');
             const paypalScriptLoaded = ref(false);
 
 
@@ -551,11 +552,25 @@ export default
                 }
 
 
+                if (paymentMethod.value == 'paypal')
+                {
+                    completePayPal();
+                }
+                
+                if (paymentMethod.value == 'paystack')
+                {
+                    completePaystack();
+                }
+
+            }
+
+            const completePayPal = () => {
+
                 const params = new URLSearchParams([]);
                 params.append('type', 'User.get_started_save_plan');
                 params.append('params[plan_id]', activePlan.value.plan_id);
                 params.append('params[payment_type]', activePrice.value);
-                params.append('params[payment_method]', 'PayPal');
+                params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(data => {
                     showLoader.value = true;
                     // Load the PayPal SDK dynamically
@@ -612,7 +627,7 @@ export default
                 params.append('type', 'User.get_started_save_plan');
                 params.append('params[plan_id]', activePlan.value.plan_id);
                 params.append('params[payment_type]', activePrice.value);
-                params.append('params[payment_method]', 'PayPal');
+                params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(async (data)  => {
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
@@ -650,7 +665,7 @@ export default
                 params.append('type', 'Payment.paypal_payment_confirmation');
                 params.append('params[plan_id]', activePlan.value.plan_id);
                 params.append('params[payment_type]', activePrice.value);
-                params.append('params[payment_method]', 'paypal');
+                params.append('params[payment_method]', paymentMethod.value);
                 params.append('params[status]', 'paid');
                 params.append('params[cost]', cost());
                 params.append('params[order]', JSON.stringify(order));
@@ -670,6 +685,7 @@ export default
             }
 
             return {
+                paymentMethod,
                 activePlan,
                 activePrice,
                 showEditSide,
