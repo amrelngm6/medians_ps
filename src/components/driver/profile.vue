@@ -150,7 +150,8 @@ export default {
 
     },
     name: 'Users',
-    setup(props) {
+    emits:['callback'],
+    setup(props, {emit}) {
         console.log('loaded profile')
         const url = props.conf.url + props.path + '?load=json';
 
