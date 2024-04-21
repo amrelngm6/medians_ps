@@ -131,7 +131,7 @@
                     <h2 class="w-full" v-text="translate('Withdrawal requests')"></h2>
                 </div>
             </div>
-            <div class="card-body pt-2" v-if="business_withdrawals">
+            <div class="card-body pt-2" v-if="withdrawals">
                 <table id="kt_customer_details_invoices_table_1"
                     class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                     <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
@@ -144,7 +144,7 @@
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
-                        <tr v-for="withdrawal in business_withdrawals">
+                        <tr v-for="withdrawal in withdrawals">
                             <td v-text="withdrawal.payment_method"></td>
                             <td class="text-success" v-text="system_setting.currency + '' + withdrawal.amount"></td>
                             <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
@@ -240,7 +240,7 @@ export default {
         'auth',
         'item',
         'wallet',
-        'business_withdrawals',
+        'withdrawals',
     ]
 };
 </script>

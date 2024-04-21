@@ -101,7 +101,7 @@
 
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" />
 
-                    <!-- <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :business_withdrawals="content.business_withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" /> -->
+                    <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :withdrawals="content.withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
                     
 
                 </div>  

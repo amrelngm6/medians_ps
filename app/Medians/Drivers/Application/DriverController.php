@@ -113,7 +113,7 @@ class DriverController extends CustomController
 		$WalletRepo = new WalletRepository();
 		$WithdrawalRepo = new WithdrawalRepository($user->business);
 
-		return render('driver_profile', [
+		return render('driver_page', [
 			'load_vue'=> true,
 			'title' => __('Driver profile'),
 			'driver' =>   $driver,
