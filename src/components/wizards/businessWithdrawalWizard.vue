@@ -105,16 +105,16 @@
                             </div>                            
                         </div>
                         
-                        <div class="mx-auto flex gap-6 w-500px py-2 text-gray-200 pt-8" v-if="activeItem.status == 'pending' || activeItem.states == 'approved'">
-                            <div class="text-center"><a href="javascript:;"
+                        <div class="mx-auto flex gap-6 w-500px py-2 text-gray-200 pt-8"  >
+                            <div class="text-center"  v-if="activeItem.states == 'pending'"><a href="javascript:;"
                                 class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-primary"
                                 @click="approveItem" v-text="translate('Approved')"></a></div>
                                 -
-                            <div class="text-center"><a href="javascript:;"
+                            <div v-if="activeItem.status == 'rejected'" class="text-center"><a href="javascript:;"
                                 class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-info"
                                 @click="confirmItem" v-text="translate('Set as done')"></a></div>
                                 -
-                            <div class="text-center"><a href="javascript:;"
+                            <div class="text-center" v-if="activeItem.states == 'pending'"><a href="javascript:;"
                                 class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                 @click="rejectItem" v-text="translate('Reject')"></a></div>
                         </div>
@@ -209,6 +209,10 @@ export default
             }
 
             const confirmItem = () => {
+                if (activeItem.value.status == 'done') {
+                    showAlert(translate('Already approved'));
+                    return;
+                }
                 if (window.confirm(translate('Confirm and set request as done'))) {
                     activeItem.value.status = 'done';
                     saveItem();
