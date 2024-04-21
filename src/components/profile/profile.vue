@@ -188,6 +188,8 @@
                    
                     <subscriptions_tab :conf="conf" v-if="activeTab == 'subscriptions'" :overview="content.overview" :item="activeItem" />
 
+                    <invoices_tab :conf="conf" v-if="activeTab == 'invoice'" :overview="content.overview" :item="activeItem" />
+
                     
 
                     <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" v-if="activeTab == 'business_info'">
@@ -434,6 +436,10 @@ const SideFormUpdate = defineAsyncComponent(() =>
 const form_field = defineAsyncComponent(() => import('@/components/includes/form_field.vue') );
 const account_tab = defineAsyncComponent(() => import('@/components/profile/account.vue') );
 const subscriptions_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
+const invoices_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
+const withdrawal_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
+const setting_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
+const info_tab = defineAsyncComponent(() => import('@/components/profile/subscriptions.vue') );
 
 export default {
 
@@ -441,6 +447,10 @@ export default {
         account_tab,
         form_field,
         subscriptions_tab,
+        invoices_tab,
+        withdrawal_tab,
+        setting_tab,
+        info_tab
 
     },
     name: 'Users',
