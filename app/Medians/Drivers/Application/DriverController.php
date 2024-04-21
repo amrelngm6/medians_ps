@@ -112,6 +112,8 @@ class DriverController extends CustomController
 		$invoicesRepo = new InvoiceRepository($user->business);
 		$WalletRepo = new WalletRepository();
 		$WithdrawalRepo = new WithdrawalRepository($user->business);
+		$tripsRepo = new TripRepository($user->business);
+		$privateTripsRepo = new PrivateTripRepository($user->business);
 
 		return render('driver_page', [
 			'load_vue'=> true,
@@ -123,6 +125,7 @@ class DriverController extends CustomController
 			'invoices' => $invoicesRepo->getUserInvoices($user->id),
 			'wallet' => $WalletRepo->driverWallet($driver->driver_id),
 			'withdrawals' => $WithdrawalRepo->getDriverWithdrawals($driver->driver_id),
+			'trips' => $tripsRepo->getDriverTrips($driver->driver_id, 10),
 		]);
 
 	} 
