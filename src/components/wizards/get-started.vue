@@ -675,8 +675,7 @@ export default
                         // Redirect to Paystack payment page
                         window.open(response.data.data.authorization_url);
                         var reference = response.data.data.reference
-                        console.log(reference);
-                        setInterval(() => {
+                        var  interval = setInterval(() => {
                             verifyPaystackPayment(reference);
                         }, 5000);
 
