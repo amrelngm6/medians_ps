@@ -92,14 +92,17 @@ class SystemSettingsController extends CustomController
 					'data' => [['paypal_mode'=>'live','title'=>'Live'], ['paypal_mode'=>'sandbox','title'=>'Sandbox']]  
 				],
 			],
-			'stripe'=> [	
-				[ 'key'=> "stripe_publish_key", 'title'=> __('Stripe publishable key'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "stripe_live_key", 'title'=> __('Stripe live key'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "stripe_mode", 'title'=> __('Stripe mode'), 
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['stripe_mode'=>'live','title'=>'Live'], ['stripe_mode'=>'sandbox','title'=>'Sandbox']]  
-				],
+			'paystack'=> [
+				[ 'key'=> "paystack_secret_key", 'title'=> __('PayStack secret key'), 'fillable'=> true, 'column_type'=>'password' ],
 			],
+			// 'stripe'=> [	
+			// 	[ 'key'=> "stripe_publish_key", 'title'=> __('Stripe publishable key'), 'fillable'=> true, 'column_type'=>'text' ],
+			// 	[ 'key'=> "stripe_live_key", 'title'=> __('Stripe live key'), 'fillable'=> true, 'column_type'=>'text' ],
+			// 	[ 'key'=> "stripe_mode", 'title'=> __('Stripe mode'), 
+			// 		'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
+			// 		'data' => [['stripe_mode'=>'live','title'=>'Live'], ['stripe_mode'=>'sandbox','title'=>'Sandbox']]  
+			// 	],
+			// ],
 			
         ];
 	}
