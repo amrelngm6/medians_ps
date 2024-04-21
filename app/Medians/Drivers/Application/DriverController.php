@@ -126,6 +126,7 @@ class DriverController extends CustomController
 			'wallet' => $WalletRepo->driverWallet($driver->driver_id),
 			'withdrawals' => $WithdrawalRepo->getDriverWithdrawals($driver->driver_id),
 			'trips' => $tripsRepo->getDriverTrips($driver->driver_id, 10),
+			'trips_count' => count($tripsRepo->getDriverTrips($driver->driver_id, 999999)),
 			'private_trips' => $privateTripsRepo->getDriverPrivateTrips($driver->driver_id, 10),
 		]);
 
