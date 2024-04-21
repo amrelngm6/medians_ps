@@ -109,7 +109,6 @@
                             <div class="text-center"  v-if="activeItem.states == 'pending'"><a href="javascript:;"
                                 class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-primary"
                                 @click="approveItem" v-text="translate('Approved')"></a> - </div>
-                                
                             <div v-if="activeItem.status == 'approved'" class="text-center"><a href="javascript:;"
                                 class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-info"
                                 @click="confirmItem" v-text="translate('Set as done')"></a> - </div>
