@@ -1,88 +1,7 @@
 <template>
     <div class="w-full mb-5 mb-xl-10">
 
-        <div class="modal fade show" v-if="showWizard" :key="showWizard" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
-            <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
-                <!--begin::Modal content-->
-                <div class="modal-content" data-select2-id="select2-data-133-wj88">
-                    <!--begin::Modal header-->
-                    <div class="modal-header">
-                        <!--begin::Modal title-->
-                        <h2 class="fw-bold" v-text="translate('Withdraw from balance')"></h2>
-                        <!--end::Modal title-->
-
-                        <!--begin::Close-->
-                        <div id="kt_modal_adjust_balance_close" @click="showWizard = false" class="btn ">
-                            <vue-feather type="close" />
-                        </div>
-                        <!--end::Close-->
-                    </div>
-                    <!--end::Modal header-->
-
-                    <!--begin::Modal body-->
-                    <div class="modal-body mx-5 mx-xl-15 my-7"  v-if="content.wallet">
-                        <!--begin::Balance preview-->
-                        <div class="d-flex text-center mb-9">
-                            <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
-                                <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Current Balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(content.wallet.credit_balance ?? '0')"></div>
-                            </div>
-                            <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
-                                <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Debit balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(content.wallet.debit_balance ?? '0')"></div>
-                            </div>
-                        </div>
-                        <!--end::Balance preview-->
-
-                        <!--begin::Form-->
-                        <div id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
-                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
-                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
-                            </div>
-                            
-                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
-                                <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
-                                    <option value="paypal">PayPal</option>
-                                    <option value="paystack">PayStack</option>
-                                    <option value="bank">Bank transfer</option>
-                                    <option value="vodafone_cash">Vodafone cash</option>
-                                </select>
-                            </div>
-
-                            <div class="w-full" v-if="withdrawRequest.payment_method" v-for="(paymentInfo, key) in payment_fields[withdrawRequest.payment_method]">
-                                <div class="fv-row mb-7 fv-plugins-icon-container"  >
-                                    <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
-                                    <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="withdrawRequest.field[paymentInfo.code]" >
-                                </div>
-                            </div>
-                            
-                            <div class="fv-row mb-7">
-                                <label class="fs-6 fw-semibold form-label mb-2" v-text="translate('Add notes')"></label>
-                                <textarea class="form-control form-control-solid rounded-3 mb-5" v-model="withdrawRequest.notes"></textarea>
-                            </div>
-                            <!--begin::Actions-->
-                            <div class="text-center">
-                                <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showWizard = false"></button>
-
-                                <button @click="sendWithdrawRequest" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
-                                    <span class="indicator-label" v-text="translate('Submit')"></span>
-                                </button>
-                            </div>
-                            <!--end::Actions-->
-                        </div>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Modal body-->
-                </div>
-                <!--end::Modal content-->
-            </div>
-            <!--end::Modal dialog-->
-        </div>
+       
             <div class="card p-6">
                 <div class="d-flex flex-wrap flex-sm-nowrap">
                     <div class="me-7 mb-4">
@@ -318,7 +237,6 @@ export default {
         const showWizard = ref(false);
         const activeItem = ref({});
         const content = ref({});
-        const withdrawRequest = ref({'field':{}});
         const activeTab = ref('account');
         const tabsList = ref([
             { title: translate('Account'), link: 'account' },
@@ -417,53 +335,13 @@ export default {
 
 
         
-        const sendWithdrawRequest = () => {
-            if (!withdrawRequest.value.amount || withdrawRequest.value.amount < 1)
-            {
-                return showAlert(translate('Amount is required'));
-            }
-            
-            if (withdrawRequest.value.amount > content.value.wallet.credit_balance)
-            {
-                return showAlert(translate('Balance is not enough'));
-            }
 
-            if (window.confirm(translate('Conffirm to submit')))
-            {
-                var params = new URLSearchParams();
-                params.append('type', 'BusinessWithdrawal.create')
-                params.append('params[amount]', withdrawRequest.value.amount)
-                params.append('params[wallet_id]', content.value.wallet.wallet_id)
-                params.append('params[notes]', withdrawRequest.value.notes)
-                params.append('params[field]', JSON.stringify(withdrawRequest.value.field))
-                params.append('params[payment_method]', withdrawRequest.value.payment_method)
-                handleRequest(params, '/api/create').then(response => {
-                    handleAccess(response)
-                });
-            }
+        
+        
 
-        }
-        
-        
-        
-        const cancelRequest = (withdrawal) => {
-            
-            if (window.confirm(translate('confirm_delete')))
-            {
-                var params = new URLSearchParams();
-                params.append('type', 'BusinessWithdrawal.delete')
-                params.append('params[withdrawal_id]', withdrawal.withdrawal_id)
-                handleRequest(params, '/api/delete').then(response => {
-                    handleAccess(response)
-                });
-            }
-        }
         
         return {
             payment_fields,
-            cancelRequest,
-            sendWithdrawRequest,
-            withdrawRequest,
             checkFeatureLimit,
             cost,
             url,
