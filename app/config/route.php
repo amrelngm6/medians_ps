@@ -227,6 +227,9 @@ if(isset($app->auth()->id))
     /** @return Wallets */
     RouteHandler::get('/admin/wallets', Medians\Wallets\Application\WalletController::class.'@index');
 
+    /** @return Business Withdrawals */
+    RouteHandler::get('/admin/withdrawals', Medians\Wallets\Application\WithdrawalController::class.'@index');
+
 
     /**
      * Master requests

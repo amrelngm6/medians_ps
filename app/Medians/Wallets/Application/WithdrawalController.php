@@ -3,9 +3,9 @@ namespace Medians\Wallets\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Wallets\Infrastructure\WalletRepository;
+use Medians\Wallets\Infrastructure\WithdrawalRepository;
 
-class WalletController extends CustomController 
+class WithdrawalController extends CustomController 
 {
 
 	/**
@@ -15,14 +15,13 @@ class WalletController extends CustomController
 
 	protected $app;
 
-
 	function __construct()
 	{
 
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
 
-		$this->repo = new WalletRepository($user->business);
+		$this->repo = new WithdrawalRepository($user->business);
 	}
 
 
@@ -35,11 +34,13 @@ class WalletController extends CustomController
 	public function columns( ) 
 	{
 		return [
-            [ 'value'=> "wallet_id", 'text'=> "#"],
-            [ 'value'=> "business", 'text'=> __('Business')],
-            [ 'value'=> "credit_balance", 'text'=> __('Credit balance'), 'sortable'=> true ],
-            [ 'value'=> "debit_balance", 'text'=> __('Debit balance'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('Status') ],
+            [ 'value'=> "withdrawal_id", 'text'=> "#"],
+            [ 'value'=> "business.business_name", 'text'=> __('Business'), 'sortable'=> true ],
+            [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
+            [ 'value'=> "due_date", 'text'=> __('Due Date'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> __('Status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> __('Edit') ],
             [ 'value'=> "delete", 'text'=> __('Delete') ],
         ];
 	}
@@ -65,20 +66,23 @@ class WalletController extends CustomController
 	 */ 
 	public function index( ) 
 	{
-		$params = $this->app->request()->query->all();
 		
+		$params = $this->app->request()->query->all();
+
 		try {
 
-			return render('business_wallets', [
+			return render('business_withdrawals', [
 		        'load_vue' => true,
-		        'title' => __('Wallets'),
+		        'title' => __('Business Withdrawals'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
-		        'items' => $this->repo->get(),
-		        'total_debit_balance' => $this->repo->totalDebitBalance(),
-		        'total_credit_balance' => $this->repo->totalCreditBalance(),
-
+		        'items' => $this->repo->get($params),
+				'total_pending_amount' => round($this->repo->totalPendingAmount($params), 2),
+				'total_completed_amount' => round($this->repo->totalCompletedAmount($params), 2),
+				'pending_by_payment_methods' => $this->repo->pendingGroupedByPaymentMethod($params),
+				'completed_by_payment_methods' => $this->repo->completedGroupedByPaymentMethod($params),
 		    ]);
+
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
 			
@@ -92,17 +96,23 @@ class WalletController extends CustomController
 
 		$params = $this->app->request()->get('params');
 
+		$user = $this->app->auth();
+		
         try {	
-			
-			try {
-				
-				$returnData = (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-				: array('success'=>0, 'result'=>'Error', 'error'=>1);
-	
-			} catch (\Throwable $th) {
-				return array('error'=>$th->getMessage());
+
+			$validate = $this->validate($params, $user);
+
+			if ($validate)
+			{
+				return array('error'=>$validate);
 			}
+
+			$params['field'] = isset($params['field']) ? (array) json_decode($params['field']) : null;
+
+			$returnData = (!empty($this->repo->store($params))) 
+			? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+			: array('success'=>0, 'result'=>'Error', 'error'=>1);
+
 
         } catch (Exception $e) {
         	return array('error'=>$e->getMessage());
@@ -119,6 +129,7 @@ class WalletController extends CustomController
 		$params = $this->app->request()->get('params');
 
         try {
+			
 
             if ($this->repo->update($params))
             {
@@ -140,15 +151,17 @@ class WalletController extends CustomController
 
         try {
 
+			$delete = $this->repo->delete($params['withdrawal_id']);
 
-            if ($this->repo->delete($params['vacation_id']))
+            if ($delete === true)
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
-            }
-            
+                return array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1);
+            } else {
+                return array('error' => $delete);
+			}
 
         } catch (Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+			return array('error'=>$e->getMessage());
         	
         }
 	}
@@ -179,17 +192,31 @@ class WalletController extends CustomController
 	}
 
 	
-	
 	/**
 	 * Load user wallets
 	 */
-	public function getWallet()
+	public function getWithdrawal()
 	{
 		$user = $this->app->auth();
 
 		if (empty($user->customer_id)) { return null; }
 		
-		return $this->repo->getWallet($user->customer_id);
+		return $this->repo->getWithdrawal($user->customer_id);
+	}
+
+
+	
+	
+	/**
+	 * validate
+	 */
+	public function validate($params, $user)
+	{
+		
+		$check =  $this->repo->checkPending($user->business->business_id);
+
+		return $check ? __('Another pending request found') : null;
+		
 	}
 
 

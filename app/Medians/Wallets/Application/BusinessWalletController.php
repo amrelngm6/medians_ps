@@ -181,39 +181,5 @@ class BusinessWalletController extends CustomController
 
 	
 	
-	public function update_student_vacation() 
-	{	
-
-		$params = (array) json_decode($this->app->request()->get('params'));
-
-        try {	
-			
-			$check = $this->repo->update($params);
-			$returnData = isset($check->vacation_id)
-			? array('success'=>1, 'result'=>__('updated successfully'), 'reload'=>1)
-			: array('success'=>0, 'result'=> $check, 'error'=>1);
-
-
-        } catch (Exception $e) {
-        	return array('error'=>$e->getMessage());
-        }
-
-		return $returnData;
-	}
-
-	
-	
-	/**
-	 * Load user wallets
-	 */
-	public function getWallet()
-	{
-		$user = $this->app->auth();
-
-		if (empty($user->customer_id)) { return null; }
-		
-		return $this->repo->getWallet($user->customer_id);
-	}
-
 
 }
