@@ -130,6 +130,8 @@ class MediaRepository
         	return $e->getMessage();
         }
 
+		$store = MediaUpload::addItem($this->_dir.$fileName, $type);
+
         return $fileName;
     }
 
