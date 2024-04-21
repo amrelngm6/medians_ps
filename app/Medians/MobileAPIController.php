@@ -240,6 +240,10 @@ class MobileAPIController extends CustomController
 			case 'student_vacations':
 				$return = (new Vacations\Application\VacationController)->load_student_vacations();
 				break;
+			
+			case 'withdrawals':
+				$return = (new Wallets\Application\WithdrawalController)->getWithdrawals();
+				break;
 		}
 		
 		echo json_encode($return);

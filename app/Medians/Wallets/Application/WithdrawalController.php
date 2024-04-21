@@ -199,9 +199,9 @@ class WithdrawalController extends CustomController
 	{
 		$user = $this->app->auth();
 
-		if (empty($user->customer_id)) { return null; }
+		if (empty($user->driver_id)) { return null; }
 		
-		return $this->repo->getWithdrawals($user->customer_id);
+		return $this->repo->getWithdrawals($user->driver_id);
 	}
 
 
