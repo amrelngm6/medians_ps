@@ -77,7 +77,8 @@ class BusinessWithdrawalController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-				'total_pending_amount' => round($this->repo->totalPendingAmountByDate($params), 2),
+				'total_pending_amount' => round($this->repo->totalPendingAmount($params), 2),
+				'total_pending_amount' => $this->repo->groupedByPaymentMethod($params),
 		    ]);
 
 		} catch (\Exception $e) {

@@ -43,12 +43,19 @@ class BusinessWithdrawalRepository
 		return BusinessWithdrawal::whereBetween('date', [$params['start'], $params['end']]);
 	}
 	
-	public function totalPendingAmountByDate($params)
+	public function totalPendingAmount($params)
 	{
 		$query = isset($params['start']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
 
 		return $query->whereIn('status',['pending', 'approved'])->sum('amount');
+	}
+	
+	
+	public function groupedByPaymentMethod($params)
+	{
+		$query = isset($params['start']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
 
+		return $query->whereIn('status',['pending', 'approved'])->groupBy('payment_method')->get();
 	}
 	
 	
