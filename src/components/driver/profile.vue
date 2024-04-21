@@ -105,82 +105,12 @@
                     
 
                 </div>  
-
-                <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2" v-if="activeItem.business">
-                    <div class="card card-flush mb-0" data-kt-sticky="true" data-kt-sticky-name="subscription-summary" data-kt-sticky-offset="{default: false, lg: '200px'}" data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto" data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
-                        <div class="card-header">
-                            <div class="card-title"><h2 v-text="translate('Summary')"></h2></div>
-                        </div>
-                        <div class="card-body pt-0 fs-6">
-                            <div class="mb-7">
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-60px symbol-circle me-3">
-                                        <img alt="Pic" :src="activeItem.picture ?? '/uploads/images/default_profile.png'">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2" v-text="activeItem.name"></a>
-                                        <a href="#" class="fw-semibold text-gray-600 text-hover-primary" v-text="activeItem.email"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="separator separator-dashed mb-7"></div>
-                            <div class="mb-7" v-if="activeItem.business && activeItem.business.subscription">
-                                <h5 class="mb-4" v-text="translate('Plan')"></h5>
-                                <div class="mb-0">
-                                    <span class="text-lg me-2" v-text="activeItem.business.subscription.plan_name"></span>
-                                    <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? (cost() + '' + system_setting.currency + ' /'+ activeItem.business.subscription.type) : ''"></span>
-                                </div>
-                            </div>
-                            <!--end::Section-->
-                            <div class="separator separator-dashed mb-7"></div>
-                            <div class="mb-7" v-if="activeItem.business ">
-                                <h5 class="mb-4" v-text="translate('Business')"></h5>
-                                <div class="mb-4 fs-bold" v-text="activeItem.business.business_name"></div>
-                            </div>
-                            <!--end::Section-->
-
-                            <!--begin::Seperator-->
-                            <div class="separator separator-dashed mb-7"></div>
-                            <!--end::Seperator-->
-
-                            <!--begin::Section-->
-                            <div class="mb-10" v-if="activeItem.business && activeItem.business.subscription">
-                                <!--begin::Title-->
-                                <h5 class="mb-4" v-text="translate('Subscription Details')"></h5>
-                                <!--end::Title-->
-
-                                <!--begin::Details-->
-                                <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
-                                    <!--begin::Row-->
-                                    <tbody>
-                                        <tr class="">
-                                        <td class="text-gray-500" v-text="translate('Subscription ID')"></td>
-                                        <td class="text-gray-800" v-text="activeItem.business.subscription.subscription_id"></td>
-                                    </tr>
-                                    </tbody>
-                                    <tbody><tr class="">
-                                        <td class="text-gray-500" v-text="translate('Upcoming renewal')"></td>
-                                        <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
-                                    </tr>
-                                </tbody></table>
-                                <!--end::Details-->
-                            </div>
-                            <div class="mb-0">
-                                <a href="javascript:;" class="btn btn-primary" id="kt_subscriptions_create_button">                
-                                    Cancel Subscription
-                                </a>
-                            </div>
-                            <!--end::Actions-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                </div>
+                
             </div>
-
             
         </div>
-        <side-form-update @callback="closeSide" :conf="conf" model="User.update" :item="activeItem"
-            :model_id="activeItem.id" index="id" v-if="showEditSide" :columns="content.fillable" class="col-md-3" />
+        <side-form-update @callback="closeSide" :conf="conf" model="Driver.update" :item="activeItem"
+            :model_id="activeItem.driver_id" index="id" v-if="showEditSide" :columns="content.fillable" class="col-md-3" />
 
     </div>
 </template>
@@ -273,7 +203,7 @@ export default {
         const load = () => {
             handleGetRequest(url).then(response => {
                 content.value = JSON.parse(JSON.stringify(response));
-                activeItem.value = content.value.user;
+                activeItem.value = content.value.driver;
             });
         }
         

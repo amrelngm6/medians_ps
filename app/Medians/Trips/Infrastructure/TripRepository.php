@@ -78,14 +78,14 @@ class TripRepository
 		->withCount('moving_locations')->withCount('waiting_locations')->first();
 	}
 
-	public function getDriverTrips($id, $lastId = 0)
+	public function getDriverTrips($id, $limit = 10)
 	{
 		return Trip::with(['locations'=> function($q){
 			$q->with('model');
 		}])
 		->where('business_id', $this->business_id)
 		->with('driver', 'vehicle')
-		->where('driver_id', $id)->orderBy('trip_id','DESC')->limit(10)->get();
+		->where('driver_id', $id)->orderBy('trip_id','DESC')->limit($limit)->get();
 	}
 
 	public function getActiveDriverTrip($driver_id)

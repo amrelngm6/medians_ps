@@ -81,6 +81,21 @@ function Page404()
     ]);
 }
 
+/**
+ * Page not found 
+ * @param Object $twig, Object $app 
+ * @return Page not found template 
+ */
+function errorPage($data)
+{
+    $app = new \config\APP;
+    echo $app->template()->render('views/front/error.html.twig', [
+        'title' => 'Error',
+        'msg' => $data,
+        'app' => $app
+    ]);
+}
+
 
 /**
  * Page not authorized 

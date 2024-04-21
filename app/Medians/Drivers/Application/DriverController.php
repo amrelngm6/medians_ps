@@ -6,6 +6,12 @@ use Shared\dbaser\CustomController;
 use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Users\Infrastructure\UserRepository;
 use Medians\Vehicles\Infrastructure\VehicleRepository;
+use Medians\Wallets\Infrastructure\WithdrawalRepository;
+use Medians\Wallets\Infrastructure\WalletRepository;
+use Medians\Invoices\Infrastructure\InvoiceRepository;
+use Medians\Trips\Infrastructure\PrivateTripRepository;
+use Medians\Trips\Infrastructure\TripRepository;
+use Medians\Routes\Infrastructure\RouteRepository;
 
 class DriverController extends CustomController 
 {
@@ -86,6 +92,66 @@ class DriverController extends CustomController
 		}
 	}
 
+	
+	/**
+	 * Index page
+	 * 
+	 */
+	public function profile()
+	{
+		
+		$user = $this->app->auth();
+		$driver = $this->repo->find($this->app->request()->get('driver_id'));
+		
+		print_r($driver);
+		$invoicesRepo = new InvoiceRepository($user->business);
+		$WalletRepo = new WalletRepository();
+		$WithdrawalRepo = new WithdrawalRepository($user->business);
+
+		return render('profile', [
+			'load_vue'=> true,
+	        'title' => __('Driver profile'),
+			'driver' =>   $driver,
+            'stats' => $this->getStats($user->business, $driver),
+	        'overview' => $this->overview(),
+	        'fillable' => $this->fillable(),
+	        'invoices' => $invoicesRepo->getUserInvoices($user->id),
+	        'wallet' => isset($user->business) ? $businessWalletRepo->getBusinessWallet($user->business->business_id) : null,
+	        'business_withdrawals' => isset($user->business) ? $businessWithdrawalRepo->getBusinessWithdrawals($user->business->business_id) : null,
+	    ]);
+	} 
+
+
+	public function getStats($driver, $business) 
+	{	
+
+		$data = [];
+
+		$tripsRepo = new TripRepository($business);
+        $data['trips_count'] = count($tripsRepo->getDriverTrips($driver));
+		$tripsRepo = new PrivateTripRepository($business);
+        $data['trips_count'] = count($tripsRepo->get(null));
+
+		return $data;
+	}
+
+	
+
+	/**
+	 * Columns list to view in Overview page 
+	 * for Driver Profile page
+	 */ 
+	public function overview( $driver) 
+	{
+		return [
+            [ 'key'=> $driver->driver_id, 'title'=> __('id') ],
+            [ 'key'=> $driver->first_name, 'title'=> __('first_name'),  ],
+            [ 'key'=> $driver->last_name, 'title'=> __('last_name'),  ],
+            [ 'key'=> $driver->email, 'title'=> __('email')   ],
+            [ 'key'=> $driver->mobile, 'title'=> __('mobile')  ],
+            [ 'key'=> $driver->status ? 'Yes' : 'No', 'title'=> __('status') ],
+        ];
+	}
 
 	public function store() 
 	{
