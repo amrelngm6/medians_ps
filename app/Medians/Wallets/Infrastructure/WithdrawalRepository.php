@@ -27,17 +27,17 @@ class WithdrawalRepository
 	
 	public function getWithdrawal($id)
 	{
-		return Withdrawal::with('business', 'user','wallet')->where('business_id', $id)->first();
+		return Withdrawal::with('business', 'user','wallet')->where('user_id', $id)->first();
 	}
 
 	public function getWithdrawals($id)
 	{
-		return Withdrawal::with('business', 'user')->where('business_id', $id)->get();
+		return Withdrawal::with('business', 'user')->where('user_type', Driver::class)->where('user_id', $id)->get();
 	}
 
 	public function checkPending($id)
 	{
-		return Withdrawal::with('business', 'user')->where('status', 'pending')->where('business_id', $id)->first();
+		return Withdrawal::with('business', 'user')->where('status', 'pending')->where('user_id', $id)->first();
 	}
 
 	public function eventsByDate($params)
