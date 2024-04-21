@@ -151,7 +151,7 @@ export default
                 switch (actionName) {
 
                     case 'view':
-                        return emit('callback', {tab:'admin/driver_profile?driver_id='+data.driver_id,component:'driver_page'});
+                        return emit('callback', {link:'admin/driver_profile?driver_id='+data.driver_id,component:'driver_page'});
                         break;
 
                     case 'edit':
