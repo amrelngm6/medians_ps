@@ -683,7 +683,7 @@ export default {
                 return showAlert(translate('Balance is not enough'));
             }
 
-            if (window.confirm(translate('Conffirm to submit')))
+            if (window.confirm(translate('Confirm to submit')))
             {
                 var params = new URLSearchParams();
                 params.append('type', 'BusinessWithdrawal.create')
