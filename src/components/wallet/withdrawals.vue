@@ -86,13 +86,6 @@
                 alternating
                 class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
-                <template #item-business="item">
-                    <div class="flex gap-2" v-if="item.business" >
-                        <img :src="item.business.logo" class="w-8 h-8 rounded-full" />
-                        <span class="py-2" v-text="item.business.business_name"></span>
-                    </div>
-                </template>
-
                 <template #item-delete="item">
                     <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-red-500" @click="handleAction('delete', item)">
                         <vue-feather class="w-5" type="x-circle"></vue-feather>
@@ -115,7 +108,7 @@ import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
-import withdrawal_wizard from '@/components/wizards/businessWithdrawalWizard.vue';
+import withdrawal_wizard from '@/components/wizards/withdrawalWizard.vue';
     
 export default
 {
@@ -187,7 +180,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('withdrawal_id', data, 'BusinessWithdrawal.delete');
+                    deleteByKey('withdrawal_id', data, 'Withdrawal.delete');
                     break;  
             }
         }
