@@ -263,6 +263,7 @@ class APP
 			[
 				array('permission'=> 'Transaction.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
 				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
+				array('permission'=> 'Withdrawals.index', 'title'=> __('Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/withdrawals', 'component'=>'withdrawals'),
 			]
 			),
 			

@@ -127,6 +127,8 @@ const business_wallets = defineAsyncComponent(() => import('@/components/wallet/
 
 const business_withdrawals = defineAsyncComponent(() => import('@/components/wallet/business_withdrawals.vue') );
 
+const withdrawals = defineAsyncComponent(() => import('@/components/wallet/withdrawals.vue') );
+
 export default {
     name: 'app',
     components: {
@@ -176,6 +178,7 @@ export default {
         wallets,
         business_wallets,
         business_withdrawals,
+        withdrawals,
         get_started,
         translate,
         'help_messages':HelpMessages,
