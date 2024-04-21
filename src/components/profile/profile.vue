@@ -234,7 +234,6 @@ export default {
 
         const showAddSide = ref(false);
         const showEditSide = ref(false);
-        const showWizard = ref(false);
         const activeItem = ref({});
         const content = ref({});
         const activeTab = ref('account');
@@ -347,7 +346,6 @@ export default {
             url,
             showAddSide,
             showEditSide,
-            showWizard,
             content,
             setActiveTab,
             tabsList,

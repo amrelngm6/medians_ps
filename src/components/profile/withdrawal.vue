@@ -20,16 +20,16 @@
                     <!--end::Modal header-->
 
                     <!--begin::Modal body-->
-                    <div class="modal-body mx-5 mx-xl-15 my-7"  v-if="content.wallet">
+                    <div class="modal-body mx-5 mx-xl-15 my-7"  v-if="wallet">
                         <!--begin::Balance preview-->
                         <div class="d-flex text-center mb-9">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Current Balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(content.wallet.credit_balance ?? '0')"></div>
+                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(wallet.credit_balance ?? '0')"></div>
                             </div>
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Debit balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(content.wallet.debit_balance ?? '0')"></div>
+                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(wallet.debit_balance ?? '0')"></div>
                             </div>
                         </div>
                         <!--end::Balance preview-->
@@ -39,7 +39,7 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7 fv-plugins-icon-container">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
-                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
+                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="wallet.credit_balance" inputmode="text">
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
                             
@@ -164,7 +164,7 @@
 <script>
 
 import { ref } from 'vue';
-import { translate } from '@/utils.vue';
+import { translate, showAlert, handleAccess, handleRequest } from '@/utils.vue';
 
 export default {
 
@@ -174,6 +174,7 @@ export default {
 
         const activeItem = ref({});
         const withdrawRequest = ref({'field':{}});
+        const showWizard = ref(false);
 
         activeItem.value = props.item;
 
@@ -224,6 +225,7 @@ export default {
             withdrawRequest,
             sendWithdrawRequest,
             translate,
+            showWizard,
         };
     },
 
