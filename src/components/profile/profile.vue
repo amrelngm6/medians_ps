@@ -490,14 +490,6 @@ export default {
             ],
         });
 
-        const calcDaysWidth = () => {
-            let subscription = activeItem.value.business.subscription
-
-            if (subscription.plan.type == 'paid')
-            {
-                return (subscription.past_days / subscription.total_days) * 100 ;
-            }
-        }
 
         const setActiveTab = (tab) => {
             activeTab.value = tab;
@@ -625,7 +617,6 @@ export default {
             checkRole,
             closeSide,
             sameRole,
-            calcDaysWidth,
             setActiveStatus,
             isInput,
             handleName,

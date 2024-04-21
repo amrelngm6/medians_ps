@@ -54,7 +54,17 @@ export default {
 
         activeItem.value = props.item;
 
+        const calcDaysWidth = () => {
+            let subscription = activeItem.value.business.subscription
+
+            if (subscription.plan.type == 'paid')
+            {
+                return (subscription.past_days / subscription.total_days) * 100 ;
+            }
+        }
+
         return {
+            calcDaysWidth,
             activeItem,
             translate,
         };
