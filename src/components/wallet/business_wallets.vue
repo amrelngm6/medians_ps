@@ -53,20 +53,6 @@
                             <option v-for="col in content.columns" v-text="col.text"  :value="col.value" ></option>
                         </select>
                     </div>
-
-                </div>
-
-                <!--begin::Card toolbar-->
-                <div class="card-toolbar w-full flex-end">
-
-                    <div class="w-full">
-                        <vue-tailwind-datepicker 
-                            :formatter="formatter"
-                            @update:model-value="handleSelectedDate($event)"
-                            :separator="' - '+translate('To')+' - '"
-                            v-model="dateValue" />
-                    </div>
-
                 </div>
             </div>
             <datatabble 
