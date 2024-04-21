@@ -158,7 +158,6 @@ export default
                         activeItem.value = data;
                         showAddSide.value = false;
                         showEditSide.value = true;
-                        showProfilePage.value = true;
                         break;
 
                     case 'delete':
