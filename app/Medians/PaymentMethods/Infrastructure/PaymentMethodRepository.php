@@ -62,7 +62,7 @@ class PaymentMethodRepository
     public function update($data)
     {
 
-		$Object = PaymentMethod::Driverfind($data['payment_method_id']);
+		$Object = PaymentMethod::find($data['payment_method_id']);
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
@@ -83,7 +83,7 @@ class PaymentMethodRepository
 	{
 		try {
 			
-			return PaymentMethod::Driverfind($id)->delete();
+			return PaymentMethod::find($id)->delete();
 
 		} catch (\Exception $e) {
 
