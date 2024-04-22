@@ -107,16 +107,19 @@ class PaymentMethodRepository
 			foreach (json_decode($data) as $item )
 			{
 				
-				$value = (array) $item;
-				$fields = [];
-				$fields['payment_method_id'] = $id;	
-				$fields['title'] = $value['title'];	
-				$fields['code'] = $value['code'];	
-				$fields['type'] = $value['type'];	
-				
 				try {
 					
-					$Model = PaymentMethodField::firstOrCreate($fields);
+					$value = (array) $item;
+					if (isset($value['title']) && isset($value['code']))
+					{
+						$fields = [];
+						$fields['payment_method_id'] = $id;	
+						$fields['title'] = $value['title'];	
+						$fields['code'] = $value['code'];	
+						$fields['type'] = $value['type'];	
+						
+						$Model = PaymentMethodField::firstOrCreate($fields);
+					}
 
 				} catch (\Throwable $th) {
 					error_log($th->getMessage());
