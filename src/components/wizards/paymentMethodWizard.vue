@@ -329,7 +329,7 @@ export default
             
             const setPicture = (a) => {
                 console.log(a)
-                activeItem.value.picture = a.filepath;
+                activeItem.value.picture = a.value;
             }
             return {
                 setPicture,
