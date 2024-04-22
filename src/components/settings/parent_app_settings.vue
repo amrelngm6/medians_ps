@@ -5,7 +5,7 @@
 </template>
 <script>
 
-import setting from './app_settings';
+import setting from './app_settings.vue';
 
 export default  
 {
