@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="w-full mb-6 " v-if="activeItem.fields">
                                             <div class="w-full mb-6 mx-auto row" v-for="(field, key) in activeItem.fields">
-                                                <label v-if="activeItem.fields[key]" @click="field.show = !field.show" class="col-lg-4 col-form-label required fw-semibold fs-6">
+                                                <label v-if="activeItem.fields[key]" @click="switchField(field, key)" class="col-lg-4 col-form-label required fw-semibold fs-6">
                                                     <p v-text="field.title" class="fs-bold"></p>
                                                     <span v-text="field.code"></span>
                                                 </label>
@@ -270,6 +270,9 @@ export default
                 return getProgressWidth(requiredData, activeItem);
             }
 
+            const switchField = (field, key) => {
+                console.log(field, key)
+            }
             const addField = () => {
                 if (!activeItem.value.fields)
                 {
@@ -280,6 +283,7 @@ export default
             }
 
             return {
+                switchField,
                 addField,
                 progressWidth,
                 showEditSide,
