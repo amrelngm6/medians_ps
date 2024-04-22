@@ -208,7 +208,7 @@ export default {
                 return showAlert(translate('Amount is required'));
             }
             
-            if (withdrawRequest.value.amount > content.value.wallet.credit_balance)
+            if (withdrawRequest.value.amount > props.wallet.credit_balance)
             {
                 return showAlert(translate('Balance is not enough'));
             }
