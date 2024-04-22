@@ -55,6 +55,7 @@ class PaymentMethodController extends CustomController
 		return [
             [ 'key'=> "payment_method_id", 'title'=> "#", 'column_type'=>'hidden'],
 			[ 'key'=> "name", 'title'=> __('name'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "code", 'title'=> __('Code'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "description", 'title'=> __('description'), 'required'=>true, 'fillable'=> true, 'column_type'=>'textarea' ],
             [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
 			[ 'key'=> "picture", 'title'=> __('Logo'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
