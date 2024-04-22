@@ -122,7 +122,7 @@
                                         <div class="w-full mb-6 " v-if="activeItem.fields">
                                             <div class="w-full mb-6 mx-auto row" v-for="(field, key) in activeItem.fields">
                                                 <label v-if="activeItem.fields[key]" @click="switchField(field, key)" class="col-lg-4 col-form-label required fw-semibold fs-6">
-                                                    <p v-text="field.title" class="fs-bold"></p>
+                                                    <p v-text="field.title" class="fw-bold fs-4"></p>
                                                     <span v-text="field.code"></span>
                                                     <vue-feature type="edit" />
                                                 </label>
