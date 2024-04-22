@@ -52,7 +52,7 @@
                         <div class="text-center">
                             <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showModal = false"></button>
 
-                            <button @click="sendWithdrawRequest" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
+                            <button @click="showModal = false" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
                                 <span class="indicator-label" v-text="translate('Submit')"></span>
                             </button>
                         </div>
