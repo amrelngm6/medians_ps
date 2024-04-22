@@ -102,7 +102,7 @@
                     
                     <account_tab  v-if="activeTab == 'account'" :overview="content.overview" :item="activeItem" />
                    
-                    <subscriptions_tab :conf="conf" v-if="activeTab == 'subscriptions'" :overview="content.overview" :item="activeItem" />
+                    <subscriptions_tab :conf="conf" v-if="activeTab == 'subscriptions'" :subscriptions="content.subscriptions" :item="activeItem" />
 
                     <invoices_tab :conf="conf" v-if="activeTab == 'invoices'" :invoices="content.invoices" :item="activeItem" :system_setting="system_setting" />
                     
