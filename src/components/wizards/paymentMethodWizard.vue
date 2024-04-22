@@ -172,7 +172,7 @@
                                                 <div class="fs-5 fw-semibold text-gray-500 mb-4" v-text="activeItem.description"></div>
                                             </div>
                                         </div>
-                                        <div class="mx-auto pt-10">
+                                        <div class="mx-auto pt-4">
 
                                             <label class=" flex gap-2 cursor-pointer">
                                                 <form_field class="flex-end" :item="activeItem"
