@@ -51,7 +51,7 @@
                             <th class="min-w-100px" v-text="translate('Start')"></th>
                             <th class="min-w-100px" v-text="translate('End')"></th>
                             <th class="min-w-125px" v-text="translate('payment type')"></th>
-                            <th class="min-w-125px" v-text="translate('Paid')"></th>
+                            <th class="min-w-125px" v-text="translate('Type')"></th>
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
