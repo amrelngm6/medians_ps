@@ -7,7 +7,7 @@ use Shared\dbaser\CustomModel;
 /**
  * Transaction class database queries
  */
-class PaymentMethod extends CustomModel
+class PaymentMethodField extends CustomModel
 {
 
 	/*

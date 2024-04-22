@@ -27,5 +27,10 @@ class PaymentMethod extends CustomModel
 	];
 
 
+    public function fields()
+    {
+        return $this->hasMany(PaymentMethodField::class, 'payment_method_id', 'payment_method_id');
+    }
+
 
 }
