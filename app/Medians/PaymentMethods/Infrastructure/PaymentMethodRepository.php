@@ -115,12 +115,12 @@ class PaymentMethodRepository
 					$fields['code'] = $value['code'];	
 					$fields['type'] = $value['type'];	
 
-					$Model = PaymentMethodField::create($fields);
-					$Model->update($fields);	
-
 				} catch (\Throwable $th) {
 					error_log($th->getMessage());
 				}
+				
+				$Model = PaymentMethodField::create($fields);
+				$Model->update($fields);	
 			}
 	
 			return $Model;		
