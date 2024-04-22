@@ -126,6 +126,7 @@
                                                     <span v-text="field.code"></span>
                                                     <vue-feature type="edit" />
                                                 </label>
+                                                <vue-feature type="remove" />
                                             </div>
                                                 
                                         </div>
