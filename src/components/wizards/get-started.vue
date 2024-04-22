@@ -341,7 +341,6 @@ import { translate, handleGetRequest, handleRequest, deleteByKey, showAlert } fr
 import VueScript2 from 'vue-script2';
 import { loadScript } from "@paypal/paypal-js";
 import axios from 'axios'
-import System_settings from '../system_settings.vue';
 
 export default
     {
