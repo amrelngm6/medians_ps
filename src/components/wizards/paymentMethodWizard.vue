@@ -331,7 +331,7 @@ export default
                 {
                     activeItem.value.fields = [{'title': '', show:true}];
                 } else {
-                    activeItem.value.fields.addItem({'title':'',show:true})
+                    activeItem.value.fields.push({'title':'',show:true})
                 }
                 
                 activeField.value = activeItem.value.fields.length - 1;
