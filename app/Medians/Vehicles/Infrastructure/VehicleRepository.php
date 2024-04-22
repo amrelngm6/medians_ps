@@ -85,7 +85,6 @@ class VehicleRepository
     	// Store Custom fields
     	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['vehicle_id']) : '';
 		
-		print_r($data);
     	// Store Custom fields
     	!empty($data['trip_track']) ? TripTrack::addItem((array) $data['trip_track']) : '';
 
