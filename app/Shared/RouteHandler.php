@@ -167,7 +167,7 @@ class RouteHandler {
         if (!self::$error_callback) {
           self::$error_callback = function() {
             header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
-            echo '404';
+            echo errorPage($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
           };
         } else {
           if (is_string(self::$error_callback)) {

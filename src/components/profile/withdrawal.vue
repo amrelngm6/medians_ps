@@ -215,7 +215,7 @@ export default {
 
             if (window.confirm(translate('Confirm to submit')))
             {
-                var params = new URLSearchParams();
+                var params = new URLSearchParams(); 
                 params.append('type', 'BusinessWithdrawal.create')
                 params.append('params[amount]', withdrawRequest.value.amount)
                 params.append('params[wallet_id]', props.wallet.wallet_id)
