@@ -65,7 +65,7 @@
                                                     <span v-text="field.code"></span>
                                                 </label>
                                             </div>
-                                            <div activeItem.fields[key].show = true class="w-full mb-6" v-for="(field, key) in activeItem.fields">
+                                            <div class="w-full mb-6" v-for="(field, key) in activeItem.fields">
                                                     
                                                 <div class="w-full row" v-if="field.show">
                                                     <label class="col-lg-4 col-form-label required fw-semibold fs-6"
