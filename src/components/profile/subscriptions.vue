@@ -50,17 +50,17 @@
                             <th class="min-w-100px" v-text="translate('plan')"></th>
                             <th class="min-w-100px" v-text="translate('Start')"></th>
                             <th class="min-w-100px" v-text="translate('End')"></th>
-                            <th class="min-w-125px" v-text="translate('type')"></th>
-                            <th class="min-w-125px" v-text="translate('Status')"></th>
+                            <th class="min-w-125px" v-text="translate('payment type')"></th>
+                            <th class="min-w-125px" v-text="translate('Paid')"></th>
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
                         <tr v-for="subscription in subscriptions">
-                            <td v-text="subscription.plan_name"></td>
+                            <td class="fw-bold" v-text="subscription.plan_name"></td>
                             <td v-text="subscription.start_date"></td>
                             <td v-text="subscription.end_date"></td>
                             <td v-text="subscription.type"></td>
-                            <td v-text="subscription.status"></td>
+                            <td v-text="translate(subscription.is_paid ? 'Paid' : 'Unpaid')"></td>
                         </tr>
                     </tbody>
                 </table>
