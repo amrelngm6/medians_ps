@@ -1,7 +1,7 @@
 <template>
     <div class="w-full flex overflow-auto" >
-        
-        <div  v-if="content " class=" w-full relative">
+        <payment_wizard v-if="showWizard" />
+        <div  v-if="content && !showWizard" class=" w-full relative">
             
             <div class=" " v-if="content.items && !content.items.length ">
                 <div class="card">
@@ -48,9 +48,9 @@
                 </div>
             </main>
     
-            <side_form_create ref="activeFormCreate" @callback="closeSide" :auth="auth" :conf="conf" :model="'PaymentMethod.create'" :columns="content.fillable"  class="col-md-3" v-if="showAddSide && !showEditSide"  />
+            <side_form_create ref="activeFormCreate" @callback="closeSide" :auth="auth" :conf="conf" :model="'PaymentMethod.create'" :columns="content.fillable"  class="col-md-3" v-if="showAddSide && !showWizard"  />
                 
-            <side_form_update ref="activeFormUpdate" @callback="closeSide" :key="activeItem" :auth="auth" :conf="conf" :model="'PaymentMethod.update'" :item="activeItem" :model_id="activeItem.payment_method_id" index="payment_method_id"  :columns="content.fillable"  class="col-md-3"  v-if="showEditSide && !showAddSide" />
+            <!-- <side_form_update ref="activeFormUpdate" @callback="closeSide" :key="activeItem" :auth="auth" :conf="conf" :model="'PaymentMethod.update'" :item="activeItem" :model_id="activeItem.payment_method_id" index="payment_method_id"  :columns="content.fillable"  class="col-md-3"  v-if="showWizard && !showAddSide" /> -->
             
         </div>
     </div>
@@ -81,6 +81,7 @@ const side_form_update = defineAsyncComponent(() => import('@/components/include
 
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import tooltip from '@/components/includes/tooltip.vue';
+import payment_wizard from '@/components/wizards/paymentMethodWizard.vue';
 
 
 
@@ -96,20 +97,21 @@ export default
         route_icon,
         form_field,
         editable_map_location,
-        tooltip
+        tooltip,
+        payment_wizard
     },
     name:'PaymentMethods',
     setup(props) {
 
         const url =  props.conf.url+props.path+'?load=json';
 
-        const showEditSide = ref(false);
+        const showWizard = ref(false);
         const showAddSide = ref(false);
         const activeItem = ref({});
         const content = ref({});
         
         const closeSide = () => {
-            showEditSide.value = false;
+            showWizard.value = false;
             showAddSide.value = false;
         }
 
@@ -136,7 +138,7 @@ export default
                 case 'edit':
                     showAddSide.value = false
                     activeItem.value = data;
-                    showEditSide.value = true
+                    showWizard.value = true
                     break;  
 
                 case 'delete':
@@ -146,7 +148,7 @@ export default
                     
                 case 'close':
                     showAddSide.value = false;
-                    showEditSide.value = false;
+                    showWizard.value = false;
                     activeItem.value = {};
                     break;
             }
@@ -155,7 +157,7 @@ export default
         
         return {
             showAddSide,
-            showEditSide,
+            showWizard,
             url,
             content,
             activeItem,
