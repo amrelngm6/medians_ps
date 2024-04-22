@@ -77,12 +77,12 @@
                                 <div class="settings-form">
                                     <div class="max-w-xl mb-6 mx-auto row">
 
-                                        <input name="params[package_id]" type="hidden">
+                                        <input name="params[payment_method_id]" type="hidden">
 
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
-                                            v-text="translate('Package name')"></label>
+                                            v-text="translate('Name')"></label>
                                         <input :required="true" autocomplete="off" name="params[name]"
-                                            class="form-control form-control-solid" :placeholder="translate('Package name')"
+                                            class="form-control form-control-solid" :placeholder="translate('Payment method name')"
                                             v-model="activeItem.name">
                                         <hr class="block mt-6 my-2 opacity-10" />
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
