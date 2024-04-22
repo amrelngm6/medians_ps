@@ -162,7 +162,7 @@ class VehicleController extends CustomController
         
 
         } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+        	throw new \Exception($e->getMessage(), 1);
         	
         }
 
@@ -181,7 +181,7 @@ class VehicleController extends CustomController
         
 
         } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+        	throw new \Exception($e->getMessage(), 1);
         	
         }
 
@@ -204,7 +204,7 @@ class VehicleController extends CustomController
             }
             
         } catch (Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+        	throw new \Exception($e->getMessage(), 1);
         }
 	}
 
@@ -224,7 +224,7 @@ class VehicleController extends CustomController
 			}
 
         } catch (Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+        	throw new \Exception($e->getMessage(), 1);
         }
 	}
 	
