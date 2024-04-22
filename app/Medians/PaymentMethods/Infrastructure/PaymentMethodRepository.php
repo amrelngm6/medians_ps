@@ -27,7 +27,7 @@ class PaymentMethodRepository
 	*/
 	public function get($params = null) 
 	{
-		return PaymentMethod::Driverget();
+		return PaymentMethod::get();
 	}
 
 
