@@ -329,9 +329,9 @@ export default
             const addField = () => {
                 if (!activeItem.value.fields)
                 {
-                    activeItem.value.fields = [{'title': '', show:true}];
+                    activeItem.value.fields = [{'title': ''}];
                 } else {
-                    activeItem.value.fields.push({'title':'',show:true})
+                    activeItem.value.fields.push({'title':''})
                 }
                 
                 activeField.value = activeItem.value.fields.length - 1;
