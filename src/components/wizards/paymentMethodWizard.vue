@@ -15,7 +15,34 @@
 
                     </div>
 
-                    <div class="modal-body mx-5 mx-xl-15 my-7"  >
+                    <div class="modal-body mx-5 mx-xl-15 my-7"   v-if="activeItem.fields[activeField]">
+                        <div class="w-full row">
+                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                v-text="translate('Field title')"></label>
+                            <input :required="true" autocomplete="off" 
+                                class="form-control form-control-solid"
+                                :placeholder="translate('Title of the field')" type="number"
+                                v-model="activeItem.fields[activeField].title">
+                        </div>
+                        
+                        <div class="w-full row">
+                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                v-text="translate('Field code')"></label>
+                            <input :required="true" autocomplete="off" 
+                                class="form-control form-control-solid"
+                                :placeholder="translate('Code of the field')" type="number"
+                                v-model="activeItem.fields[activeField].code">
+                        </div>
+                        
+                        <div class="w-full row">
+                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                v-text="translate('Field type')"></label>
+                            <input :required="true" autocomplete="off" 
+                                class="form-control form-control-solid"
+                                :placeholder="translate('Type of the field')" type="number"
+                                v-model="activeItem.fields[activeField].type">
+                        </div>
+                        
                         <div class="text-center">
                             <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showWizard = false"></button>
 
@@ -91,18 +118,8 @@
                                                 <label v-if="activeItem.fields[key]" @click="switchField(field, key)" class="col-lg-4 col-form-label required fw-semibold fs-6">
                                                     <p v-text="field.title" class="fs-bold"></p>
                                                     <span v-text="field.code"></span>
+                                                    <vue-feature type="edit" />
                                                 </label>
-                                            </div>
-                                            <div class="w-full mb-6" v-for="(field, key) in activeItem.fields">
-                                                    
-                                                <div class="w-full row" v-if="field.show">
-                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                                        v-text="translate('Cost per quarter')"></label>
-                                                    <input :required="true" autocomplete="off" name="params[double_cost_quarter]"
-                                                        class="form-control form-control-solid"
-                                                        :placeholder="translate('Double Trips cost per quarter')" type="number"
-                                                        v-model="activeItem.double_cost_quarter">
-                                                </div>
                                             </div>
                                                 
                                         </div>
