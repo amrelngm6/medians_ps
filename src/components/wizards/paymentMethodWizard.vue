@@ -147,7 +147,7 @@
                                 <div class="text-gray-400 font-semibold "
                                     v-text="translate('Set payment method picture')"></div>
                             </div>
-                            <vue-medialibrary-field :key="activeItem"  :filepath="activeItem.picture ?? '/uploads/image/default_profile.png'" :api_url="conf.url"></vue-medialibrary-field>
+                            <vue-medialibrary-field :key="activeItem" @input="setPicture" :filepath="activeItem.picture ?? '/uploads/image/default_profile.png'" :api_url="conf.url"></vue-medialibrary-field>
 
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
@@ -327,7 +327,12 @@ export default
             const activeField = ref(0);
             const showModal = ref(false);
             
+            const setPicture = (a) => {
+                console.log(a)
+                activeItem.value.picture = a.filepath;
+            }
             return {
+                setPicture,
                 showModal,
                 switchField,
                 addField,
