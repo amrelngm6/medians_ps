@@ -124,7 +124,7 @@ class UserController extends CustomController
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
 	        'invoices' => $invoicesRepo->getUserInvoices($user->id),
-	        'subscriptions' => $this->planSubscriptionRepo->getByBusiness($user->business->business_id),
+	        'subscriptions' => isset($user->business) ? $this->planSubscriptionRepo->getByBusiness($user->business->business_id) : [],
 	        'wallet' => isset($user->business) ? $businessWalletRepo->getBusinessWallet($user->business->business_id) : null,
 	        'business_withdrawals' => isset($user->business) ? $businessWithdrawalRepo->getBusinessWithdrawals($user->business->business_id) : null,
 	    ]);
