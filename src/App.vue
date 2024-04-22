@@ -57,9 +57,9 @@ const events = defineAsyncComponent(() => import('@/components/events.vue') );
 
 const roles = defineAsyncComponent(() => import('@/components/roles.vue') );
 
-const settings = defineAsyncComponent(() => import('@/components/settings.vue') );
+const settings = defineAsyncComponent(() => import('@/components/settings/settings.vue') );
 
-const system_settings = defineAsyncComponent(() => import('@/components/system_settings.vue') );
+const system_settings = defineAsyncComponent(() => import('@/components/settings/system_settings.vue') );
 
 const routes = defineAsyncComponent(() => import('@/components/routes.vue') );
 
