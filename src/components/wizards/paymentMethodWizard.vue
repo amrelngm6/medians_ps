@@ -11,7 +11,7 @@
                     <!--begin::Modal header-->
                     <div class="modal-header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bold" v-text="translate('Withdraw from balance')"></h2>
+                        <h2 class="fw-bold" v-text="translate('Field details')"></h2>
 
                     </div>
 
