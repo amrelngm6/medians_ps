@@ -33,14 +33,14 @@ class TripTrack extends CustomModel
 		return $this->morphTo();	
 	}
 
-    public function addItem($data)
+    public static function addItem($data)
     {
-        $data['trip_type'] = $this->handleTripType($data['trip_type']);
-        
+        $data['trip_type'] = TripTrack::handleTripType($data['trip_type']);
+
         return TripTrack::firstOrCreate($data);
     }
 
-    public function handleTripType($type)
+    public static function handleTripType($type)
     {
         switch (strtolower($type)) 
         {

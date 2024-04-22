@@ -4,6 +4,7 @@ namespace Medians\Vehicles\Infrastructure;
 
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Trips\Domain\TripTrack;
 
 
 class VehicleRepository 
@@ -62,7 +63,6 @@ class VehicleRepository
 
 		// Return the  object with the new data
     	$Object = Vehicle::create($dataArray);
-    	$Object->update($dataArray);
 
     	// Store Custom fields
 		if (isset($data['field']))
@@ -84,6 +84,9 @@ class VehicleRepository
 
     	// Store Custom fields
     	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['vehicle_id']) : '';
+		
+    	// Store Custom fields
+    	!empty($data['trip_track']) ? TripTrack::addItem($data['trip_track']) : '';
 
     	return $Object;
 
