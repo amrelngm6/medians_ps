@@ -141,6 +141,12 @@
 
                         <div class="" v-if="activeTab == 'Picture'" :key="activeTab">
                             
+                            <div class="text-center mb-13">
+                                <h1 class="mb-3" v-text="translate('Change logo')"></h1>
+
+                                <div class="text-gray-400 font-semibold "
+                                    v-text="translate('Set payment method picture')"></div>
+                            </div>
                             <vue-medialibrary-field :key="activeItem.picture" v-model="activeItem.picture" :filepath="activeItem.picture" :api_url="conf.url"></vue-medialibrary-field>
 
                             <p class="text-center mt-10"><a href="javascript:;"
