@@ -100,8 +100,8 @@ export default
             required: false
         }
     },
-
-    setup(props) 
+    emits: ['input'],
+    setup(props, {emit}) 
     {
 
         const showManager = ref();
