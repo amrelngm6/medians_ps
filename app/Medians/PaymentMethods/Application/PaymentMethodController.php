@@ -96,7 +96,6 @@ class PaymentMethodController extends CustomController
         	$user = $this->app->auth();
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
-			$params['business_id'] = $user->business->business_id;
 			$params['created_by'] = $user->id;
             
 			return ($this->repo->store($params))
