@@ -124,9 +124,9 @@
                                                 <label v-if="activeItem.fields[key]" @click="switchField(field, key)" class="col-lg-4 col-form-label required fw-semibold fs-6">
                                                     <p v-text="field.title" class="fw-bold fs-4"></p>
                                                     <span v-text="field.code"></span>
-                                                    <vue-feature type="edit" />
+                                                    <vue-feather type="edit" />
                                                 </label>
-                                                <vue-feature type="remove" />
+                                                <vue-feather type="remove" />
                                             </div>
                                                 
                                         </div>
