@@ -55,7 +55,9 @@
                                         </div>
 
                                         <hr class="opacity-10 my-4" />
-
+                                        <div class="flex w-full">
+                                            <a v-text="translate('add_new')" @click="activeItem.fields.append({'title':''})" href="javascript:;" class="text-white btn btn-primary er fs-6 px-8 py-4" ></a>
+                                        </div>
                                         <div class="w-full mb-6 " v-if="activeItem.fields">
                                             <div class="w-full mb-6 mx-auto row" v-for="(field, key) in activeItem.fields">
                                                 <label @click="activeItem.fields[key].show = !activeItem.fields[key].show" class="col-lg-4 col-form-label required fw-semibold fs-6">
@@ -75,24 +77,6 @@
                                                 </div>
                                             </div>
                                                 
-                                        </div>
-
-                                        <div class="w-full mb-6 mx-auto row">
-                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                                v-text="translate('Cost per quarter')"></label>
-                                            <input :required="true" autocomplete="off" name="params[double_cost_quarter]"
-                                                class="form-control form-control-solid"
-                                                :placeholder="translate('Double Trips cost per quarter')" type="number"
-                                                v-model="activeItem.double_cost_quarter">
-                                        </div>
-
-                                        <div class="w-full mb-6 mx-auto row">
-                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                                v-text="translate('Cost per year')"></label>
-                                            <input :required="true" autocomplete="off" name="params[double_cost_year]"
-                                                class="form-control form-control-solid"
-                                                :placeholder="translate('Double Trips cost per year')" type="number"
-                                                v-model="activeItem.double_cost_year">
                                         </div>
 
                                     </div>
