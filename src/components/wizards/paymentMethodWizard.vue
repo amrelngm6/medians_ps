@@ -41,7 +41,11 @@
                                 class="form-control form-control-solid"
                                 :placeholder="translate('Type of the field')" type="number"
                                 v-model="activeItem.fields[activeField].type">
-                                <option>1</option>
+                                <option value="text" v-text="translate('Text')"></option>
+                                <option value="number" v-text="translate('Number')"></option>
+                                <option value="email" v-text="translate('Email')"></option>
+                                <option value="phone" v-text="translate('Phone')"></option>
+                                <option value="textarea" v-text="translate('Textarea')"></option>
                             </select>
                         </div>
                         
