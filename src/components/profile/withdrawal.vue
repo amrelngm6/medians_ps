@@ -42,7 +42,6 @@
                                 <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="wallet.credit_balance" inputmode="text">
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
-                            {{ payment_fields }}
                             <div class="fv-row mb-7 fv-plugins-icon-container" v-if="payment_fields" :key="payment_fields">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
                                 <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
@@ -53,7 +52,7 @@
                             <div class="w-full" v-if="withdrawRequest.payment_method" v-for="method in payment_fields">
                                 <div class="w-full" v-if="withdrawRequest.payment_method == method.code" v-for="(paymentInfo, key) in method.fields">
                                     <div class="fv-row mb-7 fv-plugins-icon-container"  >
-                                        <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.name"></label>
+                                        <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
                                         <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="withdrawRequest.field[paymentInfo.code]" >
                                     </div>
                                 </div>
