@@ -3,7 +3,7 @@
         <div class="media-library-field">
             <input v-if="file" :key="file" :name="name" type="hidden" :value="file">
 
-            <div class="media-library-field__selector" v-if="content == null">
+            <div class="media-library-field__selector" v-if="content == null || content == ''">
                 <span 
                      @click="showLibrary"
                     class="media-library-field__selector__button"
