@@ -93,6 +93,8 @@ const private_trips = defineAsyncComponent(() => import('@/components/private_tr
 
 const app_settings = defineAsyncComponent(() => import('@/components/app_settings.vue') );
 
+const parent_app_settings = defineAsyncComponent(() => import('@/components/parent_app_settings.vue') );
+
 const profile = defineAsyncComponent(() => import('@/components/profile/profile.vue') );
 
 const cities = defineAsyncComponent(() => import('@/components/cities.vue') );
@@ -169,6 +171,7 @@ export default {
         states,
         packages,
         app_settings,
+        parent_app_settings,
         profile,
         payment_methods,
         package_subscriptions,
