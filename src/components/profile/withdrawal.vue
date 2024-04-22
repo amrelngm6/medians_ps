@@ -46,10 +46,7 @@
                             <div class="fv-row mb-7 fv-plugins-icon-container">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
                                 <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
-                                    <option value="paypal">PayPal</option>
-                                    <option value="paystack">PayStack</option>
-                                    <option value="bank">Bank transfer</option>
-                                    <option value="vodafone_cash">Vodafone cash</option>
+                                    <option v-for="method in payment_fields" v-text="method.title" :value="method.code"></option>
                                 </select>
                             </div>
 
