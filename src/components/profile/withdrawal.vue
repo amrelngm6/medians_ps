@@ -164,7 +164,7 @@
 <script>
 
 import { ref } from 'vue';
-import { translate, showAlert, handleAccess, handleRequest } from '@/utils.vue';
+import { translate, showAlert, handleAccess, handleRequest, handleGetRequest } from '@/utils.vue';
 
 export default {
 
