@@ -199,7 +199,7 @@ class PaymentService
 			$data = array();
 			$commission = $this->handleCommission($invoice, $user);
 			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + ($invoice->total_amount - $commission)) : ($invoice->total_amount - $commission);
-			$data['debit_balance'] = isset($check->debit_balance) ? ($check->debit_balance + $commission) : $commission;
+			// $data['debit_balance'] = isset($check->debit_balance) ? ($check->debit_balance + $commission) : $commission;
 
 			return isset($check->wallet_id) ? $check->update($data) : null;
 
