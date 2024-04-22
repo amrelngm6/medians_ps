@@ -103,15 +103,16 @@ class PaymentMethodRepository
 
 		if ($data)
 		{
-			foreach ($data as $item )
+
+			foreach (json_decode($data) as $item )
 			{
 				foreach ($item as $key => $value) 
 				{
 					$value = (array) $value;
 					$fields = [];
 					$fields['payment_method_id'] = $id;	
-					$fields['code'] = $value['code'];	
 					$fields['title'] = $value['title'];	
+					$fields['code'] = $value['code'];	
 					$fields['type'] = $value['type'];	
 
 					$Model = PaymentMethodField::create($fields);
