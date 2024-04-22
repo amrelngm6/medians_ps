@@ -249,6 +249,16 @@ export default {
 
 
         
+        const payment_fields = ref([]);
+        const loadPaymentMethods = () => {
+            
+            handleGetRequest('/admin/payment_methods?load=json').then(response => {
+                console.log(response)
+                payment_fields.value = response.items;
+            });
+        }
+
+        loadPaymentMethods()
 
 
         const setActiveTab = (tab) => {
@@ -317,6 +327,7 @@ export default {
 
         
         return {
+            payment_fields,
             checkFeatureLimit,
             cost,
             url,
