@@ -240,10 +240,12 @@ const form_field = defineAsyncComponent(() =>
 );
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import route_map from '@/components/maps/route_map.vue';
+import field from '@/components/includes/Field.vue';
 
 export default
     {
         components: {
+            'vue-medialibrary-field': field,
             'datatabble': Vue3EasyDataTable,
             SideFormCreate,
             SideFormUpdate,
