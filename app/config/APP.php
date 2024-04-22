@@ -261,7 +261,6 @@ class APP
 				array('permission'=> 'Transaction.index', 'title'=> __('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
 				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
 				array('permission'=> 'Withdrawals.index', 'title'=> __('Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/withdrawals', 'component'=>'withdrawals'),
-				array('permission'=> 'PaymentMethods.index', 'title'=> __('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
 			]
 			),
 			
@@ -323,6 +322,7 @@ class APP
 			// [
 				array('permission'=>'BusinessWallets.index', 'title'=>__('Business Wallets'),  'icon'=>'help-circle', 'link'=>'admin/business_wallets', 'component'=>'business_wallets'),
 				array('permission'=> 'BusinessWithdrawals.index', 'title'=> __('Business Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/business_withdrawals', 'component'=>'business_withdrawals'),
+				array('permission'=> 'PaymentMethods.index', 'title'=> __('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
 			]
 			),
 			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
