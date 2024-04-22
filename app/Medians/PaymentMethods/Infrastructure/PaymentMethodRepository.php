@@ -116,7 +116,7 @@ class PaymentMethodRepository
 						$fields['payment_method_id'] = $id;	
 						$fields['title'] = $value['title'];	
 						$fields['code'] = $value['code'];	
-						$fields['type'] = $value['type'];	
+						$fields['type'] = isset($value['type']) ? $value['type'] : 'text';	
 						
 						$Model = PaymentMethodField::firstOrCreate($fields);
 					}
