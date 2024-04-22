@@ -126,7 +126,7 @@
                                                     <span v-text="field.code"></span>
                                                     <vue-feather class="fs-6" type="edit" />
                                                 </label>
-                                                <vue-feather type="delete" />
+                                                <vue-feather type="delete" class="h-25px text-danger">
                                             </div>
                                                 
                                         </div>
