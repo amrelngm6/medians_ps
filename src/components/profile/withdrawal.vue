@@ -180,30 +180,16 @@ export default {
         activeItem.value = props.item;
 
         
-        const payment_fields = ref({
-            'paypal': [
-                { title: translate('Fullname'), type: '', code: 'fullname' },
-                { title: translate('Email'), type: '', code: 'email' },
-                { title: translate('Mobile'), type: '', code: 'mobile' },
-            ],
-            'paystack': [
-                { title: translate('Fullname'), type: '', code: 'fullname' },
-                { title: translate('Email'), type: '', code: 'email' },
-                { title: translate('Mobile'), type: '', code: 'mobile' },
-            ],
-            'bank': [
-                { title: translate('Fullname'), type: '', code: 'fullname' },
-                { title: translate('Email'), type: '', code: 'email' },
-                { title: translate('Mobile'), type: '', code: 'mobile' },
-                { title: translate('Bank name'), type: '', code: 'bank_account_name' },
-                { title: translate('Account name'), type: '', code: 'bank_name' },
-                { title: translate('Account IBAN'), type: '', code: 'bank_iban' },
-            ],
-            'vodafone_cash': [
-                { title: translate('Fullname'), type: '', code: 'fullname' },
-                { title: translate('Mobile'), type: '', code: 'mobile' },
-            ],
-        });
+        const payment_fields = ref([]);
+        const loadPaymentMethods = () => {
+            
+            handleGetRequest('/admin/payment_methods?load=json').then(response => {
+                console.log(response)
+                payment_fields.value = response.items;
+            });
+        }
+
+        loadPaymentMethods()
 
         const cancelRequest = (withdrawal) => {
             
