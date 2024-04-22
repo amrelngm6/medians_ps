@@ -117,7 +117,7 @@
 
                                         <hr class="opacity-10 my-4" />
                                         <div class="flex w-full">
-                                            <a v-text="translate('add_new')" @click="addField()" href="javascript:;" class="text-white btn btn-primary er fs-6 px-8 py-4" ></a>
+                                            <a v-text="translate('add_new')" @click="addField()" href="javascript:;" class="text-white btn btn-primary er fs-6 px-4 py-2" ></a>
                                         </div>
                                         <div class="w-full mb-6 " v-if="activeItem.fields">
                                             <div class="w-full mb-6 mx-auto row" v-for="(field, key) in activeItem.fields">
