@@ -106,7 +106,7 @@ class PaymentMethodRepository
 
 			foreach (json_decode($data) as $item )
 			{
-				$value = (array) $value;
+				$value = (array) $item;
 				$fields = [];
 				$fields['payment_method_id'] = $id;	
 				$fields['title'] = $value['title'];	
