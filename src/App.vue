@@ -91,9 +91,9 @@ const get_started = defineAsyncComponent(() => import('@/components/wizards/get-
 
 const private_trips = defineAsyncComponent(() => import('@/components/private_trips.vue') );
 
-const app_settings = defineAsyncComponent(() => import('@/components/app_settings.vue') );
+const app_settings = defineAsyncComponent(() => import('@/components/settings/app_settings.vue') );
 
-const parent_app_settings = defineAsyncComponent(() => import('@/components/parent_app_settings.vue') );
+const parent_app_settings = defineAsyncComponent(() => import('@/components/settings/parent_app_settings.vue') );
 
 const profile = defineAsyncComponent(() => import('@/components/profile/profile.vue') );
 
