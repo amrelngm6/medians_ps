@@ -161,7 +161,8 @@
                                 <div class="max-w-xl mx-auto gap-10">
                                     <div class="w-full flex">
                                         <div class="w-full">
-                                            <div class="card-header border-0">
+                                            <div class="card-header border-0 flex gap-4">
+                                                <img class="w-10 h-10 rounded-full" :src="activeItem.picture" />
                                                 <div class="card-title"> <h2 v-text="activeItem.name"></h2> </div>
                                             </div>
 
