@@ -315,11 +315,6 @@ class APP
 			[
 				array('permission'=>'Payments.index', 'title'=>__('Plan Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
 				array('permission'=> 'Invoice.index', 'title'=> __('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-			// ]
-			// ),
-			
-			// array('title'=>__('Wallets'),  'icon'=>'dollar-sign', 'link'=>'#wallets', 'sub'=>
-			// [
 				array('permission'=>'BusinessWallets.index', 'title'=>__('Business Wallets'),  'icon'=>'help-circle', 'link'=>'admin/business_wallets', 'component'=>'business_wallets'),
 				array('permission'=> 'BusinessWithdrawals.index', 'title'=> __('Business Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/business_withdrawals', 'component'=>'business_withdrawals'),
 				array('permission'=> 'PaymentMethods.index', 'title'=> __('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
@@ -330,8 +325,14 @@ class APP
 			[
 				array('permission'=>'Pages.index', 'title'=>__('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
 				array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
-				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
 				array('permission'=> 'Roles.index', 'title'=> __('ROLES MANAEGMENT'),  'icon'=>'tool', 'link'=>'admin/roles', 'component'=>'roles'),
+			]
+			),
+			array( 'title'=>__('Settings'),  'icon'=>'tool', 'link'=>'#setting', 'superadmin'=> true, 'sub'=>
+			[
+				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
+				array('permission'=> 'DriverAppSetting.index', 'title'=> __('Driver APP Settings'),  'icon'=>'tool', 'link'=>'admin/app_settings', 'component'=>'app_settings'),
+				array('permission'=> 'ParentAppSettings.index', 'title'=> __('Parent APP Settings'),  'icon'=>'tool', 'link'=>'admin/parent_app_settings', 'component'=>'app_settings'),
 			]
 			),
 			
