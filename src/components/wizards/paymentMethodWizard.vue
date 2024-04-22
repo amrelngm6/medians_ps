@@ -190,8 +190,8 @@
                                                     <div
                                                         class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
                                                         <span class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            {{activeField.fields ? activeField.fields.length : 0}}<span class="counted"
-                                                                v-text="activeItem.double_cost_year"></span>
+                                                            <span class="counted"
+                                                                v-text="activeItem.fields ? activeItem.fields.length : 0"></span>
                                                             <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
                                                                 v-text="translate('Fields')"></span>
                                                         </span>
