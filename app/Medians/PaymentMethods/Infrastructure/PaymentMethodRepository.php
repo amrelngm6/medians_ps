@@ -114,12 +114,12 @@ class PaymentMethodRepository
 					$fields['title'] = $value['title'];	
 					$fields['code'] = $value['code'];	
 					$fields['type'] = $value['type'];	
+					$Model = PaymentMethodField::firstOrCreate($fields);
 
 				} catch (\Throwable $th) {
 					error_log($th->getMessage());
 				}
 				
-				$Model = PaymentMethodField::firstOrCreate($fields);
 			}
 	
 			return $Model;		
