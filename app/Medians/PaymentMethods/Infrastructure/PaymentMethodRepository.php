@@ -3,6 +3,7 @@
 namespace Medians\PaymentMethods\Infrastructure;
 
 use Medians\PaymentMethods\Domain\PaymentMethod;
+use Medians\PaymentMethods\Domain\PaymentMethodField;
 
 
 
@@ -11,19 +12,6 @@ use Medians\PaymentMethods\Domain\PaymentMethod;
  */
 class PaymentMethodRepository 
 {
-
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
-
-	protected $business ;
-
-	function __construct($business)
-	{
-		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
-	}
 
 	/**
 	* Find item by `id` 
@@ -39,7 +27,7 @@ class PaymentMethodRepository
 	*/
 	public function get($params = null) 
 	{
-		return PaymentMethod::where('business_id', $this->business_id)->get();
+		return PaymentMethod::Driverget();
 	}
 
 
@@ -61,6 +49,9 @@ class PaymentMethodRepository
 		// Return the Model object with the new data
     	$Object = PaymentMethod::firstOrCreate($dataArray);
 
+    	// Store fields
+    	!empty($data['fields']) ? $this->storeFields($data['fields'], $Object->transaction_id) : '';
+
     	return $Object;
 	}
 
@@ -71,7 +62,7 @@ class PaymentMethodRepository
     public function update($data)
     {
 
-		$Object = PaymentMethod::where('business_id', $this->business_id)->find($data['payment_method_id']);
+		$Object = PaymentMethod::Driverfind($data['payment_method_id']);
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
@@ -90,7 +81,7 @@ class PaymentMethodRepository
 	{
 		try {
 			
-			return PaymentMethod::where('business_id', $this->business_id)->find($id)->delete();
+			return PaymentMethod::Driverfind($id)->delete();
 
 		} catch (\Exception $e) {
 
@@ -100,4 +91,33 @@ class PaymentMethodRepository
 	}
 
 
+	
+	/**
+	* Save related items to database
+	*/
+	public function storeFields($data, $id) 
+	{
+		PaymentMethodField::where('payment_method_id', $id)->delete();
+
+		if ($data)
+		{
+			foreach ($data as $item )
+			{
+				foreach ($item as $key => $value) 
+				{
+					$value = (array) $value;
+					$fields = [];
+					$fields['payment_method_id'] = $id;	
+					$fields['code'] = $value['code'];	
+					$fields['title'] = $value['title'];	
+					$fields['type'] = $value['type'];	
+
+					$Model = PaymentMethodField::create($fields);
+					$Model->update($fields);	
+				}
+			}
+	
+			return $Model;		
+		}
+	}
 }

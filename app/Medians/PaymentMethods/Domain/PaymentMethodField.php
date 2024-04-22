@@ -13,16 +13,15 @@ class PaymentMethod extends CustomModel
 	/*
 	/ @var String
 	*/
-	protected $table = 'payment_methods';
+	protected $table = 'payment_method_fields';
 
-    protected $primaryKey = 'payment_method_id';
+    protected $primaryKey = 'field_id';
 
 	protected $fillable = [
-    	'name',
+    	'title',
     	'code',
-		'description',
-		'picture',
-    	'status',
+		'type',
+		'payment_method_id',
     	'created_by',
 	];
 
