@@ -329,6 +329,9 @@ export default
                 } else {
                     activeItem.value.fields.addItem({'title':'',show:true})
                 }
+                
+                activeField.value = activeItem.value.fields.length - 1;
+                showModal.value = true
             }
 
             const activeField = ref(0);
