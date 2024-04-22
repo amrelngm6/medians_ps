@@ -119,8 +119,7 @@ class PaymentMethodRepository
 					error_log($th->getMessage());
 				}
 				
-				$Model = PaymentMethodField::create($fields);
-				$Model->update($fields);	
+				$Model = PaymentMethodField::firstOrCreate($fields);
 			}
 	
 			return $Model;		
