@@ -214,7 +214,7 @@ class PaymentService
 	{
 		$setting = (new \config\APP)->SystemSetting();
 		
-		return (isset($this->user->business->subscription) && $this->user->business->subscription->is_paid) 
+		return (isset($user->business->subscription) && $user->business->subscription->is_paid) 
 		? ($invoice->total_amount * ($setting['comission_paid_plan'] / 100))
 		: ($invoice->total_amount * ($setting['comission_free_plan'] / 100));
 
