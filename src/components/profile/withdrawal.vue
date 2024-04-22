@@ -43,7 +43,7 @@
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
                             
-                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <div class="fv-row mb-7 fv-plugins-icon-container" v-if="payment_fields" :key="payment_fields">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
                                 <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
                                     <option v-for="method in payment_fields" v-text="method.title" :value="method.code"></option>
