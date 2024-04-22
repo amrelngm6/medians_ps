@@ -21,7 +21,7 @@
                                 v-text="translate('Field title')"></label>
                             <input :required="true" autocomplete="off" 
                                 class="form-control form-control-solid"
-                                :placeholder="translate('Title of the field')" type="number"
+                                :placeholder="translate('Title of the field')" type="text"
                                 v-model="activeItem.fields[activeField].title">
                         </div>
                         
@@ -30,17 +30,19 @@
                                 v-text="translate('Field code')"></label>
                             <input :required="true" autocomplete="off" 
                                 class="form-control form-control-solid"
-                                :placeholder="translate('Code of the field')" type="number"
+                                :placeholder="translate('Code of the field')" type="text"
                                 v-model="activeItem.fields[activeField].code">
                         </div>
                         
                         <div class="w-full row">
                             <label class="col-lg-4 col-form-label required fw-semibold fs-6"
                                 v-text="translate('Field type')"></label>
-                            <input :required="true" autocomplete="off" 
+                            <select 
                                 class="form-control form-control-solid"
                                 :placeholder="translate('Type of the field')" type="number"
                                 v-model="activeItem.fields[activeField].type">
+                                <option>1</option>
+                            </select>
                         </div>
                         
                         <div class="text-center">
