@@ -34,6 +34,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="card  mb-5 mb-xl-10">
+
             <div class="card-header">
                 <div class="card-title flex gap-4">
                     <h2 class="w-full" v-text="translate('Subscriptions history')"></h2>
