@@ -125,7 +125,7 @@
                                                     <p v-text="field.title" class="fw-bold fs-4"></p>
                                                     <span v-text="field.code"></span>
                                                 </label>
-                                                <vue-feather type="edit" class="h-25px cursor-pointer "  @click="switchField(field, key)"  />
+                                                <vue-feather type="edit" class="h-25px w-40px cursor-pointer "  @click="switchField(field, key)"  />
                                                 <vue-feather type="delete" class="h-25px w-40px text-danger cursor-pointer "  @click="(activeItem.fields.splice(key, 1))"  />
                                             </div>
                                                 
