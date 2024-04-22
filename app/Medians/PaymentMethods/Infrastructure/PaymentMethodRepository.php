@@ -50,7 +50,7 @@ class PaymentMethodRepository
     	$Object = PaymentMethod::firstOrCreate($dataArray);
 
     	// Store fields
-    	!empty($data['fields']) ? $this->storeFields($data['fields'], $Object->transaction_id) : '';
+    	!empty($data['fields']) ? $this->storeFields($data['fields'], $Object->payment_method_id) : '';
 
     	return $Object;
 	}
@@ -66,6 +66,8 @@ class PaymentMethodRepository
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
+
+    	!empty($data['fields']) ? $this->storeFields($data['fields'], $Object->payment_method_id) : '';
 
     	return $Object;
     } 
