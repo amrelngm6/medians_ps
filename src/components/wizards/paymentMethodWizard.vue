@@ -136,9 +136,17 @@
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
+                                    @click="activeTab = 'Picture'" v-text="translate('Next')"></a></p>
                         </div>
 
+                        <div class="" v-if="activeTab == 'Picture'" :key="activeTab">
+                            
+                            <vue-medialibrary-field :key="activeItem.picture" v-model="activeItem.picture" :filepath="activeItem.picture" :api_url="conf.url"></vue-medialibrary-field>
+
+                            <p class="text-center mt-10"><a href="javascript:;"
+                                    class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
+                                    @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
+                        </div>
                         <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
 
                             <div class="max-w-6xl mx-auto">
@@ -170,47 +178,16 @@
                                 <div class="max-w-xl mx-auto gap-10">
 
                                     <div class="card mb-6 mb-xl-9 bg-inverse-success">
-
-                                        <div class="card-header border-0">
-                                            <div class="card-title">
-                                                <h2 v-text="translate('Double trips cost')"></h2>
-                                            </div>
-                                        </div>
-
                                         <div class="card-body py-0">
-                                            <div class="fs-5 fw-semibold text-gray-500 mb-4"
-                                                v-text="translate('Cost for Two trips daily Morning & Afternoon')"></div>
-
                                             <div class="d-flex flex-wrap flex-stack mb-5">
                                                 <div class="d-flex ">
                                                     <div
                                                         class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
                                                         <span class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            $<span class="counted"
-                                                                v-text="activeItem.double_cost_month"></span>
-                                                            <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
-                                                                v-text="translate('/Month')"></span>
-                                                        </span>
-                                                    </div>
-
-                                                    <div
-                                                        class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
-                                                        <span class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            $<span class="counted"
-                                                                v-text="activeItem.double_cost_quarter"></span>
-                                                            <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
-                                                                v-text="translate('/Quarter')"></span>
-                                                        </span>
-
-                                                    </div>
-
-                                                    <div
-                                                        class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
-                                                        <span class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            $<span class="counted"
+                                                            {{activeField.fields ? activeField.fields.length : 0}}<span class="counted"
                                                                 v-text="activeItem.double_cost_year"></span>
                                                             <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
-                                                                v-text="translate('/Year')"></span>
+                                                                v-text="translate('Fields')"></span>
                                                         </span>
 
                                                     </div>
