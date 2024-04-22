@@ -180,7 +180,7 @@ class RouteHandler {
         call_user_func(self::$error_callback);
       }
 		} catch (\Throwable $th) {
-      echo $th->getMessage();
+      error_log($th->getMessage());
       return errorPage($th->getMessage());
 		}
   }
