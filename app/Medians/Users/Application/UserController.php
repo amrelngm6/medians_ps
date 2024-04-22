@@ -8,6 +8,7 @@ use Medians\Roles\Infrastructure\RoleRepository;
 use Medians\Vehicles\Infrastructure\VehicleRepository;
 use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Trips\Infrastructure\TripRepository;
+use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
 use Medians\Invoices\Infrastructure\InvoiceRepository;
 use Medians\Wallets\Infrastructure\BusinessWalletRepository;
@@ -25,6 +26,7 @@ class UserController extends CustomController
 
 	protected $app;
 	protected $rolesRepo;
+	protected $planSubscriptionRepo;
 
 
 	function __construct()
@@ -32,6 +34,7 @@ class UserController extends CustomController
 		$this->app = new \config\APP;
 		$this->repo = new UserRepository();
 		$this->rolesRepo = new RoleRepository();
+		$this->planSubscriptionRepo = new PlanSubscriptionRepository();
 	}
 
 
@@ -121,6 +124,7 @@ class UserController extends CustomController
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
 	        'invoices' => $invoicesRepo->getUserInvoices($user->id),
+	        'subscriptions' => $this->planSubscriptionRepo->getByBusiness($user->business->business_id),
 	        'wallet' => isset($user->business) ? $businessWalletRepo->getBusinessWallet($user->business->business_id) : null,
 	        'business_withdrawals' => isset($user->business) ? $businessWithdrawalRepo->getBusinessWithdrawals($user->business->business_id) : null,
 	    ]);
