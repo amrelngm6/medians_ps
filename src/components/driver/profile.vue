@@ -45,7 +45,7 @@
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                         <div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="activeItem.vehicle.plate_number"></div>
+                                                <div class="fs-2 fw-bold" v-text="activeItem.vehicle ? activeItem.vehicle.plate_number : ''"></div>
                                             </div>
                                         </div>
                                         <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicle')"></div>
