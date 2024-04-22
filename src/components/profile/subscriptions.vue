@@ -47,18 +47,18 @@
                     class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                     <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
                         <tr class="text-start text-gray-500">
+                            <th class="min-w-100px" v-text="translate('plan')"></th>
                             <th class="min-w-100px" v-text="translate('Start')"></th>
                             <th class="min-w-100px" v-text="translate('End')"></th>
-                            <th class="min-w-100px" v-text="translate('plan')"></th>
                             <th class="min-w-125px" v-text="translate('type')"></th>
                             <th class="min-w-125px" v-text="translate('Status')"></th>
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
                         <tr v-for="subscription in subscriptions">
+                            <td v-text="subscription.plan_name"></td>
                             <td v-text="subscription.start_date"></td>
                             <td v-text="subscription.end_date"></td>
-                            <td v-text="subscription.plan_name"></td>
                             <td v-text="subscription.type"></td>
                             <td v-text="subscription.status"></td>
                         </tr>
