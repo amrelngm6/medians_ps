@@ -272,6 +272,7 @@ export default
 
             const switchField = (field, key) => {
                 console.log(field, key)
+                activeItem.value.fields[key].show = ! activeItem.value.fields[key].show;
             }
             const addField = () => {
                 if (!activeItem.value.fields)
@@ -282,9 +283,12 @@ export default
                 }
             }
 
+            const activeField = ref(0);
+            
             return {
                 switchField,
                 addField,
+                activeField,
                 progressWidth,
                 showEditSide,
                 content,
