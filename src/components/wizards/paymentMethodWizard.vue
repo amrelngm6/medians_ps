@@ -272,7 +272,7 @@ export default
             const activeItem = ref({});
             const activeTab = ref('Info');
             const content = ref({});
-            const fillable = ref(['Info', 'Fields' , 'Confirm']);
+            const fillable = ref(['Info', 'Fields' , 'Picture', 'Confirm']);
 
             if (props.item) {
                 activeItem.value = props.item
