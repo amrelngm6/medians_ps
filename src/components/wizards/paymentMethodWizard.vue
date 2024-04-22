@@ -226,7 +226,7 @@
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="savePackage" v-text="translate('Submit')"></a></p>
+                                    @click="savePaymentMethod" v-text="translate('Submit')"></a></p>
                         </div>
                     </div>
                 </div>
@@ -279,7 +279,7 @@ export default
             editable_map_location,
             route_map
         },
-        name: 'Packages',
+        name: 'PaymentMethods',
         emits: ['callback'],
         setup(props, { emit }) {
 
@@ -293,7 +293,7 @@ export default
                 activeItem.value = props.item
             }
 
-            const savePackage = () => {
+            const savePaymentMethod = () => {
                 var params = new URLSearchParams();
                 let array = JSON.parse(JSON.stringify(activeItem.value));
                 let keys = Object.keys(array)
@@ -304,8 +304,8 @@ export default
                     params.append('params[' + k + ']', d)
                 }
 
-                let type = array.package_id > 0 ? 'update' : 'create';
-                params.append('type', 'Package.' + type)
+                let type = array.payment_method_id > 0 ? 'update' : 'create';
+                params.append('type', 'PaymentMethod.' + type)
                 handleRequest(params, '/api/' + type).then(response => {
                     handleAccess(response)
                 })
@@ -354,7 +354,7 @@ export default
                 activeItem,
                 activeTab,
                 translate,
-                savePackage,
+                savePaymentMethod,
                 back
             };
         },
