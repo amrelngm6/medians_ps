@@ -3,7 +3,7 @@
         <div class=" w-full relative">
 
             
-        <div class="modal fade show" v-if="showWizard" :key="showWizard" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
+        <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
                 <!--begin::Modal content-->
@@ -44,7 +44,7 @@
                         </div>
                         
                         <div class="text-center">
-                            <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showWizard = false"></button>
+                            <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showModal = false"></button>
 
                             <button @click="sendWithdrawRequest" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
                                 <span class="indicator-label" v-text="translate('Submit')"></span>
@@ -317,7 +317,8 @@ export default
 
             const switchField = (field, key) => {
                 console.log(field, key)
-                activeItem.value.fields[key].show = ! activeItem.value.fields[key].show;
+                activeField.value = key;
+                showModal.value = true
             }
             const addField = () => {
                 if (!activeItem.value.fields)
@@ -329,8 +330,10 @@ export default
             }
 
             const activeField = ref(0);
+            const showModal = ref(false);
             
             return {
+                showModal,
                 switchField,
                 addField,
                 activeField,
