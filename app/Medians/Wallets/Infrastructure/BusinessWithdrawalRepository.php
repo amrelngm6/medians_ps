@@ -22,7 +22,7 @@ class BusinessWithdrawalRepository
 	{
 		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new BusinessWithdrawal;
 
-		return $query->with('business','wallet')->limit($limit)->get();
+		return $query->with('business','wallet')->limit($limit)->orderBy('created_at', 'DESC')->get();
 	}
 	
 	public function getBusinessWithdrawal($id)
@@ -32,7 +32,7 @@ class BusinessWithdrawalRepository
 
 	public function getBusinessWithdrawals($id)
 	{
-		return BusinessWithdrawal::with('business')->where('business_id', $id)->get();
+		return BusinessWithdrawal::with('business')->where('business_id', $id)->orderBy('created_at', 'DESC')->get();
 	}
 
 	public function checkPending($id)
