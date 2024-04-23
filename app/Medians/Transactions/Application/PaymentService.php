@@ -187,6 +187,24 @@ class PaymentService
 
 			if ($params['payment_method'] == 'cash')
 			{
+				return $this->updateCashWallet($params, $invoice);
+			}
+			
+			return $this->updateBusinessWallet($params, $invoice);
+
+		} catch (\Throwable $th) {
+			return array('error'=>$th->getMessage());
+		}
+		
+	}
+	
+	
+	public function updateBusinessWallet($params, $invoice)
+	{
+		try {
+
+			if ($params['payment_method'] == 'cash')
+			{
 				return;
 			}
 
@@ -200,7 +218,32 @@ class PaymentService
 			return isset($check->wallet_id) ? $check->update($data) : null;
 
 		} catch (\Throwable $th) {
-			error_log($th->getMessage());
+			return array('error'=>$th->getMessage());
+		}
+		
+	}
+	
+	
+	public function updateCashWallet($params, $invoice)
+	{
+		try {
+
+			$app = new \config\APP;
+			$user = $app->auth();
+			if ($params['payment_method'] != 'cash')
+			{
+				return;
+			}
+
+			$walletRepo = new \Medians\Wallets\Infrastructure\WalletRepository();
+			
+			$check = $walletRepo->driverWallet($user->driver_id);
+			$data = array();
+			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + $invoice->total_amount) : $invoice->total_amount;
+
+			return isset($check->wallet_id) ? $check->update($data) : null;
+
+		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
 		}
 		
