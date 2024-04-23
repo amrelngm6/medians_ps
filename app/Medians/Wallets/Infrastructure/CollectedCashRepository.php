@@ -26,9 +26,14 @@ class CollectedCashRepository
         }])->where('business_id', $id)->first();
 	}
 
-	public function get($limit = 100)
+	public function get($params, $limit = 1000)
 	{
-		return CollectedCash::with('business')->limit($limit)->get();
+		$check = new CollectedCash;
+        if (isset($params['start_date']))
+        {
+            $check = $check->whereBetween('date', [$params['start_date'], $params['end_date']]);
+        }
+        return $check->limit($limit)->get();
 	}
 	
 	
