@@ -182,7 +182,7 @@ export default {
                 return showAlert(translate('Amount is required'));
             }
             
-            if (collectedCashRequest.value.amount > wallet.debit_balance)
+            if (collectedCashRequest.value.amount > props.wallet.debit_balance)
             {
                 return showAlert(translate('Balance is not enough'));
             }
@@ -192,7 +192,7 @@ export default {
                 var params = new URLSearchParams();
                 params.append('type', 'CollectedCash.create')
                 params.append('params[amount]', collectedCashRequest.value.amount)
-                params.append('params[wallet_id]', wallet.wallet_id)
+                params.append('params[wallet_id]', props.wallet.wallet_id)
                 params.append('params[notes]', collectedCashRequest.value.notes)
                 handleRequest(params, '/api/create').then(response => {
                     handleAccess(response)
