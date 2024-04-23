@@ -210,6 +210,10 @@ class APIController extends CustomController
 					$return = (new Wallets\Application\BusinessWithdrawalController)->store();
 					break;
 			
+				case 'CollectedCash.create':
+					$return = (new Wallets\Application\CollectedCashController)->store();
+					break;
+			
 			}
 
 			return response(json_encode($return));
