@@ -32,8 +32,7 @@
 </template>
 <script>
 
-import { ref } from 'vue';
-import { translate, showAlert, handleAccess, handleRequest } from '@/utils.vue';
+import { translate } from '@/utils.vue';
 
 export default {
 
@@ -42,6 +41,7 @@ export default {
     setup(props) {
 
         return {
+            translate
         };
     },
 
