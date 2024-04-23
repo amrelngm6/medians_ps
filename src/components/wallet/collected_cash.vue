@@ -1,6 +1,5 @@
 <template>
     <div class="w-full " >
-        <withdrawal_wizard @callback="showWizard = false" :item="activeItem" :system_setting="system_setting" :auth="auth" :conf="conf" v-if="showWizard" />
 
         <div v-if="!showWizard" class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
