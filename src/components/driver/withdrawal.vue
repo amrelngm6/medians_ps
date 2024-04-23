@@ -83,7 +83,7 @@
                             <p class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
                             v-text="translate('This is do not consider the debit balance')"></p>
                         </div>
-                        <div class="d-flex flex-wrap w-full">
+                        <div class="d-flex flex-wrap">
                             <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
                                 <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="wallet">
                                     <span
