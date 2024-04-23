@@ -1,0 +1,135 @@
+<?php
+
+namespace Medians\Wallets\Infrastructure;
+
+use Medians\Wallets\Domain\CollectedCash;
+use Medians\CustomFields\Domain\CustomField;
+use Medians\Students\Domain\Student;
+use Medians\Customers\Domain\Parents;
+use Medians\Drivers\Domain\Driver;
+
+
+class CollectedCashRepository
+{
+
+
+	public function find($id)
+	{
+		return CollectedCash::with('business')->find($id);
+	}
+
+	public function getCollectedCash($id)
+	{
+		return CollectedCash::with('business')->where('business_id', $id)->first();
+	}
+
+	public function get($limit = 100)
+	{
+		return CollectedCash::with('business')->limit($limit)->get();
+	}
+	
+	
+	public function totalDebitBalance()
+	{
+		return CollectedCash::selectRaw('ROUND(SUM(debit_balance), 2) as amount')->first()->amount;
+	}
+	
+	
+	public function totalCreditBalance()
+	{
+		return CollectedCash::selectRaw('ROUND(SUM(credit_balance), 2) as amount')->first()->amount;
+	}
+	
+	
+
+
+	/**
+	* Save item to database
+	*/
+	public function store($data) 
+	{
+
+		$Model = new CollectedCash();
+		
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+
+		$dataArray['wallet_type'] = $this->handleType($data);
+		
+		// Return the  object with the new data
+    	$Object = CollectedCash::firstOrCreate($dataArray);
+
+    	return $Object;
+    }
+    	
+    /**
+     * Update Lead
+     */
+    public function update($data)
+    {
+
+		unset($data['user_type']);
+
+		$Object = CollectedCash::find($data['collection_id']);
+		
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+
+    }
+
+
+	/**
+	* Delete item to database
+	*
+	* @Returns Boolen
+	*/
+	public function delete($id) 
+	{
+		try {
+			
+			$delete = CollectedCash::find($id)->delete();
+
+			return true;
+
+		} catch (\Exception $e) {
+
+			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);
+			
+		}
+	}
+
+	public function handleType($data) 
+	{
+		
+		switch (strtolower($data['user_type']))
+		{
+			case 'student':
+				return Student::class;
+				break;
+
+			case 'parent':
+			case 'parents':
+				return Parents::class;
+				break;
+	
+			case 'driver':
+			case 'drivers':
+				return Driver::class;
+				break;
+	
+			default:
+				return $data['user_type'];
+				break;
+		}
+	}
+
+
+ 
+}

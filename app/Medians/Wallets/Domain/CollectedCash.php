@@ -16,7 +16,7 @@ class CollectedCash extends CustomModel
 	*/
 	protected $table = 'collected_cash';
 
-    protected $primaryKey = 'collection_cash_id';
+    protected $primaryKey = 'collection_id';
 
 	protected $fillable = [
     	'business_id',
