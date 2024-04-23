@@ -65,6 +65,8 @@ class CollectedCashRepository
 		// Return the  object with the new data
     	$Object = CollectedCash::firstOrCreate($dataArray);
 
+        $updateBalance = $this->updateBalance($Object);
+
     	return $Object;
     }
     	
@@ -108,8 +110,21 @@ class CollectedCashRepository
 
 	public function handleType($data) 
 	{
-		
         return Wallet::class;
+	}
+
+
+	public function updateBalance($Object) 
+	{
+        $check = $Object->with('wallet')->find($Object->collection_id);
+
+        $balance = $check->wallet->debic_balance ?? 0;
+
+        $newBalance = $balance - $check->amount;
+
+        $update = $check->wallet->update(['debic_balance'=>$newBalance]);
+
+        return $update;
 	}
 
 
