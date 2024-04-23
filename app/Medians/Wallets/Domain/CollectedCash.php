@@ -31,7 +31,7 @@ class CollectedCash extends CustomModel
 
 	public function business()
     {
-        return $this->hasMany(Business::class, 'business_id', 'business_id');
+        return $this->hasOne(Business::class, 'business_id', 'business_id');
     }
 
     public function wallet()
