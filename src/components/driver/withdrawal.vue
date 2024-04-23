@@ -43,16 +43,6 @@
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
                             
-                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
-                                <select  v-model="collectedCashRequest.payment_method" class="form-select form-select-solid fw-bold" >
-                                    <option value="paypal">PayPal</option>
-                                    <option value="paystack">PayStack</option>
-                                    <option value="bank">Bank transfer</option>
-                                    <option value="vodafone_cash">Vodafone cash</option>
-                                </select>
-                            </div>
-
                             <div class="w-full" v-if="collectedCashRequest.payment_method" v-for="(paymentInfo, key) in payment_fields[collectedCashRequest.payment_method]">
                                 <div class="fv-row mb-7 fv-plugins-icon-container"  >
                                     <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
@@ -192,7 +182,7 @@ export default {
                 return showAlert(translate('Amount is required'));
             }
             
-            if (collectedCashRequest.value.amount > content.value.wallet.credit_balance)
+            if (collectedCashRequest.value.amount > content.value.wallet.debit_balance)
             {
                 return showAlert(translate('Balance is not enough'));
             }
@@ -200,12 +190,10 @@ export default {
             if (window.confirm(translate('Confirm to submit')))
             {
                 var params = new URLSearchParams();
-                params.append('type', 'BusinessWithdrawal.create')
+                params.append('type', 'CollectedCash.create')
                 params.append('params[amount]', collectedCashRequest.value.amount)
                 params.append('params[wallet_id]', content.value.wallet.wallet_id)
                 params.append('params[notes]', collectedCashRequest.value.notes)
-                params.append('params[field]', JSON.stringify(collectedCashRequest.value.field))
-                params.append('params[payment_method]', collectedCashRequest.value.payment_method)
                 handleRequest(params, '/api/create').then(response => {
                     handleAccess(response)
                 });
