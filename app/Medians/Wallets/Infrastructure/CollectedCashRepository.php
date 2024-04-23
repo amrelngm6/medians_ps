@@ -21,7 +21,9 @@ class CollectedCashRepository
 
 	public function getCollectedCash($id)
 	{
-		return CollectedCash::with('business')->where('business_id', $id)->first();
+		return CollectedCash::with('business')->with(['wallet'=>function($q) {
+            return $q->with('user');
+        }])->where('business_id', $id)->first();
 	}
 
 	public function get($limit = 100)
