@@ -102,6 +102,7 @@ class CollectedCashController extends CustomController
 
 			$params['business_id'] = $user->business->business_id;
 			$params['created_by'] = $user->id;
+			$params['date'] = date('Y-m-d');
 
 			$returnData = (!empty($this->repo->store($params))) 
 			? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
