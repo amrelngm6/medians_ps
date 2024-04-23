@@ -101,10 +101,27 @@ class AppSettingsController extends CustomController
             'load_vue' => true,
             'app_type' => 'Parent',
             'app_setting' => $this->getAll('Parent'),
-            'fillable' => $this->fillable(),
+            'fillable' => $this->parent_fillable(),
             'title' => __('Parents app Settings'),
 	    ]);
 	} 
+
+	public function parent_fillable() 
+	{
+		$list = $this->fillable();
+		
+		$list['payment_methods'] = [
+			[ 'key'=> "header", 'title'=> __('Header style'), 
+				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
+				'data' => [['header'=>'header1','title'=>__('Header 1')], ['header'=>'header2','title'=>__('Header 2')],['header'=>'header3','title'=>__('Header 3')]]  
+			],
+			[ 'key'=> "header_color", 'title'=> __('Header BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
+			[ 'key'=> "header_bg", 'title'=> __('Header background'), 'fillable'=>true, 'column_type'=>'file' ],
+		];
+
+		return $list;
+	}
+
 
     /**
      * Get APP Settings 

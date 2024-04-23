@@ -118,8 +118,10 @@
                             <div class="settings-form" >
                                 <div class="row mb-6"   v-for="(field, i) in row" >
                 
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input'+i"  v-text="field.title" v-if="field.column_type != 'hidden'"></label>
-
+                                    <label class="col-lg-4 col-form-label " :class="field.required ? 'required' : ''" :for="'input'+i"  v-if="field.column_type != 'hidden'">
+                                        <p class="fw-bold fs-4 w-full" v-text="field.title" ></p>
+                                        <p v-text="field.help_text" v-if="field.help_text" ></p>
+                                    </label>
                                     <form_field  class="col-lg-8 fv-row fv-plugins-icon-container"   :column="field"   :item="content.app_setting" :conf="conf"></form_field>
 
                                 </div>
