@@ -34,7 +34,7 @@ class CollectedCashController extends CustomController
 	public function columns( ) 
 	{
 		return [
-            [ 'value'=> "withdrawal_id", 'text'=> "#"],
+            [ 'value'=> "collection_id", 'text'=> "#"],
             [ 'value'=> "wallet.user.name", 'text'=> translate('User'), 'sortable'=> true ],
             [ 'value'=> "amount", 'text'=> translate('Amount'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
