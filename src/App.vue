@@ -133,6 +133,8 @@ const withdrawals = defineAsyncComponent(() => import('@/components/wallet/withd
 
 const driver_page = defineAsyncComponent(() => import('@/components/driver/profile.vue') );
 
+const collected_cash = defineAsyncComponent(() => import('@/components/driver/collected_cash.vue') );
+
 
 export default {
     name: 'app',
@@ -186,6 +188,7 @@ export default {
         business_withdrawals,
         withdrawals,
         driver_page,
+        collected_cash,
         get_started,
         translate,
         'help_messages':HelpMessages,

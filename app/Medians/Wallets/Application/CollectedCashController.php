@@ -71,7 +71,7 @@ class CollectedCashController extends CustomController
 
 		try {
 
-			return render('business_withdrawals', [
+			return render('collected_cash', [
 		        'load_vue' => true,
 		        'title' => translate('Business Withdrawals'),
 		        'columns' => $this->columns(),
