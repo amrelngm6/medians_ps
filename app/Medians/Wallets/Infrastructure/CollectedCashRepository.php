@@ -23,7 +23,7 @@ class CollectedCashRepository
 	{
 		return CollectedCash::with('business')->with(['wallet'=>function($q) {
             return $q->with('user');
-        }])->where('wallet_id', $id)->first();
+        }])->where('wallet_id', $id)->get();
 	}
 
 	public function get($params, $limit = 1000)
