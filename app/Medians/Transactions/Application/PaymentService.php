@@ -188,7 +188,7 @@ class PaymentService
 
 			if ($params['payment_method'] == 'cash')
 			{
-				return $this->updateCashWallet($params, $invoice);
+				return $this->updateDriverWallet($params, $invoice);
 			}
 			
 			return $this->updateBusinessWallet($params, $invoice);
@@ -225,7 +225,7 @@ class PaymentService
 	}
 	
 	
-	public function updateCashWallet($params, $invoice)
+	public function updateDriverWallet($params, $invoice)
 	{
 		try {
 
@@ -240,7 +240,7 @@ class PaymentService
 			
 			$check = $walletRepo->driverWallet($user->driver_id);
 			$data = array();
-			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + $invoice->total_amount) : $invoice->total_amount;
+			$data['debit_balance'] = isset($check->debit_balance) ? ($check->debit_balance + $invoice->total_amount) : $invoice->total_amount;
 
 			return isset($check->wallet_id) ? $check->update($data) : null;
 
