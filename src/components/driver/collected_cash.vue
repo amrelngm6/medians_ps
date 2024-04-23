@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
-                        <tr v-for="collected in collected_cash" v-if="collected">
+                        <tr v-for="collected in collected_cash" >
                             <td class="text-success" v-text="system_setting.currency + '' + collected.amount"></td>
                             <td v-text="collected.date"></td>
                         </tr>
