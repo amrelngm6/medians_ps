@@ -118,11 +118,11 @@ class CollectedCashRepository
 	{
         $check = $Object->with('wallet')->find($Object->collection_id);
 
-        $balance = $check->wallet->debic_balance ?? 0;
+        $balance = $check->wallet->debit_balance ?? 0;
 
         $newBalance = $balance - $check->amount;
 
-        $update = $check->wallet->update(['debic_balance'=>$newBalance]);
+        $update = $check->wallet->update(['debit_balance'=>$newBalance]);
 
         return $update;
 	}
