@@ -8,6 +8,7 @@ use Medians\Users\Infrastructure\UserRepository;
 use Medians\Vehicles\Infrastructure\VehicleRepository;
 use Medians\Wallets\Infrastructure\WithdrawalRepository;
 use Medians\Wallets\Infrastructure\WalletRepository;
+use Medians\Wallets\Infrastructure\CollectedCashRepository;
 use Medians\Invoices\Infrastructure\InvoiceRepository;
 use Medians\Trips\Infrastructure\PrivateTripRepository;
 use Medians\Trips\Infrastructure\TripRepository;
@@ -112,8 +113,10 @@ class DriverController extends CustomController
 		$invoicesRepo = new InvoiceRepository($user->business);
 		$WalletRepo = new WalletRepository();
 		$WithdrawalRepo = new WithdrawalRepository($user->business);
+		$collectCashRepo = new CollectedCashRepository($user->business);
 		$tripsRepo = new TripRepository($user->business);
 		$privateTripsRepo = new PrivateTripRepository($user->business);
+		$wallet = $WalletRepo->driverWallet($driver->driver_id);
 
 		return render('driver_page', [
 			'load_vue'=> true,
@@ -122,8 +125,9 @@ class DriverController extends CustomController
 			'stats' => $this->getStats($driver, $user->business),
 			'overview' => $this->overview($driver),
 			'fillable' => $this->fillable(),
+			'collection_cash' => $collectCashRepo->getCollectedCash($wallet->wallet_id),
 			'invoices' => $invoicesRepo->getUserInvoices($user->id),
-			'wallet' => $WalletRepo->driverWallet($driver->driver_id),
+			'wallet' => $wallet,
 			'withdrawals' => $WithdrawalRepo->getDriverWithdrawals($driver->driver_id),
 			'trips' => $tripsRepo->getDriverTrips($driver->driver_id, 10),
 			'private_trips' => $privateTripsRepo->getDriverPrivateTrips($driver->driver_id, 10),
