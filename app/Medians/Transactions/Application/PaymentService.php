@@ -174,7 +174,7 @@ class PaymentService
 			return $invoiceRepo->store($data);
 
 		} catch (\Throwable $th) {
-			
+			error_log($th->getMessage());
 			return array('error'=>$th->getMessage());
 		}
 	}
