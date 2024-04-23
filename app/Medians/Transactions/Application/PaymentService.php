@@ -87,7 +87,7 @@ class PaymentService
 
 			$routeLocationClass = new \Medians\Locations\Domain\RouteLocation;
 			
-			$updateRouteLocationClass = $routeLocationClass->where('model_id', $params['model_id'])->where('model_type', $class::class)->update(['business_id' => $params['business']->business_id]);
+			$updateRouteLocationClass = $routeLocationClass->where('model_id', $params['student_id'])->where('model_type', $class::class)->update(['business_id' => $params['business']->business_id]);
 
 			return array('success'=>$updateRouteLocationClass);
 
@@ -106,7 +106,7 @@ class PaymentService
 
 			$class = new Student;
 
-			$updateStudent = $class->find($params['model_id']);
+			$updateStudent = $class->find($params['student_id']);
 
 			$update = $updateStudent->update(['business_id' => $this->transactionRepo->business_id]);
 
@@ -161,7 +161,7 @@ class PaymentService
 			$data = array();
 			$data['business_id'] = $params['business']->business_id;
 			$data['code'] = $invoiceRepo->generateCode();
-			$data['user_id'] = $params['model_id'];
+			$data['user_id'] = $params['user_id'];
 			$data['user_type'] = Customer::class;
 			$data['payment_method'] = $invoiceInfo['payment_method'];
 			$data['subtotal'] = $invoiceInfo['subtotal'];
