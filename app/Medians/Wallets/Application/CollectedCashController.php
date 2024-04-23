@@ -36,10 +36,9 @@ class CollectedCashController extends CustomController
 		return [
             [ 'value'=> "withdrawal_id", 'text'=> "#"],
             [ 'value'=> "business.business_name", 'text'=> translate('Business'), 'sortable'=> true ],
+            [ 'value'=> "wallet.user.name", 'text'=> translate('User'), 'sortable'=> true ],
             [ 'value'=> "amount", 'text'=> translate('Amount'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
-            [ 'value'=> "due_date", 'text'=> translate('Due Date'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> translate('Status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('Edit') ],
             [ 'value'=> "delete", 'text'=> translate('Delete') ],
         ];
