@@ -3,6 +3,7 @@
 namespace Medians\Wallets\Infrastructure;
 
 use Medians\Wallets\Domain\CollectedCash;
+use Medians\Wallets\Domain\Wallet;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Students\Domain\Student;
 use Medians\Customers\Domain\Parents;
@@ -108,26 +109,7 @@ class CollectedCashRepository
 	public function handleType($data) 
 	{
 		
-		switch (strtolower($data['user_type']))
-		{
-			case 'student':
-				return Student::class;
-				break;
-
-			case 'parent':
-			case 'parents':
-				return Parents::class;
-				break;
-	
-			case 'driver':
-			case 'drivers':
-				return Driver::class;
-				break;
-	
-			default:
-				return $data['user_type'];
-				break;
-		}
+        return Wallet::class;
 	}
 
 
