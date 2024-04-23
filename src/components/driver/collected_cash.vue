@@ -83,61 +83,26 @@
                             <p class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
                             v-text="translate('This is do not consider the debit balance')"></p>
                         </div>
-                        <div class="d-flex flex-wrap w-full">
-                            <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
-                                <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="wallet">
-                                    <span
-                                        v-text="wallet ? (system_setting.currency + '' + (wallet.credit_balance ?? '0')) : '0'"></span>
-                                </span>
-                                <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2"
-                                    v-text="translate('Wallet balance')"></span>
-                            </div>
-                            <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6"
-                                v-if="auth.business">
-                                <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="auth.business.subscription">
-                                    <span class="counted"
-                                        v-text="auth.business.subscription.is_paid ? system_setting.comission_paid_plan : system_setting.comission_free_plan"></span>%
-                                </span>
-                                <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2"
-                                    v-text="translate('Business Commisiion')"></span>
-                            </div>
-                            <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
-                                <span class="fs-2x fw-bold text-gray-800 lh-1">
-                                    <span v-text="system_setting.currency"></span>
-                                    <span v-text="wallet ? (wallet.debit_balance ?? '0') : '0'"></span>
-                                </span>
-                                <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2"
-                                    v-text="translate('Debit balance')"></span>
-                            </div>
-                            <a href="#" v-if="wallet.debit_balance > 0" @click="showWizard = true"
-                                class="btn btn-bg-info text-white text-white px-6 flex-shrink-0 align-self-center"
-                                v-text="translate('Collect cash')"></a>
-                        </div>
-
                     </div>
                 </div>
             </div>
             <div class="card-header">
                 <div class="card-title flex gap-4">
-                    <h2 class="w-full" v-text="translate('Withdrawal requests')"></h2>
+                    <h2 class="w-full" v-text="translate('Collected cash')"></h2>
                 </div>
             </div>
-            <div class="card-body pt-2" v-if="withdrawals">
+            <div class="card-body pt-2" v-if="collected_cash">
                 <table id="kt_customer_details_invoices_table_1"
                     class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                     <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
                         <tr class="text-start text-gray-500">
-                            <th class="min-w-100px" v-text="translate('Payment method')"></th>
                             <th class="min-w-100px" v-text="translate('Amount')"></th>
-                            <th class="min-w-100px" v-text="translate('Status')"></th>
                             <th class="min-w-125px" v-text="translate('Date')"></th>
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
-                        <tr v-for="withdrawal in withdrawals">
-                            <td v-text="withdrawal.payment_method"></td>
-                            <td class="text-success" v-text="system_setting.currency + '' + withdrawal.amount"></td>
-                            <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
+                        <tr v-for="collected in collected_cash" v-if="collected">
+                            <td class="text-success" v-text="system_setting.currency + '' + collected.amount"></td>
                             <td v-text="withdrawal.date"></td>
                         </tr>
                     </tbody>
@@ -223,7 +188,7 @@ export default {
         'auth',
         'item',
         'wallet',
-        'withdrawals',
+        'collected_cash',
     ]
 };
 </script>

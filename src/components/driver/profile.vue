@@ -99,6 +99,8 @@
 
                     <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :withdrawals="content.withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
 
+                    <collected_cash_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :collected_cash="content.collected_cash" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
+
                     <private_trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'private_trips'" :trips="content.private_trips"  :system_setting="system_setting" :item="activeItem" />
                     
                     <trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'trips'" :trips="content.trips" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
@@ -147,7 +149,8 @@ export default {
         setting_tab,
         private_trips_tab,
         trips_tab,
-        info_tab
+        info_tab,
+        collected_cash_tab
 
     },
     name: 'Drivers',
