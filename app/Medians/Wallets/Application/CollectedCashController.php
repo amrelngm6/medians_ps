@@ -38,7 +38,6 @@ class CollectedCashController extends CustomController
             [ 'value'=> "wallet.user.name", 'text'=> translate('User'), 'sortable'=> true ],
             [ 'value'=> "amount", 'text'=> translate('Amount'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
-            [ 'value'=> "delete", 'text'=> translate('Delete') ],
         ];
 	}
 
