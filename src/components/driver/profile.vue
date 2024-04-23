@@ -97,7 +97,7 @@
 
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" />
 
-                    <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :withdrawals="content.withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
+                    <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'wallet'" :withdrawals="content.withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
 
                     <collected_cash_tab :conf="conf" :auth="auth" v-if="activeTab == 'collected_cash'" :collected_cash="content.collected_cash" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
 
@@ -169,8 +169,8 @@ export default {
             { title: translate('Settings'), link: 'settings' },
             { title: translate('Route Trips'), link: 'trips' },
             { title: translate('Private trips'), link: 'private_trips' },
-            { title: translate('Collected cash'), link: 'collected_cash' },
-            { title: translate('Withdrawal'), link: 'withdrawal' },
+            { title: translate('Collected cash'), link: 'collected_cash'},
+            { title: translate('Wallet'), link: 'wallet' },
         ]);
 
         
