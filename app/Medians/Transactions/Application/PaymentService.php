@@ -25,15 +25,13 @@ class PaymentService
 	}
 
 
-	public function storeSubscriptionTransaction($params, $user)
+	public function storeSubscriptionTransaction($params, $invoice, $user)
 	{
 		try {
 
 			$this->transactionRepo = new TransactionRepository($params['business']);
 
 			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
-
-			$invoice = $this->addInvoice($params, $user);
 
 			$transaction = (array) $params['transaction'];
 			$transaction['invoice_id'] = $invoice->invoice_id;
@@ -54,15 +52,13 @@ class PaymentService
 
 
 	
-	public function storeTripTransaction($params, $user)
+	public function storeTripTransaction($params, $invoice, $user)
 	{
 		try {
 
 			$this->transactionRepo = new TransactionRepository($params['business']);
 
 			$PrivateTrip = new \Medians\Trips\Domain\PrivateTrip;
-
-			$invoice = $this->addInvoice($params, $user);
 
 			$transaction = (array) $params['transaction'];
 			$transaction['model_id'] = $params['model_id'];
@@ -175,11 +171,7 @@ class PaymentService
 			$data['notes'] = $invoiceInfo['notes'];
 			$data['items'] = (array) $invoiceInfo['items'];
 
-			$invoice =  $invoiceRepo->store($data);
-
-			$updateWallet = $this->updateWallet($params, $invoice, $user);
-
-			return $invoice;
+			return $invoiceRepo->store($data);
 
 		} catch (\Throwable $th) {
 			
@@ -189,17 +181,21 @@ class PaymentService
 	
 	
 	
-	public function updateWallet($params, $invoice, $user)
+	public function updateWallet($params, $invoice)
 	{
 		try {
+
+			if ($params['payment_method'] == 'cash')
+			{
+				return;
+			}
 
 			$walletRepo = new \Medians\Wallets\Infrastructure\BusinessWalletRepository();
 			
 			$check = $walletRepo->getBusinessWallet($invoice->business_id);
 			$data = array();
-			$commission = $this->handleCommission($invoice, $user);
+			$commission = $this->handleCommission($invoice);
 			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + ($invoice->total_amount - $commission)) : ($invoice->total_amount - $commission);
-			// $data['debit_balance'] = isset($check->debit_balance) ? ($check->debit_balance + $commission) : $commission;
 
 			return isset($check->wallet_id) ? $check->update($data) : null;
 
@@ -210,11 +206,12 @@ class PaymentService
 		
 	}
 	
-	public function handleCommission($invoice, $user) 
+	public function handleCommission($invoice) 
 	{
 		$setting = (new \config\APP)->SystemSetting();
+		$business = (new \Medians\Businesses\Infrastructure\BusinessRepository())->find($invoice->business_id);
 		
-		return (isset($user->business->subscription) && $user->business->subscription->is_paid) 
+		return (isset($business->subscription) && $business->subscription->is_paid) 
 		? ($invoice->total_amount * ($setting['comission_paid_plan'] / 100))
 		: ($invoice->total_amount * ($setting['comission_free_plan'] / 100));
 

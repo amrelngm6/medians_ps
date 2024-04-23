@@ -27,7 +27,7 @@ class BusinessRepository
 
 	public function find($id)
 	{
-		return Business::with('settings','packages')
+		return Business::with('settings','packages','subscription')
 		->withCount('routes', 'locations', 'drivers')
 		->find($id);
 	}

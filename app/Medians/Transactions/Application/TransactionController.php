@@ -161,7 +161,11 @@ class TransactionController extends CustomController
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
-			$saveTransaction = $paymentService->storeSubscriptionTransaction($params, $user); 
+			$addInvoice = $paymentService->addInvoice($params, $user); 
+			
+			$updateWallet = $paymentService->updateWallet($params, $addInvoice); 
+
+			$saveTransaction = $paymentService->storeSubscriptionTransaction($params, $addInvoice, $user); 
 			
 			$updateStudentBusiness = $paymentService->updateStudentBusiness($params, $user ); 
 
@@ -192,9 +196,13 @@ class TransactionController extends CustomController
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
-			$saveTransaction = $paymentService->storeTripTransaction($params, $user); 
+			$addInvoice = $paymentService->addInvoice($params, $user); 
+
+			$saveTransaction = $paymentService->storeTripTransaction($params, $addInvoice, $user); 
 			
 			$updateTrip = isset($saveTransaction['success']) ? $paymentService->updateTrip($params) : null; 
+
+			$updateWallet = isset($saveTransaction['success']) ? $paymentService->updateWallet($params, $addInvoice) : null; 
 
 			return (isset($saveTransaction['success']))
 			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
