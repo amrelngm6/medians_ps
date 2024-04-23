@@ -97,7 +97,7 @@ class AppSettingsController extends CustomController
 	 */
 	public function parent_index()
 	{
-		return render('app_settings', [
+		return render('parent_app_settings', [
             'load_vue' => true,
             'app_type' => 'Parent',
             'app_setting' => $this->getAll('Parent'),

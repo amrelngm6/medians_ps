@@ -293,23 +293,7 @@ class APP
 			),
 			
 
-			array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
-	        array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
-			
-			array( 'title'=>__('Service Locations'),  'icon'=>'map-pin', 'link'=>'#locations', 'sub'=>
-			[
-				array('permission'=>'Countries.index', 'title'=>__('Countries'),  'icon'=>'tool', 'link'=>'admin/countries', 'component'=>'countries'),
-				array('permission'=>'States.index', 'title'=>__('States'),  'icon'=>'tool', 'link'=>'admin/states', 'component'=>'states'),
-				array('permission'=>'Cities.index', 'title'=>__('Cities'),  'icon'=>'tool', 'link'=>'admin/cities', 'component'=>'cities'),
-			]
-			),
-			array( 'title'=>__('Plans'),  'icon'=>'check-circle', 'link'=>'#plan', 'sub'=>
-			[
-				array('permission'=>'Plans.index', 'title'=>__('Plans'),  'icon'=>'tool', 'link'=>'admin/plans', 'component'=>'plans'),
-				array('permission'=>'PlanFeatures.index', 'title'=>__('Plan features'),  'icon'=>'tool', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
-				array('permission'=>'PlanSubscriptions.index', 'title'=>__('Plan subscriptions'),  'icon'=>'tool', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
-			]
-			),
+			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 			
 			array('title'=>__('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
 			[
@@ -320,19 +304,32 @@ class APP
 				array('permission'=> 'PaymentMethods.index', 'title'=> __('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
 			]
 			),
-			array('permission'=>'HelpMessage.index', 'title'=>__('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
-			array( 'title'=>__('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
+			array( 'title'=>__('Plans'),  'icon'=>'check-circle', 'link'=>'#plan', 'sub'=>
+			[
+				array('permission'=>'Plans.index', 'title'=>__('Plans'),  'icon'=>'tool', 'link'=>'admin/plans', 'component'=>'plans'),
+				array('permission'=>'PlanFeatures.index', 'title'=>__('Plan features'),  'icon'=>'tool', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
+				array('permission'=>'PlanSubscriptions.index', 'title'=>__('Plan subscriptions'),  'icon'=>'tool', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
+			]
+			),
+			
+			array( 'title'=>__('Users'),  'icon'=>'tool', 'link'=>'#users', 'superadmin'=> true, 'sub'=>
+			[
+				array('permission'=>'User.index', 'title'=>__('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
+				array('permission'=> 'Roles.index', 'title'=> __('ROLES MANAEGMENT'),  'icon'=>'tool', 'link'=>'admin/roles', 'component'=>'roles'),
+			]
+			),
+			array( 'title'=>__('Management'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Pages.index', 'title'=>__('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
 				array('permission'=>'NotificationEvent.index', 'title'=>__('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
-				array('permission'=> 'Roles.index', 'title'=> __('ROLES MANAEGMENT'),  'icon'=>'tool', 'link'=>'admin/roles', 'component'=>'roles'),
+				array('permission'=>'Event.index', 'title'=>__('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
 			]
 			),
 			array( 'title'=>__('Settings'),  'icon'=>'tool', 'link'=>'#setting', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=> 'SystemSettings.index', 'title'=> __('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
 				array('permission'=> 'DriverAppSetting.index', 'title'=> __('Driver APP Settings'),  'icon'=>'tool', 'link'=>'admin/app_settings', 'component'=>'app_settings'),
-				array('permission'=> 'ParentAppSettings.index', 'title'=> __('Parent APP Settings'),  'icon'=>'tool', 'link'=>'admin/parent_app_settings', 'component'=>'app_settings'),
+				array('permission'=> 'ParentAppSettings.index', 'title'=> __('Parent APP Settings'),  'icon'=>'tool', 'link'=>'admin/parent_app_settings', 'component'=>'parent_app_settings'),
 			]
 			),
 			
