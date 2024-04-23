@@ -37,11 +37,11 @@ class EventController extends CustomController
 
 		return [
             [ 'value'=> "event_id", 'text'=> "#"],
-            [ 'value'=> "title", 'text'=> __('Title'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "date", 'text'=> __('date'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "title", 'text'=> translate('Title'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('date'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -56,10 +56,10 @@ class EventController extends CustomController
 
 		return [
             [ 'key'=> "event_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
-            [ 'key'=> "title", 'title'=> __('title'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
-            [ 'key'=> "description", 'title'=> __('Content'),  'fillable'=> true, 'column_type'=>'textarea','required'=>true ],
-            [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
-            [ 'key'=> "picture", 'title'=> __('picture'),  'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "title", 'title'=> translate('title'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
+            [ 'key'=> "description", 'title'=> translate('Content'),  'fillable'=> true, 'column_type'=>'textarea','required'=>true ],
+            [ 'key'=> "status", 'title'=> translate('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "picture", 'title'=> translate('picture'),  'fillable'=> true, 'column_type'=>'file' ],
         ];
 	}
 
@@ -79,7 +79,7 @@ class EventController extends CustomController
 			
 		    return render('events', [
 		        'load_vue' => true,
-		        'title' => __('Events'),
+		        'title' => translate('Events'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -104,7 +104,7 @@ class EventController extends CustomController
         	$params['created_by'] = $this->app->auth()->id;        	
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -137,7 +137,7 @@ class EventController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -161,7 +161,7 @@ class EventController extends CustomController
 
             if ($this->repo->delete($params['event_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 
@@ -177,7 +177,7 @@ class EventController extends CustomController
 
 		if (empty($params['content']['ar']['title']))
 		{
-        	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
+        	throw new \Exception(json_encode(array('result'=>translate('NAME_EMPTY'), 'error'=>1)), 1);
 		}
 
 	}

@@ -54,28 +54,28 @@ class SettingsController extends CustomController
 		return [
             
 			'basic'=> [	
-	            [ 'key'=> "logo", 'title'=> __('logo'), 'fillable'=>true, 'column_type'=>'file' ],
-				[ 'key'=> "allow_notifications", 'title'=> __('Allow Notifications'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "lang", 'title'=> __('Languange'), 
+	            [ 'key'=> "logo", 'title'=> translate('logo'), 'fillable'=>true, 'column_type'=>'file' ],
+				[ 'key'=> "allow_notifications", 'title'=> translate('Allow Notifications'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "lang", 'title'=> translate('Languange'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['lang'=>'arabic','title'=>__('Arabic')], ['lang'=>'english','title'=>__('English')]]  
+					'data' => [['lang'=>'arabic','title'=>translate('Arabic')], ['lang'=>'english','title'=>translate('English')]]  
 				],
 			],
 			
 			'information'=> [	
-				[ 'key'=> "email", 'title'=> __('Email'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "address", 'title'=> __('Footer Address'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "mobile", 'title'=> __('Footer mobile'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "phone", 'title'=> __('Footer phone'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "email", 'title'=> translate('Email'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "address", 'title'=> translate('Footer Address'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "mobile", 'title'=> translate('Footer mobile'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "phone", 'title'=> translate('Footer phone'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 
 			'trips'=> [	
-				[ 'key'=> "allow_private_trip", 'title'=> __('Allow Private Trips'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "allow_private_trip", 'title'=> translate('Allow Private Trips'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
 
 			'drivers'=> [	
-				[ 'key'=> "speed_limit", 'title'=> __('Driver speed limit'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "allow_applicants", 'title'=> __('Allow Driver Applicants'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "speed_limit", 'title'=> translate('Driver speed limit'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "allow_applicants", 'title'=> translate('Allow Driver Applicants'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
 			
         ];
@@ -97,7 +97,7 @@ class SettingsController extends CustomController
             'stats' => $this->getStats($user->business),
 			'fillable' => $this->fillable(),
 			'business_fillable' => $this->business_fillable(),
-			'title' => __('Settings'),
+			'title' => translate('Settings'),
 	    ]);
 	} 
 
@@ -153,7 +153,7 @@ class SettingsController extends CustomController
 		try {
 
             if (isset($this->updateSettings($params)->updated)) 
-            	return array('success'=>1, 'result'=>__('Updated'));
+            	return array('success'=>1, 'result'=>translate('Updated'));
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());

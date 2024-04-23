@@ -41,11 +41,11 @@ class StateController extends CustomController
 
 		return [
             [ 'value'=> "state_id", 'text'=> "#",'sortable'=> true],
-            [ 'value'=> "name", 'text'=> __('name'), 'sortable'=> true ],
-            [ 'value'=> "country.name", 'text'=> __('country'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('Edit') ],
-            [ 'value'=> "delete", 'text'=> __('delete') ],
+            [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
+            [ 'value'=> "country.name", 'text'=> translate('country'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('Edit') ],
+            [ 'value'=> "delete", 'text'=> translate('delete') ],
         ];
 	}
 
@@ -60,12 +60,12 @@ class StateController extends CustomController
 
 		return [
             [ 'key'=> "state_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "country_id", 'title'=> __('Country'), 
+			[ 'key'=> "country_id", 'title'=> translate('Country'), 
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'required'=>true, 'withLabel'=>true, 
 				'data' => $this->countryRepo->get()
 			],
-            [ 'key'=> "name", 'title'=> __('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "status", 'title'=> __('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox'],
+            [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "status", 'title'=> translate('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox'],
         ];
 	}
 
@@ -86,7 +86,7 @@ class StateController extends CustomController
 		    return render('states', 
 			[
 		        'load_vue' => true,
-		        'title' => __('States'),
+		        'title' => translate('States'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->getWithCities(),
@@ -117,7 +117,7 @@ class StateController extends CustomController
         	$params['status'] = isset($params['status']) ? 'on' : null;
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -139,7 +139,7 @@ class StateController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -163,7 +163,7 @@ class StateController extends CustomController
 
             if ($this->repo->delete($params['state_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 
@@ -179,12 +179,12 @@ class StateController extends CustomController
 
 		if (empty($params['name']))
 		{
-        	throw new \Exception(__('NAME_EMPTY'), 1);
+        	throw new \Exception(translate('NAME_EMPTY'), 1);
 		}
 
 		if (isset($this->repo->findByName($params['name'])->state_id))
 		{
-        	throw new \Exception(__('NAME_FOUND'), 1);
+        	throw new \Exception(translate('NAME_FOUND'), 1);
 		}
 
 	}

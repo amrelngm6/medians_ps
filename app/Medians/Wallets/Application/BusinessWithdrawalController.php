@@ -35,13 +35,13 @@ class BusinessWithdrawalController extends CustomController
 	{
 		return [
             [ 'value'=> "withdrawal_id", 'text'=> "#"],
-            [ 'value'=> "business.business_name", 'text'=> __('Business'), 'sortable'=> true ],
-            [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
-            [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
-            [ 'value'=> "due_date", 'text'=> __('Due Date'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('Status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('Edit') ],
-            [ 'value'=> "delete", 'text'=> __('Delete') ],
+            [ 'value'=> "business.business_name", 'text'=> translate('Business'), 'sortable'=> true ],
+            [ 'value'=> "amount", 'text'=> translate('Amount'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
+            [ 'value'=> "due_date", 'text'=> translate('Due Date'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('Status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('Edit') ],
+            [ 'value'=> "delete", 'text'=> translate('Delete') ],
         ];
 	}
 
@@ -73,7 +73,7 @@ class BusinessWithdrawalController extends CustomController
 
 			return render('business_withdrawals', [
 		        'load_vue' => true,
-		        'title' => __('Business Withdrawals'),
+		        'title' => translate('Business Withdrawals'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get($params),
@@ -112,7 +112,7 @@ class BusinessWithdrawalController extends CustomController
 			$params['field'] = isset($params['field']) ? (array) json_decode($params['field']) : null;
 
 			$returnData = (!empty($this->repo->store($params))) 
-			? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+			? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 			: array('success'=>0, 'result'=>'Error', 'error'=>1);
 
 
@@ -135,7 +135,7 @@ class BusinessWithdrawalController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -157,7 +157,7 @@ class BusinessWithdrawalController extends CustomController
 
             if ($delete === true)
             {
-                return array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1);
             } else {
                 return array('error' => $delete);
 			}
@@ -179,7 +179,7 @@ class BusinessWithdrawalController extends CustomController
 			try {
 				
 				$returnData = (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
 	
 			} catch (\Throwable $th) {
@@ -204,7 +204,7 @@ class BusinessWithdrawalController extends CustomController
 			
 			$check = $this->repo->update($params);
 			$returnData = isset($check->vacation_id)
-			? array('success'=>1, 'result'=>__('updated successfully'), 'reload'=>1)
+			? array('success'=>1, 'result'=>translate('updated successfully'), 'reload'=>1)
 			: array('success'=>0, 'result'=> $check, 'error'=>1);
 
 
@@ -240,7 +240,7 @@ class BusinessWithdrawalController extends CustomController
 		
 		$check =  $this->repo->checkPending($user->business->business_id);
 
-		return $check ? __('Another pending request found') : null;
+		return $check ? translate('Another pending request found') : null;
 		
 	}
 

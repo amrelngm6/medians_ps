@@ -170,7 +170,7 @@ class BuilderController extends CustomController
 			$this->repo->store(['content'=>$section, 'category'=>$category]);
 		}
 
-		echo __('Done');
+		echo translate('Done');
 	}
 
 	

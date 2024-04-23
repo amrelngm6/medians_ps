@@ -94,7 +94,7 @@ class CustomModel extends Model
 
 	// public function content()
 	// {
-	// 	return $this->morphOne(Content::class, 'item')->where('lang', __('lang'));
+	// 	return $this->morphOne(Content::class, 'item')->where('lang', translate('lang'));
 	// }
 
 	// public function en()

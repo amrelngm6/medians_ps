@@ -63,7 +63,7 @@ class EmployeeRepository extends CustomerRepository
 		$findByEmail = $this->findByEmail($data['email']);
 
 		if (empty($findByEmail))
-			return __('User not found');
+			return translate('User not found');
 		
 		$deleteOld = CustomField::where('model_type', Employee::class)->where('model_id', $findByEmail->employee_id)->where('code', 'reset_token')->delete();
 		
@@ -125,7 +125,7 @@ class EmployeeRepository extends CustomerRepository
 		
 		if ($this->validateEmail($data['email'], $data['customer_id']))
 		{
-			return throw new \Exception(__('Email found'), 1);
+			return throw new \Exception(translate('Email found'), 1);
 		}
 
 		// Return the  object with the new data
@@ -154,7 +154,7 @@ class EmployeeRepository extends CustomerRepository
 
 		if (!$this->checkLogin($Object->email, $current))
 		{
-			return __('PASSWORD_ERROR');
+			return translate('PASSWORD_ERROR');
 		}
 
 		$data['password'] = $Auth->encrypt($data['new_password']);

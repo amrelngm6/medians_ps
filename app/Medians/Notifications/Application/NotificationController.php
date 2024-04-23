@@ -36,27 +36,27 @@ class NotificationController extends CustomController
             ],
             [
                 'key'=> "subject",
-                'title'=> __('subject'),
+                'title'=> translate('subject'),
                 'sortable'=> false,
             ],
             [
                 'key'=> "model_short_name",
-                'title'=> __('Model'),
+                'title'=> translate('Model'),
                 'sortable'=> false,
             ],
             [
                 'key'=> "receiver_name",
-                'title'=> __('receiver_name'),
+                'title'=> translate('receiver_name'),
                 'sortable'=> true,
             ],
             [
                 'key'=> "date",
-                'title'=> __('date'),
+                'title'=> translate('date'),
                 'sortable'=> true,
             ],
             [
                 'key'=> "status",
-                'title'=> __('status'),
+                'title'=> translate('status'),
                 'sortable'=> true,
             ]
         ];
@@ -71,7 +71,7 @@ class NotificationController extends CustomController
 		$app = new \Config\APP;
 		return render('notifications', [
 	        'load_vue' => true,
-	        'title' => __('Notifications'),
+	        'title' => translate('Notifications'),
 	        'items' => $this->repo->get($app->auth()),
 	        'columns' => $this->columns(),
 
@@ -93,8 +93,8 @@ class NotificationController extends CustomController
         try {
 
            	return  ($this->repo->delete($params['id']))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {
@@ -122,8 +122,8 @@ class NotificationController extends CustomController
         try {
            	
            	response($this->repo->update(['id'=>$params['id'],'status' => 'read'])
-            ? array('success'=>1, 'result'=>__('updated'))
-           	: array('error'=>__('Not allowed')));
+            ? array('success'=>1, 'result'=>translate('updated'))
+           	: array('error'=>translate('Not allowed')));
 
         } catch (Exception $e) {
             return array('error'=>$e->getMessage());
@@ -188,7 +188,7 @@ class NotificationController extends CustomController
 		
 		return [
 	        'load_vue' => true,
-	        'title' => __('Notifications'),
+	        'title' => translate('Notifications'),
 	        'last_id' => !empty($firstitem) ? $firstitem->id : 0,
 	        'items' => $items,
 	        'total_count' => $items->count(),
@@ -251,7 +251,7 @@ class NotificationController extends CustomController
         try {
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
            	: array('error'=>'Not allowed');
 
 
@@ -283,7 +283,7 @@ class NotificationController extends CustomController
         try {
 
            	$returnData =  ($this->repo->delete($params['id']))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
            	: array('error'=>'Not allowed');
 
 

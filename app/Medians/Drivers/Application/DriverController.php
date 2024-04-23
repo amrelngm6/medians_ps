@@ -52,17 +52,17 @@ class DriverController extends CustomController
 
 		return [
             [ 'key'=> "driver_id", 'title'=> "#", 'fillable'=>true, 'column_type'=>'hidden'],
-			[ 'key'=> "first_name", 'title'=> __('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' , 'required'=>true ],
-            [ 'key'=> "last_name", 'title'=> __('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "email", 'title'=> __('email'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'email', 'required'=>true ],
-            [ 'key'=> "mobile", 'title'=> __('mobile'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone', 'required'=>true ],
-            [ 'key'=> "driver_license_number", 'title'=> __('driver_license_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "vehicle_id", 'title'=> __('Vehicle'), 
+			[ 'key'=> "first_name", 'title'=> translate('first_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' , 'required'=>true ],
+            [ 'key'=> "last_name", 'title'=> translate('last_name'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "email", 'title'=> translate('email'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'email', 'required'=>true ],
+            [ 'key'=> "mobile", 'title'=> translate('mobile'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone', 'required'=>true ],
+            [ 'key'=> "driver_license_number", 'title'=> translate('driver_license_number'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "vehicle_id", 'title'=> translate('Vehicle'), 
 				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'vehicle_id', 'text_key'=>'vehicle_name', 
 				'data' => $this->vehicleRepo->get()
 			],
-            [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
-            [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "picture", 'title'=> translate('picture'), 'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
 
@@ -82,7 +82,7 @@ class DriverController extends CustomController
 			
 		    return render('drivers', [
 		        'load_vue' => true,
-		        'title' => __('Drivers'),
+		        'title' => translate('Drivers'),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
 		    ]);
@@ -117,7 +117,7 @@ class DriverController extends CustomController
 
 		return render('driver_page', [
 			'load_vue'=> true,
-			'title' => __('Driver profile'),
+			'title' => translate('Driver profile'),
 			'driver' =>   $driver,
 			'stats' => $this->getStats($driver, $user->business),
 			'overview' => $this->overview($driver),
@@ -154,12 +154,12 @@ class DriverController extends CustomController
 	public function overview( $driver) 
 	{
 		return [
-            [ 'key'=> $driver->driver_id, 'title'=> __('id') ],
-            [ 'key'=> $driver->first_name, 'title'=> __('first_name'),  ],
-            [ 'key'=> $driver->last_name, 'title'=> __('last_name'),  ],
-            [ 'key'=> $driver->email, 'title'=> __('email')   ],
-            [ 'key'=> $driver->mobile, 'title'=> __('mobile')  ],
-            [ 'key'=> $driver->status ? 'Yes' : 'No', 'title'=> __('status') ],
+            [ 'key'=> $driver->driver_id, 'title'=> translate('id') ],
+            [ 'key'=> $driver->first_name, 'title'=> translate('first_name'),  ],
+            [ 'key'=> $driver->last_name, 'title'=> translate('last_name'),  ],
+            [ 'key'=> $driver->email, 'title'=> translate('email')   ],
+            [ 'key'=> $driver->mobile, 'title'=> translate('mobile')  ],
+            [ 'key'=> $driver->status ? 'Yes' : 'No', 'title'=> translate('status') ],
         ];
 	}
 
@@ -180,7 +180,7 @@ class DriverController extends CustomController
 			try {
 				
 				return (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
 	
 			} catch (\Throwable $th) {
@@ -206,7 +206,7 @@ class DriverController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -223,7 +223,7 @@ class DriverController extends CustomController
 
             if ($this->repo->update((array) $params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -241,7 +241,7 @@ class DriverController extends CustomController
 			$check = $this->repo->resetPassword($params);
 
             return  ($check == 1) 
-            ? array('success'=>1, 'result'=>__('Confirmation code sent through email'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Confirmation code sent through email'), 'reload'=>1)
             : array('success'=>0, 'result'=> $check, 'error'=>1);
 			
         } catch (\Exception $e) {
@@ -267,7 +267,7 @@ class DriverController extends CustomController
 		$checkLogin = $this->repo->checkLogin($params->email, $Auth->encrypt($params->password));
 		
 		if (empty($checkLogin->driver_id)) {
-			return ['error'=> __("User credentials not valid")]; return null;
+			return ['error'=> translate("User credentials not valid")]; return null;
 		}
 		
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->driver_id);
@@ -302,7 +302,7 @@ class DriverController extends CustomController
 			return 
 			[
 				'success'=>true, 
-				'result'=> isset($checkLogin->driver_id) ? __('Password sent through email') : __('Error'), 
+				'result'=> isset($checkLogin->driver_id) ? translate('Password sent through email') : translate('Error'), 
 			];
 
 		} catch (\Exception $e) {
@@ -322,7 +322,7 @@ class DriverController extends CustomController
 
             if ($this->repo->delete($params['driver_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 
@@ -341,10 +341,10 @@ class DriverController extends CustomController
 	{
 
 		if (empty($params['first_name']))
-			return ['error'=> __('Name required')];
+			return ['error'=> translate('Name required')];
 
 		if (empty($params['email']))
-			return ['error'=> __('Email required')];
+			return ['error'=> translate('Email required')];
 
 		
 		$check = $this->repo->validateEmail($params['email'], isset($params['driver_id']) ? $params['driver_id'] : 0);
@@ -374,8 +374,8 @@ class DriverController extends CustomController
 
 			$check = $this->repo->changePassword($params);
             return isset($check->driver_id)
-			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-			 : array('error'=>$check, 'result'=>__('Error'));
+			 ? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
+			 : array('error'=>$check, 'result'=>translate('Error'));
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
@@ -391,8 +391,8 @@ class DriverController extends CustomController
 			
 			$check = $this->repo->resetChangePassword($params);
             return isset($check->driver_id)
-			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-			 : array('error'=>$check, 'result'=>__('Error'));
+			 ? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
+			 : array('error'=>$check, 'result'=>translate('Error'));
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);

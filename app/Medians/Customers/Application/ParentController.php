@@ -37,13 +37,13 @@ class ParentController extends CustomController
 
 		return [
             [ 'value'=> "customer_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> __('Name'), 'sortable'=> true ],
-            [ 'value'=> "students", 'text'=> __('Students'), 'sortable'=> true ],
-            [ 'value'=> "email", 'text'=> __('Email'), 'sortable'=> true ],
-            [ 'value'=> "gender", 'text'=> __('Gender'), 'sortable'=> true ],
-            [ 'value'=> "mobile", 'text'=> __('Mobile'), 'sortable'=> false ],
-			['value'=>'edit', 'text'=>__('Edit')],
-			['value'=>'delete', 'text'=>__('Delete')],
+            [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
+            [ 'value'=> "students", 'text'=> translate('Students'), 'sortable'=> true ],
+            [ 'value'=> "email", 'text'=> translate('Email'), 'sortable'=> true ],
+            [ 'value'=> "gender", 'text'=> translate('Gender'), 'sortable'=> true ],
+            [ 'value'=> "mobile", 'text'=> translate('Mobile'), 'sortable'=> false ],
+			['value'=>'edit', 'text'=>translate('Edit')],
+			['value'=>'delete', 'text'=>translate('Delete')],
         ];
 	}
 
@@ -58,14 +58,14 @@ class ParentController extends CustomController
 
 		return [
             [ 'key'=> "customer_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> __('name'), 'sortable'=> true, "required"=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "email", 'title'=> __('Email'), 'sortable'=> true, 'fillable'=> true, "required"=> true, 'column_type'=>'email' ],
-            [ 'key'=> "mobile", 'title'=> __('Mobile'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
-			[ 'key'=> "gender", 'title'=> __('Gender'), 
+            [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true, "required"=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "email", 'title'=> translate('Email'), 'sortable'=> true, 'fillable'=> true, "required"=> true, 'column_type'=>'email' ],
+            [ 'key'=> "mobile", 'title'=> translate('Mobile'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'phone' ],
+			[ 'key'=> "gender", 'title'=> translate('Gender'), 
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-				'data' => [['gender'=>'male','title'=>__('Male')], ['gender'=>'female','title'=>__('Female')]]  
+				'data' => [['gender'=>'male','title'=>translate('Male')], ['gender'=>'female','title'=>translate('Female')]]  
 			],
-            [ 'key'=> "picture", 'title'=> __('picture'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'file' ],
+            [ 'key'=> "picture", 'title'=> translate('picture'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'file' ],
         ];
 	}
 
@@ -85,7 +85,7 @@ class ParentController extends CustomController
 			
 		    return render('parents', [
 		        'load_vue' => true,
-		        'title' => __('Parent'),
+		        'title' => translate('Parent'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -112,7 +112,7 @@ class ParentController extends CustomController
         	$params['business_id'] = $this->app->auth()->business->business_id;
         	
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -134,7 +134,7 @@ class ParentController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -157,7 +157,7 @@ class ParentController extends CustomController
 
             if ($this->repo->delete($params['customer_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 
@@ -202,16 +202,16 @@ class ParentController extends CustomController
 	{
 
 		if (empty($params['name']))
-			return ['error'=> __('Name required')];
+			return ['error'=> translate('Name required')];
 
 		if (empty($params['email']))
-			return ['error'=> __('Email required')];
+			return ['error'=> translate('Email required')];
 
 		
 		$check = $this->repo->findByEmail($params['email']);
 
 		if ($check)
-			return ['error'=> __('Email found')];
+			return ['error'=> translate('Email found')];
 	}
 
 	
@@ -232,7 +232,7 @@ class ParentController extends CustomController
 		$checkLogin = $repo->checkLogin($params->email, $Auth->encrypt($params->password));
 		
 		if (empty($checkLogin->customer_id)) {
-			return ['error'=> __("User credentials not valid")]; 
+			return ['error'=> translate("User credentials not valid")]; 
 		}
 		
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->customer_id);
@@ -256,10 +256,10 @@ class ParentController extends CustomController
 			$checkEmail = $this->repo->findByEmail($params['email']);
 			
 			if (isset($checkEmail->email))
-				return array('error'=> __('EMAIL_FOUND'));
+				return array('error'=> translate('EMAIL_FOUND'));
 
             return  (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Password sent through email'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Password sent through email'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 			
         } catch (Exception $e) {
@@ -278,7 +278,7 @@ class ParentController extends CustomController
 			$check = $this->repo->resetPassword($params);
 
             return  ($check == 1) 
-            ? array('success'=>1, 'result'=>__('Confirmation code sent through email'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Confirmation code sent through email'), 'reload'=>1)
             : array('success'=>0, 'result'=> $check, 'error'=>1);
 			
         } catch (Exception $e) {
@@ -299,8 +299,8 @@ class ParentController extends CustomController
 			
 			$check = $this->repo->resetChangePassword($params);
             return isset($check->customer_id)
-			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-			 : array('error'=>$check, 'result'=>__('Error'));
+			 ? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
+			 : array('error'=>$check, 'result'=>translate('Error'));
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
@@ -319,7 +319,7 @@ class ParentController extends CustomController
 			$params['customer_id'] = $user->customer_id;
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -339,8 +339,8 @@ class ParentController extends CustomController
 
 			$check = $this->repo->changePassword($params);
             return isset($check->customer_id)
-			 ? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-			 : array('error'=>$check, 'result'=>__('Error'));
+			 ? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
+			 : array('error'=>$check, 'result'=>translate('Error'));
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);

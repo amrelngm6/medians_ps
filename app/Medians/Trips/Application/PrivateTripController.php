@@ -58,15 +58,15 @@ class PrivateTripController extends CustomController
 
 		return [
             [ 'value'=> "trip_id", 'text'=> "#"],
-            [ 'value'=> "vehicle.plate_number", 'text'=> __('vehicle'), 'sortable'=> true ],
-            [ 'value'=> "driver.name", 'text'=> __('driver'), 'sortable'=> true ],
-            [ 'value'=> "duration", 'text'=> __('Duration'), 'sortable'=> true ],
-            [ 'value'=> "distance", 'text'=> __('Distance').'-KM', 'sortable'=> true ],
-            [ 'value'=> "date", 'text'=> __('trip_date'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "payment_status", 'text'=> __('Payment'), 'sortable'=> true ],
-            [ 'value'=> "details", 'text'=> __('Details') ],
-            [ 'value'=> "delete", 'text'=> __('Delete') ],
+            [ 'value'=> "vehicle.plate_number", 'text'=> translate('vehicle'), 'sortable'=> true ],
+            [ 'value'=> "driver.name", 'text'=> translate('driver'), 'sortable'=> true ],
+            [ 'value'=> "duration", 'text'=> translate('Duration'), 'sortable'=> true ],
+            [ 'value'=> "distance", 'text'=> translate('Distance').'-KM', 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('trip_date'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "payment_status", 'text'=> translate('Payment'), 'sortable'=> true ],
+            [ 'value'=> "details", 'text'=> translate('Details') ],
+            [ 'value'=> "delete", 'text'=> translate('Delete') ],
         ];
 	}
 
@@ -85,7 +85,7 @@ class PrivateTripController extends CustomController
 			
 		    return render('private_trips', [
 		        'load_vue' => true,
-		        'title' => __('Private Trips'),
+		        'title' => translate('Private Trips'),
 		        'columns' => $this->columns(),
 		        'items' => $this->repo->getByDate($params),
 		        'employees' => $this->employeeRepo->get(),
@@ -113,7 +113,7 @@ class PrivateTripController extends CustomController
         	$params['business_id'] = $user->business->business_id;
 
 			$returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -134,7 +134,7 @@ class PrivateTripController extends CustomController
 			
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
         } catch (\Exception $e) {
@@ -158,7 +158,7 @@ class PrivateTripController extends CustomController
 
             if ($this->repo->delete($params['trip_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
 
         } catch (Exception $e) {
@@ -173,7 +173,7 @@ class PrivateTripController extends CustomController
 		{
             if ($this->repo->updateStatus($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
         } catch (\Exception $e) {
@@ -197,7 +197,7 @@ class PrivateTripController extends CustomController
 
 
 			$returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {

@@ -52,10 +52,10 @@ class VacationController extends CustomController
 	{
 		return [
             [ 'value'=> "vacation_id", 'text'=> "#"],
-            [ 'value'=> "date", 'text'=> __('date'), 'sortable'=> true ],
-            [ 'value'=> "user.name", 'text'=> __('User'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('Edit') ],
-            [ 'value'=> "delete", 'text'=> __('Delete') ],
+            [ 'value'=> "date", 'text'=> translate('date'), 'sortable'=> true ],
+            [ 'value'=> "user.name", 'text'=> translate('User'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('Edit') ],
+            [ 'value'=> "delete", 'text'=> translate('Delete') ],
         ];
 	}
 
@@ -84,7 +84,7 @@ class VacationController extends CustomController
 
 			return render('vacations', [
 		        'load_vue' => true,
-		        'title' => __('Vacations'),
+		        'title' => translate('Vacations'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -108,7 +108,7 @@ class VacationController extends CustomController
 			try {
 				
 				$returnData = (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
 	
 			} catch (\Throwable $th) {
@@ -133,7 +133,7 @@ class VacationController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -154,7 +154,7 @@ class VacationController extends CustomController
 
             if ($this->repo->delete($params['vacation_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 
@@ -175,7 +175,7 @@ class VacationController extends CustomController
 			try {
 				
 				$returnData = (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
 	
 			} catch (\Throwable $th) {
@@ -200,7 +200,7 @@ class VacationController extends CustomController
 			
 			$check = $this->repo->update($params);
 			$returnData = isset($check->vacation_id)
-			? array('success'=>1, 'result'=>__('updated successfully'), 'reload'=>1)
+			? array('success'=>1, 'result'=>translate('updated successfully'), 'reload'=>1)
 			: array('success'=>0, 'result'=> $check, 'error'=>1);
 
 

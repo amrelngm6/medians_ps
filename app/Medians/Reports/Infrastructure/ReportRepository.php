@@ -67,7 +67,7 @@ class ReportRepository
 			$Object = Report::find($data['id']);
 			
 			if (!$Object) {
-				return __('this user not found');	
+				return translate('this user not found');	
 			}
 
 

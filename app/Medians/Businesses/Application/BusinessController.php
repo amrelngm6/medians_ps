@@ -43,12 +43,12 @@ class BusinessController extends CustomController
 	{
 		return [
             [ 'value'=> "business_id", 'text'=> "#"],
-            [ 'value'=> "business_name", 'text'=> __('business_name'), 'sortable'=> true ],
-            [ 'value'=> "logo", 'text'=> __('Logo'), 'sortable'=> true ],
-            [ 'value'=> "owner.name", 'text'=> __('owner'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "business_name", 'text'=> translate('business_name'), 'sortable'=> true ],
+            [ 'value'=> "logo", 'text'=> translate('Logo'), 'sortable'=> true ],
+            [ 'value'=> "owner.name", 'text'=> translate('owner'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -63,8 +63,8 @@ class BusinessController extends CustomController
 		return [
             [ 'key'=> "business_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "type", 'title'=> "", 'column_type'=>'hidden', 'default'=>$type],
-			[ 'key'=> "business_name", 'title'=> __('name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "status", 'title'=> __('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "business_name", 'title'=> translate('name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "status", 'title'=> translate('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
 
         ];
 	}
@@ -85,7 +85,7 @@ class BusinessController extends CustomController
 			
 		    return render('schools', [
 		        'load_vue' => true,
-		        'title' => __('Schools'),
+		        'title' => translate('Schools'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable('school'),
 		        'items' => $this->repo->getSchools(),
@@ -111,7 +111,7 @@ class BusinessController extends CustomController
 			
 		    return render('companies', [
 		        'load_vue' => true,
-		        'title' => __('Companies'),
+		        'title' => translate('Companies'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable('company'),
 		        'items' => $this->repo->getCompanies(),
@@ -130,7 +130,7 @@ class BusinessController extends CustomController
 
 		if (empty($params['business_name']))
 		{
-			throw new \Exception(__('NAME_EMPTY'), 0);
+			throw new \Exception(translate('NAME_EMPTY'), 0);
 		}
 
 	}
@@ -155,7 +155,7 @@ class BusinessController extends CustomController
 			$params['created_by'] = $this->app->auth()->id;
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (\Exception $es) {
@@ -177,7 +177,7 @@ class BusinessController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -196,7 +196,7 @@ class BusinessController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'p'=>$params, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'p'=>$params, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -221,7 +221,7 @@ class BusinessController extends CustomController
 
             if ($this->repo->delete($id))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
         } catch (Exception $e) {

@@ -49,7 +49,7 @@ class BuilderRepository
 		$save = $check->save();
 		if ($save)
 		{
-			echo __('Done');
+			echo translate('Done');
 		}
 		return true;
 	}	

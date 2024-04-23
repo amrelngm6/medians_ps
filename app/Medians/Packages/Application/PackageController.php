@@ -34,11 +34,11 @@ class PackageController extends CustomController
 	{
 		return [
             [ 'value'=> "package_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> __('Package name'), 'sortable'=> true ],
-            [ 'value'=> "description", 'text'=> __('Description'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "name", 'text'=> translate('Package name'), 'sortable'=> true ],
+            [ 'value'=> "description", 'text'=> translate('Description'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -53,15 +53,15 @@ class PackageController extends CustomController
 
 		return [
             [ 'key'=> "package_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "name", 'title'=> __('package_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "description", 'title'=> __('Desc'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'textarea' ],
-			[ 'key'=> "single_cost_month", 'title'=> __('1-Trip Cost per-month'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
-			[ 'key'=> "single_cost_quarter", 'title'=> __('1-Trip Cost per-quarter'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
-			[ 'key'=> "single_cost_year", 'title'=> __('1-Trip Cost per-year'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
-			[ 'key'=> "double_cost_month", 'title'=> __('2-Trip Cost per-month'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
-			[ 'key'=> "double_cost_quarter", 'title'=> __('2-Trip Cost per-quarter'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
-			[ 'key'=> "double_cost_year", 'title'=> __('1-Trip Cost per-year'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
-            [ 'key'=> "status", 'title'=> __('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "name", 'title'=> translate('package_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "description", 'title'=> translate('Desc'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'textarea' ],
+			[ 'key'=> "single_cost_month", 'title'=> translate('1-Trip Cost per-month'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
+			[ 'key'=> "single_cost_quarter", 'title'=> translate('1-Trip Cost per-quarter'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
+			[ 'key'=> "single_cost_year", 'title'=> translate('1-Trip Cost per-year'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
+			[ 'key'=> "double_cost_month", 'title'=> translate('2-Trip Cost per-month'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
+			[ 'key'=> "double_cost_quarter", 'title'=> translate('2-Trip Cost per-quarter'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
+			[ 'key'=> "double_cost_year", 'title'=> translate('1-Trip Cost per-year'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
+            [ 'key'=> "status", 'title'=> translate('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
 
         ];
 	}
@@ -78,7 +78,7 @@ class PackageController extends CustomController
 	{
 		return render('packages', [
 	        'load_vue' => true,
-	        'title' => __('Packages'),
+	        'title' => translate('Packages'),
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
 	        'items' => $this->repo->get(),
@@ -105,8 +105,8 @@ class PackageController extends CustomController
 			$params['created_by'] = $user->id;
             
 			return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>__('Error'), 'error'=>1);
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>translate('Error'), 'error'=>1);
 
 
         } catch (Exception $e) {
@@ -134,7 +134,7 @@ class PackageController extends CustomController
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>true)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>true)
            	: array('error'=>'Not allowed');
 
 
@@ -161,8 +161,8 @@ class PackageController extends CustomController
         try {
 
            	return  ($this->repo->delete($params['package_id']))
-            ? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+            ? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {

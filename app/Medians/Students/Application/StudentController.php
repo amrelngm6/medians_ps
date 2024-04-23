@@ -40,13 +40,13 @@ class StudentController extends CustomController
 
 		return [
             [ 'value'=> "student_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> __('first_name'), 'sortable'=> true ],
-            [ 'value'=> "picture", 'text'=> __('picture'),  ],
-            [ 'value'=> "parent.name", 'text'=> __('parent_name'), 'sortable'=> true ],
-            [ 'value'=> "route.route_name", 'text'=> __('route'), 'sortable'=> true ],
-            [ 'value'=> "mobile", 'text'=> __('mobile'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "name", 'text'=> translate('first_name'), 'sortable'=> true ],
+            [ 'value'=> "picture", 'text'=> translate('picture'),  ],
+            [ 'value'=> "parent.name", 'text'=> translate('parent_name'), 'sortable'=> true ],
+            [ 'value'=> "route.route_name", 'text'=> translate('route'), 'sortable'=> true ],
+            [ 'value'=> "mobile", 'text'=> translate('mobile'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -61,19 +61,19 @@ class StudentController extends CustomController
 
 		return [
             [ 'key'=> "student_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "parent_id", 'title'=> __('Parent'), 
+            [ 'key'=> "parent_id", 'title'=> translate('Parent'), 
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->parentRepo->get()  
 			],
-            [ 'key'=> "name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "transfer_status", 'title'=> __('Transfer status'), 
+            [ 'key'=> "name", 'title'=> translate('first_name'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "transfer_status", 'title'=> translate('Transfer status'), 
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-				'data' => [['transfer_status'=>'Approved','title'=>__('Approved')], ['transfer_status'=>'Pending','title'=>__('Pending')]]  
+				'data' => [['transfer_status'=>'Approved','title'=>translate('Approved')], ['transfer_status'=>'Pending','title'=>translate('Pending')]]  
 			],
-            [ 'key'=> "mobile", 'title'=> __('mobile'), 'fillable'=> true, 'column_type'=>'phone' ],
-            [ 'key'=> "date_of_birth", 'title'=> __('date_of_birth'), 'fillable'=> true, 'column_type'=>'date' ],
-            [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=>true, 'column_type'=>'file' ],
-            [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "mobile", 'title'=> translate('mobile'), 'fillable'=> true, 'column_type'=>'phone' ],
+            [ 'key'=> "date_of_birth", 'title'=> translate('date_of_birth'), 'fillable'=> true, 'column_type'=>'date' ],
+            [ 'key'=> "picture", 'title'=> translate('picture'), 'fillable'=>true, 'column_type'=>'file' ],
+            [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
         ];
 	}
 
@@ -93,7 +93,7 @@ class StudentController extends CustomController
 			
 		    return render('students', [
 		        'load_vue' => true,
-		        'title' => __('Student'),
+		        'title' => translate('Student'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -111,17 +111,17 @@ class StudentController extends CustomController
 
 		if (empty($params['name']))
 		{
-			throw new \Exception(__('NAME_EMPTY'), 0);
+			throw new \Exception(translate('NAME_EMPTY'), 0);
 		}
 
 		if (empty($params['parent_id']))
 		{
-			throw new \Exception(__('parent_required'), 0);
+			throw new \Exception(translate('parent_required'), 0);
 		}
 
 		if (empty($params['mobile']))
 		{
-			throw new \Exception(__('MOBILE_ERR'), 0);
+			throw new \Exception(translate('MOBILE_ERR'), 0);
 		}
 
 	}
@@ -148,7 +148,7 @@ class StudentController extends CustomController
         	$params['status'] = isset($params['status']) ? 'on' : 0;
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (\Exception $es) {
@@ -170,7 +170,7 @@ class StudentController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -193,7 +193,7 @@ class StudentController extends CustomController
 
             if ($this->repo->delete($params['student_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
 			}
             
         } catch (Exception $e) {

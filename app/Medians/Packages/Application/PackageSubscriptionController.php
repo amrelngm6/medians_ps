@@ -48,15 +48,15 @@ class PackageSubscriptionController extends CustomController
 	{
 		return [
             [ 'value'=> "subscription_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> __('Name'), 'sortable'=> true ],
-            [ 'value'=> "package.name", 'text'=> __('Package'), 'sortable'=> true ],
-            [ 'value'=> "total_cost", 'text'=> __('Total cost'), 'sortable'=> true ],
-            [ 'value'=> "payment_status", 'text'=> __('Payment'), 'sortable'=> true ],
-            [ 'value'=> "payment_type", 'text'=> __('Duration'), 'sortable'=> true ],
-            [ 'value'=> "start_date", 'text'=> __('start_date'), 'sortable'=> true ],
-            [ 'value'=> "end_date", 'text'=> __('end_date'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
+            [ 'value'=> "package.name", 'text'=> translate('Package'), 'sortable'=> true ],
+            [ 'value'=> "total_cost", 'text'=> translate('Total cost'), 'sortable'=> true ],
+            [ 'value'=> "payment_status", 'text'=> translate('Payment'), 'sortable'=> true ],
+            [ 'value'=> "payment_type", 'text'=> translate('Duration'), 'sortable'=> true ],
+            [ 'value'=> "start_date", 'text'=> translate('start_date'), 'sortable'=> true ],
+            [ 'value'=> "end_date", 'text'=> translate('end_date'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -83,7 +83,7 @@ class PackageSubscriptionController extends CustomController
 	{
 		return render('package_subscriptions', [
 	        'load_vue' => true,
-	        'title' => __('Package Subscriptions'),
+	        'title' => translate('Package Subscriptions'),
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
 			'students' => $this->studentRepo->get(),
@@ -114,8 +114,8 @@ class PackageSubscriptionController extends CustomController
 			$params['created_by'] = $user->id;
             
 			return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>__('Error'), 'error'=>1);
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>translate('Error'), 'error'=>1);
 
 
         } catch (Exception $e) {
@@ -144,7 +144,7 @@ class PackageSubscriptionController extends CustomController
 			$params['payment_status'] = (isset($params['is_paid']) && $params['is_paid'] != 'false' && $params['is_paid'] != 'null' ) ? 'paid' : 'unpaid';
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>true)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>true)
            	: array('error'=>'Not allowed');
 
         } catch (Exception $e) {
@@ -170,8 +170,8 @@ class PackageSubscriptionController extends CustomController
         try {
 
            	return  ($this->repo->delete($params['subscription_id']))
-            ? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+            ? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {
@@ -230,7 +230,7 @@ class PackageSubscriptionController extends CustomController
 		
 		$data = $this->repo->cancelSubscription( $subscriptionId);
 
-		return $data == true ? array('success'=>true, 'result'=>__('Subscription canceled')) : $data;
+		return $data == true ? array('success'=>true, 'result'=>translate('Subscription canceled')) : $data;
 
 	}  
 

@@ -42,63 +42,63 @@ class SystemSettingsController extends CustomController
 		return [
             
 			'basic'=> [	
-	            [ 'key'=> "logo", 'title'=> __('logo'), 'fillable'=>true, 'column_type'=>'file' ],
-				[ 'key'=> "sitename", 'title'=> __('sitename'), 'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "lang", 'title'=> __('Languange'), 
+	            [ 'key'=> "logo", 'title'=> translate('logo'), 'fillable'=>true, 'column_type'=>'file' ],
+				[ 'key'=> "sitename", 'title'=> translate('sitename'), 'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "lang", 'title'=> translate('Languange'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['lang'=>'arabic','title'=>__('Arabic')], ['lang'=>'english','title'=>__('English')]]  
+					'data' => [['lang'=>'arabic','title'=>translate('Arabic')], ['lang'=>'english','title'=>translate('English')]]  
 				],
-				[ 'key'=> "currency", 'title'=> __('Currency'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "currency", 'title'=> translate('Currency'), 'fillable'=> true, 'column_type'=>'text' ],
 
 			],
 			'site_setting'=> [	
-				[ 'key'=> "footer_email", 'title'=> __('Footer email'), 'fillable'=> true, 'column_type'=>'email' ],
-				[ 'key'=> "footer_address", 'title'=> __('Footer address'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "footer_phone", 'title'=> __('Footer phone'), 'fillable'=> true, 'column_type'=>'phone' ],
+				[ 'key'=> "footer_email", 'title'=> translate('Footer email'), 'fillable'=> true, 'column_type'=>'email' ],
+				[ 'key'=> "footer_address", 'title'=> translate('Footer address'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "footer_phone", 'title'=> translate('Footer phone'), 'fillable'=> true, 'column_type'=>'phone' ],
 			],
 			'smtp'=> [	
-				[ 'key'=> "smtp_sender", 'title'=> __('smtp_sender'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "smtp_user", 'title'=> __('SMTP_USER'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "smtp_password", 'title'=> __('smtp_password'), 'fillable'=> true, 'column_type'=>'password' ],
-				[ 'key'=> "smtp_host", 'title'=> __('smtp_host'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "smtp_port", 'title'=> __('smtp_port'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "smtp_auth", 'title'=> __('smtp_auth'), 
+				[ 'key'=> "smtp_sender", 'title'=> translate('smtp_sender'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "smtp_user", 'title'=> translate('SMTP_USER'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "smtp_password", 'title'=> translate('smtp_password'), 'fillable'=> true, 'column_type'=>'password' ],
+				[ 'key'=> "smtp_host", 'title'=> translate('smtp_host'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "smtp_port", 'title'=> translate('smtp_port'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "smtp_auth", 'title'=> translate('smtp_auth'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['smtp_auth'=>'1','title'=>"True"], ['smtp_auth'=>'0','title'=>"False"]]  
 				],
 			],
 			
 			'one_signal'=> [	
-				[ 'key'=> "onesignal_app_id", 'title'=> __('OneSingal APP ID'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "onesignal_app_key_token", 'title'=> __('OneSingal API Key Token'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "onesignal_app_id", 'title'=> translate('OneSingal APP ID'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "onesignal_app_key_token", 'title'=> translate('OneSingal API Key Token'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
 			'google'=> [	
-				[ 'key'=> "google_client_id", 'title'=> __('Google Client ID'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "google_client_secret", 'title'=> __('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "google_map_api", 'title'=> __('Google Map API'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "google_client_id", 'title'=> translate('Google Client ID'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "google_client_secret", 'title'=> translate('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "google_map_api", 'title'=> translate('Google Map API'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
 			'wallets'=> [	
-				[ 'key'=> "comission_free_plan", 'help_text'=>'Comission will be calculated on withdrawal request', 'title'=> __('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "comission_paid_plan", 'help_text'=>'Comission will be calculated on withdrawal request', 'title'=> __('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "comission_free_plan", 'help_text'=>'Comission will be calculated on withdrawal request', 'title'=> translate('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "comission_paid_plan", 'help_text'=>'Comission will be calculated on withdrawal request', 'title'=> translate('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 			
 			'paypal'=> [	
-				[ 'key'=> "paypal_api_key", 'title'=> __('PayPal API Key'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "paypal_api_secret", 'title'=> __('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'password' ],
-				[ 'key'=> "paypal_mode", 'title'=> __('PayPal mode'), 
+				[ 'key'=> "paypal_api_key", 'title'=> translate('PayPal API Key'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "paypal_api_secret", 'title'=> translate('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'password' ],
+				[ 'key'=> "paypal_mode", 'title'=> translate('PayPal mode'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['paypal_mode'=>'live','title'=>'Live'], ['paypal_mode'=>'sandbox','title'=>'Sandbox']]  
 				],
 			],
 			'paystack'=> [
-				[ 'key'=> "paystack_secret_key", 'title'=> __('PayStack secret key'), 'fillable'=> true, 'column_type'=>'password' ],
+				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'fillable'=> true, 'column_type'=>'password' ],
 			],
 			// 'stripe'=> [	
-			// 	[ 'key'=> "stripe_publish_key", 'title'=> __('Stripe publishable key'), 'fillable'=> true, 'column_type'=>'text' ],
-			// 	[ 'key'=> "stripe_live_key", 'title'=> __('Stripe live key'), 'fillable'=> true, 'column_type'=>'text' ],
-			// 	[ 'key'=> "stripe_mode", 'title'=> __('Stripe mode'), 
+			// 	[ 'key'=> "stripe_publish_key", 'title'=> translate('Stripe publishable key'), 'fillable'=> true, 'column_type'=>'text' ],
+			// 	[ 'key'=> "stripe_live_key", 'title'=> translate('Stripe live key'), 'fillable'=> true, 'column_type'=>'text' ],
+			// 	[ 'key'=> "stripe_mode", 'title'=> translate('Stripe mode'), 
 			// 		'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 			// 		'data' => [['stripe_mode'=>'live','title'=>'Live'], ['stripe_mode'=>'sandbox','title'=>'Sandbox']]  
 			// 	],
@@ -117,7 +117,7 @@ class SystemSettingsController extends CustomController
 		        'load_vue' => true,
 		        'setting' => $this->getAll(),
 		        'fillable' => $this->fillable(),
-	        	'title' => __('System_Settings'),
+	        	'title' => translate('System_Settings'),
 	    ]);
 	} 
 
@@ -146,7 +146,7 @@ class SystemSettingsController extends CustomController
 		try {
 
             if (isset($this->updateSettings($params)->updated)) 
-            	return array('success'=>1, 'result'=>__('Updated'));
+            	return array('success'=>1, 'result'=>translate('Updated'));
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());

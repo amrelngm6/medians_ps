@@ -42,15 +42,15 @@ class InvoiceController extends CustomController
 
 		return [
             [ 'value'=> "invoice_id", 'text'=> "#"],
-            [ 'value'=> "model", 'text'=> __('User'), 'sortable'=> false ],
-            [ 'value'=> "subtotal", 'text'=> __('Subtotal'), 'sortable'=> true ],
-            [ 'value'=> "total_amount", 'text'=> __('Total Amount'), 'sortable'=> true ],
-            [ 'value'=> "payment_method", 'text'=> __('Gateway'), 'sortable'=> true ],
-            [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> false ],
-            [ 'value'=> "notes", 'text'=> __('Notes'), 'sortable'=> true ],
-			['value'=>'edit', 'text'=>__('View')],
-			// ['value'=>'delete', 'text'=>__('Delete')],
+            [ 'value'=> "model", 'text'=> translate('User'), 'sortable'=> false ],
+            [ 'value'=> "subtotal", 'text'=> translate('Subtotal'), 'sortable'=> true ],
+            [ 'value'=> "total_amount", 'text'=> translate('Total Amount'), 'sortable'=> true ],
+            [ 'value'=> "payment_method", 'text'=> translate('Gateway'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> false ],
+            [ 'value'=> "notes", 'text'=> translate('Notes'), 'sortable'=> true ],
+			['value'=>'edit', 'text'=>translate('View')],
+			// ['value'=>'delete', 'text'=>translate('Delete')],
         ];
 	}
 
@@ -65,7 +65,7 @@ class InvoiceController extends CustomController
 
 		return render('invoices', [
 			'load_vue'=> true,
-	        'title' => __('Invoices list'),
+	        'title' => translate('Invoices list'),
 	        'items' => $this->repo->getByDate($params),
 	        'columns' => $this->columns(),
 	    ]);
@@ -87,8 +87,8 @@ class InvoiceController extends CustomController
         	$params['business_id'] = $this->app->business->business_id;
         	
             return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('error'=>__('Err'));
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('error'=>translate('Err'));
 
 
         } catch (Exception $e) {
@@ -111,8 +111,8 @@ class InvoiceController extends CustomController
         try {
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
         } catch (Exception $e) {
             $returnData = array('error'=>$e->getMessage());
@@ -136,8 +136,8 @@ class InvoiceController extends CustomController
         try {
 
            	$returnData =  $this->repo->delete($params['invoice_id'])
-           	? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+           	? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {

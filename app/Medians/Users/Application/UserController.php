@@ -48,15 +48,15 @@ class UserController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "id", 'title'=> __('id'), 'fillable'=> true, 'column_type'=>'hidden' ],
-            [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
-            [ 'key'=> "first_name", 'title'=> __('first_name'), 'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
-            [ 'key'=> "last_name", 'title'=> __('last_name'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "email", 'title'=> __('email'), 'fillable'=> true, 'column_type'=>'email', 'required'=>true  ],
-            [ 'key'=> "phone", 'title'=> __('phone'), 'fillable'=> true, 'column_type'=>'phone' ],
-            [ 'key'=> "password", 'title'=> __('password'), 'fillable'=> true, 'column_type'=>'password' ],
-            [ 'key'=> "active", 'title'=> __('status'), 'fillable'=> true, 'column_type'=>'hidden' ],
-			[ 'key'=> "role_id", 'title'=> __('Role'), 
+            [ 'key'=> "id", 'title'=> translate('id'), 'fillable'=> true, 'column_type'=>'hidden' ],
+            [ 'key'=> "picture", 'title'=> translate('picture'), 'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "first_name", 'title'=> translate('first_name'), 'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
+            [ 'key'=> "last_name", 'title'=> translate('last_name'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "email", 'title'=> translate('email'), 'fillable'=> true, 'column_type'=>'email', 'required'=>true  ],
+            [ 'key'=> "phone", 'title'=> translate('phone'), 'fillable'=> true, 'column_type'=>'phone' ],
+            [ 'key'=> "password", 'title'=> translate('password'), 'fillable'=> true, 'column_type'=>'password' ],
+            [ 'key'=> "active", 'title'=> translate('status'), 'fillable'=> true, 'column_type'=>'hidden' ],
+			[ 'key'=> "role_id", 'title'=> translate('Role'), 
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->rolesRepo->get()
 			],
@@ -74,13 +74,13 @@ class UserController extends CustomController
 		$user = $this->app->auth();
 
 		return [
-            // [ 'key'=> $user->id, 'title'=> __('id') ],
-            [ 'key'=> $user->first_name, 'title'=> __('first_name'),  ],
-            [ 'key'=> $user->last_name, 'title'=> __('last_name'),  ],
-            [ 'key'=> $user->email, 'title'=> __('email')   ],
-            [ 'key'=> $user->phone, 'title'=> __('phone')  ],
-            [ 'key'=> $user->active ? 'Yes' : 'No', 'title'=> __('status') ],
-			[ 'key'=> $user->role->name, 'title'=> __('Role') ],
+            // [ 'key'=> $user->id, 'title'=> translate('id') ],
+            [ 'key'=> $user->first_name, 'title'=> translate('first_name'),  ],
+            [ 'key'=> $user->last_name, 'title'=> translate('last_name'),  ],
+            [ 'key'=> $user->email, 'title'=> translate('email')   ],
+            [ 'key'=> $user->phone, 'title'=> translate('phone')  ],
+            [ 'key'=> $user->active ? 'Yes' : 'No', 'title'=> translate('status') ],
+			[ 'key'=> $user->role->name, 'title'=> translate('Role') ],
         ];
 	}
 
@@ -95,7 +95,7 @@ class UserController extends CustomController
 		$user = $this->app->auth();
 
 		return render('users', [
-	        'title' => __('Users'),
+	        'title' => translate('Users'),
 			'load_vue'=> true,
 			'roles' =>   $user->role_id == 1 ? $this->rolesRepo->getWithUsers() : $this->rolesRepo->getWithBusinessUsers($user),
 	        'overview' => $this->overview(),
@@ -118,7 +118,7 @@ class UserController extends CustomController
 
 		return render('profile', [
 			'load_vue'=> true,
-	        'title' => __('Users'),
+	        'title' => translate('Users'),
 			'user' =>   $user,
             'stats' => $this->getStats($user->business),
 	        'overview' => $this->overview(),
@@ -168,7 +168,7 @@ class UserController extends CustomController
 			$save = $this->repo->store($params);
 
         	return isset($save->id) 
-           	? array('success'=>1, 'result'=>__('Created'), 'reload'=>1)
+           	? array('success'=>1, 'result'=>translate('Created'), 'reload'=>1)
         	: array('error'=> $save );
 
         } catch (Exception $e) {
@@ -186,13 +186,13 @@ class UserController extends CustomController
 		$check = $this->repo->checkDuplicate($params);
 
 		if (empty($params['first_name']))
-			return ['result'=> __('Name required')];
+			return ['result'=> translate('Name required')];
 
 		if (empty($params['email']))
-			return ['result'=> __('Email required')];
+			return ['result'=> translate('Email required')];
 
 		if (empty($params['password']))
-			return ['result'=> __('Password required')];
+			return ['result'=> translate('Password required')];
 
 		if ($check)
 			return ['result'=>$check];
@@ -206,13 +206,13 @@ class UserController extends CustomController
 	{
 
 		if (empty($params['first_name']))
-			return ['result'=> __('Name required')];
+			return ['result'=> translate('Name required')];
 
 		if (empty($params['email']))
-			return ['result'=> __('Email required')];
+			return ['result'=> translate('Email required')];
 
 		if ($params['id'] != $this->app->auth()->id && $this->app->auth()->role_id != 1)
-			return ['result'=> __('Not allowed')];
+			return ['result'=> translate('Not allowed')];
 	}
 
 
@@ -241,7 +241,7 @@ class UserController extends CustomController
 			$update = $this->repo->update($params);
 
         	return isset($update->id) 
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
         	: array('error'=> $update );
 
         } catch (Exception $e) {
@@ -262,7 +262,7 @@ class UserController extends CustomController
 			$update = $this->repo->updateStatus($params);
 
         	echo json_encode( isset($update->id) 
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
         	: array('error'=> $update ));
 
         } catch (Exception $e) {

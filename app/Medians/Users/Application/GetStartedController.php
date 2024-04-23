@@ -48,7 +48,7 @@ class GetStartedController
 		return render('get_started', [
 			'load_vue'=> true,
 			'plans' =>   $this->planRepo->get(),
-	        'title' => __('Get_started'),
+	        'title' => translate('Get_started'),
 	    ]);
 		return render('views/admin/get-started.html.twig',['user'=>$this->app->auth()]);
 
@@ -133,7 +133,7 @@ class GetStartedController
 			$save = $this->savePlan($plan, $params['payment_type']);
 
         	return isset($save->plan_id) 
-           	? array('success'=>1, 'result'=>__('Created'))
+           	? array('success'=>1, 'result'=>translate('Created'))
         	: array('error'=> $save );
 
         } catch (Exception $e) {
@@ -164,7 +164,7 @@ class GetStartedController
 			$save = $this->planSubscriptionRepo->store($planSubscription);
 
 			return isset($save->plan_id) 
-			? array('success'=>1, 'result'=>__('Subscribed successfully'))
+			? array('success'=>1, 'result'=>translate('Subscribed successfully'))
 			: array('error'=> $save );
 
 		} catch (Exception $e) {

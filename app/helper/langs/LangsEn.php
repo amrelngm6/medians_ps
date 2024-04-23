@@ -946,7 +946,7 @@ class LangsEn
 	}
 
 
-	public static function __($langkey)
+	public static function translate($langkey)
 	{
 		$LANG_ARRAY = array_change_key_case(LangsEn::get(), CASE_LOWER);
 

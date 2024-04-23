@@ -41,11 +41,11 @@ class VehicleController extends CustomController
 
 		return [
             [ 'value'=> "vehicle_id", 'text'=> "#"],
-            [ 'value'=> "vehicle_name", 'text'=> __('vehicle_name'), 'sortable'=> true ],
-            [ 'value'=> "plate_number", 'text'=> __('plate_number'), 'sortable'=> true ],
-            [ 'value'=> "type.name", 'text'=> __('Type')],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "vehicle_name", 'text'=> translate('vehicle_name'), 'sortable'=> true ],
+            [ 'value'=> "plate_number", 'text'=> translate('plate_number'), 'sortable'=> true ],
+            [ 'value'=> "type.name", 'text'=> translate('Type')],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -60,14 +60,14 @@ class VehicleController extends CustomController
 
 		return [
             [ 'key'=> "vehicle_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "vehicle_name", 'title'=> __('vehicle_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "type_id", 'title'=> __('Vehicle type'), 
+            [ 'key'=> "vehicle_name", 'title'=> translate('vehicle_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "type_id", 'title'=> translate('Vehicle type'), 
 				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'type_id', 'text_key'=>'name', 'withLabel'=>true,
 				'data' => $this->vehicleTypeRepo->get()
 			],
-            [ 'key'=> "plate_number", 'title'=> __('plate_number'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "capacity", 'title'=> __('capacity'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
-            [ 'key'=> "picture", 'title'=> __('picture'), 'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "plate_number", 'title'=> translate('plate_number'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "capacity", 'title'=> translate('capacity'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
+            [ 'key'=> "picture", 'title'=> translate('picture'), 'fillable'=> true, 'column_type'=>'file' ],
 
         ];
 	}
@@ -88,7 +88,7 @@ class VehicleController extends CustomController
 			
 		    return render('vehicles', [
 		        'load_vue' => true,
-		        'title' => __('Vehicles'),
+		        'title' => translate('Vehicles'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -107,7 +107,7 @@ class VehicleController extends CustomController
 
 		if (empty($params['vehicle_name']))
 		{
-			throw new \Exception(__('NAME_EMPTY'), 0);
+			throw new \Exception(translate('NAME_EMPTY'), 0);
 		}
 
 	}
@@ -135,7 +135,7 @@ class VehicleController extends CustomController
         	
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (\Exception $es) {
@@ -157,7 +157,7 @@ class VehicleController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -176,7 +176,7 @@ class VehicleController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'p'=>$params, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'p'=>$params, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -200,7 +200,7 @@ class VehicleController extends CustomController
 
             if ($this->repo->delete($params['vehicle_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
         } catch (Exception $e) {

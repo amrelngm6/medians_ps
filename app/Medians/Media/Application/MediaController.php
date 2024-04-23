@@ -69,7 +69,7 @@ class MediaController extends CustomController
 
 			echo $this->repo->delete($item->file_name);
 
-			echo json_encode(['data'=> ['message'=>__('Deleted')]]);
+			echo json_encode(['data'=> ['message'=>translate('Deleted')]]);
 			
 
 		} catch (\Exception $e) {

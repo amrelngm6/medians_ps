@@ -43,10 +43,10 @@ class PlanFeature extends CustomModel
 			return $this->access;
 
 		if ($this->access < 0)
-			return __('unlimited');
+			return translate('unlimited');
 
 		if ($this->access == 0)
-			return __('not_available'); 
+			return translate('not_available'); 
 	}
 
 	public  function getPlanNameAttribute()

@@ -35,11 +35,11 @@ class CountryController extends CustomController
 
 		return [
             [ 'value'=> "country_id", 'text'=> "#",'sortable'=> true ],
-            [ 'value'=> "name", 'text'=> __('name'), 'sortable'=> true ],
-            [ 'value'=> "picture", 'text'=> __('Flag'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('Edit') ],
-            [ 'value'=> "delete", 'text'=> __('delete') ],
+            [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
+            [ 'value'=> "picture", 'text'=> translate('Flag'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('Edit') ],
+            [ 'value'=> "delete", 'text'=> translate('delete') ],
         ];
 	}
 
@@ -53,10 +53,10 @@ class CountryController extends CustomController
 	{
 		return [
             [ 'key'=> "country_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> __('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "code", 'title'=> __('Code'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "picture", 'title'=> __('Flag'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'file' ],
-            [ 'key'=> "status", 'title'=> __('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox', 'withlabel'=>true ],
+            [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "code", 'title'=> translate('Code'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "picture", 'title'=> translate('Flag'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'file' ],
+            [ 'key'=> "status", 'title'=> translate('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox', 'withlabel'=>true ],
         ];
 	}
 
@@ -77,7 +77,7 @@ class CountryController extends CustomController
 		    return render('countries', 
 			[
 		        'load_vue' => true,
-		        'title' => __('Countries'),
+		        'title' => translate('Countries'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -98,7 +98,7 @@ class CountryController extends CustomController
         	$params['created_by'] = $this->app->auth()->id;
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -120,7 +120,7 @@ class CountryController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
         } catch (\Exception $e) {
@@ -140,7 +140,7 @@ class CountryController extends CustomController
 
             if ($this->repo->delete($params['country_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
 
         } catch (Exception $e) {
@@ -154,7 +154,7 @@ class CountryController extends CustomController
 	{
 		if (empty($params['title']))
 		{
-        	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
+        	throw new \Exception(json_encode(array('result'=>translate('NAME_EMPTY'), 'error'=>1)), 1);
 		}
 	}
 

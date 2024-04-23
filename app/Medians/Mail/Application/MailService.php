@@ -72,7 +72,7 @@ class MailService
 		    return true;
 
 		} catch (Exception $e) {
-		    return __("Message could not be sent. Mailer Error"). $mail->ErrorInfo;
+		    return translate("Message could not be sent. Mailer Error"). $mail->ErrorInfo;
 		}
 	}
 

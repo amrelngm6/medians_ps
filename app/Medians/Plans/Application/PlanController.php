@@ -35,13 +35,13 @@ class PlanController extends CustomController
 	{
 		return [
             [ 'value'=> "plan_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> __('Plan name'), 'sortable'=> true ],
-            [ 'value'=> "type", 'text'=> __('type'), 'sortable'=> true ],
-            [ 'value'=> "monthly_cost", 'text'=> __('Cost per month'), 'sortable'=> true ],
-            [ 'value'=> "yearly_cost", 'text'=> __('Cost per year'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "name", 'text'=> translate('Plan name'), 'sortable'=> true ],
+            [ 'value'=> "type", 'text'=> translate('type'), 'sortable'=> true ],
+            [ 'value'=> "monthly_cost", 'text'=> translate('Cost per month'), 'sortable'=> true ],
+            [ 'value'=> "yearly_cost", 'text'=> translate('Cost per year'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -56,14 +56,14 @@ class PlanController extends CustomController
 
 		return [
             [ 'key'=> "plan_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "name", 'title'=> __('plan_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "type", 'title'=> __('Plan Payment'), 
+			[ 'key'=> "name", 'title'=> translate('plan_name'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "type", 'title'=> translate('Plan Payment'), 
 				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => [['name'=>'Free', 'type'=>'free'], ['name'=>'Paid', 'type'=>'paid']]
 			],
-			[ 'key'=> "monthly_cost", 'title'=> __('Cost per month'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
-			[ 'key'=> "yearly_cost", 'title'=> __('Cost per year'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
-            [ 'key'=> "status", 'title'=> __('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "monthly_cost", 'title'=> translate('Cost per month'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
+			[ 'key'=> "yearly_cost", 'title'=> translate('Cost per year'), 'required'=>true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'number' ],
+            [ 'key'=> "status", 'title'=> translate('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
 
         ];
 	}
@@ -80,7 +80,7 @@ class PlanController extends CustomController
 	{
 		return render('plans', [
 	        'load_vue' => true,
-	        'title' => __('Plans'),
+	        'title' => translate('Plans'),
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
 	        'items' => $this->repo->get(),
@@ -102,8 +102,8 @@ class PlanController extends CustomController
         try {
         	$params['created_by'] = $this->app->auth()->id;
             return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>__('Error'), 'error'=>1);
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>translate('Error'), 'error'=>1);
 
 
         } catch (Exception $e) {
@@ -131,7 +131,7 @@ class PlanController extends CustomController
 			$params['status'] = isset($params['status']) ? $params['status'] : null;
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>true)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>true)
            	: array('error'=>'Not allowed');
 
 
@@ -158,8 +158,8 @@ class PlanController extends CustomController
         try {
 
            	return  ($this->repo->delete($params['plan_id']))
-            ? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+            ? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {

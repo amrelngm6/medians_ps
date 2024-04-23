@@ -157,7 +157,7 @@ class WithdrawalRepository
                 return $check->delete();
             }
 
-            return __("Not allowed to be deleted");
+            return translate("Not allowed to be deleted");
 
 		} catch (\Exception $e) {
 

@@ -65,7 +65,7 @@ class AuthService
 		    // return  render('login', [
 			return render('views/front/signin.html.twig', [
 		    	// 'load_vue' => true,
-		        'title' => __('Login page'),
+		        'title' => translate('Login page'),
 		        'app' => $this->app,
 		        'google_login' => $this->loginWithGoogle(),
 		        'formAction' => '/login',
@@ -89,7 +89,7 @@ class AuthService
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
 
 			return render('views/front/signup.html.twig', [
-		        'title' => __('Login page'),
+		        'title' => translate('Login page'),
 		        'app' => $this->app,
 		        'google_login' => $this->loginWithGoogle(),
 		    ]);
@@ -198,7 +198,7 @@ class AuthService
             if (!empty($checkUser->id))
             {
                 $this->setSession($checkUser);
-            	echo json_encode(array('success'=>1, 'result'=>__('Logged in'), 'redirect'=>$this->app->CONF['url']));
+            	echo json_encode(array('success'=>1, 'result'=>translate('Logged in'), 'redirect'=>$this->app->CONF['url']));
 
             } else {
 	            echo json_encode(array('error'=>$checkUser));
@@ -232,7 +232,7 @@ class AuthService
 				if (!empty($checkUser->id))
 				{
 					$this->setSession($checkUser);
-					echo json_encode(array('success'=>1, 'result'=>__('Logged in'), 'redirect'=>$this->app->CONF['url'].'dashboard'));
+					echo json_encode(array('success'=>1, 'result'=>translate('Logged in'), 'redirect'=>$this->app->CONF['url'].'dashboard'));
 				}
 
             } else {
@@ -264,9 +264,9 @@ class AuthService
 
 			return render('views/front/activate.html.twig', [
 				// 'load_vue' => true,
-				'title' => __('Activation page'),
+				'title' => translate('Activation page'),
 				'app' => $this->app,
-				'msg' => isset($updated) ? __('Account activated successfully') : __('Code not valid'),
+				'msg' => isset($updated) ? translate('Account activated successfully') : translate('Code not valid'),
 				'valid' => isset($updated) ? true : false,
 			]);
 
@@ -288,12 +288,12 @@ class AuthService
 
 		if (empty($checkLogin->id))
 		{
-            return __("User credentials not valid");
+            return translate("User credentials not valid");
 		}
 
 		if (empty($checkLogin->active))
 		{
-			return __("User account is not active");
+			return translate("User account is not active");
 		}
 
 		return $checkLogin;
@@ -311,7 +311,7 @@ class AuthService
 		
 		if (isset($getByEmail->id))
 		{
-            return __("EMAIL_FOUND");
+            return translate("EMAIL_FOUND");
 		}
 	}
 
@@ -330,12 +330,12 @@ class AuthService
 
 		if (empty($checkDriverLogin->id))
 		{
-            return __("User credentials not valid");
+            return translate("User credentials not valid");
 		}
 
 		if (empty($checkDriverLogin->active))
 		{
-			return __("User account is not active");
+			return translate("User account is not active");
 		}
 
 		return $checkDriverLogin;
@@ -352,12 +352,12 @@ class AuthService
 
 		if (empty($checkParentLogin->id))
 		{
-            return __("User credentials not valid");
+            return translate("User credentials not valid");
 		}
 
 		if (empty($checkParentLogin->active))
 		{
-			return __("User account is not active");
+			return translate("User account is not active");
 		}
 
 		return $checkParentLogin;
@@ -374,16 +374,16 @@ class AuthService
 	{
 
         if (!empty($this->repo->getByEmail($params['email'])))
-			return json_encode(array('error'=>__('Email already found')));
+			return json_encode(array('error'=>translate('Email already found')));
 
         if (empty($params['email']))
-			return json_encode(array('error'=>__('Email required')));
+			return json_encode(array('error'=>translate('Email required')));
 
         if (empty($params['first_name']))
-			return json_encode(array('error'=>__('Name required')));
+			return json_encode(array('error'=>translate('Name required')));
 
 		if (strlen($params['password']) < $this->passLen)
-			return __("Password length must be $this->passLen at least ");
+			return translate("Password length must be $this->passLen at least ");
 
 	} 
 

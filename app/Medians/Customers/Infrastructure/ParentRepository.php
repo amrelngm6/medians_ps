@@ -107,7 +107,7 @@ class ParentRepository  extends CustomerRepository
 		$findByEmail = $this->findByEmail($data['email']);
 
 		if (empty($findByEmail))
-			return __('User not found');
+			return translate('User not found');
 		
 		$deleteOld = CustomField::where('model_type', Parents::class)->where('model_id', $findByEmail->customer_id)->where('code', 'reset_token')->delete();
 		
@@ -168,7 +168,7 @@ class ParentRepository  extends CustomerRepository
 		
 		if (isset($data['email']) && $this->validateEmail($data['email'], $data['customer_id']))
 		{
-			return throw new \Exception(__('Email found'), 1);
+			return throw new \Exception(translate('Email found'), 1);
 		}
 
 		// Return the  object with the new data
@@ -196,7 +196,7 @@ class ParentRepository  extends CustomerRepository
 
 		if (!$this->checkLogin($Object->email, $current))
 		{
-			return __('PASSWORD_ERROR');
+			return translate('PASSWORD_ERROR');
 		}
 
 		$data['password'] = $Auth->encrypt($data['new_password']);

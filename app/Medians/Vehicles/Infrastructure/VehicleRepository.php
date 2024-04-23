@@ -48,7 +48,7 @@ class VehicleRepository
 		$permission = 'Vehicle.count';
 		if (count($this->get()) == $this->business->subscription->features[$permission])
 		{
-			return throw new \Exception(__('Access limit exceeded'), 1);
+			return throw new \Exception(translate('Access limit exceeded'), 1);
 		}
 
 		$Model = new Vehicle();

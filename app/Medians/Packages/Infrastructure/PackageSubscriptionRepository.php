@@ -172,7 +172,7 @@ class PackageSubscriptionRepository
 
 			if (isset($check->payment_status) && $check->payment_status == 'paid')
 			{
-				return array('error'=>__('Paid subscriptions not cancelable'));
+				return array('error'=>translate('Paid subscriptions not cancelable'));
 			}
 
 

@@ -36,7 +36,7 @@ class RoleController extends CustomController
 
 		return [
             [ 'key'=> "id", 'title'=> "#"],
-            [ 'key'=> "name", 'title'=> __('name'), 'sortable'=> true ],
+            [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true ],
         ];
 	}
 
@@ -51,7 +51,7 @@ class RoleController extends CustomController
 
 		return [
             [ 'key'=> "id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> __('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
         ];
 	}
 
@@ -71,7 +71,7 @@ class RoleController extends CustomController
 			
 		    return render('roles', [
 		        'load_vue' => true,
-		        'title' => __('Roles'),
+		        'title' => translate('Roles'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -93,7 +93,7 @@ class RoleController extends CustomController
         try {	
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -115,7 +115,7 @@ class RoleController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -136,7 +136,7 @@ class RoleController extends CustomController
 
             if ($this->repo->updatePermissions($params['permissions']))
             {
-                echo json_encode(array('success'=>1, 'p'=>$params, 'result'=>__('Updated'), 'reload'=>1));
+                echo json_encode(array('success'=>1, 'p'=>$params, 'result'=>translate('Updated'), 'reload'=>1));
             }
 			
 			return null;
@@ -160,7 +160,7 @@ class RoleController extends CustomController
 
             if ($this->repo->delete($params['id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 

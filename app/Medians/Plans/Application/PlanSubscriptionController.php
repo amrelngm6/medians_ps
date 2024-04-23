@@ -38,14 +38,14 @@ class PlanSubscriptionController extends CustomController
 	{
 		return [
             [ 'value'=> "subscription_id", 'text'=> "#"],
-            [ 'value'=> "plan.name", 'text'=> __('Plan'), 'sortable'=> true ],
-            [ 'value'=> "business.business_name", 'text'=> __('Business'), 'sortable'=> true ],
-            [ 'value'=> "user", 'text'=> __('User'), 'sortable'=> true ],
-            [ 'value'=> "type", 'text'=> __('Type'), 'sortable'=> true ],
-            [ 'value'=> "start_date", 'text'=> __('From'), 'sortable'=> true ],
-            [ 'value'=> "end_date", 'text'=> __('To'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            // [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "plan.name", 'text'=> translate('Plan'), 'sortable'=> true ],
+            [ 'value'=> "business.business_name", 'text'=> translate('Business'), 'sortable'=> true ],
+            [ 'value'=> "user", 'text'=> translate('User'), 'sortable'=> true ],
+            [ 'value'=> "type", 'text'=> translate('Type'), 'sortable'=> true ],
+            [ 'value'=> "start_date", 'text'=> translate('From'), 'sortable'=> true ],
+            [ 'value'=> "end_date", 'text'=> translate('To'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            // [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -60,9 +60,9 @@ class PlanSubscriptionController extends CustomController
 
 		return [
             [ 'key'=> "feature_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "plan.name", 'title'=> __('Plan'), 'disabled'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "business.business_name", 'title'=> __('Business'), 'disabled'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "user.name", 'title'=> __('User'), 'disabled'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "plan.name", 'title'=> translate('Plan'), 'disabled'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "business.business_name", 'title'=> translate('Business'), 'disabled'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "user.name", 'title'=> translate('User'), 'disabled'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
 
         ];
 	}
@@ -78,7 +78,7 @@ class PlanSubscriptionController extends CustomController
 	{
 		return render('plan_subscriptions', [
 	        'load_vue' => true,
-	        'title' => __('plan_subscriptions'),
+	        'title' => translate('plan_subscriptions'),
 	        'items' => $this->repo->get(),
 	        'columns' => $this->columns(),
 	        'fillable' => $this->fillable(),
@@ -115,7 +115,7 @@ class PlanSubscriptionController extends CustomController
         try {
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>true)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>true)
            	: array('error'=>'Not allowed');
 
         } catch (Exception $e) {

@@ -42,35 +42,35 @@ class AppSettingsController extends CustomController
 		return [
             
 			'basic'=> [	
-	            [ 'key'=> "logo", 'title'=> __('logo'), 'fillable'=>true, 'column_type'=>'file' ],
-				[ 'key'=> "app_name", 'title'=> __('App Name'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "default_lang", 'title'=> __('Languange'), 
+	            [ 'key'=> "logo", 'title'=> translate('logo'), 'fillable'=>true, 'column_type'=>'file' ],
+				[ 'key'=> "app_name", 'title'=> translate('App Name'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "default_lang", 'title'=> translate('Languange'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['default_lang'=>'arabic','title'=>__('Arabic')], ['default_lang'=>'english','title'=>__('English')]]  
+					'data' => [['default_lang'=>'arabic','title'=>translate('Arabic')], ['default_lang'=>'english','title'=>translate('English')]]  
 				]
 			],
 			'Header'=> [
-				[ 'key'=> "header", 'title'=> __('Header style'), 
+				[ 'key'=> "header", 'title'=> translate('Header style'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['header'=>'header1','title'=>__('Header 1')], ['header'=>'header2','title'=>__('Header 2')],['header'=>'header3','title'=>__('Header 3')]]  
+					'data' => [['header'=>'header1','title'=>translate('Header 1')], ['header'=>'header2','title'=>translate('Header 2')],['header'=>'header3','title'=>translate('Header 3')]]  
 				],
-				[ 'key'=> "header_color", 'title'=> __('Header BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
-	            [ 'key'=> "header_bg", 'title'=> __('Header background'), 'fillable'=>true, 'column_type'=>'file' ],
+				[ 'key'=> "header_color", 'title'=> translate('Header BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
+	            [ 'key'=> "header_bg", 'title'=> translate('Header background'), 'fillable'=>true, 'column_type'=>'file' ],
 			],
 			'Style colors'=> [	
-				[ 'key'=> "main_bg", 'title'=> __('Main BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "section_bg", 'title'=> __('Section BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "border_color", 'title'=> __('Border Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "icon_color", 'title'=> __('Icon Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "text_color", 'title'=> __('Text Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "button_bg_color", 'title'=> __('Button bg color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "button_text_color", 'title'=> __('Button text color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h1_color", 'title'=> __('H! Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h2_color", 'title'=> __('H2 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h3_color", 'title'=> __('H3 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h4_color", 'title'=> __('H4 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h5_color", 'title'=> __('H5 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h6_color", 'title'=> __('H6 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "main_bg", 'title'=> translate('Main BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "section_bg", 'title'=> translate('Section BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "border_color", 'title'=> translate('Border Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "icon_color", 'title'=> translate('Icon Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "text_color", 'title'=> translate('Text Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "button_bg_color", 'title'=> translate('Button bg color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "button_text_color", 'title'=> translate('Button text color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h1_color", 'title'=> translate('H! Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h2_color", 'title'=> translate('H2 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h3_color", 'title'=> translate('H3 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h4_color", 'title'=> translate('H4 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h5_color", 'title'=> translate('H5 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "h6_color", 'title'=> translate('H6 Color'), 'fillable'=> true, 'column_type'=>'color' ],
             ],
         ];
 	}
@@ -87,7 +87,7 @@ class AppSettingsController extends CustomController
             'app_type' => 'Driver',
             'app_setting' => $this->getAll('Driver'),
             'fillable' => $this->fillable(),
-            'title' => __('Driver app Settings'),
+            'title' => translate('Driver app Settings'),
 	    ]);
 	} 
 
@@ -102,7 +102,7 @@ class AppSettingsController extends CustomController
             'app_type' => 'Parent',
             'app_setting' => $this->getAll('Parent'),
             'fillable' => $this->parent_fillable(),
-            'title' => __('Parents app Settings'),
+            'title' => translate('Parents app Settings'),
 	    ]);
 	} 
 
@@ -111,12 +111,9 @@ class AppSettingsController extends CustomController
 		$list = $this->fillable();
 		
 		$list['payment_methods'] = [
-			[ 'key'=> "header", 'title'=> __('Header style'), 
-				'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-				'data' => [['header'=>'header1','title'=>__('Header 1')], ['header'=>'header2','title'=>__('Header 2')],['header'=>'header3','title'=>__('Header 3')]]  
-			],
-			[ 'key'=> "header_color", 'title'=> __('Header BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
-			[ 'key'=> "header_bg", 'title'=> __('Header background'), 'fillable'=>true, 'column_type'=>'file' ],
+			[ 'key'=> "cash_payment", 'title'=> translate('Cash payment'), translate('Allow the users to pay for the private trips in cash'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "paypal_payment", 'title'=> translate('Header BG Color'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "paystack_payment", 'title'=> translate('Header BG Color'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 		];
 
 		return $list;
@@ -158,7 +155,7 @@ class AppSettingsController extends CustomController
             $update = $this->updateSettings($targetApp, $params);
 
             if (isset($update->updated)) 
-            	return array('success'=>1, 'result'=>__('Updated'));
+            	return array('success'=>1, 'result'=>translate('Updated'));
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());

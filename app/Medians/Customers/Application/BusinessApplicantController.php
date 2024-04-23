@@ -47,10 +47,10 @@ class BusinessApplicantController extends CustomController
 	{
 		return [
             [ 'value'=> "applicant_id", 'text'=> "#"],
-            [ 'value'=> "model.name", 'text'=> __('Name'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "model.name", 'text'=> translate('Name'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 
 	}
@@ -69,7 +69,7 @@ class BusinessApplicantController extends CustomController
 		try {
 		    return render('business_applicants', [
 		        'load_vue' => true,
-		        'title' => __('Businesss Applicants'),
+		        'title' => translate('Businesss Applicants'),
 		        'columns' => $this->columns(),
 		        'items' => $this->repo->get(),
 		        'routes' => $this->routeRepo->get(),
@@ -101,7 +101,7 @@ class BusinessApplicantController extends CustomController
 			try 
             {
 				return (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
 	
 			} catch (\Throwable $th) {
@@ -129,7 +129,7 @@ class BusinessApplicantController extends CustomController
             if ($this->repo->update($params))
             {
 				$this->repo->updateStudentBusiness($params);
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -147,7 +147,7 @@ class BusinessApplicantController extends CustomController
 
             if ($this->repo->delete($params['applicant_id']))
             {
-                return array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -186,7 +186,7 @@ class BusinessApplicantController extends CustomController
 				 */
 				if ($check->business_id == $user->business->business_id)
 				{
-					return ['error' => __('Student already exists')];
+					return ['error' => translate('Student already exists')];
 				}
 				
 				/**
@@ -195,7 +195,7 @@ class BusinessApplicantController extends CustomController
 				 */
 				if ($check->business_id != $user->business->business_id)
 				{
-					return ['error' => __('Student approved by another business')];
+					return ['error' => translate('Student approved by another business')];
 				}
 			}
 
@@ -222,7 +222,7 @@ class BusinessApplicantController extends CustomController
 			 * Check if applied already exists
 			 */
 			return (!empty($check->business_id)) 
-				? ['error' => __('Already applied to this business')]
+				? ['error' => translate('Already applied to this business')]
 				: null;
 
 		} catch (\Exception $e) {

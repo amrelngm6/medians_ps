@@ -67,7 +67,7 @@ class WalletRepository
 		
 		if ($Object->date < date('Y-m-d'))
 		{
-			return __('Not allowed Wallet date has passed');
+			return translate('Not allowed Wallet date has passed');
 		}
 
 		// Return the  object with the new data

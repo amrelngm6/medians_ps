@@ -77,7 +77,7 @@ class CustomerRepository
 		
 		if (!$Object)
 		{
-			return __('Sent toen is not valid');
+			return translate('Sent toen is not valid');
 		}
 
 		$newPassword = $Auth->encrypt($data['password']);
@@ -135,7 +135,7 @@ class CustomerRepository
 			$Object = Customer::find($data['customer_id']);
 			
 			if (!$Object) {
-				return __('this user not found');	
+				return translate('this user not found');	
 			}
 
 
@@ -160,7 +160,7 @@ class CustomerRepository
 			$check = Customer::where('email', $email)->where('customer_id', '!=', $id)->first();
 		}
 
-		return  (empty($check)) ? null : __('EMAIL_FOUND');
+		return  (empty($check)) ? null : translate('EMAIL_FOUND');
 	}
 
 

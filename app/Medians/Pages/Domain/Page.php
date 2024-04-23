@@ -79,7 +79,7 @@ class Page extends CustomModel
 
 	public function content()
 	{
-		return $this->hasOne(Content::class, 'item_id', 'page_id')->where('item_type', Page::class)->where('lang',__('lang'));
+		return $this->hasOne(Content::class, 'item_id', 'page_id')->where('item_type', Page::class)->where('lang',translate('lang'));
 	}
 
 	public function custom_fields()

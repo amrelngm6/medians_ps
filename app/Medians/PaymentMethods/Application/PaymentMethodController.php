@@ -34,12 +34,12 @@ class PaymentMethodController extends CustomController
 	{
 		return [
             [ 'value'=> "payment_method_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> __('Name'), 'sortable'=> true ],
-            [ 'value'=> "picture", 'text'=> __('Logo'), 'sortable'=> true ],
-            [ 'value'=> "description", 'text'=> __('Description'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
+            [ 'value'=> "picture", 'text'=> translate('Logo'), 'sortable'=> true ],
+            [ 'value'=> "description", 'text'=> translate('Description'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -54,11 +54,11 @@ class PaymentMethodController extends CustomController
 
 		return [
             [ 'key'=> "payment_method_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "name", 'title'=> __('name'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "code", 'title'=> __('Code'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "description", 'title'=> __('description'), 'required'=>true, 'fillable'=> true, 'column_type'=>'textarea' ],
-            [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
-			[ 'key'=> "picture", 'title'=> __('Logo'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
+			[ 'key'=> "name", 'title'=> translate('name'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "code", 'title'=> translate('Code'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "description", 'title'=> translate('description'), 'required'=>true, 'fillable'=> true, 'column_type'=>'textarea' ],
+            [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "picture", 'title'=> translate('Logo'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
 
         ];
 	}
@@ -75,7 +75,7 @@ class PaymentMethodController extends CustomController
 	{
 		return render('payment_methods', [
 	        'load_vue' => true,
-	        'title' => __('Business Payment Methods'),
+	        'title' => translate('Business Payment Methods'),
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
 	        'items' => $this->repo->get(),
@@ -99,8 +99,8 @@ class PaymentMethodController extends CustomController
 			$params['created_by'] = $user->id;
             
 			return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>__('Error'), 'error'=>1);
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>translate('Error'), 'error'=>1);
 
 
         } catch (Exception $e) {
@@ -128,7 +128,7 @@ class PaymentMethodController extends CustomController
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>true)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>true)
            	: array('error'=>'Not allowed');
 
 
@@ -155,8 +155,8 @@ class PaymentMethodController extends CustomController
         try {
 
            	return  ($this->repo->delete($params['payment_method_id']))
-            ? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+            ? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {

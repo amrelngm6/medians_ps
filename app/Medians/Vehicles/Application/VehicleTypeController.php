@@ -40,10 +40,10 @@ class VehicleTypeController extends CustomController
 
 		return [
             [ 'value'=> "type_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> __('name'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('Status')],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('Status')],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -58,8 +58,8 @@ class VehicleTypeController extends CustomController
 
 		return [
             [ 'key'=> "type_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> __('name'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "status", 'title'=> __('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "name", 'title'=> translate('name'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "status", 'title'=> translate('Status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox' ],
         ];
 	}
 
@@ -79,7 +79,7 @@ class VehicleTypeController extends CustomController
 			
 		    return render('vehicle_types', [
 		        'load_vue' => true,
-		        'title' => __('Vehicle types'),
+		        'title' => translate('Vehicle types'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -114,7 +114,7 @@ class VehicleTypeController extends CustomController
 			$params['created_by'] = $this->app->auth()->id;
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (\Exception $es) {
@@ -135,7 +135,7 @@ class VehicleTypeController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -154,7 +154,7 @@ class VehicleTypeController extends CustomController
 
             if ($this->repo->delete($params['type_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
         } catch (Exception $e) {
@@ -170,7 +170,7 @@ class VehicleTypeController extends CustomController
 
 		if (empty($params['name']))
 		{
-			throw new \Exception(__('NAME_EMPTY'), 0);
+			throw new \Exception(translate('NAME_EMPTY'), 0);
 		}
 
 	}

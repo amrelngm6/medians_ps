@@ -41,13 +41,13 @@ class PaymentController extends CustomController
 
 		return [
             [ 'value'=> "payment_id", 'text'=> ""],
-            [ 'value'=> "user", 'text'=> __('User'), 'sortable'=> true ],
-            [ 'value'=> "plan_subscription.plan.name", 'text'=> __('Plan'), 'sortable'=> false ],
-            [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
-            [ 'value'=> "payment_method", 'text'=> __('Payment method'), 'sortable'=> true ],
-            [ 'value'=> "payment_code", 'text'=> __('Payment code'), 'sortable'=> true ],
-            [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
-			['value'=>'delete', 'text'=>__('Delete')],
+            [ 'value'=> "user", 'text'=> translate('User'), 'sortable'=> true ],
+            [ 'value'=> "plan_subscription.plan.name", 'text'=> translate('Plan'), 'sortable'=> false ],
+            [ 'value'=> "amount", 'text'=> translate('Amount'), 'sortable'=> true ],
+            [ 'value'=> "payment_method", 'text'=> translate('Payment method'), 'sortable'=> true ],
+            [ 'value'=> "payment_code", 'text'=> translate('Payment code'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
+			['value'=>'delete', 'text'=>translate('Delete')],
         ];
 	}
 
@@ -61,7 +61,7 @@ class PaymentController extends CustomController
 
 		return render('payments', [
 			'load_vue'=> true,
-	        'title' => __('Payments list'),
+	        'title' => translate('Payments list'),
 	        'items' => $this->repo->get(),
 	        'columns' => $this->columns(),
 	        'columns_keys' => array_column($this->columns(),'value'),
@@ -87,8 +87,8 @@ class PaymentController extends CustomController
         	$params['created_by'] = $this->app->auth()->id;
         	
             return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('error'=>__('Err'));
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('error'=>translate('Err'));
 
 
         } catch (Exception $e) {
@@ -114,8 +114,8 @@ class PaymentController extends CustomController
 
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {
@@ -142,8 +142,8 @@ class PaymentController extends CustomController
         try {
 
            	$returnData =  $this->repo->delete($params['id'])
-           	? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+           	? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {
@@ -163,7 +163,7 @@ class PaymentController extends CustomController
 	public function payment_success()
 	{
 
-		return render('views/front/confirmation.html.twig',['title'=> __('Thanks for payment'),'message'=>__('payment made successfully, enjoy with the service')]);
+		return render('views/front/confirmation.html.twig',['title'=> translate('Thanks for payment'),'message'=>translate('payment made successfully, enjoy with the service')]);
 
 	}
 
@@ -172,7 +172,7 @@ class PaymentController extends CustomController
 	 */
 	public function payment_failed()
 	{
-		return render('views/front/confirmation.html.twig',['title'=> __('PAYMENT_CANCELED'),'message'=>__('payment failed, Please try again')]);
+		return render('views/front/confirmation.html.twig',['title'=> translate('PAYMENT_CANCELED'),'message'=>translate('payment failed, Please try again')]);
 
 	}
 
@@ -201,8 +201,8 @@ class PaymentController extends CustomController
 				$createWallet = $paymentService->createWallet($params, $addInvoice, $savedSubscription, $user); 
 	
 				return ($addInvoice && isset($savePlanPayment->payment_id))
-				? array('success'=>1, 'result'=>__('PAYMENT_MADE_SECCUESS'), 'reload'=>1)
-				: array('error'=>__('Not allowed'));
+				? array('success'=>1, 'result'=>translate('PAYMENT_MADE_SECCUESS'), 'reload'=>1)
+				: array('error'=>translate('Not allowed'));
  
 	
 			} catch (Exception $e) {

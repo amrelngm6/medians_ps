@@ -42,13 +42,13 @@ class TransactionController extends CustomController
 
 		return [
             [ 'value'=> "transaction_id", 'text'=> "#"],
-            [ 'value'=> "field.order_id", 'text'=> __('Transaction code'), 'sortable'=> true ],
-            [ 'value'=> "model", 'text'=> __('User'), 'sortable'=> false ],
-            [ 'value'=> "amount", 'text'=> __('Amount'), 'sortable'=> true ],
-            [ 'value'=> "payment_method", 'text'=> __('Gateway'), 'sortable'=> true ],
-            [ 'value'=> "date", 'text'=> __('Date'), 'sortable'=> true ],
-            [ 'value'=> "invoice.code", 'text'=> __('Invoice'), 'sortable'=> false ],
-			['value'=>'delete', 'text'=>__('Delete')],
+            [ 'value'=> "field.order_id", 'text'=> translate('Transaction code'), 'sortable'=> true ],
+            [ 'value'=> "model", 'text'=> translate('User'), 'sortable'=> false ],
+            [ 'value'=> "amount", 'text'=> translate('Amount'), 'sortable'=> true ],
+            [ 'value'=> "payment_method", 'text'=> translate('Gateway'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
+            [ 'value'=> "invoice.code", 'text'=> translate('Invoice'), 'sortable'=> false ],
+			['value'=>'delete', 'text'=>translate('Delete')],
         ];
 	}
 
@@ -63,7 +63,7 @@ class TransactionController extends CustomController
 
 		return render('transactions', [
 			'load_vue'=> true,
-	        'title' => __('Transaction list'),
+	        'title' => translate('Transaction list'),
 	        'items' => $this->repo->getByDate($params),
 	        'columns' => $this->columns(),
 	    ]);
@@ -84,8 +84,8 @@ class TransactionController extends CustomController
         try {
         	
             return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('error'=>__('Err'));
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('error'=>translate('Err'));
 
 
         } catch (Exception $e) {
@@ -109,8 +109,8 @@ class TransactionController extends CustomController
         try {
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {
@@ -134,8 +134,8 @@ class TransactionController extends CustomController
         try {
 
            	$returnData =  $this->repo->delete($params['id'])
-           	? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+           	? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {
@@ -170,7 +170,7 @@ class TransactionController extends CustomController
 			$updateRouteLocation = $paymentService->updateRouteLocation($params, $user); 
 
 			return (isset($saveTransaction->invoice_id))
-			? array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'))
+			? array('success'=>true,  'result'=>translate('PAYMENT_MADE_SECCUESS'))
 			: array('error'=>$saveTransaction['error']);
 
 		} catch (Exception $e) {

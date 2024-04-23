@@ -74,7 +74,7 @@ class PaymentService
 			
 			$transactionStored = $this->transactionRepo->store($transaction);
 			
-			return array('success'=>true,  'result'=>__('PAYMENT_MADE_SECCUESS'));
+			return array('success'=>true,  'result'=>translate('PAYMENT_MADE_SECCUESS'));
 
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());

@@ -1089,7 +1089,7 @@ class LangsAr
 	}
 
 
-	public static function __($langkey)
+	public static function translate($langkey)
 	{
 		$LANG_ARRAY = array_change_key_case(LangsAr::get(), CASE_LOWER);
 		// $LANG_ARRAY = Langs::get();

@@ -117,7 +117,7 @@ class DriverRepository
 
 		if (!$this->checkLogin($Object->email, $current))
 		{
-			return __('PASSWORD_ERROR');
+			return translate('PASSWORD_ERROR');
 		}
 
 		$data['password'] = $Auth->encrypt($data['new_password']);
@@ -143,7 +143,7 @@ class DriverRepository
 
 		if (!$Object)
 		{
-			return __('PASSWORD_ERROR');
+			return translate('PASSWORD_ERROR');
 		}
 
 		$data['password'] = $newPassword;
@@ -166,7 +166,7 @@ class DriverRepository
 		$findByEmail = Driver::where('email', $data['email'])->first();
 
 		if (empty($findByEmail))
-			return __('User not found');
+			return translate('User not found');
 		
 		$deleteOld = CustomField::where('model_type', Driver::class)->where('model_id', $findByEmail->driver_id)->where('code', 'reset_token')->delete();
 		
@@ -193,7 +193,7 @@ class DriverRepository
 		$permission = 'Driver.count';
 		if (count($this->get()) == $this->business->subscription->features[$permission])
 		{
-			return throw new \Exception(__('Access limit exceeded'), 1);
+			return throw new \Exception(translate('Access limit exceeded'), 1);
 		}
 
 		$Model = new Driver();
@@ -317,7 +317,7 @@ class DriverRepository
 			$check = Driver::where('email', $email)->where('driver_id', '!=', $id)->first();
 		}
 
-		return  (empty($check)) ? null : __('EMAIL_FOUND');
+		return  (empty($check)) ? null : translate('EMAIL_FOUND');
 	}
 
 	/**

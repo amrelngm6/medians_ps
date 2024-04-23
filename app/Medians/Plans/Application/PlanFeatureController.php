@@ -34,11 +34,11 @@ class PlanFeatureController extends CustomController
 	{
 		return [
             [ 'value'=> "feature_id", 'text'=> "#"],
-            [ 'value'=> "plan.name", 'text'=> __('Plan name'), 'sortable'=> true ],
-            [ 'value'=> "code", 'text'=> __('code'), 'sortable'=> true ],
-            [ 'value'=> "access", 'text'=> __('Limit'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('edit')  ],
-            [ 'value'=> "delete", 'text'=> __('delete')  ],
+            [ 'value'=> "plan.name", 'text'=> translate('Plan name'), 'sortable'=> true ],
+            [ 'value'=> "code", 'text'=> translate('code'), 'sortable'=> true ],
+            [ 'value'=> "access", 'text'=> translate('Limit'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -53,9 +53,9 @@ class PlanFeatureController extends CustomController
 
 		return [
             [ 'key'=> "feature_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "code", 'title'=> __('Feature code'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "access", 'title'=> __('Access'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
-			[ 'key'=> "plan_id", 'title'=> __('Plan'),  'withLabel'=>true,
+			[ 'key'=> "code", 'title'=> translate('Feature code'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "access", 'title'=> translate('Access'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
+			[ 'key'=> "plan_id", 'title'=> translate('Plan'),  'withLabel'=>true,
 				'sortable'=> true, 'fillable'=> true, 'required'=>true, 'column_type'=>'select','text_key'=>'name', 
 				'data' => $this->planRepo->get()  
 			],
@@ -74,7 +74,7 @@ class PlanFeatureController extends CustomController
 	{
 		return render('plan_features', [
 	        'load_vue' => true,
-	        'title' => __('plan_features'),
+	        'title' => translate('plan_features'),
 	        'items' => $this->repo->get(),
 	        'plans' => $this->planRepo->get(),
 	        'columns' => $this->columns(),
@@ -96,8 +96,8 @@ class PlanFeatureController extends CustomController
         try {
         	$params['created_by'] = $this->app->auth()->id;
             return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>__('Error'), 'error'=>1);
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>translate('Error'), 'error'=>1);
 
 
         } catch (Exception $e) {
@@ -124,7 +124,7 @@ class PlanFeatureController extends CustomController
 
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
            	: array('error'=>'Not allowed');
 
 
@@ -151,8 +151,8 @@ class PlanFeatureController extends CustomController
         try {
 
            	$returnData =  ($this->repo->delete($params['feature_id']))
-           	? array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+           	? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {

@@ -35,7 +35,7 @@ class PageRepository
 	public function homepage()
 	{
 		return Page::where('homepage', 'on')->with(['content'=>function($q) {
-			$q->where('lang', __('lang'));
+			$q->where('lang', translate('lang'));
 		}])->first();
 	}
 

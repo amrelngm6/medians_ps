@@ -81,7 +81,7 @@ class VacationRepository
 		
 		if ($Object->date < date('Y-m-d'))
 		{
-			return __('Not allowed Vacation date has passed');
+			return translate('Not allowed Vacation date has passed');
 		}
 
 		// Return the  object with the new data

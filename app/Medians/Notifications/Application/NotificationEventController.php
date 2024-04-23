@@ -40,39 +40,39 @@ class NotificationEventController extends CustomController
             ],
             [
 				'value'=> "title",
-                'text'=> __('name'),
+                'text'=> translate('name'),
                 'sortable'=> false,
 				'fixed'=>true,
 				'width' => 200,
             ],
             [
                 'value'=> "model",
-                'text'=> __('model'),
+                'text'=> translate('model'),
                 'sortable'=> true,
 				'width' => 300,
 				'fixed'=>true,
             ],
             [
                 'value'=> "receiver_model",
-                'text'=> __('receiver_model'),
+                'text'=> translate('receiver_model'),
 				'width' => 250,
                 'sortable'=> true,
             ],
             [
                 'value'=> "subject",
-                'text'=> __('subject'),
+                'text'=> translate('subject'),
 				'width' => 200,
                 'sortable'=> true,
             ],
             [
                 'value'=> "status",
-                'text'=> __('status'),
+                'text'=> translate('status'),
 				'width' => 50,
                 'sortable'=> true,
 			],
 			
-            [ 'value'=> "edit", 'text'=> __('edit'), 'width'=>50  ],
-            [ 'value'=> "delete", 'text'=> __('delete'), 'width'=>50  ],
+            [ 'value'=> "edit", 'text'=> translate('edit'), 'width'=>50  ],
+            [ 'value'=> "delete", 'text'=> translate('delete'), 'width'=>50  ],
         ];
 	}
 
@@ -87,21 +87,21 @@ class NotificationEventController extends CustomController
 
 		return [
             [ 'key'=> "id", 'title'=> "#",'column_type'=>'hidden'],
-			[ 'key'=> "receiver_model", 'title'=> __('Receiver model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title', 'data'=>$this->loadReceiverModels('receiver_model') ],
-			[ 'key'=> "model", 'title'=> __('Model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data'=>$this->loadModels('model') ],
+			[ 'key'=> "receiver_model", 'title'=> translate('Receiver model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title', 'data'=>$this->loadReceiverModels('receiver_model') ],
+			[ 'key'=> "model", 'title'=> translate('Model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data'=>$this->loadModels('model') ],
 			
-			[ 'key'=> "action", 'title'=> __('Action'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 'data'=>[
-				['action'=>'create','title'=>__('On Create')],
-				['action'=>'update','title'=>__('On Update')],
-				['action'=>'delete','title'=>__('On delete')],
+			[ 'key'=> "action", 'title'=> translate('Action'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 'data'=>[
+				['action'=>'create','title'=>translate('On Create')],
+				['action'=>'update','title'=>translate('On Update')],
+				['action'=>'delete','title'=>translate('On delete')],
 			] ],
-			[ 'key'=> "action_field", 'title'=> __('action_field'), 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "action_value", 'title'=> __('action_value'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "title", 'title'=> __('title'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-            [ 'key'=> "subject", 'title'=> __('subject'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-            [ 'key'=> "body", 'title'=> __('Notification email'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
-            [ 'key'=> "body_text", 'title'=> __('Notification text'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
-            [ 'key'=> "status", 'title'=> __('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "action_field", 'title'=> translate('action_field'), 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "action_value", 'title'=> translate('action_value'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "title", 'title'=> translate('title'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
+            [ 'key'=> "subject", 'title'=> translate('subject'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
+            [ 'key'=> "body", 'title'=> translate('Notification email'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
+            [ 'key'=> "body_text", 'title'=> translate('Notification text'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
+            [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
 
@@ -118,7 +118,7 @@ class NotificationEventController extends CustomController
 	{
 		return render('notifications_events', [
 	        'load_vue' => true,
-	        'title' => __('Notifications events'),
+	        'title' => translate('Notifications events'),
 	        'items' => $this->repo->get(),
 	        'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
@@ -169,8 +169,8 @@ class NotificationEventController extends CustomController
         try {
         	$params['created_by'] = $this->app->auth()->id;
             return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>__('Error'), 'error'=>1);
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>translate('Error'), 'error'=>1);
 
 
         } catch (Exception $e) {
@@ -197,7 +197,7 @@ class NotificationEventController extends CustomController
 
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>__('Updated'), 'reload'=>1)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
            	: array('error'=>'Not allowed');
 
 
@@ -224,8 +224,8 @@ class NotificationEventController extends CustomController
         try {
 
            	return  ($this->repo->delete($params['id']))
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
-           	: array('error'=>__('Not allowed'));
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+           	: array('error'=>translate('Not allowed'));
 
 
         } catch (Exception $e) {

@@ -43,17 +43,17 @@ class BlogController extends CustomController
             ],
             [
                 'key'=> "title",
-                'title'=> __('title'),
+                'title'=> translate('title'),
                 'sortable'=> true,
             ],
             [
                 'key'=> "category_name",
-                'title'=> __('category'),
+                'title'=> translate('category'),
                 'sortable'=> false,
             ],
             [
                 'key'=> "date",
-                'title'=> __('Date'),
+                'title'=> translate('Date'),
                 'sortable'=> true,
             ]
         ];
@@ -75,7 +75,7 @@ class BlogController extends CustomController
 			
 		    return render('blog', [
 		        'load_vue' => true,
-		        'title' => __('blog'),
+		        'title' => translate('blog'),
 		        'columns' => $this->columns(),
 		        'items' => $this->repo->get(),
 		    ]);
@@ -99,7 +99,7 @@ class BlogController extends CustomController
         	$this->validate($params);
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -121,7 +121,7 @@ class BlogController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
 
@@ -145,7 +145,7 @@ class BlogController extends CustomController
 
             if ($this->repo->delete($params['id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 
@@ -161,7 +161,7 @@ class BlogController extends CustomController
 
 		if (empty($params['content']['ar']['title']))
 		{
-        	throw new \Exception(json_encode(array('result'=>__('NAME_EMPTY'), 'error'=>1)), 1);
+        	throw new \Exception(json_encode(array('result'=>translate('NAME_EMPTY'), 'error'=>1)), 1);
 		}
 
 	}

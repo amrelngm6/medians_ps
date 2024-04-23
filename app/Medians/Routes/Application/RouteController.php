@@ -52,16 +52,16 @@ class RouteController extends CustomController
 	{
 		return [
             [ 'value'=> "route_id", 'text'=> "#"],
-            [ 'value'=> "route_name", 'text'=> __('route_name'), 'sortable'=> true ],
-            [ 'value'=> "driver.name", 'text'=> __('driver_name'), 'sortable'=> true ],
-            [ 'value'=> "vehicle.plate_number", 'text'=> __('vehicle'), 'sortable'=> true ],
-            [ 'value'=> "supervisor.name", 'text'=> __('supervisor'), 'sortable'=> true ],
-            [ 'value'=> "route_locations", 'text'=> __('route_locations'), 'sortable'=> true ],
-            [ 'value'=> "morning_trip_time", 'text'=> __('Morning Trip'), 'sortable'=> true ],
-            [ 'value'=> "afternoon_trip_time", 'text'=> __('Afternoon Trip'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('Status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('Edit') ],
-            [ 'value'=> "delete", 'text'=> __('Delete') ],
+            [ 'value'=> "route_name", 'text'=> translate('route_name'), 'sortable'=> true ],
+            [ 'value'=> "driver.name", 'text'=> translate('driver_name'), 'sortable'=> true ],
+            [ 'value'=> "vehicle.plate_number", 'text'=> translate('vehicle'), 'sortable'=> true ],
+            [ 'value'=> "supervisor.name", 'text'=> translate('supervisor'), 'sortable'=> true ],
+            [ 'value'=> "route_locations", 'text'=> translate('route_locations'), 'sortable'=> true ],
+            [ 'value'=> "morning_trip_time", 'text'=> translate('Morning Trip'), 'sortable'=> true ],
+            [ 'value'=> "afternoon_trip_time", 'text'=> translate('Afternoon Trip'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('Status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('Edit') ],
+            [ 'value'=> "delete", 'text'=> translate('Delete') ],
         ];
 	}
 
@@ -90,7 +90,7 @@ class RouteController extends CustomController
 
 			return render('routes', [
 		        'load_vue' => true,
-		        'title' => __('Routes'),
+		        'title' => translate('Routes'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -170,7 +170,7 @@ class RouteController extends CustomController
 			try {
 				
 				$returnData = (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
 	
 			} catch (\Throwable $th) {
@@ -197,7 +197,7 @@ class RouteController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -220,7 +220,7 @@ class RouteController extends CustomController
 
             if ($this->repo->delete($params['route_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 

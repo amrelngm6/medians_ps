@@ -44,23 +44,23 @@ class CustomerController extends CustomController
             ],
             [
                 'key'=> "name",
-                'title'=> __('name'),
+                'title'=> translate('name'),
                 'sortable'=> true,
             ],
             [
                 'key'=> "mobile",
-                'title'=> __('mobile'),
+                'title'=> translate('mobile'),
                 'sortable'=> true,
                 'type'=> 'number',
             ],
             [
                 'key'=> "bookings_count",
-                'title'=> __('bookings_count'),
+                'title'=> translate('bookings_count'),
                 'sortable'=> true,
             ],
             [
                 'key'=> "last_invoice_code",
-                'title'=> __('Last invoice'),
+                'title'=> translate('Last invoice'),
                 'sortable'=> false,
             ]
         ];
@@ -74,7 +74,7 @@ class CustomerController extends CustomController
 	{
 		return render('customers', [
 			'items' =>  $this->repo->get(),
-	        'title' => __('Customers'),
+	        'title' => translate('Customers'),
 	        'load_vue' => true,
 			'columns' =>  $this->columns(),
 	    ]);
@@ -111,13 +111,13 @@ class CustomerController extends CustomController
 		try {	
 
 			if (empty($params['name']))
-	        	return array('error'=>__('Name is required'), 'result'=>__('Name is required'));
+	        	return array('error'=>translate('Name is required'), 'result'=>translate('Name is required'));
 
 			if (empty($params['mobile']))
-	        	return array('error'=> __('Phone is required'), 'result'=> __('Phone is required'));
+	        	return array('error'=> translate('Phone is required'), 'result'=> translate('Phone is required'));
 
 			if (strlen($params['mobile']) != 11)
-	        	return array('error'=> __('MOBILE_ERR'), 'result'=> __('MOBILE_ERR') );
+	        	return array('error'=> translate('MOBILE_ERR'), 'result'=> translate('MOBILE_ERR') );
 
 			$params['created_by'] = $this->app->auth()->id;
 			$Item = $this->repo->store($params);

@@ -167,7 +167,7 @@ class UserRepository
 			$Object = User::find($data['id']);
 			
 			if (!$Object) {
-				return __('this user not found');	
+				return translate('this user not found');	
 			}
 
 			$validateEmail = isset($data['email']) ? $this->validateEmail($data['email'], $Object->id) : null;
@@ -202,7 +202,7 @@ class UserRepository
 
 		if (isset($check->id) && $check->id != $id)
 		{
-			return __('EMAIL_FOUND');
+			return translate('EMAIL_FOUND');
 		}
 	}
 

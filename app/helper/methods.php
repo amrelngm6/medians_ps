@@ -52,7 +52,7 @@ function render($template, $data, $responseType = 'html')
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
     $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
     $data['lang'] = (new helper\Lang($_SESSION['lang']))->load();
-    $data['lang_key'] = __('lang');
+    $data['lang_key'] = translate('lang');
     $output =  $app->template()->render($path, $data);
 
     $isFront ? file_put_contents($_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html', $output) : '';
@@ -132,10 +132,10 @@ function response($response)
  * @param String $langkey
  * @return String 
 */ 
-function __($langkey = null)
+function translate($langkey = null)
 {
     $Langs = (new helper\Lang($_SESSION['lang']))->load();
-    return !empty($Langs->__($langkey)) ? $Langs->__($langkey) : ucfirst(str_replace('_', ' ', $langkey));
+    return !empty($Langs->translate($langkey)) ? $Langs->translate($langkey) : ucfirst(str_replace('_', ' ', $langkey));
 }
 
 

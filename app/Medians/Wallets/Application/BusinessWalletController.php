@@ -37,11 +37,11 @@ class BusinessWalletController extends CustomController
 	{
 		return [
             [ 'value'=> "wallet_id", 'text'=> "#"],
-            [ 'value'=> "business", 'text'=> __('Business')],
-            [ 'value'=> "credit_balance", 'text'=> __('Credit balance'), 'sortable'=> true ],
-            [ 'value'=> "debit_balance", 'text'=> __('Debit balance'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> __('Status') ],
-            [ 'value'=> "delete", 'text'=> __('Delete') ],
+            [ 'value'=> "business", 'text'=> translate('Business')],
+            [ 'value'=> "credit_balance", 'text'=> translate('Credit balance'), 'sortable'=> true ],
+            [ 'value'=> "debit_balance", 'text'=> translate('Debit balance'), 'sortable'=> true ],
+            [ 'value'=> "status", 'text'=> translate('Status') ],
+            [ 'value'=> "delete", 'text'=> translate('Delete') ],
         ];
 	}
 
@@ -72,7 +72,7 @@ class BusinessWalletController extends CustomController
 
 			return render('business_wallets', [
 		        'load_vue' => true,
-		        'title' => __('Wallets'),
+		        'title' => translate('Wallets'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -98,7 +98,7 @@ class BusinessWalletController extends CustomController
 			try {
 				
 				$returnData = (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
 	
 			} catch (\Throwable $th) {
@@ -123,7 +123,7 @@ class BusinessWalletController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
@@ -144,7 +144,7 @@ class BusinessWalletController extends CustomController
 
             if ($this->repo->delete($params['vacation_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
             
 
@@ -165,7 +165,7 @@ class BusinessWalletController extends CustomController
 			try {
 				
 				$returnData = (!empty($this->repo->store($params))) 
-				? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
 				: array('success'=>0, 'result'=>'Error', 'error'=>1);
 	
 			} catch (\Throwable $th) {

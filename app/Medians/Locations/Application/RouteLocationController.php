@@ -53,12 +53,12 @@ class RouteLocationController extends CustomController
 
 		return [
             [ 'value'=> "location_id", 'text'=> "#"],
-            [ 'value'=> "model", 'text'=> __('User'), 'sortable'=> true ],
-            [ 'value'=> "route.route_name", 'text'=> __('Route'), 'sortable'=> true ],
-            [ 'value'=> "start_address", 'text'=> __('Pickup address'), 'sortable'=> true ],
-            [ 'value'=> "status_text", 'text'=> __('Status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> __('Edit') ],
-            [ 'value'=> "delete", 'text'=> __('delete') ],
+            [ 'value'=> "model", 'text'=> translate('User'), 'sortable'=> true ],
+            [ 'value'=> "route.route_name", 'text'=> translate('Route'), 'sortable'=> true ],
+            [ 'value'=> "start_address", 'text'=> translate('Pickup address'), 'sortable'=> true ],
+            [ 'value'=> "status_text", 'text'=> translate('Status'), 'sortable'=> true ],
+            [ 'value'=> "edit", 'text'=> translate('Edit') ],
+            [ 'value'=> "delete", 'text'=> translate('delete') ],
         ];
 	}
 
@@ -74,19 +74,19 @@ class RouteLocationController extends CustomController
 		return [
             [ 'key'=> "location_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "model_type", 'title'=> "#", 'default'=> $this->studentRepo->getClassName(), 'column_type'=>'hidden'],
-			[ 'key'=> "model_id", 'title'=> __('Student'), 
+			[ 'key'=> "model_id", 'title'=> translate('Student'), 
 				'fillable'=> true, 'column_type'=>'select', 'column_key'=>'student_id', 'text_key'=>'name', 
 				'data' => $this->studentRepo->get()
 			],
-			[ 'key'=> "route_id", 'title'=> __('Route'), 
+			[ 'key'=> "route_id", 'title'=> translate('Route'), 
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'route_name', 
 				'data' => $this->routeRepo->get()
 			],
-            [ 'key'=> "location_name", 'title'=> __('location_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "address", 'title'=> __('address'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "latitude", 'title'=> __('latitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "longitude", 'title'=> __('longitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
-            [ 'key'=> "status", 'title'=> __('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "location_name", 'title'=> translate('location_name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "address", 'title'=> translate('address'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "latitude", 'title'=> translate('latitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "longitude", 'title'=> translate('longitude'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "status", 'title'=> translate('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
         ];
 	}
 
@@ -106,7 +106,7 @@ class RouteLocationController extends CustomController
 			
 		    return render('locations', [
 		        'load_vue' => true,
-		        'title' => __('RouteLocations'),
+		        'title' => translate('RouteLocations'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -167,7 +167,7 @@ class RouteLocationController extends CustomController
         	$params['friday'] = $this->checkboxValue($params, 'friday');
 			
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -196,7 +196,7 @@ class RouteLocationController extends CustomController
 			
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
         } catch (\Exception $e) {
@@ -219,7 +219,7 @@ class RouteLocationController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>__('Updated'), 'reload'=>0);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>0);
             }
         
         } catch (\Exception $e) {
@@ -239,7 +239,7 @@ class RouteLocationController extends CustomController
 
             if ($this->repo->delete($params['location_id']))
             {
-                return json_encode(array('success'=>1, 'result'=>__('Deleted'), 'reload'=>1));
+                return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
 
         } catch (Exception $e) {
