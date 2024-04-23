@@ -28,7 +28,10 @@ class CollectedCashRepository
 
 	public function get($params, $limit = 1000)
 	{
-		$check = new CollectedCash;
+		$check = CollectedCash::with('business')->with(['wallet'=>function($q) {
+            return $q->with('user');
+        }]);
+
         if (isset($params['start_date']))
         {
             $check = $check->whereBetween('date', [$params['start_date'], $params['end_date']]);
