@@ -65,7 +65,7 @@ class CollectedCashRepository
 		// Return the  object with the new data
     	$Object = CollectedCash::firstOrCreate($dataArray);
 
-        $updateBalance = $this->updateBalance($Object);
+        $updateBalance = isset($Object->collection_id) ? $this->updateBalance($Object) : null;
 
     	return $Object;
     }
