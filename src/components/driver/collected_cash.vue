@@ -51,11 +51,8 @@ export default {
         'lang',
         'setting',
         'system_setting',
-        'business_setting',
         'conf',
         'auth',
-        'item',
-        'wallet',
         'collected_cash',
     ]
 };
