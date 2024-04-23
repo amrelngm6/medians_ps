@@ -134,6 +134,7 @@ const setting_tab = defineAsyncComponent(() => import('@/components/driver/setti
 const info_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
 const trips_tab = defineAsyncComponent(() => import('@/components/driver/trips.vue') );
 const private_trips_tab = defineAsyncComponent(() => import('@/components/driver/private_trips.vue') );
+const collected_cash_tab = defineAsyncComponent(() => import('@/components/driver/collected_cash.vue') );
 
 export default {
 
