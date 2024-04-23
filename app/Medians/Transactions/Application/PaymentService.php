@@ -7,6 +7,7 @@ use Medians\Packages\Infrastructure\PackageSubscriptionRepository;
 use Medians\Payments\Infrastructure\PaymentRepository;
 use Medians\Transactions\Infrastructure\TransactionRepository;
 use Medians\Students\Domain\Student;
+use Medians\Customers\Domain\Customer;
 
 class PaymentService
 {
@@ -35,8 +36,8 @@ class PaymentService
 
 			$transaction = (array) $params['transaction'];
 			$transaction['invoice_id'] = $invoice->invoice_id;
-			$transaction['model_id'] = $user->customer_id;
-			$transaction['model_type'] = $user::class;
+			$transaction['model_id'] = $invoice->user_id;
+			$transaction['model_type'] = $invoice->user_type;
 			$transaction['item_id'] = $transaction['subscription_id'];
 			$transaction['item_type'] = $packageSubscriptionClass::class;
 			$transaction['date'] = date('Y-m-d');
@@ -52,7 +53,7 @@ class PaymentService
 
 
 	
-	public function storeTripTransaction($params, $invoice, $user)
+	public function storeTripTransaction($params, $invoice)
 	{
 		try {
 
@@ -61,9 +62,9 @@ class PaymentService
 			$PrivateTrip = new \Medians\Trips\Domain\PrivateTrip;
 
 			$transaction = (array) $params['transaction'];
-			$transaction['model_id'] = $params['model_id'];
 			$transaction['invoice_id'] = $invoice->invoice_id;
-			$transaction['model_type'] = $user::class;
+			$transaction['model_id'] = $invoice->user_id;
+			$transaction['model_type'] = $invoice->user_type;
 			$transaction['item_id'] = $transaction['item_id'];
 			$transaction['item_type'] = $PrivateTrip::class;
 			$transaction['date'] = date('Y-m-d');
@@ -149,7 +150,7 @@ class PaymentService
 		}
 	}
 	
-	public function addInvoice($params, $user)
+	public function addInvoice($params)
 	{
 		try {
 			
@@ -160,8 +161,8 @@ class PaymentService
 			$data = array();
 			$data['business_id'] = $params['business']->business_id;
 			$data['code'] = $invoiceRepo->generateCode();
-			$data['user_id'] = $user->customer_id;
-			$data['user_type'] = $user::class;
+			$data['user_id'] = $params['model_id'];
+			$data['user_type'] = Customer::class;
 			$data['payment_method'] = $invoiceInfo['payment_method'];
 			$data['subtotal'] = $invoiceInfo['subtotal'];
 			$data['discount_amount'] = 0;

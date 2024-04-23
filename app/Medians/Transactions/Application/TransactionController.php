@@ -161,17 +161,17 @@ class TransactionController extends CustomController
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
-			$addInvoice = $paymentService->addInvoice($params, $user); 
+			$addInvoice = $paymentService->addInvoice($params); 
 			
 			$updateWallet = $paymentService->updateWallet($params, $addInvoice); 
 
-			$saveTransaction = $paymentService->storeSubscriptionTransaction($params, $addInvoice, $user); 
+			$saveTransaction = $paymentService->storeSubscriptionTransaction($params, $addInvoice); 
 			
-			$updateStudentBusiness = $paymentService->updateStudentBusiness($params, $user ); 
+			$updateStudentBusiness = $paymentService->updateStudentBusiness($params ); 
 
-			$savedSubscription = $paymentService->updatePackageSubscription($params, $user); 
+			$savedSubscription = $paymentService->updatePackageSubscription($params); 
 
-			$updateRouteLocation = $paymentService->updateRouteLocation($params, $user); 
+			$updateRouteLocation = $paymentService->updateRouteLocation($params); 
 
 			return (isset($saveTransaction->invoice_id))
 			? array('success'=>true,  'result'=>translate('PAYMENT_MADE_SECCUESS'))
@@ -196,9 +196,9 @@ class TransactionController extends CustomController
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
-			$addInvoice = $paymentService->addInvoice($params, $user); 
+			$addInvoice = $paymentService->addInvoice($params); 
 
-			$saveTransaction = $paymentService->storeTripTransaction($params, $addInvoice, $user); 
+			$saveTransaction = $paymentService->storeTripTransaction($params, $addInvoice); 
 			
 			$updateTrip = isset($saveTransaction['success']) ? $paymentService->updateTrip($params) : null; 
 
@@ -211,8 +211,36 @@ class TransactionController extends CustomController
 		} catch (Exception $e) {
 			return array('error'=>$e->getMessage());
 		}
+	}
+
+	
+
+	public function addTripCashTransaction()
+	{
 		
-		
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+		$user = $this->app->auth();
+
+		try {
+			
+			$paymentService = new PaymentService($params['payment_method']);
+
+			$addInvoice = $paymentService->addInvoice($params); 
+
+			$saveTransaction = $paymentService->storeTripTransaction($params, $addInvoice); 
+			
+			$updateTrip = isset($saveTransaction['success']) ? $paymentService->updateTrip($params) : null; 
+
+			$updateWallet = isset($saveTransaction['success']) ? $paymentService->updateWallet($params, $addInvoice) : null; 
+
+			return (isset($saveTransaction['success']))
+			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
+			: array('error'=>$saveTransaction['error']);
+
+		} catch (Exception $e) {
+			return array('error'=>$e->getMessage());
+		}
 	}
 
 
