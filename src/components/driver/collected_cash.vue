@@ -39,58 +39,7 @@ export default {
     },
     setup(props) {
 
-        const activeItem = ref({});
-        const collectedCashRequest = ref({'field':{}});
-        const showWizard = ref(false);
-
-        activeItem.value = props.item;
-
-        const cancelRequest = (withdrawal) => {
-            
-            if (window.confirm(translate('confirm_delete')))
-            {
-                var params = new URLSearchParams();
-                params.append('type', 'BusinessWithdrawal.delete')
-                params.append('params[withdrawal_id]', withdrawal.withdrawal_id)
-                handleRequest(params, '/api/delete').then(response => {
-                    handleAccess(response)
-                });
-            }
-        }
-
-        const sendcollectedCashRequest = () => {
-            if (!collectedCashRequest.value.amount || collectedCashRequest.value.amount < 1)
-            {
-                return showAlert(translate('Amount is required'));
-            }
-            
-            if (collectedCashRequest.value.amount > props.wallet.debit_balance)
-            {
-                return showAlert(translate('Balance is not enough'));
-            }
-
-            if (window.confirm(translate('Confirm to submit')))
-            {
-                var params = new URLSearchParams();
-                params.append('type', 'CollectedCash.create')
-                params.append('params[amount]', collectedCashRequest.value.amount)
-                params.append('params[wallet_id]', props.wallet.wallet_id)
-                params.append('params[notes]', collectedCashRequest.value.notes)
-                handleRequest(params, '/api/create').then(response => {
-                    handleAccess(response)
-                });
-            }
-
-        }
-        
-
         return {
-            activeItem,
-            cancelRequest,
-            collectedCashRequest,
-            sendcollectedCashRequest,
-            translate,
-            showWizard,
         };
     },
 
