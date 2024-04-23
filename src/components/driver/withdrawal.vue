@@ -38,14 +38,14 @@
                         <div id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
-                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="wallet.credit_balance" inputmode="text">
+                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Collected amount')"></label>
+                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="collectedCashRequest.amount" :max="wallet.credit_balance" inputmode="text">
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
                             
                             <div class="fv-row mb-7 fv-plugins-icon-container">
                                 <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
-                                <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
+                                <select  v-model="collectedCashRequest.payment_method" class="form-select form-select-solid fw-bold" >
                                     <option value="paypal">PayPal</option>
                                     <option value="paystack">PayStack</option>
                                     <option value="bank">Bank transfer</option>
@@ -53,22 +53,22 @@
                                 </select>
                             </div>
 
-                            <div class="w-full" v-if="withdrawRequest.payment_method" v-for="(paymentInfo, key) in payment_fields[withdrawRequest.payment_method]">
+                            <div class="w-full" v-if="collectedCashRequest.payment_method" v-for="(paymentInfo, key) in payment_fields[collectedCashRequest.payment_method]">
                                 <div class="fv-row mb-7 fv-plugins-icon-container"  >
                                     <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
-                                    <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="withdrawRequest.field[paymentInfo.code]" >
+                                    <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="collectedCashRequest.field[paymentInfo.code]" >
                                 </div>
                             </div>
                             
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mb-2" v-text="translate('Add notes')"></label>
-                                <textarea class="form-control form-control-solid rounded-3 mb-5" v-model="withdrawRequest.notes"></textarea>
+                                <textarea class="form-control form-control-solid rounded-3 mb-5" v-model="collectedCashRequest.notes"></textarea>
                             </div>
                             <!--begin::Actions-->
                             <div class="text-center">
                                 <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showWizard = false"></button>
 
-                                <button @click="sendWithdrawRequest" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
+                                <button @click="sendcollectedCashRequest" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
                                     <span class="indicator-label" v-text="translate('Submit')"></span>
                                 </button>
                             </div>
@@ -168,7 +168,7 @@ export default {
     setup(props) {
 
         const activeItem = ref({});
-        const withdrawRequest = ref({'field':{}});
+        const collectedCashRequest = ref({'field':{}});
         const showWizard = ref(false);
 
         activeItem.value = props.item;
@@ -186,13 +186,13 @@ export default {
             }
         }
 
-        const sendWithdrawRequest = () => {
-            if (!withdrawRequest.value.amount || withdrawRequest.value.amount < 1)
+        const sendcollectedCashRequest = () => {
+            if (!collectedCashRequest.value.amount || collectedCashRequest.value.amount < 1)
             {
                 return showAlert(translate('Amount is required'));
             }
             
-            if (withdrawRequest.value.amount > content.value.wallet.credit_balance)
+            if (collectedCashRequest.value.amount > content.value.wallet.credit_balance)
             {
                 return showAlert(translate('Balance is not enough'));
             }
@@ -201,11 +201,11 @@ export default {
             {
                 var params = new URLSearchParams();
                 params.append('type', 'BusinessWithdrawal.create')
-                params.append('params[amount]', withdrawRequest.value.amount)
+                params.append('params[amount]', collectedCashRequest.value.amount)
                 params.append('params[wallet_id]', content.value.wallet.wallet_id)
-                params.append('params[notes]', withdrawRequest.value.notes)
-                params.append('params[field]', JSON.stringify(withdrawRequest.value.field))
-                params.append('params[payment_method]', withdrawRequest.value.payment_method)
+                params.append('params[notes]', collectedCashRequest.value.notes)
+                params.append('params[field]', JSON.stringify(collectedCashRequest.value.field))
+                params.append('params[payment_method]', collectedCashRequest.value.payment_method)
                 handleRequest(params, '/api/create').then(response => {
                     handleAccess(response)
                 });
@@ -217,8 +217,8 @@ export default {
         return {
             activeItem,
             cancelRequest,
-            withdrawRequest,
-            sendWithdrawRequest,
+            collectedCashRequest,
+            sendcollectedCashRequest,
             translate,
             showWizard,
         };
