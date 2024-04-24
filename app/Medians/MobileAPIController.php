@@ -250,7 +250,7 @@ class MobileAPIController extends CustomController
 				break;
 			
 			case 'pament_methods':
-				$return = (new PaymentMethods\Application\PaymentMethodController)->getWithdrawals();
+				$return = (new PaymentMethods\Application\PaymentMethodController)->load();
 				break;
 		}
 		
