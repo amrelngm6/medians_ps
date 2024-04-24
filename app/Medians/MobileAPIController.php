@@ -248,6 +248,10 @@ class MobileAPIController extends CustomController
 			case 'withdrawals':
 				$return = (new Wallets\Application\WithdrawalController)->getWithdrawals();
 				break;
+			
+			case 'pament_methods':
+				$return = (new PaymentMethods\Application\PaymentMethodController)->getWithdrawals();
+				break;
 		}
 		
 		echo json_encode($return);

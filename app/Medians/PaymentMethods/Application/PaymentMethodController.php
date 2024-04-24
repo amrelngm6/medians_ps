@@ -167,6 +167,10 @@ class PaymentMethodController extends CustomController
 
 	}
 
-
+	public function load() 
+	{
+		return $this->repo->get();
+		
+	}
 
 }
