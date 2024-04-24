@@ -47,6 +47,10 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Settings\Application\AppSettingsController())->loadSetting();
 				break;
 
+			case 'system_settings':
+				$return = (new \Medians\Settings\Application\SystemSettingsController())->getAll();
+				break;
+
 			case 'help_messages':
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessages();
 				break;
