@@ -34,9 +34,9 @@
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Double trips'" v-text="translate('Next')"></a></p>
+                                    @click="activeTab = 'Cost'" v-text="translate('Next')"></a></p>
                         </div>
-                        <div class="" v-if="activeTab == 'Double trips'" :key="activeTab">
+                        <div class="" v-if="activeTab == 'Cost'" :key="activeTab">
                             <div class="card-body pt-0">
                                 <div class="settings-form">
                                     <div class="max-w-xl mb-6 mx-auto">
@@ -345,7 +345,7 @@ export default
             const activeItem = ref({});
             const activeTab = ref('Info');
             const content = ref({});
-            const fillable = ref(['Info', 'Double trips' /*,'Single trip'*/, 'Confirm']);
+            const fillable = ref(['Info', 'Cost' /*,'Single trip'*/, 'Confirm']);
 
             if (props.item) {
                 activeItem.value = props.item
