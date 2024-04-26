@@ -61,7 +61,7 @@
                 </template>
 
                 <template #item-subtotal="item">
-                    <span class="py-2" v-text="item.subtotal+''+currency.symbol"></span>
+                    <span class="py-2" v-text="currency.symbol+''+item.subtotal"></span>
                 </template>
 
                 <template #item-total_amount="item">
