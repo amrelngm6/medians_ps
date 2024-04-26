@@ -3,7 +3,7 @@
         <div class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 relative w-full border bg-white transition-all duration-300 rounded-md p-6" v-if="content">
             <div class="mb-10 pb-6">
                 <h3 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white" v-text="$parent.__('Some important Stats')"></h3>
-                <p class="py-2 text-gray-400 mb-10" v-text="$parent.__('some important stats about the performance')"></p>
+                <p class="py-2 text-gray-400 mb-10" v-text="$parent.translate('some important stats about the performance')"></p>
             </div>
             <div class="grid gap-4 md:grid-cols-2 mt-10 pt-6">
                 <div class="bg-gray-50  flex items-center gap-2 rounded-md p-4">

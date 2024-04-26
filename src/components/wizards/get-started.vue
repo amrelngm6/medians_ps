@@ -612,7 +612,7 @@ export default
                                                 description: translate('Plan subscription'),
                                                 custom_id: activePrice.value,
                                                 amount: {
-                                                    currency_code: 'USD',
+                                                    currency_code: currency.code,
                                                     value: cost(), // Set your payment amount here
                                                 },
                                             },
