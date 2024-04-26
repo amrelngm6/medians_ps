@@ -42,7 +42,7 @@
                                                             <td id="t-client" class="py-2" v-text="activeItem.model.name"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-medium py-2" v-text="translate('mobie')"></td>
+                                                            <td class="fw-medium py-2" v-text="translate('Mobile')"></td>
                                                             <td id="d-date" class="py-2" v-text="activeItem.model.mobile"></td>
                                                         </tr>
                                                         <tr>
