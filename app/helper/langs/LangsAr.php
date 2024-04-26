@@ -1125,7 +1125,13 @@ class LangsAr
 		,'Header style' => 'شكل الهيدر'
 		,'Header BG Color' => 'لون خلفية الهيدر'
 		,'Header background' => 'صورة خلفية الهيدر'
-		,'' => ''
+		,'Cash payment' => 'الدفع نقدا'
+		,'PayPal payment' => 'الدفع عن طرق PayPal'
+		,'PayStack payment' => 'الدفع عن طرق PayStack'
+		,'Allow the users to pay for the private trips and subscriptions in cash, the balance would be added to the Driver debit balance' => 'السماح للمستخدمين بالدفع للرحلات الخاصة نقدا ويتم اضافة المبلغ الي محفظة السائق'
+		,'Allow the users to pay for the private trips and subscriptions in paypal' => 'السماح للمستخدمين بالدفع للرحلات الخاصة عن طريق PayPal'
+		,'Allow the users to pay for the private trips and subscriptions in paystack' => 'السماح للمستخدمين بالدفع للرحلات الخاصة عن طريق PayStack'
+		,'basic' => 'الأساسيات'
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
 		);

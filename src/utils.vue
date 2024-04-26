@@ -243,7 +243,7 @@ export function sameRole (user, role)
     
 export function handleTabName (index) 
 {
-    return index.replace('_', ' ').toUpperCase();
+    return translate(index.replace('_', ' ').toUpperCase());
 }
 
 export function handleName (column) 

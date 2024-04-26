@@ -111,9 +111,9 @@ class AppSettingsController extends CustomController
 		$list = $this->fillable();
 		
 		$list['payment_methods'] = [
-			[ 'key'=> "cash_payment", 'title'=> translate('Cash payment'), 'help_text'=>translate('Allow the users to pay for the private trips in cash, the balance would be added to the Driver debit balance'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-			[ 'key'=> "paypal_payment", 'title'=> translate('PayPal payment'), 'help_text'=>translate('Business owners can make a withdrawal request to receive the money later'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-			[ 'key'=> "paystack_payment", 'title'=> translate('PayStack payment'), 'help_text'=>translate('Business owners can make a withdrawal request to receive the money later'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "cash_payment", 'title'=> translate('Cash payment'), 'help_text'=>translate('Allow the users to pay for the private trips and subscriptions in cash, the balance would be added to the Driver debit balance'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "paypal_payment", 'title'=> translate('PayPal payment'), 'help_text'=>translate('Allow the users to pay for the private trips and subscriptions in PayPal'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "paystack_payment", 'title'=> translate('PayStack payment'), 'help_text'=>translate('Allow the users to pay for the private trips and subscriptions in PayStack'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 		];
 
 		return $list;
