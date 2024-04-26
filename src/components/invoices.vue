@@ -65,7 +65,7 @@
                 </template>
 
                 <template #item-total_amount="item">
-                    <span class="py-2" v-text="item.total_amount+''+currency.symbol"></span>
+                    <span class="py-2" v-text="currency.symbol+''+item.total_amount"></span>
                 </template>
 
                 <template #item-edit="item">
