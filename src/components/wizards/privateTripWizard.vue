@@ -19,7 +19,7 @@
                             <div class="" v-if="activeTab == usertype" :key="activeTab">
                                 <div class="card-body pt-0 mx-auto max-w-xl" :key="users">
                                     <div class="text-center mb-13">
-                                        <h1 class="mb-3" v-text="translate('Find ' + usertype)"></h1>
+                                        <h1 class="mb-3" v-text="translate('Find ')+translate(usertype)"></h1>
 
                                         <div class="text-gray-400 font-semibold "
                                             v-text="translate('Search by name or mobile')"></div>
