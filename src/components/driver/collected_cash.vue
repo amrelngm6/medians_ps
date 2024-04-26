@@ -21,7 +21,7 @@
                     <tbody class="fs-6 fw-semibold text-gray-600">
                         <tr v-for="collected in collected_cash" >
                             <td v-text="collected.collection_id"></td>
-                            <td class="text-success" v-text="currency.sumbol + '' + collected.amount"></td>
+                            <td class="text-success" v-text="currency.symbol + '' + collected.amount"></td>
                             <td v-text="collected.date"></td>
                         </tr>
                     </tbody>

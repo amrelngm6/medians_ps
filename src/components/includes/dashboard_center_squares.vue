@@ -14,7 +14,7 @@
                             </g>
                         </svg></div>
                     <div>
-                        <h2 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white" v-text="currency.sumbol+content.avg_sales"></h2>
+                        <h2 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white" v-text="currency.symbol+content.avg_sales"></h2>
                         <p class="font-alt text-sm font-normal leading-normal leading-normal"><span class="text-muted-500 dark:text-muted-400" v-text="$parent.__('Sales average')"></span></p>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                             </g>
                         </svg></div>
                     <div>
-                        <h2 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white" v-text="currency.sumbol+content.avg_bookings"></h2>
+                        <h2 class="font-heading text-base font-semibold leading-tight text-muted-800 dark:text-white" v-text="currency.symbol+content.avg_bookings"></h2>
                         <p class="font-alt text-sm font-normal leading-normal leading-normal"><span class="text-muted-500 dark:text-muted-400" v-text="$parent.__('Bookings average')"></span></p>
                     </div>
                 </div>
