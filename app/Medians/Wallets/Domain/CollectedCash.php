@@ -23,6 +23,7 @@ class CollectedCash extends CustomModel
     	'wallet_id',
     	'wallet_type',
 		'amount',
+		'currency_code',
 		'date',
 		'notes',
 		'created_by',

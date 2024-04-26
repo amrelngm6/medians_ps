@@ -4,6 +4,7 @@ namespace Medians\Settings\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Settings\Infrastructure\SystemSettingsRepository;
+use Medians\Currencies\Infrastructure\CurrencyRepository;
 
 
 class SystemSettingsController extends CustomController
@@ -15,6 +16,8 @@ class SystemSettingsController extends CustomController
 	protected $repo;
 
 	protected $app;
+
+	protected $currencyRepo;
 	
 	public $updated = true;
 
@@ -26,6 +29,7 @@ class SystemSettingsController extends CustomController
 		$this->app = new \config\APP;
 
 		$this->repo = new SystemSettingsRepository();
+		$this->currencyRepo = new CurrencyRepository();
 
 	}
 
@@ -44,11 +48,14 @@ class SystemSettingsController extends CustomController
 			'basic'=> [	
 	            [ 'key'=> "logo", 'title'=> translate('logo'), 'fillable'=>true, 'column_type'=>'file' ],
 				[ 'key'=> "sitename", 'title'=> translate('sitename'), 'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "lang", 'title'=> translate('Languange'), 
+				[ 'key'=> "lang", 'title'=> translate('Languange'), 'help_text'=> translate('The default language for new sessions'),
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['lang'=>'arabic','title'=>translate('Arabic')], ['lang'=>'english','title'=>translate('English')]]  
+				],				
+				[ 'key'=> "currency", 'title'=> translate('Currency'), 
+					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key'=> 'code',
+					'data' => $this->currencyRepo->get()  
 				],
-				[ 'key'=> "currency", 'title'=> translate('Currency'), 'fillable'=> true, 'column_type'=>'text' ],
 
 			],
 			'site_setting'=> [	
@@ -74,9 +81,10 @@ class SystemSettingsController extends CustomController
 			],
 			
 			'google'=> [	
+				[ 'key'=> "allow_google_login", 'title'=> translate('Login with Google'), 'help_text'=>translate('Allow users to signup with Gmail'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "google_client_id", 'title'=> translate('Google Client ID'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "google_client_secret", 'title'=> translate('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "google_map_api", 'title'=> translate('Google Map API'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "google_map_api", 'title'=> translate('Google Map API'), 'help_text'=>translate('User for maps'),'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
 			'wallets'=> [	
