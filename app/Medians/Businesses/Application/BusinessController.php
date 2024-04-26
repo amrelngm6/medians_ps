@@ -257,13 +257,14 @@ class BusinessController extends CustomController
 
 	public function loadSchools()
 	{
+		$params = $this->app->request()->query->all();
 		$auth = $this->app->auth();
 
         try {
 
 			if (!empty($auth))
 			{
-				return $this->repo->getSchools(10);
+				return $this->repo->getSchools($params);
 			}
 
 			return 0;

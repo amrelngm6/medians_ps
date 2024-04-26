@@ -32,29 +32,40 @@ class BusinessRepository
 		->find($id);
 	}
 
-	public function getCompanies($limit = 100)
+	public function getCompanies($params, $limit = 100)
 	{
 		
-		return Company::where('type', 'company')
+		$query =  Company::where('type', 'company')
 		->withCount('routes', 'locations', 'drivers')
 		->whereHas('Settings', function($q) {
 			$q->where('code', 'allow_applicants')->where('value','on');	
 		})
 		->with('settings','packages')
-		->where('status', 'on')
-		->limit($limit)->get();
+		->where('status', 'on');
+		
+		if (isset($params['business_name']))
+		{
+			$query = $query->where('business_name', 'LIKE', '%'.$params['business_name'].'%');
+		}
+		return $query->limit($limit)->get();
 	}
 
-	public function getSchools($limit = 100)
+	public function getSchools($params, $limit = 100)
 	{
-		return School::where('type', 'school')
+		$query = School::where('type', 'school')
 		->withCount('routes', 'locations', 'drivers')
 		->whereHas('Settings', function($q) {
 			$q->where('code', 'allow_applicants')->where('value','on');	
 		})
 		->with('settings','packages')
-		->where('status', 'on')
-		->limit($limit)->get();
+		->where('status', 'on');
+
+		if (isset($params['business_name']))
+		{
+			$query = $query->where('business_name', 'LIKE', '%'.$params['business_name'].'%');
+		}
+		return $query->limit($limit)->get();
+
 	}
 
 	public function search($request, $limit = 20)
