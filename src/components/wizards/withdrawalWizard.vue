@@ -70,7 +70,7 @@
 
                                         <div class="mb-6">
                                             <div class="fw-semibold text-gray-600 fs-4" v-text="translate('Total amount')"></div>
-                                            <div class="fw-bold text-gray-800 fs-2" v-if="system_setting" v-text="system_setting.currency+''+activeItem.amount"></div>
+                                            <div class="fw-bold text-gray-800 fs-2" v-if="system_setting" v-text="currency.sumbol+''+activeItem.amount"></div>
                                         </div>
                                         
                                         <div class="mb-6">
@@ -249,6 +249,7 @@ export default
             'userslist',
             'usertype',
             'packages',
+            'currency'
         ],
 
     };

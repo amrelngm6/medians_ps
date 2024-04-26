@@ -122,9 +122,9 @@
                                                                 <vue-feather type="cloud-lightning" ></vue-feather>
                                                                 <a href="javascript:;" v-if="invoiceItem.item" v-text="invoiceItem.item.name"></a>
                                                             </td>
-                                                            <td class="pt-6" v-text="invoiceItem.subtotal+ '' + system_setting.currency"></td>
+                                                            <td class="pt-6" v-text="invoiceItem.subtotal+ '' + currency.sumbol"></td>
                                                             <td class="pt-6" v-text="invoiceItem.discount_amount"></td>
-                                                            <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount + '' + system_setting.currency"></td>
+                                                            <td class="pt-6 text-gray-900 fw-bolder" v-text="invoiceItem.total_amount + '' + currency.sumbol"></td>
                                                         </tr>
 
                                                     </tbody>
@@ -138,17 +138,17 @@
                                                 <div class="mw-300px">
                                                     <div class="d-flex flex-stack mb-3">
                                                         <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Subtotal')"></div>
-                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.subtotal + '' + system_setting.currency"></div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.subtotal + '' + currency.sumbol"></div>
                                                     </div>
                                                         
                                                     <div class="d-flex flex-stack mb-3">
                                                         <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Discount')"></div>
-                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.discount_amount+ '' + system_setting.currency"></div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.discount_amount+ '' + currency.sumbol"></div>
                                                     </div>
                             
                                                     <div class="d-flex flex-stack mb-3">
                                                         <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Total amount')"></div>
-                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.total_amount+ '' + system_setting.currency"></div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="activeItem.total_amount+ '' + currency.sumbol"></div>
                                                     </div>
                             
                                                 </div>
@@ -197,7 +197,7 @@
                                     <div class="mb-6">
                                         <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
 
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.amount+''+system_setting.currency"></div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.amount+''+currency.sumbol"></div>
                                     </div>
                                     
                                     <!--begin::Item-->
@@ -453,6 +453,7 @@ export default
             'userslist',
             'usertype',
             'packages',
+            'currency'
         ],
 
     };

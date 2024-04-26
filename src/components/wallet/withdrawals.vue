@@ -11,7 +11,7 @@
                 <div class="card-header pt-5">
                     <div class="card-title d-flex flex-column">   
                         <div class="d-flex align-items-center">
-                            <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
+                            <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="currency.sumbol"></span>
                             <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_pending_amount"></span>
                         </div>
                         <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total pending amount')"></span>
@@ -24,7 +24,7 @@
                         <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="withdrawal in content.pending_by_payment_methods">
                             <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+withdrawal.payment_method.toLowerCase()+'.png'" /></div>
                             <div class="text-gray-500 flex-grow-1 me-4" v-text="withdrawal.payment_method"></div>
-                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+withdrawal.total_amount"></div>
+                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="currency.sumbol+''+withdrawal.total_amount"></div>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="card-header pt-5">
                     <div class="card-title d-flex flex-column">   
                         <div class="d-flex align-items-center">
-                            <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="system_setting.currency"></span>
+                            <span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start" v-text="currency.sumbol"></span>
                             <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2" v-text="content.total_completed_amount"></span>
                         </div>
                         <span class="text-gray-500 pt-1 fw-semibold fs-6" v-text="translate('Total completed amount')"></span>
@@ -46,7 +46,7 @@
                         <div class="d-flex gap-4 fs-6 fw-semibold align-items-center" v-for="withdrawal in content.completed_by_payment_methods">
                             <div class=" rounded-2  my-3"><img class="w-10 h-10" :src="'/uploads/img/payment_methods/'+withdrawal.payment_method.toLowerCase()+'.png'" /></div>
                             <div class="text-gray-500 flex-grow-1 me-4" v-text="withdrawal.payment_method"></div>
-                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="system_setting.currency+''+ (withdrawal.total_amount)"></div>
+                            <div class="fw-bolder text-gray-700 text-xxl-end" v-text="currency.sumbol+''+ (withdrawal.total_amount)"></div>
                         </div>
                     </div>
                 </div>
@@ -215,6 +215,7 @@ export default
         'system_setting',
         'conf',
         'auth',
+        'currency'
     ],
 };
 </script>

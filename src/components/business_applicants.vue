@@ -3,7 +3,7 @@
         
         <div  v-if="content " class=" w-full relative">
             
-            <model_applicant_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard"  :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" :conf="conf" />
+            <model_applicant_wizard @callback="showWizard=false" :currency="currency" v-if="showWizard" :key="showWizard"  :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" :conf="conf" />
             
             <div class=" " v-if="!showWizard && content.items && !content.items.length ">
                 <div class="card">
@@ -319,6 +319,7 @@ export default
         'setting',
         'conf',
         'auth',
+        'currency'
     ],
     
 };

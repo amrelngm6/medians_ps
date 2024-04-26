@@ -26,11 +26,11 @@
                         <div class="d-flex text-center mb-9">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Current Balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(content.wallet.credit_balance ?? '0')"></div>
+                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="currency.sumbol+''+(content.wallet.credit_balance ?? '0')"></div>
                             </div>
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Debit balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(content.wallet.debit_balance ?? '0')"></div>
+                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="currency.sumbol+''+(content.wallet.debit_balance ?? '0')"></div>
                             </div>
                         </div>
                         <!--end::Balance preview-->
@@ -369,7 +369,7 @@
                                 <tbody class="fs-6 fw-semibold text-gray-600">
                                     <tr v-for="invoice in content.invoices">
                                         <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.code"></a></td>
-                                        <td class="text-success"  v-text="invoice.total_amount+''+system_setting.currency"></td>
+                                        <td class="text-success"  v-text="invoice.total_amount+''+currency.sumbol"></td>
                                         <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
                                         <td v-text="invoice.date"></td>
                                         <td v-text="invoice.item && invoice.item.item ? invoice.item.item.name : ''"></td>
@@ -393,7 +393,7 @@
                                     <div class="d-flex flex-wrap">
                                         <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">                    
                                             <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="content.wallet">
-                                                <span v-text="content.wallet ? (system_setting.currency+''+(content.wallet.credit_balance ?? '0')) : '0'"></span>
+                                                <span v-text="content.wallet ? (currency.sumbol+''+(content.wallet.credit_balance ?? '0')) : '0'"></span>
                                             </span>
                                             <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Wallet balance')"></span>
                                         </div>
@@ -405,7 +405,7 @@
                                         </div>
                                         <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
                                             <span class="fs-2x fw-bold text-gray-800 lh-1">
-                                                <span  v-text="system_setting.currency"></span>
+                                                <span  v-text="currency.sumbol"></span>
                                                 <span  v-text="content.wallet ? (content.wallet.debit_balance ?? '0') : '0'"></span>
                                             </span>
                                             <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2" v-text="translate('Debit balance')"></span>
@@ -434,7 +434,7 @@
                                 <tbody class="fs-6 fw-semibold text-gray-600">
                                     <tr v-for="withdrawal in content.business_withdrawals">
                                         <td v-text="withdrawal.payment_method"></td>
-                                        <td class="text-success"  v-text="system_setting.currency+''+withdrawal.amount"></td>
+                                        <td class="text-success"  v-text="currency.sumbol+''+withdrawal.amount"></td>
                                         <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
                                         <td v-text="withdrawal.date"></td>
                                         <td>
@@ -470,7 +470,7 @@
                                 <h5 class="mb-4" v-text="translate('Plan')"></h5>
                                 <div class="mb-0">
                                     <span class="text-lg me-2" v-text="activeItem.business.subscription.plan_name"></span>
-                                    <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? (cost() + '' + system_setting.currency + ' /'+ activeItem.business.subscription.type) : ''"></span>
+                                    <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? (cost() + '' + currency.sumbol + ' /'+ activeItem.business.subscription.type) : ''"></span>
                                 </div>
                             </div>
                             <!--end::Section-->
@@ -750,6 +750,7 @@ export default {
         'business_setting',
         'conf',
         'auth',
+        'currency'
     ]
 };
 </script>

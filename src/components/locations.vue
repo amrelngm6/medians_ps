@@ -2,17 +2,17 @@
     <div class="w-full flex overflow-auto">
         <div v-if="content && auth" class=" w-full relative">
 
-            <location_wizard @callback="showWizard = false"
+            <location_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'employee'" :usertype="activeItem.usertype"
                 :routes="content.routes" :userslist="content.employees" :key="showWizard"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 
-            <location_wizard @callback="showWizard = false"
+            <location_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'supervisor'" :usertype="activeItem.usertype"
                 :routes="content.routes" :userslist="content.supervisors" :key="showWizard"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 
-            <location_wizard @callback="showWizard = false"
+            <location_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'student'" :usertype="activeItem.usertype"
                 :routes="content.routes" :userslist="content.students" :key="showWizard"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
@@ -294,6 +294,7 @@ export default
             'setting',
             'conf',
             'auth',
+            'currency'
         ],
 
     };

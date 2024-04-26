@@ -21,7 +21,7 @@
                 <tbody class="fs-6 fw-semibold text-gray-600">
                     <tr v-for="invoice in invoices">
                         <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.payment_method"></a></td>
-                        <td class="text-success" v-text="invoice.total_amount + '' + system_setting.currency"></td>
+                        <td class="text-success" v-text="invoice.total_amount + '' + currency.sumbol"></td>
                         <td><a href="#" class="text-gray-600 text-hover-primary" v-text="invoice.code"></a></td>
                         <td><span class="badge badge-light-warning" v-text="invoice.status"></span></td>
                         <td v-text="invoice.date"></td>
@@ -64,6 +64,7 @@ export default {
         'auth',
         'item',
         'invoices',
+        'currency'
     ]
 };
 </script>

@@ -137,7 +137,7 @@
                                 <h5 class="mb-4" v-text="translate('Plan')"></h5>
                                 <div class="mb-0">
                                     <span class="text-lg me-2" v-text="activeItem.business.subscription.plan_name"></span>
-                                    <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? (cost() + '' + system_setting.currency + ' /'+ activeItem.business.subscription.type) : ''"></span>
+                                    <span class="fw-semibold text-gray-600" v-text="activeItem.business.subscription.plan ? (cost() + '' + currency.sumbol + ' /'+ activeItem.business.subscription.type) : ''"></span>
                                 </div>
                             </div>
                             <!--end::Section-->
@@ -343,6 +343,7 @@ export default {
         'business_setting',
         'conf',
         'auth',
+        'currency'
     ]
 };
 </script>

@@ -303,7 +303,7 @@
                                             <div class="relative flex flex-col bg-slate-50 px-5 py-8 sm:rounded-2xl">
                                                 <p class="flex items-center justify-center gap-6"><span
                                                         class="text-[2.5rem] leading-none text-slate-900"><span
-                                                            v-text="setting.currency"></span><span class="font-bold"
+                                                            v-text="currency.sumbol"></span><span class="font-bold"
                                                             v-text="cost()"></span></span><span class="ml-3 text-lg"><span
                                                             class="font-semibold text-slate-900"
                                                             v-text="translate('yearly payment')"></span><br><span
@@ -753,6 +753,7 @@ export default
             'setting',
             'conf',
             'auth',
+            'currency'
         ],
     };
 </script>

@@ -25,11 +25,11 @@
                         <div class="d-flex text-center mb-9">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Current Balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(wallet.credit_balance ?? '0')"></div>
+                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="currency.sumbol+''+(wallet.credit_balance ?? '0')"></div>
                             </div>
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Debit balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="system_setting.currency+''+(wallet.debit_balance ?? '0')"></div>
+                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="currency.sumbol+''+(wallet.debit_balance ?? '0')"></div>
                             </div>
                         </div>
                         <!--end::Balance preview-->
@@ -87,7 +87,7 @@
                             <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
                                 <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="wallet">
                                     <span
-                                        v-text="wallet ? (system_setting.currency + '' + (wallet.credit_balance ?? '0')) : '0'"></span>
+                                        v-text="wallet ? (currency.sumbol + '' + (wallet.credit_balance ?? '0')) : '0'"></span>
                                 </span>
                                 <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2"
                                     v-text="translate('Wallet balance')"></span>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
                                 <span class="fs-2x fw-bold text-gray-800 lh-1">
-                                    <span v-text="system_setting.currency"></span>
+                                    <span v-text="currency.sumbol"></span>
                                     <span v-text="wallet ? (wallet.debit_balance ?? '0') : '0'"></span>
                                 </span>
                                 <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2"
@@ -136,7 +136,7 @@
                     <tbody class="fs-6 fw-semibold text-gray-600">
                         <tr v-for="withdrawal in withdrawals">
                             <td v-text="withdrawal.payment_method"></td>
-                            <td class="text-success" v-text="system_setting.currency + '' + withdrawal.amount"></td>
+                            <td class="text-success" v-text="currency.sumbol + '' + withdrawal.amount"></td>
                             <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
                             <td v-text="withdrawal.date"></td>
                         </tr>
@@ -224,6 +224,7 @@ export default {
         'item',
         'wallet',
         'withdrawals',
+        'currency'
     ]
 };
 </script>
