@@ -87,7 +87,17 @@ class APP
 	 */ 
 	public function SystemSetting()
 	{
-		return  (new \Medians\Settings\Application\SystemSettingsController())->getAll();
+		$output = (new \Medians\Settings\Application\SystemSettingsController())->getAll();
+		$_SESSION['currency'] = isset($output['currency']) ? $output['currency'] : null;
+		return $output;
+	}
+
+	/**
+	 * Load currency
+	 */ 
+	public function currency()
+	{
+		return $this->currencyRepo->load($_SESSION['currency']);
 	}
 
 
