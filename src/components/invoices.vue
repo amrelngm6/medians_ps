@@ -60,12 +60,12 @@
                     </div>
                 </template>
 
-                <template #item-amount="item">
-                    <span class="py-2" v-text="item.amount+''+currency"></span>
+                <template #item-subtotal="item">
+                    <span class="py-2" v-text="item.subtotal+''+currency.symbol"></span>
                 </template>
 
                 <template #item-total_amount="item">
-                    <span class="py-2" v-text="item.total_amount+''+currency"></span>
+                    <span class="py-2" v-text="item.total_amount+''+currency.symbol"></span>
                 </template>
 
                 <template #item-edit="item">
