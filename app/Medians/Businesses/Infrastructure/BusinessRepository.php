@@ -47,6 +47,11 @@ class BusinessRepository
 		{
 			$query = $query->where('business_name', 'LIKE', '%'.$params['business_name'].'%');
 		}
+		
+		if (isset($params['last_ids']))
+		{
+			$query = $query->whereNotIn('business_id', json_decode($params['last_ids']));
+		}
 		return $query->limit($limit)->get();
 	}
 
