@@ -61,11 +61,11 @@
                 </template>
 
                 <template #item-subtotal="item">
-                    <span class="py-2" v-text="item.subtotal+''+(currency.symbol ?? '')"></span>
+                    <span class="py-2" v-text="item.subtotal+''+(currency.code ?? '')"></span>
                 </template>
 
                 <template #item-total_amount="item">
-                    <span class="py-2" v-text="item.total_amount+''+(currency.symbol ?? '')"></span>
+                    <span class="py-2" v-text="item.total_amount+''+(currency.code ?? '')"></span>
                 </template>
 
                 <template #item-edit="item">
