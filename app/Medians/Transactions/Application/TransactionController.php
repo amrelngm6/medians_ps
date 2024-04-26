@@ -252,6 +252,7 @@ class TransactionController extends CustomController
 		// $stripe = new \Stripe\StripeClient($settings['stripe_live_key']);
 		// $res = $stripe->paymentIntents->create([
 		//   'amount' => $amount ?? 0,
+		//   'currency' => 'usd',
 		//   'automatic_payment_methods' => ['enabled' => true],
 		// ]);
 
