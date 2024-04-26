@@ -77,7 +77,7 @@ class CustomerRepository
 		
 		if (!$Object)
 		{
-			return translate('Sent toen is not valid');
+			return translate('Sent token is not valid');
 		}
 
 		$newPassword = $Auth->encrypt($data['password']);

@@ -22,6 +22,11 @@ class UserRepository
 		return User::with('Role','business')->find($id);
 	}
 
+	public function findByEmail($email)
+	{
+		return User::with('Role','business')->where('email', $email)->first();
+	}
+
 	public function findByActivationCode($code)
 	{
 		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($code) {
@@ -29,10 +34,10 @@ class UserRepository
 		})->first();
 	}
 
-	public function findByToken($token)
+	public function findByToken($token, $code = 'API_token')
 	{
 		return User::with('custom_fields','business')->whereHas('custom_fields', function($q) use ($token) {
-			$q->where('code','API_token')->where('value',$token);
+			$q->where('code',$code)->where('value',$token);
 		})->first();
 
 	}
@@ -236,6 +241,60 @@ class UserRepository
 
 		CustomField::firstOrCreate($fillable);
 	}
+
+
+    /**
+     * Reset & Update password 
+     */
+    public function resetChangePassword($data)
+    {
+		$Auth = new \Medians\Auth\Application\AuthService;
+
+		$Object = $this->findByToken($data['reset_token'], 'reset_token');
+		
+		if (!$Object)
+		{
+			return translate('Sent token is not valid');
+		}
+
+		$newPassword = $Auth->encrypt($data['password']);
+
+		// Return the  object with the new data
+    	$Object->update( ['password'=> $newPassword]);
+
+    	return $Object;
+    }
+
+	
+	/**
+	* Save item to database
+	*/
+	public function resetPassword($data) 
+	{
+
+		$Model = new User();
+		
+		$findByEmail = $this->findByEmail($data['email']);
+
+		if (empty($findByEmail))
+			return translate('User not found');
+		
+		$deleteOld = CustomField::where('model_type', $Model::class)->where('model_id', $findByEmail->id)->where('code', 'reset_token')->delete();
+		
+		$fields = [];
+		$fields['model_type'] = $Model::class;	
+		$fields['model_id'] = $findByEmail->id;	
+		$fields['code'] = 'reset_token';	
+		$fields['value'] = $this->randomPassword();
+
+		$Model = CustomField::create($fields);
+		
+		$sendMail = new MailService($findByEmail->email, $findByEmail->parent_name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
+		$sendMail->sendMail();
+
+		return  1;
+    }
+    	
 
 
 }

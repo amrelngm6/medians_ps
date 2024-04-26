@@ -154,10 +154,7 @@ class AuthService
 				return null;
 			}  
 
-			if (isset($user->field['activation_token']))
-				echo $this->app->redirect('./activate-account/'.$user->field['activation_token']);
-			else
-				echo $this->app->redirect('/dashboard');
+			echo $this->app->redirect(isset($user->field['activation_token']) ? './activate-account/'.$user->field['activation_token'] : '/dashboard');
 
 		} catch (Exception $e) {
 			return array('error'=>$e->getMessage());
@@ -444,7 +441,6 @@ class AuthService
 				return $this->repo->findByToken($token);
 				break;
 		}
-		// return $userType == 'Driver' ?  : $this->repo->findByToken($token);
 	}
 
 
