@@ -4,8 +4,6 @@ namespace Medians\Users\Domain;
 
 use Shared\dbaser\CustomModel;
 
-use Medians\Mail\Application\MailService;
-
 use Medians\Drivers\Domain\Driver;
 use Medians\Roles\Domain\Role;
 use Medians\Roles\Domain\Permission;

@@ -31,38 +31,6 @@
 
 
 
-
-<!--Jquery 3 6 0 Min Js-->
-<script src="/src/assets/jquery.min.js"></script>
-
-<script>
-
-    jQuery(document).on('submit', 'form', function (e) {
-        e.preventDefault();
-
-        let action = $(this).attr('action');
-
-        $.ajax({
-            url: action,
-            type: "POST",
-            data: new FormData(this),
-            dataType: "json",
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (html) {
-                if (html && html.error) {
-                    alert(html.error)
-                } else {
-                    window.location.href = '/dashboard';
-                }
-
-            }
-        });
-    });
-
-</script>
-
 </body>
 
 </html>

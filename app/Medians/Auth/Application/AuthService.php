@@ -63,7 +63,7 @@ class AuthService
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
 
 		    // return  render('login', [
-			return render('views/front/signin.html.twig', [
+			return render('views/front/auth/signin.html.twig', [
 		    	// 'load_vue' => true,
 		        'title' => translate('Login page'),
 		        'app' => $this->app,
@@ -88,7 +88,7 @@ class AuthService
 
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
 
-			return render('views/front/signup.html.twig', [
+			return render('views/front/auth/signup.html.twig', [
 		        'title' => translate('Login page'),
 		        'app' => $this->app,
 		        'google_login' => $this->loginWithGoogle(),
@@ -111,7 +111,7 @@ class AuthService
 
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
 
-			return render('views/front/reset-password.html.twig', [
+			return render('views/front/auth/reset-password.html.twig', [
 		        'title' => translate('Reset your password'),
 		        'app' => $this->app,
 		    ]);
@@ -304,7 +304,7 @@ class AuthService
 				$updated = $checkUser->update(['status'=>'on']);
 			}
 
-			return render('views/front/activate.html.twig', [
+			return render('views/front/auth/activate.html.twig', [
 				// 'load_vue' => true,
 				'title' => translate('Activation page'),
 				'app' => $this->app,

@@ -289,7 +289,7 @@ class UserRepository
 
 		$Model = CustomField::create($fields);
 		
-		$sendMail = new MailService($findByEmail->email, $findByEmail->parent_name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
+		$sendMail = new \Medians\Mail\Application\MailService($findByEmail->email, $findByEmail->parent_name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
 		$sendMail->sendMail();
 
 		return  1;
