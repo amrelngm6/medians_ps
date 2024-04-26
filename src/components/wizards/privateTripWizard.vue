@@ -737,7 +737,7 @@ export default
                 if (props.userslist)
                 {
                     for (let i = 0; i < props.userslist.length; i++) {
-                        props.userslist[i].show = searchText.value.trim() ? checkSimilarVehicle(props.userslist[i]) : 1;
+                        props.userslist[i].show = searchText.value.trim() ? checkSimilarUser(props.userslist[i]) : 1;
                     }
                 }
             }
