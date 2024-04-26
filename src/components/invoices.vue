@@ -60,6 +60,14 @@
                     </div>
                 </template>
 
+                <template #item-amount="item">
+                    <span class="py-2" v-text="item.amount+''+currency"></span>
+                </template>
+
+                <template #item-total_amount="item">
+                    <span class="py-2" v-text="item.total_amount+''+currency"></span>
+                </template>
+
                 <template #item-edit="item">
                     <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
                         <vue-feather class="w-5" type="edit"></vue-feather>
@@ -180,6 +188,7 @@ export default
         'business_setting',
         'conf',
         'auth',
+        'currency',
     ],
 };
 </script>

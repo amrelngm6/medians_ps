@@ -17,7 +17,7 @@
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
                         <div class="w-full" v-if="checkAccess()">
                             <transition  :duration="1000">
-                                <component @callback="switchTab" class="pt-8 px-1" ref="activeTab" :business_setting="business_setting" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent"></component>
+                                <component @callback="switchTab" class="pt-8 px-1" ref="activeTab" :business_setting="business_setting" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent" :currency="currency"></component>
                             </transition>
                         </div>
                         <div class="w-full" v-if="!checkAccess()">
@@ -206,6 +206,7 @@ export default {
             status: null,
             lang: {},
             auth: {},
+            currency: {},
             setting: {},
             system_setting: {},
             business_setting: {},
@@ -324,6 +325,7 @@ export default {
             this.url = propsSet ? propsSet.url : '/';
             this.activeTab = (propsSet && propsSet.page) ? propsSet.page : this.defaultPage();
             this.activeComponent = (propsSet && propsSet.component) ? propsSet.component : this.defaultPage();
+            this.currency = (propsSet && propsSet.currency) ? propsSet.currency : {};
 
         },
 

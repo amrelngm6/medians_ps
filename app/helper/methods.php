@@ -49,6 +49,7 @@ function render($template, $data, $responseType = 'html')
     $data['app']->auth = $app->auth();
     $data['app']->business_setting = $business_setting;
     $data['app']->setting = $setting;
+    $data['app']->currency = $app->currency();
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
     $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
     $data['lang'] = (new helper\Lang($_SESSION['lang']))->load();

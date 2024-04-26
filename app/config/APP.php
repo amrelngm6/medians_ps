@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Medians\Settings\Infrastructure\SettingsRepository;
+use Medians\Currencies\Infrastructure\CurrencyRepository;
 
 use \Medians\Auth\Application\AuthService;
 
@@ -37,6 +38,8 @@ class APP
 	public $session;
 	
 	public $setting;
+
+	public $currency;
 
 
 	function __construct()
@@ -97,7 +100,8 @@ class APP
 	 */ 
 	public function currency()
 	{
-		return $this->currencyRepo->load($_SESSION['currency']);
+		$this->currency = (new CurrencyRepository)->load($_SESSION['currency']);
+		return $this->currency;
 	}
 
 
