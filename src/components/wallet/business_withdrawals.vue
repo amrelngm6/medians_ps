@@ -93,6 +93,10 @@
                     </div>
                 </template>
 
+                <template #item-amount="item">
+                    <span class="py-2" v-text="currency.symbol+''+item.amount"></span>
+                </template>
+
                 <template #item-delete="item">
                     <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-red-500" @click="handleAction('delete', item)">
                         <vue-feather class="w-5" type="x-circle"></vue-feather>
