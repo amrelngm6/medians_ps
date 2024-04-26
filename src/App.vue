@@ -325,7 +325,7 @@ export default {
             this.url = propsSet ? propsSet.url : '/';
             this.activeTab = (propsSet && propsSet.page) ? propsSet.page : this.defaultPage();
             this.activeComponent = (propsSet && propsSet.component) ? propsSet.component : this.defaultPage();
-            this.currency = (propsSet && propsSet.currency) ? propsSet.currency : {};
+            this.currency = (propsSet && propsSet.currency) ? JSON.parse(propsSet.currency) : {};
 
         },
 
