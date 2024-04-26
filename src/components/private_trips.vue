@@ -1,7 +1,7 @@
 <template>
     <div class="w-full overflow-auto" >
 
-        <private_trip_wizard @callback="showWizard = false" :conf="conf"
+        <private_trip_wizard @callback="showWizard = false" :conf="conf" :currency="currency"
                 v-if="showWizard && activeItem.usertype" :usertype="activeItem.usertype"
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
@@ -228,6 +228,7 @@ export default
         'system_setting',
         'conf',
         'auth',
+        'currency'
     ],
 };
 

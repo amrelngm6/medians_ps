@@ -2,7 +2,7 @@
     <div class="w-full " >
         
 
-        <invoice_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting"  :system_setting="system_setting" :conf="conf" ></invoice_wizard>
+        <invoice_wizard :currency="currency" @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting"  :system_setting="system_setting" :conf="conf" ></invoice_wizard>
         
         <div  v-if="!showWizard"  class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>

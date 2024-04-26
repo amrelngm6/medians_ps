@@ -2,17 +2,17 @@
     <div class="w-full flex overflow-auto" >
         <div  v-if="content && auth" class=" w-full relative">
             
-            <subscription_wizard @callback="showWizard = false"
+            <subscription_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'employee'" :usertype="activeItem.usertype"
                 :userslist="content.employees" :key="showWizard" :packages="content.packages"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 
-            <subscription_wizard @callback="showWizard = false"
+            <subscription_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'supervisor'" :usertype="activeItem.usertype"
                 :userslist="content.supervisors" :key="showWizard" :packages="content.packages"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 
-            <subscription_wizard @callback="showWizard = false"
+            <subscription_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'student'" :usertype="activeItem.usertype"
                 :userslist="content.students" :key="showWizard" :packages="content.packages"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
@@ -241,6 +241,7 @@ export default
         'conf',
         'auth',
         'subscripion_id',
+        'currency'
     ],
     
 };

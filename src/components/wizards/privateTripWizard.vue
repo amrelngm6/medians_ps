@@ -443,17 +443,17 @@
                                                 
                                             <div class="flex gap-6 w-full">
                                                 <div v-text="translate('Subtotal')"></div>
-                                                <div v-text="activeItem.subtotal"></div>
+                                                <div v-text="currency.sumbol +''+ activeItem.subtotal"></div>
                                             </div>
 
                                             <div class="flex gap-6 w-full">
                                                 <div v-text="translate('Discount')"></div>
-                                                <div v-text="activeItem.discount_amount"></div>
+                                                <div v-text="currency.sumbol +''+ activeItem.discount_amount"></div>
                                             </div>
 
                                             <div class="flex gap-6 w-full">
                                                 <div v-text="translate('Total cost')"></div>
-                                                <div v-text="activeItem.total_cost"></div>
+                                                <div v-text="currency.sumbol +''+ activeItem.total_cost"></div>
                                             </div>
 
                                         </div>
@@ -817,6 +817,7 @@ export default
             'usertype',
             'drivers',
             'vehicles',
+            'currency'
         ],
 
     };

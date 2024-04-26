@@ -205,6 +205,7 @@ export default
         'auth',
         'object_name',
         'object_key',
+        'currency'
     ],
     
 };

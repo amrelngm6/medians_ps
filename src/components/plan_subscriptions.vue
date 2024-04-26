@@ -1,7 +1,7 @@
 <template>
     <div class="w-full " >
         
-        <plan_subscription_wizard @callback="showWizard = false"
+        <plan_subscription_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard" :usertype="activeItem.usertype"
                 :userslist="content.users" :key="showWizard" :plans="content.plans"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
@@ -161,6 +161,7 @@ export default
         'setting',
         'conf',
         'auth',
+        'currency'
     ],
 };
 </script>
