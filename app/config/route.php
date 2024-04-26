@@ -37,6 +37,7 @@ RouteHandler::get('/login', \Medians\Auth\Application\AuthService::class.'@login
 RouteHandler::get('/signup', \Medians\Auth\Application\AuthService::class.'@signupPage');
 RouteHandler::get('/google_login_redirect', \Medians\Auth\Application\AuthService::class.'@verifyLoginWithGoogle');
 RouteHandler::get('/activate-account/(:all)', \Medians\Auth\Application\AuthService::class.'@activate');
+RouteHandler::get('/reset-password', \Medians\Auth\Application\AuthService::class.'@resetPasswordPage');
 
 // Login as admin
 RouteHandler::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');

@@ -932,6 +932,7 @@ class LangsEn
 			,'Drivers applicants note' => 'You can enable or disable your business from receiving <b>applcants as drivers</b>. <br />You can manage it from Business Setting'
 			,'upgrade_notification_note' => 'We will send you a notification upon Subscription expiration '
 			,'users applicants note' => 'This list of the users who requested to join our routes. Once you review their info and approve the request, they would be able to pay for the subscribed package'
+			,'RESET_PASSWORD_MSG' => 'Type your email, and we will send you confirmation code'
 
 
 			,'COPYRIGHTS' => 'Copyrights are reserved'
