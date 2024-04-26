@@ -264,7 +264,7 @@ class BusinessController extends CustomController
 
 			if (!empty($auth))
 			{
-				return $this->repo->getSchools($params);
+				return $this->repo->getSchools($params, 1);
 			}
 
 			return 0;
