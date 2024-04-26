@@ -283,7 +283,7 @@ class BusinessController extends CustomController
 
 			if (!empty($auth))
 			{
-				return $this->repo->getCompanies($params);
+				return $this->repo->getCompanies($params, 1);
 			}
 
         } catch (Exception $e) {
