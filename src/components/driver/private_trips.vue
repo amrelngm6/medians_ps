@@ -26,7 +26,7 @@
                             <td v-text="trip.model.name ?? ''"></td>
                             <td v-text="trip.pickup_address"></td>
                             <td v-text="trip.destination_address"></td>
-                            <td v-text="trip.total_cost"></td>
+                            <td v-text="currency.symbol + trip.total_cost"></td>
                             <td><span  v-text="trip.status"></span></td>
                             <td v-text="trip.date"></td>
                         </tr>
@@ -81,6 +81,7 @@ export default {
         'auth',
         'item',
         'trips',
+        'currency'
     ]
 };
 </script>
