@@ -1188,6 +1188,13 @@ class LangsAr
 		,'driver name' => 'اسم السائق'
 		,'Morning Trip' => 'الرحلة الصباحية'
 		,'Afternoon Trip' => 'الرحلة المسائية'
+		,'Morning Trip time' => 'موعد الرحلة الصباحية'
+		,'Afternoon Trip time' => 'موعد الرحلة المسائية'
+		,'Start location' => 'نقطة البداية'
+		,'End location' => 'نقطة النهاية'
+		,'crew' => 'الطاقم'
+		,'active' => 'نشط'
+		,'' => ''
 		,'' => ''
 		,'' => ''
 
