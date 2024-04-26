@@ -23,6 +23,7 @@ class PaymentService
 	public $subtotal;
 	public $totalcost;
 
+
 	function __construct($payment_method)
 	{
 
@@ -32,7 +33,6 @@ class PaymentService
 		
 		$this->planSubscriptionRepo = new PlanSubscriptionRepository();
 		$this->paymentRepo = new PaymentRepository();
-
 	}
 
 
