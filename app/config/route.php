@@ -77,6 +77,7 @@ RouteHandler::get('/create-payment-intent', \Medians\Transactions\Application\Tr
 RouteHandler::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
 RouteHandler::post('/signup', \Medians\Auth\Application\AuthService::class.'@userSignup');
 RouteHandler::post('/reset-password', \Medians\Auth\Application\AuthService::class.'@userResetPassword');
+RouteHandler::post('/reset-password-code', \Medians\Auth\Application\AuthService::class.'@resetChangePassword');
 
 
 /**

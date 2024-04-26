@@ -284,7 +284,7 @@ class AuthService
 	}
 
 	/**
-	 * User Signup request
+	 * User Reset Password request
 	 */ 
 	public function userResetPassword()
 	{
@@ -296,13 +296,31 @@ class AuthService
             
             $checkUser = $this->repo->resetPassword($params);
 
-            if ($checkUser == 1)
-            {
-				echo json_encode(array('success'=>1, 'result'=>translate('Code sent through email'), 'redirect'=>$this->app->CONF['url'].'reset-password-code'));
+			echo ($checkUser == 1) 
+			? json_encode(array('success'=>1, 'result'=>translate('Code sent through email'), 'redirect'=>$this->app->CONF['url'].'reset-password-code')) 
+			: json_encode(array('error'=>$checkUser));
 
-            } else {
-	            echo json_encode(array('error'=>$checkUser));
-            }
+        } catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
+        }
+	}
+
+		/**
+	 * User Reset Password request
+	 */ 
+	public function userResetPasswordCode()
+	{
+		$this->app = new \config\APP;
+		
+        $params = $this->app->request()->get('params');
+
+        try {
+            
+            $checkUser = $this->repo->resetPassword($params);
+
+			echo ($checkUser == 1) 
+			? json_encode(array('success'=>1, 'result'=>translate('Code sent through email'), 'redirect'=>$this->app->CONF['url'].'reset-password-code')) 
+			: json_encode(array('error'=>$checkUser));
 
         } catch (Exception $e) {
         	throw new Exception("Error Processing Request", 1);
