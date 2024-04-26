@@ -285,7 +285,7 @@ class UserRepository
 		$fields['model_type'] = $Model::class;	
 		$fields['model_id'] = $findByEmail->id;	
 		$fields['code'] = 'reset_token';	
-		$fields['value'] = $this->randomPassword();
+		$fields['value'] = $Model->randomPassword();
 
 		$Model = CustomField::create($fields);
 		
