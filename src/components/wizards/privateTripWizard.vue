@@ -125,6 +125,7 @@
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                     @click="activeTab = 'Destination'" v-text="translate('Destination')"></a></p>
                             </div>
+
                             <div class="" v-if="activeTab == 'Destination'" :key="activeTab">
                                 <div class="card-body pt-0">
                                     <div class="px-10 mb-6 mx-auto row">
@@ -181,9 +182,6 @@
                                         class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                         @click="activeTab = 'Driver'" v-text="translate('Driver')"></a></p>
                             </div>
-
-
-                            
 
                             <div class="" v-if="activeTab == 'Driver'" :key="activeTab">
                                 <div class="card-body pt-0">
@@ -694,8 +692,8 @@ export default
 
             const checkSimilarDriver = (item) => {
                 let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                let email = name ? name : (item.email).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return email ? email : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+                return  name ? name : (item.email).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+                // return email ? email : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
             }
 
             const setDriver = (driver) => {
