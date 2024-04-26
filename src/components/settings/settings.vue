@@ -116,7 +116,7 @@
 <script>
 
 import {ref } from 'vue';
-import {translate,handleGetRequest,isInput, setActiveStatus, handleName } from '@/utils.vue';
+import {translate,handleGetRequest,isInput, setActiveStatus, handleName, handleTabName } from '@/utils.vue';
 import field from '@/components/includes/Field.vue';
 import form_field from '@/components/includes/form_field.vue';
 import SideFormUpdate from '@/components/includes/side-form-update.vue';
@@ -162,11 +162,6 @@ export default
         {
             activeTab.value = tab;
         }
-
-        const handleTabName = (index) => {
-            return index.replace('_', ' ').toUpperCase();
-        }
-
 
         return {
             url,

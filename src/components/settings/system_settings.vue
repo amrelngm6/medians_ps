@@ -48,7 +48,7 @@
 <script>
 
 import {ref } from 'vue';
-import {translate,handleGetRequest,isInput } from '@/utils.vue';
+import {translate,handleGetRequest,isInput , handleTabName } from '@/utils.vue';
 import field from '@/components/includes/Field.vue';
 import form_field from '@/components/includes/form_field.vue';
 
@@ -94,10 +94,6 @@ export default
 
         const handleName = (column) => {
             return  (column && column.custom_field) ? 'params[field]['+column.key+']' : 'params['+column.key+']';
-        }
-
-        const handleTabName = (index) => {
-            return translate(index.replace('_', ' ').toUpperCase());
         }
 
 
