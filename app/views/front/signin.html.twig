@@ -37,7 +37,9 @@
                     
                     <ul class="social-icon">
                         <li><h5 class="px-3 pt-4">{{lang.translate('Login with')}}:</h5></li>
+                        {% if app.setting.allow_google_login %}
                         <li><a href="{{google_login}}"><i class="fa-brands fa-google"></i>Google</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
