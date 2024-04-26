@@ -88,7 +88,7 @@ class BusinessController extends CustomController
 		        'title' => translate('Schools'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable('school'),
-		        'items' => $this->repo->getSchools(),
+		        'items' => $this->repo->getSchools(null),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -114,7 +114,7 @@ class BusinessController extends CustomController
 		        'title' => translate('Companies'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable('company'),
-		        'items' => $this->repo->getCompanies(),
+		        'items' => $this->repo->getCompanies(null),
 		    ]);
 
 		} catch (\Exception $e) {

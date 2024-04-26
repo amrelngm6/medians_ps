@@ -84,12 +84,12 @@ class SystemSettingsController extends CustomController
 				[ 'key'=> "allow_google_login", 'title'=> translate('Login with Google'), 'help_text'=>translate('Allow users to signup with Gmail'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "google_client_id", 'title'=> translate('Google Client ID'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "google_client_secret", 'title'=> translate('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "google_map_api", 'title'=> translate('Google Map API'), 'help_text'=>translate('User for maps'),'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "google_map_api", 'title'=> translate('Google Map API'), 'help_text'=>translate('Used for maps'),'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
 			'wallets'=> [	
-				[ 'key'=> "comission_free_plan", 'help_text'=>'Comission will be calculated on withdrawal request', 'title'=> translate('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "comission_paid_plan", 'help_text'=>'Comission will be calculated on withdrawal request', 'title'=> translate('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "comission_free_plan", 'help_text'=> translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "comission_paid_plan", 'help_text'=>translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 			
 			'paypal'=> [	

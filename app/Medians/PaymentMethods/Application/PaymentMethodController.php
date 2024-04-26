@@ -75,7 +75,7 @@ class PaymentMethodController extends CustomController
 	{
 		return render('payment_methods', [
 	        'load_vue' => true,
-	        'title' => translate('Business Payment Methods'),
+	        'title' => translate('Payment Methods'),
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
 	        'items' => $this->repo->get(),

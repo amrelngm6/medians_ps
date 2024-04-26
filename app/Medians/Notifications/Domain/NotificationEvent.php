@@ -48,13 +48,22 @@ class NotificationEvent extends CustomModel
     	'created_by',
 	];
 
-
-	/**
-	* @var bool
-	*/
-	// public $timestamps = false;
+	public $appends = ['receiver_title', 'model_title'];
 
 
+
+
+	public function getReceiverTitleAttribute()
+	{
+		$value = explode("\\", $this->receiver_model);
+		return end($value);
+	}
+
+	public function getModelTitleAttribute()
+	{
+		$value = explode("\\", $this->model);
+		return end($value);
+	}
 
 	public function getFields()
 	{

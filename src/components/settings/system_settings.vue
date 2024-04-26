@@ -97,7 +97,7 @@ export default
         }
 
         const handleTabName = (index) => {
-            return index.replace('_', ' ').toUpperCase();
+            return translate(index.replace('_', ' ').toUpperCase());
         }
 
 
