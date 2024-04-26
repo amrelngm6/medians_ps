@@ -38,6 +38,7 @@ RouteHandler::get('/signup', \Medians\Auth\Application\AuthService::class.'@sign
 RouteHandler::get('/google_login_redirect', \Medians\Auth\Application\AuthService::class.'@verifyLoginWithGoogle');
 RouteHandler::get('/activate-account/(:all)', \Medians\Auth\Application\AuthService::class.'@activate');
 RouteHandler::get('/reset-password', \Medians\Auth\Application\AuthService::class.'@resetPasswordPage');
+RouteHandler::get('/reset-password-code', \Medians\Auth\Application\AuthService::class.'@resetPasswordCodePage');
 
 // Login as admin
 RouteHandler::post('/', \Medians\Auth\Application\AuthService::class.'@userLogin');
@@ -75,7 +76,7 @@ RouteHandler::get('/create-payment-intent', \Medians\Transactions\Application\Tr
 // POST Requests
 RouteHandler::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
 RouteHandler::post('/signup', \Medians\Auth\Application\AuthService::class.'@userSignup');
-RouteHandler::post('/reset-password', \Medians\Auth\Application\AuthService::class.'@checkResetPassword');
+RouteHandler::post('/reset-password', \Medians\Auth\Application\AuthService::class.'@userResetPassword');
 
 
 /**

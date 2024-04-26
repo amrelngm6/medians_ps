@@ -120,6 +120,27 @@ class AuthService
         	throw new Exception("Error Processing Request", 1);
 		}
 	}
+	
+	/**
+	 * Display login page 
+	 */
+	public function resetPasswordCodePage()
+	{
+		try {
+			
+			$this->app = new \config\APP;
+
+			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
+
+			return render('views/front/auth/reset-password-code.html.twig', [
+		        'title' => translate('Reset your password'),
+		        'app' => $this->app,
+		    ]);
+		    
+		} catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
+		}
+	}
 
 
 	public function verifyLoginWithGoogle()
@@ -265,7 +286,7 @@ class AuthService
 	/**
 	 * User Signup request
 	 */ 
-	public function checkResetPassword()
+	public function userResetPassword()
 	{
 		$this->app = new \config\APP;
 		
