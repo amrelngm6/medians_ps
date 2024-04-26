@@ -1177,6 +1177,11 @@ class LangsAr
 		,'reject' => 'رفض'
 		,'Earnings' => 'الأرباح'
 		,'Withdrawal requests' => 'طلبات السحب'
+		,'Here is the wallet debit and credit balance' => 'بيانات المحفظة الالكترونية وتشميل رصيد الدائن و المدين'
+		,'' => ''
+		,'' => ''
+		,'' => ''
+		,'' => ''
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
