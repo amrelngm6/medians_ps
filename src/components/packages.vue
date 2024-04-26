@@ -38,7 +38,6 @@
 
                         <template #item-single_trip="item">
                             
-                            
                         </template>
 
                         <template #item-double_trip="item">

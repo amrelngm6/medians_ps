@@ -44,6 +44,10 @@
                     </div>
                 </template>
 
+                <template #item-amount="item">
+                    <span class="py-2" v-text="currency.symbol+''+item.amount"></span>
+                </template>
+
                 <template #expand="item">
                     <div class="p-6"   v-if="item.invoice" style="padding: 15px">
                         {{ translate('This payment has invoice code : ') }} {{item.invoice ? item.invoice.code : ''}} 
@@ -147,6 +151,7 @@ export default
         'setting',
         'conf',
         'auth',
+        'currency',
     ],
 };
 </script>

@@ -57,6 +57,13 @@
                             <img :src="item.picture" class="w-8 h-8 rounded-full" />
                         </template>
 
+                        <template #item-total_cost="item">
+                            <span class="py-2" v-text="currency.symbol+''+item.total_cost"></span>
+                        </template>
+                        <template #item-subtotal="item">
+                            <span class="py-2" v-text="currency.symbol+''+item.total_cost"></span>
+                        </template>
+
                         <template #item-details="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
                                 <vue-feather class="w-5" type="edit"></vue-feather>
