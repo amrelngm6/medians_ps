@@ -252,7 +252,7 @@
                                         <h1 class="mb-3" v-text="translate('Find vehicle')"></h1>
 
                                         <div class="text-gray-400 font-semibold "
-                                            v-text="translate('Search by name')"></div>
+                                            v-text="translate('Search by name or plate number')"></div>
                                     </div>
                                     <div class="w-100 relative mb-5" autocomplete="off">
 
@@ -679,21 +679,10 @@ export default
                 searchText.value = null;
             }
 
-            const subscription_wizard = () => {
-
-                if (props.userslist)
-                {
-                    for (let i = 0; i < props.userslist.length; i++) {
-                        props.userslist[i].show = searchText.value.trim() ? checkSimilarUser(props.userslist[i]) : 1;
-                    }
-                }
-            }
-            
 
             const checkSimilarDriver = (item) => {
                 let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
                 return  name ? name : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                // return email ? email : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
             }
 
             const setDriver = (driver) => {
