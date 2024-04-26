@@ -111,7 +111,7 @@
                                 <h4 class="w-full ml-4" v-text="translate('New subscriptions')"></h4>
                                 <a href="/admin/plan_subscriptions" class="w-20" v-text="translate('View all')"></a>
                             </div>
-                            <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest subscriptions request has been sent')"></p>
+                            <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest plan subscriptions')"></p>
                         </div>
                         <div class="card-body w-full">
                             <div class="w-full ">
