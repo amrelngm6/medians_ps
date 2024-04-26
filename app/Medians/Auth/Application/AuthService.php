@@ -308,7 +308,7 @@ class AuthService
 		/**
 	 * User Reset Password request
 	 */ 
-	public function userResetPasswordCode()
+	public function resetChangePassword()
 	{
 		$this->app = new \config\APP;
 		
@@ -316,10 +316,10 @@ class AuthService
 
         try {
             
-            $checkUser = $this->repo->resetPassword($params);
+            $checkUser = $this->repo->resetChangePassword($params);
 
 			echo ($checkUser == 1) 
-			? json_encode(array('success'=>1, 'result'=>translate('Code sent through email'), 'redirect'=>$this->app->CONF['url'].'reset-password-code')) 
+			? json_encode(array('success'=>1, 'result'=>translate('Password updated successfully'), 'redirect'=>$this->app->CONF['url'].'login')) 
 			: json_encode(array('error'=>$checkUser));
 
         } catch (Exception $e) {
