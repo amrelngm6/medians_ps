@@ -249,6 +249,7 @@ export default {
         'business_setting',
         'conf',
         'auth',
+        'currency'
     ]
 };
 </script>

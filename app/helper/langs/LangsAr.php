@@ -1166,6 +1166,9 @@ class LangsAr
 		,'Pickup time' => 'وقت الالتقاء'
 		,'Vehicle types' => 'انواع السيارات'
 		,'Driver license number' => 'رقم رخصة القيادة'
+		,'Account information' => 'معلومات الحساب'
+		,'Latest trips' => 'أحدث الرحلات'
+		,'Latest private trips' => 'أحدث الرحلات الخاصة'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'

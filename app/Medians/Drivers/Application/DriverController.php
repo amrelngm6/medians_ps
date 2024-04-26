@@ -125,7 +125,7 @@ class DriverController extends CustomController
 			'stats' => $this->getStats($driver, $user->business),
 			'overview' => $this->overview($driver),
 			'fillable' => $this->fillable(),
-			'collected_cash' => $collectCashRepo->getCollectedCash($wallet->wallet_id),
+			'collected_cash' => isset($wallet->wallet_id) ? $collectCashRepo->getCollectedCash($wallet->wallet_id) : [],
 			'invoices' => $invoicesRepo->getUserInvoices($user->id),
 			'wallet' => $wallet,
 			'withdrawals' => $WithdrawalRepo->getDriverWithdrawals($driver->driver_id),
