@@ -133,7 +133,7 @@ class AuthService
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
 
 			return render('views/front/auth/reset-password-code.html.twig', [
-		        'title' => translate('Reset your password'),
+		        'title' => translate('Your reset token'),
 		        'app' => $this->app,
 		    ]);
 		    
@@ -298,7 +298,7 @@ class AuthService
 
             if ($checkUser == 1)
             {
-				echo json_encode(array('success'=>1, 'result'=>translate('Code sent through email'), 'redirect'=>$this->app->CONF['url'].'/confirm_reset_password'));
+				echo json_encode(array('success'=>1, 'result'=>translate('Code sent through email'), 'redirect'=>$this->app->CONF['url'].'reset-password-code'));
 
             } else {
 	            echo json_encode(array('error'=>$checkUser));
