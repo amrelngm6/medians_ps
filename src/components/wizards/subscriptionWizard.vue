@@ -7,7 +7,7 @@
                     <div class="stepper-nav justify-content-center py-2 mb-10">
                         <div class="stepper-item " v-for="row in fillable" @click="activeTab = row">
                             <h3 :class="activeTab == row ? 'text-danger border-danger' : 'text-gray-400 border-transparent'"
-                                class="cursor-pointer pb-3 px-2 stepper-title text-md border-b " v-text="row"></h3>
+                                class="cursor-pointer pb-3 px-2 stepper-title text-md border-b " v-text="translate(row)"></h3>
                         </div>
                     </div>
                     <div class="w-full">
