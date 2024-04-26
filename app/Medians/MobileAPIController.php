@@ -212,17 +212,17 @@ class MobileAPIController extends CustomController
 				$return =  (new Trips\Application\PrivateTripController())->endTrip(); 
 				break;
 
-			case 'Driver.load_schools':
-			case 'Driver_load_schools':
-				$return = (new Businesses\Application\BusinessController)->loadSchoolsForDrivers();
+			case 'load_schools':
+			case 'load_schools':
+				$return = (new Businesses\Application\BusinessController)->loadSchools();
+				break;
+
+			case 'load_companies':
+				$return = (new Businesses\Application\BusinessController)->loadCompanies();
 				break;
 
 			case 'load_business':
 				$return = (new Businesses\Application\BusinessController)->loadBusiness();
-				break;
-
-			case 'Driver.load_companies':
-				$return = (new Businesses\Application\BusinessController)->loadCompaniesForDrivers();
 				break;
 				
 			case 'student_applicants':

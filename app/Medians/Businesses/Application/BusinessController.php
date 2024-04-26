@@ -255,7 +255,7 @@ class BusinessController extends CustomController
 	}
 	
 
-	public function loadSchoolsForDrivers()
+	public function loadSchools()
 	{
 		$auth = $this->app->auth();
 
@@ -273,7 +273,7 @@ class BusinessController extends CustomController
         }
 	}
 	
-	public function loadCompaniesForDrivers()
+	public function loadCompanies()
 	{
 		$auth = $this->app->auth();
 
