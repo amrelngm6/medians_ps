@@ -1164,6 +1164,8 @@ class LangsAr
 		,'Find Location' => 'البحث عن مكان'
 		,'Payment status' => 'حالة الدفع'
 		,'Pickup time' => 'وقت الالتقاء'
+		,'Vehicle types' => 'انواع السيارات'
+		,'Driver license number' => 'رقم رخصة القيادة'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
