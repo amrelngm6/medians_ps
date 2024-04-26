@@ -54,8 +54,6 @@ RouteHandler::post('/mobile_api', \Medians\MobileAPIController::class.'@handle')
 
 // Get requests
 RouteHandler::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
-RouteHandler::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
-RouteHandler::post('/signup', \Medians\Auth\Application\AuthService::class.'@userSignup');
 RouteHandler::get('/route/(:all)', \Medians\Routes\Application\RouteController::class.'@getRoute');
 RouteHandler::get('/driver_routes', \Medians\Routes\Application\RouteController::class.'@getDriverRoutes');
 RouteHandler::get('/business_routes', \Medians\Routes\Application\RouteController::class.'@getBusinessRoutes');
@@ -73,6 +71,11 @@ RouteHandler::get('/routes', \Medians\Routes\Application\RouteController::class.
 RouteHandler::get('/Route_active_trip', \Medians\Trips\Application\TripController::class.'@getActiveTrip');
 RouteHandler::get('/create-payment-intent', \Medians\Transactions\Application\TransactionController::class.'@createPaymentIntent');
 
+
+// POST Requests
+RouteHandler::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
+RouteHandler::post('/signup', \Medians\Auth\Application\AuthService::class.'@userSignup');
+RouteHandler::post('/reset-password', \Medians\Auth\Application\AuthService::class.'@checkResetPassword');
 
 
 /**

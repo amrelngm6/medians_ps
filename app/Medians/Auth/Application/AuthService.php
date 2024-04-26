@@ -259,7 +259,32 @@ class AuthService
 
         } catch (Exception $e) {
         	throw new Exception("Error Processing Request", 1);
-        	
+        }
+	}
+
+	/**
+	 * User Signup request
+	 */ 
+	public function checkResetPassword()
+	{
+		$this->app = new \config\APP;
+		
+        $params = $this->app->request()->get('params');
+
+        try {
+            
+            $checkUser = $this->repo->resetPassword($params);
+
+            if ($checkUser == 1)
+            {
+				echo json_encode(array('success'=>1, 'result'=>translate('Code sent through email'), 'redirect'=>$this->app->CONF['url'].'/confirm_reset_password'));
+
+            } else {
+	            echo json_encode(array('error'=>$checkUser));
+            }
+
+        } catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
         }
 	}
 
