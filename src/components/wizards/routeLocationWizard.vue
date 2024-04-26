@@ -578,8 +578,7 @@ export default
 
             const checkSimilarUser = (item) => {
                 let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                let email = name ? name : (item.email).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return email ? email : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+                return name ? name : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
             }
 
             const setUser = (user) => {
