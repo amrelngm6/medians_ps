@@ -58,7 +58,13 @@ class SystemSettingsController extends CustomController
 				],
 
 			],
-			'site_setting'=> [	
+			
+			'wallets'=> [	
+				[ 'key'=> "comission_free_plan", 'help_text'=> translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "comission_paid_plan", 'help_text'=>translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+			],
+			
+			'site_info'=> [	
 				[ 'key'=> "footer_email", 'title'=> translate('Footer email'), 'fillable'=> true, 'column_type'=>'email' ],
 				[ 'key'=> "footer_address", 'title'=> translate('Footer address'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "footer_phone", 'title'=> translate('Footer phone'), 'fillable'=> true, 'column_type'=>'phone' ],
@@ -85,11 +91,6 @@ class SystemSettingsController extends CustomController
 				[ 'key'=> "google_client_id", 'title'=> translate('Google Client ID'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "google_client_secret", 'title'=> translate('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "google_map_api", 'title'=> translate('Google Map API'), 'help_text'=>translate('Used for maps'),'fillable'=> true, 'column_type'=>'text' ],
-			],
-			
-			'wallets'=> [	
-				[ 'key'=> "comission_free_plan", 'help_text'=> translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "comission_paid_plan", 'help_text'=>translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 			
 			'paypal'=> [	
