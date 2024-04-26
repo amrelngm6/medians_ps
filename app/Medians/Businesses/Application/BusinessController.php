@@ -276,13 +276,14 @@ class BusinessController extends CustomController
 	
 	public function loadCompanies()
 	{
+		$params = $this->app->request()->query->all();
 		$auth = $this->app->auth();
 
         try {
 
 			if (!empty($auth))
 			{
-				return $this->repo->getCompanies(10);
+				return $this->repo->getCompanies($params);
 			}
 
         } catch (Exception $e) {
