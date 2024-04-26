@@ -262,7 +262,7 @@ class UserRepository
 		// Return the  object with the new data
     	$Object->update( ['password'=> $newPassword]);
 
-    	return $Object;
+    	return 1;
     }
 
 	
