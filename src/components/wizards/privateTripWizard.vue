@@ -666,10 +666,11 @@ export default
                 emit('callback');
             }
 
-            const checkSimilarUser = (item) => {
-                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                let email = name ? name : (item.email).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return email ? email : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+            const progressWidth = () => 
+            {
+                let requiredData = ['model_id', 'driver_id', 'pickup_address', 'destination_address','status'];
+                
+                return getProgressWidth(requiredData, activeItem);
             }
 
             const setUser = (user) => {
@@ -679,18 +680,20 @@ export default
                 searchText.value = null;
             }
 
-
-            const checkSimilarDriver = (item) => {
-                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return  name ? name : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-            }
-
             const setDriver = (driver) => {
                 activeItem.value.driver_id = driver.driver_id;
                 activeItem.value.driver = driver;
                 activeTab.value = 'Vehicle';
                 searchText.value = null;
             }
+
+            const setVehicle = (vehicle) => {
+                activeItem.value.vehicle_id = vehicle.vehicle_id;
+                activeItem.value.vehicle = vehicle;
+                activeTab.value = 'Time';
+                searchText.value = null;
+            }
+            
 
             const findDriver = () => {
 
@@ -702,25 +705,11 @@ export default
                 }
             }
             
+            const checkSimilarDriver = (item) => {
+                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+                return  name ? name : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+            }
             
-            const progressWidth = () => 
-            {
-                let requiredData = ['model_id', 'driver_id', 'pickup_address', 'destination_address','status'];
-                
-                return getProgressWidth(requiredData, activeItem);
-            }
-
-            const checkSimilarVehicle = (item) => {
-                let name = (item.vehicle_name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return name ? name : (item.plate_number).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-            }
-
-            const setVehicle = (vehicle) => {
-                activeItem.value.vehicle_id = vehicle.vehicle_id;
-                activeItem.value.vehicle = vehicle;
-                activeTab.value = 'Time';
-                searchText.value = null;
-            }
 
             const findVehicle = () => 
             {
@@ -732,6 +721,12 @@ export default
                 }
             }
 
+            const checkSimilarVehicle = (item) => {
+                let name = (item.vehicle_name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+                return name ? name : (item.plate_number).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+            }
+
+            
             const findUser = () => 
             {
                 if (props.userslist)
@@ -740,6 +735,12 @@ export default
                         props.userslist[i].show = searchText.value.trim() ? checkSimilarUser(props.userslist[i]) : 1;
                     }
                 }
+            }
+
+            const checkSimilarUser = (item) => {
+                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+                let email = name ? name : (item.email).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+                return email ? email : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
             }
 
 
