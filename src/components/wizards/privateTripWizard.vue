@@ -22,7 +22,7 @@
                                         <h1 class="mb-3" v-text="translate('Find ' + usertype)"></h1>
 
                                         <div class="text-gray-400 font-semibold "
-                                            v-text="translate('Search by name, email or mobile')"></div>
+                                            v-text="translate('Search by name or mobile')"></div>
                                     </div>
                                     <div class="w-100 relative mb-5" autocomplete="off">
 

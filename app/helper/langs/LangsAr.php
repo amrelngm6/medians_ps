@@ -1096,6 +1096,7 @@ class LangsAr
 		,'confirmation_code_sent_through_email'=> 'سيتم إرسال كود التأكيد عبر البريد الإلكتروني'
 		,'users_count'=> 'عدد المستخدمين'
 		,'destinations'=> 'أماكن التوصيل'
+		,'destinations'=> 'مكان التوصيل'
 		,'login_with' => 'الدخول بواسطة'
 		,'upgrade_notification_note' => 'سيتم إرسال رسالة تنبيهية قبل إنتهاء مدة الإشتراك'
 		,'Remaining Plan Days' => 'الأيام المتبقية لتجديد الباقةالخاصة بك'
@@ -1152,8 +1153,8 @@ class LangsAr
 		,'picture' => 'الصورة'
 		,'Birth date' => 'تاريخ الميلاد'
 		,'need private trip' => 'بحاجة الي رحلة خاصة'
-		,'' => ''
-		,'' => ''
+		,'Search by name_ email or mobile' => 'بحث عن طريق الإسم او البريد الالكتروني او الموبايل'
+		,'Find' => 'ابحث عن'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
