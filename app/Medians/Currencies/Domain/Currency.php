@@ -32,4 +32,6 @@ class Currency extends CustomModel
 		return $this->name.' ('.$this->symbol.')';
 	}
 
+
+	
 }

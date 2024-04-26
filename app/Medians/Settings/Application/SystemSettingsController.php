@@ -124,6 +124,7 @@ class SystemSettingsController extends CustomController
 		return render('system_settings', [
 		        'load_vue' => true,
 		        'setting' => $this->getAll(),
+		        'currency' => $this->currency(),
 		        'fillable' => $this->fillable(),
 	        	'title' => translate('System_Settings'),
 	    ]);
@@ -140,8 +141,16 @@ class SystemSettingsController extends CustomController
 	public function getAll() 
 	{	
 		$data = $this->repo->getAll();
-		return $data ? array_column(json_decode($data), 'value', 'code') :  [];
+		$output = $data ? array_column(json_decode($data), 'value', 'code') :  [];
+		$_SESSION['currency'] = $output['currency'];
+		return $output;
 	}
+
+	public function currency() 
+	{	
+		return $this->currencyRepo->load($_SESSION['currency']);
+	}
+
 
 
 	/**

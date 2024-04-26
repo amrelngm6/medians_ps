@@ -16,8 +16,16 @@ class CurrencyRepository
 	*/
 	public function find($id) 
 	{
-
 		return Currency::find($id);
+	}
+
+	/**
+	* Find item by `code` 
+	*/
+	public function load($code) 
+	{
+
+		return Currency::where('code', $code)->first();
 	}
 
 	/**
@@ -26,6 +34,16 @@ class CurrencyRepository
 	public function get($params = null) 
 	{
 		return Currency::groupBy('code')->get();
+	}
+
+	
+	/**
+	* Load system default currency 
+	*/
+	public function default_currency()
+	{
+		$currency = SystemSetting::where('code', 'currency')->first();
+		return isset($currency->value) ? $this->where('code', $currency->value)->first() : '';
 	}
 
 
