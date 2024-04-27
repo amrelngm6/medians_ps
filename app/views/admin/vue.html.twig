@@ -123,11 +123,7 @@
 
     <style type="text/css">
         body .text-default {
-            text-align: {
-                    {
-                    app.lang=='english' ? 'left': 'right'
-                }
-            }
+            text-align: {{ app.lang=='english' ? 'left': 'right'}}
         }
 
         body,
@@ -136,14 +132,8 @@
         h3,
         h4,
         h5,
-        h6 {
-            font-family: {
-                    {
-                    app.lang=='english' ? 'Saira': 'Cairo'
-                }
-            }
-
-            ;
+        h6 { 
+            font-family: {{app.lang=='english' ? 'Saira': 'Cairo'}};
         }
 
         .active-booking-flash {
@@ -182,6 +172,9 @@
             25% {
                 opacity: 1;
             }
+        }
+        body, html {
+            font-family: {{ app.lang=='english' ? 'Saira': 'Tajawal'}}
         }
     </style>
     {#
