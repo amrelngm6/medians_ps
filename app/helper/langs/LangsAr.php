@@ -1233,8 +1233,8 @@ class LangsAr
 		,'view' => 'عرض'
 		,'Driver speed limit' => 'الحد الأقصي لسرعة القيادة'
 		,'Allow Driver Applicants' => 'السماح بطلبات السائقين للعمل معك'
-		,'' => ''
-		,'' => ''
+		,'Once the driver cross this speed limit, he will get alarm to slow down' => 'اذا تعدى السائق السرعة المحددة له سيتم ارسال تنبيه له لتقليل السرعة'
+		,'Allow the drivers to apply at your profile to join your team' => 'السماح للسائقين بتقديم طلب للانضمام الي فريق العمل لديك'
 		,'' => ''
 		,'' => ''
 
