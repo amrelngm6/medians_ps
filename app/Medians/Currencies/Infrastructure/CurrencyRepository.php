@@ -3,7 +3,7 @@
 namespace Medians\Currencies\Infrastructure;
 
 use Medians\Currencies\Domain\Currency;
-use Medians\Settings\Domain\SystemSetting;
+use Medians\Settings\Domain\SystemSettings;
 
 
 /**
@@ -33,7 +33,7 @@ class CurrencyRepository
 	*/
 	public function mainCurrency() 
 	{
-		$systemSerring = SystemSetting::where('code','currency')->first();
+		$systemSerring = SystemSettings::where('code','currency')->first();
 		return Currency::where('code', $systemSerring->value)->first();
 	}
 
