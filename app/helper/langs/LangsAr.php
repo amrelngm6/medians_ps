@@ -1199,7 +1199,7 @@ class LangsAr
 		,'Transaction number' => 'رقم العملية'
 		,'Discount amount' => 'قيمة الخصم'
 		,'Issue For' => 'تم الإصدار الي'
-		,'Issued	 by' => 'تم الإصدار من'
+		,'Issued_by' => 'تم الإصدار من'
 		,'Billing info' => 'بيانات الدفع'
 		,'Payer name' => 'الاسم'
 		,'Payer email' => 'البريد الالكتروني'
