@@ -1213,7 +1213,9 @@ class LangsAr
 		,'PrivateTrip' => 'الرحلات الخاصة'
 		,'Package' => 'الباقات'
 		,'PaymentMethod' => 'طرق الدفع'
-		,'PackageSubscription' => 'اشتراكات الباقات'
+		,'packagesubscription' => 'اشتراكات الباقات'
+		,'VehicleType' => 'انواع السيارات'
+		,'transaction' => 'التحويلات المالية'
 		,'' => ''
 		,'' => ''
 
