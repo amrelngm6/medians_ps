@@ -74,8 +74,8 @@ class SettingsController extends CustomController
 			],
 
 			'drivers'=> [	
-				[ 'key'=> "speed_limit", 'title'=> translate('Driver speed limit'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "allow_applicants", 'title'=> translate('Allow Driver Applicants'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "speed_limit", 'title'=> translate('Driver speed limit'), 'help_text'=> translate('Once the driver cross this speed limit, he will get alarm to slow down'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "allow_applicants", 'title'=> translate('Allow Driver Applicants'), 'help_text'=> translate('Allow the drivers to apply at your profile to join your team'),  'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
 			
         ];
