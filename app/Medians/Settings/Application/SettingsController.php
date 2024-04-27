@@ -64,9 +64,9 @@ class SettingsController extends CustomController
 			
 			'information'=> [	
 				[ 'key'=> "email", 'title'=> translate('Email'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "address", 'title'=> translate('Footer Address'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "mobile", 'title'=> translate('Footer mobile'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "phone", 'title'=> translate('Footer phone'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "address", 'title'=> translate('Address'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "mobile", 'title'=> translate('mobile'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "phone", 'title'=> translate('phone'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 
 			'trips'=> [	
