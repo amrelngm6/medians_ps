@@ -24,8 +24,16 @@ class CurrencyRepository
 	*/
 	public function load($code) 
 	{
-
 		return Currency::where('code', $code)->first();
+	}
+
+	/**
+	* Find item by `code` 
+	*/
+	public function mainCurrency() 
+	{
+		$systemSerring = SystemSetting::where('code','currency')->first();
+		return Currency::where('code', $systemSerring->value)->first();
 	}
 
 	/**
