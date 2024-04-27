@@ -8,7 +8,7 @@
                 <input name="type" type="hidden" value="User.update">
 
                 <div class="w-full " v-for="(field, i) in fillable">
-                    <div class="card w-full ">
+                    <div class="card w-full " v-if="field.key != 'role_id'">
                         <div class="card-body pt-0">
                             <div class="settings-form">
                                 <div class="row mb-6">
