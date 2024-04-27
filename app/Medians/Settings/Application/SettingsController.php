@@ -70,7 +70,7 @@ class SettingsController extends CustomController
 			],
 
 			'trips'=> [	
-				[ 'key'=> "allow_private_trip", 'title'=> translate('Allow Private Trips'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "allow_private_trip", 'title'=> translate('Allow Private Trips'), 'help_text'=>translate('Allow users to send you a private trip request'),  'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
 
 			'drivers'=> [	
