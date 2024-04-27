@@ -1208,6 +1208,12 @@ class LangsAr
 		,'confirm_delete' => 'هل أنت متأكد من حذف هذا العنصر ؟'
 		,'Plan Payment' => 'الدفع'
 		,'Super Administrator' => 'المسؤول العام'
+		,'Permissions list' => 'قائمة الصلاحيات'
+		,'Click on the permission to update' => 'إضغط علي التصريح لتحديث حالته'
+		,'PrivateTrip' => 'الرحلات الخاصة'
+		,'Package' => 'الباقات'
+		,'PaymentMethod' => 'طرق الدفع'
+		,'PackageSubscription' => 'اشتراكات الباقات'
 		,'' => ''
 		,'' => ''
 
