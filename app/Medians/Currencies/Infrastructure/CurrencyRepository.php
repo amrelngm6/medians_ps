@@ -3,6 +3,7 @@
 namespace Medians\Currencies\Infrastructure;
 
 use Medians\Currencies\Domain\Currency;
+use Medians\Settings\Domain\SystemSetting;
 
 
 /**
