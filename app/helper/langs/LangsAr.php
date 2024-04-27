@@ -1207,6 +1207,8 @@ class LangsAr
 		,'Allow Notifications' => 'السماح بالتنبيهات'
 		,'confirm_delete' => 'هل أنت متأكد من حذف هذا العنصر ؟'
 		,'Plan Payment' => 'الدفع'
+		,'Super Administrator' => 'المسؤول العام'
+		,'' => ''
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
