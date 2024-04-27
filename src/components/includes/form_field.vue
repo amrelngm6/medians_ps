@@ -13,7 +13,7 @@
             <span :class="!item[column.key] ? 'bg-gray-200' : 'bg-red-400'" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: item[column.key] ? '16px' : 0}"></a></span>
             <span  v-text="item[column.key] ? translate('Active') : translate('Pending')" v-if="!column.hide_text" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
             <input v-if="!item[column.key]" value="" type="hidden" class="hidden"  :name="handleName(column)" />
-            <input v-model="item[column.key]"  type="checkbox" :value="item[column.key]" :checked="item[column.key] ? true : false" value="on" class="hidden" :name="handleName(column)" />
+            <input v-model="item[column.key]"  type="checkbox" :checked="item[column.key] ? true : false" value="on" class="hidden" :name="handleName(column)" />
         </div>
         
         <textarea :required="column.required" :disabled="column.disabled" v-if="column.column_type == 'textarea'"  :name="handleName(column)" type="text" rows="4" class="mt-3 form-control form-control-solid" :placeholder="column.title" v-model="item[column.key]"></textarea>
