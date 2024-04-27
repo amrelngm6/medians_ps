@@ -1216,7 +1216,7 @@ class LangsAr
 		,'packagesubscription' => 'اشتراكات الباقات'
 		,'VehicleType' => 'انواع السيارات'
 		,'transaction' => 'التحويلات المالية'
-		,'' => ''
+		,'HelpMessage' => 'رسائل الدعم الفني'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
