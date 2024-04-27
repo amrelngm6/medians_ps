@@ -19,13 +19,13 @@
                         <div class="block w-full">
                             <div class="w-full flex" style="  margin: 2rem -0.5rem 0 -0.5rem;">
                                 <div style="flex-grow: 1; padding: 0 0.5rem;">
-                                    <span class="media-library-field__selected__inner__details__button font-semibold" @click="showLibrary">Edit</span>
+                                    <span class="media-library-field__selected__inner__details__button font-semibold" @click="showLibrary"  v-text="translate('Edit')"></span>
                                 </div>
                                 <!-- <div style="flex-grow: 1; padding: 0 0.5rem;">
                                     <a :href="file.download_url" class="media-library-field__selected__inner__details__button">Download</a>
                                 </div> -->
                                 <div style="flex-grow: 1; padding: 0 0.5rem;">
-                                    <button @click="clear" class="media-library-field__selected__inner__details__button media-library-field__selected__inner__details__button--delete">Remove</button>
+                                    <button @click="clear" class="media-library-field__selected__inner__details__button media-library-field__selected__inner__details__button--delete"  v-text="translate('Remove')"></button>
                                 </div>
                             </div>
                         </div>
@@ -57,6 +57,7 @@
 import {ref} from 'vue';
 import Loader from '@/components/includes/Loader.vue';
 import Manager from '@/components/includes/Manager.vue';
+import {translate} from '@/utils.vue';
 
 export default 
 {
@@ -136,7 +137,7 @@ export default
         file.value = content.value;
 
         return {
-
+            translate,
             insert,
             clear,
             change,

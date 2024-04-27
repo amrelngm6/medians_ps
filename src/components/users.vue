@@ -28,7 +28,7 @@
                                     
                                     <button class="btn btn-sm btn-light btn-flex btn-center gap-4" data-kt-follow-btn="true" v-if="user.id == auth.id || auth.role_id == 1" @click="showEditSide = true; showAddSide = false; activeItem = user">
                                         <vue-feather class="w-8" type="edit"></vue-feather>
-                                        <span class="indicator-label" > Edit</span>
+                                        <span class="indicator-label" v-text="translate('Edit')"></span>
                                     </button>
                                     <div class="w-full"></div>
                                     <div class="mb-4 flex gap gap-2 cursor-pointer flex-end" @click="setActiveStatus(user)">
