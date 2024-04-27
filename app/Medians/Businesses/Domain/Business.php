@@ -29,13 +29,17 @@ class Business extends CustomModel
 		'user_id',
 	];
 	
-	public $append = ['owner'];
+	public $appends = ['owner', 'logo'];
 
 	public function getOwnerAttribute ()
 	{
 		return isset($this->owner_user) ? $this->owner_user : null;
 	}
 
+	public function getLogoAttribute ()
+	{
+		return isset($this->logo_field) ? $this->logo_field->value : null;
+	}
 
 	public function getFields()
 	{
