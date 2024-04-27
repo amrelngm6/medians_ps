@@ -34,9 +34,9 @@
 
                                         <div
                                             class="fs-5x fw-semibold d-flex justify-content-center align-items-start lh-sm">
-                                            <span class="align-self-start fs-2 mt-3">$</span>
+                                            <span class="align-self-start fs-2 mt-3" v-text="currency.symbol"></span>
                                             <span
-                                                v-text="currency.symbol+''+(activeStatus == 'Monthly' ? item.monthly_cost : item.yearly_cost)"></span>
+                                                v-text="activeStatus == 'Monthly' ? item.monthly_cost : item.yearly_cost"></span>
                                         </div>
 
                                         <div class="text-muted fw-bold mb-7" v-text="activeStatus"></div>
