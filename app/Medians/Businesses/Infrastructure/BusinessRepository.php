@@ -32,6 +32,16 @@ class BusinessRepository
 		->find($id);
 	}
 
+	
+	public function getQuery($type, $limit = 1000)
+	{
+		$query =  Business::where('type', $type)
+		->withCount('routes', 'locations', 'drivers')
+		->with('settings','packages');
+
+		return $query->limit($limit)->get();
+	}
+
 	public function getCompanies($params, $limit = 100)
 	{
 		
