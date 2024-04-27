@@ -1206,6 +1206,7 @@ class LangsAr
 		,'Order id' => 'رقم عملية الدفع'
 		,'Allow Notifications' => 'السماح بالتنبيهات'
 		,'confirm_delete' => 'هل أنت متأكد من حذف هذا العنصر ؟'
+		,'Plan Payment' => 'الدفع'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
