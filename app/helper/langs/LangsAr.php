@@ -1237,8 +1237,8 @@ class LangsAr
 		,'Allow the drivers to apply at your profile to join your team' => 'السماح للسائقين بتقديم طلب للانضمام الي فريق العمل لديك'
 		,'This email used for view at your profile, but for notifications we use your login email' => 'هذا البريد يستخدم للعرض علي صفحتك الشخصية, اما التنبيهات يتم ارسالها الي البريد المستخدم للدخول للموقع'
 		,'Allow users to send you a private trip request' => 'السماح للعملاء بإرسال طلب لرحلة خاصة'
-		,'' => ''
-		,'' => ''
+		,'Subscription info' => 'بيانات الإشتراك'
+		,'Payment type' => 'نوع الدفع'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
