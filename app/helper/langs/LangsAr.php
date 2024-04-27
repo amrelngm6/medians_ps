@@ -1217,6 +1217,9 @@ class LangsAr
 		,'VehicleType' => 'انواع السيارات'
 		,'transaction' => 'التحويلات المالية'
 		,'HelpMessage' => 'رسائل الدعم الفني'
+		,'BusinessApplicant' => 'طلبات الإشتراكات'
+		,'DriverApplicant' => 'طلبات السائقين'
+		,'' => ''
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
