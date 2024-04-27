@@ -63,7 +63,7 @@ class SettingsController extends CustomController
 			],
 			
 			'information'=> [	
-				[ 'key'=> "email", 'title'=> translate('Email'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "email", 'title'=> translate('Email'), 'help_text'=>translate('This email used for view at your profile, but for notifications we use the Admin email'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "address", 'title'=> translate('Address'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "mobile", 'title'=> translate('mobile'), 'fillable'=> true, 'column_type'=>'number' ],
 				[ 'key'=> "phone", 'title'=> translate('phone'), 'fillable'=> true, 'column_type'=>'number' ],

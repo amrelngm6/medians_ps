@@ -1235,7 +1235,7 @@ class LangsAr
 		,'Allow Driver Applicants' => 'السماح بطلبات السائقين للعمل معك'
 		,'Once the driver cross this speed limit, he will get alarm to slow down' => 'اذا تعدى السائق السرعة المحددة له سيتم ارسال تنبيه له لتقليل السرعة'
 		,'Allow the drivers to apply at your profile to join your team' => 'السماح للسائقين بتقديم طلب للانضمام الي فريق العمل لديك'
-		,'' => ''
+		,'This email used for view at your profile, but for notifications we use the Admin email' => 'هذا البريد يستخدم للعرض علي صفحتك الشخصية, اما التنبيهات يتم ارسالها الي بريد الحساب الشخصي'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
