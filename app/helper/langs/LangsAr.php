@@ -434,7 +434,6 @@ class LangsAr
 		,'DEF_LANG' => 'Default language'
 		,'WEB_CONTENT' => 'CMS'
 
-		,'ROLES' => 'Roles'
 		,'CHECKED_TIME' => 'Checked time'
 		,'OOPS' => 'Oops, Something is wrong...'
 		,'FILTER' => 'ترتيب حسب'
@@ -1219,6 +1218,8 @@ class LangsAr
 		,'HelpMessage' => 'رسائل الدعم الفني'
 		,'BusinessApplicant' => 'طلبات الإشتراكات'
 		,'DriverApplicant' => 'طلبات السائقين'
+		,'Vacation' => 'الإجازات'
+		,'Roles' => 'الصلاحيات'
 		,'' => ''
 		,'' => ''
 
