@@ -1220,7 +1220,7 @@ class LangsAr
 		,'DriverApplicant' => 'طلبات السائقين'
 		,'Vacation' => 'الإجازات'
 		,'Roles' => 'الصلاحيات'
-		,'' => ''
+		,'pickup_address' => 'عنوان الالتقاء'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
