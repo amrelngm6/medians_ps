@@ -39,7 +39,7 @@
                                                 v-text="activeStatus == 'Monthly' ? item.monthly_cost : item.yearly_cost"></span>
                                         </div>
 
-                                        <div class="text-muted fw-bold mb-7" v-text="activeStatus"></div>
+                                        <div class="text-muted fw-bold mb-7" v-text="translate(activeStatus)"></div>
 
                                         <div class="w-full flex gap-4">
                                             <a href="#" @click="handleAction('edit', item)" class="btn btn-light-primary fw-bold mx-auto" v-text="translate('Edit')"></a>
