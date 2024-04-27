@@ -275,6 +275,7 @@ class APP
 				array('permission'=> 'Transaction.index', 'title'=> translate('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
 				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
 				array('permission'=> 'Withdrawals.index', 'title'=> translate('Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/withdrawals', 'component'=>'withdrawals'),
+				array('permission'=> 'CollectedCash.index', 'title'=> translate('collected_cash'), 'icon'=>'credit-card', 'link'=>'admin/collected_cash', 'component'=>'collected_cash'),
 			]
 			),
 			
