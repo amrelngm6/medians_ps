@@ -147,6 +147,7 @@ class PaymentService
 
 			$updateDriverCommission = $this->updateDriverWalletCredit($params, $invoice, $tripData['driver_id']);
 
+			error_log(json_encode($updateDriverCommission));
 			return array('success'=> true);
 
 		} catch (\Throwable $th) {
