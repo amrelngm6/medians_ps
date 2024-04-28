@@ -135,7 +135,7 @@ class PaymentService
 	
 	
 
-	public function updateTrip($params)
+	public function updateTrip($params, $invoice)
 	{
 		try {
 			
