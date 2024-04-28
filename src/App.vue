@@ -382,14 +382,10 @@ export default {
 <style src="@vueform/multiselect/themes/default.css"></style>
 
 <style>
-/* @import './assets/webfonts/fontawesome.min.css'; */
 @import './assets/bootstrap-grid.min.css';
 @import './assets/tailwind.min.css';
 @import './assets/media-library.css';
 @import './asset/css/style.bundle.css';
-/* @import './assets/style.css'; */
-/* @import './assets/theme.css'; */
-/* @import './assets/plugins.css'; */
 
 
 /* we will explain what these classes do next! */
