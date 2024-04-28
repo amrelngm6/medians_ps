@@ -686,7 +686,7 @@ export default
                 const params = new URLSearchParams([]);
                 params.append('type', 'Currency.update');
                 params.append('params[code]', currency);
-                params.append('params[ratio]', activePrice.value);
+                params.append('params[ratio]', ratio);
                 handleRequest(params, '/api/update').then(async (data)  => {
                     console.log(data);
                 });
