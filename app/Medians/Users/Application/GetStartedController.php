@@ -141,6 +141,8 @@ class GetStartedController
 
 		$user->update(['active_business'=>$business->business_id]);
 
+		$addDefaultSetting = $this->store_setting();
+
 		return $this;
 	} 
 
@@ -165,7 +167,6 @@ class GetStartedController
 			if (empty($plan))
 				return null;
 
-			$addDefaultSetting = $this->store_setting();
 
 			// Check if plan is premium 
 			if ($plan->type == 'paid')
