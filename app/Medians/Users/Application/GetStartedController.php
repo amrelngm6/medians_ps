@@ -61,7 +61,7 @@ class GetStartedController
 	/**
 	*  Store setting for new user
 	*/
-	public function store_setting() 
+	public function store_setting($business) 
 	{
 		$user = $this->app->auth();
 
@@ -94,7 +94,7 @@ class GetStartedController
 
 		foreach ($params as $row) 
 		{
-			$row['business_id'] = $user->business->business_id;
+			$row['business_id'] = $business->business_id;
 			$row['created_by'] = $user->id;
 			$store = $this->settingRepo->store($row);
 		}
@@ -141,7 +141,7 @@ class GetStartedController
 
 		$user->update(['active_business'=>$business->business_id]);
 
-		$addDefaultSetting = $this->store_setting();
+		$addDefaultSetting = $this->store_setting($business);
 
 		return $this;
 	} 
