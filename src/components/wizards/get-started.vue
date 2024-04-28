@@ -359,6 +359,8 @@ export default
             const activePrice = ref('yearly');
             const paymentMethod = ref('paypal');
             const paypalScriptLoaded = ref(false);
+            const currencyConverted = ref({});
+            
 
             /**
              * Check default step
@@ -583,8 +585,28 @@ export default
                 {
                     completePaystack();
                 }
-
             }
+
+            const convertRates = async () => 
+            {
+                var requestOptions = {
+                    method: 'GET',
+                    redirect: 'follow'
+                };
+
+                var result = await fetch("https://api.currencyfreaks.com/v2.0/convert/latest?from="+props.currency.code+"&to=pkr&amount="+cost()+"&apikey="+props.setting.currency_converter_api, requestOptions)
+                    .then(response => response.text())
+                    .then(result =>  {
+                        console.log(result)
+                        currencyConverted.value = result;
+                        return result;
+                    })
+                    .catch(error => console.log('error', error));
+                
+
+                return result;
+            }
+
 
             const completePayPal = () => {
                 showLoader.value = true;
@@ -646,6 +668,8 @@ export default
 
                 showLoader.value = true;
                 
+                convertRates();
+                
                 const params = new URLSearchParams([]);
                 params.append('type', 'User.get_started_save_plan');
                 params.append('params[plan_id]', activePlan.value.plan_id);
@@ -653,7 +677,7 @@ export default
                 params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(async (data)  => {
                     showLoader.value = false;
-
+                    print(currencyConverted.value);
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
                         amount: cost(),  // Amount in kobo (10000 kobo = 100 NGN)
