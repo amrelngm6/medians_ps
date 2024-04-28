@@ -20,7 +20,6 @@
 
             <usertype_picker :alias="translate('Pickup location')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
 
-
             <div class=" " v-if="!showWizard && !showOptions && content.items && !content.items.length">
                 <div class="card">
                     <div class="card-body">
