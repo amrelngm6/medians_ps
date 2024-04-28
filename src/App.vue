@@ -21,7 +21,7 @@
                             </transition>
                         </div>
                         <div class="w-full" v-if="!checkAccess()">
-                          <get_started :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></get_started>
+                          <get_started :currency="currency" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></get_started>
                         </div>
 
                     </div>
