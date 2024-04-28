@@ -661,14 +661,12 @@ export default
                     {
                         return;
                     }
-                    console.log(response);
                     for (let i = 0; i < response.length; i++) {
                         const element = response[i];
                         if (element.code == currency)
                         {
                             currencyConverted.value = element.ratio;
                         }
-                        
                     }
                     console.log(currencyConverted.value);
 
@@ -687,6 +685,10 @@ export default
 
                 if (currencyConverted.value > 0)
                 {
+                    console.log(currencyConverted.value);
+                    return currencyConverted.value;
+                } else {
+                    console.log(currencyConverted.value);
                     return currencyConverted.value;
                 }
 
