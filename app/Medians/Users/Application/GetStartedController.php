@@ -5,9 +5,8 @@ namespace Medians\Users\Application;
 use Medians\Businesses\Infrastructure\BusinessRepository;
 use Medians\Plans\Infrastructure\PlanRepository;
 use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
+use Medians\Settings\Infrastructure\SettingsRepository;
 
-use Medians\Settings\Application\SettingsController;
-use Medians\Payments\Application\PaymentService;
 
 class GetStartedController 
 {
@@ -24,6 +23,8 @@ class GetStartedController
 	
 	public $planSubscriptionRepo;
 
+	public $settingRepo;
+
 	function __construct()
 	{
 		$this->app = new \config\APP;		
@@ -33,6 +34,8 @@ class GetStartedController
 		$this->planSubscriptionRepo = new PlanSubscriptionRepository();
 
 		$this->planRepo = new PlanRepository();
+
+		$this->settingRepo = new SettingsRepository();
 		
 	}
 
@@ -60,7 +63,39 @@ class GetStartedController
 	*/
 	public function store_setting() 
 	{
-		return (new SettingsController)->update();
+		$user = $this->app->auth();
+
+		$params = [
+			[
+				'code' => 'currency',
+				'value' => 'USD'
+			],
+			[
+				'code' => 'allow_applicants',
+				'value' => 'on'
+			],
+			[
+				'code' => 'allow_private_trip',
+				'value' => 'on'
+			],
+			[
+				'code' => 'email',
+				'value' => $user->email
+			],
+			[
+				'code' => 'lang',
+				'value' => $this->app->lang
+			]
+		];
+
+		foreach ($params as $row) 
+		{
+			$row['business_id'] = $user->business->business_id;
+			$row['created_by'] = $user->id;
+			$store = $this->settingRepo->store($row);
+		}
+
+		return $store;
 	}
 
 
@@ -126,7 +161,9 @@ class GetStartedController
 			if (empty($plan))
 				return null;
 
-			// Check if plan is free
+			$addDefaultSetting = $this->store_setting();
+
+			// Check if plan is premium 
 			if ($plan->type == 'paid')
 				return $this->subscribePaidPlan($plan, $params['payment_type']);
 

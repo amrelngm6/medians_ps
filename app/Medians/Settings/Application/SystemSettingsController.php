@@ -220,7 +220,7 @@ class SystemSettingsController extends CustomController
 			$data = [
 				'created_by' => $this->app->auth()->id,
 				'code' => $code,
-				'value' => $value
+				'value' => $v
 			];
 			
 			$this->repo->store($data);

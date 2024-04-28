@@ -372,7 +372,6 @@ export default
             }
 
             let steps = [{ id: 1, title: translate('Business information'), info: translate('information about the business'), active: 1 },
-            // { id: 2, title: translate('Settings'), info: translate('important required settings'), active: (handleActiveStep() > 1) ? 1 : 0 },
             { id: 2, title: translate('Plan'), info: translate('Subscribe to plan'), active: (handleActiveStep() > 2) ? 1 : 0 },
             { id: 3, title: translate('Review and confirm'), info: translate('Review your information and confirm'), active: 0 }];
 
