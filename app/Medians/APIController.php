@@ -169,17 +169,6 @@ class APIController extends CustomController
 					$return =  (new Pages\Application\PageController())->store(); 
 					break;
 
-				case 'City.create':
-					$return = (new Locations\Application\CityController)->store();
-					break;
-	
-				case 'Country.create':
-					$return = (new Locations\Application\CountryController)->store();
-					break;
-		
-				case 'State.create':
-					$return = (new Locations\Application\StateController)->store();
-					break;
 		
 				case 'Package.create':
 					$return = (new Packages\Application\PackageController)->store();
@@ -328,19 +317,6 @@ class APIController extends CustomController
 				return (new Users\Application\UserController())->updateStatus();
 				break;
 	
-
-			case 'City.update':
-				$controller = new Locations\Application\CityController;
-				break;
-
-			case 'Country.update':
-				$controller = new Locations\Application\CountryController;
-				break;
-
-			case 'State.update':
-				$controller = new Locations\Application\StateController;
-				break;
-
 			case 'Package.update':
 				$controller = new Packages\Application\PackageController;
 				break;
@@ -478,18 +454,6 @@ class APIController extends CustomController
 					return response((new Pages\Application\PageController())->delete());
 					break;
 		
-				case 'City.delete':
-					return response((new Locations\Application\CityController())->delete());
-					break;
-
-				case 'Country.delete':
-					return response((new Locations\Application\CountryController())->delete());
-					break;
-
-				case 'State.delete':
-					return response((new Locations\Application\StateController())->delete());
-					break;
-			
 				case 'Package.delete':
 					return response((new Packages\Application\PackageController())->delete());
 					break;

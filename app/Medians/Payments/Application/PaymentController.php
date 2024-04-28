@@ -83,7 +83,6 @@ class PaymentController extends CustomController
 		$params = $this->app->request()->get('params');
 
         try {
-        	$params['branch_id'] = $this->app->branch->id;
         	$params['created_by'] = $this->app->auth()->id;
         	
             return ($this->repo->store($params))

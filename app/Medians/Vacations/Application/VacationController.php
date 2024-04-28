@@ -7,7 +7,6 @@ use Medians\Vacations\Infrastructure\VacationRepository;
 use Medians\Customers\Infrastructure\SuperVisorRepository;
 use Medians\Vehicles\Infrastructure\VehicleRepository;
 use Medians\Drivers\Infrastructure\DriverRepository;
-use Medians\Locations\Infrastructure\StateRepository;
 
 class VacationController extends CustomController 
 {
@@ -23,8 +22,6 @@ class VacationController extends CustomController
 
 	public $driverRepo;
 
-	public $stateRepo;
-
 	public $supervisorRepo;
 	
 
@@ -38,7 +35,6 @@ class VacationController extends CustomController
 		$this->supervisorRepo = new SuperVisorRepository($user->business);
 		$this->vehicleRepo = new VehicleRepository($user->business);
 		$this->driverRepo = new DriverRepository($user->business);
-		$this->stateRepo = new StateRepository();
 	}
 
 

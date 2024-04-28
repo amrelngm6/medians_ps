@@ -97,12 +97,6 @@ const parent_app_settings = defineAsyncComponent(() => import('@/components/sett
 
 const profile = defineAsyncComponent(() => import('@/components/profile/profile.vue') );
 
-const cities = defineAsyncComponent(() => import('@/components/cities.vue') );
-
-const countries = defineAsyncComponent(() => import('@/components/countries.vue') );
-
-const states = defineAsyncComponent(() => import('@/components/states.vue') );
-
 const packages = defineAsyncComponent(() => import('@/components/packages.vue') );
 
 const payment_methods = defineAsyncComponent(() => import('@/components/payment_methods.vue') );
@@ -168,9 +162,6 @@ export default {
         employees,
         payments,
         pages,
-        countries,
-        cities,
-        states,
         packages,
         app_settings,
         parent_app_settings,

@@ -9,8 +9,6 @@ use Medians\Vehicles\Infrastructure\VehicleRepository;
 use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Trips\Infrastructure\TripRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
-use Medians\Locations\Infrastructure\CountryRepository;
-use Medians\Locations\Infrastructure\CityRepository;
 
 class SettingsController extends CustomController
 {
@@ -24,10 +22,6 @@ class SettingsController extends CustomController
 
 	protected $updated;
 
-	protected $countriesRepo;
-
-	protected $citiesRepo;
-
 
 
 	function __construct()
@@ -38,9 +32,6 @@ class SettingsController extends CustomController
 		$user = $this->app->auth();
 
 		$this->repo = new SettingsRepository(isset($user->business) ? $user->business : null);
-		$this->countriesRepo = new CountryRepository(isset($user->business) ? $user->business : null);
-		$this->citiesRepo = new CityRepository(isset($user->business) ? $user->business : null);
-
 	}
 
 	

@@ -296,15 +296,6 @@ if(isset($app->auth()->id))
     /** @return schools */
     RouteHandler::get('/admin/schools', Medians\Businesses\Application\BusinessController::class.'@schools');
 
-    /** @return countries */
-    RouteHandler::get('/admin/countries', Medians\Locations\Application\CountryController::class.'@index');
-
-    /** @return cities */
-    RouteHandler::get('/admin/cities', Medians\Locations\Application\CityController::class.'@index');
-
-    /** @return states */
-    RouteHandler::get('/admin/states', Medians\Locations\Application\StateController::class.'@index');
-
     /** @return Business Withdrawals */
     RouteHandler::get('/admin/business_withdrawals', Medians\Wallets\Application\BusinessWithdrawalController::class.'@index');
 

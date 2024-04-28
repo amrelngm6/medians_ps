@@ -7,7 +7,6 @@ use Medians\Routes\Infrastructure\RouteRepository;
 use Medians\Customers\Infrastructure\SuperVisorRepository;
 use Medians\Vehicles\Infrastructure\VehicleRepository;
 use Medians\Drivers\Infrastructure\DriverRepository;
-use Medians\Locations\Infrastructure\StateRepository;
 
 class RouteController extends CustomController 
 {
@@ -38,7 +37,6 @@ class RouteController extends CustomController
 		$this->supervisorRepo = new SuperVisorRepository($user->business);
 		$this->vehicleRepo = new VehicleRepository($user->business);
 		$this->driverRepo = new DriverRepository($user->business);
-		$this->stateRepo = new StateRepository();
 	}
 
 
@@ -97,7 +95,6 @@ class RouteController extends CustomController
 		        'supervisors' => $this->supervisorRepo->get(),
 		        'drivers' => $this->driverRepo->get(),
 		        'vehicles' => $this->vehicleRepo->get(),
-		        'cities' => $this->stateRepo->getWithCities(),
 
 		    ]);
 		} catch (\Exception $e) {
