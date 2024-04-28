@@ -29,7 +29,7 @@ class CurrencyRepository
 	}
 
 	/**
-	* Find item by `code` 
+	* Find main item
 	*/
 	public function mainCurrency() 
 	{
@@ -38,11 +38,19 @@ class CurrencyRepository
 	}
 
 	/**
-	* Find items by `params` 
+	* Find items grouped by code 
 	*/
 	public function get($params = null) 
 	{
 		return Currency::groupBy('code')->get();
+	}
+
+	/**
+	* Find latest updated items 
+	*/
+	public function load_active() 
+	{
+		return Currency::where('last_check', date('Y-m-d'))->groupBy('code')->get();
 	}
 
 	

@@ -648,22 +648,57 @@ export default
 
             
             /**
+             * Check if currency already updated localy today 
+             * using CurrencyAPI.
+             * 
+             * @param {String} currency 
+             */
+            const checkLocalUpdatedCurrency = async (currency) => 
+            {
+                await handleGetRequest(props.conf.url+'admin/load_currencies').then(response => {
+                    console.log(response);
+                    if (response == null)
+                    {
+                        return;
+                    }
+                    console.log(response);
+                    for (let i = 0; i < response.length; i++) {
+                        const element = response[i];
+                        if (element.code == currency)
+                        {
+                            currencyConverted.value = element.ratio;
+                        }
+                        
+                    }
+                    console.log(currencyConverted.value);
+
+                });
+                return true;
+            }
+            
+            /**
              * Convert currency using CurrencyAPI.
              * @param {String} base 
              * @param {String} to 
              */
             const convertRates = async (base, to) => 
             {
+                await checkLocalUpdatedCurrency(to);
+
+                if (currencyConverted.value > 0)
+                {
+                    return currencyConverted.value;
+                }
+
                 var result = await currencyApi.latest({
                     base_currency: base,
                     currencies: to,
                 }).then(result => {
-                    console.log(result)
-                    currencyConverted.value = result;
-                    return result;
+                    currencyConverted.value = result.data[to].value;
+                    return currencyConverted.value;
                 });
 
-                return result;
+                return currencyConverted.value;
             }
 
 
@@ -679,7 +714,7 @@ export default
                 params.append('params[payment_type]', activePrice.value);
                 params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(async (data)  => {
-                    const amount = Math.round((currencyConverted.value.data['NGN'].value * cost()) * 100); // Amount in kobo (10000 kobo = 100 NGN)
+                    const amount = Math.round((currencyConverted.value * cost()) * 100); // Amount in kobo (10000 kobo = 100 NGN)
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
                             email: props.auth.email,  // Customer's email

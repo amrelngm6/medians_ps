@@ -22,6 +22,7 @@ class Currency extends CustomModel
     	'code',
 		'symbol',
 		'main',
+		'last_check',
     	'ratio',
 	];
 

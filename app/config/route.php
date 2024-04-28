@@ -106,6 +106,8 @@ if(isset($app->auth()->id))
     RouteHandler::post('/api/(:all)', \Medians\APIController::class.'@handle');
     RouteHandler::post('/api', \Medians\APIController::class.'@handle');
 
+    RouteHandler::get('/admin/load_currencies', \Medians\Currencies\Application\CurrencyService::class.'@load');
+
     // API GET requests
     RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
 
