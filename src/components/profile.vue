@@ -1,184 +1,101 @@
 <template>
     <div class="w-full mb-5 mb-xl-10">
-
-        <div class="modal fade show" v-if="showWizard" :key="showWizard" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
-            <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
-                <!--begin::Modal content-->
-                <div class="modal-content" data-select2-id="select2-data-133-wj88">
-                    <!--begin::Modal header-->
-                    <div class="modal-header">
-                        <!--begin::Modal title-->
-                        <h2 class="fw-bold" v-text="translate('Withdraw from balance')"></h2>
-                        <!--end::Modal title-->
-
-                        <!--begin::Close-->
-                        <div id="kt_modal_adjust_balance_close" @click="showWizard = false" class="btn ">
-                            <vue-feather type="close" />
+        <div class="card p-6">
+            <div class="d-flex flex-wrap flex-sm-nowrap">
+                <div class="me-7 mb-4">
+                    <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                        <img :src="auth.photo" class="w-20" alt="image" />
+                        <div
+                            class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px">
                         </div>
-                        <!--end::Close-->
                     </div>
-                    <!--end::Modal header-->
-
-                    <!--begin::Modal body-->
-                    <div class="modal-body mx-5 mx-xl-15 my-7"  v-if="content.wallet">
-                        <!--begin::Balance preview-->
-                        <div class="d-flex text-center mb-9">
-                            <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
-                                <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Current Balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="currency.symbol+''+(content.wallet.credit_balance ?? '0')"></div>
-                            </div>
-                            <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
-                                <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Debit balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="currency.symbol+''+(content.wallet.debit_balance ?? '0')"></div>
-                            </div>
-                        </div>
-                        <!--end::Balance preview-->
-
-                        <!--begin::Form-->
-                        <div id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Withdraw amount')"></label>
-                                <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="withdrawRequest.amount" :max="content.wallet.credit_balance" inputmode="text">
-                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
-                            </div>
-                            
-                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Payment method')"></label>
-                                <select  v-model="withdrawRequest.payment_method" class="form-select form-select-solid fw-bold" >
-                                    <option value="paypal">PayPal</option>
-                                    <option value="paystack">PayStack</option>
-                                    <option value="bank">Bank transfer</option>
-                                    <option value="vodafone_cash">Vodafone cash</option>
-                                </select>
-                            </div>
-
-                            <div class="w-full" v-if="withdrawRequest.payment_method" v-for="(paymentInfo, key) in payment_fields[withdrawRequest.payment_method]">
-                                <div class="fv-row mb-7 fv-plugins-icon-container"  >
-                                    <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
-                                    <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="withdrawRequest.field[paymentInfo.code]" >
-                                </div>
-                            </div>
-                            
-                            <div class="fv-row mb-7">
-                                <label class="fs-6 fw-semibold form-label mb-2" v-text="translate('Add notes')"></label>
-                                <textarea class="form-control form-control-solid rounded-3 mb-5" v-model="withdrawRequest.notes"></textarea>
-                            </div>
-                            <!--begin::Actions-->
-                            <div class="text-center">
-                                <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showWizard = false"></button>
-
-                                <button @click="sendWithdrawRequest" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
-                                    <span class="indicator-label" v-text="translate('Submit')"></span>
-                                </button>
-                            </div>
-                            <!--end::Actions-->
-                        </div>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Modal body-->
                 </div>
-                <!--end::Modal content-->
-            </div>
-            <!--end::Modal dialog-->
-        </div>
-            <div class="card p-6">
-                <div class="d-flex flex-wrap flex-sm-nowrap">
-                    <div class="me-7 mb-4">
-                        <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                            <img :src="auth.photo" class="w-20" alt="image" />
-                            <div
-                                class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px">
+                <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex align-items-center mb-2">
+                                <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1"
+                                    v-text="auth.name"></a>
                             </div>
+                            <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    <vue-feather class="w-5 mx-1" type="eye"></vue-feather>
+                                    <span v-text="auth.role.name"></span>
+                                </a>
+                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    <vue-feather class="w-5 mx-1" type="smartphone"></vue-feather>
+                                    <span v-text="auth.phone"></span>
+                                </a>
+                                <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    <vue-feather class="w-5 mx-1" type="at-sign"></vue-feather>
+                                    <span v-text="auth.email"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-flex my-4">
+                            <a @click="showEditSide = true" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Edit')"></a>
                         </div>
                     </div>
-                    <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                            <div class="d-flex flex-column">
-                                <div class="d-flex align-items-center mb-2">
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1"
-                                        v-text="auth.name"></a>
+                    <div class="d-flex flex-wrap flex-stack">
+                        <div class="d-flex flex-column flex-grow-1 pe-8">
+                            <!--begin::Stats-->
+                            <div class="d-flex flex-wrap" v-if="activeItem.business && content">
+                                <!--begin::Stat-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-2 fw-bold" v-text="activeItem.business.subscription.plan_name"></div>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Plan')"></div>
                                 </div>
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-                                    <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                        <vue-feather class="w-5 mx-1" type="eye"></vue-feather>
-                                        <span v-text="auth.role.name"></span>
-                                    </a>
-                                    <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                        <vue-feather class="w-5 mx-1" type="smartphone"></vue-feather>
-                                        <span v-text="auth.phone"></span>
-                                    </a>
-                                    <a href="#" class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                        <vue-feather class="w-5 mx-1" type="at-sign"></vue-feather>
-                                        <span v-text="auth.email"></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="d-flex my-4">
-                                <a @click="showEditSide = true" href="javascript:;" class="text-white btn btn-sm btn-primary me-3" v-text="translate('Edit')"></a>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-wrap flex-stack">
-                            <div class="d-flex flex-column flex-grow-1 pe-8">
-                                <!--begin::Stats-->
-                                <div class="d-flex flex-wrap" v-if="activeItem.business && content">
-                                    <!--begin::Stat-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div>
                                         <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" v-text="activeItem.business.subscription.plan_name"></div>
+                                            <div class="fs-2 fw-bold" v-text="content.stats.drivers_count"></div>
+                                            <div class="fs-6 fw-bold px-1" >/</div>
+                                            <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Driver')"></div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Plan')"></div>
                                     </div>
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.drivers_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/</div>
-                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Driver')"></div>
-                                            </div>
-                                        </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Drivers')"></div>
-                                    </div>
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.vehicles_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/</div>
-                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Vehicle')"></div>
-                                            </div>
-                                        </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicles')"></div>
-                                    </div>
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        
-                                        <div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.trips_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/ --</div>
-                                            </div>
-                                        </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Trips')"></div>
-                                    </div>
-                                    <!--end::Stat-->
-
+                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Drivers')"></div>
                                 </div>
-                                <!--end::Stats-->
-                            </div>
-                            <!--end::Wrapper-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-2 fw-bold" v-text="content.stats.vehicles_count"></div>
+                                            <div class="fs-6 fw-bold px-1" >/</div>
+                                            <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Vehicle')"></div>
+                                        </div>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicles')"></div>
+                                </div>
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    
+                                    <div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-2 fw-bold" v-text="content.stats.trips_count"></div>
+                                            <div class="fs-6 fw-bold px-1" >/ --</div>
+                                        </div>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Trips')"></div>
+                                </div>
+                                <!--end::Stat-->
 
+                            </div>
+                            <!--end::Stats-->
                         </div>
-                        <!--end::Stats-->
+                        <!--end::Wrapper-->
+
                     </div>
-                    <!--end::Info-->
+                    <!--end::Stats-->
                 </div>
+                <!--end::Info-->
             </div>
-            <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
-                <li class="nav-item mt-2" v-for="tab in tabsList">
-                    <a v-if="checkRole(activeItem.role_id, tab.link)" @click="setActiveTab(tab.link)" :class="activeTab == tab.link ? 'active' : ''"
-                        class="nav-link text-active-primary ms-0 me-10 py-5 " href="javascript:;" v-text="tab.title"></a>
-                </li>
-            </ul>
+        </div>
+        <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+            <li class="nav-item mt-2" v-for="tab in tabsList">
+                <a v-if="checkRole(activeItem.role_id, tab.link)" @click="setActiveTab(tab.link)" :class="activeTab == tab.link ? 'active' : ''"
+                    class="nav-link text-active-primary ms-0 me-10 py-5 " href="javascript:;" v-text="tab.title"></a>
+            </li>
+        </ul>
 
         <div class="w-full pt-9 pb-0">
             <div class="d-flex flex-column flex-lg-row">

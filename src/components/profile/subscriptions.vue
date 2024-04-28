@@ -116,7 +116,8 @@ export default {
         'auth',
         'item',
         'overview',
-        'subscriptions'
+        'subscriptions',
+        'currency'
     ]
 };
 </script>

@@ -395,6 +395,7 @@ export default {
         'fields',
         'stats',
         'item',
+        'currency'
     ]
 };
 </script>

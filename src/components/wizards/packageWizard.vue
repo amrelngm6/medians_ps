@@ -297,6 +297,7 @@ export default
             'item',
             'drivers',
             'vehicles',
+            'currency'
         ],
 
     };

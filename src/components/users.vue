@@ -1,6 +1,6 @@
 <template>
     <main v-if="content" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
-        <user :key="activeItem" @callback="closeSide" :fields="content.overview" :item="activeItem" :path="path" :conf="conf" :auth="auth" :setting="setting" v-if="showUser"></user>
+        <user :currency="currency" :key="activeItem" @callback="closeSide" :fields="content.overview" :item="activeItem" :path="path" :conf="conf" :auth="auth" :setting="setting" v-if="showUser"></user>
         <!-- New releases -->
         <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
