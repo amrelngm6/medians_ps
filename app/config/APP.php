@@ -77,7 +77,7 @@ class APP
 
 
 	/**
-	 * Load all setting for a branch 
+	 * Load all setting for a Business 
 	 * return as Array
 	 */ 
 	public function BusinessSettings()

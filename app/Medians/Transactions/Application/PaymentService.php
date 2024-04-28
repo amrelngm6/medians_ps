@@ -188,7 +188,7 @@ class PaymentService
 
 			if ($params['payment_method'] == 'cash')
 			{
-				return $this->updateDriverWallet($params, $invoice);
+				return $this->updateDriverWalletDebit($params, $invoice);
 			}
 			
 			return $this->updateBusinessWallet($params, $invoice);
@@ -213,7 +213,7 @@ class PaymentService
 			
 			$check = $walletRepo->getBusinessWallet($invoice->business_id);
 			$data = array();
-			$commission = $this->handleCommission($invoice);
+			$commission = $this->handleBusinessCommission($invoice);
 			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + ($invoice->total_amount - $commission)) : ($invoice->total_amount - $commission);
 
 			return isset($check->wallet_id) ? $check->update($data) : null;
@@ -224,8 +224,11 @@ class PaymentService
 		
 	}
 	
-	
-	public function updateDriverWallet($params, $invoice)
+	/**
+	 * Update driver wallet when the payment in Cash only
+	 * Increase the Debit balance
+	 */
+	public function updateDriverWalletDebit($params, $invoice)
 	{
 		try {
 
@@ -250,6 +253,33 @@ class PaymentService
 		
 	}
 	
+	
+	/**
+	 * Update driver wallet when the payment in Cash only
+	 * Increase the Debit balance
+	 */
+	public function updateDriverWalletCredit($params, $invoice)
+	{
+		try {
+
+			$app = new \config\APP;
+			$user = $app->auth();
+
+			$walletRepo = new \Medians\Wallets\Infrastructure\WalletRepository();
+			
+			$check = $walletRepo->driverWallet($user->driver_id);
+			$data = array();
+			$commission = 
+			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + $commission) : $commission;
+
+			return isset($check->wallet_id) ? $check->update($data) : null;
+
+		} catch (\Throwable $th) {
+			return array('error'=>$th->getMessage());
+		}
+		
+	}
+	
 	public function handleCommission($invoice) 
 	{
 		$setting = (new \config\APP)->SystemSetting();
@@ -258,6 +288,17 @@ class PaymentService
 		return (isset($business->subscription) && $business->subscription->is_paid) 
 		? ($invoice->total_amount * ($setting['comission_paid_plan'] / 100))
 		: ($invoice->total_amount * ($setting['comission_free_plan'] / 100));
+
+	}
+	
+	public function handleDriverCommission($invoice) 
+	{
+		$setting = (new \Medians\Settings\Application\SettingsController)->getBusinessSettings($invoice->business_id);
+		$business = (new \Medians\Businesses\Infrastructure\BusinessRepository())->find($invoice->business_id);
+		
+		return (isset($setting['driver_commission']) && $business->subscription->is_paid) 
+		? ($invoice->total_amount * ($setting['driver_commission'] / 100))
+		: 0;
 
 	}
 

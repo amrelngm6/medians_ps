@@ -133,6 +133,12 @@ class SettingsController extends CustomController
 		return $data ? array_column(json_decode($data), 'value', 'code') :  [];
 	}
 
+	public function getBusinessSettings($businessId) 
+	{	
+		$data = $this->repo->getBusinessSettings($businessId);
+		return $data ? array_column(json_decode($data), 'value', 'code') :  [];
+	}
+
 
 	/**
 	* Return the Settings

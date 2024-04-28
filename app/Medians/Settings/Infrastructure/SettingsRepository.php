@@ -59,6 +59,15 @@ class SettingsRepository
 
 
 	/**
+	* Find all items 
+	*/
+	public function getBusinessSettings($businessId)
+	{
+		return Settings::where('business_id', $businessId)->get();
+	}
+
+
+	/**
 	* Save item to database
 	*/
 	public function store($data) 
