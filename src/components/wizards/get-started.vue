@@ -654,10 +654,12 @@ export default
              */
             const convertRates = async (base, to) => 
             {
-                var result = await currencyApi.latest({
+                var result = await currencyApi.convert({
                     base_currency: base,
-                    currencies: to
+                    currencies: to,
+                    value: cost(),
                 }).then(result => {
+                    console.log(result)
                     currencyConverted.value = result;
                     return result;
                 });
