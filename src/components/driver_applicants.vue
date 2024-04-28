@@ -3,6 +3,19 @@
         
         <div  v-if="content " class=" w-full relative">
             
+                    
+            <div v-if="!showWizard" class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-12 p-6">
+                <vue-feather type="alert-octagon" class="ki-duotone ki-information fs-2tx text-warning me-4"></vue-feather>        
+                <div class="d-flex flex-stack flex-grow-1 ">
+                    <div class=" fw-semibold">
+                        <h4 class="text-gray-900 fw-bold" v-text="translate('Important')"></h4>
+                        <div class="fs-6 text-gray-700 "  >
+                            <div v-html="translate('Drivers applicants note')"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <driver_applicant_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard"  :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" :conf="conf" />
             
             <div class=" " v-if="!showWizard && content.items && !content.items.length ">
@@ -24,18 +37,6 @@
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
                     
                     <h1  class="font-bold text-lg w-full" v-text="content.title"></h1>
-                </div>
-                    
-                <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-12 p-6">
-                    <vue-feather type="alert-octagon" class="ki-duotone ki-information fs-2tx text-warning me-4"></vue-feather>        
-                    <div class="d-flex flex-stack flex-grow-1 ">
-                        <div class=" fw-semibold">
-                            <h4 class="text-gray-900 fw-bold" v-text="translate('Important')"></h4>
-                            <div class="fs-6 text-gray-700 "  >
-                                <div v-html="translate('Drivers applicants note')"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="w-full bg-white" >
