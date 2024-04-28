@@ -100,17 +100,17 @@
             <div class="d-flex flex-column flex-lg-row">
                 <div class="flex-lg-row-fluid me-lg-15 order-2 order-lg-1 mb-10 mb-lg-0">
                     
-                    <account_tab  v-if="activeTab == 'account'" :overview="content.overview" :item="activeItem" />
+                    <account_tab :currency="currency"  v-if="activeTab == 'account'" :overview="content.overview" :item="activeItem" />
                    
-                    <subscriptions_tab :conf="conf" v-if="activeTab == 'subscriptions'" :subscriptions="content.subscriptions" :item="activeItem" />
+                    <subscriptions_tab :currency="currency" :conf="conf" v-if="activeTab == 'subscriptions'" :subscriptions="content.subscriptions" :item="activeItem" />
 
-                    <invoices_tab :conf="conf" v-if="activeTab == 'invoices'" :invoices="content.invoices" :item="activeItem" :system_setting="system_setting" />
+                    <invoices_tab :currency="currency" :conf="conf" v-if="activeTab == 'invoices'" :invoices="content.invoices" :item="activeItem" :system_setting="system_setting" />
                     
-                    <info_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem"  />
+                    <info_tab :currency="currency"  :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem"  />
 
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" />
 
-                    <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :business_withdrawals="content.business_withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
+                    <withdrawal_tab :currency="currency" :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :business_withdrawals="content.business_withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
                     
 
                 </div>  
