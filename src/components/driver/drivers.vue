@@ -1,13 +1,25 @@
 <template>
     <div class=" w-full pb-20">
 
+        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-12 p-6">
+                <vue-feather type="alert-octagon" class="ki-duotone ki-information fs-2tx text-warning me-4"></vue-feather>        
+                <div class="d-flex flex-stack flex-grow-1 ">
+                    <div class=" fw-semibold">
+                        <h4 class="text-gray-900 fw-bold" v-text="translate('Important')"></h4>
+                        <div class="fs-6 text-gray-700 "  >
+                            <div v-html="translate('Before Create driver note')"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         <div class=" " v-if="!showWizard && !showOptions && content.items && !content.items.length">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-px text-center pt-15 pb-15">
                             <h2 class="fs-2x fw-bold mb-0" v-text="content.title"></h2>
                             <p class="text-gray-400 fs-4 font-semibold py-7"
-                                v-text="translate('Add your first pickup using this below wizard')"></p>
+                                v-text="translate('Add your first driver using this below wizard')"></p>
                             <a v-text="translate('add_new')" @click="showOptions = true, activeItem = {}"
                                 href="javascript:;" class="text-white btn btn-primary er fs-6 px-8 py-4"></a>
                         </div>
@@ -28,18 +40,6 @@
             </div>
 
             
-            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-12 p-6">
-                <vue-feather type="alert-octagon" class="ki-duotone ki-information fs-2tx text-warning me-4"></vue-feather>        
-                <div class="d-flex flex-stack flex-grow-1 ">
-                    <div class=" fw-semibold">
-                        <h4 class="text-gray-900 fw-bold" v-text="translate('Important')"></h4>
-                        <div class="fs-6 text-gray-700 "  >
-                            <div v-html="translate('Before Create driver note')"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="sm:grid sm:space-y-0 space-y-6 xl:!grid-cols-3 md:grid-cols-2 gap-6 rounded py-2">
 
                 <div  v-for="driver in content.items" class="">
