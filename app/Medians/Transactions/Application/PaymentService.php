@@ -191,6 +191,8 @@ class PaymentService
 				return $this->updateDriverWalletDebit($params, $invoice);
 			}
 			
+			$updateDriverCommission = $this->updateDriverWalletCredit($params, $invoice);
+
 			return $this->updateBusinessWallet($params, $invoice);
 
 		} catch (\Throwable $th) {
