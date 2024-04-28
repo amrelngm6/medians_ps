@@ -360,15 +360,12 @@ export default
             const paymentMethod = ref('paypal');
             const paypalScriptLoaded = ref(false);
 
-
-
             /**
              * Check default step
              */
             const handleActiveStep = () => {
                 if ((props.auth && !props.auth.business))
                     return 2
-
             }
 
             let steps = [{ id: 1, title: translate('Business information'), info: translate('information about the business'), active: 1 },
@@ -596,7 +593,7 @@ export default
                     loadScript({
                         clientId: props.setting.paypal_api_key,
                         commit: true,
-                        currency: 'USD',
+                        currency: props.currency.symbol,
 
                     }).then((paypal) => {
 
