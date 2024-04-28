@@ -51,7 +51,9 @@ class SystemSettingsController extends CustomController
 				[ 'key'=> "lang", 'title'=> translate('Languange'), 'help_text'=> translate('The default language for new sessions'),
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['lang'=>'arabic','title'=>translate('Arabic')], ['lang'=>'english','title'=>translate('English')]]  
-				],				
+				],	
+			],			
+			'currency'=> [	
 				[ 'key'=> "currency", 'title'=> translate('Currency'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key'=> 'code',
 					'data' => $this->currencyRepo->get()  
