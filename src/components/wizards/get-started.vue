@@ -654,10 +654,9 @@ export default
              */
             const convertRates = async (base, to) => 
             {
-                var result = await currencyApi.convert({
+                var result = await currencyApi.latest({
                     base_currency: base,
                     currencies: to,
-                    value: cost(),
                 }).then(result => {
                     console.log(result)
                     currencyConverted.value = result;
@@ -680,7 +679,7 @@ export default
                 params.append('params[payment_type]', activePrice.value);
                 params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(async (data)  => {
-                    const amount = Math.round(currencyConverted.value.data['NGN'].value * 100); // Amount in kobo (10000 kobo = 100 NGN)
+                    const amount = Math.round((currencyConverted.value.data['NGN'].value * cost()) * 100); // Amount in kobo (10000 kobo = 100 NGN)
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
                             email: props.auth.email,  // Customer's email
