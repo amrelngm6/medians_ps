@@ -57,7 +57,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'load_currency':
-				$return = (new \Medians\Currencies\Infrastructure\CurrencyRepository())->load($request->get('code'));
+				$return = (new \Medians\Currencies\Application\CurrencyController())->getCurrency($request->get('code'));
 				break;
 
 			case 'help_messages':
