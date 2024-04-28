@@ -145,7 +145,7 @@ class PaymentService
 			$check = $privateTripRepo->find($tripData['trip_id']);
 			$trip = $privateTripRepo->update($tripData);
 
-			$updateDriverCommission = $this->updateDriverWalletCredit($params, $invoice, $check->driver_id);
+			$updateDriverCommission = $this->updateDriverWalletCredit($params, $invoice, $tripData['driver_id']);
 
 			return array('success'=> true);
 
