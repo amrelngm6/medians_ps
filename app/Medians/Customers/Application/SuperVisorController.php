@@ -85,7 +85,7 @@ class SuperVisorController extends CustomController
 		{
 		    return render('supervisors', [
 		        'load_vue' => true,
-		        'title' => translate('SuperVisors'),
+		        'title' => translate('SuperVisors list'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),

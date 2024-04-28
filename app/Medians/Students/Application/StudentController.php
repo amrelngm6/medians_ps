@@ -93,7 +93,7 @@ class StudentController extends CustomController
 			
 		    return render('students', [
 		        'load_vue' => true,
-		        'title' => translate('Student'),
+		        'title' => translate('Students list'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),

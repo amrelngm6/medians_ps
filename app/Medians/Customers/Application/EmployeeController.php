@@ -84,7 +84,7 @@ class EmployeeController extends CustomController
 			
 		    return render('employees', [
 		        'load_vue' => true,
-		        'title' => translate('Employee'),
+		        'title' => translate('Employees list'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),

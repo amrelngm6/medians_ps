@@ -85,7 +85,7 @@ class ParentController extends CustomController
 			
 		    return render('parents', [
 		        'load_vue' => true,
-		        'title' => translate('Parent'),
+		        'title' => translate('Parents list'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
