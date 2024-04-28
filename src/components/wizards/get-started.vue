@@ -686,22 +686,19 @@ export default
 
                 if (currencyConverted.value > 0)
                 {
-                    console.log(currencyConverted.value);
                     return currencyConverted.value;
                 } else {
-                    console.log(currencyConverted.value);
+                    var result = await currencyApi.latest({
+                        base_currency: base,
+                        currencies: to,
+                    }).then(result => {
+                        currencyConverted.value = result.data[to].value;
+                        return currencyConverted.value;
+                    });
+
                     return currencyConverted.value;
                 }
 
-                var result = await currencyApi.latest({
-                    base_currency: base,
-                    currencies: to,
-                }).then(result => {
-                    currencyConverted.value = result.data[to].value;
-                    return currencyConverted.value;
-                });
-
-                return currencyConverted.value;
             }
 
 
