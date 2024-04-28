@@ -153,7 +153,7 @@
 
                                             <!--begin::Price-->
                                             <div class="ms-5">
-                                                <span class="mb-2">$</span>
+                                                <span class="mb-2"><span v-text="currency.symbol"></span></span>
 
                                                 <span class="fs-3x fw-bold" v-text="planCost(plan)"></span>
 

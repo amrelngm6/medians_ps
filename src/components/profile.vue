@@ -251,7 +251,7 @@
 
                                         <!--begin::Info-->
                                         <div class="fs-5 mb-2">
-                                            <span class="text-gray-800 fw-bold me-1" >$<span v-text="activeItem.business.subscription.plan.monthly_cost"></span></span>
+                                            <span class="text-gray-800 fw-bold me-1" ><span v-text="currency.symbol"></span><span v-text="activeItem.business.subscription.plan.monthly_cost"></span></span>
                                             <span class="text-gray-600 fw-semibold" v-text="translate('Monthly')"></span>
                                         </div>
                                         <!--end::Info-->
