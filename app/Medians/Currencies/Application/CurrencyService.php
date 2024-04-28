@@ -34,8 +34,25 @@ class CurrencyService
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
 		}
-		
 	}
 	
+
+	public function update()
+	{
+		$params = $this->app->request()->get('params');
+
+        try {
+
+            if ($this->repo->update($params))
+            {
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
+            }
+
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        	
+        }
+
+	}
 
 }

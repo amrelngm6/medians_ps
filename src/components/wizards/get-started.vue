@@ -666,12 +666,29 @@ export default
                         if (element.code == currency)
                         {
                             currencyConverted.value = element.ratio;
-                            console.log(element);
-                            console.log(currencyConverted.value);
                         }
                     }
                     console.log(currencyConverted.value);
 
+                });
+            }
+            
+            
+            /**
+             * Update currency ration & last check date 
+             * using CurrencyAPI.
+             * 
+             * @param {String} currency 
+             */
+            const updateCurrencyRatio = async (currency, ratio) => 
+            {
+                ratio
+                const params = new URLSearchParams([]);
+                params.append('type', 'Currency.update');
+                params.append('params[code]', currency);
+                params.append('params[ratio]', activePrice.value);
+                handleRequest(params, '/api/update').then(async (data)  => {
+                    console.log(data);
                 });
             }
             
@@ -687,12 +704,15 @@ export default
                 if (currencyConverted.value > 0)
                 {
                     return currencyConverted.value;
+
                 } else {
+                    
                     var result = await currencyApi.latest({
                         base_currency: base,
                         currencies: to,
                     }).then(result => {
                         currencyConverted.value = result.data[to].value;
+                        updateCurrencyRatio( to, result.data[to].value)
                         return currencyConverted.value;
                     });
 

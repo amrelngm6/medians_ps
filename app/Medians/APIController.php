@@ -364,7 +364,11 @@ class APIController extends CustomController
 			case 'Withdrawal.update':
 				$controller = new Wallets\Application\WithdrawalController;
 				break;
-			
+		
+			case 'Currency.update':
+				$controller = new Currencies\Application\CurrencyService;
+				break;
+				
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);

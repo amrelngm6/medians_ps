@@ -92,7 +92,7 @@ class CurrencyRepository
     public function update($data)
     {
 
-		$Object = Currency::find($data['currency_id']);
+		$Object = Currency::where('code', $data['code'])->first();
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
