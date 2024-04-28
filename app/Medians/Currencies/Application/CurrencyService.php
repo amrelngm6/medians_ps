@@ -24,6 +24,37 @@ class CurrencyService
 	}
 	
 	
+	public function getCurrency($currencyCode)
+	{
+		try {
+
+            $result = $this->repo->load($currencyCode);
+
+            if ($result->last_check == date('Y-m-d'))
+            {
+    			echo($result ? json_encode($result) : '');
+                
+            } else {
+                
+                $response = $this->checkAPI($setting['currency'], $currencyCode);
+
+                $data = [
+                    'code' => $currencyCode,
+                    'ratio' => $response['data'][$currencyCode]['value']
+                ];
+
+                if ($this->repo->update($data ))
+                {
+                    return $this->getCurrency($currencyCode);
+                }
+            }
+
+		} catch (\Throwable $th) {
+			return array('error'=>$th->getMessage());
+		}
+	}
+	
+	
 	public function load()
 	{
 		try {
@@ -52,7 +83,17 @@ class CurrencyService
         	throw new \Exception("Error Processing Request", 1);
         	
         }
+	}
 
+    
+	public function checkAPI($from, $to)
+	{
+        $stting = $this->app->SystemSetting();
+		$currencyApi = new \CurrencyApi\CurrencyApi\CurrencyApiClient($stting['currency_converter_api']);
+		return $currencyApi->latest([
+			'base_currency' => $from,
+			'currencies' => $to,
+		]);
 	}
 
 }

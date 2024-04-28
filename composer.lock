@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "696d8b54c7b54012f90dc97ecf60b861",
+    "content-hash": "4d0a357fad991375b441147c00a296ff",
     "packages": [
         {
             "name": "brick/math",
@@ -348,6 +348,66 @@
                 }
             ],
             "time": "2024-02-18T20:23:39+00:00"
+        },
+        {
+            "name": "everapi/currencyapi-php",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/everapihq/currencyapi-php.git",
+                "reference": "96eb977746734469a1b3d84e54873c5fffeb34e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/everapihq/currencyapi-php/zipball/96eb977746734469a1b3d84e54873c5fffeb34e0",
+                "reference": "96eb977746734469a1b3d84e54873c5fffeb34e0",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.4",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "pestphp/pest": "^1.20",
+                "spatie/ray": "^1.28"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CurrencyApi\\CurrencyApi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Clemens Ehrenreich",
+                    "email": "clemens@everapi.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Lukas Struber",
+                    "email": "lukas.struber@everapi.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP wrapper for the currencyapi.com API",
+            "homepage": "https://github.com/everapihq/currencyapi-php",
+            "keywords": [
+                "api",
+                "currency",
+                "currency conversion",
+                "currency converter",
+                "currency data",
+                "currencyapi",
+                "currencyapi-php",
+                "currencyapi.com",
+                "exchange rates"
+            ],
+            "time": "2022-05-06T09:56:31+00:00"
         },
         {
             "name": "firebase/php-jwt",
