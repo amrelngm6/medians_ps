@@ -666,6 +666,8 @@ export default
                         if (element.code == currency)
                         {
                             currencyConverted.value = element.ratio;
+                            console.log(element);
+                            console.log(currencyConverted.value);
                         }
                     }
                     console.log(currencyConverted.value);
