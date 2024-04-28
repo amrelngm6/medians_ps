@@ -269,7 +269,7 @@ class PaymentService
 			
 			$check = $walletRepo->driverWallet($user->driver_id);
 			$data = array();
-			$commission = 
+			$commission = $this->handleDriverCommission($invoice);
 			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + $commission) : $commission;
 
 			return isset($check->wallet_id) ? $check->update($data) : null;
@@ -294,9 +294,8 @@ class PaymentService
 	public function handleDriverCommission($invoice) 
 	{
 		$setting = (new \Medians\Settings\Application\SettingsController)->getBusinessSettings($invoice->business_id);
-		$business = (new \Medians\Businesses\Infrastructure\BusinessRepository())->find($invoice->business_id);
 		
-		return (isset($setting['driver_commission']) && $business->subscription->is_paid) 
+		return isset($setting['driver_commission']) 
 		? ($invoice->total_amount * ($setting['driver_commission'] / 100))
 		: 0;
 
