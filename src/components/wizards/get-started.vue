@@ -286,20 +286,6 @@
                                             </li>
                                         </ul>
                                         <div class="relative -mx-5 mt-8 ring-1 ring-slate-900/5 sm:mx-0 sm:rounded-2xl">
-                                            <div class="flex absolute -bottom-px left-1/2 -ml-48 h-[2px] w-96">
-                                                <div
-                                                    class="w-full flex-none blur-sm [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]">
-                                                </div>
-                                                <div
-                                                    class="-ml-[100%] w-full flex-none blur-[1px] [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]">
-                                                </div>
-                                                <div
-                                                    class="-ml-[100%] w-full flex-none blur-sm [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]">
-                                                </div>
-                                                <div
-                                                    class="-ml-[100%] w-full flex-none blur-[1px] [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]">
-                                                </div>
-                                            </div>
                                             <div class="relative flex flex-col bg-slate-50 px-5 py-8 sm:rounded-2xl">
                                                 <p class="flex items-center justify-center gap-6"><span
                                                         class="text-[2.5rem] leading-none text-slate-900"><span
