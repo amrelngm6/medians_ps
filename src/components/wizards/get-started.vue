@@ -662,11 +662,11 @@ export default
                 });
             }
 
-            const completePaystack = () => {
+            const completePaystack = async () => {
 
                 showLoader.value = true;
                 
-                convertRates();
+                await convertRates();
                 
                 const params = new URLSearchParams([]);
                 params.append('type', 'User.get_started_save_plan');
