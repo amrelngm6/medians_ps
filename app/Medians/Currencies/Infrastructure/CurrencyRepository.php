@@ -95,6 +95,7 @@ class CurrencyRepository
 		$Object = Currency::where('code', $data['code'])->first();
 		
 		// Return the Model object with the new data
+		$data['last_check'] = date('Y-m-d');
     	$Object->update( (array) $data);
 
     	return $Object;
