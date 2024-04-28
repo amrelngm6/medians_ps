@@ -1,7 +1,25 @@
 <template>
     <div class=" w-full pb-20">
 
-        <main v-if="content && !showProfilePage" class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
+        <div class=" " v-if="!showWizard && !showOptions && content.items && !content.items.length">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-px text-center pt-15 pb-15">
+                            <h2 class="fs-2x fw-bold mb-0" v-text="content.title"></h2>
+                            <p class="text-gray-400 fs-4 font-semibold py-7"
+                                v-text="translate('Add your first pickup using this below wizard')"></p>
+                            <a v-text="translate('add_new')" @click="showOptions = true, activeItem = {}"
+                                href="javascript:;" class="text-white btn btn-primary er fs-6 px-8 py-4"></a>
+                        </div>
+
+                        <div class="text-center pb-15 px-5">
+                            <img :src="'/src/assets/img/1.png'" alt="" class="mx-auto mw-100 h-200px h-sm-325px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <main v-if="content && !showProfilePage && content.items.length" class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">
             <!-- New releases -->
             <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
                 <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
