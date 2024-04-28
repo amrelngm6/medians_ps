@@ -1,6 +1,23 @@
 <template>
     <div class="w-full overflow-auto" >
 
+        <div class=" " v-if="!showWizard && content.items && !content.items.length">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-px text-center pt-15 pb-15">
+                        <h2 class="fs-2x fw-bold mb-0" v-text="content.title"></h2>
+                        <p class="text-gray-400 fs-4 font-semibold py-7"
+                            v-text="translate('Empty data')"></p>
+                        <a v-text="translate('add_new')" @click="showOptions = true"
+                            href="javascript:;" class="text-white btn btn-primary er fs-6 px-8 py-4"></a>
+                    </div>
+
+                    <div class="text-center pb-15 px-5">
+                        <img :src="'/src/assets/img/1.png'" alt="" class="mx-auto mw-100 h-200px h-sm-325px">
+                    </div>
+                </div>
+            </div>
+        </div>
         <private_trip_wizard @callback="showWizard = false" :conf="conf" :currency="currency"
                 v-if="showWizard && activeItem.usertype" :usertype="activeItem.usertype"
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
@@ -8,7 +25,7 @@
 
         <usertype_picker :alias="translate('Need private trip')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
         
-        <div  v-if="!showWizard && !showOptions && content && !showTrip " class=" w-full relative">
+        <div  v-if="!showWizard && !showOptions && content  " class=" w-full relative">
 
             <main v-if="content"  :key="content.items" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->

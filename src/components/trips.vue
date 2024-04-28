@@ -1,6 +1,20 @@
 <template>
     <div class="w-full overflow-auto" >
+        <div class=" " v-if="!showWizard && content.items && !content.items.length">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-px text-center pt-15 pb-15">
+                        <h2 class="fs-2x fw-bold mb-0" v-text="content.title"></h2>
+                        <p class="text-gray-400 fs-4 font-semibold py-7"
+                            v-text="translate('Empty data')"></p>
+                    </div>
 
+                    <div class="text-center pb-15 px-5">
+                        <img :src="'/src/assets/img/1.png'" alt="" class="mx-auto mw-100 h-200px h-sm-325px">
+                    </div>
+                </div>
+            </div>
+        </div>
         <trip_wizard @callback="showWizard = false" :conf="conf"
                 v-if="showWizard" 
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
