@@ -1,7 +1,7 @@
 <template>
     <div class="w-full overflow-auto" >
 
-        <div class=" " v-if="!showOptions && content.items && !content.items.length">
+        <div class=" " v-if="!showOptions && !showWizard && content.items && !content.items.length">
             <div class="card">
                 <div class="card-body">
                     <div class="card-px text-center pt-15 pb-15">
