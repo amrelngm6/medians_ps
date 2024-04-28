@@ -526,14 +526,18 @@ export default
              * Save business name
              */
             const saveBusiness = () => {
+
                 if (validateStep(1))
                     return showAlert(validateStep(1));
+
+                showLoader.value = true;
 
                 const params = new URLSearchParams([]);
                 params.append('type', 'User.get_started_save_business');
                 params.append('params[business_name]', activeItem.value.business_name);
                 params.append('params[type]', activeItem.value.business_type);
                 handleRequest(params, '/api/create').then(data => {
+                    showLoader.value = false;
                     data.error ? showAlert(data.error) : ''
                     data.success ? setActiveStep(2) : ''
                 });
@@ -549,11 +553,13 @@ export default
 
 
                 if (cost() < 1) {
+                    showLoader.value = true;
                     const params = new URLSearchParams([]);
                     params.append('type', 'User.get_started_save_free_plan');
                     params.append('params[plan_id]', activePlan.value.plan_id);
                     params.append('params[payment_type]', activePrice.value);
                     handleRequest(params, '/api/create').then(data => {
+                        showLoader.value = false;
                         if (data.success) {
                             showAlert(data.result)
                             setTimeout(() => {
@@ -581,6 +587,7 @@ export default
             }
 
             const completePayPal = () => {
+                showLoader.value = true;
 
                 const params = new URLSearchParams([]);
                 params.append('type', 'User.get_started_save_plan');
@@ -588,7 +595,6 @@ export default
                 params.append('params[payment_type]', activePrice.value);
                 params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(data => {
-                    showLoader.value = true;
                     // Load the PayPal SDK dynamically
                     loadScript({
                         clientId: props.setting.paypal_api_key,
@@ -646,6 +652,7 @@ export default
                 params.append('params[payment_type]', activePrice.value);
                 params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(async (data)  => {
+                    showLoader.value = false;
 
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
@@ -688,6 +695,7 @@ export default
              * Validate paypal payment
              */
             const validateOrderPayment = (order, paymentCode) => {
+                showLoader.value = true;
                 const params = new URLSearchParams([]);
                 params.append('type', 'Payment.paypal_payment_confirmation');
                 params.append('params[plan_id]', activePlan.value.plan_id);
@@ -698,6 +706,7 @@ export default
                 params.append('params[payment_code]', paymentCode);
                 params.append('params[order]', JSON.stringify(order));
                 handleRequest(params, '/api/create').then(data => {
+                    showLoader.value = false;
                     if (data.success) {
                         showAlert(data.result);
                         window.location.href = props.conf.url+'admin/profile'
