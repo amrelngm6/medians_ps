@@ -141,7 +141,11 @@ class PaymentService
 			
 			$privateTripRepo = new \Medians\Trips\Infrastructure\PrivateTripRepository($params['business']);
 			
-			$trip = $privateTripRepo->update((array) $params['trip']);
+			$tripData = (array) $params['trip'];
+			$check = $privateTripRepo->find($tripData['trip_id']);
+			$trip = $privateTripRepo->update($tripData);
+
+			$updateDriverCommission = $this->updateDriverWalletCredit($params, $invoice, $check->driver_id);
 
 			return array('success'=> true);
 
@@ -191,8 +195,6 @@ class PaymentService
 				return $this->updateDriverWalletDebit($params, $invoice);
 			}
 			
-			$updateDriverCommission = $this->updateDriverWalletCredit($params, $invoice);
-
 			return $this->updateBusinessWallet($params, $invoice);
 
 		} catch (\Throwable $th) {
@@ -260,16 +262,15 @@ class PaymentService
 	 * Update driver wallet when the payment in Cash only
 	 * Increase the Debit balance
 	 */
-	public function updateDriverWalletCredit($params, $invoice)
+	public function updateDriverWalletCredit($params, $invoice, $driverIid)
 	{
 		try {
 
 			$app = new \config\APP;
-			$user = $app->auth();
 
 			$walletRepo = new \Medians\Wallets\Infrastructure\WalletRepository();
 			
-			$check = $walletRepo->driverWallet($user->driver_id);
+			$check = $walletRepo->driverWallet($driverIid);
 			$data = array();
 			$commission = $this->handleDriverCommission($invoice);
 			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + $commission) : $commission;

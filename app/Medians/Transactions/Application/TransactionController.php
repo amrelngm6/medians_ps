@@ -204,6 +204,7 @@ class TransactionController extends CustomController
 
 			$updateWallet = isset($saveTransaction['success']) ? $paymentService->updateWallet($params, $addInvoice) : null; 
 
+
 			return (isset($saveTransaction['success']))
 			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
 			: array('error'=>$saveTransaction['error']);
