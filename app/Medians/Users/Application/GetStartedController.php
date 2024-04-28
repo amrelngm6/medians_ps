@@ -35,7 +35,7 @@ class GetStartedController
 
 		$this->planRepo = new PlanRepository();
 
-		$this->settingRepo = new SettingsRepository();
+		$this->settingRepo = new SettingsRepository(null);
 		
 	}
 
