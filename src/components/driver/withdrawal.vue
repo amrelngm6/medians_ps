@@ -8,7 +8,7 @@
                     <!--begin::Modal header-->
                     <div class="modal-header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bold" v-text="translate('Withdraw from balance')"></h2>
+                        <h2 class="fw-bold" v-text="translate('Collect cash')"></h2>
                         <!--end::Modal title-->
 
                         <!--begin::Close-->
@@ -24,8 +24,7 @@
                         <!--begin::Balance preview-->
                         <div class="d-flex text-center mb-9">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
-                                <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Current Balance')"></div>
-                                <div class="fs-2 fw-bold" kt-modal-adjust-balance="current_balance" v-text="currency.symbol+''+(wallet.credit_balance ?? '0')"></div>
+                                <div class="fs-4 fw-semibold mb-2 text-muted" v-text="translate(' from debit balance')"></div>
                             </div>
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Debit balance')"></div>
@@ -38,7 +37,7 @@
                         <div id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7 fv-plugins-icon-container">
-                                <label class="required fs-6 fw-semibold form-label mb-2" v-text="translate('Collected amount')"></label>
+                                <label class="required fs-4 fw-semibold form-label mb-2" v-text="translate('Collected amount')"></label>
                                 <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="collectedCashRequest.amount" :max="wallet.credit_balance" inputmode="text">
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
