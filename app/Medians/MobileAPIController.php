@@ -33,9 +33,10 @@ class MobileAPIController extends CustomController
 	{
 		$this->app = new \config\APP;
 		$return = [];
-		$model = empty($model) ? $this->app->request()->get('model') : $model;
+		$request = $this->app->request();
+		$model = empty($model) ? $request->get('model') : $model;
 
-		$params = $this->app->request()->get('params') ? (array)  json_decode($this->app->request()->get('params')) : [];
+		$params = $request->get('params') ? (array)  json_decode($request->get('params')) : [];
 
 		switch ($model) 
 		{
@@ -53,6 +54,10 @@ class MobileAPIController extends CustomController
 
 			case 'main_currency':
 				$return = (new \Medians\Currencies\Infrastructure\CurrencyRepository())->mainCurrency();
+				break;
+
+			case 'load_currency':
+				$return = (new \Medians\Currencies\Infrastructure\CurrencyRepository())->load($request->get('code'));
 				break;
 
 			case 'help_messages':
@@ -124,7 +129,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'getDriver':
-				$return =  (new Drivers\Application\DriverController())->getDriver($this->app->request()->get('driver_id')); 
+				$return =  (new Drivers\Application\DriverController())->getDriver($request->get('driver_id')); 
 				break;
 
 			case 'Parent.resetPassword':
