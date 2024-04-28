@@ -56,6 +56,7 @@ class SystemSettingsController extends CustomController
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key'=> 'code',
 					'data' => $this->currencyRepo->get()  
 				],
+				[ 'key'=> "currency_converter_api", 'title'=> translate('Currency converter API'), 'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
 
 			],
 			

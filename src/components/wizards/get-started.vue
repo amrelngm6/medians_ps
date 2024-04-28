@@ -677,7 +677,6 @@ export default
                 params.append('params[payment_method]', paymentMethod.value);
                 handleRequest(params, '/api/create').then(async (data)  => {
                     showLoader.value = false;
-                    print(currencyConverted.value);
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
                         amount: currencyConverted.value.convertedAmount,  // Amount in kobo (10000 kobo = 100 NGN)
