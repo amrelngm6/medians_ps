@@ -96,7 +96,7 @@ class CurrencyRepository
 		
 		// Return the Model object with the new data
 		$data['last_check'] = date('Y-m-d');
-    	$Object->update( (array) $data);
+    	$update = $Object->update( $data);
 
     	return $Object;
     } 
