@@ -1239,6 +1239,7 @@ class LangsAr
 		,'Allow users to send you a private trip request' => 'السماح للعملاء بإرسال طلب لرحلة خاصة'
 		,'Subscription info' => 'بيانات الإشتراك'
 		,'Payment type' => 'نوع الدفع'
+		,'empty_data' => 'لا يوجد بيانات متاحة ليتم عرضها'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'

@@ -934,6 +934,7 @@ class LangsEn
 			,'users applicants note' => 'This list of the users who requested to join our routes. Once you review their info and approve the request, they would be able to pay for the subscribed package'
 			,'RESET_PASSWORD_MSG' => 'Type your email, and we will send you confirmation code'
 			,'SETTING_COMMISSION_NOTE' => 'Comission at online payment when consumer pay to business for Private trips and subscriptions'
+			,'empty_data' => 'There is no data available to display'
 
 
 			,'COPYRIGHTS' => 'Copyrights are reserved'
