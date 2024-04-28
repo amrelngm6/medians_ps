@@ -341,6 +341,7 @@ import { translate, handleGetRequest, handleRequest, deleteByKey, showAlert } fr
 import VueScript2 from 'vue-script2';
 import { loadScript } from "@paypal/paypal-js";
 import axios from 'axios'
+import CurrencyAPI from '@everapi/currencyapi-js';
 
 export default
     {
@@ -360,6 +361,7 @@ export default
             const paymentMethod = ref('paypal');
             const paypalScriptLoaded = ref(false);
             const currencyConverted = ref({});
+            const currencyApi = new CurrencyAPI(props.setting.currency_converter_api);
             
 
             /**
@@ -589,20 +591,16 @@ export default
 
             const convertRates = async () => 
             {
-                var requestOptions = {
-                    method: 'GET',
-                    redirect: 'follow'
-                };
+                var result = await currencyApi.latest({
+                    base_currency: baseCurrencyInput.value.trim(),
+                    currencies: currenciesInput.value.replaceAll(' ', '')
+                }).then(result => {
+                    
+                    console.log(result)
+                    currencyConverted.value = result;
+                    return result;
 
-                var result = await fetch("https://api.currencyfreaks.com/v2.0/convert/latest?from="+props.currency.code+"&to=pkr&amount="+cost()+"&apikey="+props.setting.currency_converter_api, requestOptions)
-                    .then(response => response.text())
-                    .then(result =>  {
-                        console.log(result)
-                        currencyConverted.value = result;
-                        return result;
-                    })
-                    .catch(error => console.log('error', error));
-                
+                });
 
                 return result;
             }
