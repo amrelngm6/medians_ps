@@ -270,7 +270,6 @@
                                                                 </svg>
                                                             </div>
                                                             <span class="nav-text text-gray-800 fw-bold fs-6 lh-1" v-text="translate('PayPal')"> </span> 
-                                                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item mb-3 me-3 me-lg-6" role="presentation">
@@ -279,7 +278,6 @@
                                                                 <vue-feather type="credit-card" />
                                                             </div>
                                                             <span class="nav-text text-gray-800 fw-bold fs-6 lh-1" v-text="translate('PayStack')"> </span> 
-                                                            <span class="bullet-custom position-absolute bottom-0 w-100 h-4px bg-primary"></span>
                                                         </a>
                                                     </li>
                                                 </ul>
