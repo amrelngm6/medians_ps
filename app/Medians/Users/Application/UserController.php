@@ -56,10 +56,7 @@ class UserController extends CustomController
             [ 'key'=> "phone", 'title'=> translate('phone'), 'fillable'=> true, 'column_type'=>'phone' ],
             [ 'key'=> "password", 'title'=> translate('password'), 'fillable'=> true, 'column_type'=>'password' ],
             [ 'key'=> "active", 'title'=> translate('status'), 'fillable'=> true, 'column_type'=>'hidden' ],
-			[ 'key'=> "role_id", 'title'=> translate('Role'), 
-				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 
-				'data' => $this->rolesRepo->get()
-			],
+
         ];
 	}
 
