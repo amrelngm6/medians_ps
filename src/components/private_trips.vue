@@ -25,7 +25,7 @@
 
         <usertype_picker :alias="translate('Need private trip')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
         
-        <div  v-if="!showWizard && !showOptions && content  " class=" w-full relative">
+        <div  v-if="!showWizard && !showOptions && content.items && content.items.length  " class=" w-full relative">
 
             <main v-if="content"  :key="content.items" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->
