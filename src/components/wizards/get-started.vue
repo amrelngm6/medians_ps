@@ -680,7 +680,7 @@ export default
                     print(currencyConverted.value);
                     try {
                         const response = await axios.post('https://api.paystack.co/transaction/initialize', {
-                        amount: cost(),  // Amount in kobo (10000 kobo = 100 NGN)
+                        amount: currencyConverted.value.convertedAmount,  // Amount in kobo (10000 kobo = 100 NGN)
                         email: props.auth.email,  // Customer's email
                         }, {
                         headers: {
