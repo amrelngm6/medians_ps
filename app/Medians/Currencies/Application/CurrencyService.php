@@ -33,7 +33,7 @@ class CurrencyService
 
             if ($result->last_check == date('Y-m-d'))
             {
-    			echo($result ? json_encode($result) : '');
+    			return $result ? json_encode($result) : '';
                 
             } else {
                 
