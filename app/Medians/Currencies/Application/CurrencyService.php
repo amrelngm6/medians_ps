@@ -29,6 +29,7 @@ class CurrencyService
 		try {
 
             $result = $this->repo->load($currencyCode);
+            $stting = $this->app->SystemSetting();
 
             if ($result->last_check == date('Y-m-d'))
             {
@@ -36,7 +37,7 @@ class CurrencyService
                 
             } else {
                 
-                $response = $this->checkAPI($setting['currency'], $currencyCode);
+                $response = $this->checkAPI($setting['currency'], $currencyCode, $stting);
 
                 $data = [
                     'code' => $currencyCode,
@@ -86,9 +87,8 @@ class CurrencyService
 	}
 
     
-	public function checkAPI($from, $to)
+	public function checkAPI($from, $to, $setting)
 	{
-        $stting = $this->app->SystemSetting();
 		$currencyApi = new \CurrencyApi\CurrencyApi\CurrencyApiClient($stting['currency_converter_api']);
 		return $currencyApi->latest([
 			'base_currency' => $from,
