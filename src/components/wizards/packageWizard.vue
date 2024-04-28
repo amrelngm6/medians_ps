@@ -91,60 +91,6 @@
                                     @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
                         </div>
 
-                        <!-- <div class="" v-if="activeTab == 'Single trip'" :key="activeTab">
-                            <div class="card-body pt-0">
-                                <div class="settings-form">
-                                    <div class="max-w-xl mb-6 mx-auto">
-
-                                        <div
-                                            class="notice d-flex bg-blue-100 rounded border-primary border border-dashed rounded-3 p-6">
-                                            <div class="d-flex flex-stack flex-grow-1 ">
-                                                <div class=" fw-semibold">
-                                                    <h4 class="text-gray-900 fw-bold"
-                                                        v-text="translate('Single daily trip cost')"></h4>
-                                                    <div class="fs-6 text-gray-700 "
-                                                        v-text="translate('Cost for Single trip daily either Morning or Afternoon')">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="opacity-10 my-4" />
-
-                                        <div class="w-full mb-6 mx-auto row">
-                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                                v-text="translate('Cost per month')"></label>
-                                            <input :required="true" autocomplete="off" name="params[single_cost_month]"
-                                                class="form-control form-control-solid"
-                                                :placeholder="translate('Single Trip cost per month')" type="number"
-                                                v-model="activeItem.single_cost_month">
-                                        </div>
-
-                                        <div class="w-full mb-6 mx-auto row">
-                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                                v-text="translate('Cost per quarter')"></label>
-                                            <input :required="true" autocomplete="off" name="params[single_cost_quarter]"
-                                                class="form-control form-control-solid"
-                                                :placeholder="translate('Single Trip cost per quarter')" type="number"
-                                                v-model="activeItem.single_cost_quarter">
-                                        </div>
-
-                                        <div class="w-full mb-6 mx-auto row">
-                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                                v-text="translate('Cost per year')"></label>
-                                            <input :required="true" autocomplete="off" name="params[single_cost_year]"
-                                                class="form-control form-control-solid"
-                                                :placeholder="translate('Single Trip cost per year')" type="number"
-                                                v-model="activeItem.single_cost_year">
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-center mt-10"><a href="javascript:;"
-                                    class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
-                        </div> -->
-
                         <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
 
                             <div class="max-w-6xl mx-auto">
@@ -228,58 +174,7 @@
 
                                     </div>
 
-                                    <!-- <div class="card mb-6 mb-xl-9 bg-inverse-warning">
-
-                                        <div class="card-header border-0">
-                                            <div class="card-title">
-                                                <h2 v-text="translate('Single trip cost')"></h2>
-                                            </div>
-                                        </div>
-
-                                        <div class="card-body py-0">
-                                            <div class="fs-5 fw-semibold text-gray-500 mb-4"
-                                                v-text="translate('Cost for Single trip daily either Morning or Afternoon')">
-                                            </div>
-
-                                            <div class="d-flex flex-wrap flex-stack mb-5">
-                                                <div class="d-flex ">
-                                                    <div
-                                                        class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
-                                                        <span class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            $ <span class="counted"
-                                                                v-text="activeItem.single_cost_month"></span>
-                                                            <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
-                                                                v-text="translate('/Month')"></span>
-                                                        </span>
-                                                    </div>
-
-                                                    <div
-                                                        class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
-                                                        <span class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            <span v-text="currency.symbol"></span><span class="counted"
-                                                                v-text="activeItem.single_cost_quarter"></span>
-                                                            <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
-                                                                v-text="translate('/Quarter')"></span>
-                                                        </span>
-                                                    </div>
-
-                                                    <div
-                                                        class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
-                                                        <span class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            <span v-text="currency.symbol"></span><span class="counted"
-                                                                v-text="activeItem.single_cost_year"></span>
-                                                            <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
-                                                                v-text="translate('/Year')"></span>
-                                                        </span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div> -->
-
+                                  
                                 </div>
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
