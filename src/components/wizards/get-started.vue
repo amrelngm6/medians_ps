@@ -592,8 +592,8 @@ export default
             const convertRates = async () => 
             {
                 var result = await currencyApi.latest({
-                    base_currency: baseCurrencyInput.value.trim(),
-                    currencies: currenciesInput.value.replaceAll(' ', '')
+                    base_currency: props.currency.code,
+                    currencies: 'NGN'
                 }).then(result => {
                     
                     console.log(result)
