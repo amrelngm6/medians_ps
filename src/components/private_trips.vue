@@ -27,7 +27,7 @@
         
         <div  v-if="!showWizard && !showOptions && content " class=" w-full relative">
 
-            <main v-if="content.items && content.items.length "  :key="content.items" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
+            <main v-if="content.items && content.items.length"  :key="content.items" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
