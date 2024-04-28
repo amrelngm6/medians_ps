@@ -656,11 +656,11 @@ export default
             const checkLocalUpdatedCurrency = async (currency) => 
             {
                 return await handleGetRequest(props.conf.url+'admin/load_currencies').then(response => {
-                    console.log(response);
                     if (response == null)
                     {
                         return;
                     }
+                    currencyConverted.value = 0;
                     for (let i = 0; i < response.length; i++) {
                         const element = response[i];
                         if (element.code == currency)
