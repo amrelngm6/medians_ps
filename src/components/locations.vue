@@ -20,7 +20,7 @@
 
             <usertype_picker :alias="translate('Pickup location')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
 
-            <div class=" " v-if="!showWizard && !showOptions && content.items ">
+            <div class=" " v-if="!showWizard && !showOptions && content.items && !content.items.length">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-px text-center pt-15 pb-15">
@@ -39,7 +39,7 @@
             </div>
 
             <main class=" flex-1 overflow-x-hidden overflow-y-auto  w-full relative"
-                v-if="content.items && content.items.length && !showWizard">
+                v-if="content.items  && !showWizard">
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
                     <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
                 </div>
