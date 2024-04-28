@@ -1,6 +1,5 @@
 <template>
-    <div class="w-full flex overflow-auto" >
-        
+    <div class="w-full " >
         <div class=" " v-if="content.items && !content.items.length">
             <div class="card">
                 <div class="card-body">
@@ -18,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class=" w-full">
+        <div class=" w-full flex overflow-auto">
 
             <main v-if="content && content.items.length" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->
