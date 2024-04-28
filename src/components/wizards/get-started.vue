@@ -589,22 +589,6 @@ export default
                 }
             }
 
-            const convertRates = async () => 
-            {
-                var result = await currencyApi.latest({
-                    base_currency: props.currency.code,
-                    currencies: 'NGN'
-                }).then(result => {
-                    
-                    console.log(result)
-                    currencyConverted.value = result;
-                    return result;
-
-                });
-
-                return result;
-            }
-
 
             const completePayPal = () => {
                 showLoader.value = true;
@@ -662,11 +646,29 @@ export default
                 });
             }
 
+            
+            const convertRates = async (base, to) => 
+            {
+                var result = await currencyApi.latest({
+                    base_currency: base,
+                    currencies: to
+                }).then(result => {
+                    
+                    console.log(result)
+                    currencyConverted.value = result;
+                    return result;
+
+                });
+
+                return result;
+            }
+
+
             const completePaystack = async () => {
 
                 showLoader.value = true;
                 
-                await convertRates();
+                await convertRates(props.currency.code, 'NGN');
                 
                 const params = new URLSearchParams([]);
                 params.append('type', 'User.get_started_save_plan');
