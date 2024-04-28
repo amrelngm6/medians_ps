@@ -385,7 +385,7 @@ export default {
 @import './assets/bootstrap-grid.min.css';
 @import './assets/tailwind.min.css';
 @import './assets/media-library.css';
-@import './assets/css/style.bundle.css';
+@import './assets/style.bundle.css';
 
 
 /* we will explain what these classes do next! */
