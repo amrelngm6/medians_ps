@@ -223,7 +223,7 @@ class APP
 			]
 			),
 			
-			array('title'=>translate('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
+			array('title'=>translate('Customers'),  'icon'=>'users', 'link'=>'#customers', 'sub'=>
 			[
 				array('permission'=>'Parents.index', 'title'=>translate('Parents'),  'icon'=>'user', 'link'=>'admin/parents', 'component'=>'parents'),
 				array('permission'=>'Students.index', 'title'=>translate('Students'),  'icon'=>'user', 'link'=>'admin/students', 'component'=>'students'),
@@ -247,7 +247,7 @@ class APP
 			]
 			),
 
-			array('title'=>translate('Drivers'),  'icon'=>'users', 'link'=>'#drivers', 'sub'=>
+			array('title'=>translate('Drivers'),  'icon'=>'user', 'link'=>'#drivers', 'sub'=>
 			[
 				array('permission'=>'Drivers.index', 'title'=>translate('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
 				array('permission'=>'DriverApplicants.index', 'title'=>translate('Driver applicants'),  'icon'=>'users', 'link'=>'admin/driver_applicants', 'component'=>'driver_applicants'),
