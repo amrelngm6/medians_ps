@@ -24,7 +24,7 @@
                         <!--begin::Balance preview-->
                         <div class="d-flex text-center mb-9">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
-                                <div class="fs-4 fw-semibold mb-2 text-muted" v-text="translate(' from debit balance')"></div>
+                                <div class="fs-3 fw-semibold mb-2 " v-text="translate('Collect cash from debit balance')"></div>
                             </div>
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-6 fw-semibold mb-2 text-muted" v-text="translate('Debit balance')"></div>
