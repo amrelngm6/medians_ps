@@ -655,7 +655,7 @@ export default
              */
             const checkLocalUpdatedCurrency = async (currency) => 
             {
-                await handleGetRequest(props.conf.url+'admin/load_currencies').then(response => {
+                return await handleGetRequest(props.conf.url+'admin/load_currencies').then(response => {
                     console.log(response);
                     if (response == null)
                     {
@@ -671,7 +671,6 @@ export default
                     console.log(currencyConverted.value);
 
                 });
-                return true;
             }
             
             /**
