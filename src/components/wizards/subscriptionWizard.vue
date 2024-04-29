@@ -17,7 +17,7 @@
                                     <h1 class="mb-3" v-text="translate('Find')+' '+translate(usertype)"></h1>
 
                                     <div class="text-gray-400 font-semibold "
-                                        v-text="translate('Search by name, parent name or contact number')"></div>
+                                        v-text="translate('Search by name email or mobile')"></div>
                                 </div>
                                 <div class="w-100 relative mb-5" autocomplete="off">
 
@@ -26,7 +26,7 @@
 
                                     <input type="text" @change="findUser" @input="findUser" v-model="searchText"
                                         class="form-control form-control-lg form-control-solid px-15"
-                                        :placeholder="translate('Search by name, parent name')">
+                                        :placeholder="translate('Search by name email or mobile')">
                                 </div>
                                 <div class="w-full " v-for="usermodel in userslist" v-if="searchText">
                                     <a href="javascript:;" :key="usermodel.show" v-if="usermodel.show"
