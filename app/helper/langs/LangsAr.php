@@ -1305,7 +1305,7 @@ class LangsAr
 		,'SET AS DONE' => 'مكتمل'
 		,'approved' => 'تم الموافقة'
 		,'Withdrawal request' => 'رقم طلب السحب'
-		,'' => ''
+		,'Total collected amount' => 'إجمالي القيمة المسحوبة'
 		,'' => ''
 		,'' => ''
 
