@@ -73,7 +73,7 @@ class CollectedCashController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get($params),
-				'total_completed_amount' => round($this->repo->totalCompletedAmount($params), 2),
+				'total_completed_amount' => round($this->repo->totalCompletedAmount($params) ?? 0, 2),
 		    ]);
 
 		} catch (\Exception $e) {
