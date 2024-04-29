@@ -1297,7 +1297,7 @@ class LangsAr
 		,'double trips' => 'رحلتين'
 		,'single trip' => 'رحلة واحدة'
 		,'Two trips per day going and return' => 'رحلتين يوميا ذهاب و عودة'
-		,'' => ''
+		,'One trip per day' => 'رحلة واحدة يوميا'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
