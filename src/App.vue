@@ -46,6 +46,7 @@ import HelpMessages from '@/components/help_messages.vue';
 import notifications_events from '@/components/notifications_events.vue'; 
 import {translate, handleAccess, handleRequest, showAlert} from '@/utils.vue';
 
+const get_started = defineAsyncComponent(() => import('@/components/wizards/get-started.vue') );
 
 // Default data table pages
 const students = defineAsyncComponent(() => import('@/components/datatable_pages/students.vue') );
@@ -124,7 +125,8 @@ const driver_page = defineAsyncComponent(() => import('@/components/driver/profi
 
 const collected_cash = defineAsyncComponent(() => import('@/components/wallet/collected_cash.vue') );
 
-const get_started = defineAsyncComponent(() => import('@/components/wizards/get-started.vue') );
+const translations = defineAsyncComponent(() => import('@/components/translations.vue') );
+
 
 
 export default {
@@ -177,6 +179,7 @@ export default {
         driver_page,
         collected_cash,
         languages,
+        translations,
         get_started,
         translate,
         'help_messages':HelpMessages,
