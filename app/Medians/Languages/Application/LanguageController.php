@@ -36,7 +36,7 @@ class LanguageController extends CustomController
 		return [
             [ 'value'=> "language_id", 'text'=> "#",'sortable'=> true ],
             [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
-            [ 'value'=> "code", 'text'=> translate('Code'), 'sortable'=> true ],
+            [ 'value'=> "language_code", 'text'=> translate('language_code'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('Edit') ],
             [ 'value'=> "delete", 'text'=> translate('delete') ],
@@ -54,7 +54,7 @@ class LanguageController extends CustomController
 		return [
             [ 'key'=> "language_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "code", 'title'=> translate('Code'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "language_code", 'title'=> translate('language_code'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "status", 'title'=> translate('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox', 'withlabel'=>true ],
         ];
 	}
