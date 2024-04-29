@@ -60,7 +60,8 @@ class TranslationController extends CustomController
 
 		return [
             [ 'key'=> "language_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "name", 'title'=> translate('Word or Sentence'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "code", 'title'=> translate('name'), 'disabled'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "status", 'title'=> translate('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox'],
         ];
 	}
