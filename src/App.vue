@@ -176,6 +176,7 @@ export default {
         withdrawals,
         driver_page,
         collected_cash,
+        languages,
         get_started,
         translate,
         'help_messages':HelpMessages,
