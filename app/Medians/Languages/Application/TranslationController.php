@@ -126,8 +126,6 @@ class TranslationController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? 'on' : null;
-
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);

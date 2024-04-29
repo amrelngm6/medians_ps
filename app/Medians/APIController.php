@@ -382,7 +382,7 @@ class APIController extends CustomController
 				break;
 				
 			case 'Translation.update':
-				$return = new Languages\Application\TranslationController; 
+				$controller = new Languages\Application\TranslationController; 
 				break;
 				
 		}
