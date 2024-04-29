@@ -22,7 +22,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body mx-5 mx-xl-15 my-7"  v-if="wallet">
                         <!--begin::Balance preview-->
-                        <div class="d-flex text-center mb-9">
+                        <div class="d-flex text-center mb-9 ">
                             <div class="w-50 border border-dashed border-gray-300 rounded mx-2 p-4">
                                 <div class="fs-3 fw-semibold mb-2 " v-text="translate('Collect cash from driver debit balance')"></div>
                             </div>
@@ -36,20 +36,20 @@
                         <!--begin::Form-->
                         <div id="kt_modal_adjust_balance_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
                             <!--begin::Input group-->
-                            <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <div class="fv-row mb-7 fv-plugins-icon-container relative ">
                                 <label class="required fs-4 fw-semibold form-label mb-2" v-text="translate('Collected amount')"></label>
                                 <input id="kt_modal_inputmask" type="number" class="form-control form-control-solid" v-model="collectedCashRequest.amount" :max="wallet.credit_balance" inputmode="text">
                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                             </div>
                             
-                            <div class="w-full" v-if="collectedCashRequest.payment_method" v-for="(paymentInfo, key) in payment_fields[collectedCashRequest.payment_method]">
+                            <div class="w-full relative " v-if="collectedCashRequest.payment_method" v-for="(paymentInfo, key) in payment_fields[collectedCashRequest.payment_method]">
                                 <div class="fv-row mb-7 fv-plugins-icon-container"  >
                                     <label class="required fs-6 fw-semibold form-label mb-2" v-text="paymentInfo.title"></label>
                                     <input id="kt_modal_inputmask" type="text" class="form-control form-control-solid" v-model="collectedCashRequest.field[paymentInfo.code]" >
                                 </div>
                             </div>
                             
-                            <div class="fv-row mb-7">
+                            <div class="fv-row mb-7 relative ">
                                 <label class="fs-6 fw-semibold form-label mb-2" v-text="translate('Add notes')"></label>
                                 <textarea class="form-control form-control-solid rounded-3 mb-5" v-model="collectedCashRequest.notes"></textarea>
                             </div>
