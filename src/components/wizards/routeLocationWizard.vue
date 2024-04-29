@@ -261,7 +261,7 @@
                                                 <h1 class="mb-3" v-text="translate('Find Route')"></h1>
 
                                                 <div class="text-gray-400 font-semibold "
-                                                    v-text="translate('Search by name or description')"></div>
+                                                    v-text="translate('Search by name')"></div>
                                             </div>
                                             <div class="w-100 relative mb-5" autocomplete="off">
 
@@ -270,7 +270,7 @@
 
                                                 <input type="text" @change="findRoute" @input="findRoute" v-model="searchText"
                                                     class="form-control form-control-lg form-control-solid px-15"
-                                                    :placeholder="translate('Search by name, parent name')">
+                                                    :placeholder="translate('Search by name')">
                                             </div>
                                             <div class="w-full " v-for="route in routes" v-if="searchText">
                                                 <a href="javascript:;" :key="route.show" v-if="route && route.show"
