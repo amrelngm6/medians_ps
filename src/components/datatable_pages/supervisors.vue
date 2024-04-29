@@ -7,7 +7,7 @@
 
 import {defineAsyncComponent} from 'vue';
 const data_table_page = defineAsyncComponent(() =>
-  import('@/components/data_table_page.vue')
+  import('@/components/datatable_pages/data_table_page.vue')
 );
 
 export default 
