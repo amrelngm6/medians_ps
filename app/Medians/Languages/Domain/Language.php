@@ -23,6 +23,12 @@ class Language extends CustomModel
 		'created_by',
 	];
 
-	
+	public $appends = ['picture'];
+
+	public function getPictureAttribute()
+	{
+		return $this->icon;
+	}
+
 	
 }

@@ -123,7 +123,7 @@ class MediaRepository
 				break;
 			
 			default:
-				return ['png', 'jpg', 'jpeg', 'bmp']; 
+				return ['png', 'jpg', 'jpeg', 'bmp', 'svg']; 
 				break;
 		}
 	}
