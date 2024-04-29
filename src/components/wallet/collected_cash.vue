@@ -64,6 +64,10 @@
                 alternating
                 class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
+                <template #item-amount="item">
+                    <span v-text="currency.symbol+''+item.amount"> </span>
+                </template>
+
                 <template #item-delete="item">
                     <button v-if="!item.not_removeable" class="p-2 hover:text-gray-600 text-red-500" @click="handleAction('delete', item)">
                         <vue-feather class="w-5" type="x-circle"></vue-feather>
