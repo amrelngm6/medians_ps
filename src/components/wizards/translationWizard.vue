@@ -80,7 +80,7 @@
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
                                             v-text="translate('Code')"></label>
                                         <input :disabled="true" autocomplete="off" 
-                                            class="form-control form-control-solid" :placeholder="translate('Shortcut code')"
+                                            class="form-control form-control-solid" :placeholder="translate('Generated from english translation')"
                                             v-model="activeItem.code">
                                         <hr class="block mt-6 my-2 opacity-10" />
                                     </div>
