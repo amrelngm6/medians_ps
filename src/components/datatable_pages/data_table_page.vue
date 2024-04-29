@@ -142,6 +142,7 @@ export default
 
         const content =  ref({
                 title: '',
+                items: null,
                 columns: [],
             });
         
