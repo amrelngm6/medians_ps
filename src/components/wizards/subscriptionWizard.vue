@@ -79,7 +79,7 @@
                                                 <input type="text" @change="findPackage" @input="findPackage"
                                                     v-model="searchText"
                                                     class="form-control form-control-lg form-control-solid px-15"
-                                                    :placeholder="translate('Search by name, parent name')">
+                                                    :placeholder="translate('Search by name or description')">
                                             </div>
                                             <div class="w-full " v-for="packageItem in packages" v-if="searchText">
                                                 <a href="javascript:;" :key="packageItem.show"
