@@ -438,7 +438,7 @@ class LangsAr
 		,'OOPS' => 'Oops, Something is wrong...'
 		,'FILTER' => 'ترتيب حسب'
 		,'DAY' => 'اليوم'
-		,'MONTH' => 'التاريخ'
+		,'MONTH' => 'شهر'
 		,'ORDERS_HIST' => 'Orders history'
 		,'ROLES_MANAEGMENT' => 'إدارة الصلاخيات'
 		,'ALL' => 'All'
