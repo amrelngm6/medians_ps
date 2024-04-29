@@ -103,13 +103,13 @@ class TranslationController extends CustomController
         try {	
 			try {
 			
+				$params['code'] =  strtolower(str_replace([' ', '/', '&', '?','؟' , '@', '#', '$', '%', '(', ')', '-', '='], '_', $params['translation']['english'])) ;
 				$this->validate($params) ;
 
 			} catch (\Throwable $th) {
 	        	return array('error'=>$th->getMessage());
 			}
 
-			$params['code'] =  strtolower(str_replace([' ', '/', '&', '?','؟' , '@', '#', '$', '%', '(', ')', '-', '='], '_', $params['translation']['english'])) ;
         	$params['created_by'] = $this->app->auth()->id;
 
             $returnData = (!empty($this->repo->storeItems($params))) 
@@ -172,11 +172,6 @@ class TranslationController extends CustomController
 
 	public function validate($params) 
 	{
-
-		if (empty($params['name']))
-		{
-        	throw new \Exception(translate('NAME_EMPTY'), 1);
-		}
 
 		if (isset($this->repo->findByCode($params['code'])->translation_id))
 		{

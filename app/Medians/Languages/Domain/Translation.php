@@ -19,8 +19,8 @@ class Translation extends CustomModel
 	public $fillable = [
 		'name',
 		'code',
+		'value',
 		'language_code',
-		'status',
 		'created_by',
 	];
 

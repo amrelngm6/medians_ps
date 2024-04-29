@@ -30,7 +30,7 @@ class TranslationRepository
 	{
 		$row = [];
 
-		foreach ($data['translations'] as $key => $value) 
+		foreach ($data['translation'] as $key => $value) 
 		{
 			$row['language_code'] = $key;
 			$row['code'] = $data['code'];
