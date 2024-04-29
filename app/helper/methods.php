@@ -139,7 +139,7 @@ function response($response)
 function translate($langkey = null)
 {
     $translation = (new helper\Lang($_SESSION['lang']))->translate($langkey);
-    return isset($translation->value) ? $translation->value : ucfirst(str_replace('_', ' ', $langkey));
+    return $translation ?? ucfirst(str_replace('_', ' ', $langkey));
 }
 
 
