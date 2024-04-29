@@ -216,7 +216,7 @@ class CollectedCashController extends CustomController
 
 		if (empty($user->driver_id)) { return null; }
 		
-		$wallet = $this->walletRepo->driverWallet();
+		$wallet = $this->walletRepo->driverWallet($user->driver_id);
 
 		return isset($wallet->wallet_id) ? $this->repo->getCollectedCash($wallet->wallet_id) : [];
 	}
