@@ -1153,7 +1153,7 @@ class LangsAr
 		,'picture' => 'الصورة'
 		,'Birth date' => 'تاريخ الميلاد'
 		,'need private trip' => 'بحاجة الي رحلة خاصة'
-		,'Search by name_ email or mobile' => 'بحث عن طريق الإسم او البريد الالكتروني او الموبايل'
+		,'Search by name email or mobile' => 'بحث عن طريق الإسم او البريد الالكتروني او الموبايل'
 		,'Find' => 'ابحث عن'
 		,'Search by name or mobile' => 'البحث عن طريق الإسم او رقم الموبايل'
 		,'Location Address' => 'عنوان الموقع'
@@ -1262,6 +1262,8 @@ class LangsAr
 		,'confirm to submit' => 'هل أنت متأكد من الاستمرار'
 		,'Debit balance used for collected amount from cash trips' => 'رصيد المدين يحتوي المبالغ المستلمة من الرحلات المدفوعة نقدا'
 		,'Credit balance used for commissions' => 'رصيد الدائن يحتوي عمولة السائق من الرحلات'
+		,'Find employee' => ''
+		,'' => ''
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
