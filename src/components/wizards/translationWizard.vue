@@ -101,9 +101,9 @@
                                         <hr class="opacity-10 my-4" />
                                         <div class="w-full mb-6 " v-if="languages">
                                             <div class="w-full mb-6 mx-auto flex gap-4" v-for="(language, key) in languages">
-                                                <label v-if="languages[key]" class="cursor-pointer w-full col-form-label required fw-semibold fs-6">
+                                                <label v-if="languages[key]" class="flex gap-4 cursor-pointer w-full col-form-label required fw-semibold fs-6">
+                                                    <img src="h-12 w-12 rounded=full" :src="language.icon" />
                                                     <p v-text="language.name" class="fw-bold fs-4"></p>
-                                                    <span v-text="language.code"></span>
                                                 </label>
                                                 
                                                 <input autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+' '+translate(language.name)" v-model="fields[language.language_code]" >
