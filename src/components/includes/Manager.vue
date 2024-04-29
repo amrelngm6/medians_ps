@@ -63,8 +63,8 @@
                                 </div>
                             </div>
                             <div v-if="store[type].data.length == 0" class="media-library__error media-library__error--sml">
-                                <span class="media-library__error__ttl" v-text="translate('Not a great start')"></span>
-                                <p class="media-library__error__msg" v-text="translate('You do not have any media yet, Upload some media above to get started')"></p>
+                                <span class="media-library__error__ttl" v-text="translate('Ready to start')"></span>
+                                <p class="media-library__error__msg" v-text="translate('You do not have any media yet you can Upload some media above to get started')"></p>
                                 <app-svg-media />
                             </div>
                             <div v-else>
