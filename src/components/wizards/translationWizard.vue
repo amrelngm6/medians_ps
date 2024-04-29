@@ -76,7 +76,6 @@
                                 <div class="settings-form">
                                     <div class="max-w-xl mb-6 mx-auto row">
 
-                                        <input name="params[payment_method_id]" type="hidden">
 
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
                                             v-text="translate('Code')"></label>
