@@ -105,17 +105,12 @@
                                         </div>
 
                                         <hr class="opacity-10 my-4" />
-                                        <div class="flex w-full">
-                                            <a v-text="translate('add_new')" @click="addField()" href="javascript:;" class="text-white btn btn-primary er fs-6 px-4 py-2" ></a>
-                                        </div>
-                                        <div class="w-full mb-6 " v-if="activeItem.fields">
-                                            <div class="w-full mb-6 mx-auto flex gap-4" v-for="(field, key) in activeItem.fields">
-                                                <label v-if="activeItem.fields[key]" @click="switchField(field, key)" class="cursor-pointer w-full col-form-label required fw-semibold fs-6">
-                                                    <p v-text="field.title" class="fw-bold fs-4"></p>
-                                                    <span v-text="field.code"></span>
+                                        <div class="w-full mb-6 " v-if="languages">
+                                            <div class="w-full mb-6 mx-auto flex gap-4" v-for="(language, key) in languages">
+                                                <label v-if="languages[key]" @click="switchField(language, key)" class="cursor-pointer w-full col-form-label required fw-semibold fs-6">
+                                                    <p v-text="language.name" class="fw-bold fs-4"></p>
+                                                    <span v-text="language.code"></span>
                                                 </label>
-                                                <vue-feather type="edit" class="h-25px w-40px cursor-pointer "  @click="switchField(field, key)"  />
-                                                <vue-feather type="delete" class="h-25px w-40px text-danger cursor-pointer "  @click="(activeItem.fields.splice(key, 1))"  />
                                             </div>
                                                 
                                         </div>
@@ -136,13 +131,9 @@
                                         <div class="w-full">
                                             <div class="card-header border-0 flex gap-4">
                                                 <div class="card-title gap-4"> 
-                                                    <img class="w-10 h-10 rounded-full" :src="activeItem.picture" />
-                                                    <h2 v-text="activeItem.name"></h2> 
+                                                    <h2 v-text="activeItem.value"></h2> 
+                                                    <span v-text="activeItem.code"></span> 
                                                 </div>
-                                            </div>
-
-                                            <div class="card-body py-0">
-                                                <div class="fs-5 fw-semibold text-gray-500 mb-4" v-text="activeItem.description"></div>
                                             </div>
                                         </div>
                                         <div class="mx-auto pt-4">
