@@ -112,7 +112,7 @@
                                                     <span v-text="language.code"></span>
                                                 </label>
                                                 
-                                                <input :disabled="true" autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+''+translate(language.name)" v-model="language.name" >
+                                                <input autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+''+translate(language.name)" v-model="activeItem[language_code]" >
                                             </div>
                                                 
                                         </div>
