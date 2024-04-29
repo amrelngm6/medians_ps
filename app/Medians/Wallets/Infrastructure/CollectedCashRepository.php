@@ -14,6 +14,16 @@ class CollectedCashRepository
 {
 
 
+	/**
+	 * Business id
+	 */ 
+	protected $business_id ;
+	
+	function __construct($business = null)
+	{
+		$this->business_id = isset($business->business_id) ? $business->business_id : 0;
+	}
+
 	public function find($id)
 	{
 		return CollectedCash::with('business')->find($id);
