@@ -65,7 +65,7 @@ class TranslationRepository
 
 
 		// Return the  object with the new data
-    	$Object = Translation::create($dataArray);
+    	$Object = Translation::firstOrCreate($dataArray);
 		
 
     	return $Object;

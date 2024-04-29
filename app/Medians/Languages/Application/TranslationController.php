@@ -70,9 +70,24 @@ class TranslationController extends CustomController
 	 */ 
 	public function index( ) 
 	{
-		
 		try 
 		{
+			// $langs = (new \helper\langs\LangsAr)->get();
+			
+			// $arrow = [];
+			// $enrow = [];
+			// foreach ($langs as $key => $value) 
+			// {
+			// 	$enrow['code'] = strtolower($key);
+			// 	$enrow['language_code'] = 'english';
+			// 	$enrow['value'] = ucfirst(strtolower(translate($key)));
+			// 	// print_r($row);
+			// 	$s = $this->repo->store($enrow);
+			// 	$arrow = $enrow;
+			// 	$arrow['language_code'] = 'arabic';
+			// 	$arrow['value'] = $value;
+			// 	$d = $this->repo->store($arrow);
+			// }
 		    return render('translations', 
 			[
 		        'load_vue' => true,
