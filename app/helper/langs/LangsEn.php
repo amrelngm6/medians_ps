@@ -386,7 +386,7 @@ class LangsEn
 			,'EMAIL_NOT_VALID' => 'This Email address not valid'
 			,'EMAIL_EMPTY' => 'Email field is required'
 			,'NAME_FOUND' => 'Name field already found'
-			,'NAME_EMPTY' => 'Username field is required'
+			,'NAME_EMPTY' => 'Name field is required'
 			,'PASSWORD_SHORT' => 'Password is too short, Min characters '
 			,'PASSWORD_EMPTY' => 'Password missed, Min characters '
 			,'TITLE_EMPTY' => 'Title field is required '
