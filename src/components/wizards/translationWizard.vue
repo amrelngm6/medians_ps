@@ -187,7 +187,7 @@ export default
             if (props.item) {
                 props.item = props.item.translations ?? []
                 activeItem.value = props.item
-                fields.value = prop.item.translation
+                fields.value = props.item.translation
             }
 
             const saveTranslation = () => {
