@@ -19,7 +19,7 @@ class APP
 
 	public $default_lang = 'english';
 
-	public $lang_code = 'en';
+	public $lang_code = 'english';
 
 	public $lang;
 
