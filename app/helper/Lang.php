@@ -12,7 +12,7 @@ class Lang
 	
 	function __construct($lang)
 	{
-		$this->lang = $lang;
+		$this->lang = $lang ?? 'english';
 		$this->repo = new TranslationRepository();
 	}
 
