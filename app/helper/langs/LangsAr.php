@@ -1304,7 +1304,7 @@ class LangsAr
 		,'Request Details' => 'بيانات الطلب'
 		,'SET AS DONE' => 'مكتمل'
 		,'approved' => 'تم الموافقة'
-		,'' => ''
+		,'Withdrawal request' => 'رقم طلب السحب'
 		,'' => ''
 		,'' => ''
 		,'' => ''
