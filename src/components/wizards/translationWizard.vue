@@ -262,7 +262,7 @@ export default
                 }
                 for (let i = 0; i < props.languages.length; i++) {
                     k = props.languages[i].language_code
-                    d = fields.value[k]
+                    d = fields.value[k] ?? ''
                     params.append('params[translation][' + k + ']', d)
                 }
 
