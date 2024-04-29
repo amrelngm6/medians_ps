@@ -40,7 +40,7 @@ class TranslationController extends CustomController
 	{
 
 		return [
-            [ 'value'=> "translation_id", 'text'=> "#",'sortable'=> true],
+            // [ 'value'=> "translation_id", 'text'=> "#",'sortable'=> true],
             [ 'value'=> "code", 'text'=> translate('Code'), 'sortable'=> true ],
             [ 'value'=> "language.name", 'text'=> translate('language'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('Edit') ],
