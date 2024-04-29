@@ -130,8 +130,9 @@ class WithdrawalController extends CustomController
 
 	public function update()
 	{
-
 		$params = $this->app->request()->get('params');
+
+		$user = $this->app->auth();
 
         try {
 
