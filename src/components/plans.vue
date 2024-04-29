@@ -92,7 +92,7 @@
 </template>
 <script>
 
-import data_table_page from './data_table_page.vue';
+import data_table_page from '@/components/datatable_pages/data_table_page.vue';
 
 import { defineAsyncComponent, ref } from 'vue';
 import { translate, handleGetRequest, deleteByKey } from '@/utils.vue';
