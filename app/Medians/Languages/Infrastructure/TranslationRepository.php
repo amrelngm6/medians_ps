@@ -20,7 +20,7 @@ class TranslationRepository
 
 	public function get($limit = 100)
 	{
-		return Translation::with('items')->limit($limit)->groupBy('code')->orderBy('updated_at','DESC')->get();
+		return Translation::with('items','language')->limit($limit)->groupBy('code')->orderBy('updated_at','DESC')->get();
 	}
 
 	/**

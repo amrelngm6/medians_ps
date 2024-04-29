@@ -41,7 +41,7 @@ class TranslationController extends CustomController
 
 		return [
             [ 'value'=> "translation_id", 'text'=> "#",'sortable'=> true],
-            [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
+            [ 'value'=> "code", 'text'=> translate('Code'), 'sortable'=> true ],
             [ 'value'=> "language.name", 'text'=> translate('language'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('Edit') ],
             [ 'value'=> "delete", 'text'=> translate('delete') ],
@@ -57,11 +57,6 @@ class TranslationController extends CustomController
 	public function fillable( ) 
 	{
 
-		return [
-            [ 'key'=> "translation_id", 'title'=> "#", 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> translate('Word or Sentence'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "code", 'title'=> translate('Code should be unique'), 'disabled'=> true, 'fillable'=> true, 'column_type'=>'text' ],
-        ];
 	}
 
 	
