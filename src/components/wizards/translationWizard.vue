@@ -245,6 +245,7 @@ export default
             const fillable = ref(['Info', 'Fields' , 'Confirm']);
 
             if (props.item) {
+                props.item = props.item.translations ?? []
                 activeItem.value = props.item
             }
 
