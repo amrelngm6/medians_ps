@@ -71,8 +71,10 @@ class TranslationController extends CustomController
 	public function index( ) 
 	{
 		try 
-		{
+		{	
+			// $langCodent = $this->repo->findByLang('english');
 
+			// print_r($langCodent);
 		    return render('translations', 
 			[
 		        'load_vue' => true,

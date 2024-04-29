@@ -137,8 +137,8 @@ function response($response)
 */ 
 function translate($langkey = null)
 {
-    $Langs = (new helper\Lang($_SESSION['lang']))->load();
-    return !empty($Langs->translate($langkey)) ? $Langs->translate($langkey) : ucfirst(str_replace('_', ' ', $langkey));
+    $translation = (new helper\Lang($_SESSION['lang']))->translate($langkey);
+    return isset($translation->value) ? $translation->value : ucfirst(str_replace('_', ' ', $langkey));
 }
 
 

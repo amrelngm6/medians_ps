@@ -17,6 +17,11 @@ class TranslationRepository
 	{
 		return Translation::where('code', $code)->first();
 	}
+
+	public function findByLang($languageCode)
+	{
+		return Translation::where('language_code', $languageCode)->groupBy('code')->get()->pluck(null, 'code')->toArray();
+	}
 	
 	public function findByCodeLang($code, $languageCode)
 	{
