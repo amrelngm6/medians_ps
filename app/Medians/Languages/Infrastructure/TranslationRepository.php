@@ -102,7 +102,7 @@ class TranslationRepository
     public function update($data)
     {
 
-		$Object = Translation::findByCodeLang($data['code'], $data['language_code']);
+		$Object = $this->findByCodeLang($data['code'], $data['language_code']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
