@@ -40,7 +40,7 @@ class TranslationController extends CustomController
 	{
 
 		return [
-            [ 'value'=> "language_id", 'text'=> "#",'sortable'=> true],
+            [ 'value'=> "translation_id", 'text'=> "#",'sortable'=> true],
             [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
             [ 'value'=> "language.name", 'text'=> translate('language'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('Edit') ],
@@ -58,7 +58,7 @@ class TranslationController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "language_id", 'title'=> "#", 'column_type'=>'hidden'],
+            [ 'key'=> "translation_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "name", 'title'=> translate('Word or Sentence'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "code", 'title'=> translate('Code should be unique'), 'disabled'=> true, 'fillable'=> true, 'column_type'=>'text' ],
         ];
@@ -78,13 +78,14 @@ class TranslationController extends CustomController
 		
 		try 
 		{
-		    return render('languages', 
+		    return render('translations', 
 			[
 		        'load_vue' => true,
 		        'title' => translate('Translations'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+		        'languages' => $this->languageRepo->getActive(),
 		    ]);
 			
 		} catch (\Exception $e) {
@@ -153,10 +154,10 @@ class TranslationController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['language_id']);
+        	$check = $this->repo->find($params['translation_id']);
 
 
-            if ($this->repo->delete($params['language_id']))
+            if ($this->repo->delete($params['translation_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
@@ -177,7 +178,7 @@ class TranslationController extends CustomController
         	throw new \Exception(translate('NAME_EMPTY'), 1);
 		}
 
-		if (isset($this->repo->findByName($params['name'])->language_id))
+		if (isset($this->repo->findByName($params['name'])->translation_id))
 		{
         	throw new \Exception(translate('NAME_FOUND'), 1);
 		}

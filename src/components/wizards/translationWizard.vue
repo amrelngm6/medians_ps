@@ -2,67 +2,66 @@
     <div class="w-full flex overflow-auto">
         <div class=" w-full relative">
 
-            
-        <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
-            <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
-                <!--begin::Modal content-->
-                <div class="modal-content" data-select2-id="select2-data-133-wj88">
-                    <!--begin::Modal header-->
-                    <div class="modal-header">
-                        <!--begin::Modal title-->
-                        <h2 class="fw-bold" v-text="translate('Field details')"></h2>
+            <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
+                    <!--begin::Modal content-->
+                    <div class="modal-content" data-select2-id="select2-data-133-wj88">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2 class="fw-bold" v-text="translate('Field details')"></h2>
 
-                    </div>
+                        </div>
 
-                    <div class="modal-body mx-5 mx-xl-15 my-7"   v-if="activeItem.fields[activeField]">
-                        <div class="w-full row">
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                v-text="translate('Field title')"></label>
-                            <input :required="true" autocomplete="off" 
-                                class="form-control form-control-solid"
-                                :placeholder="translate('Title of the field')" type="text"
-                                v-model="activeItem.fields[activeField].title">
-                        </div>
-                        
-                        <div class="w-full row">
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                v-text="translate('Field code')"></label>
-                            <input :required="true" autocomplete="off" 
-                                class="form-control form-control-solid"
-                                :placeholder="translate('Code of the field')" type="text"
-                                v-model="activeItem.fields[activeField].code">
-                        </div>
-                        
-                        <div class="w-full row">
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                v-text="translate('Field type')"></label>
-                            <select 
-                                class="form-control form-control-solid"
-                                :placeholder="translate('Type of the field')" type="number"
-                                v-model="activeItem.fields[activeField].type">
-                                <option value="text" v-text="translate('Text')"></option>
-                                <option value="number" v-text="translate('Number')"></option>
-                                <option value="email" v-text="translate('Email')"></option>
-                                <option value="phone" v-text="translate('Phone')"></option>
-                                <option value="textarea" v-text="translate('Textarea')"></option>
-                            </select>
-                        </div>
-                        
-                        <div class="text-center">
-                            <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showModal = false"></button>
+                        <div class="modal-body mx-5 mx-xl-15 my-7"   v-if="activeItem.fields[activeField]">
+                            <div class="w-full row">
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                    v-text="translate('Field title')"></label>
+                                <input :required="true" autocomplete="off" 
+                                    class="form-control form-control-solid"
+                                    :placeholder="translate('Title of the field')" type="text"
+                                    v-model="activeItem.fields[activeField].title">
+                            </div>
+                            
+                            <div class="w-full row">
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                    v-text="translate('Field code')"></label>
+                                <input :required="true" autocomplete="off" 
+                                    class="form-control form-control-solid"
+                                    :placeholder="translate('Code of the field')" type="text"
+                                    v-model="activeItem.fields[activeField].code">
+                            </div>
+                            
+                            <div class="w-full row">
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                    v-text="translate('Field type')"></label>
+                                <select 
+                                    class="form-control form-control-solid"
+                                    :placeholder="translate('Type of the field')" type="number"
+                                    v-model="activeItem.fields[activeField].type">
+                                    <option value="text" v-text="translate('Text')"></option>
+                                    <option value="number" v-text="translate('Number')"></option>
+                                    <option value="email" v-text="translate('Email')"></option>
+                                    <option value="phone" v-text="translate('Phone')"></option>
+                                    <option value="textarea" v-text="translate('Textarea')"></option>
+                                </select>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showModal = false"></button>
 
-                            <button @click="showModal = false" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
-                                <span class="indicator-label" v-text="translate('Submit')"></span>
-                            </button>
+                                <button @click="showModal = false" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
+                                    <span class="indicator-label" v-text="translate('Submit')"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-            
 
             <close_icon class="absolute top-4 right-4 z-10 cursor-pointer" @click="back" />
+
             <div class=" card w-full py-10">
                 <div class="w-full stepper stepper-links ">
                     <div class="stepper-nav justify-content-center py-2 mb-10">
@@ -98,9 +97,9 @@
                                             <div class="d-flex flex-stack flex-grow-1 ">
                                                 <div class=" fw-semibold">
                                                     <h4 class="text-gray-900 fw-bold"
-                                                        v-text="translate('Withdrawal required fields ')"></h4>
+                                                        v-text="translate('Translate the code')"></h4>
                                                     <div class="fs-6 text-gray-700 "
-                                                        v-text="translate('Create the required fields that the users should fill when using this Gateway as withdraw request')">
+                                                        v-text="translate('Translate the word into the available languages')">
                                                     </div>
                                                 </div>
                                             </div>
@@ -351,8 +350,7 @@ export default
             'business_setting',
             'setting',
             'item',
-            'drivers',
-            'vehicles',
+            'languages',
         ],
 
     };
