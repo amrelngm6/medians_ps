@@ -142,7 +142,6 @@ export default
 
         const content =  ref({
                 title: '',
-                items: [],
                 columns: [],
             });
         
