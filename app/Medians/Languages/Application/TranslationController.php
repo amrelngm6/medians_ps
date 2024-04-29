@@ -85,7 +85,7 @@ class TranslationController extends CustomController
 		        'title' => translate('Translations'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
-		        'items' => $this->repo->getWithCities(),
+		        'items' => $this->repo->get(),
 		    ]);
 			
 		} catch (\Exception $e) {

@@ -1,33 +1,27 @@
 <?php
 
-namespace Medians\Locations\Infrastructure;
+namespace Medians\Languages\Infrastructure;
 
-use Medians\Locations\Domain\State;
+use Medians\Languages\Domain\Translation;
 
-class StateRepository 
+class TranslationRepository 
 {
 
 
 	public function find($id)
 	{
-		return State::find($id);
+		return Translation::find($id);
 	}
 
 	public function findByName($name)
 	{
-		return State::where('name', $name)->first();
+		return Translation::where('name', $name)->first();
 	}
 
 	public function get($limit = 100)
 	{
-		return State::with('cities')->limit($limit)->orderBy('name','DESC')->get();
+		return Translation::with('items')->limit($limit)->groupBy('code')->orderBy('updated_at','DESC')->get();
 	}
-
-	public function getWithCities($limit = 100)
-	{
-		return State::with('country', 'cities')->limit($limit)->orderBy('name','DESC')->get();
-	}
-
 
 	/**
 	* Save item to database
@@ -35,7 +29,7 @@ class StateRepository
 	public function store($data) 
 	{
 
-		$Model = new State();
+		$Model = new Translation();
 		
 		foreach ($data as $key => $value) 
 		{
@@ -46,7 +40,7 @@ class StateRepository
 		}		
 
 		// Return the  object with the new data
-    	$Object = State::create($dataArray);
+    	$Object = Translation::create($dataArray);
 
 
     	return $Object;
@@ -60,7 +54,7 @@ class StateRepository
     public function update($data)
     {
 
-		$Object = State::find($data['state_id']);
+		$Object = Translation::find($data['translation_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -79,7 +73,7 @@ class StateRepository
 	{
 		try {
 			
-			$delete = State::find($id)->delete();
+			$delete = Translation::find($id)->delete();
 
 			return true;
 
