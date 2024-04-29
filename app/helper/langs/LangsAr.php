@@ -1257,6 +1257,8 @@ class LangsAr
 		,'school' => 'مدرسة'
 		,'Some features are available only for Paid plans' => 'بعض المميزات متاحة للخطط المدفوعة فقط'
 		,'Collect cash from driver debit balance' => 'سحب مبلغ مالي من مديونات السائق'
+		,'Collected amount' => 'القيمة المسحوبة'
+		,'' => ''
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
