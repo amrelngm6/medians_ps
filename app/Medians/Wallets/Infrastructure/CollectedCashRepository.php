@@ -52,13 +52,6 @@ class CollectedCashRepository
 	}
 	
 	
-	public function completedGroupedByPaymentMethod($params)
-	{
-		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new CollectedCash;
-
-		return $query->where('business_id', $this->business_id)->selectRaw('*,  ROUND(SUM(amount), 2) as total_amount')->groupBy('payment_method')->get();
-	}
-
 
 	/**
 	* Save item to database

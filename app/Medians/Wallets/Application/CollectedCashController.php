@@ -74,7 +74,6 @@ class CollectedCashController extends CustomController
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get($params),
 				'total_completed_amount' => round($this->repo->totalCompletedAmount($params), 2),
-				'completed_by_payment_methods' => $this->repo->completedGroupedByPaymentMethod($params),
 		    ]);
 
 		} catch (\Exception $e) {
