@@ -1,12 +1,12 @@
 <?php
-namespace Medians\Locations\Application;
+namespace Medians\Languages\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Locations\Infrastructure\StateRepository;
-use Medians\Locations\Infrastructure\CountryRepository;
+use Medians\Languages\Infrastructure\TranslationRepository;
+use Medians\Languages\Infrastructure\LanguageRepository;
 
-class StateController extends CustomController 
+class TranslationController extends CustomController 
 {
 
 	/**
@@ -16,16 +16,16 @@ class StateController extends CustomController
 
 	protected $app;
 
-	protected $countryRepo;
+	protected $languageRepo;
 
 	function __construct()
 	{
 
 		$this->app = new \config\APP;
 
-		$this->repo = new StateRepository();
+		$this->repo = new TranslationRepository();
 		
-		$this->countryRepo = new CountryRepository();
+		$this->languageRepo = new LanguageRepository();
 
 	}
 
@@ -40,9 +40,9 @@ class StateController extends CustomController
 	{
 
 		return [
-            [ 'value'=> "state_id", 'text'=> "#",'sortable'=> true],
+            [ 'value'=> "language_id", 'text'=> "#",'sortable'=> true],
             [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
-            [ 'value'=> "country.name", 'text'=> translate('country'), 'sortable'=> true ],
+            [ 'value'=> "language.name", 'text'=> translate('language'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('Edit') ],
             [ 'value'=> "delete", 'text'=> translate('delete') ],
@@ -59,11 +59,7 @@ class StateController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "state_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "country_id", 'title'=> translate('Country'), 
-				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'required'=>true, 'withLabel'=>true, 
-				'data' => $this->countryRepo->get()
-			],
+            [ 'key'=> "language_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "status", 'title'=> translate('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox'],
         ];
@@ -83,10 +79,10 @@ class StateController extends CustomController
 		
 		try 
 		{
-		    return render('states', 
+		    return render('languages', 
 			[
 		        'load_vue' => true,
-		        'title' => translate('States'),
+		        'title' => translate('Translations'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->getWithCities(),
@@ -158,10 +154,10 @@ class StateController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['state_id']);
+        	$check = $this->repo->find($params['language_id']);
 
 
-            if ($this->repo->delete($params['state_id']))
+            if ($this->repo->delete($params['language_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
@@ -182,7 +178,7 @@ class StateController extends CustomController
         	throw new \Exception(translate('NAME_EMPTY'), 1);
 		}
 
-		if (isset($this->repo->findByName($params['name'])->state_id))
+		if (isset($this->repo->findByName($params['name'])->language_id))
 		{
         	throw new \Exception(translate('NAME_FOUND'), 1);
 		}

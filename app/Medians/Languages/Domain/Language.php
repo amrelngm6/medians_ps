@@ -17,12 +17,12 @@ class Language extends CustomModel
 	
 	public $fillable = [
 		'name',
-		'code',
+		'language_code',
 		'icon',
 		'status',
 		'created_by',
 	];
 
-
+	
 	
 }

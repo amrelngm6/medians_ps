@@ -1,40 +1,38 @@
 <?php
 
-namespace Medians\Locations\Domain;
+namespace Medians\Languages\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Students\Domain\Student;
 
 
-class State extends CustomModel
+class Translation extends CustomModel
 {
 
 	/*
 	/ @var String
 	*/
-	protected $table = 'states';
+	protected $table = 'translations';
 
-    protected $primaryKey = 'state_id';
+    protected $primaryKey = 'translation_id';
 	
 	public $fillable = [
 		'name',
 		'code',
-		'country_id',
+		'language_code',
 		'status',
 		'created_by',
 	];
 
-	public $timestamps = false;
 
-
-    public function country()
+    public function language()
     {
-        return $this->hasOne(Country::class, 'country_id', 'country_id');   
+        return $this->hasOne(Language::class, 'language_code', 'language_code');   
     }
 	
-    public function cities()
+    public function items()
     {
-        return $this->hasMany(City::class, 'state_id', 'state_id');   
+        return $this->hasMany(Translation::class, 'code', 'code');   
     }
 	
 	
