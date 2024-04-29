@@ -1263,7 +1263,7 @@ class LangsAr
 		,'Debit balance used for collected amount from cash trips' => 'رصيد المدين يحتوي المبالغ المستلمة من الرحلات المدفوعة نقدا'
 		,'Credit balance used for commissions' => 'رصيد الدائن يحتوي عمولة السائق من الرحلات'
 		,'Find employee' => ''
-		,'' => ''
+		,'Pickup days' => 'ايام العمل'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
