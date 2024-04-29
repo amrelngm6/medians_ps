@@ -24,7 +24,6 @@ class Translation extends CustomModel
 		'created_by',
 	];
 
-
     public function language()
     {
         return $this->hasOne(Language::class, 'language_code', 'language_code');   
