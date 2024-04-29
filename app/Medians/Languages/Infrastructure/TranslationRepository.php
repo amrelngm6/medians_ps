@@ -25,10 +25,11 @@ class TranslationRepository
 	
 	public function findByCodeLang($code, $languageCode)
 	{
+		$code =  strtolower(str_replace([' ', '/', '&', '?','؟' , '@', '#', '$', '%', '(', ')', '-', '='], '_', $code)) ;
 		return Translation::where('language_code', $languageCode)->where('code', $code)->first();
 	}
 
-	public function get($limit = 100)
+	public function get($limit = 2000)
 	{
 		$return = Translation::with('items','language')->limit($limit)->groupBy('code')->orderBy('updated_at','DESC')->get();
 

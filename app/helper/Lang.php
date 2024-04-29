@@ -21,7 +21,7 @@ class Lang
 		switch ($this->lang) 
 		{
 			default:
-				return array_column($this->repo->findByLang($this->lang), 'code', 'value');
+				return array_column($this->repo->findByLang($this->lang), 'value', 'code');
 				break;
 		}
 	}
@@ -29,7 +29,8 @@ class Lang
 	
 	public function translate($langkey)
 	{
-		return $this->repo->findByCodeLang($langkey, $this->lang) ;
+		$check = $this->repo->findByCodeLang($langkey, $this->lang);
+		return  isset($check->value) ? $check->value : '';
 	}
 
 }

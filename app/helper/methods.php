@@ -54,7 +54,8 @@ function render($template, $data, $responseType = 'html')
     $data['app']->currency = $app->currency();
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
     $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
-    $data['lang'] = (new helper\Lang($_SESSION['lang']))->load();
+    $data['lang'] = new helper\Lang($_SESSION['lang']);
+    $data['lang_json'] = (new helper\Lang($_SESSION['lang']))->load();
     $data['lang_key'] = translate('lang');
     $output =  $app->template()->render($path, $data);
 
