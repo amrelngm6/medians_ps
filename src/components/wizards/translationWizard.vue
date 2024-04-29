@@ -112,7 +112,7 @@
                                                     <span v-text="language.code"></span>
                                                 </label>
                                                 
-                                                <input autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+' '+translate(language.name)" v-model="activeItem.translations[language.language_code]" >
+                                                <input autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+' '+translate(language.name)" v-model="fields[language.language_code]" >
                                             </div>
                                                 
                                         </div>
@@ -239,6 +239,7 @@ export default
         setup(props, { emit }) {
 
             const showEditSide = ref(false);
+            const fields = ref([]);
             const activeItem = ref({translations:props.languages});
             const activeTab = ref('Info');
             const content = ref({});
@@ -258,6 +259,11 @@ export default
                     k = keys[i]
                     d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
                     params.append('params[' + k + ']', d)
+                }
+                for (let i = 0; i < props.languages.length; i++) {
+                    k = props.languages[i].language_code
+                    d = fields.value[k]
+                    params.append('params[translation][' + k + ']', d)
                 }
 
                 let type = array.translation_id > 0 ? 'update' : 'create';
@@ -299,6 +305,7 @@ export default
             const showModal = ref(false);
             
             return {
+                fields,
                 showModal,
                 switchField,
                 addField,
