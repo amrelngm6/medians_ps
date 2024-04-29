@@ -75,7 +75,7 @@
                                         
                                         <div class="mb-6">
                                             <div class="fw-semibold text-gray-600 fs-4" v-text="translate('Status')"></div>
-                                            <div class="fw-bold text-gray-800 fs-2" v-text="lang.translate(activeItem.status)"></div>
+                                            <div class="fw-bold text-gray-800 fs-2" v-text="translate(activeItem.status)"></div>
                                         </div>
                                     </div>
                                     
