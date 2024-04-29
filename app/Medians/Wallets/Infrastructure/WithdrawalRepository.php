@@ -128,7 +128,6 @@ class WithdrawalRepository
     public function update($data)
     {
 
-
 		$Object = Withdrawal::find($data['withdrawal_id']);
 		
 		// Return the  object with the new data

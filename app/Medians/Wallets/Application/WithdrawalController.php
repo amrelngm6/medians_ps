@@ -135,6 +135,9 @@ class WithdrawalController extends CustomController
 
         try {
 
+			$validate = $this->validateBalance($params, $user);
+			if ($validate) { return array('error'=>$validate); }
+
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
@@ -182,12 +185,11 @@ class WithdrawalController extends CustomController
 			
 			try {
 					
-				$validate = $this->validate($params, $user);
+				$validate = $this->validatePending($params, $user);
+				if ($validate) { return array('error'=>$validate); }
 
-				if ($validate)
-				{
-					return array('error'=>$validate);
-				}
+				$validate = $this->validateBalance($params, $user);
+				if ($validate) { return array('error'=>$validate); }
 
 				$returnData = (!empty($this->repo->store($params))) 
 				? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
@@ -221,24 +223,28 @@ class WithdrawalController extends CustomController
 	
 	
 	/**
-	 * validate
+	 * validate duplicates 
 	 */
-	public function validate($params, $user)
+	public function validatePending($params, $user)
 	{
-		
 		if ($this->repo->checkPending($user->driver_id))
 		{
 			return translate('Another pending request found');
 		}
-
+	}
+	
+	/**
+	 * validate balance
+	 */
+	public function validateBalance($params, $user)
+	{
+		
 		$wallet = $this->walletRepo->driverWallet($user->driver_id);
 
 		if ($wallet->credit_balance < $params['amount'])
 		{
 			return translate('Credit Balance not enough');
 		}
-		
-				
 	}
 
 
