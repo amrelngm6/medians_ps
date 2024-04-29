@@ -104,11 +104,7 @@ class SystemSettingsController extends CustomController
 				],
 			],
 			'paystack'=> [
-				[ 'key'=> "paystack_mode", 'title'=> translate('Paystack mode'), 
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['paystack_mode'=>'live','title'=>'Live'], ['paystack_mode'=>'sandbox','title'=>'Sandbox']]  
-				],
-				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'help_text'=>translate('Get your Live / Test code from PayStack https://dashboard.paystack.com/#/settings/developers'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			// 'stripe'=> [	
 			// 	[ 'key'=> "stripe_publish_key", 'title'=> translate('Stripe publishable key'), 'fillable'=> true, 'column_type'=>'text' ],
