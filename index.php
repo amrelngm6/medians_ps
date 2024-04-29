@@ -1,5 +1,6 @@
 <?php
 
+
 // error_reporting(0); 
 error_reporting(E_ALL); 
 session_start(); 
@@ -66,6 +67,62 @@ spl_autoload_register(function ($name) {
 
 
 include('app/helper/methods.php');
+
+
+function downloadImagesFromHtml($htmlContent, $savePath)
+{
+    // Create a DOMDocument object
+    $dom = new DOMDocument();
+    
+    // Suppress warnings because HTML might contain invalid markup
+    @$dom->loadHTML($htmlContent);
+    
+    // Find all img tags
+    $images = $dom->getElementsByTagName('img');
+    
+    // Iterate through each img tag
+    foreach ($images as $image) {
+        $imageUrl = $image->getAttribute('src');
+        
+        // Skip if src attribute is empty
+        if (empty($imageUrl)) {
+            continue;
+        }
+        
+        // Generate a unique filename
+        $filename = basename($imageUrl);
+        
+        if (is_file($savePath . '/' . $filename)) {
+            return;
+        }
+
+        // Download the image content
+        $imageContent = file_get_contents($imageUrl);
+        
+        // Save the image locally
+        file_put_contents($savePath . '/' . $filename, $imageContent);
+        
+        // Replace the src attribute in the HTML content with the local file path
+        $image->setAttribute('src', $savePath . '/' . $filename);
+    }
+    
+    // Get the modified HTML content
+    $modifiedHtmlContent = $dom->saveHTML();
+    
+    return $modifiedHtmlContent;
+}
+
+
+// $c = new \Medians\Builders\Domain\Builder;
+
+
+// foreach ($c->get()->toArray() as $row) 
+// {
+//     $savePath = './uploads/img';
+//     $modifiedHtmlContent = downloadImagesFromHtml($row['content'], $savePath);
+// }
+
+// return null;
 include('app/config/route.php');
 $capsule->getConnection()->disconnect();
 
