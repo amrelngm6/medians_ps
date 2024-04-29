@@ -130,14 +130,18 @@ export default
             showAddSide.value = false;
         }
 
+
+        const searchField = ref("");
+        const searchValue = ref("");
+
         const load = () => {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
+                searchField.value = content.value.columns[1].value;
             });
         }
         
         load();
-
 
         /**
          * Handle actions from datatable buttons
@@ -171,6 +175,8 @@ export default
 
         
         return {
+            searchField,
+            searchValue,
             showAddSide,
             showWizard,
             url,
