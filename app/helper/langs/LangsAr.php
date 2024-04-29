@@ -1277,6 +1277,9 @@ class LangsAr
 		,'Friday' => ''
 		,'SET ROUTE' => 'تحديد خط السير'
 		,'Find Route' => 'البحث عن خط سير'
+		,'Vehicle type' => 'نوع السيارة'
+		,'capacity' => 'عدد المقاعد'
+		,'' => ''
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
