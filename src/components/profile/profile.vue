@@ -175,9 +175,7 @@
                                 <!--end::Details-->
                             </div>
                             <div class="mb-0">
-                                <a href="javascript:;" class="btn btn-primary" id="kt_subscriptions_create_button">                
-                                    Cancel Subscription
-                                </a>
+                                <a href="javascript:;" class="btn btn-primary" id="kt_subscriptions_create_button" v-text="translate('Cancel Subscription')"></a>
                             </div>
                             <!--end::Actions-->
                         </div>
