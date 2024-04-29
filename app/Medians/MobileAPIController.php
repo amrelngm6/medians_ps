@@ -260,11 +260,11 @@ class MobileAPIController extends CustomController
 				break;
 			
 			case 'collected_cash':
-				$return = (new \Medians\Wallets\Application\CurrencyService())->getCurrency($request->get('code'));
+				$return = (new Wallets\Application\CollectedCashController)->getCollectedCash();
 				break;
-
+				
 			case 'pament_methods':
-				$return = (new PaymentMethods\Application\CollectedCashController)->load();
+				$return = (new PaymentMethods\Application\PaymentMethodController)->load();
 				break;
 		}
 		
