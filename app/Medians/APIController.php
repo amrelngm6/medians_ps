@@ -203,6 +203,9 @@ class APIController extends CustomController
 					$return = (new Wallets\Application\CollectedCashController)->store();
 					break;
 			
+				case 'Language.create':
+					$return = (new Languages\Application\LanguageController)->store();
+					break;
 			}
 
 			return response(json_encode($return));
@@ -367,6 +370,10 @@ class APIController extends CustomController
 		
 			case 'Currency.update':
 				$controller = new Currencies\Application\CurrencyService;
+				break;
+				
+			case 'Language.update':
+				$controller = new Languages\Application\LanguageController;
 				break;
 				
 		}
