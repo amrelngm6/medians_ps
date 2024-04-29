@@ -1296,7 +1296,7 @@ class LangsAr
 		,'Route type' => 'نوع خط السير'
 		,'double trips' => 'رحلتين'
 		,'single trip' => 'رحلة واحدة'
-		,'' => ''
+		,'Two trips per day going and return' => 'رحلتين يوميا ذهاب و عودة'
 		,'' => ''
 		,'' => ''
 
