@@ -79,8 +79,8 @@
 
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
                                             v-text="translate('Code')"></label>
-                                        <input :disabled="true" autocomplete="off" name="params[name]"
-                                            class="form-control form-control-solid" :placeholder="translate('Payment method name')"
+                                        <input :disabled="true" autocomplete="off" 
+                                            class="form-control form-control-solid" :placeholder="translate('Shortcut code')"
                                             v-model="activeItem.code">
                                         <hr class="block mt-6 my-2 opacity-10" />
                                     </div>
@@ -112,7 +112,7 @@
                                                     <span v-text="language.code"></span>
                                                 </label>
                                                 
-                                                <input autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+''+translate(language.name)" v-model="activeItem[language_code]" >
+                                                <input autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+' '+translate(language.name)" v-model="activeItem[language_code]" >
                                             </div>
                                                 
                                         </div>
