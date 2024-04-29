@@ -206,6 +206,11 @@ class APIController extends CustomController
 				case 'Language.create':
 					$return = (new Languages\Application\LanguageController)->store();
 					break;
+					
+				case 'Translation.create':
+					$return = (new Languages\Application\TranslationController())->store(); 
+					break;
+	
 			}
 
 			return response(json_encode($return));
@@ -374,6 +379,10 @@ class APIController extends CustomController
 				
 			case 'Language.update':
 				$controller = new Languages\Application\LanguageController;
+				break;
+				
+			case 'Translation.update':
+				$return = new Languages\Application\TranslationController; 
 				break;
 				
 		}

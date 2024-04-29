@@ -337,10 +337,6 @@ class MobileAPIController extends CustomController
 	                $return = (new Wallets\Application\WithdrawalController())->create(); 
 	                break;
 						
-	            case 'Translation.create':
-	                $return = (new Languages\Application\TranslationController())->create(); 
-	                break;
-
 			}
 
 			echo json_encode($return);
@@ -399,10 +395,6 @@ class MobileAPIController extends CustomController
 
 			case 'Withdrawal.update':
 				$return = (new Wallets\Application\WithdrawalController())->update_wallet(); 
-				break;
-					
-			case 'Translation.update':
-				$return = (new Languages\Application\TranslationController())->create(); 
 				break;
 
 		}
