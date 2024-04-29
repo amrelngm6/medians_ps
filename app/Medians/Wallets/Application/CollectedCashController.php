@@ -21,7 +21,7 @@ class CollectedCashController extends CustomController
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
 
-		$this->repo = new CollectedCashRepository();
+		$this->repo = new CollectedCashRepository($user->business);
 	}
 
 
