@@ -53,12 +53,12 @@ class CollectedCashRepository
 	
 	public function totalCompletedAmount($params)
 	{
-		$check = CollectedCash::where('business_id', $this->business_id)->selectRaw('ROUND(SUM(amount), 2) as amount');
+		$check = CollectedCash::where('business_id', $this->business_id)->selectRaw('ROUND(SUM(amount), 2) as total_amount');
         if (isset($params['start_date']))
         {
             $check = $check->whereBetween('date', [$params['start_date'], $params['end_date']]);
         }
-		return $check->first()->amount;
+		return $check->first()->total_amount;
 	}
 	
 	
