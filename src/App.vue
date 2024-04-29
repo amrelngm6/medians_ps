@@ -58,6 +58,7 @@ const employees = defineAsyncComponent(() => import('@/components/datatable_page
 const vehicle_types = defineAsyncComponent(() => import('@/components/datatable_pages/vehicle_types.vue') );
 const supervisors = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
 const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
+const languages = defineAsyncComponent(() => import('@/components/datatable_pages/languages.vue') );
 
 
 const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );

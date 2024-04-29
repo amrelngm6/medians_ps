@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <data_table_page ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="School" object_key="school_id" ></data_table_page>
+        <data_table_page :currency="currency" ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Language" object_key="language_id" ></data_table_page>
     </div>
 </template>
 <script>
@@ -18,6 +18,7 @@ export default
         'setting',
         'conf',
         'auth',
+        'currency'
     ],
 };
 </script>
