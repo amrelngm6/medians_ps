@@ -121,57 +121,7 @@
                                 </div>
                             </div>
                             
-                            <div class="max-w-6xl mx-auto">
-                                
-                                <div class="max-w-xl mx-auto gap-10">
-                                    <div class="w-full flex">
-                                        <div class="w-full">
-                                            <div class="card-header border-0 flex gap-4">
-                                                <div class="card-title gap-4"> 
-                                                    <h2 v-text="activeItem.value"></h2> 
-                                                    <span v-text="activeItem.code"></span> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mx-auto pt-4">
-
-                                            <label class=" flex gap-2 cursor-pointer">
-                                                <form_field class="flex-end" :item="activeItem"
-                                                    :column="{ key: 'status', title: translate('Status'), column_type: 'checkbox', hide_text:true }">
-                                                </form_field>
-                                                <div class="pt-3">
-                                                    <span class="badge badge-light fw-bold me-auto px-4 py-3" v-text="!activeItem.status ? 'Pending' : 'Active'"></span>
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="max-w-xl mx-auto gap-10">
-
-                                    <div class="card mb-6 mb-xl-9 bg-inverse-success">
-                                        <div class="card-body py-0">
-                                            <div class="d-flex flex-wrap flex-stack mb-5">
-                                                <div class="d-flex ">
-                                                    <div
-                                                        class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
-                                                        <span class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            <span class="counted"
-                                                                v-text="activeItem.fields ? activeItem.fields.length : 0"></span>
-                                                            <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
-                                                                v-text="translate('Fields')"></span>
-                                                        </span>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
+                            
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                     @click="saveTranslation" v-text="translate('Submit')"></a></p>
