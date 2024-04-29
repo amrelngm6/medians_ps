@@ -60,6 +60,7 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Currencies\Application\CurrencyService())->getCurrency($request->get('code'));
 				break;
 
+
 			case 'help_messages':
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessages();
 				break;
@@ -258,8 +259,12 @@ class MobileAPIController extends CustomController
 				$return = (new Wallets\Application\WithdrawalController)->getWithdrawals();
 				break;
 			
+			case 'collected_cash':
+				$return = (new \Medians\Wallets\Application\CurrencyService())->getCurrency($request->get('code'));
+				break;
+
 			case 'pament_methods':
-				$return = (new PaymentMethods\Application\PaymentMethodController)->load();
+				$return = (new PaymentMethods\Application\CollectedCashController)->load();
 				break;
 		}
 		

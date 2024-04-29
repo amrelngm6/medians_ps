@@ -4,16 +4,19 @@ namespace Medians\Wallets\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Wallets\Infrastructure\CollectedCashRepository;
+use Medians\Wallets\Infrastructure\WalletRepository;
 
 class CollectedCashController extends CustomController 
 {
 
 	/**
-	* @var Object
-	*/
+	 * @var Object
+	 */
+	protected $app;
+
 	protected $repo;
 
-	protected $app;
+	protected $walletRepo;
 
 	function __construct()
 	{
@@ -22,6 +25,7 @@ class CollectedCashController extends CustomController
 		$user = $this->app->auth();
 
 		$this->repo = new CollectedCashRepository($user->business);
+		$this->walletRepo = new WalletRepository($user->business);
 	}
 
 
@@ -202,6 +206,21 @@ class CollectedCashController extends CustomController
 	}
 
 	
+
+	/**
+	 * Load user wallets
+	 */
+	public function getCollectedCash()
+	{
+		$user = $this->app->auth();
+
+		if (empty($user->driver_id)) { return null; }
+		
+		$wallet = $this->walletRepo->driverWallet();
+
+		return isset($wallet->wallet_id) ? $this->repo->getCollectedCash($wallet->wallet_id) : [];
+	}
+
 
 
 }
