@@ -304,6 +304,12 @@ if(isset($app->auth()->id))
     /** @return Business Wallets */
     RouteHandler::get('/admin/business_wallets', Medians\Wallets\Application\BusinessWalletController::class.'@index');
 
+    /** @return Business Languages */
+    RouteHandler::get('/admin/languages', Medians\Languages\Application\LanguageController::class.'@index');
+
+    /** @return Business Translations */
+    RouteHandler::get('/admin/translations', Medians\Languages\Application\TranslationController::class.'@index');
+
 
     /**
     * @return Content editor

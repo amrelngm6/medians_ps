@@ -42,18 +42,25 @@ import navbar from '@/components/navbar.vue';
 import dashboard from '@/components/dashboard.vue'; 
 import master_dashboard from '@/components/master_dashboard.vue'; 
 import trips from '@/components/trips.vue'; 
-import vehicles from '@/components/vehicles.vue'; 
 import HelpMessages from '@/components/help_messages.vue'; 
 import notifications_events from '@/components/notifications_events.vue'; 
 import {translate, handleAccess, handleRequest, showAlert} from '@/utils.vue';
 
-const students = defineAsyncComponent(() => import('@/components/students.vue') );
 
-const parents = defineAsyncComponent(() => import('@/components/parents.vue') );
+// Default data table pages
+const students = defineAsyncComponent(() => import('@/components/datatable_pages/students.vue') );
+const events = defineAsyncComponent(() => import('@/components/datatable_pages/events.vue') );
+const parents = defineAsyncComponent(() => import('@/components/datatable_pages/parents.vue') );
+const companies = defineAsyncComponent(() => import('@/components/datatable_pages/companies.vue') );
+const schools = defineAsyncComponent(() => import('@/components/datatable_pages/schools.vue') );
+const plan_features = defineAsyncComponent(() => import('@/components/datatable_pages/plan_features.vue') );
+const employees = defineAsyncComponent(() => import('@/components/datatable_pages/employees.vue') );
+const vehicle_types = defineAsyncComponent(() => import('@/components/datatable_pages/vehicle_types.vue') );
+const supervisors = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
+const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
+
 
 const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );
-
-const events = defineAsyncComponent(() => import('@/components/events.vue') );
 
 const roles = defineAsyncComponent(() => import('@/components/roles.vue') );
 
@@ -63,7 +70,6 @@ const system_settings = defineAsyncComponent(() => import('@/components/settings
 
 const routes = defineAsyncComponent(() => import('@/components/routes.vue') );
 
-const routeWizard = defineAsyncComponent(() => import('@/components/wizards/routeWizard.vue') );
 
 const locations = defineAsyncComponent(() => import('@/components/locations.vue') );
 
@@ -71,23 +77,15 @@ const destinations = defineAsyncComponent(() => import('@/components/destination
 
 const users = defineAsyncComponent(() => import('@/components/users.vue') );
 
-const companies = defineAsyncComponent(() => import('@/components/companies.vue') );
-
-const schools = defineAsyncComponent(() => import('@/components/schools.vue') );
-
 const plans = defineAsyncComponent(() => import('@/components/plans.vue') );
-
-const plan_features = defineAsyncComponent(() => import('@/components/plan_features.vue') );
 
 const plan_subscriptions = defineAsyncComponent(() => import('@/components/plan_subscriptions.vue') );
 
-const employees = defineAsyncComponent(() => import('@/components/employees.vue') );
 
 const pages = defineAsyncComponent(() => import('@/components/pages.vue') );
 
 const payments = defineAsyncComponent(() => import('@/components/payments.vue') );
 
-const get_started = defineAsyncComponent(() => import('@/components/wizards/get-started.vue') );
 
 const private_trips = defineAsyncComponent(() => import('@/components/private_trips.vue') );
 
@@ -102,10 +100,6 @@ const packages = defineAsyncComponent(() => import('@/components/packages.vue') 
 const payment_methods = defineAsyncComponent(() => import('@/components/payment_methods.vue') );
 
 const package_subscriptions = defineAsyncComponent(() => import('@/components/package_subscriptions.vue') );
-
-const vehicle_types = defineAsyncComponent(() => import('@/components/vehicle_types.vue') );
-
-const supervisors = defineAsyncComponent(() => import('@/components/supervisors.vue') );
 
 const driver_applicants = defineAsyncComponent(() => import('@/components/driver_applicants.vue') );
 
@@ -129,6 +123,8 @@ const driver_page = defineAsyncComponent(() => import('@/components/driver/profi
 
 const collected_cash = defineAsyncComponent(() => import('@/components/wallet/collected_cash.vue') );
 
+const get_started = defineAsyncComponent(() => import('@/components/wizards/get-started.vue') );
+
 
 export default {
     name: 'app',
@@ -146,7 +142,6 @@ export default {
         drivers,
         roles,
         routes,
-        routeWizard,
         system_settings,
         settings,
         locations,
