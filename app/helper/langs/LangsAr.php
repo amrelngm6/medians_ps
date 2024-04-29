@@ -1282,7 +1282,7 @@ class LangsAr
 		,'capacity' => 'عدد المقاعد'
 		,'You do not have any media yet you can Upload some media above to get started' => 'ليس لديك أي ملفات بعد, يمكنك رفع بعض الملفات لتبدأ في استخدامها'
 		,'Double daily trips cost' => 'تكلفة رحلتين يوميا'
-		,'Cost for Two trips daily Morning & Afternoon' => 'التكلفة مقابل رحلتين يوميا صباحا و مساءا'
+		,'Cost for Two trips daily Morning and Afternoon' => 'التكلفة مقابل رحلتين يوميا صباحا و مساءا'
 		,'' => ''
 		,'' => ''
 

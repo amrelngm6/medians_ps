@@ -48,7 +48,7 @@
                                                     <h4 class="text-gray-900 fw-bold"
                                                         v-text="translate('Double daily trips cost')"></h4>
                                                     <div class="fs-6 text-gray-700 "
-                                                        v-text="translate('Cost for Two trips daily Morning & Afternoon')">
+                                                        v-text="translate('Cost for Two trips daily Morning and Afternoon')">
                                                     </div>
                                                 </div>
                                             </div>
