@@ -126,7 +126,7 @@ class TranslationController extends CustomController
 
         try {
 
-            if ($this->repo->update($params))
+            if ($this->repo->updateItems($params))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }

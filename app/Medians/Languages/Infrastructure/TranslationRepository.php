@@ -17,6 +17,11 @@ class TranslationRepository
 	{
 		return Translation::where('code', $code)->first();
 	}
+	
+	public function findByCodeLang($code, $languageCode)
+	{
+		return Translation::where('language_code', $languageCode)->where('code', $code)->first();
+	}
 
 	public function get($limit = 100)
 	{
@@ -41,6 +46,24 @@ class TranslationRepository
 			$row['code'] = $data['code'];
 			$row['value'] = $value;
 			$save = $this->store($row);
+		}
+
+		return $save;
+	}
+
+	/**
+	* Save multi Items to database
+	*/
+	public function updateItems($data) 
+	{
+		$row = [];
+
+		foreach ($data['translation'] as $key => $value) 
+		{
+			$row['language_code'] = $key;
+			$row['code'] = $data['code'];
+			$row['value'] = $value;
+			$save = $this->update($row);
 		}
 
 		return $save;
@@ -79,7 +102,7 @@ class TranslationRepository
     public function update($data)
     {
 
-		$Object = Translation::find($data['translation_id']);
+		$Object = Translation::findByCodeLang($data['code'], $data['language_code']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
