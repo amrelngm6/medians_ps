@@ -131,7 +131,7 @@
 
                                         <div class="card-body py-0">
                                             <div class="fs-5 fw-semibold text-gray-500 mb-4"
-                                                v-text="translate('Cost for Two trips daily Morning & Afternoon')"></div>
+                                                v-text="translate('Cost for Two trips daily Morning and Afternoon')"></div>
 
                                             <div class="d-flex flex-wrap flex-stack mb-5">
                                                 <div class="d-flex ">
