@@ -196,7 +196,7 @@
                                                 </span>
                                             </span>
                                             <span class="d-flex flex-column">
-                                                <span class="fw-bold fs-6">Double trips</span>
+                                                <span class="fw-bold fs-6"  v-text="translate('Double trips')"></span>
                                                 <span class="fs-7 text-muted"
                                                     v-text="translate('Two trips per day going and return')"></span>
                                             </span>
@@ -216,7 +216,7 @@
                                                 </span>
                                             </span>
                                             <span class="d-flex flex-column">
-                                                <span class="fw-bold fs-6">Single trip</span>
+                                                <span class="fw-bold fs-6" v-text="translate('Single trip')"></span>
                                                 <span class="fs-7 text-muted"
                                                     v-text="translate('One trip per day going')"></span>
                                             </span>
