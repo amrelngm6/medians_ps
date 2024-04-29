@@ -300,10 +300,10 @@ export default
             const pickup_placeSearch = ref('');
             const destination_placeSearch = ref('');
             const tripsStatusList = ref([
-                { title: "Scheduled", status: 'scheduled' },
-                { title: "Started", status: 'started' },
-                { title: "Completed", status: 'completed' },
-                { title: "Cancelled", status: 'cancelled' },
+                { title: translate("Scheduled"), status: 'scheduled' },
+                { title: translate("Started"), status: 'started' },
+                { title: translate("Completed"), status: 'completed' },
+                { title: translate("Cancelled"), status: 'cancelled' },
             ]);
 
             console.log(props.item)

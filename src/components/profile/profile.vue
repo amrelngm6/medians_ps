@@ -148,19 +148,11 @@
                             </div>
                             <!--end::Section-->
 
-                            <!--begin::Seperator-->
                             <div class="separator separator-dashed mb-7"></div>
-                            <!--end::Seperator-->
 
-                            <!--begin::Section-->
                             <div class="mb-10" v-if="activeItem.business && activeItem.business.subscription">
-                                <!--begin::Title-->
                                 <h5 class="mb-4" v-text="translate('Subscription Details')"></h5>
-                                <!--end::Title-->
-
-                                <!--begin::Details-->
                                 <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
-                                    <!--begin::Row-->
                                     <tbody>
                                         <tr class="">
                                         <td class="text-gray-500" v-text="translate('Subscription ID')"></td>
@@ -172,14 +164,11 @@
                                         <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
                                     </tr>
                                 </tbody></table>
-                                <!--end::Details-->
                             </div>
                             <div class="mb-0">
                                 <a href="javascript:;" class="btn btn-primary" id="kt_subscriptions_create_button" v-text="translate('Cancel Subscription')"></a>
                             </div>
-                            <!--end::Actions-->
                         </div>
-                        <!--end::Card body-->
                     </div>
                 </div>
             </div>
