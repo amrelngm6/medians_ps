@@ -18,6 +18,11 @@ class WalletRepository
 		return Wallet::with('user')->find($id);
 	}
 
+	public function checkBalance($driverId)
+	{
+		return Wallet::where('user_type', Driver::class)->where('user_id', $driverId)->first();
+	}
+
 	public function get($limit = 100)
 	{
 		return Wallet::with('user')->limit($limit)->get();

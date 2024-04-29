@@ -4,6 +4,7 @@ namespace Medians\Wallets\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Wallets\Infrastructure\WithdrawalRepository;
+use Medians\Wallets\Infrastructure\WalletRepository;
 
 class WithdrawalController extends CustomController 
 {
@@ -11,9 +12,12 @@ class WithdrawalController extends CustomController
 	/**
 	* @var Object
 	*/
+	protected $app;
+
 	protected $repo;
 
-	protected $app;
+	protected $walletRepo;
+
 
 	function __construct()
 	{
@@ -22,6 +26,7 @@ class WithdrawalController extends CustomController
 		$user = $this->app->auth();
 
 		$this->repo = new WithdrawalRepository($user->business);
+		$this->walletRepo = new WalletRepository($user->business);
 	}
 
 
@@ -221,10 +226,19 @@ class WithdrawalController extends CustomController
 	public function validate($params, $user)
 	{
 		
-		$check =  $this->repo->checkPending($user->driver_id);
+		if ($this->repo->checkPending($user->driver_id))
+		{
+			return translate('Another pending request found');
+		}
 
-		return $check ? translate('Another pending request found') : null;
+		$wallet = $this->walletRepo->driverWallet($user->driver_id);
+
+		if ($wallet->credit_balance < $params['amount'])
+		{
+			return translate('Credit Balance not enough');
+		}
 		
+				
 	}
 
 
