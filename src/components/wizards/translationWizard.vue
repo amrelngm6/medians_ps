@@ -239,7 +239,7 @@ export default
         setup(props, { emit }) {
 
             const showEditSide = ref(false);
-            const activeItem = ref({translations:[]});
+            const activeItem = ref({translations:props.languages});
             const activeTab = ref('Info');
             const content = ref({});
             const fillable = ref(['Info', 'Fields' , 'Confirm']);
