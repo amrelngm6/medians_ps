@@ -120,12 +120,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-center mt-10"><a href="javascript:;"
-                                    class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
-                        </div>
-                        <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
-
+                            
                             <div class="max-w-6xl mx-auto">
                                 
                                 <div class="max-w-xl mx-auto gap-10">
@@ -243,7 +238,7 @@ export default
             const activeItem = ref({translations:props.languages});
             const activeTab = ref('Info');
             const content = ref({});
-            const fillable = ref(['Info', 'Fields' , 'Confirm']);
+            const fillable = ref(['Info']);
 
             if (props.item) {
                 props.item = props.item.translations ?? []
