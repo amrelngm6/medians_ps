@@ -31,14 +31,14 @@ class CollectedCashRepository
 
 	public function getCollectedCash($id)
 	{
-		return CollectedCash::with('business')->with(['wallet'=>function($q) {
+		return CollectedCash::where('business_id', $this->business_id)->with('business')->with(['wallet'=>function($q) {
             return $q->with('user');
         }])->where('wallet_id', $id)->get();
 	}
 
 	public function get($params, $limit = 1000)
 	{
-		$check = CollectedCash::with('business')->with(['wallet'=>function($q) {
+		$check = CollectedCash::where('business_id', $this->business_id)->with('business')->with(['wallet'=>function($q) {
             return $q->with('user');
         }]);
 
