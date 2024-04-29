@@ -74,19 +74,6 @@
                         <div class="" v-if="activeTab == 'Info'" :key="activeTab">
                             <div class="card-body pt-0">
                                 <div class="settings-form">
-                                    <div class="max-w-xl mb-6 mx-auto row">
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
-                                            v-text="translate('Code')"></label>
-                                        <input :disabled="true" autocomplete="off" 
-                                            class="form-control form-control-solid" :placeholder="translate('Generated from english translation')"
-                                            v-model="activeItem.code">
-                                        <hr class="block mt-6 my-2 opacity-10" />
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card-body pt-0">
-                                <div class="settings-form">
                                     <div class="max-w-xl mb-6 mx-auto">
 
                                         <div
@@ -100,6 +87,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="max-w-xl mb-6 mx-auto row">
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
+                                                v-text="translate('Code')"></label>
+                                            <input :disabled="true" autocomplete="off" 
+                                                class="form-control form-control-solid" :placeholder="translate('Generated from english translation')"
+                                                v-model="activeItem.code">
+                                            <hr class="block mt-6 my-2 opacity-10" />
                                         </div>
 
                                         <hr class="opacity-10 my-4" />
