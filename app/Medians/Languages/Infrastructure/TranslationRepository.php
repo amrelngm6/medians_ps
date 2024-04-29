@@ -20,7 +20,12 @@ class TranslationRepository
 
 	public function get($limit = 100)
 	{
-		return Translation::with('items','language')->limit($limit)->groupBy('code')->orderBy('updated_at','DESC')->get();
+		$return = Translation::with('items','language')->limit($limit)->groupBy('code')->orderBy('updated_at','DESC')->get();
+
+		foreach ($return as $k => $row) {
+			$return[$k]->translation =  isset($row->items) ? array_column((array) json_decode($row->items), 'value', 'language_code') : '';
+		}
+		return $return;
 	}
 
 	/**
