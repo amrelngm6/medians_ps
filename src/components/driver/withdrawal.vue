@@ -81,6 +81,8 @@
                             <h3 v-text="translate('Earnings')"></h3>
                             <p class="fs-5 fw-semibold text-gray-600 pb-5 d-block"
                             v-text="translate('Here is the wallet debit and credit balance')"></p>
+                            <p v-text="translate('Credit balance used for commissions')"></p>
+                            <p v-text="translate('Debit balance used for collected amount from cash trips')"></p>
                         </div>
                         <div class="d-flex flex-wrap">
                             <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">

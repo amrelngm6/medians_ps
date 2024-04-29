@@ -1260,8 +1260,8 @@ class LangsAr
 		,'Collected amount' => 'القيمة المسحوبة'
 		,'Collect cash' => 'سحب المديونات'
 		,'confirm to submit' => 'هل أنت متأكد من الاستمرار'
-		,'' => ''
-		,'' => ''
+		,'Debit balance used for collected amount from cash trips' => 'رصيد المدين يستخدم المبالغ المستلمة من الرحلات المدفوعة نقدا'
+		,'Credit balance used for commissions' => 'رصيد الدائن يستخدم لعمولة السائق من الرحلات'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
