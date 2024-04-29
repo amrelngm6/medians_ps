@@ -136,7 +136,7 @@ class WithdrawalController extends CustomController
 
         try {
 
-			$validate = $this->validateBalance($params, $user);
+			$validate = $this->validateBalance($params, $params['user_id']);
 			if ($validate && $params['status'] == 'done') { return array('error'=>$validate); }
 
             if ($this->repo->update($params))
@@ -189,7 +189,7 @@ class WithdrawalController extends CustomController
 				$validate = $this->validatePending($params, $user);
 				if ($validate) { return array('error'=>$validate); }
 
-				$validate = $this->validateBalance($params, $user);
+				$validate = $this->validateBalance($params, $user->driver_id);
 				if ($validate) { return array('error'=>$validate); }
 
 				$returnData = (!empty($this->repo->store($params))) 
@@ -237,10 +237,10 @@ class WithdrawalController extends CustomController
 	/**
 	 * validate balance
 	 */
-	public function validateBalance($params, $user)
+	public function validateBalance($params, $driver_id)
 	{
 		
-		$wallet = $this->walletRepo->driverWallet($user->driver_id);
+		$wallet = $this->walletRepo->driverWallet($driver_id);
 
 		if ($wallet->credit_balance < $params['amount'])
 		{
