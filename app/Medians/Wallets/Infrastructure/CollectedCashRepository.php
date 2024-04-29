@@ -40,18 +40,24 @@ class CollectedCashRepository
 	}
 	
 	
-	public function totalDebitBalance()
+	
+	public function totalCompletedAmount($params)
 	{
-		return CollectedCash::selectRaw('ROUND(SUM(debit_balance), 2) as amount')->first()->amount;
+		$check = CollectedCash::where('business_id', $this->business_id)->selectRaw('ROUND(SUM(amount), 2) as amount');
+        if (isset($params['start_date']))
+        {
+            $check = $check->whereBetween('date', [$params['start_date'], $params['end_date']]);
+        }
+		return $check->first()->amount;
 	}
 	
 	
-	public function totalCreditBalance()
+	public function completedGroupedByPaymentMethod($params)
 	{
-		return CollectedCash::selectRaw('ROUND(SUM(credit_balance), 2) as amount')->first()->amount;
+		$query = isset($params['start_date']) ? $this->eventsByDate($params) : new CollectedCash;
+
+		return $query->where('business_id', $this->business_id)->selectRaw('*,  ROUND(SUM(amount), 2) as total_amount')->groupBy('payment_method')->get();
 	}
-	
-	
 
 
 	/**
