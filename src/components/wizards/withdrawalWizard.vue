@@ -58,12 +58,12 @@
 
                                         <div class="mb-6">
                                             <div class="fw-semibold text-gray-600 fs-4" v-text="translate('Current balance')"></div>
-                                            <div class="fw-bold text-gray-800 fs-2" v-text="activeItem.wallet.credit_balance"></div>
+                                            <div class="fw-bold text-gray-800 fs-2" v-text="currency.symbol+''+activeItem.wallet.credit_balance"></div>
                                         </div>
 
                                         <div class="mb-6">
                                             <div class="fw-semibold text-gray-600 fs-4" v-text="translate('Debit balance')"></div>
-                                            <div class="fw-bold text-red-800 fs-2" v-text="activeItem.wallet.debit_balance"></div>
+                                            <div class="fw-bold text-red-800 fs-2" v-text="currency.symbol+''+activeItem.wallet.debit_balance"></div>
                                         </div>
                 
                                         <h6 class="mb-2 mt-4 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Request Details')"></h6>
