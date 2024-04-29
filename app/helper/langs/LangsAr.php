@@ -42,6 +42,7 @@ class LangsAr
 		,'CREATE_ACCOUNT' => 'انشاء حساب'
 		,'already_have_account' => 'لديك حساب بالفعل'
 		,'ENTER_FULLNAME' => 'الاسم بالكامل'
+		,'FULLNAME' => 'الاسم بالكامل'
 		,'USERNAME' => 'اسم المستخدم'
 		,'EMAIL' => 'البريد الالكتروني'
 		,'NO_SPACE' => 'بدون مسافات'
