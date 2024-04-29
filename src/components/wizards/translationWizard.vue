@@ -64,7 +64,7 @@
 
             <div class=" card w-full py-10">
                 <div class="w-full stepper stepper-links ">
-                    <div class="stepper-nav justify-content-center py-2 mb-10">
+                    <div class="stepper-nav justify-content-center py-2 ">
                         <div class="stepper-item " v-for="row in fillable" @click="activeTab = row">
                             <h3 :class="activeTab == row ? 'text-danger border-danger' : 'text-gray-400 border-transparent'"
                                 class="cursor-pointer pb-3 px-2 stepper-title text-md border-b " v-text="translate(row)"></h3>
@@ -75,8 +75,6 @@
                             <div class="card-body pt-0">
                                 <div class="settings-form">
                                     <div class="max-w-xl mb-6 mx-auto row">
-
-
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
                                             v-text="translate('Code')"></label>
                                         <input :disabled="true" autocomplete="off" 
