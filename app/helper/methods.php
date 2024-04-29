@@ -20,6 +20,7 @@ function render($template, $data, $responseType = 'html')
             
         $business_setting = $app->BusinessSettings();
         $setting = $app->SystemSetting();
+        $languages = $app->Languages();  
         
             
     } catch (\Exception $e) {
@@ -49,6 +50,7 @@ function render($template, $data, $responseType = 'html')
     $data['app']->auth = $app->auth();
     $data['app']->business_setting = $business_setting;
     $data['app']->setting = $setting;
+    $data['langs'] = $languages;
     $data['app']->currency = $app->currency();
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
     $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');

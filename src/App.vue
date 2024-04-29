@@ -9,7 +9,7 @@
             
             <div class="w-full relative">
                 
-                <navbar v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
+                <navbar :langs="langs" v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
                 <!-- <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><vue-feather type="menu"></vue-feather></a> -->
                 <div class="gap gap-6 h-full flex w-full overflow-hidden   ">
                     <side-menu @callback="switchTab" :samepage="activeTab" :system_setting="system_setting" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="showSide" class="sidebar " id="sidebar" style="z-index:999"></side-menu>
@@ -186,6 +186,7 @@ export default {
       },
       data() {
         return {
+            langs: [],
             date: '',
             loader: false,
             activeItem: null,
@@ -317,6 +318,7 @@ export default {
             this.activeTab = (propsSet && propsSet.page) ? propsSet.page : this.defaultPage();
             this.activeComponent = (propsSet && propsSet.component) ? propsSet.component : this.defaultPage();
             this.currency = (propsSet && propsSet.currency) ? JSON.parse(propsSet.currency) : {};
+            this.langs = (propsSet && propsSet.langs) ? JSON.parse(propsSet.langs) : {};
 
         },
 

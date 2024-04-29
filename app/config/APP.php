@@ -96,6 +96,15 @@ class APP
 	}
 
 	/**
+	 * Load languages
+	 */ 
+	public function Languages()
+	{
+		$output = (new \Medians\Languages\Application\LanguageController())->getAll();
+		return $output;
+	}
+
+	/**
 	 * Load currency
 	 */ 
 	public function currency()

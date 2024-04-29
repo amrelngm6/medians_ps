@@ -18,6 +18,11 @@ class LanguageRepository
 		return Language::limit($limit)->orderBy('name','DESC')->get();
 	}
 
+	public function getActive()
+	{
+		return Language::where('status', 'on')->orderBy('language_code','DESC')->get();
+	}
+
 
 
 	/**

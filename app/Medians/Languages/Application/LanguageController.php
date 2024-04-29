@@ -88,6 +88,22 @@ class LanguageController extends CustomController
 			throw new \Exception($e->getMessage(), 1);
 		}
 	}
+	
+
+	/**
+	 * Admin query all active
+	 *  
+	 */ 
+	public function getAll( ) 
+	{
+		try 
+		{
+		    return $this->repo->getActive();
+			
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	}
 
 
 	public function store() 

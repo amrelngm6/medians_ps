@@ -129,6 +129,7 @@ export default {
   props: {
     auth:[Object, null],
     lang:[Object, null],
+    langs:[Array, null],
     system_setting:[Object, null],
     conf:[Object, null]
   }
