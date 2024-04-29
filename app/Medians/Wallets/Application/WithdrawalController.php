@@ -137,7 +137,7 @@ class WithdrawalController extends CustomController
         try {
 
 			$validate = $this->validateBalance($params, $params['user_id']);
-			if ($validate && $params['status'] == 'done') { return array('error'=>$validate); }
+			if ($validate && $params['status'] == 'done') { return array('error'=>$validate, 'reload'=>1); }
 
             if ($this->repo->update($params))
             {
