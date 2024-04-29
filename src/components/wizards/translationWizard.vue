@@ -107,10 +107,12 @@
                                         <hr class="opacity-10 my-4" />
                                         <div class="w-full mb-6 " v-if="languages">
                                             <div class="w-full mb-6 mx-auto flex gap-4" v-for="(language, key) in languages">
-                                                <label v-if="languages[key]" @click="switchField(language, key)" class="cursor-pointer w-full col-form-label required fw-semibold fs-6">
+                                                <label v-if="languages[key]" class="cursor-pointer w-full col-form-label required fw-semibold fs-6">
                                                     <p v-text="language.name" class="fw-bold fs-4"></p>
                                                     <span v-text="language.code"></span>
                                                 </label>
+                                                
+                                                <input :disabled="true" autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+''+translate(language.name)" v-model="language.name" >
                                             </div>
                                                 
                                         </div>
