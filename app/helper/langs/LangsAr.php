@@ -1306,7 +1306,7 @@ class LangsAr
 		,'approved' => 'تم الموافقة'
 		,'Withdrawal request' => 'رقم طلب السحب'
 		,'Total collected amount' => 'إجمالي القيمة المسحوبة'
-		,'' => ''
+		,'credit balance not enough' => 'رصيد المحفظة غير كافي'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
