@@ -1147,7 +1147,9 @@ class LangsAr
 		,'Renewal date' => 'تاريخ التجديد'
 		,'SuperVisor' => 'مشرف'
 		,'SuperVisors' => 'المشرفين'
+		,'SuperVisors list' => 'قائمة المشرفين'
 		,'Employees' => 'الموظفين'
+		,'Employees list' => 'قائمة الموظفين'
 		,'EMPLOYEE' => 'موظف'
 		,'Vacations' => 'الاجازات'
 		,'picture' => 'الصورة'
@@ -1273,7 +1275,6 @@ class LangsAr
 		,'Friday' => ''
 		,'SET ROUTE' => 'تحديد خط السير'
 		,'Find Route' => 'البحث عن خط سير'
-		,'' => ''
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
