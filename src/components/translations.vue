@@ -1,6 +1,6 @@
 <template>
     <div class="w-full flex overflow-auto" >
-        <payment_wizard :item="activeItem" :system_setting="system_setting" :conf="conf" :auth="auth" v-if="showWizard" @callback="showWizard = false" />
+        <translation_wizard :item="activeItem" :system_setting="system_setting" :conf="conf" :auth="auth" v-if="showWizard" @callback="showWizard = false" />
         <div  v-if="content && !showWizard" class=" w-full relative">
             
             <div class=" " v-if="content.items && !content.items.length ">
@@ -81,7 +81,7 @@ const side_form_update = defineAsyncComponent(() => import('@/components/include
 
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import tooltip from '@/components/includes/tooltip.vue';
-import payment_wizard from '@/components/wizards/paymentMethodWizard.vue';
+import translation_wizard from '@/components/wizards/translationWizard.vue';
 
 
 
@@ -98,7 +98,7 @@ export default
         form_field,
         editable_map_location,
         tooltip,
-        payment_wizard
+        translation_wizard
     },
     name:'PaymentMethods',
     setup(props) {
