@@ -97,14 +97,18 @@ class SystemSettingsController extends CustomController
 			
 			'paypal'=> [	
 				[ 'key'=> "paypal_api_key", 'title'=> translate('PayPal API Key'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "paypal_api_secret", 'title'=> translate('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'password' ],
+				[ 'key'=> "paypal_api_secret", 'title'=> translate('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "paypal_mode", 'title'=> translate('PayPal mode'), 
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['paypal_mode'=>'live','title'=>'Live'], ['paypal_mode'=>'sandbox','title'=>'Sandbox']]  
 				],
 			],
 			'paystack'=> [
-				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'fillable'=> true, 'column_type'=>'password' ],
+				[ 'key'=> "paystack_mode", 'title'=> translate('Paystack mode'), 
+					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
+					'data' => [['paystack_mode'=>'live','title'=>'Live'], ['paystack_mode'=>'sandbox','title'=>'Sandbox']]  
+				],
+				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			// 'stripe'=> [	
 			// 	[ 'key'=> "stripe_publish_key", 'title'=> translate('Stripe publishable key'), 'fillable'=> true, 'column_type'=>'text' ],
