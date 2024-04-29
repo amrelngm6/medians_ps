@@ -1284,7 +1284,7 @@ class LangsAr
 		,'Double daily trips cost' => 'تكلفة رحلتين يوميا'
 		,'Double trips cost' => 'تكلفة رحلتين يوميا'
 		,'Cost for Two trips daily Morning and Afternoon' => 'التكلفة مقابل رحلتين يوميا صباحا و مساءا'
-		,'' => ''
+		,'subscribe to package' => 'الإشتراك في باقة'
 		,'' => ''
 
 		,'COPYRIGHTS' => 'Copyrights are reserved'
