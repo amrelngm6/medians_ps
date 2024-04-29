@@ -109,12 +109,12 @@ class TranslationController extends CustomController
 	        	return array('error'=>$th->getMessage());
 			}
 
+			$params['code'] =  strtolower(str_replace([' ', '/', '&', '?','؟' , '@', '#', '$', '%', '(', ')', '-', '='], '_', $params['translation']['english'])) ;
         	$params['created_by'] = $this->app->auth()->id;
-        	$params['status'] = isset($params['status']) ? 'on' : null;
 
-            $returnData = (!empty($this->repo->store($params))) 
+            $returnData = (!empty($this->repo->storeItems($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+            : array('result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
         	return array('error'=>$e->getMessage());
@@ -178,9 +178,9 @@ class TranslationController extends CustomController
         	throw new \Exception(translate('NAME_EMPTY'), 1);
 		}
 
-		if (isset($this->repo->findByName($params['name'])->translation_id))
+		if (isset($this->repo->findByCode($params['code'])->translation_id))
 		{
-        	throw new \Exception(translate('NAME_FOUND'), 1);
+        	throw new \Exception(translate('COUPON_DUPLICATED'), 1);
 		}
 
 	}

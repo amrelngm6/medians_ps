@@ -13,15 +13,34 @@ class TranslationRepository
 		return Translation::find($id);
 	}
 
-	public function findByName($name)
+	public function findByCode($code)
 	{
-		return Translation::where('name', $name)->first();
+		return Translation::where('code', $code)->first();
 	}
 
 	public function get($limit = 100)
 	{
 		return Translation::with('items')->limit($limit)->groupBy('code')->orderBy('updated_at','DESC')->get();
 	}
+
+	/**
+	* Save multi Items to database
+	*/
+	public function storeItems($data) 
+	{
+		$row = [];
+
+		foreach ($data['translations'] as $key => $value) 
+		{
+			$row['language_code'] = $key;
+			$row['code'] = $data['code'];
+			$row['value'] = $value;
+			$save = $this->store($row);
+		}
+
+		return $save;
+	}
+
 
 	/**
 	* Save item to database
@@ -39,9 +58,10 @@ class TranslationRepository
 			}
 		}		
 
+
 		// Return the  object with the new data
     	$Object = Translation::create($dataArray);
-
+		
 
     	return $Object;
     }
