@@ -6,6 +6,7 @@
 /installer
 /app/config/database.php
 /app/config/parameters.yml
+/app/cache
 
 .env
 cookie.txt
