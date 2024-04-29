@@ -39,7 +39,7 @@
 
                         <div class="w-150px">
                             <select v-model="searchField" class="form-select form-select-solid select2-hidden-accessible" data-control="select2" data-hide-search="true" data-placeholder="Rating" data-kt-ecommerce-order-filter="rating" data-select2-id="select2-data-9-zple" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
-                                <option v-for="col in content.columns" v-text="col.text"  :value="col.value" ></option>
+                                <option v-text="translate('code')"  :value="'code'" ></option>
                             </select>
                         </div>
                     </div>
