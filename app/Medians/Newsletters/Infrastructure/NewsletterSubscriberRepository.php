@@ -15,7 +15,7 @@ class NewsletterSubscriberRepository
 
 	public function findByEmail($email)
 	{
-		return NewsletterSubscriber::where('status', $email)->first();
+		return NewsletterSubscriber::where('email', $email)->first();
 	}
 
 	public function get($limit = 100)
