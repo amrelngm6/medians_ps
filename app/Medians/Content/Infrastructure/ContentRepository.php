@@ -34,7 +34,7 @@ class ContentRepository
 
 	public function switch_lang($item)
 	{
-		$lang = $item->lang == 'ar' ? 'en' : 'ar';
+		$lang = $item->lang ?? '';
 		return Content::where('item_id', $item->item_id)->where('item_type', $item->item_type)->where('lang', $lang)->first();
 	}
 
