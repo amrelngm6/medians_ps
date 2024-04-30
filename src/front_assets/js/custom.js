@@ -472,7 +472,7 @@ jQuery(document).on('submit', 'form', function (e) {
           setTimeout(function(){
             if (html.reload)
             {
-              window.reload()
+              window.location.reload()
             }
           }, 3000)
       }
