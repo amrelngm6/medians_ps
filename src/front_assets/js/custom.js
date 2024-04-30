@@ -435,13 +435,12 @@ function showAlert(text = '', duration=5000)
   Toastify({
     text: text,
     duration: duration,
-    newWindow: true,
     close: true,
     gravity: "top", // `top` or `bottom`
     position: "center", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
     style: {
-      background: "linear-gradient(to right, #ef326f, #fe6c4e, #ef326f, #fe6c4e)",
+      background: "linear-gradient(to right, #ef326f, #fe6c4e)",
     },
     onClick: function(){} // Callback after click
   }).showToast();

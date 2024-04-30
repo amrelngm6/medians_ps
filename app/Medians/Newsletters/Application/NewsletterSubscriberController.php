@@ -101,7 +101,7 @@ class NewsletterSubscriberController extends CustomController
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        	$returnData  = json_encode(array('result'=>$e->getMessage(), 'error'=>1));
         }
 
 		return $returnData;
