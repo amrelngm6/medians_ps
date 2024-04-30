@@ -129,6 +129,8 @@ const translations = defineAsyncComponent(() => import('@/components/translation
 
 const newsletter_subscribers = defineAsyncComponent(() => import('@/components/newsletter_subscribers.vue') );
 
+const contact_forms = defineAsyncComponent(() => import('@/components/contact_forms.vue') );
+
 
 
 export default {
@@ -183,6 +185,7 @@ export default {
         languages,
         translations,
         newsletter_subscribers,
+        contact_forms,
         get_started,
         translate,
         'help_messages':HelpMessages,

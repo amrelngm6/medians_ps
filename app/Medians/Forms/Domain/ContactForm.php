@@ -18,7 +18,8 @@ class ContactForm extends CustomModel
 	public $fillable = [
 		'name',
 		'email',
-		'status',
+		'phone',
+		'message',
 	];
 
 }

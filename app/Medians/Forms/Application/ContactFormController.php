@@ -34,7 +34,7 @@ class ContactFormController extends CustomController
 	{
 
 		return [
-            [ 'value'=> "subscriber_id", 'text'=> "#",'sortable'=> true ],
+            [ 'value'=> "message_id", 'text'=> "#",'sortable'=> true ],
             [ 'value'=> "email", 'text'=> translate('email'), 'sortable'=> true ],
             [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
             [ 'value'=> "delete", 'text'=> translate('delete') ],
@@ -50,7 +50,7 @@ class ContactFormController extends CustomController
 	public function fillable( ) 
 	{
 		return [
-            [ 'key'=> "subscriber_id", 'title'=> "#", 'column_type'=>'hidden'],
+            [ 'key'=> "message_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "name", 'title'=> translate('name'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "email", 'title'=> translate('email'), 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "status", 'title'=> translate('status'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'checkbox', 'withlabel'=>true ],
@@ -71,10 +71,10 @@ class ContactFormController extends CustomController
 		
 		try 
 		{
-		    return render('newsletter_subscribers', 
+		    return render('contact_forms', 
 			[
 		        'load_vue' => true,
-		        'title' => translate('Newsletter subscribers'),
+		        'title' => translate('Contact forms'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
@@ -95,7 +95,7 @@ class ContactFormController extends CustomController
 			$this->validate($params);
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>translate('Subscribed successfully'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('thanks_for_sending'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
@@ -107,22 +107,6 @@ class ContactFormController extends CustomController
 
 
 
-	public function update()
-	{
-		$params = $this->app->request()->get('params');
-
-        try {
-
-            if ($this->repo->update($params))
-            {
-                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
-            }
-        
-        } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
-        }
-	}
-
 
 	public function delete() 
 	{
@@ -131,9 +115,9 @@ class ContactFormController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['subscriber_id']);
+        	$check = $this->repo->find($params['message_id']);
 
-            if ($this->repo->delete($params['subscriber_id']))
+            if ($this->repo->delete($params['message_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }

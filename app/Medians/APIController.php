@@ -215,6 +215,10 @@ class APIController extends CustomController
 					$return = (new Newsletters\Application\NewsletterSubscriberController())->store(); 
 					break;
 	
+				case 'ContactForm.create':
+					$return = (new Forms\Application\ContactFormController())->store(); 
+					break;
+	
 			}
 
 			return response(json_encode($return));
