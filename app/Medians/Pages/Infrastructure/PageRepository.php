@@ -27,7 +27,7 @@ class PageRepository
 	public function find($page_id, $prefix = null)
 	{
 		return Page::with(['content'=>function($q) use ($prefix){
-			$prefix ? $q->where('prefix', $prefix) : $q->where('lang', $_SESSION['lang']);
+			$prefix ? $q->where('prefix', $prefix) : $q;
 		}])->find($page_id);
 	}
 
