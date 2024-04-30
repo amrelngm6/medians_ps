@@ -960,7 +960,7 @@ ul.list {
 input[type="text"] ,
 input[type="tel"] ,
 input[type="number"] ,
-.subscribe  input[type="email"] {
+input[type="email"] {
     border-radius: 50px;
     width: 100%;
     height: 50px;
