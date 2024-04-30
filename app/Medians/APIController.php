@@ -511,6 +511,10 @@ class APIController extends CustomController
 					return response((new Wallets\Application\BusinessWithdrawalController())->delete());
 					break;
 	
+				case 'NewsletterSubscriber.delete':
+					return response((new Newsletters\Application\NewsletterSubscriberController())->delete());
+					break;
+	
 
 			}
 
