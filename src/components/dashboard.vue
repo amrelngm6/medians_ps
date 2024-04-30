@@ -189,7 +189,7 @@
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.driver_applicants"  :key="content.driver_applicants">
-                                            <tr :key="index" v-for="(applicant, index) in content.driver_applicants" >
+                                            <tr :key="index" v-for="(applicant, index) in content.driver_applicants"  v-if="applicant && applicant.driver" >
                                                 <td>
                                                     <div class="flex gap-4 w-full" v-if="applicant.driver">
                                                         <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.driver.picture ?? '/uploads/images/default_profile.png')" />
