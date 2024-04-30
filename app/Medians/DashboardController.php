@@ -274,11 +274,10 @@ class DashboardController extends CustomController
 			return true;
 		}
 
-		echo (new \config\APP)->redirect('/'); 
 		
 		$_SESSION['site_lang'] = in_array($lang, ['arabic', 'english']) ? $lang : 'arabic';
 
-		// echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
+		echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
 	}
 
 }
