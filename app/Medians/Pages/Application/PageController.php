@@ -223,11 +223,6 @@ class PageController extends CustomController
         $footrMenu1 = $this->repo->getMenuPages('show_footer_menu1');
         $footrMenu2 = $this->repo->getMenuPages('show_footer_menu2');
 
-		if (isset($page))
-		{
-			print_r($page->lang);
-		}
-
 		try {
 			
             return render('views/front/page.html.twig', [

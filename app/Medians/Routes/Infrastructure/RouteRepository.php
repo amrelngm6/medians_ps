@@ -260,7 +260,8 @@ class RouteRepository
 
 		$ids = array_column($results, 'route_id');
 		$list = Route::whereIn('route_id',$ids)->get();
-		print_r($list);
+		// print_r($list);
+		return $list;
 	}
 
  
