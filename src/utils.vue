@@ -60,18 +60,13 @@ export function customConfirm(message) {
             <div class="swal2-html-container" id="swal2-html-container" style="display: block;">${message}</div>
             <div class="swal2-actions" style="display: flex;">
                 <button type="button" class="swal2-confirm btn fw-bold btn-danger"
-                    style="display: inline-block;">Yes, delete!</button>
+                    style="display: inline-block;">${translate('yes delete')}</button>
                 <button type="button"
                     class="swal2-cancel btn fw-bold btn-active-light-primary" style="display: inline-block;">No,
                     cancel</button>
             </div>
         </div>
     </div>
-      <div class="modal-content">
-        <p>${message}</p>
-        <button id="confirmBtn">Confirm</button>
-        <button id="cancelBtn">Cancel</button>
-      </div>
     `;
 
     document.body.appendChild(modal);
