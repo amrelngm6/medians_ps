@@ -52,18 +52,17 @@ export function customConfirm(message) {
     const modal = document.createElement('div');
     modal.classList.add('delete-modal');
     modal.innerHTML = `
-    <div class="swal2-container swal2-center swal2-backdrop-show overflow-y-auto"> 
+    <div class="swal2-container swal2-center swal2-backdrop-show overflow-y-auto py-10"> 
         <div class="swal2-popup swal2-modal swal2-icon-warning swal2-show grid" >
             <div class="swal2-icon swal2-warning swal2-icon-show flex" >
                 <div class="swal2-icon-content">!</div>
             </div>
             <div class="swal2-html-container" id="swal2-html-container" style="display: block;">${message}</div>
             <div class="swal2-actions" style="display: flex;">
-                <button type="button" class="swal2-confirm btn fw-bold btn-danger"
+                <button type="button" class="swal2-confirm btn fw-bold btn-danger" id="confirmBtn"
                     style="display: inline-block;">${translate('yes delete')}</button>
                 <button type="button"
-                    class="swal2-cancel btn fw-bold btn-active-light-primary" style="display: inline-block;">No,
-                    cancel</button>
+                    class="swal2-cancel btn fw-bold btn-active-light-primary text-white" id="cancelBtn" style="display: inline-block;">${translate('no cancel')}</button>
             </div>
         </div>
     </div>
