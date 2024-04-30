@@ -97,37 +97,22 @@ export function customConfirm(message) {
 export function deleteByKey(itemKey, itemValue, type) {
     
     
-// Example usage:
-    Swal.fire({
-    title: translate('confirm_delete'),
-    showDenyButton: true,
-    showCancelButton: true,
-    confirmButtonText: translate('Delete'),
-    denyButtonText: translate("discard")
-    }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-        
-        var params = new URLSearchParams();
+    customConfirm(translate('confirm_delete'))
+    .then((result) => {
+        console.log('Promise');
+        if (result) {
+            var params = new URLSearchParams();
             params.append('type', type)
             params.append('params['+itemKey+']', itemValue[itemKey])
             handleRequest(params, '/api/delete').then(response => {
                 showAlert(response.result);
                 setTimeout(() => {
-                    Swal.fire(response.result, "", "success");
                     if (response && response.reload){
                         location.reload();
                     }
                 }, 2000);
-            })
-    }
-    });
 
-    
-    customConfirm(translate('confirm_delete'))
-    .then((result) => {
-        console.log('Promise');
-        if (result) {
+            })
         } else {
         console.log('Canceled');
         }
