@@ -37,6 +37,8 @@ class ContactFormController extends CustomController
             [ 'value'=> "message_id", 'text'=> "#",'sortable'=> true ],
             [ 'value'=> "email", 'text'=> translate('email'), 'sortable'=> true ],
             [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
+            [ 'value'=> "phone", 'text'=> translate('phone'), 'sortable'=> true ],
+            [ 'value'=> "message", 'text'=> translate('message'), 'sortable'=> true ],
             [ 'value'=> "delete", 'text'=> translate('delete') ],
         ];
 	}
