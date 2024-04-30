@@ -310,6 +310,9 @@ if(isset($app->auth()->id))
     /** @return Business Translations */
     RouteHandler::get('/admin/translations', Medians\Languages\Application\TranslationController::class.'@index');
 
+    /** @return Subscriber */
+    RouteHandler::get('/admin/newsletter_subscriber', Medians\Newsletters\Application\NewsletterSubscriberController::class.'@index');
+
 
     /**
     * @return Content editor
