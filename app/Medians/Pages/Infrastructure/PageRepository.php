@@ -36,7 +36,7 @@ class PageRepository
 	{
 		$_SESSION['lang'];
 		return Page::where('homepage', 'on')->with(['content'=>function($q) {
-			$q->where('lang', translate('lang'));
+			$q->where('lang', $_SESSION['lang']);
 		}])->first();
 	}
 
