@@ -39,7 +39,7 @@
                                     <img v-if="auth" :src="auth.photo" class="rounded-3" alt="user">
                                 </div>
 
-                                <div v-if="showSubMenu" @mouseleave="showSubMenu = false" class="shadow bg-white menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px show top-20" data-kt-menu="true" :class="translate('lang') == 'ar' ? 'left-4' : 'right-4'" data-popper-placement="bottom-end" style="z-index: 107; position: fixed;">
+                                <div v-if="showSubMenu" @mouseleave="showSubMenu = false" class="shadow bg-white menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px show top-20" data-kt-menu="true" :class="translate('is_rtl') == 'rtl' ? 'left-4' : 'right-4'" data-popper-placement="bottom-end" style="z-index: 107; position: fixed;">
                                     <div class="menu-item px-3">
                                         <div class="menu-content d-flex align-items-center px-3">
                                             <div class="symbol symbol-50px me-5">
@@ -63,25 +63,19 @@
                                         <a href="#" @click="showLangs = !showLangs" class="menu-link px-5">
                                             <span class="menu-title position-relative">
                                                 <span v-text="translate('Language')"></span>
-                                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 flex"  :class="translate('lang') == 'ar' ? 'left-0' : 'right-0'">
-                                                    <span v-text="translate('lang') == 'ar' ? 'Arabic' : 'English'"></span> <img class="w-15px h-15px rounded-1 ms-2" :src="translate('lang') == 'ar' ? '/uploads/img/flags/egypt.svg' : '/uploads/img/flags/united-states.svg'" alt="">
+                                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 flex"  :class="translate('is_rtl') == 'rtl' ? 'left-0' : 'right-0'">
+                                                    <span v-text="translate('Language')"></span> <img class="w-15px h-15px rounded-1 ms-2" :src="translate('is_rtl') == 'rtl' ? '/uploads/img/flags/egypt.svg' : '/uploads/img/flags/united-states.svg'" alt="">
                                                 </span>
                                             </span>
                                         </a>
 
                                         <div class="menu-sub menu-sub-dropdown w-175px py-4 bg-white absolute show active" v-if="showLangs" style="display:block;">
-                                            <div class="menu-item px-3">
-                                                <a href="/switch-lang/english" class="menu-link d-flex px-5 active">
+                                            <div v-for="language in langs " class="menu-item px-3">
+                                                <a v-if="language" :href="'/switch-lang/'+language.language_code" class="menu-link d-flex px-5 active">
                                                     <span class="symbol symbol-20px me-4">
                                                         <img class="rounded-1" :src="'/uploads/img/flags/united-states.svg'" alt="">
-                                                    </span> English
-                                                </a>
-                                            </div>
-                                            <div class="menu-item px-3">
-                                                <a href="/switch-lang/arabic" class="menu-link d-flex px-5">
-                                                    <span class="symbol symbol-20px me-4">
-                                                        <img class="rounded-1" :src="'/uploads/img/flags/egypt.svg'" alt="">
-                                                    </span> Arabic
+                                                    </span> 
+                                                    <span v-text="language.name"></span>
                                                 </a>
                                             </div>
                                         </div>

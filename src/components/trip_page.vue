@@ -79,7 +79,7 @@
                                                         <p class="text-content3 text-2xs truncate"
                                                             v-text="help_message.message"></p>
                                                     </div>
-                                                    <div :class="translate('lang') == 'ar' ? 'left-0' : 'right-0'"
+                                                    <div :class="translate('is_rtl') == 'rtl' ? 'left-0' : 'right-0'"
                                                         class="absolute   flex items-center justify-between gap-1">
                                                         <span
                                                             class="bg-blue-50 px-4 py-1 text-secondary badge-sm rounded-5 "
