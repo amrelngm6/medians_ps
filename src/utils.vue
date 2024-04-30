@@ -1,8 +1,10 @@
 <script>
-import moment from 'moment';
+import moment, { lang } from 'moment';
 import axios from 'axios'
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 export function today() {
   return moment().format('YYYY-MM-DD');
@@ -96,6 +98,20 @@ export function deleteByKey(itemKey, itemValue, type) {
     
     
 // Example usage:
+    Swal.fire({
+    title: translate('confirm_delete'),
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: translate('Delete'),
+    denyButtonText: translate("discard")
+    }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+        Swal.fire(translate('deleted'), "", "success");
+    }
+    });
+
+    
     customConfirm(translate('confirm_delete'))
     .then((result) => {
         console.log('Promise');
