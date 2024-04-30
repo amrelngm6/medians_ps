@@ -100,7 +100,7 @@ class PageController extends CustomController
         try {	
 
         	$params['created_by'] = $this->app->auth()->id;
-        	$params['content'] = ['en'=>['title'=>$params["title"]], 'ar'=>['title'=>$params["title"]]];
+        	$params['content'] = $this->handleLangs($params);
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
@@ -159,10 +159,23 @@ class PageController extends CustomController
 
 	public function validate($params) 
 	{
-		if (empty($params['content']['ar']['title']))
+		if (empty($params['content']['en']['title']))
 		{
         	throw new \Exception(json_encode(array('result'=>translate('NAME_EMPTY'), 'error'=>1)), 1);
 		}
+	}
+	
+
+	public function handleLangs($params) 
+	{
+		$langsRepo = new \Medians\Languages\Infrastructure\LanguageRepository();
+		$langs = $langsRepo->getAll();
+		$fields = [];
+		foreach ($langs as $row) 
+		{
+			$fields[$row->language_code] = $params["title"];
+		}
+		return $fields;	
 	}
 
 
@@ -209,6 +222,11 @@ class PageController extends CustomController
         $headerMenu = $this->repo->getMenuPages('show_header_menu');
         $footrMenu1 = $this->repo->getMenuPages('show_footer_menu1');
         $footrMenu2 = $this->repo->getMenuPages('show_footer_menu2');
+
+		if (isset($page))
+		{
+			print_r($page->lang);
+		}
 
 		try {
 			

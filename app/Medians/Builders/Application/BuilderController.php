@@ -158,18 +158,6 @@ class BuilderController extends CustomController
 	 */
 	public function scrab()
 	{
-		$request = $this->app->request();
-
-		$url = $request->get('url');
-		$category = $request->get('category');
-
-		$sections = $this->scrapeAndExtractSections($url);
-
-		foreach ($sections as $key => $section) {
-			$section = str_replace('assets/','https://winsfolio.net/html/sasnio/assets/', $section);
-			$this->repo->store(['content'=>$section, 'category'=>$category]);
-		}
-
 		echo translate('Done');
 	}
 
@@ -189,7 +177,6 @@ class BuilderController extends CustomController
 		$check = $this->contentRepo->find($request->get('prefix'));
 		$check->content = str_replace('data-src', 'src', $contentJSON->contentArea);
 		$check->update(['content' => $check->content]);
-		// file_put_contents($_SERVER['DOCUMENT_ROOT'].'/app/views/admin/builder/templates/home.html.twig', $contentJSON->contentArea);
 		echo $check->content;
 	}
 
