@@ -13,6 +13,11 @@ class NewsletterSubscriberRepository
 		return NewsletterSubscriber::find($id);
 	}
 
+	public function findByEmail($email)
+	{
+		return NewsletterSubscriber::where('status', $email)->first();
+	}
+
 	public function get($limit = 100)
 	{
 		return NewsletterSubscriber::limit($limit)->orderBy('name','DESC')->get();
