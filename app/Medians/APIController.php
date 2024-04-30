@@ -210,6 +210,10 @@ class APIController extends CustomController
 				case 'Translation.create':
 					$return = (new Languages\Application\TranslationController())->store(); 
 					break;
+					
+				case 'NewsletterSubscriber.create':
+					$return = (new Newsletters\Application\NewsletterSubscriberController())->store(); 
+					break;
 	
 			}
 
