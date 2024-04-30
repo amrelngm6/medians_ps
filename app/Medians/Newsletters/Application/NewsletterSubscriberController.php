@@ -35,10 +35,8 @@ class NewsletterSubscriberController extends CustomController
 
 		return [
             [ 'value'=> "subscriber_id", 'text'=> "#",'sortable'=> true ],
-            [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
             [ 'value'=> "email", 'text'=> translate('email'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> translate('Edit') ],
+            [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
             [ 'value'=> "delete", 'text'=> translate('delete') ],
         ];
 	}
