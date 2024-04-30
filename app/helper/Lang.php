@@ -30,7 +30,7 @@ class Lang
 	public function translate($langkey)
 	{
 		$check = $this->repo->findByCodeLang($langkey, $this->lang);
-		return  isset($check->value) ? $check->value : null;
+		return  isset($check->value) ? $check->value : $langkey;
 	}
 
 }
