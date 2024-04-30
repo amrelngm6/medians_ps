@@ -50,8 +50,9 @@ export function customConfirm(message) {
   return new Promise((resolve, reject) => {
     // Create modal elements
     const modal = document.createElement('div');
-    modal.classList.add('swal2-container swal2-center swal2-backdrop-show overflow-y-auto');
+    modal.classList.add('delete-modal');
     modal.innerHTML = `
+    <div class="swal2-container swal2-center swal2-backdrop-show overflow-y-auto"> 
         <div class="swal2-popup swal2-modal swal2-icon-warning swal2-show grid" >
             <div class="swal2-icon swal2-warning swal2-icon-show flex" >
                 <div class="swal2-icon-content">!</div>
@@ -65,6 +66,7 @@ export function customConfirm(message) {
                     cancel</button>
             </div>
         </div>
+    </div>
       <div class="modal-content">
         <p>${message}</p>
         <button id="confirmBtn">Confirm</button>
