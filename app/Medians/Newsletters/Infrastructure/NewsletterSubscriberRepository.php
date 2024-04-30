@@ -1,6 +1,6 @@
 <?php
 
-namespace Medians\NewsletterSubscribers\Infrastructure;
+namespace Medians\Newsletters\Infrastructure;
 
 use Medians\Newsletters\Domain\NewsletterSubscriber;
 

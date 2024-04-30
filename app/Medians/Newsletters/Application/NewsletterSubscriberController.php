@@ -3,7 +3,7 @@ namespace Medians\Newsletters\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Newsletters\Infrastructure\LanguageRepository;
+use Medians\Newsletters\Infrastructure\NewsletterSubscriberRepository;
 
 class NewsletterSubscriberController extends CustomController 
 {
