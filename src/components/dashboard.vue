@@ -156,8 +156,8 @@
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.applicants"  :key="content.applicants">
-                                            <tr :key="index" v-for="(applicant, index) in content.applicants"   v-if="applicant && applicant.model">
-                                                <td>
+                                            <tr :key="index" v-for="(applicant, index) in content.applicants"   >
+                                                <td v-if="applicant && applicant.model">
                                                     <div class="flex gap-4 w-full">
                                                         <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.model.picture ?? '/uploads/images/default_profile.png')" />
                                                         <div class="text-left">
@@ -166,8 +166,8 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td v-text="applicant.subscription ? applicant.subscription.name : ''"></td>
-                                                <td v-text="applicant.status"></td>
+                                                <td v-if="applicant && applicant.model" v-text="applicant.subscription ? applicant.subscription.name : ''"></td>
+                                                <td v-if="applicant && applicant.model" v-text="applicant.status"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -189,8 +189,8 @@
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.driver_applicants"  :key="content.driver_applicants">
-                                            <tr :key="index" v-for="(applicant, index) in content.driver_applicants"  v-if="applicant && applicant.driver" >
-                                                <td>
+                                            <tr :key="index" v-for="(applicant, index) in content.driver_applicants"  >
+                                                <td v-if="applicant && applicant.driver" > 
                                                     <div class="flex gap-4 w-full" v-if="applicant.driver">
                                                         <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(applicant.driver.picture ?? '/uploads/images/default_profile.png')" />
                                                         <div class="text-left">
@@ -199,7 +199,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td v-text="applicant.status"></td>
+                                                <td v-if="applicant && applicant.driver"  v-text="applicant.status"></td>
                                             </tr>
                                         </tbody>
                                     </table>
