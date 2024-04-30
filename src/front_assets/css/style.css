@@ -957,7 +957,8 @@ ul.list {
     top: 27.5px;
     height: 60px;
 }
-input[type="text"] {
+input[type="text"] ,
+input[type="email"] {
     border-radius: 50px;
     width: 100%;
     height: 50px;
