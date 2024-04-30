@@ -311,7 +311,7 @@ if(isset($app->auth()->id))
     RouteHandler::get('/admin/translations', Medians\Languages\Application\TranslationController::class.'@index');
 
     /** @return Subscriber */
-    RouteHandler::get('/admin/newsletter_subscriber', Medians\Newsletters\Application\NewsletterSubscriberController::class.'@index');
+    RouteHandler::get('/admin/newsletter_subscribers', Medians\Newsletters\Application\NewsletterSubscriberController::class.'@index');
 
 
     /**
