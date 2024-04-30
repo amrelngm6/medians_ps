@@ -467,8 +467,14 @@ jQuery(document).on('submit', 'form', function (e) {
           if (html && html.error) {
               return showAlert(html.result ?? html.error)
           }
-          return showAlert(html.result)
+          showAlert(html.result)
 
+          setTimeout(function(){
+            if (html.reload)
+            {
+              window.reload()
+            }
+          }, 3000)
       }
   });
 });
