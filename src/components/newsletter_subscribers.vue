@@ -76,6 +76,7 @@
 import delete_icon from '@/components/svgs/trash.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
+import Vue3EasyDataTable from 'vue3-easy-data-table';
 import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 
@@ -83,6 +84,7 @@ import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 export default 
 {
     components:{
+        'datatabble': Vue3EasyDataTable,
         delete_icon,
     },
     name:'PaymentMethods',
