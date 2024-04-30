@@ -2693,7 +2693,7 @@ ul.Meta li.end a{
     background-size: cover;
 }
 .sidebar-two input.rounded-input ,
-.sidebar-two input[type="text"] {
+.sidebar-two input {
     width: 100%;
     height: 60px;
     padding: 0 25px;
