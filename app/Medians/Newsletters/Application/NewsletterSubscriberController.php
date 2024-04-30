@@ -97,7 +97,7 @@ class NewsletterSubscriberController extends CustomController
 			$this->validate($params);
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>translate('Thanks for subscribe'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Subscribed successfully'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
