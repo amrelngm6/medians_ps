@@ -1,26 +1,26 @@
 <?php
 
-namespace Medians\Languages\Infrastructure;
+namespace Medians\NewsletterSubscribers\Infrastructure;
 
-use Medians\Languages\Domain\Language;
+use Medians\Newsletters\Domain\NewsletterSubscriber;
 
-class LanguageRepository 
+class NewsletterSubscriberRepository 
 {
 
 
 	public function find($id)
 	{
-		return Language::find($id);
+		return NewsletterSubscriber::find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Language::limit($limit)->orderBy('name','DESC')->get();
+		return NewsletterSubscriber::limit($limit)->orderBy('name','DESC')->get();
 	}
 
 	public function getActive()
 	{
-		return Language::where('status', 'on')->orderBy('language_code','DESC')->get();
+		return NewsletterSubscriber::where('status', 'on')->orderBy('subscriber_code','DESC')->get();
 	}
 
 
@@ -31,7 +31,7 @@ class LanguageRepository
 	public function store($data) 
 	{
 
-		$Model = new Language();
+		$Model = new NewsletterSubscriber();
 		
 		foreach ($data as $key => $value) 
 		{
@@ -42,7 +42,7 @@ class LanguageRepository
 		}		
 
 		// Return the  object with the new data
-    	$Object = Language::create($dataArray);
+    	$Object = NewsletterSubscriber::create($dataArray);
 
 
     	return $Object;
@@ -56,7 +56,7 @@ class LanguageRepository
     public function update($data)
     {
 
-		$Object = Language::find($data['language_id']);
+		$Object = NewsletterSubscriber::find($data['subscriber_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -75,7 +75,7 @@ class LanguageRepository
 	{
 		try {
 			
-			$delete = Language::find($id)->delete();
+			$delete = NewsletterSubscriber::find($id)->delete();
 
 			return true;
 
