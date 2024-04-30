@@ -103,13 +103,12 @@ export default
         }
 
 
-        const searchField = ref("");
+        const searchField = ref("email");
         const searchValue = ref("");
 
         const load = () => {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
-                searchField.value = content.value.columns[1].value;
             });
         }
         
@@ -133,7 +132,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('payment_method_id', data, 'PaymentMethod.delete');
+                    deleteByKey('subscriber_id', data, 'NewsletterSubscriber.delete');
                     break;  
 
                     
