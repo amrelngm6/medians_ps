@@ -452,6 +452,7 @@ function showAlert(text = '', duration=5000)
 jQuery(document).on('submit', 'form', function (e) {
   e.preventDefault();
 
+  let form = this;
   let action = $(this).attr('action');
 
   $.ajax({
@@ -467,8 +468,8 @@ jQuery(document).on('submit', 'form', function (e) {
           if (html && html.error) {
               return showAlert(html.result ?? html.error)
           }
+          form.reset();
           showAlert(html.result)
-
           setTimeout(function(){
             if (html.reload)
             {

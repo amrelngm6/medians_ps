@@ -97,7 +97,7 @@ class ContactFormController extends CustomController
 			$this->validate($params);
 
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>translate('thanks_for_sending'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('thanks_for_sending'))
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
