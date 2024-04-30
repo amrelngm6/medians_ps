@@ -100,8 +100,6 @@ export function deleteByKey(itemKey, itemValue, type) {
         } else {
         console.log('Canceled');
         }
-    }).error((error) => {
-        console.log(error);
     });
 
 
