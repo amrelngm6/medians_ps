@@ -111,7 +111,7 @@
                                     <div class="w-full border-b border-gray-100"
                                         v-if="activeStatus == 'pickup_locations' && trip">
 
-                                        <div :class="translate('lang') == 'ar' ? 'right-4' : 'left-4'"
+                                        <div :class="translate('is_rt') == 'rtl' ? 'right-4' : 'left-4'"
                                             class="absolute border-s-2  border border-gray-300 h-full top-20 start-10 -z-10 dark:border-white/10">
                                         </div>
 
@@ -152,7 +152,7 @@
                                                         <div
                                                             class="flex md:flex-nowrap  items-center gap-6 ms-10 md:mt-0 mt-5">
                                                             <div class="ms-10">
-                                                                <h2 :class="translate('lang') == 'ar' ? 'bg-gradient-to-l' : 'bg-gradient-to-r'"
+                                                                <h2 :class="translate('is_rtl') == 'rtl' ? 'bg-gradient-to-l' : 'bg-gradient-to-r'"
                                                                     class="font-semibold p-2 rounded  text-primary flex items-center justify-center text-sm mx-16 "
                                                                     v-text="location.boarding_time ? location.time : translate('Waiting')"></h2>
                                                             </div>
