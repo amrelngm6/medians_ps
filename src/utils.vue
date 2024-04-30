@@ -107,7 +107,19 @@ export function deleteByKey(itemKey, itemValue, type) {
     }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-        Swal.fire(translate('deleted'), "", "success");
+        
+        var params = new URLSearchParams();
+            params.append('type', type)
+            params.append('params['+itemKey+']', itemValue[itemKey])
+            handleRequest(params, '/api/delete').then(response => {
+                showAlert(response.result);
+                setTimeout(() => {
+                    Swal.fire(response.result, "", "success");
+                    if (response && response.reload){
+                        location.reload();
+                    }
+                }, 2000);
+            })
     }
     });
 
@@ -116,18 +128,6 @@ export function deleteByKey(itemKey, itemValue, type) {
     .then((result) => {
         console.log('Promise');
         if (result) {
-            var params = new URLSearchParams();
-            params.append('type', type)
-            params.append('params['+itemKey+']', itemValue[itemKey])
-            handleRequest(params, '/api/delete').then(response => {
-                showAlert(response.result);
-                setTimeout(() => {
-                    if (response && response.reload){
-                        location.reload();
-                    }
-                }, 2000);
-
-            })
         } else {
         console.log('Canceled');
         }
