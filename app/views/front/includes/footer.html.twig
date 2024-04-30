@@ -6,16 +6,18 @@
                 <div class="subscribe-text">
                     <img src="/uploads/img/subscribe-icon.png" alt="subscribe-icon">
                     <div>
-                        <h2>Sign up to our newsletter</h2>
-                        <p>get recent content and updates.</p>
+                        <h2>{{lang.translate('Sign up to our newsletter')}}</h2>
+                        <p >{{lang.translate('get recent content and updates')}}.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="subscribe">
-                    <input type="text" name="params[subscribe_email]" placeholder="{{lang.translate('Enter Your Email Address')}}...">
+                <form class="subscribe" action="/api/create">
+
+                    <input type="hidden" name="type" value="NewsletterSubscriber.create">
+                    <input type="text" name="params[email]" placeholder="{{lang.translate('Enter Your Email Address')}}...">
                     <button class="btn">{{lang.translate('Subscribe')}}</button>
-                </div>
+                </form>
             </div>
         </div>
         <div class="row">
