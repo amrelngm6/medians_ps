@@ -433,7 +433,7 @@ window.onload = calcScrollValue;
 function showAlert(text = '', duration=5000)
 {
   Toastify({
-    text: "This is a toast",
+    text: text,
     duration: duration,
     newWindow: true,
     close: true,
@@ -451,7 +451,6 @@ function showAlert(text = '', duration=5000)
  * Form submit
  */
 jQuery(document).on('submit', 'form', function (e) {
-  showAlert();
   e.preventDefault();
 
   let action = $(this).attr('action');
@@ -467,10 +466,9 @@ jQuery(document).on('submit', 'form', function (e) {
       success: function (html) {
 
           if (html && html.error) {
-              alert(html.result ?? html.error)
-          } else if (html && html.result) {
-              showAlert(html.result ?? '')
+              return showAlert(html.result ?? html.error)
           }
+          return showAlert(html.result)
 
       }
   });
