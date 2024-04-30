@@ -15,7 +15,7 @@
                 <form class="subscribe" action="/api/create">
 
                     <input type="hidden" name="type" value="NewsletterSubscriber.create">
-                    <input type="text" name="params[email]" required="true" placeholder="{{lang.translate('Enter Your Email Address')}}...">
+                    <input type="email" name="params[email]" required="true" placeholder="{{lang.translate('Enter Your Email Address')}}...">
                     <button class="btn">{{lang.translate('Subscribe')}}</button>
                 </form>
             </div>
