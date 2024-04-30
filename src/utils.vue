@@ -45,25 +45,63 @@ export function remove(item, type) {
     })
 }
 
+export function customConfirm(message) {
+  // Create a new promise
+  return new Promise((resolve, reject) => {
+    // Create modal elements
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.innerHTML = `
+      <div class="modal-content">
+        <p>${message}</p>
+        <button id="confirmBtn">Confirm</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Add event listeners to buttons
+    const confirmBtn = modal.querySelector('#confirmBtn');
+    const cancelBtn = modal.querySelector('#cancelBtn');
+
+    confirmBtn.addEventListener('click', () => {
+      resolve(true); // Resolve the promise with true when confirmed
+      document.body.removeChild(modal); // Remove modal from DOM
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      resolve(false); // Resolve the promise with false when canceled
+      document.body.removeChild(modal); // Remove modal from DOM
+    });
+  });
+}
+
 export function deleteByKey(itemKey, itemValue, type) {
     
-    if (!window.confirm(translate('confirm_delete')))
-    {
-        return null;
-    }
+    
+// Example usage:
+    customConfirm(translate('confirm_delete'))
+    .then((result) => {
+        if (result) {
+            var params = new URLSearchParams();
+            params.append('type', type)
+            params.append('params['+itemKey+']', itemValue[itemKey])
+            handleRequest(params, '/api/delete').then(response => {
+                showAlert(response.result);
+                setTimeout(() => {
+                    if (response && response.reload){
+                        location.reload();
+                    }
+                }, 2000);
 
-    var params = new URLSearchParams();
-    params.append('type', type)
-    params.append('params['+itemKey+']', itemValue[itemKey])
-    handleRequest(params, '/api/delete').then(response => {
-        showAlert(response.result);
-        setTimeout(() => {
-            if (response && response.reload){
-                location.reload();
-            }
-        }, 2000);
+            })
+        } else {
+        console.log('Canceled');
+        }
+    });
 
-    })
+
 }
 
 export async function handleGetRequest(url) {
