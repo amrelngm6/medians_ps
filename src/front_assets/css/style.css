@@ -3555,7 +3555,7 @@ ul.information-client li h4 {
 .meet-section ul.social-icon {
     margin-top: 12px;
 }
-form.content-form input[type="text"] {
+form.content-form input {
     width: 100%;
     border-radius: 52px;
     height: 60px;
@@ -3566,7 +3566,7 @@ form.content-form input[type="text"] {
     outline: none;
     background-color: #fff;
 }
-form.content-form input[type="text"]::placeholder{
+form.content-form input::placeholder{
     color: #555;
 }
 form.content-form textarea {
