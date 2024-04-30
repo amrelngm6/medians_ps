@@ -1,11 +1,11 @@
 <?php
-namespace Medians\Languages\Application;
+namespace Medians\Newsletters\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Languages\Infrastructure\LanguageRepository;
+use Medians\Newsletters\Infrastructure\LanguageRepository;
 
-class LanguageController extends CustomController 
+class NewsletterSubscriberController extends CustomController 
 {
 
 	/**
@@ -20,7 +20,7 @@ class LanguageController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new LanguageRepository();
+		$this->repo = new NewsletterSubscriberRepository();
 	}
 
 
