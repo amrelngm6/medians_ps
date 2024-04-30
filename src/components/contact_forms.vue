@@ -1,6 +1,5 @@
 <template>
     <div class="w-full flex overflow-auto" >
-        <!-- <translation_wizard :item="activeItem" :languages="content.languages" :system_setting="system_setting" :conf="conf" :auth="auth" v-if="showWizard" @callback="showWizard = false" /> -->
         <div  v-if="content && !showWizard" class=" w-full relative">
             
             <div class=" " v-if="content.items && !content.items.length ">
@@ -8,7 +7,7 @@
                     <div class="card-body">
                         <div class="card-px text-center pt-15 pb-15">
                             <h2 class="fs-2x fw-bold mb-0" v-text="content.title"></h2>
-                            <p class="text-gray-400 fs-4 font-semibold py-7" v-text="translate('Here you will se the list of the newsletter subscriptions')"></p>
+                            <p class="text-gray-400 fs-4 font-semibold py-7" v-text="translate('Here you will se the list of the sent messages')"></p>
                         </div>
 
                         <div class="text-center pb-15 px-5">
@@ -35,7 +34,7 @@
 
                             <div class="w-150px">
                                 <select v-model="searchField" class="form-select form-select-solid select2-hidden-accessible" data-control="select2" data-hide-search="true" data-placeholder="Rating" data-kt-ecommerce-order-filter="rating" data-select2-id="select2-data-9-zple" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
-                                    <option v-text="translate('code')"  :value="'code'" ></option>
+                                    <option v-for="col in content.columns" v-text="col.text" :value="col.value"></option>
                                 </select>
                             </div>
                         </div>
@@ -64,10 +63,6 @@
                 </div>
             </main>
     
-            <side_form_create ref="activeFormCreate" @callback="closeSide" :auth="auth" :conf="conf" :model="'PaymentMethod.create'" :columns="content.fillable"  class="col-md-3" v-if="showAddSide && !showWizard"  />
-                
-            <!-- <side_form_update ref="activeFormUpdate" @callback="closeSide" :key="activeItem" :auth="auth" :conf="conf" :model="'PaymentMethod.update'" :item="activeItem" :model_id="activeItem.payment_method_id" index="payment_method_id"  :columns="content.fillable"  class="col-md-3"  v-if="showWizard && !showAddSide" /> -->
-            
         </div>
     </div>
 </template>
@@ -132,7 +127,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('subscriber_id', data, 'NewsletterSubscriber.delete');
+                    deleteByKey('message_id', data, 'ContactForm.delete');
                     break;  
 
                     
