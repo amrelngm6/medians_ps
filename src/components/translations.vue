@@ -135,13 +135,12 @@ export default
         }
 
 
-        const searchField = ref("");
+        const searchField = ref("code");
         const searchValue = ref("");
 
         const load = () => {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
-                searchField.value = content.value.columns[1].value;
             });
         }
         
