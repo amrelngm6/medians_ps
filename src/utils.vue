@@ -50,8 +50,22 @@ export function customConfirm(message) {
   return new Promise((resolve, reject) => {
     // Create modal elements
     const modal = document.createElement('div');
-    modal.classList.add('modal');
+    modal.classList.add('swal2-container swal2-center swal2-backdrop-show overflow-y-auto');
     modal.innerHTML = `
+        <div class="swal2-popup swal2-modal swal2-icon-warning swal2-show grid" >
+            <div class="swal2-icon swal2-warning swal2-icon-show flex" >
+                <div class="swal2-icon-content">!</div>
+            </div>
+            <div class="swal2-html-container" id="swal2-html-container" style="display: block;">Are you sure you want to
+                delete Product 1?</div>
+            <div class="swal2-actions" style="display: flex;">
+                <button type="button" class="swal2-confirm btn fw-bold btn-danger"
+                    style="display: inline-block;">Yes, delete!</button>
+                <button type="button"
+                    class="swal2-cancel btn fw-bold btn-active-light-primary" style="display: inline-block;">No,
+                    cancel</button>
+            </div>
+        </div>
       <div class="modal-content">
         <p>${message}</p>
         <button id="confirmBtn">Confirm</button>
