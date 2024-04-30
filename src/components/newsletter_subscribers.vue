@@ -79,7 +79,7 @@
 import delete_icon from '@/components/svgs/trash.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
-import ref from 'vue';
+import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 
 
