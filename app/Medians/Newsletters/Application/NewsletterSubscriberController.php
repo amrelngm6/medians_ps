@@ -149,6 +149,7 @@ class NewsletterSubscriberController extends CustomController
 
 	public function validate($params) 
 	{
+		throw new \Exception(json_encode(array('result'=>translate('email_already_found'), 'error'=>1)), 1);
 		if (empty($params['email']))
 		{
         	throw new \Exception(json_encode(array('result'=>translate('Email EMPTY'), 'error'=>1)), 1);
