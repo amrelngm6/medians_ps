@@ -177,11 +177,12 @@ let arr = Array.from(count);
 arr.map(function (item) {
   let startnumber = 0;
 
+  const n = item.innerHTML;
   function counterup() {
     startnumber++;
     item.innerHTML = startnumber;
 
-    if (startnumber == item.dataset.number) {
+    if (startnumber == n) {
       clearInterval(stop);
     }
   }
