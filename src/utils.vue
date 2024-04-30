@@ -56,8 +56,7 @@ export function customConfirm(message) {
             <div class="swal2-icon swal2-warning swal2-icon-show flex" >
                 <div class="swal2-icon-content">!</div>
             </div>
-            <div class="swal2-html-container" id="swal2-html-container" style="display: block;">Are you sure you want to
-                delete Product 1?</div>
+            <div class="swal2-html-container" id="swal2-html-container" style="display: block;">${message}</div>
             <div class="swal2-actions" style="display: flex;">
                 <button type="button" class="swal2-confirm btn fw-bold btn-danger"
                     style="display: inline-block;">Yes, delete!</button>
