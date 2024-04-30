@@ -519,6 +519,10 @@ class APIController extends CustomController
 					return response((new Newsletters\Application\NewsletterSubscriberController())->delete());
 					break;
 	
+				case 'ContactForm.delete':
+					return response((new Forms\Application\ContactFormController())->delete());
+					break;
+	
 
 			}
 
