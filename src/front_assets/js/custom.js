@@ -22,7 +22,10 @@
     12. scrollTop
 
 -----------------------------------------------------------------------------------*/
-/*- 01. logodata -*/ 
+/*- 01. logodata -*/
+// import { showAlert } from "@/utils.vue";
+
+ 
 
 jQuery(document).ready(function($){
     if ( $.isFunction($.fn.owlCarousel) ) {
@@ -423,5 +426,55 @@ $(function() {
 window.onscroll = calcScrollValue;
 window.onload = calcScrollValue;
 
+
+/**
+ * Show alert
+ */
+function showAlert(text = '', duration=5000)
+{
+  Toastify({
+    text: "This is a toast",
+    duration: duration,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "center", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} // Callback after click
+  }).showToast();
+}
+
+/**
+ * Form submit
+ */
+jQuery(document).on('submit', 'form', function (e) {
+  showAlert();
+  e.preventDefault();
+
+  let action = $(this).attr('action');
+
+  $.ajax({
+      url: action,
+      type: "POST",
+      data: new FormData(this),
+      dataType: "json",
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (html) {
+
+          if (html && html.error) {
+              alert(html.result ?? html.error)
+          } else if (html && html.result) {
+              showAlert(html.result ?? '')
+          }
+
+      }
+  });
+});
 
 // end
