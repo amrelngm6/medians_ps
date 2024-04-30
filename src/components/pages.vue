@@ -39,7 +39,7 @@
                 <datatabble 
                     :search-field="searchField"
                     :search-value="searchValue"
-                    alternating class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
+                    alternating class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('is_rtl')" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
                     <template #item-details="item">
                         <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('details', item)">

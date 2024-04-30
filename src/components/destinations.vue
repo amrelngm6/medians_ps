@@ -48,7 +48,7 @@
                 <hr class="mt-2" />
                 <div class="w-full bg-white">
                     
-                    <datatabble :body-text-direction="translate('lang') == 'ar' ? 'right' : 'left'" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
+                    <datatabble :body-text-direction="translate('is_rtl')" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
                         <template #item-picture="item">
                             <img :src="item.picture" class="w-8 h-8 rounded-full" />
