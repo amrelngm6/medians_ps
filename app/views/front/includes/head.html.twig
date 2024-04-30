@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{lang_key}}">
 <head>
-    
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{item.content.seo_title ? item.content.seo_title : (item.content ? item.content.title : 'Medians SaaS Routes Transportation System')}}</title>
-    <meta name="description" content="{{item.content.seo_desc ? item.content.seo_desc : 'Medians SaaS Routes Transportation System, with custom trips feature.'}}">
+    <title>{{item.seo_title != '' ? item.seo_title : (item.title ? item.title : 'Medians SaaS Routes Transportation System')}}</title>
+    <meta name="description" content="{{item.seo_desc ? item.seo_desc : 'Medians SaaS Routes Transportation System, with custom trips feature.'}}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="canonical" href="{{app.request.uri}}">
  
