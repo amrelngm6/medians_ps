@@ -127,6 +127,8 @@ const collected_cash = defineAsyncComponent(() => import('@/components/wallet/co
 
 const translations = defineAsyncComponent(() => import('@/components/translations.vue') );
 
+const newsletter_subscribers = defineAsyncComponent(() => import('@/components/newsletter_subscribers.vue') );
+
 
 
 export default {
@@ -180,6 +182,7 @@ export default {
         collected_cash,
         languages,
         translations,
+        newsletter_subscribers,
         get_started,
         translate,
         'help_messages':HelpMessages,
