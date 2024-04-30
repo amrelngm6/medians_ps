@@ -83,6 +83,7 @@ export function deleteByKey(itemKey, itemValue, type) {
 // Example usage:
     customConfirm(translate('confirm_delete'))
     .then((result) => {
+        console.log('Promise');
         if (result) {
             var params = new URLSearchParams();
             params.append('type', type)
@@ -99,6 +100,8 @@ export function deleteByKey(itemKey, itemValue, type) {
         } else {
         console.log('Canceled');
         }
+    }).error((error) => {
+        console.log(error);
     });
 
 
