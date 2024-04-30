@@ -958,6 +958,8 @@ ul.list {
     height: 60px;
 }
 input[type="text"] ,
+input[type="tel"] ,
+input[type="number"] ,
 .subscribe  input[type="email"] {
     border-radius: 50px;
     width: 100%;
