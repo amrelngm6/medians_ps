@@ -58,13 +58,14 @@
                   </div>
             </div>
         </div>
+        {% set currentDate = date() %}
         <div class="copyrights">
             <div class="d-flex align-items-center">
                 <a href="/"><img width="150" src="{{app.SystemSetting.logo}}" alt="logo"></a>
                 <div class="boder"></div>
                 <span>Phone No.  <a href="callto:{{app.SystemSetting.footer_phone}}">{{app.SystemSetting.footer_phone}}</a></span>
             </div>
-            <p>Copyright © <a href="#">{{app.SystemSetting.sitename}}</a> 2023. All Rights Reserved.</p>
+            <p>Copyright © <a href="#">{{app.SystemSetting.sitename}}</a> {{currentDate|date('Y')}}. All Rights Reserved.</p>
         </div>
     </div>
     <img src="/uploads/img/dots-shaps.png" alt="dots-shaps" class="dots-shaps">
