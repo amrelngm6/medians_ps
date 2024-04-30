@@ -313,6 +313,9 @@ if(isset($app->auth()->id))
     /** @return Subscriber */
     RouteHandler::get('/admin/newsletter_subscribers', Medians\Newsletters\Application\NewsletterSubscriberController::class.'@index');
 
+    /** @return Contact Forms */
+    RouteHandler::get('/admin/contact_forms', Medians\Forms\Application\ContactFormController::class.'@index');
+
 
     /**
     * @return Content editor
