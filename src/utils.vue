@@ -3,8 +3,6 @@ import moment, { lang } from 'moment';
 import axios from 'axios'
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
 
 export function today() {
   return moment().format('YYYY-MM-DD');
