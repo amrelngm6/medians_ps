@@ -73,7 +73,7 @@
                                             <div v-for="language in langs " class="menu-item px-3">
                                                 <a v-if="language" :href="'/switch-lang/'+language.language_code" class="menu-link d-flex px-5 active">
                                                     <span class="symbol symbol-20px me-4">
-                                                        <img class="rounded-1" :src="'/uploads/img/flags/united-states.svg'" alt="">
+                                                        <img class="rounded-1" :src="language.icon" alt="">
                                                     </span> 
                                                     <span v-text="language.name"></span>
                                                 </a>
