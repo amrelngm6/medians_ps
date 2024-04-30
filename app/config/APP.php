@@ -347,7 +347,7 @@ class APP
 				array('permission'=>'NewsletterSubscriber.index', 'title'=>translate('newsletter_subscribers'),  'icon'=>'tag', 'link'=>'admin/newsletter_subscribers', 'component'=>'newsletter_subscribers'),
 			]
 			),
-			array( 'title'=>translate('localization'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
+			array( 'title'=>translate('localization'),  'icon'=>'mic', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Language.index', 'title'=>translate('Languages'),  'icon'=>'tag', 'link'=>'admin/languages', 'component'=>'languages'),
 				array('permission'=>'Translation.index', 'title'=>translate('Translations'),  'icon'=>'tag', 'link'=>'admin/translations', 'component'=>'translations'),
