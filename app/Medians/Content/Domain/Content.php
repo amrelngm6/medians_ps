@@ -53,7 +53,7 @@ class Content extends CustomModel
 		$text = str_replace(array(' ', '/', '\\', '"', "'", '&', '@', '#', '$', '(', ')', '=', '+'), '_', $text);
 		$check = Content::where('prefix', $text)->first();
 
-		return isset($check->id) ? $text.date('Ymd') : $text;
+		return strtolower(isset($check->id) ? $text.date('Ymd') : $text);
 
 	}
 
