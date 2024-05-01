@@ -235,7 +235,6 @@ export default
                 activeItem,
                 activeTab,
                 translate,
-                saveTranslation,
                 back
             };
         },
