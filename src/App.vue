@@ -394,6 +394,8 @@ export default {
                 t.loader = false;
                 handleAccess(response)
 
+            }).catch(error => {
+                showAlert(error)
             })
         },
 
