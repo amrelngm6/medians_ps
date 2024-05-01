@@ -370,9 +370,9 @@ class ParentController extends CustomController
 		
 		
 			// // Get system settings for Google Login
-			// $SystemSettings = new SystemSettingsController;
+			$SystemSettings = new SystemSettingsController;
 
-			// $settings = $SystemSettings->getAll();
+			$settings = $SystemSettings->getAll();
 
 			// $Google = new GoogleService($settings['google_client_id'], $settings['google_client_secret']);
 
@@ -392,7 +392,13 @@ class ParentController extends CustomController
 			// $user_info = $google_oauth->userinfo->get();
 
 
+		// Verify the ID token with Google
+		$googleApiUrl = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' . $params['idToken'];
 
-		return $params;
+		$response = file_get_contents($googleApiUrl);
+		$tokenInfo = json_decode($response, true);
+
+
+		return $tokenInfo;
 	}
 }
