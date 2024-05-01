@@ -197,7 +197,7 @@ export default
             params.append('type', 'HelpMessage.close')
             params.append('params[message_id]', props.item.message_id)
             params.append('params[status]', 'completed')
-            handleRequest(params, '/api/handle').then(response => {
+            handleRequest(params, '/api/update').then(response => {
                 showAlert(response.result)
             })
         }

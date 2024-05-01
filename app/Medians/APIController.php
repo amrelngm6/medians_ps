@@ -40,25 +40,19 @@ class APIController extends CustomController
 	 * Model object 
 	 * 
 	 */
-	public function handle()
+	public function handle($path)
 	{
 
 		$this->app = new \config\APP;
-
+		$request = $this->app->request();
 		$return = [];
-		switch ($this->app->request()->get('type')) 
+		switch ($path) 
 		{
-			case 'create_trip':
-				return (new \Medians\Trips\Application\TripController())->createTrip();
+			case 'load_config':
+				$return = loadConfig($request->get('component'), []);
 				break;
 
-			case 'HelpMessage.close':
-				return (new Help\Application\HelpMessageController())->close();
-				break;
-					
 		}
-
-		$return = isset($controller) ? $controller->find($this->app->request()->get('id')) : $return;
 
 		return response(json_encode(['status'=>true, 'result'=>$return]));
 	} 

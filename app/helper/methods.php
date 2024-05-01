@@ -13,20 +13,7 @@ use Shared\simple_html_dom;
 function render($template, $data, $responseType = 'html')
 {
 
-
-    try {
-        
-        $app = new \config\APP;
-            
-        $business_setting = $app->BusinessSettings();
-        $setting = $app->SystemSetting();
-        $languages = $app->Languages();  
-        
-            
-    } catch (\Exception $e) {
-        echo ('CHECK DATABASE CONNECTION ');
-        die();
-    }
+    $app = new \config\APP;
 
     /**
      * Check if response is required in JSON
@@ -45,18 +32,7 @@ function render($template, $data, $responseType = 'html')
     
     $path = isset($data['load_vue']) ? 'views/admin/vue.html.twig' : $template;
     $app = new \config\APP;
-    $data['component'] = $template;
-    $data['app'] = $app;
-    $data['app']->auth = $app->auth();
-    $data['app']->business_setting = $business_setting;
-    $data['app']->setting = $setting;
-    $data['langs'] = $languages;
-    $data['app']->currency = $app->currency();
-    $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
-    $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
-    $data['lang'] = new helper\Lang($_SESSION['lang']);
-    $data['lang_json'] = (new helper\Lang($_SESSION['lang']))->load();
-    $data['lang_key'] = substr($_SESSION['lang'],0,2);
+    $data = loadConfig($template, $data);
     $output =  $app->template()->render($path, $data);
 
     $isFront ? file_put_contents($_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html', $output) : '';
@@ -69,6 +45,43 @@ function render($template, $data, $responseType = 'html')
     }
  } 
 
+
+ /**
+  * Load the main configuration in Array
+  */
+  function loadConfig($template, $data)
+  {
+    
+
+    try {
+        
+        $app = new \config\APP;
+            
+        $business_setting = $app->BusinessSettings();
+        $setting = $app->SystemSetting();
+        $languages = $app->Languages();  
+        
+            
+    } catch (\Exception $e) {
+        echo ('CHECK DATABASE CONNECTION ');
+        die();
+    }
+    $app = new \config\APP;
+    $data['component'] = $template;
+    $data['app'] = $app;
+    $data['app']->auth = $app->auth();
+    $data['app']->business_setting = $business_setting;
+    $data['app']->setting = $setting;
+    $data['app']->currency = $app->currency();
+    $data['menu'] = $app->menu();
+    $data['langs'] = $languages;
+    $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
+    $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
+    $data['lang'] = new helper\Lang($_SESSION['lang']);
+    $data['lang_json'] = (new helper\Lang($_SESSION['lang']))->load();
+    $data['lang_key'] = substr($_SESSION['lang'],0,2);
+    return $data;
+  }
 
 
 /**

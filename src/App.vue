@@ -313,22 +313,33 @@ export default {
 
             const mountEl = document.getElementById("root-parent");
             let propsSet = { ...mountEl.dataset };
-            this.url = propsSet ? propsSet.url : '/';
-            this.activeTab = (propsSet && propsSet.page) ? propsSet.page : this.defaultPage();
-            handleGetRequest(this.url+this.activeTab+'?load=json').then(response => {
+            handleGetRequest('/api/load_config?component='+propsSet.component).then(response => {
                 console.log(response)
+                this.setPropsData(response, response.app, propsSet.page)
             })
-            this.auth = propsSet ? JSON.parse(propsSet.auth) : {};
-            this.main_menu = propsSet ? JSON.parse(propsSet.menu) : {};
-            this.lang = propsSet ? JSON.parse(propsSet.lang) : {};
-            this.setting = propsSet ? JSON.parse(propsSet.setting) : {};
-            this.system_setting = propsSet ? JSON.parse(propsSet.system_setting) : {};
-            this.business_setting = (propsSet && propsSet.business_setting) ? JSON.parse(propsSet.business_setting) : {};
-            this.conf = propsSet ? JSON.parse(propsSet.conf) : {};
-            this.activeComponent = (propsSet && propsSet.component) ? propsSet.component : this.defaultPage();
-            this.currency = (propsSet && propsSet.currency) ? JSON.parse(propsSet.currency) : {};
-            this.langs = (propsSet && propsSet.langs) ? JSON.parse(propsSet.langs) : {};
+        },
 
+        /**
+         * Get the props for App root
+         */
+        setPropsData(response, app, page)
+        {
+            if (app && response)
+            {
+                this.url = app.conf ? app.conf.url : '/';
+                this.activeTab = page ?? this.defaultPage();
+                this.auth = app.auth ?? {};
+                this.main_menu = app.menu ?? {};
+                this.setting = app.setting ?? {};
+                this.system_setting = app.system_setting ?? {};
+                this.business_setting = app.business_setting ?? {};
+                this.conf = app['CONF'] ?? {};
+                this.activeComponent = response.component ?? this.defaultPage();
+                this.currency = app.currency ?? {};
+                this.lang = response.lang_json ?? {};
+                this.langs = response.langs ?? {};
+            }
+            
         },
 
 
