@@ -371,7 +371,7 @@ class ParentController extends CustomController
 		// Verify the ID token with Google
 		$googleApiUrl = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' . $params['idToken'];
 
-		$tokenInfo = json_decode(file_get_contents($googleApiUrl), true);
+		$tokenInfo = (object) json_decode(file_get_contents($googleApiUrl), true);
 
 		if (empty($tokenInfo->email))
 		{
