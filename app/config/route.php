@@ -316,9 +316,6 @@ if(isset($app->auth()->id))
     /** @return Contact Forms */
     RouteHandler::get('/admin/contact_forms', Medians\Forms\Application\ContactFormController::class.'@index');
 
-    /** @return Contact Forms */
-    RouteHandler::get('/admin/blog', Medians\Blog\Application\BlogController::class.'@index');
-
 
     /**
     * @return Content editor
