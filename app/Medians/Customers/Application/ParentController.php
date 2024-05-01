@@ -375,7 +375,7 @@ class ParentController extends CustomController
 
 		if (empty($tokenInfo->email))
 		{
-			return null;
+			return ['error'=> translate('Code is invalid')];
 		}
 
 		$customer = $this->repo->findParentByEmail($tokenInfo->email);
