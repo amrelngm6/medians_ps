@@ -192,36 +192,12 @@ export default
                 fields.value = props.item.translation ?? []
             }
 
-            const saveTranslation = () => {
-                var params = new URLSearchParams();
-                let array = JSON.parse(JSON.stringify(activeItem.value));
-                let keys = Object.keys(array)
-                let k, d, value = '';
-                for (let i = 0; i < keys.length; i++) {
-                    k = keys[i]
-                    d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
-                    params.append('params[' + k + ']', d)
-                }
-                for (let i = 0; i < props.languages.length; i++) {
-                    k = props.languages[i].language_code
-                    d = fields.value[k] ?? ''
-                    params.append('params[translation][' + k + ']', d)
-                }
-
-                let type = array.translation_id > 0 ? 'update' : 'create';
-                params.append('type', 'Translation.' + type)
-                handleRequest(params, '/api/' + type).then(response => {
-                    handleAccess(response)
-                })
-            }
-
             const back = () => {
                 emit('callback');
             }
 
-
             const progressWidth = () => {
-                let requiredData = ['name', 'description', /* 'single_cost_month', 'single_cost_querter', 'single_cost_year',*/ 'double_cost_month', 'double_cost_quarter', 'double_cost_year', 'status'];
+                let requiredData = ['name', 'description',  'double_cost_month', 'double_cost_quarter', 'double_cost_year', 'status'];
 
                 return getProgressWidth(requiredData, activeItem);
             }

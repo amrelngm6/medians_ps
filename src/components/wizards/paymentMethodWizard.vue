@@ -306,7 +306,7 @@ export default
 
 
             const progressWidth = () => {
-                let requiredData = ['name', 'description', /* 'single_cost_month', 'single_cost_querter', 'single_cost_year',*/ 'double_cost_month', 'double_cost_quarter', 'double_cost_year', 'status'];
+                let requiredData = ['name', 'description',  'double_cost_month', 'double_cost_quarter', 'double_cost_year', 'status'];
 
                 return getProgressWidth(requiredData, activeItem);
             }
