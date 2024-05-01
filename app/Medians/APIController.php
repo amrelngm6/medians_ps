@@ -51,10 +51,9 @@ class APIController extends CustomController
 			case 'load_config':
 				$return = loadConfig($request->get('component'), []);
 				break;
-
 		}
 
-		echo(json_encode(['status'=>true, 'result'=>$return]));
+		echo json_encode($return);
 	} 
 
 	/**
