@@ -388,6 +388,7 @@ class ParentController extends CustomController
 			$customer = $this->repo->store($data);
 		}
 		
+		$Auth = new \Medians\Auth\Application\AuthService;
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$customer->customer_id);
 		$generateToken = $customer->insertCustomField('API_token', $token);
 		
