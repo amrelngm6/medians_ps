@@ -144,7 +144,7 @@ export function translate(i) {
     console.log(currentInstance)
 
     // Access the root Vue instance
-    const rootVue = currentInstance.appContext.config.globalProperties.$root;
+    const rootVue = currentInstance.root.data;
     console.log(rootVue)
     let key = i.toLowerCase().replaceAll(' ', '_');
     let k = i.replaceAll('_', ' ');
