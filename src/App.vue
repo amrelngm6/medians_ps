@@ -20,7 +20,7 @@
                                 <component @callback="switchTab" class="pt-8 px-1 min-h-400px" ref="activeTab" :business_setting="business_setting" :types-list="typesList"  :key="activeComponent" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent" :currency="currency"></component>
                             </transition>
                         </div>
-                        <div class="w-full" v-if="!checkAccess()">
+                        <div class="w-full" v-if="!checkAccess() && !loader">
                           <get_started :currency="currency" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></get_started>
                         </div>
 
@@ -194,7 +194,7 @@ export default {
         return {
             langs: [],
             date: '',
-            loader: false,
+            loader: true,
             activeItem: null,
             showAddSide: false,
             showEditSide: false,
@@ -259,7 +259,6 @@ export default {
         },
         checkAccess()
         {
-            console.log(this.auth);
           if (this.auth && this.auth.role_id == 1){
             return true;
           }
@@ -316,6 +315,7 @@ export default {
             handleGetRequest('/api/load_config?component='+propsSet.component).then(response => {
                 console.log(response)
                 this.setPropsData(response, response.app, propsSet.page)
+                this.loader = false;
             })
         },
 
