@@ -311,11 +311,13 @@ export default {
         setProps()
         {
 
-            handleGetRequest('').then(response => {
-                console.log(response)
-            })
             const mountEl = document.getElementById("root-parent");
             let propsSet = { ...mountEl.dataset };
+            this.url = propsSet ? propsSet.url : '/';
+            this.activeTab = (propsSet && propsSet.page) ? propsSet.page : this.defaultPage();
+            handleGetRequest(this.url+this.activeTab+'?load=json').then(response => {
+                console.log(response)
+            })
             this.auth = propsSet ? JSON.parse(propsSet.auth) : {};
             this.main_menu = propsSet ? JSON.parse(propsSet.menu) : {};
             this.lang = propsSet ? JSON.parse(propsSet.lang) : {};
@@ -323,8 +325,6 @@ export default {
             this.system_setting = propsSet ? JSON.parse(propsSet.system_setting) : {};
             this.business_setting = (propsSet && propsSet.business_setting) ? JSON.parse(propsSet.business_setting) : {};
             this.conf = propsSet ? JSON.parse(propsSet.conf) : {};
-            this.url = propsSet ? propsSet.url : '/';
-            this.activeTab = (propsSet && propsSet.page) ? propsSet.page : this.defaultPage();
             this.activeComponent = (propsSet && propsSet.component) ? propsSet.component : this.defaultPage();
             this.currency = (propsSet && propsSet.currency) ? JSON.parse(propsSet.currency) : {};
             this.langs = (propsSet && propsSet.langs) ? JSON.parse(propsSet.langs) : {};
