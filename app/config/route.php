@@ -85,9 +85,6 @@ RouteHandler::post('/reset-password-code', \Medians\Auth\Application\AuthService
  */
 RouteHandler::get('/page/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
 
-// API GET requests
-RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
-
 /**
 * Restricted access requests 
 */
@@ -111,6 +108,8 @@ if(!empty($app->auth()))
 
     RouteHandler::get('/admin/load_currencies', \Medians\Currencies\Application\CurrencyService::class.'@load');
 
+    // API GET requests
+    RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
 
     RouteHandler::get('/logout', function () 
     {
