@@ -389,7 +389,7 @@ class ParentController extends CustomController
 				$customer = $this->repo->store($data);
 
 			} catch (\Throwable $th) {
-				return ['error'=>$th->getMessage()];
+				return ['error'=> translate('This email can not be used choose another one')];
 			}
 		}
 		
