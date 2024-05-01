@@ -92,7 +92,6 @@ export function deleteByKey(itemKey, itemValue, type) {
     
     customConfirm(translate('confirm_delete'))
     .then((result) => {
-        console.log('Promise');
         if (result) {
             var params = new URLSearchParams();
             params.append('type', type)
@@ -106,8 +105,6 @@ export function deleteByKey(itemKey, itemValue, type) {
                 }, 2000);
 
             })
-        } else {
-        console.log('Canceled');
         }
     });
 

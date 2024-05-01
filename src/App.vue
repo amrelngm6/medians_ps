@@ -313,7 +313,6 @@ export default {
             const mountEl = document.getElementById("root-parent");
             let propsSet = { ...mountEl.dataset };
             handleGetRequest('/api/load_config?component='+propsSet.component).then(response => {
-                console.log(response)
                 this.setPropsData(response, response.app, propsSet.page)
                 this.loader = false;
             })
