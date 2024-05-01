@@ -136,6 +136,8 @@ export async function handleRequest(params, url = '/api') {
 }
 
 export function translate(i) {
+    const rootVue = Vue.prototype.$root;
+    console.log(rootVue)
     let key = i.toLowerCase().replaceAll(' ', '_');
     let k = i.replaceAll('_', ' ');
     let un_key = k.charAt(0).toUpperCase() + k.slice(1);
