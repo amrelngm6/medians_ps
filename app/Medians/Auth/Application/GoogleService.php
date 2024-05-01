@@ -98,10 +98,7 @@ class GoogleService
 				return null;
 			}  
 
-			if (isset($user->field['activation_token']))
-				echo $this->app->redirect('./activate-account/'.$user->field['activation_token']);
-			else
-				echo $this->app->redirect('/dashboard');
+			echo $this->app->redirect('/dashboard');
 
 		} catch (Exception $e) {
 			return array('error'=>$e->getMessage());
