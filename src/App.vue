@@ -44,7 +44,7 @@ import master_dashboard from '@/components/master_dashboard.vue';
 import trips from '@/components/trips.vue'; 
 import HelpMessages from '@/components/help_messages.vue'; 
 import notifications_events from '@/components/notifications_events.vue'; 
-import {translate, handleAccess, handleRequest, showAlert} from '@/utils.vue';
+import {translate, handleAccess, handleRequest, handleGetRequest, showAlert} from '@/utils.vue';
 
 const get_started = defineAsyncComponent(() => import('@/components/wizards/get-started.vue') );
 
@@ -311,6 +311,9 @@ export default {
         setProps()
         {
 
+            handleGetRequest('').then(response => {
+                console.log(response)
+            })
             const mountEl = document.getElementById("root-parent");
             let propsSet = { ...mountEl.dataset };
             this.auth = propsSet ? JSON.parse(propsSet.auth) : {};
