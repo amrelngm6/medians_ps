@@ -383,7 +383,7 @@ class ParentController extends CustomController
 		{
 			try {
 				
-				$data = [];
+				$data = ['status'=>'on'];
 				$data['name'] = $tokenInfo->name;
 				$data['email'] = $tokenInfo->email;
 				$customer = $this->repo->store($data);
