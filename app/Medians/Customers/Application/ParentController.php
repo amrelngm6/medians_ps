@@ -376,7 +376,7 @@ class ParentController extends CustomController
 
 			$Google = new GoogleService($settings['google_client_id'], $settings['google_client_secret']);
 
-			$code = $params['code'];
+			$code = $params['idToken'];
 
 		  	$Google->client->setAccessToken($Google->client->fetchAccessTokenWithAuthCode($code));
 
