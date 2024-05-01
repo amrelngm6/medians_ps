@@ -124,6 +124,10 @@ class MobileAPIController extends CustomController
 			case 'Parent.login':
 				$return =  (new Customers\Application\ParentController())->login(); 
 				break;
+			
+			case 'Parent.loginWithGoogle':
+				$return =  (new Customers\Application\ParentController())->loginWithGoogle(); 
+				break;
 
 			case 'Driver.login':
 				$return =  (new Drivers\Application\DriverController())->login(); 
