@@ -85,6 +85,8 @@ RouteHandler::post('/reset-password-code', \Medians\Auth\Application\AuthService
  */
 RouteHandler::get('/page/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
 
+// API GET requests
+RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
 /**
 * Restricted access requests 
 */
