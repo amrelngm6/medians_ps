@@ -59,6 +59,11 @@ class APP
 
 	public function setLang()
 	{
+		if (!empty($this->request()->headers->get('token')))
+		{
+			$_SESSION['site_lang'] = $this->request()->headers->get('token');
+		}
+		
 		if (isset($_SERVER['HTTP_REFERER']))
 		{
 			$arr = explode('/', $_SERVER['HTTP_REFERER']);
