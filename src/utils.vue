@@ -145,13 +145,11 @@ export function translate(i) {
 
     // Access the root Vue instance
     const rootVue = currentInstance.root.data;
-    console.log(rootVue)
     let key = i.toLowerCase().replaceAll(' ', '_');
     let k = i.replaceAll('_', ' ');
     let un_key = k.charAt(0).toUpperCase() + k.slice(1);
 
-    let langEle = document.getElementById('root-parent');
-    let lang = $(langEle).data('lang');
+    let lang = rootVue.lang;
     return lang[key] ? lang[key] : un_key;
 }
 
