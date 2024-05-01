@@ -344,8 +344,8 @@ class APP
 				array('permission'=>'Pages.index', 'title'=>translate('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
-				array('permission'=>'NewsletterSubscriber.index', 'title'=>translate('newsletter_subscribers'),  'icon'=>'tag', 'link'=>'admin/newsletter_subscribers', 'component'=>'newsletter_subscribers'),
 				array('permission'=>'ContactForm.index', 'title'=>translate('contact_forms'),  'icon'=>'tag', 'link'=>'admin/contact_forms', 'component'=>'contact_forms'),
+				array('permission'=>'NewsletterSubscriber.index', 'title'=>translate('newsletter_subscribers'),  'icon'=>'tag', 'link'=>'admin/newsletter_subscribers', 'component'=>'newsletter_subscribers'),
 			]
 			),
 			array( 'title'=>translate('localization'),  'icon'=>'mic', 'link'=>'#localization', 'superadmin'=> true, 'sub'=>
