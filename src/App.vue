@@ -329,7 +329,7 @@ export default {
                 this.url = app.conf ? app.conf.url : '/';
                 this.activeTab = page ?? this.defaultPage();
                 this.auth = app.auth ?? {};
-                this.main_menu = app.menu ?? {};
+                this.main_menu = response.menu ?? {};
                 this.setting = app.setting ?? {};
                 this.system_setting = app.system_setting ?? {};
                 this.business_setting = app.business_setting ?? {};
