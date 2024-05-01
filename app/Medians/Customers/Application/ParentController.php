@@ -389,13 +389,12 @@ class ParentController extends CustomController
 		}
 		
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$customer->customer_id);
-		$generateToken = $checkLogin->insertCustomField('API_token', $token);
-		
+		$generateToken = $customer->insertCustomField('API_token', $token);
 		
 		return 
 		[
 			'success'=>true, 
-			'customer_id'=> isset($checkLogin->customer_id) ? $checkLogin->customer_id : null, 
+			'customer_id'=> isset($customer->customer_id) ? $customer->customer_id : null, 
 			'token'=>$generateToken->value
 		];
 
