@@ -2,8 +2,10 @@
 namespace Medians\Customers\Application;
 
 use Shared\dbaser\CustomController;
-
+use Medians\Settings\Application\SystemSettingsController;
 use Medians\Customers\Infrastructure\ParentRepository;
+use Medians\Auth\Application\GoogleService;
+use Google_Service_Oauth2;
 
 class ParentController extends CustomController 
 {
@@ -366,6 +368,31 @@ class ParentController extends CustomController
 	{
 		$params = (array) json_decode($this->app->request()->get('params'));
 		
-		return $params;
+		
+			// Get system settings for Google Login
+			$SystemSettings = new SystemSettingsController;
+
+			$settings = $SystemSettings->getAll();
+
+			$Google = new GoogleService($settings['google_client_id'], $settings['google_client_secret']);
+
+			$code = params['code'];
+
+		  	$Google->client->setAccessToken($Google->client->fetchAccessTokenWithAuthCode($code));
+
+		  	// Check if code is expired or invalid
+		  	if($Google->client->isAccessTokenExpired())
+		  	{
+	  			return false;
+		  	}
+
+
+	  		// Get user data through API
+			$google_oauth = new Google_Service_Oauth2($Google->client);
+			$user_info = $google_oauth->userinfo->get();
+
+
+
+		return $user_info;
 	}
 }
