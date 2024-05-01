@@ -381,10 +381,16 @@ class ParentController extends CustomController
 		$customer = $this->repo->findParentByEmail($tokenInfo->email);
 		if (empty($customer))
 		{
-			$data = [];
-			$data['name'] = $tokenInfo->name;
-			$data['email'] = $tokenInfo->email;
-			$customer = $this->repo->store($data);
+			try {
+				
+				$data = [];
+				$data['name'] = $tokenInfo->name;
+				$data['email'] = $tokenInfo->email;
+				$customer = $this->repo->store($data);
+
+			} catch (\Throwable $th) {
+				return ['error'=>$th->getMessage()];
+			}
 		}
 		
 		$Auth = new \Medians\Auth\Application\AuthService;
