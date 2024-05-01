@@ -373,6 +373,32 @@ class ParentController extends CustomController
 
 		$tokenInfo = json_decode(file_get_contents($googleApiUrl), true);
 
+		if (empty($tokenInfo->email))
+		{
+			return null;
+		}
+
+		$customer = $this->repo->findByEmail($tokenInfo->email);
+		
+		if (empty($customer))
+		{
+			$data = [];
+			$data['name'] = $tokenInfo->name;
+			$data['email'] = $tokenInfo->email;
+			$customer = $this->repo->store($data);
+		}
+		
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$customer->customer_id);
+		$generateToken = $checkLogin->insertCustomField('API_token', $token);
+		
+		
+		return 
+		[
+			'success'=>true, 
+			'customer_id'=> isset($checkLogin->customer_id) ? $checkLogin->customer_id : null, 
+			'token'=>$generateToken->value
+		];
+
 		return $tokenInfo;
 	}
 }
