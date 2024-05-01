@@ -1,5 +1,5 @@
 <script>
-import Vue from 'vue';
+import { getCurrentInstance } from 'vue';
 import moment, { lang } from 'moment';
 import axios from 'axios'
 import { toast } from 'vue3-toastify';
@@ -137,7 +137,13 @@ export async function handleRequest(params, url = '/api') {
 }
 
 export function translate(i) {
-    const rootVue = Vue.prototype.$root;
+
+
+    // Access the current Vue instance
+    const currentInstance = getCurrentInstance();
+
+    // Access the root Vue instance
+    const rootVue = currentInstance.appContext.config.globalProperties.$root;
     console.log(rootVue)
     let key = i.toLowerCase().replaceAll(' ', '_');
     let k = i.replaceAll('_', ' ');
