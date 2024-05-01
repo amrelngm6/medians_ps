@@ -45,7 +45,7 @@ class APP
 	function __construct()
 	{
 
-		$this->setLang(); // Set the active language 
+		// $this->setLang(); // Set the active language 
 
 		$this->currentPage = $this->request()->getPathInfo(); // Filter the request URI to get the current page
 
@@ -63,7 +63,7 @@ class APP
 		{
 			$arr = explode('/', $_SERVER['HTTP_REFERER']);
 
-			if (in_array(end($arr), ['arabic', 'english']))
+			if (in_array(end($arr), array_column($this->Languages()->toArray(), 'language_code') ))
 			{
 				$_SESSION['site_lang'] = end($arr);
 				$_SESSION['lang'] = end($arr);
