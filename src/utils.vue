@@ -1,4 +1,5 @@
 <script>
+import Vue from 'vue';
 import moment, { lang } from 'moment';
 import axios from 'axios'
 import { toast } from 'vue3-toastify';
