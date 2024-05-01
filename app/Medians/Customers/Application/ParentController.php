@@ -368,36 +368,10 @@ class ParentController extends CustomController
 	{
 		$params = (array) json_decode($this->app->request()->get('params'));
 		
-		
-			// // Get system settings for Google Login
-			$SystemSettings = new SystemSettingsController;
-
-			$settings = $SystemSettings->getAll();
-
-			// $Google = new GoogleService($settings['google_client_id'], $settings['google_client_secret']);
-
-			// $code = $params['idToken'];
-
-		  	// $Google->client->setAccessToken($Google->client->fetchAccessTokenWithAuthCode($code));
-
-		  	// // Check if code is expired or invalid
-		  	// if($Google->client->isAccessTokenExpired())
-		  	// {
-	  		// 	return false;
-		  	// }
-
-
-	  		// // Get user data through API
-			// $google_oauth = new Google_Service_Oauth2($Google->client);
-			// $user_info = $google_oauth->userinfo->get();
-
-
 		// Verify the ID token with Google
 		$googleApiUrl = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' . $params['idToken'];
 
-		$response = file_get_contents($googleApiUrl);
-		$tokenInfo = json_decode($response, true);
-
+		$tokenInfo = json_decode(file_get_contents($googleApiUrl), true);
 
 		return $tokenInfo;
 	}
