@@ -27,6 +27,11 @@ class ParentRepository  extends CustomerRepository
 		return Parents::where('model', Parents::class)->find($customer_id);
 	}
 
+	public function findParentByEmail($email)
+	{
+		return Parents::where('model', Parents::class)->where( 'email', $email)->first();
+	}
+
 	public function get($limit = 100)
 	{
 		return Parents::where('business_id', $this->business_id)->where('model', Parents::class)->with('route_location', 'students', 'wallet')->limit($limit)->get();

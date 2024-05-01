@@ -378,10 +378,9 @@ class ParentController extends CustomController
 			return null;
 		}
 
-		$customer = $this->repo->findByEmail($tokenInfo->email);
+		$customer = $this->repo->findParentByEmail($tokenInfo->email);
 		if (empty($customer))
 		{
-			print_r('new user');
 			$data = [];
 			$data['name'] = $tokenInfo->name;
 			$data['email'] = $tokenInfo->email;
@@ -399,6 +398,5 @@ class ParentController extends CustomController
 			'token'=>$generateToken->value
 		];
 
-		return $tokenInfo;
 	}
 }
