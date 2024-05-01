@@ -49,12 +49,6 @@ class ContentRepository
 		}
 	}
 
-	public function categories($model)
-	{
-		return Category::where('model', $model)->get();
-	}
-
-
 
 
 

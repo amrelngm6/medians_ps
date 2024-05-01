@@ -67,32 +67,6 @@ class PageRepository
 		->get();
 	}
 
-	public function search($request, $limit = 20)
-	{
-		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['page_id'=>0, 'content'=>['title'=>$title]]));
-
-		return $this->similar( $arr, $limit);
-	}
-
-
-	public function similar($item, $limit = 3)
-	{
-		if (empty($item->content->title))
-			return null;
-		
-		$title = str_replace([' ','-'], '%', $item->content->title);
-
-		return Page::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
-			}
-		})
-		->where('page_id', '!=', $item->page_id)
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
-	}
-
-
 
 
 	/**

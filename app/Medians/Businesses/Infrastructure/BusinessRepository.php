@@ -87,28 +87,6 @@ class BusinessRepository
 
 	}
 
-	public function search($request, $limit = 20)
-	{
-		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['business_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
-
-		return $this->similar( $arr, $limit);
-	}
-
-
-	public function similar($item, $limit = 3)
-	{
-		$title = str_replace([' ','-'], '%', $item->content->title);
-
-		return Business::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
-			}
-		})
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
-	}
-
-
 	
 	/**
 	* Find all items between two days 

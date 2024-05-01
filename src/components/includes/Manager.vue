@@ -2,7 +2,7 @@
     <div class="media-library">
         <div class="media-library__inner">
             <header class="media-library__header">
-                Media Library
+                <span v-text="translate('Media Library')"></span>
 
                 <span class="media-library__close" @click="close">
                     <close_icon />
@@ -13,8 +13,7 @@
                 <app-medialibrary-loader />
             </div>
             <div v-else-if="error" class="media-library__error">
-                <span class="media-library__error__ttl">Oh Dear!</span>
-                <p class="media-library__error__msg">There was a serious problem... This is likely because something isn't setup properly. Please consult the documentation.</p>
+                <span class="media-library__error__ttl" v-text="translate('There is a problem')"></span>
                 <app-svg-error />
             </div>
             <div v-else class="media-library__manager">
@@ -47,7 +46,8 @@
                             class="media-library__manager__nav__button" 
                             :class="{ 'active': toggles.upload }"
                             @click="toggles.upload = !toggles.upload"
-                        >Upload</span>
+                            v-text="translate('Upload')"
+                        ></span>
                         <input class="media-library__manager__nav__search" id="medialibrary-search" type="text" placeholder="Type to search..." v-model="search">
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <div class="media-library__manager__content__images__inner">
                             <div class="media-library__manager__upload" v-if="toggles.upload">
                                 <div class="media-library__manager__upload__zone">
-                                    <a href="javascript:;"  class="media-library__manager__upload__zone__button" @click="$refs.file.click()">Add new</a>
+                                    <a href="javascript:;"  class="media-library__manager__upload__zone__button" @click="$refs.file.click()" v-text="translate('Add new')" ></a>
                                     <input name="files[]" type="file" multiple="true" ref="file" @change="uploadFilesByButton"/>
                                     <span class="media-library__manager__upload__zone__text">or drop new files here</span>
                                 </div>

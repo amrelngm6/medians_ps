@@ -82,15 +82,6 @@ class DriverRepository
 		return Driver::where('password', $password)->where('email' , $email)->first();
 	}
 
-	public function search($request, $limit = 20)
-	{
-		$title = $request->get('search');
-		$arr =  json_decode(json_encode(['driver_id'=>0, 'content'=>['title'=>$title ? $title : '-']]));
-
-		return $this->similar( $arr, $limit);
-	}
-
-	
 
 
 	/**
