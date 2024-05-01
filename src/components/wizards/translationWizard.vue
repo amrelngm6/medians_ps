@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="w-full">
-                        <div class="" v-if="activeTab == 'Info'" :key="activeTab">
+                        <form :action="'api/'+(activeItem.translation_id > 0 ? 'edit' : 'create')" v-if="activeTab == 'Info'" :key="activeTab">
                             <div class="card-body pt-0">
                                 <div class="settings-form">
                                     <div class="max-w-xl mb-6 mx-auto">
@@ -106,7 +106,7 @@
                                                     <p v-text="language.name" class="fw-bold fs-4"></p>
                                                 </label>
                                                 
-                                                <input autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+' '+translate(language.name)" v-model="fields[language.language_code]" >
+                                                <input  autocomplete="off" class="form-control form-control-solid" :placeholder="translate('Translate into')+' '+translate(language.name)" :name="'params[translation]['+language.language_code+']'" v-model="fields[language.language_code]" >
                                             </div>
                                                 
                                         </div>
@@ -119,7 +119,7 @@
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                     @click="saveTranslation" v-text="translate('Submit')"></a></p>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
