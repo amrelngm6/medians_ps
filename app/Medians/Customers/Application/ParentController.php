@@ -366,6 +366,6 @@ class ParentController extends CustomController
 	{
 		$params = (array) json_decode($this->app->request()->get('params'));
 		
-		print_r($params);
+		print_r(json_encode($params));
 	}
 }
