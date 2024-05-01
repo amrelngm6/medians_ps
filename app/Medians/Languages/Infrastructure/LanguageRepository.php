@@ -15,7 +15,7 @@ class LanguageRepository
 
 	public function get($limit = 100)
 	{
-		return Language::limit($limit)->orderBy('name','DESC')->get();
+		return Language::limit($limit)->orderBy('language_id','DESC')->get();
 	}
 
 	public function getActive()
