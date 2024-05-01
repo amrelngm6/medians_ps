@@ -331,7 +331,7 @@ export default {
                 this.auth = app.auth ?? {};
                 this.main_menu = response.menu ?? {};
                 this.setting = app.setting ?? {};
-                this.system_setting = app.system_setting ?? {};
+                this.system_setting = app.setting ?? {};
                 this.business_setting = app.business_setting ?? {};
                 this.conf = app['CONF'] ?? {};
                 this.activeComponent = response.component ?? this.defaultPage();
