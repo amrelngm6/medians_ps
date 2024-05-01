@@ -94,7 +94,6 @@ class TranslationController extends CustomController
 
 	public function store() 
 	{
-
 		$params = $this->app->request()->get('params');
 
         try {	
@@ -130,7 +129,7 @@ class TranslationController extends CustomController
 
             if ($this->repo->updateItems($params))
             {
-                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>0);
             }
         
 

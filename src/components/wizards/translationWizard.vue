@@ -119,7 +119,7 @@
                             
                             <p class="text-center mt-10"><button
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="saveTranslation" v-text="translate('Submit')"></button></p>
+                                     v-text="translate('Submit')"></button></p>
                         </form>
                     </div>
                 </div>
