@@ -73,6 +73,8 @@
                     <div class="w-full">
                         <form :action="'/api/'+(activeItem.translation_id > 0 ? 'update' : 'create')" v-if="activeTab == 'Info'" :key="activeTab">
                             <input type="hidden" name="type" :value="activeItem.translation_id > 0 ? 'update' : 'create'" />
+                            <input type="hidden" name="params[code]" :value="activeItem.code ?? ''" />
+                            <input type="hidden" name="params[translation_id]" :value="activeItem.translation_id ?? ''" />
                             <div class="card-body pt-0">
                                 <div class="settings-form">
                                     <div class="max-w-xl mb-6 mx-auto">
