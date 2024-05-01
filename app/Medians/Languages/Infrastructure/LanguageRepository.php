@@ -20,7 +20,7 @@ class LanguageRepository
 
 	public function getActive()
 	{
-		return Language::where('status', 'on')->orderBy('language_code','DESC')->get();
+		return Language::where('status', 'on')->orderBy('language_id','ASC')->get();
 	}
 
 
