@@ -87,6 +87,7 @@ RouteHandler::get('/page/(:all)', \Medians\Pages\Application\PageController::cla
 
 // API GET requests
 RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
+
 /**
 * Restricted access requests 
 */

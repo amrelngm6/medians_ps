@@ -54,7 +54,7 @@ class APIController extends CustomController
 
 		}
 
-		return response(json_encode(['status'=>true, 'result'=>$return]));
+		echo(json_encode(['status'=>true, 'result'=>$return]));
 	} 
 
 	/**
