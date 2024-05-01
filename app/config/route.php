@@ -91,7 +91,7 @@ RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
 /**
 * Restricted access requests 
 */
-if(isset($app->auth()->id))
+if(!empty($app->auth()))
 {
 
     // Dashboard controller based on the user Role 
