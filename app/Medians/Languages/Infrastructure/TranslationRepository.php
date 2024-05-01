@@ -107,11 +107,12 @@ class TranslationRepository
      */
     public function update($data)
     {
+		$Model = new Translation();
 
 		$Object = $this->findByCodeLang($data['code'], $data['language_code']);
 		
 		// Return the  object with the new data
-    	$Object->update( (array) $data);
+    	$Object ? $Object->update( (array) $data) : $Model->create($data);
 
     	return $Object;
 
