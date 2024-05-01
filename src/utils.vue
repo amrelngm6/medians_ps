@@ -141,6 +141,7 @@ export function translate(i) {
 
     // Access the current Vue instance
     const currentInstance = getCurrentInstance();
+    console.log(currentInstance)
 
     // Access the root Vue instance
     const rootVue = currentInstance.appContext.config.globalProperties.$root;
