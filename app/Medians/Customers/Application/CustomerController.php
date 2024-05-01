@@ -169,13 +169,4 @@ class CustomerController extends CustomController
 	}  
 
 
-	/**
-	 * Login with Google from APP 
-	 */
-	public function loginWithGoogle() 
-	{
-		$params = (array) json_decode($this->app->request()->get('params'));
-		
-		print_r($params);
-	}
 }
