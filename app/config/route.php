@@ -110,8 +110,6 @@ if(isset($app->auth()->id))
 
     RouteHandler::get('/admin/load_currencies', \Medians\Currencies\Application\CurrencyService::class.'@load');
 
-    // API GET requests
-    RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
 
     RouteHandler::get('/logout', function () 
     {
