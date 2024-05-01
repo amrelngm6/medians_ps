@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="w-full">
-                        <form :action="'api/'+(activeItem.translation_id > 0 ? 'update' : 'create')" v-if="activeTab == 'Info'" :key="activeTab">
+                        <form :action="'/api/'+(activeItem.translation_id > 0 ? 'update' : 'create')" v-if="activeTab == 'Info'" :key="activeTab">
                             <input type="hidden" name="type" :value="activeItem.translation_id > 0 ? 'update' : 'create'" />
                             <div class="card-body pt-0">
                                 <div class="settings-form">
@@ -117,9 +117,9 @@
                             </div>
                             
                             
-                            <p class="text-center mt-10"><a href="javascript:;"
+                            <p class="text-center mt-10"><button
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="saveTranslation" v-text="translate('Submit')"></a></p>
+                                    @click="saveTranslation" v-text="translate('Submit')"></button></p>
                         </form>
                     </div>
                 </div>
