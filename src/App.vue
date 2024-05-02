@@ -60,6 +60,7 @@ const vehicle_types = defineAsyncComponent(() => import('@/components/datatable_
 const supervisors = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
 const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
 const languages = defineAsyncComponent(() => import('@/components/datatable_pages/languages.vue') );
+const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/gallery.vue') );
 
 
 const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );
@@ -133,6 +134,7 @@ const contact_forms = defineAsyncComponent(() => import('@/components/contact_fo
 
 
 
+
 export default {
     name: 'app',
     components: {
@@ -186,6 +188,7 @@ export default {
         translations,
         newsletter_subscribers,
         contact_forms,
+        gallery,
         get_started,
         translate,
         'help_messages':HelpMessages,
