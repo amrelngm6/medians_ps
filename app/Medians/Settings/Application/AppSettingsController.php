@@ -66,7 +66,7 @@ class AppSettingsController extends CustomController
 				[ 'key'=> "button_bg_color", 'title'=> translate('Button bg color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "button_text_color", 'title'=> translate('Button text color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "title_color", 'title'=> translate('Title Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "labels_color", 'title'=> translate('Labels Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "label_color", 'title'=> translate('Labels Color'), 'fillable'=> true, 'column_type'=>'color' ],
             ],
         ];
 	}
