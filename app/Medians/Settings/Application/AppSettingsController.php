@@ -54,6 +54,7 @@ class AppSettingsController extends CustomController
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['header'=>'header1','title'=>translate('Header 1')], ['header'=>'header2','title'=>translate('Header 2')],['header'=>'header3','title'=>translate('Header 3')]]  
 				],
+				[ 'key'=> "header_text_color", 'title'=> translate('Header Text Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "header_color", 'title'=> translate('Header BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
 	            [ 'key'=> "header_bg", 'title'=> translate('Header background'), 'fillable'=>true, 'column_type'=>'file' ],
 			],
