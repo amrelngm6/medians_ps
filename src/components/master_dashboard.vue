@@ -331,32 +331,6 @@ export default
             if (data)
             {
                 
-                for (let i = 0; i < content.value.trips_charts.length; i++) 
-                {
-                    const element = content.value.trips_charts[i];
-                    labels.value[i] = element.label;
-                    route_data.value[i] = element.y;
-                }
-                line_options.value  =  {
-                    labels: labels.value,
-                    datasets: [
-                    {
-                        label: translate('Private Trips'),
-                        backgroundColor: 'rgba(151, 187, 205, 0.2)',
-                        borderColor: 'rgba(151, 187, 205, 1)',
-                        pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-                        pointBorderColor: '#fff',
-                        data: private_data.value
-                    },{
-                        label: translate('Routes Trips'),
-                        backgroundColor: 'rgba(151, 187, 205, 0.2)',
-                        borderColor: 'rgba(151, 187, 205, 1)',
-                        pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-                        pointBorderColor: '#fff',
-                        data: route_data.value
-                    }
-                    ]
-                };
             }
 
             // Line charts for sales in last days 
