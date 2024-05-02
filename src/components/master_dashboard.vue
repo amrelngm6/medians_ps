@@ -339,7 +339,7 @@ export default
                 }
                 for (let i = 0; i < content.value.private_trips_charts.length; i++) 
                 {
-                    const privateElement = content.value.trips_charts[i];
+                    const privateElement = content.value.private_trips_charts[i];
                     labels.value[i+route_data.value.length] = privateElement.label;
                     private_data.value[i] = privateElement.y;
                 }
