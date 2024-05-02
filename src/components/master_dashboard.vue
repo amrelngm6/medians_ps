@@ -326,27 +326,31 @@ export default
 
             const labels = ref([]);
             const labels_data = ref([]);
-    
-            // Line charts for sales in last days 
-            for (let i = 0; i < data.trips_charts.length; i++) 
+            
+            if (data)
             {
-                const element = data.trips_charts[i];
-                labels.value[i] = element.label;
-                labels_data.value[i] = element.y;
-            }
-            line_options.value  =  {
-                labels: labels.value,
-                datasets: [
+
+                // Line charts for sales in last days 
+                for (let i = 0; i < data.trips_charts.length; i++) 
                 {
-                    label: props.title,
-                    backgroundColor: 'rgba(151, 187, 205, 0.2)',
-                    borderColor: 'rgba(151, 187, 205, 1)',
-                    pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-                    pointBorderColor: '#fff',
-                    data: labels_data.value
+                    const element = data.trips_charts[i];
+                    labels.value[i] = element.label;
+                    labels_data.value[i] = element.y;
                 }
-                ]
-            };
+                line_options.value  =  {
+                    labels: labels.value,
+                    datasets: [
+                    {
+                        label: props.title,
+                        backgroundColor: 'rgba(151, 187, 205, 0.2)',
+                        borderColor: 'rgba(151, 187, 205, 1)',
+                        pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+                        pointBorderColor: '#fff',
+                        data: labels_data.value
+                    }
+                    ]
+                };
+            }
 
             // Line charts for sales in last days 
             line_options2.value  =  {
