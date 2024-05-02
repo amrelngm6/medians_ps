@@ -389,7 +389,10 @@ class APIController extends CustomController
 			case 'Translation.update':
 				$controller = new Languages\Application\TranslationController; 
 				break;
-				
+			
+			case 'Gallery.update':
+				$controller = new Gallery\Application\GalleryController; 
+				break;
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
@@ -520,8 +523,12 @@ class APIController extends CustomController
 					return response((new Forms\Application\ContactFormController())->delete());
 					break;
 	
-
+				case 'Gallery.delete':
+					return response((new Gallery\Application\GalleryController())->delete());
+					break;
+	
 			}
+
 
 		} catch (Exception $e) {
 			throw new Exception( $e->getMessage(), 1);
