@@ -358,38 +358,28 @@ export default
                     }
                     ]
                 };
-                console.log(line_options.value)
-            }
 
-            // Line charts for sales in last days 
-            line_options2.value  =  {
-
-                // Line charts Data 
-                data: data.private_trips_charts,
-
-                // Series: Defines which chart type and data to use
-                series: [
-                    { type: 'bar', xKey: 'label', yKey: 'y' },
-                    // { type: 'line', xKey: 'label', yKey: 'y' },
-                ],
-            };
-
-            let pieLabels = []
-            let dataLabels = []
-            for (let i = 0; i < data.top_businesses.length; i++) {
-                const element = data.top_businesses[i];
-                pieLabels[i] = element.label;
-                dataLabels[i] = element.y;
-            }
             
-            // Line charts for sales in last days 
-            pie_options.value  =  {
-                labels: pieLabels,
-                datasets: [
-                {
-                    data: dataLabels,
-                },
-                ],
+                let pieLabels = []
+                let dataLabels = []
+                for (let i = 0; i < data.top_businesses.length; i++) {
+                    const element = data.top_businesses[i];
+                    pieLabels[i] = element.label;
+                    dataLabels[i] = element.y;
+                }
+                
+                // Line charts for sales in last days 
+                pie_options.value  =  {
+                    labels: pieLabels,
+                    datasets: [
+                    {
+                        data: dataLabels,
+                    },
+                    ],
+                };
+                console.log(line_options.value)
+                console.log(pie_options.value)
+
             };
         }
 
