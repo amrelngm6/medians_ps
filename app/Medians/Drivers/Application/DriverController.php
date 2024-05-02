@@ -420,4 +420,61 @@ class DriverController extends CustomController
 			return  $driver->picture;
 		}
 	} 
+
+	
+	/**
+	 * Login with Google from APP 
+	 */
+	public function loginWithGoogle() 
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+		
+		// Verify the ID token with Google
+		$googleApiUrl = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' . $params['idToken'];
+
+		$tokenInfo = (object) json_decode(file_get_contents($googleApiUrl), true);
+
+		if (empty($tokenInfo->email))
+		{
+			return ['error'=> translate('Code is invalid')];
+		}
+
+		$customer = $this->repo->findParentByEmail($tokenInfo->email);
+		if (empty($customer))
+		{
+			try {
+				$pictureName = rand(999999, 999999).date('Ymdhis').'.jpg';
+				$data = ['status'=>'on'];
+				$data['first_name'] = $tokenInfo->given_name;
+				$data['last_name'] = $tokenInfo->family_name;
+				$data['email'] = $tokenInfo->email;
+				$data['picture'] = $this->saveImageFromUrl($tokenInfo->picture, '/uploads/customers/'.$pictureName) ;
+				$customer = $this->repo->store($data);
+
+			} catch (\Throwable $th) {
+				return ['error'=> translate('This email can not be used choose another one')];
+			}
+		}
+		
+		$Auth = new \Medians\Auth\Application\AuthService;
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$customer->customer_id);
+		$generateToken = $customer->insertCustomField('API_token', $token);
+		
+		return 
+		[
+			'success'=>true, 
+			'customer_id'=> isset($customer->customer_id) ? $customer->customer_id : null, 
+			'token'=>$generateToken->value
+		];
+
+	}
+
+	function saveImageFromUrl($url, $localPath) 
+	{
+		$image = file_get_contents($url);
+		if ($image !== false) {
+			file_put_contents($_SERVER['DOCUMENT_ROOT']. $localPath, $image);
+			return $localPath; 
+		}
+	}
 }
