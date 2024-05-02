@@ -449,7 +449,7 @@ class DriverController extends CustomController
 				$data['last_name'] = $tokenInfo->family_name;
 				$data['email'] = $tokenInfo->email;
 				$data['picture'] = $this->saveImageFromUrl($tokenInfo->picture, '/uploads/customers/'.$pictureName) ;
-				$driver = $this->repo->store($data);
+				$driver = $this->repo->signup($data);
 
 			} catch (\Throwable $th) {
 				return ['error'=> translate('This email can not be used choose another one')];
