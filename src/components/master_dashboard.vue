@@ -325,8 +325,8 @@ export default
         const setCharts = (data) => {
 
             const labels = ref([]);
-            const labels1_data = ref([]);
-            const labels2_data = ref([]);
+            const route_data = ref([]);
+            const private_data = ref([]);
             
             if (data)
             {
@@ -334,14 +334,14 @@ export default
                 for (let i = 0; i < content.value.trips_charts.length; i++) 
                 {
                     const element = content.value.trips_charts[i];
-                    labels.value[i] = element.label;
+                    route_data.value[i] = element.label;
                     labels1_data.value[i] = element.y;
                 }
                 for (let i = 0; i < content.value.private_trips_charts.length; i++) 
                 {
                     const element = content.value.trips_charts[i];
-                    labels.value[i+labels1_data.value.length] = element.label;
-                    labels2_data.value[i] = element.y;
+                    route_data.value[i+private_data.value.length] = element.label;
+                    private_data.value[i] = element.y;
                 }
                 line_options.value  =  {
                     labels: labels.value,
@@ -352,7 +352,7 @@ export default
                         borderColor: 'rgba(151, 187, 205, 1)',
                         pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                         pointBorderColor: '#fff',
-                        data: labels_data.value
+                        data: private_data.value
                     },{
                         label: translate('Routes Trips'),
                         backgroundColor: 'rgba(151, 187, 205, 0.2)',
