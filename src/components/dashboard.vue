@@ -1,6 +1,6 @@
 <template>
     <div class="w-full overflow-auto" >
-
+        
         <div class="top-0 py-2 w-full px-4 bg-gray-50 mt-0 sticky rounded" style="z-index:9">
             <div class="w-full flex gap-6">
                 <h3 class="text-base lg:text-lg whitespace-nowrap" v-text="translate('Dashboard Reports')"></h3> 
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-
+        <dashboard_chart /> 
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="w-full gap-6 flex ">
@@ -297,6 +297,7 @@
 import {ref} from 'vue';
 import moment from 'moment';
 import dashboard_card from '@/components/includes/dashboard_card.vue';
+import dashboard_chart from '@/components/includes/dashboard_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest} from '@/utils.vue';
@@ -310,6 +311,7 @@ export default
         dashboard_center_squares,
         dashboard_card_white,
         dashboard_card,
+        dashboard_chart,
         AgChartsVue,
         VueTailwindDatepicker
     },
