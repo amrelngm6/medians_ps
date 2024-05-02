@@ -247,7 +247,7 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/collected_cash', Medians\Wallets\Application\CollectedCashController::class.'@index');
 
     /** @return Gallery */
-    RouteHandler::get('/admin/gallery', Medians\Gallery\Application\GalleryCashController::class.'@index');
+    RouteHandler::get('/admin/gallery', Medians\Gallery\Application\GalleryController::class.'@index');
 
 
 
