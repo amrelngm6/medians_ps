@@ -84,7 +84,7 @@
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
-                                <dashboard_pie_chart v-if="pie_options" type="bar"  :key="pie_options" :options="pie_options" />
+                                <dashboard_pie_chart v-if="pie_options" type="bar"  :key="pie_options" :options="line_options" />
                             </div>
                         </div>
                     </div>
