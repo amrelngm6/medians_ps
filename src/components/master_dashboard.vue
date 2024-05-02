@@ -348,7 +348,7 @@ export default
                         pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                         pointBorderColor: '#fff',
                         data: labels_data.value
-                    }
+                    },{}
                     ]
                 };
             }
