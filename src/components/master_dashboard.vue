@@ -319,14 +319,14 @@ export default
         const optionsbar = ref();
 
         
+        const labels = ref([]);
+        const route_data = ref([]);
+        const private_data = ref([]);
         /**
          * Set charts based on their values type
          */ 
         const setCharts = (data) => {
 
-            const labels = ref([]);
-            const route_data = ref([]);
-            const private_data = ref([]);
             
             if (data)
             {
