@@ -16,7 +16,6 @@
             </div>
         </div>
 
-        <dashboard_chart v-if="line_options" :key="line_options" :options="line_options" /> 
         <!-- <dashboard_chart v-if="content.trips_charts" :key="content" :content="content.trips_charts" :title="translate('Route trips')" />  -->
         <!-- <dashboard_chart v-if="content.top_businesses" :key="content" :content="content" :title="translate('top_businesses')" />  -->
 
@@ -79,7 +78,7 @@
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Routes Trips')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
-                                <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
+                                <dashboard_chart v-if="line_options" :key="line_options" :options="line_options" /> 
                             </div>
                         </div>
                         <div class="w-full">
