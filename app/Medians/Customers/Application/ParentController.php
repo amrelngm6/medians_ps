@@ -412,9 +412,7 @@ class ParentController extends CustomController
 		$image = file_get_contents($url);
 		if ($image !== false) {
 			file_put_contents($_SERVER['DOCUMENT_ROOT']. $localPath, $image);
-			return $localPath; // Image saved successfully
-		} else {
-			return null; // Failed to fetch image
+			return $localPath; 
 		}
 	}
 }
