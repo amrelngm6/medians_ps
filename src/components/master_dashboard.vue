@@ -323,6 +323,7 @@ export default
         const labels = ref([]);
         const route_data = ref([]);
         const private_data = ref([]);
+        const top_businesses = ref([]);
         /**
          * Set charts based on their values type
          */ 
@@ -359,15 +360,11 @@ export default
                     ]
                 };
 
-                if (!data.top_businesses)
-                {   
-                    return;
-                }
-            
+                
                 let pieLabels = []
                 let dataLabels = []
-                for (let i = 0; i < data.top_businesses.length; i++) {
-                    const element = data.top_businesses[i];
+                for (let i = 0; i < content.value..top_businesses.length; i++) {
+                    const element = content.value..top_businesses[i];
                     pieLabels[i] = element.label;
                     dataLabels[i] = element.y;
                 }
