@@ -439,8 +439,8 @@ class DriverController extends CustomController
 			return ['error'=> translate('Code is invalid')];
 		}
 
-		$customer = $this->repo->findParentByEmail($tokenInfo->email);
-		if (empty($customer))
+		$driver = $this->repo->findByEmail($tokenInfo->email);
+		if (empty($driver))
 		{
 			try {
 				$pictureName = rand(999999, 999999).date('Ymdhis').'.jpg';
@@ -449,7 +449,7 @@ class DriverController extends CustomController
 				$data['last_name'] = $tokenInfo->family_name;
 				$data['email'] = $tokenInfo->email;
 				$data['picture'] = $this->saveImageFromUrl($tokenInfo->picture, '/uploads/customers/'.$pictureName) ;
-				$customer = $this->repo->store($data);
+				$driver = $this->repo->store($data);
 
 			} catch (\Throwable $th) {
 				return ['error'=> translate('This email can not be used choose another one')];
@@ -457,13 +457,13 @@ class DriverController extends CustomController
 		}
 		
 		$Auth = new \Medians\Auth\Application\AuthService;
-		$token = $Auth->encrypt(strtotime(date('YmdHis')).$customer->customer_id);
-		$generateToken = $customer->insertCustomField('API_token', $token);
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$driver->driver_id);
+		$generateToken = $driver->insertCustomField('API_token', $token);
 		
 		return 
 		[
 			'success'=>true, 
-			'customer_id'=> isset($customer->customer_id) ? $customer->customer_id : null, 
+			'driver_id'=> isset($driver->driver_id) ? $driver->driver_id : null, 
 			'token'=>$generateToken->value
 		];
 

@@ -82,6 +82,11 @@ class DriverRepository
 		return Driver::where('password', $password)->where('email' , $email)->first();
 	}
 
+	public function findByEmail($email)
+	{
+		return Driver::where('email' , $email)->first();
+	}
+
 
 
 	/**
@@ -154,7 +159,7 @@ class DriverRepository
 
 		$Model = new Driver();
 		
-		$findByEmail = Driver::where('email', $data['email'])->first();
+		$findByEmail = $this->findByEmail($data['email']);
 
 		if (empty($findByEmail))
 			return translate('User not found');
