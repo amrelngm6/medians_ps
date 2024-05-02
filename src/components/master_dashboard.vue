@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <dashboard_chart /> 
+        <dashboard_chart :content="content" /> 
 
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
