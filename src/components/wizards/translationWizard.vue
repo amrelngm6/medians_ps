@@ -40,7 +40,6 @@
                                             <input :disabled="true" autocomplete="off" 
                                                 class="form-control form-control-solid" :placeholder="translate('Generated from english translation')"
                                                 v-model="activeItem.code">
-                                            <hr class="block mt-6 my-2 opacity-10" />
                                         </div>
 
                                         <hr class="opacity-10 my-4" />
