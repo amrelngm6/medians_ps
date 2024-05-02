@@ -337,12 +337,6 @@ export default
                     labels.value[i] = element.label;
                     route_data.value[i] = element.y;
                 }
-                for (let i = 0; i < content.value.private_trips_charts.length; i++) 
-                {
-                    const privateElement = content.value.trips_charts[i];
-                    labels.value[i+route_data.value.length] = privateElement.label;
-                    private_data.value[i] = privateElement.y;
-                }
                 line_options.value  =  {
                     labels: labels.value,
                     datasets: [
@@ -359,7 +353,8 @@ export default
                         borderColor: 'rgba(151, 187, 205, 1)',
                         pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                         pointBorderColor: '#fff',
-                        data: route_data.value}
+                        data: route_data.value
+                    }
                     ]
                 };
             }
