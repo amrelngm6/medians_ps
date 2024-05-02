@@ -16,7 +16,9 @@
             </div>
         </div>
 
-        <dashboard_chart v-if="content.private_trips_charts" :key="content" :content="content" :title="translate('private trips')" /> 
+        <dashboard_chart v-if="content.private_trips_charts" :key="content" :content="content.private_trips_charts" :title="translate('private trips')" /> 
+        <dashboard_chart v-if="content.trips_charts" :key="content" :content="content.trips_charts" :title="translate('Route trips')" /> 
+        <!-- <dashboard_chart v-if="content.top_businesses" :key="content" :content="content" :title="translate('top_businesses')" />  -->
 
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
