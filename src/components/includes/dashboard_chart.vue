@@ -2,7 +2,7 @@
     
     <div :class="classes" class="card hoverable card-xl-stretch mb-xl-8">
         <CChartLine
-            v-if="content"
+            v-if="options"
             :wrapper="false"
             :data="handleData"
             />
