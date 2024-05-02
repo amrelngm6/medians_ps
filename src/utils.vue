@@ -1,6 +1,6 @@
 <script>
 import { getCurrentInstance } from 'vue';
-import moment, { lang } from 'moment';
+import moment from 'moment';
 import axios from 'axios'
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
