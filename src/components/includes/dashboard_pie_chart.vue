@@ -2,7 +2,7 @@
     
     <div >
         <CChart
-            type="pie"
+            :type="type"
             :data="handleData"
             />
     </div>
@@ -20,7 +20,6 @@ export default
         
         const handleData = () => 
         {
-            console.log(props.options);
             return props.options;
             
         }
@@ -30,7 +29,7 @@ export default
         };
     },
     props: [
-        'classes',
+        'type',
         'options',
     ],
 

@@ -78,7 +78,7 @@
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Trips history')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
-                                <dashboard_chart v-if="line_options" :key="line_options" :options="line_options" /> 
+                                <dashboard_chart v-if="line_options" :key="line_options" type="pie" :options="line_options" /> 
                             </div>
                         </div>
                         <div class="w-full">
