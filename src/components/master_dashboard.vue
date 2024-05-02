@@ -330,11 +330,11 @@ export default
             
             if (data)
             {
-                filterLabels();
+                await filterLabels();
 
                 for (let i = 0; i < labels.value.length; i++)  {
-                    route_data.value[i] = filterData(labels.value[i], content.value.trips_charts ) ?? 0
-                    private_data.value[i] = filterData(labels.value[i], content.value.private_trips_charts) ?? 0
+                    route_data.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
+                    private_data.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
                 }
 
                 line_options.value  =  {
