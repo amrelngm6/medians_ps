@@ -274,7 +274,7 @@ export default
         {
             handleGetRequest( path ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response)); 
-                setCharts(response)
+                setCharts(JSON.parse(JSON.stringify(response)))
             });
         }
 
