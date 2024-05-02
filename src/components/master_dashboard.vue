@@ -363,8 +363,8 @@ export default
                 
                 let pieLabels = []
                 let dataLabels = []
-                for (let i = 0; i < content.value..top_businesses.length; i++) {
-                    const element = content.value..top_businesses[i];
+                for (let i = 0; i < content.value.top_businesses.length; i++) {
+                    const element = content.value.top_businesses[i];
                     pieLabels[i] = element.label;
                     dataLabels[i] = element.y;
                 }
