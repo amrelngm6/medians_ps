@@ -27,7 +27,7 @@ class GalleryRepository
 	*/
 	public function get($params = null) 
 	{
-		return Gallery::groupBy('path')->get();
+		return Gallery::get();
 	}
 
 
