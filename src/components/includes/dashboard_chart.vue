@@ -34,7 +34,7 @@ export default
         
         const handleData = () => 
         {
-            const v = props.content.private_trips_charts;
+            const v = props.content;
             for (let i = 0; i < v.length; i++) 
             {
                 const element = v[i];
@@ -45,7 +45,7 @@ export default
                 labels: labels.value,
                 datasets: [
                 {
-                    label: 'Private trips',
+                    label: props.title,
                     backgroundColor: 'rgba(151, 187, 205, 0.2)',
                     borderColor: 'rgba(151, 187, 205, 1)',
                     pointBackgroundColor: 'rgba(151, 187, 205, 1)',
@@ -62,6 +62,7 @@ export default
         };
     },
     props: [
+        'title',
         'classes',
         'content',
     ],
