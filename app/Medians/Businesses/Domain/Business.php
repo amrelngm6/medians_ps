@@ -11,6 +11,7 @@ use Medians\Packages\Domain\Package;
 use Medians\Settings\Domain\Settings;
 use Medians\Locations\Domain\RouteLocation;
 use Medians\Plans\Domain\PlanSubscription;
+use Medians\Gallery\Domain\Gallery;
 
 class Business extends CustomModel
 {
@@ -79,6 +80,11 @@ class Business extends CustomModel
     public function settings()
     {
 		return $this->hasMany(Settings::class, 'business_id', 'business_id');	
+    }
+
+    public function gallery()
+    {
+		return $this->hasMany(Gallery::class, 'business_id', 'business_id');	
     }
 
     public function logo_field()

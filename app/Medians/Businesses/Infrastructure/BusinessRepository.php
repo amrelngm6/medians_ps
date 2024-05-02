@@ -27,7 +27,7 @@ class BusinessRepository
 
 	public function find($id)
 	{
-		return Business::with('settings','packages','subscription','routes')
+		return Business::with('settings','gallery','packages','subscription','routes')
 		->withCount('routes', 'locations', 'drivers')
 		->find($id);
 	}
@@ -50,7 +50,7 @@ class BusinessRepository
 		->whereHas('Settings', function($q) {
 			$q->where('code', 'allow_applicants')->where('value','on');	
 		})
-		->with('settings','packages')
+		->with('settings','packages','gallery')
 		->where('status', 'on');
 		
 		if (isset($params['business_name']))
@@ -72,7 +72,7 @@ class BusinessRepository
 		->whereHas('Settings', function($q) {
 			$q->where('code', 'allow_applicants')->where('value','on');	
 		})
-		->with('settings','packages')
+		->with('settings','packages','gallery')
 		->where('status', 'on');
 
 		if (isset($params['business_name']))
