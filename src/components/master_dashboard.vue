@@ -325,30 +325,41 @@ export default
         const setCharts = (data) => {
 
             const labels = ref([]);
-            const labels_data = ref([]);
+            const labels1_data = ref([]);
+            const labels2_data = ref([]);
             
             if (data)
             {
-                console.log(content.value)
-                console.log(data.trips_charts)
-                // Line charts for sales in last days 
+                
                 for (let i = 0; i < content.value.trips_charts.length; i++) 
                 {
                     const element = content.value.trips_charts[i];
                     labels.value[i] = element.label;
-                    labels_data.value[i] = element.y;
+                    labels1_data.value[i] = element.y;
+                }
+                for (let i = 0; i < content.value.private_trips_charts.length; i++) 
+                {
+                    const element = content.value.trips_charts[i];
+                    labels.value[i+labels1_data.value.length] = element.label;
+                    labels2_data.value[i] = element.y;
                 }
                 line_options.value  =  {
                     labels: labels.value,
                     datasets: [
                     {
-                        label: props.title,
+                        label: translate('Private Trips'),
                         backgroundColor: 'rgba(151, 187, 205, 0.2)',
                         borderColor: 'rgba(151, 187, 205, 1)',
                         pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                         pointBorderColor: '#fff',
                         data: labels_data.value
-                    },{}
+                    },{
+                        label: translate('Routes Trips'),
+                        backgroundColor: 'rgba(151, 187, 205, 0.2)',
+                        borderColor: 'rgba(151, 187, 205, 1)',
+                        pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+                        pointBorderColor: '#fff',
+                        data: route_data.value}
                     ]
                 };
             }
