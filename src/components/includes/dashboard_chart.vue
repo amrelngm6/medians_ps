@@ -28,10 +28,9 @@ export default
     },
     setup(props) {
         
-        handleData = () => 
+        const handleData = () => 
         {
-            let labels = [];
-            let data = [];
+            let labels,data = [];
             const v = props.content.value.private_trips_charts;
             for (let i = 0; i < v.length; i++) 
             {
