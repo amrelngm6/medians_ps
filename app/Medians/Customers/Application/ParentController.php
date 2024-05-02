@@ -386,7 +386,7 @@ class ParentController extends CustomController
 				$data = ['status'=>'on'];
 				$data['name'] = $tokenInfo->name;
 				$data['email'] = $tokenInfo->email;
-				$data['picture'] = $this->saveImageFromUrl($tokenInfo->photo_url, '/uploads/customers/'.$pictureName) ;
+				$data['picture'] = $this->saveImageFromUrl($tokenInfo->picture, '/uploads/customers/'.$pictureName) ;
 				$customer = $this->repo->store($data);
 
 			} catch (\Throwable $th) {
