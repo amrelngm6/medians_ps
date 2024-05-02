@@ -357,6 +357,7 @@ export default
                     }
                     ]
                 };
+                console.log(line_options.value)
             }
 
             // Line charts for sales in last days 
