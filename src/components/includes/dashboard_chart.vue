@@ -39,11 +39,11 @@
 </template>
 <script>
 // import { CChart } from '@coreui/vue-chartjs'
-import { CChart, CChartBar, CChartHorizontalBar, CChartLine, CChartDoughnut, CChartRadar, CChartPie, CChartPolarArea } from '@coreui/vue-chartjs'
+import { CChart, CChartBar, CChartLine, CChartDoughnut, CChartRadar, CChartPie, CChartPolarArea } from '@coreui/vue-chartjs'
 export default 
 {
     components: {
-        CChart, CChartBar, CChartHorizontalBar, CChartLine, CChartDoughnut, CChartRadar, CChartPie, CChartPolarArea
+        CChart, CChartBar, CChartLine, CChartDoughnut, CChartRadar, CChartPie, CChartPolarArea
     },
     props: [
         'title',
