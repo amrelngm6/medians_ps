@@ -30,16 +30,14 @@ export default
         
         const handleData = () => 
         {
-            let labels = [];
-            let data = [];
-            console.log(props.content)
+            let labels,data = [];
 
             const v = props.content.private_trips_charts;
             for (let i = 0; i < v.length; i++) 
             {
                 const element = v[i];
-                labels.append(element.label);
-                data.append(element.y);
+                labels[i] = element.label;
+                data[i] = element.y;
             }
             return {
                 labels: labels,
