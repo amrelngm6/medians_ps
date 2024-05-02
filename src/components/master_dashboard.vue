@@ -349,9 +349,9 @@ export default
                         data: private_data.value
                     },{
                         label: translate('Routes Trips'),
-                        backgroundColor: 'rgba(151, 187, 205, 0.2)',
-                        borderColor: 'rgba(151, 187, 205, 1)',
-                        pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+                        backgroundColor: 'rgba(187, 151, 205, 0.2)',
+                        borderColor: 'rgba(187, 151, 205, 1)',
+                        pointBackgroundColor: 'rgba(187, 151, 205, 1)',
                         pointBorderColor: '#fff',
                         data: route_data.value
                     }
