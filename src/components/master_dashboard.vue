@@ -330,18 +330,13 @@ export default
             
             if (data)
             {
-                
-                for (let i = 0; i < content.value.trips_charts.length; i++)  {
-                    labels.value[i] = content.value.trips_charts[i].label;
+                filterLabels();
+
+                for (let i = 0; i < labels.value.length; i++)  {
+                    route_data.value[i] = filterData(labels.value[i], content.trips_charts ) ?? 0
+                    private_data.value[i] = filterData(labels.value[i], content.private_trips_charts) ?? 0
                 }
-                for (let i = 0; i < content.value.private_trips_charts.length; i++)  {
-                    const privateElement = content.value.private_trips_charts[i];
-                    if (!labels.value.find((element) => element == privateElement.label))
-                    {
-                        labels.value[i+route_data.value.length] = privateElement.label;
-                    }
-                }
-                
+
                 line_options.value  =  {
                     labels: labels.value.filter(item => item !== ""),
                     datasets: [
@@ -391,7 +386,32 @@ export default
             };
         }
 
+        const filterLabels =  async () => {
+            for (let i = 0; i < content.value.trips_charts.length; i++)  {
+                labels.value[i] = content.value.trips_charts[i].label;
+            }
+            for (let i = 0; i < content.value.private_trips_charts.length; i++)  {
+                const privateElement = content.value.private_trips_charts[i];
+                if (!labels.value.find((element) => element == privateElement.label))
+                {
+                    labels.value[i+content.value.trips_charts.length] = privateElement.label;
+                }
+            }
+            
+        }
 
+        const filterData =  async (label, list) => 
+        {
+
+            for (let i = 0; i < list.length; i++)  {
+                const trip = list[i];
+                if (trip.label == label && list[i].y)
+                {
+                    return  trip.y;
+                }
+            }
+            
+        }
 
         const dateValue = ref({
             startDate: "",
