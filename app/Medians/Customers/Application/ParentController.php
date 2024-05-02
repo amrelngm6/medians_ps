@@ -382,10 +382,11 @@ class ParentController extends CustomController
 		if (empty($customer))
 		{
 			try {
-				
+				$pictureName = rand(999999, 999999).date('Ymdhis');
 				$data = ['status'=>'on'];
 				$data['name'] = $tokenInfo->name;
 				$data['email'] = $tokenInfo->email;
+				$data['picture'] = $this->saveImageFromUrl($tokenInfo->photo_url, '/uploads/customers/') ;
 				$customer = $this->repo->store($data);
 
 			} catch (\Throwable $th) {
@@ -404,5 +405,16 @@ class ParentController extends CustomController
 			'token'=>$generateToken->value
 		];
 
+	}
+
+	function saveImageFromUrl($url, $localPath) 
+	{
+		$image = file_get_contents($url);
+		if ($image !== false) {
+			file_put_contents($localPath, $image);
+			return true; // Image saved successfully
+		} else {
+			return false; // Failed to fetch image
+		}
 	}
 }
