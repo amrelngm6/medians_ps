@@ -65,12 +65,8 @@ class AppSettingsController extends CustomController
 				[ 'key'=> "text_color", 'title'=> translate('Text Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "button_bg_color", 'title'=> translate('Button bg color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "button_text_color", 'title'=> translate('Button text color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h1_color", 'title'=> translate('H1 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h2_color", 'title'=> translate('H2 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h3_color", 'title'=> translate('H3 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h4_color", 'title'=> translate('H4 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h5_color", 'title'=> translate('H5 Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "h6_color", 'title'=> translate('H6 Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "title_color", 'title'=> translate('Title Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "labels_color", 'title'=> translate('Labels Color'), 'fillable'=> true, 'column_type'=>'color' ],
             ],
         ];
 	}
