@@ -69,6 +69,7 @@ class AppSettingsController extends CustomController
 				[ 'key'=> "icon_color", 'title'=> translate('Icon Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "button_bg_color", 'title'=> translate('Button bg color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "button_text_color", 'title'=> translate('Button text color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "action_bg_color", 'title'=> translate('Call-to-action bg color'), 'fillable'=> true, 'column_type'=>'color' ],
 			],
 			'Social media login'=> [	
 				[ 'key'=> "login_with_google", 'title'=> translate('Login with Google'), 'help_text'=>translate('Let users login & signup using their Gmail'), 'fillable'=> true, 'column_type'=>'checkbox' ],
