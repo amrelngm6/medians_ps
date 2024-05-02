@@ -32,7 +32,7 @@ export default
         
         const handleData = () => 
         {
-
+            console.log(props.options);
             return props.options;
             
         }
