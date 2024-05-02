@@ -347,7 +347,7 @@ export default
                     private_data.value[i] = privateElement.y;
                 }
                 line_options.value  =  {
-                    labels: labels.value,
+                    labels: labels.value.filter(item => item !== ""),
                     datasets: [
                     {
                         label: translate('Private Trips'),
