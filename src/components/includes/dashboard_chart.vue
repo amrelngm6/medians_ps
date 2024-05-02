@@ -19,6 +19,7 @@
 
 </template>
 <script>
+import {ref} from 'vue';
 // import { CChart } from '@coreui/vue-chartjs'
 import { CChart, CChartBar, CChartLine, CChartDoughnut, CChartRadar, CChartPie, CChartPolarArea } from '@coreui/vue-chartjs'
 export default 
@@ -27,17 +28,18 @@ export default
         CChart, CChartBar, CChartLine, CChartDoughnut, CChartRadar, CChartPie, CChartPolarArea
     },
     setup(props) {
+
+        const labels = ref([]);
+        const data = ref([]);
         
         const handleData = () => 
         {
-            let labels,data = [];
-
             const v = props.content.private_trips_charts;
             for (let i = 0; i < v.length; i++) 
             {
                 const element = v[i];
-                labels[i] = element.label;
-                data[i] = element.y;
+                labels.value[i] = element.label;
+                data.value[i] = element.y;
             }
             return {
                 labels: labels,
