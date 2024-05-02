@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full">
-        <data_table_page ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Gallert" object_key="gallery_id" ></data_table_page>
+        <data_table_page ref="data_table" :conf="conf" :path="path" :setting="setting" :auth="auth" object_name="Gallery" object_key="gallery_id" ></data_table_page>
     </div>
 </template>
 <script>

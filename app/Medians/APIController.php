@@ -212,6 +212,10 @@ class APIController extends CustomController
 					$return = (new Forms\Application\ContactFormController())->store(); 
 					break;
 	
+				case 'Gallery.create':
+					$return = (new Gallery\Application\GalleryController())->store(); 
+					break;
+	
 			}
 
 			return response(json_encode($return));
