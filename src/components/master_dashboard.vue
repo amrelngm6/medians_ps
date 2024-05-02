@@ -274,7 +274,7 @@ export default
         {
             handleGetRequest( path ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response)); 
-                setCharts(response)
+                setCharts(content.value)
             });
         }
 
@@ -329,7 +329,8 @@ export default
             
             if (data)
             {
-
+                console.log(data)
+                console.log(data.trips_charts)
                 // Line charts for sales in last days 
                 for (let i = 0; i < data.trips_charts.length; i++) 
                 {
