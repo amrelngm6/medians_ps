@@ -386,7 +386,7 @@ class ParentController extends CustomController
 				$data = ['status'=>'on'];
 				$data['name'] = $tokenInfo->name;
 				$data['email'] = $tokenInfo->email;
-				$data['picture'] = $this->saveImageFromUrl($tokenInfo->photo_url, '/uploads/customers/') ;
+				$data['picture'] = $this->saveImageFromUrl($tokenInfo->photo_url, '/uploads/customers/'.$pictureName) ;
 				$customer = $this->repo->store($data);
 
 			} catch (\Throwable $th) {
@@ -411,10 +411,10 @@ class ParentController extends CustomController
 	{
 		$image = file_get_contents($url);
 		if ($image !== false) {
-			file_put_contents($localPath, $image);
-			return true; // Image saved successfully
+			file_put_contents($_SERVER['DOCUMENT_ROOT']. $localPath, $image);
+			return $localPath; // Image saved successfully
 		} else {
-			return false; // Failed to fetch image
+			return null; // Failed to fetch image
 		}
 	}
 }
