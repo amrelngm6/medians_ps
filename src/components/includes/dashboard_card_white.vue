@@ -1,6 +1,7 @@
 <template>
     
-    <a href="#" :class="classes" class="card hoverable card-xl-stretch mb-xl-8">
+    <div :class="classes" class="card hoverable card-xl-stretch mb-xl-8">
+
         <!--begin::Body-->
         <div class="card-body">
             <img width="25" height="25" :src="icon" />
@@ -10,7 +11,7 @@
             <div :class="text_class" class="fw-semibold "  v-text="title"></div>
         </div>
         <!--end::Body-->
-    </a>
+    </div>
 
 </template>
 <script>
