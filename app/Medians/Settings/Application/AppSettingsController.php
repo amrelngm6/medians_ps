@@ -61,13 +61,14 @@ class AppSettingsController extends CustomController
 			'Style colors'=> [	
 				[ 'key'=> "main_bg", 'title'=> translate('Main BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "section_bg", 'title'=> translate('Section BG Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "border_color", 'title'=> translate('Border Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "icon_color", 'title'=> translate('Icon Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "text_color", 'title'=> translate('Text Color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "button_bg_color", 'title'=> translate('Button bg color'), 'fillable'=> true, 'column_type'=>'color' ],
-				[ 'key'=> "button_text_color", 'title'=> translate('Button text color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "title_color", 'title'=> translate('Title Color'), 'fillable'=> true, 'column_type'=>'color' ],
 				[ 'key'=> "label_color", 'title'=> translate('Labels Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "border_color", 'title'=> translate('Border Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "shadow_color", 'title'=> translate('Shadow Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "icon_color", 'title'=> translate('Icon Color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "button_bg_color", 'title'=> translate('Button bg color'), 'fillable'=> true, 'column_type'=>'color' ],
+				[ 'key'=> "button_text_color", 'title'=> translate('Button text color'), 'fillable'=> true, 'column_type'=>'color' ],
 			],
 			'Social media login'=> [	
 				[ 'key'=> "login_with_google", 'title'=> translate('Login with Google'), 'help_text'=>translate('Let users login & signup using their Gmail'), 'fillable'=> true, 'column_type'=>'checkbox' ],
