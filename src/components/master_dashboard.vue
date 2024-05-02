@@ -76,7 +76,7 @@
                     
                     <div class="w-full gap-4 lg:flex">
                         <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('Routes Trips')"></h4> 
+                            <h4 class="text-base lg:text-lg " v-text="translate('Trips history')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
                                 <dashboard_chart v-if="line_options" :key="line_options" :options="line_options" /> 
                             </div>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="card-body w-full">
                             <div class="w-full" v-if="content.top_businesses">
-                                <ag-charts-vue :key="pie_options" :options="pie_options"> </ag-charts-vue>
+                                <dashboard_pie_chart v-if="pie_options" :key="pie_options" :options="pie_options" />
                             </div>
                         </div>
                     </div>
@@ -237,6 +237,7 @@ import {ref} from 'vue';
 import moment from 'moment';
 import dashboard_card from '@/components/includes/dashboard_card.vue';
 import dashboard_chart from '@/components/includes/dashboard_chart.vue';
+import dashboard_pie_chart from '@/components/includes/dashboard_pie_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest} from '@/utils.vue';
@@ -251,6 +252,7 @@ export default
         dashboard_card_white,
         dashboard_card,
         dashboard_chart,
+        dashboard_pie_chart,
         AgChartsVue,
         VueTailwindDatepicker
     },
@@ -372,9 +374,24 @@ export default
                 ],
             };
 
+            let pieLabels = []
+            let dataLabels = []
+            for (let i = 0; i < data.top_businesses.length; i++) {
+                const element = data.top_businesses[i];
+                pieLabels[i] = element.label;
+                dataLabels[i] = element.y;
+            }
             
             // Line charts for sales in last days 
             pie_options.value  =  {
+                labels: pieLabels,
+                datasets: [
+                {
+                    data: dataLabels,
+                },
+                ],
+            }
+            {
 
                 // Line charts Data 
                 data: data.top_businesses,
