@@ -29,31 +29,11 @@ export default
     },
     setup(props) {
 
-        const labels = ref([]);
-        const data = ref([]);
         
         const handleData = () => 
         {
-            const v = props.content;
-            for (let i = 0; i < v.length; i++) 
-            {
-                const element = v[i];
-                labels.value[i] = element.label;
-                data.value[i] = element.y;
-            }
-            return {
-                labels: labels.value,
-                datasets: [
-                {
-                    label: props.title,
-                    backgroundColor: 'rgba(151, 187, 205, 0.2)',
-                    borderColor: 'rgba(151, 187, 205, 1)',
-                    pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-                    pointBorderColor: '#fff',
-                    data: data.value
-                }
-                ]
-            };
+
+            return props.options;
             
         }
 
@@ -62,9 +42,8 @@ export default
         };
     },
     props: [
-        'title',
         'classes',
-        'content',
+        'options',
     ],
 
 };

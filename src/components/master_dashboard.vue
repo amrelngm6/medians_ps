@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <dashboard_chart v-if="content.private_trips_charts" :key="content" :content="content.private_trips_charts" :title="translate('private trips')" /> 
+        <dashboard_chart v-if="line_options" :key="line_options" :options="line_options" /> 
         <dashboard_chart v-if="content.trips_charts" :key="content" :content="content.trips_charts" :title="translate('Route trips')" /> 
         <!-- <dashboard_chart v-if="content.top_businesses" :key="content" :content="content" :title="translate('top_businesses')" />  -->
 
@@ -324,17 +324,28 @@ export default
          */ 
         const setCharts = (data) => {
 
+            const labels = ref([]);
+            const data = ref([]);
+    
             // Line charts for sales in last days 
+            for (let i = 0; i < content.value.trips_charts.length; i++) 
+            {
+                const element = content.value.trips_charts[i];
+                labels.value[i] = element.label;
+                data.value[i] = element.y;
+            }
             line_options.value  =  {
-
-                // Line charts Data 
-                data: content.value.trips_charts,
-
-                // Series: Defines which chart type and data to use
-                series: [
-                    { type: 'bar', xKey: 'label', yKey: 'y' },
-                    // { type: 'line', xKey: 'label', yKey: 'y' },
-                ],
+                labels: labels.value,
+                datasets: [
+                {
+                    label: props.title,
+                    backgroundColor: 'rgba(151, 187, 205, 0.2)',
+                    borderColor: 'rgba(151, 187, 205, 1)',
+                    pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+                    pointBorderColor: '#fff',
+                    data: data.value
+                }
+                ]
             };
 
             // Line charts for sales in last days 
