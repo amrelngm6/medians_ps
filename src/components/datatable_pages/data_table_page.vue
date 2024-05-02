@@ -203,14 +203,14 @@ export default
             showEditSide,
             closeSide,
             openCreate,
-            url ,
             content,
             activeItem,
             showWizard,
             searchField,
             searchValue,
             translate,
-            handleAction
+            handleAction,
+            url,
         }
         
     },
