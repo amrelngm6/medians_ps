@@ -328,7 +328,7 @@ export default
             const labels_data = ref([]);
     
             // Line charts for sales in last days 
-            for (let i = 0; i < data.length; i++) 
+            for (let i = 0; i < data.trips_charts.length; i++) 
             {
                 const element = data.trips_charts[i];
                 labels.value[i] = element.label;
