@@ -325,7 +325,7 @@ export default
         /**
          * Set charts based on their values type
          */ 
-        const setCharts = (data) => {
+        const setCharts = async (data) => {
 
             
             if (data)
