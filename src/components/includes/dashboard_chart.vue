@@ -19,8 +19,6 @@
 
 </template>
 <script>
-import {ref} from 'vue';
-// import { CChart } from '@coreui/vue-chartjs'
 import { CChart, CChartBar, CChartLine, CChartDoughnut, CChartRadar, CChartPie, CChartPolarArea } from '@coreui/vue-chartjs'
 export default 
 {
