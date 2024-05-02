@@ -42,7 +42,7 @@ export default
                 data.value[i] = element.y;
             }
             return {
-                labels: labels,
+                labels: labels.value,
                 datasets: [
                 {
                     label: 'Private trips',
@@ -50,7 +50,7 @@ export default
                     borderColor: 'rgba(151, 187, 205, 1)',
                     pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                     pointBorderColor: '#fff',
-                    data: data
+                    data: data.value
                 }
                 ]
             };
