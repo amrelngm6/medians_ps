@@ -133,6 +133,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Drivers\Application\DriverController())->login(); 
 				break;
 
+			case 'Driver.loginWithGoogle':
+				$return =  (new Drivers\Application\DriverController())->loginWithGoogle(); 
+				break;
+
 			case 'getDriver':
 				$return =  (new Drivers\Application\DriverController())->getDriver($request->get('driver_id')); 
 				break;
