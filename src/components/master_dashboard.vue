@@ -17,7 +17,7 @@
         </div>
 
         <dashboard_chart v-if="line_options" :key="line_options" :options="line_options" /> 
-        <dashboard_chart v-if="content.trips_charts" :key="content" :content="content.trips_charts" :title="translate('Route trips')" /> 
+        <!-- <dashboard_chart v-if="content.trips_charts" :key="content" :content="content.trips_charts" :title="translate('Route trips')" />  -->
         <!-- <dashboard_chart v-if="content.top_businesses" :key="content" :content="content" :title="translate('top_businesses')" />  -->
 
         <div class="block w-full overflow-x-auto py-2">
@@ -325,14 +325,14 @@ export default
         const setCharts = (data) => {
 
             const labels = ref([]);
-            const data = ref([]);
+            const labels_data = ref([]);
     
             // Line charts for sales in last days 
-            for (let i = 0; i < content.value.trips_charts.length; i++) 
+            for (let i = 0; i < data.length; i++) 
             {
-                const element = content.value.trips_charts[i];
+                const element = data.trips_charts[i];
                 labels.value[i] = element.label;
-                data.value[i] = element.y;
+                labels_data.value[i] = element.y;
             }
             line_options.value  =  {
                 labels: labels.value,
@@ -343,7 +343,7 @@ export default
                     borderColor: 'rgba(151, 187, 205, 1)',
                     pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                     pointBorderColor: '#fff',
-                    data: data.value
+                    data: labels_data.value
                 }
                 ]
             };
@@ -352,7 +352,7 @@ export default
             line_options2.value  =  {
 
                 // Line charts Data 
-                data: content.value.private_trips_charts,
+                data: data.private_trips_charts,
 
                 // Series: Defines which chart type and data to use
                 series: [
@@ -366,7 +366,7 @@ export default
             pie_options.value  =  {
 
                 // Line charts Data 
-                data: content.value.top_businesses,
+                data: data.top_businesses,
 
                 // Series: Defines which chart type and data to use
                 series: [
