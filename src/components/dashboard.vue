@@ -111,12 +111,14 @@
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Routes Trips')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
+                                show
                                 <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
                             </div>
                         </div>
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
+                                show p
                                 <ag-charts-vue :key="line_options2" :options="line_options2"> </ag-charts-vue>
                             </div>
                         </div>
