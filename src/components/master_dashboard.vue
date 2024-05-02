@@ -359,6 +359,10 @@ export default
                     ]
                 };
 
+                if (!data.top_businesses)
+                {   
+                    return;
+                }
             
                 let pieLabels = []
                 let dataLabels = []
