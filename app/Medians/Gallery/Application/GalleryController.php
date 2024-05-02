@@ -92,6 +92,7 @@ class GalleryController extends CustomController
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 			$params['created_by'] = $user->id;
+			$params['business_id'] = $user->business->business_id;
             
 			return ($this->repo->store($params))
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
