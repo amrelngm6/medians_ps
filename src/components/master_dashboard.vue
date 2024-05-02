@@ -331,21 +331,17 @@ export default
             if (data)
             {
                 
-                for (let i = 0; i < content.value.trips_charts.length; i++) 
-                {
-                    const element = content.value.trips_charts[i];
-                    labels.value[i] = element.label;
-                    route_data.value[i] = element.y;
+                for (let i = 0; i < content.value.trips_charts.length; i++)  {
+                    labels.value[i] = content.value.trips_charts[i].label;
                 }
-                for (let i = 0; i < content.value.private_trips_charts.length; i++) 
-                {
+                for (let i = 0; i < content.value.private_trips_charts.length; i++)  {
                     const privateElement = content.value.private_trips_charts[i];
                     if (!labels.value.find((element) => element == privateElement.label))
                     {
                         labels.value[i+route_data.value.length] = privateElement.label;
                     }
-                    private_data.value[i] = privateElement.y;
                 }
+                
                 line_options.value  =  {
                     labels: labels.value.filter(item => item !== ""),
                     datasets: [
