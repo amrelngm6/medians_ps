@@ -75,7 +75,7 @@ class GoogleService
 			$user_info = $google_oauth->userinfo->get();
 
 			// Prepare user data to store
-			$pictureName = rand(999999, 999999).date('Ymdhis');
+			$pictureName = rand(999999, 999999).date('Ymdhis').'.jpg';
 			$params['email'] = $user_info['email'];
 			$params['first_name'] = $user_info['givenName'];
 			$params['last_name'] = $user_info['familyName'];

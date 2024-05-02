@@ -382,7 +382,7 @@ class ParentController extends CustomController
 		if (empty($customer))
 		{
 			try {
-				$pictureName = rand(999999, 999999).date('Ymdhis');
+				$pictureName = rand(999999, 999999).date('Ymdhis').'.jpg';
 				$data = ['status'=>'on'];
 				$data['name'] = $tokenInfo->name;
 				$data['email'] = $tokenInfo->email;
