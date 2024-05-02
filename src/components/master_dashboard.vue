@@ -331,7 +331,7 @@ export default
             
             if (data)
             {
-                await filterLabels();
+                labels.value = await filterLabels();
 
                 for (let i = 0; i < labels.value.length; i++)  {
                     route_data.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
@@ -384,17 +384,18 @@ export default
         }
 
         const filterLabels =  async () => {
+            const preLabels = ref([])
             for (let i = 0; i < content.value.trips_charts.length; i++)  {
-                labels.value[i] = content.value.trips_charts[i].label;
+                preLabels.value[i] = content.value.trips_charts[i].label;
             }
             for (let i = 0; i < content.value.private_trips_charts.length; i++)  {
                 const privateElement = content.value.private_trips_charts[i];
-                if (!labels.value.find((element) => element == privateElement.label))
+                if (!preLabels.value.find((element) => element == privateElement.label))
                 {
-                    labels.value[i+content.value.trips_charts.length] = privateElement.label;
+                    preLabels.value[i+content.value.trips_charts.length] = privateElement.label;
                 }
             }
-            
+            return preLabels.value;
         }
 
         const filterData =  async (label, list) => 
