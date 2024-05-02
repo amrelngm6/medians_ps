@@ -334,13 +334,13 @@ export default
                 for (let i = 0; i < content.value.trips_charts.length; i++) 
                 {
                     const element = content.value.trips_charts[i];
-                    route_data.value[i] = element.label;
-                    labels1_data.value[i] = element.y;
+                    labels.value[i] = element.label;
+                    route_data.value[i] = element.y;
                 }
                 for (let i = 0; i < content.value.private_trips_charts.length; i++) 
                 {
                     const element = content.value.trips_charts[i];
-                    route_data.value[i+private_data.value.length] = element.label;
+                    labels.value[i+route_data.value.length] = element.label;
                     private_data.value[i] = element.y;
                 }
                 line_options.value  =  {
