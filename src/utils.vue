@@ -139,7 +139,9 @@ export function translate(i) {
     // Access the current Vue instance
     const currentInstance = getCurrentInstance();
     // Access the root Vue instance
-    console.log(currentInstance);
+    if (!currentInstance)
+        return i;
+    
     const rootVue = currentInstance.root.data;
     let key = i.toLowerCase().replaceAll(' ', '_');
     let k = i.replaceAll('_', ' ');
