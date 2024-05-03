@@ -352,14 +352,14 @@ export default
                 let businessTrips = []
                 let businessPrivateTrips = []
                 for (let i = 0; i < labels2.length; i++)  {
-                    businessTrips.value[i] = await filterData(labels2.value[i], content.value.trips_charts ) ?? 0
-                    businessPrivateTrips.value[i] = await filterData(labels2.value[i], content.value.private_trips_charts) ?? 0
+                    businessTrips[i] = await filterData(labels2.value[i], content.value.trips_charts ) ?? 0
+                    businessPrivateTrips[i] = await filterData(labels2.value[i], content.value.private_trips_charts) ?? 0
                 }
                 merge_line_options.value  =  {
                     labels: labels2.value.filter(item => item !== ""),
                     datasets: [
-                        chartItem(filterPrivateTripsCharts( content.value.top_businesses_with_trips ), translate('Private Trips'), colors[0]),
-                        chartItem(filterTripsCharts(content.value.top_businesses_with_trips), translate('Routes Trips'), colors[2])
+                        chartItem(businessTrips, translate('Routes Trips'), colors[2])
+                        chartItem(businessPrivateTrips, translate('Private Trips'), colors[0]),
                     ]
                 };
 
