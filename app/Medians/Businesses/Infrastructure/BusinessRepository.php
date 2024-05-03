@@ -134,7 +134,7 @@ class BusinessRepository
 		->with(['trips'=>function($q) use ($params){
 			if (isset($params['start']))
 			{
-				$q->selectRaw('COUNT(*) as y, date as label')->whereBetween('created_at' , [$params['start'] , $params['end']]);
+				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);
 			} 
 		}])
 		->with(['private_trips'=>function($q) use ($params){
