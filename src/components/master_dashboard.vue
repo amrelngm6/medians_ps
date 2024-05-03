@@ -78,7 +78,7 @@
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Trips history')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
-                                <dashboard_chart v-if="line_options" :key="line_options" :options="line_options" /> 
+                                <dashboard_chart v-if="invoicesCharts" :key="invoicesCharts" :options="invoicesCharts" /> 
                             </div>
                         </div>
                         <div class="w-full">
@@ -336,7 +336,15 @@ export default
                 const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
 
                 let invoicesLabels = content.value.invoices_charts.map((e) => e.label);
-                let invoicesData = content.value.invoices_charts.map((e) => e.y);
+                let invoicesData = ;
+                
+                invoicesCharts.value  =  {
+                    labels: invoicesLabels,
+                    datasets: [
+                        content.value.invoices_charts.map((e) => e.y)
+                    ]
+                };
+                
                 console.log(invoicesLabels)
                 console.log(invoicesData)
                 labels.value = await filterLabels();
@@ -345,6 +353,7 @@ export default
                     private_data.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
                 }
 
+                
                 
                 line_options.value  =  {
                     labels: labels.value.filter(item => item !== ""),
@@ -481,6 +490,7 @@ export default
         }
         
         return {
+            invoicesCharts,
             handleSelectedDate,
             switchDate,
             optionsbar,
