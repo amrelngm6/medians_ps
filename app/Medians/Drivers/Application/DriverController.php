@@ -466,8 +466,47 @@ class DriverController extends CustomController
 			'driver_id'=> isset($driver->driver_id) ? $driver->driver_id : null, 
 			'token'=>$generateToken->value
 		];
+	}
+
+	
+	/**
+	 * Login with Google from APP 
+	 */
+	public function loginWithTwitter() 
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+		
+		$driver = $this->repo->findByEmail($tokenInfo->email);
+		if (empty($driver))
+		{
+			try {
+				
+				$pictureName = rand(999999, 999999).date('Ymdhis').'.jpg';
+				$data = ['status'=>'on'];
+				$data['first_name'] = $params['name'];
+				$data['email'] = $params['email'];
+				$data['picture'] = $this->saveImageFromUrl($params['picture'], '/uploads/drivers/'.$pictureName) ;
+				$driver = $this->repo->signup($data);
+
+
+			} catch (\Throwable $th) {
+				return ['error'=> translate('This email can not be used choose another one')];
+			}
+		}
+		
+		$Auth = new \Medians\Auth\Application\AuthService;
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$driver->driver_id);
+		$generateToken = $driver->insertCustomField('API_token', $token);
+		
+		return 
+		[
+			'success'=>true, 
+			'driver_id'=> isset($driver->driver_id) ? $driver->driver_id : null, 
+			'token'=>$generateToken->value
+		];
 
 	}
+
 
 	function saveImageFromUrl($url, $localPath) 
 	{
