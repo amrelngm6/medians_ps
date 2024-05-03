@@ -320,6 +320,7 @@ export default
         const optionsbar = ref();
 
         
+        const invoicesCharts = ref([]);
         const labels = ref([]);
         const route_data = ref([]);
         const private_data = ref([]);
@@ -334,6 +335,10 @@ export default
             {
                 const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
 
+                let invoicesLabels = content.value.invoices_charts.map((e) => e.label);
+                let invoicesData = content.value.invoices_charts.map((e) => e.y);
+                console.log(invoicesLabels)
+                console.log(invoicesData)
                 labels.value = await filterLabels();
                 for (let i = 0; i < labels.value.length; i++)  {
                     route_data.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
