@@ -335,12 +335,12 @@ export default
             {
                 const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
 
-                let invoicesLabels = content.value.invoices_charts.map(e => e.label);
+                let invoicesLabels = content.value.invoices_charts.map(e => e ? e.label : null);
                 
                 invoicesCharts.value  =  {
                     labels: invoicesLabels,
                     datasets: [
-                        content.value.invoices_charts.map(e => e.y)
+                        content.value.invoices_charts.map(e => e ? e.y : null)
                     ]
                 };
                 
