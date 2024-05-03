@@ -345,15 +345,15 @@ export default
                     {
                         label: translate('Private Trips'),
                         backgroundColor: '#7239ea',
-                        borderColor: 'rgba(114, 57, 234, 1)',
-                        pointBackgroundColor: 'rgba(114, 157, 234, 1)',
+                        borderColor: '#7239ea',
+                        pointBackgroundColor: '#7239ea',
                         pointBorderColor: '#fff',
                         data: private_data.value
                     },{
                         label: translate('Routes Trips'),
-                        backgroundColor: 'rgba(187, 151, 205, 0.2)',
-                        borderColor: 'rgba(187, 151, 205, 1)',
-                        pointBackgroundColor: 'rgba(187, 151, 205, 1)',
+                        backgroundColor: '#f8285a',
+                        borderColor: '#f8285a',
+                        pointBackgroundColor: '#f8285a',
                         pointBorderColor: '#fff',
                         data: route_data.value
                     }
