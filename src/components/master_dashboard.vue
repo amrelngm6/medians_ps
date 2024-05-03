@@ -351,7 +351,7 @@ export default
                 let labels2 = await filterTripsLabels();
                 let businessTrips = []
                 let businessPrivateTrips = []
-                for (let i = 0; i < labels2.value.length; i++)  {
+                for (let i = 0; i < labels2.length; i++)  {
                     businessTrips.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
                     businessPrivateTrips.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
                 }
