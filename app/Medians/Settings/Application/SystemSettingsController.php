@@ -99,6 +99,7 @@ class SystemSettingsController extends CustomController
 				[ 'key'=> "allow_twitter_login", 'title'=> translate('Login with Twitter'), 'help_text'=>translate('Allow users to signup with Twitter ( X ) account'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "twitter_api_key", 'title'=> translate('Twitter API Key'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "twitter_client_secret", 'title'=> translate('Twitter Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "twitter_redirect_link", 'title'=> translate('Twitter Redirect callback'), 'help_text'=> translate('Redirect should be scheme like (mediansparents://)'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
 			'paypal'=> [	
