@@ -407,6 +407,42 @@ class ParentController extends CustomController
 
 	}
 
+	/**
+	 * Login with Google from APP 
+	 */
+	public function loginWithTwitter() 
+	{
+		$params = (array) json_decode($this->app->request()->get('params'));
+
+		$customer = $this->repo->findParentByEmail($params['email']);
+		if (empty($customer))
+		{
+			try {
+				$pictureName = rand(999999, 999999).date('Ymdhis').'.jpg';
+				$data = ['status'=>'on'];
+				$data['name'] = $params['name'];
+				$data['email'] = $params['email'];
+				$data['picture'] = $this->saveImageFromUrl($params['picture'], '/uploads/customers/'.$pictureName) ;
+				$customer = $this->repo->store($data);
+
+			} catch (\Throwable $th) {
+				return ['error'=> translate('This email can not be used choose another one')];
+			}
+		}
+		
+		$Auth = new \Medians\Auth\Application\AuthService;
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$customer->customer_id);
+		$generateToken = $customer->insertCustomField('API_token', $token);
+		
+		return 
+		[
+			'success'=>true, 
+			'customer_id'=> isset($customer->customer_id) ? $customer->customer_id : null, 
+			'token'=>$generateToken->value
+		];
+
+	}
+
 	function saveImageFromUrl($url, $localPath) 
 	{
 		$image = file_get_contents($url);
