@@ -341,8 +341,8 @@ export default
                 line_options.value  =  {
                     labels: labels.value.filter(item => item !== ""),
                     datasets: [
-                        pieItem(private_data.value, translate('Private Trips'), '#7239ea'),
-                        pieItem(route_data.value, translate('Routes Trips'), '#f8285a')
+                        chartItem(private_data.value, translate('Private Trips'), '#7239ea'),
+                        chartItem(route_data.value, translate('Routes Trips'), '#f8285a')
                     ]
                 };
 
@@ -374,7 +374,7 @@ export default
             };
         }
         
-        const pieItem = (value, title, color ) => {
+        const chartItem = (value, title, color ) => {
             return {
                 label: title,
                 backgroundColor: color,
