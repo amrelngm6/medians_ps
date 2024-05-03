@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
+                            <h4 class="text-base lg:text-lg " v-text="translate('Providers with most trips')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
                                 <dashboard_pie_chart v-if="merge_line_options" type="bar"  :key="merge_line_options" :options="merge_line_options" />
                             </div>
