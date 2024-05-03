@@ -335,16 +335,17 @@ export default
             {
                 const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
 
-                let invoicesLabels = content.value.invoices_charts.map((e) => e.label);
+                let invoicesLabels = content.value.invoices_charts.map(e => e.label);
                 
                 invoicesCharts.value  =  {
                     labels: invoicesLabels,
                     datasets: [
-                        content.value.invoices_charts.map((e) => e.y)
+                        content.value.invoices_charts.map(e => e.y)
                     ]
                 };
                 
-                console.log(invoicesLabels)
+
+                console.log(invoicesCharts.value)
                 labels.value = await filterLabels();
                 for (let i = 0; i < labels.value.length; i++)  {
                     route_data.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
