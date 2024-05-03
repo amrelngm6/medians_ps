@@ -353,13 +353,13 @@ export default
 
                 
                 
-                line_options.value  =  {
-                    labels: labels.value.filter(item => item !== ""),
-                    datasets: [
-                        content.value.private_trips_charts.map((e) => chartItem(e.private_trips ? e.private_trips.length : 0, translate('Private Trips'), colors[0])),
-                        content.value.trips_charts.map((e) => chartItem(e.trips ? e.trips.length : 0, translate('Routes Trips'), colors[2])),
-                    ]
-                };
+                // line_options.value  =  {
+                //     labels: labels.value.filter(item => item !== ""),
+                //     datasets: [
+                //         content.value.private_trips_charts.map((e) => chartItem(e.private_trips ? e.private_trips.length : 0, translate('Private Trips'), colors[0])),
+                //         content.value.trips_charts.map((e) => chartItem(e.trips ? e.trips.length : 0, translate('Routes Trips'), colors[2])),
+                //     ]
+                // };
                 
                 let labels2 = await filterTripsLabels(content.value.top_businesses_with_trips);
                 let businessTrips = []
