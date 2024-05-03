@@ -352,8 +352,8 @@ export default
                 let businessTrips = []
                 let businessPrivateTrips = []
                 for (let i = 0; i < labels2.length; i++)  {
-                    businessTrips[i] = await filterTripsCharts(content.value.top_businesses_with_trips[i] ) ?? 0
-                    businessPrivateTrips[i] = await filterPrivateTripsCharts(content.value.top_businesses_with_trips[i]  ) ?? 0
+                    businessTrips[i] = content.value.top_businesses_with_trips[i].trips.length ?? 0
+                    businessPrivateTrips[i] = content.value.top_businesses_with_trips[i].private_trips.length ?? 0
                 }
                 merge_line_options.value  =  {
                     labels: labels2.filter(item => item !== ""),
@@ -435,7 +435,7 @@ export default
             return preLabels.value;
         }
 
-        const filterTripsCharts =  async (items) => {
+        const filterTripsCharts =  async (business) => {
             console.log(items)
             const preLabels = ref([])
             if (items) {
