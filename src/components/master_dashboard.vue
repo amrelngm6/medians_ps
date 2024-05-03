@@ -348,7 +348,7 @@ export default
                     ]
                 };
                 
-                let labels2 = await filterTripsLabels();
+                let labels2 = await filterTripsLabels(content.value.top_businesses_with_trips);
                 let businessTrips = []
                 let businessPrivateTrips = []
                 for (let i = 0; i < labels2.length; i++)  {
