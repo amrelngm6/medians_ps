@@ -352,8 +352,8 @@ export default
                 let businessTrips = []
                 let businessPrivateTrips = []
                 for (let i = 0; i < labels2.length; i++)  {
-                    businessTrips.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
-                    businessPrivateTrips.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
+                    businessTrips.value[i] = await filterData(labels2.value[i], content.value.trips_charts ) ?? 0
+                    businessPrivateTrips.value[i] = await filterData(labels2.value[i], content.value.private_trips_charts) ?? 0
                 }
                 merge_line_options.value  =  {
                     labels: labels2.value.filter(item => item !== ""),
