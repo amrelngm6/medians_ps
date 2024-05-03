@@ -476,7 +476,7 @@ class DriverController extends CustomController
 	{
 		$params = (array) json_decode($this->app->request()->get('params'));
 		
-		$driver = $this->repo->findByEmail($tokenInfo->email);
+		$driver = $this->repo->findByEmail($params['email']);
 		if (empty($driver))
 		{
 			try {
