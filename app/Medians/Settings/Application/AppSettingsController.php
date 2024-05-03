@@ -74,6 +74,7 @@ class AppSettingsController extends CustomController
 			'Social media login'=> [	
 				[ 'key'=> "login_with_google", 'title'=> translate('Login with Google'), 'help_text'=>translate('Let users login & signup using their Gmail'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "login_with_twitter", 'title'=> translate('Login with Twitter'), 'help_text'=>translate('Let users login & signup using their Twitter (X) account'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "twitter_redirect_link", 'title'=> translate('Twitter Redirect callback'), 'help_text'=> translate('Redirect should be scheme like (mediansparents://callback)'), 'fillable'=> true, 'column_type'=>'text' ],
 
             ],
         ];
