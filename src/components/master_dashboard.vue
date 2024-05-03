@@ -84,7 +84,7 @@
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
-                                <dashboard_pie_chart v-if="pie_options" type="bar"  :key="pie_options" :options="pie_options" />
+                                <dashboard_pie_chart v-if="merge_line_options" type="bar"  :key="merge_line_options" :options="merge_line_options" />
                             </div>
                         </div>
                     </div>
@@ -262,7 +262,7 @@ export default
         const url =  ref(props.path + '?load=json');
 
         const line_options = ref();
-        const line_options2 = ref();
+        const merge_line_options = ref();
         const pie_options = ref();
         const column_options = ref();
 
@@ -332,6 +332,8 @@ export default
             
             if (data)
             {
+                const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
+
                 labels.value = await filterLabels();
                 for (let i = 0; i < labels.value.length; i++)  {
                     route_data.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
@@ -341,12 +343,19 @@ export default
                 line_options.value  =  {
                     labels: labels.value.filter(item => item !== ""),
                     datasets: [
-                        chartItem(private_data.value, translate('Private Trips'), '#7239ea'),
-                        chartItem(route_data.value, translate('Routes Trips'), '#f8285a')
+                        chartItem(private_data.value, translate('Private Trips'), colors[0]),
+                        chartItem(route_data.value, translate('Routes Trips'), colors[2])
+                    ]
+                };
+                
+                merge_line_options.value  =  {
+                    labels: labels.value.filter(item => item !== ""),
+                    datasets: [
+                        chartItem(private_data.value, translate('Private Trips'), colors[0]),
+                        chartItem(route_data.value, translate('Routes Trips'), colors[2])
                     ]
                 };
 
-                const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
                 
                 let pieLabels = []
                 let dataLabels = []
@@ -368,8 +377,6 @@ export default
                     },
                     ],
                 };
-                console.log(line_options.value)
-                console.log(pie_options.value)
 
             };
         }
@@ -436,7 +443,7 @@ export default
             optionsbar,
             translate,
             line_options,
-            line_options2,
+            merge_line_options,
             pie_options,
             content,
             activeDate,
