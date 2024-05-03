@@ -345,11 +345,14 @@ export default
                     private_data.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
                 }
 
+                
+                let invoicesLabels = content.value.invoices_charts.map((e) => e.label);
+                let invoicesData = content.value.invoices_charts.map((e) => e.y);
                 line_options.value  =  {
                     labels: labels.value.filter(item => item !== ""),
                     datasets: [
-                        chartItem(private_data.value, translate('Private Trips'), colors[0]),
-                        chartItem(route_data.value, translate('Routes Trips'), colors[2])
+                        content.value.private_trips_charts.map((e) => chartItem(e.private_trips.length, translate('Private Trips'), colors[0])),
+                        content.value.trips_charts.map((e) => chartItem(e.trips.length, translate('Routes Trips'), colors[2])),
                     ]
                 };
                 
