@@ -117,6 +117,38 @@ class BusinessRepository
 		->limit($limit)
 		->get();
 	}
+	
+
+	/**
+	* Find all items between two days 
+	*/
+	public function masterWithTripsByDate($params, $limit )
+	{
+		
+		return  Business::withCount(['locations as y'=>function($q) use ($params){
+			if (isset($params['start']))
+			{
+				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);
+			}
+		}])
+		->withCount(['trips'=>function($q) use ($params){
+			if (isset($params['start']))
+			{
+				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);
+			}
+		}])
+		->withCount(['private_trips'=>function($q) use ($params){
+			if (isset($params['start']))
+			{
+				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);
+			}
+		}])
+		->selectRaw('business_name as label')
+		->having('y', '>', 0)
+		->orderBy('y', 'desc')
+		->limit($limit)
+		->get();
+	}
 
 
 

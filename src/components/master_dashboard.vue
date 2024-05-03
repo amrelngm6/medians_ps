@@ -333,7 +333,6 @@ export default
             if (data)
             {
                 labels.value = await filterLabels();
-
                 for (let i = 0; i < labels.value.length; i++)  {
                     route_data.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
                     private_data.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
@@ -342,21 +341,8 @@ export default
                 line_options.value  =  {
                     labels: labels.value.filter(item => item !== ""),
                     datasets: [
-                    {
-                        label: translate('Private Trips'),
-                        backgroundColor: '#7239ea',
-                        borderColor: '#7239ea',
-                        pointBackgroundColor: '#7239ea',
-                        pointBorderColor: '#fff',
-                        data: private_data.value
-                    },{
-                        label: translate('Routes Trips'),
-                        backgroundColor: '#f8285a',
-                        borderColor: '#f8285a',
-                        pointBackgroundColor: '#f8285a',
-                        pointBorderColor: '#fff',
-                        data: route_data.value
-                    }
+                        pieItem(private_data.value, translate('Private Trips'), '#7239ea'),
+                        pieItem(route_data.value, translate('Routes Trips'), '#f8285a')
                     ]
                 };
 
@@ -385,6 +371,17 @@ export default
                 console.log(line_options.value)
                 console.log(pie_options.value)
 
+            };
+        }
+        
+        const pieItem = (value, title, color ) => {
+            return {
+                label: title,
+                backgroundColor: color,
+                borderColor: color,
+                pointBackgroundColor: color,
+                pointBorderColor: '#fff',
+                data: value
             };
         }
 
