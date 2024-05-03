@@ -131,13 +131,13 @@ class BusinessRepository
 				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);
 			}
 		}])
-		->withCount(['trips'=>function($q) use ($params){
+		->with(['trips'=>function($q) use ($params){
 			if (isset($params['start']))
 			{
-				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);
-			}
+				$q->selectRaw('COUNT(*) as y, date as label')->whereBetween('created_at' , [$params['start'] , $params['end']]);
+			} 
 		}])
-		->withCount(['private_trips'=>function($q) use ($params){
+		->with(['private_trips'=>function($q) use ($params){
 			if (isset($params['start']))
 			{
 				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);

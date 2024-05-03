@@ -348,11 +348,18 @@ export default
                     ]
                 };
                 
+                let labels2 = await filterTripsLabels();
+                let businessTrips = []
+                let businessPrivateTrips = []
+                for (let i = 0; i < labels2.value.length; i++)  {
+                    businessTrips.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
+                    businessPrivateTrips.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
+                }
                 merge_line_options.value  =  {
-                    labels: labels.value.filter(item => item !== ""),
+                    labels: labels2.value.filter(item => item !== ""),
                     datasets: [
-                        chartItem(private_data.value, translate('Private Trips'), colors[0]),
-                        chartItem(route_data.value, translate('Routes Trips'), colors[2])
+                        chartItem(filterPrivateTripsCharts(), translate('Private Trips'), colors[0]),
+                        chartItem(filterTripsCharts(), translate('Routes Trips'), colors[2])
                     ]
                 };
 
@@ -402,6 +409,34 @@ export default
                 if (!preLabels.value.find((element) => element == privateElement.label))
                 {
                     preLabels.value[i+content.value.trips_charts.length] = privateElement.label;
+                }
+            }
+            return preLabels.value;
+        }
+
+        const filterTripsLabels =  async (items) => {
+            const preLabels = ref([])
+            for (let i = 0; i < items.length; i++)  {
+                preLabels.value[i] = items[i].label;
+            }
+            return preLabels.value;
+        }
+
+        const filterPrivateTripsCharts =  async (items) => {
+            const preLabels = ref([])
+            if (items) {
+                for (let i = 0; i < items.length; i++)  {
+                    preLabels.value[i] = items[i].private_trips ? items[i].private_trips.length : false;
+                }
+            }
+            return preLabels.value;
+        }
+
+        const filterTripsCharts =  async (items) => {
+            const preLabels = ref([])
+            if (items) {
+                for (let i = 0; i < items.length; i++)  {
+                    preLabels.value[i] = items[i].trips ? items[i].trips.length : false;
                 }
             }
             return preLabels.value;
