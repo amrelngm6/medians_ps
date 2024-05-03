@@ -346,8 +346,6 @@ export default
                 }
 
                 
-                let invoicesLabels = content.value.invoices_charts.map((e) => e.label);
-                let invoicesData = content.value.invoices_charts.map((e) => e.y);
                 line_options.value  =  {
                     labels: labels.value.filter(item => item !== ""),
                     datasets: [
