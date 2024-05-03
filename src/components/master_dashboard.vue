@@ -425,6 +425,7 @@ export default
         }
 
         const filterPrivateTripsCharts =  async (items) => {
+            console.log(items)
             const preLabels = ref([])
             if (items) {
                 for (let i = 0; i < items.length; i++)  {
@@ -435,6 +436,7 @@ export default
         }
 
         const filterTripsCharts =  async (items) => {
+            console.log(items)
             const preLabels = ref([])
             if (items) {
                 for (let i = 0; i < items.length; i++)  {
