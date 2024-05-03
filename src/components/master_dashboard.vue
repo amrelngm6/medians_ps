@@ -344,9 +344,9 @@ export default
                     datasets: [
                     {
                         label: translate('Private Trips'),
-                        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                        backgroundColor: '#7239ea',
                         borderColor: 'rgba(114, 57, 234, 1)',
-                        pointBackgroundColor: 'rgba(114, 57, 234, 1)',
+                        pointBackgroundColor: 'rgba(114, 157, 234, 1)',
                         pointBorderColor: '#fff',
                         data: private_data.value
                     },{
