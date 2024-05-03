@@ -290,11 +290,15 @@ class APP
 				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
 				array('permission'=> 'Withdrawals.index', 'title'=> translate('Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/withdrawals', 'component'=>'withdrawals'),
 				array('permission'=> 'CollectedCash.index', 'title'=> translate('collected_cash'), 'icon'=>'credit-card', 'link'=>'admin/collected_cash', 'component'=>'collected_cash'),
+				]
+			),
+			array( 'title'=>translate('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
+			[
+				array('permission'=>'Gallery.index', 'title'=>translate('Gallery'),  'icon'=>'tool', 'link'=>'admin/gallery', 'component'=>'gallery'),
+				array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+				array('permission'=> 'Settings.index', 'title'=> translate('Business Settings'),  'icon'=>'tool', 'link'=>'admin/settings', 'component'=>'settings'),
 			]
 			),
-			
-			array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
-			array('permission'=> 'Settings.index', 'title'=> translate('Business Settings'),  'icon'=>'tool', 'link'=>'admin/settings', 'component'=>'settings'),
 			array('permission'=>'Dashboard.index', 'title'=> translate('Logout'),  'icon'=>'log-out', 'link'=>'logout'),
 		);
 
@@ -347,7 +351,6 @@ class APP
 			array( 'title'=>translate('Management'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Pages.index', 'title'=>translate('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
-				array('permission'=>'Gallery.index', 'title'=>translate('Gallery'),  'icon'=>'tool', 'link'=>'admin/gallery', 'component'=>'gallery'),
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
 				array('permission'=>'ContactForm.index', 'title'=>translate('contact_forms'),  'icon'=>'tag', 'link'=>'admin/contact_forms', 'component'=>'contact_forms'),
