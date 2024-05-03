@@ -360,13 +360,16 @@ export default
                     ]
                 };
 
+                const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
                 
                 let pieLabels = []
                 let dataLabels = []
+                let colorsList = []
                 for (let i = 0; i < content.value.top_businesses.length; i++) {
                     const element = content.value.top_businesses[i];
                     pieLabels[i] = element.label;
                     dataLabels[i] = element.y;
+                    colorsList[i] = colors.value[i];
                 }
                 
                 // Line charts for sales in last days 
@@ -374,6 +377,7 @@ export default
                     labels: pieLabels,
                     datasets: [
                     {
+                        backgroundColor: colorsList,
                         data: dataLabels,
                     },
                     ],
