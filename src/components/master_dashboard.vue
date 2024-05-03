@@ -363,6 +363,8 @@ export default
                     ]
                 };
 
+                console.log(merge_line_options.value)
+
                 
                 let pieLabels = []
                 let dataLabels = []
