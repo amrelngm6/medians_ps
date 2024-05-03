@@ -89,7 +89,7 @@ class SystemSettingsController extends CustomController
 			],
 			
 			'google'=> [	
-				[ 'key'=> "allow_google_login", 'title'=> translate('Login with Google'), 'help_text'=>translate('Allow users to signup with Gmail'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "allow_google_login", 'title'=> translate('Login with Google'), 'help_text'=>translate('Allow users to signup with Twitter ( X ) account'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "google_client_id", 'title'=> translate('Google Client ID'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "google_client_secret", 'title'=> translate('Google Client secret'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "google_map_api", 'title'=> translate('Google Map API'), 'help_text'=>translate('Used for maps'),'fillable'=> true, 'column_type'=>'text' ],
