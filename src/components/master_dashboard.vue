@@ -358,12 +358,10 @@ export default
                 merge_line_options.value  =  {
                     labels: labels2.filter(item => item !== ""),
                     datasets: [
-                        chartItem(businessTrips, translate('Routes Trips'), colors[0]),
-                        chartItem(businessPrivateTrips, translate('Private Trips'), colors[2]),
+                        chartItem(businessTrips, translate('Routes Trips'), colors[2]),
+                        chartItem(businessPrivateTrips, translate('Private Trips'), colors[0]),
                     ]
                 };
-
-                console.log(merge_line_options.value)
 
                 
                 let pieLabels = []
