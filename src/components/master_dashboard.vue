@@ -358,8 +358,8 @@ export default
                 merge_line_options.value  =  {
                     labels: labels2.value.filter(item => item !== ""),
                     datasets: [
-                        chartItem(filterPrivateTripsCharts(), translate('Private Trips'), colors[0]),
-                        chartItem(filterTripsCharts(), translate('Routes Trips'), colors[2])
+                        chartItem(filterPrivateTripsCharts( content.value.top_businesses_with_trips ), translate('Private Trips'), colors[0]),
+                        chartItem(filterTripsCharts(content.value.top_businesses_with_trips), translate('Routes Trips'), colors[2])
                     ]
                 };
 
