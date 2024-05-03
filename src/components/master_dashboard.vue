@@ -340,7 +340,8 @@ export default
                 invoicesCharts.value  =  {
                     labels: invoicesLabels,
                     datasets: [
-                        content.value.invoices_charts.map(e => e ? e.y : null)
+                        chartItem(content.value.invoices_charts.map(e => e ? e.y : null), translate('Invoices'), colors[0]),
+                        
                     ]
                 };
                 
