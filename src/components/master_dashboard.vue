@@ -68,10 +68,10 @@
                 </div>
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
-                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-dark" text_class="text-gray-300" value_class="text-white" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-info" text_class="text-gray-300" value_class="text-white"  :title="translate('Businesses')" :value="content.businesses_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-success"  text_class="text-gray-300" value_class="text-white"  :title="translate('Customers')" :value="content.customers_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-danger"  text_class="text-gray-300" value_class="text-white"  :title="translate('Help messages')" :value="content.help_messages_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-dark" text_class="fs-4 text-white" value_class="text-white" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-info" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Businesses')" :value="content.businesses_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-success"  text_class="" value_class="text-white"  :title="translate('Customers')" :value="content.customers_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-danger"  text_class="fs-4 text-white" value_class="text-white"  :title="translate('Help messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
                     
                     <div class="w-full gap-4 lg:flex">
