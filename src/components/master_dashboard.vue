@@ -330,18 +330,14 @@ export default
          */ 
         const setCharts = async (data) => {
 
-            
             if (data)
             {
                 const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
 
-                let invoicesLabels = content.value.invoices_charts.map(e => e ? e.label : null);
-                
                 invoicesCharts.value  =  {
-                    labels: invoicesLabels,
+                    labels: content.value.invoices_charts.map(e => e ? e.label : null),
                     datasets: [
                         chartItem(content.value.invoices_charts.map(e => e ? e.y : null), translate('Invoices'), colors[0]),
-                        
                     ]
                 };
                 

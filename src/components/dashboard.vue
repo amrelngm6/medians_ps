@@ -101,25 +101,23 @@
                 </div>
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
-                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-dark" text_class="text-gray-300" value_class="text-white" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-info" text_class="text-gray-300" value_class="text-white"  :title="translate('Transactions')" :value="content.transactions_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-success" text_class="text-gray-300" value_class="text-white"  :title="translate('Subscriptions')" :value="content.subscriptions_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-danger" text_class="text-gray-300" value_class="text-white"  :title="translate('Business applicants')" :value="content.business_applicant_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-dark" text_class="fs-4 text-white" value_class="text-white" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-info" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Withdrawals requests')" :value="content.transactions_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-success" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Driver Applicants')" :value="content.subscriptions_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-danger" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Business Applicants')" :value="content.business_applicant_count"></dashboard_card_white>
                     </div>
                     
                     <div class="w-full gap-4 lg:flex">
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Routes Trips')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
-                                show
-                                <ag-charts-vue :key="line_options" :options="line_options"> </ag-charts-vue>
+                                <dashboard_chart v-if="routes_trips_options" :key="routes_trips_options" :options="routes_trips_options" /> 
                             </div>
                         </div>
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
-                                show p
-                                <ag-charts-vue :key="line_options2" :options="line_options2"> </ag-charts-vue>
+                                <dashboard_pie_chart v-if="merge_line_options" type="bar"  :key="merge_line_options" :options="merge_line_options" />
                             </div>
                         </div>
                     </div>
@@ -320,7 +318,7 @@ export default
 
         const url =  ref(props.path + '?load=json');
 
-        const line_options = ref();
+        const routes_trips_options = ref();
         const line_options2 = ref();
         const pie_options = ref();
         const column_options = ref();
@@ -377,38 +375,32 @@ export default
 
 
         const optionsbar = ref();
-
+        
+        const routes_trips_options = ref();
+        const private_trips_options = ref();
         
         /**
          * Set charts based on their values type
          */ 
         const setCharts = (data) => {
 
-            // Line charts for sales in last days 
-            line_options.value  =  {
+            const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
 
-                // Line charts Data 
-                data: content.value.trips_charts,
-
-                // Series: Defines which chart type and data to use
-                series: [
-                    { type: 'bar', xKey: 'label', yKey: 'y' },
-                    // { type: 'line', xKey: 'label', yKey: 'y' },
-                ],
+            routes_trips_options.value  =  {
+                labels: content.value.trips_charts.map(e => e ? e.label : null),
+                datasets: [
+                    chartItem(content.value.trips_charts.map(e => e ? e.y : null), translate('Routes Trips'), colors[0]),
+                ]
             };
 
-            // Line charts for sales in last days 
-            line_options2.value  =  {
 
-                // Line charts Data 
-                data: content.value.private_trips_charts,
-
-                // Series: Defines which chart type and data to use
-                series: [
-                    { type: 'bar', xKey: 'label', yKey: 'y' },
-                    // { type: 'line', xKey: 'label', yKey: 'y' },
-                ],
+            private_trips_options.value  =  {
+                labels: content.value.private_trips_charts.map(e => e ? e.label : null),
+                datasets: [
+                    chartItem(content.value.private_trips_charts.map(e => e ? e.y : null), translate('Private Trips'), colors[2]),
+                ]
             };
+
 
             
             // Line charts for sales in last days 
@@ -448,8 +440,8 @@ export default
             switchDate,
             optionsbar,
             translate,
-            line_options,
-            line_options2,
+            routes_trips_options,
+            private_trips_options,
             pie_options,
             dates_filters,
             content,
