@@ -428,6 +428,17 @@ export default
         }
 
 
+        const chartItem = (value, title, color ) => {
+            return {
+                label: title,
+                backgroundColor: color,
+                borderColor: color,
+                pointBackgroundColor: color,
+                pointBorderColor: '#fff',
+                data: value
+            };
+        }
+
 
         const dateValue = ref({
             startDate: "",
