@@ -332,7 +332,7 @@ export default
 
             if (data)
             {
-                const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
+                const colors = ref(['#7239ea','#f8285a','#17c653','#f1ed5c','#1e2129']);        
 
                 invoicesCharts.value  =  {
                     labels: content.value.invoices_charts.map(e => e ? e.label : null),
@@ -341,45 +341,21 @@ export default
                     ]
                 };
                 
-
-                labels.value = await filterLabels();
-                for (let i = 0; i < labels.value.length; i++)  {
-                    route_data.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
-                    private_data.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
-                }
-
-                let labels2 = await filterTripsLabels(content.value.top_businesses_with_trips);
-                let businessTrips = []
-                let businessPrivateTrips = []
-                for (let i = 0; i < labels2.length; i++)  {
-                    businessTrips[i] = content.value.top_businesses_with_trips[i].trips.length ?? 0
-                    businessPrivateTrips[i] = content.value.top_businesses_with_trips[i].private_trips.length ?? 0
-                }
                 merge_line_options.value  =  {
                     labels: content.value.top_businesses_with_trips.filter(item => item.label),
                     datasets: [
                         chartItem(content.value.top_businesses_with_trips.map(e => e ? e.private_trips.length : 0), translate('Private Trips'), colors[0]),
-                        chartItem(content.value.top_businesses_with_trips.map(e => e ? e.trips.length : 0), translate('Routes Trips'), colors[2]),
+                        chartItem(content.value.top_businesses_with_trips.map(e => e ? e.trips.length : 0), translate('Routes Trips'), colors[1]),
                     ]
                 };
 
-                
-                let pieLabels = []
-                let dataLabels = []
-                let colorsList = []
-                for (let i = 0; i < content.value.top_businesses.length; i++) {
-                    const element = content.value.top_businesses[i];
-                    pieLabels[i] = element.label;
-                    dataLabels[i] = element.y;
-                    colorsList[i] = colors.value[i];
-                }
                 
                 // Line charts for sales in last days 
                 pie_options.value  =  {
                     labels: content.value.top_businesses.map((e) => e.label),
                     datasets: [
                     {
-                        backgroundColor: content.value.top_businesses.map((e, i) => colorsList[i]),
+                        backgroundColor: content.value.top_businesses.map((e, i) => colors.value[i]),
                         data: content.value.top_businesses.map((e, i) => e.y),
                     },
                     ],

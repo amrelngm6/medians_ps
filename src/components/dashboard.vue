@@ -375,7 +375,7 @@ export default
          */ 
         const setCharts = (data) => {
 
-            const colors = ref(['#7239ea','#17c653','#f8285a','#f1ed5c','#1e2129']);        
+            const colors = ref(['#7239ea','#f8285a','#17c653','#f1ed5c','#1e2129']);        
 
             routes_trips_options.value  =  {
                 labels: content.value.trips_charts.map(e => e ? e.label : null),
@@ -388,7 +388,7 @@ export default
             private_trips_options.value  =  {
                 labels: content.value.private_trips_charts.map(e => e ? e.label : null),
                 datasets: [
-                    chartItem(content.value.private_trips_charts.map(e => e ? e.y : null), translate('Private Trips'), colors.value[2]),
+                    chartItem(content.value.private_trips_charts.map(e => e ? e.y : null), translate('Private Trips'), colors.value[1]),
                 ]
             };
 
