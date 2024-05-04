@@ -419,7 +419,7 @@ export default
                 labels: content.value.top_drivers.map((e) => e.first_name),
                 datasets: [
                 {
-                    backgroundColor: content.value.top_drivers.map((e, i) => colorsList[i]),
+                    backgroundColor: content.value.top_drivers.map((e, i) => colors[i]),
                     data: content.value.top_drivers.map((e, i) => e.y),
                 },
                 ],
