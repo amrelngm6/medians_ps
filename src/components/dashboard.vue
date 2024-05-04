@@ -402,7 +402,7 @@ export default
             routes_trips_options.value  =  {
                 labels: content.value.trips_charts.map(e => e ? e.label : null),
                 datasets: [
-                    chartItem(content.value.trips_charts.map(e => e ? e.y : null), translate('Routes Trips'), colors[0]),
+                    chartItem(content.value.trips_charts.map(e => e ? e.y : null), translate('Routes Trips'), colors.value[0]),
                 ]
             };
 
@@ -410,7 +410,7 @@ export default
             private_trips_options.value  =  {
                 labels: content.value.private_trips_charts.map(e => e ? e.label : null),
                 datasets: [
-                    chartItem(content.value.private_trips_charts.map(e => e ? e.y : null), translate('Private Trips'), colors[2]),
+                    chartItem(content.value.private_trips_charts.map(e => e ? e.y : null), translate('Private Trips'), colors.value[2]),
                 ]
             };
 
@@ -419,7 +419,7 @@ export default
                 labels: content.value.top_drivers.map((e) => e.first_name),
                 datasets: [
                 {
-                    backgroundColor: content.value.top_drivers.map((e, i) => colors[i]),
+                    backgroundColor: content.value.top_drivers.map((e, i) => colors.value[i]),
                     data: content.value.top_drivers.map((e, i) => e.y),
                 },
                 ],

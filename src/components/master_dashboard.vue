@@ -342,7 +342,6 @@ export default
                 };
                 
 
-                console.log(invoicesCharts.value)
                 labels.value = await filterLabels();
                 for (let i = 0; i < labels.value.length; i++)  {
                     route_data.value[i] = await filterData(labels.value[i], content.value.trips_charts ) ?? 0
