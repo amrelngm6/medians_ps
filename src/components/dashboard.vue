@@ -424,6 +424,7 @@ export default
                 },
                 ],
             };
+            console.log(pie_options.value)
 
         }
 
