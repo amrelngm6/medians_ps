@@ -318,8 +318,6 @@ export default
 
         const url =  ref(props.path + '?load=json');
 
-        const routes_trips_options = ref();
-        const line_options2 = ref();
         const pie_options = ref();
         const column_options = ref();
 
