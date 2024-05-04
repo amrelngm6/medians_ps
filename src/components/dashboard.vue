@@ -405,7 +405,7 @@ export default
                 datasets: [
                 {
                     backgroundColor: content.value.top_drivers.map((e, i) => colors.value[i]),
-                    data: content.value.top_drivers.map((e, i) => e.y),
+                    data: content.value.top_drivers.map(e => e.y),
                 },
                 ],
             };
