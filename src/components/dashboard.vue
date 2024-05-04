@@ -401,10 +401,9 @@ export default
 
             // Line charts for sales in last days 
             pie_options.value  =  {
-                labels: content.value.top_drivers.map((e) => e.first_name),
+                labels: content.value.top_drivers.map((e) => e.driver_id),
                 datasets: [
                 {
-                    backgroundColor: content.value.top_drivers.map((e, i) => colors.value[i]),
                     data: content.value.top_drivers.map(e => e.y),
                 },
                 ],
