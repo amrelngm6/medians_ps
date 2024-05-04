@@ -76,7 +76,7 @@
                     
                     <div class="w-full gap-4 lg:flex">
                         <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('Trips history')"></h4> 
+                            <h4 class="text-base lg:text-lg " v-text="translate('Invoices of provider subscriptions')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
                                 <dashboard_chart v-if="invoicesCharts" :key="invoicesCharts" :options="invoicesCharts" /> 
                             </div>
