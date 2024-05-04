@@ -152,7 +152,7 @@
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_drivers_who_have_most_trips')"></p>
                         <div class="card-body w-full">
                             <div class="w-full" v-if="content.top_drivers">
-                                <dashboard_pie_chart v-if="pie_options" type="bar"  :key="pie_options" :options="pie_options" />
+                                <dashboard_pie_chart v-if="pie_options" type="pie"  :key="pie_options" :options="pie_options" />
                             </div>
                         </div>
                     </div>
