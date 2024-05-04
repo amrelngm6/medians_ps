@@ -399,16 +399,22 @@ export default
                 ]
             };
 
+            let colorsList = []
+            for (let i = 0; i < content.value.top_drivers.length; i++) {
+                const element = content.value.top_drivers[i];
+                colorsList[i] = colors.value[i];
+            }
+            
             // Line charts for sales in last days 
             pie_options.value  =  {
-                labels: content.value.top_drivers.map((e) => e.driver_id),
+                labels: content.value.top_drivers.map((e) => e.first_name),
                 datasets: [
                 {
-                    data: content.value.top_drivers.map(e => e.y),
+                    backgroundColor: content.value.top_drivers.map((e, i) => colorsList[i]),
+                    data: content.value.top_drivers.map((e, i) => e.y),
                 },
                 ],
             };
-            console.log(pie_options.value)
 
         }
 
