@@ -129,6 +129,21 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Help messages')" :value="content.help_messages_count ?? '0'"></dashboard_card_white>
                     </div>
 
+                    
+                    <div class="w-full gap-4 lg:flex">
+                        <div class="w-full">
+                            <h4 class="text-base lg:text-lg " v-text="translate('Invoices of provider subscriptions')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
+                                <dashboard_chart v-if="routes_trips_options" :key="routes_trips_options" :options="routes_trips_options" /> 
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-base lg:text-lg " v-text="translate('Providers with most trips')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
+                                <dashboard_pie_chart v-if="merge_line_options" type="bar"  :key="merge_line_options" :options="merge_line_options" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="w-full lg:flex gap gap-6 pb-6">
@@ -137,7 +152,7 @@
                         <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_drivers_who_have_most_trips')"></p>
                         <div class="card-body w-full">
                             <div class="w-full" v-if="content.top_drivers">
-                                <ag-charts-vue :key="pie_options" :options="pie_options"> </ag-charts-vue>
+                                <dashboard_pie_chart v-if="pie_options" type="bar"  :key="pie_options" :options="pie_options" />
                             </div>
                         </div>
                     </div>
@@ -399,19 +414,17 @@ export default
                 ]
             };
 
-
-            
             // Line charts for sales in last days 
             pie_options.value  =  {
-
-                // Line charts Data 
-                data: content.value.top_drivers,
-
-                // Series: Defines which chart type and data to use
-                series: [
-                    { type: 'pie', legendItemKey: 'first_name', angleKey: 'y' },
+                labels: content.value.top_drivers.map((e) => e.first_name),
+                datasets: [
+                {
+                    backgroundColor: content.value.top_drivers.map((e, i) => colorsList[i]),
+                    data: content.value.top_drivers.map((e, i) => e.y),
+                },
                 ],
             };
+
         }
 
 

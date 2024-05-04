@@ -387,11 +387,11 @@ export default
                 
                 // Line charts for sales in last days 
                 pie_options.value  =  {
-                    labels: pieLabels,
+                    labels: content.value.top_businesses.map((e) => e.label),
                     datasets: [
                     {
-                        backgroundColor: colorsList,
-                        data: dataLabels,
+                        backgroundColor: content.value.top_businesses.map((e, i) => colorsList[i]),
+                        data: content.value.top_businesses.map((e, i) => e.y),
                     },
                     ],
                 };
