@@ -348,16 +348,6 @@ export default
                     private_data.value[i] = await filterData(labels.value[i], content.value.private_trips_charts) ?? 0
                 }
 
-                
-                
-                // line_options.value  =  {
-                //     labels: labels.value.filter(item => item !== ""),
-                //     datasets: [
-                //         content.value.private_trips_charts.map((e) => chartItem(e.private_trips ? e.private_trips.length : 0, translate('Private Trips'), colors[0])),
-                //         content.value.trips_charts.map((e) => chartItem(e.trips ? e.trips.length : 0, translate('Routes Trips'), colors[2])),
-                //     ]
-                // };
-                
                 let labels2 = await filterTripsLabels(content.value.top_businesses_with_trips);
                 let businessTrips = []
                 let businessPrivateTrips = []
@@ -366,10 +356,10 @@ export default
                     businessPrivateTrips[i] = content.value.top_businesses_with_trips[i].private_trips.length ?? 0
                 }
                 merge_line_options.value  =  {
-                    labels: labels2.filter(item => item !== ""),
+                    labels: content.value.top_businesses_with_trips.filter(item => item.label),
                     datasets: [
-                        chartItem(businessPrivateTrips, translate('Private Trips'), colors[0]),
-                        chartItem(businessTrips, translate('Routes Trips'), colors[2]),
+                        chartItem(content.value.top_businesses_with_trips.map(e => e ? e.private_trips.length : 0), translate('Private Trips'), colors[0]),
+                        chartItem(content.value.top_businesses_with_trips.map(e => e ? e.trips.length : 0), translate('Routes Trips'), colors[2]),
                     ]
                 };
 

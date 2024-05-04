@@ -327,15 +327,6 @@ export default
 
         const activeDate = ref();
 
-        const dates_filters = [
-            {title: translate('Today'), value: 'today'},
-            {title: translate('Yesterday'), value: 'yesterday'},
-            {title: translate('Last week'), value: '-7days'},
-            {title: translate('Last month'), value: '-30days'},
-            {title: translate('Last year'), value: '-365days'}
-        ];
-
-        
         const load = (path) =>
         {
             handleGetRequest( path ).then(response=> {
@@ -401,18 +392,13 @@ export default
                 ]
             };
 
-            let colorsList = []
-            for (let i = 0; i < content.value.top_drivers.length; i++) {
-                const element = content.value.top_drivers[i];
-                colorsList[i] = colors.value[i];
-            }
             
             // Line charts for sales in last days 
             pie_options.value  =  {
                 labels: content.value.top_drivers.map((e) => e.first_name),
                 datasets: [
                 {
-                    backgroundColor: content.value.top_drivers.map((e, i) => colorsList[i]),
+                    backgroundColor: content.value.top_drivers.map((e, i) => colors.value[i]),
                     data: content.value.top_drivers.map((e, i) => e.y),
                 },
                 ],
@@ -458,7 +444,6 @@ export default
             routes_trips_options,
             private_trips_options,
             pie_options,
-            dates_filters,
             content,
             activeDate,
             dateTimeFormat,
