@@ -116,8 +116,8 @@
                         </div>
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
-                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
-                                <dashboard_pie_chart v-if="merge_line_options" type="bar"  :key="merge_line_options" :options="merge_line_options" />
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="private_trips_options">
+                                <dashboard_pie_chart v-if="private_trips_options" type="bar"  :key="private_trips_options" :options="private_trips_options" />
                             </div>
                         </div>
                     </div>
@@ -129,21 +129,6 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Help messages')" :value="content.help_messages_count ?? '0'"></dashboard_card_white>
                     </div>
 
-                    
-                    <div class="w-full gap-4 lg:flex">
-                        <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('Invoices of provider subscriptions')"></h4> 
-                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
-                                <dashboard_chart v-if="routes_trips_options" :key="routes_trips_options" :options="routes_trips_options" /> 
-                            </div>
-                        </div>
-                        <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('Providers with most trips')"></h4> 
-                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
-                                <dashboard_pie_chart v-if="private_trips_options" type="bar"  :key="private_trips_options" :options="private_trips_options" />
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="w-full lg:flex gap gap-6 pb-6">
