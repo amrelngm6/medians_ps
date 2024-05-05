@@ -53,8 +53,8 @@ class PlanFeatureController extends CustomController
 
 		return [
             [ 'key'=> "feature_id", 'title'=> "#", 'column_type'=>'hidden'],
-			[ 'key'=> "code", 'title'=> translate('Feature code'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "access", 'title'=> translate('Access'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
+			[ 'key'=> "code", 'title'=> translate('Feature code'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "plan_name", 'title'=> translate('plan_name'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
 
         ];
