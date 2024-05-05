@@ -88,7 +88,7 @@ class GetStartedController
 			],
 			[
 				'code' => 'lang',
-				'value' => $this->app->lang
+				'value' => $this->app->lang ?? $this->app->default_lang
 			]
 		];
 
