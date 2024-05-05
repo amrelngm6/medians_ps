@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <div class="menu-item px-5 my-1">
-                                        <a href="/admin/settings" class="menu-link px-5" v-text="translate('Settings')"></a>
+                                        <a :href="auth.role_id > 1 ? '/admin/settings' : '/admin/system_settings'" class="menu-link px-5" v-text="translate('Settings')"></a>
                                     </div>
                                     <div class="menu-item px-5">
                                         <a href="/logout" class="menu-link px-5" v-text="translate('Logout')"></a>
