@@ -37,6 +37,7 @@ class EmployeeController extends CustomController
 		return [
             [ 'value'=> "customer_id", 'text'=> "#"],
             [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
+            [ 'value'=> "picture", 'text'=> translate('picture'), 'sortable'=>true ],
             [ 'value'=> "email", 'text'=> translate('Email'), 'sortable'=> true ],
             [ 'value'=> "mobile", 'text'=> translate('Mobile'), 'sortable'=> false ],
             [ 'value'=> "business.business_name", 'text'=> translate('business'), 'sortable'=> true ],
