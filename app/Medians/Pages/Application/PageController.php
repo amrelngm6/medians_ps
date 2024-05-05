@@ -173,7 +173,7 @@ class PageController extends CustomController
 		$fields = [];
 		foreach ($langs as $row) 
 		{
-			$fields[$row->language_code] = $params["title"];
+			$fields[$row->language_code] = ["title"=> $params['title']];
 		}
 		return $fields;	
 	}
