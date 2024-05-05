@@ -34,8 +34,8 @@ class PlanFeatureController extends CustomController
 	{
 		return [
             [ 'value'=> "feature_id", 'text'=> "#"],
-            [ 'value'=> "plan.name", 'text'=> translate('Plan name'), 'sortable'=> true ],
             [ 'value'=> "code", 'text'=> translate('code'), 'sortable'=> true ],
+            [ 'value'=> "plan.name", 'text'=> translate('Plan name'), 'sortable'=> true ],
             [ 'value'=> "access", 'text'=> translate('Limit'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
             // [ 'value'=> "delete", 'text'=> translate('delete')  ],
