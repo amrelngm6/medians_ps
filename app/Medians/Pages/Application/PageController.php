@@ -169,7 +169,7 @@ class PageController extends CustomController
 	public function handleLangs($params) 
 	{
 		$langsRepo = new \Medians\Languages\Infrastructure\LanguageRepository();
-		$langs = $langsRepo->getAll();
+		$langs = $langsRepo->getActive();
 		$fields = [];
 		foreach ($langs as $row) 
 		{
