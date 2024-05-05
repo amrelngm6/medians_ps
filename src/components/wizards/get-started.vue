@@ -248,7 +248,7 @@
                                                 <p class="w-full ml-6"><strong class="font-semibold text-slate-900"
                                                         v-text="translate('Payment method')"></strong></p>
                                                 <ul class="flex nav-pills nav-pills-custom mb-3">
-                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation">
+                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation" v-if="setting.paypal_payment">
                                                         <a @click="paymentMethod = 'paypal'"  :class="paymentMethod == 'paypal' ? 'border-black' : ''"  class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_2"  href="javascript:;" >
                                                             <div class="nav-icon mb-3">        
                                                                 <svg width="30px"
@@ -272,7 +272,7 @@
                                                             <span class="nav-text text-gray-800 fw-bold fs-6 lh-1" v-text="translate('PayPal')"> </span> 
                                                         </a>
                                                     </li>
-                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation">
+                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation" v-if="setting.paystack">
                                                         <a @click="paymentMethod = 'paystack'" :class="paymentMethod == 'paystack' ? 'border-black' : ''"  class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_2" href="javascript:;" >
                                                             <div class="nav-icon mb-3">        
                                                                 <vue-feather type="credit-card" />
@@ -302,7 +302,7 @@
                                                     <a  @click="complete()" v-if="setting.paypal_payment && paymentMethod == 'paypal'"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-slate-900 text-white hover:bg-slate-700 mt-6 w-full"
                                                         href="javascript:;"><span v-text="translate('Pay with PayPal')"></span></a>
-                                                    <a @click="complete()" v-if="setting.paypal_payment && paymentMethod == 'paystack'"
+                                                    <a @click="complete()" v-if="setting.paystack_payment && paymentMethod == 'paystack'"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-2 px-3 bg-info text-white hover:bg-slate-700 mt-6 w-full"
                                                         href="javascript:;"><span v-text="translate('Pay with PayStack')"></span></a></div>
                                             </div>
