@@ -298,12 +298,12 @@
                                                     <span class="sm:hidden"
                                                         v-text="translate('Includes free updates and technical support')"></span>
                                                 </p>
-                                                <div id="paypal-button-container" v-if="activePlan.type == 'free'" >
+                                                <div  v-if="activePlan.type == 'free'" >
                                                     <a @click="complete()" 
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-4 px-3 bg-slate-900 text-white hover:bg-slate-700 mt-6 w-full"
-                                                        href="javascript:;"><span v-text="translate('Complete setup')"></span></a>
+                                                        href="javascript:;"><span v-text="translate('Complete')"></span></a></div>
                                                         
-                                                <div v-if="activePlan.type != 'free'">
+                                                <div id="paypal-button-container" v-if="activePlan.type != 'free'">
                                                     <a @click="complete()" v-if="setting.paypal_payment && paymentMethod == 'paypal'"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-4 px-3 bg-slate-900 text-white hover:bg-slate-700 mt-6 w-full"
                                                         href="javascript:;"><span v-text="translate('Pay with PayPal')"></span></a>
