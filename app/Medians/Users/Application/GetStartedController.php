@@ -68,7 +68,7 @@ class GetStartedController
 		$params = [
 			[
 				'code' => 'logo',
-				'value' => '/uploads/img/letters/'.substr($user->first_name, 0, 1).'.png'
+				'value' => '/uploads/img/letters/'.strtolower(substr($user->first_name, 0, 1)).'.png'
 			],
 			[
 				'code' => 'currency',
