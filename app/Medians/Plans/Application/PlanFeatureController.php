@@ -38,7 +38,7 @@ class PlanFeatureController extends CustomController
             [ 'value'=> "code", 'text'=> translate('code'), 'sortable'=> true ],
             [ 'value'=> "access", 'text'=> translate('Limit'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
-            [ 'value'=> "delete", 'text'=> translate('delete')  ],
+            // [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
 
@@ -55,10 +55,7 @@ class PlanFeatureController extends CustomController
             [ 'key'=> "feature_id", 'title'=> "#", 'column_type'=>'hidden'],
 			[ 'key'=> "code", 'title'=> translate('Feature code'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "access", 'title'=> translate('Access'), 'sortable'=> true, 'fillable'=>true, 'column_type'=>'number' ],
-			[ 'key'=> "plan_id", 'title'=> translate('Plan'),  'withLabel'=>true,
-				'sortable'=> true, 'fillable'=> true, 'required'=>true, 'column_type'=>'select','text_key'=>'name', 
-				'data' => $this->planRepo->get()  
-			],
+			[ 'key'=> "plan_name", 'title'=> translate('plan_name'), 'required'=>true, 'disabled'=> true, 'sortable'=> true, 'fillable'=> true, 'column_type'=>'text' ],
 
         ];
 	}
@@ -79,6 +76,7 @@ class PlanFeatureController extends CustomController
 	        'plans' => $this->planRepo->get(),
 	        'columns' => $this->columns(),
 	        'fillable' => $this->fillable(),
+			'no_create' => true
 	    ]);
 	}
 

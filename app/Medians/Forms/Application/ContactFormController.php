@@ -76,7 +76,7 @@ class ContactFormController extends CustomController
 		    return render('contact_forms', 
 			[
 		        'load_vue' => true,
-		        'title' => translate('Contact forms'),
+		        'title' => translate('Forms messages'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),

@@ -45,7 +45,7 @@
                             </div>
                         </div>
     
-                        <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg bg-danger" @click="openCreate()" v-text="translate('add_new')"></a>
+                        <a href="javascript:;" class="uppercase p-2 mx-2 text-center text-white w-32 rounded-lg bg-danger" @click="openCreate()" v-if="!content.no_create" v-text="translate('add_new')"></a>
 
                     </div>
                     <datatabble 

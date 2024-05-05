@@ -321,9 +321,14 @@ class APP
 				array('permission'=>'Schools.index', 'title'=>translate('Schools'),  'icon'=>'user', 'link'=>'admin/schools', 'component'=>'schools'),
 			]
 			),
-			
-
-			array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+						
+			array( 'title'=>translate('Plans'),  'icon'=>'check-circle', 'link'=>'#plan', 'sub'=>
+			[
+				array('permission'=>'Plans.index', 'title'=>translate('Plans'),  'icon'=>'tool', 'link'=>'admin/plans', 'component'=>'plans'),
+				array('permission'=>'PlanFeatures.index', 'title'=>translate('Plan features'),  'icon'=>'tool', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
+				array('permission'=>'PlanSubscriptions.index', 'title'=>translate('Plan subscriptions'),  'icon'=>'tool', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
+			]
+			),
 			
 			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
 			[
@@ -332,13 +337,6 @@ class APP
 				array('permission'=>'BusinessWallets.index', 'title'=>translate('Business Wallets'),  'icon'=>'help-circle', 'link'=>'admin/business_wallets', 'component'=>'business_wallets'),
 				array('permission'=> 'BusinessWithdrawals.index', 'title'=> translate('Business Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/business_withdrawals', 'component'=>'business_withdrawals'),
 				array('permission'=> 'PaymentMethods.index', 'title'=> translate('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
-			]
-			),
-			array( 'title'=>translate('Plans'),  'icon'=>'check-circle', 'link'=>'#plan', 'sub'=>
-			[
-				array('permission'=>'Plans.index', 'title'=>translate('Plans'),  'icon'=>'tool', 'link'=>'admin/plans', 'component'=>'plans'),
-				array('permission'=>'PlanFeatures.index', 'title'=>translate('Plan features'),  'icon'=>'tool', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
-				array('permission'=>'PlanSubscriptions.index', 'title'=>translate('Plan subscriptions'),  'icon'=>'tool', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
 			]
 			),
 			
@@ -353,8 +351,13 @@ class APP
 				array('permission'=>'Pages.index', 'title'=>translate('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
-				array('permission'=>'ContactForm.index', 'title'=>translate('contact_forms'),  'icon'=>'tag', 'link'=>'admin/contact_forms', 'component'=>'contact_forms'),
 				array('permission'=>'NewsletterSubscriber.index', 'title'=>translate('newsletter_subscribers'),  'icon'=>'tag', 'link'=>'admin/newsletter_subscribers', 'component'=>'newsletter_subscribers'),
+			]
+			),
+			array( 'title'=>translate('Support'),  'icon'=>'help-circle', 'link'=>'#support', 'superadmin'=> true, 'sub'=>
+			[
+				array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+				array('permission'=>'ContactForm.index', 'title'=>translate('Forms messages'),  'icon'=>'tag', 'link'=>'admin/contact_forms', 'component'=>'contact_forms'),
 			]
 			),
 			array( 'title'=>translate('localization'),  'icon'=>'mic', 'link'=>'#localization', 'superadmin'=> true, 'sub'=>
