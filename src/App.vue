@@ -9,10 +9,10 @@
             
             <div class="w-full relative">
                 
-                <navbar :langs="langs" v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth"></navbar>
+                <navbar @togglemenu="toggleMenuClass" :langs="langs" v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth" ></navbar>
                 <!-- <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><vue-feather type="menu"></vue-feather></a> -->
                 <div class="gap gap-6 h-full flex w-full overflow-hidden   ">
-                    <side-menu @callback="switchTab" :samepage="activeTab" :system_setting="system_setting" :auth="auth" :url="conf.url ? conf.url : '/'" :key="main_menu" :menus="main_menu" v-if="showSide" class="sidebar " id="sidebar" style="z-index:999"></side-menu>
+                    <side-menu @callback="switchTab" :samepage="activeTab" :system_setting="system_setting" :auth="auth" :url="conf.url ? conf.url : '/'" :key="menuClass" :menus="main_menu" class="sidebar " id="sidebar" v-if="showSide" :menuclass="menuClass" style="z-index:9999"></side-menu>
                     
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
                         <div class="w-full" v-if="checkAccess()">
@@ -90,7 +90,7 @@ const pages = defineAsyncComponent(() => import('@/components/pages.vue') );
 const payments = defineAsyncComponent(() => import('@/components/payments.vue') );
 
 
-const private_trips = defineAsyncComponent(() => import('@/components/private_trips.vue') );
+const taxi_trips = defineAsyncComponent(() => import('@/components/taxi_trips.vue') );
 
 const app_settings = defineAsyncComponent(() => import('@/components/settings/app_settings.vue') );
 
@@ -143,7 +143,7 @@ export default {
         dashboard,
         master_dashboard,
         trips,
-        private_trips,
+        taxi_trips,
         vehicles,
         vehicle_types,
         students,
@@ -218,6 +218,7 @@ export default {
             showSide: true,
             showModal: false,
             activeModal: null,
+            menuClass: ''
         };
     },
     mounted() {
@@ -289,7 +290,7 @@ export default {
         {
             if (window.innerWidth < 800)
             {
-                this.showSide = false;
+                this.menuClass = '';
             }
         },
 
@@ -340,6 +341,7 @@ export default {
                 this.currency = app.currency ?? {};
                 this.lang = response.lang_json ?? {};
                 this.langs = response.langs ?? {};
+                this.menuClass = ' '
             }
             
         },
@@ -380,7 +382,10 @@ export default {
             this.content = JSON.parse(JSON.stringify(data)); return this
         },
 
-
+        toggleMenuClass() {
+            this.showSide = true ; 
+            this.menuClass = 'drawer drawer-start drawer-on' 
+        },
 
         submit(element, props)
         {

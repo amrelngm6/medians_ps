@@ -62,10 +62,10 @@
                                         
                                         <div>
                                             <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.private_trips_count"></div>
+                                                <div class="fs-2 fw-bold" v-text="content.stats.taxi_trips_count"></div>
                                             </div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Private Trips')"></div>
+                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Taxi Trips')"></div>
                                     </div>
                                     <!--end::Stat-->
 
@@ -101,7 +101,7 @@
 
                     <collected_cash_tab :conf="conf" :auth="auth" v-if="activeTab == 'collected_cash'" :collected_cash="content.collected_cash" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" :currency="currency" />
 
-                    <private_trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'private_trips'" :trips="content.private_trips"  :system_setting="system_setting" :item="activeItem" :currency="currency" />
+                    <taxi_trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'taxi_trips'" :trips="content.taxi_trips"  :system_setting="system_setting" :item="activeItem" :currency="currency" />
                     
                     <trips_tab :conf="conf" :auth="auth" v-if="activeTab == 'trips'" :trips="content.trips" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" :currency="currency" />
                     
@@ -135,7 +135,7 @@ const withdrawal_tab = defineAsyncComponent(() => import('@/components/driver/wi
 const setting_tab = defineAsyncComponent(() => import('@/components/driver/setting.vue') );
 const info_tab = defineAsyncComponent(() => import('@/components/driver/info.vue') );
 const trips_tab = defineAsyncComponent(() => import('@/components/driver/trips.vue') );
-const private_trips_tab = defineAsyncComponent(() => import('@/components/driver/private_trips.vue') );
+const taxi_trips_tab = defineAsyncComponent(() => import('@/components/driver/taxi_trips.vue') );
 const collected_cash_tab = defineAsyncComponent(() => import('@/components/driver/collected_cash.vue') );
 
 export default {
@@ -147,7 +147,7 @@ export default {
         form_field,
         withdrawal_tab,
         setting_tab,
-        private_trips_tab,
+        taxi_trips_tab,
         trips_tab,
         info_tab,
         collected_cash_tab
@@ -168,7 +168,7 @@ export default {
             { title: translate('Account'), link: 'account' },
             { title: translate('Settings'), link: 'settings' },
             { title: translate('Route Trips'), link: 'trips' },
-            { title: translate('Private trips'), link: 'private_trips' },
+            { title: translate('Taxi trips'), link: 'taxi_trips' },
             { title: translate('Collected cash'), link: 'collected_cash'},
             { title: translate('Wallet'), link: 'wallet' },
         ]);

@@ -112,7 +112,7 @@ class NotificationEventRepository
 			'Vehicle' => \Medians\Vehicles\Domain\Vehicle::class,
 			'Trip' => \Medians\Trips\Domain\Trip::class,
 			'TripLocation' => \Medians\Trips\Domain\TripLocation::class,
-			'PrivateTrip' => \Medians\Trips\Domain\PrivateTrip::class,
+			'TaxiTrip' => \Medians\Trips\Domain\TaxiTrip::class,
 			'Trip alarm' => \Medians\Trips\Domain\TripAlarm::class,
 			'Parents' => \Medians\Customers\Domain\Parents::class,
 			'HelpMessage' => \Medians\Help\Domain\HelpMessage::class,

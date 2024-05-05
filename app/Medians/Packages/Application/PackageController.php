@@ -175,7 +175,7 @@ class PackageController extends CustomController
 
 	
 	/**
-	 * Load private trip for Driver
+	 * Load taxi trip for Driver
 	 */
 	public function load_business_packages()
 	{

@@ -6,7 +6,7 @@ use Medians\Invoices\Domain\Invoice;
 use Medians\Invoices\Domain\InvoiceItem;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Packages\Domain\PackageSubscription;
-use Medians\Trips\Domain\PrivateTrip;
+use Medians\Trips\Domain\TaxiTrip;
 use Medians\Plans\Domain\Plan;
 use Medians\Users\Domain\User;
 use Medians\Plans\Domain\PlanSubscription;
@@ -215,8 +215,8 @@ class InvoiceRepository
 				return PackageSubscription::class;
 				break;
 
-			case 'PrivateTrip':
-				return PrivateTrip::class;
+			case 'TaxiTrip':
+				return TaxiTrip::class;
 				break;
 
 			case 'PlanSubscription':

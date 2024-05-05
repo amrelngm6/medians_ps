@@ -184,8 +184,8 @@ class APIController extends CustomController
 					$return = (new Customers\Application\SuperVisorController)->store();
 					break;
 		
-				case 'PrivateTrip.create':
-					$return = (new Trips\Application\PrivateTripController)->store();
+				case 'TaxiTrip.create':
+					$return = (new Trips\Application\TaxiTripController)->store();
 					break;
 
 				case 'BusinessWithdrawal.create':
@@ -350,8 +350,8 @@ class APIController extends CustomController
 				$controller = new Customers\Application\SuperVisorController;
 				break;
 			
-			case 'PrivateTrip.update':
-				$controller = new Trips\Application\PrivateTripController;
+			case 'TaxiTrip.update':
+				$controller = new Trips\Application\TaxiTripController;
 				break;
 				
 			case 'Trip.update':
@@ -503,8 +503,8 @@ class APIController extends CustomController
 					return response((new Customers\Application\SuperVisorController())->delete());
 					break;
 			
-				case 'PrivateTrip.delete':
-					return response((new Trips\Application\PrivateTripController())->delete());
+				case 'TaxiTrip.delete':
+					return response((new Trips\Application\TaxiTripController())->delete());
 					break;
 
 				case 'BusinessApplicant.delete':

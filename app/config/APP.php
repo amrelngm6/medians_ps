@@ -158,7 +158,7 @@ class APP
 
 	public static function redirect($url)
 	{
-		echo "<img width='100%' src='/src/assets/img/redirect.gif' /><style>*{margin:0;color:#fff; overflow:hidden}</style>";
+		echo "<img width='100%' src='/uploads/img/redirect.gif' /><style>*{margin:0;color:#fff; overflow:hidden}</style>";
 		echo new RedirectResponse($url);
 		exit();
 	}
@@ -246,10 +246,10 @@ class APP
 			]
 			),
 			
-			array('title'=>translate('Trips'),  'icon'=>'map', 'link'=>'#PrivateTrips', 'sub'=>
+			array('title'=>translate('Trips'),  'icon'=>'map', 'link'=>'#TaxiTrips', 'sub'=>
 			[
 				array('permission'=>'Trips.index', 'title'=>translate('Route trips'),  'icon'=>'map-pin', 'link'=>'admin/trips', 'component'=>'trips'),
-				array('permission'=>'PrivateTrips.index', 'title'=>translate('Private Trips'),  'icon'=>'map', 'link'=>'admin/private_trips', 'component'=>'private_trips'),
+				array('permission'=>'TaxiTrips.index', 'title'=>translate('Taxi Trips'),  'icon'=>'map', 'link'=>'admin/taxi_trips', 'component'=>'taxi_trips'),
 			]
 			),
 			

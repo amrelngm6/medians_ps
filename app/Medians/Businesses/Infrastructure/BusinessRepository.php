@@ -137,7 +137,7 @@ class BusinessRepository
 				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);
 			} 
 		}])
-		->with(['private_trips'=>function($q) use ($params){
+		->with(['taxi_trips'=>function($q) use ($params){
 			if (isset($params['start']))
 			{
 				$q->whereBetween('created_at' , [$params['start'] , $params['end']]);

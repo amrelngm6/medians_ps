@@ -10,7 +10,7 @@ use Medians\Drivers\Domain\Driver;
 use Medians\Drivers\Domain\DriverApplicant;
 use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripLocation;
-use Medians\Trips\Domain\PrivateTrip;
+use Medians\Trips\Domain\TaxiTrip;
 use Medians\Trips\Domain\TripAlarm;
 use Medians\Locations\Domain\RouteLocation;
 use Medians\Help\Domain\HelpMessageComment;
@@ -147,7 +147,7 @@ class NotificationEvent extends CustomModel
 				return isset($object->driver) ? [$object->driver] : null;
 				break;
 
-			case PrivateTrip::class:
+			case TaxiTrip::class:
 				$object =  $model->with('driver')->find($model->trip_id);
 				return isset($object->driver) ? [$object->driver] : null;
 				break;
@@ -191,7 +191,7 @@ class NotificationEvent extends CustomModel
 				$return =  isset($object->model->parent) ? [$object->model->parent] : null;
 				break;
 
-			case PrivateTrip::class:
+			case TaxiTrip::class:
 				$object =  $model->with('model')->find($model->trip_id);
 				$return =  isset($object->model) ? [$object->model] : null;
 				break;
@@ -297,7 +297,7 @@ class NotificationEvent extends CustomModel
 				return isset($model->business->owner) ?  [$model->business->owner] : null;
 				break;
 
-			case PrivateTrip::class:
+			case TaxiTrip::class:
 				$object =  $model->with('business')->find($model->trip_id);
 				// $object =  $model->with(['business'=>function($q){return $q->with('owner');}])->find($model->trip_id);
 				return isset($model->business->owner) ?  [$model->business->owner] : null;

@@ -139,7 +139,7 @@ export function translate(i) {
     // Access the current Vue instance
     const currentInstance = getCurrentInstance();
     // Access the root Vue instance
-    if (!currentInstance)
+    if (!currentInstance || !i)
         return i;
     
     const rootVue = currentInstance.root.data;

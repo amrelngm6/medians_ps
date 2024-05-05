@@ -10,7 +10,7 @@ use Medians\Wallets\Infrastructure\WithdrawalRepository;
 use Medians\Wallets\Infrastructure\WalletRepository;
 use Medians\Wallets\Infrastructure\CollectedCashRepository;
 use Medians\Invoices\Infrastructure\InvoiceRepository;
-use Medians\Trips\Infrastructure\PrivateTripRepository;
+use Medians\Trips\Infrastructure\TaxiTripRepository;
 use Medians\Trips\Infrastructure\TripRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
 
@@ -115,7 +115,7 @@ class DriverController extends CustomController
 		$WithdrawalRepo = new WithdrawalRepository($user->business);
 		$collectCashRepo = new CollectedCashRepository($user->business);
 		$tripsRepo = new TripRepository($user->business);
-		$privateTripsRepo = new PrivateTripRepository($user->business);
+		$taxiTripsRepo = new TaxiTripRepository($user->business);
 		$wallet = $WalletRepo->driverWallet($driver->driver_id);
 
 		return render('driver_page', [
@@ -130,7 +130,7 @@ class DriverController extends CustomController
 			'wallet' => $wallet,
 			'withdrawals' => $WithdrawalRepo->getDriverWithdrawals($driver->driver_id),
 			'trips' => $tripsRepo->getDriverTrips($driver->driver_id, 10),
-			'private_trips' => $privateTripsRepo->getDriverPrivateTrips($driver->driver_id, 10),
+			'taxi_trips' => $taxiTripsRepo->getDriverTaxiTrips($driver->driver_id, 10),
 		]);
 
 	} 
@@ -143,8 +143,8 @@ class DriverController extends CustomController
 
 		$tripsRepo = new TripRepository($business);
         $data['trips_count'] = count($tripsRepo->getDriverTrips($driver->driver_id, 999999));
-		$privateTripsRepo = new PrivateTripRepository($business);
-        $data['private_trips_count'] = count($privateTripsRepo->getDriverPrivateTrips($driver->driver_id, 999999));
+		$taxiTripsRepo = new TaxiTripRepository($business);
+        $data['taxi_trips_count'] = count($taxiTripsRepo->getDriverTaxiTrips($driver->driver_id, 999999));
 
 		return $data;
 	}

@@ -79,7 +79,7 @@ class GetStartedController
 				'value' => 'on'
 			],
 			[
-				'code' => 'allow_private_trip',
+				'code' => 'allow_taxi_trip',
 				'value' => 'on'
 			],
 			[

@@ -12,7 +12,7 @@ class DashboardController extends CustomController
 	*/
 	public  $contentRepo;
 	public  $TripRepository;
-	public  $PrivateTripRepository;
+	public  $TaxiTripRepository;
 	public  $RouteRepository;
 	public  $DriverRepository;
 	public  $DriverApplicantRepository;
@@ -42,7 +42,7 @@ class DashboardController extends CustomController
 		$this->BusinessRepository = new Businesses\Infrastructure\BusinessRepository();
 		$this->contentRepo = new Content\Infrastructure\ContentRepository($user->business);
 		$this->TripRepository = new Trips\Infrastructure\TripRepository($user->business);
-		$this->PrivateTripRepository = new Trips\Infrastructure\PrivateTripRepository($user->business);
+		$this->TaxiTripRepository = new Trips\Infrastructure\TaxiTripRepository($user->business);
 		$this->VehicleRepository = new Vehicles\Infrastructure\VehicleRepository($user->business);
 		$this->RouteRepository = new Routes\Infrastructure\RouteRepository($user->business);
 		$this->DriverRepository = new Drivers\Infrastructure\DriverRepository($user->business);
@@ -114,7 +114,7 @@ class DashboardController extends CustomController
 		try {
 
 			$trips_charts = $this->TripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
-			$private_trips_charts = $this->PrivateTripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+			$taxi_trips_charts = $this->TaxiTripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 			$applicants = $this->BusinessApplicantRepository->get(5);
 
 			$counts = $this->loadCounts();
@@ -123,7 +123,7 @@ class DashboardController extends CustomController
 	            'title' => 'Dashboard',
 		        'load_vue' => true,
 				'trips_charts'=>$trips_charts,
-				'private_trips_charts'=>$private_trips_charts,
+				'taxi_trips_charts'=>$taxi_trips_charts,
 				'applicants'=>$applicants,
 				'start'=>$this->start,
 				'end'=>$this->end,
@@ -150,7 +150,7 @@ class DashboardController extends CustomController
 		try {
 
 			$trips_charts = $this->TripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
-			$private_trips_charts = $this->PrivateTripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
+			$taxi_trips_charts = $this->TaxiTripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
 			$applicants = $this->BusinessApplicantRepository->get(5);
 
 			$counts = $this->loadMasterCounts();
@@ -159,7 +159,7 @@ class DashboardController extends CustomController
 	            'title' => 'Master Dashboard',
 		        'load_vue' => true,
 				'trips_charts'=>$trips_charts,
-				'private_trips_charts'=>$private_trips_charts,
+				'taxi_trips_charts'=>$taxi_trips_charts,
 				'businesses'=>$applicants,
 	        ];
 
@@ -182,7 +182,7 @@ class DashboardController extends CustomController
 
         $data['businesses_count'] = $this->BusinessRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['taxi_trips_count'] = $this->TaxiTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['route_locations_count'] = $this->RouteLocationRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['business_applicant_count'] = $this->BusinessApplicantRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
@@ -221,7 +221,7 @@ class DashboardController extends CustomController
         $data['top_businesses_with_trips'] = $this->BusinessRepository->masterWithTripsByDate(['start'=>$this->start, 'end'=>$this->end], 5);
         $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         $data['plan_subscriptions'] = $this->PlanSubscriptionRepository->getLatest(['start'=>$this->start, 'end'=>$this->end], 5);
-        $data['private_trips_count'] = $this->PrivateTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['taxi_trips_count'] = $this->TaxiTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);

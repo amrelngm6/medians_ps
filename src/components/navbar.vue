@@ -11,7 +11,7 @@
                     id="kt_app_header_container">
 
                     <div class="d-flex align-items-center d-lg-none ms-n3 me-1 me-md-2" title="Show sidebar menu">
-                        <div class="btn btn-icon btn-active-color-primary w-35px h-35px"
+                        <div class="btn btn-icon btn-active-color-primary w-35px h-35px" @click="showMenu"
                             id="kt_app_sidebar_mobile_toggle">
                             Menu
                         </div>
@@ -25,10 +25,10 @@
                         <div class=" app-header-menu  app-header-mobile-drawer  align-items-stretch ">
                             <div class="menu  menu-rounded  menu-column  menu-lg-row my-5  my-lg-0  align-items-stretch fw-semibold px-2 px-lg-0 " id="kt_app_header_menu" data-kt-menu="true">
                                 <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <span class="menu-link">
+                                    <a href="/" target="_blank" class="menu-link">
                                         <span class="menu-title" v-text="system_setting.sitename"></span>
                                         <span class="menu-arrow d-lg-none"></span>
-                                    </span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -108,14 +108,20 @@ export default {
   components: {
     notifications_popup,
   },
-  setup(props) {
+  emits: ['togglemenu'],
+  setup(props, {emit}) {
 
     const showSubMenu = ref(); 
     const showLangs = ref(false); 
+    
+    const showMenu = () => {
+        emit('togglemenu')
+    }; 
 
     return {
         showSubMenu,
         showLangs,
+        showMenu,
         translate
     };
 

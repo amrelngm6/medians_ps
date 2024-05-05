@@ -61,11 +61,11 @@ class SettingsController extends CustomController
 			],
 
 			'trips'=> [	
-				[ 'key'=> "allow_private_trip", 'title'=> translate('Allow Private Trips'), 'help_text'=>translate('Allow users to send you a private trip request'),  'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "allow_taxi_trip", 'title'=> translate('Allow Taxi Trips'), 'help_text'=>translate('Allow users to send you a taxi trip request'),  'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
 
 			'drivers'=> [	
-				[ 'key'=> "driver_commission", 'title'=> translate('Driver commission for Private trips'), 'help_text'=> translate('The drivers commission when they complete paid private trip. The commission amount will be added to driver wallet balance'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "driver_commission", 'title'=> translate('Driver commission for Taxi trips'), 'help_text'=> translate('The drivers commission when they complete paid taxi trip. The commission amount will be added to driver wallet balance'), 'fillable'=> true, 'column_type'=>'number' ],
 				[ 'key'=> "speed_limit", 'title'=> translate('Driver speed limit'), 'help_text'=> translate('Once the driver cross this speed limit, he will get alarm to slow down'), 'fillable'=> true, 'column_type'=>'number' ],
 				[ 'key'=> "allow_applicants", 'title'=> translate('Allow Driver Applicants'), 'help_text'=> translate('Allow the drivers to apply at your profile to join your team'),  'fillable'=> true, 'column_type'=>'checkbox' ],
 			],

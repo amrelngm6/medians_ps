@@ -215,31 +215,31 @@ class MobileAPIController extends CustomController
 				break;
 				
 			case 'Parents.create_trip':
-				$return =  (new Trips\Application\PrivateTripController())->createTrip(); 
+				$return =  (new Trips\Application\TaxiTripController())->createTrip(); 
 				break;
 				
-			case 'PrivateTrip.add_transaction':
+			case 'TaxiTrip.add_transaction':
 				$return = (new Transactions\Application\TransactionController())->addTripTransaction(); 
 				break;
 				
-			case 'Parent.private_trips':
-				$return =  (new Trips\Application\PrivateTripController())->parentPrivateTrips(); 
+			case 'Parent.taxi_trips':
+				$return =  (new Trips\Application\TaxiTripController())->parentTaxiTrips(); 
 				break;
 				
-			case 'Driver.private_trips':
-				$return =  (new Trips\Application\PrivateTripController())->driverPrivateTrips(); 
+			case 'Driver.taxi_trips':
+				$return =  (new Trips\Application\TaxiTripController())->driverTaxiTrips(); 
 				break;
 
 			case 'Parents.cancel_trip':
-				$return =  (new Trips\Application\PrivateTripController())->cancelTrip(); 
+				$return =  (new Trips\Application\TaxiTripController())->cancelTrip(); 
 				break;
 				
 			case 'Driver.start_trip':
-				$return =  (new Trips\Application\PrivateTripController())->startTrip(); 
+				$return =  (new Trips\Application\TaxiTripController())->startTrip(); 
 				break;
 				
 			case 'Driver.end_trip':
-				$return =  (new Trips\Application\PrivateTripController())->endTrip(); 
+				$return =  (new Trips\Application\TaxiTripController())->endTrip(); 
 				break;
 
 			case 'load_schools':

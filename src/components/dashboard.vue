@@ -115,9 +115,9 @@
                             </div>
                         </div>
                         <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('Private Trips')"></h4> 
-                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="private_trips_options">
-                                <dashboard_chart v-if="private_trips_options" :key="private_trips_options" :options="private_trips_options" /> 
+                            <h4 class="text-base lg:text-lg " v-text="translate('Taxi Trips')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="taxi_trips_options">
+                                <dashboard_chart v-if="taxi_trips_options" :key="taxi_trips_options" :options="taxi_trips_options" /> 
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-gradient-danger fw-" :title="translate('Route locations')" :value="content.route_locations_count ?? '0'"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-gradient-info" :title="translate('total route trips')" :value="content.total_trips_count ?? '0'"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="translate('Private trips')" :value="content.private_trips_count ?? '0'"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-gradient-success" :title="translate('Taxi trips')" :value="content.taxi_trips_count ?? '0'"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-gradient-warning" :title="translate('Help messages')" :value="content.help_messages_count ?? '0'"></dashboard_card_white>
                     </div>
 
@@ -368,7 +368,7 @@ export default
         const optionsbar = ref();
         
         const routes_trips_options = ref();
-        const private_trips_options = ref();
+        const taxi_trips_options = ref();
         
         /**
          * Set charts based on their values type
@@ -385,10 +385,10 @@ export default
             };
 
 
-            private_trips_options.value  =  {
-                labels: content.value.private_trips_charts.map(e => e ? e.label : null),
+            taxi_trips_options.value  =  {
+                labels: content.value.taxi_trips_charts.map(e => e ? e.label : null),
                 datasets: [
-                    chartItem(content.value.private_trips_charts.map(e => e ? e.y : null), translate('Private Trips'), colors.value[1]),
+                    chartItem(content.value.taxi_trips_charts.map(e => e ? e.y : null), translate('Taxi Trips'), colors.value[1]),
                 ]
             };
 
@@ -442,7 +442,7 @@ export default
             optionsbar,
             translate,
             routes_trips_options,
-            private_trips_options,
+            taxi_trips_options,
             pie_options,
             content,
             activeDate,

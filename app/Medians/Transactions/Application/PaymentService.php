@@ -59,14 +59,14 @@ class PaymentService
 
 			$this->transactionRepo = new TransactionRepository($params['business']);
 
-			$PrivateTrip = new \Medians\Trips\Domain\PrivateTrip;
+			$TaxiTrip = new \Medians\Trips\Domain\TaxiTrip;
 
 			$transaction = (array) $params['transaction'];
 			$transaction['invoice_id'] = $invoice->invoice_id;
 			$transaction['model_id'] = $invoice->user_id;
 			$transaction['model_type'] = $invoice->user_type;
 			$transaction['item_id'] = $transaction['item_id'];
-			$transaction['item_type'] = $PrivateTrip::class;
+			$transaction['item_type'] = $TaxiTrip::class;
 			$transaction['date'] = date('Y-m-d');
 			
 			$transactionStored = $this->transactionRepo->store($transaction);
@@ -139,11 +139,11 @@ class PaymentService
 	{
 		try {
 			
-			$privateTripRepo = new \Medians\Trips\Infrastructure\PrivateTripRepository($params['business']);
+			$taxiTripRepo = new \Medians\Trips\Infrastructure\TaxiTripRepository($params['business']);
 			
 			$tripData = (array) $params['trip'];
-			$check = $privateTripRepo->find($tripData['trip_id']);
-			$trip = $privateTripRepo->update($tripData);
+			$check = $taxiTripRepo->find($tripData['trip_id']);
+			$trip = $taxiTripRepo->update($tripData);
 
 			$updateDriverCommission = $this->updateDriverWalletCredit($params, $invoice, $tripData['driver_id']);
 

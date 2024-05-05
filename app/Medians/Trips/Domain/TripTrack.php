@@ -5,7 +5,7 @@ namespace Medians\Trips\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Trips\Domain\Trip;
-use Medians\Trips\Domain\PrivateTrip;
+use Medians\Trips\Domain\TaxiTrip;
 
 
 class TripTrack extends CustomModel
@@ -48,8 +48,9 @@ class TripTrack extends CustomModel
                 return Trip::class;
                 break;
         
-            case 'privatetrip':
-                return PrivateTrip::class;
+            case 'taxitrip':
+            case 'taxiTrip':
+                return TaxiTrip::class;
                 break;
             
             default:

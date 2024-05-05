@@ -3,7 +3,7 @@
     <!--begin::Sidebar-->
     <div id="kt_app_sidebar" class="app-sidebar flex-column " data-kt-drawer="true" data-kt-drawer-name="app-sidebar"
         data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
-        data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle" >
+        data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle" :class="menuclass" >
 
 
         <!--begin::Logo-->
@@ -29,7 +29,7 @@
         </div>
         <!--end::Logo-->
         <!--begin::Footer-->
-        <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 relative overflow-auto" style="height:calc(100vh - 120px)" id="kt_app_sidebar_footer">
+        <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 relative overflow-auto"  :style="isDesktop == true ? 'height:calc(100vh - 120px)' : 'height:calc(100vh - 20px)'" id="kt_app_sidebar_footer">
             
 
             <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
@@ -113,6 +113,10 @@
                 resetClasses()
             }
 
+            const isDesktop = () => {
+                return window.screen.availWidth > 1000 ? true : false;
+            }
+
             return {
                 resetClasses,
                 openPage,
@@ -120,11 +124,12 @@
                 same_page,
                 pages,
                 activePage,
+                isDesktop,
                 translate,
                 checkAccess,
             }
         },
-        props: ['url', 'menus', 'samepage', 'auth', 'system_setting'],
+        props: ['url', 'menus', 'menuclass', 'samepage', 'auth', 'system_setting'],
         created: function () {
         },
         methods: {

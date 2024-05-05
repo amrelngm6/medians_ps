@@ -83,7 +83,7 @@
                         </div>
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Providers with most trips')"></h4> 
-                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.private_trips_charts">
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.taxi_trips_charts">
                                 <dashboard_pie_chart v-if="merge_line_options" type="bar"  :key="merge_line_options" :options="merge_line_options" />
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                 </div>
                 
                 <div class="w-full lg:flex gap gap-6 pb-6">
-                    <div class="card mb-0 w-1/3">
+                    <div class="card mb-0 w-full lg:w-1/3">
                         
                         <div class="w-full p-4">
                             <div class="w-full flex gap-2">
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card w-1/3 lg:w-1/3 lg:mb-0">
+                    <div class="card w-full lg:w-1/3 lg:mb-0">
                         
                         <div class="w-full p-4">
                             <div class="w-full flex ">
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card w-1/3 lg:w-1/3 lg:mb-0">
+                    <div class="card w-full lg:w-1/3 lg:mb-0">
                         
                         <div class="w-full p-4">
                             <div class="w-full flex ">
@@ -323,7 +323,7 @@ export default
         const invoicesCharts = ref([]);
         const labels = ref([]);
         const route_data = ref([]);
-        const private_data = ref([]);
+        const taxi_data = ref([]);
         const top_businesses = ref([]);
         /**
          * Set charts based on their values type
@@ -344,7 +344,7 @@ export default
                 merge_line_options.value  =  {
                     labels: content.value.top_businesses_with_trips.filter(item => item.label),
                     datasets: [
-                        chartItem(content.value.top_businesses_with_trips.map(e => e ? e.private_trips.length : 0), translate('Private Trips'), colors[0]),
+                        chartItem(content.value.top_businesses_with_trips.map(e => e ? e.taxi_trips.length : 0), translate('Taxi Trips'), colors[0]),
                         chartItem(content.value.top_businesses_with_trips.map(e => e ? e.trips.length : 0), translate('Routes Trips'), colors[1]),
                     ]
                 };
@@ -380,8 +380,8 @@ export default
             for (let i = 0; i < content.value.trips_charts.length; i++)  {
                 preLabels.value[i] = content.value.trips_charts[i].label;
             }
-            for (let i = 0; i < content.value.private_trips_charts.length; i++)  {
-                const privateElement = content.value.private_trips_charts[i];
+            for (let i = 0; i < content.value.taxi_trips_charts.length; i++)  {
+                const privateElement = content.value.taxi_trips_charts[i];
                 if (!preLabels.value.find((element) => element == privateElement.label))
                 {
                     preLabels.value[i+content.value.trips_charts.length] = privateElement.label;
@@ -398,12 +398,12 @@ export default
             return preLabels.value;
         }
 
-        const filterPrivateTripsCharts =  async (items) => {
+        const filterTaxiTripsCharts =  async (items) => {
             console.log(items)
             const preLabels = ref([])
             if (items) {
                 for (let i = 0; i < items.length; i++)  {
-                    preLabels.value[i] = items[i].private_trips ? items[i].private_trips.length : false;
+                    preLabels.value[i] = items[i].taxi_trips ? items[i].taxi_trips.length : false;
                 }
             }
             return preLabels.value;

@@ -63,9 +63,9 @@ RouteHandler::get('/get_parent', \Medians\Customers\Application\ParentController
 RouteHandler::get('/driver/(:all)', \Medians\Drivers\Application\DriverController::class.'@getDriver');
 RouteHandler::get('/vehicle/(:all)', \Medians\Vehicles\Application\VehicleController::class.'@getVehicle');
 RouteHandler::get('/trip/(:all)', \Medians\Trips\Application\TripController::class.'@getTrip');
-RouteHandler::get('/private_trip/(:all)', \Medians\Trips\Application\PrivateTripController::class.'@getPrivateTrip');
-RouteHandler::get('/upcoming_private_trip', \Medians\Trips\Application\PrivateTripController::class.'@upcomingTrip');
-RouteHandler::get('/upcoming_parent_trip', \Medians\Trips\Application\PrivateTripController::class.'@upcomingParentTrip');
+RouteHandler::get('/taxi_trip/(:all)', \Medians\Trips\Application\TaxiTripController::class.'@getTaxiTrip');
+RouteHandler::get('/upcoming_taxi_trip', \Medians\Trips\Application\TaxiTripController::class.'@upcomingTrip');
+RouteHandler::get('/upcoming_parent_trip', \Medians\Trips\Application\TaxiTripController::class.'@upcomingParentTrip');
 RouteHandler::get('/getParentTrip/(:all)', \Medians\Trips\Application\TripController::class.'@getParentTrip');
 RouteHandler::get('/events', \Medians\Events\Application\EventController::class.'@index');
 RouteHandler::get('/routes', \Medians\Routes\Application\RouteController::class.'@index');
@@ -225,8 +225,8 @@ if(!empty($app->auth()))
     /** @return Plan employees */
     RouteHandler::get('/admin/employees', Medians\Customers\Application\EmployeeController::class.'@index');
 
-    /** @return Private trips */
-    RouteHandler::get('/admin/private_trips', Medians\Trips\Application\PrivateTripController::class.'@index');
+    /** @return Taxi trips */
+    RouteHandler::get('/admin/taxi_trips', Medians\Trips\Application\TaxiTripController::class.'@index');
     
     /** @return Admin profile */
     RouteHandler::get('/admin/profile', Medians\Users\Application\UserController::class.'@profile');

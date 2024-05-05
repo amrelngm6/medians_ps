@@ -13,7 +13,7 @@ use Medians\Locations\Domain\RouteLocation;
 use Medians\Plans\Domain\PlanSubscription;
 use Medians\Gallery\Domain\Gallery;
 use Medians\Trips\Domain\Trip;
-use Medians\Trips\Domain\PrivateTrip;
+use Medians\Trips\Domain\TaxiTrip;
 
 class Business extends CustomModel
 {
@@ -84,9 +84,9 @@ class Business extends CustomModel
 		return $this->hasMany(Trip::class, 'business_id', 'business_id');	
     }
 
-    public function private_trips()
+    public function taxi_trips()
     {
-		return $this->hasMany(PrivateTrip::class, 'business_id', 'business_id');	
+		return $this->hasMany(TaxiTrip::class, 'business_id', 'business_id');	
     }
 
     public function settings()

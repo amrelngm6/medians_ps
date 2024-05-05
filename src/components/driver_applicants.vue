@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="text-center pb-15 px-5">
-                            <img :src="'/src/assets/img/1.png'" alt="" class="mx-auto mw-100 h-200px h-sm-325px">          
+                            <img :src="'/uploads/img/start-wizard.png'" alt="" class="mx-auto mw-100 h-200px h-sm-325px">          
                         </div>
                     </div>
                 </div>
