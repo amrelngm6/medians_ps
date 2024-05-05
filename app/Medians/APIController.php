@@ -526,6 +526,10 @@ class APIController extends CustomController
 				case 'Gallery.delete':
 					return response((new Gallery\Application\GalleryController())->delete());
 					break;
+					
+				case 'Language.delete':
+					return response((new Languages\Application\LanguageController())->delete());
+					break;
 	
 			}
 
