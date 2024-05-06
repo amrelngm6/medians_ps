@@ -115,7 +115,7 @@ export default {
           origin: origin,
           destination: destination,
           waypoints: [
-            { location: origin },
+            // { location: origin },
           ],
           travelMode: google.maps.TravelMode.DRIVING,
           avoidTolls: true,
@@ -149,6 +149,7 @@ export default {
           return;
         }
 
+        
         for (let i = 0; i < myroute.legs.length; i++) {
           total += myroute.legs[i].distance.value;
         }
