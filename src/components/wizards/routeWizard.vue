@@ -373,6 +373,11 @@ export default
             
             let type = array.route_id > 0 ? 'update' : 'create';
             params.append('type', 'Route.'+type)
+            
+            const currentInstance = getCurrentInstance();
+            if (currentInstance) 
+                currentInstance.root.data.loader = true;
+            
             handleRequest(params, '/api/'+type).then(response => {
                 handleAccess(response)
             })
