@@ -21,6 +21,9 @@
       </CustomMarker>
 
     </GoogleMap>
+    
+    <div id="panel"></div>
+    <div id="total"></div>
   </div>
 </template>
 
@@ -75,11 +78,10 @@ export default {
 
     const mapOrigin = ref({ lat: 0, lng: 0 }); // Set initial values
     const mapDestination = ref({ lat: 0, lng: 0 }); // Set initial values
+    const directionsService = ref(null);
+    const directionsRenderer = ref(null);
 
     const handleAlterDirection = (url) => {
-
-      const directionsService = ref(null);
-      const directionsRenderer = ref(null);
 
       directionsService.value = new google.maps.DirectionsService();
       directionsRenderer.value = new google.maps.DirectionsRenderer({
