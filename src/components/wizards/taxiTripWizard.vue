@@ -187,7 +187,11 @@
                                 <div class="card-body pt-0">
                                     <div class="settings-form flex w-full">
                                         <div class="w-full">
-                                            Map
+                                            <drivers_locations_map :system_setting="system_setting" :item="activeItem"
+                                                :drivers="drivers"
+                                                @setdriver="setDriver" :key="activeItem"
+                                                >
+                                            </drivers_locations_map>
                                         </div>
                                         <div class="w-full mb-6 mx-auto row">
                                             <div class="card-body pt-0 mx-auto max-w-xl" :key="drivers">
@@ -499,6 +503,7 @@ const form_field = defineAsyncComponent(() =>
     import('@/components/includes/form_field.vue')
 );
 import editable_map_location from '@/components/includes/editable_map_location.vue';
+import drivers_locations_map from '@/components/includes/drivers_locations_map.vue';
 import tooltip from '@/components/includes/tooltip.vue';
 import trip_map from '@/components/maps/trip_map.vue';
 
@@ -514,6 +519,7 @@ export default
             car_icon,
             form_field,
             editable_map_location,
+            drivers_locations_map,
             tooltip,
         },
         name: 'Taxi trips',
