@@ -133,7 +133,8 @@ export async function handleRequest(params, url = '/api') {
     const currentInstance =  getCurrentInstance();
     if (currentInstance)
         currentInstance.root.data.loader = true;  
-    
+    console.log(currentInstance)
+    return null;
     return await axios.post(url, params.toString()).then(response => {
         return response.data;
     });
