@@ -41,8 +41,30 @@ import draggable from 'vuedraggable'
     components: {
       draggable
     },
-    data() {
+    setup() {
+
+        
+      const add  =  () => {
+        this.list.push({ name: "Juan" });
+      };
+      const replace  =  () =>  {
+        this.list = [{ name: "Edgard" }];
+      };
+      const clone =  () => {
+        return {
+          name: el.name + " cloned"
+        };
+      };
+      const log  =  () =>  {
+        window.console.log(evt);
+      }
+
+
       return {
+        add,
+        replace,
+        log,
+        clone,
         list1: [
           { name: "John", id: 1 },
           { name: "Joao", id: 2 },
@@ -57,20 +79,6 @@ import draggable from 'vuedraggable'
       };
     },
     methods: {
-      add: function() {
-        this.list.push({ name: "Juan" });
-      },
-      replace: function() {
-        this.list = [{ name: "Edgard" }];
-      },
-      clone: function(el) {
-        return {
-          name: el.name + " cloned"
-        };
-      },
-      log: function(evt) {
-        window.console.log(evt);
-      }
     }
   };
   </script>
