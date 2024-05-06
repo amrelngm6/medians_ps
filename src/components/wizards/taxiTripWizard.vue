@@ -187,7 +187,7 @@
                                 <div class="card-body pt-0">
                                     <div class="settings-form flex w-full">
                                         <div class="w-full">
-                                            <drivers_locations_map :system_setting="system_setting" :item="activeItem"
+                                            <drivers_locations_map :setting="system_setting" :item="activeItem"
                                                 :drivers="drivers"
                                                 @setdriver="setDriver" :key="activeItem"
                                                 >
