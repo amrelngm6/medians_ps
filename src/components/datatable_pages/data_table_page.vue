@@ -7,7 +7,7 @@
                         <h2 class="fs-2x fw-bold mb-0" v-text="content.title"></h2>
                         <p class="text-gray-400 fs-4 font-semibold py-7"
                             v-text="translate('Empty data')"></p>
-                        <a v-text="translate('add_new')" @click="openCreate()"
+                        <a  v-if="!content.no_create" v-text="translate('add_new')" @click="openCreate()"
                             href="javascript:;" class="text-white btn btn-primary er fs-6 px-8 py-4"></a>
                     </div>
 
