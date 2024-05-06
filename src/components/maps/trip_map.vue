@@ -122,7 +122,7 @@ export default {
         })
         .then((result) => {
           console.log(result)
-          const points = decodePoly(result.routes[0].overview_polyline.points);
+          const points = extractPolylinePoints(result);
           routeCoordinates.value = points;
 
           polylinePath.value = {
@@ -140,6 +140,11 @@ export default {
         });
     }
 
+    const extractPolylinePoints = (directionsResult) => {
+      const polyline = directionsResult.routes[0].overview_polyline;
+      const polylinePoints = window.google.maps.geometry.encoding.decodePath(polyline.points);
+      return polylinePoints.map(point => ({ lat: point.lat(), lng: point.lng() }));
+    }
 
     const computeTotalDistance = (result) => {
         let total = 0;
