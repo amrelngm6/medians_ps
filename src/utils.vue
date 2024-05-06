@@ -128,9 +128,12 @@ export async function handleGetRequest(url) {
 }
 
 export async function handleRequest(params, url = '/api') {
-  return await axios.post(url, params.toString()).then(response => {
-      return response.data;
-  });
+    const currentInstance = getCurrentInstance();
+    currentInstance.root.loader = true;
+    return await axios.post(url, params.toString()).then(response => {
+        currentInstance.root.loader = false;
+        return response.data;
+    });
 }
 
 export function translate(i) {

@@ -76,5 +76,10 @@ class TripLocation extends CustomModel
 	}
 
 
+    public function receiverAsParent()
+    {
+		$object =  $this->where('model_type', Student::class)->with(['model'=> function($q){ $q->with('parent'); }])->find($this->trip_location_id);
+		return  isset($object->model->parent) ? $object->model->parent : null;
+    }
 
 }

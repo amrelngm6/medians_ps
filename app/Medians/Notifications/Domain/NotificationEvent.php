@@ -173,46 +173,8 @@ class NotificationEvent extends CustomModel
 	 */
 	public function filterParent($event, $model)
 	{
-		$return = null;
 
-		switch (get_class($model)) 
-		{
-			case HelpMessageComment::class:
-				$return = [$model->message->user];
-				break;
-
-			case RouteLocation::class:
-				$location =  $model->where('model_type', Student::class)->with('parent')->find($model->location_id);
-				$return =  isset($location->parent) ? [$location->parent] : null;
-				break;
-
-			case TripAlarm::class:
-				$object =  $model->whereHas('model')->with('model')->find($model->alarm_id);
-				$return =  isset($object->model->parent) ? [$object->model->parent] : null;
-				break;
-
-			case TaxiTrip::class:
-				$object =  $model->with('model')->find($model->trip_id);
-				$return =  isset($object->model) ? [$object->model] : null;
-				break;
-				
-			case Student::class:
-				$object =  $model->with('parent')->find($model->student_id);
-				$return =  isset($object->parent) ? [$object->parent] : null;
-				break;
-				
-			case TripLocation::class:
-				$object =  $model->where('model_type', Student::class)->with('model')->find($model->trip_location_id);
-				$return =  isset($object->model) ? [Student::with('parent')->where('student_id', $object->model_id)->first()->parent] : null;
-				break;
-				
-			default:
-				$return =  $model;
-				break;
-		}
-		
-		
-		return $return;
+		return method_exists($model, 'receiverAsParent') ? [$model->receiverAsParent()] : null;
 	}
 
 
@@ -364,11 +326,11 @@ class NotificationEvent extends CustomModel
 		switch ($event->receiver_model) 
 		{
 			case Driver::class:
-				return $this->filterDriver($event, $model);
+				return method_exists($model, 'receiverAsDriver') ? [$model->receiverAsDriver()] : null;
 				break;
 				
 			case Parents::class:
-				return $this->filterParent($event, $model);
+				return method_exists($model, 'receiverAsParent') ? [$model->receiverAsParent()] : null;
 				break;
 			
 			case Employee::class:

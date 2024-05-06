@@ -115,7 +115,6 @@ class ParentRepository  extends CustomerRepository
 				$dataArray[$key] = $value;
 			}
 		}		
-		
 
 		// Return the  object with the new data
     	$Object = Parents::create($dataArray);

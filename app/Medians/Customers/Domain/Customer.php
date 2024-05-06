@@ -72,6 +72,11 @@ class Customer extends CustomModel
     }
 
 
+    public function receiverAsParent()
+    {
+		return  $this;
+    }
+	
 
 	/**
 	 * Create Custom filed for Session of driver
