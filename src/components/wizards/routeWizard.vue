@@ -359,7 +359,7 @@ export default
             places.value = result.predictions;
         }
 
-        const saveRoute = () =>
+        const saveRoute = async ()  =>
         {
             const currentInstance =  getCurrentInstance();
             if (currentInstance)
@@ -378,7 +378,7 @@ export default
             let type = array.route_id > 0 ? 'update' : 'create';
             params.append('type', 'Route.'+type)
             
-            handleRequest(params, '/api/'+type).then(response => {
+            await handleRequest(params, '/api/'+type).then(response => {
                 handleAccess(response)
             })
         }
