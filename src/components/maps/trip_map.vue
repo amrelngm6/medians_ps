@@ -145,7 +145,7 @@ export default {
         let total = 0;
         const myroute = result.routes[0];
 
-        if (!myroute) {
+        if (!myroute || !myroute.legs) {
           return;
         }
 
