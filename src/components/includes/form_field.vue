@@ -12,6 +12,7 @@
         <div v-if="column.column_type == 'checkbox'"  class="py-4 flex gap gap-2 cursor-pointer" @click="setActiveStatus(item, column.key)">
             <span :class="!item[column.key] ? 'bg-gray-200' : 'bg-red-400'" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: item[column.key] ? '16px' : 0}"></a></span>
             <span  v-text="item[column.key] ? translate('Active') : translate('Pending')" v-if="!column.hide_text" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+            <input :value="''" :checked="item[column.key] ? false : true"  type="checkbox" class="hidden" :name="handleName(column)" />
             <input :value="'on'" :checked="item[column.key] ? true : false"  type="checkbox" class="hidden" :name="handleName(column)" />
         </div>
         

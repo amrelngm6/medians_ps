@@ -66,11 +66,6 @@ class SystemSettingsController extends CustomController
 				[ 'key'=> "comission_paid_plan", 'help_text'=>translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 			
-			'site_info'=> [	
-				[ 'key'=> "footer_email", 'title'=> translate('Email'), 'help_text'=>translate('This email used for view at your frontend footer'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "footer_address", 'title'=> translate('Footer address'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "footer_phone", 'title'=> translate('Footer phone'), 'fillable'=> true, 'column_type'=>'phone' ],
-			],
 			'smtp'=> [	
 				[ 'key'=> "smtp_sender", 'title'=> translate('smtp_sender'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "smtp_user", 'title'=> translate('SMTP_USER'), 'fillable'=> true, 'column_type'=>'text' ],
