@@ -113,14 +113,21 @@ export default {
 
     }
 
+    const handleWaypoints = () => {
+      var list = []
+      for (let i = 0; i < markers.value.length; i++) {
+        const element = markers.value[i];
+        list[i] = {location: element.marker_position};       
+      }
+      return list;
+    }
+
     const  displayRoute = (origin, destination, service, display) => {
       service
         .route({
           origin: origin,
           destination: destination,
-          // waypoints: [
-            // { location: origin },
-          // ],
+          waypoints: handleWaypoints(),
           travelMode: window.google.maps.TravelMode.DRIVING,
           avoidTolls: true,
         })
