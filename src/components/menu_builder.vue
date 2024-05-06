@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-      <div class="col-3">
+      <div class="col-3" v-if="list1">
         <h3>Draggable 1</h3>
         <draggable class="list-group" :list="list1" group="people" @change="log">
           <div
@@ -13,7 +13,7 @@
         </draggable>
       </div>
   
-      <div class="col-3">
+      <div class="col-3" v-if="list2">
         <h3>Draggable 2</h3>
         <draggable class="list-group" :list="list2" group="people" @change="log">
           <div
