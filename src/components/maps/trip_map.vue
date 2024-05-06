@@ -66,18 +66,18 @@ export default {
     * Handle object
     * @param {Model Object} i 
     */
-    const handlePickup = (obj, latKey = 'lat', lngKey = 'lng', icon) => {
+    const handlePickup = (obj, latlng, icon) => {
       let data = JSON.parse(JSON.stringify(obj))
       data.icon = props.conf.url + 'uploads/images/' + icon
-      data.marker_position = originTracking() ?? { lat: parseFloat(obj[latKey]), lng: parseFloat(obj[lngKey]) }
+      data.marker_position = latlng
       data.drag = false;
       return data;
     }
 
     const setValues = () => 
     {
-      markers.value = [handlePickup(trip.value, 'pickup_latitude', 'pickup_longitude', 'car.svg')];
-      markers.value[markers.value.length] = handlePickup(trip.value, 'destination_latitude', 'destination_longitude', 'destination.svg')
+      markers.value = [handlePickup(trip.value, originTracking() ?? {lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude}, 'car.svg')];
+      markers.value[markers.value.length] = handlePickup(trip.value, {lat: trip.value.destination_latitude, lng: trip.value.destination_longitude} ,'destination.svg')
     }
 
     setValues();
