@@ -81,7 +81,7 @@ export default {
     const directionsService = ref(null);
     const directionsRenderer = ref(null);
 
-    const handleAlterDirection = (url) => {
+    const handleAlterDirection = () => {
       console.log(window)
       setTimeout(function(){
 
@@ -134,7 +134,7 @@ export default {
             strokeWeight: 2,
           };
 
-          display.setDirections(result);
+          // display.setDirections(result);
         })
         .catch((e) => {
           alert("Could not display directions due to: " + e);
@@ -159,12 +159,13 @@ export default {
     }
 
     const fetchRoute = async () => {
+      return handleAlterDirection();
+
     //   const baseUrl = 'http://localhost:3000/directions'; // Use your server's URL
     //   const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&apiKey=${props.system_setting.google_map_api}`;
       const baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
       const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&key=${props.system_setting.google_map_api}`;
 
-      return handleAlterDirection(url);
 
       try {
         const response = await fetch(url);
