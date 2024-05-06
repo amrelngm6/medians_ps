@@ -361,10 +361,10 @@ export default
 
         const saveRoute = () =>
         {
-            
-            const currentInstance = getCurrentInstance();
-            if (currentInstance) 
-                currentInstance.root.data.loader = true;
+         
+            const currentInstance =  getCurrentInstance();
+            if (currentInstance)
+                currentInstance.root.data.loader = true;   
 
             var params = new URLSearchParams();
             let array = JSON.parse(JSON.stringify(activeItem.value));
