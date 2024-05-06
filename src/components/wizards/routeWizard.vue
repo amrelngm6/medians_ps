@@ -371,13 +371,10 @@ export default
         const loader = ref(false);
         const showAddSide = ref(false);
         const showEditSide = ref(false);
-        const showProfilePage = ref(null);
         const activeItem = ref({});
         const activeTab = ref('Info');
         const content = ref({});
         const center = ref({});
-        const locations =  ref([]);
-        const showList =  ref(true);
         const searchText =  ref('');
         const locationError =  ref(null);
         const collapsed =  ref(false);
@@ -387,6 +384,9 @@ export default
         const start_placeSearch =  ref('');
         const end_placeSearch =  ref('');
         
+        if (props.active_tab) {
+            activeTab.value = props.active_tab;
+        }
         if (props.item) {
             activeItem.value = props.item
             activeItem.value.position = props.item.position ?? {}
@@ -593,6 +593,7 @@ export default
         'drivers',
         'vehicles',
         'supervisors',
+        'active_tab'
     ],
     
 };
