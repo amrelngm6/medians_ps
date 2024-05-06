@@ -123,6 +123,17 @@ export default {
         })
         .then((result) => {
           console.log(result)
+          const points = decodePoly(result.routes[0].overview_polyline.points);
+          routeCoordinates.value = points;
+
+          polylinePath.value = {
+            path: points,
+            geodesic: true,
+            strokeColor: "#000",
+            strokeOpacity: .9,
+            strokeWeight: 2,
+          };
+
           display.setDirections(result);
         })
         .catch((e) => {
@@ -152,7 +163,8 @@ export default {
     //   const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&apiKey=${props.system_setting.google_map_api}`;
       const baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
       const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&key=${props.system_setting.google_map_api}`;
-      handleAlterDirection(url);
+
+      return handleAlterDirection(url);
 
       try {
         const response = await fetch(url);
