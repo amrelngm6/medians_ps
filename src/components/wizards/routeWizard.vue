@@ -361,7 +361,6 @@ export default
 
         const saveRoute = () =>
         {
-         
             const currentInstance =  getCurrentInstance();
             if (currentInstance)
                 currentInstance.root.data.loader = true;   
