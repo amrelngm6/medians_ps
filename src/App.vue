@@ -62,6 +62,7 @@ const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages
 const languages = defineAsyncComponent(() => import('@/components/datatable_pages/languages.vue') );
 const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/gallery.vue') );
 const newsletter_subscribers = defineAsyncComponent(() => import('@/components/datatable_pages/newsletter_subscribers.vue') );
+const notifications = defineAsyncComponent(() => import('@/components/datatable_pages/notifications.vue') );
 
 
 const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );
@@ -153,6 +154,7 @@ export default {
         settings,
         locations,
         events,
+        notifications,
         notifications_events,
         users,
         schools,
