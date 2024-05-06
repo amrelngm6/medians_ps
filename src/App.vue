@@ -61,6 +61,7 @@ const supervisors = defineAsyncComponent(() => import('@/components/datatable_pa
 const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
 const languages = defineAsyncComponent(() => import('@/components/datatable_pages/languages.vue') );
 const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/gallery.vue') );
+const newsletter_subscribers = defineAsyncComponent(() => import('@/components/datatable_pages/newsletter_subscribers.vue') );
 
 
 const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );
@@ -75,8 +76,6 @@ const routes = defineAsyncComponent(() => import('@/components/routes.vue') );
 
 
 const locations = defineAsyncComponent(() => import('@/components/locations.vue') );
-
-const destinations = defineAsyncComponent(() => import('@/components/destinations.vue') );
 
 const users = defineAsyncComponent(() => import('@/components/users.vue') );
 
@@ -128,7 +127,6 @@ const collected_cash = defineAsyncComponent(() => import('@/components/wallet/co
 
 const translations = defineAsyncComponent(() => import('@/components/translations.vue') );
 
-const newsletter_subscribers = defineAsyncComponent(() => import('@/components/newsletter_subscribers.vue') );
 
 const contact_forms = defineAsyncComponent(() => import('@/components/contact_forms.vue') );
 
@@ -154,7 +152,6 @@ export default {
         system_settings,
         settings,
         locations,
-        destinations,
         events,
         notifications_events,
         users,
