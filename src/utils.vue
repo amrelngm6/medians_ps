@@ -207,6 +207,9 @@ export function handleAccess (response)
     } else {
         response ? showAlert(response.error, 3000) : null;
     }
+    const currentInstance = getCurrentInstance();
+    currentInstance.root.data.loader = false;
+
 }
 
 export async function findPlaces  (googleMapsApiKey, text, countries)

@@ -614,6 +614,10 @@ export default
                 }
                 let type = array.trip_id > 0 ? 'update' : 'create';
                 params.append('type', 'TaxiTrip.' + type)
+                
+                
+                const currentInstance = getCurrentInstance();
+                currentInstance.root.data.loader = true;
                 handleRequest(params, '/api/' + type).then(response => {
                     handleAccess(response)
                     loading.value = false;
