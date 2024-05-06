@@ -12,13 +12,10 @@
             
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
             
-                <!-- <Polyline v-if="showroute" :options="flightPath" /> -->
-
                 <CustomMarker
-                    v-for="(marker, index) in markers" 
-
+                    v-for="marker in markers" 
                     :options="{
-                        position: marker.destination,
+                        position: marker,
                     }"
                     >
                     <div style="text-align: center">
