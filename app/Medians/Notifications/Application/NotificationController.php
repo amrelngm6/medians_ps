@@ -29,38 +29,15 @@ class NotificationController extends CustomController
 	{
 
 		return [
-            [
-                'key'=> "id",
-                'title'=> '#',
-                'sortable'=> false,
-            ],
-            [
-                'key'=> "subject",
-                'title'=> translate('subject'),
-                'sortable'=> false,
-            ],
-            [
-                'key'=> "model_short_name",
-                'title'=> translate('Model'),
-                'sortable'=> false,
-            ],
-            [
-                'key'=> "receiver_name",
-                'title'=> translate('receiver_name'),
-                'sortable'=> true,
-            ],
-            [
-                'key'=> "date",
-                'title'=> translate('date'),
-                'sortable'=> true,
-            ],
-            [
-                'key'=> "status",
-                'title'=> translate('status'),
-                'sortable'=> true,
-            ]
+            [ 'value'=> "notification_id", 'text'=> "#",'sortable'=> true ],
+            [ 'value'=> "subject", 'text'=> translate('subject'), 'sortable'=> true ],
+            [ 'value'=> "receiver_name", 'text'=> translate('Name'), 'sortable'=> true ],
+            [ 'value'=> "body_text", 'text'=> translate('Message'), 'sortable'=> true ],
+            [ 'value'=> "delete", 'text'=> translate('delete') ],
         ];
 	}
+
+	
 
 	/**
 	 * Admin index items
