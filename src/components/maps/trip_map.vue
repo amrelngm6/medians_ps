@@ -117,7 +117,7 @@ export default {
           // waypoints: [
             // { location: origin },
           // ],
-          travelMode: google.maps.TravelMode.DRIVING,
+          travelMode: window.google.maps.TravelMode.DRIVING,
           avoidTolls: true,
         })
         .then((result) => {
