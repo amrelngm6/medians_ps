@@ -77,21 +77,69 @@ export default {
     const mapDestination = ref({ lat: 0, lng: 0 }); // Set initial values
 
     const handleAlterDirection = (url) => {
-      console.log(mapRef.value)
-      axios.get(url, {
-          params: {
-            origin: '30.059211362739,31.221850700676',
-            destination: '30.033575780575,31.474631465971',
-            key: props.system_setting.google_map_api
+
+      const directionsService = ref(null);
+      const directionsRenderer = ref(null);
+
+      directionsService.value = new google.maps.DirectionsService();
+      directionsRenderer.value = new google.maps.DirectionsRenderer({
+          draggable: true,
+          map,
+          panel: document.getElementById("panel"),
+      });
+
+        directionsRenderer.value.addListener("directions_changed", () => {
+          const directions = directionsRenderer.value.getDirections();
+
+          if (directions) {
+            computeTotalDistance(directions);
           }
-        })
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error)
-          // Handle error
         });
+
+        displayRoute(
+          "Perth, WA",
+          "Sydney, NSW",
+          directionsService.value,
+          directionsRenderer.value
+        );
+
+    }
+
+    const  displayRoute = (origin, destination, service, display) => {
+      service
+        .route({
+          origin: origin,
+          destination: destination,
+          waypoints: [
+            { location: mapOrigin.value.lat+","+mapOrigin.value.lng },
+            { location: mapDestination.value.lat+","+mapDestination.value.lng },
+          ],
+          travelMode: google.maps.TravelMode.DRIVING,
+          avoidTolls: true,
+        })
+        .then((result) => {
+          display.setDirections(result);
+        })
+        .catch((e) => {
+          alert("Could not display directions due to: " + e);
+        });
+    }
+
+
+    const computeTotalDistance = (result) => {
+        let total = 0;
+        const myroute = result.routes[0];
+
+        if (!myroute) {
+          return;
+        }
+
+        for (let i = 0; i < myroute.legs.length; i++) {
+          total += myroute.legs[i].distance.value;
+        }
+
+        total = total / 1000;
+        document.getElementById("total").innerHTML = total + " km";
     }
 
     const fetchRoute = async () => {
