@@ -50,7 +50,7 @@ class VacationController extends CustomController
             [ 'value'=> "vacation_id", 'text'=> "#"],
             [ 'value'=> "date", 'text'=> translate('date'), 'sortable'=> true ],
             [ 'value'=> "user.name", 'text'=> translate('User'), 'sortable'=> true ],
-            [ 'value'=> "edit", 'text'=> translate('Edit') ],
+            // [ 'value'=> "edit", 'text'=> translate('Edit') ],
             [ 'value'=> "delete", 'text'=> translate('Delete') ],
         ];
 	}

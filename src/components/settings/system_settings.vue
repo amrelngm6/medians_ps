@@ -5,7 +5,7 @@
             <div class="card-body pt-9 pb-0">
                 
                 <div class="d-flex align-items-center mb-1" v-if="item">
-                    <a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bold me-3" v-text="translate('System settings')"></a>
+                    <a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bold me-3" v-text="content.title"></a>
                     <span class="badge badge-light-success me-auto"></span>
                 </div>
                 <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">

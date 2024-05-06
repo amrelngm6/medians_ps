@@ -30,9 +30,9 @@ class NotificationController extends CustomController
 
 		return [
             // [ 'value'=> "id", 'text'=> "#",'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('date'), 'sortable'=> true ],
             [ 'value'=> "subject", 'text'=> translate('subject'), 'sortable'=> true ],
             [ 'value'=> "body_text", 'text'=> translate('Message'), 'sortable'=> true ],
-            [ 'value'=> "date", 'text'=> translate('date'), 'sortable'=> true ],
             [ 'value'=> "delete", 'text'=> translate('delete') ],
         ];
 	}

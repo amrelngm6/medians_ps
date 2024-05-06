@@ -264,6 +264,7 @@ if(!empty($app->auth()))
     * @return System settings
     */
     RouteHandler::get('/admin/system_settings', \Medians\Settings\Application\SystemSettingsController::class.'@index');
+    RouteHandler::get('/admin/site_settings', \Medians\Settings\Application\SiteSettingsController::class.'@index');
 
     /**
     * @return AppSettings

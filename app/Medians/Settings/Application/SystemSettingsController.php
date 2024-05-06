@@ -67,7 +67,7 @@ class SystemSettingsController extends CustomController
 			],
 			
 			'site_info'=> [	
-				[ 'key'=> "footer_email", 'title'=> translate('Footer email'), 'fillable'=> true, 'column_type'=>'email' ],
+				[ 'key'=> "footer_email", 'title'=> translate('Email'), 'help_text'=>translate('This email used for view at your frontend footer'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "footer_address", 'title'=> translate('Footer address'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "footer_phone", 'title'=> translate('Footer phone'), 'fillable'=> true, 'column_type'=>'phone' ],
 			],

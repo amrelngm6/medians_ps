@@ -88,18 +88,6 @@ class PlanSubscriptionController extends CustomController
 	}
 
 
-	public function getData()
-	{
-		$this->app = new \config\APP;
-
-		if ($this->app->auth()->role_id === 1)
-			return $this->repo->get();
-
-		if ($this->app->auth()->role_id === 3)
-			return $this->repo->getByBranch($this->app->branch->id);
-	}
-
-	
 	/**
 	 * Update item to database
 	 * 
