@@ -82,7 +82,7 @@ export default {
     const directionsRenderer = ref(null);
 
     const handleAlterDirection = (url) => {
-
+      console.log(window)
       directionsService.value =  new window.google.maps.DirectionsService();
       directionsRenderer.value = new window.google.maps.DirectionsRenderer({
           draggable: true,
