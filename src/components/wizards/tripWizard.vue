@@ -1,5 +1,9 @@
 <template>
-    <div class="w-full flex overflow-auto">
+    <div class="w-full overflow-auto">
+        
+        <div v-if="loader" :key="loader" class="bg-white fixed w-full h-full top-0 left-0" style="z-index:99999; opacity: .9;">
+            <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
+        </div>
         <div class=" w-full relative">
             <close_icon class="absolute top-4 right-4 z-10 cursor-pointer" @click="back" />
             <div class=" card w-full py-10">
@@ -285,6 +289,7 @@ export default
         emits: ['callback'],
         setup(props, { emit }) {
 
+            const loader = ref(false);
             const showAddSide = ref(false);
             const showEditSide = ref(false);
             const activeItem = ref({});
@@ -363,6 +368,7 @@ export default
             }
 
             const saveTrip = () => {
+                loader.value = true;
                 var params = new URLSearchParams();
                 let array = JSON.parse(JSON.stringify(activeItem.value));
                 let keys = Object.keys(array)
@@ -375,6 +381,7 @@ export default
                 let type = array.trip_id > 0 ? 'update' : 'create';
                 params.append('type', 'Trip.' + type)
                 handleRequest(params, '/api/' + type).then(response => {
+                    loader.value = false;
                     handleAccess(response)
                 })
             }
@@ -518,6 +525,7 @@ export default
 
 
             return {
+                loader,
                 tripsStatusList,
                 selectedObject,
                 findDriver,

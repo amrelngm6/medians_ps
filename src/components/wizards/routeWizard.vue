@@ -381,6 +381,7 @@ export default
             params.append('type', 'Route.'+type)
             
             await handleRequest(params, '/api/'+type).then(response => {
+                loader.value = false;
                 handleAccess(response)
             })
         }
