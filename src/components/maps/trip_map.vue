@@ -123,7 +123,7 @@ export default {
         .then((result) => {
           console.log(result)
           const points = extractPolylinePoints(result);
-          routeCoordinates.value = points;
+          // routeCoordinates.value = points;
 
           // polylinePath.value = {
           //   path: points,
@@ -141,6 +141,7 @@ export default {
     }
 
     const extractPolylinePoints = (directionsResult) => {
+      console.log(directionsResult)
       const polyline = directionsResult.routes[0].overview_polyline;
       const polylinePoints = window.google.maps.geometry.encoding.decodePath(polyline.points);
       return polylinePoints.map(point => ({ lat: point.lat(), lng: point.lng() }));
