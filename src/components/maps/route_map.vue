@@ -75,7 +75,7 @@ export default {
       {
         for (let i = 0; i < array.length; i++) {
           console.log(array[i])
-          markers.value[i + 1] = handlePickup(array[i], 'start_latitude', 'start_longitude', 'yellow_pin.gif');
+          markers.value[i + 1] = handlePickup(array[i], 'start_latitude', 'start_longitude', array[i].picture ?? 'uploads/images/yellow_pin.gif');
         }
       }
       markers.value[markers.value.length] = handlePickup(route.value.position, 'end_latitude', 'end_longitude', 'uploads/images/destination.svg')
