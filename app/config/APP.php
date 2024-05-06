@@ -259,7 +259,7 @@ class APP
 				]
 			),
 			
-			array('title'=>translate('Trips'),  'icon'=>'map', 'link'=>'#TaxiTrips', 'sub'=>
+			array('title'=>translate('Trips'),  'icon'=>'map-pin', 'link'=>'#TaxiTrips', 'sub'=>
 			[
 				array('permission'=>'Trips.index', 'title'=>translate('Route trips'),  'icon'=>'map-pin', 'link'=>'admin/trips', 'component'=>'trips'),
 				array('permission'=>'TaxiTrips.index', 'title'=>translate('Taxi Trips'),  'icon'=>'map', 'link'=>'admin/taxi_trips', 'component'=>'taxi_trips'),
