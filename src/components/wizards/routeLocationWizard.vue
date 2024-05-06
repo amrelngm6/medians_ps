@@ -519,6 +519,7 @@ export default
             }
 
             const saveRoute = () => {
+                loader.value = true;
                 var params = new URLSearchParams();
                 let array = JSON.parse(JSON.stringify(activeItem.value));
                 let keys = Object.keys(array)
@@ -531,6 +532,7 @@ export default
                 let type = array.location_id > 0 ? 'update' : 'create';
                 params.append('type', 'RouteLocation.' + type)
                 handleRequest(params, '/api/' + type).then(response => {
+                    loader.value = false;
                     handleAccess(response)
                 })
             }
