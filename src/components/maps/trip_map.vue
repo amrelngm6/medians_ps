@@ -82,7 +82,6 @@ export default {
     const directionsRenderer = ref(null);
 
     const handleAlterDirection = () => {
-      console.log(window)
       setTimeout(function(){
 
         directionsService.value =  new window.google.maps.DirectionsService();
@@ -106,7 +105,7 @@ export default {
           directionsService.value,
           directionsRenderer.value
         );
-      }, 2000)
+      }, 1000)
 
     }
 
