@@ -616,8 +616,11 @@ export default
                 params.append('type', 'TaxiTrip.' + type)
                 
                 
-                const currentInstance = getCurrentInstance();
-                currentInstance.root.data.loader = true;
+                const currentInstance =  getCurrentInstance();
+                
+                if (currentInstance)
+                    currentInstance.root.data.loader = true;
+    
                 handleRequest(params, '/api/' + type).then(response => {
                     handleAccess(response)
                     loading.value = false;
