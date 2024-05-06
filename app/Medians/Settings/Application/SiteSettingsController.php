@@ -81,7 +81,7 @@ class SiteSettingsController extends CustomController
 	 */
 	public function index()
 	{
-		return render('system_settings', [
+		return render('menu_builder', [
 		        'load_vue' => true,
 		        'setting' => $this->getAll(),
 		        'fillable' => $this->fillable(),

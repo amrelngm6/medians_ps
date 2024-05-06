@@ -131,6 +131,8 @@ const translations = defineAsyncComponent(() => import('@/components/translation
 
 const contact_forms = defineAsyncComponent(() => import('@/components/contact_forms.vue') );
 
+const menu_builder = defineAsyncComponent(() => import('@/components/menu_builder.vue') );
+
 
 
 
@@ -188,6 +190,7 @@ export default {
         newsletter_subscribers,
         contact_forms,
         gallery,
+        menu_builder,
         get_started,
         translate,
         'help_messages':HelpMessages,
