@@ -185,10 +185,12 @@
 
                             <div class="" v-if="activeTab == 'Driver'" :key="activeTab">
                                 <div class="card-body pt-0">
-                                    <div class="settings-form">
-                                        <div class="max-w-xl mb-6 mx-auto row">
+                                    <div class="settings-form flex w-full">
+                                        <div class="w-full">
+                                            Map
+                                        </div>
+                                        <div class="w-full mb-6 mx-auto row">
                                             <div class="card-body pt-0 mx-auto max-w-xl" :key="drivers">
-
                                                 <div class="text-center mb-13">
                                                     <h1 class="mb-3" v-text="translate('Find Driver')"></h1>
 

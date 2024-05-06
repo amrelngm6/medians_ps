@@ -29,10 +29,10 @@ class NotificationController extends CustomController
 	{
 
 		return [
-            [ 'value'=> "notification_id", 'text'=> "#",'sortable'=> true ],
+            // [ 'value'=> "id", 'text'=> "#",'sortable'=> true ],
             [ 'value'=> "subject", 'text'=> translate('subject'), 'sortable'=> true ],
-            [ 'value'=> "receiver_name", 'text'=> translate('Name'), 'sortable'=> true ],
             [ 'value'=> "body_text", 'text'=> translate('Message'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('date'), 'sortable'=> true ],
             [ 'value'=> "delete", 'text'=> translate('delete') ],
         ];
 	}
@@ -51,6 +51,7 @@ class NotificationController extends CustomController
 	        'title' => translate('Notifications'),
 	        'items' => $this->repo->get($app->auth()),
 	        'columns' => $this->columns(),
+			'no_create'=> true
 
 	    ]);
 	}
