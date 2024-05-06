@@ -1,70 +1,76 @@
 <template>
-    <div class=" w-full">
-        <h2>Draggable Menu Builder</h2>
-        <draggable v-model="menuItems" group="menu" @end="onDragEnd">
-        <div v-for="(item, index) in menuItems" :key="item.id" class="menu-item">
-            {{ item.label }}
-        </div>
+    <div class="row">
+      <div class="col-3">
+        <h3>Draggable 1</h3>
+        <draggable class="list-group" :list="list1" group="people" @change="log">
+          <div
+            class="list-group-item"
+            v-for="(element, index) in list1"
+            :key="element.name"
+          >
+            {{ element.name }} {{ index }}
+          </div>
         </draggable>
-        <button @click="saveMenu">Save Menu</button>
+      </div>
+  
+      <div class="col-3">
+        <h3>Draggable 2</h3>
+        <draggable class="list-group" :list="list2" group="people" @change="log">
+          <div
+            class="list-group-item"
+            v-for="(element, index) in list2"
+            :key="element.name"
+          >
+            {{ element.name }} {{ index }}
+          </div>
+        </draggable>
+      </div>
+  
+      <rawDisplayer class="col-3" :value="list1" title="List 1" />
+  
+      <rawDisplayer class="col-3" :value="list2" title="List 2" />
     </div>
-</template>
-<script>
-
-import {ref} from 'vue';
+  </template>
+  <script>
 import draggable from 'vuedraggable'
-
-export default 
-{
+  
+  export default {
+    name: "two-lists",
+    display: "Two Lists",
+    order: 1,
     components: {
-        draggable,
+      draggable
     },
-    setup(props) {
-        const menuItems =  ref([
-                {
-                name: "task 1",
-                tasks: [
-                    {
-                    name: "task 2",
-                    tasks: []
-                    }
-                ]
-                },
-                {
-                name: "task 3",
-                tasks: [
-                    {
-                    name: "task 4",
-                    tasks: []
-                    }
-                ]
-                },
-                {
-                name: "task 5",
-                tasks: []
-                }
-            ]
-        );
-        const saveMenu = () => {
-
-        };
-        
-        const onDragEnd = () => {
-
-        };
-
+    data() {
+      return {
+        list1: [
+          { name: "John", id: 1 },
+          { name: "Joao", id: 2 },
+          { name: "Jean", id: 3 },
+          { name: "Gerard", id: 4 }
+        ],
+        list2: [
+          { name: "Juan", id: 5 },
+          { name: "Edgard", id: 6 },
+          { name: "Johnson", id: 7 }
+        ]
+      };
+    },
+    methods: {
+      add: function() {
+        this.list.push({ name: "Juan" });
+      },
+      replace: function() {
+        this.list = [{ name: "Edgard" }];
+      },
+      clone: function(el) {
         return {
-            menuItems,
-            onDragEnd,
-            saveMenu
+          name: el.name + " cloned"
         };
-    },
-    props: [
-        'path',
-        'lang',
-        'setting',
-        'conf',
-        'auth',
-    ],
-};
-</script>
+      },
+      log: function(evt) {
+        window.console.log(evt);
+      }
+    }
+  };
+  </script>
