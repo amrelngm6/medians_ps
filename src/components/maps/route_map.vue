@@ -1,6 +1,6 @@
 <template>
   <div class="w-full overflow-auto">
-    <GoogleMap v-if="mapCenter" :api-key="system_setting.google_map_api" ref="mapRef" :center="mapCenter"
+    <GoogleMap v-if="mapCenter" :api-key="system_setting.google_map_api" ref="map" :center="mapCenter"
       :key="`${mapCenter.lat},${mapCenter.lng}`" :options="{
         zoomControl: true,
         mapTypeControl: true,
@@ -39,6 +39,7 @@ export default {
   },
   emits:['markerclicked'],
   setup(props, {emit}) {
+    const map = ref(null);
     const mapCenter = ref(null);
     const mapZoom = ref(12);
     const markers = ref([]);
@@ -161,6 +162,7 @@ export default {
 
     return {
       markerClicked,
+      map,
       markers,
       mapCenter,
       mapZoom,
