@@ -83,12 +83,14 @@ export default {
 
     const handleAlterDirection = (url) => {
       console.log(window)
-      directionsService.value =  new window.google.maps.DirectionsService();
-      directionsRenderer.value = new window.google.maps.DirectionsRenderer({
-          draggable: true,
-          map,
-          panel: document.getElementById("panel"),
-      });
+      setTimeout(function(){
+
+        directionsService.value =  new window.google.maps.DirectionsService();
+        directionsRenderer.value = new window.google.maps.DirectionsRenderer({
+            draggable: true,
+            map,
+            panel: document.getElementById("panel"),
+        });
 
         directionsRenderer.value.addListener("directions_changed", () => {
           const directions = directionsRenderer.value.getDirections();
@@ -104,6 +106,7 @@ export default {
           directionsService.value,
           directionsRenderer.value
         );
+      }, 2000)
 
     }
 
