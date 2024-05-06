@@ -160,7 +160,9 @@ export default {
         mapOrigin.value = originTracking() ?? { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; // Example coordinates (New York)
         mapCenter.value = mapOrigin.value;
         mapDestination.value = { lat: trip.value.destination_latitude, lng: trip.value.destination_longitude }; // Example coordinates (Los Angeles)
-        fetchRoute();
+        setInterval(() => {
+          fetchRoute();
+        }, 1000);
     });
 
     return {
