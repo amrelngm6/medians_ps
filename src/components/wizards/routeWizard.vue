@@ -540,7 +540,7 @@ export default
         {
             if (object && object.model)
             {
-                showAlert("<b>"+object.model.name+"</b> \n\r  " + object.start_address)
+                showAlert(object.model.name+" \n\r " + object.start_address)
             }
         }
 
