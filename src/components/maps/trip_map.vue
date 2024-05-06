@@ -81,7 +81,7 @@ export default {
     const directionsService = ref(null);
     const directionsRenderer = ref(null);
 
-    const handleAlterDirection = () => {
+    const fetchRoute = () => {
       setTimeout(function(){
 
         directionsService.value =  new window.google.maps.DirectionsService();
@@ -93,10 +93,6 @@ export default {
 
         directionsRenderer.value.addListener("directions_changed", () => {
           const directions = directionsRenderer.value.getDirections();
-
-          if (directions) {
-            computeTotalDistance(directions);
-          }
         });
 
         displayRoute(
@@ -124,8 +120,6 @@ export default {
           console.log(result)
           const points = extractPolylinePoints(result);
           routeCoordinates.value = points;
-      console.log(points)
-          
           polylinePath.value = {
             path: points,
             geodesic: true,
@@ -147,67 +141,23 @@ export default {
       return polylinePoints.map(point => ({ lat: point.lat(), lng: point.lng() }));
     }
 
-    const computeTotalDistance = (result) => {
-        let total = 0;
-        const myroute = result.routes[0];
 
-        if (!myroute || !myroute.legs) {
-          return;
-        }
+    const originTracking = () => {
 
-
-        // for (let i = 0; i < myroute.legs.length; i++) {
-        //   total += myroute.legs[i].distance.value;
-        // }
-
-        // total = total / 1000;
-        // document.getElementById("total").innerHTML = total + " km";
     }
-
-    const fetchRoute = async () => {
-      return handleAlterDirection();
-
-    //   const baseUrl = 'http://localhost:3000/directions'; // Use your server's URL
-    //   const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&apiKey=${props.system_setting.google_map_api}`;
-      const baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
-      const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&key=${props.system_setting.google_map_api}`;
-
-
-      try {
-        const response = await fetch(url);
-
-        if (response.ok) {
-          const data = await response.json();
-          const points = decodePoly(data.routes[0].overview_polyline.points);
-          routeCoordinates.value = points;
-
-          polylinePath.value = {
-            path: points,
-            geodesic: true,
-            strokeColor: "#000",
-            strokeOpacity: .9,
-            strokeWeight: 2,
-          };
-        } else {
-          console.error('Failed to fetch route:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching route:', error);
-      }
-    };
-
-
-    onMounted(() => {
-        mapOrigin.value = { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; // Example coordinates (New York)
-        mapCenter.value = mapOrigin.value;
-        mapDestination.value = { lat: trip.value.destination_latitude, lng: trip.value.destination_longitude }; // Example coordinates (Los Angeles)
-        fetchRoute();
-    });
 
     const markerClicked = (marker) => 
     {
       emit('markerclicked', marker)
     }
+
+
+    onMounted(() => {
+        mapOrigin.value = originTracking() ?? { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; // Example coordinates (New York)
+        mapCenter.value = mapOrigin.value;
+        mapDestination.value = { lat: trip.value.destination_latitude, lng: trip.value.destination_longitude }; // Example coordinates (Los Angeles)
+        fetchRoute();
+    });
 
     return {
       map,
