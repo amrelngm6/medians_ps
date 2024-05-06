@@ -96,7 +96,6 @@ export default
             markerClicked,
             zoom,
             map,
-            mapRef,
             mapCenter,
             markers,
         }
