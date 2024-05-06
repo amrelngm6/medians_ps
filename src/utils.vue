@@ -191,6 +191,10 @@ export function checkAccess (auth)
 export function handleAccess (response)  
 {
     
+    const currentInstance = getCurrentInstance();
+    if (currentInstance) 
+        currentInstance.root.data.loader = false;
+
     if (response && (response.success && response.reload))
     {
         showAlert(response.result, 3500);
@@ -207,8 +211,6 @@ export function handleAccess (response)
     } else {
         response ? showAlert(response.error, 3000) : null;
     }
-    const currentInstance = getCurrentInstance();
-    currentInstance.root.data.loader = false;
 
 }
 
