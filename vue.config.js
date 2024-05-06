@@ -45,5 +45,16 @@ module.exports = {
       filename: "./css/app.css",
       chunkFilename: './css/chunk.[id].css',
     },
+  },
+  devServer: {
+    proxy: {
+      '/maps/api': {
+        target: 'https://maps.googleapis.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/maps/api': '/maps/api'
+        }
+      }
+    }
   }
 }

@@ -191,13 +191,6 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import { defineAsyncComponent, getCurrentInstance, ref } from 'vue';
 import { translate, getProgressWidth, handleRequest, deleteByKey, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails, today } from '@/utils.vue';
 
-const SideFormCreate = defineAsyncComponent(() =>
-    import('@/components/includes/side-form-create.vue')
-);
-
-const SideFormUpdate = defineAsyncComponent(() =>
-    import('@/components/includes/side-form-update.vue')
-);
 
 const form_field = defineAsyncComponent(() =>
     import('@/components/includes/form_field.vue')
@@ -210,9 +203,6 @@ import trip_map from '@/components/maps/trip_map.vue';
 export default
     {
         components: {
-            'datatabble': Vue3EasyDataTable,
-            SideFormCreate,
-            SideFormUpdate,
             trip_map,
             close_icon,
             delete_icon,

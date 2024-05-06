@@ -28,6 +28,7 @@
 import { ref, onMounted } from 'vue';
 import { decodePoly } from '@/utils.vue';
 import { GoogleMap, Polyline, CustomMarker } from 'vue3-google-map';
+import axios from 'axios'
 
 export default {
   components: {
@@ -74,14 +75,32 @@ export default {
     const mapOrigin = ref({ lat: 0, lng: 0 }); // Set initial values
     const mapDestination = ref({ lat: 0, lng: 0 }); // Set initial values
 
+    const handleAlterDirection = () => {
+      
+      axios.get('/maps/api/directions/json', {
+          params: {
+            origin: '30.059211362739,31.221850700676',
+            destination: '30.033575780575,31.474631465971',
+            key: 'YOUR_API_KEY'
+          }
+        })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+          // Handle error
+        });
+    }
+
     const fetchRoute = async () => {
+      handleAlterDirection();
     //   const baseUrl = 'http://localhost:3000/directions'; // Use your server's URL
     //   const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&apiKey=${props.system_setting.google_map_api}`;
       const baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
       const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&key=${props.system_setting.google_map_api}`;
 
       try {
-
         const response = await fetch(url);
 
         if (response.ok) {
