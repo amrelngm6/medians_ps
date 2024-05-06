@@ -130,10 +130,10 @@ export async function handleGetRequest(url) {
 export async function handleRequest(params, url = '/api') {
     
          
-    const currentInstance =  getCurrentInstance();
-    if (currentInstance)
-        currentInstance.root.data.loader = true;  
-    console.log(currentInstance)
+    const currentInstance2 =  getCurrentInstance();
+    if (currentInstance2)
+        currentInstance2.root.data.loader = true;  
+    console.log(currentInstance2)
     return null;
     return await axios.post(url, params.toString()).then(response => {
         return response.data;
