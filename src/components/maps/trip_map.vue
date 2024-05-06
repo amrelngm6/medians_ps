@@ -77,7 +77,7 @@ export default {
     const mapDestination = ref({ lat: 0, lng: 0 }); // Set initial values
 
     const handleAlterDirection = () => {
-      console.log(mapRef)
+      console.log(mapRef.value)
       axios.get('/maps/api/directions/json', {
           params: {
             origin: '30.059211362739,31.221850700676',

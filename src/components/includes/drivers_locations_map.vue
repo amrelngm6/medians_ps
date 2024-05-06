@@ -60,7 +60,6 @@ export default
     emits: ['setdriver'],
     setup(props, {emit}) 
     {
-        const mapRef = ref(null);
         const map = ref(null);
 
         const zoom = ref(10);
