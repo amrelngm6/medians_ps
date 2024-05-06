@@ -83,11 +83,8 @@ export default {
 
     const handleAlterDirection = (url) => {
 
-      if (!map.value)
-          return;
-
-      directionsService.value = new google.maps.DirectionsService();
-      directionsRenderer.value = new google.maps.DirectionsRenderer({
+      directionsService.value =  new window.google.maps.DirectionsService();
+      directionsRenderer.value = new window.google.maps.DirectionsRenderer({
           draggable: true,
           map,
           panel: document.getElementById("panel"),
