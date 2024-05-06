@@ -101,8 +101,8 @@ export default {
         });
 
         displayRoute(
-          "Perth, WA",
-          "Sydney, NSW",
+          mapOrigin.value,
+          mapDestination.value,
           directionsService.value,
           directionsRenderer.value
         );
@@ -115,14 +115,14 @@ export default {
         .route({
           origin: origin,
           destination: destination,
-          waypoints: [
-            { location: mapOrigin.value.lat+","+mapOrigin.value.lng },
-            { location: mapDestination.value.lat+","+mapDestination.value.lng },
-          ],
+          // waypoints: [
+          //   { location: mapOrigin },
+          // ],
           travelMode: google.maps.TravelMode.DRIVING,
           avoidTolls: true,
         })
         .then((result) => {
+          console.log(result)
           display.setDirections(result);
         })
         .catch((e) => {
