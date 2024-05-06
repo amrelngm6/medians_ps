@@ -43,7 +43,7 @@ export default {
   setup(props, {emit}) {
     const map = ref(null);
     const mapCenter = ref(null);
-    const mapZoom = ref(10);
+    const mapZoom = ref(8);
     const markers = ref([]);
     const polylinePath = ref([]);
     const routeCoordinates = ref([]);
