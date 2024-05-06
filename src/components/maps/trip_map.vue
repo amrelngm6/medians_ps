@@ -122,8 +122,8 @@ export default {
         })
         .then((result) => {
           console.log(result)
-          // const points = extractPolylinePoints(result);
-          // routeCoordinates.value = points;
+          const points = extractPolylinePoints(result);
+          routeCoordinates.value = points;
 
           // polylinePath.value = {
           //   path: points,
