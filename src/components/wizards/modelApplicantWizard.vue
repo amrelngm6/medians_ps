@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex overflow-auto">
+    <div class="w-full  overflow-auto">
         <div class=" w-full relative">
             <close_icon class="absolute top-4 right-4 z-10 cursor-pointer" @click="back" />
             <div class=" card w-full py-10">
