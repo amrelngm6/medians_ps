@@ -123,15 +123,16 @@ export default {
         .then((result) => {
           console.log(result)
           const points = extractPolylinePoints(result);
-          // routeCoordinates.value = points;
-
-          // polylinePath.value = {
-          //   path: points,
-          //   geodesic: true,
-          //   strokeColor: "#000",
-          //   strokeOpacity: .9,
-          //   strokeWeight: 2,
-          // };
+          routeCoordinates.value = points;
+      console.log(points)
+          
+          polylinePath.value = {
+            path: points,
+            geodesic: true,
+            strokeColor: "#000",
+            strokeOpacity: .9,
+            strokeWeight: 2,
+          };
 
           // display.setDirections(result);
         })
@@ -141,7 +142,6 @@ export default {
     }
 
     const extractPolylinePoints = (directionsResult) => {
-      console.log(directionsResult)
       const polyline = directionsResult.routes[0].overview_polyline;
       const polylinePoints = window.google.maps.geometry.encoding.decodePath(polyline);
       return polylinePoints.map(point => ({ lat: point.lat(), lng: point.lng() }));
