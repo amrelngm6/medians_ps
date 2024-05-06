@@ -82,7 +82,7 @@ export default {
           params: {
             origin: '30.059211362739,31.221850700676',
             destination: '30.033575780575,31.474631465971',
-            key: 'YOUR_API_KEY'
+            key: props.system_setting.google_map_api
           }
         })
         .then(response => {
