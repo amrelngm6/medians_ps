@@ -60,7 +60,7 @@ export default {
     */
     const handlePickup = (obj, latKey = 'lat', lngKey = 'lng', icon) => {
       let data = JSON.parse(JSON.stringify(obj))
-      data.icon = props.conf.url + 'uploads/images/' + icon
+      data.icon = props.conf.url + icon
       data.marker_position = { lat: parseFloat(obj[latKey]), lng: parseFloat(obj[lngKey]) }
       data.drag = false;
       return data;
@@ -68,16 +68,17 @@ export default {
 
     const setValues = () => {
 
-      markers.value = [handlePickup(route.value.position, 'start_latitude', 'start_longitude', 'car.svg')];
+      markers.value = [handlePickup(route.value.position, 'start_latitude', 'start_longitude', 'uploads/images/car.svg')];
       
       let array = route.value.route_locations;
       if (array && array.length)
       {
         for (let i = 0; i < array.length; i++) {
+          console.log(array[i])
           markers.value[i + 1] = handlePickup(array[i], 'start_latitude', 'start_longitude', 'yellow_pin.gif');
         }
       }
-      markers.value[markers.value.length] = handlePickup(route.value.position, 'end_latitude', 'end_longitude', 'destination.svg')
+      markers.value[markers.value.length] = handlePickup(route.value.position, 'end_latitude', 'end_longitude', 'uploads/images/destination.svg')
 
     }
 
