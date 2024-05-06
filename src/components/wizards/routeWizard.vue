@@ -253,7 +253,7 @@ import car_icon from '@/components/svgs/car.vue';
 import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 
-import {defineAsyncComponent, ref} from 'vue';
+import {defineAsyncComponent, getCurrentInstance, ref} from 'vue';
 import {translate, getProgressWidth, handleRequest, deleteByKey, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails} from '@/utils.vue';
 
 const maps = defineAsyncComponent(() =>
@@ -377,7 +377,7 @@ export default
             const currentInstance = getCurrentInstance();
             if (currentInstance) 
                 currentInstance.root.data.loader = true;
-            
+
             handleRequest(params, '/api/'+type).then(response => {
                 handleAccess(response)
             })
