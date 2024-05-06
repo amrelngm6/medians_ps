@@ -114,24 +114,24 @@ export default {
         .route({
           origin: origin,
           destination: destination,
-          waypoints: [
+          // waypoints: [
             // { location: origin },
-          ],
+          // ],
           travelMode: google.maps.TravelMode.DRIVING,
           avoidTolls: true,
         })
         .then((result) => {
           console.log(result)
-          const points = extractPolylinePoints(result);
-          routeCoordinates.value = points;
+          // const points = extractPolylinePoints(result);
+          // routeCoordinates.value = points;
 
-          polylinePath.value = {
-            path: points,
-            geodesic: true,
-            strokeColor: "#000",
-            strokeOpacity: .9,
-            strokeWeight: 2,
-          };
+          // polylinePath.value = {
+          //   path: points,
+          //   geodesic: true,
+          //   strokeColor: "#000",
+          //   strokeOpacity: .9,
+          //   strokeWeight: 2,
+          // };
 
           // display.setDirections(result);
         })
