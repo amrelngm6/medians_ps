@@ -63,7 +63,7 @@ export default {
     const handlePickup = (obj, latKey = 'lat', lngKey = 'lng', icon) => {
       let data = JSON.parse(JSON.stringify(obj))
       data.icon = props.conf.url + 'uploads/images/' + icon
-      data.marker_position = { lat: parseFloat(obj[latKey]), lng: parseFloat(obj[lngKey]) }
+      data.marker_position = originTracking() ?? { lat: parseFloat(obj[latKey]), lng: parseFloat(obj[lngKey]) }
       data.drag = false;
       return data;
     }
