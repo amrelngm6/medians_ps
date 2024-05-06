@@ -55,14 +55,19 @@ export default
         
         const zoom = ref(14);
         const newcenter = ref({});
+        const markers = ref([]);
         console.log(props.drivers);
-
+        for (let i = 0; i < props.drivers.length; i++) {
+            const element = props.drivers[i];
+            markers.value[i] = {lat: element.vehicle.latitude ?? 0 , lng: element.vehicle.latitude ?? 0};
+        }
         // newcenter.value = {lat: props.center.destination.lat, lng: props.center.destination.lng};
+        console.log(markers.value);
 
         return {
             zoom,
             newcenter,
-            markers: props.waypoints,
+            markers,
         }
     },
 

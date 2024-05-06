@@ -46,9 +46,13 @@ class DriverRepository
 		return Driver::where('business_id', $this->business_id)->limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 
+	public function getActive($limit = 100)
+	{
+		return Driver::where('business_id', $this->business_id)->where('status', 'on')->limit($limit)->with('vehicle')->orderBy('driver_id', 'DESC')->get();
+	}
+
 	public function getAll($limit = 100)
 	{
-		
 		return Driver::where('business_id', $this->business_id)->with('last_trips','help_messages')->withCount('total_pickups')->limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 

@@ -38,7 +38,6 @@ class VehicleRepository
 	}
 
 
-
 	/**
 	* Save item to database
 	*/

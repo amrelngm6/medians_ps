@@ -89,7 +89,7 @@ class TaxiTripController extends CustomController
 		        'columns' => $this->columns(),
 		        'items' => $this->repo->getByDate($params),
 		        'employees' => $this->employeeRepo->get(),
-		        'drivers' => $this->driverRepo->get(),
+		        'drivers' => $this->driverRepo->getActive(),
 		        'vehicles' => $this->vehicleRepo->get(),
 		        'supervisors' => $this->supervisorRepo->get(),
 		    ]);

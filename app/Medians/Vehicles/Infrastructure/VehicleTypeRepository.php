@@ -36,6 +36,11 @@ class VehicleTypeRepository
 		return VehicleType::where('business_id', $this->business_id)->limit($limit)->get();
 	}
 
+	public function getActive($limit = 100)
+	{
+		return VehicleType::where('status', 'on')->where('business_id', $this->business_id)->limit($limit)->get();
+	}
+
 
 	/**
 	* Save item to database
