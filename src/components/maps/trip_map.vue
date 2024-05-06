@@ -133,8 +133,6 @@ export default {
             strokeOpacity: .9,
             strokeWeight: 2,
           };
-
-          // display.setDirections(result);
         })
         .catch((e) => {
           alert("Could not display directions due to: " + e);
@@ -148,8 +146,6 @@ export default {
     }
 
 
-
-
     const markerClicked = (marker) => 
     {
       emit('markerclicked', marker)
@@ -160,9 +156,7 @@ export default {
         mapOrigin.value = originTracking() ?? { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; // Example coordinates (New York)
         mapCenter.value = mapOrigin.value;
         mapDestination.value = { lat: trip.value.destination_latitude, lng: trip.value.destination_longitude }; // Example coordinates (Los Angeles)
-        setInterval(() => {
-          fetchRoute();
-        }, 1000);
+        fetchRoute();
     });
 
     return {
