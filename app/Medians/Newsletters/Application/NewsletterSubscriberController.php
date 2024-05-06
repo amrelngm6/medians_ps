@@ -78,6 +78,7 @@ class NewsletterSubscriberController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+				'no_create' => true
 		    ]);
 			
 		} catch (\Exception $e) {
