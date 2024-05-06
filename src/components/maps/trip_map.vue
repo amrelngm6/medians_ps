@@ -55,6 +55,12 @@ export default {
 
     const trip = ref(props.trip);
 
+    const originTracking = () => {
+      if (trip.value.status == 'started')
+      {
+        return {lat: Number(trip.value.vehicle.latitude ?? 0), lng: Number(trip.value.vehicle.longitude ?? 0)}
+      }
+    }
 
     /**
     * Handle object
@@ -142,12 +148,7 @@ export default {
     }
 
 
-    const originTracking = () => {
-      if (trip.value.status == 'started')
-      {
-        return {lat: Number(trip.value.vehicle.latitude ?? 0), lng: Number(trip.value.vehicle.longitude ?? 0)}
-      }
-    }
+
 
     const markerClicked = (marker) => 
     {
