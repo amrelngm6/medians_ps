@@ -29,7 +29,7 @@
         </div>
         <!--end::Logo-->
         <!--begin::Footer-->
-        <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 relative overflow-auto"  :style="isDesktop == true ? 'height:calc(100vh - 120px)' : 'height:calc(100vh - 20px)'" id="kt_app_sidebar_footer">
+        <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 relative overflow-auto"  :style="isDesktop == true ? 'height:calc(100vh - 120px)' : 'height:calc(100vh - 50px)'" id="kt_app_sidebar_footer">
             
 
             <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
@@ -116,6 +116,8 @@
             const isDesktop = () => {
                 return window.screen.availWidth > 1000 ? true : false;
             }
+            
+            isDesktop();
 
             return {
                 resetClasses,

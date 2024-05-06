@@ -68,6 +68,13 @@ class SiteSettingsController extends CustomController
 				[ 'key'=> "footer_phone", 'title'=> translate('Footer phone'), 'fillable'=> true, 'column_type'=>'phone' ],
 			],
 			
+			'social_media'=> [	
+				[ 'key'=> "facebook_link", 'title'=> translate('Facebook link'), 'help_text'=>translate('This links used for view at your frontend footer'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "twitter_link", 'title'=> translate('Twitter link'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "youtube_link", 'title'=> translate('YouTube link'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "instagram_link", 'title'=> translate('Instagram link'), 'fillable'=> true, 'column_type'=>'text' ],
+			],
+			
 			'options'=> [	
 				[ 'key'=> "show_newsletter_form", 'title'=> translate('Show newsletter at footer'), 'help_text'=>translate('Show newsletter form at footer to allow users to subscribe'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 			],
@@ -81,11 +88,11 @@ class SiteSettingsController extends CustomController
 	 */
 	public function index()
 	{
-		return render('menu_builder', [
-		        'load_vue' => true,
-		        'setting' => $this->getAll(),
-		        'fillable' => $this->fillable(),
-	        	'title' => translate('Site_Settings'),
+		return render('system_settings', [
+			'load_vue' => true,
+			'setting' => $this->getAll(),
+			'fillable' => $this->fillable(),
+			'title' => translate('Frontend Settings'),
 	    ]);
 	} 
 

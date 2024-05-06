@@ -8,7 +8,7 @@
           
             {% for menu in header_menu %}
             <li class="navbar-dropdown">
-                <a href="/page/{{menu.content.prefix}}">{{menu.content.title}}</a>
+                <a href="/page/{{menu.page.content.prefix}}">{{menu.page.name}}</a>
             </li>
             {% endfor %}
           </ul>
@@ -36,7 +36,7 @@
       </div>
         <ul>
           {% for menu in header_menu %}
-          <li><a href="/page/{{menu.content.prefix}}">{{menu.content.title}}</a></li>
+          <li><a href="/page/{{menu.page.content.prefix}}">{{menu.page.name}}</a></li>
           {% endfor %}
         </ul>
 

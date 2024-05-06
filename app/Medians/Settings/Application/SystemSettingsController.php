@@ -5,6 +5,7 @@ use \Shared\dbaser\CustomController;
 
 use Medians\Settings\Infrastructure\SystemSettingsRepository;
 use Medians\Currencies\Infrastructure\CurrencyRepository;
+use Medians\Languages\Infrastructure\LanguageRepository;
 
 
 class SystemSettingsController extends CustomController
@@ -19,6 +20,8 @@ class SystemSettingsController extends CustomController
 
 	protected $currencyRepo;
 	
+	protected $languageRepo;
+	
 	public $updated = true;
 
 
@@ -29,7 +32,10 @@ class SystemSettingsController extends CustomController
 		$this->app = new \config\APP;
 
 		$this->repo = new SystemSettingsRepository();
+
 		$this->currencyRepo = new CurrencyRepository();
+
+		$this->languageRepo = new LanguageRepository();
 
 	}
 
@@ -49,17 +55,20 @@ class SystemSettingsController extends CustomController
 	            [ 'key'=> "logo", 'title'=> translate('logo'), 'fillable'=>true, 'column_type'=>'file' ],
 				[ 'key'=> "sitename", 'title'=> translate('sitename'), 'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "lang", 'title'=> translate('Languange'), 'help_text'=> translate('The default language for new sessions'),
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['lang'=>'arabic','title'=>translate('Arabic')], ['lang'=>'english','title'=>translate('English')]]  
+					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'column_key'=>'language_code',
+					'data' => $this->languageRepo->getActive()  
 				],	
 			],			
-			'currency'=> [	
-				[ 'key'=> "currency", 'title'=> translate('Currency'), 
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key'=> 'code',
-					'data' => $this->currencyRepo->get()  
-				],
-				[ 'key'=> "currency_converter_api", 'title'=> translate('Currency converter API'), 'help_text'=> translate('Important required if you want to enable paystack payment from CurrencyAPI https://app.currencyapi.com/api-keys'),'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
-			],
+			'data'=> [	
+				[ 'key'=> "default_dashboard_start_date", 'title'=> translate('Default dashboard date'), 'help_text'=> translate('The default start date for loading dashboard stats and charts'),
+					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
+					'data' => [
+						['default_dashboard_start_date'=>'01-01','title'=>translate('First day of Year')], 
+						['default_dashboard_start_date'=>'m-01','title'=>translate('First day of Month')],
+						['default_dashboard_start_date'=>'m-d','title'=>translate('Today')]
+					]  
+				],	
+			],	
 			
 			'wallets'=> [	
 				[ 'key'=> "comission_free_plan", 'help_text'=> translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
@@ -97,20 +106,6 @@ class SystemSettingsController extends CustomController
 				[ 'key'=> "twitter_redirect_link", 'title'=> translate('Twitter Redirect callback'), 'help_text'=> translate('Redirect should be scheme like (mediansparents://callback)'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
-			'paypal'=> [	
-				[ 'key'=> "paypal_payment", 'title'=> translate('Allow Paymment  with PayPal'), 'help_text'=>translate('Allow Business users to pay with PayPal for plan subscriptions'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "paypal_api_key", 'title'=> translate('PayPal API Key'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "paypal_api_secret", 'title'=> translate('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "paypal_mode", 'title'=> translate('PayPal mode'), 
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['paypal_mode'=>'live','title'=>'Live'], ['paypal_mode'=>'sandbox','title'=>'Sandbox']]  
-				],
-			],
-			'paystack'=> [
-				[ 'key'=> "paystack_payment", 'title'=> translate('Allow Paymment  with paystack'), 'help_text'=>translate('Allow Business users to pay with paystack for plan subscriptions'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'help_text'=>translate('Get your Live / Test code from PayStack https://dashboard.paystack.com/#/settings/developers'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "currency_converter_api", 'title'=> translate('Currency converter API'), 'help_text'=> translate('Important required if you want to enable paystack payment from CurrencyAPI https://app.currencyapi.com/api-keys'),'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
-			],
 			// 'stripe'=> [	
 			// 	[ 'key'=> "stripe_publish_key", 'title'=> translate('Stripe publishable key'), 'fillable'=> true, 'column_type'=>'text' ],
 			// 	[ 'key'=> "stripe_live_key", 'title'=> translate('Stripe live key'), 'fillable'=> true, 'column_type'=>'text' ],

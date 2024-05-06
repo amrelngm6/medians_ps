@@ -5,6 +5,7 @@ namespace Medians\Pages\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Content\Domain\Content;
+use Medians\Menus\Domain\Menu;
 use Medians\CustomFields\Domain\CustomField;
 
 class Page extends CustomModel
@@ -80,6 +81,11 @@ class Page extends CustomModel
 	public function content()
 	{
 		return $this->hasOne(Content::class, 'item_id', 'page_id')->where('item_type', Page::class)->where('lang',$_SESSION['lang']);
+	}
+
+	public function menu()
+	{
+		return $this->hasOne(Menu::class, 'page_id', 'page_id');
 	}
 
 	public function custom_fields()

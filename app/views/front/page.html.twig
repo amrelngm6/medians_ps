@@ -14,7 +14,7 @@
 </div>
 
 {% if page.content %}
-{{app.renderTemplate(page.content, item).render( {'lang':lang, 'page': page }  )|raw}}
+{{app.renderTemplate(page.content, item).render( {'lang':lang, 'page': page, 'app': app }  )|raw}}
 {% endif %}
 
 <!-- progress -->

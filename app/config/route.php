@@ -265,6 +265,7 @@ if(!empty($app->auth()))
     */
     RouteHandler::get('/admin/system_settings', \Medians\Settings\Application\SystemSettingsController::class.'@index');
     RouteHandler::get('/admin/site_settings', \Medians\Settings\Application\SiteSettingsController::class.'@index');
+    RouteHandler::get('/admin/payment_settings', \Medians\Settings\Application\PaymentSettingsController::class.'@index');
 
     /**
     * @return AppSettings
@@ -319,6 +320,9 @@ if(!empty($app->auth()))
 
     /** @return Contact Forms */
     RouteHandler::get('/admin/contact_forms', Medians\Forms\Application\ContactFormController::class.'@index');
+
+    /** @return Contact Forms */
+    RouteHandler::get('/admin/menus', \Medians\Menus\Application\MenuController::class.'@index');
 
 
     /**

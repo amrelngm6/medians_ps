@@ -93,7 +93,7 @@ class RouteController extends CustomController
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
 		        'supervisors' => $this->supervisorRepo->get(),
-		        'drivers' => $this->driverRepo->get(),
+		        'drivers' => $this->driverRepo->getActive(),
 		        'vehicles' => $this->vehicleRepo->get(),
 
 		    ]);

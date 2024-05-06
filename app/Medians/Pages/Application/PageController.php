@@ -2,6 +2,7 @@
 
 namespace Medians\Pages\Application;
 use Medians\Pages\Infrastructure\PageRepository;
+use Medians\Menus\Infrastructure\MenuRepository;
 use Medians\Content\Infrastructure\ContentRepository;
 use Shared\dbaser\CustomController;
 
@@ -14,11 +15,14 @@ class PageController extends CustomController
 
     public $contentRepo;
 
+    public $menuRepo;
+
     function __construct()
     {
         $this->app = new \Config\APP;
         $this->repo = new PageRepository;
         $this->contentRepo = new ContentRepository;
+        $this->menuRepo = new MenuRepository;
     }
     
 
@@ -189,9 +193,9 @@ class PageController extends CustomController
     {
         $page = $this->repo->homepage();
 
-        $headerMenu = $this->repo->getMenuPages('show_header_menu');
-        $footrMenu1 = $this->repo->getMenuPages('show_footer_menu1');
-        $footrMenu2 = $this->repo->getMenuPages('show_footer_menu2');
+        $headerMenu = $this->menuRepo->getMenuPages('header');
+        $footrMenu1 = $this->menuRepo->getMenuPages('footer1');
+        $footrMenu2 = $this->menuRepo->getMenuPages('footer2');
 
 		
 		try {
@@ -219,9 +223,9 @@ class PageController extends CustomController
     {
 
         $page = $this->contentRepo->find($prefix);
-        $headerMenu = $this->repo->getMenuPages('show_header_menu');
-        $footrMenu1 = $this->repo->getMenuPages('show_footer_menu1');
-        $footrMenu2 = $this->repo->getMenuPages('show_footer_menu2');
+        $headerMenu = $this->menuRepo->getMenuPages('header');
+        $footrMenu1 = $this->menuRepo->getMenuPages('footer1');
+        $footrMenu2 = $this->menuRepo->getMenuPages('footer2');
 
 		try {
 			

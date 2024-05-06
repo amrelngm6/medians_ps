@@ -393,6 +393,10 @@ class APIController extends CustomController
 			case 'Gallery.update':
 				$controller = new Gallery\Application\GalleryController; 
 				break;
+			
+			case 'Menu.update':
+				$controller = new Menus\Application\MenuController; 
+				break;
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);

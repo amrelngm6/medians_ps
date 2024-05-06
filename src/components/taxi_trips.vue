@@ -18,14 +18,20 @@
                 </div>
             </div>
         </div>
+        
         <taxi_trip_wizard @callback="showWizard = false" :conf="conf" :currency="currency"
                 v-if="showWizard && activeItem.usertype" :usertype="activeItem.usertype"
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 
+                
+        <taxi_trip_track_wizard @callback="showTrackWizard = false" :conf="conf" :currency="currency"
+                v-if="showTrackWizard && activeItem.usertype"  :key="showTrackWizard" 
+                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+
         <usertype_picker :alias="translate('Need taxi trip')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
         
-        <div  v-if="!showWizard && !showOptions && content " class=" w-full relative">
+        <div  v-if="!showWizard && !showOptions && !showTrackWizard && content " class=" w-full relative">
 
             <main v-if="content.items && content.items.length"  :key="content.items" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->
@@ -80,6 +86,13 @@
                         <template #item-subtotal="item">
                             <span class="py-2" v-text="currency.symbol+''+item.total_cost"></span>
                         </template>
+                        <template #item-status="item">
+                            <span v-if="item.status == 'scheduled'" class="py-2" v-text="translate(item.status)"></span>
+                            <span v-if="item.status == 'started'" class="py-2" v-text="translate(item.status)"></span>
+                            <span v-if="item.status == 'started'" class="fw-bold" @click="showTrackWizard = true, activeItem = item" v-text="translate('Track')"></span>
+                            <span v-if="item.status == 'completed'" class="py-2 text-green-600" v-text="translate(item.status)"></span>
+                            <span v-if="item.status == 'cancelled'" class="py-2 text-red-600" v-text="translate(item.status)"></span>
+                        </template>
 
                         <template #item-details="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
@@ -116,6 +129,8 @@ const maps = defineAsyncComponent(() =>
 const trip_page = defineAsyncComponent(() => import('@/components/trip_page.vue') );
 const usertype_picker = defineAsyncComponent(() => import('@/components/includes/usertype_picker.vue') );
 const taxi_trip_wizard = defineAsyncComponent(() => import('@/components/wizards/taxiTripWizard.vue') );
+const taxi_trip_track_wizard = defineAsyncComponent(() => import('@/components/wizards/taxiTripTrackWizard.vue') );
+
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
 export default
@@ -129,7 +144,8 @@ export default
         trip_page,
         usertype_picker,
         taxi_trip_wizard,
-        VueTailwindDatepicker
+        VueTailwindDatepicker,
+        taxi_trip_track_wizard,
     },
     name: 'Taxi trips',
     
@@ -147,7 +163,7 @@ export default
 
         const url =  props.conf.url+props.path+'?load=json';
 
-        const activeTrip = ref(null);
+        const showTrackWizard = ref(null);
         const activeItem = ref({});
         const content = ref({});
         const usersList = ref([]);
@@ -222,6 +238,7 @@ export default
         return {
             handleSelectedDate,
             usersList,
+            showTrackWizard,
             showWizard,
             setType,
             showOptions,

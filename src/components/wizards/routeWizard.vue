@@ -90,60 +90,130 @@
                         </div>
                         <div class="" v-if="activeTab == 'End location'" :key="activeTab">
                             <div class="card-body pt-0"  >
-                                    <div class="px-10 mb-6 mx-auto row" >
-                                        <div class="flex w-full">
-                                            <div class="mt-10 w-full">
-                                                <h3 class="mb-3" v-text="translate('Location Address')"></h3>
-                                                
-                                                <div class="fw-semibold text-gray-600 fs-6">
-                                                    <span class="d-block fw-bold pb-3 text-gray-400" :key="activeItem.position.end_address" v-text="activeItem.position.end_address"></span>
-                                                    <a class="fw-bold" @click="showPlaceSearch = true" href="javascript:;" v-text="translate('Change')"></a>
-                                                </div>
-                                                <div v-if="showPlaceSearch" :key="showPlaceSearch">
-                                                    <input autocomplete="off" @change="endPlaceChanged" v-model="end_placeSearch" type="text" class="form-control form-control-solid" :placeholder="translate('Find Location')">
+                                <div class="px-10 mb-6 mx-auto row" >
+                                    <div class="flex w-full">
+                                        <div class="mt-10 w-full">
+                                            <h3 class="mb-3" v-text="translate('Location Address')"></h3>
+                                            
+                                            <div class="fw-semibold text-gray-600 fs-6">
+                                                <span class="d-block fw-bold pb-3 text-gray-400" :key="activeItem.position.end_address" v-text="activeItem.position.end_address"></span>
+                                                <a class="fw-bold" @click="showPlaceSearch = true" href="javascript:;" v-text="translate('Change')"></a>
+                                            </div>
+                                            <div v-if="showPlaceSearch" :key="showPlaceSearch">
+                                                <input autocomplete="off" @change="endPlaceChanged" v-model="end_placeSearch" type="text" class="form-control form-control-solid" :placeholder="translate('Find Location')">
 
-                                                    <div class="mt-3 w-full card-body" v-if="places && end_placeSearch.length" :key="places">
-                                                        <div class="w-full" v-for="place in places">
-                                                            <div class="d-flex align-items-center mb-8" v-if="place">
-                                                                <span class="bullet bullet-vertical h-40px bg-success"></span>
-                                                                <div class="form-check form-check-custom form-check-solid mx-5 cursor-pointer" @click="setPlaceMarker(place, 'end')">
-                                                                    <input class="form-check-input" type="checkbox" value="">
-                                                                </div>
-                                                                <div class="flex-grow-1 cursor-pointer" @click="setPlaceMarker(place,'end')">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6" v-if="place.structured_formatting" v-text="place.structured_formatting.main_text"></a>
-                                                                    <span class="text-muted fw-semibold d-block" v-text="place.description"></span>
-                                                                </div>
-                                                                <span class="badge badge-light-success fs-8 fw-bold"></span>
+                                                <div class="mt-3 w-full card-body" v-if="places && end_placeSearch.length" :key="places">
+                                                    <div class="w-full" v-for="place in places">
+                                                        <div class="d-flex align-items-center mb-8" v-if="place">
+                                                            <span class="bullet bullet-vertical h-40px bg-success"></span>
+                                                            <div class="form-check form-check-custom form-check-solid mx-5 cursor-pointer" @click="setPlaceMarker(place, 'end')">
+                                                                <input class="form-check-input" type="checkbox" value="">
                                                             </div>
+                                                            <div class="flex-grow-1 cursor-pointer" @click="setPlaceMarker(place,'end')">
+                                                                <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6" v-if="place.structured_formatting" v-text="place.structured_formatting.main_text"></a>
+                                                                <span class="text-muted fw-semibold d-block" v-text="place.description"></span>
+                                                            </div>
+                                                            <span class="badge badge-light-success fs-8 fw-bold"></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class=" w-full">
-                                                <editable_map_location :system_setting="system_setting" :item="activeItem.position" @setlocation="updateEndMarker" :key="activeItem.position.end_latitude" :location="{lat:activeItem.position.end_latitude, lng: activeItem.position.end_longitude}" ></editable_map_location>
-                                            </div>
+                                        </div>
+                                        <div class=" w-full">
+                                            <editable_map_location :system_setting="system_setting" :item="activeItem.position" @setlocation="updateEndMarker" :key="activeItem.position.end_latitude" :location="{lat:activeItem.position.end_latitude, lng: activeItem.position.end_longitude}" ></editable_map_location>
                                         </div>
                                     </div>
+                                </div>
                             </div>
-                            <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Crew'" v-text="translate('Next')"></a></p>
+                            <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Driver'" v-text="translate('Next')"></a></p>
                         </div>
                         
-                        <div class="" v-if="activeTab == 'Crew'" :key="activeTab">
+                        <div class="" v-if="activeTab == 'Driver'" :key="activeTab">
+                            <div class="card-body pt-0">
+                                <div class="settings-form flex w-full">
+                                    <div class="w-full">
+                                        <drivers_locations_map :setting="system_setting" :item="activeItem"
+                                            :drivers="drivers" :conf="conf" 
+                                            :center="{lat: Number(activeItem.position.start_latitude),lng: Number(activeItem.position.start_longitude)}"
+                                            @setdriver="setDriver" :key="activeItem"
+                                            >
+                                        </drivers_locations_map>
+                                    </div>
+                                    <div class="w-full mb-6 mx-auto row">
+                                        <div class="card-body pt-0 mx-auto max-w-xl" :key="drivers">
+                                            <div class="text-center mb-13">
+                                                <h1 class="mb-3" v-text="translate('Find Driver')"></h1>
+
+                                                <div class="text-gray-400 font-semibold "
+                                                    v-text="translate('Search by name or mobile')"></div>
+                                            </div>
+                                            <div class="w-100 relative mb-5" autocomplete="off">
+
+                                                <vue-feather type="user"
+                                                    class="text-gray-500 position-absolute top-50 ms-5 translate-middle-y"></vue-feather>
+
+                                                <input type="text" @change="findDriver" @input="findDriver" v-model="searchText"
+                                                    class="form-control form-control-lg form-control-solid px-15"
+                                                    :placeholder="translate('Search by name or mobile')">
+                                            </div>
+                                            <div class="w-full " v-for="driver in drivers" v-if="searchText">
+                                                <a href="javascript:;" :key="driver.show" v-if="driver && driver.show"
+                                                    class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
+                                                    <div class="symbol symbol-35px symbol-circle me-5">
+                                                        <car_icon  v-if="!driver.picture" /> 
+                                                        <img alt="Pic" v-if="driver.picture" :src="driver.picture">
+                                                    </div>
+                                                    <div class="fw-semibold w-full">
+                                                        <span class="text-lg text-danger font-semibold me-2"
+                                                            v-text="driver.name"></span>
+                                                        <span class="block text-gray-500 text-sm"
+                                                            v-text="driver.mobile"></span>
+                                                    </div>
+                                                    <span @click="setDriver(driver)" class="btn btn-danger btn-sm text-white"
+                                                        v-text="translate('Choose')"></span>
+                                                </a>
+                                            </div>
+
+                                            <a href="javascript:;" :key="activeItem.driver" v-if="activeItem.driver"
+                                                class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1 gap-4">
+                                                <div class="symbol symbol-35px symbol-circle me-5">
+                                                    <car_icon  v-if="!activeItem.driver.picture" /> 
+                                                    <img alt="Pic" v-if="activeItem.driver.picture" :src="activeItem.driver.picture">
+                                                </div>
+
+                                                <div class="fw-semibold w-full">
+                                                    <span class="text-lg text-danger font-semibold me-2"
+                                                        v-text="activeItem.driver.name"></span>
+                                                    <span class="block text-gray-500 text-sm truncate"
+                                                        v-text="activeItem.driver.mobile"></span>
+                                                </div>
+                                                
+                                                <div v-if="activeItem.vehicle" class="text-gray-600 fw-semibold flex flex-column-auto gap-2">
+                                                    <vue-feather type="truck"></vue-feather>
+                                                    <span v-text="activeItem.vehicle.plate_number" class="text-md font-semibold me-2 flex-column-auto"></span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Supervisor'" v-text="translate('Next')"></a></p>
+                        </div>
+
+                        <div class="w-full  mx-auto" v-if="activeTab == 'Supervisor'" :key="activeTab">
+                            
                             <div class="card-body pt-0"  >
                                 <div class="settings-form" >
                                     <div class="max-w-xl mb-6 mx-auto row" >
-                                
+                                        <div class="text-center mb-13">
+                                            <h1 class="mb-3" v-text="translate('Select Supervisor')"></h1>
+                                            <div class="text-gray-400 font-semibold " v-text="translate('Assigned spervisor should have location')"></div>
+                                        </div>
+
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Supervisor')" ></label>
                                         <form_field :item="activeItem" :column="{key: 'supervisor_id', title: translate('Supervisor'), text_key:'name',column_type:'select', data:supervisors}"></form_field>
                                         <hr class="block mt-6 my-2 opacity-10" />
                                 
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Driver')" ></label>
-                                        <form_field :item="activeItem" :column="{key: 'driver_id', title: translate('Driver'), text_key:'name',column_type:'select', data:drivers}"></form_field>
-                                        <hr class="block mt-6 my-2 opacity-10" />
-                                        
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Vehicles')" ></label>
-                                        <form_field :item="activeItem" :column="{key: 'vehicle_id', title: translate('Vehicle'), text_key:'vehicle_name',column_type:'select', data:vehicles}"></form_field>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -276,6 +346,7 @@ const form_field = defineAsyncComponent(() =>
 );
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import route_map from '@/components/maps/route_map.vue';
+import drivers_locations_map from '@/components/includes/drivers_locations_map.vue';
 
 export default 
 {
@@ -290,6 +361,7 @@ export default
         route_icon,
         form_field,
         editable_map_location,
+        drivers_locations_map,
         route_map
     },
     name:'Routes',
@@ -309,7 +381,7 @@ export default
         const searchText =  ref('');
         const locationError =  ref(null);
         const collapsed =  ref(false);
-        const fillable =  ref(['Info', 'Time','Start location','End location','Crew', 'Confirm']);
+        const fillable =  ref(['Info', 'Time','Start location','End location','Driver', 'Supervisor','Confirm']);
         const places =  ref([]);
         const showPlaceSearch =  ref(false);
         const start_placeSearch =  ref('');
@@ -319,6 +391,20 @@ export default
             activeItem.value = props.item
             activeItem.value.position = props.item.position ?? {}
         }
+
+        const setDriver = (driver) => {
+            activeItem.value.driver_id = driver.driver_id;
+            activeItem.value.driver = driver;
+            setVehicle(driver.vehicle);
+        }
+
+        const setVehicle = (vehicle) => {
+            activeItem.value.vehicle_id = vehicle.vehicle_id;
+            activeItem.value.vehicle = vehicle;
+            searchText.value = null;
+        }
+        
+
 
         /**
          * Get current location
@@ -467,11 +553,13 @@ export default
 
         return {
             loader,
+            showPlaceSearch,
+            setDriver,
+            setVehicle,
             markerClicked,
             progressWidth,
             selectedObject,
             setPlaceMarker,
-            showPlaceSearch,
             startPlaceChanged,
             endPlaceChanged,
             start_placeSearch,

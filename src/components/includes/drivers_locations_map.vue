@@ -1,6 +1,6 @@
 <template>
     <div class="w-full  overflow-auto" >
-        <GoogleMap :api-key="setting.google_map_api" ref="trip_map" :center="newcenter" :key="newcenter" 
+        <GoogleMap :api-key="setting.google_map_api" ref="map" :center="mapCenter" :key="mapCenter"  
             :options="{
                 zoomControl: true,
                 mapTypeControl: true,
@@ -12,14 +12,25 @@
             
             :zoom="zoom" style="width: 100%; height: calc(100vh -  100px)">
             
-                <CustomMarker
-                    v-for="marker in markers" 
+            <CustomMarker
+                    v-for="(marker, i) in markers" 
                     :options="{
                         position: marker,
                     }"
+                    @click="markerClicked(drivers[i])"
                     >
-                    <div style="text-align: center">
-                        <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
+                    <div style="text-align: center" > 
+                        <img :src="'/app/image.php?h=50&w=50&src='+drivers[i].picture" width="40" class="rounded-full bg-white " height="40" style="margin-top: 8px" />
+                    </div>
+                </CustomMarker>
+                
+                <CustomMarker
+                    :options="{
+                        position: {lat: item.pickup_latitude,lng: item.pickup_longitude},
+                    }"
+                    >
+                    <div style="text-align: center" > 
+                        <img :src="'/uploads/images/yellow_pin.gif'" width="30" class="" height="30" style="margin-top: 8px" />
                     </div>
                 </CustomMarker>
 
@@ -49,21 +60,45 @@ export default
     emits: ['setdriver'],
     setup(props, {emit}) 
     {
-        
-        const zoom = ref(14);
-        const newcenter = ref({});
+        const mapRef = ref(null);
+        const map = ref(null);
+
+        const zoom = ref(10);
+        const mapCenter = ref({});
         const markers = ref([]);
-        console.log(props.drivers);
         for (let i = 0; i < props.drivers.length; i++) {
             const element = props.drivers[i];
-            markers.value[i] = {lat: element.vehicle.latitude ?? 0 , lng: element.vehicle.latitude ?? 0};
+            markers.value[i] = {lat: Number(element.vehicle.latitude) ?? 0 , lng: Number(element.vehicle.longitude) ?? 0};
         }
-        // newcenter.value = {lat: props.center.destination.lat, lng: props.center.destination.lng};
-        console.log(markers.value);
+
+        mapCenter.value = props.center ?? markers.value[0];
+
+        const markerClicked = (driver) => {
+            emit('setdriver', driver)
+        }
+
+        const handleZoom = () => {
+
+            const bounds = new window.google.maps.LatLngBounds();
+            markers.value.forEach(marker => {
+                bounds.extend(marker);
+            });
+
+            // Set the center of the map to the center of the bounds
+            mapCenter.value = bounds.getCenter();
+
+            // Set the zoom level to fit all markers within the bounds
+            map.value.fitBounds(bounds);
+        }
+        
 
         return {
+            handleZoom,
+            markerClicked,
             zoom,
-            newcenter,
+            map,
+            mapRef,
+            mapCenter,
             markers,
         }
     },
@@ -74,6 +109,8 @@ export default
         'setting',
         'conf',
         'auth',
+        'center',
+        'item',
         'drivers',
     ]
 

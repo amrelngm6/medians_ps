@@ -42,7 +42,7 @@ class PageRepository
 
 	public function get($limit = 100)
 	{
-		return Page::with('content','user')->limit($limit)->orderBy('page_id', 'DESC')->get();
+		return Page::with('content')->limit($limit)->orderBy('page_id', 'DESC')->get();
 	}
 
 	public function getByCategory($page_id, $limit = 100)
@@ -53,18 +53,6 @@ class PageRepository
 	public function getFeatured($limit = 1)
 	{
 		return Page::with('content','user')->orderBy('updated_at', 'DESC')->first();
-	}
-
-	public function getMenuPages($position)
-	{
-		return Page::where('status', 'on')
-		->with(['content'=>function($q){
-			return $q->select('title', 'prefix', 'item_id');
-		}])
-		->whereHas('custom_fields',function($q) use ($position){
-			return $q->where('code', $position);
-		})
-		->get();
 	}
 
 

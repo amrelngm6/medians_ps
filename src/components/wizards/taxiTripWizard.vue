@@ -188,7 +188,8 @@
                                     <div class="settings-form flex w-full">
                                         <div class="w-full">
                                             <drivers_locations_map :setting="system_setting" :item="activeItem"
-                                                :drivers="drivers"
+                                                :drivers="drivers" :conf="conf"  
+                                                :center="{lat: Number(activeItem.pickup_latitude),lng: Number(activeItem.pickup_longitude)}"
                                                 @setdriver="setDriver" :key="activeItem"
                                                 >
                                             </drivers_locations_map>
@@ -241,6 +242,11 @@
                                                         <span class="block text-gray-500 text-sm truncate"
                                                             v-text="activeItem.driver.mobile"></span>
                                                     </div>
+                                                    
+                                                    <div v-if="activeItem.vehicle" class="text-gray-600 fw-semibold flex flex-column-auto gap-2">
+                                                        <vue-feather type="truck"></vue-feather>
+                                                        <span v-text="activeItem.vehicle.plate_number" class="text-md font-semibold me-2 flex-column-auto"></span>
+                                                    </div>
                                                 </a>
                                             </div>
                                         </div>
@@ -248,63 +254,7 @@
                                 </div>
                                 <p class="text-center"><a href="javascript:;"
                                         class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                        @click="activeTab = 'Vehicle'" v-text="translate('Vehicle')"></a></p>
-                            </div>
-
-                            <div class="" v-if="activeTab == 'Vehicle'" :key="activeTab">
-                                
-                                <div class="card-body pt-0 mx-auto max-w-xl" :key="vehicles">
-                                    <div class="text-center mb-13">
-                                        <h1 class="mb-3" v-text="translate('Find vehicle')"></h1>
-
-                                        <div class="text-gray-400 font-semibold "
-                                            v-text="translate('Search by name or plate number')"></div>
-                                    </div>
-                                    <div class="w-100 relative mb-5" autocomplete="off">
-
-                                        <vue-feather type="truck"
-                                            class="text-gray-500 position-absolute top-50 ms-5 translate-middle-y"></vue-feather>
-
-                                        <input type="text" @type="findVehicle" @input="findVehicle" v-model="searchText"
-                                            class="form-control form-control-lg form-control-solid px-15"
-                                            :placeholder="translate('Search by name, plate number')">
-                                    </div>
-                                    <div class="w-full " v-for="vehicle in vehicles" v-if="searchText">
-                                        <a href="javascript:;" :key="vehicle.show" v-if="vehicle && vehicle.show"
-                                            class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
-                                            
-                                            <div class="symbol symbol-35px symbol-circle me-5">
-                                                <car_icon  v-if="!vehicle.picture" /> 
-                                                <img alt="Pic" v-if="vehicle.picture" :src="vehicle.picture">
-                                            </div>
-                                            <div class="fw-semibold w-full">
-                                                <span class="text-lg text-danger font-semibold me-2"
-                                                    v-text="vehicle.vehicle_name"></span>
-                                                <span class="block text-gray-500 text-sm"
-                                                    v-text="vehicle.plate_number"></span>
-                                            </div>
-                                            <span @click="setVehicle(vehicle)" class="btn btn-danger btn-sm text-white"
-                                                v-text="translate('Choose')"></span>
-                                        </a>
-                                    </div>
-                                    <a href="javascript:;" :key="activeItem.vehicle" v-if="activeItem.vehicle"
-                                        class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
-                                        <div class="symbol symbol-35px symbol-circle me-5">
-                                            <car_icon  v-if="!activeItem.vehicle.picture" /> 
-                                            <img alt="Pic" v-if="activeItem.vehicle.picture" :src="activeItem.vehicle.picture">
-                                        </div>
-                                        <div class="fw-semibold w-full">
-                                            <span class="text-lg text-danger font-semibold me-2"
-                                                v-text="activeItem.vehicle.vehicle_name"></span>
-                                            <span class="block text-gray-500 text-sm"
-                                                v-text="activeItem.vehicle.plate_number"></span>
-                                        </div>
-                                    </a>
-                                </div>
-                                
-                                <p class="text-center"><a href="javascript:;"
-                                        class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                        @click="activeTab = 'Time'" v-text="translate('Set Time')"></a></p>
+                                        @click="activeTab = 'Time'" v-text="translate('Time')"></a></p>
                             </div>
 
                             <div class="" v-if="activeTab == 'Time'" :key="activeTab">
@@ -539,7 +489,7 @@ export default
             const searchText = ref('');
             const locationError = ref(null);
             const collapsed = ref(false);
-            const fillable = ref([props.usertype, 'Pickup location', 'Destination',  'Driver', 'Vehicle', 'Time', 'Cost', 'Confirm']);
+            const fillable = ref([props.usertype, 'Pickup location', 'Destination',  'Driver', 'Time', 'Cost', 'Confirm']);
             const places = ref([]);
             const showPlaceSearch = ref(false);
             const pickup_placeSearch = ref('');
@@ -698,14 +648,12 @@ export default
             const setDriver = (driver) => {
                 activeItem.value.driver_id = driver.driver_id;
                 activeItem.value.driver = driver;
-                activeTab.value = 'Vehicle';
-                searchText.value = null;
+                setVehicle(driver.vehicle);
             }
 
             const setVehicle = (vehicle) => {
                 activeItem.value.vehicle_id = vehicle.vehicle_id;
                 activeItem.value.vehicle = vehicle;
-                activeTab.value = 'Time';
                 searchText.value = null;
             }
             

@@ -353,7 +353,8 @@ class APP
 			array( 'title'=>translate('Frontend'),  'icon'=>'target', 'link'=>'#frontend', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Pages.index', 'title'=>translate('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
-				array('permission'=>'SiteSettings.index', 'title'=>translate('Site settings'),  'icon'=>'tool', 'link'=>'admin/site_settings', 'component'=>'system_settings'),
+				array('permission'=>'SiteSettings.index', 'title'=>translate('Frontend settings'),  'icon'=>'tool', 'link'=>'admin/site_settings', 'component'=>'system_settings'),
+				array('permission'=>'Menus.index', 'title'=>translate('Menus'),  'icon'=>'tool', 'link'=>'admin/menus', 'component'=>'menus'),
 			]
 			),
 			array( 'title'=>translate('Management'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
@@ -378,6 +379,7 @@ class APP
 			array( 'title'=>translate('Settings'),  'icon'=>'tool', 'link'=>'#setting', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=> 'SystemSettings.index', 'title'=> translate('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
+				array('permission'=> 'SystemSettings.index', 'title'=> translate('Payment settings'),  'icon'=>'tool', 'link'=>'admin/payment_settings', 'component'=>'system_settings'),
 				array('permission'=> 'DriverAppSetting.index', 'title'=> translate('Driver APP Settings'),  'icon'=>'tool', 'link'=>'admin/app_settings', 'component'=>'app_settings'),
 				array('permission'=> 'ParentAppSettings.index', 'title'=> translate('Parent APP Settings'),  'icon'=>'tool', 'link'=>'admin/parent_app_settings', 'component'=>'parent_app_settings'),
 			]

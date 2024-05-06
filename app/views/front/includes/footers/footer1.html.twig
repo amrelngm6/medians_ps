@@ -33,10 +33,10 @@
                         <h6>{{app.SystemSetting.footer_address}}</h6>
                     </div>
                     <ul class="social-icon">
-                        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa-brands fa-google"></i></a></li>
-                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        {% if app.SystemSetting.facebook_link %}<li><a href="{{app.SystemSetting.facebook_link}}"><i class="fa-brands fa-facebook-f"></i></a></li>{% endif %}
+                        {% if app.SystemSetting.twitter_link %}<li><a href="{{app.SystemSetting.twitter_link}}"><i class="fa-brands fa-twitter"></i></a></li>{% endif %}
+                        {% if app.SystemSetting.youtube_link %}<li><a href="{{app.SystemSetting.youtube_link}}"><i class="fa-brands fa-youtube"></i></a></li>{% endif %}
+                        {% if app.SystemSetting.instagram_link %}<li><a href="{{app.SystemSetting.instagram_link}}"><i class="fa-brands fa-instagram"></i></a></li>{% endif %}
                     </ul>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                   <div class="boder"></div>
                     <ul>
                       {% for menu in footer_menu1 %}
-                      <li><i class="fa-solid fa-angle-right"></i><a href="/page/{{menu.content.prefix}}">{{menu.content.title}}</a></li>
+                      <li><i class="fa-solid fa-angle-right"></i><a href="/page/{{menu.page.content.prefix}}">{{menu.page.name}}</a></li>
                       {% endfor %}
                     </ul>
                   </div>
@@ -57,7 +57,7 @@
                   <div class="boder"></div>
                     <ul>
                       {% for menu in footer_menu2 %}
-                      <li><i class="fa-solid fa-angle-right"></i><a href="/page/{{menu.content.prefix}}">{{menu.content.title}}</a></li>
+                      <li><i class="fa-solid fa-angle-right"></i><a href="/page/{{menu.page.content.prefix}}">{{menu.page.name}}</a></li>
                       {% endfor %}
                     </ul>
                   </div>
