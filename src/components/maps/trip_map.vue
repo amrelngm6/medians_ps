@@ -95,7 +95,6 @@ export default {
     }
 
     const fetchRoute = async () => {
-      handleAlterDirection(url);
     //   const baseUrl = 'http://localhost:3000/directions'; // Use your server's URL
     //   const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&apiKey=${props.system_setting.google_map_api}`;
       const baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
