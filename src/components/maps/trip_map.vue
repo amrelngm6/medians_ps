@@ -149,13 +149,13 @@ export default {
           return;
         }
 
-        
-        for (let i = 0; i < myroute.legs.length; i++) {
-          total += myroute.legs[i].distance.value;
-        }
 
-        total = total / 1000;
-        document.getElementById("total").innerHTML = total + " km";
+        // for (let i = 0; i < myroute.legs.length; i++) {
+        //   total += myroute.legs[i].distance.value;
+        // }
+
+        // total = total / 1000;
+        // document.getElementById("total").innerHTML = total + " km";
     }
 
     const fetchRoute = async () => {
