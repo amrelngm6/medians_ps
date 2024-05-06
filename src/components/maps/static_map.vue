@@ -67,7 +67,7 @@
       const setValues = () => {
   
         markers.value = [
-            handlePickup(location.value, originTracking() ?? {lat: location.value.start_latitude, lng: location.value.start_longitude}, 'yellow_pin.gif'), 
+            handlePickup(location.value, {lat: location.value.start_latitude, lng: location.value.start_longitude}, 'yellow_pin.gif'), 
             handlePickup(location.value, {lat: location.value.end_latitude, lng: location.value.end_longitude}, 'destination.svg'), 
         ];
         

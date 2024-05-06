@@ -85,50 +85,71 @@ export default {
     const mapOrigin = ref({ lat: 0, lng: 0 }); // Set initial values
     const mapDestination = ref({ lat: 0, lng: 0 }); // Set initial values
 
-    const fetchRoute = async () => {
-      // const baseUrl = 'http://localhost:3000/directions'; // Use your server's URL
-      // const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&apiKey=${props.system_setting.google_map_api}`;
-      const baseUrl = 'https://maps.googleapis.com/maps/api/directions/json';
-      const url = `${baseUrl}?origin=${mapOrigin.value.lat},${mapOrigin.value.lng}&destination=${mapDestination.value.lat},${mapDestination.value.lng}&key=${props.system_setting.google_map_api}`;
+    const directionsService = ref(null);
+    const directionsRenderer = ref(null);
 
-      try {
+    const fetchRoute = () => {
+      setTimeout(function(){
 
-        axios.get(url)
-        .then(response => {
-          
-          if (response.data) {
-            const data = response.data;
-            const points = decodePoly(data.routes[0].overview_polyline.points);
-            routeCoordinates.value = points;
-
-            polylinePath.value = {
-              path: points,
-              geodesic: true,
-              strokeColor: "#000",
-              strokeOpacity: .9,
-              strokeWeight: 2,
-            };
-          } else {
-            console.error('Failed to fetch route:', response.statusText);
-          }
-          
-        })
-        .catch(error => {
-          // Handle errors here
-          console.error('Error fetching data:', error);
+        directionsService.value =  new window.google.maps.DirectionsService();
+        directionsRenderer.value = new window.google.maps.DirectionsRenderer({
+            draggable: true,
+            map,
+            panel: document.getElementById("panel"),
         });
 
-        const response = await fetch(url);
+        directionsRenderer.value.addListener("directions_changed", () => {
+          const directions = directionsRenderer.value.getDirections();
+        });
 
-      } catch (error) {
-        console.error('Error fetching route:', error);
-      }
-    };
+        displayRoute(
+          mapOrigin.value,
+          mapDestination.value,
+          directionsService.value,
+          directionsRenderer.value
+        );
+      }, 1000)
+
+    }
+
+    const  displayRoute = (origin, destination, service, display) => {
+      service
+        .route({
+          origin: origin,
+          destination: destination,
+          // waypoints: [
+            // { location: origin },
+          // ],
+          travelMode: window.google.maps.TravelMode.DRIVING,
+          avoidTolls: true,
+        })
+        .then((result) => {
+          console.log(result)
+          const points = extractPolylinePoints(result);
+          routeCoordinates.value = points;
+          polylinePath.value = {
+            path: points,
+            geodesic: true,
+            strokeColor: "#000",
+            strokeOpacity: .9,
+            strokeWeight: 2,
+          };
+        })
+        .catch((e) => {
+          alert("Could not display directions due to: " + e);
+        });
+    }
+
+    const extractPolylinePoints = (directionsResult) => {
+      const polyline = directionsResult.routes[0].overview_polyline;
+      const polylinePoints = window.google.maps.geometry.encoding.decodePath(polyline);
+      return polylinePoints.map(point => ({ lat: point.lat(), lng: point.lng() }));
+    }
 
 
     onMounted(() => {
       mapCenter.value = { lat: route.value.position.start_latitude, lng: route.value.position.start_longitude };
-      mapOrigin.value = { lat: route.value.position.start_latitude, lng: route.value.position.start_longitude }; // Example coordinates (New York)
+      mapOrigin.value = mapCenter.value;
       mapDestination.value = { lat: route.value.position.end_latitude, lng: route.value.position.end_longitude }; // Example coordinates (Los Angeles)
       fetchRoute();
     });
