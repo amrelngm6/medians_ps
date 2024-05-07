@@ -307,6 +307,9 @@ export default
                 { title: translate("Cancelled"), status: 'cancelled' },
             ]);
 
+            if (props.active_tab) {
+                activeTab.value = props.active_tab;
+            }
             if (props.item) {
                 activeItem.value = props.item
                 activeItem.value.date = props.item.date ?? today()
@@ -382,6 +385,7 @@ export default
             'usertype',
             'drivers',
             'vehicles',
+            'active_tab',
         ],
 
     };
