@@ -98,7 +98,9 @@ export default {
       if (props.waypoints) {
         for (let o = 0; o < props.waypoints.length; o++) {
           var e = props.waypoints[o];
-          markers.value[o+1] = handlePickup(e);
+          if (e.status == 'waiting' || e.status == 'moving') {
+            markers.value[o+1] =  handlePickup(e);
+          }
         }
       }
       markers.value[markers.value.length] = handleMarker(trip.value, mapDestination.value ,'uploads/images/destination.svg')
