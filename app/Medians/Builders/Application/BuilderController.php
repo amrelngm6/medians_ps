@@ -14,6 +14,7 @@ class BuilderController extends CustomController
 	protected $app;
 	protected $repo;
 	public $contentRepo;
+	public $emailController;
 
 	function __construct()
 	{
@@ -21,6 +22,7 @@ class BuilderController extends CustomController
 
 		$this->repo = new BuilderRepository;
 		$this->contentRepo = new ContentRepository;
+		$this->emailController = new EmailBuilderController;
 
 	}
 
@@ -64,6 +66,10 @@ class BuilderController extends CustomController
 				case 'blocks':
 					echo json_encode($this->repo->get());
 					break;
+					
+				case 'email_blocks':
+					echo json_encode($this->repo->getEmailBlocks());
+					break;
 			}
 
 		} catch (\Exception $e) {
@@ -84,6 +90,24 @@ class BuilderController extends CustomController
 			$check = $this->contentRepo->find($request->get('prefix'));
 
 			render('views/admin/builder/templates/meta.html.twig',['page'=>$check]);
+
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	}
+
+	/**
+	 * Load builder meta
+	 */ 
+	public function languages()
+	{
+
+		try {
+			
+			$request = $this->app->request();
+			$check = $this->contentRepo->find($request->get('prefix'));
+
+			render('views/admin/builder/templates/languages.html.twig',['page'=>$check]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -182,6 +206,7 @@ class BuilderController extends CustomController
 
 
 
+
 	/**
 	 * Update meta tags
 	 */ 
@@ -216,6 +241,10 @@ class BuilderController extends CustomController
 				case 'configUpdate':
 					return $this->updateContent();		
 					break;
+
+				case 'configEmailUpdate':
+					return $this->emailController->updateContent();		
+					break;
 				
 				case 'updateMeta':
 					return $this->updateMeta();		
@@ -223,6 +252,13 @@ class BuilderController extends CustomController
 				
 				case 'insertContent':
 					echo $this->repo->find($request->get('id'))->content;
+					return true;		
+					break;
+				
+				case 'insertEmailContent':
+					echo $this->app->renderTemplate($this->repo->findEmailBlock($request->get('id'))->content)->render( ['app' => $this->app ]  );
+
+					// echo $this->repo->findEmailBlock($request->get('id'))->content;
 					return true;		
 					break;
 				

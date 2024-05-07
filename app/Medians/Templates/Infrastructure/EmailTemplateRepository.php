@@ -33,6 +33,13 @@ class EmailTemplateRepository
 		return EmailTemplate::with('content','langs_content')->find($template_id);
 	}
 
+	public function findByLang($template_id, $lang)
+	{
+		return EmailTemplate::with(['content'=>function ($q) use ($lang) {
+			$q->where('lang', $lang);
+		}])->find($template_id);
+	}
+
 
 	public function get($limit = 100)
 	{

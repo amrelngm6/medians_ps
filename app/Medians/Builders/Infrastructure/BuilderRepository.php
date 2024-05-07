@@ -3,6 +3,7 @@
 namespace Medians\Builders\Infrastructure;
 
 use Medians\Builders\Domain\Builder;
+use Medians\Builders\Domain\EmailBuilder;
 use Medians\Content\Domain\Content;
 
 class BuilderRepository 
@@ -12,6 +13,11 @@ class BuilderRepository
 	public function find($id)
 	{
 		return Builder::find($id); 
+	}	
+
+	public function findEmailBlock($id)
+	{
+		return EmailBuilder::find($id); 
 	}	
 
 	public function get()
@@ -28,6 +34,19 @@ class BuilderRepository
 			}
 		}
 		return  $save ? $save : 0;
+	}	
+
+
+	
+	public function getEmailBlocks()
+	{
+		$data = [];
+
+		foreach (EmailBuilder::groupBy('category')->get() as $key => $value) 
+		{
+			$data[$value->category][] = $value;
+		}
+		return  $data ? $data : 0;
 	}	
 
 	public function store($object)

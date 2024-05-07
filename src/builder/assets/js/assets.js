@@ -144,6 +144,7 @@ var editButtonLabel = "delete",
     blockPadding = false,
     blockContents = false,
     koContentBlocks = '/admin/builder/load?page=blocks',
+    koContentEmailBlocks = '/admin/builder/load?page=email_blocks',
     koContentBlocksLimit = '',
     proLicense = 1,
     featherEditor, paddleSetup;

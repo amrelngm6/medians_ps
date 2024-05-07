@@ -3088,7 +3088,7 @@ function k_EditSave(e, a) {
         n[this.id] = i.trim();
         i = null;
     });
-    var t = "prefix=" + jQuery("#prefix-page").val() + "&supermode=configUpdate&liveEdit=1&liveOption=subpage&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId;
+    var t = "prefix=" + jQuery("#prefix-page").val() + "&lang=" + jQuery("#lang-page").val() + "&supermode="+configUpdateType+"&liveEdit=1&liveOption=subpage&pageMenuId=" + menuMenuId + "&templateId="+templateId+"&pageId=" + menuPageId;
     if (typeof a === "string") {
         if (a == "publishDraft") {
             t += "&publishDraft=1";
@@ -3414,7 +3414,7 @@ function refreshSession() {
     jQuery.ajax({
         type: "POST",
         url: "admin/builder/submit",
-        data: "supermode=configUpdate&alive=1",
+        data: "supermode="+configUpdateType+"&alive=1",
         success: function (e) {
             $("#koSessionRefresh").fadeOut();
             if (e == "OK") {
@@ -3465,7 +3465,7 @@ function koEmbedHTML() {
     jQuery.ajax({
         type: "POST",
         url: "admin/builder/submit",
-        data: "supermode=configUpdate&liveEdit=1&liveEditEmbedB=" + encodeURIComponent(window.btoa($("#kedit_EmbedHTML").val())),
+        data: "supermode="+configUpdateType+"&liveEdit=1&liveEditEmbedB=" + encodeURIComponent(window.btoa($("#kedit_EmbedHTML").val())),
         success: function (e) {
             if (loginFirst(e)) return;
             if (e.indexOf("|") > 0) {
@@ -3488,7 +3488,7 @@ function saveCustomThemeCode() {
     jQuery.ajax({
         type: "POST",
         url: "admin/builder/submit",
-        data: "supermode=configUpdate&iSplashTheme=" + templateId + "&iSplash=1&iSplashElement=customCode&content=" + encodeURIComponent(e) + "&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId,
+        data: "supermode="+configUpdateType+"&iSplashTheme=" + templateId + "&iSplash=1&iSplashElement=customCode&content=" + encodeURIComponent(e) + "&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId,
         success: function (e) {
             if (loginFirst(e)) return;
             if (e == "OK") {
@@ -3514,7 +3514,7 @@ function koPageSettings() {
         type: "POST",
         url: "admin/builder/submit",
         data:
-            "supermode=configUpdate&liveEdit=1&liveOption=config&title=" +
+            "supermode="+configUpdateType+"&liveEdit=1&liveOption=config&title=" +
             encodeURIComponent($("#k_websiteTitle").val()) +
             "&slogan=" +
             encodeURIComponent($("#k_websiteSlogan").val()) +
@@ -3539,7 +3539,7 @@ function koColorSettings() {
         type: "POST",
         url: "admin/builder/submit",
         async: !1,
-        data: "supermode=configUpdate&liveEdit=1&liveOption=colors&colorSchemeTemplate=4_0&colorScheme=4_0&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId + "&ccData=" + encodeURIComponent(ccData),
+        data: "supermode="+configUpdateType+"&liveEdit=1&liveOption=colors&colorSchemeTemplate=4_0&colorScheme=4_0&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId + "&templateId="+templateId+"&ccData=" + encodeURIComponent(ccData),
         success: function (e) {
             if (loginFirst(e)) return;
             if (e == "OK") {
@@ -3555,7 +3555,7 @@ function koMenuSettings() {
         type: "POST",
         url: "admin/builder/submit",
         data:
-            "supermode=configUpdate&liveEdit=1&showInMenu=" +
+            "supermode="+configUpdateType+"&liveEdit=1&showInMenu=" +
             encodeURIComponent($("#menuShowThisSubpage:checked").length) +
             "&isLandingPage=" +
             encodeURIComponent($("#menuLandingSubpage:checked").length) +
@@ -3665,7 +3665,7 @@ function koBlockClone(e) {
             jQuery.ajax({
                 type: "POST",
                 url: "admin/builder/submit",
-                data: "supermode=configUpdate&cloneToPage=" + encodeURIComponent(a[0] + "-" + a[1]) + "&blockHTML=" + encodeURIComponent(i),
+                data: "supermode="+configUpdateType+"&cloneToPage=" + encodeURIComponent(a[0] + "-" + a[1]) + "&blockHTML=" + encodeURIComponent(i),
                 success: function (e) {
                     if (e == "OK") {
                         window.top.location = "index.php?p=" + a[0] + "_" + a[1];
@@ -3689,7 +3689,7 @@ function saveToTheme(e, a, t, i) {
     jQuery.ajax({
         type: "POST",
         url: "admin/builder/submit",
-        data: "supermode=configUpdate&iSplashTheme=1&iSplash=1&iSplashElement=" + encodeURIComponent(e) + "&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId + "&content=" + encodeURIComponent(a) + "&doBackup=" + encodeURIComponent(i),
+        data: "supermode="+configUpdateType+"&iSplashTheme=1&iSplash=1&iSplashElement=" + encodeURIComponent(e) + "&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId + "&templateId="+templateId+"&content=" + encodeURIComponent(a) + "&doBackup=" + encodeURIComponent(i),
         success: function (e) {
             if (loginFirst(e)) {
                 return;
@@ -3704,7 +3704,7 @@ function saveToThemeArray(e, a, t) {
     jQuery.ajax({
         type: "POST",
         url: "admin/builder/submit",
-        data: "supermode=configUpdate&iSplashTheme=1&iSplash=1&iSplashElement=themeArray&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId + "&content=" + encodeURIComponent(JSON.stringify(e)) + "&doBackup=" + encodeURIComponent(t),
+        data: "supermode="+configUpdateType+"&iSplashTheme=1&iSplash=1&iSplashElement=themeArray&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId + "&templateId="+templateId+"&content=" + encodeURIComponent(JSON.stringify(e)) + "&doBackup=" + encodeURIComponent(t),
         success: function (e) {
             if (loginFirst(e)) {
                 return;
@@ -4880,7 +4880,7 @@ function imageCompressor(e, a) {
     jQuery.ajax({
         type: "POST",
         url: "admin/builder/submit",
-        data: "supermode=configUpdate&photoCompressor=" + encodeURIComponent(a) + "&photoSource=" + encodeURIComponent(t),
+        data: "supermode="+configUpdateType+"&photoCompressor=" + encodeURIComponent(a) + "&photoSource=" + encodeURIComponent(t),
         success: function (e) {
             koHideLoading();
             if (e.substring(0, 2) == "OK") {
@@ -6259,7 +6259,7 @@ function showNewContents(e, a) {
         koShowLoading();
         koMenuOpen("content", t);
         $.ajaxSetup({ cache: !1 });
-        $.getJSON(koContentBlocks, function (e) {
+        $.getJSON(blockUri, function (e) {
             var l = 0,
                 r = '<div class="koMenuTabs koTabs">';
             r += "<label></label>";
@@ -6464,7 +6464,7 @@ $(function () {
         jQuery.ajax({
             type: "POST",
             url: "admin/builder/submit",
-            data: "supermode=configUpdate&liveEdit=1&headerKeepTitle=" + encodeURIComponent($("#headerKeepTitle:checked").length) + "&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId,
+            data: "supermode="+configUpdateType+"&liveEdit=1&headerKeepTitle=" + encodeURIComponent($("#headerKeepTitle:checked").length) + "&pageMenuId=" + menuMenuId + "&pageId=" + menuPageId,
             success: function (e) {
                 if (loginFirst(e)) return;
                 if (e == "OK") {

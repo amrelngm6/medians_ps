@@ -4,6 +4,7 @@ namespace Medians\Notifications\Application;
 use \Shared\dbaser\CustomController;
 
 use Medians\Notifications\Infrastructure\NotificationEventRepository;
+use Medians\Templates\Infrastructure\EmailTemplateRepository;
 
 class NotificationEventController extends CustomController
 {
@@ -15,10 +16,12 @@ class NotificationEventController extends CustomController
 
 	protected $app;
 
+	protected $emailTemplatesRepo;
 
 	function __construct()
 	{
 		$this->repo = new NotificationEventRepository();
+		$this->emailTemplatesRepo = new EmailTemplateRepository();
 	}
 
 
@@ -87,6 +90,7 @@ class NotificationEventController extends CustomController
 
 		return [
             [ 'key'=> "id", 'title'=> "#",'column_type'=>'hidden'],
+            [ 'key'=> "title", 'title'=> translate('title'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
 			[ 'key'=> "receiver_model", 'title'=> translate('Receiver model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title', 'data'=>$this->loadReceiverModels('receiver_model') ],
 			[ 'key'=> "model", 'title'=> translate('Model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data'=>$this->loadModels('model') ],
 			
@@ -97,9 +101,10 @@ class NotificationEventController extends CustomController
 			] ],
 			[ 'key'=> "action_field", 'title'=> translate('action_field'), 'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "action_value", 'title'=> translate('action_value'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "title", 'title'=> translate('title'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
             [ 'key'=> "subject", 'title'=> translate('subject'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-            [ 'key'=> "body", 'title'=> translate('Notification email'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
+			[ 'key'=> "template_id", 'title'=> translate('Email template'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 
+				'data'=> $this->emailTemplatesRepo->get()
+			],
             [ 'key'=> "body_text", 'title'=> translate('Notification text'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
