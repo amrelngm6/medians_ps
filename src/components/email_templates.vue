@@ -83,21 +83,17 @@ export default
 
         const url =  props.conf.url+props.path+'?load=json';
 
+        const activeItem = ref({});
+        const showLoader = ref(null);
+        const searchField = ref("payment_id");
+        const searchValue = ref("");
+        
         const content =  ref({
                 title: '',
                 items: [],
                 columns: [],
             });
         
-        const activeItem = ref({});
-
-        const showLoader = ref(null);
-
-        const searchField = ref("payment_id");
-        const searchValue = ref("");
-        
-        console.log(props.lang)
-
         function load()
         {
             handleGetRequest( url ).then(response=> {
@@ -122,10 +118,11 @@ export default
          * @param Object data
          */  
         function  handleAction(actionName, data) {
+            console.log(props.lang.lang)
             switch(actionName) 
             {
                 case 'details':
-                    window.open(props.conf.url+'admin/email_builder?lang='+lang+'&template_id='+data.template_id, '_blank').focus();
+                    window.open(props.conf.url+'admin/email_builder?lang='+props.lang.lang+'&template_id='+data.template_id, '_blank').focus();
                     break;  
 
                 case 'edit':
