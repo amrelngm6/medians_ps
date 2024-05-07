@@ -28,7 +28,7 @@
                     alternating class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('is_rtl')" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
                     <template #item-details="item">
-                        <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('details', item)">
+                        <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('details', item, translate('lang'))">
                             <vue-feather class="w-5" type="edit"></vue-feather>
                         </button>
                     </template>
@@ -119,11 +119,11 @@ export default
          * @param String actionName 
          * @param Object data
          */  
-        function  handleAction(actionName, data) {
+        function  handleAction(actionName, data, lang = '') {
             switch(actionName) 
             {
                 case 'details':
-                    window.open(props.conf.url+'admin/email_builder?lang='+translate('lang')+'&template_id='+data.template_id, '_blank').focus();
+                    window.open(props.conf.url+'admin/email_builder?lang='+lang+'&template_id='+data.template_id, '_blank').focus();
                     break;  
 
                 case 'edit':
