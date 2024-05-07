@@ -35,7 +35,7 @@ class EmailTemplateController extends CustomController
             [ 'value'=> "template_id", 'text'=> "#"],
             [ 'value'=> "title", 'text'=> translate('Title'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('Status'), 'sortable'=> true ],
-			[ 'value'=> 'edit', 'text'=>translate('Details')],
+			[ 'value'=> 'details', 'text'=>translate('Details')],
 			['value'=>'delete', 'text'=>translate('Delete')],
         ];
 	}
@@ -70,7 +70,7 @@ class EmailTemplateController extends CustomController
 		
 		try {
 			
-		    return render('companies', [
+		    return render('email_templates', [
 		        'load_vue' => true,
 		        'title' => translate('Templates'),
 		        'columns' => $this->columns(),
