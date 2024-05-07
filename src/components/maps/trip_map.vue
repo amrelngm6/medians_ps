@@ -170,12 +170,13 @@ export default {
 
     const handleWaypoints = () => {
       var list = []
-      if (!markers.value.length)
-        return list;
-      
       for (let i = 0; i < markers.value.length; i++) {
         const element = markers.value[i];
-        list[i] = {location: element.marker_position};       
+        
+        if (element && element.marker_position)
+        {
+          list[i] = {location: element.marker_position};       
+        }
       }
       return list;
     }
