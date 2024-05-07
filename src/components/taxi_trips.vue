@@ -207,6 +207,7 @@ export default
          */
         const handleAction = (actionName, data) => 
         {
+            activeItem.value = data;
             switch (actionName) 
             {
                 case 'view':
@@ -214,7 +215,6 @@ export default
 
                 case 'edit':
                     defaultTab.value = null;
-                    activeItem.value = data;
                     showWizard.value = true;
                     break;
 
