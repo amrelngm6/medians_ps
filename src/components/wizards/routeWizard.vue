@@ -194,7 +194,7 @@
                                                 </div>
                                             </a>
                                             
-                                            <p class="py-2 fw-semibold px-4 border border-gray-400" v-text="translate('You can change the vehicle of the driver for this route only')"></p>
+                                            <p class="mt-4 py-2 fw-semibold px-4 border border-gray-400" v-text="translate('You can change the vehicle of the driver for this route only')"></p>
                                             <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Vehicles')" ></label>
                                             <form_field @callback="setVehicle" :item="activeItem" :column="{key: 'vehicle_id', title: translate('Vehicle'), text_key:'vehicle_name',column_type:'select', data:vehicles}"></form_field>
                                             
