@@ -63,6 +63,7 @@ const languages = defineAsyncComponent(() => import('@/components/datatable_page
 const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/gallery.vue') );
 const newsletter_subscribers = defineAsyncComponent(() => import('@/components/datatable_pages/newsletter_subscribers.vue') );
 const notifications = defineAsyncComponent(() => import('@/components/datatable_pages/notifications.vue') );
+const email_templates = defineAsyncComponent(() => import('@/components/email_templates.vue') );
 
 
 const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );
@@ -191,6 +192,7 @@ export default {
         contact_forms,
         gallery,
         menus,
+        email_templates,
         get_started,
         translate,
         'help_messages':HelpMessages,
