@@ -66,7 +66,16 @@ class HelpMessageComment extends CustomModel
 	{
 		return $this->fillable;
 	}
+	
+	
+	public function receiverAsParent() 
+	{
+		return $this->message->where('user_type', Parents::class)->user;
+	}
 
-	
-	
+	public function receiverAsDriver() 
+	{
+		return $this->message->where('user_type', Driver::class)->user;
+	}
+
 }

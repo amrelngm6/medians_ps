@@ -75,12 +75,12 @@ class HelpMessage extends CustomModel
 
 	public function receiverAsParent() 
 	{
-		return $this->where('user_type', Parents::class)->message->user;
+		return $this->where('user_type', Parents::class)->user;
 	}
 
 	public function receiverAsDriver() 
 	{
-		return $this->where('user_type', Driver::class)->message->user;
+		return $this->where('user_type', Driver::class)->user;
 	}
 
 	
