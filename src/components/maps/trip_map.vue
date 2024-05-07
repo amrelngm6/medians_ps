@@ -104,6 +104,7 @@ export default {
         }
       }
       markers.value[markers.value.length] = handleMarker(trip.value, mapDestination.value ,'uploads/images/destination.svg')
+      markers.value = markers.value.filter(e => e != null);
     }
 
     const fetchRoute = () => {
