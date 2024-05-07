@@ -70,7 +70,7 @@ class Route extends CustomModel
 
 	public function driver() 
 	{
-		return $this->hasOne(Driver::class, 'driver_id', 'driver_id');	
+		return $this->hasOne(Driver::class, 'driver_id', 'driver_id')->with('vehicle');	
 	}
 
 	public function supervisor() 
