@@ -177,7 +177,7 @@ export default {
           list[i] = {location: element.marker_position};       
         }
       }
-      console.log(list.filter(e => e !+ null))
+      console.log(list.filter(e => e != null))
       return list.length ? list.filter(e => e !+ null) : null;
     }
 
