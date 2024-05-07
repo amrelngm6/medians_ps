@@ -75,9 +75,9 @@
                         </template>
 
                         <template #item-driver="item">
-                            <div class="w-full relative flex cursor-pointer gap-2" @click="handleAction('driver', item)">
+                            <div class="w-full relative flex  gap-2" @click="handleAction('driver', item)">
                                 <img  class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(item.driver && item.driver.picture) ? item.driver.picture : 'https://via.placeholder.com/37x37'" /> 
-                                <span class="font-semibold  px-1" v-if="item.driver" v-text="item.driver.name"></span>
+                                <span class="px-1" v-if="item.driver" v-text="item.driver.name"></span>
                             </div>
                         </template>
 
