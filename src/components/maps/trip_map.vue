@@ -94,6 +94,7 @@ export default {
     const setValues = () => 
     {
       markers.value = [handleMarker(trip.value, originTracking() ?? mapOrigin.value, 'uploads/images/car.svg')];
+      console.log(markers.value)
       if (props.waypoints) {
         for (let o = 0; o < props.waypoints.length; o++) {
           var e = props.waypoints[o];
