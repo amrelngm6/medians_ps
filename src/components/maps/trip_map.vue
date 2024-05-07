@@ -132,6 +132,8 @@ export default {
     }
 
     const  displayRoute = (origin, destination, service, display) => {
+      console.log(origin)
+      console.log(destination)
       service
         .route({
           origin: origin,
