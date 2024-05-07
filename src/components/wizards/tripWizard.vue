@@ -101,9 +101,9 @@
                                                 </div>
                                             </div>
                                             <div class=" w-full">
-                                                <trip_map :system_setting="system_setting" :item="activeItem"
-                                                    :key="activeItem.currentLat"
-                                                    :location="activeItem.currentLat ? { lat: activeItem.currentLat, lng: activeItem.currentLng } : {lat:activeItem.route.position.start_latitude, lng:activeItem.route.position.start_longitude}">
+                                                <trip_map :system_setting="system_setting" :trip="activeItem" :conf="conf"
+                                                    :key="activeItem" :waypoints="activeItem.locations"
+                                                    >
                                                 </trip_map>
                                             </div>
                                         </div>

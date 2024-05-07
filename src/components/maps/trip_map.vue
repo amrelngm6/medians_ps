@@ -63,12 +63,25 @@ export default {
     }
 
     /**
-    * Handle object
+    * Handle Trip location object
     * @param {Model Object} i 
     */
     const handlePickup = (obj, latlng, icon) => {
+
+      var pic = obj.model && obj.model.picture ? obj.model.picture : 
+      var lat = obj.status == 'waiting' ? obj.location.start_latitude : obj.location.end_latitude;
+      var lng = obj.status == 'waiting' ? obj.location.start_longitude : obj.location.end_longitude;
+      return handleMarker(trip.value, originTracking() ?? {lat: lat, lng: lng}, pic);
+      
+    }
+
+    /**
+    * Handle object
+    * @param {Model Object} i 
+    */
+    const handleMarker = (obj, latlng, icon = 'uploads/images/car.svg') => {
       let data = JSON.parse(JSON.stringify(obj))
-      data.icon = props.conf.url + 'uploads/images/' + icon
+      data.icon = props.conf.url +  icon
       data.marker_position = latlng
       data.drag = false;
       return data;
@@ -76,13 +89,14 @@ export default {
 
     const setValues = () => 
     {
-      markers.value = [handlePickup(trip.value, originTracking() ?? {lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude}, 'car.svg')];
-      if (props.waypoints) {
+      markers.value = [handleMarker(trip.value, originTracking() ?? {lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude}, 'uploads/images/car.svg')];
+      if (trip.value.) {
         for (let o = 0; o < props.waypoints.length; o++) {
-          markers.value[i+1] =  props.waypoints[o];
+          var e = props.waypoints[o];
+          markers.value[i+1] = handlePickup(e);
         }
       }
-      markers.value[markers.value.length] = handlePickup(trip.value, {lat: trip.value.destination_latitude, lng: trip.value.destination_longitude} ,'destination.svg')
+      markers.value[markers.value.length] = handleMarker(trip.value, {lat: trip.value.destination_latitude, lng: trip.value.destination_longitude} ,'uploads/images/destination.svg')
     }
 
     setValues();
