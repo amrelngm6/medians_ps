@@ -394,36 +394,6 @@ export default
                 searchText.value = null;
             }
 
-
-            const findDriver = () => {
-
-                if (props.drivers) {
-                    for (let i = 0; i < props.drivers.length; i++) {
-                        props.drivers[i].show = searchText.value.trim() ? checkSimilarDriver(props.drivers[i]) : 1;
-                    }
-                }
-            }
-
-            const checkSimilarDriver = (item) => {
-                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return name ? name : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-            }
-
-
-            const findVehicle = () => {
-                if (props.vehicles) {
-                    for (let i = 0; i < props.vehicles.length; i++) {
-                        props.vehicles[i].show = searchText.value.trim() ? checkSimilarVehicle(props.vehicles[i]) : 1;
-                    }
-                }
-            }
-
-            const checkSimilarVehicle = (item) => {
-                let name = (item.vehicle_name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return name ? name : (item.plate_number).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-            }
-
-
             const findUser = () => {
                 if (props.userslist) {
                     for (let i = 0; i < props.userslist.length; i++) {
@@ -454,9 +424,7 @@ export default
                 loader,
                 tripsStatusList,
                 selectedObject,
-                findDriver,
                 setDriver,
-                findVehicle,
                 setVehicle,
                 users,
                 progressWidth,
