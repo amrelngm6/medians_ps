@@ -329,7 +329,7 @@ export default
                     params.append('params[' + k + ']', d)
                 }
                 params.append('type', 'Trip.update')
-                handleRequest(params, '/api/' + type).then(response => {
+                handleRequest(params, '/api/update').then(response => {
                     loader.value = false;
                     handleAccess(response)
                 })
