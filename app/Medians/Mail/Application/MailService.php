@@ -55,11 +55,14 @@ class MailService
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    //Enable implicit TLS encryption
 		    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;              //Enable verbose debug output
 			$mail->Port       = $settings['smtp_port'];         //TCP port to connect to; use 587 if you have set `SMTPSecure = 
+			$mail->CharSet        = 'utf-8';         //TCP port to connect to; use 587 if you have set `SMTPSecure = 
+			$mail->ContentType         = 'text/html';         //TCP port to connect to; use 587 if you have set `SMTPSecure = 
 
 		    //Recipients
 		    $mail->setFrom($settings['smtp_sender'], 'Medians');
 		    $mail->addAddress($this->email, $this->name);     //Add a recipient
 		    $mail->addReplyTo($settings['smtp_sender'], 'no-reply');
+
 		    // $mail->addBCC('info@medianssolutions.com');
 
 		    //Content
