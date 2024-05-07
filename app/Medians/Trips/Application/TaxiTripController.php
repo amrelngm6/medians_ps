@@ -59,7 +59,8 @@ class TaxiTripController extends CustomController
 		return [
             [ 'value'=> "trip_id", 'text'=> "#"],
             [ 'value'=> "vehicle.plate_number", 'text'=> translate('vehicle'), 'sortable'=> true ],
-            [ 'value'=> "driver.name", 'text'=> translate('driver'), 'sortable'=> true ],
+            [ 'value'=> "driver", 'text'=> translate('Driver'), 'sortable'=> true ],
+            [ 'value'=> "model", 'text'=> translate('Customer'), 'sortable'=> true ],
             [ 'value'=> "duration", 'text'=> translate('Duration'), 'sortable'=> true ],
             [ 'value'=> "distance", 'text'=> translate('Distance').'-KM', 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> translate('trip_date'), 'sortable'=> true ],
