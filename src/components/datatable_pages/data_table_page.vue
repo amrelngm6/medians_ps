@@ -192,7 +192,9 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey(props.object_key, data, props.object_name + '.delete');
+                    var name = content.value.object_name ?? props.object_name ;
+                    var key = content.value.object_key ?? props.object_key ;
+                    deleteByKey(props.key, data, name + '.delete');
                     break;  
             }
         }

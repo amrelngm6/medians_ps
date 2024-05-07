@@ -216,6 +216,10 @@ class APIController extends CustomController
 					$return = (new Gallery\Application\GalleryController())->store(); 
 					break;
 	
+				case 'EmailTemplate.create':
+					$return = (new Templates\Application\EmailTemplateController())->store(); 
+					break;
+	
 			}
 
 			return response(json_encode($return));
@@ -396,6 +400,10 @@ class APIController extends CustomController
 			
 			case 'Menu.update':
 				$controller = new Menus\Application\MenuController; 
+				break;
+	
+			case 'EmailTemplate.update':
+				$controller = new Templates\Application\EmailTemplateController; 
 				break;
 		}
 

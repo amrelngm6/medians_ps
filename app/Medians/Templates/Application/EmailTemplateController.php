@@ -1,12 +1,12 @@
 <?php
 
 namespace Medians\Templates\Application;
-use Medians\Templates\Infrastructure\EmailTemplatesRepository;
+use Medians\Templates\Infrastructure\EmailTemplateRepository;
 use Medians\Menus\Infrastructure\MenuRepository;
 use Medians\Content\Infrastructure\ContentRepository;
 use Shared\dbaser\CustomController;
 
-class EmailTemplatesController extends CustomController 
+class EmailTemplateController extends CustomController 
 {
 
     public $app;
@@ -20,7 +20,7 @@ class EmailTemplatesController extends CustomController
     function __construct()
     {
         $this->app = new \Config\APP;
-        $this->repo = new EmailTemplatesRepository;
+        $this->repo = new EmailTemplateRepository;
     }
     
 

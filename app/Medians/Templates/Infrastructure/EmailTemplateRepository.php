@@ -1,13 +1,13 @@
 <?php
 
-namespace Medians\Pages\Infrastructure;
+namespace Medians\Templates\Infrastructure;
 
-use Medians\Pages\Domain\Page;
+use Medians\Templates\Domain\EmailTemplate;
 
 use Medians\Content\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
 
-class PageRepository 
+class EmailTemplateRepository 
 {
 
 	
@@ -26,7 +26,7 @@ class PageRepository
 
 	public function find($page_id, $prefix = null)
 	{
-		return Page::with(['content'=>function($q) use ($prefix){
+		return EmailTemplate::with(['content'=>function($q) use ($prefix){
 			$prefix ? $q->where('prefix', $prefix) : $q;
 		}])->find($page_id);
 	}
@@ -35,24 +35,24 @@ class PageRepository
 	public function homepage()
 	{
 		$_SESSION['lang'];
-		return Page::where('homepage', 'on')->with(['content'=>function($q) {
+		return EmailTemplate::where('homepage', 'on')->with(['content'=>function($q) {
 			$q->where('lang', $_SESSION['lang']);
 		}])->first();
 	}
 
 	public function get($limit = 100)
 	{
-		return Page::with('content')->limit($limit)->orderBy('page_id', 'DESC')->get();
+		return EmailTemplate::with('content')->limit($limit)->get();
 	}
 
 	public function getByCategory($page_id, $limit = 100)
 	{
-		return Page::with('content','user')->where('category_id', $page_id)->limit($limit)->orderBy('page_id', 'DESC')->get();
+		return EmailTemplate::with('content','user')->where('category_id', $page_id)->limit($limit)->orderBy('page_id', 'DESC')->get();
 	}
 
 	public function getFeatured($limit = 1)
 	{
-		return Page::with('content','user')->orderBy('updated_at', 'DESC')->first();
+		return EmailTemplate::with('content','user')->orderBy('updated_at', 'DESC')->first();
 	}
 
 
@@ -63,7 +63,7 @@ class PageRepository
 	public function store($data) 
 	{
 
-		$Model = new Page();
+		$Model = new EmailTemplate();
 		
 		foreach ($data as $key => $value) 
 		{
@@ -74,7 +74,7 @@ class PageRepository
 		}		
 
 		// Return the  object with the new data
-    	$Object = Page::create($dataArray);
+    	$Object = EmailTemplate::create($dataArray);
 
     	// Store Custom fields
     	isset($data['field']) ? $this->storeFields($data['field'], $Object->page_id) : '';
@@ -92,7 +92,7 @@ class PageRepository
     public function update($data)
     {
 
-		$Object = Page::find($data['page_id']);
+		$Object = EmailTemplate::find($data['page_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -113,7 +113,7 @@ class PageRepository
 	{
 		try {
 			
-			$delete = Page::find($page_id)->delete();
+			$delete = EmailTemplate::find($page_id)->delete();
 
 			if ($delete){
 				$this->storeContent(null, $page_id);
@@ -134,13 +134,13 @@ class PageRepository
 	*/
 	public function storeContent($data, $page_id) 
 	{
-		Content::where('item_type', Page::class)->where('item_id', $page_id)->delete();
+		Content::where('item_type', EmailTemplate::class)->where('item_id', $page_id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
 				$fields = $value;
-				$fields['item_type'] = Page::class;	
+				$fields['item_type'] = EmailTemplate::class;	
 				$fields['item_id'] = $page_id;	
 				$fields['lang'] = $key;	
 				$fields['prefix'] = isset($value['prefix']) ? $value['prefix'] : Content::generatePrefix($value['title']);	
@@ -160,13 +160,13 @@ class PageRepository
 	*/
 	public function storeFields($data, $page_id) 
 	{
-		CustomField::where('model_type', Page::class)->where('model_id', $page_id)->delete();
+		CustomField::where('model_type', EmailTemplate::class)->where('model_id', $page_id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
 				$fields = array();
-				$fields['model_type'] = Page::class;	
+				$fields['model_type'] = EmailTemplate::class;	
 				$fields['model_id'] = $page_id;	
 				$fields['code'] = $key;	
 				$fields['value'] = $value;	

@@ -16,7 +16,7 @@ class EmailTemplate extends CustomModel
 	*/
 	protected $table = 'email_templates';
 
-    protected $primaryKey = 'email_template_id';
+    protected $primaryKey = 'template_id';
 
 	public $fillable = [
 		'title', 
