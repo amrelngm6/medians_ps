@@ -93,8 +93,8 @@
                                                         </div>
                                                         <div>
                                                             <div @mouseover="item.showTip = true" @mouseleave="item.showTip = false" class="relative" >
-                                                                <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
-                                                                <tooltip v-if="item.showTip" :key="item.showTip" :title="item.status" ></tooltip></div>
+                                                                <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.status"></a>
+                                                                <tooltip v-if="item.showTip" :key="item.showTip" :title="item.time" ></tooltip></div>
 
                                                         </div>
                                                     </div>
