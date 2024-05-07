@@ -68,7 +68,7 @@ export default {
     */
     const handlePickup = (obj, latlng, icon) => {
 
-      var pic = obj.model && obj.model.picture ? obj.model.picture : 
+      var pic = obj.model && obj.model.picture ? obj.model.picture : null;
       var lat = obj.status == 'waiting' ? obj.location.start_latitude : obj.location.end_latitude;
       var lng = obj.status == 'waiting' ? obj.location.start_longitude : obj.location.end_longitude;
       return handleMarker(trip.value, originTracking() ?? {lat: lat, lng: lng}, pic);
