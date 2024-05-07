@@ -65,7 +65,7 @@ class MailService
 		    //Content
 		    $mail->isHTML(true);                                  //Set email format to HTML
 		    $mail->Subject = $this->subject;
-		    $mail->Body    = render('views/email/email.html.twig',['msg'=> $this->body], null);
+		    $mail->Body    = $this->body;
 
 		    $mail->send();
 
