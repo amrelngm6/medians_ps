@@ -29,7 +29,7 @@ class EmailBuilder extends CustomModel
 
 	public function childs()
 	{
-		return $this->hasMany(Builder::class, 'category', 'category');
+		return $this->hasMany(EmailBuilder::class, 'category', 'category');
 	}
 
 }

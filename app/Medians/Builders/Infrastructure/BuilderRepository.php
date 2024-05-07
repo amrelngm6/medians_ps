@@ -42,11 +42,15 @@ class BuilderRepository
 	{
 		$data = [];
 
-		foreach (EmailBuilder::groupBy('category')->get() as $key => $value) 
+		foreach (EmailBuilder::groupBy('category')->with(['childs'=>function($e){
+		}])->get() as $key => $value) 
 		{
-			$data[$value->category][] = $value;
+			if (count($value->childs))
+			{
+				$data[$value->category] = $value->childs;
+			}
 		}
-		return  $data ? $data : 0;
+		return $data;
 	}	
 
 	public function store($object)
