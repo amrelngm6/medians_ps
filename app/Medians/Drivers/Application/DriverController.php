@@ -462,6 +462,8 @@ class DriverController extends CustomController
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$driver->driver_id);
 		$generateToken = $driver->insertCustomField('API_token', $token);
 		
+		$driver->update(['last_login'=>date('Y-m-d H:i:s')]);
+		
 		return 
 		[
 			'success'=>true, 
@@ -499,6 +501,8 @@ class DriverController extends CustomController
 		$Auth = new \Medians\Auth\Application\AuthService;
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$driver->driver_id);
 		$generateToken = $driver->insertCustomField('API_token', $token);
+		
+		$driver->update(['last_login'=>date('Y-m-d H:i:s')]);
 		
 		return 
 		[
