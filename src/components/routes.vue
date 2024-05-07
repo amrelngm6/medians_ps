@@ -64,6 +64,15 @@
                             
                         </template>
 
+                        <template #item-driver="item">
+                            
+                            <div class="w-full relative flex" @click="handleAction('driver', item)">
+                                <img  class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(item.driver && item.driver.picture) ? item.driver.picture : 'https://via.placeholder.com/37x37'" /> 
+                                <span class="font-semibold  px-1" v-if="item.driver" v-text="item.driver.name"></span></span>
+                            </div>
+                            
+                        </template>
+
                         <template #item-edit="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
                                 <vue-feather class="w-5" type="edit"></vue-feather>
@@ -225,6 +234,8 @@ export default
          * @param Object data
          */  
          const handleAction =  (actionName, data) =>  {
+            activeItem.value = data;
+
             switch(actionName) 
             {
 
@@ -232,14 +243,17 @@ export default
                     break;
 
                 case 'edit':
-                    activeItem.value = data;
                     defaultTab.value = 'Info'
                     showWizard.value = true
                     break;  
 
                 case 'locations':
-                    activeItem.value = data;
                     defaultTab.value = 'Confirm'
+                    showWizard.value = true
+                    break;  
+
+                case 'driver':
+                    defaultTab.value = 'Driver'
                     showWizard.value = true
                     break;  
 

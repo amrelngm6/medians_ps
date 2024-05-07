@@ -51,7 +51,7 @@ class RouteController extends CustomController
 		return [
             [ 'value'=> "route_id", 'text'=> "#"],
             [ 'value'=> "route_name", 'text'=> translate('route_name'), 'sortable'=> true ],
-            [ 'value'=> "driver.name", 'text'=> translate('driver_name'), 'sortable'=> true ],
+            [ 'value'=> "driver", 'text'=> translate('driver_name'), 'sortable'=> true ],
             [ 'value'=> "vehicle.plate_number", 'text'=> translate('vehicle'), 'sortable'=> true ],
             [ 'value'=> "supervisor.name", 'text'=> translate('supervisor'), 'sortable'=> true ],
             [ 'value'=> "route_locations", 'text'=> translate('route_locations'), 'sortable'=> true ],
