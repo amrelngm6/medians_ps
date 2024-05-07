@@ -93,7 +93,7 @@ export default {
       if (props.waypoints) {
         for (let o = 0; o < props.waypoints.length; o++) {
           var e = props.waypoints[o];
-          markers.value[i+1] = handlePickup(e);
+          markers.value[o+1] = handlePickup(e);
         }
       }
       markers.value[markers.value.length] = handleMarker(trip.value, {lat: trip.value.destination_latitude, lng: trip.value.destination_longitude} ,'uploads/images/destination.svg')
