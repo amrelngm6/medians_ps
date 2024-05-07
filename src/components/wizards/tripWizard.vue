@@ -342,6 +342,9 @@ export default
                 return getProgressWidth(requiredData, activeItem);
             }
 
+            const back = () => {
+                emit('callback');
+            }
 
             return {
                 loader,
