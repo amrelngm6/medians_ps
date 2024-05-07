@@ -32,6 +32,7 @@ class RouteController extends CustomController
 
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
+		$user->business = isset($user->business) ? $user->business : null;
 
 		$this->repo = new RouteRepository($user->business);
 		$this->supervisorRepo = new SuperVisorRepository($user->business);
