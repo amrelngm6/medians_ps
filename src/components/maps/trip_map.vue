@@ -116,9 +116,7 @@ export default {
         .route({
           origin: origin,
           destination: destination,
-          waypoints: [
-            { location: origin },
-          ],
+          waypoints: handleWaypoints(),
           travelMode: window.google.maps.TravelMode.DRIVING,
           avoidTolls: true,
         })
@@ -151,6 +149,15 @@ export default {
       emit('markerclicked', marker)
     }
 
+
+    const handleWaypoints = () => {
+      var list = []
+      for (let i = 0; i < markers.value.length; i++) {
+        const element = markers.value[i];
+        list[i] = {location: element.marker_position};       
+      }
+      return list;
+    }
 
     onMounted(() => {
         mapOrigin.value = originTracking() ?? { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; // Example coordinates (New York)
