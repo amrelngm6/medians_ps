@@ -403,6 +403,7 @@ export default
         }
 
         const setVehicle = (vehicle) => {
+            console.log(vehicle)
             activeItem.value.vehicle_id = vehicle.vehicle_id;
             activeItem.value.vehicle = vehicle;
             searchText.value = null;
