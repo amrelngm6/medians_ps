@@ -101,10 +101,10 @@
                                                 </div>
                                             </div>
                                             <div class=" w-full">
-                                                <editable_map_location :system_setting="system_setting" :item="activeItem"
+                                                <trip_map :system_setting="system_setting" :item="activeItem"
                                                     @setlocation="updatePickupMarker" :key="activeItem.currentLat"
                                                     :location="activeItem.currentLat ? { lat: activeItem.currentLat, lng: activeItem.currentLng } : {lat:activeItem.route.position.start_latitude, lng:activeItem.route.position.start_longitude}">
-                                                </editable_map_location>
+                                                </trip_map>
                                             </div>
                                         </div>
                                     </div>
