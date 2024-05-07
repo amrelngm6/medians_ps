@@ -175,5 +175,11 @@ class TaxiTrip extends CustomModel
 		$object =  $this->with('model')->find($this->trip_id);
 		return isset($object->model) ? $object->model : null;
     }
+	
+    public function receiverAsDriver()
+    {
+		$object =  $this->with('driver')->find($this->trip_id);
+		return isset($object->driver) ? $object->driver : null;
+    }
 
 }
