@@ -197,7 +197,7 @@
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import help_icon from '@/components/svgs/help.vue';
 import close_icon from '@/components/svgs/Close.vue';
-import trip_map from '@/components/includes/trip_map.vue';
+import trip_map from '@/components/maps/trip_map.vue';
 
 import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
