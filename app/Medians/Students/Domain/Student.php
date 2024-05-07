@@ -107,7 +107,7 @@ class Student extends CustomModel
 	}
 	
 	
-    public function receiverAsParent()
+    public function receiverAsCustomer()
     {
 		$object =  $this->with('parent')->find($this->student_id);
 		return  isset($object->parent) ? $object->parent : null;

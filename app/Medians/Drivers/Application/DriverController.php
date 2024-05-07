@@ -277,6 +277,8 @@ class DriverController extends CustomController
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->driver_id);
 		$generateToken = $checkLogin->insertCustomField('API_token', $token);
 
+		$checkLogin->update(['last_login'=>date('Y-m-d H:i:s')]);
+
 		return 
 		[
 			'success'=>true, 

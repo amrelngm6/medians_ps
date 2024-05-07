@@ -148,5 +148,11 @@ class Driver extends CustomModel
 	}  
 
 
+    public function receiverAsDriver()
+    {
+		return  $this;
+    }
+	
+
 
 }

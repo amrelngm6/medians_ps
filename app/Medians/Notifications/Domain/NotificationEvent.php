@@ -119,65 +119,6 @@ class NotificationEvent extends CustomModel
 	}
 
 
-	/**
-	 * Prepare notification content 
-	 * 
-	 * @param $event Object
-	 * @param $model Object Event related model
-	 */
-	public function filterDriver($event, $model)
-	{
-		switch (get_class($model)) 
-		{
-			case HelpMessageComment::class:
-				return [$model->message->user];
-				break;
-				
-			case Driver::class:
-				return [$model];
-				break;
-
-			case RouteLocation::class:
-				$location =  $model->with('route')->find($model->location_id);
-				return isset($location->route->driver) ? [$location->route->driver] : null;
-				break;
-
-			case Trip::class:
-				$object =  $model->whereHas('driver')->with('driver')->find($model->trip_id);
-				return isset($object->driver) ? [$object->driver] : null;
-				break;
-
-			case TaxiTrip::class:
-				$object =  $model->with('driver')->find($model->trip_id);
-				return isset($object->driver) ? [$object->driver] : null;
-				break;
-				
-			case TripLocation::class:
-				$object =  $model->with('driver')->find($model->trip_location_id);
-				return isset($object->driver) ? [$object->driver] : null;
-				break;
-				
-			default:
-				return [$model];
-				break;
-		}
-	}
-
-
-	
-	/**
-	 * Prepare notification content 
-	 * 
-	 * @param $event Object
-	 * @param $model Object Event related model
-	 */
-	public function filterParent($event, $model)
-	{
-
-		return method_exists($model, 'receiverAsParent') ? [$model->receiverAsParent()] : null;
-	}
-
-
 
 	public function validateUserType($event, $user)
 	{
@@ -329,16 +270,10 @@ class NotificationEvent extends CustomModel
 				return method_exists($model, 'receiverAsDriver') ? [$model->receiverAsDriver()] : null;
 				break;
 				
-			case Parents::class:
-				return method_exists($model, 'receiverAsParent') ? [$model->receiverAsParent()] : null;
-				break;
-			
-			case Employee::class:
-				return $this->filterEmployee($event, $model);
-				break;
-				
-			case SuperVisor::class:
-				return $this->filterSuperVisor($event, $model);
+				case Employee::class:
+				case SuperVisor::class:
+				case Parents::class:
+				return method_exists($model, 'receiverAsCustomer') ? [$this->validateUserType($model->receiverAsCustomer())] : null;
 				break;
 				
 			case User::class:

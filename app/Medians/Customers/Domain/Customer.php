@@ -72,7 +72,7 @@ class Customer extends CustomModel
     }
 
 
-    public function receiverAsParent()
+    public function receiverAsCustomer()
     {
 		return  $this;
     }

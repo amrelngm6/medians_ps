@@ -170,7 +170,7 @@ class TaxiTrip extends CustomModel
     }
 
 	
-    public function receiverAsParent()
+    public function receiverAsCustomer()
     {
 		$object =  $this->with('model')->find($this->trip_id);
 		return isset($object->model) ? $object->model : null;

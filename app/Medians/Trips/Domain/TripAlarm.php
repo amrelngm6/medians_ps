@@ -58,7 +58,7 @@ class TripAlarm extends CustomModel
 	}
 
 
-    public function receiverAsParent()
+    public function receiverAsCustomer()
     {
 		$Object = $this->whereHas('model')->with('model')->find($this->alarm_id);
         return isset($Object->model->parent) ? $Object->model->parent : null;

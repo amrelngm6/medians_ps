@@ -133,16 +133,16 @@ class RouteLocation extends CustomModel
         return $this->morphTo();
     }
 	
-    public function receiverAsParent()
+    public function receiverAsCustomer()
     {
-		// $Object = $this->where('model_type', Student::class)->with('parent')->find($this->location_id);
-        // return $Object->parent;
+		$Object = $this->where('model_type', Student::class)->with('parent')->find($this->location_id);
+        return $Object->parent;
     }
 	
     public function receiverAsDriver()
     {
-		// $Object = $this->with('route')->find($this->location_id);
-        // return isset($Object->route->driver) ? $Object->route->driver : null;
+		$Object = $this->with('route')->find($this->location_id);
+        return isset($Object->route->driver) ? $Object->route->driver : null;
     }
 
 

@@ -73,7 +73,7 @@ class HelpMessage extends CustomModel
     	return $this->hasMany(HelpMessageComment::class, 'message_id', 'message_id')->with('user');
 	}
 
-	public function receiverAsParent() 
+	public function receiverAsCustomer() 
 	{
 		return $this->where('user_type', Parents::class)->user;
 	}
