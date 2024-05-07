@@ -323,7 +323,9 @@ if(!empty($app->auth()))
 
     /** @return Contact Forms */
     RouteHandler::get('/admin/menus', \Medians\Menus\Application\MenuController::class.'@index');
-
+    
+    /** @return Email templates */
+    RouteHandler::get('/admin/email_templates', \Medians\Templates\Application\EmailTemplateController::class.'@index');
 
     /**
     * @return Content editor
