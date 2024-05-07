@@ -183,6 +183,7 @@ export default {
     }
 
     onMounted(() => {
+      console.log(trip.value.route);
         mapOrigin.value = originTracking() ?? { lat: trip.value.route.position.start_latitude, lng: trip.value.route.position.start_longitude }; 
         mapCenter.value = mapOrigin.value;
         mapDestination.value = { lat: trip.value.route.position.end_latitude, lng: trip.value.route.position.end_longitude }; 
