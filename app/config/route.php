@@ -330,6 +330,7 @@ if(!empty($app->auth()))
     /**
     * @return Content editor
     */
+    RouteHandler::get('/admin/email_builder', \Medians\Builders\Application\EmailBuilderController::class.'@index');
     RouteHandler::get('/admin/pages', \Medians\Pages\Application\PageController::class.'@index');
     RouteHandler::get('/admin/builder', \Medians\Builders\Application\BuilderController::class.'@index');
     RouteHandler::get('/admin/editor', \Medians\Pages\Application\PageController::class.'@editor');

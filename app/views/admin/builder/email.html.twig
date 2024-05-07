@@ -549,9 +549,7 @@
 
 						lkClass = lkClass.split(' ');
 						if (lkClass.indexOf('btn') > -1) {
-
-							//alert(lkClass.indexOf('btn-lg'))
-							// button size:
+							
 							if (lkClass.indexOf('btn-xs') > -1)
 								jQuery('#k_linkSize').val(1);
 							else if (lkClass.indexOf('btn-sm') > -1)
@@ -750,8 +748,6 @@
 						});
 						}
 						
-						
-						
 					}
 
 					// are we allowed to unlink? It's not allowed inside koButtons, only when link is inline.
@@ -759,10 +755,6 @@
 					jQuery('#k_linkUnlink').show();
 					else
 					jQuery('#k_linkUnlink').hide();
-					//
-					//k_linkUnlink
-
-					// _TARGET
 
 					ext = lk.attr('href');
 
@@ -777,10 +769,6 @@
 
 					}else
 						jQuery('#k_linkBlank').prop('checked', false);
-					// RESET
-					//jQuery('#k_linkPage').val("");
-					//jQuery('#k_linkHrefType').prop('checked', false);
-					//linkHrefType();
 
 					koMenuOpen('link');
 					
@@ -789,389 +777,7 @@
 					},100);
 
 					return true;
-				} else if (i == 'Video') {
-
-					// will open #koVideoToolbar
-
-					keditableToolbar('hide'); //jQuery('#kToolbar').hide();
-					var im = jQuery(inlineEditItem).parent().find('iframe');
-					//alert(im.attr('src')+"!");
-					jQuery('#k_videoPath').val(im.attr('src'));
-					jQuery('#k_videoStyle').val('')
-
-					// setup filters if any
-					var imclass = im.attr('class');
-
-					if (typeof imclass !== "undefined" && imclass.indexOf('imgfilter') > 0) {
-
-						var classArray = imclass.split('imgfilter');
-						classArray = classArray[1];
-						classArray = classArray.split(' ');
-						classArray = classArray[0];
-
-						if (classArray > 0)
-							jQuery('#k_videoStyle').val(classArray)
-
-					}
-
-					setTimeout("jQuery('#k_videoPath').focus();", 100);
-					return koMenuOpen('video');
-
-				} else if (i == 'Line') {
-
-					// will open #koVideoToolbar
-					keditableToolbar('hide'); //jQuery('#kToolbar').hide();
-					var im = jQuery(inlineEditItem).parent().find('.koSeparator');
-
-					jQuery('#koSep_Height').val(im.height());
-					jQuery('#koSep_Color').val(im.attr('data-bg'));
-
-					//if (jQuery('#koSep_Gradient:checked').val() > 0) {
-					//bgColor='linear-gradient(to right,transparent,'+bgColor+',transparent)';
-					//}
-
-					if(im.attr('style').indexOf('linear-gradient') > 0)
-					jQuery('#koSep_Gradient').prop('checked',true);
-					else
-					jQuery('#koSep_Gradient').prop('checked',false);
 					
-
-					// is width value in pixels or percent?
-					if (typeof im.attr('data-width') !== "undefined") {
-
-						jQuery('#koSep_Width_percent').val(im.attr('data-width'));
-						jQuery('#koSep_WidthPercent').show();
-						jQuery('#koSep_WidthPx').hide();
-
-					} else {
-
-						jQuery('#koSep_Width_px').val(im.width());
-						jQuery('#koSep_WidthPercent').hide();
-						jQuery('#koSep_WidthPx').show();
-
-					}
-					jQuery('#koSepAlign .active').removeClass('active');
-					jQuery('#koSepAlign input').attr('checked', null);
-
-					
-					if (im.hasClass('koSeparatorLeft'))
-						jQuery('#koSep_AlignLeft').attr('checked', 1).parent().addClass('active');
-					else if (im.hasClass('koSeparatorRight'))
-						jQuery('#koSep_AlignRight').attr('checked', 1).parent().addClass('active');
-					else
-						jQuery('#koSep_AlignCenter').attr('checked', 1).parent().addClass('active');
-
-					if (im.hasClass('koSeparatorBlock'))
-						jQuery('#koSep_Remove').removeClass('d-none');
-					else
-						jQuery('#koSep_Remove').addClass('d-none');
-
-					//koSeparatorLeft
-					jQuery('#koSep_MarginTop').val(im.css('margin-top').replace('px', ''));
-					jQuery('#koSep_MarginBottom').val(im.css('margin-bottom').replace('px', ''));
-
-					koMenuOpen('line');
-
-				} else if (i == 'Icon') {
-
-					keditableToolbar('hide');
-					var h = '';
-					for (i = 0; i < faIcons.length; i++) {
-
-						var faIcon = faIcons[i].split('|');
-						faIcon = faIcon[0];
-						var iconLabel = faIcons[i].split(' fa-');
-
-						h += '<li class="" data-value="' + faIcons[i] + '" onclick="keditIcon(\'' + faIcon + '\');koMenuClose();"><strong class="flex-rectangle"><span class="">' + iconLabel[1] + '</span><em><i class="' + faIcon + '"></i></em></strong></li>';
-
-					}
-					// include powered by:
-
-					var hBrandInfo = 'Brand Icons – All brand icons are trademarks of their respective owners. Please do not use brand logos for any purpose except to represent the company, product, or service to which they refer.';
-					h += '<div style="padding-top:15px;text-align:center;font-size:13px;clear:both;display:block;float:none;width:100%;"><div class="alert alert-info text-left" style="font-size:13px;">' + hBrandInfo + '</div><hr >Icons provided by <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">FontAwesome</a></div>';
-					
-					jQuery("#findIcon_Tab").html('<div class="koMenuFixedFilter"><input placeholder="Find Icon..." type="text" class="form-control" id="iconFilter" onKeyUp="koKeyFilter(this,\'#iconsList\')"><span onclick="jQuery(\'#iconFilter\').val(null).trigger(\'keyup\')"><i class="fas fa-times"></i></span></div><div class="manageIconsList"><ul id="iconsList">' + h + '</ul><div class="clearfix"></div></div>');
-
-					setTimeout(function() {
-
-						jQuery('#iconFilter').focus();
-
-						var i = jQuery(inlineEditItem).parent('i'),
-							ii = i.parent();
-
-						var currentClass = i.attr('class');
-
-						// what is the icon?
-						var iconClass = currentClass.split(' ');
-						for (x in iconClass) {
-							if (iconClass[x].indexOf('fa-') == 0 &&
-								iconClass[x] != 'fa-fw' && iconClass[x] != 'fa-lg' && iconClass[x] != 'fa-2x' && iconClass[x] != 'fa-3x' &&
-								iconClass[x] != 'fa-4x' && iconClass[x] != 'fa-5x' && iconClass[x] != 'fa-fw' && iconClass[x] != 'fa-fw') {
-
-								//alert(iconClass[x] );
-
-								if (currentClass.indexOf('fab') > -1)
-									jQuery('#styleIcon_Tab .koIconHolder i').attr('class', 'fab ' + iconClass[x]);
-								else if (currentClass.indexOf('far') > -1)
-									jQuery('#styleIcon_Tab .koIconHolder i').attr('class', 'far ' + iconClass[x]);
-								else
-									jQuery('#styleIcon_Tab .koIconHolder i').attr('class', 'fas ' + iconClass[x]);
-
-								//styleIcon_Tab .koIconHolder fas fa-columns
-								break;
-
-							}
-
-						}
-
-						// compatibility with version 3 and older
-						if (i.hasClass('fa-5x')) {
-							ii.addClass('koIconSize200');
-						} else if (i.hasClass('fa-4x')) {
-							ii.addClass('koIconSize175');
-						} else if (i.hasClass('fa-3x')) {
-							ii.addClass('koIconSize150');
-						} else if (i.hasClass('fa-2x')) {
-							ii.addClass('koIconSize125');
-						}
-						if (ii.hasClass('koIconSquare')) {
-							jQuery('#k_koIconSquare').prop('checked', true);
-							jQuery('#styleIcon_Tab .koIconHolder').addClass('koIconSquare');
-						} else {
-							jQuery('#k_koIconSquare').prop('checked', false);
-							jQuery('#styleIcon_Tab .koIconHolder').removeClass('koIconSquare');
-						}
-
-						//koIconHolder koIconStyle13 koIconSize200
-						//<input id="k_koIconSquare" value="1" onchange="iconStyleCheck()" type="checkbox">
-
-						var iconHolderClass = ii.attr('class').split(' ');
-						jQuery('#koIcon_Sizes .active').removeClass('active');
-						var iconSizeSet;
-						for (x in iconHolderClass) {
-							if (iconHolderClass[x].indexOf('koIconSize') == 0) {
-
-								iconSizeSet = 1;
-								jQuery('#' + iconHolderClass[x]).prop("checked", true).parent();//.addClass('active');
-
-							}
-						}
-						if (typeof iconSizeSet === "undefined") {
-
-							//jQuery('#koIcon_Sizes label:eq(0)').addClass('active');
-
-						}
-						//keditIconStyle
-						// select current size value..
-						//var iconSize=jQuery("input[name=koIcon_Size]:checked").attr('id');
-
-						var sizeVar = '';
-						// need to check for size classes.
-						if (currentClass.indexOf('fa-lg') > -1)
-							sizeVar += 'fa-lg';
-						else if (currentClass.indexOf('fa-2x') > -1)
-							sizeVar += 'fa-2x';
-						else if (currentClass.indexOf('fa-3x') > -1)
-							sizeVar += 'fa-3x';
-						else if (currentClass.indexOf('fa-4x') > -1)
-							sizeVar += 'fa-4x';
-						else if (currentClass.indexOf('fa-5x') > -1)
-							sizeVar += 'fa-5x';
-
-						jQuery("#kedit_iconSize").val(sizeVar)
-
-					}, 100);
-
-					h = '';
-					//setTimeout("jQuery('#k_videoPath').focus();",100);
-					koMenuOpen('icon');
-					setTimeout(function() {
-						jQuery('#iconFilter').focus()
-					}, 500)
-
-				} else if (i == 'Image') {
-
-					// koToolbarTabs('Image')
-
-					keditableToolbar('hide'); //jQuery('#kToolbar').hide();
-
-					// RESET.
-					jQuery('#k_imageStyle').val('');
-					jQuery('#ffilepath_k_imagePath').hide();
-					jQuery('#bgPreview_k_imagePath').css('background-image', null);
-					//k_videoStyle
-					var im = jQuery(inlineEditItem).parent().find('img');
-
-					im.removeClass('lazy');
-
-					// Get Image's SRC.
-					jQuery('#k_imagePath').val(im.attr('src'));
-					jQuery('#k_imageAlt').val(im.attr('alt'));
-					jQuery('#k_imageTitle').val(im.attr('title'));
-
-					// what's the extension?
-					// if it's JPG or PNG, show Edit Image button
-
-					var imgExtension=im.attr('src').split(".").pop().toLowerCase();
-
-					if(imgExtension == 'jpg' || imgExtension == 'jpeg' || imgExtension == 'png'){
-
-						// image editor is allowed
-						jQuery('#imageBlockButton_editor').show();
-
-					} else {
-
-						jQuery('#imageBlockButton_editor').hide();
-
-					}
-
-					
-					/*
-
-					OLD - before all images went removable
-
-					if(im.hasClass('kimgRemovable')){
-
-						jQuery('#k_imageRemove').show().removeClass('kimgRemovableParent');
-
-					}else{
-
-						//alert(jQuery(inlineEditItem).attr('class'))
-
-						// it has to be parent().parent(). as 1 x parent() will be the wrap only
-						if(im.parent().parent().hasClass('kimgRemovable')){
-
-							jQuery('#k_imageRemove').show().addClass('kimgRemovableParent');
-
-						}else jQuery('#k_imageRemove').hide();
-
-					}
-					*/
-					if (im.hasClass('kimgNotRemovable')) {
-
-						jQuery('#k_imageRemove').hide(); //.removeClass('kimgRemovableParent');
-
-					} else {
-						// if parent's parent (as first parent is wrap) has the removable class,
-						// it has to be removed too.
-						if (im.parent().parent().hasClass('kimgRemovable')) {
-
-							jQuery('#k_imageRemove').show().addClass('kimgRemovableParent');
-
-						} else jQuery('#k_imageRemove').show();
-
-					}
-
-					// and setup preview:
-					jQuery('#preview_k_imagePath').attr('src', im.attr('src'));
-					jQuery('#bgPreview_k_imagePath').css('background-image', 'url(' + im.attr('src') + ')');
-					jQuery('#k_imageLinkLightbox').prop('checked', false);
-					jQuery('#k_imageLinkBlank').prop('checked', false);
-					// setup filters if any
-					var imclass = im.attr('class');
-
-					// check if it's inside A tag.
-					// first prent is always span generated by editor.
-					var imlink = im.parent().parent();
-					var ratioHolder = imlink;
-
-					if (imlink.prop('tagName') == 'A') {
-
-						ratioHolder = ratioHolder.parent();
-
-						// it's already a link
-						jQuery('#k_imageLinkHref').val(imlink.attr('href'));
-						jQuery('#k_imageLinkHrefSwitch').prop('checked', true);
-						// _TARGET
-						ext = imlink.attr('href');
-						ext = ext.substr(ext.lastIndexOf('.') + 1);
-						ext = ext.toLowerCase();
-						if (imlink.attr('target') == '_blank' ||
-							((ext == 'jpg' || ext == 'jpeg' || ext == 'png') && imlink.hasClass('lightbox')))
-
-							jQuery('#k_imageLinkBlank').prop('checked', true);
-
-						linkImageHref();
-
-						if (imlink.hasClass('videoLightbox'))
-							jQuery('#k_imageLinkLightbox').prop('checked', true);
-
-					} else {
-
-						// not a link, reset link's settings in image toolbar.
-						// it's already a link
-						jQuery('#k_imageLinkHref').val('');
-						jQuery('#k_imageLinkHrefSwitch').prop('checked', false);
-						linkImageHref();
-					}
-
-					var rclass = ratioHolder.attr('class');
-					if (typeof rclass === "undefined") rclass = '';
-
-					jQuery('#k_imageRatio').val('');
-
-					if (rclass.indexOf('kimgRatio') > -1) {
-						jQuery('#imageRatioFilter').show();
-
-						// which ratio is set?
-						if (rclass.indexOf('kimgRatio1') > -1) {
-							// 1:1
-							jQuery('#k_imageRatio').val('1');
-
-						} else if (rclass.indexOf('kimgRatio2') > -1) {
-							// 4:3
-							jQuery('#k_imageRatio').val('2');
-
-						} else if (rclass.indexOf('kimgRatio3') > -1) {
-							// 16:9
-							jQuery('#k_imageRatio').val('3');
-
-						} else if (rclass.indexOf('kimgRatio4') > -1) {
-							// 2:1
-							jQuery('#k_imageRatio').val('4');
-
-						} else if (rclass.indexOf('kimgRatio5') > -1) {
-
-							// not yet defined
-							jQuery('#k_imageRatio').val('5');
-
-						} else if (rclass.indexOf('kimgRatio6') > -1) {
-							// 3:4
-							jQuery('#k_imageRatio').val('6');
-
-						} else if (rclass.indexOf('kimgRatio7') > -1) {
-							// 9:16
-							jQuery('#k_imageRatio').val('7');
-
-						} else if (rclass.indexOf('kimgRatio8') > -1) {
-							// 1:2
-							jQuery('#k_imageRatio').val('8');
-
-						} else {
-
-							// auto, leave empty.
-
-						}
-
-					} else {
-
-						jQuery('#imageRatioFilter').hide();
-
-					}
-
-					if (typeof imclass !== "undefined" && imclass.indexOf('imgfilter') > 0) {
-
-						var classArray = imclass.split('imgfilter');
-						classArray = classArray[1];
-						classArray = classArray.split(' ');
-						classArray = classArray[0];
-
-						if (classArray > 0)
-							jQuery('#k_imageStyle').val(classArray);
-
-					}
-					koMenuOpen('image');
-
 				} else if (i == 'Block') {
 
 					var blockLabel, blockTabLabel;
@@ -1181,7 +787,6 @@
 					jQuery("#k_inHeader").remove();
 					jQuery("#blockCopyHolder").hide();
 
-					// editing Footer/Header Area settings, not specific block.
 					if (ii == 'Footer') {
 
 						ii = 'footerContent'; // it's a block ID.
@@ -1236,13 +841,8 @@
 					
 					hideCurrentMenuId=0;
 					koMenuClose();
-
-					// close all 
-					
 					if (opt == 1) {
-
 						setCookie('koMenuHidden', 1, 365);
-
 					}
 				}
 
@@ -1252,153 +852,10 @@
 					if (opt == 1) {
 
 						removeCookie('koMenuHidden');
-
 					}
-
 				}
 			</script>
-    <style>
-        body.koMenuActive:not(.mobileMenuOpen_Body) {
-					margin-left: 100px
-				}
-
-				.koLeftMenu {
-					opacity: 0;
-					transition: 0.3s all;
-					display: block;
-					visibility: hidden;
-					margin-left: -10px
-				}
-
-				.koLeftMenu .koLeftButton {
-					margin-left: -5px;
-					opacity: 0;
-					transition: margin-left 0.2s, opacity 0.2s;
-					transition-delay: 0s
-				}
-
-				.koLeftMenu .koLeftButton:nth-of-type(1) {
-					transition-delay: 0.05s
-				}
-
-				.koLeftMenu .koLeftButton:nth-of-type(2) {
-					transition-delay: 0.1s
-				}
-
-				.koLeftMenu .koLeftButton:nth-of-type(3) {
-					transition-delay: 0.15s
-				}
-
-				.koLeftMenu .koLeftButton:nth-of-type(4) {
-					transition-delay: 0.2s
-				}
-				.koLeftMenu .koLeftMenuBottom .koLeftButton:nth-of-type(1) {
-					transition-delay: 0.35s;
-				}
-
-				.koLeftMenu .koLeftMenuBottom .koLeftButton:nth-of-type(2) {
-					transition-delay: 0.3s
-				}
-
-				.koLeftMenu .koLeftMenuBottom .koLeftButton:nth-of-type(3) {
-					transition-delay: 0.25s;
-				}
-
-				.koLeftMenu .koLeftMenuBottom .koLeftButton:nth-of-type(4) {
-					transition-delay: 0.2s;
-				}
-
-				.koMenuActive .koLeftMenu {
-					opacity: 1;
-					visibility: visible;
-					margin-left: 0
-				}
-
-				.koMenuActive .koLeftMenu .koLeftButton {
-					margin-left: 0;
-					opacity: 1
-				}
-
-				.koMenuActive .koLeftMenu .koLeftButton:hover {
-					transition-delay: 0s
-				}
-
-				.koLeftMenuOpener {
-					z-index: 9;
-					background:linear-gradient(to right, #ef326f,  #fe6c4e);
-					height: 50vh;
-					width: 100px;
-					position: fixed;
-					bottom: 0;
-					left: 0;
-					text-align: center;
-					line-height: 70px;
-					color: #fff;
-					transition: 0.2s all ease-out;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					opacity: 0;
-					pointer-events: none;
-				}
-
-				.koLeftMenuOpener img {
-					max-width: 50px;
-					display: inline-block;
-					margin: 0;
-					transition: 0.2s all
-				}
-
-				body:not(.koMenuActive) .koLeftMenuOpener img {
-					max-width: 40px;
-				}
-
-				body:not(.koMenuActive) .koLeftMenuOpener {
-					height: 70px;
-					opacity: 1;
-					pointer-events: initial;
-					bottom: 20px;
-					left: 20px;
-					border-radius: 25%;
-					width: 70px;
-				}
-
-				body:not(.koMenuActive) .koLeftMenuOpener:hover {
-					transform: scale(1.10);
-					transition: 0.2s all;
-					box-shadow: inset 0 0 0 2px #ef326f,   1px 1px 10px #fe6c4e, 1px 1px 40px rgba(0, 0, 0, 0.3);
-					cursor: pointer;
-				}
-
-				#koLeftMenu a.koLeftLogo {
-					transition: 0.2s all;
-				}
-
-				.koLeftLogo:before {
-
-					content: ' ';
-					position: absolute;
-					width: 0;
-					height: 0;
-					left: auto;
-					right: 0;
-					top: 0;
-					margin-top: -40px;
-					transition: margin 0.2s ease-in;
-					bottom: auto;
-					border: 20px solid;
-					border-color: var(--ui-color-leftmenu) var(--ui-color-leftmenu) transparent transparent;
-				}
-				#koLeftMenu a.koLeftLogo:hover {
-					/*   background-position:-80px;  */
-
-				}
-
-				#koLeftMenu a.koLeftLogo:hover:before {
-
-					margin-top: -20px
-				}
-			</style>
+			
     <div id="koLeftMenu" class="skiptranslate">
         <svg height="0" width="0">
             <defs>

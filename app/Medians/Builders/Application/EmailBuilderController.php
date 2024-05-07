@@ -32,10 +32,8 @@ class EmailBuilderController extends CustomController
 
 		try {
 			
-
 			$request = $this->app->request();
 			$check = $this->repo->find($request->get('template_id'));
-			$check->langs_content = $this->contentRepo->switch_lang($check);
 
 			return render('views/admin/builder/email.html.twig', [
 				'template' => $check, 
