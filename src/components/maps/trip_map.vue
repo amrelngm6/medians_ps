@@ -99,6 +99,7 @@ export default {
         for (let o = 0; o < props.waypoints.length; o++) {
           var e = props.waypoints[o];
           if (e.status == 'waiting' || e.status == 'moving') {
+            console.log(o)
             markers.value[o + 1] =  handlePickup(e);
           }
         }
