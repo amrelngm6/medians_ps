@@ -555,9 +555,18 @@ export default
             return getProgressWidth(requiredData, activeItem);
         }
 
+        const findDriver = () => {
+            if (props.drivers) {
+                for (let i = 0; i < props.drivers.length; i++) {
+                    props.drivers[i].show = searchText.value.trim() ? checkSimilarDriver(props.drivers[i]) : 1;
+                }
+            }   
+        }
+
         return {
             loader,
             showPlaceSearch,
+            findDriver,
             setDriver,
             setVehicle,
             markerClicked,
