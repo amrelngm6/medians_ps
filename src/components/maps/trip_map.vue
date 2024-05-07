@@ -116,9 +116,9 @@ export default {
         .route({
           origin: origin,
           destination: destination,
-          // waypoints: [
-            // { location: origin },
-          // ],
+          waypoints: [
+            { location: origin },
+          ],
           travelMode: window.google.maps.TravelMode.DRIVING,
           avoidTolls: true,
         })
