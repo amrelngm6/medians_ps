@@ -256,9 +256,8 @@ class BuilderController extends CustomController
 					break;
 				
 				case 'insertEmailContent':
-					echo $this->app->renderTemplate($this->repo->findEmailBlock($request->get('id'))->content)->render( ['app' => $this->app ]  );
-
-					// echo $this->repo->findEmailBlock($request->get('id'))->content;
+					echo $this->repo->findEmailBlock($request->get('id'))->content;
+					// echo $this->app->renderTemplate($this->repo->findEmailBlock($request->get('id'))->content)->render( ['app' => $this->app ]  );
 					return true;		
 					break;
 				
