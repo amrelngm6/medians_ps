@@ -16,7 +16,7 @@
             </div>
         </div>
         <trip_wizard @callback="showWizard = false" :conf="conf"
-                v-if="showWizard" 
+                v-if="showWizard"  :active_tab="defaultTab"
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 
@@ -75,7 +75,7 @@
                         </template>
 
                         <template #item-driver="item">
-                            <div class="w-full relative flex  gap-2" @click="handleAction('driver', item)">
+                            <div class="w-full relative flex  gap-2">
                                 <img  class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(item.driver && item.driver.picture) ? item.driver.picture : 'https://via.placeholder.com/37x37'" /> 
                                 <span class="px-1" v-if="item.driver" v-text="item.driver.name"></span>
                             </div>
@@ -139,6 +139,7 @@ export default
 
         const url =  props.conf.url+props.path+'?load=json';
 
+        const defaultTab = ref(null);
         const activeTrip = ref(null);
         const activeItem = ref({});
         const content = ref({});
@@ -170,13 +171,19 @@ export default
          */
         const handleAction = (actionName, data) => 
         {
+            activeItem.value = data;
             switch (actionName) 
             {
                 case 'view':
                     break;
 
                 case 'edit':
-                    activeItem.value = data;
+                    defaultTab.value = ;
+                    showWizard.value = true;
+                    break;
+
+                case 'locations':
+                    defaultTab.value = "Locations";
                     showWizard.value = true;
                     break;
 
@@ -224,6 +231,7 @@ export default
         }
         
         return {
+            defaultTab,
             handleSelectedDate,
             usersList,
             showWizard,
