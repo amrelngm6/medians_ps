@@ -3,7 +3,7 @@
         
         <div  v-if="content " class=" w-full relative">
             
-            <route_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :drivers="content.drivers" :supervisors="content.supervisors" :vehicles="content.vehicles" :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" :conf="conf" ></route_wizard>
+            <route_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard" :active_tab="defaultTab" :drivers="content.drivers" :supervisors="content.supervisors" :vehicles="content.vehicles" :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" :conf="conf" ></route_wizard>
             
             <div class=" " v-if="!showWizard && content.items && !content.items.length ">
                 <div class="card">
@@ -55,7 +55,7 @@
 
                         <template #item-route_locations="item">
                             
-                            <div class="w-full h-8 relative flex">
+                            <div class="w-full h-8 relative flex" @click="handleAction('locations', item)">
                                 <div v-for="(location, i) in item.route_locations" :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
                                     <img  v-if="i < 3" :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
                                 </div>
@@ -138,6 +138,7 @@ export default
         const start_placeSearch =  ref('');
         const searchValue = ref("");
         const searchField = ref("#");
+        const defaultTab = ref(null);
         
 
         const closeSide = () => {
@@ -232,6 +233,13 @@ export default
 
                 case 'edit':
                     activeItem.value = data;
+                    defaultTab.value = 'Info'
+                    showWizard.value = true
+                    break;  
+
+                case 'locations':
+                    activeItem.value = data;
+                    defaultTab.value = 'Confirm'
                     showWizard.value = true
                     break;  
 
