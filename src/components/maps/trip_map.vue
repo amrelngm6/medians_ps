@@ -12,9 +12,9 @@
 
       <Polyline :options="polylinePath" />
 
-      <CustomMarker v-for="(marker, index) in markers" v-if="marker" :options="{
+      <CustomMarker v-for="(marker, index) in markers" :options="marker ? {
         position: marker.marker_position,
-      }" @click="markerClicked(marker)">
+      } : null" @click="markerClicked(marker)">
         <div style="text-align: center">
           <img :src="marker.icon" width="40" class="rounded-full" height="40" style="margin-top: 8px" />
         </div>
