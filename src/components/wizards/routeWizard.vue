@@ -193,6 +193,10 @@
                                                     <span v-text="activeItem.vehicle.plate_number" class="text-md font-semibold me-2 flex-column-auto"></span>
                                                 </div>
                                             </a>
+                                            
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Vehicles')" ></label>
+                                            <form_field :item="activeItem" :column="{key: 'vehicle_id', title: translate('Vehicle'), text_key:'vehicle_name',column_type:'select', data:vehicles}"></form_field>
+                                            
                                         </div>
                                     </div>
                                 </div>
