@@ -77,6 +77,9 @@ export default {
     const setValues = () => 
     {
       markers.value = [handlePickup(trip.value, originTracking() ?? {lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude}, 'car.svg')];
+      for (let o = 0; o < props.waypoints.length; o++) {
+        markers.value[i+1] =  props.waypoints[o];
+      }
       markers.value[markers.value.length] = handlePickup(trip.value, {lat: trip.value.destination_latitude, lng: trip.value.destination_longitude} ,'destination.svg')
     }
 
@@ -177,6 +180,6 @@ export default {
       polylineOptions,
     };
   },
-  props: ['system_setting', 'trip', 'conf'],
+  props: ['system_setting', 'trip', 'conf','waypoints', 'center'],
 };
 </script>
