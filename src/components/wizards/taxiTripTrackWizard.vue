@@ -15,7 +15,7 @@
                                 <div class="card-body pt-0 mx-auto ">
                                     <div class="w-full flex gap-10">
                                         <div class="w-full">
-                                            <trip_map @markerclicked="markerClicked" class="w-full rounded-xl shadow-md mx-4"
+                                            <taxt_trip_map @markerclicked="markerClicked" class="w-full rounded-xl shadow-md mx-4"
                                                 :system_setting="system_setting" :conf="conf" :trip="activeItem" />
                                         </div>
                                         <div class="w-full">
@@ -198,12 +198,12 @@ const form_field = defineAsyncComponent(() =>
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import drivers_locations_map from '@/components/includes/drivers_locations_map.vue';
 import tooltip from '@/components/includes/tooltip.vue';
-import trip_map from '@/components/maps/trip_map.vue';
+import taxt_trip_map from '@/components/maps/taxt_trip_map.vue';
 
 export default
     {
         components: {
-            trip_map,
+            taxt_trip_map,
             close_icon,
             delete_icon,
             car_icon,
