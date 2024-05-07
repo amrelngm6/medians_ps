@@ -30,15 +30,13 @@ class EmailTemplateRepository
 
 	public function find($template_id, $prefix = null)
 	{
-		return EmailTemplate::with(['content'=>function($q) use ($prefix){
-			$prefix ? $q->where('prefix', $prefix) : $q;
-		}])->find($template_id);
+		return EmailTemplate::with('content','langs_content')->find($template_id);
 	}
 
 
 	public function get($limit = 100)
 	{
-		return EmailTemplate::with('content')->limit($limit)->get();
+		return EmailTemplate::with('content','langs_content')->limit($limit)->get();
 	}
 
 

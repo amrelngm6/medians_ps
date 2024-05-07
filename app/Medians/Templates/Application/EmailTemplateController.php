@@ -32,13 +32,10 @@ class EmailTemplateController extends CustomController
 	{
 
 		return [
-            [ 'value'=> "page_id", 'text'=> "#"],
+            [ 'value'=> "template_id", 'text'=> "#"],
             [ 'value'=> "title", 'text'=> translate('Title'), 'sortable'=> true ],
-            [ 'value'=> "content.prefix", 'text'=> translate('link'), 'sortable'=> true ],
-            [ 'value'=> "homepage", 'text'=> translate('Is Homepage'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('Status'), 'sortable'=> true ],
-			['value'=>'details', 'text'=>translate('Details')],
-			['value'=>'edit', 'text'=>translate('Edit')],
+			[ 'value'=> 'edit', 'text'=>translate('Details')],
 			['value'=>'delete', 'text'=>translate('Delete')],
         ];
 	}
@@ -53,9 +50,8 @@ class EmailTemplateController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "page_id", 'title'=> "#", 'column_type'=>'hidden'],
+            [ 'key'=> "template_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "title", 'title'=> translate('Title'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "prefix", 'title'=> translate('prefix'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
@@ -144,9 +140,9 @@ class EmailTemplateController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['page_id']);
+        	$check = $this->repo->find($params['template_id']);
 
-            if ($this->repo->delete($params['page_id']))
+            if ($this->repo->delete($params['template_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }

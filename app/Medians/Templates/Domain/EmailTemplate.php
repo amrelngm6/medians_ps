@@ -27,7 +27,12 @@ class EmailTemplate extends CustomModel
 
 	public function content()
 	{
-		return $this->hasOne(Content::class, 'item_id', 'page_id')->where('item_type', EmailTemplate::class)->where('lang',$_SESSION['lang']);
+		return $this->hasOne(Content::class, 'item_id', 'template_id')->where('item_type', EmailTemplate::class)->where('lang',$_SESSION['lang']);
+	}
+
+	public function langs_content()
+	{
+		return $this->morphMany(Content::class, 'item');
 	}
 
 	public function custom_fields()
