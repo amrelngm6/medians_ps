@@ -178,7 +178,7 @@ export default {
           list[i] = {location: element.marker_position};       
         }
       }
-      return list;
+      return list.length  ? list : null;
     }
 
     onMounted(() => {
