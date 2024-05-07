@@ -88,7 +88,7 @@
                         </template>
                         <template #item-status="item">
                             <p v-if="item.status == 'scheduled'" class="py-2" v-text="translate(item.status)"></p>
-                            <p v-if="item.status == 'started'" class="pt-2" v-text="translate(item.status)"></p>
+                            <span v-if="item.status == 'started'" class="" v-text="translate(item.status)"></span>
                             <p v-if="item.status == 'started'" class="cursor-pointer fw-bold" @click="showTrackWizard = true, activeItem = item" v-text="translate('Live Track')"></p>
                             <p v-if="item.status == 'completed'" class="py-2 text-green-600" v-text="translate(item.status)"></p>
                             <p v-if="item.status == 'cancelled'" class="py-2 text-red-600" v-text="translate(item.status)"></p>
