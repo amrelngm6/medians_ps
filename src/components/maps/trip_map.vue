@@ -16,7 +16,7 @@
         position: marker.marker_position,
       }" @click="markerClicked(marker)">
         <div style="text-align: center">
-          <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
+          <img :src="marker.icon" width="40" class="rounded-full" height="40" style="margin-top: 8px" />
         </div>
       </CustomMarker>
 
@@ -98,7 +98,6 @@ export default {
         for (let o = 0; o < props.waypoints.length; o++) {
           var e = props.waypoints[o];
           markers.value[o+1] = handlePickup(e);
-          console.log(markers.value[o+1])
         }
       }
       markers.value[markers.value.length] = handleMarker(trip.value, mapDestination.value ,'uploads/images/destination.svg')
@@ -129,9 +128,6 @@ export default {
     }
 
     const  displayRoute = (origin, destination, service, display) => {
-      console.log(origin)
-      console.log(destination)
-      console.log(handleWaypoints())
       service
         .route({
           origin: origin,
@@ -141,7 +137,6 @@ export default {
           avoidTolls: true,
         })
         .then((result) => {
-          console.log(result)
           const points = extractPolylinePoints(result);
           routeCoordinates.value = points;
           polylinePath.value = {

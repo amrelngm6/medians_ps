@@ -27,7 +27,7 @@
                     @click="enableDrag(marker, index)"
                     >
                     <div style="text-align: center">
-                        <img :src="marker.icon" width="40" class="rouned-full" height="40" style="margin-top: 8px" />
+                        <img :src="marker.icon" width="40" class="rounded-full" height="40" style="margin-top: 8px" />
                     </div>
                 </CustomMarker>
 
