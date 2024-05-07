@@ -122,52 +122,10 @@ class NotificationEvent extends CustomModel
 
 	public function validateUserType($event, $user)
 	{
-		
 		return $user->model == $event->receiver_model ? $user : null;
 	}
 
 	
-	/**
-	 * Filter Employee notification  
-	 * 
-	 * @param $event Object
-	 * @param $model Object Event related model
-	 */
-	public function filterSupervisor($event, $model)
-	{
-		switch (get_class($model)) 
-		{
-			case HelpMessageComment::class:
-				return [$this->validateUserType($event, $model->message->user)];
-				break;
-
-			case RouteLocation::class:
-				$location =  $model->with(['route'=>function($q){ return $q->with('supervisor'); }])->find($model->location_id);
-				return isset($location->route->supervisor) ? [$this->validateUserType($event, $location->route->supervisor)] : null;
-				break;
-
-			case TripAlarm::class:
-				$object =  $model->whereHas('model')->with('model')->find($model->alarm_id);
-				return isset($object->model) ? [$this->validateUserType($event, $object->model)] : null;
-				break;
-				
-			case Trip::class:
-				$object =  $model->whereHas('supervisor')->with('supervisor')->find($model->trip_id);
-				return isset($object->supervisor) ? [$this->validateUserType($event, $object->supervisor)] : null;
-				break;
-							
-			case TripLocation::class:
-				$object =  $model->with('model')->find($model->trip_location_id);
-				return isset($object->model) ? [$object->model] : null;
-				break;
-
-			default:
-				return $model;
-				break;
-		}
-		
-	}
-
 
 	
 	/**
@@ -210,48 +168,6 @@ class NotificationEvent extends CustomModel
 				return $model;
 				break;
 			
-		}
-	}
-
-
-	/**
-	 * Filter Employee notification  
-	 * 
-	 * @param $event Object
-	 * @param $model Object Event related model
-	 */
-	public function filterEmployee($event, $model)
-	{
-		
-		switch (get_class($model)) 
-		{
-			case HelpMessageComment::class:
-				return [$this->validateUserType($event, $model->message->user)];
-				break;
-
-			case RouteLocation::class:
-				$location =  $model->whereHas('model')->with('model')->find($model->location_id);
-				return isset($location->model) ? [$this->validateUserType($event, $location->model)] : null;
-				break;
-
-			case TripAlarm::class:
-				$object =  $model->whereHas('model')->with('model')->find($model->alarm_id);
-				return isset($object->model) ? [$this->validateUserType($event, $object->model)] : null;
-				break;
-				
-			case Trip::class:
-				$object =  $model->whereHas('model')->with('model')->find($model->trip_id);
-				return isset($object->model) ? [$this->validateUserType($event, $object->model)] : null;
-				break;
-							
-			case TripLocation::class:
-				$object =  $model->with('model')->find($model->trip_location_id);
-				return isset($object->model) ? [$object->model] : null;
-				break;
-
-			default:
-				return $model;
-				break;
 		}
 	}
 
