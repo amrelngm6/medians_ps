@@ -182,9 +182,9 @@ export default {
     }
 
     onMounted(() => {
-        mapOrigin.value = originTracking() ?? { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; // Example coordinates (New York)
+        mapOrigin.value = originTracking() ?? { lat: trip.value.route.start_latitude, lng: trip.value.route.start_longitude }; // Example coordinates (New York)
         mapCenter.value = mapOrigin.value;
-        mapDestination.value = { lat: trip.value.destination_latitude, lng: trip.value.destination_longitude }; // Example coordinates (Los Angeles)
+        mapDestination.value = { lat: trip.value.route.end_latitude, lng: trip.value.route.end_longitude }; // Example coordinates (Los Angeles)
         fetchRoute();
     });
 
