@@ -198,7 +198,7 @@ const form_field = defineAsyncComponent(() =>
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import drivers_locations_map from '@/components/includes/drivers_locations_map.vue';
 import tooltip from '@/components/includes/tooltip.vue';
-import taxt_trip_map from '@/components/maps/taxt_trip_map.vue';
+import taxt_trip_map from '@/components/maps/taxi_trip_map.vue';
 
 export default
     {
