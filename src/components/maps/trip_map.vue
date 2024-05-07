@@ -75,7 +75,7 @@ export default {
       var pic = obj.model && obj.model.picture ? obj.model.picture : icon;
       var lat = obj.status == 'waiting' ? obj.location.start_latitude : obj.location.end_latitude;
       var lng = obj.status == 'waiting' ? obj.location.start_longitude : obj.location.end_longitude;
-      return handleMarker(trip.value, originTracking() ?? {lat: lat, lng: lng}, pic);
+      return handleMarker(trip.value, {lat: lat, lng: lng}, pic);
       
     }
 
@@ -99,7 +99,6 @@ export default {
         for (let o = 0; o < props.waypoints.length; o++) {
           var e = props.waypoints[o];
           if (e.status == 'waiting' || e.status == 'moving') {
-            console.log(o)
             markers.value[o + 1] =  handlePickup(e);
           }
         }
