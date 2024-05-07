@@ -327,11 +327,9 @@ class NotificationEvent extends CustomModel
 		 */ 
     	$params['model'] = $model;
     	$params['receiver'] = $receiver;
-		$receiverLang = $receiver->with('lang')->lang;
-		error_log(json_encode($receiverLang));
 		$templateRepo = new \Medians\Templates\Infrastructure\EmailTemplateRepository;
-		$template = $templateRepo->findByLang($event->template_id, $receiverLang);
-    	$event->body = $app->renderTemplate($event->template->content->content)->render($params);
+		$template = $templateRepo->findByLang($event->template_id, isset($receiver->field['lang']) ? $receiver->field['lang'] : $app->default_lang);
+    	$event->body = isset($event->template->content->content) ? $app->renderTemplate($event->template->content->content)->render($params) : '';
     	$event->subject = $app->renderTemplate($event->subject)->render($params);
     	$event->body_text = $app->renderTemplate($event->body_text)->render($params);
 
