@@ -78,7 +78,7 @@
                                             <div class="mt-10 w-full">
                                                 <div class="flex gap-6">
                                                     <h3 class="mb-3 w-full" v-text="translate('Location Address')"></h3>
-                                                    <p class="text-center px-6" v-text="translate('Time')"></p>
+                                                    <p class="text-center px-6" v-text="translate('Last action')"></p>
                                                 </div>
 
                                                 <div class="d-flex flex-stack pt-4" v-for="item in activeItem.locations">
