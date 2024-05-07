@@ -102,7 +102,7 @@
                                             </div>
                                             <div class=" w-full">
                                                 <trip_map :system_setting="system_setting" :item="activeItem"
-                                                    @setlocation="updatePickupMarker" :key="activeItem.currentLat"
+                                                    :key="activeItem.currentLat"
                                                     :location="activeItem.currentLat ? { lat: activeItem.currentLat, lng: activeItem.currentLng } : {lat:activeItem.route.position.start_latitude, lng:activeItem.route.position.start_longitude}">
                                                 </trip_map>
                                             </div>
@@ -307,8 +307,6 @@ export default
                 { title: translate("Cancelled"), status: 'cancelled' },
             ]);
 
-            console.log(props.item)
-
             if (props.item) {
                 activeItem.value = props.item
                 activeItem.value.date = props.item.date ?? today()
@@ -318,50 +316,6 @@ export default
 
             const users = (props.userslist) ? ref(props.userslist) : ref([]);
 
-            /**
-             * Get current location
-             */
-            const getUserLocation = async () => {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition
-                        (
-                            position => {
-                                if (!activeItem.value.trip_id) {
-                                    activeItem.value.pickup_latitude = position.coords.latitude;
-                                    activeItem.value.pickup_longitude = position.coords.longitude;
-                                    activeItem.value.destination_latitude = position.coords.latitude;
-                                    activeItem.value.destination_longitude = position.coords.longitude;
-                                }
-                            },
-                            error => {
-
-                                if (!activeItem.value.trip_id) {
-                                    activeItem.value.pickup_latitude = activeItem.value.pickup_latitude ?? 30.06;
-                                    activeItem.value.pickup_longitude = activeItem.value.pickup_longitude ?? 31.21;
-                                    activeItem.value.destination_latitude = activeItem.value.destination_latitude ?? 30.06;
-                                    activeItem.value.destination_longitude = activeItem.value.destination_longitude ?? 31.21;
-                                }
-                                showAlert(error.message)
-                            }
-                        );
-
-                } else {
-                    showAlert('location error')
-                    locationError.value = "Geolocation is not supported by this browser.";
-                }
-            }
-
-            getUserLocation();
-
-            const pickupPlaceChanged = async () => {
-                let result = pickup_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, pickup_placeSearch.value, props.business_setting.country) : ''
-                places.value = result.predictions;
-            }
-
-            const destinationPlaceChanged = async () => {
-                let result = destination_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, destination_placeSearch.value, props.business_setting.country) : ''
-                places.value = result.predictions;
-            }
 
             const saveTrip = () => {
                 loader.value = true;
@@ -374,103 +328,11 @@ export default
                     d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
                     params.append('params[' + k + ']', d)
                 }
-                let type = array.trip_id > 0 ? 'update' : 'create';
-                params.append('type', 'Trip.' + type)
+                params.append('type', 'Trip.update')
                 handleRequest(params, '/api/' + type).then(response => {
                     loader.value = false;
                     handleAccess(response)
                 })
-            }
-
-            const updatePickupMarker = async (position) => {
-                activeItem.value.pickup_latitude = position.lat();
-                activeItem.value.pickup_longitude = position.lng();
-                activeItem.value.pickup_address = await getPositionAddress(position.lat(), position.lng())
-            }
-
-            const updateDestinationMarker = async (position) => {
-                activeItem.value.destination_latitude = position.lat();
-                activeItem.value.destination_longitude = position.lng();
-                activeItem.value.destination_address = await getPositionAddress(position.lat(), position.lng())
-            }
-
-
-            const setPlaceMarker = async (placeInfo, type) => {
-                const placesService = new google.maps.places.PlacesService(document.createElement('div'));
-
-                let placeId = placeInfo.place_id;
-
-                placesService.getDetails({ placeId }, (place, status) => {
-                    if (status === google.maps.places.PlacesServiceStatus.OK && place) {
-                        const location = place.geometry.location;
-
-
-                        if (type == 'pickup') {
-                            activeItem.value.pickup_address = placeInfo.description
-                            activeItem.value.pickup_latitude = location.lat()
-                            activeItem.value.pickup_longitude = location.lng()
-                        }
-
-                        if (type == 'destination') {
-                            activeItem.value.destination_address = placeInfo.description
-                            activeItem.value.destination_latitude = location.lat()
-                            activeItem.value.destination_longitude = location.lng()
-                        }
-                        places.value = []
-                        showPlaceSearch.value = false
-                    } else {
-                        console.error('Failed to fetch place details');
-                    }
-                });
-            }
-
-            const back = () => {
-                emit('callback');
-            }
-
-            const checkSimilarUser = (item) => {
-                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                let email = name ? name : (item.email).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return email ? email : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-            }
-
-            const setUser = (user) => {
-                activeItem.value.model_id = props.usertype == 'student' ? user.student_id : user.customer_id;
-                activeItem.value.model = user;
-                activeTab.value = 'Locations';
-                searchText.value = null;
-            }
-
-            const subscription_wizard = () => {
-
-                if (props.userslist) {
-                    for (let i = 0; i < props.userslist.length; i++) {
-                        props.userslist[i].show = searchText.value.trim() ? checkSimilarUser(props.userslist[i]) : 1;
-                    }
-                }
-            }
-
-
-            const checkSimilarDriver = (item) => {
-                let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                let email = name ? name : (item.email).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return email ? email : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-            }
-
-            const setDriver = (driver) => {
-                activeItem.value.driver_id = driver.driver_id;
-                activeItem.value.driver = driver;
-                activeTab.value = 'Vehicle';
-                searchText.value = null;
-            }
-
-            const findDriver = () => {
-
-                if (props.drivers) {
-                    for (let i = 0; i < props.drivers.length; i++) {
-                        props.drivers[i].show = searchText.value.trim() ? checkSimilarDriver(props.drivers[i]) : 1;
-                    }
-                }
             }
 
 
@@ -480,62 +342,13 @@ export default
                 return getProgressWidth(requiredData, activeItem);
             }
 
-            const checkSimilarVehicle = (item) => {
-                let name = (item.vehicle_name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-                return name ? name : (item.plate_number).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
-            }
-
-            const setVehicle = (vehicle) => {
-                activeItem.value.vehicle_id = vehicle.vehicle_id;
-                activeItem.value.vehicle = vehicle;
-                activeTab.value = 'Time';
-                searchText.value = null;
-            }
-
-            const findVehicle = () => {
-                if (props.vehicles) {
-                    for (let i = 0; i < props.vehicles.length; i++) {
-                        props.vehicles[i].show = searchText.value.trim() ? checkSimilarVehicle(props.vehicles[i]) : 1;
-                    }
-                }
-            }
-
-            const findUser = () => {
-                if (props.userslist) {
-                    for (let i = 0; i < props.userslist.length; i++) {
-                        props.userslist[i].show = searchText.value.trim() ? checkSimilarVehicle(props.userslist[i]) : 1;
-                    }
-                }
-            }
-
-
-            const selectedObject = (array, key) => {
-                const keyValue = activeItem.value[key];
-                for (let i = 0; i < array.length; i++) {
-                    if (array[i][key] == keyValue) {
-                        return array[i]
-                    }
-                }
-                return {}
-            }
-
 
             return {
                 loader,
                 tripsStatusList,
-                selectedObject,
-                findDriver,
-                setDriver,
-                findVehicle,
-                setVehicle,
                 users,
                 progressWidth,
-                setUser,
-                findUser,
-                setPlaceMarker,
                 showPlaceSearch,
-                pickupPlaceChanged,
-                destinationPlaceChanged,
                 pickup_placeSearch,
                 destination_placeSearch,
                 places,
@@ -548,10 +361,7 @@ export default
                 activeTab,
                 translate,
                 formatCustomTime,
-                updatePickupMarker,
-                updateDestinationMarker,
                 searchText,
-                getUserLocation,
                 collapsed,
                 saveTrip,
                 back

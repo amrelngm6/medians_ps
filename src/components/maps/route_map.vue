@@ -79,7 +79,6 @@ export default {
         }
       }
       markers.value[markers.value.length] = handlePickup(route.value.position, 'end_latitude', 'end_longitude', 'uploads/images/destination.svg')
-
     }
 
     setValues();
