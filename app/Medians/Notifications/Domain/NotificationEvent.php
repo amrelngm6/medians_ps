@@ -273,7 +273,7 @@ class NotificationEvent extends CustomModel
 				case Employee::class:
 				case SuperVisor::class:
 				case Parents::class:
-				return method_exists($model, 'receiverAsCustomer') ? [$this->validateUserType($model->receiverAsCustomer())] : null;
+				return method_exists($model, 'receiverAsCustomer') ? [$this->validateUserType($event, $model->receiverAsCustomer())] : null;
 				break;
 				
 			case User::class:
