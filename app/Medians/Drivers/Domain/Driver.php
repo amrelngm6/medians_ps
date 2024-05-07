@@ -119,6 +119,11 @@ class Driver extends CustomModel
         return $this->morphOne(Wallet::class, 'user');
 	}
 
+	public function lang() 
+	{
+        return $this->morphOne(CustomField::class, 'model')->where('code', 'language');
+	}
+
     public function custom_fields()
     {
         return $this->morphMany(CustomField::class, 'model');

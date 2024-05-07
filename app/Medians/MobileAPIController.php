@@ -283,8 +283,12 @@ class MobileAPIController extends CustomController
 				$return = (new Wallets\Application\CollectedCashController)->getCollectedCash();
 				break;
 				
-			case 'pament_methods':
+			case 'payment_methods':
 				$return = (new PaymentMethods\Application\PaymentMethodController)->load();
+				break;
+				
+			case 'Driver.change_language':
+				$return = (new Drivers\Application\DriverController)->change_language();
 				break;
 		}
 		

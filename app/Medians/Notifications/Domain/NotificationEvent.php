@@ -313,7 +313,6 @@ class NotificationEvent extends CustomModel
 			error_log($th->getMessage());
 			return null;
 		}
-
 	}  
 
 	public function saveNotification($event, $model, $receiver)
@@ -328,7 +327,9 @@ class NotificationEvent extends CustomModel
 		 */ 
     	$params['model'] = $model;
     	$params['receiver'] = $receiver;
-    	$event->body = $app->renderTemplate($event->body)->render($params);
+		$templateRepo = new \Medians\Templates\Infrastructure\EmailTemplateRepository;
+		$template = $templateRepo->findByLang($event->template_id, );
+    	$event->body = $app->renderTemplate($event->template->content->content)->render($params);
     	$event->subject = $app->renderTemplate($event->subject)->render($params);
     	$event->body_text = $app->renderTemplate($event->body_text)->render($params);
 
