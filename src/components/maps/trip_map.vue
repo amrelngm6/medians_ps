@@ -177,7 +177,7 @@ export default {
           list[i] = {location: element.marker_position};       
         }
       }
-      consolt.log(list)
+      console.log(list)
       return list.length ? list : null;
     }
 
