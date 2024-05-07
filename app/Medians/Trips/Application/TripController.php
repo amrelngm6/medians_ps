@@ -42,6 +42,7 @@ class TripController extends CustomController
             [ 'value'=> "trip_id", 'text'=> "#"],
             [ 'value'=> "vehicle.plate_number", 'text'=> translate('vehicle'), 'sortable'=> true ],
             [ 'value'=> "driver_name", 'text'=> translate('driver'), 'sortable'=> true ],
+            [ 'value'=> "route.route_name", 'text'=> translate('route'), 'sortable'=> true ],
 			[ 'value'=> "locations_count", 'text'=> translate('pickup Locations'), 'sortable'=> true],
             [ 'value'=> "duration", 'text'=> translate('Duration'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> translate('trip_date'), 'sortable'=> true ],

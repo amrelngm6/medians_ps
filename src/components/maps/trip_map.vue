@@ -134,6 +134,7 @@ export default {
     const  displayRoute = (origin, destination, service, display) => {
       console.log(origin)
       console.log(destination)
+      console.log(handleWaypoints())
       service
         .route({
           origin: origin,
