@@ -288,10 +288,10 @@ export default
         const showTip = ref({});
         
         return {
+            showWizard,
             showTip,
-            setPlaceMarker,
+            defaultTab,
             showPlaceSearch,
-            startPlaceChanged,
             start_placeSearch,
             places,
             waypoints,
@@ -303,12 +303,13 @@ export default
             activeItem,
             searchValue,
             searchField,
+            setPlaceMarker,
+            startPlaceChanged,
             translate,
             clickMarker,
             updateStartMarker,
             updateEndMarker,
             getUserLocation,
-            showWizard,
             closeSide,
             addRouteWizard,
             handleAction,
