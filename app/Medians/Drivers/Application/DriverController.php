@@ -462,7 +462,7 @@ class DriverController extends CustomController
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$driver->driver_id);
 		$generateToken = $driver->insertCustomField('API_token', $token);
 		
-		$driver->update(['last_login'=>date('Y-m-d H:i:s')]);
+		$update = $driver->update(['last_login'=>date('Y-m-d H:i:s')]);
 		
 		return 
 		[
@@ -502,7 +502,7 @@ class DriverController extends CustomController
 		$token = $Auth->encrypt(strtotime(date('YmdHis')).$driver->driver_id);
 		$generateToken = $driver->insertCustomField('API_token', $token);
 		
-		$driver->update(['last_login'=>date('Y-m-d H:i:s')]);
+		$update = $driver->update(['last_login'=>date('Y-m-d H:i:s')]);
 		
 		return 
 		[
