@@ -94,7 +94,7 @@
                                                         <div>
                                                             <div @mouseover="item.showTip = true" @mouseleave="item.showTip = false" class="relative" >
                                                                 <a href="javascript:;" @click="activeItem.currentLat = item.location.start_latitude, activeItem.currentLng = item.location.start_longitude" class="btn btn-sm btn-light fs-8 fw-bold" v-text="item.time"></a>
-                                                                <tooltip v-if="item.showTip" :key="item.showTip" :title="translate('Show location')" ></tooltip></div>
+                                                                <tooltip v-if="item.showTip" :key="item.showTip" :title="item.status" ></tooltip></div>
 
                                                         </div>
                                                     </div>
