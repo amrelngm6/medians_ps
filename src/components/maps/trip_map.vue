@@ -178,7 +178,7 @@ export default {
         }
       }
       console.log(list.filter(e => e != null))
-      return list.length ? list.filter(e => e !+ null) : null;
+      return list.length ? list.filter(e => e != null) : null;
     }
 
     onMounted(() => {
