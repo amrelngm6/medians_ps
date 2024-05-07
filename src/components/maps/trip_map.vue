@@ -68,7 +68,7 @@ export default {
     */
     const handlePickup = (obj, latlng, icon) => {
 
-      var pic = obj.model && obj.model.picture ? obj.model.picture : null;
+      var pic = obj.model && obj.model.picture ? obj.model.picture : icon;
       var lat = obj.status == 'waiting' ? obj.location.start_latitude : obj.location.end_latitude;
       var lng = obj.status == 'waiting' ? obj.location.start_longitude : obj.location.end_longitude;
       return handleMarker(trip.value, originTracking() ?? {lat: lat, lng: lng}, pic);
@@ -90,7 +90,7 @@ export default {
     const setValues = () => 
     {
       markers.value = [handleMarker(trip.value, originTracking() ?? {lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude}, 'uploads/images/car.svg')];
-      if (trip.value.) {
+      if (props.waypoints) {
         for (let o = 0; o < props.waypoints.length; o++) {
           var e = props.waypoints[o];
           markers.value[i+1] = handlePickup(e);
