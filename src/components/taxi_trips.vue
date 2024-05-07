@@ -87,11 +87,11 @@
                             <span class="py-2" v-text="currency.symbol+''+item.total_cost"></span>
                         </template>
                         <template #item-status="item">
-                            <span v-if="item.status == 'scheduled'" class="py-2" v-text="translate(item.status)"></span>
-                            <span v-if="item.status == 'started'" class="py-2" v-text="translate(item.status)"></span>
-                            <span v-if="item.status == 'started'" class="fw-bold" @click="showTrackWizard = true, activeItem = item" v-text="translate('Track')"></span>
-                            <span v-if="item.status == 'completed'" class="py-2 text-green-600" v-text="translate(item.status)"></span>
-                            <span v-if="item.status == 'cancelled'" class="py-2 text-red-600" v-text="translate(item.status)"></span>
+                            <p v-if="item.status == 'scheduled'" class="py-2" v-text="translate(item.status)"></p>
+                            <p v-if="item.status == 'started'" class="py-2" v-text="translate(item.status)"></p>
+                            <p v-if="item.status == 'started'" class="cursor-pointer fw-bold" @click="showTrackWizard = true, activeItem = item" v-text="translate('Live Track')"></p>
+                            <p v-if="item.status == 'completed'" class="py-2 text-green-600" v-text="translate(item.status)"></p>
+                            <p v-if="item.status == 'cancelled'" class="py-2 text-red-600" v-text="translate(item.status)"></p>
                         </template>
 
                         <template #item-details="item">
