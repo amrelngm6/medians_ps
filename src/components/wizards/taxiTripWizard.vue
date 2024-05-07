@@ -510,6 +510,7 @@ export default
             } else {
                 activeItem.value.date = today()
             }
+            activeItem.value.discount_amount = activeItem.value.discount_amount ?? 0;
 
             const users = (props.userslist) ? ref(props.userslist) : ref([]);
 
