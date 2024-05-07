@@ -172,13 +172,13 @@ export default {
       var list = []
       for (let i = 0; i < markers.value.length; i++) {
         const element = markers.value[i];
-        
         if (element && element.marker_position)
         {
           list[i] = {location: element.marker_position};       
         }
       }
-      return list.length  ? list : null;
+      consolt.log(list)
+      return list.length ? list : null;
     }
 
     onMounted(() => {
