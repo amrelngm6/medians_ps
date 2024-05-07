@@ -178,7 +178,7 @@ export default
                     break;
 
                 case 'edit':
-                    defaultTab.value = ;
+                    defaultTab.value = null;
                     showWizard.value = true;
                     break;
 
