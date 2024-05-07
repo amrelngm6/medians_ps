@@ -55,7 +55,7 @@
 
                         <template #item-route_locations="item">
                             
-                            <div class="w-full h-8 relative flex" @click="handleAction('locations', item)">
+                            <div class="w-full h-8 relative flex cursor-pointer" @click="handleAction('locations', item)">
                                 <div v-for="(location, i) in item.route_locations" :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
                                     <img  v-if="i < 3" :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(location.student && location.student.picture) ? location.student.picture : 'https://via.placeholder.com/37x37'" /> 
                                 </div>
@@ -66,7 +66,7 @@
 
                         <template #item-driver="item">
                             
-                            <div class="w-full relative flex" @click="handleAction('driver', item)">
+                            <div class="w-full relative flex cursor-pointer" @click="handleAction('driver', item)">
                                 <img  class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(item.driver && item.driver.picture) ? item.driver.picture : 'https://via.placeholder.com/37x37'" /> 
                                 <span class="font-semibold  px-1" v-if="item.driver" v-text="item.driver.name"></span>
                             </div>
