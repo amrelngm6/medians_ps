@@ -89,7 +89,7 @@ export default {
 
     const setValues = () => 
     {
-      markers.value = [handleMarker(trip.value, originTracking() ?? {lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude}, 'uploads/images/car.svg')];
+      markers.value = [handleMarker(trip.value, originTracking() ?? mapOrigin.value, 'uploads/images/car.svg')];
       if (props.waypoints) {
         for (let o = 0; o < props.waypoints.length; o++) {
           var e = props.waypoints[o];
@@ -97,7 +97,7 @@ export default {
           console.log(markers.value[o+1])
         }
       }
-      markers.value[markers.value.length] = handleMarker(trip.value, {lat: trip.value.destination_latitude, lng: trip.value.destination_longitude} ,'uploads/images/destination.svg')
+      markers.value[markers.value.length] = handleMarker(trip.value, mapDestination.value ,'uploads/images/destination.svg')
     }
 
     setValues();
