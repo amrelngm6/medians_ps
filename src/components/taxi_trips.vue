@@ -19,7 +19,7 @@
             </div>
         </div>
         
-        <taxi_trip_wizard @callback="showWizard = false" :conf="conf" :currency="currency"
+        <taxi_trip_wizard @callback="showWizard = false" :active_tab="defaultTab" :conf="conf" :currency="currency"
                 v-if="showWizard && activeItem.usertype" :usertype="activeItem.usertype"
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
@@ -177,6 +177,7 @@ export default
 
         const url =  props.conf.url+props.path+'?load=json';
 
+        const defaultTab = ref(null);
         const showTrackWizard = ref(null);
         const activeItem = ref({});
         const content = ref({});
@@ -212,9 +213,15 @@ export default
                     break;
 
                 case 'edit':
+                    defaultTab.value = null;
                     activeItem.value = data;
                     showWizard.value = true;
                     break;
+
+                case 'driver':
+                    defaultTab.value = 'Driver'
+                    showWizard.value = true
+                    break;  
 
                 case 'delete':
                     deleteByKey('trip_id', data, 'TaxiTrip.delete');
@@ -250,6 +257,7 @@ export default
         }
         
         return {
+            defaultTab,
             handleSelectedDate,
             usersList,
             showTrackWizard,
