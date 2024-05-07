@@ -562,6 +562,12 @@ export default
                 }
             }   
         }
+        
+        const checkSimilarDriver = (item) => {
+            let name = (item.name).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+            return name ? name : (item.mobile).toLowerCase().includes(searchText.value.toLowerCase()) ? true : false;
+        }
+
 
         return {
             loader,
