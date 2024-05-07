@@ -542,6 +542,10 @@ class APIController extends CustomController
 				case 'Language.delete':
 					return response((new Languages\Application\LanguageController())->delete());
 					break;
+					
+				case 'EmailTemplate.delete':
+					return response((new Templates\Application\EmailTemplateController())->delete());
+					break;
 	
 			}
 

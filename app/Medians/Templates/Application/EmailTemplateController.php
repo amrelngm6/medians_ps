@@ -74,7 +74,7 @@ class EmailTemplateController extends CustomController
 		
 		try {
 			
-		    return render('pages', [
+		    return render('companies', [
 		        'load_vue' => true,
 		        'title' => translate('Templates'),
 		        'columns' => $this->columns(),

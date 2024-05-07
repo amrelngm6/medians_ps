@@ -24,40 +24,22 @@ class EmailTemplateRepository
 	}
 
 	public function getObjectName()  {
-		return EmailTemplate::class;
+		$a = explode('\\', get_class(new EmailTemplate));
+		return end($a);
 	}
 
-	public function find($page_id, $prefix = null)
+	public function find($template_id, $prefix = null)
 	{
 		return EmailTemplate::with(['content'=>function($q) use ($prefix){
 			$prefix ? $q->where('prefix', $prefix) : $q;
-		}])->find($page_id);
+		}])->find($template_id);
 	}
 
-
-	public function homepage()
-	{
-		$_SESSION['lang'];
-		return EmailTemplate::where('homepage', 'on')->with(['content'=>function($q) {
-			$q->where('lang', $_SESSION['lang']);
-		}])->first();
-	}
 
 	public function get($limit = 100)
 	{
 		return EmailTemplate::with('content')->limit($limit)->get();
 	}
-
-	public function getByCategory($page_id, $limit = 100)
-	{
-		return EmailTemplate::with('content','user')->where('category_id', $page_id)->limit($limit)->orderBy('page_id', 'DESC')->get();
-	}
-
-	public function getFeatured($limit = 1)
-	{
-		return EmailTemplate::with('content','user')->orderBy('updated_at', 'DESC')->first();
-	}
-
 
 
 	/**
@@ -80,10 +62,10 @@ class EmailTemplateRepository
     	$Object = EmailTemplate::create($dataArray);
 
     	// Store Custom fields
-    	isset($data['field']) ? $this->storeFields($data['field'], $Object->page_id) : '';
+    	isset($data['field']) ? $this->storeFields($data['field'], $Object->template_id) : '';
 
     	// Store Lang content
-    	isset($data['content']) ? $this->storeContent($data['content'], $Object->page_id) : '';
+    	isset($data['content']) ? $this->storeContent($data['content'], $Object->template_id) : '';
 
     	return $Object;
     }
@@ -95,13 +77,13 @@ class EmailTemplateRepository
     public function update($data)
     {
 
-		$Object = EmailTemplate::find($data['page_id']);
+		$Object = EmailTemplate::find($data['template_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
 		// Store Custom fields
-    	isset($data['field']) ? $this->storeFields($data['field'], $Object->page_id) : '';
+    	isset($data['field']) ? $this->storeFields($data['field'], $Object->template_id) : '';
 
     	return $Object;
 
@@ -112,14 +94,14 @@ class EmailTemplateRepository
 	*
 	* @Returns Boolen
 	*/
-	public function delete($page_id) 
+	public function delete($template_id) 
 	{
 		try {
 			
-			$delete = EmailTemplate::find($page_id)->delete();
+			$delete = EmailTemplate::find($template_id)->delete();
 
 			if ($delete){
-				$this->storeContent(null, $page_id);
+				$this->storeContent(null, $template_id);
 			}
 
 			return true;
@@ -135,16 +117,16 @@ class EmailTemplateRepository
 	/**
 	* Save related items to database
 	*/
-	public function storeContent($data, $page_id) 
+	public function storeContent($data, $template_id) 
 	{
-		Content::where('item_type', EmailTemplate::class)->where('item_id', $page_id)->delete();
+		Content::where('item_type', EmailTemplate::class)->where('item_id', $template_id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
 				$fields = $value;
 				$fields['item_type'] = EmailTemplate::class;	
-				$fields['item_id'] = $page_id;	
+				$fields['item_id'] = $template_id;	
 				$fields['lang'] = $key;	
 				$fields['prefix'] = isset($value['prefix']) ? $value['prefix'] : Content::generatePrefix($value['title']);	
 				$fields['created_by'] = $this->app->auth()->id;
@@ -161,16 +143,16 @@ class EmailTemplateRepository
 	/**
 	* Save related items to database
 	*/
-	public function storeFields($data, $page_id) 
+	public function storeFields($data, $template_id) 
 	{
-		CustomField::where('model_type', EmailTemplate::class)->where('model_id', $page_id)->delete();
+		CustomField::where('model_type', EmailTemplate::class)->where('model_id', $template_id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
 				$fields = array();
 				$fields['model_type'] = EmailTemplate::class;	
-				$fields['model_id'] = $page_id;	
+				$fields['model_id'] = $template_id;	
 				$fields['code'] = $key;	
 				$fields['value'] = $value;	
 

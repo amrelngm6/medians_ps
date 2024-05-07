@@ -194,7 +194,7 @@ export default
                 case 'delete':
                     var name = content.value.object_name ?? props.object_name ;
                     var key = content.value.object_key ?? props.object_key ;
-                    deleteByKey(props.key, data, name + '.delete');
+                    deleteByKey(key, data, name + '.delete');
                     break;  
             }
         }
