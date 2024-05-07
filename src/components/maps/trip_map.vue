@@ -54,6 +54,10 @@ export default {
     });
 
     const trip = ref(props.trip);
+    const mapOrigin = ref({ lat: 0, lng: 0 }); // Set initial values
+    const mapDestination = ref({ lat: 0, lng: 0 }); // Set initial values
+    const directionsService = ref(null);
+    const directionsRenderer = ref(null);
 
     const originTracking = () => {
       if (trip.value.status == 'started')
@@ -102,10 +106,6 @@ export default {
 
     setValues();
 
-    const mapOrigin = ref({ lat: 0, lng: 0 }); // Set initial values
-    const mapDestination = ref({ lat: 0, lng: 0 }); // Set initial values
-    const directionsService = ref(null);
-    const directionsRenderer = ref(null);
 
     const fetchRoute = () => {
       setTimeout(function(){
