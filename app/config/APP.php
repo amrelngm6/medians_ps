@@ -360,6 +360,7 @@ class APP
 			array( 'title'=>translate('Management'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
+				array('permission'=>'EmailTemplate.index', 'title'=>translate('Email Templates'),  'icon'=>'tag', 'link'=>'admin/email_templates', 'component'=>'email_templates'),
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
 				array('permission'=>'NewsletterSubscriber.index', 'title'=>translate('newsletter_subscribers'),  'icon'=>'tag', 'link'=>'admin/newsletter_subscribers', 'component'=>'newsletter_subscribers'),
 			]
