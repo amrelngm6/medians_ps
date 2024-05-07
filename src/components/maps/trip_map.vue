@@ -12,7 +12,7 @@
 
       <Polyline :options="polylinePath" />
 
-      <CustomMarker v-for="(marker, index) in markers" :options="{
+      <CustomMarker v-for="(marker, index) in markers" v-if="marker" :options="{
         position: marker.marker_position,
       }" @click="markerClicked(marker)">
         <div style="text-align: center">
