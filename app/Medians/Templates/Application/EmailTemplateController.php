@@ -56,10 +56,6 @@ class EmailTemplateController extends CustomController
             [ 'key'=> "page_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "title", 'title'=> translate('Title'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "prefix", 'title'=> translate('prefix'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "homepage", 'title'=> translate('Is homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-            [ 'key'=> "show_header_menu", 'custom_field'=>true, 'title'=> translate('Show at header menu'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-            [ 'key'=> "show_footer_menu1", 'custom_field'=>true, 'title'=> translate('Show at Footer menu 1'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-            [ 'key'=> "show_footer_menu2" , 'custom_field'=>true, 'title'=> translate('Show at Footer menu 2'), 'fillable'=> true, 'column_type'=>'checkbox' ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
@@ -84,6 +80,8 @@ class EmailTemplateController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+				'object_name' => $this->repo->getObjectName(),
+				'object_key' => 'template_id'
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

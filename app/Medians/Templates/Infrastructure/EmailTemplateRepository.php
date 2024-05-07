@@ -23,6 +23,9 @@ class EmailTemplateRepository
 		$this->app = new \config\APP;
 	}
 
+	public function getObjectName()  {
+		return EmailTemplate::class;
+	}
 
 	public function find($page_id, $prefix = null)
 	{
