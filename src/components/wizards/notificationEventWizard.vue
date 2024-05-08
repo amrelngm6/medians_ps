@@ -24,18 +24,16 @@
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
                                             <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Event title')" ></label>
-                                            <input :required="true" autocomplete="off" name="params[title]" class="form-control form-control-solid" :placeholder="translate('Event title')" type="text" v-model="activeItem.title">
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.title" />
 
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Receiver model')" ></label>
-                                            <input :required="true" autocomplete="off" :placeholder="translate('Receiver model')" v-model="activeItem.receiver_model" name="params[receiver_model]" class="form-control form-control-solid" type="text">
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.receiver_model" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <label  v-text="translate('Model')" class="col-lg-4 col-form-label required fw-semibold fs-6" ></label>
-                                            <input :placeholder="translate('Model')" v-model="activeItem.model" name="params[model]" :required="true" autocomplete="off" class="form-control form-control-solid" type="text">
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.model" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                         </div>
@@ -44,18 +42,18 @@
                                 <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
                             </div>
 
-                            <div class="" v-if="activeTab == 'Cost'" :key="activeTab">
+                            <div class="" v-if="activeTab == 'Fields'" :key="activeTab">
                                 <div class="card-body pt-0"  >
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
 
                                             <label  v-text="translate('Action field')" class="col-lg-4 col-form-label required fw-semibold fs-6" ></label>
-                                            <input :placeholder="translate('Action field if model updated')" v-model="activeItem.action_field" name="params[action_field]" :required="true" autocomplete="off" class="form-control form-control-solid" type="text">
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.action_field" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <div v-if="activeItem.action_field != ''">
                                                 <label  v-text="translate('Action value')" class="col-lg-4 col-form-label required fw-semibold fs-6" ></label>
-                                                <input :placeholder="translate('Action value if action field filled')" v-model="activeItem.action_value" name="params[action_value]" :required="true" autocomplete="off" class="form-control form-control-solid" type="text">
+                                                <form_field class="flex-end" :item="activeItem" :column="fillable.action_value" />
                                                 <hr class="block mt-6 my-2 opacity-10" />
                                             </div>
                                             
