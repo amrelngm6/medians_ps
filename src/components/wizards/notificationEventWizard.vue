@@ -526,7 +526,6 @@ export default
 
             return {
                 loader,
-                selectedObject,
                 progressWidth,
                 content,
                 fillable,
