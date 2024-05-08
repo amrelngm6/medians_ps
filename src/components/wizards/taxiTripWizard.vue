@@ -696,10 +696,10 @@ export default
             
             const findUser = () => 
             {
-                if (users)
+                if (users.value)
                 {
-                    for (let i = 0; i < users.length; i++) {
-                        users[i].show = searchText.value.trim() ? checkSimilarUser(users[i]) : 1;
+                    for (let i = 0; i < users.value.length; i++) {
+                        users.value[i].show = searchText.value.trim() ? checkSimilarUser(users.value[i]) : 1;
                     }
                 }
             }
