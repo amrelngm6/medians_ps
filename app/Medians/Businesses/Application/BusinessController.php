@@ -259,12 +259,12 @@ class BusinessController extends CustomController
 	{
 		$params = $this->app->request()->query->all();
 		$auth = $this->app->auth();
-
+		$setting = (new \Medians\Settings\Application\AppSettingsController)->loadSetting();
         try {
 
 			if (!empty($auth))
 			{
-				return $this->repo->getSchools($params, 1);
+				return $this->repo->getSchools($params, isset( $setting['business_load_limit']) ? $setting['business_load_limit'] : 5);
 			}
 
 			return 0;
@@ -278,12 +278,13 @@ class BusinessController extends CustomController
 	{
 		$params = $this->app->request()->query->all();
 		$auth = $this->app->auth();
+		$setting = (new \Medians\Settings\Application\AppSettingsController)->loadSetting();
 
         try {
 
 			if (!empty($auth))
 			{
-				return $this->repo->getCompanies($params, 1);
+				return $this->repo->getCompanies($params, isset( $setting['business_load_limit']) ? $setting['business_load_limit'] : 5);
 			}
 
         } catch (Exception $e) {
