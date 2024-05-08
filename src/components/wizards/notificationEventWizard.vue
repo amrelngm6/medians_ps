@@ -115,13 +115,10 @@
                                         <hr class="block mt-6 my-2 opacity-10" />
                                         <div class="bg-gray-200 shadow-md mb-10 rounded-xl">
                                             <div class="card-header border-0 pt-9">
-                                                <div class="card-title m-0 flex  gap-4" v-if="activeItem.model">
-                                                    <div class="symbol symbol-50px w-50px bg-light">
-                                                        <img  :src="activeItem.model.picture" alt="image" class="p-3" >
-                                                    </div>
+                                                <div class="card-title m-0 flex  gap-4" v-if="activeItem.title">
                                                     <div class="w-full ">
-                                                        <div class="font-semibold" v-text="activeItem.model.name"></div>
-                                                        <div class="" v-text="activeItem.model.mobile"></div>
+                                                        <div class="font-semibold" v-text="activeItem.title"></div>
+                                                        <div class="" v-text="activeItem.subject"></div>
                                                     </div>
                                                 </div>
                                                 <label class=" flex gap-2 cursor-pointer">
