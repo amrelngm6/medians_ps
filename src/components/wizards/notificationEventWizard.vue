@@ -140,10 +140,8 @@
                                                         <div class="timeline-icon me-4"><vue-feather type="check" class="fs-2 "></vue-feather></div>
                                                         <div class="timeline-content pt-4 mt-n2">
                                                             <div class="overflow-auto pe-3">
-                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem[item]" v-text="activeItem[item]"></div>
-                                                            </div>
-                                                            <div class="d-flex align-items-center mt-1 fs-6">
                                                                 <div class="text-muted me-2 fs-7" v-text="translate(item)"></div>
+                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem[item]" v-text="activeItem[item]"></div>
                                                             </div>
                                                         </div>
                                                     </div>
