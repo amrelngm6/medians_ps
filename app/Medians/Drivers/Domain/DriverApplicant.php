@@ -41,4 +41,15 @@ class DriverApplicant extends CustomModel
 	}
 
 
+    public function receiverAsDriver()
+    {
+		$model =  $this->with('driver')->find($this->applicant_id);
+		return  $model->driver;
+    }
+	
+    public function receiverAsUser()
+    {
+		$model =  $this->with('business')->find($this->applicant_id);
+		return isset($model->business->owner) ?  $model->business->owner : null;
+    }
 }
