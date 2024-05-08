@@ -1,5 +1,3 @@
-var qI=0;
-
 function k_jQueryCheck() {
     if (!window.jQuery) {
         var e = document.createElement("script");
@@ -6242,7 +6240,6 @@ function filterAppsList(e, a) {
     }
 }
 function showNewContents(e, a) {
-    
     var t = $("#koMenuItem_content");
     if (typeof e == "undefined") {
         if ($(document).height() / 2 > $(document).scrollTop()) {
@@ -7212,7 +7209,7 @@ function keditableToolbar(e, a) {
     }
     document.execCommand("enableInlineTableEditing", null, !1);
     $(e)
-        .attr({ contenteditable: !0, spellcheck: !1, onDrag: "return null", onDrop: "return false", onpaste: "keditablePaste(event);" })
+        .attr({ contenteditable: !0, spellcheck: !1, onDrag: "return false", onDrop: "return false", onpaste: "keditablePaste(event);" })
         .on("focus", function () {
             focusElement = e;
             $(e).attr("spellcheck", "true");
@@ -7247,10 +7244,9 @@ function keditableToolbar(e, a) {
             if (typeof focusElement.length !== "undefined" && focusElement.length == 1) focusElement = focusElement[0];
             keditingObserver.observe(focusElement);
             if (Math.round(a.top - 60) - $(window).scrollTop() < 0) {
-                // $("html, body").animate({ scrollTop: a.top - 100 });
+                $("html, body").animate({ scrollTop: a.top - 100 });
             }
         });
-        qI++;
 }
 function kToolbarPosition() {
     var e = $(focusElement).offset(),
