@@ -47,12 +47,14 @@
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
 
-                                            <label  v-text="translate('Action field')" class="col-lg-4 col-form-label required fw-semibold fs-6" ></label>
+                                            <span v-text="fillable.action_field.help_text" v-if="fillable.action_field.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <label v-text="fillable.action_field.title" class="col-form-label required fw-semibold fs-5" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.action_field" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <div v-if="activeItem.action_field != ''">
-                                                <label  v-text="translate('Action value')" class="col-lg-4 col-form-label required fw-semibold fs-6" ></label>
+                                                <span v-text="fillable.action_value.help_text" v-if="fillable.action_value.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                                <label v-text="fillable.action_value.title" class="col-form-label required fw-semibold fs-5" ></label>
                                                 <form_field class="flex-end" :item="activeItem" :column="fillable.action_value" />
                                                 <hr class="block mt-6 my-2 opacity-10" />
                                             </div>
