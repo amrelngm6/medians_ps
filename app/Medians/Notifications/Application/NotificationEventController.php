@@ -56,22 +56,16 @@ class NotificationEventController extends CustomController
 				'fixed'=>true,
             ],
             [
-                'value'=> "receiver_title",
-                'text'=> translate('receiver_model'),
-				'width' => 250,
-                'sortable'=> true,
+                'value'=> "receiver_title", 'text'=> translate('receiver_model'), 'width' => 100, 'sortable'=> true,
             ],
             [
-                'value'=> "subject",
-                'text'=> translate('subject'),
-				'width' => 200,
-                'sortable'=> true,
+                'value'=> "template.title", 'text'=> translate('temmplate'), 'width' => 100, 'sortable'=> true,
             ],
             [
-                'value'=> "status",
-                'text'=> translate('status'),
-				'width' => 50,
-                'sortable'=> true,
+                'value'=> "subject", 'text'=> translate('subject'), 'width' => 100, 'sortable'=> true,
+            ],
+            [
+                'value'=> "status",  'text'=> translate('status'), 'width' => 50, 'sortable'=> true,
 			],
 			
             [ 'value'=> "edit", 'text'=> translate('edit'), 'width'=>50  ],
