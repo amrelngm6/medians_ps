@@ -121,18 +121,6 @@
                                                         <div class="" v-text="activeItem.subject"></div>
                                                     </div>
                                                 </div>
-                                                <div class="timeline timeline-border-dashed">
-                                                
-                                                    <div class="timeline-item" v-for="item in ['subject', 'model', 'receiver_model']">
-                                                        <div class="timeline-line"></div>
-                                                        <div class="timeline-icon me-4"><vue-feather type="check" class="fs-2 "></vue-feather></div>
-                                                        <div class="timeline-content mb-10 mt-n2">
-                                                            <div class="overflow-auto pe-3">
-                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem[item]" v-text="activeItem[item]"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <label class=" flex gap-2 cursor-pointer">
                                                     <form_field class="flex-end" :item="activeItem"
                                                         :column="fillable.status">
@@ -144,8 +132,18 @@
                                             </div>
 
                                             <div class="card-body p-9" v-if="activeItem">
+                                            
                                                 <div class="timeline timeline-border-dashed">
-                                                    
+                                                
+                                                    <div class="timeline-item" v-for="item in ['subject', 'model', 'receiver_model']">
+                                                        <div class="timeline-line"></div>
+                                                        <div class="timeline-icon me-4"><vue-feather type="check" class="fs-2 "></vue-feather></div>
+                                                        <div class="timeline-content mb-10 mt-n2">
+                                                            <div class="overflow-auto pe-3">
+                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem[item]" v-text="activeItem[item]"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="h-4px w-100 bg-light mb-5" >
                                                     <div class="rounded h-4px transition transition-all" role="progressbar" :class="progressWidth() < 100 ? 'bg-info' : 'bg-success'" :style="{width: progressWidth()+'%'}"></div>
