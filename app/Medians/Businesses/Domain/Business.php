@@ -107,8 +107,7 @@ class Business extends CustomModel
     
 	  public function receiverAsUser() 
     {
-      $item =  $this->with('owner')->find($this->business_id);
-      return isset($item->owner) ?  $item->owner : null;
+      return  $this->owner;
     }
 
 }
