@@ -135,7 +135,6 @@ class PageRepository
 		}
 	}
 
-
 	/**
 	* Save related items to database
 	*/
@@ -144,23 +143,28 @@ class PageRepository
 		Content::where('item_type', Page::class)->where('item_id', $page_id)->delete();
 		if ($data)
 		{
+			
 			foreach ($data as $key => $value)
 			{
-				$fields = $value;
-				$fields['item_type'] = Page::class;	
-				$fields['item_id'] = $page_id;	
-				$fields['lang'] = $key;	
-				$fields['prefix'] = isset($value['prefix']) ? $value['prefix'] : Content::generatePrefix($value['title']);	
-				$fields['created_by'] = $this->app->auth()->id;
-
-				$Model = Content::create($fields);
-				$Model->update($fields);
-			}
+				$Model = $this->storeLang($value);
+			}	
 	
 			return $Model;		
 		}
 	}
 
+	public function storeLang($fields, $key, $page_id )
+	{
+		$fields['item_type'] = Page::class;	
+		$fields['item_id'] = $page_id;	
+		$fields['lang'] = $key;	
+		$fields['prefix'] = isset($fields['prefix']) ? $fields['prefix'] : Content::generatePrefix($fields['title']);	
+		$fields['created_by'] = $this->app->auth()->id;
+
+		$Model = Content::create($fields);
+
+		return $Model;
+	}
 
 	/**
 	* Save related items to database

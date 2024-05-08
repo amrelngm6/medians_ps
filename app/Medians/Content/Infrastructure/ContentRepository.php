@@ -4,6 +4,7 @@ namespace Medians\Content\Infrastructure;
 
 use Medians\Content\Domain\Content;
 use Medians\Pages\Domain\Page;
+use Medians\Languages\Domain\Language;
 
 
 class ContentRepository 
@@ -54,7 +55,20 @@ class ContentRepository
 		}
 	}
 
+	public function handleMissingContent($page, $lang)
+	{
+		try 
+		{
+			$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
+			$lang = Language::where('status', 'on')->where('language_code', $lang)->first();
+	
+			$save = $pageRepo->storeContent([ $lang->language_code=>['title'=>$page->title] ], $page->page_id);
+			
+		} catch (\Throwable $th) {
 
+			return null;
+		}
+	}
 
 
 }
