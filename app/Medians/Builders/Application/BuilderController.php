@@ -47,7 +47,7 @@ class BuilderController extends CustomController
 			$check = $this->pageRepo->findByLang($request->get('page_id'), $lang );
 
 			(isset($check->page_id) && !$check->content) ? $this->contentRepo->handleMissingContent($check, $lang) : null;
-
+			
 			return render('views/admin/builder/index.html.twig', [
 				'page' => $check->content ?? [], 
 				'item' => $check,
