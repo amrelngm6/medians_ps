@@ -135,7 +135,7 @@
                                             
                                                 <div class="timeline timeline-border-dashed">
                                                 
-                                                    <div class="timeline-item" v-for="item in ['subject', 'model', 'receiver_model']">
+                                                    <div class="timeline-item" v-for="item in ['action', 'subject', 'model', 'receiver_model']">
                                                         <div class="timeline-line"></div>
                                                         <div class="timeline-icon me-4"><vue-feather type="check" class="fs-2 "></vue-feather></div>
                                                         <div class="timeline-content pt-1 mt-n2">
