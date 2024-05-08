@@ -83,7 +83,7 @@ class NotificationEventController extends CustomController
 			[ 'key'=> "receiver_model", 'title'=> translate('Receiver model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title', 'data'=>$this->loadReceiverModels('receiver_model') ],
 			[ 'key'=> "model", 'title'=> translate('Model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data'=>$this->loadModels('model') ],
 			
-			[ 'key'=> "action", 'title'=> translate('Action'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 'data'=>[
+			[ 'key'=> "action", 'title'=> translate('Action'), 'help_text' => translate('When the event should be run'),'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 'data'=>[
 				['action'=>'create','title'=>translate('On Create')],
 				['action'=>'update','title'=>translate('On Update')],
 				['action'=>'delete','title'=>translate('On delete')],
