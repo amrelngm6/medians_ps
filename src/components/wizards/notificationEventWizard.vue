@@ -166,7 +166,7 @@
                                         
                                     </div>
                                 </div>
-                                <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="saveTrip" v-text="translate('Submit')"></a></p>
+                                <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="saveEvent" v-text="translate('Submit')"></a></p>
                             </div>
 
                         </div>
@@ -247,7 +247,7 @@ export default
                     d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
                     params.append('params[' + k + ']', d)
                 }
-                let type = array.trip_id > 0 ? 'update' : 'create';
+                let type = array.id > 0 ? 'update' : 'create';
                 params.append('type', 'NotificationEvent.' + type)
                 
                 const currentInstance =  getCurrentInstance();
