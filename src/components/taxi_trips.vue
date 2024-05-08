@@ -216,6 +216,7 @@ export default
 
                 case 'edit':
                     defaultTab.value = null;
+                    defaultTab.value = 'Confirm'
                     showWizard.value = true;
                     break;
 
