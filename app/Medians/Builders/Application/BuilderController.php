@@ -106,8 +106,10 @@ class BuilderController extends CustomController
 			
 			$request = $this->app->request();
 			$check = $this->contentRepo->find($request->get('prefix'));
+			
+			$type = $request->get('type') == 'email' ? 'email_languages' : 'languages';
 
-			render('views/admin/builder/templates/languages.html.twig',['page'=>$check]);
+			return render('views/admin/builder/templates/'.$type.'.html.twig',['page'=>$check]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

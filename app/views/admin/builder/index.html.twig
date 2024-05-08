@@ -73,6 +73,7 @@
     <style>:root{--ui-font:'Poppins';--ui-font-normal:400;--ui-font-bold:700;--ui-font-system:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"}</style>
     <script>
     var subpagesList = "<ul data-menu='1'><li></li></ul>";
+	function openLink(l){window.location.href= l;}
     </script>
     <script type="text/javascript" src="/src/builder/assets/js/assets.js"></script>
 	<script>
@@ -1428,13 +1429,7 @@
                     </span>
                     <small class="koTools_itemBottom"></small>
                 </a>
-<!--                 <a href="javascript:void(null)" class="koLeftButton" onclick="koMenuOpen('design',this)" id="koMenuItem_design">
-                    <small class="koTools_itemTop"></small>
-                    <span class="koLeftButtonHolder">
-                        <i class="fas fa-paint-brush"></i><span>Design</span>
-                    </span>
-                    <small class="koTools_itemBottom"></small>
-                </a> -->
+				
                 <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/meta?prefix={{page.prefix}}')" class="koLeftButton" id="koMenuItem_settings">
                     <small class="koTools_itemTop"></small>
                     <span class="koLeftButtonHolder">
@@ -1443,13 +1438,14 @@
                     <small class="koTools_itemBottom"></small>
                 </a>
 				
-                <a href="/admin/builder?prefix={{page.switch_lang.prefix}}" class="koLeftButton" id="koMenuItem_settings">
+				<a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/languages?type=page&prefix={{page.prefix}}')" class="koLeftButton" id="koMenuItem_settings">
                     <small class="koTools_itemTop"></small>
                     <span class="koLeftButtonHolder">
-                        <i class="fas fa-globe"></i><span>{{page.switch_lang.lang}} </span>
+                        <i class="fas fa-globe"></i><span>{{lang.translate('Languages')}} </span>
                     </span>
                     <small class="koTools_itemBottom"></small>
                 </a>
+
             </div>
             <div class="koLeftMenuBottom">
                 <div class="koLeftMenuItems">
