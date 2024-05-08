@@ -1,7 +1,12 @@
 <template>
-    <div class="w-full flex overflow-auto" >
-        <div class=" w-full">
+    <div class="w-full overflow-auto" >
+        
+        
+        <notification_event_wizard @callback="showWizard = false" :active_tab="defaultTab" :conf="conf" 
+                v-if="showWizard" :system_setting="system_setting"
+                :key="showWizard"   :item="activeItem"  />
 
+        <div class=" w-full">
             <main v-if="content && !showLoader" class=" flex-1 overflow-x-hidden overflow-y-auto  w-full">
                 <!-- New releases -->
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
@@ -66,6 +71,7 @@ import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert} from '@/utils.vue';
 import close_icon from '@/components/svgs/Close.vue';
 import delete_icon from '@/components/svgs/trash.vue';
+import notification_event_wizard from '@/components/wizards/notificationEventWizard.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
@@ -86,6 +92,7 @@ export default
         SideFormUpdate,
         translate,
         close_icon,
+        notification_event_wizard,
         delete_icon
     },  
     setup(props) {
@@ -192,7 +199,7 @@ export default
     props: [
         'path',
         'lang',
-        'setting',
+        'system_setting',
         'conf',
         'auth',
     ],
