@@ -24,7 +24,7 @@ class CustomModel extends Model
 
 	public function getPrimaryKey()
 	{
-		return  $this->primaryKey;
+		return  $this->primaryKey ?? 'id';
 	}
 
 	public function getTable()
