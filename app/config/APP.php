@@ -78,6 +78,7 @@ class APP
 		$_SESSION['lang'] = isset($_SESSION['site_lang']) ? $_SESSION['site_lang'] : $this->lang_code;
 		$this->lang = $_SESSION['lang']; // Check active language
 
+		return $this;
 	}
 
 

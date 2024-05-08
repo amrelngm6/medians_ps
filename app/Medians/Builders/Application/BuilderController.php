@@ -39,8 +39,8 @@ class BuilderController extends CustomController
 			
 			$request = $this->app->request();
 
-			$check = $this->pageRepo->findByLang($request->get('page_id'), $request->get('lang'));
-			print_r($check);
+			$lang = $request->get('lang');
+			$check = $this->pageRepo->findByLang($request->get('page_id'), $lang ?? $this->app->setLang()->lang);
 			return render('views/admin/builder/index.html.twig', [
 				'page' => $check->content, 
 				'precode' => isset($check->content) && (substr(trim($check->content), 0, 8) == '<section') ? '' : '<section id="newKeditItem" class="kedit">', 
