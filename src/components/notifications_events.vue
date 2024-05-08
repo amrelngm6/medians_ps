@@ -2,7 +2,7 @@
     <div class="w-full overflow-auto" >
         
         
-        <notification_event_wizard @callback="showWizard = false" :active_tab="defaultTab" :conf="conf" 
+        <notification_event_wizard @callback="closeSide" :active_tab="defaultTab" :conf="conf" 
                 v-if="showWizard" :system_setting="system_setting"
                 :key="showWizard"   :item="activeItem"  />
 
@@ -53,12 +53,7 @@
                         </datatabble>
                     </div>
 
-                    <side-form-update :conf="conf" model="NotificationEvent.update" :item="activeItem" :model_id="activeItem.event_id"
-                        :index="activeItem.event_id" v-if="showEditSide && !showAddSide" :columns="content.fillable"
-                        class="col-md-3" @callback="closeSide" />
 
-                    <side-form-create  @callback="closeSide" :conf="conf" model="NotificationEvent.create" v-if="showAddSide && content && content.fillable" :columns="content.fillable"  class="col-md-3" />
-                    
                 </div>
                 <!-- END New releases -->
             </main>
@@ -128,6 +123,7 @@ export default
         const closeSide = () => {
             showAddSide.value = false;
             showEditSide.value = false;
+            showWizard.value = false;
         }
 
         
