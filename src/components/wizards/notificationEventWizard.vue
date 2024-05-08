@@ -29,7 +29,11 @@
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.title" />
                                             <hr class="block mt-6 my-2 opacity-10" />
                                             
-                                            
+                                            <span v-text="fillable.receiver_model.help_text" v-if="fillable.receiver_model.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <label v-text="fillable.receiver_model.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.receiver_model" />
+                                            <hr class="block mt-6 my-2 opacity-10" />
+
                                             <span v-text="fillable.model.help_text" v-if="fillable.model.help_text" class="col-form-label required fw-semibold fs-5" ></span>
                                             <label v-text="fillable.model.title" class="col-form-label required fw-semibold fs-5" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.model" />
