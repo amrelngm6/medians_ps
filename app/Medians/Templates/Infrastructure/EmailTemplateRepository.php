@@ -129,7 +129,7 @@ class EmailTemplateRepository
 		{
 			foreach ($data as $key => $value)
 			{
-				$Model = $this->storeLang($value);
+				$Model = $this->storeLang($value, $key, $template_id);
 			}
 	
 			return $Model;		
@@ -137,13 +137,13 @@ class EmailTemplateRepository
 	}
 
 
-	public function storeLang($fields, $key, $page_id )
+	public function storeLang($fields, $key, $item_id )
 	{
 		$checkPrefix = isset($fields['prefix']) ? $fields['prefix'] : Content::generatePrefix($fields['title']);	
 		$prefix = Content::where('prefix',$checkPrefix)->first() ? $checkPrefix.rand(999, 999999) : $checkPrefix;
 
-		$fields['item_type'] = Page::class;	
-		$fields['item_id'] = $page_id;	
+		$fields['item_type'] = EmailTemplate::class;	
+		$fields['item_id'] = $item_id;	
 		$fields['lang'] = $key;	
 		
 		$Model = Content::firstOrCreate($fields);

@@ -145,7 +145,7 @@ class PageRepository
 		{
 			foreach ($data as $key => $value)
 			{
-				$Model = $this->storeLang($value);
+				$Model = $this->storeLang($value, $key, $page_id);
 			}	
 	
 			return $Model;		
