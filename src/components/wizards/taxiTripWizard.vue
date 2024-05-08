@@ -33,7 +33,7 @@
                                             class="form-control form-control-lg form-control-solid px-15"
                                             :placeholder="translate('Search by name or mobile')">
                                     </div>
-                                    <div class="w-full " v-for="usermodel in userslist" v-if="searchText">
+                                    <div class="w-full " v-for="usermodel in users" v-if="searchText">
                                         <a href="javascript:;" :key="usermodel.show" v-if="usermodel.show"
                                             class="d-flex align-items-center p-3 bg-gray-100 rounded-lg shadow-md  mb-1">
                                             <div class="symbol symbol-35px symbol-circle me-5"><img alt="Pic"
@@ -513,7 +513,7 @@ export default
             activeItem.value.discount_amount = activeItem.value.discount_amount ?? 0;
 
             const users = ref([]);
-            users.value = props.userslist ?? []: 
+            users.value = props.userslist ?? []; 
 
 
             /**
