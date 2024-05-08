@@ -116,6 +116,7 @@ class NotificationEventController extends CustomController
 	        'items' => $this->repo->get(),
 	        'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
+			'fillable_grouped' => $this->groped_fillable(),
 	    ]);
 	}
 
@@ -134,6 +135,14 @@ class NotificationEventController extends CustomController
 		return $data;
 	}  
 
+	public function groped_fillable()
+	{
+		$group = [];
+		foreach ($this->fillable() as $key => $value) {
+			$group[$value['key']] = $value;
+		}
+		return $group;
+	}
 
 	/**
 	 * Supported receivers models for events

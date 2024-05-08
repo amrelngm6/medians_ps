@@ -3,7 +3,7 @@
         
         
         <notification_event_wizard @callback="closeSide" :active_tab="defaultTab" :conf="conf" 
-                v-if="showWizard" :system_setting="system_setting"
+                v-if="showWizard" :system_setting="system_setting" :fillable="content.fillable_grouped"
                 :key="showWizard"   :item="activeItem"  />
 
         <div class=" w-full">

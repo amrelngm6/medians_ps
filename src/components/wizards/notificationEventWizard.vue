@@ -327,6 +327,7 @@ export default
             'system_setting',
             'item',
             'active_tab',
+            'fillable',
         ],
 
     };
