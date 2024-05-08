@@ -44,7 +44,6 @@ class NotificationEventController extends CustomController
 				'value'=> "title",
                 'text'=> translate('name'),
                 'sortable'=> false,
-				'fixed'=>true,
 				'width' => 200,
             ],
             [
