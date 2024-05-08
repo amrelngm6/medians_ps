@@ -50,10 +50,17 @@
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
 
-                                            <span v-text="fillable.action_field.help_text" v-if="fillable.action_field.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <label v-text="fillable.action_field.title" class="col-form-label required fw-semibold fs-5" ></label>
-                                            <form_field class="flex-end" :item="activeItem" :column="fillable.action_field" />
+                                            <span v-text="fillable.action.help_text" v-if="fillable.action.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <label v-text="fillable.action.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.action" />
                                             <hr class="block mt-6 my-2 opacity-10" />
+
+                                            <div v-if="activeItem.action == 'update'">
+                                                <span v-text="fillable.action_field.help_text" v-if="fillable.action_field.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                                <label v-text="fillable.action_field.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                                <form_field class="flex-end" :item="activeItem" :column="fillable.action_field" />
+                                                <hr class="block mt-6 my-2 opacity-10" />
+                                            </div>
 
                                             <div v-if="activeItem.action_field != ''">
                                                 <span v-text="fillable.action_value.help_text" v-if="fillable.action_value.help_text" class="col-form-label required fw-semibold fs-5" ></span>
@@ -64,10 +71,6 @@
                                             
                                                         <!-- 
                                                             
-            [ 'key'=> "title", 'title'=> translate('title'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-			[ 'key'=> "receiver_model", 'title'=> translate('Receiver model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title', 'data'=>$this->loadReceiverModels('receiver_model') ],
-			[ 'key'=> "model", 'title'=> translate('Model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data'=>$this->loadModels('model') ],
-			
 			[ 'key'=> "action", 'title'=> translate('Action'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 'data'=>[
 				['action'=>'create','title'=>translate('On Create')],
 				['action'=>'update','title'=>translate('On Update')],
