@@ -145,6 +145,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <div v-if="fillable.template" class="timeline-item" v-for="template in fillable.template.data">
+                                                        <div v-if="template.template_id == activeItem['template_id']" class="timeline-line"></div>
+                                                        <div v-if="template.template_id == activeItem['template_id']" class="timeline-icon me-4"><vue-feather type="check" class="fs-2 "></vue-feather></div>
+                                                        <div v-if="template.template_id == activeItem['template_id']" class="timeline-content pt-1 mt-n2">
+                                                            <div class="overflow-auto pe-3">
+                                                                <div class="text-muted me-2 fs-7" v-text="translate("Template")"></div>
+                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem["template_id"]" v-text="activeItem[item]"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="h-4px w-100 bg-light mb-5" >
                                                     <div class="rounded h-4px transition transition-all" role="progressbar" :class="progressWidth() < 100 ? 'bg-info' : 'bg-success'" :style="{width: progressWidth()+'%'}"></div>
