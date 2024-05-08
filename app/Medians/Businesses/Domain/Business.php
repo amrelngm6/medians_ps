@@ -107,7 +107,6 @@ class Business extends CustomModel
     
 	  public function receiverAsUser() 
     {
-      error_log(json_encode($this));
       return  $this->owner;
     }
 
