@@ -87,6 +87,11 @@
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
                                            
+                                            <span v-text="fillable.subject.help_text" v-if="fillable.subject.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <label v-text="fillable.subject.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.subject" />
+                                            <hr class="block mt-6 my-2 opacity-10" />
+                                           
                                             <span v-text="fillable.template_id.help_text" v-if="fillable.template_id.help_text" class="col-form-label required fw-semibold fs-5" ></span>
                                             <label v-text="fillable.template_id.title" class="col-form-label required fw-semibold fs-5" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.template_id" />
