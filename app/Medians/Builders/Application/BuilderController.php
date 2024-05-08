@@ -4,6 +4,7 @@ namespace Medians\Builders\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Builders\Infrastructure\BuilderRepository;
+use Medians\Templates\Infrastructure\EmailTemplateRepository;
 use Medians\Content\Infrastructure\ContentRepository;
 use Medians\Pages\Infrastructure\PageRepository;
 
@@ -16,6 +17,7 @@ class BuilderController extends CustomController
 	protected $repo;
 	public $contentRepo;
 	public $pageRepo;
+	public $emailTemplateRepo;
 	public $emailController;
 
 	function __construct()
@@ -25,6 +27,8 @@ class BuilderController extends CustomController
 		$this->repo = new BuilderRepository;
 		$this->contentRepo = new ContentRepository;
 		$this->pageRepo = new PageRepository;
+		$this->emailTemplateRepo = new EmailTemplateRepository;
+
 		$this->emailController = new EmailBuilderController;
 
 	}
@@ -103,15 +107,36 @@ class BuilderController extends CustomController
 	 */ 
 	public function languages()
 	{
-
 		try {
 			
 			$request = $this->app->request();
-			$check = $this->contentRepo->find($request->get('prefix'));
-			
-			$type = $request->get('type') == 'email' ? 'email_languages' : 'languages';
 
-			return render('views/admin/builder/templates/'.$type.'.html.twig',['page'=>$check]);
+			if ($request->get('type') == 'email')
+			{
+				return $this->email_languages();
+			}
+
+			$check = $this->pageRepo->find($request->get('item_id'));
+
+			return render('views/admin/builder/templates/languages.html.twig',['page'=>$check]);
+
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	}
+
+	/**
+	 * Load builder meta
+	 */ 
+	public function email_languages()
+	{
+		try {
+			
+			$request = $this->app->request();
+		
+			$check = $this->emailTemplateRepo->find($request->get('item_id'));
+			
+			return render('views/admin/builder/templates/email_languages.html.twig',['page'=>$check]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
