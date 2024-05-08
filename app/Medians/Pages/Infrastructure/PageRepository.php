@@ -154,8 +154,8 @@ class PageRepository
 
 	public function storeLang($fields, $key, $page_id )
 	{
-		$prefix = isset($fields['prefix']) ? $fields['prefix'] : Content::generatePrefix($fields['title']);	
-		$checkPrefix = Content::find($prefix) ? $prefix.rand(999, 999999) : $prefix;
+		$checkPrefix = isset($fields['prefix']) ? $fields['prefix'] : Content::generatePrefix($fields['title']);	
+		$prefix = Content::where('prefix',$checkPrefix)->first() ? $checkPrefix.rand(999, 999999) : $checkPrefix;
 
 		$fields['item_type'] = Page::class;	
 		$fields['item_id'] = $page_id;	
