@@ -10,7 +10,7 @@
                 <div class=" card w-full py-10">
                     <div class="w-full stepper stepper-links ">
                         <div class="stepper-nav justify-content-center py-2 mb-10">
-                            <div class="stepper-item " v-for="row in fillable" @click="activeTab = row">
+                            <div class="stepper-item " v-for="row in tabs" @click="activeTab = row">
                                 <h3 :class="activeTab == row ? 'text-danger border-danger' : 'text-gray-400 border-transparent'"
                                     class="cursor-pointer pb-3 px-2 stepper-title text-md border-b " v-text="translate(row)"></h3>
                             </div>
@@ -183,7 +183,7 @@ export default
             const searchText = ref('');
             const locationError = ref(null);
             const collapsed = ref(false);
-            const fillable = ref(["Info", 'Content', 'Fields',  'Confirm']);
+            const tabs = ref(["Info", 'Content', 'Fields',  'Confirm']);
             const places = ref([]);
             const showPlaceSearch = ref(false);
             const pickup_placeSearch = ref('');
@@ -241,7 +241,7 @@ export default
                 loader,
                 progressWidth,
                 content,
-                fillable,
+                tabs,
                 activeItem,
                 activeTab,
                 translate,
