@@ -512,7 +512,9 @@ export default
             }
             activeItem.value.discount_amount = activeItem.value.discount_amount ?? 0;
 
-            const users = (props.userslist) ? ref(props.userslist) : ref([]);
+            const users = ref([]);
+            users.value = props.userslist ?? []: 
+
 
             /**
              * Get current location
@@ -694,10 +696,10 @@ export default
             
             const findUser = () => 
             {
-                if (props.userslist)
+                if (users)
                 {
-                    for (let i = 0; i < props.userslist.length; i++) {
-                        props.userslist[i].show = searchText.value.trim() ? checkSimilarUser(props.userslist[i]) : 1;
+                    for (let i = 0; i < users.length; i++) {
+                        users[i].show = searchText.value.trim() ? checkSimilarUser(users[i]) : 1;
                     }
                 }
             }
