@@ -86,7 +86,7 @@ class HelpMessage extends CustomModel
 	public function receiverAsUser() 
 	{
 		$item =  $this->with('business')->find($this->message_id);
-		return isset($model->business->owner) ?  [$model->business->owner] : null;
+		return isset($model->business->owner) ?  $model->business->owner : null;
 	}
 
 	

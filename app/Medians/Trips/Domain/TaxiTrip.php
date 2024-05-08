@@ -185,7 +185,7 @@ class TaxiTrip extends CustomModel
     public function receiverAsUser()
     {
 		$model =  $this->with('business')->find($this->trip_id);
-		return isset($model->business->owner) ?  [$model->business->owner] : null;
+		return isset($model->business->owner) ?  $model->business->owner : null;
     }
 
 }

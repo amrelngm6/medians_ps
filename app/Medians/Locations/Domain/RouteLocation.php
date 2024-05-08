@@ -148,7 +148,7 @@ class RouteLocation extends CustomModel
 	public function receiverAsUser() 
 	{
 		$model =  $this->with('business')->find($this->location_id);
-		return isset($model->business->owner) ?  [$model->business->owner] : null;
+		return isset($model->business->owner) ?  $model->business->owner : null;
 	}
 
 }

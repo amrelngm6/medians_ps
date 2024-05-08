@@ -96,12 +96,19 @@ class Business extends CustomModel
 
     public function gallery()
     {
-		return $this->hasMany(Gallery::class, 'business_id', 'business_id');	
+		  return $this->hasMany(Gallery::class, 'business_id', 'business_id');	
     }
 
     public function logo_field()
     {
-		return $this->hasOne(Settings::class, 'business_id', 'business_id')->where('code','logo');	
+		  return $this->hasOne(Settings::class, 'business_id', 'business_id')->where('code','logo');	
+    }
+
+    
+	  public function receiverAsUser() 
+    {
+      $item =  $this->with('owner')->find($this->business_id);
+      return isset($item->owner) ?  $item->owner : null;
     }
 
 }
