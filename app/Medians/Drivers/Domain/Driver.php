@@ -159,6 +159,12 @@ class Driver extends CustomModel
 		return  $this;
     }
 	
+    public function receiverAsUser()
+    {
+		$model =  $this->with('business')->find($this->applicant_id);
+		return isset($model->business->owner) ?  [$model->business->owner] : null;
+    }
+	
 
 
 }

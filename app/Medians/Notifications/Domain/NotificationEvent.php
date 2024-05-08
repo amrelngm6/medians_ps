@@ -124,53 +124,7 @@ class NotificationEvent extends CustomModel
 	{
 		return $user->model == $event->receiver_model ? $user : null;
 	}
-
 	
-
-	
-	/**
-	 * Filter Business Owners notification 
-	 * 
-	 * @param $event Object
-	 * @param $model Object Event related model
-	 */
-	public function filterUser($event, $model)
-	{
-		switch (get_class($model)) 
-		{
-			case HelpMessageComment::class:
-				$item =  $model->with('message')->find($model->message_id);
-				return isset($model->message->business->owner) ?  [$model->message->business->owner] : null;
-				break;
-
-			case HelpMessage::class:
-				$item =  $model->with('business')->find($model->message_id);
-				return isset($model->business->owner) ?  [$model->business->owner] : null;
-				break;
-
-			case RouteLocation::class:
-				$location =  $model->with('business')->find($model->route_location);
-				return isset($model->business->owner) ?  [$model->business->owner] : null;
-				break;
-
-			case DriverApplicant::class:
-				$item =  $model->with('business')->find($model->applicant_id);
-				return isset($model->business->owner) ?  [$model->business->owner] : null;
-				break;
-
-			case TaxiTrip::class:
-				$object =  $model->with('business')->find($model->trip_id);
-				// $object =  $model->with(['business'=>function($q){return $q->with('owner');}])->find($model->trip_id);
-				return isset($model->business->owner) ?  [$model->business->owner] : null;
-				break;
-				
-			default:
-				return $model;
-				break;
-			
-		}
-	}
-
 
 	/**
 	 * Prepare notification receivers
@@ -193,7 +147,7 @@ class NotificationEvent extends CustomModel
 				break;
 				
 			case User::class:
-				return $this->filterUser($event, $model);
+				return method_exists($model, 'receiverAsUser') ? [$this->validateUserType($event, $model->receiverAsUser())] : null;
 				break;
 			
 		}

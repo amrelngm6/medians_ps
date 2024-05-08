@@ -145,5 +145,10 @@ class RouteLocation extends CustomModel
         return isset($Object->route->driver) ? $Object->route->driver : null;
     }
 
+	public function receiverAsUser() 
+	{
+		$model =  $this->with('business')->find($this->location_id);
+		return isset($model->business->owner) ?  [$model->business->owner] : null;
+	}
 
 }

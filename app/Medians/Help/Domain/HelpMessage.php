@@ -83,6 +83,11 @@ class HelpMessage extends CustomModel
 		return $this->where('user_type', Driver::class)->user;
 	}
 
-	
+	public function receiverAsUser() 
+	{
+		$item =  $this->with('business')->find($this->message_id);
+		return isset($model->business->owner) ?  [$model->business->owner] : null;
+	}
+
 	
 }
