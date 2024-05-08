@@ -39,7 +39,6 @@ class NotificationEventController extends CustomController
                 'text'=> '#',
                 'sortable'=> false,
 				'width' => 30,
-				'fixed'=>true,
             ],
             [
 				'value'=> "title",
@@ -53,7 +52,6 @@ class NotificationEventController extends CustomController
                 'text'=> translate('model'),
                 'sortable'=> true,
 				'width' => 300,
-				'fixed'=>true,
             ],
             [
                 'value'=> "receiver_title", 'text'=> translate('receiver_model'), 'width' => 100, 'sortable'=> true,
