@@ -138,7 +138,7 @@
                                                     <div class="timeline-item" v-for="item in ['subject', 'model', 'receiver_model']">
                                                         <div class="timeline-line"></div>
                                                         <div class="timeline-icon me-4"><vue-feather type="check" class="fs-2 "></vue-feather></div>
-                                                        <div class="timeline-content mb-10 mt-n2">
+                                                        <div class="timeline-content pt-4 mt-n2">
                                                             <div class="overflow-auto pe-3">
                                                                 <div class="fs-5 fw-semibold mb-2" v-if="activeItem[item]" v-text="activeItem[item]"></div>
                                                             </div>
