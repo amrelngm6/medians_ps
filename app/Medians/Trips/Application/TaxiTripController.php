@@ -93,6 +93,7 @@ class TaxiTripController extends CustomController
 		        'drivers' => $this->driverRepo->getActive(),
 		        'vehicles' => $this->vehicleRepo->get(),
 		        'supervisors' => $this->supervisorRepo->get(),
+		        'parents' => $this->parentRepo->get(),
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

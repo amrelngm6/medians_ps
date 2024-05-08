@@ -11,16 +11,16 @@
                 <div class="text-center pb-15 px-5">
                     <div class="relative mx-auto max-w-6xl py-4">
                         <div class="w-full flex gap-10">
-                            <div class="w-full" v-if="auth && auth.business.type == 'school'" @click="disable_students ? null : setType('student')">
-                                <input type="radio" class="btn-check" value="student"
-                                    :checked="activeItem.usertype == 'student' ? true : false"
+                            <div class="w-full" v-if="auth && auth.business.type == 'school'" @click="disable_students ? null : setType('parent')">
+                                <input type="radio" class="btn-check" value="parents"
+                                    :checked="activeItem.usertype == 'parents' ? true : false"
                                     name="payment_type" />
                                 <label :class="disable_students ? 'disabled' : ''" 
                                     class="gap-6 btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-10">
                                     <vue-feather type="users"></vue-feather>
                                     <span class="d-block fw-semibold text-start">
                                         <span class="text-gray-900 fw-bold d-block fs-4 mb-2"
-                                            v-text="translate('Student')"></span>
+                                            v-text="translate('Parent')"></span>
                                         <span class="text-muted fw-semibold fs-6"
                                             v-text="alias"></span>
                                     </span>
