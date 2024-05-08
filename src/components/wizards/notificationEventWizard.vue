@@ -25,10 +25,13 @@
                                         <div class="max-w-xl mb-6 mx-auto row" >
                                             <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Event title')" ></label>
                                             <input :required="true" autocomplete="off" name="params[title]" class="form-control form-control-solid" :placeholder="translate('Event title')" type="text" v-model="activeItem.title">
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.title" />
+
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Receiver model')" ></label>
                                             <input :required="true" autocomplete="off" :placeholder="translate('Receiver model')" v-model="activeItem.receiver_model" name="params[receiver_model]" class="form-control form-control-solid" type="text">
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.receiver_model" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <label  v-text="translate('Model')" class="col-lg-4 col-form-label required fw-semibold fs-6" ></label>
@@ -55,8 +58,13 @@
                                                 <input :placeholder="translate('Action value if action field filled')" v-model="activeItem.action_value" name="params[action_value]" :required="true" autocomplete="off" class="form-control form-control-solid" type="text">
                                                 <hr class="block mt-6 my-2 opacity-10" />
                                             </div>
-
+                                            
                                                         <!-- 
+                                                            
+            [ 'key'=> "title", 'title'=> translate('title'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
+			[ 'key'=> "receiver_model", 'title'=> translate('Receiver model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title', 'data'=>$this->loadReceiverModels('receiver_model') ],
+			[ 'key'=> "model", 'title'=> translate('Model'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data'=>$this->loadModels('model') ],
+			
 			[ 'key'=> "action", 'title'=> translate('Action'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 'data'=>[
 				['action'=>'create','title'=>translate('On Create')],
 				['action'=>'update','title'=>translate('On Update')],
@@ -112,91 +120,14 @@
                                             <div class="card-body p-9" v-if="activeItem">
                                                 <div class="timeline timeline-border-dashed">
                                                     
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-line"></div>
-                                                        <div class="timeline-icon me-4"><vue-feather type="circle" class="fs-2 text-success"></vue-feather></div>
-
-                                                        <div class="timeline-content mb-10 mt-n2">
-                                                            <div class="overflow-auto pe-3">
-                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem" v-text="activeItem.pickup_address"></div>
-
-                                                                <div class="d-flex align-items-center mt-1 fs-6">
-                                                                    <div class="text-muted me-2 fs-7" v-text="translate('Pickup')"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-line"></div>
-                                                        <div class="timeline-icon me-4"><vue-feather type="map-pin" class="fs-2 text-danger"></vue-feather></div>
-
-                                                        <div class="timeline-content mb-10 mt-n2">
-                                                            <div class="overflow-auto pe-3">
-                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem" v-text="activeItem.destination_address"></div>
-
-                                                                <div class="d-flex align-items-center mt-1 fs-6">
-                                                                    <div class="text-muted me-2 fs-7" v-text="translate('Destination')"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="h-4px w-100 bg-light mb-5" >
                                                     <div class="rounded h-4px transition transition-all" role="progressbar" :class="progressWidth() < 100 ? 'bg-info' : 'bg-success'" :style="{width: progressWidth()+'%'}"></div>
                                                 </div>
                                                 
-                                                <div class="w-full flex gap-4" v-if="activeItem">
-                                                    
-                                                    <div class="flex gap-4 min-w-250px  " v-if="activeItem.driver">
-                                                        <img :src="activeItem.driver.picture" class="rounded-full bg-white border-1 border border-gray-600 p-1 w-12 h-12" />
-                                                        <div class="block gap-4 w-full">
-                                                            <span class="w-full block font-semibold" v-text="translate('Driver')"></span>
-                                                            <span class="w-full block" v-text="activeItem.driver.name"></span>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="w-150px flex gap-4" v-if="activeItem.vehicle">
-                                                        <car_icon />
-                                                        <div class="block gap-4">
-                                                            <span class="w-full block font-semibold" v-text="translate('Vehicle')"></span>
-                                                            <span class="w-full block" v-text="activeItem.vehicle.plate_number"></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="w-125px flex-end" v-if="activeItem.date">
-                                                        <span class="w-full block font-semibold" v-text="translate('Trip date')"></span>
-                                                        <div class="w-full flex gap-4">
-                                                            <span class=" " v-text="activeItem.date"></span>
-                                                            <span class=" " v-text="activeItem.start_time"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
-                                        <div class="flex gap-6 pb-4 font-semibold text-lg">
-                                                
-                                            <div class="flex gap-6 w-full">
-                                                <div v-text="translate('Subtotal')"></div>
-                                                <div v-text="currency.symbol +''+ activeItem.subtotal"></div>
-                                            </div>
-
-                                            <div class="flex gap-6 w-full">
-                                                <div v-text="translate('Discount')"></div>
-                                                <div v-text="currency.symbol +''+ activeItem.discount_amount"></div>
-                                            </div>
-
-                                            <div class="flex gap-6 w-full">
-                                                <div v-text="translate('Total cost')"></div>
-                                                <div v-text="currency.symbol +''+ activeItem.total_cost"></div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-12 p-6 gap-4"><i class="vue-feather vue-feather--alert-octagon ki-duotone ki-information fs-2tx text-warning me-4" data-name="alert-octagon" data-tags="warning,alert,danger" data-type="alert-octagon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon vue-feather__content"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></i><div class="d-flex flex-stack flex-grow-1"><div class="fw-semibold"><h4 class="text-gray-900 fw-bold" v-text="translate(activeItem.payment_status)"></h4><div class="fs-6 text-gray-700">
-                                                <div v-text="translate('Payment status')"></div>
-                                        </div></div></div></div>
+                                        
                                     </div>
                                 </div>
                                 <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="saveTrip" v-text="translate('Submit')"></a></p>
