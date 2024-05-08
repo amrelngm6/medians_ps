@@ -7,17 +7,11 @@ use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Customers\Domain\Customer;
 use Medians\Drivers\Domain\Driver;
-use Medians\Drivers\Domain\DriverApplicant;
-use Medians\Trips\Domain\Trip;
-use Medians\Trips\Domain\TripLocation;
-use Medians\Trips\Domain\TaxiTrip;
-use Medians\Trips\Domain\TripAlarm;
-use Medians\Locations\Domain\RouteLocation;
-use Medians\Help\Domain\HelpMessageComment;
 use Medians\Customers\Domain\Parents;
 use Medians\Customers\Domain\Employee;
 use Medians\Customers\Domain\SuperVisor;
 use Medians\Students\Domain\Student;
+use Medians\Templates\Domain\EmailTemplate;
 
 /**
  * NotificationEvent class database queries
@@ -51,6 +45,11 @@ class NotificationEvent extends CustomModel
 	public $appends = ['receiver_title', 'model_title'];
 
 
+
+	public function template()
+	{
+		return $this->hasOne(EmailTemplate::class, 'template_id', 'template_id');
+	}
 
 
 	public function getReceiverTitleAttribute()

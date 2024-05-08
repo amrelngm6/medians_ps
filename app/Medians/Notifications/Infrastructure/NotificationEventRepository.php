@@ -33,7 +33,7 @@ class NotificationEventRepository
 	*/
 	public function get($params = null) 
 	{
-		return NotificationEvent::get();
+		return NotificationEvent::with('template')->get();
 	}
 
 
