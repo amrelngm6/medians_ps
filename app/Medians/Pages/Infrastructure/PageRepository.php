@@ -143,7 +143,6 @@ class PageRepository
 		Content::where('item_type', Page::class)->where('item_id', $page_id)->delete();
 		if ($data)
 		{
-			
 			foreach ($data as $key => $value)
 			{
 				$Model = $this->storeLang($value);
@@ -158,10 +157,11 @@ class PageRepository
 		$fields['item_type'] = Page::class;	
 		$fields['item_id'] = $page_id;	
 		$fields['lang'] = $key;	
+		
+		$Model = Content::firstOrCreate($fields);
 		$fields['prefix'] = isset($fields['prefix']) ? $fields['prefix'] : Content::generatePrefix($fields['title']);	
 		$fields['created_by'] = $this->app->auth()->id;
-
-		$Model = Content::create($fields);
+		$Model->update($fields);
 
 		return $Model;
 	}

@@ -62,8 +62,10 @@ class ContentRepository
 			$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
 			$lang = Language::where('status', 'on')->where('language_code', $lang)->first();
 	
-			$save = $pageRepo->storeContent([ $lang->language_code=>['title'=>$page->title] ], $page->page_id);
+			$save = $pageRepo->storeLang(['title'=>$page->title] , $lang->language_code, $page->page_id);
 			
+			return $save;
+
 		} catch (\Throwable $th) {
 
 			return null;
