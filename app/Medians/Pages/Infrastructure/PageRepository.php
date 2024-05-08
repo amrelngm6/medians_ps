@@ -47,7 +47,7 @@ class PageRepository
 
 	function findByLang($page_id, $lang)
 	{
-		return Page::with(['content' => function ($q) use ($lang) {
+		return Page::with(['lang_content' => function ($q) use ($lang) {
 			$q->where('lang', $lang);
 		}])->find($page_id);
 	} 
