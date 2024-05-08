@@ -1431,7 +1431,7 @@
                     <small class="koTools_itemBottom"></small>
                 </a>
 				
-                <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/meta?prefix={{page.prefix}}')" class="koLeftButton" id="koMenuItem_settings">
+                <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/meta?prefix={{item.content.prefix}}')" class="koLeftButton" id="koMenuItem_settings">
                     <small class="koTools_itemTop"></small>
                     <span class="koLeftButtonHolder">
                         <i class="fas fa-cogs"></i><span>Data & SEO</span>
@@ -1439,7 +1439,7 @@
                     <small class="koTools_itemBottom"></small>
                 </a>
 				
-				<a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/languages?type=page&item_id={{item.page_id}}')" class="koLeftButton" id="koMenuItem_settings">
+				<a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/languages?type=page&lang={{current_lang}}&item_id={{item.page_id}}')" class="koLeftButton" id="koMenuItem_settings">
                     <small class="koTools_itemTop"></small>
                     <span class="koLeftButtonHolder">
                         <i class="fas fa-globe"></i><span>{{lang.translate('Languages')}} </span>

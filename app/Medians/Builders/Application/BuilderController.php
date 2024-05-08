@@ -43,7 +43,7 @@ class BuilderController extends CustomController
 			
 			$request = $this->app->request();
 
-			$lang = $request->get('lang') ?? $this->app->setLang()->lang;
+			$lang = $request->get('lang') ? $request->get('lang') : $this->app->setLang()->lang;
 			$check = $this->pageRepo->findByLang($request->get('page_id'), $lang );
 
 			(isset($check->page_id) && !$check->content) ? $this->contentRepo->handleMissingContent($check, $lang) : null;
@@ -51,6 +51,7 @@ class BuilderController extends CustomController
 			return render('views/admin/builder/index.html.twig', [
 				'page' => $check->content ?? [], 
 				'item' => $check,
+				'current_lang' => $lang,
 				'precode' => isset($check->content) && (substr(trim($check->content), 0, 8) == '<section') ? '' : '<section id="newKeditItem" class="kedit">', 
 				'postcode' => isset($check->content) && (substr(trim($check->content), 0, 8) == '<section') ? '' : '</section>', 
 			]);
@@ -98,7 +99,7 @@ class BuilderController extends CustomController
 			$request = $this->app->request();
 
 			$check = $this->contentRepo->find($request->get('prefix'));
-			
+
 			render('views/admin/builder/templates/meta.html.twig',['page'=>$check]);
 
 		} catch (\Exception $e) {
@@ -120,9 +121,10 @@ class BuilderController extends CustomController
 				return $this->email_languages();
 			}
 
-			$check = $this->pageRepo->find($request->get('item_id'));
+			$lang = $request->get('lang') ? $request->get('lang') : $this->app->setLang()->lang;
+			$check = $this->pageRepo->findByLang($request->get('item_id'), $lang );
 
-			return render('views/admin/builder/templates/languages.html.twig',['page'=>$check]);
+			return render('views/admin/builder/templates/languages.html.twig',['page'=>$check, 'current_lang' => $lang]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
