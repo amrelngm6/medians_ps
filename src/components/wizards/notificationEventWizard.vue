@@ -146,7 +146,7 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div v-if="fillable.template" class="timeline-item" v-for="template in fillable.template.data">
+                                                    <div v-if="fillable.template_id" class="timeline-item" v-for="template in fillable.template_id.data">
                                                         <div v-if="template.template_id == activeItem['template_id']" class="timeline-line"></div>
                                                         <div v-if="template.template_id == activeItem['template_id']" class="timeline-icon me-4"><vue-feather type="check" class="fs-2 "></vue-feather></div>
                                                         <div v-if="template.template_id == activeItem['template_id']" class="timeline-content pt-1 mt-n2">
