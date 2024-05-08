@@ -5,6 +5,7 @@ use Shared\dbaser\CustomController;
 
 use Medians\Builders\Infrastructure\BuilderRepository;
 use Medians\Content\Infrastructure\ContentRepository;
+use Medians\Pages\Infrastructure\PageRepository;
 
 
 class BuilderController extends CustomController 
@@ -14,6 +15,7 @@ class BuilderController extends CustomController
 	protected $app;
 	protected $repo;
 	public $contentRepo;
+	public $pageRepo;
 	public $emailController;
 
 	function __construct()
@@ -22,6 +24,7 @@ class BuilderController extends CustomController
 
 		$this->repo = new BuilderRepository;
 		$this->contentRepo = new ContentRepository;
+		$this->pageRepo = new PageRepository;
 		$this->emailController = new EmailBuilderController;
 
 	}
@@ -34,13 +37,12 @@ class BuilderController extends CustomController
 
 		try {
 			
-
 			$request = $this->app->request();
-			$check = $this->contentRepo->find($request->get('prefix'));
-			$check->switch_lang = $this->contentRepo->switch_lang($check);
 
+			$check = $this->pageRepo->findByLang($request->get('page_id'), $request->get('lang'));
+			print_r($check);
 			return render('views/admin/builder/index.html.twig', [
-				'page' => $check, 
+				'page' => $check->content, 
 				'precode' => isset($check->content) && (substr(trim($check->content), 0, 8) == '<section') ? '' : '<section id="newKeditItem" class="kedit">', 
 				'postcode' => isset($check->content) && (substr(trim($check->content), 0, 8) == '<section') ? '' : '</section>', 
 			]);

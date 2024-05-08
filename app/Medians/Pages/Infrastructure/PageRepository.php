@@ -45,6 +45,15 @@ class PageRepository
 		return Page::with('content')->limit($limit)->orderBy('page_id', 'DESC')->get();
 	}
 
+	function findByLang($page_id, $lang)
+	{
+		return Page::whereHas('content', function ($q) use ($lang) {
+			$q->where('lang', $lang);
+		})->with(['content' => function ($q) use ($lang) {
+			$q->where('lang', $lang);
+		}])->find($page_id);
+	} 
+
 	public function getByCategory($page_id, $limit = 100)
 	{
 		return Page::with('content','user')->where('category_id', $page_id)->limit($limit)->orderBy('page_id', 'DESC')->get();

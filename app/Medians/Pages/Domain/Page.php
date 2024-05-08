@@ -80,7 +80,12 @@ class Page extends CustomModel
 
 	public function content()
 	{
-		return $this->hasOne(Content::class, 'item_id', 'page_id')->where('item_type', Page::class)->where('lang',$_SESSION['lang']);
+		return $this->morphOne(Content::class, 'item')->where('lang',$_SESSION['lang']);
+	}
+
+	public function lang_content()
+	{
+		return $this->morphOne(Content::class, 'item');
 	}
 
 	public function menu()

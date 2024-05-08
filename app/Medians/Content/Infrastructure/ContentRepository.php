@@ -32,6 +32,11 @@ class ContentRepository
 		return Content::where('item_id', $page_id)->where('model_type', Page::class)->first();
 	}
 
+	public function findByLang($page_id, $lang)
+	{
+		return Content::where('item_id', $page_id)->where('model_type', Page::class)->where('lang', $lang)->first();
+	}
+
 	public function switch_lang($item)
 	{
 		$lang = $item->lang ?? '';
