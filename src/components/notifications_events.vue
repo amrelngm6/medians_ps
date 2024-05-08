@@ -145,6 +145,8 @@ export default
          * @param Object data
          */  
         const handleAction =  (actionName, data) =>  {
+            
+            activeItem.value = data
             switch(actionName) 
             {
 
@@ -152,33 +154,16 @@ export default
                     showEditSide.value = false;
                     showAddSide.value = false;
                     showDetails.value = true;
-                    activeItem.value = data
-                    break;
-
-                case 'save':
-                    showEditSide.value = false;
-                    showAddSide.value = false;
-                    showDetails.value = true;
-                    savePermissions(data);
                     break;
 
                 case 'edit':
-                    showEditSide.value = true;
-                    showDetails.value = false;
-                    showAddSide.value = false;
-                    activeItem.value = data
+                    showWizard.value = true;
                     break;
 
                 case 'delete':
                     deleteByKey('id', data, 'NotificationEvent.delete');
                     break;
 
-                case 'close':
-                    
-                    showEditSide.value = false;
-                    showAddSide.value = false;
-                    showDetails.value = false;
-                    break;
             }
         }
 
