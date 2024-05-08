@@ -23,16 +23,15 @@
                                 <div class="card-body pt-0"  >
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
-                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Event title')" ></label>
+                                            
+                                            <span v-text="fillable.title.help_text" v-if="fillable.title.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <label v-text="fillable.title.title" class="col-form-label required fw-semibold fs-5" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.title" />
-
                                             <hr class="block mt-6 my-2 opacity-10" />
-
-                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6" v-text="translate('Receiver model')" ></label>
-                                            <form_field class="flex-end" :item="activeItem" :column="fillable.receiver_model" />
-                                            <hr class="block mt-6 my-2 opacity-10" />
-
-                                            <label  v-text="translate('Model')" class="col-lg-4 col-form-label required fw-semibold fs-6" ></label>
+                                            
+                                            
+                                            <span v-text="fillable.model.help_text" v-if="fillable.model.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <label v-text="fillable.model.title" class="col-form-label required fw-semibold fs-5" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.model" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
