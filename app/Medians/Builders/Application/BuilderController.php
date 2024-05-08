@@ -93,12 +93,12 @@ class BuilderController extends CustomController
 	 */ 
 	public function meta()
 	{
-
 		try {
 			
 			$request = $this->app->request();
-			$check = $this->contentRepo->find($request->get('prefix'));
 
+			$check = $this->contentRepo->find($request->get('prefix'));
+			
 			render('views/admin/builder/templates/meta.html.twig',['page'=>$check]);
 
 		} catch (\Exception $e) {

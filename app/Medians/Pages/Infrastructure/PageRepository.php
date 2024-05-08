@@ -162,9 +162,12 @@ class PageRepository
 		$fields['lang'] = $key;	
 		
 		$Model = Content::firstOrCreate($fields);
-		$fields['prefix'] = $prefix;
-		$fields['created_by'] = $this->app->auth()->id;
-		$Model->update($fields);
+		if ($Model->wasRecentlyCreated)
+		{
+			$fields['prefix'] =  $prefix;
+			$fields['created_by'] = $this->app->auth()->id;
+			$Model->update($fields);
+		}
 
 		return $Model;
 	}

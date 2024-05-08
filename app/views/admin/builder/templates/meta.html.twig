@@ -54,11 +54,7 @@
 
 		$(function(){
 
-			nanobar = new Nanobar({
-
-				classname: 'koProgress'
-
-			});
+			
 
 		});
 
@@ -118,143 +114,110 @@
 		Edit Subpage	</h3>
 </div>
 <div class="koMenuContainer">
-<script>var $defaultWidth=351;</script>
-<div class="koMenuTabs">
+	<script>var $defaultWidth=351;</script>
+	<div class="koMenuTabs">
 
-	<ul class="nav" role="tablist">
-		<li>
-			<a href="#{{page.prefix}}" class="active" data-toggle="tab" data-bs-toggle="tab"><i class="fa fa-edit"></i> General Settings</a>
-
-						<a href="#meta" id="tab_meta" data-toggle="tab" data-bs-toggle="tab"><i class="fa fa-code"></i> SEO & Meta Tags</a>
-					
-			<div class="koMenuSeparator my-3"></div>
-		
-		</li>
-	</ul>
-</div>
-
-<div class="koMenu koMenuButtonFixed tab-content" style="width:350px">
-
-	<div class="koMenuButtonHolder row" style="width:350px">
-		<button class="btn btn-ui-primary btn-block btn-lg" type="submit"><i class="fas fa-check"></i> Save changes</button>
-	</div>
-
-    <div role="tabpanel" class="tab-pane active" id="{{page.prefix}}">
-		
-	<div class="koMenuField">
-			<input placeholder="Subpage name" autocomplete="off" id="k_subpageName" name="title" value="{{page.title}}" type="text">
-			<label for="k_subpageName">Subpage name</label>
-		</div>
-
-	<div class="koMenuField my-4">
-
-		<div>
-			<span class="textareaCounter" id="short"></span>
- 			<textarea id="MDESCRIPTION_short" name="short" placeholder="Meta Description" type="text" onkeyup="$('.googleResultsDescription a').text($(this).val());$('#short').text(this.value.length)">{{page.short}}</textarea>
-			<label for="MDESCRIPTION_short">Short content</label>
-		</div>
-		<small class="form-text text-muted">Short content of the page</small>
-	
-	</div>
-		<div class="koMenuSeparator my-3"></div>
-
-
-	</div>
-    <div role="tabpanel" class="tab-pane" id="meta">
-
-
-		
-
-
-		<div class="koMenuCard">
-			<h3>Page Result in Google</h3>
-
-						<p class="googleResultsTitle">
-				<a href="javascript:void(null)" data-default-title="{{page.title}} &mdash; {{app.sitename}}" onclick="$('#MTITLE_TITLE').focus()">{{page.title}} &mdash; {{app.sitename}}</a>
-			</p>
-			<p class="googleResultsAddress">{{app.CONF.url}}/<span><a href="javascript:void(null)" onclick="$('#seoName').focus()">{{page.prefix}}</a></span></p>
-			<p class="googleResultsDescription"><a href="javascript:void(null)" onclick="$('#MDESCRIPTION_TITLE').focus()">[No description]</a>
-			</p>
-
-		</div>
-
-		<style>
-		.googleResultsTitle a{text-decoration:none;color:#1a0dab}
-		.googleResultsAddress a{text-decoration:none;color:#006621;font-weight:bold}
-		.googleResultsDescription a{text-decoration:none;color:#545454}
-		.googleResultsDescription a:hover,.googleResultsAddress a:hover,.googleResultsTitle a:hover{background:var(--ui-color-accent-light);box-shadow: 0 0 0 5px var(--ui-color-accent-light);}
-		
-		</style>
-		<div class="koMenuField">
-
-			<input id="oldSeoName" name="oldSeoName" value="{{page.prefix}}" type="hidden" />
-			<input id="seoName" name="seoName" value="{{page.prefix}}" type="text" placeholder="1_1_Home.html" onkeyup="$('.googleResultsAddress span a').text($(this).val())">
-			<label for="seoName">Super URL Name</label>
-			<small class="form-text text-muted">Custom URL link name, like "subpage-name"</small>
-			  
-		</div>
-		
-		<div class="koMenuSeparator my-3"></div>
-
-		<div class="koMenuField">
+		<ul class="nav" role="tablist">
+			<li>
+				<a href="#general" id="tab_meta"  class="active" data-toggle="tab" data-bs-toggle="tab"><i class="fa fa-edit"></i> {{lang.translate('General Settings')}}</a>
+				
+				<a href="#meta"  data-toggle="tab" data-bs-toggle="tab"><i class="fa fa-code"></i> {{lang.translate('SEO and Meta Tags')}} </a>
+						
+				<div class="koMenuSeparator my-3"></div>
 			
-		<div class="position-relative">
-		
-			<span class="textareaCounter" id="MTITLE_TITLECounter"></span>
-  
-	
-			<input id="MTITLE_TITLE" name="seo_title" value="{{page.seo_title}}" placeholder="Meta Title" type="text" onkeyup="if($(this).val()!='')$('.googleResultsTitle a').text($(this).val());else $('.googleResultsTitle a').text($('.googleResultsTitle a').attr('data-default-title'));$('#MTITLE_TITLECounter').text(this.value.length)">
-  			<label for="MTITLE_TITLE">Meta Title</label>
-		
-		</div>
-		<small class="form-text text-muted">Optional, unique Meta Title tag for this subpage</small>
-
+			</li>
+		</ul>
 	</div>
 
+	<div class="koMenu koMenuButtonFixed tab-content" style="width:350px">
 
-
-	<div class="koMenuField my-4">
-
-		<div>
-			<span class="textareaCounter" id="MDESCRIPTION_TITLECounter"></span>
- 			<textarea id="MDESCRIPTION_TITLE" name="seo_desc" placeholder="Meta Description" type="text" onkeyup="$('.googleResultsDescription a').text($(this).val());$('#MDESCRIPTION_TITLECounter').text(this.value.length)">{{page.seo_desc}}</textarea>
-			<label for="MDESCRIPTION_TITLE">Meta Description</label>
-		</div>
-		<small class="form-text text-muted">Optional, unique Meta Description tag for this subpage</small>
-	
-	</div>
-
-
-	<div class="koMenuField my-4">
-		<div>
-			<span class="textareaCounter" id="MKEYWORDS_TITLECounter"></span>
-			<textarea id="MKEYWORDS_TITLE" name="seo_keywords" placeholder="Meta Keywords" onkeyup="$('#MKEYWORDS_TITLECounter').text(this.value.length)">{{page.seo_keywords}}</textarea>
-			<label for="MKEYWORDS_TITLE">Meta Keywords</label>
-  		</div>
-		<small class="form-text text-muted">Optional, unique Meta Keywords for this subpage</small>
-	</div>
-
-	<script>
-
-		$('#MTITLE_TITLE,#MDESCRIPTION_TITLE,#MKEYWORDS_TITLE').trigger('keyup');
-
-	</script>
-
-	
-	<div class="koMenuCard my-4 ">
-
-		<div class="form-group">
-			<label for="MADDITIONAL_TITLE">Additional  content</label>
-			<textarea style="height:150px;" class="form-control" id="MADDITIONAL_TITLE" name="MADDITIONAL_TITLE"></textarea>
-			<small class="form-text text-muted">Additional content which will be placed between HEAD tags</small>
+		<div class="koMenuButtonHolder row" style="width:350px">
+			<button class="btn btn-ui-primary btn-block btn-lg" type="submit"><i class="fas fa-check"></i> {{lang.translate('Save changes')}}</button>
 		</div>
 
+		<div role="tabpanel" class="tab-pane " id="meta">
+
+
+			<div class="koMenuField">
+				
+				<div class="position-relative">
+				
+					<span class="textareaCounter" id="MTITLE_TITLECounter"></span>
+					<input id="MTITLE_TITLE" name="seo_title" value="{{page.seo_title}}" placeholder="Meta Title" type="text" onkeyup="if($(this).val()!='')$('.googleResultsTitle a').text($(this).val());else $('.googleResultsTitle a').text($('.googleResultsTitle a').attr('data-default-title'));$('#MTITLE_TITLECounter').text(this.value.length)">
+					<label for="MTITLE_TITLE">Meta Title</label>
+				
+				</div>
+				<small class="form-text text-muted">Optional, unique Meta Title tag for this subpage</small>
+
+			</div>
+
+
+
+			<div class="koMenuField my-4">
+
+				<div>
+					<span class="textareaCounter" id="MDESCRIPTION_TITLECounter"></span>
+					<textarea id="MDESCRIPTION_TITLE" name="seo_desc" placeholder="Meta Description" type="text" onkeyup="$('.googleResultsDescription a').text($(this).val());$('#MDESCRIPTION_TITLECounter').text(this.value.length)">{{page.seo_desc}}</textarea>
+					<label for="MDESCRIPTION_TITLE">Meta Description</label>
+				</div>
+				<small class="form-text text-muted">Optional, unique Meta Description tag for this subpage</small>
+			
+			</div>
+
+
+			<div class="koMenuField my-4">
+				<div>
+					<span class="textareaCounter" id="MKEYWORDS_TITLECounter"></span>
+					<textarea id="MKEYWORDS_TITLE" name="seo_keywords" placeholder="Meta Keywords" onkeyup="$('#MKEYWORDS_TITLECounter').text(this.value.length)">{{page.seo_keywords}}</textarea>
+					<label for="MKEYWORDS_TITLE">Meta Keywords</label>
+				</div>
+				<small class="form-text text-muted">Optional, unique Meta Keywords for this subpage</small>
+			</div>
+
+			<script>
+				$('#MTITLE_TITLE,#MDESCRIPTION_TITLE,#MKEYWORDS_TITLE').trigger('keyup');
+			</script>
+
+		</div>
+		<div role="tabpanel" class="tab-pane active" id="general">
+
+
+			<div class="koMenuCard">
+				<h3>Page Result in Google</h3>
+				<p class="googleResultsTitle">
+					<a href="javascript:void(null)" data-default-title="{{page.title}} &mdash; {{app.sitename}}" onclick="$('#MTITLE_TITLE').focus()">{{page.title}} &mdash; {{app.sitename}}</a>
+				</p>
+				<p class="googleResultsAddress">{{app.CONF.url}}/<span><a href="javascript:void(null)" onclick="$('#seoName').focus()">{{page.prefix}}</a></span></p>
+				<p class="googleResultsDescription"><a href="javascript:void(null)" onclick="$('#MDESCRIPTION_TITLE').focus()">[No description]</a></p>
+
+			</div>
+
+			<style>
+			.googleResultsTitle a{text-decoration:none;color:#1a0dab}
+			.googleResultsAddress a{text-decoration:none;color:#006621;font-weight:bold}
+			.googleResultsDescription a{text-decoration:none;color:#545454}
+			.googleResultsDescription a:hover,.googleResultsAddress a:hover,.googleResultsTitle a:hover{background:var(--ui-color-accent-light);box-shadow: 0 0 0 5px var(--ui-color-accent-light);}
+			
+			</style>
+			<div class="koMenuField">
+
+				<input id="oldSeoName" name="oldSeoName" value="{{page.prefix}}" type="hidden" />
+				<input id="seoName" name="seoName" value="{{page.prefix}}" type="text" placeholder="1_1_Home.html" onkeyup="$('.googleResultsAddress span a').text($(this).val())">
+				<label for="seoName">{{lang.translate('page link')}}</label>
+				<small class="form-text text-muted">{{lang.translate('Set the page access link')}} "contact-us"</small>
+				
+			</div>
+			
+			<div class="koMenuSeparator my-3"></div>
+
+			<div class="koMenuField">
+				<input placeholder="Subpage name" autocomplete="off" id="k_subpageName" name="title" value="{{page.title}}" type="text">
+				<label for="k_subpageName">{{lang.translate('page name')}}</label>
+			</div>
+			<div class="koMenuSeparator my-3"></div>
+
+		</div>
 	</div>
-
-	
-</div>
-
-</div>
 </div>
 
 	<div style="display:none">
@@ -266,7 +229,8 @@
 		<input name="seo" id="seo" type="hidden" value="" />
 	</div>
 
-</form>	<script>
+</form>	
+<script>
 		$(function () {
 			$("#tab_meta").tab("show");
 		})
@@ -416,11 +380,9 @@
 
 		// ESC key...
 		$(document).keyup(function(e) {
-
+			
 			if (e.keyCode === 27) {
-
 				window.top.koMenuClose();
-
 			}
 		});
 
