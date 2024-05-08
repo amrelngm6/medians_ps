@@ -5,7 +5,7 @@
 
         <editable_map_location v-if="column.column_type == 'location_map'" :system_setting="system_setting" :item="item" :column="column"></editable_map_location>
 
-        <input :required="column.required" :disabled="column.disabled" v-if="isInput(column.column_type)" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title" v-model="item[column.key]">
+        <input @change="changed(item[column.key])"  :required="column.required" :disabled="column.disabled" v-if="isInput(column.column_type)" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title" v-model="item[column.key]">
     
         <input :required="column.required" :disabled="column.disabled" v-if="column.column_type == 'password'" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title">
 
