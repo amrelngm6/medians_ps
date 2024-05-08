@@ -136,7 +136,6 @@ export async function handleRequest(params, url = '/api') {
 
 export function translate(i) {
 
-    console.log(i)
     // Access the current Vue instance
     const currentInstance = getCurrentInstance();
     // Access the root Vue instance
@@ -149,8 +148,6 @@ export function translate(i) {
     let un_key = k.charAt(0).toUpperCase() + k.slice(1);
 
     let lang = rootVue.lang;
-    console.log(lang[key])
-
     return lang[key] ? lang[key] : un_key;
 }
 
