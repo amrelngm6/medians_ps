@@ -164,6 +164,8 @@ export default
         }
 
         return {
+            showWizard,
+            defaultTab,
             showAddSide,
             showEditSide,
             url,
