@@ -114,7 +114,7 @@ class PlanSubscription extends CustomModel
 	
 	public function receiverAsUser() 
 	{
-		$model =  $this->with('user')->find($this->subscription_idsubscription_id);
+		$model =  $this->with('user')->find($this->subscription_id);
 		return isset($model->user) ?  $model->user : null;
 	}
 
