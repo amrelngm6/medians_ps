@@ -71,18 +71,9 @@
                                             
                                                         <!-- 
                                                             
-			[ 'key'=> "action", 'title'=> translate('Action'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 'data'=>[
-				['action'=>'create','title'=>translate('On Create')],
-				['action'=>'update','title'=>translate('On Update')],
-				['action'=>'delete','title'=>translate('On delete')],
-			] ],
 			[ 'key'=> "action_field", 'title'=> translate('action_field'), 'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "action_value", 'title'=> translate('action_value'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "subject", 'title'=> translate('subject'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-			[ 'key'=> "template_id", 'title'=> translate('Email template'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 
-				'data'=> $this->emailTemplatesRepo->get()
-			],
-            [ 'key'=> "body_text", 'title'=> translate('Notification text'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
              -->
                                         </div>
@@ -95,7 +86,17 @@
                                 <div class="card-body pt-0"  >
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
-                                            1
+                                           
+                                            <span v-text="fillable.template_id.help_text" v-if="fillable.template_id.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <label v-text="fillable.template_id.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.template_id" />
+                                            <hr class="block mt-6 my-2 opacity-10" />
+
+                                            <span v-text="fillable.body_text.help_text" v-if="fillable.body_text.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <label v-text="fillable.body_text.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.body_text" />
+                                            <hr class="block mt-6 my-2 opacity-10" />
+
                                         </div>
                                     </div>
                                 </div>
