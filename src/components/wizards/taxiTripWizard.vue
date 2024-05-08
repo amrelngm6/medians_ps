@@ -723,7 +723,7 @@ export default
                 return {}
             }
 
-
+            console.log(users.value)
             return {
                 loader,
                 tripsStatusList,
