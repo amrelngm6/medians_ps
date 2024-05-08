@@ -78,7 +78,7 @@ class AppSettingsController extends CustomController
             ],
 			
 			'Data loading'=> [	
-				[ 'key'=> "business_load_limit", 'title'=> translate('Providers list limit per load'), 'help_text'=>translate('The count of the loaded items in single query and when they load more items'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "business_load_limit", 'title'=> translate('Providers list limit per load'), 'help_text'=>translate('The count of the loaded items in single query and when they load more items'), 'fillable'=> true, 'column_type'=>'number' ],
             ],
         ];
 	}
