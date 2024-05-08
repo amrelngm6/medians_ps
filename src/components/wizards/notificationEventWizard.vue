@@ -68,14 +68,6 @@
                                                 <span v-text="fillable.action_value.help_text" v-if="fillable.action_value.help_text" class="col-form-label required fw-semibold fs-5" ></span>
                                                 <hr class="block mt-6 my-2 opacity-10" />
                                             </div>
-                                            
-                                                        <!-- 
-                                                            
-			[ 'key'=> "action_field", 'title'=> translate('action_field'), 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "action_value", 'title'=> translate('action_value'), 'fillable'=> true, 'column_type'=>'text' ],
-            [ 'key'=> "subject", 'title'=> translate('subject'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-            [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-             -->
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
+                                <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Fields'" v-text="translate('Next')"></a></p>
                             </div>
 
                             <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
