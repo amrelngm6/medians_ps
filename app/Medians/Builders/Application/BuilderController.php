@@ -110,6 +110,24 @@ class BuilderController extends CustomController
 	/**
 	 * Load builder meta
 	 */ 
+	public function template_preview()
+	{
+		try {
+			
+			$request = $this->app->request();
+
+			$check = $this->contentRepo->find($request->get('prefix'));
+
+			render('views/email/email.html.twig',['msg'=>$check->content]);
+
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	}
+
+	/**
+	 * Load builder meta
+	 */ 
 	public function languages()
 	{
 		try {

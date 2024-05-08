@@ -129,15 +129,7 @@ class EmailTemplateRepository
 		{
 			foreach ($data as $key => $value)
 			{
-				$fields = $value;
-				$fields['item_type'] = EmailTemplate::class;	
-				$fields['item_id'] = $template_id;	
-				$fields['lang'] = $key;	
-				$fields['prefix'] = isset($value['prefix']) ? $value['prefix'] : Content::generatePrefix($value['title']);	
-				$fields['created_by'] = $this->app->auth()->id;
-
-				$Model = Content::create($fields);
-				$Model->update($fields);
+				$Model = $this->storeLang($value);
 			}
 	
 			return $Model;		
@@ -145,6 +137,25 @@ class EmailTemplateRepository
 	}
 
 
+	public function storeLang($fields, $key, $page_id )
+	{
+		$checkPrefix = isset($fields['prefix']) ? $fields['prefix'] : Content::generatePrefix($fields['title']);	
+		$prefix = Content::where('prefix',$checkPrefix)->first() ? $checkPrefix.rand(999, 999999) : $checkPrefix;
+
+		$fields['item_type'] = Page::class;	
+		$fields['item_id'] = $page_id;	
+		$fields['lang'] = $key;	
+		
+		$Model = Content::firstOrCreate($fields);
+		if ($Model->wasRecentlyCreated)
+		{
+			$fields['prefix'] =  $prefix;
+			$fields['created_by'] = $this->app->auth()->id;
+			$Model->update($fields);
+		}
+
+		return $Model;
+	}
 	/**
 	* Save related items to database
 	*/
