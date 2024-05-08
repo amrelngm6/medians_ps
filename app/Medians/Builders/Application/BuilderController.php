@@ -175,11 +175,11 @@ class BuilderController extends CustomController
 
 		$request = $this->app->request();
 		
-		if (!$request->get('contentJSON') || !$request->get('prefix'))			
+		if (!$request->get('contentJSON') || !$request->get('id'))			
 			return true;
 
 		$contentJSON = json_decode($request->get('contentJSON'));
-		$check = $this->contentRepo->find($request->get('prefix'));
+		$check = $this->contentRepo->findById($request->get('id'));
 		$check->content = str_replace('data-src', 'src', $contentJSON->contentArea);
 		$check->update(['content' => $check->content]);
 		echo $check->content;

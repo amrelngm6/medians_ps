@@ -28,6 +28,11 @@ class ContentRepository
 		return Content::where('prefix', $prefix)->first();
 	}
 
+	public function findById($id)
+	{
+		return Content::find($id);
+	}
+
 	public function findPage($page_id)
 	{
 		return Content::where('item_id', $page_id)->where('model_type', Page::class)->first();

@@ -3090,7 +3090,7 @@ function k_EditSave(e, a) {
         n[this.id] = i.trim();
         i = null;
     });
-    var t = "prefix=" + jQuery("#prefix-page").val() + "&lang=" + jQuery("#lang-page").val() + "&supermode="+configUpdateType+"&liveEdit=1&liveOption=subpage&pageMenuId=" + menuMenuId + "&templateId="+templateId+"&pageId=" + menuPageId;
+    var t = "id=" + jQuery("#content-id").val() + "&lang=" + jQuery("#lang-page").val() + "&supermode="+configUpdateType+"&liveEdit=1&liveOption=subpage&pageMenuId=" + menuMenuId + "&templateId="+templateId+"&pageId=" + menuPageId;
     if (typeof a === "string") {
         if (a == "publishDraft") {
             t += "&publishDraft=1";
