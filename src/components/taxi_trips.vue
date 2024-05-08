@@ -29,7 +29,7 @@
                 v-if="showTrackWizard && activeItem.usertype"  :key="showTrackWizard" 
                 :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
 
-        <usertype_picker :alias="translate('Need taxi trip')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
+        <usertype_picker :alias="translate('Need taxi trip')" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
         
         <div  v-if="!showWizard && !showOptions && !showTrackWizard && content " class=" w-full relative">
 
@@ -236,6 +236,9 @@ export default
             if (activeItem.value.usertype == 'employee')
                 usersList.value = content.value.employees;
             
+            
+            if (activeItem.value.usertype == 'parents')
+                usersList.value = content.value.parents;
             
             if (activeItem.value.usertype == 'supervisor')
                 usersList.value = content.value.supervisors;
