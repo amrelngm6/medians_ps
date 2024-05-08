@@ -151,8 +151,8 @@
                                                         <div v-if="template.template_id == activeItem['template_id']" class="timeline-icon me-4"><vue-feather type="check" class="fs-2 "></vue-feather></div>
                                                         <div v-if="template.template_id == activeItem['template_id']" class="timeline-content pt-1 mt-n2">
                                                             <div class="overflow-auto pe-3">
-                                                                <div class="text-muted me-2 fs-7" v-text="translate("Template")"></div>
-                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem["template_id"]" v-text="template.title"></div>
+                                                                <div class="text-muted me-2 fs-7" v-text="translate('Template')"></div>
+                                                                <div class="fs-5 fw-semibold mb-2" v-if="activeItem['template_id']" v-text="template.title"></div>
                                                             </div>
                                                         </div>
                                                     </div>
