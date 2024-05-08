@@ -121,15 +121,13 @@
                                                         <div class="" v-text="activeItem.subject"></div>
                                                     </div>
                                                 </div>
+                                                
                                                 <label class=" flex gap-2 cursor-pointer">
+                                                    <form_field class="flex-end" :item="activeItem"
+                                                        :column="fillable.status">
+                                                    </form_field>
                                                     <div class="pt-3">
-                                                        <span class="relative badge badge-light fw-bold me-auto px-4 py-3" >
-                                                            <form_field class="flex-end" :item="activeItem"
-                                                                :column="{ key: 'status', title: translate('Status'), column_type: 'select', text_key:'title', 
-                                                                data: tripsStatusList,  hide_text:true }">
-                                                            </form_field>
-                                                            <vue-feather class="absolute right-4 " type="chevron-down" /> 
-                                                        </span>
+                                                        <span class="badge badge-light fw-bold me-auto px-4 py-3" v-text="!activeItem.status ? 'Pending' : 'Active'"></span>
                                                     </div>
                                                 </label>
                                             </div>
