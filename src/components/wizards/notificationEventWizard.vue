@@ -25,17 +25,17 @@
                                         <div class="max-w-xl mb-6 mx-auto row" >
                                             
                                             <span v-text="fillable.title.help_text" v-if="fillable.title.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <label v-text="fillable.title.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <label v-text="fillable.title.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.title" />
                                             <hr class="block mt-6 my-2 opacity-10" />
                                             
                                             <span v-text="fillable.receiver_model.help_text" v-if="fillable.receiver_model.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <label v-text="fillable.receiver_model.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <label v-text="fillable.receiver_model.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.receiver_model" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <span v-text="fillable.model.help_text" v-if="fillable.model.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <label v-text="fillable.model.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <label v-text="fillable.model.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.model" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
@@ -51,20 +51,20 @@
                                         <div class="max-w-xl mb-6 mx-auto row" >
 
                                             <span v-text="fillable.action.help_text" v-if="fillable.action.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <label v-text="fillable.action.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <label v-text="fillable.action.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.action" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <div v-if="activeItem.action == 'update'">
                                                 <span v-text="fillable.action_field.help_text" v-if="fillable.action_field.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                                <label v-text="fillable.action_field.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                                <label v-text="fillable.action_field.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                                 <form_field class="flex-end" :item="activeItem" :column="fillable.action_field" />
                                                 <hr class="block mt-6 my-2 opacity-10" />
                                             </div>
 
                                             <div v-if="activeItem.action_field != ''">
                                                 <span v-text="fillable.action_value.help_text" v-if="fillable.action_value.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                                <label v-text="fillable.action_value.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                                <label v-text="fillable.action_value.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                                 <form_field class="flex-end" :item="activeItem" :column="fillable.action_value" />
                                                 <hr class="block mt-6 my-2 opacity-10" />
                                             </div>
@@ -88,17 +88,17 @@
                                         <div class="max-w-xl mb-6 mx-auto row" >
                                            
                                             <span v-text="fillable.subject.help_text" v-if="fillable.subject.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <label v-text="fillable.subject.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <label v-text="fillable.subject.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.subject" />
                                             <hr class="block mt-6 my-2 opacity-10" />
                                            
                                             <span v-text="fillable.template_id.help_text" v-if="fillable.template_id.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <label v-text="fillable.template_id.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <label v-text="fillable.template_id.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.template_id" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <span v-text="fillable.body_text.help_text" v-if="fillable.body_text.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <label v-text="fillable.body_text.title" class="col-form-label required fw-semibold fs-5" ></label>
+                                            <label v-text="fillable.body_text.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
                                             <form_field class="flex-end" :item="activeItem" :column="fillable.body_text" />
                                             <hr class="block mt-6 my-2 opacity-10" />
 

@@ -94,7 +94,7 @@ class NotificationEventController extends CustomController
 			[ 'key'=> "template_id", 'title'=> translate('Email template'), 'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 
 				'data'=> $this->emailTemplatesRepo->get()
 			],
-            [ 'key'=> "body_text", 'title'=> translate('Notification text'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
+            [ 'key'=> "body_text", 'title'=> translate('Notification text'),  'help_text' => translate('This text used for mobile APP nofitications'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
