@@ -208,6 +208,7 @@ export default
         const handleAction = (actionName, data) => 
         {
             activeItem.value = data;
+            handleUsersList();
             switch (actionName) 
             {
                 case 'view':
@@ -235,7 +236,6 @@ export default
             
             if (activeItem.value.usertype == 'employee')
                 usersList.value = content.value.employees;
-            
             
             if (activeItem.value.usertype == 'parents')
                 usersList.value = content.value.parents;
