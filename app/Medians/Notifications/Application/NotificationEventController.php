@@ -88,8 +88,8 @@ class NotificationEventController extends CustomController
 				['action'=>'update','title'=>translate('On Update')],
 				['action'=>'delete','title'=>translate('On delete')],
 			] ],
-			[ 'key'=> "action_field", 'title'=> translate('action_field'), 'fillable'=> true, 'column_type'=>'text' ],
-			[ 'key'=> "action_value", 'title'=> translate('action_value'), 'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "action_field", 'title'=> translate('Action field'), 'help_text' => translate('You can choose specified field to listen for updates or leave empty to apply on all fields'),'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "action_value", 'title'=> translate('Action value'), 'help_text' => translate('You can choose specified value to listen for updated field or leave empty to apply on any change'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "subject", 'title'=> translate('subject'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
 			[ 'key'=> "template_id", 'title'=> translate('Email template'), 'help_text' => translate('You can manage the templates from the Email Template page'),'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 
 				'data'=> $this->emailTemplatesRepo->get()
