@@ -100,6 +100,8 @@ export default
         const url =  props.conf.url+props.path+'?load=json';
         
         const showAddSide = ref(false);
+        const showWizard = ref(false);
+        const defaultTab = ref(false);
         const showEditSide = ref(false);
         const showDetails = ref(null);
         const activeItem = ref({});
