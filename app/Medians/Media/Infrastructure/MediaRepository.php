@@ -117,21 +117,36 @@ class MediaRepository
 
 	public function upload(UploadedFile $file, $type = 'media')
     {
+		try {
+			
+			$this->setDir($type);
 
-		$this->setDir($type);
+			$originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+			$safeFilename = $this->slug($originalFilename);
+			$fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
-        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $safeFilename = $this->slug($originalFilename);
-        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+			try {
+				$file->move($this->dir, $fileName);
+			} catch (FileException $e) {
+				throw new \Exception($e->getMessage(), 1);
+			}
 
-        try {
-            $file->move($this->dir, $fileName);
-        } catch (FileException $e) {
-        	return $e->getMessage();
-        }
-
-        return $fileName;
+			return $fileName;
+			
+		} catch (\Throwable $th) {
+			throw new \Exception($th->getMessage(), 1);
+		}
     }
+
+	
+	public function validate($type, $ext)
+	{
+		if (!in_array($ext, $this->getTypes($type)))
+		{
+			throw new \Exception("This file is not allowed", 1);
+		}	
+	}
+
 
     public function delete($file)
     {
