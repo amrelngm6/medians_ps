@@ -22,7 +22,7 @@ class CustomerController extends CustomController
 	function __construct()
 	{
 
-
+		$this->app = new \config\APP;
 
 		$this->repo = new Repo\CustomerRepository();
 
@@ -105,7 +105,7 @@ class CustomerController extends CustomController
 	{
 
 
-		$params_request = $this->app->request()->get('params');
+		$params_request = $this->app->params();
 		$params = isset($params_request['customer']) ? (array) json_decode($params_request['customer']) : $params_request;
 
 		try {	

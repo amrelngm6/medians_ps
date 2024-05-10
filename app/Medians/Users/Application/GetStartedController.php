@@ -79,7 +79,7 @@ class GetStartedController
 
 			$user = $this->app->auth();
 
-			$params = $this->app->request()->get('params');
+			$params = $this->app->params();
 			$plan = $this->planRepo->find($params['plan_id']);
 
 			// Check if plan is exist

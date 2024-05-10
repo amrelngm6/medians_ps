@@ -88,7 +88,7 @@ class NotificationController extends CustomController
 		
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -115,7 +115,7 @@ class NotificationController extends CustomController
 		
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
            	
@@ -140,7 +140,7 @@ class NotificationController extends CustomController
 		
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -239,7 +239,7 @@ class NotificationController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->params());
 
         try {
 

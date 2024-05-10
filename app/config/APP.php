@@ -125,6 +125,15 @@ class APP
 		return Request::createFromGlobals();
 	}
 
+	/**
+	 * Load all request [params] parameter
+	 * Used in most of the request
+ 	 */
+	public function params()
+	{
+		return sanitizeInput($this->request()->get('params'));
+	}
+
 
 	public static function redirect($url)
 	{

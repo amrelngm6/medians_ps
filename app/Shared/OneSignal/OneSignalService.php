@@ -18,6 +18,8 @@ class OneSignalService
 
     protected $receiver_id;
 
+    protected $app;
+
     function __construct($id)
 	{
 

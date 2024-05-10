@@ -110,3 +110,19 @@ function __($langkey = null)
 }
 
 
+/**
+ * Secure the inputs from XSS vulneribility
+ * Save from cyber attacks
+ */
+function sanitizeInput($input) {
+    if (is_array($input)) {
+        // If input is an array, sanitize each element recursively
+        foreach ($input as $key => $value) {
+            $input[$key] = sanitizeInput($value);
+        }
+        return $input;
+    } else {
+        // If input is a string, sanitize it
+        return str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    }
+}

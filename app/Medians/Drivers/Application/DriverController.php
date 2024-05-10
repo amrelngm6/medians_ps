@@ -82,7 +82,7 @@ class DriverController extends CustomController
 	public function store() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {	
 
@@ -110,7 +110,7 @@ class DriverController extends CustomController
 	public function update()
 	{
 		
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 		$params =  is_array($params) ?  $params : (array) json_decode($params);
 
         try {
@@ -139,7 +139,7 @@ class DriverController extends CustomController
 
 	public function updateMobile()
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 		$params = is_array($params) ?  (array) $params : json_decode($params);
 
         try {
@@ -157,7 +157,7 @@ class DriverController extends CustomController
 
 	public function resetPassword() 
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->params());
 
         try {	
 
@@ -183,9 +183,9 @@ class DriverController extends CustomController
 		
 		$Auth = new \Medians\Auth\Application\AuthService;
 		$this->app = new \config\APP;
-		$request = $this->app->request();
+		$request = $this->app->params();
 		
-		$params = json_decode($request->get('params'));		
+		$params = json_decode($params);		
 
 		$checkLogin = $this->repo->checkLogin($params->email, $Auth->encrypt($params->password));
 		
@@ -209,7 +209,7 @@ class DriverController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -267,7 +267,7 @@ class DriverController extends CustomController
 
 	public function changePassword()
 	{
-		$_params = $this->app->request()->get('params');
+		$_params = $this->app->params();
 		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
 
         try {
@@ -286,7 +286,7 @@ class DriverController extends CustomController
 
 	public function resetChangePassword()
 	{
-		$_params = $this->app->request()->get('params');
+		$_params = $this->app->params();
 		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
 
         try {

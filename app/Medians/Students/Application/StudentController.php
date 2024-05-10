@@ -132,7 +132,7 @@ class StudentController extends CustomController
 	public function store() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {	
 
@@ -163,7 +163,7 @@ class StudentController extends CustomController
 
 	public function update()
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -186,7 +186,7 @@ class StudentController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -215,7 +215,7 @@ class StudentController extends CustomController
 		
 		
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->params());
 
 		$data =  $this->repo->findWithLocations($params['student_id'], $this->app->auth()->parent_id);
 
@@ -225,7 +225,7 @@ class StudentController extends CustomController
 	public function addStudent() 
 	{
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->params());
         try {	
 
 			$params['parent_id'] =  $this->app->auth()->parent_id;
@@ -249,7 +249,7 @@ class StudentController extends CustomController
 	public function updateStudentInfo() 
 	{
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) json_decode($this->app->params());
         try {	
 
 			$params['parent_id'] =  $this->app->auth()->parent_id;

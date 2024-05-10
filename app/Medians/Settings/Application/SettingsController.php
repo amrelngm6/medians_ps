@@ -65,7 +65,7 @@ class SettingsController extends CustomController
 	public function update() 
 	{
 
-		$params = $this->app->request()->get('params')['settings'];
+		$params = $this->app->params()['settings'];
 
 		try {
 

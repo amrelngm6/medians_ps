@@ -36,7 +36,7 @@ class MobileAPIController extends CustomController
 		$return = [];
 		$model = empty($model) ? $this->app->request()->get('model') : $model;
 
-		$params = $this->app->request()->get('params') ? (array)  json_decode($this->app->request()->get('params')) : [];
+		$params = $this->app->params() ? (array)  json_decode($this->app->params()) : [];
 
 		switch ($model) 
 		{

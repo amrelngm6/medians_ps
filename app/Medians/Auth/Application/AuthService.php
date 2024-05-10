@@ -170,7 +170,7 @@ class AuthService
 	{
 		$this->app = new \config\APP;
 		
-        $params = $this->app->request()->get('params');
+        $params = $this->app->params();
 
         try {
             
