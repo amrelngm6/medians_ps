@@ -130,7 +130,7 @@ class ParentController extends CustomController
 
 	public function signup() 
 	{
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
         try {	
 
             return  (!empty($this->repo->store($params))) 
@@ -148,7 +148,7 @@ class ParentController extends CustomController
 
 	public function resetPassword() 
 	{
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 
         try {	
 
@@ -170,7 +170,7 @@ class ParentController extends CustomController
 	 */
 	public function resetChangePassword()
 	{
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 
         try {
 			
@@ -186,8 +186,7 @@ class ParentController extends CustomController
 
 	public function updateMobile()
 	{
-		$params = $this->app->params();
-		$params = is_array($params) ?  (array) $params : json_decode($params);
+		$params = (array) $this->app->params();
 
         try {
 
@@ -204,8 +203,7 @@ class ParentController extends CustomController
 
 	public function changePassword()
 	{
-		$_params = $this->app->params();
-		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
+		$params = (array)  $this->app->params();
 
         try {
 			

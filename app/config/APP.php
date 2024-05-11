@@ -131,7 +131,7 @@ class APP
  	 */
 	public function params()
 	{
-		return sanitizeInput($this->request()->get('params'));
+		return sanitizeInput(is_array($this->request()->get('params')) ? $this->request()->get('params') : json_decode($this->request()->get('params')));
 	}
 
 

@@ -175,7 +175,7 @@ class HelpMessageController extends CustomController
 	public function storeMobile() 
 	{
 
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 
         try {	
 			$params['user_id'] = $this->app->auth()->driver_id;
@@ -195,7 +195,7 @@ class HelpMessageController extends CustomController
 	public function parentStore() 
 	{
 
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 		$user = $this->app->auth();
         try {	
 			$params['user_id'] = $user->parent_id;
@@ -214,7 +214,7 @@ class HelpMessageController extends CustomController
 
 	public function storeDriverComment() 
 	{
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 
         try {	
 
@@ -236,7 +236,7 @@ class HelpMessageController extends CustomController
 
 	public function storeParentComment() 
 	{
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 
         try {	
 

@@ -110,8 +110,8 @@ class DriverController extends CustomController
 	public function update()
 	{
 		
-		$params = $this->app->params();
-		$params =  is_array($params) ?  $params : (array) json_decode($params);
+
+		$params = (array) $this->app->params();
 
         try {
 
@@ -139,8 +139,7 @@ class DriverController extends CustomController
 
 	public function updateMobile()
 	{
-		$params = $this->app->params();
-		$params = is_array($params) ?  (array) $params : json_decode($params);
+		$params = (array) $this->app->params();
 
         try {
 
@@ -157,7 +156,7 @@ class DriverController extends CustomController
 
 	public function resetPassword() 
 	{
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 
         try {	
 
@@ -185,8 +184,6 @@ class DriverController extends CustomController
 		$this->app = new \config\APP;
 		$request = $this->app->params();
 		
-		$params = json_decode($params);		
-
 		$checkLogin = $this->repo->checkLogin($params->email, $Auth->encrypt($params->password));
 		
 		if (empty($checkLogin->driver_id)) {
@@ -267,8 +264,7 @@ class DriverController extends CustomController
 
 	public function changePassword()
 	{
-		$_params = $this->app->params();
-		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
+		$params = (array) $this->app->params();
 
         try {
 			
@@ -286,8 +282,7 @@ class DriverController extends CustomController
 
 	public function resetChangePassword()
 	{
-		$_params = $this->app->params();
-		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
+		$params = (array) $this->app->params();
 
         try {
 			

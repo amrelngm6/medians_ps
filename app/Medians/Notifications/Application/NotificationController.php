@@ -239,7 +239,7 @@ class NotificationController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 
         try {
 

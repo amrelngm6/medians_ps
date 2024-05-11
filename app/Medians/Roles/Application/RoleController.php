@@ -130,7 +130,7 @@ class RoleController extends CustomController
 	public function updatePermissions()
 	{
 
-		$params = (array) json_decode($this->app->params());
+		$params = (array) $this->app->params();
 
         try {
 

@@ -186,7 +186,7 @@ class PickupLocationController extends CustomController
 	/// Update working days
 	public function updateDays()
 	{
-		$params = (array)  json_decode($this->app->params());
+		$params = (array)  $this->app->params();
 
 		error_log($this->app->params());
         try {
