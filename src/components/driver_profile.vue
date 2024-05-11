@@ -6,7 +6,7 @@
                     <div class="text-center">
 
                         <img :src="activeItem.picture" alt=""
-                            class=" rounded-full p-1 bg-gray-100 dark:bg-gray-700 mx-auto">
+                            class=" rounded-full p-1 bg-gray-100  mx-auto">
                         <h4 class="mb-1 mt-3 text-lg dark:text-gray-300" v-text="activeItem.name"></h4>
                         <p class="text-gray-400 mb-4 dark:text-gray-400" v-text="activeItem.email"></p>
 
@@ -47,7 +47,7 @@
                 <div class="card">
                     <div class="p-6">
                         <div class="w-full">
-                            <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 dark:bg-gray-900/30"
+                            <nav class="lg:flex items-center justify-around rounded-xl space-x-3 bg-gray-100 p-2 "
                                 aria-label="Tabs" role="tablist">
                                 <button @click="setActiveStatus('info')" type="button"
                                     v-text="translate('Info')"
@@ -115,17 +115,17 @@
 
                                             <div class="md:text-start lg:flex mb-5 mt-5">
                                                 <div class="w-full">
-                                                    <h5 class="font-semibold bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded "
+                                                    <h5 class="font-semibold bg-white  dark:text-gray-300 inline rounded "
                                                     v-text="translate('Trip number') + ' #' + trip.trip_id"></h5>
                                                     <p class="text-muted text-sm" v-text="trip.trip_date"></p>
                                                 </div>
                                                 <div class="w-full">
-                                                    <h5 class="font-semibold bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded "
+                                                    <h5 class="font-semibold bg-white  dark:text-gray-300 inline rounded "
                                                     v-text="trip.duration"></h5>
                                                     <p class="text-muted text-sm" v-text="translate('Duration')"></p>
                                                 </div>
                                                 <div class="w-full">
-                                                    <h5 class="font-semibold bg-white dark:bg-gray-700 dark:text-gray-300 inline rounded "
+                                                    <h5 class="font-semibold bg-white  dark:text-gray-300 inline rounded "
                                                     v-text="trip.distance+' KM'"></h5>
                                                     <p class="text-muted text-sm" v-text="translate('Distance')"></p>
                                                 </div>
@@ -137,7 +137,7 @@
                                                     <div class="absolute start-7 mt-6">
                                                         <div class="relative">
                                                             <div
-                                                                class="w-9 h-9 flex justify-center items-center rounded-full bg-white text-info dark:bg-gray-800">
+                                                                class="w-9 h-9 flex justify-center items-center rounded-full bg-white text-info ">
                                                                 <img :src="'/app/image.php?w=100&h=100&src='+ location.model.picture" class="rounded-full"
                                                                     alt="">
                                                             </div>
