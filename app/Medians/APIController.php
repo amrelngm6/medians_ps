@@ -275,6 +275,29 @@ class APIController extends CustomController
 				$controller = new Customers\Application\CustomerController;
 				break;
 			
+			case 'Currency.update':
+				$controller = new Currencies\Application\CurrencyService;
+				break;
+				
+			case 'Language.update':
+				$controller = new Languages\Application\LanguageController;
+				break;
+				
+			case 'Translation.update':
+				$controller = new Languages\Application\TranslationController; 
+				break;
+			
+			case 'Gallery.update':
+				$controller = new Gallery\Application\GalleryController; 
+				break;
+			
+			case 'Menu.update':
+				$controller = new Menus\Application\MenuController; 
+				break;
+	
+			case 'EmailTemplate.update':
+				$controller = new Templates\Application\EmailTemplateController; 
+				break;
 
 		}
 
