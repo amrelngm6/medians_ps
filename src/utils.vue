@@ -28,7 +28,7 @@ export function durationMonthsDate(date, value) {
 
 export function remove(item, type) {
             
-    if (!window.confirm(this.__('confirm_delete')))
+    if (!window.confirm(this.translate('confirm_delete')))
     {
         return null;
     }
@@ -170,15 +170,6 @@ export function checkAccess (auth)
         return true;
 
     if (!auth)
-        return false;
-
-    if (!auth.business)
-        return false;
-    
-    if (!auth.business.subscription)
-        return false;
-    
-    if (auth.business.subscription.is_expired)
         return false;
 
     return true;

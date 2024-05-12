@@ -49,7 +49,7 @@ class PaymentSettingsController extends CustomController
 				[ 'key'=> "currency_converter_api", 'title'=> translate('Currency converter API'), 'help_text'=> translate('Important required if you want to enable paystack payment from CurrencyAPI https://app.currencyapi.com/api-keys'),'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
 			],
 			'paypal'=> [	
-				[ 'key'=> "paypal_payment", 'title'=> translate('Allow Paymment  with PayPal'), 'help_text'=>translate('Allow Business users to pay with PayPal for plan subscriptions'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "paypal_payment", 'title'=> translate('Allow Paymment  with PayPal'), 'help_text'=>translate('Allow users to pay with PayPal for orders'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "paypal_api_key", 'title'=> translate('PayPal API Key'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "paypal_api_secret", 'title'=> translate('PayPal API Secret'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "paypal_mode", 'title'=> translate('PayPal mode'), 
@@ -58,7 +58,7 @@ class PaymentSettingsController extends CustomController
 				],
 			],
 			'paystack'=> [
-				[ 'key'=> "paystack_payment", 'title'=> translate('Allow Paymment  with paystack'), 'help_text'=>translate('Allow Business users to pay with paystack for plan subscriptions'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "paystack_payment", 'title'=> translate('Allow Paymment  with paystack'), 'help_text'=>translate('Allow users to pay with paystack for orders'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'help_text'=>translate('Get your Live / Test code from PayStack https://dashboard.paystack.com/#/settings/developers'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "currency_converter_api", 'title'=> translate('Currency converter API'), 'help_text'=> translate('Important required if you want to enable paystack payment from CurrencyAPI https://app.currencyapi.com/api-keys'),'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
 			],

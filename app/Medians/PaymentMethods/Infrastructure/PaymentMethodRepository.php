@@ -103,7 +103,7 @@ class PaymentMethodRepository
 
 		if ($data)
 		{
-
+			$Model = null;
 			foreach (json_decode($data) as $item )
 			{
 				

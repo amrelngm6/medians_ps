@@ -13,16 +13,7 @@ use Medians\Gallery\Domain\GalleryField;
 class GalleryRepository 
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
-
-	function __construct($business)
-	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
-	}
-
+	
 
 	/**
 	* Find item by `id` 
@@ -37,7 +28,7 @@ class GalleryRepository
 	*/
 	public function get($params = null) 
 	{
-		return Gallery::where('business_id', $this->business_id)->get();
+		return Gallery::get();
 	}
 
 

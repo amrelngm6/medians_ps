@@ -3,8 +3,6 @@
         
         <input v-if="column && column.column_type == 'hidden'" :name="handleName(column)" type="hidden" v-model="item[column.key]">
 
-        <editable_map_location v-if="column.column_type == 'location_map'" :system_setting="system_setting" :item="item" :column="column"></editable_map_location>
-
         <input @change="changed(item[column.key])"  :required="column.required" :disabled="column.disabled" v-if="isInput(column.column_type)" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title" v-model="item[column.key]">
     
         <input :required="column.required" :disabled="column.disabled" v-if="column.column_type == 'password'" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title">
@@ -21,14 +19,16 @@
         <Multiselect
             v-if="column.multiple && column.data && column.column_type == 'select'" 
             mode="tags"
-            v-model="item[column.column_key]"
-            :object="true"
+            v-model="multipleValue"
+            :object="false"
             :hideSelected="true"
             :searchable="true"
+            :allowAbsent="true"
             :valueProp="column.column_key ? column.column_key : column.key"
             :trackBy="column.text_key"
             :label="column.text_key"    
             :options="column.data"
+            @change="changed" 
         ></Multiselect>
 
         <input v-if="column.multiple && column.data && column.column_type == 'select'" type="hidden" v-for="selected in  item[column.column_key]" :name="'params['+(column.column_key)+'][]'" :value="selected[column.column_key]" />
@@ -45,10 +45,8 @@
 <script>
 import close_icon from '@/components/svgs/Close.vue';
 import field from '@/components/includes/Field.vue';
-import editable_map_location from '@/components/includes/editable_map_location.vue';
 import { translate, handleGetRequest, handleName, isInput, setActiveStatus, handleRequest, deleteByKey, showAlert } from '@/utils.vue';
 
-import { GoogleMap,  CustomMarker, InfoWindow , Marker,Polyline } from "vue3-google-map";
 import Multiselect from '@vueform/multiselect'
 import {ref} from 'vue'
 
@@ -57,7 +55,6 @@ export default
     components: {
         'vue-medialibrary-field': field,
         close_icon,
-        editable_map_location,
         Multiselect 
     },
 
@@ -79,24 +76,26 @@ export default
             model ? emit('callback', model) : '';
         }
 
-        const value = ref([]);
+        const multiple_changed = (model) => 
+        {
+            model ? emit('callback', model.map(e => e[props.column.key])) : '';
+        }
 
-        const options  =  [
-          'Batman',
-          'Robin',
-          'Joker',
-        ]
+        const multipleValue = ref([]);
+        if (props.column.multiple)
+            multipleValue.value = props.item[props.column.key] ? props.item[props.column.key].map(e => e[props.column.column_key]) : [];
+
 
         return {
             file: '',
+            multipleValue,
             isInput,
-            value,
-            options,
             setActiveStatus,
             changed,
             handleName,
+            translate,
+            multiple_changed,
             itemData: props.item,
-            translate
         }
     }
 };

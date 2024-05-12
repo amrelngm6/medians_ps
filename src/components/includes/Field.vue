@@ -53,6 +53,7 @@
     </div>
 </template>
 
+
 <script>
 import {ref} from 'vue';
 import Loader from '@/components/includes/Loader.vue';
@@ -101,7 +102,7 @@ export default
             required: false
         }
     },
-    emits: ['input'],
+    emits: ['changed', 'clear'],
     setup(props, {emit}) 
     {
 
@@ -126,22 +127,28 @@ export default
 
         const clear = () => {
             content.value = file.value = null;
-            emit('input', null);
+        }
+
+        
+        const remove = () => {
+            emit('clear', null);
         }
 
         const change = () => {
-            emit('input', file);
+            emit('changed', file.value);
         }
 
         content.value = props.filepath;
-        file.value = content.value;
+        file.value = props.filepath;
 
         return {
-            translate,
+
             insert,
             clear,
+            remove,
             change,
             showLibrary,
+            translate,
             showManager,
             file,
             content,
@@ -150,5 +157,4 @@ export default
     
 }
 </script>
-
 

@@ -103,22 +103,9 @@ class NotificationEventRepository
 	public function loadModels()
 	{
 		return [
-			'Business' => \Medians\Businesses\Domain\Business::class,
-			'PlanSubscription' => \Medians\Plans\Domain\PlanSubscription::class,
-			'RouteLocation' => \Medians\Locations\Domain\RouteLocation::class,
-			'Student' => \Medians\Students\Domain\Student::class,
 			'Customer' => \Medians\Customers\Domain\Customer::class,
 			'User' => \Medians\Users\Domain\User::class,
-			'Driver' => \Medians\Drivers\Domain\Driver::class,
-			'DriverApplicant' => \Medians\Drivers\Domain\DriverApplicant::class,
-			'Vehicle' => \Medians\Vehicles\Domain\Vehicle::class,
-			'Trip' => \Medians\Trips\Domain\Trip::class,
-			'TripLocation' => \Medians\Trips\Domain\TripLocation::class,
-			'TaxiTrip' => \Medians\Trips\Domain\TaxiTrip::class,
-			'Trip alarm' => \Medians\Trips\Domain\TripAlarm::class,
-			'Parents' => \Medians\Customers\Domain\Parents::class,
 			'HelpMessage' => \Medians\Help\Domain\HelpMessage::class,
-			'PackageSubscription' => \Medians\Packages\Domain\PackageSubscription::class,
 			'Payment' => \Medians\Payments\Domain\Payment::class,
 			'HelpMessageComment' => \Medians\Help\Domain\HelpMessageComment::class,
 		];
@@ -134,10 +121,7 @@ class NotificationEventRepository
 	{
 		return [
 			'User' => \Medians\Users\Domain\User::class,
-			'Driver' => \Medians\Drivers\Domain\Driver::class,
-			'Parents' => \Medians\Customers\Domain\Parents::class,
-			'Employee' => \Medians\Customers\Domain\Employee::class,
-			'SuperVisor' => \Medians\Customers\Domain\SuperVisor::class,
+			'Customer' => \Medians\Customers\Domain\Customer::class,
 		];
 	}   
 }

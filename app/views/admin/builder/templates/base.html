@@ -1,14 +1,7 @@
 <!-- Template assets -->
-<link href="/assets?asset=/src/assets/css/tailwind.min.css" rel="stylesheet">
-<link href="/assets?asset=/src/front_assets/css/custom.css" rel="stylesheet">
-<link href="/assets?asset=/src/front_assets/css/style.css" rel="stylesheet">
-<link href="/assets?asset=/src/front_assets/css/responsive.css" rel="stylesheet">
-<link href="/assets?asset=/src/front_assets/css/slick.css" rel="stylesheet">
-<link href="/assets?asset=/src/front_assets/css/slick-theme.css" rel="stylesheet">
-<link href="/assets?asset=/src/front_assets/css/color.css" rel="stylesheet">
-<link href="/assets?asset=/src/front/fontawesome/css/all.min.css" rel="stylesheet">
 <input type="hidden" id="content-id" value="{{page.id }}">
 
+{% include 'views/front/includes/head_assets.html.twig' %}
 {% include 'views/front/includes/header.html.twig' %}
 <main class="WxEditableArea" id="contentArea">
     <div id="contentAreaElement" class="kelement"></div>

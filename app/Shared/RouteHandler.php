@@ -11,7 +11,7 @@ namespace Shared;
  * @method static RouteHandler head(string $route, Callable $callback)
  */
 class RouteHandler {
-  public static $halts = false;
+  public static $halts = true;
   public static $routes = array();
   public static $methods = array();
   public static $callbacks = array();
@@ -75,10 +75,8 @@ class RouteHandler {
       
       // $uri = (substr($uri, -1) == '/') ? substr($uri, 0,-1) : $uri;
       $uri = empty($uri) ? '/' : $uri;
-
       // Check if route is defined without regex
       if (in_array($uri, self::$routes)) {
-        
         $route_pos = array_keys(self::$routes, $uri);
         foreach ($route_pos as $route) {
 
@@ -121,7 +119,7 @@ class RouteHandler {
           if (strpos($route, ':') !== false) {
             $route = str_replace($searches, $replaces, $route);
           }
-
+          
           if (preg_match('#^' . $route . '$#', $uri, $matched)) {
             if (self::$methods[$pos] == $method || self::$methods[$pos] == 'ANY' || (!empty(self::$maps[$pos]) && in_array($method, self::$maps[$pos]))) {
               $found_route = true;
@@ -147,7 +145,7 @@ class RouteHandler {
                 if (!method_exists($controller, $segments[1])) {
                   echo "controller and action not found";
                 } else {
-                  call_user_func_array(array($controller, $segments[1]), $matched);
+                  return call_user_func_array(array($controller, $segments[1]), $matched);
                 }
 
                 if (self::$halts) return;
@@ -156,7 +154,9 @@ class RouteHandler {
 
                 if (self::$halts) return;
               }
+              
             }
+            
           }
           $pos++;
         }
@@ -179,8 +179,10 @@ class RouteHandler {
         }
         call_user_func(self::$error_callback);
       }
+      
 		} catch (\Throwable $th) {
       echo !empty($_POST) ? $th->getMessage() : '';
+      // echo $th->getMessage();
       return empty($_POST) ? errorPage($th->getMessage()) : '';
 		}
   }

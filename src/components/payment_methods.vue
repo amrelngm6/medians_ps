@@ -68,10 +68,6 @@ import {defineAsyncComponent, ref} from 'vue';
 import {translate, handleGetRequest, handleRequest, deleteByKey, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails} from '@/utils.vue';
 
 
-const maps = defineAsyncComponent(() =>
-  import('@/components/includes/map.vue')
-);
-
 const form_field = defineAsyncComponent(() =>
   import('@/components/includes/form_field.vue')
 );
@@ -79,7 +75,6 @@ const form_field = defineAsyncComponent(() =>
 const side_form_create = defineAsyncComponent(() => import('@/components/includes/side-form-create.vue') );
 const side_form_update = defineAsyncComponent(() => import('@/components/includes/side-form-update.vue') );
 
-import editable_map_location from '@/components/includes/editable_map_location.vue';
 import tooltip from '@/components/includes/tooltip.vue';
 import payment_wizard from '@/components/wizards/paymentMethodWizard.vue';
 
@@ -91,12 +86,10 @@ export default
         'datatabble': Vue3EasyDataTable,
         side_form_create,
         side_form_update,
-        maps,
         delete_icon,
         car_icon,
         route_icon,
         form_field,
-        editable_map_location,
         tooltip,
         payment_wizard
     },
@@ -169,9 +162,9 @@ export default
 
     props: [
         'path',
-        'lang',
+        'langs',
         'system_setting',
-        'business_setting',
+        
         'setting',
         'conf',
         'auth',

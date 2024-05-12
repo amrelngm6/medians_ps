@@ -3,7 +3,6 @@
 namespace Medians\Languages\Domain;
 
 use Shared\dbaser\CustomModel;
-use Medians\Students\Domain\Student;
 
 
 class Translation extends CustomModel

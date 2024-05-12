@@ -34,8 +34,10 @@
     "vue-native-notification": "^1.1.1",
     "vue-script2": "^2.1.0",
     "vue-tailwind-datepicker": "^1.7.3",
+    "vue3-colorpicker": "^2.3.0",
     "vue3-easy-data-table": "^1.5.47",
     "vue3-google-map": "^0.18.0",
+    "vue3-tags-input": "^1.0.12",
     "vue3-toastify": "^0.2.1",
     "vuedraggable": "^2.24.3"
   },

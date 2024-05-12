@@ -33,21 +33,10 @@ class AuthService
 	*/
 	protected $repo;
 
-	/**
-	* @var Instance Driver Repo
-	*/
-	protected $driverRepo;
-
-	/**
-	* @var Instance Parent Repo
-	*/
-	protected $parentRepo;
-
 
 	function __construct()
 	{
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
-		$this->parentRepo = new \Medians\Customers\Infrastructure\ParentRepository(null);
 	}
  
 
@@ -397,55 +386,6 @@ class AuthService
 	}
 
 
-	/**
-	 * Check login credentials
-	 * 
-	 * @return Object / String 
-	 */ 
-	public function checkDriverLogin($email, $password)
-	{
-
-		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository(null);
-		
-		$checkDriverLogin = $this->driverRepo->checkLogin($email, $password);
-
-		if (empty($checkDriverLogin->id))
-		{
-            return translate("User credentials not valid");
-		}
-
-		if (empty($checkDriverLogin->active))
-		{
-			return translate("User account is not active");
-		}
-
-		return $checkDriverLogin;
-	}
-
-	/**
-	 * Check Parent login credentials
-	 * 
-	 * @return Object / String 
-	 */ 
-	public function checkParentLogin($email, $password)
-	{
-		$checkParentLogin = $this->parentRepo->checkLogin($email, $password);
-
-		if (empty($checkParentLogin->id))
-		{
-            return translate("User credentials not valid");
-		}
-
-		if (empty($checkParentLogin->active))
-		{
-			return translate("User account is not active");
-		}
-
-		return $checkParentLogin;
-	}
-
-
-
 	
 	/**
 	 * Validate the password length
@@ -510,17 +450,7 @@ class AuthService
 	public function checkAPISession($token = null, $userType = null) 
 	{
 				
-		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository(null);
-		
 		switch ($userType) {
-			case 'Driver':
-				return $this->driverRepo->findByToken($token);
-				break;
-				
-			case 'Parent':
-				return $this->parentRepo->findByToken($token);
-				break;
-
 			default:
 				return $this->repo->findByToken($token);
 				break;

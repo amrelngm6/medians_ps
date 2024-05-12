@@ -22,11 +22,9 @@ class CustomerController extends CustomController
 	function __construct()
 	{
 
-
+		$this->app = new \config\APP;
 
 		$this->repo = new Repo\CustomerRepository();
-
-
 	}
 
 
@@ -36,33 +34,35 @@ class CustomerController extends CustomController
 	 */ 
 	public function columns( ) 
 	{
+		return [
+            [ 'value'=> "brand_id", 'text'=> "#"],
+            [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
+            [ 'value'=> "picture", 'text'=> translate('Logo'),  ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "delete", 'text'=> translate('delete')  ],
+        ];
+	}
+
+
+
+	/**
+	 * Columns list to view at DataTable 
+	 *  
+	 */ 
+	public function fillable( ) 
+	{
 
 		return [
-            [
-                'key'=> "id",
-                'title'=> '#',
-            ],
-            [
-                'key'=> "name",
-                'title'=> translate('name'),
-                'sortable'=> true,
-            ],
-            [
-                'key'=> "mobile",
-                'title'=> translate('mobile'),
-                'sortable'=> true,
-                'type'=> 'number',
-            ],
-            [
-                'key'=> "bookings_count",
-                'title'=> translate('bookings_count'),
-                'sortable'=> true,
-            ],
-            [
-                'key'=> "last_invoice_code",
-                'title'=> translate('Last invoice'),
-                'sortable'=> false,
-            ]
+            [ 'key'=> "customer_id", 'title'=> "#", 'column_type'=>'hidden'],
+			[ 'key'=> "name", 'title'=> translate('Name'), 'required'=>true,  'fillable'=> true, 'column_type'=>'text' ],
+			[ 'key'=> "email", 'title'=> translate('Email'), 'required'=>true,  'fillable'=> true, 'column_type'=>'email' ],
+			[ 'key'=> "mobile", 'title'=> translate('Mobile'), 'required'=>true,  'fillable'=> true, 'column_type'=>'phone' ],
+			[ 'key'=> "birth_date", 'title'=> translate('Date of birth'), 'required'=>true,  'fillable'=> true, 'withLabel'=> true, 'column_type'=>'date' ],
+			[ 'key'=> "gender", 'title'=> translate('Gender'),  'fillable'=> true, 'withLabel'=> true, 'column_type'=>'select', 'required'=> true, 'text_key'=>'title',  'data' => 
+				[['gender'=> 'male', 'title'=>translate('Male')], ['gender'=> 'female', 'title'=>translate('Female')]]	
+			],
+			[ 'key'=> "picture", 'title'=> translate('Picture'), 'withLabel'=> true,   'fillable'=> true, 'column_type'=>'file'
+			],
         ];
 	}
 
@@ -72,11 +72,15 @@ class CustomerController extends CustomController
 	 */
 	public function index()
 	{
-		return render('customers', [
+		return render('data_table', [
 			'items' =>  $this->repo->get(),
 	        'title' => translate('Customers'),
 	        'load_vue' => true,
 			'columns' =>  $this->columns(),
+			'fillable' =>  $this->fillable(),
+			'object_name' => 'Customer',
+			'object_key' => 'customer_id',
+
 	    ]);
 	} 
 
@@ -122,7 +126,7 @@ class CustomerController extends CustomController
 			$params['created_by'] = $this->app->auth()->id;
 			$Item = $this->repo->store($params);
 
-        	return array('success'=>1, 'result'=> $Item);
+        	return array('success'=>1, 'result'=> $Item, 'reload'=>1);
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());

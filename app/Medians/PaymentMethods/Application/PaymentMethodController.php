@@ -21,7 +21,7 @@ class PaymentMethodController extends CustomController
 	function __construct()
 	{
 		$this->app = new \config\APP;
-		$this->repo = new PaymentMethodRepository($this->app->auth()->business);
+		$this->repo = new PaymentMethodRepository();
 	}
 
 

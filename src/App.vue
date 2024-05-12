@@ -6,22 +6,19 @@
         </div>
         <div class="left-4">
             <!-- component -->
-            
             <div class="w-full relative">
-                
-                <navbar @togglemenu="toggleMenuClass" :langs="langs" v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth" ></navbar>
-                <!-- <a href="javascript:;" class="mainmenu-close px-4  text-lg absolute top-4 mx-6 block" style="z-index:999" @click="showSide = !showSide"><vue-feather type="menu"></vue-feather></a> -->
+                <navbar @togglemenu="toggleMenuClass" :langs="langs" v-if="auth" style="z-index: 9999;" :system_setting="system_setting" :conf="conf" :auth="auth" ></navbar>
                 <div class="gap gap-6 h-full flex w-full overflow-hidden   ">
                     <side-menu @callback="switchTab" :samepage="activeTab" :system_setting="system_setting" :auth="auth" :url="conf.url ? conf.url : '/'" :key="menuClass" :menus="main_menu" class="sidebar " id="sidebar" v-if="showSide" :menuclass="menuClass" style="z-index:9999"></side-menu>
                     
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
                         <div class="w-full" v-if="checkAccess()">
                             <transition  :duration="1000">
-                                <component @callback="switchTab" class="pt-8 px-1 min-h-400px" ref="activeTab" :business_setting="business_setting" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent" :currency="currency"></component>
+                                <component @callback="switchTab"  :langs="langs" class="pt-8 px-1 min-h-400px" ref="activeTab" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :setting="setting" :conf="conf" :auth="auth" :is="activeComponent" :currency="currency"></component>
                             </transition>
                         </div>
                         <div class="w-full" v-if="!checkAccess() && !loader">
-                          <get_started :currency="currency" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth"></get_started>
+                          <get_started :currency="currency" :system_setting="system_setting" :setting="setting" :langs="langs" :conf="conf" :auth="auth"></get_started>
                         </div>
 
                     </div>
@@ -35,104 +32,52 @@
 </template>
 <script>
 
-
 import {defineAsyncComponent} from 'vue';
 import SideMenu from '@/components/side-menu.vue'; 
 import navbar from '@/components/navbar.vue'; 
 import dashboard from '@/components/dashboard.vue'; 
 import master_dashboard from '@/components/master_dashboard.vue'; 
-import trips from '@/components/trips.vue'; 
 import HelpMessages from '@/components/help_messages.vue'; 
-import notifications_events from '@/components/notifications_events.vue'; 
 import {translate, handleAccess, handleRequest, handleGetRequest, showAlert} from '@/utils.vue';
 
 const get_started = defineAsyncComponent(() => import('@/components/wizards/get-started.vue') );
 
 // Default data table pages
-const students = defineAsyncComponent(() => import('@/components/datatable_pages/students.vue') );
-const events = defineAsyncComponent(() => import('@/components/datatable_pages/events.vue') );
-const parents = defineAsyncComponent(() => import('@/components/datatable_pages/parents.vue') );
-const companies = defineAsyncComponent(() => import('@/components/datatable_pages/companies.vue') );
-const schools = defineAsyncComponent(() => import('@/components/datatable_pages/schools.vue') );
-const plan_features = defineAsyncComponent(() => import('@/components/datatable_pages/plan_features.vue') );
-const employees = defineAsyncComponent(() => import('@/components/datatable_pages/employees.vue') );
-const vehicle_types = defineAsyncComponent(() => import('@/components/datatable_pages/vehicle_types.vue') );
-const supervisors = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
-const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
-const languages = defineAsyncComponent(() => import('@/components/datatable_pages/languages.vue') );
-const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/gallery.vue') );
-const newsletter_subscribers = defineAsyncComponent(() => import('@/components/datatable_pages/newsletter_subscribers.vue') );
-const notifications = defineAsyncComponent(() => import('@/components/datatable_pages/notifications.vue') );
+const data_table = defineAsyncComponent(() => import('@/components/datatable_pages/data_table_page.vue') );
 const email_templates = defineAsyncComponent(() => import('@/components/email_templates.vue') );
 
 
-const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );
-
 const roles = defineAsyncComponent(() => import('@/components/roles.vue') );
-
-const settings = defineAsyncComponent(() => import('@/components/settings/settings.vue') );
 
 const system_settings = defineAsyncComponent(() => import('@/components/settings/system_settings.vue') );
 
-const routes = defineAsyncComponent(() => import('@/components/routes.vue') );
-
-
-const locations = defineAsyncComponent(() => import('@/components/locations.vue') );
-
 const users = defineAsyncComponent(() => import('@/components/users.vue') );
-
-const plans = defineAsyncComponent(() => import('@/components/plans.vue') );
-
-const plan_subscriptions = defineAsyncComponent(() => import('@/components/plan_subscriptions.vue') );
-
 
 const pages = defineAsyncComponent(() => import('@/components/pages.vue') );
 
 const payments = defineAsyncComponent(() => import('@/components/payments.vue') );
 
-
-const taxi_trips = defineAsyncComponent(() => import('@/components/taxi_trips.vue') );
-
 const app_settings = defineAsyncComponent(() => import('@/components/settings/app_settings.vue') );
-
-const parent_app_settings = defineAsyncComponent(() => import('@/components/settings/parent_app_settings.vue') );
 
 const profile = defineAsyncComponent(() => import('@/components/profile/profile.vue') );
 
-const packages = defineAsyncComponent(() => import('@/components/packages.vue') );
-
 const payment_methods = defineAsyncComponent(() => import('@/components/payment_methods.vue') );
-
-const package_subscriptions = defineAsyncComponent(() => import('@/components/package_subscriptions.vue') );
-
-const driver_applicants = defineAsyncComponent(() => import('@/components/driver_applicants.vue') );
-
-const business_applicants = defineAsyncComponent(() => import('@/components/business_applicants.vue') );
 
 const transactions = defineAsyncComponent(() => import('@/components/transactions.vue') );
 
 const invoices = defineAsyncComponent(() => import('@/components/invoices.vue') );
 
-const vacations = defineAsyncComponent(() => import('@/components/vacations.vue') );
-
-const wallets = defineAsyncComponent(() => import('@/components/wallet/wallets.vue') );
-
-const business_wallets = defineAsyncComponent(() => import('@/components/wallet/business_wallets.vue') );
-
-const business_withdrawals = defineAsyncComponent(() => import('@/components/wallet/business_withdrawals.vue') );
-
-const withdrawals = defineAsyncComponent(() => import('@/components/wallet/withdrawals.vue') );
-
-const driver_page = defineAsyncComponent(() => import('@/components/driver/profile.vue') );
-
-const collected_cash = defineAsyncComponent(() => import('@/components/wallet/collected_cash.vue') );
-
 const translations = defineAsyncComponent(() => import('@/components/translations.vue') );
-
 
 const contact_forms = defineAsyncComponent(() => import('@/components/contact_forms.vue') );
 
 const menus = defineAsyncComponent(() => import('@/components/menus.vue') );
+
+const products = defineAsyncComponent(() => import('@/components/products/index.vue') );
+
+const categories = defineAsyncComponent(() => import('@/components/categories/index.vue') );
+
+const notifications_events = defineAsyncComponent(() => import('@/components/notifications_events.vue') );
 
 
 
@@ -140,59 +85,28 @@ const menus = defineAsyncComponent(() => import('@/components/menus.vue') );
 export default {
     name: 'app',
     components: {
+        products,
+        categories,
+        data_table,
         SideMenu,
         navbar,
         dashboard,
         master_dashboard,
-        trips,
-        taxi_trips,
-        vehicles,
-        vehicle_types,
-        students,
-        parents,
-        drivers,
         roles,
-        routes,
         system_settings,
-        settings,
-        locations,
-        events,
-        notifications,
-        notifications_events,
         users,
-        schools,
-        companies,
-        plans,
-        plan_features,
-        plan_subscriptions,
-        employees,
         payments,
         pages,
-        packages,
         app_settings,
-        parent_app_settings,
         profile,
         payment_methods,
-        package_subscriptions,
-        supervisors,
-        driver_applicants,
-        business_applicants,
         transactions,
         invoices,
-        vacations,
-        wallets,
-        business_wallets,
-        business_withdrawals,
-        withdrawals,
-        driver_page,
-        collected_cash,
-        languages,
         translations,
-        newsletter_subscribers,
         contact_forms,
-        gallery,
         menus,
         email_templates,
+        notifications_events,
         get_started,
         translate,
         'help_messages':HelpMessages,
@@ -214,7 +128,6 @@ export default {
             currency: {},
             setting: {},
             system_setting: {},
-            business_setting: {},
             conf: {},
             url: '/',
             main_menu: [],
@@ -274,15 +187,6 @@ export default {
           if (!this.auth)
             return false;
 
-          if (!this.auth.business)
-            return false;
-          
-          if (!this.auth.business.subscription)
-            return false;
-          
-          if (this.auth.business.subscription.is_expired)
-            return false;
-
           return true;
         },
 
@@ -339,7 +243,6 @@ export default {
                 this.main_menu = response.menu ?? {};
                 this.setting = app.setting ?? {};
                 this.system_setting = app.setting ?? {};
-                this.business_setting = app.business_setting ?? {};
                 this.conf = app['CONF'] ?? {};
                 this.activeComponent = response.component ?? this.defaultPage();
                 this.currency = app.currency ?? {};

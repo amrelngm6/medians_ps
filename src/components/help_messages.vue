@@ -190,7 +190,7 @@ export default
         },
         props: [
             'path',
-            'lang',
+            'langs',
             'setting',
             'conf',
             'auth',

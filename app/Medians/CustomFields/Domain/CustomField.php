@@ -11,7 +11,7 @@ class CustomField extends CustomModel
 
 	protected $primaryKey = 'field_id';
 
-	public $fillable = ['code','value', 'model_type', 'model_id'];
+	public $fillable = ['title', 'code', 'value', 'model_type', 'model_id'];
 
 	public $timestamps = true;
 

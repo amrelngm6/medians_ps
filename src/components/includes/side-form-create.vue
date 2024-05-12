@@ -3,7 +3,7 @@
         <div class="rounded-lg shadow-lg bg-white dark:bg-gray-700 relative h-[90vh]  overflow-y-auto" >
             <form action="/api/create" method="POST" data-refresh="1" id="add-device-form" class="action  p-4  m-auto rounded-lg max-w-xl pb-10">
                 <div class="w-full flex">
-                    <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="__('ADD_new')"></h1>
+                    <h1 class="w-full m-auto max-w-xl text-base mb-10 " v-text="translate('ADD_new')"></h1>
                     <span class="cursor-pointer py-1 px-2" @click="emitClose(model)"><close_icon /></span>
                 </div>
                 <input name="type" type="hidden" :value="model">
@@ -23,14 +23,14 @@
                         <textarea  :required="column.required"  v-if="column.column_type == 'textarea'" :name="'params['+column.key+']'" rows="4" class="mt-3 form-control form-control-solid" :placeholder="column.title"></textarea>
 
                         <select :required="column.required"  :name="'params['+column.key+']'" :type="column.column_type" class="form-control form-control-solid" v-if="column.data && column.column_type == 'select'"  :placeholder="column.title">
-                            <option value="0" v-if="!column.required" v-text="__('-- Choose') +' '+ column.title"></option>
+                            <option value="0" v-if="!column.required" v-text="translate('-- Choose') +' '+ column.title"></option>
                             <option v-for="option in column.data" :value="option[column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
                         </select>
 
                         <div v-if="column.column_type == 'checkbox' && !showLoader"  class="flex gap gap-2 cursor-pointer my-2" @click="setActiveStatus(column)">
                             <span :for="column.key" class="block" v-text="column.title"></span>
                             <span :class="!column.active ? 'bg-gray-200' : 'bg-red-400'" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: column.active ? '16px' : 0}"></a></span>
-                            <span v-if="!column.without_text" v-text="column.active ? __('Active') : __('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                            <span v-if="!column.without_text" v-text="column.active ? translate('Active') : translate('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
                             <input v-model="column.active"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
                         </div>
                         
@@ -41,7 +41,7 @@
 
                 </div>
 
-                <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800 px-6" v-text="__('save')"></button>
+                <button class="uppercase h-12 mt-3 text-white w-full rounded bg-red-700 hover:bg-red-800 px-6" v-text="translate('save')"></button>
             </form>
         </div>
     </div>
@@ -94,7 +94,7 @@ export default
         setActiveStatus(column) {
             column.active = !column.active;
         },
-        __(i)
+        translate(i)
         {
             return translate(i);
         }

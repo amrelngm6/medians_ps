@@ -83,9 +83,6 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import { defineAsyncComponent, ref } from 'vue';
 import { translate, getProgressWidth, handleRequest, deleteByKey, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails } from '@/utils.vue';
 
-const maps = defineAsyncComponent(() =>
-    import('@/components/includes/map.vue')
-);
 const SideFormCreate = defineAsyncComponent(() =>
     import('@/components/includes/side-form-create.vue')
 );
@@ -97,8 +94,6 @@ const SideFormUpdate = defineAsyncComponent(() =>
 const form_field = defineAsyncComponent(() =>
     import('@/components/includes/form_field.vue')
 );
-import editable_map_location from '@/components/includes/editable_map_location.vue';
-import route_map from '@/components/maps/route_map.vue';
 import field from '@/components/includes/Field.vue';
 
 export default
@@ -108,14 +103,11 @@ export default
             'datatabble': Vue3EasyDataTable,
             SideFormCreate,
             SideFormUpdate,
-            maps,
             close_icon,
             delete_icon,
             car_icon,
             route_icon,
             form_field,
-            editable_map_location,
-            route_map
         },
         name: 'Translations',
         emits: ['callback'],
@@ -184,7 +176,7 @@ export default
             'conf',
             'path',
             'system_setting',
-            'business_setting',
+            
             'setting',
             'item',
             'languages',

@@ -189,10 +189,7 @@ class NotificationController extends CustomController
 		{
 			$items = $this->repo->loadParentNotifications($user->customer_id, 10, 0);
 		}
-		if (isset($user->driver_id))
-		{
-			$items = $this->repo->loadDriverNotifications($user->driver_id, 10, 0);
-		}
+		
 		
 		if (empty($items))
 			return null;

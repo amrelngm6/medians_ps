@@ -4,7 +4,6 @@ namespace Medians\Events\Infrastructure;
 
 use Medians\Events\Domain\Event;
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Drivers\Domain\Driver;
 use Medians\Users\Domain\User;
 
 

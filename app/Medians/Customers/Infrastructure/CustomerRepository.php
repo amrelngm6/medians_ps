@@ -26,6 +26,11 @@ class CustomerRepository
 		return Customer::class;
 	}
 
+	public function get()
+	{
+		return Customer::all();
+	}
+
 	public function findByEmail($email)
 	{
 		return Customer::where('email' , $email)->first();

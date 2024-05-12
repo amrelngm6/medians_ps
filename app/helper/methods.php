@@ -57,7 +57,6 @@ function render($template, $data, $responseType = 'html')
         
         $app = new \config\APP;
             
-        $business_setting = $app->BusinessSettings();
         $setting = $app->SystemSetting();
         $languages = $app->Languages();  
         
@@ -70,7 +69,6 @@ function render($template, $data, $responseType = 'html')
     $data['component'] = $template;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
-    $data['app']->business_setting = $business_setting;
     $data['app']->setting = $setting;
     $data['app']->currency = $app->currency();
     $data['menu'] = $app->menu();
@@ -200,4 +198,9 @@ function scrapeAndExtractSections($url)
     
     // Output the extracted sections
     return $sections;
+}
+
+function curLng()
+{
+    return $_SESSION['lang'] ?? $app->lang;
 }

@@ -18,9 +18,7 @@ class MediaRepository
 
 	public $files_dir = '/uploads/files/';
 
-	public $students_dir = '/uploads/students/';
-
-	public $drivers_dir = '/uploads/drivers/';
+	public $customers_dir = '/uploads/customers/';
 
 	public $videos_dir = '/uploads/videos/';
 
@@ -30,7 +28,7 @@ class MediaRepository
 
 		$this->setDir($type);
 
-		return $this->fetchBusinessMedia($type, $user);
+		return $this->fetchMedia($type, $user);
 	}
 
 
@@ -42,15 +40,7 @@ class MediaRepository
 			case 'files':
 				$this->_dir = $this->files_dir;
 				break;
-			
-			case 'students':
-				$this->_dir = $this->students_dir;
-				break;
-		
-			case 'drivers':
-				$this->_dir = $this->drivers_dir;
-				break;
-				
+							
 			default:
 				$this->_dir = $this->images_dir;
 				break;
@@ -81,10 +71,10 @@ class MediaRepository
 	}
 
 
-	public function fetchBusinessMedia($type, $user)
+	public function fetchMedia($type, $user)
 	{
 		$data = [];
-		$items = MediaUpload::where('business_id', isset($user->business->business_id) ? $user->business->business_id : '0')->get();
+		$items = MediaUpload::get();
 		foreach ($items as $key => $value) 
 		{
 			$ext = explode('.', $value->path);
@@ -134,6 +124,8 @@ class MediaRepository
 
 		$this->setDir($type);
 
+		$this->validate($type, $file->guessExtension());
+
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slug($originalFilename);
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
@@ -148,6 +140,14 @@ class MediaRepository
 
         return $fileName;
     }
+
+	public function validate($type, $ext)
+	{
+		if (!in_array($ext, $this->getTypes($type)))
+		{
+			throw new \Exception("This file is not allowed", 1);
+		}	
+	}
 
     public function delete($file)
     {

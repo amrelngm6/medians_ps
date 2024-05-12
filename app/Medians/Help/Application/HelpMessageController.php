@@ -22,7 +22,7 @@ class HelpMessageController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new HelpMessageRepository	($this->app->auth()->business);
+		$this->repo = new HelpMessageRepository	();
 	}
 
 
@@ -95,7 +95,6 @@ class HelpMessageController extends CustomController
         try {	
 
 			$user = $this->app->auth();
-			$params['business_id'] = $user->business->business_id;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
@@ -136,7 +135,6 @@ class HelpMessageController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		return $this->repo->loadDriverMessages($this->app->auth(), 100);
 	}  
 
 	
@@ -152,17 +150,6 @@ class HelpMessageController extends CustomController
 	}  
 
 	
-	/**
-	 * Load latest notifications at mobile
-	 * 
-	 */
-	public function loadParentHelpMessages()
-	{
-		$this->app = new \config\APP;
-
-		return $this->repo->loadParentMessages($this->app->auth(), 100);
-	}  
-
 
 	/**
 	 * Close / End ticket
@@ -193,9 +180,6 @@ class HelpMessageController extends CustomController
 		{	
 			$user = $this->app->auth();
 
-			$params['user_id'] = $user->driver_id;
-			$params['business_id'] = isset($user->business->business_id) ? $user->business->business_id : 0;
-
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('THNKS_MSG'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
@@ -205,70 +189,6 @@ class HelpMessageController extends CustomController
         }
 
 		return $returnData;
-	}
-
-	
-	public function parentStore() 
-	{
-
-		$params = (array) json_decode($this->app->request()->get('params'));
-		$user = $this->app->auth();
-        try {	
-			$params['user_id'] = $user->customer_id;
-
-            $returnData = (!empty($this->repo->parentStore($params))) 
-            ? array('success'=>1, 'result'=>translate('THNKS_MSG'), 'reload'=>1)
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
-
-        } catch (Exception $e) {
-        	return array('error'=>$e->getMessage());
-        }
-
-		return $returnData;
-	}
-
-
-	public function storeDriverComment() 
-	{
-		$params = (array) json_decode($this->app->request()->get('params'));
-
-        try {	
-
-        	$params['user_id'] = $this->app->auth()->driver_id;        	
-
-            $returnData = (!empty($this->repo->storeDriverComment($params))) 
-            ? array('success'=>1, 'result'=>translate('Added'))
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
-			
-        } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
-        }
-
-		echo json_encode($returnData);
-
-		return true;
-	}
-
-
-	public function storeParentComment() 
-	{
-		$params = (array) json_decode($this->app->request()->get('params'));
-
-        try {	
-
-        	$params['user_id'] = $this->app->auth()->customer_id;        	
-
-            $returnData = (!empty($this->repo->storeParentComment($params))) 
-            ? array('success'=>1, 'result'=>translate('Added'))
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
-			
-        } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
-        }
-
-		echo json_encode($returnData);
-
-		return true;
 	}
 
 

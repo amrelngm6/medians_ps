@@ -6,8 +6,6 @@ use \Shared\dbaser\CustomController;
 use Medians\Users\Application\GetStartedController;
 
 use Medians\Transactions\Infrastructure\TransactionRepository;
-use Medians\Plans\Infrastructure\PlanRepository;
-use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 
 class TransactionController extends CustomController
 {
@@ -17,18 +15,13 @@ class TransactionController extends CustomController
 	*/
 	protected $repo;
 	protected $app;
-	protected $planRepo;
-
-
 
 	function __construct()
 	{
         $this->app = new \config\APP;
 		
 		$user = $this->app->auth();
-		$this->repo = new TransactionRepository(isset($user->business) ? $user->business : null);
-
-		$this->planRepo = new PlanRepository();
+		$this->repo = new TransactionRepository();
 	}
 
 
@@ -167,11 +160,7 @@ class TransactionController extends CustomController
 
 			$saveTransaction = $paymentService->storeSubscriptionTransaction($params, $addInvoice); 
 			
-			$updateStudentBusiness = $paymentService->updateStudentBusiness($params ); 
-
 			$savedSubscription = $paymentService->updatePackageSubscription($params); 
-
-			$updateRouteLocation = $paymentService->updateRouteLocation($params); 
 
 			return (isset($saveTransaction->invoice_id))
 			? array('success'=>true,  'result'=>translate('PAYMENT_MADE_SECCUESS'))

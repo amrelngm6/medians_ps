@@ -156,9 +156,9 @@ export default
 
     props: [
         'path',
-        'lang',
+        'langs',
         'system_setting',
-        'business_setting',
+        
         'setting',
         'conf',
         'auth',

@@ -25,12 +25,12 @@ class ContentRepository
 
 	public function find($prefix)
 	{
-		return Content::where('prefix', $prefix)->first();
+		return Content::with('item')->where('prefix', $prefix)->first();
 	}
 
 	public function findById($id)
 	{
-		return Content::find($id);
+		return Content::with('item')->find($id);
 	}
 
 	public function findPage($page_id)

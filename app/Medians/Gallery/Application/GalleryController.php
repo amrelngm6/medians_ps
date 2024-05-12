@@ -21,7 +21,7 @@ class GalleryController extends CustomController
 	function __construct()
 	{
 		$this->app = new \config\APP;
-		$this->repo = new GalleryRepository($this->app->auth()->business);
+		$this->repo = new GalleryRepository();
 	}
 
 
@@ -70,7 +70,7 @@ class GalleryController extends CustomController
 	{
 		return render('gallery', [
 	        'load_vue' => true,
-	        'title' => translate('Business gallery'),
+	        'title' => translate('Gallery'),
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
 	        'items' => $this->repo->get(),
@@ -92,7 +92,6 @@ class GalleryController extends CustomController
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 			$params['created_by'] = $user->id;
-			$params['business_id'] = $user->business->business_id;
             
 			return ($this->repo->store($params))
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)

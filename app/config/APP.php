@@ -31,8 +31,6 @@ class APP
 
 	public $currentPage;
 
-	public $business_setting;
-
 	public $capsule;
 
 	public $session;
@@ -231,71 +229,39 @@ class APP
 		$data = array(
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'dashboard'),
-			array( 'title'=>translate('Businesses'),  'icon'=>'wind', 'link'=>'#businesses', 'sub'=>
-			[
-				array('permission'=>'Companies.index', 'title'=>translate('Companies'),  'icon'=>'user', 'link'=>'admin/companies', 'component'=>'companies'),
-				array('permission'=>'Schools.index', 'title'=>translate('Schools'),  'icon'=>'user', 'link'=>'admin/schools', 'component'=>'schools'),
-			]
-			),
 			
-			array('title'=>translate('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
+			array( 'title'=>translate('Products'),  'icon'=>'wind', 'link'=>'#Products', 'sub'=>
 			[
-				array('permission'=>'Parents.index', 'title'=>translate('Parents'),  'icon'=>'user', 'link'=>'admin/parents', 'component'=>'parents'),
-				array('permission'=>'Students.index', 'title'=>translate('Students'),  'icon'=>'user', 'link'=>'admin/students', 'component'=>'students'),
-				array('permission'=>'Employees.index', 'title'=>translate('Employees'),  'icon'=>'user', 'link'=>'admin/employees', 'component'=>'employees'),
-			]
-			),
-			
-			array('title'=>translate('Crew'),  'icon'=>'users', 'link'=>'#crew', 'sub'=>
-			[
-				array('permission'=>'Drivers.index', 'title'=>translate('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
-				array('permission'=>'SuperVisors.index', 'title'=>translate('Supervisors'),  'icon'=>'users', 'link'=>'admin/supervisors', 'component'=>'supervisors'),
+				array('permission'=>'Products.index', 'title'=>translate('Products'),  'icon'=>'user', 'link'=>'admin/products', 'component'=>'products'),
+				array('permission'=>'Categories.index', 'title'=>translate('Categories'),  'icon'=>'user', 'link'=>'admin/product_categories', 'component'=>'categories'),
+				array('permission'=>'Brands.index', 'title'=>translate('Brands'),  'icon'=>'user', 'link'=>'admin/brands', 'component'=>'brands'),
 			]
 			),
 
-			array('title'=>translate('Routes'),  'icon'=>'map', 'link'=>'#route', 'sub'=>
-			[
-				array('permission'=>'Routes.index', 'title'=>translate('Routes'),  'icon'=>'map', 'link'=>'admin/routes', 'component'=>'routes'),
-				array('permission'=>'RouteLocations.index', 'title'=>translate('Locations'),  'icon'=>'map', 'link'=>'admin/locations', 'component'=>'locations'),
-				]
-			),
-			
-			array('title'=>translate('Trips'),  'icon'=>'map-pin', 'link'=>'#TaxiTrips', 'sub'=>
-			[
-				array('permission'=>'Trips.index', 'title'=>translate('Route trips'),  'icon'=>'map-pin', 'link'=>'admin/trips', 'component'=>'trips'),
-				array('permission'=>'TaxiTrips.index', 'title'=>translate('Taxi Trips'),  'icon'=>'map', 'link'=>'admin/taxi_trips', 'component'=>'taxi_trips'),
-			]
-			),
+	        array('permission'=>'Shipping.index', 'title'=>translate('Shipping'),  'icon'=>'truck', 'link'=>'admin/shipping', 'component'=>'shipping'),
+	        
+			array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'customers'),
 
-			array('title'=>translate('Vehicles'),  'icon'=>'truck', 'link'=>'#vehicles', 'sub'=>
+			
+			array('title'=>translate('Orders'),  'icon'=>'shopping-bag', 'link'=>'#Orders', 'sub'=>
 			[
-				array('permission'=>'Vehicles.index', 'title'=>translate('Vehicles'),  'icon'=>'truck', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
-				array('permission'=>'VehicleTypes.index', 'title'=>translate('Vehicle Types'),  'icon'=>'truck', 'link'=>'admin/vehicle_types', 'component'=>'vehicle_types'),
-			]
-			),
-			array('title'=>translate('Applicants'),  'icon'=>'file', 'link'=>'#applicants', 'sub'=>
-			[
-				array('permission'=>'DriverApplicants.index', 'title'=>translate('Driver applicants'),  'icon'=>'users', 'link'=>'admin/driver_applicants', 'component'=>'driver_applicants'),
-				array('permission'=>'BusinessApplicants.index', 'title'=>translate('Business applicants'),  'icon'=>'credit-card', 'link'=>'admin/business_applicants', 'component'=>'business_applicants'),
+				array('permission'=>'Orders.index', 'title'=>translate('Orders'),  'icon'=>'truck', 'link'=>'admin/orders', 'component'=>'orders'),
+				array('permission'=>'Orders.index', 'title'=>translate('Cancelled Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=cancelled', 'component'=>'orders'),
 			]
 			),
 			
-			array('title'=>translate('Subscriptions'),  'icon'=>'cloud-lightning', 'link'=>'#packages', 'sub'=>
+			array('title'=>translate('Newsletters'),  'icon'=>'send', 'link'=>'#newsletters', 'sub'=>
 			[
-				array('permission'=>'Packages.index', 'title'=>translate('Manage Packages'),  'icon'=>'credit-card', 'link'=>'admin/packages', 'component'=>'packages'),
-				array('permission'=>'PackageSubscriptions.index', 'title'=>translate('Subscriptions'),  'icon'=>'credit-card', 'link'=>'admin/package_subscriptions', 'component'=>'package_subscriptions'),
-				array('permission'=>'Vacations.index', 'title'=>translate('Vacations'),  'icon'=>'user', 'link'=>'admin/vacations', 'component'=>'vacations')
+				array('permission'=>'Newsletters.index', 'title'=>translate('newsletters'),  'icon'=>'truck', 'link'=>'admin/newsletters', 'component'=>'data_tables'),
+				array('permission'=>'Subscribers.index', 'title'=>translate('Subscribers'),  'icon'=>'truck', 'link'=>'admin/newsletter_subscribers', 'component'=>'data_tables'),
 			]
 			),
-			
 
 			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
 			[
 				array('permission'=> 'Transaction.index', 'title'=> translate('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
 				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-				array('permission'=> 'Withdrawals.index', 'title'=> translate('Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/withdrawals', 'component'=>'withdrawals'),
-				array('permission'=> 'CollectedCash.index', 'title'=> translate('collected_cash'), 'icon'=>'credit-card', 'link'=>'admin/collected_cash', 'component'=>'collected_cash'),
-				]
+			]
 			),
 			array( 'title'=>translate('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
@@ -320,27 +286,38 @@ class APP
 		$data = array(
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
-			array( 'title'=>translate('Businesses'),  'icon'=>'wind', 'link'=>'#businesses', 'sub'=>
+			
+			array( 'title'=>translate('Products'),  'icon'=>'wind', 'link'=>'#Products', 'sub'=>
 			[
-				array('permission'=>'Companies.index', 'title'=>translate('Companies'),  'icon'=>'user', 'link'=>'admin/companies', 'component'=>'companies'),
-				array('permission'=>'Schools.index', 'title'=>translate('Schools'),  'icon'=>'user', 'link'=>'admin/schools', 'component'=>'schools'),
+				array('permission'=>'Products.index', 'title'=>translate('Products'),  'icon'=>'user', 'link'=>'admin/products', 'component'=>'products'),
+				array('permission'=>'Categories.index', 'title'=>translate('Categories'),  'icon'=>'user', 'link'=>'admin/product_categories', 'component'=>'categories'),
+				array('permission'=>'Brands.index', 'title'=>translate('Brands'),  'icon'=>'user', 'link'=>'admin/brands', 'component'=>'data_table'),
 			]
 			),
-						
-			array( 'title'=>translate('Plans'),  'icon'=>'check-circle', 'link'=>'#plan', 'sub'=>
+
+	        array('permission'=>'Shipping.index', 'title'=>translate('Shipping'),  'icon'=>'truck', 'link'=>'admin/shipping', 'component'=>'data_table'),
+	        
+			array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'data_table'),
+			
+			array('title'=>translate('Orders'),  'icon'=>'shopping-bag', 'link'=>'#Orders', 'sub'=>
 			[
-				array('permission'=>'Plans.index', 'title'=>translate('Plans'),  'icon'=>'tool', 'link'=>'admin/plans', 'component'=>'plans'),
-				array('permission'=>'PlanFeatures.index', 'title'=>translate('Plan features'),  'icon'=>'tool', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
-				array('permission'=>'PlanSubscriptions.index', 'title'=>translate('Plan subscriptions'),  'icon'=>'tool', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
+				array('permission'=>'Orders.index', 'title'=>translate('Orders'),  'icon'=>'truck', 'link'=>'admin/orders', 'component'=>'orders'),
+				array('permission'=>'Orders.index', 'title'=>translate('Cancelled Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=cancelled', 'component'=>'orders'),
+				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
 			]
 			),
 			
+			array('title'=>translate('Newsletters'),  'icon'=>'send', 'link'=>'#newsletters', 'sub'=>
+			[
+				array('permission'=>'Newsletters.index', 'title'=>translate('newsletters'),  'icon'=>'truck', 'link'=>'admin/newsletters', 'component'=>'data_table'),
+				array('permission'=>'Subscribers.index', 'title'=>translate('Subscribers'),  'icon'=>'truck', 'link'=>'admin/newsletter_subscribers', 'component'=>'data_table'),
+			]
+			),
+			
+			
 			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
 			[
-				array('permission'=>'Payments.index', 'title'=>translate('Plan Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
-				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-				array('permission'=>'BusinessWallets.index', 'title'=>translate('Business Wallets'),  'icon'=>'help-circle', 'link'=>'admin/business_wallets', 'component'=>'business_wallets'),
-				array('permission'=> 'BusinessWithdrawals.index', 'title'=> translate('Business Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/business_withdrawals', 'component'=>'business_withdrawals'),
+				array('permission'=>'Payments.index', 'title'=>translate('Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
 				array('permission'=> 'PaymentMethods.index', 'title'=> translate('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
 			]
 			),
@@ -362,8 +339,7 @@ class APP
 			[
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				array('permission'=>'EmailTemplate.index', 'title'=>translate('Email Templates'),  'icon'=>'tag', 'link'=>'admin/email_templates', 'component'=>'email_templates'),
-				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
-				array('permission'=>'NewsletterSubscriber.index', 'title'=>translate('newsletter_subscribers'),  'icon'=>'tag', 'link'=>'admin/newsletter_subscribers', 'component'=>'newsletter_subscribers'),
+				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'data_table'),
 			]
 			),
 			array( 'title'=>translate('Support'),  'icon'=>'help-circle', 'link'=>'#support', 'superadmin'=> true, 'sub'=>
@@ -374,7 +350,7 @@ class APP
 			),
 			array( 'title'=>translate('localization'),  'icon'=>'mic', 'link'=>'#localization', 'superadmin'=> true, 'sub'=>
 			[
-				array('permission'=>'Language.index', 'title'=>translate('Languages'),  'icon'=>'tag', 'link'=>'admin/languages', 'component'=>'languages'),
+				array('permission'=>'Language.index', 'title'=>translate('Languages'),  'icon'=>'tag', 'link'=>'admin/languages', 'component'=>'data_table'),
 				array('permission'=>'Translation.index', 'title'=>translate('Translations'),  'icon'=>'tag', 'link'=>'admin/translations', 'component'=>'translations'),
 			]
 			),
@@ -382,8 +358,6 @@ class APP
 			[
 				array('permission'=> 'SystemSettings.index', 'title'=> translate('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
 				array('permission'=> 'SystemSettings.index', 'title'=> translate('Payment settings'),  'icon'=>'tool', 'link'=>'admin/payment_settings', 'component'=>'system_settings'),
-				array('permission'=> 'DriverAppSetting.index', 'title'=> translate('Driver APP Settings'),  'icon'=>'tool', 'link'=>'admin/app_settings', 'component'=>'app_settings'),
-				array('permission'=> 'ParentAppSettings.index', 'title'=> translate('Parent APP Settings'),  'icon'=>'tool', 'link'=>'admin/parent_app_settings', 'component'=>'parent_app_settings'),
 			]
 			),
 			

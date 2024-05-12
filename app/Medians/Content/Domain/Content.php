@@ -57,4 +57,8 @@ class Content extends CustomModel
 
 	}
 
+	public function item()
+	{
+		return $this->morphTo();
+	}
 }

@@ -94,7 +94,6 @@ class GetStartedController
 
 		foreach ($params as $row) 
 		{
-			$row['business_id'] = $business->business_id;
 			$row['created_by'] = $user->id;
 			$store = $this->settingRepo->store($row);
 		}
@@ -197,7 +196,6 @@ class GetStartedController
 			// Store new subscription 
 			$planSubscription = [];
 			$planSubscription['plan_id'] = $params['plan_id'];
-			$planSubscription['business_id'] = $user->business->business_id;
 			$planSubscription['payment_type'] = $params['payment_type'];
 			$planSubscription['user_id'] = $user->id;
 			$planSubscription['start_date'] = date('Y-m-d');

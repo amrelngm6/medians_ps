@@ -75,7 +75,7 @@ class LanguageController extends CustomController
 		
 		try 
 		{
-		    return render('languages', 
+		    return render('data_table', 
 			[
 		        'load_vue' => true,
 		        'title' => translate('Languages'),

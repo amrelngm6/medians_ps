@@ -10,23 +10,10 @@ use Medians\CustomFields\Domain\CustomField;
 class PageRepository 
 {
 
-	
-	/**
-	 * Load app for Sessions and helpful
-	 * methods for authentication and
-	 */ 
-	protected $app ;
-
-
-	function __construct()
-	{
-		$this->app = new \config\APP;
-	}
-
 
 	public function find($page_id, $prefix = null)
 	{
-		return Page::with(['content'=>function($q) use ($prefix){
+		return Page::with(['lang_content'=>function($q) use ($prefix){
 			$prefix ? $q->where('prefix', $prefix) : $q;
 		}])->find($page_id);
 	}
@@ -35,7 +22,7 @@ class PageRepository
 	public function homepage()
 	{
 		$_SESSION['lang'];
-		return Page::where('homepage', 'on')->with(['content'=>function($q) {
+		return Page::where('homepage', 'on')->with(['lang_content'=>function($q) {
 			$q->where('lang', $_SESSION['lang']);
 		}])->first();
 	}
@@ -165,7 +152,6 @@ class PageRepository
 		if ($Model->wasRecentlyCreated)
 		{
 			$fields['prefix'] =  $prefix;
-			$fields['created_by'] = $this->app->auth()->id;
 			$Model->update($fields);
 		}
 

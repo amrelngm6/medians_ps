@@ -5,11 +5,6 @@ use \Shared\dbaser\CustomController;
 
 use Medians\Settings\Infrastructure\SettingsRepository;
 
-use Medians\Vehicles\Infrastructure\VehicleRepository;
-use Medians\Drivers\Infrastructure\DriverRepository;
-use Medians\Trips\Infrastructure\TripRepository;
-use Medians\Routes\Infrastructure\RouteRepository;
-
 class SettingsController extends CustomController
 {
 
@@ -31,7 +26,7 @@ class SettingsController extends CustomController
 
 		$user = $this->app->auth();
 
-		$this->repo = new SettingsRepository(isset($user->business) ? $user->business : null);
+		$this->repo = new SettingsRepository();
 	}
 
 	
@@ -60,15 +55,6 @@ class SettingsController extends CustomController
 				[ 'key'=> "phone", 'title'=> translate('phone'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 
-			'trips'=> [	
-				[ 'key'=> "allow_taxi_trip", 'title'=> translate('Allow Taxi Trips'), 'help_text'=>translate('Allow users to send you a taxi trip request'),  'fillable'=> true, 'column_type'=>'checkbox' ],
-			],
-
-			'drivers'=> [	
-				[ 'key'=> "driver_commission", 'title'=> translate('Driver commission for Taxi trips'), 'help_text'=> translate('The drivers commission when they complete paid taxi trip. The commission amount will be added to driver wallet balance'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "speed_limit", 'title'=> translate('Driver speed limit'), 'help_text'=> translate('Once the driver cross this speed limit, he will get alarm to slow down'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "allow_applicants", 'title'=> translate('Allow Driver Applicants'), 'help_text'=> translate('Allow the drivers to apply at your profile to join your team'),  'fillable'=> true, 'column_type'=>'checkbox' ],
-			],
 			
         ];
 	}
@@ -81,44 +67,14 @@ class SettingsController extends CustomController
 	public function index()
 	{
 		$user = $this->app->auth();
-		$settings = $this->getAll();
 
 		return render('settings', [
 			'load_vue' => true,
-			'business_setting' => $settings,
-            'stats' => $this->getStats($user->business),
 			'fillable' => $this->fillable(),
-			'business_fillable' => $this->business_fillable(),
 			'title' => translate('Settings'),
 	    ]);
 	} 
 
-
-	
-	public function business_fillable()
-	{
-		$business = new \Medians\Businesses\Application\BusinessController();
-
-		return $business->fillable();
-
-	} 
-
-	public function getStats($business) 
-	{	
-
-		$data = [];
-
-        $driverRepo = new DriverRepository($business);
-        $data['drivers_count'] = count($driverRepo->get(null));
-        $vehicleRepo = new VehicleRepository($business);
-        $data['vehicles_count'] = count($vehicleRepo->get(null));
-        $routesRepo = new RouteRepository($business);
-        $data['routes_count'] = count($routesRepo->get(null));
-		$tripsRepo = new TripRepository($business);
-        $data['trips_count'] = count($tripsRepo->get(null));
-
-		return $data;
-	}
 
 
 	public function getItem($code = null) 
@@ -130,12 +86,6 @@ class SettingsController extends CustomController
 	public function getAll() 
 	{	
 		$data = $this->repo->getAll();
-		return $data ? array_column(json_decode($data), 'value', 'code') :  [];
-	}
-
-	public function getBusinessSettings($businessId) 
-	{	
-		$data = $this->repo->getBusinessSettings($businessId);
 		return $data ? array_column(json_decode($data), 'value', 'code') :  [];
 	}
 
@@ -209,7 +159,6 @@ class SettingsController extends CustomController
 			'created_by' => $user->id,
 			'model' => '',
 			'code' => $code,
-			'business_id' => $user->business->business_id,
 			'value' => $value
 		];
 		

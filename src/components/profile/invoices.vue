@@ -56,10 +56,10 @@ export default {
 
     props: [
         'path',
-        'lang',
+        'langs',
         'setting',
         'system_setting',
-        'business_setting',
+        
         'conf',
         'auth',
         'item',

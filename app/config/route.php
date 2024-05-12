@@ -55,22 +55,15 @@ RouteHandler::post('/mobile_api', \Medians\MobileAPIController::class.'@handle')
 
 // Get requests
 RouteHandler::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
-RouteHandler::get('/route/(:all)', \Medians\Routes\Application\RouteController::class.'@getRoute');
-RouteHandler::get('/driver_routes', \Medians\Routes\Application\RouteController::class.'@getDriverRoutes');
-RouteHandler::get('/business_routes', \Medians\Routes\Application\RouteController::class.'@getBusinessRoutes');
-RouteHandler::get('/parent/(:all)', \Medians\Customers\Application\ParentController::class.'@checkParent');
-RouteHandler::get('/get_parent', \Medians\Customers\Application\ParentController::class.'@getParent');
-RouteHandler::get('/driver/(:all)', \Medians\Drivers\Application\DriverController::class.'@getDriver');
-RouteHandler::get('/vehicle/(:all)', \Medians\Vehicles\Application\VehicleController::class.'@getVehicle');
-RouteHandler::get('/trip/(:all)', \Medians\Trips\Application\TripController::class.'@getTrip');
-RouteHandler::get('/taxi_trip/(:all)', \Medians\Trips\Application\TaxiTripController::class.'@getTaxiTrip');
-RouteHandler::get('/upcoming_taxi_trip', \Medians\Trips\Application\TaxiTripController::class.'@upcomingTrip');
-RouteHandler::get('/upcoming_parent_trip', \Medians\Trips\Application\TaxiTripController::class.'@upcomingParentTrip');
-RouteHandler::get('/getParentTrip/(:all)', \Medians\Trips\Application\TripController::class.'@getParentTrip');
-RouteHandler::get('/events', \Medians\Events\Application\EventController::class.'@index');
-RouteHandler::get('/routes', \Medians\Routes\Application\RouteController::class.'@index');
-RouteHandler::get('/Route_active_trip', \Medians\Trips\Application\TripController::class.'@getActiveTrip');
+/**
+ * Cart routes
+ */
+RouteHandler::get('/cart', \Medians\Cart\Application\CartController::class.'@cart');
+RouteHandler::get('/checkout', \Medians\Cart\Application\CartController::class.'@checkout');
 RouteHandler::get('/create-payment-intent', \Medians\Transactions\Application\TransactionController::class.'@createPaymentIntent');
+RouteHandler::post('/cart/delete', \Medians\Cart\Application\CartController::class.'@delete');
+RouteHandler::post('/cart/update', \Medians\Cart\Application\CartController::class.'@update');
+
 
 
 // POST Requests
@@ -93,6 +86,7 @@ if(!empty($app->auth()))
 
     // Dashboard controller based on the user Role 
     RouteHandler::get('/dashboard', \Medians\DashboardController::class.'@index'); 
+    RouteHandler::get('/admin/dashboard', \Medians\DashboardController::class.'@index'); 
 
 
     // API POST requests
@@ -148,70 +142,50 @@ if(!empty($app->auth()))
     
 
     /**
-    * @return Students
+    * @return products
     */
-    RouteHandler::get('/admin/students', Medians\Students\Application\StudentController::class.'@index');
+    RouteHandler::get('/admin/products', Medians\Products\Application\ProductController::class.'@index');
+    RouteHandler::get('/admin/products/new', Medians\Products\Application\ProductController::class.'@create');
+    RouteHandler::get('/admin/products/(:all)', Medians\Products\Application\ProductController::class.'@product');
 
     /**
-    * @return Drivers
+    * @return Categories
     */
-    RouteHandler::get('/admin/drivers', Medians\Drivers\Application\DriverController::class.'@index');
+    RouteHandler::get('/admin/product_categories', Medians\Products\Application\CategoryController::class.'@index');
+    RouteHandler::get('/admin/product_categories/new', Medians\Products\Application\CategoryController::class.'@create');
+    RouteHandler::get('/admin/product_categories/(:all)', Medians\Products\Application\CategoryController::class.'@category');
 
     /**
-    * @return Drivers
+    * @return Brands
     */
-    RouteHandler::get('/admin/driver_profile', Medians\Drivers\Application\DriverController::class.'@profile');
+    RouteHandler::get('/admin/brands', Medians\Brands\Application\BrandController::class.'@index');
 
     /**
-    * @return Drivers Applicants
+    * @return Shipping
     */
-    RouteHandler::get('/admin/driver_applicants', Medians\Drivers\Application\DriverApplicantController::class.'@index');
+    RouteHandler::get('/admin/shipping', Medians\Shipping\Application\ShippingController::class.'@index');
 
     /**
-    * @return Business Applicants
+    * @return Newsletters
     */
-    RouteHandler::get('/admin/business_applicants', Medians\Customers\Application\BusinessApplicantController::class.'@index');
+    RouteHandler::get('/admin/newsletters', Medians\Newsletters\Application\NewsletterController::class.'@index');
 
-    /** @return Routes */
-    RouteHandler::get('/admin/routes', Medians\Routes\Application\RouteController::class.'@index');
-    
-    RouteHandler::get('/admin/routes/create', Medians\Routes\Application\RouteController::class.'@create');
+    RouteHandler::get('/admin/newsletter_subscribers', Medians\Newsletters\Application\SubscriberController::class.'@index');
 
-    /** @return Vehicles */
-    RouteHandler::get('/admin/vehicles', Medians\Vehicles\Application\VehicleController::class.'@index');
-
-    /** @return RouteLocations */
-    RouteHandler::get('/admin/locations', Medians\Locations\Application\RouteLocationController::class.'@index');
+    /** @return Customers */
+    RouteHandler::get('/admin/customers', Medians\Customers\Application\CustomerController::class.'@index');
 
     /** @return help messages */
     RouteHandler::get('/admin/help_messages', Medians\Help\Application\HelpMessageController::class.'@index');
 
-    /** @return trips */
-    RouteHandler::get('/admin/trips', Medians\Trips\Application\TripController::class.'@index');
-
-    /** @return parents */
-    RouteHandler::get('/admin/parents', Medians\Customers\Application\ParentController::class.'@index');
-
     /** @return events */
     RouteHandler::get('/admin/events', Medians\Events\Application\EventController::class.'@index');
-
-    /** @return vacations */
-    RouteHandler::get('/admin/vacations', Medians\Vacations\Application\VacationController::class.'@index');
 
     /** @return packages */
     RouteHandler::get('/admin/packages', Medians\Packages\Application\PackageController::class.'@index');
 
     /** @return payment methods */
     RouteHandler::get('/admin/payment_methods', Medians\PaymentMethods\Application\PaymentMethodController::class.'@index');
-
-    /** @return PackageSubscription */
-    RouteHandler::get('/admin/package_subscriptions', Medians\Packages\Application\PackageSubscriptionController::class.'@index');
-
-    /** @return VehicleType */
-    RouteHandler::get('/admin/vehicle_types', Medians\Vehicles\Application\VehicleTypeController::class.'@index');
-
-    /** @return Supervisors */
-    RouteHandler::get('/admin/supervisors', Medians\Customers\Application\SuperVisorController::class.'@index');
 
     /** @return Get-started */
     RouteHandler::get('/admin/get_started', Medians\Users\Application\GetStartedController::class.'@get_started');
@@ -222,29 +196,8 @@ if(!empty($app->auth()))
     */
     RouteHandler::get('/admin/settings', \Medians\Settings\Application\SettingsController::class.'@index');
 
-    /** @return Plan employees */
-    RouteHandler::get('/admin/employees', Medians\Customers\Application\EmployeeController::class.'@index');
-
-    /** @return Taxi trips */
-    RouteHandler::get('/admin/taxi_trips', Medians\Trips\Application\TaxiTripController::class.'@index');
-    
     /** @return Admin profile */
     RouteHandler::get('/admin/profile', Medians\Users\Application\UserController::class.'@profile');
-
-    /** @return Payments */
-    RouteHandler::get('/admin/transactions', Medians\Transactions\Application\TransactionController::class.'@index');
-
-    /** @return Invoices */
-    RouteHandler::get('/admin/invoices', Medians\Invoices\Application\InvoiceController::class.'@index');
-
-    /** @return Wallets */
-    RouteHandler::get('/admin/wallets', Medians\Wallets\Application\WalletController::class.'@index');
-
-    /** @return Business Withdrawals */
-    RouteHandler::get('/admin/withdrawals', Medians\Wallets\Application\WithdrawalController::class.'@index');
-
-    /** @return Business Collected cash */
-    RouteHandler::get('/admin/collected_cash', Medians\Wallets\Application\CollectedCashController::class.'@index');
 
     /** @return Gallery */
     RouteHandler::get('/admin/gallery', Medians\Gallery\Application\GalleryController::class.'@index');
@@ -285,29 +238,8 @@ if(!empty($app->auth()))
     /** @return roles */
     RouteHandler::get('/admin/roles', Medians\Roles\Application\RoleController::class.'@index');
 
-    /** @return Plans */
-    RouteHandler::get('/admin/plans', Medians\Plans\Application\PlanController::class.'@index');
-
-    /** @return Plan Feature */
-    RouteHandler::get('/admin/plan_features', Medians\Plans\Application\PlanFeatureController::class.'@index');
-
-    /** @return Plan subscriptions */
-    RouteHandler::get('/admin/plan_subscriptions', Medians\Plans\Application\PlanSubscriptionController::class.'@index');
-
     /** @return Payments */
     RouteHandler::get('/admin/payments', Medians\Payments\Application\PaymentController::class.'@index');
-
-    /** @return companies */
-    RouteHandler::get('/admin/companies', Medians\Businesses\Application\BusinessController::class.'@companies');
-
-    /** @return schools */
-    RouteHandler::get('/admin/schools', Medians\Businesses\Application\BusinessController::class.'@schools');
-
-    /** @return Business Withdrawals */
-    RouteHandler::get('/admin/business_withdrawals', Medians\Wallets\Application\BusinessWithdrawalController::class.'@index');
-
-    /** @return Business Wallets */
-    RouteHandler::get('/admin/business_wallets', Medians\Wallets\Application\BusinessWalletController::class.'@index');
 
     /** @return Business Languages */
     RouteHandler::get('/admin/languages', Medians\Languages\Application\LanguageController::class.'@index');
@@ -326,6 +258,17 @@ if(!empty($app->auth()))
     
     /** @return Email templates */
     RouteHandler::get('/admin/email_templates', \Medians\Templates\Application\EmailTemplateController::class.'@index');
+
+    /** @return countries */
+    RouteHandler::get('/admin/countries', Medians\Locations\Application\CountryController::class.'@index');
+
+    /** @return cities */
+    RouteHandler::get('/admin/cities', Medians\Locations\Application\CityController::class.'@index');
+
+    /** @return states */
+    RouteHandler::get('/admin/states', Medians\Locations\Application\StateController::class.'@index');
+
+
 
     /**
     * @return Content editor
@@ -346,6 +289,10 @@ if(!empty($app->auth()))
     
 }
 
+// Front API GET requests
+RouteHandler::post('/front_api', \Medians\FrontAPIController::class.'@handle');
+RouteHandler::post('/front_api/create', \Medians\FrontAPIController::class.'@create');
+RouteHandler::post('/front_api/update', \Medians\FrontAPIController::class.'@update');
 
 /**
  * Loading assets with handling types
@@ -356,6 +303,12 @@ RouteHandler::get('/assets', \Medians\Media\Application\MediaController::class.'
  * Streaming multi-media types
  */
 RouteHandler::get('/stream', \Medians\Media\Application\MediaController::class.'@stream'); 
+
+/**
+ * Load sub-pages
+ */
+RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
+
 
 return $app->run();
 

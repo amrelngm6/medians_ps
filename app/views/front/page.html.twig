@@ -1,38 +1,31 @@
-{% set item = page %}
 {% set header_menu = header_menu %}
 {% set footer_menu1 = footer_menu1 %}
 {% set footer_menu2 = footer_menu2 %}
 {% include 'views/front/includes/head.html.twig' %}
 {% include 'views/front/includes/header.html.twig' %}
 
-
-<div id="root" class="mx-auto">
-
-<!-- loader -->
-<div class="preloader"> 
-      <div class="loader4"></div>
-</div>
-
-{% if page.content %}
-{{app.renderTemplate(page.content, item).render( {'lang':lang, 'page': page, 'app': app }  )|raw}}
+{% if page %}
+{% if page.class_name and page.class_name == 'Category' %}
+{% include 'views/front/templates/category.html.twig' %}
+{% elseif page.class_name == 'Product' and page.product_fields.template == 'modern' %}
+{% include 'views/front/templates/modern_product.html.twig' %}
+{% elseif page.class_name == 'Product' and page.product_fields.template == 'default' %}
+{% include 'views/front/templates/modern_product.html.twig' %}
+{% else %}
+{{app.renderTemplate(page.lang_content.content).render( {'lang':lang, 'page': page }  )|raw}}
+{% endif %}
 {% endif %}
 
-<!-- progress -->
-<div id="progress">
-      <span id="progress-value"><i class="fa-solid fa-up-long"></i></span>
-</div>
-<!-- progress end -->
-
+    
 <!-- Footer -->
 {% include 'views/front/includes/footer.html.twig' %}
 
-<script src="/src/front_assets/js/toastify.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/src/front_assets/js/bootstrap.min.js"></script>
 <script src="/src/front_assets/js/owl.carousel.min.js"></script>
 <!-- fancybox -->
 <script src="/src/front_assets/js/jquery.fancybox.min.js"></script>
 <script src="/src/front_assets/js/slick.min.js"></script>
-<script src="/src/front_assets/js/custom.js"></script>
+<script src="/src/front_assets/js/main.js"></script>
 
 </body>
 

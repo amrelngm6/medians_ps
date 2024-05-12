@@ -5,8 +5,7 @@ namespace Medians\Notifications\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
-use Medians\Drivers\Domain\Driver;
-use Medians\Customers\Domain\Parents;
+use Medians\Customers\Domain\Customer;
 use Medians\Mail\Application\MailService;
 
 
@@ -24,7 +23,6 @@ class Notification extends CustomModel
 
 
 	protected $fillable = [
-		'business_id',
 		'receiver_type',
 		'receiver_id',
 		'event_id',
@@ -75,8 +73,8 @@ class Notification extends CustomModel
 	{
 		switch ($this->model_short_name) 
 		{
-			case 'parents':
-				return '/admin/parents';
+			case 'customers':
+				return '/admin/customers';
 				break;
 			
 		}
@@ -148,7 +146,7 @@ class Notification extends CustomModel
 
 		$send = $sendMail->sendMail();
 
-		$id = ($notification->receiver_type == Driver::class) ? "Driver-".$notification->receiver_id : "Parent-".$notification->receiver_id;
+		$id = "Customer-".$notification->receiver_id;
 		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($id);
 		return  $sendOneSignalNotification->sendNotification($notification->subject, $notification->body_text);
 

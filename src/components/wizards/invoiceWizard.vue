@@ -18,8 +18,8 @@
                             <div class="flex-lg-row-fluid me-xl-18 mb-10 mb-xl-0">
                                 <div class="mt-n1">
                                     <div class="d-flex flex-stack pb-10" >
-                                        <a href="#" v-if="business_setting">
-                                            <img alt="Logo" class="w-250px" :src="business_setting['logo'] ?? system_setting.logo">
+                                        <a href="#" >
+                                            <img alt="Logo" class="w-250px" :src="system_setting.logo">
                                         </a>
                                     </div>
                                     <div class="m-0">
@@ -86,15 +86,15 @@
                                                 
 
                                                 <!--end::Text-->
-                                                <div class="flex gap-2" v-if="business_setting && activeItem.business">
-                                                    <img :src="business_setting.logo" class="w-10 h-10" />
+                                                <div class="flex gap-2" v-if="system_setting ">
+                                                    <img :src="system_setting.logo" class="w-10 h-10" />
                                                     <div class="fw-bold fs-6 text-gray-800">
-                                                        <div class="text-gray-800" v-text="activeItem.business.name"></div>
+                                                        <div class="text-gray-800" v-text="system_setting.sitename"></div>
                                                     </div>
                                                 </div>
 
                                                 <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600"  v-if="business_setting" v-text="business_setting.address"></div>
+                                                <div class="fw-semibold fs-7 text-gray-600"  v-if="system_setting" v-text="system_setting.address"></div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Col-->
@@ -266,9 +266,6 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import { defineAsyncComponent, ref } from 'vue';
 import { translate, getProgressWidth, durationMonthsDate, handleRequest, deleteByKey, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails } from '@/utils.vue';
 
-const maps = defineAsyncComponent(() =>
-    import('@/components/includes/map.vue')
-);
 const SideFormCreate = defineAsyncComponent(() =>
     import('@/components/includes/side-form-create.vue')
 );
@@ -280,8 +277,6 @@ const SideFormUpdate = defineAsyncComponent(() =>
 const form_field = defineAsyncComponent(() =>
     import('@/components/includes/form_field.vue')
 );
-import editable_map_location from '@/components/includes/editable_map_location.vue';
-import route_map from '@/components/maps/route_map.vue';
 
 export default
     {
@@ -289,14 +284,11 @@ export default
             'datatabble': Vue3EasyDataTable,
             SideFormCreate,
             SideFormUpdate,
-            maps,
             close_icon,
             delete_icon,
             car_icon,
             route_icon,
             form_field,
-            editable_map_location,
-            route_map
         },
         name: 'PackageSubscriptions',
         emits: ['callback'],
@@ -308,8 +300,6 @@ export default
             const content = ref({});
             const fillable = ref([props.usertype, 'Package', 'Subscription', 'Confirm']);
             const searchText = ref('');
-
-            console.log(props.business_setting);
 
             if (props.item) {
                 activeItem.value = props.item
@@ -351,7 +341,7 @@ export default
             }
 
             const setUser = (model) => {
-                activeItem.value.model_id = props.usertype == 'student' ? model.student_id : model.customer_id;
+                activeItem.value.model_id = model.customer_id;
                 activeItem.value.model = model;
                 activeItem.value.user_type = props.usertype;
                 activeTab.value = 'Package';
@@ -448,7 +438,7 @@ export default
             'conf',
             'path',
             'system_setting',
-            'business_setting',
+            
             'item',
             'userslist',
             'usertype',

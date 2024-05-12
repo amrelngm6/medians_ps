@@ -13,19 +13,6 @@ class TransactionRepository
 {
 
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
-
-	protected $business ;
-
-	function __construct($business)
-	{
-		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
-	}
-
 
 	/**
 	* Find item by `transaction_id` 
@@ -41,7 +28,6 @@ class TransactionRepository
 	public function get($limit = 500) 
 	{
 		return Transaction::with('model', 'item', 'invoice')
-		->where('business_id', $this->business_id)
 		->limit($limit)
 		->orderBy('created_at', 'DESC')
 		->get();
@@ -54,7 +40,7 @@ class TransactionRepository
 	public function getByDate($params )
 	{
 
-	  	$check = Transaction::with('model', 'item','invoice')->where('business_id', $this->business_id);
+	  	$check = Transaction::with('model', 'item','invoice');
 
 	  	if (!empty($params["start_date"]))
 	  	{
@@ -73,7 +59,7 @@ class TransactionRepository
 	public function getLatest($params, $limit = 10 ) 
 	{
 	  	return Transaction::whereBetween('created_at' , [$params['start'] , $params['end']])
-		->where('business_id', $this->business_id)
+		
 	  	->limit($limit)
 	  	->orderBy('created_at', 'DESC');
 	}
@@ -81,8 +67,7 @@ class TransactionRepository
 	
 	public function eventsByDate($params)
 	{
-		$query = Transaction::where('business_id', $this->business_id)
-		->whereBetween('date', [$params['start'], $params['end']]);
+		$query = Transaction::whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 	

@@ -4,8 +4,7 @@ namespace Medians\Help\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
-use Medians\Drivers\Domain\Driver;
-use Medians\Businesses\Domain\Business;
+use Medians\Customers\Domain\Customer;
 
 class HelpMessageComment extends CustomModel
 {
@@ -48,14 +47,8 @@ class HelpMessageComment extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
-	
-	
     public function message() {
-        return $this->hasOne(HelpMessage::class, 'message_id', 'message_id')->with('business');
+        return $this->hasOne(HelpMessage::class, 'message_id', 'message_id');
     }
 
     public function user() {
@@ -70,18 +63,11 @@ class HelpMessageComment extends CustomModel
 	
 	public function receiverAsCustomer() 
 	{
-		return $this->message->where('user_type', Parents::class)->user;
-	}
-
-	public function receiverAsDriver() 
-	{
-		return $this->message->where('user_type', Driver::class)->user;
+		return $this->message->where('user_type', Customer::class)->user;
 	}
 
 	public function receiverAsUser() 
 	{
-		$item =  $this->with('message')->find($this->comment_id);
-		return isset($model->message->business->owner) ?  [$model->message->business->owner] : null;
 	}
 
 }

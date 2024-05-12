@@ -20,20 +20,6 @@ class InvoiceRepository
 
 
 	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
-
-	protected $business ;
-
-	function __construct($business)
-	{
-		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : 0;
-	}
-
-
-	/**
 	* Find item by `invoice_id` 
 	*/
 	public function find($invoice_id) 
@@ -46,8 +32,8 @@ class InvoiceRepository
 	*/
 	public function get($limit = 500) 
 	{
-		return Invoice::with('user', 'items','business', 'transaction')
-		->where('business_id', $this->business_id)
+		return Invoice::with('user', 'items', 'transaction')
+		
 		->limit($limit)
 		->orderBy('invoice_id', 'DESC')
 		->get();
@@ -58,7 +44,7 @@ class InvoiceRepository
 	*/
 	public function getUserInvoices($userId) 
 	{
-		return Invoice::with('user', 'items', 'item' ,'business', 'transaction')
+		return Invoice::with('user', 'items', 'item' , 'transaction')
 		->where('user_id', $userId)
 		->where('user_type', User::class)
 		->limit(10)
@@ -72,8 +58,7 @@ class InvoiceRepository
 	*/
 	public function getByDate($params )
 	{
-	  	$check = Invoice::with('user', 'items','business', 'transaction')
-		->where('business_id', $this->business_id);
+	  	$check = Invoice::with('user', 'items', 'transaction');
 
 	  	if (!empty($params["start_date"]))
 	  	{
@@ -92,7 +77,7 @@ class InvoiceRepository
 	public function getLatest($params, $limit = 10 ) 
 	{
 	  	return Invoice::whereBetween('created_at' , [$params['start'] , $params['end']])
-		->where('business_id', $this->business_id)
+		
 	  	->limit($limit)
 	  	->orderBy('created_at', 'DESC');
 	}
@@ -101,8 +86,7 @@ class InvoiceRepository
 	
 	public function eventsByDate($params)
 	{
-		$query = Invoice::where('business_id', $this->business_id)
-		->whereBetween('date', [$params['start'], $params['end']]);
+		$query = Invoice::whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 	
@@ -241,7 +225,6 @@ class InvoiceRepository
 			{
 				$value = (object) $value;
 				$fields = array();
-				$fields['business_id'] = $invoice->business_id;
 				$fields['invoice_id'] = $invoice->invoice_id;
 				$fields['subtotal'] = $value->subtotal;
 				$fields['discount_amount'] = 0;
@@ -263,8 +246,7 @@ class InvoiceRepository
 	 */
 	public function generateCode()
 	{
-		$count = Invoice::where('business_id', $this->business_id)->count();
-		$prefix = "I-".$this->business_id."-";
+		$count = Invoice::count();
 		return $prefix.($count + 1);
 	}
 }

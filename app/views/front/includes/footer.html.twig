@@ -1,2 +1,41 @@
-<!-- loader end -->
-{% include 'views/front/includes/footers/'~app.SystemSetting.footer ?? 'footer1'~'.html.twig' %}
+
+    <footer id="main-footer" class="px-4 lg:px-0">
+        <hr class="container mx-auto my-10 lg" />
+        <div class="container mx-auto lg:flex pb-10">
+            <div class="w-full pb-6">
+                <img src="{{app.CONF.url}}{{app.SystemSetting.logo}}" />
+                <p class="pt-2 w-96">.</p>
+                <p>Copyright © <a href="#">{{app.SystemSetting.sitename}}</a> 2024. All Rights Reserved.</p>
+            </div>
+            <div class="lg:flex gap-10 w-full">
+                <div class="w-full pb-6">
+                    <p class="font-semibold ">Product</p>
+                    <ul class="pt-4">
+                        <li class="pb-1"><a href="#">New Arrivals</a></li>
+                        <li class="pb-1"><a href="#">Best Selling</a></li>
+                        <li class="pb-1"><a href="#">Home Decor</a></li>
+                        <li class="pb-1"><a href="#">Kitchen Set</a></li>
+                    </ul>
+                </div>
+                <div class="w-full pb-6">
+                    <p class="font-semibold ">Services</p>
+                    <ul class="pt-4">
+                        <li class="pb-1"><a href="#">New Arrivals</a></li>
+                        <li class="pb-1"><a href="#">Best Selling</a></li>
+                        <li class="pb-1"><a href="#">Home Decor</a></li>
+                        <li class="pb-1"><a href="#">Kitchen Set</a></li>
+                    </ul>
+                </div>
+                <div class="w-full pb-6">
+                    <p class="font-semibold ">Follow us</p>
+                    <ul class="pt-4">
+                        <li class="pb-1"><a href="#">New Arrivals</a></li>
+                        <li class="pb-1"><a href="#">Best Selling</a></li>
+                        <li class="pb-1"><a href="#">Home Decor</a></li>
+                        <li class="pb-1"><a href="#">Kitchen Set</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    

@@ -1,39 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{lang_key}}">
 <head>
+    
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{item.seo_title != '' ? item.seo_title : (item.title ? item.title : 'Medians SaaS Routes Transportation System')}}</title>
-    <meta name="description" content="{{item.seo_desc ? item.seo_desc : 'Medians SaaS Routes Transportation System, with custom trips feature.'}}">
+    <title>{{item.content.seo_title ? item.content.seo_title : (item.content ? item.content.title : 'Quatre for Office Furniture, Obline Ecommerce Store')}}</title>
+    <meta name="description" content="{{item.content.seo_desc ? item.content.seo_desc : 'Quatre for Office Furniture, Obline Ecommerce Store.'}}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="canonical" href="{{app.request.uri}}">
-
+ 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/uploads/images/favicon.webp">
     <link rel="icon" type="image.webp" sizes="32x32" href="/uploads/images/favicon.webp">
     <link rel="icon" type="image.webp" sizes="16x16" href="/uploads/images/favicon.webp">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/src/assets/tailwind.min.css">
-
-    <link rel="stylesheet" type="text/css" href="/src/front_assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/src/assets/webfonts/fontawesome.min.css">
-    <link rel="stylesheet" href="/src/front_assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/src/front_assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/src/front_assets/css/toastify.min.css"/>
-    <!-- fancybox -->
-    <link rel="stylesheet" href="/src/front_assets/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="/src/front_assets/css/slick.css">
-    <link rel="stylesheet" href="/src/front_assets/css/slick-theme.css">
-    <!-- style -->
-    <link rel="stylesheet" href="/src/front_assets/css/style.css">
-    <link rel="stylesheet" href="/src/front_assets/css/responsive.css">
-    <!-- responsive -->
-    <!-- color -->
-    <link rel="stylesheet" href="/src/front_assets/css/color.css">
-    <script src="/src/front_assets/js/jquery-3.6.0.min.js"></script>
-    <script src="/src/front_assets/js/preloader.js"></script>
+    {% include 'views/front/includes/head_assets.html.twig' %}
 
 </head>
 <body class="p-0 m-0 {{page.lang == 'ar' ? 'rtl' : 'ltr'}}">

@@ -41,7 +41,6 @@ class PaymentService
 
 		$planSubscription = [];
 		$planSubscription['plan_id'] = $params['plan_id'];
-		$planSubscription['business_id'] = $user->business->business_id;
 		$planSubscription['user_id'] = $user->id;
 		$planSubscription['type'] = $params['payment_type'];
 		$planSubscription['start_date'] = date('Y-m-d');

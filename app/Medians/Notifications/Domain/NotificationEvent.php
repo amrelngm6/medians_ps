@@ -6,11 +6,6 @@ use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
 use Medians\Customers\Domain\Customer;
-use Medians\Drivers\Domain\Driver;
-use Medians\Customers\Domain\Parents;
-use Medians\Customers\Domain\Employee;
-use Medians\Customers\Domain\SuperVisor;
-use Medians\Students\Domain\Student;
 use Medians\Templates\Domain\EmailTemplate;
 
 /**
@@ -135,13 +130,7 @@ class NotificationEvent extends CustomModel
 	{	
 		switch ($event->receiver_model) 
 		{
-			case Driver::class:
-				return method_exists($model, 'receiverAsDriver') ? [$model->receiverAsDriver()] : null;
-				break;
-				
-				case Employee::class:
-				case SuperVisor::class:
-				case Parents::class:
+				case Customer::class:
 				return method_exists($model, 'receiverAsCustomer') ? [$this->validateUserType($event, $model->receiverAsCustomer())] : null;
 				break;
 				

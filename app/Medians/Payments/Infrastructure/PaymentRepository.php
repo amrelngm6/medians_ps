@@ -145,7 +145,7 @@ class PaymentRepository
 	 */
 	public function generateCode()
 	{
-		$count = Invoice::where('business_id', '0')->count();
+		$count = Invoice::count();
 		$prefix = "I-";
 		return $prefix.($count + 1);
 	}

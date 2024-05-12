@@ -4,6 +4,9 @@ namespace Medians\Pages\Application;
 use Medians\Pages\Infrastructure\PageRepository;
 use Medians\Menus\Infrastructure\MenuRepository;
 use Medians\Content\Infrastructure\ContentRepository;
+use Medians\Pages\Domain\Page;
+use Medians\Products\Domain\Product;
+use Medians\Categories\Domain\Category;
 use Shared\dbaser\CustomController;
 
 class PageController extends CustomController 
@@ -58,6 +61,7 @@ class PageController extends CustomController
             [ 'key'=> "page_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "title", 'title'=> translate('Title'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "prefix", 'title'=> translate('prefix'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "homepage", 'title'=> translate('Is Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
@@ -198,13 +202,15 @@ class PageController extends CustomController
         $footrMenu1 = $this->menuRepo->getMenuPages('footer1');
         $footrMenu2 = $this->menuRepo->getMenuPages('footer2');
 
-		
+		$categoryRepo = new \Medians\Products\Infrastructure\CategoryRepository;
+
 		try {
 			
             return render('views/front/page.html.twig', [
                 'title' => translate('Homepage'),
-                'page' => $page->content,
+                'page' => $page,
                 'app' => $this->app,
+				'categories' => $categoryRepo->getGrouped(),
 				'header_menu' => $headerMenu,
 				'footer_menu1' => $footrMenu1,
 				'footer_menu2' => $footrMenu2,
@@ -223,17 +229,18 @@ class PageController extends CustomController
     public function page($prefix)
     {
 
-        $page = $this->contentRepo->find($prefix);
+        $pageContent = $this->contentRepo->find($prefix);
         $headerMenu = $this->menuRepo->getMenuPages('header');
         $footrMenu1 = $this->menuRepo->getMenuPages('footer1');
         $footrMenu2 = $this->menuRepo->getMenuPages('footer2');
+		$categoryRepo = new \Medians\Products\Infrastructure\CategoryRepository;
 
 		try {
 			
             return render('views/front/page.html.twig', [
-                'title' => translate('Homepage'),
-                'page' => $page,
+                'page' => $this->handlePageObject($pageContent),
                 'app' => $this->app,
+				'categories' => $categoryRepo->getGrouped(),
 				'header_menu' => $headerMenu,
 				'footer_menu1' => $footrMenu1,
 				'footer_menu2' => $footrMenu2,
@@ -245,5 +252,27 @@ class PageController extends CustomController
 		}
     }
 
+	public function handlePageObject($pageContent)
+	{
+		if (isset($pageContent->item))
+		{
+			switch (get_class($pageContent->item)) {
+				case Product::class:
+					return (new \Medians\Products\Infrastructure\ProductRepository)->find($pageContent->item_id);
+					break;
+
+				case Category::class:
+					return (new \Medians\Products\Infrastructure\CategoryRepository)->find($pageContent->item_id);
+					break;
+				
+				case Page::class:
+					return $this->repo->find($pageContent->item_id, $pageContent->prefix);
+					break;
+			}
+		}
+
+		return throw new \Exception(translate('Page not found'), 1);
+		
+	}
     
 }

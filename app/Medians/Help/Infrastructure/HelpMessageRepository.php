@@ -5,24 +5,14 @@ namespace Medians\Help\Infrastructure;
 use Medians\Help\Domain\HelpMessage;
 use Medians\Help\Domain\HelpMessageComment;
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Drivers\Domain\Driver;
-use Medians\Customers\Domain\Parents;
+use Medians\Customers\Domain\Customer;
 use Medians\Users\Domain\User;
 
 
 class HelpMessageRepository 
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
-
-
-	function __construct($business)
-	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
-	}
+	
 
 
 	public function find($id)
@@ -32,27 +22,17 @@ class HelpMessageRepository
 
 	public function get($limit = 100)
 	{
-		return HelpMessage::where('business_id', $this->business_id)->with('comments')->with('user')->limit($limit)->orderBy('message_id', 'DESC')->get();
-	}
-
-	public function loadDriverMessages($user, $limit = 100)
-	{
-		return HelpMessage::with('user','comments' )->where('user_id', $user->driver_id)->where('user_type', Driver::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
-	}
-
-	public function loadParentMessages($user, $limit = 100)
-	{
-		return HelpMessage::with('user','comments' )->where('user_id', $user->customer_id)->where('user_type', Parents::class)->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::with('comments')->with('user')->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 
 	public function load($limit = 100)
 	{
-		return HelpMessage::where('business_id', $this->business_id)->with('user','comments' )->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::with('user','comments' )->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 	
 	public function eventsByDate($params)
 	{
-		$query = HelpMessage::where('business_id', $this->business_id)->whereBetween('created_at', [$params['start'], $params['end']]);
+		$query = HelpMessage::whereBetween('created_at', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -78,8 +58,7 @@ class HelpMessageRepository
 
 		$Model = new HelpMessage();
 
-		$data['user_type'] = Driver::class;
-		$data['business_id'] = $data['business_id'] ?? null;
+		$data['user_type'] = Customer::class;
 		
 		foreach ($data as $key => $value) 
 		{
@@ -96,31 +75,6 @@ class HelpMessageRepository
     }
     	
 	
-	/**
-	* Save item to database
-	*/
-	public function parentStore($data) 
-	{
-
-		$Model = new HelpMessage();
-
-		$data['user_type'] = Parents::class;
-		$data['business_id'] = $data['business_id'] ?? null;
-		
-		foreach ($data as $key => $value) 
-		{
-			if (in_array($key, $Model->getFields()))
-			{
-				$dataArray[$key] = $value;
-			}
-		}		
-
-		// Return the  object with the new data
-    	$Object = HelpMessage::create($dataArray);
-
-    	return $Object;
-    }
-    	
 
 	/**
 	* Save Comment from Admin / Agent
@@ -147,62 +101,13 @@ class HelpMessageRepository
     }
     	
 
-	/**
-	* Save Comment from Admin / Agent
-	*/
-	public function storeDriverComment($data) 
-	{
-
-		$Model = new HelpMessageComment();
-
-		$data['user_type'] = Driver::class;
-		
-		foreach ($data as $key => $value) 
-		{
-			if (in_array($key, $Model->getFields()))
-			{
-				$dataArray[$key] = $value;
-			}
-		}		
-
-		// Return the  object with the new data
-    	$Object = HelpMessageComment::create($dataArray);
-
-    	return $Object;
-    }
-    	
-
-	/**
-	* Save Comment from Admin / Agent
-	*/
-	public function storeParentComment($data) 
-	{
-
-		$Model = new HelpMessageComment();
-
-		$data['user_type'] = Parents::class;
-		
-		foreach ($data as $key => $value) 
-		{
-			if (in_array($key, $Model->getFields()))
-			{
-				$dataArray[$key] = $value;
-			}
-		}		
-
-		// Return the  object with the new data
-    	$Object = HelpMessageComment::create($dataArray);
-
-    	return $Object;
-    }
-    	
     /**
      * Update Lead
      */
     public function update($data)
     {
 
-		$Object = HelpMessage::where('business_id', $this->business_id)->find($data['message_id']);
+		$Object = HelpMessage::find($data['message_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -224,7 +129,7 @@ class HelpMessageRepository
 	{
 		try {
 			
-			$delete = HelpMessage::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = HelpMessage::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

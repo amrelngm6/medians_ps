@@ -469,7 +469,7 @@ export default
         }
     },
     props: [
-        'lang',
+        'langs',
         'setting',
         'system_setting',
         'conf',

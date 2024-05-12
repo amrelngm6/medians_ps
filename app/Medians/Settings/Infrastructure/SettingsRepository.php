@@ -9,23 +9,13 @@ class SettingsRepository
 {
 
 
-	protected $app;
-
-	protected $business_id;
-
-
-	function __construct($business)
-	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : 0;
-	}
-
 	/**
 	* Find item by `id` 
 	*/
 	public function find($id) : ?Settings
 	{
 
-		return Settings::where('business_id', $this->business_id)->find($id);
+		return Settings::find($id);
 
 	}
 
@@ -36,7 +26,7 @@ class SettingsRepository
 	{
 		try {
 			
-			$check = Settings::where('business_id', $this->business_id)->where('code', $code)->first();
+			$check = Settings::where('code', $code)->first();
 			return isset($check->value) ? $check->value : '';
 		} catch (\Exception $e) {
     		throw new \Exception($e->getMessage(), 1);
@@ -50,20 +40,11 @@ class SettingsRepository
 	public function getAll()
 	{
 		try {
-			return Settings::where('business_id', $this->business_id)->get();
+			return Settings::get();
 
 		} catch (\Exception $e) {
     		throw new \Exception($e->getMessage(), 1);
 		}
-	}
-
-
-	/**
-	* Find all items 
-	*/
-	public function getBusinessSettings($businessId)
-	{
-		return Settings::where('business_id', $businessId)->get();
 	}
 
 
@@ -87,7 +68,7 @@ class SettingsRepository
 	*/
 	public function delete($code) 
 	{
-		return Settings::where('business_id', $this->business_id)->where('code', $code)->delete();
+		return Settings::where('code', $code)->delete();
 	}
 
 
@@ -96,7 +77,7 @@ class SettingsRepository
 	*/
 	public function clear() 
 	{
-		Settings::where('business_id', $this->business_id)->delete();
+		Settings::delete();
 		
 		return $this;
 	}

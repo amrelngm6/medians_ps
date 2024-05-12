@@ -6,7 +6,6 @@ use \Shared\dbaser\CustomController;
 use Medians\Packages\Infrastructure\PackageSubscriptionRepository;
 use Medians\Payments\Infrastructure\PaymentRepository;
 use Medians\Transactions\Infrastructure\TransactionRepository;
-use Medians\Students\Domain\Student;
 use Medians\Customers\Domain\Customer;
 
 class PaymentService
@@ -87,8 +86,6 @@ class PaymentService
 
 			$routeLocationClass = new \Medians\Locations\Domain\RouteLocation;
 			
-			$updateRouteLocationClass = $routeLocationClass->where('model_id', $params['student_id'])->where('model_type', $class::class)->update(['business_id' => $params['business']->business_id]);
-
 			return array('success'=>$updateRouteLocationClass);
 
 		} catch (\Throwable $th) {
@@ -98,72 +95,16 @@ class PaymentService
 
 
 	
-	public function updateStudentBusiness($params)
-	{
-		try {
-
-			$this->transactionRepo = new TransactionRepository($params['business']);
-
-			$class = new Student;
-
-			$updateStudent = $class->find($params['student_id']);
-
-			$update = $updateStudent->update(['business_id' => $this->transactionRepo->business_id]);
-
-			return true;
-
-		} catch (\Throwable $th) {
-			return array('error'=>$th->getMessage());
-		}
-	}
-
-
-	public function updatePackageSubscription($params)
-	{
-		try {
-			
-			$this->packageSubscriptionRepo = new PackageSubscriptionRepository($params['business']);
-			
-			$packageSubscription = $this->packageSubscriptionRepo->update((array) $params['subscription']);
-
-			return array('success'=> true);
-
-		} catch (\Throwable $th) {
-			return array('error'=>$th->getMessage());
-		}
-	}
-	
-	
-
-	public function updateTrip($params, $invoice)
-	{
-		try {
-			
-			$taxiTripRepo = new \Medians\Trips\Infrastructure\TaxiTripRepository($params['business']);
-			
-			$tripData = (array) $params['trip'];
-			$check = $taxiTripRepo->find($tripData['trip_id']);
-			$trip = $taxiTripRepo->update($tripData);
-
-			$updateDriverCommission = $this->updateDriverWalletCredit($params, $invoice, $tripData['driver_id']);
-
-			return array('success'=> true);
-
-		} catch (\Throwable $th) {
-			return array('error'=>$th->getMessage());
-		}
-	}
 	
 	public function addInvoice($params)
 	{
 		try {
 			
-			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository($params['business']);
+			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository();
 			
 			$invoiceInfo = (array) $params['invoice'];
 
 			$data = array();
-			$data['business_id'] = $params['business']->business_id;
 			$data['code'] = $invoiceRepo->generateCode();
 			$data['user_id'] = $params['user_id'];
 			$data['user_type'] = Customer::class;

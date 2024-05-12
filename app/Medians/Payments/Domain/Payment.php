@@ -24,7 +24,6 @@ class Payment extends CustomModel
 	* @var Array
 	*/
 	public $fillable = [
-		'business_id',
 		'invoice_id',
 		'amount',
 		'model_id',
@@ -50,12 +49,7 @@ class Payment extends CustomModel
 	{
 		return $this->hasOne(User::class, 'id', 'created_by');
 	}
-
-	public function business()
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');
-	}
-
+	
 	public function invoice()
 	{
 		return $this->hasOne(Invoice::class, 'invoice_id', 'invoice_id');

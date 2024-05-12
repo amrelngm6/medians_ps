@@ -56,6 +56,7 @@ class APIController extends CustomController
 		echo json_encode($return);
 	} 
 
+	
 	/**
 	 * Create model 
 	 * 
@@ -91,32 +92,7 @@ class APIController extends CustomController
 				case 'User.get_started_save_free_plan':
 					$return = (new Users\Application\GetStartedController())->saveFreePlan();
 					break;
-
-				case 'Student.create':
-					$return = (new Students\Application\StudentController())->store();
-					break;
-
-				case 'Driver.create':
-					$return = (new Drivers\Application\DriverController())->store();
-					break;
-
-				case 'Route.create':
-					$return = (new Routes\Application\RouteController())->store();
-					break;
-
-				case 'Vehicle.create':
-					$return = (new Vehicles\Application\VehicleController())->store();
-					break;
-					break;
-
-				case 'RouteLocation.create':
-					$return = (new Locations\Application\RouteLocationController())->store();
-					break;
-
-				case 'Parents.create':
-					return response((new Customers\Application\ParentController())->store());
-					break;
-
+					
 				case 'HelpMessage.create':
 					return response((new Help\Application\HelpMessageController())->store());
 					break;
@@ -136,90 +112,58 @@ class APIController extends CustomController
 				case 'HelpMessageComment.create':
 					$return =  (new Help\Application\HelpMessageController())->storeComment(); 
 					break;
-	
-				case 'Vacation.create':
-					$return =  (new Vacations\Application\VacationController())->store(); 
-					break;
-					
-				case 'Company.create':
-				case 'School.create':
-					$return =  (new Businesses\Application\BusinessController())->store(); 
-					break;
-					
-				case 'Plan.create':
-					$return =  (new Plans\Application\PlanController())->store(); 
-					break;
-				
-				case 'PlanFeature.create':
-					$return =  (new Plans\Application\PlanFeatureController())->store(); 
-					break;
-				
-				case 'Employee.create':
-					$return =  (new Customers\Application\EmployeeController())->store(); 
-					break;
 				
 				case 'Page.create':
 					$return =  (new Pages\Application\PageController())->store(); 
 					break;
 
-		
-				case 'Package.create':
-					$return = (new Packages\Application\PackageController)->store();
+				case 'City.create':
+					$return = (new Locations\Application\CityController)->store();
+					break;
+	
+				case 'Country.create':
+					$return = (new Locations\Application\CountryController)->store();
 					break;
 		
+				case 'State.create':
+					$return = (new Locations\Application\StateController)->store();
+					break;
+		
+					
 		
 				case 'PaymentMethod.create':
 					$return = (new PaymentMethods\Application\PaymentMethodController)->store();
 					break;
 		
-				case 'PackageSubscription.create':
-					$return = (new Packages\Application\PackageSubscriptionController)->store();
+				case 'Product.create':
+					$return = (new Products\Application\ProductController)->store();
 					break;
 		
-				case 'VehicleType.create':
-					$return = (new Vehicles\Application\VehicleTypeController)->store();
-					break;
-		
-				case 'SuperVisor.create':
-					$return = (new Customers\Application\SuperVisorController)->store();
-					break;
-		
-				case 'TaxiTrip.create':
-					$return = (new Trips\Application\TaxiTripController)->store();
-					break;
-
-				case 'BusinessWithdrawal.create':
-					$return = (new Wallets\Application\BusinessWithdrawalController)->store();
-					break;
-			
-				case 'CollectedCash.create':
-					$return = (new Wallets\Application\CollectedCashController)->store();
-					break;
-			
-				case 'Language.create':
-					$return = (new Languages\Application\LanguageController)->store();
+				case 'ProductCategory.create':
+					$return = (new Products\Application\CategoryController)->store();
 					break;
 					
-				case 'Translation.create':
-					$return = (new Languages\Application\TranslationController())->store(); 
+				case 'Brand.create':
+					$return = (new Brands\Application\BrandController)->store();
 					break;
 					
-				case 'NewsletterSubscriber.create':
-					$return = (new Newsletters\Application\NewsletterSubscriberController())->store(); 
+				case 'Shipping.create':
+					$return = (new Shipping\Application\ShippingController)->store();
 					break;
-	
-				case 'ContactForm.create':
-					$return = (new Forms\Application\ContactFormController())->store(); 
+					
+				case 'Newsletter.create':
+					$return = (new Newsletters\Application\NewsletterController)->store();
 					break;
-	
-				case 'Gallery.create':
-					$return = (new Gallery\Application\GalleryController())->store(); 
+					
+				case 'Subscriber.create':
+					$return = (new Newsletters\Application\SubscriberController)->store();
 					break;
-	
-				case 'EmailTemplate.create':
-					$return = (new Templates\Application\EmailTemplateController())->store(); 
+					
+				case 'Customer.create':
+					$return = (new Customers\Application\CustomerController)->store();
 					break;
-	
+					
+		
 			}
 
 			return response(json_encode($return));
@@ -248,34 +192,12 @@ class APIController extends CustomController
                 $controller =  new Settings\Application\AppSettingsController; 
 				break;
 
-			case 'Student.update':
-				$controller = new Students\Application\StudentController;
-				break;
-
-			case 'Driver.update':
-				$controller = new Drivers\Application\DriverController;
-				break;
-
-			case 'Route.update':
-				$controller = new Routes\Application\RouteController;
-				break;
-
-			case 'Vehicle.update':
-				$controller = new Vehicles\Application\VehicleController;
-				break;
-
-			case 'RouteLocation.update':
-				$controller = new Locations\Application\RouteLocationController;
-				break;
-
+				
 			case 'HelpMessage.update':
 				$controller =  new Help\Application\HelpMessageController;
 				break;
 	
-			case 'Parents.update':
-				$controller = new Customers\Application\ParentController;
-				break;
-
+				
             case 'Settings.update':
                 $controller = new Settings\Application\SettingsController; 
                 break;
@@ -288,40 +210,14 @@ class APIController extends CustomController
                 $controller =  new Notifications\Application\NotificationEventController; 
                 break;
 
-            case 'Vehicle.update':
-                $controller =  new Vehicles\Application\VehicleController; 
-                break;
-
             case 'Event.update':
 				$controller = new Events\Application\EventController;
-                break;
-
-            case 'Vacation.update':
-				$controller = new Vacations\Application\VacationController;
                 break;
 
 			case 'Role.update':
 				$controller =  new Roles\Application\RoleController; 
 				break;			
 
-			case 'Business.update':
-			case 'School.update':
-			case 'Company.update':
-				$controller =  new Businesses\Application\BusinessController; 
-				break;			
-				
-			case 'Plan.update':
-				$controller =  new Plans\Application\PlanController; 
-				break;
-			
-			case 'PlanFeature.update':
-				$controller =  new Plans\Application\PlanFeatureController; 
-				break;
-			
-			case 'Employee.update':
-				$controller =  new Customers\Application\EmployeeController; 
-				break;
-			
 			case 'Page.update':
 				$controller =  new Pages\Application\PageController; 
 				break;
@@ -334,77 +230,52 @@ class APIController extends CustomController
 				return (new Users\Application\UserController())->updateStatus();
 				break;
 	
-			case 'Package.update':
-				$controller = new Packages\Application\PackageController;
+
+			case 'City.update':
+				$controller = new Locations\Application\CityController;
 				break;
-			
+
+			case 'Country.update':
+				$controller = new Locations\Application\CountryController;
+				break;
+
+			case 'State.update':
+				$controller = new Locations\Application\StateController;
+				break;
+
 			case 'PaymentMethod.update':
 				$controller = new PaymentMethods\Application\PaymentMethodController;
 				break;
 			
-			case 'PackageSubscription.update':
-				$controller = new Packages\Application\PackageSubscriptionController;
+			case 'Product.update':
+				$controller = new Products\Application\ProductController;
 				break;
 			
-			case 'VehicleType.update':
-				$controller = new Vehicles\Application\VehicleTypeController;
+			case 'ProductCategory.update':
+				$controller = new Products\Application\CategoryController;
 				break;
 			
-			case 'SuperVisor.update':
-				$controller = new Customers\Application\SuperVisorController;
+			case 'Brand.update':
+				$controller = new Brands\Application\BrandController;
 				break;
 			
-			case 'TaxiTrip.update':
-				$controller = new Trips\Application\TaxiTripController;
-				break;
-				
-			case 'Trip.update':
-				$controller = new Trips\Application\TripController;
+			case 'Shipping.update':
+				$controller = new Shipping\Application\ShippingController;
 				break;
 			
-			case 'DriverApplicant.update':
-				$controller = new Drivers\Application\DriverApplicantController;
+			case 'Newsletter.update':
+				$controller = new Newsletters\Application\NewsletterController;
 				break;
 			
-			case 'BusinessApplicant.update':
-				$controller = new Customers\Application\BusinessApplicantController;
+			case 'Subscriber.update':
+				$controller = new Newsletters\Application\SubscriberController;
 				break;
 			
-			case 'PlanSubscription.update':
-				$controller = new Plans\Application\PlanSubscriptionController;
+			case 'Customer.update':
+				$controller = new Customers\Application\CustomerController;
 				break;
 			
-			case 'BusinessWithdrawal.update':
-				$controller = new Wallets\Application\BusinessWithdrawalController;
-				break;
-		
-			case 'Withdrawal.update':
-				$controller = new Wallets\Application\WithdrawalController;
-				break;
-		
-			case 'Currency.update':
-				$controller = new Currencies\Application\CurrencyService;
-				break;
-				
-			case 'Language.update':
-				$controller = new Languages\Application\LanguageController;
-				break;
-				
-			case 'Translation.update':
-				$controller = new Languages\Application\TranslationController; 
-				break;
-			
-			case 'Gallery.update':
-				$controller = new Gallery\Application\GalleryController; 
-				break;
-			
-			case 'Menu.update':
-				$controller = new Menus\Application\MenuController; 
-				break;
-	
-			case 'EmailTemplate.update':
-				$controller = new Templates\Application\EmailTemplateController; 
-				break;
+
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
@@ -432,30 +303,6 @@ class APIController extends CustomController
 					return response((new Users\Application\UserController())->delete());
 					break;
 
-				case 'Driver.delete':
-					return response((new Drivers\Application\DriverController())->delete());
-					break;
-
-				case 'Parents.delete':
-					return response((new Customers\Application\ParentController())->delete());
-					break;
-
-				case 'Route.delete':
-					return response((new Routes\Application\RouteController())->delete());
-					break;
-
-				case 'RouteLocation.delete':
-					return response((new Locations\Application\RouteLocationController())->delete());
-					break;
-
-				case 'Student.delete':
-					return response((new Students\Application\StudentController())->delete());
-					break;
-
-				case 'Vehicle.delete':
-					return response((new Vehicles\Application\VehicleController())->delete());
-					break;
-
 				case 'HelpMessage.delete':
 					return response((new Help\Application\HelpMessageController())->delete());
 					break;
@@ -472,86 +319,54 @@ class APIController extends CustomController
 					return response((new Events\Application\EventController())->delete());
 					break;
 			
-				case 'School.delete':
-				case 'Company.delete':
-					return response((new Businesses\Application\BusinessController())->delete());
-					break;
-			
-				case 'Plan.delete':
-					return response((new Plans\Application\PlanController())->delete());
-					break;
-			
-				case 'PlanFeature.delete':
-					return response((new Plans\Application\PlanFeatureController())->delete());
-					break;
-			
-				case 'Employee.delete':
-					return response((new Customers\Application\EmployeeController())->delete());
-					break;
-					break;
-			
 				case 'Page.delete':
 					return response((new Pages\Application\PageController())->delete());
 					break;
 		
-				case 'Package.delete':
-					return response((new Packages\Application\PackageController())->delete());
+				case 'City.delete':
+					return response((new Locations\Application\CityController())->delete());
 					break;
-			
+
+				case 'Country.delete':
+					return response((new Locations\Application\CountryController())->delete());
+					break;
+
+				case 'State.delete':
+					return response((new Locations\Application\StateController())->delete());
+					break;
 			
 				case 'PaymentMethod.delete':
 					return response((new PaymentMethods\Application\PaymentMethodController())->delete());
 					break;
 			
-				case 'PackageSubscription.delete':
-					return response((new Packages\Application\PackageSubscriptionController())->delete());
+				case 'Brand.delete':
+					return response((new Brands\Application\BrandController())->delete());
 					break;
 			
-				case 'VehicleType.delete':
-					return response((new Vehicles\Application\VehicleTypeController())->delete());
+				case 'Shipping.delete':
+					return response((new Shipping\Application\ShippingController())->delete());
 					break;
 			
-				case 'SuperVisor.delete':
-					return response((new Customers\Application\SuperVisorController())->delete());
+				case 'Newsletter.delete':
+					return response((new Newsletters\Application\NewsletterController())->delete());
 					break;
 			
-				case 'TaxiTrip.delete':
-					return response((new Trips\Application\TaxiTripController())->delete());
+				case 'Subscriber.delete':
+					return response((new Newsletters\Application\SubscriberController())->delete());
 					break;
-
-				case 'BusinessApplicant.delete':
-					return response((new Customers\Application\BusinessApplicantController())->delete());
+			
+				case 'Customer.delete':
+					return response((new Customers\Application\CustomerController())->delete());
 					break;
-	
-				case 'BusinessWithdrawal.delete':
-					return response((new Wallets\Application\BusinessWithdrawalController())->delete());
+			
+				case 'Product.delete':
+					return response((new Products\Application\ProductController())->delete());
 					break;
-	
-				case 'NewsletterSubscriber.delete':
-					return response((new Newsletters\Application\NewsletterSubscriberController())->delete());
-					break;
-	
-				case 'ContactForm.delete':
-					return response((new Forms\Application\ContactFormController())->delete());
-					break;
-	
-				case 'Gallery.delete':
-					return response((new Gallery\Application\GalleryController())->delete());
-					break;
-					
-				case 'Language.delete':
-					return response((new Languages\Application\LanguageController())->delete());
-					break;
-					
-				case 'EmailTemplate.delete':
-					return response((new Templates\Application\EmailTemplateController())->delete());
-					break;
-	
+			
 			}
 
-
 		} catch (Exception $e) {
-			throw new Exception( $e->getMessage(), 1);
+			throw new Exception("Error Processing Request", 1);
 					
 		}
 	} 
