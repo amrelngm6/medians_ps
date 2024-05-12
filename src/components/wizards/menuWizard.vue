@@ -9,22 +9,22 @@
 
     <div class="flex">
       <VueDraggable class="shadow-sm shadow-sm flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-white overflow-auto"
-        v-model="list1" animation="150" ghostClass="ghost" group="people" >
-        <div v-for="item in list1" :key="item.page_id" class="cursor-move h-30 bg-gray-500/5 rounded p-3">
+        v-model="allPages" animation="150" ghostClass="ghost" group="people" >
+        <div v-for="item in allPages" :key="item.page_id" class="cursor-move h-30 bg-gray-500/5 rounded p-3">
           {{ item.name }}
         </div>
       </VueDraggable>
       <VueDraggable class="shadow-sm shadow-sm flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-white overflow-auto"
-        v-model="list2" animation="150" group="people" ghostClass="ghost" @update="saveItem" @add="saveItem"
+        v-model="selectedPages" animation="150" group="people" ghostClass="ghost" @update="saveItem" @add="saveItem"
         @remove="saveItem">
-        <div v-for="item in list2" :key="item.page_id" class="cursor-move h-30 bg-gray-500/5 rounded p-3 my-1">
+        <div v-for="item in selectedPages" :key="item.page_id" class="cursor-move h-30 bg-gray-500/5 rounded p-3 my-1">
           {{ item.page ? item.page.name : item.name }}
         </div>
       </VueDraggable>
     </div>
     <div class="flex justify-between">
-      <preview-list :list="list1" />
-      <preview-list :list="list2" />
+      <preview-list :list="allPages" />
+      <preview-list :list="selectedPages" />
     </div>
 
   </div>
@@ -42,40 +42,24 @@ export default
     },
     setup(props) {
       const loader = ref(false);
-      const list1 = ref([
-        {
-          name: 'Joao',
-          page_id: 1
-        },
-        {
-          name: 'Jean',
-          page_id: 2
-        },
-        {
-          name: 'Johanna',
-          page_id: 3
-        },
-        {
-          name: 'Juan',
-          page_id: 4
-        }
-      ])
+      const allPages = ref([])
       
 
-      const list2 = ref([]);
-      list2.value = props.active_links ?? list2.value;
+      const selectedPages = ref([]);
+      allPages.value = props.pages ??  [];
+      selectedPages.value = props.active_links ?? [];
       
       const handleSelected = () => {
         // Concatenate the arrays
-        const combinedArray = props.pages.concat(list2.value);
+        const combinedArray = props.pages.concat(selectedPages.value);
         // Create a set to remove duplicates
         const uniqueObjectsSet = new Set(combinedArray.map(JSON.stringify));
 
         // Convert the set back to an array
-        list1.value =  Array.from(uniqueObjectsSet).map(JSON.parse);
+        allPages.value =  Array.from(uniqueObjectsSet).map(JSON.parse);
       }
       
-      handleSelected();
+      // handleSelected();
 
       const onUpdate = () => {
         saveItem();
@@ -94,20 +78,20 @@ export default
           loader.value = true;
           var params = new URLSearchParams();
           params.append('params[type]', props.item.type )
-          params.append('params[items]', JSON.stringify(list2.value) )
+          params.append('params[items]', JSON.stringify(selectedPages.value.filter(e=> e != null)) )
           params.append('type', 'Menu.update' )
           handleRequest(params, '/api/update').then(response => {
               loader.value = false;
               handleAccess(response)
           })
       }
-      console.log(list2.value)
-      console.log(list1.value)
+      console.log(selectedPages.value)
+      console.log(allPages.value)
 
       return {
         loader,
-        list1,
-        list2,
+        allPages,
+        selectedPages,
         translate,
         saveItem,
         onUpdate,

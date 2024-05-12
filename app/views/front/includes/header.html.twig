@@ -4,9 +4,9 @@
             <div><a href="/"><img title="{{app.SystemSetting.sitename}}" src="{{app.CONF.url}}{{app.SystemSetting.logo}}" /></a></div>
             <div id="main-nav" class="w-full flex mt-8 border border-1 rounded-2xl py-2 px-6 bg-white">
                 <ul  class="flex gap-4 w-full pt-1">
-                    {% for menu in app.headerMenu %}
+                    {% for menu in header_menu %}
                     <li class="navbar-dropdown">
-                        <a href="/page/{{menu.content.prefix}}">{{menu.content.title}}</a>
+                        <a href="/page/{{menu.page.lang_content.prefix}}">{{menu.page.lang_content.title}}</a>
                     </li>
                     {% endfor %}
                 </ul>
