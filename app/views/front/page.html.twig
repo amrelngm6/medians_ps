@@ -12,7 +12,7 @@
 {% elseif page.class_name == 'Product' and page.product_fields.template == 'default' %}
 {% include 'views/front/templates/modern_product.html.twig' %}
 {% else %}
-{{app.renderTemplate(page.lang_content.content).render( {'lang':lang, 'page': page }  )|raw}}
+{{app.renderTemplate(page.lang_content.content ?? '').render( {'lang':lang, 'page': page }  )|raw}}
 {% endif %}
 {% endif %}
 
