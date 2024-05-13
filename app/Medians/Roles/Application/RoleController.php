@@ -88,7 +88,7 @@ class RoleController extends CustomController
 	public function store() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {	
 
@@ -107,7 +107,7 @@ class RoleController extends CustomController
 
 	public function update()
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -130,9 +130,9 @@ class RoleController extends CustomController
 	public function updatePermissions()
 	{
 
-		$params = (array) json_decode($this->app->request()->get('params'));
-
         try {
+
+			$params = (array) $this->app->params();
 
             if ($this->repo->updatePermissions($params['permissions']))
             {
@@ -142,7 +142,7 @@ class RoleController extends CustomController
 			return null;
 
         } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+        	throw new \Exception($e->getMessage(), 1);
         	
         }
 
@@ -152,7 +152,7 @@ class RoleController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 

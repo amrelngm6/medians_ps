@@ -97,7 +97,7 @@ class PlanController extends CustomController
 	{	
 		$this->app = new \config\APP;
         
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
         	$params['created_by'] = $this->app->auth()->id;
@@ -124,7 +124,7 @@ class PlanController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -153,7 +153,7 @@ class PlanController extends CustomController
 		
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 

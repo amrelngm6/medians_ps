@@ -71,7 +71,7 @@ class CurrencyService
 
 	public function update()
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 

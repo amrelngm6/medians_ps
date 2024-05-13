@@ -61,7 +61,7 @@ class TripController extends CustomController
 	 */ 
 	public function index( ) 
 	{
-		$params = $this->app->request()->query->all();
+		$params = sanitizeInput($this->app->request()->query->all());
 		
 		try {
 			
@@ -80,7 +80,7 @@ class TripController extends CustomController
 	public function store() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {	
 
@@ -99,7 +99,7 @@ class TripController extends CustomController
 
 	public function update()
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -118,7 +118,7 @@ class TripController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -140,7 +140,7 @@ class TripController extends CustomController
 	 */
 	public function endTrip()
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 		$user = $this->app->auth();
         try 
 		{
@@ -279,7 +279,7 @@ class TripController extends CustomController
 
 	public function createTrip()
 	{
-		$params = json_decode($this->app->request()->get('params'));
+		$params = json_decode($this->app->params());
 
         try 
 		{
@@ -299,7 +299,7 @@ class TripController extends CustomController
 
 	public function updateLocation()
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
         try 
 		{
@@ -325,7 +325,7 @@ class TripController extends CustomController
 	
 	 public function createAlarm()
 	 {
-		 $params = (array) json_decode($this->app->request()->get('params'));
+		 $params = (array) $this->app->params();
  
 		 try 
 		 {

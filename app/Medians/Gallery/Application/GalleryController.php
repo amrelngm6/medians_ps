@@ -85,7 +85,7 @@ class GalleryController extends CustomController
 	public function store() 
 	{	
         
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
         	$user = $this->app->auth();
@@ -117,7 +117,7 @@ class GalleryController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -146,7 +146,7 @@ class GalleryController extends CustomController
 		
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 

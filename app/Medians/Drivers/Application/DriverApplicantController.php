@@ -86,7 +86,7 @@ class DriverApplicantController extends CustomController
 	public function store() 
 	{
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
         try 
         {	
@@ -121,7 +121,7 @@ class DriverApplicantController extends CustomController
 	public function update()
 	{
 		
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 		$params = (array)   is_array($params) ?  $params : json_decode($params);
 
         try {

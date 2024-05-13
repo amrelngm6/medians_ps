@@ -31,7 +31,14 @@ file_exists(__DIR__.'/app/config/database.php')
     ?  require_once __DIR__.'/app/config/database.php' 
     : header('Location: ./installer/index.php');
 
-require_once __DIR__.'/vendor/autoload.php';
+try {
+
+    require_once __DIR__.'/vendor/autoload.php';
+
+} catch (\Throwable $th) {
+    echo $th->getMessage();
+    return;
+}
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 

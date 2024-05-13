@@ -97,7 +97,7 @@ class MenuController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -126,7 +126,7 @@ class MenuController extends CustomController
 		
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 

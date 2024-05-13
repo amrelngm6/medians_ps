@@ -156,7 +156,19 @@ class APP
 		return Request::createFromGlobals();
 	}
 
+	/**
+	 * Load all request [params] parameter
+	 * Used in most of the request
+ 	 */
+	public function params()
+	{
+		$params = $this->request()->get('params');
+		if (!$params)
+			return;
 
+		return sanitizeInput(is_array($params) ? $params : (array) json_decode($params));
+	}
+  
 	public static function redirect($url)
 	{
 		echo "<img width='100%' src='/uploads/img/redirect.gif' /><style>*{margin:0;color:#fff; overflow:hidden}</style>";

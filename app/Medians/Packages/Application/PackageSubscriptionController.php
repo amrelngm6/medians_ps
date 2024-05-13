@@ -105,7 +105,7 @@ class PackageSubscriptionController extends CustomController
         
         $user = $this->app->auth();
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
         	
@@ -137,7 +137,7 @@ class PackageSubscriptionController extends CustomController
         // return null;
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -165,7 +165,7 @@ class PackageSubscriptionController extends CustomController
 		
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 

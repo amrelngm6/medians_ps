@@ -59,7 +59,7 @@ class TransactionController extends CustomController
 	 */ 
 	public function index() 
 	{
-		$params = $this->app->request()->query->all();
+		$params = sanitizeInput($this->app->request()->query->all());
 
 		return render('transactions', [
 			'load_vue'=> true,
@@ -79,7 +79,7 @@ class TransactionController extends CustomController
 	public function store() 
 	{	
         
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
         	
@@ -104,7 +104,7 @@ class TransactionController extends CustomController
 	public function update() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -129,7 +129,7 @@ class TransactionController extends CustomController
 	*/
 	public function delete() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -153,7 +153,7 @@ class TransactionController extends CustomController
 	public function addTransaction()
 	{
 		
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
 		$user = $this->app->auth();
 
@@ -188,7 +188,7 @@ class TransactionController extends CustomController
 	public function addTripTransaction()
 	{
 		
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
 		$user = $this->app->auth();
 
@@ -219,7 +219,7 @@ class TransactionController extends CustomController
 	public function addTripCashTransaction()
 	{
 		
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
 		$user = $this->app->auth();
 

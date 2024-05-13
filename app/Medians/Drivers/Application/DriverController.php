@@ -170,7 +170,7 @@ class DriverController extends CustomController
 	public function store() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {	
 
@@ -201,7 +201,7 @@ class DriverController extends CustomController
 	public function update()
 	{
 		
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 		$params = (array)   is_array($params) ?  $params : json_decode($params);
 
         try {
@@ -221,7 +221,7 @@ class DriverController extends CustomController
 
 	public function updateMobile()
 	{
-		$params = json_decode($this->app->request()->get('params'));
+		$params = json_decode($this->app->params());
 
         try {
 
@@ -238,7 +238,7 @@ class DriverController extends CustomController
 
 	public function resetPassword() 
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
         try {	
 
@@ -321,7 +321,7 @@ class DriverController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -371,7 +371,7 @@ class DriverController extends CustomController
 
 	public function changePassword()
 	{
-		$_params = $this->app->request()->get('params');
+		$_params = $this->app->params();
 		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
 
         try {
@@ -390,7 +390,7 @@ class DriverController extends CustomController
 
 	public function resetChangePassword()
 	{
-		$_params = $this->app->request()->get('params');
+		$_params = $this->app->params();
 		$params = (array) (is_array($_params) ?  $_params : json_decode($_params));
 
         try {
@@ -429,7 +429,7 @@ class DriverController extends CustomController
 	 */
 	public function loginWithGoogle() 
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 		
 		// Verify the ID token with Google
 		$googleApiUrl = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' . $params['idToken'];
@@ -478,7 +478,7 @@ class DriverController extends CustomController
 	 */
 	public function loginWithTwitter() 
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 		
 		$driver = $this->repo->findByEmail($params['email']);
 		if (empty($driver))

@@ -61,7 +61,7 @@ class InvoiceController extends CustomController
 	 */ 
 	public function index() 
 	{
-		$params = $this->app->request()->query->all();
+		$params = sanitizeInput($this->app->request()->query->all());
 
 		return render('invoices', [
 			'load_vue'=> true,
@@ -81,7 +81,7 @@ class InvoiceController extends CustomController
 	public function store() 
 	{	
         
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
         	$params['business_id'] = $this->app->business->business_id;
@@ -106,7 +106,7 @@ class InvoiceController extends CustomController
 	*/
 	public function update() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -131,7 +131,7 @@ class InvoiceController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -152,7 +152,7 @@ class InvoiceController extends CustomController
 	public function addInvoice()
 	{
 		
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
 		try {
 			

@@ -80,7 +80,7 @@ class TaxiTripController extends CustomController
 	 */ 
 	public function index( ) 
 	{
-		$params = $this->app->request()->query->all();
+		$params = sanitizeInput($this->app->request()->query->all());
 		
 		try {
 			
@@ -105,7 +105,7 @@ class TaxiTripController extends CustomController
 	public function store() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
 		$user = $this->app->auth();
 
@@ -130,7 +130,7 @@ class TaxiTripController extends CustomController
 	public function update()
 	{
 		
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 			
@@ -152,7 +152,7 @@ class TaxiTripController extends CustomController
 
 	public function delete() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -191,7 +191,7 @@ class TaxiTripController extends CustomController
 	public function createTrip() 
 	{
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
 		$user = $this->app->auth();
 
@@ -212,14 +212,14 @@ class TaxiTripController extends CustomController
 
 	public function cancelTrip()
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 		
 		return $this->repo->cancelTrip($params);
 	}
 
 	public function endTrip()
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 		
 		$params['status'] = 'completed';
 
@@ -228,7 +228,7 @@ class TaxiTripController extends CustomController
 
 	public function startTrip()
 	{
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 		
 		$params['status'] = 'started';
 

@@ -67,7 +67,7 @@ class CollectedCashController extends CustomController
 	public function index( ) 
 	{
 		
-		$params = $this->app->request()->query->all();
+		$params = sanitizeInput($this->app->request()->query->all());
 
 		try {
 
@@ -91,7 +91,7 @@ class CollectedCashController extends CustomController
 	public function store() 
 	{	
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
 		$user = $this->app->auth();
 		
@@ -118,7 +118,7 @@ class CollectedCashController extends CustomController
 	public function update()
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 			
@@ -139,7 +139,7 @@ class CollectedCashController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -162,7 +162,7 @@ class CollectedCashController extends CustomController
 	public function create() 
 	{	
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
         try {	
 			
@@ -188,7 +188,7 @@ class CollectedCashController extends CustomController
 	public function update_student_vacation() 
 	{	
 
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = (array) $this->app->params();
 
         try {	
 			

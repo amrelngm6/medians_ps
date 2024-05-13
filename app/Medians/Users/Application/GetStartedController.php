@@ -108,7 +108,7 @@ class GetStartedController
 	*/
 	public function saveBusiness() 
 	{
-		$params = (array)  $this->app->request()->get('params');
+		$params = (array)  $this->app->params();
 
 		try {
 
@@ -160,7 +160,7 @@ class GetStartedController
 
 			$user = $this->app->auth();
 
-			$params = $this->app->request()->get('params');
+			$params = $this->app->params();
 			$plan = $this->planRepo->find($params['plan_id']);
 
 			// Check if plan is exist
@@ -191,7 +191,7 @@ class GetStartedController
 	{
 		try {
 
-			$params = $this->app->request()->get('params');
+			$params = $this->app->params();
 			$user = $this->app->auth();
 
 			// Store new subscription 

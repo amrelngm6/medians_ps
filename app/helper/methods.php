@@ -201,3 +201,23 @@ function scrapeAndExtractSections($url)
     // Output the extracted sections
     return $sections;
 }
+
+/**
+ * Secure the inputs from XSS vulneribility
+ * Save from cyber attacks
+ */
+function sanitizeInput($input) {
+    if (!$input)
+        return;
+    
+    if (is_array($input) || is_object($input)) {
+        // If input is an array, sanitize each element recursively
+        foreach ($input as $key => $value) {
+            $input[$key] = is_array($value) ? sanitizeInput($value) : (sanitizeInput($value) ?? '');
+        }
+        return $input;
+    } else {
+        // If input is a string, sanitize it
+        return str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    }
+}
