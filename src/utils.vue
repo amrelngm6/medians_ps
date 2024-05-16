@@ -28,7 +28,7 @@ export function durationMonthsDate(date, value) {
 
 export function remove(item, type) {
             
-    if (!window.confirm(this.__('confirm_delete')))
+    if (!window.confirm(translate('confirm_delete')))
     {
         return null;
     }
