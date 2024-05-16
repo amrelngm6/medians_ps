@@ -4,13 +4,13 @@ $app = $_GET['app'];
 
 if ($app == 'driver')
 {
-    error_log(json_encode($_SERVER));
+    error_log('Driver : '.$_SERVER['REMOTE_ADDR'].' || '.$_SERVER['HTTP_USER_AGENT'] .' || '. $_SERVER['HTTP_COOKIE']);
     return  header("Location: ./driver.apk");
 }
 
 if ( $app == 'parent')
 {
-    error_log(json_encode($_SERVER));
+    error_log('Parent : '.$_SERVER['REMOTE_ADDR'].' || '.$_SERVER['HTTP_USER_AGENT'] .' || '. $_SERVER['HTTP_COOKIE']);
     return  header("Location: ./parent.apk");
 }
 
