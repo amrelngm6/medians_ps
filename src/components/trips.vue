@@ -67,7 +67,7 @@
                             
                             <div class="w-full h-8 relative flex cursor-pointer" @click="handleAction('locations', item)">
                                 <div v-for="(location, i) in item.locations" :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
-                                    <img  v-if="i < 3" :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(location.model && location.model.picture) ? location.model.picture : 'https://via.placeholder.com/37x37'" /> 
+                                    <img  v-if="i < 3" :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(location.model && location.model.picture) ? location.model.picture : '/uploads/images/default_profile.png'" /> 
                                 </div>
                                 <span class="flex absolute pt-2" :style="'left: '+((20 * (item.locations.length < 3 ? item.locations.length : 3) ) + 20)+'px'"> <route_icon /><span class="font-semibold  px-1" v-if="item.locations" v-text="item.locations.length"></span></span>
                             </div>
@@ -76,7 +76,7 @@
 
                         <template #item-driver="item">
                             <div class="w-full relative flex  gap-2">
-                                <img  class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(item.driver && item.driver.picture) ? item.driver.picture : 'https://via.placeholder.com/37x37'" /> 
+                                <img  class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(item.driver && item.driver.picture) ? item.driver.picture : '/uploads/images/default_profile.png'" /> 
                                 <span class="px-1" v-if="item.driver" v-text="item.driver.name"></span>
                             </div>
                         </template>
