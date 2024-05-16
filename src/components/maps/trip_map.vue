@@ -183,9 +183,9 @@ export default {
     }
 
     onMounted(() => {
-        mapOrigin.value = originTracking() ?? { lat: trip.value.pickup_latitude, lng: trip.value.pickup_longitude }; 
+        mapOrigin.value = originTracking() ?? { lat: trip.value.route.position.start_latitude, lng: trip.value.route.position.start_longitude }; 
         mapCenter.value = mapOrigin.value;
-        mapDestination.value = { lat: trip.value.destination_latitude, lng: trip.value.destination_longitude }; 
+        mapDestination.value = { lat: trip.value.route.position.end_latitude, lng: trip.value.route.position.end_longitude }; 
         setValues();
         fetchRoute();
     });

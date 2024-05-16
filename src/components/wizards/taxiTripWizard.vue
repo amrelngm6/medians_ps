@@ -299,7 +299,7 @@
                                 
                                 <div class="w-full flex gap-10">
                                     <div class="w-full">
-                                        <trip_map @markerclicked="markerClicked" class="rounded-xl shadow-md mx-4" :system_setting="system_setting" :conf="conf" :trip="activeItem"  />
+                                        <taxi_trip_map @markerclicked="markerClicked" class="rounded-xl shadow-md mx-4" :system_setting="system_setting" :conf="conf" :trip="activeItem"  />
                                     </div>
                                     <div class="w-full">
                                         <hr class="block mt-6 my-2 opacity-10" />
@@ -432,7 +432,6 @@
 
 import close_icon from '@/components/svgs/Close.vue';
 import delete_icon from '@/components/svgs/trash.vue';
-import route_icon from '@/components/svgs/route.vue';
 import car_icon from '@/components/svgs/car.vue';
 
 import 'vue3-easy-data-table/dist/style.css';
@@ -455,7 +454,7 @@ const form_field = defineAsyncComponent(() =>
 import editable_map_location from '@/components/includes/editable_map_location.vue';
 import drivers_locations_map from '@/components/includes/drivers_locations_map.vue';
 import tooltip from '@/components/includes/tooltip.vue';
-import trip_map from '@/components/maps/trip_map.vue';
+import taxi_trip_map from '@/components/maps/taxi_trip_map.vue';
 
 export default
     {
@@ -463,7 +462,7 @@ export default
             'datatabble': Vue3EasyDataTable,
             SideFormCreate,
             SideFormUpdate,
-            trip_map,
+            taxi_trip_map,
             close_icon,
             delete_icon,
             car_icon,
