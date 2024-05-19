@@ -67,10 +67,21 @@
                             </div>
                         </template>
 
+                        <template #item-item="item">
+                            <div class="flex gap-2" v-if="item.item" >
+                                <img :src="item.item.picture" class="w-8 h-8 rounded-full" />
+                                <span class="py-2" v-text="item.item.lang_content.title ?? ''"></span>
+                            </div>
+                        </template>
+
                         <template #item-user="item">
                             <div class="flex gap-2" v-if="item.user" >
-                                <img :src="item.user.logo" picture="w-8 h-8 rounded-full" />
-                                <span class="py-2" v-text="item.user.name"></span>
+                                <img :src="item.user.picture" class="w-8 h-8 rounded-full" /> <span class="py-2" v-text="item.user.name"></span>
+                            </div>
+                        </template>
+                        <template #item-customer="item">
+                            <div class="flex gap-2" v-if="item.customer" >
+                                <img :src="item.customer.picture" class="w-8 h-8 rounded-full" /> <span class="py-2" v-text="item.customer.name"></span>
                             </div>
                         </template>
                         

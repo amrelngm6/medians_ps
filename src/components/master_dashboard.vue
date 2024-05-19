@@ -16,11 +16,8 @@
             </div>
         </div>
 
-        <!-- <dashboard_chart v-if="content.trips_charts" :key="content" :content="content.trips_charts" :title="translate('Route trips')" />  -->
-        <!-- <dashboard_chart v-if="content.top_businesses" :key="content" :content="content" :title="translate('top_businesses')" />  -->
-
         <div class="block w-full overflow-x-auto py-2">
-            <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
+            <div class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
                 <div class="w-full gap-6 flex ">
                     <div class="card card-flush h-md-50 mb-5 mb-xl-10 w-full">
                         <div class="card-header pt-5">
@@ -95,14 +92,12 @@
                         
                         <div class="w-full p-4">
                             <div class="w-full flex gap-2">
-                                <h4 class="w-full ml-4" v-text="translate('Top businesses')"></h4>
-                                <a href="/admin/companies" class="w-24" v-text="translate('Companies')"></a>
-                                <a href="/admin/schools" class="w-24" v-text="translate('Schools')"></a>
+                                <h4 class="w-full ml-4" v-text="translate('Top customers')"></h4>
                             </div>
-                            <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_businesses_who_have_most_route_locations')"></p>
+                            <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_customers_who_have_most_orders')"></p>
                         </div>
                         <div class="card-body w-full">
-                            <div class="w-full" v-if="content.top_businesses">
+                            <div class="w-full" v-if="pie_options">
                                 <dashboard_pie_chart v-if="pie_options" type="pie"  :key="pie_options" :options="pie_options" />
                             </div>
                         </div>
@@ -264,7 +259,6 @@ export default
         const line_options = ref();
         const merge_line_options = ref();
         const pie_options = ref();
-        const column_options = ref();
 
         const content = ref({});
 
@@ -324,7 +318,7 @@ export default
         const labels = ref([]);
         const route_data = ref([]);
         const taxi_data = ref([]);
-        const top_businesses = ref([]);
+        const top_customers = ref([]);
         /**
          * Set charts based on their values type
          */ 
@@ -342,21 +336,21 @@ export default
                 };
                 
                 merge_line_options.value  =  {
-                    labels: content.value.top_businesses_with_trips.filter(item => item.label),
+                    labels: content.value.top_products.filter(item => item.label),
                     datasets: [
-                        chartItem(content.value.top_businesses_with_trips.map(e => e ? e.taxi_trips.length : 0), translate('Taxi Trips'), colors[0]),
-                        chartItem(content.value.top_businesses_with_trips.map(e => e ? e.trips.length : 0), translate('Routes Trips'), colors[1]),
+                        chartItem(content.value.top_products.map(e => e ? e.taxi_trips.length : 0), translate('Taxi Trips'), colors[0]),
+                        chartItem(content.value.top_products.map(e => e ? e.trips.length : 0), translate('Routes Trips'), colors[1]),
                     ]
                 };
 
                 
                 // Line charts for sales in last days 
                 pie_options.value  =  {
-                    labels: content.value.top_businesses.map((e) => e.label),
+                    labels: content.value.top_customers.map((e) => e.label),
                     datasets: [
                     {
-                        backgroundColor: content.value.top_businesses.map((e, i) => colors.value[i]),
-                        data: content.value.top_businesses.map((e, i) => e.y),
+                        backgroundColor: content.value.top_customers.map((e, i) => colors.value[i]),
+                        data: content.value.top_customers.map((e, i) => e.y),
                     },
                     ],
                 };

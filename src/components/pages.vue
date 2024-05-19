@@ -137,7 +137,7 @@ export default
             switch(actionName) 
             {
                 case 'details':
-                    window.open(props.conf.url+'admin/builder?lang='+(data.content.lang ?? props.langs[0].language_code)+'&page_id='+data.page_id, '_blank').focus();
+                    window.open(props.conf.url+'admin/builder?lang='+(data.lang_content.lang ?? props.langs[0].language_code)+'&page_id='+data.page_id, '_blank').focus();
                     break;  
 
                 case 'edit':

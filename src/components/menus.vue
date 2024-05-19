@@ -2,7 +2,7 @@
     <div class=" w-full pb-20">
 
         <div class="relative w-full" v-if="showDetails ">
-            <menu_wizard :key="activeItem" :pages="content.pages" :active_links="activeLinks" :item="activeItem" @save="showBuilder" @close="showBuilder" :conf="conf"></menu_wizard>
+            <menu_wizard :key="activeItem" :pages="content.pages" :categories="content.categories" :active_links="content.items" :item="activeItem" @save="showBuilder" @close="showDetails = false" :conf="conf"></menu_wizard>
         </div>
 
         <main v-if="content && !showDetails " class="px-4 flex-1 overflow-x-hidden overflow-y-auto  w-full  mb-20">

@@ -4493,8 +4493,14 @@ function blockZeroPadding() {
     koBlockSettings(1);
 }
 function koSliderInit(e, a, t) {
+    console.log("#" + e + "_slider")
+    console.log()
+    console.log(jQuery("#" + e + "_slider"))
     // if ($("#" + e + "_slider .ui-slider-handle").length > 0) $("#" + e + "_slider").slider("destroy");
-    $("#" + e + "_slider").slider({
+    if (!$("#" + e + "_slider").length)
+        return;
+    
+    jQuery("#" + e + "_slider").slider({
         min: 0,
         max: 300,
         value: a,

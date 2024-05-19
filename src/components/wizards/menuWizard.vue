@@ -1,5 +1,6 @@
 <template>
-  <div class=" w-full">
+  <div class=" w-full relative">
+    <close_icon class="absolute top-4 right-4 z-10 cursor-pointer" @click="back" />
     
     <div v-if="loader" :key="loader" class="bg-white fixed w-full h-full top-0 left-0" style="z-index:99999; opacity: .9;">
         <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
@@ -8,17 +9,23 @@
     <p v-text="translate('Drag & Drop your link for menu') + ' ' + item.type"></p>
 
     <div class="flex">
-      <VueDraggable class="shadow-sm shadow-sm flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-white overflow-auto"
-        v-model="allPages" animation="150" ghostClass="ghost" group="people" >
-        <div v-for="item in allPages" :key="item.page_id" class="cursor-move h-30 bg-gray-500/5 rounded p-3">
-          {{ item.name }}
+      <div class="w-300px h-300px">
+        <div class="flex text-center">
+          <span class="w-full px-4 py-2  " :class="allPages == pages ? 'bg-red-600 border border-1 border-danger  fw-bold rounded-xl' : 'cursor-pointer'" @click="allPages = pages" v-text="translate('Pages')"></span>
+          <span class="w-full px-4 py-2 " :class="allPages == categories ? 'bg-red-600 border border-1 border-danger  fw-bold rounded-xl' : 'cursor-pointer'" @click="allPages = categories" v-text="translate('Categories')"></span>
         </div>
-      </VueDraggable>
+          <VueDraggable class="shadow-sm shadow-sm flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-white overflow-auto"
+          v-model="allPages" animation="150" ghostClass="ghost" group="people" >
+          <div v-for="page in allPages" :key="page" class="cursor-move h-30 bg-gray-500/5 rounded p-3">
+            {{ page.name }}
+          </div>
+        </VueDraggable>
+      </div>
       <VueDraggable class="shadow-sm shadow-sm flex flex-col gap-2 p-4 w-300px h-300px m-auto bg-white overflow-auto"
         v-model="selectedPages" animation="150" group="people" ghostClass="ghost" @update="saveItem" @add="saveItem"
         @remove="saveItem">
-        <div v-for="item in selectedPages" :key="item.page_id" class="cursor-move h-30 bg-gray-500/5 rounded p-3 my-1">
-          {{ item.page ? item.page.name : item.name }}
+        <div v-for="selectedItem in selectedPages" :key="selectedItem"  class="cursor-move h-30 bg-gray-500/5 rounded p-3 my-1">
+            {{ selectedItem.name }} 
         </div>
       </VueDraggable>
     </div>
@@ -31,6 +38,7 @@
 </template>
 <script>
 
+import close_icon from '@/components/svgs/Close.vue';
 import { handleAccess, handleRequest, translate } from '@/utils.vue';
 import { ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus'
@@ -39,27 +47,30 @@ export default
   {
     components: {
       VueDraggable,
+      close_icon
     },
-    setup(props) {
+    emits: ['close'],
+    setup(props, {emit}) {
       const loader = ref(false);
       const allPages = ref([])
       
 
       const selectedPages = ref([]);
       allPages.value = props.pages ??  [];
-      selectedPages.value = props.active_links ?? [];
       
       const handleSelected = () => {
-        // Concatenate the arrays
-        const combinedArray = props.pages.concat(selectedPages.value);
-        // Create a set to remove duplicates
-        const uniqueObjectsSet = new Set(combinedArray.map(JSON.stringify));
-
-        // Convert the set back to an array
-        allPages.value =  Array.from(uniqueObjectsSet).map(JSON.parse);
+        let array = props.active_links;
+        for (let i = 0; i < array.length; i++) {
+          const element = array[i].page;
+          element.type = array[i].type;
+          if (element.type == props.item.type)
+          {
+            selectedPages.value[selectedPages.value.length] = element;
+          }
+        }
       }
       
-      // handleSelected();
+      handleSelected();
 
       const onUpdate = () => {
         saveItem();
@@ -71,6 +82,9 @@ export default
       const remove = () => {
         saveItem();
         console.log('remove')
+      }
+      const back = () => {
+        emit('close');
       }
 
       
@@ -92,6 +106,7 @@ export default
         loader,
         allPages,
         selectedPages,
+        back,
         translate,
         saveItem,
         onUpdate,
@@ -106,6 +121,7 @@ export default
       'conf',
       'auth',
       'pages',
+      'categories',
       'active_links',
       'item',
     ],

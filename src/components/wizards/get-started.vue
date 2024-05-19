@@ -730,7 +730,7 @@ export default
                             amount: amount,  
                         }, {
                         headers: {
-                            'Authorization': 'Bearer '+props.setting.paystack_secret_key,
+                            'Authorization': 'Bearer '+props.setting.paystack_public_key,
                             'Content-Type': 'application/json'
                         }
                         });
@@ -752,7 +752,7 @@ export default
             {
                 const response = await axios.get("https://api.paystack.co/transaction/verify/"+reference,{
                         headers: {
-                            'Authorization': 'Bearer '+props.setting.paystack_secret_key,
+                            'Authorization': 'Bearer '+props.setting.paystack_public_key,
                             'Content-Type': 'application/json'
                         }});
                 

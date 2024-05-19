@@ -38,14 +38,14 @@
                                 <div class="card-title"><h2 v-text="translate('Product Details')"></h2></div>
                             </div>
                             <div class="card-body pt-0">
-                                <label class="form-label" v-text="translate('Main Category')"></label>
-                                <form_field :item="activeItem" :column="{required: true, key:'category_id',title: translate('Main Category') , column_type:'select', text_key: 'name', column_key: 'category_id', data: categories}" ></form_field>
+                                <!-- <label class="form-label" v-text="translate('Main Category')"></label>
+                                <form_field :item="activeItem" :column="{required: true, key:'category_id',title: translate('Main Category') , column_type:'select', text_key: 'name', column_key: 'category_id', data: categories}" ></form_field> -->
 
-                                <div class="text-muted fs-7 mb-7" v-text="translate('Add item to its main category')"></div>
+                                <!-- <div class="text-muted fs-7 mb-7" v-text="translate('Add item to its main category')"></div> -->
 
                                 <hr class="my-2" />
                                 <label class="form-label" v-text="translate('Categories')"></label>
-                                <form_field @callback="(val) => {activeItem.categories = val}" :item="activeItem" :column="{multiple:true, key:'categories',title: translate('Main Category') , column_type:'select', text_key: 'name', column_key: 'category_id', data: categories}" ></form_field>
+                                <form_field @callback="(val) => {console.log(val), activeItem.product_categories = val}" :item="activeItem" :column="{multiple:true, key:'product_categories',title: translate('Main Category') , column_type:'select', text_key: 'name', column_key: 'category_id', data: categories}" ></form_field>
 
                                 <div class="text-muted fs-7 mb-7" v-text="translate('Add item to multi categories')"></div>
                                 <a href="javascript:;" @click="showAddCategory = true" class="btn btn-light-primary btn-sm mb-10">
@@ -147,7 +147,7 @@
                                                     </div>
                                                     <div>
                                                         <label class="form-label gap-6 flex"><span v-text="translate('Description')"></span><strong class="px-4" v-text="language.name"></strong> </label>
-                                                        <textarea class="form-control" v-model="activeItem.content_langs[language.language_code].content"></textarea>
+                                                        <textarea class="form-control" v-model="activeItem.content_langs[language.language_code].short"></textarea>
                                                         <div class="text-muted fs-7"
                                                             v-text="translate('Set a description to the item for better visibility')">
                                                         </div>

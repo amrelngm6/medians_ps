@@ -28,7 +28,7 @@
                                         <div class="row g-5 mb-11">
                                             <div class="col-sm-6">
                                                 
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issue Date')"></div>
+                                                <div class="fw-semibold fs-6 text-gray-600 mb-1" v-text="translate('Issue Date')"></div>
                                                 
 
                                                 <!--end::Col-->
@@ -40,7 +40,7 @@
                                             <!--end::Col-->
                                             <div class="col-sm-6">
                                                 
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
+                                                <div class="fw-semibold fs-6 text-gray-600 mb-1" v-text="translate('Due Date')"></div>
                                                 
 
                                                 <!--end::Info-->
@@ -58,7 +58,7 @@
                                             <!--end::Col-->
                                             <div class="col-sm-6" v-if="activeItem.user">
                                                 
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issue For')"></div>
+                                                <div class="fw-semibold fs-6 text-gray-600 mb-1" v-text="translate('Issue For')"></div>
                                                 
                                                 <!--end::Text-->
                                                 <div class="flex gap-2" >
@@ -71,7 +71,7 @@
                                                 <!--end::Text-->
 
                                                 <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600" >
+                                                <div class="fw-semibold fs-6 text-gray-600" >
                                                     <span v-text="activeItem.user.field.address"></span>
                                                     <span v-text="activeItem.user.field.country"></span>
                                                 </div>
@@ -82,7 +82,7 @@
                                             <!--end::Col-->
                                             <div class="col-sm-6">
                                                 
-                                                <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issued By')"></div>
+                                                <div class="fw-semibold fs-6 text-gray-600 mb-1" v-text="translate('Issued By')"></div>
                                                 
 
                                                 <!--end::Text-->
@@ -94,7 +94,7 @@
                                                 </div>
 
                                                 <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600"  v-if="system_setting" v-text="system_setting.address"></div>
+                                                <div class="fw-semibold fs-6 text-gray-600"  v-if="system_setting" v-text="system_setting.address"></div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Col-->
@@ -111,8 +111,10 @@
                                                         <tr class="border-bottom fs-6 fw-bold text-muted">
                                                             <th class="min-w-175px pb-2" v-text="translate('Description')"></th>
                                                             <th class="min-w-70px text-end pb-2" v-text="translate('Subtotal')"></th>
-                                                            <th class="min-w-80px text-end pb-2"  v-text="translate('Discount amount')"></th>
-                                                            <th class="min-w-100px text-end pb-2"  v-text="translate('Total Amount')"></th>
+                                                            <th class="min-w-70px text-end pb-2" v-text="translate('Qty')"></th>
+                                                            <th class="min-w-80px text-end pb-2"  v-text="translate('Discount')"></th>
+                                                            <th class="min-w-80px text-end pb-2"  v-text="translate('Tax')"></th>
+                                                            <th class="min-w-100px text-end pb-2"  v-text="translate('Total')"></th>
                                                         </tr>
                                                     </thead>
 
@@ -120,10 +122,12 @@
                                                         <tr class="fw-bold text-gray-700 fs-5 text-end" v-for="invoiceItem in activeItem.items">
                                                             <td class="d-flex align-items-center pt-6 gap-2" v-if="invoiceItem" >
                                                                 <vue-feather type="cloud-lightning" ></vue-feather>
-                                                                <a href="javascript:;" v-if="invoiceItem.item" v-text="invoiceItem.item.name"></a>
+                                                                <a href="javascript:;" v-if="invoiceItem.item && invoiceItem.item.lang_content" v-text="invoiceItem.item.lang_content.title"></a>
                                                             </td>
-                                                            <td class="pt-6" v-text="currency.symbol + '' + invoiceItem.subtotal"></td>
+                                                            <td class="pt-6" v-text="currency.symbol + '' + (invoiceItem.subtotal / invoiceItem.quantity)"></td>
+                                                            <td class="pt-6" v-text="invoiceItem.quantity"></td>
                                                             <td class="pt-6" v-text="currency.symbol + '' + invoiceItem.discount_amount"></td>
+                                                            <td class="pt-6" v-text="currency.symbol + '' + invoiceItem.tax_amount"></td>
                                                             <td class="pt-6 text-gray-900 fw-bolder" v-text="currency.symbol + '' + invoiceItem.total_amount "></td>
                                                         </tr>
 
@@ -137,17 +141,27 @@
                                                 <!--begin::Section-->
                                                 <div class="mw-300px">
                                                     <div class="d-flex flex-stack mb-3">
-                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Subtotal')"></div>
+                                                        <div class="fw-semibold pe-10 text-gray-600 fs-6" v-text="translate('Subtotal')"></div>
                                                         <div class="text-end fw-bold fs-6 text-gray-800" v-text="currency.symbol + '' + activeItem.subtotal "></div>
                                                     </div>
                                                         
                                                     <div class="d-flex flex-stack mb-3">
-                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Discount')"></div>
+                                                        <div class="fw-semibold pe-10 text-gray-600 fs-6" v-text="translate('Discount')"></div>
                                                         <div class="text-end fw-bold fs-6 text-gray-800" v-text="currency.symbol + '' + activeItem.discount_amount"></div>
+                                                    </div>
+                                                        
+                                                    <div class="d-flex flex-stack mb-3">
+                                                        <div class="fw-semibold pe-10 text-gray-600 fs-6" v-text="translate('Tax')"></div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="currency.symbol + '' + activeItem.tax_amount"></div>
                                                     </div>
                             
                                                     <div class="d-flex flex-stack mb-3">
-                                                        <div class="fw-semibold pe-10 text-gray-600 fs-7" v-text="translate('Total amount')"></div>
+                                                        <div class="fw-semibold pe-10 text-gray-600 fs-6" v-text="translate('Shipping')"></div>
+                                                        <div class="text-end fw-bold fs-6 text-gray-800" v-text="currency.symbol + '' + activeItem.shipping_amount"></div>
+                                                    </div>
+                            
+                                                    <div class="d-flex flex-stack mb-3">
+                                                        <div class="fw-semibold pe-10 text-gray-600 fs-6" v-text="translate('Total amount')"></div>
                                                         <div class="text-end fw-bold fs-6 text-gray-800" v-text="currency.symbol + '' + activeItem.total_amount"></div>
                                                     </div>
                             
@@ -181,56 +195,64 @@
 
                                     <!--begin::Item-->
                                     <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('payment method')"></div>
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('payment method')"></div>
 
                                         <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.payment_method"></div>
                                     </div>
             
                                     <!--begin::Item-->
                                     <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Transaction number')"></div>
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('Transaction number')"></div>
 
                                         <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.transaction_id"></div>
                                     </div>
             
                                     <!--begin::Item-->
                                     <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Total amount')"></div>
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('Total amount')"></div>
 
                                         <div class="fw-bold text-gray-800 fs-6" v-text="currency.symbol + '' + activeItem.transaction.amount"></div>
                                     </div>
                                     
                                     <!--begin::Item-->
                                     <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Status')"></div>
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('Status')"></div>
 
                                         <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.status"></div>
+                                    </div>
+            
+                                    
+                                    <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Shipping method')"></h6>
+                                    <!--begin::Item-->
+                                    <div class="mb-6" v-if="activeItem.order && activeItem.order.field">
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('Shipping')"></div>
+
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.order.field.shipping_name ?? ''"></div>
                                     </div>
             
                                     <h6 class="mb-8 fw-bolder text-gray-600 text-hover-primary" v-text="translate('Billing info')"></h6>
 
                                     <!--begin::Item-->
                                     <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Payer name')"></div>
-
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_first_name"></div>
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('Payer name')"></div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.order.field.first_name"></div>
                                     </div>
 
                                     <!--begin::Item-->
                                     <div class="mb-6">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Payer email')"></div>
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('Payer email')"></div>
 
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.payer_email"></div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.order.field.email"></div>
                                     </div>
                                     
                                     <div class="m-0">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Order id')"></div>
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('Order id')"></div>
                                         
-                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.transaction.field.order_id"></div>
+                                        <div class="fw-bold text-gray-800 fs-6" v-text="activeItem.order.order_id"></div>
                                     </div>
                                     
                                     <div class="m-0">
-                                        <div class="fw-semibold text-gray-600 fs-7" v-text="translate('Date')"></div>
+                                        <div class="fw-semibold text-gray-600 fs-6" v-text="translate('Date')"></div>
 
                                         <div class="fw-bold fs-6 text-gray-800 d-flex align-items-center" v-text="activeItem.date"> 
                                         </div>

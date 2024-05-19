@@ -1,8 +1,11 @@
-function handleResponse(res)
+function handleResponse(res, form)
 {
     (res.error ) 
-    ? Swal.fire('Error!',res.result, 'error')
-    : (Swal.fire(res.title,res.result,  'success'), res.reload ? window.location.reload() : form.reset() );
+    ? Swal.fire('Error!',res.result ?? res.error, 'error')
+    : (Swal.fire(res.title,res.result,  'success'), setTimeout(() => {
+      res.reload ? window.location.reload() : form.reset() , 
+      res.redirect ? (window.location.href = res.redirect) : form.reset()
+    }, 2000) );
 
 }
 
@@ -24,17 +27,36 @@ jQuery(document).on('change', 'input', function(e){
 
 jQuery(document).on('submit', '.ajax-form', function(e){
     e.preventDefault();
-    submitForm(e.target.id);
+    submitForm(e.target.id, e.target.attr);
 });
 
 jQuery(document).on('click', '.ajax-link', function(e){
     e.preventDefault();
+    
     let data = jQuery(this).data('params');
     let path = jQuery(this).attr('href');
-    submitLink(path, data);
+    let needConfirm = jQuery(this).data('confirm');
+    let confirmText = jQuery(this).data('confirm-text');
+    if (needConfirm){
+      Swal.fire({
+        title: needConfirm,
+        text: confirmText,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirm"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          submitLink(path, data);
+        }
+      });
+    } else {
+      submitLink(path, data);
+    }
 });
 
-function submitForm(formId, elementId) {
+function submitForm(formId, elementId, append = null) {
     // Get the form and submit button elements
     const form = document.getElementById(formId);
     const element = document.getElementById(elementId);
@@ -57,15 +79,20 @@ function submitForm(formId, elementId) {
           try {
                 
             let res = JSON.parse(xhr.responseText);
-
-            handleResponse(res)
+            handleResponse(res, form)
 
           } catch (error) {
             element.innerHTML = xhr.responseText;
           }
 
         } else {
-            element.innerHTML = xhr.responseText;
+            console.log(xhr.status)
+            console.log(element)
+            console.log(elementId)
+            if (append)
+              element.appendChild(xhr.responseText)
+            else 
+              element.innerHTML = xhr.responseText;
         }
     };
     xhr.send(new URLSearchParams(formData).toString());
@@ -83,7 +110,7 @@ function submitLink(path, data) {
       processData:false,
       success: function(data) {
         // Update your UI with the new data
-            handleResponse(data)
+            handleResponse(data, null)
       },
       error: function(xhr, status, error) {
         console.error('Error fetching data:', error);

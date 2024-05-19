@@ -46,7 +46,6 @@ const get_started = defineAsyncComponent(() => import('@/components/wizards/get-
 const data_table = defineAsyncComponent(() => import('@/components/datatable_pages/data_table_page.vue') );
 const email_templates = defineAsyncComponent(() => import('@/components/email_templates.vue') );
 
-
 const roles = defineAsyncComponent(() => import('@/components/roles.vue') );
 
 const system_settings = defineAsyncComponent(() => import('@/components/settings/system_settings.vue') );
@@ -66,6 +65,8 @@ const payment_methods = defineAsyncComponent(() => import('@/components/payment_
 const transactions = defineAsyncComponent(() => import('@/components/transactions.vue') );
 
 const invoices = defineAsyncComponent(() => import('@/components/invoices.vue') );
+
+const orders = defineAsyncComponent(() => import('@/components/orders.vue') );
 
 const translations = defineAsyncComponent(() => import('@/components/translations.vue') );
 
@@ -102,6 +103,7 @@ export default {
         payment_methods,
         transactions,
         invoices,
+        orders,
         translations,
         contact_forms,
         menus,
@@ -321,7 +323,7 @@ export default {
 
 <style>
 @import './assets/bootstrap-grid.min.css';
-@import './assets/tailwind.min.css';
+@import './front_assets/css/tailwind.min.css';
 @import './assets/media-library.css';
 @import './assets/style.bundle.css';
 
