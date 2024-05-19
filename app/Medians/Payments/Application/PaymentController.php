@@ -37,7 +37,6 @@ class PaymentController extends CustomController
 		return [
             [ 'value'=> "payment_id", 'text'=> ""],
             [ 'value'=> "user", 'text'=> translate('User'), 'sortable'=> true ],
-            [ 'value'=> "plan_subscription.plan.name", 'text'=> translate('Plan'), 'sortable'=> false ],
             [ 'value'=> "amount", 'text'=> translate('Amount'), 'sortable'=> true ],
             [ 'value'=> "payment_method", 'text'=> translate('Payment method'), 'sortable'=> true ],
             [ 'value'=> "payment_code", 'text'=> translate('Payment code'), 'sortable'=> true ],
@@ -75,7 +74,7 @@ class PaymentController extends CustomController
         
         $this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
         	$params['created_by'] = $this->app->auth()->id;
@@ -102,7 +101,7 @@ class PaymentController extends CustomController
 	{
         $this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -131,7 +130,7 @@ class PaymentController extends CustomController
 
         $this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -175,7 +174,7 @@ class PaymentController extends CustomController
 	{
 		$user = $this->app->auth();
 		
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
 		$order = json_decode($params['order']);
 		

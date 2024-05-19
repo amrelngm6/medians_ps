@@ -8,10 +8,13 @@ use \Shared\RouteHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-use Medians\Settings\Infrastructure\SettingsRepository;
+use Medians\Settings\Infrastructure\SystemSettingsRepository;
 use Medians\Currencies\Infrastructure\CurrencyRepository;
 
+use Medians\Currencies\Application\CurrencyService;
 use \Medians\Auth\Application\AuthService;
+use \Medians\Auth\Application\CustomerAuthService;
+use \Medians\Auth\Application\GuestAuthService;
 
 
 class APP 
@@ -24,6 +27,8 @@ class APP
 	public $lang;
 
 	public $auth;
+
+	public $customer;
 
 	public $hasBranches = false;
 
@@ -95,7 +100,7 @@ class APP
 	public function SystemSetting()
 	{
 		$output = (new \Medians\Settings\Application\SystemSettingsController())->getAll();
-		$_SESSION['currency'] = isset($output['currency']) ? $output['currency'] : null;
+		$_SESSION['currency'] = $_SESSION['currency'] ?? (isset($output['currency']) ? $output['currency'] : null);
 		return $output;
 	}
 
@@ -112,9 +117,66 @@ class APP
 	 * Load currency
 	 */ 
 	public function currency()
-	{
+	{	
 		$this->currency = (new CurrencyRepository)->load($_SESSION['currency']);
 		return $this->currency;
+	}
+
+	/**
+	 * Load custom currency
+	 */ 
+	public function customCurrency($currency)
+	{	
+		return  (new CurrencyRepository)->load($currency);
+	}
+
+	/**
+	 * Load currency
+	 */ 
+	public function currencies()
+	{	
+		$currencies = (new CurrencyRepository)->get();
+		return $currencies;
+	}
+	
+	/**
+	 * Price based on currency
+	 */ 
+	public function currency_amount($amount, $requiredCurrency = null)
+	{
+		$settings = $this->SystemSetting();
+		$activeCurrency =  $this->currency();
+		if ($activeCurrency->code == $settings['currency'])
+			return $amount;
+		
+		if ($activeCurrency->last_check == date('Y-m-d'))
+			return number_format($amount * ($activeCurrency->ratio ?? 1), 2);
+
+		
+		$activeCurrency = (new CurrencyService)->getCurrency($activeCurrency->code);
+		return $this->currency_amount($amount, $requiredCurrency);
+	}
+	
+	/**
+	 * Convert amount of currency
+	 */ 
+	public function currency_converter($amount, $requiredCurrency = null)
+	{
+		try {
+
+			$settings = $this->SystemSetting();
+			$activeCurrency = (new CurrencyService)->getCurrency($requiredCurrency);
+			if ($activeCurrency->code == $settings['currency'])
+				return $amount;
+			
+			if ($activeCurrency->last_check == date('Y-m-d'))
+				return number_format($amount * ($activeCurrency->ratio ?? 1), 2);
+	
+			return $this->currency_converter($amount, $activeCurrency->code);
+			
+		} catch (\Throwable $th) {
+			return null;
+		}
 	}
 
 
@@ -129,12 +191,28 @@ class APP
 
 	public function auth()
 	{
-		
 		$request = Request::createFromGlobals();
 		
 		$this->session = !empty($this->session) ? $this->session : (new AuthService())->checkSession();
 
 		return $this->session ? $this->session : $this->checkAPISession();
+	}
+
+	public function customer_auth()
+	{
+		$request = Request::createFromGlobals();
+		
+		$session = (new CustomerAuthService())->checkSession();
+
+		return $session ?? $this->checkAPISession();
+	}
+
+	/**
+	 * Get session for the Guests
+	 */
+	public function guest_auth()
+	{
+		return (new GuestAuthService())->guestSession();
 	}
 
 	/**
@@ -148,12 +226,35 @@ class APP
 		}
 	}  
 
+	/**
+	 * Check if the request is through mobile
+	 */
+	public function checkAPICustomerSession()
+	{
+		if (!empty($this->request()->headers->get('token')))
+		{
+			return  (new CustomerAuthService())->checkAPISession($this->request()->headers->get('token'), $this->request()->headers->get('userType'));
+		}
+	}  
+
 
 	public static function request()
 	{
 		return Request::createFromGlobals();
 	}
 
+	/**
+	 * Load all request [params] parameter
+	 * Used in most of the request
+ 	 */
+	public function params()
+	{
+		$params = $this->request()->get('params');
+		if (!$params)
+			return;
+
+		return sanitizeInput(is_array($params) ? $params : json_decode($params));
+	}
 
 	public static function redirect($url)
 	{
@@ -204,6 +305,16 @@ class APP
 	* Return Administrator menu
 	* List of side menu
 	*/
+	public function front_menu($type = 'header')
+	{
+		$menuRepo = new \Medians\Menus\Infrastructure\MenuRepository;
+        return $menuRepo->getMenuPages($type);
+	}
+
+	/**
+	* Return Administrator menu
+	* List of side menu
+	*/
 	public function menu()
 	{
 		$user = $this->auth();
@@ -245,8 +356,8 @@ class APP
 			
 			array('title'=>translate('Orders'),  'icon'=>'shopping-bag', 'link'=>'#Orders', 'sub'=>
 			[
-				array('permission'=>'Orders.index', 'title'=>translate('Orders'),  'icon'=>'truck', 'link'=>'admin/orders', 'component'=>'orders'),
-				array('permission'=>'Orders.index', 'title'=>translate('Cancelled Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=cancelled', 'component'=>'orders'),
+				array('permission'=>'Orders.index', 'title'=>translate('Orders'),  'icon'=>'truck', 'link'=>'admin/orders', 'component'=>'data_table'),
+				array('permission'=>'Orders.index', 'title'=>translate('Cancelled Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=cancelled', 'component'=>'data_table'),
 			]
 			),
 			
@@ -302,6 +413,8 @@ class APP
 			array('title'=>translate('Orders'),  'icon'=>'shopping-bag', 'link'=>'#Orders', 'sub'=>
 			[
 				array('permission'=>'Orders.index', 'title'=>translate('Orders'),  'icon'=>'truck', 'link'=>'admin/orders', 'component'=>'orders'),
+				array('permission'=>'Orders.index', 'title'=>translate('New Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=new', 'component'=>'orders'),
+				array('permission'=>'Orders.index', 'title'=>translate('Completed Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=completed', 'component'=>'orders'),
 				array('permission'=>'Orders.index', 'title'=>translate('Cancelled Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=cancelled', 'component'=>'orders'),
 				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
 			]
@@ -346,6 +459,14 @@ class APP
 			[
 				array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 				array('permission'=>'ContactForm.index', 'title'=>translate('Forms messages'),  'icon'=>'tag', 'link'=>'admin/contact_forms', 'component'=>'contact_forms'),
+			]
+			),
+			
+			array( 'title'=>translate('Shipping areas'),  'icon'=>'map', 'link'=>'#locations', 'superadmin'=> true, 'sub'=>
+			[
+				array('permission'=>'Country.index', 'title'=>translate('Countries'),  'icon'=>'tool', 'link'=>'admin/countries', 'component'=>'data_table'),
+				array('permission'=>'State.index', 'title'=>translate('States'),  'icon'=>'tag', 'link'=>'admin/states', 'component'=>'data_table'),
+				array('permission'=>'City.index', 'title'=>translate('Cities'),  'icon'=>'tag', 'link'=>'admin/cities', 'component'=>'data_table'),
 			]
 			),
 			array( 'title'=>translate('localization'),  'icon'=>'mic', 'link'=>'#localization', 'superadmin'=> true, 'sub'=>

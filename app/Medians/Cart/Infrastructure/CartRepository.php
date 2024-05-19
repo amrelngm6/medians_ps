@@ -73,6 +73,19 @@ class CartRepository
     	return $Object;
 
     } 
+    	
+    /**
+     * Update Lead
+     */
+    public function updateCustomerSessionItems($sessionId, $customer_id)
+    {
+
+		$update = Cart::where('session_id', $sessionId)->update(['customer_id'=> $customer_id]);
+		
+		// Return the Model object with the new data
+    	return $update;
+
+    } 
 
 
 	/**

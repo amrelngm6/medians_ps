@@ -25,10 +25,12 @@ class InvoiceItem extends CustomModel
 	public $fillable = [
 		'invoice_id'	
 		,'item_id'	
-		,'item_type'	
+		,'item_type'
+		,'quantity'	
 		,'subtotal'	
-		,'discount_amount'	
+		,'tax_amount'	
 		,'total_amount'	
+		,'discount_amount'	
 		,'status'	
 	];
 

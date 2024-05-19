@@ -4,6 +4,7 @@ namespace Medians\Products\Domain;
 
 use Shared\dbaser\CustomModel;
 
+use \Medians\Brands\Domain\Brand;
 
 class ProductField extends CustomModel
 {
@@ -34,4 +35,7 @@ class ProductField extends CustomModel
 		'template',
 	];
 
+	public function brand() {
+		return $this->hasOne(Brand::class, 'brand_id', 'brand_id');
+	}
 }

@@ -2,6 +2,7 @@
 
 namespace Medians\Builders\Application;
 use Shared\dbaser\CustomController;
+use Shared\simple_html_dom;
 
 use Medians\Builders\Infrastructure\BuilderRepository;
 use Medians\Templates\Infrastructure\EmailTemplateRepository;
@@ -52,6 +53,7 @@ class BuilderController extends CustomController
 				'page' => $check->lang_content ?? [], 
 				'item' => $check,
 				'current_lang' => $lang,
+				'canScrab' => true,
 				'precode' => isset($check->lang_content) && (substr(trim($check->lang_content), 0, 8) == '<section') ? '' : '<section id="newKeditItem" class="kedit">', 
 				'postcode' => isset($check->lang_content) && (substr(trim($check->lang_content), 0, 8) == '<section') ? '' : '</section>', 
 			]);
@@ -238,13 +240,9 @@ class BuilderController extends CustomController
 				
 				case 'insertEmailContent':
 					echo $this->repo->findEmailBlock($request->get('id'))->content;
-					// echo $this->app->renderTemplate($this->repo->findEmailBlock($request->get('id'))->content)->render( ['app' => $this->app ]  );
 					return true;		
 					break;
-				
-				default:
-					// code...
-					break;
+
 			}
 
 			if ($request->get('prefix') && $supermode == 'updateMeta')
@@ -255,5 +253,104 @@ class BuilderController extends CustomController
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
 		}
+	}
+
+	
+
+	/**
+	 * Load builder mew block page
+	 */ 
+	public function new_get()
+	{
+		try {
+			$request = $this->app->request();
+			$check = $this->contentRepo->find($request->get('prefix'));
+
+			render('views/admin/builder/templates/new.html.twig',[]);
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	}
+
+	/**
+	 * Load builder scrab page
+	 */ 
+	public function scrab_get()
+	{
+		try {
+			$request = $this->app->request();
+			$check = $this->contentRepo->find($request->get('prefix'));
+
+			render('views/admin/builder/templates/scrab.html.twig',['page'=>$check]);
+
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	}
+
+	
+	/**
+	 * Extract sections from html page
+	 */
+	public function scrapeAndExtractSections($url) 
+	{
+		// Initialize cURL session
+		$ch = curl_init($url);
+		
+		// Set cURL options
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	
+		// Execute cURL session and get the HTML content
+		$htmlContent = curl_exec($ch);
+	
+		// Check for cURL errors
+		if (curl_errno($ch)) {
+			echo 'Curl error: ' . curl_error($ch);
+			curl_close($ch);
+			return;
+		}
+	
+		// Close cURL session
+		curl_close($ch);
+	
+		// Create a SimpleHTMLDom object
+		$dom = new simple_html_dom();
+		
+		// Load HTML content into the DOM parser
+		$dom->load($htmlContent);
+	
+		// Find and extract section elements
+		$sections = array();
+		foreach ($dom->find('section') as $section) {
+			// Add section content to the array
+			$sections[] = $section->outertext;
+		}
+	
+		// Clean up the DOM parser
+		$dom->clear();
+		
+		// Output the extracted sections
+		return $sections;
+	}
+
+	/**
+	 * Scrab sections
+	 */
+	public function scrab()
+	{
+		$request = $this->app->request();
+
+		$url = $request->get('url');
+		$category = $request->get('category');
+		$template = $request->get('template');
+
+		$sections = $this->scrapeAndExtractSections($url);
+
+		foreach ($sections as $key => $section) {
+			$section = str_replace('assets/','https://ui-themez.smartinnovates.net/items/swoo_html/home_baby/assets/', $section);
+			$this->repo->store(['content'=>$section, 'category'=>$category, 'template'=>$template]);
+		}
+
+		echo translate('Done');
 	}
 }

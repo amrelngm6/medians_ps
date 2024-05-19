@@ -59,7 +59,8 @@ class PaymentSettingsController extends CustomController
 			],
 			'paystack'=> [
 				[ 'key'=> "paystack_payment", 'title'=> translate('Allow Paymment  with paystack'), 'help_text'=>translate('Allow users to pay with paystack for orders'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'help_text'=>translate('Get your Live / Test code from PayStack https://dashboard.paystack.com/#/settings/developers'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "paystack_public_key", 'title'=> translate('PayStack public key'), 'help_text'=>translate('Get your Live / Test code from PayStack https://dashboard.paystack.com/#/settings/developers'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'help_text'=>translate(''), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "currency_converter_api", 'title'=> translate('Currency converter API'), 'help_text'=> translate('Important required if you want to enable paystack payment from CurrencyAPI https://app.currencyapi.com/api-keys'),'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
 			],
 					
@@ -92,7 +93,7 @@ class PaymentSettingsController extends CustomController
 	{	
 		$data = $this->repo->getAll();
 		$output = $data ? array_column(json_decode($data), 'value', 'code') :  [];
-		$_SESSION['currency'] = $output['currency'];
+		$_SESSION['currency'] = $_SESSION['currency'] ??  $output['currency'];
 		return $output;
 	}
 
@@ -108,7 +109,7 @@ class PaymentSettingsController extends CustomController
 	*/
 	public function update() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
 		try {
 

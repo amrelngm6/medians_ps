@@ -26,14 +26,14 @@ class Transaction extends CustomModel
 	* @var Array
 	*/
 	public $fillable = [
-		'transaction_id'	
-		,'invoice_id'
+		'invoice_id'
 		,'model_id'	
 		,'model_type'	
 		,'item_id'	
 		,'item_type'	
 		,'payment_method'	
 		,'amount'	
+		,'currency_code'	
 		,'date'	
 		,'status'	
 		,'notes'

@@ -14,6 +14,7 @@ class Builder extends CustomModel
 	protected $table = 'builder_blocks';
 
 	public $fillable = [
+		'template', 
 		'content', 
 		'category', 
 		'created_by'

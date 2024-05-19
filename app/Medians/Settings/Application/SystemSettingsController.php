@@ -145,7 +145,7 @@ class SystemSettingsController extends CustomController
 	{	
 		$data = $this->repo->getAll();
 		$output = $data ? array_column(json_decode($data), 'value', 'code') :  [];
-		$_SESSION['currency'] = $output['currency'];
+		$_SESSION['currency'] = $_SESSION['currency'] ??  $output['currency'];
 		return $output;
 	}
 
@@ -161,7 +161,7 @@ class SystemSettingsController extends CustomController
 	*/
 	public function update() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
 		try {
 

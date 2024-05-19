@@ -86,30 +86,6 @@ class UserRepository
 	}
 
 
-
-	/**
-	* Save item to database
-	*/
-	public function signup($data) 
-	{
-
-		$Model = new User();
-
-		$data['password'] = $Model->encrypt($data['password']);
-		$data['role_id'] = 3;
-		$data['active'] = null;
-		$Model = $Model->firstOrCreate($data);
-
-    	/**
-		* Set token for activation by User
-		*/
-		$value = User::encrypt(strtotime(date('YmdHis')).$Model->id);
-    	$this->setCustomCode((object) $Model, 'activation_token', $value);
-
-		// Return the Model object with the new data
-    	return $this->find($Model->id);
-
-	}
 	
 
 	/**

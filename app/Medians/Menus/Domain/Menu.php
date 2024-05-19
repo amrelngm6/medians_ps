@@ -22,6 +22,7 @@ class Menu extends CustomModel
 		'type',
     	'name',
     	'page_id',
+    	'page_type',
 		'parent_id',
 		'position',
 	];
@@ -34,7 +35,7 @@ class Menu extends CustomModel
 
     public function page()
     {
-        return $this->hasOne(Page::class, 'page_id', 'page_id');
+        return $this->morphTo();
     }
 
 

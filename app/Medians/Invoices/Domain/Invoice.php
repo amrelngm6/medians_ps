@@ -8,6 +8,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Transactions\Domain\Transaction;
+use Medians\Orders\Domain\Order;
 
 class Invoice extends CustomModel
 {
@@ -25,12 +26,16 @@ class Invoice extends CustomModel
 	*/
 	public $fillable = [
 		'code'	
+		,'order_id'
 		,'user_id'	
 		,'user_type'	
 		,'payment_method'	
 		,'subtotal'	
+		,'tax_amount'	
+		,'shipping_amount'	
 		,'discount_amount'	
 		,'total_amount'	
+		,'currency_code'	
 		,'date'	
 		,'status'	
 		,'notes'
@@ -65,9 +70,9 @@ class Invoice extends CustomModel
 		return $this->hasMany(InvoiceItem::class, 'invoice_id', 'invoice_id')->with('item');
 	}
 
-	public function item()
+	public function order()
 	{
-		return $this->hasOne(InvoiceItem::class, 'invoice_id', 'invoice_id')->with('item');
+		return $this->hasOne(Order::class, 'order_id', 'order_id');
 	}
 
 	public function transactions()

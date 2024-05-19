@@ -23,18 +23,19 @@ RouteHandler::post('/send_message', Medians\Help\Application\HelpMessageControll
 
 /**
  * Switch the language 
- * 
- * and redirect to home page
- * 
  */ 
 RouteHandler::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@switchLang');
+
+/**
+ * Switch the items currency
+ */ 
+RouteHandler::get('/switch-currency/(:all)', \Medians\Currencies\Application\CurrencyService::class.'@switchCurrency');
 
 /**
  * Authentication
  */
 RouteHandler::get('/', \Medians\Pages\Application\PageController::class.'@homepage');
-RouteHandler::get('/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
-RouteHandler::get('/signup', \Medians\Auth\Application\AuthService::class.'@signupPage');
+RouteHandler::get('/dashboard/login', \Medians\Auth\Application\AuthService::class.'@loginPage');
 RouteHandler::get('/google_login_redirect', \Medians\Auth\Application\AuthService::class.'@verifyLoginWithGoogle');
 RouteHandler::get('/activate-account/(:all)', \Medians\Auth\Application\AuthService::class.'@activate');
 RouteHandler::get('/reset-password', \Medians\Auth\Application\AuthService::class.'@resetPasswordPage');
@@ -58,19 +59,32 @@ RouteHandler::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@ha
 /**
  * Cart routes
  */
+RouteHandler::get('/search', \Medians\Products\Application\ProductController::class.'@searchPage');
 RouteHandler::get('/cart', \Medians\Cart\Application\CartController::class.'@cart');
+RouteHandler::get('/wishlist', \Medians\Cart\Application\WishlistController::class.'@wishlist');
+RouteHandler::get('/compare', \Medians\Cart\Application\CompareController::class.'@compare');
 RouteHandler::get('/checkout', \Medians\Cart\Application\CartController::class.'@checkout');
+RouteHandler::get('/invoice/(:all)', \Medians\Invoices\Application\InvoiceController::class.'@invoicePage');
 RouteHandler::get('/create-payment-intent', \Medians\Transactions\Application\TransactionController::class.'@createPaymentIntent');
 RouteHandler::post('/cart/delete', \Medians\Cart\Application\CartController::class.'@delete');
 RouteHandler::post('/cart/update', \Medians\Cart\Application\CartController::class.'@update');
 
+RouteHandler::get('/customer/login', \Medians\Auth\Application\CustomerAuthService::class.'@loginPage');
+RouteHandler::get('/customer/signup', \Medians\Auth\Application\CustomerAuthService::class.'@signupPage');
+RouteHandler::get('/customer/confirm_account', \Medians\Auth\Application\CustomerAuthService::class.'@otp');
+RouteHandler::get('/customer/dashboard', \Medians\Customers\Application\CustomerController::class.'@dashboard');
+RouteHandler::get('/order/(:all)', \Medians\Orders\Application\OrderController::class.'@orderPage');
 
 
 // POST Requests
-RouteHandler::post('/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
-RouteHandler::post('/signup', \Medians\Auth\Application\AuthService::class.'@userSignup');
+RouteHandler::post('/dashboard/login', \Medians\Auth\Application\AuthService::class.'@userLogin');
 RouteHandler::post('/reset-password', \Medians\Auth\Application\AuthService::class.'@userResetPassword');
 RouteHandler::post('/reset-password-code', \Medians\Auth\Application\AuthService::class.'@resetChangePassword');
+RouteHandler::post('/customer/signup', \Medians\Auth\Application\CustomerAuthService::class.'@userSignup');
+RouteHandler::post('/customer/login', \Medians\Auth\Application\CustomerAuthService::class.'@userLogin');
+RouteHandler::post('/customer/confirm', \Medians\Auth\Application\CustomerAuthService::class.'@checkOTP');
+RouteHandler::post('/customer/reset-password', \Medians\Auth\Application\CustomerAuthService::class.'@userResetPassword');
+RouteHandler::post('/customer/reset-password-code', \Medians\Auth\Application\CustomerAuthService::class.'@resetChangePassword');
 
 
 /**
@@ -105,11 +119,6 @@ if(!empty($app->auth()))
     // API GET requests
     RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
 
-    RouteHandler::get('/logout', function () 
-    {
-        (new \Medians\Auth\Application\AuthService)->unsetSession();
-        echo (new \config\APP)->redirect('./login');
-    });
 
 
 
@@ -202,6 +211,14 @@ if(!empty($app->auth()))
     /** @return Gallery */
     RouteHandler::get('/admin/gallery', Medians\Gallery\Application\GalleryController::class.'@index');
 
+    /** @return reviews */
+    RouteHandler::get('/admin/reviews', Medians\Reviews\Application\ReviewController::class.'@index');
+
+    /** @return Orders */
+    RouteHandler::get('/admin/orders', Medians\Orders\Application\OrderController::class.'@index');
+
+    /** @return invoice */
+    RouteHandler::get('/admin/invoices', \Medians\Invoices\Application\InvoiceController::class.'@index');
 
 
     /**
@@ -268,6 +285,9 @@ if(!empty($app->auth()))
     /** @return states */
     RouteHandler::get('/admin/states', Medians\Locations\Application\StateController::class.'@index');
 
+    /** @return Templates */
+    RouteHandler::get('/admin/templates', Medians\Templates\Application\WebTemplateController::class.'@index');
+
 
 
     /**
@@ -281,7 +301,9 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/builder/meta', \Medians\Builders\Application\BuilderController::class.'@meta'); 
     RouteHandler::get('/admin/builder/languages', \Medians\Builders\Application\BuilderController::class.'@languages'); 
     RouteHandler::get('/admin/builder/template_preview', \Medians\Builders\Application\BuilderController::class.'@template_preview'); 
-    
+    RouteHandler::get('/admin/builder/new', \Medians\Builders\Application\BuilderController::class.'@new_get'); 
+    RouteHandler::get('/admin/builder/scrab', \Medians\Builders\Application\BuilderController::class.'@scrab_get'); 
+
     RouteHandler::post('/admin/update_section_content', \Medians\Pages\Application\PageController::class.'@updateContent');
     RouteHandler::post('/admin/builder', \Medians\Builders\Application\BuilderController::class.'@submit'); 
     RouteHandler::post('/admin/builder/submit', \Medians\Builders\Application\BuilderController::class.'@submit'); 
@@ -289,10 +311,18 @@ if(!empty($app->auth()))
     
 }
 
+RouteHandler::get('/logout', function () 
+{
+    (new \Medians\Auth\Application\AuthService)->unsetSession();
+    (new \Medians\Auth\Application\CustomerAuthService)->unsetSession();
+    echo (new \config\APP)->redirect('./');
+});
+
 // Front API GET requests
 RouteHandler::post('/front_api', \Medians\FrontAPIController::class.'@handle');
 RouteHandler::post('/front_api/create', \Medians\FrontAPIController::class.'@create');
 RouteHandler::post('/front_api/update', \Medians\FrontAPIController::class.'@update');
+RouteHandler::post('/front_api/delete', \Medians\FrontAPIController::class.'@delete');
 
 /**
  * Loading assets with handling types

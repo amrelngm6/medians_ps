@@ -21,15 +21,14 @@ class PageRepository
 
 	public function homepage()
 	{
-		$_SESSION['lang'];
 		return Page::where('homepage', 'on')->with(['lang_content'=>function($q) {
-			$q->where('lang', $_SESSION['lang']);
+			// $q->where('lang', $_SESSION['lang']);
 		}])->first();
 	}
 
 	public function get($limit = 100)
 	{
-		return Page::with('content')->limit($limit)->orderBy('page_id', 'DESC')->get();
+		return Page::with('lang_content')->limit($limit)->orderBy('page_id', 'DESC')->get();
 	}
 
 	function findByLang($page_id, $lang)

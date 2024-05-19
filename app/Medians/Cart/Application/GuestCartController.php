@@ -33,15 +33,18 @@ class GuestCartController extends CustomController
 	public function store() 
 	{
 
+		$params = $this->app->params();
 
-		$params = $this->app->request()->get('params');
+		$sessionId = $this->app->guest_auth();
 
-        try {	
+		try {	
 
-        	$this->validate($params);
-
+			$params['session_id'] = $sessionId ?? $this->app->guest_auth();
+			
+        	$validate = $this->validate($params);
+			
             $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added to cart'), 'reload'=>0)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (\Exception $e) {
@@ -55,9 +58,8 @@ class GuestCartController extends CustomController
 
 	public function update()
 	{
-		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -76,20 +78,33 @@ class GuestCartController extends CustomController
         	throw new \Exception($e->getMessage() . "Error Processing Request", 1);
         	
         }
+	}
 
+	public function convertSession()
+	{
+
+        try {
+			
+			$sessionId = $this->app->guest_auth();
+			$customer = $this->app->customer_auth();
+
+			return $this->repo->updateCustomerSessionItems($sessionId, $customer->customer_id); 
+            
+        } catch (\Exception $e) {
+        	throw new \Exception($e->getMessage() . "Error Processing Request", 1);
+        	
+        }
 	}
 
 
 	public function delete() 
 	{
-		$this->app = new \config\APP;
         
+        $params = $this->app->params();
         
-        $post_data = json_decode(file_get_contents('php://input'), true);
-        $cartId = json_decode($post_data['params']);
         try {
 
-            if ($this->repo->delete($cartId))
+            if ($this->repo->delete($params['cart_id'] ?? $params))
             {
                 return printResponse( array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1) );
             }
@@ -113,6 +128,11 @@ class GuestCartController extends CustomController
 		{
         	throw new \Exception(translate('Qty is requierd'), 1);
 		}
+
+		if (empty($params['session_id']))
+		{
+        	throw new \Exception(translate('Session is requierd'), 1);
+		}
 	}
 
 
@@ -124,13 +144,14 @@ class GuestCartController extends CustomController
 	public function cart( ) 
 	{
 		$sessionId = $this->app->guest_auth();
+		$settings = $this->app->SystemSetting();
 
 		$items = $this->repo->guest_items($sessionId);
 		$price = $this->repo->getPrices($items);
 		$total = $price;
 
 		try {
-			return render('views/front/pages/cart.html.twig', [
+			return render('views/front/'.$settings['template'].'/pages/cart.html.twig', [
 		        'title' => translate('Cart'),
 		        'items' => $items,
 		        'discount' => '0',

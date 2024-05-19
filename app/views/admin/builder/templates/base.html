@@ -1,8 +1,8 @@
 <!-- Template assets -->
 <input type="hidden" id="content-id" value="{{page.id }}">
 
-{% include 'views/front/includes/head_assets.html.twig' %}
-{% include 'views/front/includes/header.html.twig' %}
+{% include 'views/front/'~ template ~'/includes/head_assets.html.twig' %}
+{% include 'views/front/'~ template ~'/includes/header.html.twig' %}
 <main class="WxEditableArea" id="contentArea">
     <div id="contentAreaElement" class="kelement"></div>
 
@@ -20,4 +20,4 @@
         style="z-index:9"></div>
 </div>
 
-{% include 'views/front/includes/footer.html.twig' %}
+{% include 'views/front/'~ template ~'/includes/footer.html.twig' %}

@@ -39,7 +39,7 @@ class PageController extends CustomController
 		return [
             [ 'value'=> "page_id", 'text'=> "#"],
             [ 'value'=> "title", 'text'=> translate('Title'), 'sortable'=> true ],
-            [ 'value'=> "content.prefix", 'text'=> translate('link'), 'sortable'=> true ],
+            [ 'value'=> "lang_content.prefix", 'text'=> translate('link'), 'sortable'=> true ],
             [ 'value'=> "homepage", 'text'=> translate('Is Homepage'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('Status'), 'sortable'=> true ],
 			['value'=>'details', 'text'=>translate('Details')],
@@ -99,7 +99,7 @@ class PageController extends CustomController
 	public function store() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {	
 
@@ -126,7 +126,7 @@ class PageController extends CustomController
 
 	public function update()
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -149,7 +149,7 @@ class PageController extends CustomController
 
 	public function delete() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -196,24 +196,20 @@ class PageController extends CustomController
      */
     public function homepage()
     {
+		
         $page = $this->repo->homepage();
-
-        $headerMenu = $this->menuRepo->getMenuPages('header');
-        $footrMenu1 = $this->menuRepo->getMenuPages('footer1');
-        $footrMenu2 = $this->menuRepo->getMenuPages('footer2');
 
 		$categoryRepo = new \Medians\Products\Infrastructure\CategoryRepository;
 
+		$settings = $this->app->SystemSetting();
+
 		try {
 			
-            return render('views/front/page.html.twig', [
+            return render('views/front/'.($settings['template'] ?? 'default').'/page.html.twig', [
                 'title' => translate('Homepage'),
                 'page' => $page,
                 'app' => $this->app,
 				'categories' => $categoryRepo->getGrouped(),
-				'header_menu' => $headerMenu,
-				'footer_menu1' => $footrMenu1,
-				'footer_menu2' => $footrMenu2,
             ]);
             
 		} catch (\Exception $e) {
@@ -221,6 +217,7 @@ class PageController extends CustomController
 			
 		}
     }
+
 
 
     /**
@@ -228,27 +225,20 @@ class PageController extends CustomController
      */
     public function page($prefix)
     {
-
-        $pageContent = $this->contentRepo->find($prefix);
-        $headerMenu = $this->menuRepo->getMenuPages('header');
-        $footrMenu1 = $this->menuRepo->getMenuPages('footer1');
-        $footrMenu2 = $this->menuRepo->getMenuPages('footer2');
+        $pageContent = $this->contentRepo->find(urldecode($prefix));
 		$categoryRepo = new \Medians\Products\Infrastructure\CategoryRepository;
+		$settings = $this->app->SystemSetting();
 
 		try {
-			
-            return render('views/front/page.html.twig', [
+						
+            return render('views/front/'.($settings['template'] ?? 'default').'/page.html.twig', [
                 'page' => $this->handlePageObject($pageContent),
                 'app' => $this->app,
 				'categories' => $categoryRepo->getGrouped(),
-				'header_menu' => $headerMenu,
-				'footer_menu1' => $footrMenu1,
-				'footer_menu2' => $footrMenu2,
             ]);
             
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
-			
 		}
     }
 
@@ -256,6 +246,8 @@ class PageController extends CustomController
 	{
 		if (isset($pageContent->item))
 		{
+			$_SESSION['lang'] = $pageContent->lang;
+
 			switch (get_class($pageContent->item)) {
 				case Product::class:
 					return (new \Medians\Products\Infrastructure\ProductRepository)->find($pageContent->item_id);

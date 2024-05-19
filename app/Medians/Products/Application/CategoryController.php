@@ -128,8 +128,7 @@ class CategoryController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
-
+		$params = $this->app->params();
         try {	
 
         	$this->validate($params);
@@ -151,14 +150,14 @@ class CategoryController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
-
+		$params = $this->app->params();
+		
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : null;
+			$params['status'] = !empty($params['status']) ? $params['status'] : null;
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>0);
             }
         
 
@@ -176,7 +175,7 @@ class CategoryController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 		
         try {
 

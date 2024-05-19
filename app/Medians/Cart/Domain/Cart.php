@@ -28,6 +28,11 @@ class Cart extends CustomModel
 
 	public $appends = ['price'];
 
+	public function getPriceAttribute()
+	{
+		return $this->item->price * $this->qty;
+	}
+
 	public function getFields()
 	{
 		return $this->fillable;
@@ -35,7 +40,7 @@ class Cart extends CustomModel
 
 	public function item()
 	{
-        return $this->morphTo();
+        return $this->morphTo()->with('product_fields');
 	}
 
 

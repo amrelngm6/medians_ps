@@ -29,6 +29,11 @@ class BrandRepository
 		return Brand::limit($limit)->get();
 	}
 
+	public function getActive($limit = 100)
+	{
+		return Brand::where('status', 'on')->limit($limit)->get();
+	}
+
 
 
 

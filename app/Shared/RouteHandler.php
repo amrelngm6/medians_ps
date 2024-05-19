@@ -181,7 +181,7 @@ class RouteHandler {
       }
       
 		} catch (\Throwable $th) {
-      echo !empty($_POST) ? $th->getMessage() : '';
+      echo !empty($_POST) ? json_encode(['error'=> $th->getMessage()]) : '';
       // echo $th->getMessage();
       return empty($_POST) ? errorPage($th->getMessage()) : '';
 		}

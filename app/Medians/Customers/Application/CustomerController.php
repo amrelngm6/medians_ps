@@ -3,20 +3,25 @@
 namespace Medians\Customers\Application;
 use \Shared\dbaser\CustomController;
 
-use Medians\Customers\Infrastructure as Repo;
-
+use Medians\Customers\Infrastructure\CustomerRepository;
+use Medians\Orders\Infrastructure\OrderRepository;
+use Medians\Locations\Infrastructure\CountryRepository;
 
 
 class CustomerController extends CustomController
 {
 
+	protected $app;
 
 	/*
 	/ @var new CustomerRepository
 	*/
 	protected $repo;
+	
+	protected $orderRepo;
 
-	protected $app;
+	protected $countryRepo;
+
 
 
 	function __construct()
@@ -24,7 +29,11 @@ class CustomerController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new Repo\CustomerRepository();
+		$this->repo = new CustomerRepository();
+
+		$this->orderRepo = new OrderRepository();
+
+		$this->countryRepo = new CountryRepository();
 	}
 
 
@@ -109,8 +118,7 @@ class CustomerController extends CustomController
 	{
 
 
-		$params_request = $this->app->request()->get('params');
-		$params = isset($params_request['customer']) ? (array) json_decode($params_request['customer']) : $params_request;
+		$params = $this->app->params();
 
 		try {	
 
@@ -138,17 +146,18 @@ class CustomerController extends CustomController
 	/**
 	*  Update item
 	*/
-	public function update($request, $app) 
+	public function update() 
 	{
 
-		$params = (array)  json_decode($request->get('params')['customer']);
+		$params = $this->app->params();
 
 		try {
 
-			$this->repo->app = $app;
-			$Property = $this->repo->update($params);
+			$params['customer_id'] = $this->app->customer_auth()->customer_id;
 
-        	return array('success'=>1, 'result'=>'Updated');
+            return (!empty($this->repo->update($params))) 
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
             return  array('error'=>$e->getMessage());
@@ -172,5 +181,26 @@ class CustomerController extends CustomController
 
 	}  
 
+
+	public function dashboard()
+	{
+		$settings = $this->app->SystemSetting();
+
+		$customer = $this->app->customer_auth();
+
+		if (!$customer) { return $this->app->redirect('/customer/login'); }
+
+		return render('views/front/'.$settings['template'].'/pages/profile.html.twig', [
+			'customer' =>  $this->repo->find($customer->customer_id),
+			'orders' =>  $this->orderRepo->getCustomerOrders($customer->customer_id),
+			'countries' =>  $this->countryRepo->getActive(),
+	        'title' => translate('Customers'),
+			'columns' =>  $this->columns(),
+			'fillable' =>  $this->fillable(),
+			'object_name' => 'Customer',
+			'object_key' => 'customer_id',
+
+	    ]);
+	}
 
 }

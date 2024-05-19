@@ -156,7 +156,7 @@ class TransactionRepository
 				$fields['model_type'] = Transaction::class;	
 				$fields['model_id'] = $id;	
 				$fields['code'] = $key;	
-				$fields['value'] = $value;
+				$fields['value'] = (is_array($value) || is_object($value)) ? json_encode($value) : $value;
 
 				$Model = CustomField::create($fields);
 				$Model->update($fields);

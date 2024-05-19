@@ -72,7 +72,7 @@ class TransactionController extends CustomController
 	public function store() 
 	{	
         
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
         	
@@ -97,7 +97,7 @@ class TransactionController extends CustomController
 	public function update() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -122,7 +122,7 @@ class TransactionController extends CustomController
 	*/
 	public function delete() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -146,7 +146,7 @@ class TransactionController extends CustomController
 	public function addTransaction()
 	{
 		
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = $this->app->params();
 
 		$user = $this->app->auth();
 
@@ -174,29 +174,19 @@ class TransactionController extends CustomController
 	}
 
 
-	public function addTripTransaction()
+	public function verifyTransaction()
 	{
-		
-		$params = (array) json_decode($this->app->request()->get('params'));
-
-		$user = $this->app->auth();
+		$params = (array) $this->app->params();
 
 		try {
 			
 			$paymentService = new PaymentService($params['payment_method']);
 
-			$addInvoice = $paymentService->addInvoice($params); 
-
-			$saveTransaction = $paymentService->storeTripTransaction($params, $addInvoice); 
+			$verify = $paymentService->verify($params);
 			
-			$updateTrip = isset($saveTransaction['success']) ? $paymentService->updateTrip($params, $addInvoice) : null; 
-
-			$updateWallet = isset($saveTransaction['success']) ? $paymentService->updateWallet($params, $addInvoice) : null; 
-
-
-			return (isset($saveTransaction['success']))
-			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
-			: array('error'=>$saveTransaction['error']);
+			return ($verify )
+			? array('success'=>1, 'result'=>$verify, 'reload'=>1)
+			: array('error'=>$verify);
 
 		} catch (Exception $e) {
 			return array('error'=>$e->getMessage());
@@ -205,48 +195,4 @@ class TransactionController extends CustomController
 
 	
 
-	public function addTripCashTransaction()
-	{
-		
-		$params = (array) json_decode($this->app->request()->get('params'));
-
-		$user = $this->app->auth();
-
-		try {
-			
-			$paymentService = new PaymentService($params['payment_method']);
-
-			$addInvoice = $paymentService->addInvoice($params); 
-
-			$saveTransaction = $paymentService->storeTripTransaction($params, $addInvoice); 
-			
-			$updateTrip = isset($saveTransaction['success']) ? $paymentService->updateTrip($params, $addInvoice) : null; 
-
-			$updateWallet = isset($saveTransaction['success']) ? $paymentService->updateWallet($params, $addInvoice) : null; 
-
-			return (isset($saveTransaction['success']))
-			? array('success'=>1, 'result'=>$saveTransaction['result'], 'reload'=>1)
-			: array('error'=>$saveTransaction['error']);
-
-		} catch (Exception $e) {
-			return array('error'=>$e->getMessage());
-		}
-	}
-
-
-	public function createPaymentIntent()
-	{
-		// $settings = $this->app->SystemSetting(); 
-		// $amount = $this->app->request()->get('amount');
-
-		// $stripe = new \Stripe\StripeClient($settings['stripe_live_key']);
-		// $res = $stripe->paymentIntents->create([
-		//   'amount' => $amount ?? 0,
-		//   'automatic_payment_methods' => ['enabled' => true],
-		// ]);
-
-		// $return = json_encode($res);
-
-		// echo $return;
-	}
 }

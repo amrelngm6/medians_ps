@@ -24,8 +24,12 @@
     <link href="/assets?asset=/src/builder/css/live.css" type="text/css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Jost:200,400,700|Roboto:200,400,700&amp;subset=latin-ext&amp;display=swap" rel="stylesheet" type="text/css" />
     <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script><![endif]-->
-    <style>:root{--ui-color-accent: #179BD7;--ui-color-accent-75: rgba(23,155,215,0.7);--ui-color-accent-50: rgba(23,155,215,0.5);--ui-color-accent-25: rgba(23,155,215,0.25);--ui-color-accent-light: rgba(23,155,215,0.1);--ui-color-stripes-accent:repeating-linear-gradient(
-	-45deg,#005f9b,#179BD7 20px,#005f9b 20px,#005f9b 50px,#179BD7 50px,#179BD7 65px);--ui-color-leftmenu:#293A4A;}</style>
+    <style>:root{--ui-color-accent: #179BD7;--ui-color-accent-75: rgba(23,155,215,0.7);--ui-color-accent-50: rgba(23,155,215,0.5);--ui-color-accent-25: rgba(23,155,215,0.25);--ui-color-accent-light: rgba(23,155,215,0.1);
+	{# --ui-color-stripes-accent:repeating-linear-gradient( -45deg,#005f9b,#179BD7 20px,#005f9b 20px,#005f9b 50px,#179BD7 50px,#179BD7 65px); #}
+	--ui-color-stripes-accent:repeating-linear-gradient( to right, #ef326f,  #fe6c4e);
+	--ui-color-leftmenu:#293A4A;
+	}
+	</style>
     <script src="/assets?asset=/src/builder/js/jquery-ui.js"></script>
     <script src="/assets?asset=/src/builder/js/jquery.ui.touch-punch.min.js"></script>
     <script src="/assets?asset=/src/builder/js/jBox.all.min.js"></script>
@@ -1266,9 +1270,7 @@
 				}
 			</script>
     <style>
-        body.koMenuActive:not(.mobileMenuOpen_Body) {
-					margin-left: 100px
-				}
+        
 
 				.koLeftMenu {
 					opacity: 0;
@@ -1383,7 +1385,7 @@
 				}
 
 				.koLeftLogo:before {
-
+					display:none;
 					content: ' ';
 					position: absolute;
 					width: 0;
@@ -1446,7 +1448,23 @@
                     </span>
                     <small class="koTools_itemBottom"></small>
                 </a>
-
+				
+				{% if canScrab %}
+                <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/scrab')" class="koLeftButton" id="koMenuItem_settings">
+                    <small class="koTools_itemTop"></small>
+                    <span class="koLeftButtonHolder">
+                        <i class="fas fa-cogs"></i><span>Scrab</span>
+                    </span>
+                    <small class="koTools_itemBottom"></small>
+                </a>
+                <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/new')" class="koLeftButton" id="koMenuItem_settings">
+                    <small class="koTools_itemTop"></small>
+                    <span class="koLeftButtonHolder">
+                        <i class="fas fa-cogs"></i><span>Create block</span>
+                    </span>
+                    <small class="koTools_itemBottom"></small>
+                </a>
+				{% endif %}
             </div>
             <div class="koLeftMenuBottom">
                 <div class="koLeftMenuItems">

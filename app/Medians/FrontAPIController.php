@@ -40,11 +40,20 @@ class FrontAPIController extends CustomController
 			case 'load_products':
 				return (new Products\Application\ProductController)->load_products();
 				break;
+			case 'search_products':
+				return (new Products\Application\ProductController)->search_products();
+				break;
+			case 'quick-search':
+				return (new Products\Application\ProductController)->quick_search_products();
+				break;
+			case 'load_side_cart':
+				return (new Cart\Application\CartController)->sideCart();
+				break;
 		}
 
 		$return = isset($controller) ? $controller->find($this->app->request()->get('id')) : $return;
 
-		return response(json_encode(['status'=>true, 'result'=>$return]));
+		return printResponse(json_encode(['status'=>true, 'result'=>$return]));
 	} 
 
 	/**
@@ -64,13 +73,25 @@ class FrontAPIController extends CustomController
 			{
 					
 				case 'HelpMessage.create':
-					return response((new Help\Application\HelpMessageController())->store());
+					return printResponse((new Help\Application\HelpMessageController())->store());
 					break;
 					
 				case 'Cart.create':
-					return response((new Cart\Application\CartController())->store());
+					return printResponse((new Cart\Application\CartController())->store());
+					break;
+	
+				case 'Wishlist.create':
+					return printResponse((new Cart\Application\WishlistController())->store());
+					break;
+	
+				case 'Compare.create':
+					return printResponse((new Cart\Application\CompareController())->store());
 					break;
 		
+				case 'Order.create':
+					return printResponse((new Orders\Application\OrderController())->store());
+					break;
+	
 				case 'HelpMessageComment.create':
 					$return =  (new Help\Application\HelpMessageController())->storeComment(); 
 					break;
@@ -82,10 +103,18 @@ class FrontAPIController extends CustomController
 				case 'Customer.create':
 					$return = (new Customers\Application\CustomerController)->store();
 					break;
+					
+				case 'Review.create':
+					$return = (new Reviews\Application\ReviewController)->store();
+					break;
+		
+				case 'Transaction.verify':
+					$return = (new Transactions\Application\TransactionController)->verifyTransaction();
+					break;
 		
 			}
 
-			return response(json_encode($return));
+			return printResponse(json_encode($return));
 
 		} catch (Exception $e) {
 			return $e->getMessage();
@@ -103,101 +132,32 @@ class FrontAPIController extends CustomController
 
 		switch ($request->get('type')) 
 		{
-			case 'SystemSettings.update':
-                $controller =  new Settings\Application\SystemSettingsController; 
-				break;
-
-			case 'AppSettings.update':
-                $controller =  new Settings\Application\AppSettingsController; 
-				break;
-
+			
 				
 			case 'HelpMessage.update':
 				$controller =  new Help\Application\HelpMessageController;
 				break;
-	
-				
-            case 'Settings.update':
-                $controller = new Settings\Application\SettingsController; 
-                break;
 
-            case 'User.update':
-                $controller = new Users\Application\UserController; 
-                break;
-
-            case 'NotificationEvent.update':
-                $controller =  new Notifications\Application\NotificationEventController; 
-                break;
-
-            case 'Event.update':
-				$controller = new Events\Application\EventController;
-                break;
-
-			case 'Role.update':
-				$controller =  new Roles\Application\RoleController; 
-				break;			
-
-			case 'Page.update':
-				$controller =  new Pages\Application\PageController; 
-				break;
-			
-			case 'Role.updatePermissions':
-				return (new Roles\Application\RoleController)->updatePermissions(); 
-				break;
-		
-			case 'User.updateStatus':
-				return (new Users\Application\UserController())->updateStatus();
-				break;
-	
-
-			case 'City.update':
-				$controller = new Locations\Application\CityController;
-				break;
-
-			case 'Country.update':
-				$controller = new Locations\Application\CountryController;
-				break;
-
-			case 'State.update':
-				$controller = new Locations\Application\StateController;
-				break;
-
-			case 'PaymentMethod.update':
-				$controller = new PaymentMethods\Application\PaymentMethodController;
-				break;
-			
-			case 'Product.update':
-				$controller = new Products\Application\ProductController;
-				break;
-			
-			case 'ProductCategory.update':
-				$controller = new Products\Application\CategoryController;
-				break;
-			
-			case 'Brand.update':
-				$controller = new Brands\Application\BrandController;
-				break;
-			
-			case 'Shipping.update':
-				$controller = new Shipping\Application\ShippingController;
-				break;
-			
-			case 'Newsletter.update':
-				$controller = new Newsletters\Application\NewsletterController;
-				break;
-			
 			case 'Subscriber.update':
 				$controller = new Newsletters\Application\SubscriberController;
+				break;
+			
+			case 'Customer.changePassword':
+				return  (new Auth\Application\CustomerAuthService)->changePassword();
 				break;
 			
 			case 'Customer.update':
 				$controller = new Customers\Application\CustomerController;
 				break;
 			
+			case 'Order.update':
+				$controller = new Orders\Application\OrderController;
+				break;
+			
 
 		}
 
-		return response(isset($controller) ? json_encode($controller->update()) : []);
+		return printResponse(isset($controller) ? json_encode($controller->update()) : []);
 	} 
 
 	
@@ -218,69 +178,30 @@ class FrontAPIController extends CustomController
 			switch ($request->get('type')) 
 			{
 
-				case 'User.delete':
-					return response((new Users\Application\UserController())->delete());
-					break;
-
 				case 'HelpMessage.delete':
-					return response((new Help\Application\HelpMessageController())->delete());
+					return printResponse((new Help\Application\HelpMessageController())->delete());
 					break;
 
-				case 'Role.delete':
-					return response((new Roles\Application\RoleController())->delete());
-					break;
-
-				case 'NotificationEvent.delete':
-					return response((new Notifications\Application\NotificationEventController())->delete());
-					break;
-			
-				case 'Event.delete':
-					return response((new Events\Application\EventController())->delete());
-					break;
-			
-				case 'Page.delete':
-					return response((new Pages\Application\PageController())->delete());
-					break;
-		
-				case 'City.delete':
-					return response((new Locations\Application\CityController())->delete());
-					break;
-
-				case 'Country.delete':
-					return response((new Locations\Application\CountryController())->delete());
-					break;
-
-				case 'State.delete':
-					return response((new Locations\Application\StateController())->delete());
-					break;
-			
-				case 'PaymentMethod.delete':
-					return response((new PaymentMethods\Application\PaymentMethodController())->delete());
-					break;
-			
-				case 'Brand.delete':
-					return response((new Brands\Application\BrandController())->delete());
-					break;
-			
-				case 'Shipping.delete':
-					return response((new Shipping\Application\ShippingController())->delete());
-					break;
-			
-				case 'Newsletter.delete':
-					return response((new Newsletters\Application\NewsletterController())->delete());
-					break;
-			
 				case 'Subscriber.delete':
-					return response((new Newsletters\Application\SubscriberController())->delete());
+					return printResponse((new Newsletters\Application\SubscriberController())->delete());
 					break;
 			
-				case 'Customer.delete':
-					return response((new Customers\Application\CustomerController())->delete());
+				case 'Cart.delete':
+					return printResponse((new Cart\Application\CartController())->delete());
 					break;
 			
-				case 'Product.delete':
-					return response((new Products\Application\ProductController())->delete());
+				case 'Wishlist.delete':
+					return printResponse((new Cart\Application\WishlistController())->delete());
 					break;
+
+				case 'Compare.delete':
+					return printResponse((new Cart\Application\CompareController())->delete());
+					break;
+
+				case 'Review.delete':
+					return printResponse((new Reviews\Application\ReviewController())->delete());
+					break;
+			
 			
 			}
 

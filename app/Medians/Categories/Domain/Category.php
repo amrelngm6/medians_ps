@@ -5,7 +5,7 @@ namespace Medians\Categories\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Content\Domain\Content;
-use Medians\Products\Domain\Product;
+use Medians\Products\Domain as Products;
 
 class Category extends CustomModel
 {
@@ -74,7 +74,22 @@ class Category extends CustomModel
 
 	public function products()
 	{
-		return $this->hasMany(Product::class, 'category_id', 'category_id');
+		return $this->hasMany(Products\Product::class, 'category_id', 'category_id');
+	}
+
+	public function colors()
+	{
+		return Products\ProductColor::groupBy('value')->get();
+	}
+
+	public function sizes()
+	{
+		return Products\ProductSize::groupBy('value')->get();
+	}
+
+	public function brands()
+	{
+		return Products\ProductField::with('brand')->groupBy('brand_id')->get();
 	}
 
 	public function langs() 

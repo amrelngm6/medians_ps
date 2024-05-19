@@ -90,7 +90,7 @@ class PaymentMethodController extends CustomController
 	public function store() 
 	{	
         
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
         	$user = $this->app->auth();
@@ -121,7 +121,7 @@ class PaymentMethodController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -150,7 +150,7 @@ class PaymentMethodController extends CustomController
 		
 		$this->app = new \config\APP;
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 

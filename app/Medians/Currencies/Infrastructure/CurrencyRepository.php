@@ -40,7 +40,7 @@ class CurrencyRepository
 	/**
 	* Find items grouped by code 
 	*/
-	public function get($params = null) 
+	public function get() 
 	{
 		return Currency::groupBy('code')->get();
 	}

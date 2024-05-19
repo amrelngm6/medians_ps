@@ -50,9 +50,10 @@ class AuthService
 			$this->app = new \config\APP;
 
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
+			$settings = $this->app->SystemSetting();
 
 		    // return  render('login', [
-			return render('views/front/auth/signin.html.twig', [
+			return render('views/front/'.($settings['template'] ?? 'default').'/auth/signin.html.twig', [
 		    	// 'load_vue' => true,
 		        'title' => translate('Login page'),
 		        'app' => $this->app,
@@ -74,10 +75,10 @@ class AuthService
 		try {
 			
 			$this->app = new \config\APP;
-
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
+			$settings = $this->app->SystemSetting();
 
-			return render('views/front/auth/signup.html.twig', [
+			return render('views/front/'.($settings['template'] ?? 'default').'/auth/signup.html.twig', [
 		        'title' => translate('Login page'),
 		        'app' => $this->app,
 		        'google_login' => $this->loginWithGoogle(),
@@ -99,8 +100,9 @@ class AuthService
 			$this->app = new \config\APP;
 
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
+			$settings = $this->app->SystemSetting();
 
-			return render('views/front/auth/reset-password.html.twig', [
+			return render('views/front/'.($settings['template'] ?? 'default').'/auth/reset-password.html.twig', [
 		        'title' => translate('Reset your password'),
 		        'app' => $this->app,
 		    ]);
@@ -120,8 +122,9 @@ class AuthService
 			$this->app = new \config\APP;
 
 			if (isset($this->app->auth()->id)) { return $this->app->redirect('/dashboard'); }
+			$settings = $this->app->SystemSetting();
 
-			return render('views/front/auth/reset-password-code.html.twig', [
+			return render('views/front/'.($settings['template'] ?? 'default').'/auth/reset-password-code.html.twig', [
 		        'title' => translate('Your reset token'),
 		        'app' => $this->app,
 		    ]);
@@ -136,7 +139,6 @@ class AuthService
 	{
 
 		$this->app = new \config\APP;
-
 
 		try {
 				
@@ -216,7 +218,7 @@ class AuthService
 	{
 		$this->app = new \config\APP;
 		
-        $params = $this->app->request()->get('params');
+        $params = $this->app->params();
 
         try {
             
@@ -246,7 +248,7 @@ class AuthService
 	{
 		$this->app = new \config\APP;
 		
-        $params = $this->app->request()->get('params');
+        $params = $this->app->params();
 
         try {
             
@@ -279,7 +281,7 @@ class AuthService
 	{
 		$this->app = new \config\APP;
 		
-        $params = $this->app->request()->get('params');
+        $params = $this->app->params();
 
         try {
             
@@ -301,7 +303,7 @@ class AuthService
 	{
 		$this->app = new \config\APP;
 		
-        $params = $this->app->request()->get('params');
+        $params = $this->app->params();
 
         try {
             

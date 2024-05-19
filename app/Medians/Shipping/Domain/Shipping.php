@@ -3,6 +3,7 @@
 namespace Medians\Shipping\Domain;
 
 use Shared\dbaser\CustomModel;
+use \Medians\Products\Domain\ProductShipping;
 
 
 class Shipping extends CustomModel
@@ -29,4 +30,9 @@ class Shipping extends CustomModel
 		return $this->fillable;
 	}
 
+	public function items() 
+	{
+		return $this->hasMany(ProductShipping::class, 'shipping_id', 'shipping_id');	
+	}
+	
 }

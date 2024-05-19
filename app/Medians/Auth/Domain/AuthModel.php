@@ -14,7 +14,7 @@ class AuthModel
 	/**
 	* @var String
 	*/
-	private $code = 'CustomerAuth';
+	private $code = 'Auth';
 
 
 

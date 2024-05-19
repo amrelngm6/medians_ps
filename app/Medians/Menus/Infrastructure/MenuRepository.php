@@ -3,6 +3,8 @@
 namespace Medians\Menus\Infrastructure;
 
 use Medians\Menus\Domain\Menu;
+use Medians\Pages\Domain\Page;
+use Medians\Categories\Domain\Category;
 use Medians\Menus\Domain\MenuField;
 
 
@@ -50,13 +52,13 @@ class MenuRepository
 		Menu::where('type', $params['type'])->delete();
 		foreach ($params['items'] as $key => $item )
 		{
-			
 			try {
-				
+				$handleType = $this->handleType($item);
 				$value = (array) $item;
 				$fields = [];
 				$fields['name'] = $value['name'];	
-				$fields['page_id'] = $value['page_id'];	
+				$fields['page_id'] = $handleType['item_id'];	
+				$fields['page_type'] = $handleType['item_type'];	
 				$fields['parent_id'] = 0;	
 				$fields['position'] = $key;	
 				$fields['type'] = isset($params['type']) ? $params['type'] : 'header';	
@@ -71,6 +73,17 @@ class MenuRepository
 		return isset($Model) ? $Model : null;		
     } 
 
+	public function handleType($item)
+	{
+
+		if (isset($item->page_id)) {
+			return ['item_id' => $item->page_id, 'item_type'=> Page::class];
+		}
+
+		if (isset($item->category_id)) {
+			return ['item_id' => $item->category_id, 'item_type'=> Category::class];
+		}
+	} 
 
 
 	/**
@@ -103,7 +116,7 @@ class MenuRepository
 		if ($data)
 		{
 
-			foreach (json_decode($data) as $item )
+			foreach ($data as $item )
 			{
 				
 				try {

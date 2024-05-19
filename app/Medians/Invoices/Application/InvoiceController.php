@@ -74,7 +74,7 @@ class InvoiceController extends CustomController
 	public function store() 
 	{	
         
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -98,7 +98,7 @@ class InvoiceController extends CustomController
 	*/
 	public function update() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -123,7 +123,7 @@ class InvoiceController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -144,7 +144,7 @@ class InvoiceController extends CustomController
 	public function addInvoice()
 	{
 		
-		$params = (array) json_decode($this->app->request()->get('params'));
+		$params = $this->app->params();
 
 		try {
 			
@@ -161,5 +161,34 @@ class InvoiceController extends CustomController
 		
 	}
 
+
+	/**
+	 * Display order page 
+	 */
+	public function invoicePage($invoiceCode)
+	{
+		try {
+			
+			$this->app = new \config\APP;
+			$customer = $this->app->customer_auth();
+			if (!$customer) { return $this->app->redirect('/customer/login'); }
+
+            $settings = $this->app->SystemSetting();
+			
+			$invoice = $this->repo->findCustomerInvoice($invoiceCode, $customer->customer_id);
+			$invoice ?? throw new \Exception(translate('Invoice not found'), 1);
+			
+			
+			return render('views/front/'.($settings['template'] ?? 'default').'/pages/invoice.html.twig', [
+		        'title' => translate('Your invoice'),
+		        'app' => $this->app,
+				'invoice' => $invoice
+
+		    ]);
+		    
+		} catch (Exception $e) {
+        	throw new Exception("Error Processing Request", 1);
+		}
+	}
 
 }

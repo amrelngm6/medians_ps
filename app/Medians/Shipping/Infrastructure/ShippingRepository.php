@@ -8,15 +8,6 @@ use Medians\Shipping\Domain\Shipping;
 class ShippingRepository 
 {
 
-	protected $app;
-
-
-
-	function __construct()
-	{
-	}
-
-
 	public function find($id)
 	{
 		return Shipping::find($id);
@@ -25,6 +16,13 @@ class ShippingRepository
 	public function get($limit = 100)
 	{
 		return Shipping::limit($limit)->get();
+	}
+
+	public function getByItems($ids)
+	{
+		return Shipping::whereHas('items', function($q) use ($ids) {
+			$q->whereIn('product_id', $ids);
+		})->get();
 	}
 
 

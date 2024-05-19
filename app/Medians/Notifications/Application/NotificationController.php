@@ -221,7 +221,7 @@ class NotificationController extends CustomController
 
 		$app = new \config\APP;
 
-		$params = (array) json_decode($app->request()->get('params'));
+		$params = $this->app->params();
 
         try {
 
@@ -251,7 +251,7 @@ class NotificationController extends CustomController
 		
 		$app = new \config\APP;
 
-		$params = (array) json_decode($app->request()->get('params'));
+		$params = $this->app->params();
 
 		$user = $app->auth();
 

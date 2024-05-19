@@ -5,6 +5,7 @@ use \Shared\dbaser\CustomController;
 
 use Medians\Settings\Infrastructure\SystemSettingsRepository;
 use Medians\Currencies\Infrastructure\CurrencyRepository;
+use Medians\Templates\Infrastructure\WebTemplateRepository;
 
 
 class SiteSettingsController extends CustomController
@@ -17,6 +18,8 @@ class SiteSettingsController extends CustomController
 
 	protected $app;
 
+	protected $templateRepo;
+
 
 	function __construct()
 	{
@@ -24,6 +27,8 @@ class SiteSettingsController extends CustomController
 		$this->app = new \config\APP;
 
 		$this->repo = new SystemSettingsRepository();
+
+		$this->templateRepo = new WebTemplateRepository();
 	}
 
 	
@@ -44,6 +49,10 @@ class SiteSettingsController extends CustomController
 					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
 					'data' => [['lang'=>'arabic','title'=>translate('Arabic')], ['lang'=>'english','title'=>translate('English')]]  
 				],	
+				[ 'key'=> "template", 'title'=> translate('Template'), 'help_text'=> translate('The default template for frontend'),
+					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key'=>'folder_name',
+					'data' => $this->templateRepo->get()  
+				],	
 			],			
 			'pictures'=> [	
 				[ 'key'=> "logo", 'title'=> translate('logo'), 'fillable'=>true, 'column_type'=>'file' ],
@@ -62,6 +71,17 @@ class SiteSettingsController extends CustomController
 					'data' => [['footer'=>'footer1','title'=>'Footer 1'], ['footer'=>'footer2','title'=>'Footer 2']]  
 				],
 			],
+			'fonts'=> [	
+				
+				[ 'key'=> "head_font", 'title'=> translate('Headers font'),  'help_text' => translate('Choose the font style for Headlines elements'),
+					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title' ,'column_key'=>'title', 
+					'data' => $this->loadFonts()  
+				],
+				[ 'key'=> "text_font", 'title'=> translate('Headers font'),  'help_text' => translate('Choose the font style for Headlines elements'),
+					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title' ,'column_key'=>'title', 
+					'data' => $this->loadFonts()  
+				],
+			],
 			'site_info'=> [	
 				[ 'key'=> "footer_email", 'title'=> translate('Email'), 'help_text'=>translate('This email used for view at your frontend footer'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "footer_address", 'title'=> translate('Footer address'), 'fillable'=> true, 'column_type'=>'text' ],
@@ -76,7 +96,12 @@ class SiteSettingsController extends CustomController
 			],
 			
 			'options'=> [	
+				[ 'key'=> "allow_guest_checkout", 'title'=> translate('Allow Guest Checkout'), 'help_text'=>translate('Allow guests to complete checkout without signup'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			],
+			
+			'layout_options'=> [	
 				[ 'key'=> "show_newsletter_form", 'title'=> translate('Show newsletter at footer'), 'help_text'=>translate('Show newsletter form at footer to allow users to subscribe'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "category_products_count", 'title'=> translate('Category page products limit'), 'help_text'=>translate('Show x products at category page as first load and each page'), 'fillable'=> true, 'column_type'=>'number' ],
 			],
 					
         ];
@@ -104,6 +129,17 @@ class SiteSettingsController extends CustomController
 	}
 
 
+	public function loadFonts() 
+	{	
+
+		return [
+			['title'=>'Tajawal'],
+			['title'=>'Cairo'],
+			['title'=>'Roboto'],
+		];
+	}
+
+
 	public function getAll() 
 	{	
 		$data = $this->repo->getAll();
@@ -124,7 +160,7 @@ class SiteSettingsController extends CustomController
 	*/
 	public function update() 
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
 		try {
 

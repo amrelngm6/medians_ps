@@ -23,7 +23,6 @@ class Customer extends CustomModel
 		'mobile',
 		'picture',
 		'gender',
-		'model',
 		'birth_date',
 		'generated_password',
 		'password',

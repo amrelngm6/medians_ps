@@ -5,6 +5,9 @@ namespace Medians\Products\Domain;
 use Medians\Categories\Domain\Category;
 use Medians\Shipping\Domain\Shipping;
 use Medians\Content\Domain\Content;
+use Medians\Reviews\Domain\Review;
+use Medians\Brands\Domain\Brand;
+use Medians\Orders\Domain\OrderItem;
 use Medians\CustomFields\Domain\CustomField;
 use Shared\dbaser\CustomModel;
 
@@ -97,9 +100,24 @@ class Product extends CustomModel
 		return $this->hasMany(ProductImage::class , 'product_id', 'product_id');	
 	}
 	
+	public function related() 
+	{
+		return $this->with('product_colors', 'product_sizes', 'images', 'product_categories', 'product_fields', 'product_tags', 'shipping','variants')
+		->whereHas('lang_content', function($q) {
+			$q->where('item_id', '!=', $this->product_id)->where('title', 'LIKE', '%'.str_replace(' ', '%', $this->lang_content->title).'%');
+		})
+		->where('product_id', '!=' , $this->product_id)
+		->get();	
+	}
+	
 	public function product_fields() 
 	{
 		return $this->hasOne(ProductField::class , 'product_id', 'product_id');	
+	}
+	
+	public function brand() 
+	{
+		return $this->hasOneThrough(Brand::class, ProductField::class, 'product_id', 'brand_id', 'product_id', 'brand_id');	
 	}
 	
 	public function langs() 
@@ -110,6 +128,32 @@ class Product extends CustomModel
 	public function lang_content() 
 	{
 		return $this->morphOne(Content::class , 'item')->where('lang', curLng());	
+	}
+	
+	public function reviews() 
+	{
+		return $this->morphMany(Review::class , 'item')->where('status', 'on');	
+	}
+	
+	public function orders() 
+	{
+		return $this->morphMany(OrderItem::class , 'item');	
+	}
+	
+	public function rate() 
+	{
+		return $this->reviews->avg('rate');	
+	}
+	
+	public function tax_amount() 
+	{
+		$taxAmount = $this->product_fields->tax_amount;
+		$taxType = $this->product_fields->tax_type;
+		if ($taxAmount > 0)
+		{
+			return ($taxType == 'percent' ? ($this->price * ($taxAmount / 100)) : ($taxAmount) );
+		}
+		return 0;
 	}
 
 }

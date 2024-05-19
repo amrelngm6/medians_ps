@@ -71,7 +71,7 @@ class CategoryRepository
 		// Return the Model object with the new data
     	$Object = Category::firstOrCreate($dataArray);
 
-		isset($data['content_langs']) ? $this->storeContent( json_decode($data['content_langs']), $Object) : '';
+		isset($data['content_langs']) ? $this->storeContent( $data['content_langs'], $Object) : '';
 
     	return $Object;
     }
@@ -81,12 +81,13 @@ class CategoryRepository
      */
     public function update($data)
     {
+
 		$Object = Category::find($data['category_id']);
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
 
-		$this->storeContent( json_decode($data['content_langs']), $Object);
+		$this->storeContent( $data['content_langs'], $Object);
 
     	return $Object;
 
@@ -121,13 +122,12 @@ class CategoryRepository
 		foreach ($langs as $key => $value)
 		{
 			$data = (array) $data;
-			$value = $value->toArray();
 			Content::where('lang', $key)->where('item_id', $Object->category_id)->where('item_type', Category::class)->delete();
 			$fields = ['title'=>'-'];
-			if (isset($data[ $value['language_code'] ])) {
-				$fields = (array) $data[$value['language_code']];
+			if (isset($data[ $value->language_code ])) {
+				$fields = (array) $data[$value->language_code];
 			}
-			$fields['lang'] = $value['language_code'];
+			$fields['lang'] = $value->language_code;
 			$fields['item_id'] = $Object->category_id;	
 			$fields['item_type'] = Category::class;	
 			$fields['prefix'] = isset($fields['prefix']) ? Content::generatePrefix($fields['prefix']) : Content::generatePrefix( $fields['title']);	

@@ -22,37 +22,28 @@ class ProductRepository
 {
 
 
-	function __construct()
-	{
-	}
-
-
 
 	public function find($product_id)
 	{
-		$model = Product::with('product_colors', 'product_sizes', 'images', 'product_categories', 'product_fields', 'product_tags', 'shipping','variants')
-		 ->find($product_id);
-		
-		return $this->handle($model);
+		return  $this->handle(
+			Product::with('reviews','brand', 'product_colors', 'product_sizes', 'images', 'product_categories', 'product_fields', 'product_tags', 'shipping','variants')
+		 	->find($product_id)
+		);
 	}
 
-	public function handle($model)
+	public function colors()
 	{
-		
-		if ($model)
-		{
-			$model->tags = $model->product_tags->pluck('tag')->toArray();
-			$model->colors = $model->product_colors->pluck('value')->toArray();
-			$model->sizes = $model->product_sizes->pluck('value')->toArray();
-			$model->lang = $model->content_langs->groupBy('lang')->map(function ($items) {
-				return $items->first();
-			});
-			$model->categories = $model->product_categories->map(function ($items) {
-				return $items->select('*','category_id as value')->first();
-			});;
+		return ProductColor::groupBy('value')->get();
+	}
 
-			return $model;
-		};
+	public function sizes()
+	{
+		return ProductSize::groupBy('value')->get();
+	}
+
+	public function brands()
+	{
+		return ProductField::with('brand')->groupBy('brand_id')->get();
 	}
 
 	public function get($limit = 100)
@@ -83,40 +74,82 @@ class ProductRepository
 	public function getWithFilter($params)
 	{
 
-		if (isset($params['categories_ids']))
-		{
 			$model = Product::where('status', 'on')
 			->with('product_colors', 'product_sizes', 'images', 'product_fields')
-			->withCount('product_categories');
-
-			$model = $model->whereHas('category', function($q) use ($params){
-				$q->whereIn('category_id', $params['categories_ids']);
-			})->orWhere('status', 'on')
-			
+			->withCount('product_categories')
 			->whereHas('product_categories', function($q) use ($params){
-				$q->whereIn('product_categories.category_id', $params['categories_ids']);
+				isset($params['categories_ids']) ? $q->whereIn('product_categories.category_id', $params['categories_ids']) : $q;
 			});
+			
+
+			if (isset($params['prices'])) {
+				$model = $model->whereBetween('price', $params['prices']);
+			}
+
+			if (isset($params['colors'])) {
+				$model = $model->whereHas('product_colors', function($q) use ($params) {
+					$q->whereIn('value', $params['colors']);
+				});
+			}
+
+			if (isset($params['sizes'])) {
+				$model = $model->whereHas('product_sizes', function($q) use ($params) {
+					$q->whereIn('value', $params['sizes']);
+				});
+			}
+
+			if (isset($params['brands'])) {
+				$model = $model->whereHas('product_fields', function($q) use ($params) {
+					$q->whereIn('brand_id', $params['brands']);
+				});
+			}
+
+			if (isset($params['title'])) {
+				$model = $model->whereHas('lang_content', function($q) use ($params) {
+					$q->where('content', 'LIKE', '%'.$params['title'].'%')->orWhere('title', 'LIKE', '%'.$params['title'].'%');
+				});
+			}
 
 			if (isset($params['sort_by']))
 			{
 				switch ($params['sort_by']) {
 					case 'best':
-						$model = $model->orderBy('product_categories_count','DESC');
+						$model = $model->withCount('orders')->orderBy('orders_count','DESC');
 						break;
 						
 					default:
 						$model = $model->orderBy('product_id','DESC');
 						break;
-					
 				}
 			}
-			
-			return $model->limit($params['limit'] ?? 10)->get();
-		}
+
+			$totalCount = $model->count();
+
+			$limit = (($params['limit'] ?? 4) * (floatval($params['page'] ?? 1) ?? 1));
+			return ['count' => $totalCount, 'items'=>$model->limit($limit)->get()];
 	 }
  
 	
 
+	 public function handle($model)
+	 {
+		 
+		 if ($model)
+		 {
+			 $model->tags = $model->product_tags->pluck('tag')->toArray();
+			 $model->colors = $model->product_colors->pluck('value')->toArray();
+			 $model->sizes = $model->product_sizes->pluck('value')->toArray();
+			 $model->lang = $model->content_langs->groupBy('lang')->map(function ($items) {
+				 return $items->first();
+			 });
+			 $model->categories = $model->product_categories->map(function ($items) {
+				 return $items->select('*','category_id as value')->first();
+			 });;
+ 
+			 return $model;
+		 };
+	 }
+ 
 
 	/**
 	* Save item to database
@@ -140,17 +173,17 @@ class ProductRepository
     	$Object = Product::create($dataArray);
 
     	// Store Custom fields
-    	isset($data['shipping']) ? $this->storeShipping(json_decode($data['shipping']), $Object) : '';
-    	isset($data['content_langs']) ? $this->storeContent( json_decode($data['content_langs']), $Object) : '';
-    	isset($data['categories']) ? $this->storeCategories(json_decode($data['categories']), $Object) : '';
-    	isset($data['product_fields']) ? $this->storeFields(json_decode($data['product_fields']), $Object) : '';
-    	isset($data['colors']) ? $this->storeColors(json_decode($data['colors']), $Object) : '';
-    	isset($data['sizes']) ? $this->storeSizes(json_decode($data['sizes']), $Object) : '';
-    	isset($data['tags']) ? $this->storeTags(json_decode($data['tags']), $Object) : '';
-    	isset($data['images']) ? $this->storeImages(json_decode($data['images']), $Object) : '';
-    	isset($data['media']) ? $this->storeMedia(json_decode($data['media']), $Object) : '';
-    	isset($data['variants']) ? $this->storeVariants(json_decode($data['variants']), $Object) : '';
-    	isset($data['prices']) ? $this->storePrice(json_decode($data['prices']), $Object) : '';
+    	isset($data['shipping']) ? $this->storeShipping(($data['shipping']), $Object) : '';
+    	isset($data['content_langs']) ? $this->storeContent( ($data['content_langs']), $Object) : '';
+    	isset($data['product_categories']) ? $this->storeCategories(($data['product_categories']), $Object) : '';
+    	isset($data['product_fields']) ? $this->storeFields(($data['product_fields']), $Object) : '';
+    	isset($data['colors']) ? $this->storeColors(($data['colors']), $Object) : '';
+    	isset($data['sizes']) ? $this->storeSizes(($data['sizes']), $Object) : '';
+    	isset($data['tags']) ? $this->storeTags(($data['tags']), $Object) : '';
+    	isset($data['images']) ? $this->storeImages(($data['images']), $Object) : '';
+    	isset($data['media']) ? $this->storeMedia(($data['media']), $Object) : '';
+    	isset($data['variants']) ? $this->storeVariants(($data['variants']), $Object) : '';
+    	isset($data['prices']) ? $this->storePrice(($data['prices']), $Object) : '';
 
     	return $Object;
     }
@@ -160,24 +193,26 @@ class ProductRepository
      */
     public function update($data)
     {
-
+		// $data['product_id'] = null;
+		// return $this->store($data);
+		
 		$Object = Product::find($data['product_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	// Store Custom fields
-    	isset($data['content_langs']) ? $this->storeContent( json_decode($data['content_langs']), $Object) : '';
-    	isset($data['product_fields']) ? $this->storeFields(json_decode($data['product_fields']), $Object) : '';
-    	isset($data['categories']) ? $this->storeCategories(json_decode($data['categories']), $Object) : '';
-    	isset($data['colors']) ? $this->storeColors(json_decode($data['colors']), $Object) : '';
-    	isset($data['sizes']) ? $this->storeSizes(json_decode($data['sizes']), $Object) : '';
-    	isset($data['tags']) ? $this->storeTags(json_decode($data['tags']), $Object) : '';
-    	isset($data['images']) ? $this->storeImages(json_decode($data['images']), $Object) : '';
-    	isset($data['media']) ? $this->storeMedia(json_decode($data['media']), $Object) : '';
-    	isset($data['prices']) ? $this->storePrice(json_decode($data['prices']), $Object) : '';
-    	isset($data['variants']) ? $this->storeVariants(json_decode($data['variants']), $Object) : '';
-    	isset($data['shipping']) ? $this->storeShipping(json_decode($data['shipping']), $Object) : '';
+    	isset($data['content_langs']) ? $this->storeContent( ($data['content_langs']), $Object) : '';
+    	isset($data['product_fields']) ? $this->storeFields(($data['product_fields']), $Object) : '';
+    	isset($data['product_categories']) ? $this->storeCategories(($data['product_categories']), $Object) : '';
+    	isset($data['colors']) ? $this->storeColors(($data['colors']), $Object) : '';
+    	isset($data['sizes']) ? $this->storeSizes(($data['sizes']), $Object) : '';
+    	isset($data['tags']) ? $this->storeTags(($data['tags']), $Object) : '';
+    	isset($data['images']) ? $this->storeImages(($data['images']), $Object) : '';
+    	isset($data['media']) ? $this->storeMedia(($data['media']), $Object) : '';
+    	isset($data['prices']) ? $this->storePrice(($data['prices']), $Object) : '';
+    	isset($data['variants']) ? $this->storeVariants(($data['variants']), $Object) : '';
+    	isset($data['shipping']) ? $this->storeShipping(($data['shipping']), $Object) : '';
 
     	return $Object;
 
@@ -438,14 +473,16 @@ class ProductRepository
 			foreach ($data as $key => $value)
 			{
 				$value = (array) $value;
-				$fields = [];
-				$fields['model_id'] = $Object->product_id;	
-				$fields['model_type'] = Product::class;	
-				$fields['code'] = 'variants';
-				$fields['title'] = $value['title'];
-				$fields['value'] = $value['value'];
+				if (isset($value['title'])) {
+					$fields = [];
+					$fields['model_id'] = $Object->product_id;	
+					$fields['model_type'] = Product::class;	
+					$fields['code'] = 'variants';
+					$fields['title'] = $value['title'];
+					$fields['value'] = $value['value'];
 
-				$Model = CustomField::create($fields);
+					$Model = CustomField::create($fields);
+				}
 			}
 	
 			return $Model ?? '';		

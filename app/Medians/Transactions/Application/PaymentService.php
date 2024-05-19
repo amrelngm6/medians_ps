@@ -3,8 +3,6 @@
 namespace Medians\Transactions\Application;
 use \Shared\dbaser\CustomController;
 
-use Medians\Packages\Infrastructure\PackageSubscriptionRepository;
-use Medians\Payments\Infrastructure\PaymentRepository;
 use Medians\Transactions\Infrastructure\TransactionRepository;
 use Medians\Customers\Domain\Customer;
 
@@ -13,109 +11,109 @@ class PaymentService
 
 	
 	public $payment_method;
-	public $packageSubscriptionRepo;
+	public $service;
 	public $transactionRepo;
 	
 
 	function __construct($payment_method)
 	{
+		$this->payment_method = $payment_method;	
+		$this->loadService();
+	}
 
-		$this->payment_method = $payment_method;
+	function loadService() 
+	{
+		switch (strtolower($this->payment_method)) 
+		{
+			case 'paystack':
+				$this->service = new PaystackService();
+				break;
+				
+			case 'paypal':
+				$this->service = new PayPalService();
+				break;
+		}
+	}
+
+	
+	public function verify($params)
+	{
+		$verify = $this->service->verify((array) $params['transaction']);
 		
+		if (isset($verify->status) && $verify->status == true)
+		{
+			$invoice = $this->addInvoice($params);
+
+			$transaction = $this->storeTransaction($params, $invoice, $verify);
+
+			return $invoice;
+		}
 	}
 
-
-	public function storeSubscriptionTransaction($params, $invoice, $user)
+	public function storeTransaction($params, $invoice, $verifyResponse)
 	{
 		try {
 
-			$this->transactionRepo = new TransactionRepository($params['business']);
+			// Get the paid amount and currency based on 
+			// the verification response from API
+			$amountCurrency = $this->service->getAmountCurrency($verifyResponse);
+			
+			$params['amount'] = $amountCurrency['amount'];
+			$params['currency'] = $amountCurrency['currency'];
+			$params['status'] = $amountCurrency['status'];
 
-			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
+			$this->transactionRepo = new TransactionRepository();
+			
+			$orderClass = new \Medians\Orders\Domain\Order;
 
-			$transaction = (array) $params['transaction'];
+			$transaction = array() ;
 			$transaction['invoice_id'] = $invoice->invoice_id;
 			$transaction['model_id'] = $invoice->user_id;
 			$transaction['model_type'] = $invoice->user_type;
-			$transaction['item_id'] = $transaction['subscription_id'];
-			$transaction['item_type'] = $packageSubscriptionClass::class;
+			$transaction['item_id'] = $params['order_id'];
+			$transaction['item_type'] = $orderClass::class;
 			$transaction['date'] = date('Y-m-d');
+			$transaction['payment_method'] = $this->payment_method;
+			$transaction['amount'] = $params['amount'];
+			$transaction['currency_code'] = $params['currency'];
+			$transaction['status'] = $params['status'];
+			$transaction['field'] = $params['transaction'];
+		
+			return  $this->transactionRepo->store($transaction);
 			
-			$transactionStored = $this->transactionRepo->store($transaction);
-			
-			return $transactionStored;
-
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
 		}
 	}
 
 
-	
-	public function storeTripTransaction($params, $invoice)
-	{
-		try {
-
-			$this->transactionRepo = new TransactionRepository($params['business']);
-
-			$TaxiTrip = new \Medians\Trips\Domain\TaxiTrip;
-
-			$transaction = (array) $params['transaction'];
-			$transaction['invoice_id'] = $invoice->invoice_id;
-			$transaction['model_id'] = $invoice->user_id;
-			$transaction['model_type'] = $invoice->user_type;
-			$transaction['item_id'] = $transaction['item_id'];
-			$transaction['item_type'] = $TaxiTrip::class;
-			$transaction['date'] = date('Y-m-d');
-			
-			$transactionStored = $this->transactionRepo->store($transaction);
-			
-			return array('success'=>true,  'result'=>translate('PAYMENT_MADE_SECCUESS'));
-
-		} catch (\Throwable $th) {
-			return array('error'=>$th->getMessage());
-		}
-	}
-
-
-	public function updateRouteLocation($params)
-	{
-		try {
-
-			$class = new Student;
-
-			$routeLocationClass = new \Medians\Locations\Domain\RouteLocation;
-			
-			return array('success'=>$updateRouteLocationClass);
-
-		} catch (\Throwable $th) {
-			return array('error'=>$th->getMessage());
-		}
-	}
-
-
-	
-	
 	public function addInvoice($params)
 	{
 		try {
+
+			$app = new \config\APP;
+			$setting = $app->SystemSetting();
 			
 			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository();
+			$orderRepo = new \Medians\Orders\Infrastructure\OrderRepository();
 			
-			$invoiceInfo = (array) $params['invoice'];
+			$order = $orderRepo->find($params['order_id']);
 
 			$data = array();
 			$data['code'] = $invoiceRepo->generateCode();
-			$data['user_id'] = $params['user_id'];
+			$data['user_id'] = $app->customer_auth()->customer_id;
 			$data['user_type'] = Customer::class;
-			$data['payment_method'] = $invoiceInfo['payment_method'];
-			$data['subtotal'] = $invoiceInfo['subtotal'];
+			$data['payment_method'] = $this->payment_method;
+			$data['subtotal'] = $order->subtotal;
+			$data['total_amount'] = $order->total_amount;
+			$data['shipping_amount'] = $order->shipping_amount;
+			$data['tax_amount'] = $order->tax_amount;
+			$data['currency_code'] = $setting['currency'];
+			$data['status'] = 'paid';
+			$data['order_id'] = $order->order_id;
+			$data['items'] = $order->items;
 			$data['discount_amount'] = 0;
-			$data['total_amount'] = $invoiceInfo['total_amount'];
 			$data['date'] = date('Y-m-d');
-			$data['status'] = $invoiceInfo['status'];
-			$data['notes'] = $invoiceInfo['notes'];
-			$data['items'] = (array) $invoiceInfo['items'];
 
 			return $invoiceRepo->store($data);
 

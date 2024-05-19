@@ -116,7 +116,6 @@ class ProductController extends CustomController
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
-			
 		}
 	}
 
@@ -159,7 +158,7 @@ class ProductController extends CustomController
 	public function store() 
 	{	
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {	
 			
@@ -191,7 +190,7 @@ class ProductController extends CustomController
 
 	public function update()
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -199,7 +198,7 @@ class ProductController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>0);
             }
 
         } catch (\Exception $e) {
@@ -213,7 +212,7 @@ class ProductController extends CustomController
 	public function delete() 
 	{
 
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -234,15 +233,74 @@ class ProductController extends CustomController
 	}
 
 
+    /**
+     * Search page for frontend
+     */
+    public function searchPage()
+    {
+
+		$categoryRepo = new \Medians\Products\Infrastructure\CategoryRepository;
+		$brandRepo = new \Medians\Brands\Infrastructure\BrandRepository;
+		$settings = $this->app->SystemSetting();
+
+		try {
+						
+            return render('views/front/'.($settings['template'] ?? 'default').'/pages/search.html.twig', [
+				'title' => translate('Search page'),
+				'brands' => $this->repo->brands(),
+				'sizes' => $this->repo->sizes(),
+				'colors' => $this->repo->colors(),
+                'app' => $this->app,
+				'categories' => $categoryRepo->getGrouped(),
+            ]);
+            
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+    }
 
 	/**
 	 * Ajax load productsby with filters
 	 */
 	public function load_products()
 	{
-		$params = $this->app->request()->get('params');
-		echo render('/views/front/blocks/category_product.html.twig', [
-			'products'=> $this->repo->getWithFilter($params)
+		$params = $this->app->params();
+		$settings = $this->app->SystemSetting();
+		$params['limit'] = $settings['category_products_count'] ?? 4;
+		$data = $this->repo->getWithFilter($params);
+		echo render('/views/front/'.$settings['template'].'/blocks/list_category_product.html.twig', [
+			'products'=> $data['items'],
+			'count'=> $data['count']
+		]);
+	}
+
+	/**
+	 * Ajax load products at search page
+	 */
+	public function search_products()
+	{
+		$params = $this->app->params();
+		$settings = $this->app->SystemSetting();
+		$params['limit'] = $settings['category_products_count'] ?? 4;
+		$data = !empty($params['title']) ? $this->repo->getWithFilter($params) : ['items'=>null, 'count'=>0];
+		echo render('/views/front/'.$settings['template'].'/blocks/search_product.html.twig', [
+			'products'=> $data['items'],
+			'count'=> $data['count']
+		]);
+	}
+
+	/**
+	 * Ajax load products at search page
+	 */
+	public function quick_search_products()
+	{
+		$params = $this->app->params();
+		$settings = $this->app->SystemSetting();
+		$params['limit'] = 5;
+		$data = !empty($params['title']) ? $this->repo->getWithFilter($params) : ['items'=>null, 'count'=>0];
+		echo render('/views/front/'.$settings['template'].'/blocks/quick_search_product.html.twig', [
+			'products'=> $data['items'],
+			'count'=> $data['count']
 		]);
 	}
 }

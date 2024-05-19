@@ -23,13 +23,14 @@ class CurrencyService
 		$this->repo = new CurrencyRepository();
 	}
 	
+
 	
 	public function getCurrency($currencyCode)
 	{
 		try {
 
             $result = $this->repo->load($currencyCode);
-            $stting = $this->app->SystemSetting();
+            $setting = $this->app->SystemSetting();
 
             if ($result->last_check == date('Y-m-d'))
             {
@@ -37,7 +38,7 @@ class CurrencyService
                 
             } else {
                 
-                $response = $this->checkAPI($setting['currency'], $currencyCode, $stting);
+                $response = $this->checkAPI($setting['currency'], $currencyCode, $setting);
 
                 $data = [
                     'code' => $currencyCode,
@@ -71,7 +72,7 @@ class CurrencyService
 
 	public function update()
 	{
-		$params = $this->app->request()->get('params');
+		$params = $this->app->params();
 
         try {
 
@@ -89,11 +90,28 @@ class CurrencyService
     
 	public function checkAPI($from, $to, $setting)
 	{
-		$currencyApi = new \CurrencyApi\CurrencyApi\CurrencyApiClient($stting['currency_converter_api']);
+		$currencyApi = new \CurrencyApi\CurrencyApi\CurrencyApiClient($setting['currency_converter_api']);
 		return $currencyApi->latest([
 			'base_currency' => $from,
 			'currencies' => $to,
 		]);
 	}
 
+	public function switchCurrency($currency)
+	{
+		try {
+			
+			$params = $this->app->params();
+
+			$currency = $this->repo->load($currency);
+
+			$_SESSION['currency'] = $currency->code;
+
+			echo $this->app->redirect($_SERVER['HTTP_REFERER'] ?? $this->app->CONF['url']);
+
+		} catch (\Throwable $th) {
+			return throw new \Exception($th->getMessage(), 1);
+		}
+ 
+	}
 }

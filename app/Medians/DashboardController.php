@@ -166,6 +166,8 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
+        $data['top_products'] = [];
+        $data['top_customers'] = [];
         $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
@@ -208,24 +210,15 @@ class DashboardController extends CustomController
 	
 	public function switchLang($lang)
 	{
+		$app = new \config\APP;
+		$languages = array_column($app->Languages()->toArray(), 'language_code');
 
-		if (empty($_SERVER['HTTP_REFERER'])) {
-			echo (new \config\APP)->redirect('/');
-			return null;
-		}
+		$_SESSION['site_lang'] = in_array($lang, $languages) ? $lang : 'english';
+		$_SESSION['lang'] = in_array($lang, $languages) ? $lang : 'english';
 
-		$prefix = str_replace($this->app->CONF['url'], '', $_SERVER['HTTP_REFERER']);
-
-		if (empty($prefix))
-		{
-			echo (new \config\APP)->redirect('/'); 
-			return true;
-		}
-
-		
-		$_SESSION['site_lang'] = in_array($lang, ['arabic', 'english']) ? $lang : 'arabic';
-
-		echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
+		$redirectRequest = $app->request()->get('redirect') ?? null;
+		$redirect = !empty($redirectRequest) ? $app->CONF['url'].$redirectRequest : ($_SERVER['HTTP_REFERER'] ?? $app->CONF['url']);
+		echo $app->redirect($redirect);
 	}
 
 }

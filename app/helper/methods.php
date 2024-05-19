@@ -69,7 +69,9 @@ function render($template, $data, $responseType = 'html')
     $data['component'] = $template;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
+    $data['app']->customer = $app->customer_auth();
     $data['app']->setting = $setting;
+    $data['template'] = $setting['template'] ?? 'default';
     $data['app']->currency = $app->currency();
     $data['menu'] = $app->menu();
     $data['langs'] = $languages;
@@ -90,7 +92,8 @@ function render($template, $data, $responseType = 'html')
 function Page404()
 {
     $app = new \config\APP;
-    return $app->template()->render('views/404.html.twig', [
+    $settings = $app->SystemSetting();
+    echo $app->template()->render('views/front/'.$settings['template'].'/error.html.twig', [
         'title' => 'Page not found',
         'app' => $app
     ]);
@@ -104,9 +107,11 @@ function Page404()
 function errorPage($data)
 {
     $app = new \config\APP;
-    echo $app->template()->render('views/front/error.html.twig', [
+    $settings = $app->SystemSetting();
+    echo $app->template()->render('views/front/'.$settings['template'].'/error.html.twig', [
         'title' => 'Error',
         'msg' => $data,
+        'template'  => $setting['template'] ?? 'default',
         'app' => $app
     ]);
 }
@@ -120,8 +125,10 @@ function errorPage($data)
 function Page403()
 {
     $app = new \config\APP;
-    return $app->template()->render('views/admin/404.html.twig', [
+    $settings = $app->SystemSetting();
+    echo $app->template()->render('views/front/'.$settings['template'].'/error.html.twig', [
         'title' => 'Not authorized to acces this Page.',
+        'template'  => $setting['template'] ?? 'default',
         'app' => '',
     ]);
 }
@@ -138,7 +145,25 @@ function response($response)
     $app = new \config\APP;
 
 	echo isset($app->auth()->id) ? (is_array($response) ? json_encode($response) : $response) : Page403();
+}
 
+
+function front_response($response)
+{
+    
+    $app = new \config\APP;
+
+	echo isset($app->customer_auth()->customer_id) ? (is_array($response) ? json_encode($response) : $response) : Page403();
+}
+
+
+/**
+ * Handle routes response 
+ * based on session & Permissions
+*/
+function printResponse($response)
+{
+	echo is_array($response) ? json_encode($response) : $response ;
 }
 
 /** 
@@ -203,4 +228,26 @@ function scrapeAndExtractSections($url)
 function curLng()
 {
     return $_SESSION['lang'] ?? $app->lang;
+}
+
+/**
+ * Secure the inputs from XSS vulneribility
+ * Save from cyber attacks
+ */
+function sanitizeInput($input) {
+    if (is_object($input)) {
+        foreach ($input as $key => $value) {
+            $input->$key = $value ? sanitizeInput($value) : '';
+        }
+        return $input;
+    } else if (is_array($input) ) {
+        foreach ($input as $key => $value) {
+            $input[$key] = $value ? sanitizeInput($value) : '';
+        }
+        return $input;
+    } else if (gettype($input) =='string' && in_array(substr($input,0,1), ['{', '['])   ) {
+        return sanitizeInput(json_decode($input));
+    } else {
+        return str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    }
 }

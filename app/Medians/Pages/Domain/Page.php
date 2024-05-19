@@ -27,25 +27,14 @@ class Page extends CustomModel
 	];
 
 
-	public $appends = ['photo','field','name', 'data','show_header_menu','show_footer_menu1','show_footer_menu2'];
+	public $appends = ['photo','field','name', 'data','content_langs'];
 
 
 
-	public function getShowHeaderMenuAttribute() 
+	public function getContentLangsAttribute()
 	{
-		return isset($this->field['show_header_menu']) ? $this->field['show_header_menu'] : null;
-	}
-
-	public function getShowFooterMenu1Attribute() 
-	{
-		return isset($this->field['show_footer_menu1']) ? $this->field['show_footer_menu1'] : null;
-	}
-
-	public function getShowFooterMenu2Attribute() 
-	{
-		return isset($this->field['show_footer_menu2']) ? $this->field['show_footer_menu2'] : null;
-	}
-
+		return $this->langs->keyBy('lang');
+	} 
 
 	public function getDataAttribute() 
 	{
@@ -78,16 +67,21 @@ class Page extends CustomModel
 		return $this->fillable;
 	}
 
-	public function content()
+	public function lang_content()
 	{
 		return $this->morphOne(Content::class, 'item')->where('lang',$_SESSION['lang']);
 	}
 
-	public function lang_content()
-	{
-		return $this->morphOne(Content::class, 'item');
-	}
+	// public function lang_content()
+	// {
+	// 	return $this->morphOne(Content::class, 'item');
+	// }
 
+	public function langs() 
+	{
+		return $this->morphMany(Content::class , 'item')->groupBy('lang');	
+	}
+	
 	public function menu()
 	{
 		return $this->hasOne(Menu::class, 'page_id', 'page_id');

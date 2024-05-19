@@ -118,7 +118,7 @@ class UserController extends CustomController
 	public function store() 
 	{
 
-		$params = (array)  $this->app->request()->get('params');
+		$params = (array)  $this->app->params();
 
 		try {
 
@@ -185,7 +185,7 @@ class UserController extends CustomController
 	public function update() 
 	{
 
-		$params = (array)  $this->app->request()->get('params');
+		$params = (array)  $this->app->params();
 
 		try {
 
@@ -217,7 +217,7 @@ class UserController extends CustomController
 	public function updateStatus() 
 	{
 
-		$params = (array)  json_decode($this->app->request()->get('params'));
+		$params = $this->app->params();
 
 		try {
 

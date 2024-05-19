@@ -128,6 +128,10 @@ class APIController extends CustomController
 				case 'State.create':
 					$return = (new Locations\Application\StateController)->store();
 					break;
+
+				case 'Translation.create':
+					$return = (new Languages\Application\TranslationController)->store();
+					break;
 		
 					
 		
@@ -161,6 +165,10 @@ class APIController extends CustomController
 					
 				case 'Customer.create':
 					$return = (new Customers\Application\CustomerController)->store();
+					break;
+					
+				case 'WebTemplate.create':
+					$return = (new Templates\Application\WebTemplateController)->store();
 					break;
 					
 		
@@ -299,6 +307,31 @@ class APIController extends CustomController
 				$controller = new Templates\Application\EmailTemplateController; 
 				break;
 
+			case 'WebTemplate.update':
+				$controller = new Templates\Application\WebTemplateController; 
+				break;
+
+			case 'Review.update':
+				$controller = new Reviews\Application\ReviewController; 
+				break;
+
+			case 'Country.update':
+				$controller = new Countries\Application\CountryController; 
+				break;
+			
+
+			case 'State.update':
+				$controller = new Countries\Application\StateController; 
+				break;
+			
+			case 'City.update':
+				$controller = new Countries\Application\CityController; 
+				break;
+
+			case 'Order.update':
+				$controller = new Orders\Application\OrderController; 
+				break;
+			
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
@@ -384,6 +417,22 @@ class APIController extends CustomController
 			
 				case 'Product.delete':
 					return response((new Products\Application\ProductController())->delete());
+					break;
+			
+				case 'WebTemplate.delete':
+					return response((new Templates\Application\WebTemplateController())->delete());
+					break;
+			
+				case 'Country.delete':
+					return response((new Countries\Application\CountryController())->delete());
+					break;
+			
+				case 'State.delete':
+					return response((new Countries\Application\StateController())->delete());
+					break;
+			
+				case 'City.delete':
+					return response((new Countries\Application\CityController())->delete());
 					break;
 			
 			}
