@@ -410,7 +410,6 @@ class APP
 			]
 			),
 
-	        array('permission'=>'Shipping.index', 'title'=>translate('Shipping'),  'icon'=>'truck', 'link'=>'admin/shipping', 'component'=>'data_table'),
 	        
 			array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'data_table'),
 			
@@ -468,8 +467,9 @@ class APP
 			]
 			),
 			
-			array( 'title'=>translate('Shipping areas'),  'icon'=>'map', 'link'=>'#locations', 'superadmin'=> true, 'sub'=>
+			array( 'title'=>translate('Shipping'),  'icon'=>'map', 'link'=>'#locations', 'superadmin'=> true, 'sub'=>
 			[
+				array('permission'=>'Shipping.index', 'title'=>translate('Shipping methods'),  'icon'=>'truck', 'link'=>'admin/shipping', 'component'=>'data_table'),
 				array('permission'=>'Country.index', 'title'=>translate('Countries'),  'icon'=>'tool', 'link'=>'admin/countries', 'component'=>'data_table'),
 				array('permission'=>'State.index', 'title'=>translate('States'),  'icon'=>'tag', 'link'=>'admin/states', 'component'=>'data_table'),
 				array('permission'=>'City.index', 'title'=>translate('Cities'),  'icon'=>'tag', 'link'=>'admin/cities', 'component'=>'data_table'),

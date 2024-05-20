@@ -88,7 +88,7 @@ class GuestCartController extends CustomController
 			$sessionId = $this->app->guest_auth();
 			$customer = $this->app->customer_auth();
 
-			return $this->repo->updateCustomerSessionItems($sessionId, $customer->customer_id); 
+			return isset($customer->customer_id) ? $this->repo->updateCustomerSessionItems($sessionId, $customer->customer_id) : '';  
             
         } catch (\Exception $e) {
         	throw new \Exception($e->getMessage() . "Error Processing Request", 1);
