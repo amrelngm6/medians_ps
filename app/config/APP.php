@@ -166,6 +166,10 @@ class APP
 
 			$settings = $this->SystemSetting();
 			$activeCurrency = (new CurrencyService)->getCurrency($requiredCurrency);
+
+			if (!$activeCurrency)
+				return 0;
+			
 			if ($activeCurrency->code == $settings['currency'])
 				return $amount;
 			
@@ -450,6 +454,8 @@ class APP
 			),
 			array( 'title'=>translate('Management'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
+				array('permission'=>'Reviews.index', 'title'=>translate('Reviews'),  'icon'=>'tool', 'link'=>'admin/reviews', 'component'=>'data_table'),
+				array('permission'=>'Currencies.index', 'title'=>translate('Currencies'),  'icon'=>'tool', 'link'=>'admin/currencies', 'component'=>'data_table'),
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				array('permission'=>'EmailTemplate.index', 'title'=>translate('Email Templates'),  'icon'=>'tag', 'link'=>'admin/email_templates', 'component'=>'email_templates'),
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'data_table'),
