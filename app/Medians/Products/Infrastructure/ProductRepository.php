@@ -372,11 +372,14 @@ class ProductRepository
 		if ($data) {
 			foreach ($data as $key => $value)
 			{
-				$fields = [];
-				$fields['product_id'] = $Object->product_id;	
-				$fields['value'] = $value;
-
-				$Model = ProductSize::create($fields);
+				if ($value)
+				{
+					$fields = [];
+					$fields['product_id'] = $Object->product_id;	
+					$fields['value'] = $value;
+	
+					$Model = ProductSize::create($fields);
+				}
 			}
 	
 			return $Model ?? '';		
