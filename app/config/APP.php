@@ -176,7 +176,7 @@ class APP
 			if ($activeCurrency->last_check == date('Y-m-d'))
 				return number_format($amount * ($activeCurrency->ratio ?? 1), 2);
 	
-			return $this->currency_converter($amount, $activeCurrency->code);
+			return ($amount && isset($activeCurrency->code)) ? $this->currency_converter($amount, $activeCurrency->code) : $amount;
 			
 		} catch (\Throwable $th) {
 			return null;
