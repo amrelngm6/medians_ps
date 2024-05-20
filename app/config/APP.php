@@ -165,7 +165,7 @@ class APP
 		try {
 
 			$settings = $this->SystemSetting();
-			$activeCurrency = (new CurrencyService)->getCurrency($requiredCurrency);
+			$activeCurrency = (object) (new CurrencyService)->getCurrency($requiredCurrency);
 
 			if (!$activeCurrency)
 				return 0;
