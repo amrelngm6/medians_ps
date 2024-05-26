@@ -21,7 +21,7 @@
                     <a href="/customer/dashboard"><img src="/src/front_assets/svg/user.svg"/></a>
                     <a href="#" x-on:click="showCart = true, setTimeout(function() {submitForm('form-sidecart', 'sidecart-items')}, 10)"><img src="/src/front_assets/svg/cart.svg"/></a>
                     <a href="#" x-on:click="showLanguages = true"><img src="/src/front_assets/svg/lang.svg"/></a>
-                    <a href="#" x-on:click="showCurrency = true"><img src="/src/front_assets/svg/currency.svg"/></a>
+                    {# <a href="#" x-on:click="showCurrency = true"><img src="/src/front_assets/svg/currency.svg"/></a> #}
 
                     <template x-if="showLanguages">
                         <div @mousedown.outside="showLanguages = 0" class="relaive absolute bg-white px-6 py-6 mx-auto top-12 right-0 left-auto w-64">
