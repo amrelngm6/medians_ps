@@ -220,6 +220,9 @@ if(!empty($app->auth()))
     /** @return invoice */
     RouteHandler::get('/admin/invoices', \Medians\Invoices\Application\InvoiceController::class.'@index');
 
+    /** @return Currencies */
+    RouteHandler::get('/admin/currencies', \Medians\Currencies\Application\CurrencyController::class.'@index');
+
 
     /**
      * Master requests

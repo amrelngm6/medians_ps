@@ -32,11 +32,14 @@ class CurrencyService
             $result = $this->repo->load($currencyCode);
             $setting = $this->app->SystemSetting();
 
+			if (!$result)
+				return;
+
             if ($result->last_check == date('Y-m-d'))
             {
     			return $result ?? '';
                 
-            } else {
+            } else if ($result->code) {
                 
                 $response = $this->checkAPI($setting['currency'], $currencyCode, $setting);
 
