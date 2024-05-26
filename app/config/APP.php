@@ -118,6 +118,7 @@ class APP
 	 */ 
 	public function currency()
 	{	
+		return ['sumbol'=>''];
 		$this->currency = (new CurrencyRepository)->load($_SESSION['currency']);
 		return $this->currency;
 	}
@@ -144,6 +145,8 @@ class APP
 	 */ 
 	public function currency_amount($amount, $requiredCurrency = null)
 	{
+		return '';
+
 		$settings = $this->SystemSetting();
 		$activeCurrency =  $this->currency();
 		if ($activeCurrency->code == $settings['currency'])
@@ -162,8 +165,8 @@ class APP
 	 */ 
 	public function currency_converter($amount, $requiredCurrency = null)
 	{
+		return '';
 		try {
-
 			$settings = $this->SystemSetting();
 			$activeCurrency = (object) (new CurrencyService)->getCurrency($requiredCurrency);
 
