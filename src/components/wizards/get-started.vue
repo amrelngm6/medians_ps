@@ -788,7 +788,7 @@ export default
 
                     
                     const params = new URLSearchParams([]);
-                    params.append('type', 'User.get_started_validate_pagadito');
+                    params.append('type', 'Payment.get_started_validate_pagadito');
                     params.append('params[amount]', cost());
                     params.append('params[currency]', props.currency.code);
                     params.append('params[payment_method]', paymentMethod.value);
@@ -799,6 +799,9 @@ export default
                         if (data.url)
                         {
                             window.open(data.url);
+                            var  interval = setInterval(() => {
+                                verifyPaystackPayment(reference);
+                            }, 5000);
                         }
                         console.error(data);
                     });
@@ -809,6 +812,21 @@ export default
                     console.error('Error creating transaction:', error);
                 }
             }
+
+            const verifyPagaditoPayment = async (reference)  =>  
+            {
+                const response = await axios.get("https://api.paystack.co/transaction/verify/"+reference,{
+                        headers: {
+                            'Authorization': 'Bearer '+props.setting.paystack_secret_key,
+                            'Content-Type': 'application/json'
+                        }});
+                
+                if (response.data.data.status == 'success')
+                {
+                    return validateOrderPayment(response.data.data, response.data.data.id);
+                }
+            }
+
 
             const completePagadito = async () => {
 

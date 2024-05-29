@@ -224,6 +224,63 @@ class GetStartedController
 	
 	} 
 
+	public function validatePagaditoPaymentWebhook()
+	{
+		
+		$app = new \config\APP;
+		$setting = $app->SystemSetting();
+
+		// Pagadito sandbox credentials
+		$merchant_id = $setting['pagadito_uid'];
+		$api_key = $setting['pagadito_wsk'];
+		
+		// Transaction details (typically, you'd get these from a POST request)
+		$payload = file_get_contents('php://input');
+		// $data = json_decode($payload, true);
+		$token = $_GET['token'];
+		// file_put_contents('webhook_log.txt', print_r($data, true), FILE_APPEND);
+		
+		try {
+			
+			
+			// Decode JSON response
+			$pagadito = new Pagadito($setting['pagadito_uid'], $setting['pagadito_wsk']);
+			$pagadito->mode_sandbox_on();
+			
+			try {
+				// Connect to Pagadito
+				if ($pagadito->connect()) {
+					// Create transaction
+					if ($response = $pagadito->get_status($token)) {
+						$status = $pagadito->get_rs_status();
+						$response_data = [
+							'url' => $status,
+						];
+					} else {
+						$response_data = [
+							'error' => 'Transaction execution failed: ' . $pagadito->get_rs_code() . ' - ' . $pagadito->get_rs_message(),
+						];
+					}
+				} else {
+					$response_data = [
+						'error' => 'Connection failed: ' . $pagadito->get_rs_code() . ' - ' . $pagadito->get_rs_message(),
+					];
+				}
+			} catch (Exception $e) {
+				$response_data = [
+					'error' => 'Exception: ' . $e->getMessage(),
+				];
+			}
+
+			// Return response as JSON
+			// header('Content-Type: application/json');
+			return response(json_encode($response_data));
+
+		} catch (\Throwable $th) {
+			echo json_encode(['error' => $th->getMessage()]);
+		}
+	}
+	
 	public function validatePagaditoPayment()
 	{
 		$app = new \config\APP;
