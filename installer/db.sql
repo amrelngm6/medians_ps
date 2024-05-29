@@ -686,7 +686,7 @@ CREATE TABLE `orders` (
   `customer_id` int(11) NOT NULL,
   `tax_amount` float DEFAULT 0,
   `shipping_amount` float NOT NULL DEFAULT 0,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` date NOT NULL DEFAULT '0000-00-00',
   `notes` text DEFAULT NULL,
   `status` varchar(25) NOT NULL DEFAULT 'new',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
