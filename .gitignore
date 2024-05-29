@@ -3,7 +3,6 @@
 /uploads/files
 /uploads/bugs
 /src/tailwind
-/installer
 /app/config/database.php
 /app/config/parameters.yml
 /app/cache

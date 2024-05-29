@@ -272,7 +272,6 @@ class APP
 		RouteHandler::dispatch();
 
 		return true;
-
 	}
 
 
