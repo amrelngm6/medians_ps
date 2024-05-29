@@ -92,6 +92,10 @@ class APIController extends CustomController
 					$return = (new Users\Application\GetStartedController())->saveFreePlan();
 					break;
 
+				case 'User.get_started_validate_pagadito':
+					$return = (new Users\Application\GetStartedController())->validatePagaditoPayment();
+					break;
+
 				case 'Student.create':
 					$return = (new Students\Application\StudentController())->store();
 					break;

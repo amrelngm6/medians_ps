@@ -249,7 +249,7 @@
                                                         v-text="translate('Payment method')"></strong></p>
                                                 <ul class="flex nav-pills nav-pills-custom mb-3">
                                                     <li class="nav-item mb-3 me-3 me-lg-6" role="presentation" v-if="setting.paypal_payment">
-                                                        <a @click="paymentMethod = 'paypal'"  :class="paymentMethod == 'paypal' ? 'border-black' : ''"  class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_2"  href="javascript:;" >
+                                                        <a @click="paymentMethod = 'paypal'"  :class="paymentMethod == 'paypal' ? 'border-black' : ''"  class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_1"  href="javascript:;" >
                                                             <div class="nav-icon mb-3">        
                                                                 <svg width="30px"
                                                                     height="30px" viewBox="-3.5 0 48 48" version="1.1"
@@ -272,7 +272,7 @@
                                                             <span class="nav-text text-gray-800 fw-bold fs-6 lh-1" v-text="translate('PayPal')"> </span> 
                                                         </a>
                                                     </li>
-                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation" v-if="setting.paystack">
+                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation" v-if="setting.paystack_payment">
                                                         <a @click="paymentMethod = 'paystack'" :class="paymentMethod == 'paystack' ? 'border-black' : ''"  class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_2" href="javascript:;" >
                                                             <div class="nav-icon mb-3">        
                                                                 <vue-feather type="credit-card" />
@@ -280,6 +280,16 @@
                                                             <span class="nav-text text-gray-800 fw-bold fs-6 lh-1" v-text="translate('PayStack')"> </span> 
                                                         </a>
                                                     </li>
+                                                    
+                                                    <li class="nav-item mb-3 me-3 me-lg-6" role="presentation" v-if="setting.paystack_payment">
+                                                        <a @click="paymentMethod = 'pagadito'" :class="paymentMethod == 'pagadito' ? 'border-black' : ''"  class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column overflow-hidden w-80px h-85px pt-5 pb-2 " id="kt_stats_widget_16_tab_link_3" href="javascript:;" >
+                                                            <div class="nav-icon mb-3">        
+                                                                <vue-feather type="credit-card" />
+                                                            </div>
+                                                            <span class="nav-text text-gray-800 fw-bold fs-6 lh-1" v-text="translate('Pagadito')"> </span> 
+                                                        </a>
+                                                    </li>
+
                                                 </ul>
                                             </li>
                                         </ul>
@@ -309,7 +319,12 @@
                                                         href="javascript:;"><span v-text="translate('Pay with PayPal')"></span></a>
                                                     <a @click="complete()" v-if="setting.paystack_payment && paymentMethod == 'paystack'"
                                                         class="inline-flex justify-center rounded-lg text-lg font-semibold py-4 px-3 bg-info text-white hover:bg-slate-700 mt-6 w-full"
-                                                        href="javascript:;"><span v-text="translate('Pay with PayStack')"></span></a></div>
+                                                        href="javascript:;"><span v-text="translate('Pay with PayStack')"></span></a>
+                                                    
+                                                    <a @click="complete()" v-if="setting.paystack_payment && paymentMethod == 'pagadito'"
+                                                        class="inline-flex justify-center rounded-lg text-lg font-semibold py-4 px-3 bg-info text-white hover:bg-slate-700 mt-6 w-full"
+                                                        href="javascript:;"><span v-text="translate('Pay with PayStack')"></span></a>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -576,6 +591,11 @@ export default
                 {
                     completePaystack();
                 }
+                
+                if (paymentMethod.value == 'pagadito')
+                {
+                    completePagadito();
+                }
             }
 
 
@@ -714,9 +734,9 @@ export default
             const completePaystack = async () => {
 
                 showLoader.value = true;
-                
+
                 await convertRates(props.currency.code, 'NGN');
-                
+
                 const params = new URLSearchParams([]);
                 params.append('type', 'User.get_started_save_plan');
                 params.append('params[plan_id]', activePlan.value.plan_id);
@@ -761,6 +781,50 @@ export default
                     return validateOrderPayment(response.data.data, response.data.data.id);
                 }
             }
+
+
+            const  createTransaction = async () => {
+                try {
+
+                    
+                    const params = new URLSearchParams([]);
+                    params.append('type', 'User.get_started_validate_pagadito');
+                    params.append('params[amount]', cost());
+                    params.append('params[currency]', props.currency.code);
+                    params.append('params[payment_method]', paymentMethod.value);
+                    params.append('params[description]', 'Subscribe to plan');
+                    params.append('params[url_ok]', props.conf.url+'payment-success');
+                    params.append('params[url_cancel]', props.conf.url+'payment-cancel');
+                    handleRequest(params, '/api/create').then(async (data)  => {
+                        if (data.url)
+                        {
+                            window.open(data.url);
+                        }
+                        console.error(data);
+                    });
+
+                        
+
+                } catch (error) {
+                    console.error('Error creating transaction:', error);
+                }
+            }
+
+            const completePagadito = async () => {
+
+                showLoader.value = true;
+                
+                try {
+                    createTransaction()
+
+                } catch (error) {
+                    console.error('Error initiating payment:', error);
+                }
+            }
+
+
+
+
             /**
              * Validate paypal payment
              */
