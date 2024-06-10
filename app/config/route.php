@@ -113,12 +113,6 @@ RouteHandler::post('/customer/confirm', \Medians\Auth\Application\CustomerAuthSe
 RouteHandler::post('/customer/reset-password', \Medians\Auth\Application\CustomerAuthService::class.'@userResetPassword');
 RouteHandler::post('/customer/reset-password-code', \Medians\Auth\Application\CustomerAuthService::class.'@resetChangePassword');
 
-
-/**
- * Load sub-pages
- */
-RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
-
 /**
 * Restricted access requests 
 */
@@ -356,18 +350,18 @@ if(!empty($app->auth()))
     
 }
 
-RouteHandler::get('/logout', function () 
-{
-    (new \Medians\Auth\Application\AuthService)->unsetSession();
-    (new \Medians\Auth\Application\CustomerAuthService)->unsetSession();
-    echo (new \config\APP)->redirect('./');
-});
 
 /**
  * Load sub-pages
  */
 RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
 
+RouteHandler::get('/logout', function () 
+{
+    (new \Medians\Auth\Application\AuthService)->unsetSession();
+    (new \Medians\Auth\Application\CustomerAuthService)->unsetSession();
+    echo (new \config\APP)->redirect('./');
+});
 
 return $app->run();
 
