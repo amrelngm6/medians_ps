@@ -72,10 +72,11 @@ class BlogController extends CustomController
 		return [
             [ 'key'=> "id", 'title'=> "#", 'column_type'=>'hidden'],
 			
-			[ 'key'=> "author_name", 'custom_field'=>true, 'title'=> translate('Author'), 
-				'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key' => 'title', 'required'=>true, 'withLabel'=>true, 
+			[ 'key'=> "created_by", 'title'=> translate('Author'), 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key' => 'id', 'required'=>true, 'withLabel'=>true, 
 				'data' => $this->doctorRepo->get()
 			],
+			[ 'key'=> "author_name", 'title'=> translate('Author name'), 'fillable'=> true, 'custom_field'=>true, 'column_type'=>'text' ],
 			[ 'key'=> "picture", 'title'=> translate('picture'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
 

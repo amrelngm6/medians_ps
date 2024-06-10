@@ -75,7 +75,7 @@ class Blog extends CustomModel
 
 	public function author()
 	{
-		return $this->hasOne(Doctor::class, 'doctor_id', 'created_by');
+		return $this->hasOne(Doctor::class, 'id', 'created_by');
 	}
 
 	public function custom_fields()

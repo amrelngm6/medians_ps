@@ -335,9 +335,9 @@ class BlogRepository
 		 * 
 		*/
 		
-		preg_match_all("|\[--@plugin=(.*)\--@id=(.*)\--](.*)</[^>]+>|U", $val, $matches, PREG_PATTERN_ORDER);	
+		$val ? preg_match_all("|\[--@plugin=(.*)\--@id=(.*)\--](.*)</[^>]+>|U", $val, $matches, PREG_PATTERN_ORDER) : null;	
 		
-		return $matches;
+		return $matches ?? $val;
 		
 	}
 	
