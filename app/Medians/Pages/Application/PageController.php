@@ -350,17 +350,20 @@ class PageController extends CustomController
 		
         $pageContent = $this->find(urldecode($id));
 
-		try {
-
-			switch ($pageContent->item_type) 
+		try 
+		{
+			if (isset($pageContent->item_type))
 			{
-				case \Medians\OnlineConsultations\Domain\OnlineConsultation::class:
-					return (new \Medians\OnlineConsultations\Application\OnlineConsultationController)->page($pageContent);
-					break;
+				switch ($pageContent->item_type) 
+				{
+					case \Medians\OnlineConsultations\Domain\OnlineConsultation::class:
+						return (new \Medians\OnlineConsultations\Application\OnlineConsultationController)->page($pageContent);
+						break;
 
-				case \Medians\Offers\Domain\Offer::class:
-					return (new \Medians\Offers\Application\OfferController)->page($pageContent);
-					break;
+					case \Medians\Offers\Domain\Offer::class:
+						return (new \Medians\Offers\Application\OfferController)->page($pageContent);
+						break;
+				}
 			}
            
 		} catch (\Exception $e) {
