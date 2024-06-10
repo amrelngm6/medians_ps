@@ -8,6 +8,7 @@ use Medians\Blog\Infrastructure\BlogRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Offers\Infrastructure\OfferRepository;
 use Medians\Stories\Infrastructure\StoryRepository;
+use Medians\Doctors\Infrastructure\DoctorRepository;
 
 
 class BlogController extends CustomController 
@@ -16,7 +17,13 @@ class BlogController extends CustomController
 	/**
 	* @var Object
 	*/
+	protected $app;
 	protected $repo;
+	protected $specsRepo;
+	protected $doctorRepo;
+	protected $categoryRepo;
+	protected $offersRepo;
+	protected $storiesRepo;
 
 	
 
@@ -30,69 +37,11 @@ class BlogController extends CustomController
 		$this->categoryRepo = new CategoryRepository();
 		$this->offersRepo = new OfferRepository();
 		$this->storiesRepo = new StoryRepository();
+		$this->doctorRepo = new DoctorRepository();
 
 
 	}
 
-
-
-
-	// /**
-	//  * Columns list to view at DataTable 
-	//  *  
-	//  */ 
-	// public function columns( ) 
-	// {
-
-	// 	return [
-    //         [
-    //             'key'=> "id",
-    //             'title'=> "#",
-    //         ],
-    //         [
-    //             'key'=> "title",
-    //             'title'=> translate('title'),
-    //             'sortable'=> true,
-    //         ],
-    //         [
-    //             'key'=> "category_name",
-    //             'title'=> translate('category'),
-    //             'sortable'=> false,
-    //         ],
-    //         [
-    //             'key'=> "date",
-    //             'title'=> translate('Date'),
-    //             'sortable'=> true,
-    //         ]
-    //     ];
-	// }
-
-	
-
-	// /**
-	//  * Admin index items
-	//  * 
-	//  * @param Silex\Application $app
-	//  * @param \Twig\Environment $twig
-	//  * 
-	//  */ 
-	// public function index( ) 
-	// {
-		
-	// 	try {
-			
-	// 	    return render('blog', [
-	// 	        'load_vue' => true,
-	// 	        'title' => translate('blog'),
-	// 	        'columns' => $this->columns(),
-	// 	        'items' => $this->repo->get(),
-	// 	        'categories' => $this->categoryRepo->get('Medians\Blog\Domain\Blog'),
-	// 	    ]);
-	// 	} catch (\Exception $e) {
-	// 		throw new \Exception($e->getMessage(), 1);
-			
-	// 	}
-	// }
 
 
 	/**
@@ -122,6 +71,11 @@ class BlogController extends CustomController
 
 		return [
             [ 'key'=> "id", 'title'=> "#", 'column_type'=>'hidden'],
+			
+			[ 'key'=> "author_name", 'custom_field'=>true, 'title'=> translate('Author'), 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key' => 'title', 'required'=>true, 'withLabel'=>true, 
+				'data' => $this->doctorRepo->get()
+			],
 			[ 'key'=> "picture", 'title'=> translate('picture'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
 

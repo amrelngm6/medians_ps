@@ -8,7 +8,14 @@
                 </div>
                 <input name="type" type="hidden" :value="model">
                 <input name="params[active]" type="hidden" value="1">
-                
+<!--                 
+                <div class="py-1 w-full pt-4" v-for="column in columns" v-if="columns">
+                    
+                    <span class="block mb-2  text-gray-600 text-lg" v-text="column.title" v-if="column.column_type != 'hidden'"></span>
+                    <form_field :callback="closeSide" :column="column" :model="model"  :item="item" :conf="conf"></form_field>
+
+                </div> -->
+
                 <div  v-for="column in columns" v-if="columns">
                     <div class="py-1 w-full pt-4" v-if="column" >
 
@@ -49,6 +56,7 @@
 <script>
 import close_icon from '@/components/svgs/Close.vue';
 import field from '@/components/includes/Field.vue';
+import form_field from '@/components/includes/form_field.vue';
 import { translate } from '@/utils.vue';
 
 
@@ -56,6 +64,7 @@ export default
 {
     components: {
         'vue-medialibrary-field': field,
+        form_field,
         close_icon
     },
     props: [

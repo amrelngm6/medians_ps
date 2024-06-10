@@ -18,6 +18,7 @@ use Medians\Doctors\Infrastructure\DoctorRepository;
 use Medians\StoryDates\Infrastructure\StoryDateRepository;
 use Medians\Stories\Infrastructure\StoryRepository;
 use Medians\Technologies\Infrastructure\TechnologyRepository;
+use Medians\OnlineConsultations\Infrastructure\OnlineConsultationRepository;
 
 class PageController extends CustomController 
 {
@@ -36,6 +37,7 @@ class PageController extends CustomController
     public $storyDateRepo;
     public $storyRepo;
     public $specsRepo;
+    public $consultationRepo;
 
     function __construct()
     {
@@ -45,6 +47,7 @@ class PageController extends CustomController
         $this->menuRepo = new MenuRepository;
 		
 		$this->specsRepo = new SpecializationRepository();
+		$this->consultationRepo = new OnlineConsultationRepository();
 		$this->categoryRepo = new CategoryRepository();
 		$this->blogRepo = new BlogRepository();
 		$this->doctorRepo = new DoctorRepository();
@@ -307,6 +310,32 @@ class PageController extends CustomController
 		try {
 
 			return $this->handlePageObject($pageContent);
+           
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+    }
+	
+    /**
+     * Sub-pages for frontend
+     */
+    public function sub_page($prefix, $id)
+    {
+		
+        $pageContent = $this->find(urldecode($id));
+
+		try {
+
+			switch ($pageContent->item_type) 
+			{
+				case \Medians\OnlineConsultations\Domain\OnlineConsultation::class:
+					return (new \Medians\OnlineConsultations\Application\OnlineConsultationController)->page($pageContent);
+					break;
+
+				case \Medians\Offers\Domain\Offer::class:
+					return (new \Medians\Offers\Application\OfferController)->page($pageContent);
+					break;
+			}
            
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

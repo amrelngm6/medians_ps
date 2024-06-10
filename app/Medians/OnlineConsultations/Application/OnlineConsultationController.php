@@ -229,12 +229,12 @@ class OnlineConsultationController extends CustomController
 	 * Front page 
 	 * @var Int
 	 */
-	public function page($id=null)
+	public function page($pageContent=null)
 	{
 
 		try {
 			
-			$item = $this->repo->find($id);
+			$item = $this->repo->find($pageContent->item_id);
 			$item->addView();
 			$settings = $this->app->SystemSetting();
 

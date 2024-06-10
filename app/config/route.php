@@ -342,17 +342,20 @@ if(!empty($app->auth()))
 }
 
 
-/**
- * Load sub-pages
- */
-RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
-
 RouteHandler::get('/logout', function () 
 {
     (new \Medians\Auth\Application\AuthService)->unsetSession();
     (new \Medians\Auth\Application\CustomerAuthService)->unsetSession();
     echo (new \config\APP)->redirect('./');
 });
+
+
+/**
+ * Load sub-pages
+ */
+RouteHandler::get('/(:all)/(:all)', \Medians\Pages\Application\PageController::class.'@sub_page'); 
+RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
+
 
 return $app->run();
 

@@ -185,7 +185,6 @@ class OfferController extends CustomController
 			$this->repo->getModel()->addView();
 			$settings = $this->app->SystemSetting();
 
-		    // return  render('login', [
 			return render('views/front/'.($settings['template'] ?? 'default').'/offers.html.twig', [
 		        'items' => $items,
 		        'pageinfo' => $pageinfo,
