@@ -87,7 +87,7 @@ class PageController extends CustomController
             [ 'key'=> "title", 'title'=> translate('Title'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "prefix", 'title'=> translate('prefix'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "homepage", 'title'=> translate('Is Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-            [ 'value'=> "builder", 'text'=> translate('Page Builder'), 'sortable'=> true ],
+            [ 'key'=> "builder", 'text'=> translate('Page Builder'), 'sortable'=> true ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}

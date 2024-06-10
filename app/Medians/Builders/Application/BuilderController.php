@@ -46,19 +46,26 @@ class BuilderController extends CustomController
 
 			$lang = $request->get('lang') ? $request->get('lang') : $this->app->setLang()->lang;
 			$type = $request->get('item_type') ? $request->get('item_type') : 'Page';
-			$itemId = $request->get('item_id') ?? 0;
+			$itemId = $request->get('item_id') ?? $request->get('prefix');
 			
-			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type );
-
+			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type ) ?? $this->contentRepo->find($itemId );
+			
 			$check = (new $item->item_type)->find($item->item_id);
 
-			$check->content = $check->lang_content = $item;
+			if ($check) {
+				$check->content = $check->lang_content = $item;
+			} else {
+				$check = (object)[];
+				$check->content = $item;
+				$check->lang_content = $item;
+			}
 
 			return render('views/admin/builder/index.html.twig', [
-				'page' => $check->lang_content ?? [], 
+				'page' => $check->lang_content ?? $item, 
 				'item' => $check,
 				'current_lang' => $lang,
-				'canScrab' => true,
+				'isEmpty' => $item->content == null,
+				'canScrab' => false,
 				'type' => $type,
 				'item_id' => $itemId,
 				'precode' => isset($check->lang_content) && (substr(trim($check->lang_content), 0, 8) == '<section') ? '' : '<section id="newKeditItem" class="kedit">', 

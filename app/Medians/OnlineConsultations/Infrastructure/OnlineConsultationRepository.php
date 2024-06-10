@@ -59,15 +59,8 @@ class OnlineConsultationRepository
 	public function get_root($limit = 100)
 	{
 		$lang = translate('lang');
-		return OnlineConsultation::where('parent_id', '0')
-		->with(['childs'=>function($q)  use ($lang) {
-			$q->with(['content'=>function($q) use ($lang)
-			{
-				$q->where('lang', $lang);
-			}]);
-		}])
-		->with('content','user')
-		->where('id','!=','1')
+		return OnlineConsultation::with('content','doctor')
+		->where('status','on')
 		->limit($limit)->orderBy('sorting', 'DESC')->get();
 	}
 

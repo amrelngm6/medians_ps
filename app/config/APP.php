@@ -102,12 +102,21 @@ class APP
 	}
 
 	/**
-	 * Load all setting for a branch 
+	 * Load all specializationss 
 	 * return as Array
 	 */ 
 	public function specializations()
 	{
 		return  (new \Medians\Specializations\Infrastructure\SpecializationRepository())->get_root();
+	}
+
+	/**
+	 * Load all online consultations 
+	 * return as Array
+	 */ 
+	public function online_consultations()
+	{
+		return  (new \Medians\OnlineConsultations\Infrastructure\OnlineConsultationRepository())->get_root();
 	}
 
 	/**
