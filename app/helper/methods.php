@@ -128,6 +128,6 @@ function sanitizeInput($input) {
         return $input;
     } else {
         // If input is a string, sanitize it
-        return str_replace(["&lt;", "&quot", "&gt;"], "",  $input ? htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'): $input);
+        return str_replace(["&lt;", "&quot", "&gt;", '$_', '$'], "",  $input ? htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'): $input);
     }
 }
