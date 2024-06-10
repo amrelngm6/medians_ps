@@ -187,9 +187,9 @@ class APIController extends CustomController
 					$return = (new Templates\Application\WebTemplateController)->store();
 					break;
 					
-				case 'StoryDates.create':
-					$return = (new StoryDates\Application\StoryDateController)->store();
-					break;
+				// case 'StoryDates.create':
+				// 	$return = (new StoryDates\Application\StoryDateController)->store();
+				// 	break;
 					
 		
 			}
