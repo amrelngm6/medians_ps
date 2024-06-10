@@ -116,9 +116,14 @@ function __($langkey = null)
  */
 function sanitizeInput($input) {
     if (is_array($input) || is_object($input)) {
-        // If input is an array, sanitize each element recursively
         foreach ($input as $key => $value) {
             $input[$key] = sanitizeInput($value);
+        }
+        return $input;
+    } elseif ( is_object($input)) {
+        // If input is an array, sanitize each element recursively
+        foreach ($input as $key => $value) {
+            $input->$key = sanitizeInput($value);
         }
         return $input;
     } else {
