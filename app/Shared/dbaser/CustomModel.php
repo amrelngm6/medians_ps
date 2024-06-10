@@ -92,20 +92,20 @@ class CustomModel extends Model
 		return $this->hasOne(User::class, 'id', 'created_by');
 	}
 
-	// public function content()
-	// {
-	// 	return $this->morphOne(Content::class, 'item')->where('lang', $_SESSION['lang']);
-	// }
+	public function content()
+	{
+		return $this->morphOne(Content::class, 'item')->where('lang', $_SESSION['lang']);
+	}
 
-	// public function en()
-	// {
-	// 	return $this->morphOne(Content::class, 'item')->where('lang', 'en');
-	// }
+	public function en()
+	{
+		return $this->morphOne(Content::class, 'item')->where('lang', 'en');
+	}
 
-	// public function ar()
-	// {
-	// 	return $this->morphOne(Content::class, 'item')->where('lang', 'ar');
-	// }
+	public function ar()
+	{
+		return $this->morphOne(Content::class, 'item')->where('lang', 'ar');
+	}
 
 
 	public function sessionGuest()

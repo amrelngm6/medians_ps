@@ -1,40 +1,122 @@
-
-    <footer id="main-footer" class="px-4 lg:px-0">
-        <hr class="container mx-auto my-10 lg" />
-        <div class="container mx-auto lg:flex pb-10">
-            <div class="w-full pb-6">
-                <img src="{{app.CONF.url}}{{app.SystemSetting.logo}}" />
-                <p class="pt-2 w-96">.</p>
-                <p>Copyright © <a href="#">{{app.SystemSetting.sitename}}</a> 2024. All Rights Reserved.</p>
+    <footer class="w-full footer-bg relative">
+        <img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-10 w-full " style="opacity: .08;" />
+        <div class="mx-auto container py-10 px-2 lg:px-0 relative"  style="z-index:99">
+            <div class="flex w-full">
+                <div class="w-full"><a class="w-40 block py-2 px-6 bg-white rounded-lg" href="#!"  aria-label="Logo" title="Logo"  ><img loading="lazy" alt="{{app.Settings['sitename']}}" width="110" height="65" src="/stream?image=/uploads/img/Logo_j.webp"></a></div>
+                <div class="w-64">
+                    <a href="/{{lang.translate('lang') == 'arabic' ? 'الحجز' : 'booking'}}" class="font-bold block mx-auto w-32 py-2 px-6 cyan-bg text-center rounded-lg">{{lang.translate('book now')}}</a>
+                </div>
             </div>
-            <div class="lg:flex gap-10 w-full">
-                <div class="w-full pb-6">
-                    <p class="font-semibold ">{{lang.translate('Services')}}</p>
-                    <ul class="pt-4">
-                        {% for menu in footer_menu1 %}
-                        <li class="pb-1"><a href="{{menu.page.lang_content.prefix}}">{{menu.page.lang_content.title}}</a></li>
-                        {% endfor %}
+            <div class="block lg:flex w-full gap gap-3">
+                <div class="w-full">
+                    <ul class="block text-white my-4">
+                        <li class="py-2 flex w-full">
+                            <div class="bg-white rounded-lg p-2 w-14 text-center mx-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="24.917" height="35.501" viewBox="0 0 24.917 35.501">
+                                    <path id="pin" d="M12.417.25A12.108,12.108,0,0,1,21.25,3.875a11.908,11.908,0,0,1,3.667,8.792,16.988,16.988,0,0,1-1.292,5.958,34.589,34.589,0,0,1-3.125,6.25q-1.833,2.875-3.667,5.417T13.75,34.334l-1.333,1.417q-.5-.5-1.333-1.5T8.126,30.376Q6,27.5,4.334,24.793a38.083,38.083,0,0,1-3-6.126,16.842,16.842,0,0,1-1.333-6A11.972,11.972,0,0,1,3.625,3.875,11.972,11.972,0,0,1,12.417.25Zm0,16.833a4.4,4.4,0,0,0,3.167-1.292,4.33,4.33,0,0,0,0-6.25A4.389,4.389,0,0,0,12.417,8.25,4.411,4.411,0,0,0,8,12.667a4.409,4.409,0,0,0,4.417,4.416Z" transform="translate(0 -0.25)" fill="#36d3eb" /></svg>
+                            </div>
+                            <a class="text-white font-semibold" href="#!">{{lang.translate('Dokki')}}
+                                <span class="block text-gray-300 text-base font-normal">{{lang.translate('MAIN_ADDRESS')}}</span>
+                            </a>
+                        </li>
+                        <li class="py-2 hidden w-full">
+                            <div class="bg-white rounded-lg p-2 w-14 text-center mx-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="24.917" height="35.501" viewBox="0 0 24.917 35.501">
+                                    <path id="pin" d="M12.417.25A12.108,12.108,0,0,1,21.25,3.875a11.908,11.908,0,0,1,3.667,8.792,16.988,16.988,0,0,1-1.292,5.958,34.589,34.589,0,0,1-3.125,6.25q-1.833,2.875-3.667,5.417T13.75,34.334l-1.333,1.417q-.5-.5-1.333-1.5T8.126,30.376Q6,27.5,4.334,24.793a38.083,38.083,0,0,1-3-6.126,16.842,16.842,0,0,1-1.333-6A11.972,11.972,0,0,1,3.625,3.875,11.972,11.972,0,0,1,12.417.25Zm0,16.833a4.4,4.4,0,0,0,3.167-1.292,4.33,4.33,0,0,0,0-6.25A4.389,4.389,0,0,0,12.417,8.25,4.411,4.411,0,0,0,8,12.667a4.409,4.409,0,0,0,4.417,4.416Z" transform="translate(0 -0.25)" fill="#36d3eb" /></svg>
+                            </div>
+                            <a class="text-white font-semibold" href="#!">عيادات كليوباترا -زايد
+                                <span class="block text-gray-300 text-base font-normal">الشيخ زايد الشيخ زايد, المحور المركزى, </span>
+                            </a>
+                        </li>
+                        <li class="py-2 hidden w-full">
+                            <div class="bg-white rounded-lg p-2 w-14 text-center mx-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="24.917" height="35.501" viewBox="0 0 24.917 35.501">
+                                    <path id="pin" d="M12.417.25A12.108,12.108,0,0,1,21.25,3.875a11.908,11.908,0,0,1,3.667,8.792,16.988,16.988,0,0,1-1.292,5.958,34.589,34.589,0,0,1-3.125,6.25q-1.833,2.875-3.667,5.417T13.75,34.334l-1.333,1.417q-.5-.5-1.333-1.5T8.126,30.376Q6,27.5,4.334,24.793a38.083,38.083,0,0,1-3-6.126,16.842,16.842,0,0,1-1.333-6A11.972,11.972,0,0,1,3.625,3.875,11.972,11.972,0,0,1,12.417.25Zm0,16.833a4.4,4.4,0,0,0,3.167-1.292,4.33,4.33,0,0,0,0-6.25A4.389,4.389,0,0,0,12.417,8.25,4.411,4.411,0,0,0,8,12.667a4.409,4.409,0,0,0,4.417,4.416Z" transform="translate(0 -0.25)" fill="#36d3eb" /></svg>
+                            </div>
+                            <a class="text-white font-semibold" href="#!">مستشفى كليوباترا - مصر الجديدة
+                                <span class="block text-gray-300 text-base font-normal">ا 29 ش كليوباترا - الماظة - هليوبوليس</span>
+                            </a>
+                        </li>
+                        <li class="py-2 hidden w-full ">
+                            <div class="bg-white rounded-lg p-2 w-14 text-center mx-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="24.917" height="35.501" viewBox="0 0 24.917 35.501">
+                                    <path id="pin" d="M12.417.25A12.108,12.108,0,0,1,21.25,3.875a11.908,11.908,0,0,1,3.667,8.792,16.988,16.988,0,0,1-1.292,5.958,34.589,34.589,0,0,1-3.125,6.25q-1.833,2.875-3.667,5.417T13.75,34.334l-1.333,1.417q-.5-.5-1.333-1.5T8.126,30.376Q6,27.5,4.334,24.793a38.083,38.083,0,0,1-3-6.126,16.842,16.842,0,0,1-1.333-6A11.972,11.972,0,0,1,3.625,3.875,11.972,11.972,0,0,1,12.417.25Zm0,16.833a4.4,4.4,0,0,0,3.167-1.292,4.33,4.33,0,0,0,0-6.25A4.389,4.389,0,0,0,12.417,8.25,4.411,4.411,0,0,0,8,12.667a4.409,4.409,0,0,0,4.417,4.416Z" transform="translate(0 -0.25)" fill="#36d3eb" /></svg>
+                            </div>
+                            <a class="text-white font-semibold" href="#!">عيادات كليوباترا -التجمع الخامس
+                                <span class="block text-gray-300 text-base font-normal">عيادات كليوباترا- ش ال 90 - التجمع الخامس</span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="py-6 text-blue-500 social-footer-link">
+                                <a title="Bedaya facebook" href="{{lang.translate('lang') == 'arabic' ? 'https://www.facebook.com/bedayaivf' : 'https://www.facebook.com/bedayahospital'}}" class="inline-block bg-white rounded-lg p-2 w-10 text-center mx-1 text-blue-500">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a title="Bedaya insta"  href="{{lang.translate('lang') == 'arabic' ? 'https://www.instagram.com/bedayaivf/' : 'https://www.instagram.com/bedayaivf5/'}}" class="inline-block bg-white rounded-lg p-2 w-10 text-center mx-1 text-purple-600">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a title="Bedaya facebook"  href="{{lang.translate('lang') == 'arabic' ? 'https://www.youtube.com/@Bedayaivf' : 'https://www.youtube.com/channel/UCTN7gpAomop62gtbnSNumsw'}}" class="inline-block bg-white rounded-lg p-2 w-10 text-center mx-1 text-red-500">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a title="Bedaya linked in"  href="https://www.linkedin.com/company/bedaya-hospital/ " class="inline-block bg-white rounded-lg p-2 w-10 text-center mx-1 text-blue-500">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a title="Bedaya facebook"  href="{{lang.translate('lang') == 'arabic' ? 'https://www.snapchat.com/add/bedaya_hospital/' : 'https://www.snapchat.com/add/bedayaivf'}}" class="inline-block text-yellow-400 bg-white rounded-lg p-2 w-10 text-center mx-2">
+                                    <i class="fab fa-snapchat"></i>
+                                </a>
+                                <a title="Bedaya X"  href="{{lang.translate('lang') == 'arabic' ? 'https://twitter.com/bedayaivf/' : 'https://twitter.com/BedayaEnglish'}}" class="inline-block bg-white rounded-lg p-2 w-10 text-center mx-1 text-blue-400">
+                                    <img alt="Bedaya X Twitter" width="36" height="36" src="/stream?image=/uploads/img/x.webp" class="p-1" />
+                                </a> 
+                                <a title="Bedaya TikTok"  href="{{lang.translate('lang') == 'arabic' ? 'https://www.tiktok.com/@bedayahospital' : 'https://www.tiktok.com/@bedayaivf'}}" class="inline-block bg-white rounded-lg p-1 w-10 text-center mx-1 text-blue-400">
+                                    <img alt="Bedaya TikTok" width="36" height="36" src="/stream?image=/uploads/img/tiktok.webp" class="p-1" />
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
-                <div class="w-full pb-6">
-                    <p class="font-semibold ">{{lang.translate('Useful links')}}</p>
-                    <ul class="pt-4">
-                    
-                        {% for menu in footer_menu2 %}
-                        <li class="pb-1"><a href="{{menu.page.lang_content.prefix}}">{{menu.page.lang_content.title}}</a></li>
-                        {% endfor %}
+                <div class="w-full pt-6 lg:pr-20">
+                    <div class="font-bold pb-2 block text-white">{{lang.translate('bedaya_specializations')}}</div>
+                    <ul class="block text-white ">
+                        {% for cat in app.specializations %}
+                        {% if cat.id == 2 %}
+                        {% for item in cat.childs %}
+                        {% if item.id in [52,53,57] %}
+                        <li class="cat-{{item.id}} py-1"><a href="/{{item.content.prefix}}">{{item.content.title}}</a></li>
+                        {% endif  %}
+                        {% endfor  %}
+                        {% endif  %}
+                        {% endfor  %}
                     </ul>
                 </div>
-                <div class="w-full pb-6">
-                    <p class="font-semibold ">{{lang.translate('Follow us')}}</p>
-                    <ul class="pt-4">
-                        {% if app.SystemSetting.facebook_link %}<li class="pb-1 flex gap-2"><i class="fa-facebook-f fab w-6"></i>  <a href="{{app.SystemSetting.facebook_link}}">Facebook</a></li>{% endif %}
-                        {% if app.SystemSetting.instagram_link %}<li class="pb-1 flex gap-2"><i class="fa-instagram fab w-6"></i>  <a href="{{app.SystemSetting.instagram_link}}">Instagram</a></li>{% endif %}
-                        {% if app.SystemSetting.youtube_link %}<li class="pb-1 flex gap-2"><i class="fa-youtube fab w-6"></i>  <a href="{{app.SystemSetting.youtube_link}}">Youtube</a></li>{% endif %}
-                        {% if app.SystemSetting.twitter_link %}<li class="pb-1 flex gap-2"><i class="fa-twitter fab w-6"></i>  <a href="{{app.SystemSetting.twitter_link}}">Twitter</a></li>{% endif %}
+                <div class="w-full ">
+                    <p class="py-6 font-bold pb-2 block text-white">{{lang.translate('important links')}}</p>
+                    <ul class="block text-white ">
+                        <li class="py-1"><a href="/contact">{{lang.translate('contact us')}}</a></li>
+                        <li class="py-1"><a href="#!">{{lang.translate('Pregnancy period Calculator')}}</a></li>
+                        <li class="py-1"><a href="#!">{{lang.translate('OVULATION_CALCULATOR')}}</a></li>
+                        
                     </ul>
                 </div>
+            </div>
+            <div class="text-center font-semibold text-white">
+                <p>{{lang.translate('COPYRIGHTS')}} 2023</p>
+                <img loading="lazy" src="/stream?image=/uploads/img/iso.webp" alt="ISO" width="85" height="38" class="mx-auto my-2">
             </div>
         </div>
     </footer>
-    
+    <div style="z-index:99999" id="modal-wrapper" class="w-full fixed left-0 top-0 h-screen hidden ">
+        <div id="modal-bg" style="background:rgba(0, 0, 0, .5);" class="absolute w-full h-full left-0"></div>
+        <div id="modal-content"  class="p-10 bg-white rounded-2xl m-auto absolute left-0 right-0 top-0 bottom-0 max-w-2xl my-10" style="z-index:9"></div>
+    </div>
+    <!-- <script src="/assets?asset=/src/front/owl/owl.carousel.min.js"></script> -->
+    <!-- <script src="/assets?asset=/src/front/js/sweetalert2@11.js"></script> -->
+    <script src="/assets?asset=/src/front/js/all.js"></script>
+    <script src="/assets?asset=/src/front/js/custom.js"></script>
+
+    <script>
+    </script>
+    <a href="https://wa.me/201225368744" target="_blank"> 
+        <img loading="lazy" alt="whatsapp" src="https://www.bedayahospitals.com/library/WhatsApp.svg.png" class="fixed wapp-side-icon ">
+    </a>
+</body>
+
+</html>

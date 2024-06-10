@@ -135,24 +135,40 @@ class APIController extends CustomController
 		
 					
 		
-				case 'PaymentMethod.create':
-					$return = (new PaymentMethods\Application\PaymentMethodController)->store();
+				case 'Offer.create':
+					$return = (new Offers\Application\OfferController)->store();
 					break;
 		
-				case 'Product.create':
-					$return = (new Products\Application\ProductController)->store();
+				case 'OnlineConsultation.create':
+					$return = (new OnlineConsultations\Application\OnlineConsultationController)->store();
 					break;
 		
-				case 'ProductCategory.create':
-					$return = (new Products\Application\CategoryController)->store();
+				case 'Doctor.create':
+					$return = (new Doctors\Application\DoctorController)->store();
+					break;
+		
+				case 'Technology.create':
+					$return = (new Technologies\Application\TechnologyController)->store();
+					break;
+		
+				case 'Blog.create':
+					$return = (new Blog\Application\BlogController)->store();
+					break;
+		
+				case 'Hook.create':
+					$return = (new Hooks\Application\HookController)->store();
+					break;
+		
+				case 'Story.create':
+					$return = (new Stories\Application\StoryController)->store();
 					break;
 					
-				case 'Brand.create':
-					$return = (new Brands\Application\BrandController)->store();
+				case 'OnlineConsultation.create':
+					$return = (new OnlineConsultations\Application\OnlineConsultationController)->store();
 					break;
 					
-				case 'Shipping.create':
-					$return = (new Shipping\Application\ShippingController)->store();
+				case 'Specialization.create':
+					$return = (new Specializations\Application\SpecializationController)->store();
 					break;
 					
 				case 'Newsletter.create':
@@ -169,6 +185,10 @@ class APIController extends CustomController
 					
 				case 'WebTemplate.create':
 					$return = (new Templates\Application\WebTemplateController)->store();
+					break;
+					
+				case 'StoryDates.create':
+					$return = (new StoryDates\Application\StoryDateController)->store();
 					break;
 					
 		
@@ -251,26 +271,44 @@ class APIController extends CustomController
 				$controller = new Locations\Application\StateController;
 				break;
 
-			case 'PaymentMethod.update':
-				$controller = new PaymentMethods\Application\PaymentMethodController;
+				
+	
+			case 'Offer.update':
+				$controller = new Offers\Application\OfferController;
 				break;
-			
-			case 'Product.update':
-				$controller = new Products\Application\ProductController;
+	
+			case 'OnlineConsultation.update':
+				$controller = new OnlineConsultations\Application\OnlineConsultationController;
 				break;
-			
-			case 'ProductCategory.update':
-				$controller = new Products\Application\CategoryController;
+	
+			case 'Doctor.update':
+				$controller = new Doctors\Application\DoctorController;
 				break;
-			
-			case 'Brand.update':
-				$controller = new Brands\Application\BrandController;
+	
+			case 'Technology.update':
+				$controller = new Technologies\Application\TechnologyController;
 				break;
-			
-			case 'Shipping.update':
-				$controller = new Shipping\Application\ShippingController;
+	
+			case 'Blog.update':
+				$controller = new Blog\Application\BlogController;
 				break;
-			
+	
+			case 'Hook.update':
+				$controller = new Hooks\Application\HookController;
+				break;
+	
+			case 'Story.update':
+				$controller = new Stories\Application\StoryController;
+				break;
+				
+			case 'OnlineConsultation.update':
+				$controller = new OnlineConsultations\Application\OnlineConsultationController;
+				break;
+				
+			case 'Specialization.update':
+				$controller = new Specializations\Application\SpecializationController;
+				break;
+
 			case 'Newsletter.update':
 				$controller = new Newsletters\Application\NewsletterController;
 				break;
@@ -283,10 +321,6 @@ class APIController extends CustomController
 				$controller = new Customers\Application\CustomerController;
 				break;
 			
-			case 'Currency.update':
-				$controller = new Currencies\Application\CurrencyService;
-				break;
-				
 			case 'Language.update':
 				$controller = new Languages\Application\LanguageController;
 				break;

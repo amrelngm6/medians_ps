@@ -45,21 +45,46 @@ class BuilderController extends CustomController
 			$request = $this->app->request();
 
 			$lang = $request->get('lang') ? $request->get('lang') : $this->app->setLang()->lang;
-			$check = $this->pageRepo->findByLang($request->get('page_id'), $lang );
+			$type = $request->get('item_type') ? $request->get('item_type') : 'Page';
+			$itemId = $request->get('item_id') ?? 0;
+			
+			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type );
 
-			(isset($check->page_id) && !$check->lang_content) ? $this->contentRepo->handleMissingContent($check, $lang) : null;
-			$check->content = $check->lang_content;
+			$check = (new $item->item_type)->find($item->item_id);
+
+			$check->content = $check->lang_content = $item;
+
 			return render('views/admin/builder/index.html.twig', [
 				'page' => $check->lang_content ?? [], 
 				'item' => $check,
 				'current_lang' => $lang,
 				'canScrab' => true,
+				'type' => $type,
+				'item_id' => $itemId,
 				'precode' => isset($check->lang_content) && (substr(trim($check->lang_content), 0, 8) == '<section') ? '' : '<section id="newKeditItem" class="kedit">', 
 				'postcode' => isset($check->lang_content) && (substr(trim($check->lang_content), 0, 8) == '<section') ? '' : '</section>', 
 			]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
+		}
+	}
+
+
+	public function handleMissingContent($itemContent, $lang)
+	{
+		try 
+		{
+			$lang = \Medians\Languages\Infrastructure\Language::where('status', 'on')->where('language_code', $lang)->first();
+			
+			$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
+			$save = $pageRepo->storeLang(['item_type' => $itemContent->item_type, 'title'=>$page->title] , $lang->lang, $page->item_id);
+			
+			return $save;
+
+		} catch (\Throwable $th) {
+
+			return null;
 		}
 	}
 
@@ -142,9 +167,16 @@ class BuilderController extends CustomController
 			}
 
 			$lang = $request->get('lang') ? $request->get('lang') : $this->app->setLang()->lang;
-			$check = $this->pageRepo->findByLang($request->get('item_id'), $lang );
+			$type = $request->get('item_type') ? $request->get('item_type') : 'Page';
+			$itemId = $request->get('item_id') ?? 0;
+			
+			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type );
 
-			return render('views/admin/builder/templates/languages.html.twig',['page'=>$check, 'current_lang' => $lang]);
+			$check = (new $item->item_type)->find($item->item_id);
+
+			$check->content = $item->lang_content;
+				
+			return render('views/admin/builder/templates/languages.html.twig',['page'=>$check, 'type' => $type, 'item_id' => $itemId, 'current_lang' => $lang]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

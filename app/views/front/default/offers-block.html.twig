@@ -1,0 +1,22 @@
+<div class="w-full gap gap-6" style=" display:table;">
+
+    {% for item in offers %}
+    <div style="vertical-align:top;" class="px-2 inline-block list-icon mb-2 relative bg-white lg:w-1/2">
+        <div class="w-full p-7 pt-10 lg:flex">
+            <div class="w-full py-2">
+                <h2 class="pb-0 my-1 flex text-2xl font-semibold purple-color gap gap-3"><img width="50" height="50" src="/stream?image=/uploads/img/{{item.field.icon ? item.field.icon : 'logo.webp'}}" /> {{item.content.title}}</h2>
+            </div>
+        </div>
+        <div class="mx-2 text-white cyan-bg rounded-xl p-6 ">
+
+            <a style=" margin: 0 40px; {{lang.translate('lang') == 'arabic' ? 'left' : 'right'}}: 0px; " href="/offer_booking/{{item.id }}" class="pull-{{lang.translate('lang') == 'arabic' ? 'left' : 'right'}} absolute z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.translate('more_details')}}</a>
+            
+            <div class="w-full overflow-auto custom-scroll" style="height:200px">
+            {{item.content.content|raw}}
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+
+</div>

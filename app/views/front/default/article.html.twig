@@ -1,0 +1,152 @@
+{% include 'views/front/default/includes/header.html.twig' %}
+{% include 'views/front/default/includes/navbar.html.twig' %}
+
+    <div class="w-full py-2 cyan-bg relative pb-10">
+        <div class="w-full overflow-hidden h-full cyan-bg absolute top-0 left-0">
+            <img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+            <img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/circles-bg.webp" class="absolute left-0 bottom-0 w-full" style="opacity: .3;" />
+        </div>
+        <div class="container mx-auto relative px-1 lg:pt-10 ">
+            <p class="text-sm lg:pb-2 flex gap-2 font-bold text-gray-600 mt-20">
+                <a  class="purple-color" href="/">{{lang.translate('homepage')}} </a> | <a  class="purple-color" href="/blog">{{lang.translate('blog')}} </a> | <span class="purple-color">{{item.content.title}}</span></p>
+                
+
+<script type="application/ld+json">
+[ 
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{lang.translate('Homepage')}}",
+      "item": "{{app.CONF.url}}"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{lang.translate('Blog')}}",
+      "item": "{{app.CONF.url}}blog"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{item.content.title}}"
+    }]
+  }
+]
+</script>
+<script type="application/ld+json">
+{{item.content.short|raw}}
+</script>
+
+<script type="application/ld+json">
+{{item.content.seo_tag|raw}}
+</script>
+
+<script type="application/ld+json">
+  {{item.content.seo_video|raw}}
+</script>
+            <div class="mx-auto w-full relative z-10 mb-8 ">
+                <div class="relative top-0  left-0 right-0 px-0 pt-2 pb-6">
+                    <div class="lg:flex block w-full  gap-3 gap">
+                        <div class="lg:w-8/12 w-full bg-white border-1 border border-gray-100 rounded-lg  p-2 mb-10" >
+                            <h1 class="text-xl purple-color font-bold mb-4">{{item.content.title}}</h1>
+                            <hr class="pb-2" />
+                            <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <span class="font-bold">{{item.field.author_name}}</span> </p>
+                            <p class="lg:text-base text-sm flex gap-2"><span>{{lang.translate('released_at')}}:{{item.update_date}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.views_sum_times}}</span></p>
+                            <img alt="{{item.content.title}}" width="800" height="532" src="/stream?image={{item.picture}}" class="w-full" />
+                            <div id="certificates" class="mt-10 relative mb-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
+                                <img loading="lazy"  alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+                                <div class="relative">
+                                    <span class="block w-full text-lg font-bold pb-2 purple-color"> {{lang.translate('content table')}} </span>
+                                    <hr class="border-gray-400 my-4" />
+                                    <div id="content-table"></div>
+                                </div>
+                            </div>
+                            <div class="relative my-10 text-lg" id="article-content">
+                                {% set params = {'item': item} %}
+                                {{app.renderTemplate(item.content.content, item).render(params)|raw}}
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-4/12">
+                            <div class="lg:px-0 px-1">
+                                {% include 'views/front/default/side_offers.html.twig' %}
+                                {% include 'views/front/default/side_success_stories.html.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# <button style=" right: 17px;bottom: 135px; z-index:999"  class="fixed rounded-full bg-white p-2"><svg fill="#000000" height="35px" width="35px" version="1.1" id="speakButton" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve" class="cursor-pointer"> <g> <path d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z"/> <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"/> </g> </svg></button> #}
+    <div class="relative w-full overflow-hidden px-1">
+        <img loading="lazy"  alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/circles-bg.webp" class="absolute left-0 top-0 w-full" style="opacity: 0.05;" />
+        <div class="container mx-auto relative z-10">
+            {% include 'views/front/default/side_specs_similar_items.html.twig' %}
+        </div>
+    </div>
+
+    <script>
+    
+    jQuery(document).ready(function(){
+    var parent = document.getElementById("article-content"),
+        h2 = parent.getElementsByTagName("h2"),
+        a = h2.length,
+        b, link, title,
+        c='';
+        cLink='';
+        for (b = 0; b < a; b += 1) {
+            title = $(h2[b]).text();
+            link = $(h2[b]).attr('id');
+            if (!link) {
+                cLink = 'tag-'+(Math.random() * 1000);   
+                $(h2[b]).attr('id', cLink)
+            }
+
+
+            
+            c += link ? '<p><a href="#'+link+'">'+title+'</a></p>' : '<p><a href="#'+cLink+'">'+title+'</a></p>';
+        }
+        jQuery('#content-table').html(c)        
+
+
+    })
+    
+        /*
+            // Get references to HTML elements
+        const textToSpeak = document.getElementById('article-content');
+        const speakButton = document.getElementById('speakButton');
+
+        const message = new SpeechSynthesisUtterance();
+        message.text = textToSpeak.innerText;
+        console.log(speechSynthesis.getVoices())
+
+        // Event listener for the "Speak" button click
+        speakButton.addEventListener('click', () => {
+            console.log('clicked')
+
+            // Create a new SpeechSynthesisUtterance
+            console.log(speechSynthesis.getVoices()[1])
+
+            if (speechSynthesis.paused) {
+                console.log('paused');
+                speechSynthesis.speak(message);
+                return true;
+            }
+
+            console.log(speechSynthesis.speaking);
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel(); 
+                console.log('speeking');
+                return true;
+            }
+            
+            speechSynthesis.speak(message);
+
+            // Use the speech synthesis API to speak the text
+        });
+
+        */
+    </script>
+{% include 'views/front/default/includes/footer.html.twig' %}

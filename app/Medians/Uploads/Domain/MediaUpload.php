@@ -23,7 +23,7 @@ class MediaUpload extends CustomModel
     	'type',
 	];
 
-	public static function addItem($filePath, $type)
+	public static function addItem($filePath, $type = 'media')
 	{
 		try {
 			
@@ -36,7 +36,7 @@ class MediaUpload extends CustomModel
 			$data['user_id'] = $userpk ? $user->$userpk : 0;
 			$data['path'] = $filePath;
 			$data['type'] = $type;
-			$save = MediaUpload::create($data);
+			$save = MediaUpload::firstOrCreate($data);
 			return $save;
 
 		} catch (\Throwable $th) {

@@ -29,7 +29,9 @@ class MediaController extends CustomController
 	public function media()
 	{
 		$this->app = new \config\APP;
-
+		
+		// $this->repo->handleManualUploaded();
+		
 		$user = $this->app->auth();
 
 		echo json_encode(['media'=> ($this->app->request()->get('page') == 1) ? $this->repo->getList($this->app->request()->get('media'), $user) : []]);

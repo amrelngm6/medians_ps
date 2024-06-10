@@ -30,8 +30,6 @@ class DashboardController extends CustomController
 		$this->contentRepo = new Content\Infrastructure\ContentRepository();
 		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository();
 		$this->CustomerRepository = new Customers\Infrastructure\CustomerRepository();
-		$this->InvoiceRepository = new Invoices\Infrastructure\InvoiceRepository();
-		$this->TransactionRepository = new Transactions\Infrastructure\TransactionRepository();
 
 		
 		$setting = $this->app->SystemSetting();
@@ -143,15 +141,15 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
-        $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
-        $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['total_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->sum('total_amount');
-        $data['payment_methods_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('SUM(total_amount) as value, payment_method')->groupBy('payment_method')->get();
-        $data['latest_invoices'] = $this->InvoiceRepository->get(5);
-        $data['latest_transactions'] = $this->TransactionRepository->get(5);
-        $data['transactions_count'] = $this->TransactionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
+        // $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        // $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
+        // $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        // $data['total_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->sum('total_amount');
+        // $data['payment_methods_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('SUM(total_amount) as value, payment_method')->groupBy('payment_method')->get();
+        // $data['latest_invoices'] = $this->InvoiceRepository->get(5);
+        // $data['latest_transactions'] = $this->TransactionRepository->get(5);
+        // $data['transactions_count'] = $this->TransactionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
 
         return $data;
 
@@ -166,16 +164,16 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
-        $data['top_products'] = [];
-        $data['top_customers'] = [];
-        $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
-        $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['latest_invoices'] = $this->InvoiceRepository->get(5);
-		$data['invoices_charts'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('date as label, COUNT(*) as y')->having('y', '>', 0)->orderBy('y', 'desc')->groupBy('label')->get();
-		$data['total_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->sum('total_amount');
-        $data['payment_methods_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('SUM(total_amount) as value, payment_method')->groupBy('payment_method')->get();
+        // $data['top_products'] = [];
+        // $data['top_customers'] = [];
+        // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
+        // $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        // $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
+        // $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        // $data['latest_invoices'] = $this->InvoiceRepository->get(5);
+		// $data['invoices_charts'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('date as label, COUNT(*) as y')->having('y', '>', 0)->orderBy('y', 'desc')->groupBy('label')->get();
+		// $data['total_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->sum('total_amount');
+        // $data['payment_methods_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('SUM(total_amount) as value, payment_method')->groupBy('payment_method')->get();
         
         return $data;
 
@@ -208,17 +206,56 @@ class DashboardController extends CustomController
 	}  
 
 	
+	// public function switchLang($lang)
+	// {
+	// 	$app = new \config\APP;
+	// 	$languages = array_column($app->Languages()->toArray(), 'language_code');
+
+	// 	$_SESSION['site_lang'] = in_array($lang, $languages) ? $lang : 'english';
+	// 	$_SESSION['lang'] = in_array($lang, $languages) ? $lang : 'english';
+
+	// 	echo $app->redirect($redirect);
+	// }
+
+	
 	public function switchLang($lang)
 	{
-		$app = new \config\APP;
+		$app = (new \config\APP);
+		
 		$languages = array_column($app->Languages()->toArray(), 'language_code');
 
-		$_SESSION['site_lang'] = in_array($lang, $languages) ? $lang : 'english';
-		$_SESSION['lang'] = in_array($lang, $languages) ? $lang : 'english';
+		if (empty($_SERVER['HTTP_REFERER'])) {
+			echo $app->redirect('/');
+			return null;
+		}
+
+		$prefix = str_replace($this->app->CONF['url'], '', $_SERVER['HTTP_REFERER']);
+
+		if (empty($prefix))
+		{
+			echo $app->redirect('/'); 
+			return true;
+		}
+
+		$object = $this->contentRepo->find(urldecode($prefix));
+		if (empty($object)){
+			echo $app->redirect('/'.$prefix); 
+			return true;
+		}
+
+
+
+		$item = $this->contentRepo->switch_lang($object, $lang);
+
+		$newPrefix = isset($item->prefix) ? "/$item->prefix" : $_SERVER['HTTP_REFERER'];
+
+		$_SESSION['site_lang'] = in_array($lang, $languages) ? $lang : 'arabic';
 
 		$redirectRequest = $app->request()->get('redirect') ?? null;
-		$redirect = !empty($redirectRequest) ? $app->CONF['url'].$redirectRequest : ($_SERVER['HTTP_REFERER'] ?? $app->CONF['url']);
-		echo $app->redirect($redirect);
-	}
+		$redirect = !empty($redirectRequest) ? $app->CONF['url'].$redirectRequest : $newPrefix;
 
+		echo $app->redirect($redirect);
+
+
+	}
 }

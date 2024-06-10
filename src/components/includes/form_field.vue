@@ -3,7 +3,7 @@
         
         <input v-if="column && column.column_type == 'hidden'" :name="handleName(column)" type="hidden" v-model="item[column.key]">
 
-        <input @change="changed(item[column.key])"  :required="column.required" :disabled="column.disabled" v-if="isInput(column.column_type)" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title" v-model="item[column.key]">
+        <input @change="changed(item[column.key])"  :required="column.required" :disabled="column.disabled" v-if="isInput(column.column_type)" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title" :value="handleValue(column, item)">
     
         <input :required="column.required" :disabled="column.disabled" v-if="column.column_type == 'password'" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title">
 
@@ -45,7 +45,7 @@
 <script>
 import close_icon from '@/components/svgs/Close.vue';
 import field from '@/components/includes/Field.vue';
-import { translate, handleGetRequest, handleName, isInput, setActiveStatus, handleRequest, deleteByKey, showAlert } from '@/utils.vue';
+import { translate, handleGetRequest, handleName, handleValue, isInput, setActiveStatus, handleRequest, deleteByKey, showAlert } from '@/utils.vue';
 
 import Multiselect from '@vueform/multiselect'
 import {ref} from 'vue'
@@ -94,6 +94,7 @@ export default
             changed,
             handleName,
             translate,
+            handleValue,
             multiple_changed,
             itemData: props.item,
         }

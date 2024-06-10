@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Medians\Settings\Infrastructure\SystemSettingsRepository;
-use Medians\Currencies\Infrastructure\CurrencyRepository;
 
-use Medians\Currencies\Application\CurrencyService;
 use \Medians\Auth\Application\AuthService;
 use \Medians\Auth\Application\CustomerAuthService;
 use \Medians\Auth\Application\GuestAuthService;
@@ -41,8 +39,8 @@ class APP
 	public $session;
 	
 	public $setting;
-
-	public $currency;
+	public $isMobileDevice;
+	public $permission;
 
 
 	function __construct()
@@ -100,8 +98,16 @@ class APP
 	public function SystemSetting()
 	{
 		$output = (new \Medians\Settings\Application\SystemSettingsController())->getAll();
-		$_SESSION['currency'] = $_SESSION['currency'] ?? (isset($output['currency']) ? $output['currency'] : null);
 		return $output;
+	}
+
+	/**
+	 * Load all setting for a branch 
+	 * return as Array
+	 */ 
+	public function specializations()
+	{
+		return  (new \Medians\Specializations\Infrastructure\SpecializationRepository())->get_root();
 	}
 
 	/**
@@ -114,83 +120,12 @@ class APP
 	}
 
 	/**
-	 * Load currency
-	 */ 
-	public function currency()
-	{	
-		$this->currency = (new CurrencyRepository)->load($_SESSION['currency']);
-		return $this->currency;
-	}
-
-	/**
-	 * Load custom currency
-	 */ 
-	public function customCurrency($currency)
-	{	
-		return  (new CurrencyRepository)->load($currency);
-	}
-
-	/**
-	 * Load currency
-	 */ 
-	public function currencies()
-	{	
-		$currencies = (new CurrencyRepository)->get();
-		return $currencies;
-	}
-	
-	/**
-	 * Price based on currency
-	 */ 
-	public function currency_amount($amount, $requiredCurrency = null)
-	{
-
-		$settings = $this->SystemSetting();
-		$activeCurrency =  $this->currency();
-		if ($activeCurrency->code == $settings['currency'])
-			return $amount;
-		
-		if ($activeCurrency->last_check == date('Y-m-d'))
-			return number_format($amount * ($activeCurrency->ratio ?? 1), 2);
-
-		
-		$activeCurrency = (new CurrencyService)->getCurrency($activeCurrency->code);
-		return $this->currency_amount($amount, $requiredCurrency);
-	}
-	
-	/**
-	 * Convert amount of currency
-	 */ 
-	public function currency_converter($amount, $requiredCurrency = null)
-	{
-		try {
-			$settings = $this->SystemSetting();
-			$activeCurrency = (object) (new CurrencyService)->getCurrency($requiredCurrency);
-
-			if (!$activeCurrency)
-				return 0;
-			
-			if ($activeCurrency->code == $settings['currency'])
-				return $amount;
-			
-			if ($activeCurrency->last_check == date('Y-m-d'))
-				return number_format($amount * ($activeCurrency->ratio ?? 1), 2);
-	
-			return ($amount && isset($activeCurrency->code)) ? $this->currency_converter($amount, $activeCurrency->code) : $amount;
-			
-		} catch (\Throwable $th) {
-			return null;
-		}
-	}
-
-
-	/**
 	 * Get setting value by code 
 	 * return value
 	 */ 
 	public function setting($code)
 	{
-		return (new SettingsRepository)->getByCode($code);
+		return (new SystemSettingsRepository)->getByCode($code);
 	}
 
 	public function auth()
@@ -344,45 +279,58 @@ class APP
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'dashboard'),
 			
-			array( 'title'=>translate('Products'),  'icon'=>'wind', 'link'=>'#Products', 'sub'=>
-			[
-				array('permission'=>'Products.index', 'title'=>translate('Products'),  'icon'=>'user', 'link'=>'admin/products', 'component'=>'products'),
-				array('permission'=>'Categories.index', 'title'=>translate('Categories'),  'icon'=>'user', 'link'=>'admin/product_categories', 'component'=>'categories'),
-				array('permission'=>'Brands.index', 'title'=>translate('Brands'),  'icon'=>'user', 'link'=>'admin/brands', 'component'=>'brands'),
-			]
-			),
-
-	        array('permission'=>'Shipping.index', 'title'=>translate('Shipping'),  'icon'=>'truck', 'link'=>'admin/shipping', 'component'=>'shipping'),
-	        
 			array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'customers'),
 
+	        array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'', 'sub'=>
+	            [
+	                array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'', 'link'=>'admin/blog', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index', 'title'=>translate('categories'),  'icon'=>'', 'link'=>'admin/categories', 'component'=> 'data_table'),
+	            ]
+	        ),
+
+	        array('permission'=> 'Dashboard.index', 'title'=>translate('Bookings'),  'icon'=>'calendar', 'link'=>'admin/blog', 'sub'=>
+	            [
+	                array('permission'=> 'Dashboard.index','title'=>translate('Bookings'),  'icon'=>'', 'link'=>'admin/bookings', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index','title'=>translate('Offers'),  'icon'=>'', 'link'=>'admin/offers_bookings', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index','title'=>translate('Online Consultation'),  'icon'=>'', 'link'=>'admin/consultation_bookings', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index','title'=>translate('Contact messages'),  'icon'=>'', 'link'=>'admin/contact_bookings', 'component'=> 'data_table'),
+	            ]
+	        ),
+
+
+			array('permission'=> 'Dashboard.index', 'title'=> translate('Specializations'),  'icon'=>'droplet', 'link'=>'admin/specialization', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('DOCTORS'),  'icon'=>'user', 'link'=>'admin/doctors', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('online_consultation'),  'icon'=>'cast', 'link'=>'admin/online_consultation', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('Offers'),  'icon'=>'box', 'link'=>'admin/offers', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('success stories'),  'icon'=>'award', 'link'=>'admin/success_stories', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('Technologies'),  'icon'=>'cloud-lightning', 'link'=>'admin/technologies', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('story dates'),  'icon'=>'cast', 'link'=>'admin/story_date', 'component'=>'data_table'),
 			
-			array('title'=>translate('Orders'),  'icon'=>'shopping-bag', 'link'=>'#Orders', 'sub'=>
+
+			array( 'permission'=> 'Dashboard.index','title'=>translate('Frontend'),  'icon'=>'layout', 'link'=>'#frontend', 'superadmin'=> true, 'sub'=>
 			[
-				array('permission'=>'Orders.index', 'title'=>translate('Orders'),  'icon'=>'truck', 'link'=>'admin/orders', 'component'=>'data_table'),
-				array('permission'=>'Orders.index', 'title'=>translate('Cancelled Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=cancelled', 'component'=>'data_table'),
+				array('permission'=>'Pages.index', 'title'=>translate('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
+				array('permission'=>'SiteSettings.index', 'title'=>translate('Frontend settings'),  'icon'=>'tool', 'link'=>'admin/site_settings', 'component'=>'system_settings'),
+				array('permission'=>'Menus.index', 'title'=>translate('Menus'),  'icon'=>'tool', 'link'=>'admin/menus', 'component'=>'menus'),
 			]
 			),
 			
-			array('title'=>translate('Newsletters'),  'icon'=>'send', 'link'=>'#newsletters', 'sub'=>
+			
+			array('permission'=> 'Dashboard.index', 'title'=>translate('Newsletters'),  'icon'=>'send', 'link'=>'#newsletters', 'sub'=>
 			[
-				array('permission'=>'Newsletters.index', 'title'=>translate('newsletters'),  'icon'=>'truck', 'link'=>'admin/newsletters', 'component'=>'data_tables'),
-				array('permission'=>'Subscribers.index', 'title'=>translate('Subscribers'),  'icon'=>'truck', 'link'=>'admin/newsletter_subscribers', 'component'=>'data_tables'),
+				array('permission'=>'Newsletters.index', 'title'=>translate('newsletters'),  'icon'=>'truck', 'link'=>'admin/newsletters', 'component'=>'data_table'),
+				array('permission'=>'Subscribers.index', 'title'=>translate('Subscribers'),  'icon'=>'truck', 'link'=>'admin/newsletter_subscribers', 'component'=>'data_table'),
 			]
 			),
 
-			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
-			[
-				array('permission'=> 'Transaction.index', 'title'=> translate('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
-				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-			]
-			),
-			array( 'title'=>translate('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
+
+			array('permission'=> 'Dashboard.index',  'title'=>translate('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Gallery.index', 'title'=>translate('Gallery'),  'icon'=>'tool', 'link'=>'admin/gallery', 'component'=>'gallery'),
 				array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
 				array('permission'=> 'Settings.index', 'title'=> translate('Business Settings'),  'icon'=>'tool', 'link'=>'admin/settings', 'component'=>'settings'),
-			]
+				array('permission'=> 'Dashboard.index', 'title'=>translate('Users'),  'icon'=>'fa-users', 'link'=>'admin/users', 'component'=>'users'),
+				]
 			),
 			array('permission'=>'Dashboard.index', 'title'=> translate('Logout'),  'icon'=>'log-out', 'link'=>'logout'),
 		);
@@ -396,7 +344,7 @@ class APP
 	 */
 	public function superAdminMenu()
 	{
-		
+		return $this->adminMenu();
 		$data = array(
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),

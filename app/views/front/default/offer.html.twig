@@ -1,0 +1,86 @@
+{% include 'views/front/default/includes/header.html.twig' %}
+{% include 'views/front/default/includes/navbar.html.twig' %}
+<div class="w-full cyan-bg pb-6 lg:pt-20 relative ">
+    <div class="w-full overflow-hidden h-full absolute bottom-0 left-0">
+        <img loading="lazy" alt="{{app.settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+    </div>
+    <div class="container mx-auto relative pt-8 text-center ">
+        <h1 class="text-2xl mx-auto w-auto text-center font-bold text-white " >
+        <span class="mx-4"> {{pageinfo.title ? pageinfo.title : lang.translate('offers')}}</span></h1>
+    </div>
+</div>
+
+{% set contents = item.content.content|split('<h3>محتويات الباكدج</h3>') %}
+{% set contents = contents[1] ? contents : item.content.content|split('<h3>PACKAGE INCLUDES</h3>') %}
+    <div class="p-4 text-center  mx-auto" style="">
+
+        <div class="offers-container px-2 relative">
+            <img loading="lazy" src="/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+            
+
+            <div class="list-icon  gap-6  mx-auto" style="max-width:800px">
+                <div class="w-full bg-gray-100 rounded-xl p-6 pt-6 mx-auto ">
+                    <p class="text-lg font-semibold purple-color ">{{lang.translate('offer_content')}}</p>
+                    <span class="mb-2 w-20 border border-b-1  border-gray-200 block"></span>
+                        <div>{{contents[1]|raw}}</div>
+                </div>
+            </div>
+
+        </div>
+</div>
+<hr />
+<div class="bg-gray-100 relative">
+    <img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0  w-full " style="top:100px; opacity: .3;" />
+    <form action="/submit/booking" id="booking-form" class="max-w-xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+        <input type="hidden" name="params[itemid]" value="{{item.id}}">
+        <input type="hidden" name="params[class]" value="Offers">
+        <input type="hidden" name="params[status]" value="new">
+        <div class="bg-white overflow-hidden sm:rounded-lg relative ">
+            <div class="flex w-full px-4 pt-5 sm:px-6 gap gap-3">
+                <div class="w-full py-4">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        <img width="50" height="50" style="display:inline-block " src="/stream?image=/uploads/img/{{item.field.icon ? item.field.icon : 'logo.webp'}}"> 
+                        <span class="inline-block mt-1 mx-4"> {{item.content.title}}</span>
+                    </h3>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                        {{lang.translate('contact info')}}
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 px-4 pb-5 sm:p-0">
+                <dl class="sm:divide-y sm:divide-gray-200">
+                    <div class="gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
+                        <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                            <p>{{lang.translate('Name')}}</p>
+                            <input required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="{{lang.translate('ENTER_FULLNAME')}}" name="params[custom_field][name]">
+                        </dt>
+                        <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                            <p>{{lang.translate('Mobile')}}</p>
+                            <div class="flex ltr">
+                                <input type="hidden" name="params[custom_field][mobile_country]" id="countrieslist-code" value="EG">
+                                <select class="w-20 bg-gray-200 text-gray-700 border border-gray-200 rounded  " name="params[custom_field][mobile_key]" id="countrieslist"></select>
+                                <input required="" maxlength="11" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-mobile" type="tel" placeholder="{{lang.translate('mobile')}}" name="params[custom_field][mobile]">
+                            </div>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="sm:items-center sm:justify-between sm:py-4 sm:px-6 ">
+                <div class="block w-full ">
+                    <input data-target="notes" class="switch-view cursor-pointer p-2" type="checkbox" name="" /> {{lang.translate('I Have notes')}}
+                </div>
+                <ul class="w-full hidden pt-4" id="notes">
+                    <li>
+                        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 " name="params[custom_field][notes]"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {{lang.translate('Book Now')}}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% include 'views/front/default/includes/footer.html.twig' %}

@@ -43,9 +43,13 @@ class ContentRepository
 		return Content::where('item_id', $page_id)->where('model_type', Page::class)->where('lang', $lang)->first();
 	}
 
-	public function switch_lang($item)
+	public function findItemByLang($page_id, $lang, $type)
 	{
-		$lang = $item->lang ?? '';
+		return Content::where('item_id', $page_id)->where('item_type', 'LIKE', '%'.$type.'%')->where('lang', $lang)->first();
+	}
+
+	public function switch_lang($item, $lang)
+	{
 		return Content::where('item_id', $item->item_id)->where('item_type', $item->item_type)->where('lang', $lang)->first();
 	}
 
@@ -60,14 +64,14 @@ class ContentRepository
 		}
 	}
 
-	public function handleMissingContent($page, $lang)
+	public function handleMissingContent($itemContent, $lang)
 	{
 		try 
 		{
-			$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
 			$lang = Language::where('status', 'on')->where('language_code', $lang)->first();
-	
-			$save = $pageRepo->storeLang(['title'=>$page->title] , $lang->language_code, $page->page_id);
+			
+			$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
+			$save = $pageRepo->storeLang(['item_type' => $itemContent->item_type, 'title'=>$page->title] , $lang->lang, $page->item_id);
 			
 			return $save;
 

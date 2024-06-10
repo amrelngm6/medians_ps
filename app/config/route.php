@@ -15,21 +15,48 @@ $app = new \config\APP;
 
 
 
+/**
+ * Loading assets with handling types
+ */
+RouteHandler::get('/assets', \Medians\Media\Application\MediaController::class.'@assets'); 
+
+/**
+ * Streaming multi-media types
+ */
+RouteHandler::get('/stream', \Medians\Media\Application\MediaController::class.'@stream'); 
+
 
 /** @return send_message */
 RouteHandler::post('/send_message', Medians\Help\Application\HelpMessageController::class.'@store');
+RouteHandler::get('/doctors', \Medians\Doctors\Application\DoctorController::class.'@list'); 
+RouteHandler::get('/doctors/', \Medians\Doctors\Application\DoctorController::class.'@list'); 
+RouteHandler::get('/book/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
+RouteHandler::get('/bookings/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
+RouteHandler::post('/submit/(:all)', \Medians\FrontendController::class.'@form_submit'); 
+RouteHandler::get('/blog', \Medians\Blog\Application\BlogController::class.'@list'); 
+RouteHandler::get('/blog/', \Medians\Blog\Application\BlogController::class.'@list'); 
+RouteHandler::get('/offer_booking/(:all)', \Medians\Offers\Application\OfferController::class.'@page'); 
+RouteHandler::get('/search', \Medians\Pages\Application\PageController::class.'@search'); 
+RouteHandler::get('/search/', \Medians\Pages\Application\PageController::class.'@search'); 
+RouteHandler::get('/technologies', \Medians\Technologies\Application\TechnologyController::class.'@list'); 
+RouteHandler::get('/technologies/(:all)', \Medians\Technologies\Application\TechnologyController::class.'@item'); 
+RouteHandler::get('/booking_confirm/booking', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
+RouteHandler::get('/booking_confirm/online_consultation', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
+RouteHandler::get('/booking_confirm/offers', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
+RouteHandler::get('/booking_confirm/contact', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
 
+
+// Front API GET requests
+RouteHandler::post('/front_api', \Medians\FrontAPIController::class.'@handle');
+RouteHandler::post('/front_api/create', \Medians\FrontAPIController::class.'@create');
+RouteHandler::post('/front_api/update', \Medians\FrontAPIController::class.'@update');
+RouteHandler::post('/front_api/delete', \Medians\FrontAPIController::class.'@delete');
 
 
 /**
  * Switch the language 
  */ 
 RouteHandler::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@switchLang');
-
-/**
- * Switch the items currency
- */ 
-RouteHandler::get('/switch-currency/(:all)', \Medians\Currencies\Application\CurrencyService::class.'@switchCurrency');
 
 /**
  * Authentication
@@ -90,7 +117,7 @@ RouteHandler::post('/customer/reset-password-code', \Medians\Auth\Application\Cu
 /**
  * Load sub-pages
  */
-RouteHandler::get('/page/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
+RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
 
 /**
 * Restricted access requests 
@@ -113,8 +140,6 @@ if(!empty($app->auth()))
     RouteHandler::post('/api/search', \Medians\APIController::class.'@search');
     RouteHandler::post('/api/(:all)', \Medians\APIController::class.'@handle');
     RouteHandler::post('/api', \Medians\APIController::class.'@handle');
-
-    RouteHandler::get('/admin/load_currencies', \Medians\Currencies\Application\CurrencyService::class.'@load');
 
     // API GET requests
     RouteHandler::get('/api/(:all)', \Medians\APIController::class.'@handle');
@@ -193,8 +218,8 @@ if(!empty($app->auth()))
     /** @return packages */
     RouteHandler::get('/admin/packages', Medians\Packages\Application\PackageController::class.'@index');
 
-    /** @return payment methods */
-    RouteHandler::get('/admin/payment_methods', Medians\PaymentMethods\Application\PaymentMethodController::class.'@index');
+    /** @return Specialization */
+    RouteHandler::get('/admin/specialization', \Medians\Specializations\Application\SpecializationController::class.'@index');
 
     /** @return Get-started */
     RouteHandler::get('/admin/get_started', Medians\Users\Application\GetStartedController::class.'@get_started');
@@ -214,15 +239,31 @@ if(!empty($app->auth()))
     /** @return reviews */
     RouteHandler::get('/admin/reviews', Medians\Reviews\Application\ReviewController::class.'@index');
 
-    /** @return Orders */
-    RouteHandler::get('/admin/orders', Medians\Orders\Application\OrderController::class.'@index');
+    /** @return Doctors */
+    RouteHandler::get('/admin/doctors', Medians\Doctors\Application\DoctorController::class.'@index');
 
-    /** @return invoice */
-    RouteHandler::get('/admin/invoices', \Medians\Invoices\Application\InvoiceController::class.'@index');
+    /** @return Blog */
+    RouteHandler::get('/admin/blog', \Medians\Blog\Application\BlogController::class.'@index');
 
-    /** @return Currencies */
-    RouteHandler::get('/admin/currencies', \Medians\Currencies\Application\CurrencyController::class.'@index');
+    /** @return OnlineConsultation */
+    RouteHandler::get('/admin/online_consultation', \Medians\OnlineConsultations\Application\OnlineConsultationController::class.'@index');
 
+    /** @return Offer */
+    RouteHandler::get('/admin/offers', \Medians\Offers\Application\OfferController::class.'@index');
+
+    /** @return Offer */
+    RouteHandler::get('/admin/success_stories', \Medians\Stories\Application\StoryController::class.'@index');
+
+    /** @return Technologies */
+    RouteHandler::get('/admin/technologies', \Medians\Technologies\Application\TechnologyController::class.'@index');
+
+    /** @return Bookings */
+    RouteHandler::get('/admin/bookings', \Medians\Bookings\Application\BookingController::class.'@index');
+    RouteHandler::get('/admin/offers_bookings', \Medians\Bookings\Application\BookingController::class.'@index_offers');
+    RouteHandler::get('/admin/consultation_bookings', \Medians\Bookings\Application\BookingController::class.'@index_consultation');
+    RouteHandler::get('/admin/contact_bookings', \Medians\Bookings\Application\BookingController::class.'@index_contact');
+    
+    
 
     /**
      * Master requests
@@ -236,6 +277,7 @@ if(!empty($app->auth()))
     /**
     * @return System settings
     */
+    RouteHandler::get('/admin/settings', \Medians\Settings\Application\SystemSettingsController::class.'@index');
     RouteHandler::get('/admin/system_settings', \Medians\Settings\Application\SystemSettingsController::class.'@index');
     RouteHandler::get('/admin/site_settings', \Medians\Settings\Application\SiteSettingsController::class.'@index');
     RouteHandler::get('/admin/payment_settings', \Medians\Settings\Application\PaymentSettingsController::class.'@index');
@@ -320,22 +362,6 @@ RouteHandler::get('/logout', function ()
     (new \Medians\Auth\Application\CustomerAuthService)->unsetSession();
     echo (new \config\APP)->redirect('./');
 });
-
-// Front API GET requests
-RouteHandler::post('/front_api', \Medians\FrontAPIController::class.'@handle');
-RouteHandler::post('/front_api/create', \Medians\FrontAPIController::class.'@create');
-RouteHandler::post('/front_api/update', \Medians\FrontAPIController::class.'@update');
-RouteHandler::post('/front_api/delete', \Medians\FrontAPIController::class.'@delete');
-
-/**
- * Loading assets with handling types
- */
-RouteHandler::get('/assets', \Medians\Media\Application\MediaController::class.'@assets'); 
-
-/**
- * Streaming multi-media types
- */
-RouteHandler::get('/stream', \Medians\Media\Application\MediaController::class.'@stream'); 
 
 /**
  * Load sub-pages

@@ -46,7 +46,7 @@ class CustomerController extends CustomController
 		return [
             [ 'value'=> "brand_id", 'text'=> "#"],
             [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
-            [ 'value'=> "picture", 'text'=> translate('Logo'),  ],
+            [ 'value'=> "picture", 'text'=> translate('Picture'),  ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
             [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];

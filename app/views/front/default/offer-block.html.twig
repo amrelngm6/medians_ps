@@ -1,0 +1,21 @@
+
+
+            {% for item in offers %}
+
+
+            <div class="list-icon mb-20 relative bg-white">
+                <div class="w-full  p-7 pt-10 lg:flex">
+                    <div class="w-full py-2">
+                        <h2 class="mb-2 text-2xl font-semibold purple-color pb-4">{{item.content.title}}</h2>
+                    </div>
+                    <a href="/offer_booking/{{item.id}}" class="inline-block hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.translate('more_details')}}</a>
+
+                    <div class="w-full cyan-bg rounded-xl p-6 pt-10 text-white">
+                        <p class="text-lg font-semibold purple-color pb-4">{{lang.translate('offer_content')}}</p>
+                        <span class="mb-2 w-20 border border-b-1  border-gray-200 block"></span>
+                        {{item.content.content|raw}}
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}

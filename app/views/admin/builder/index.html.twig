@@ -54,6 +54,7 @@
         <div id="k_spinnerImage" style="background-image:url(/uploads/img/medians-logo.png);background-size:60px;" data-title="Please wait..."></div>
     </div>
     <div id="website" class=" skiptranslate">
+		{% set page = page %}
         {% include 'views/admin/builder/templates/base.html' %}
     </div>
     <a id="scrollToTop" href="javascript:void(null)"><i class="fa fa-fw fa-arrow-up"></i></a>
@@ -1441,7 +1442,7 @@
                     <small class="koTools_itemBottom"></small>
                 </a>
 				
-				<a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/languages?type=page&lang={{current_lang}}&item_id={{item.page_id}}')" class="koLeftButton" id="koMenuItem_settings">
+				<a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/languages?item_type={{type}}&lang={{current_lang}}&item_id={{item_id}}')" class="koLeftButton" id="koMenuItem_settings">
                     <small class="koTools_itemTop"></small>
                     <span class="koLeftButtonHolder">
                         <i class="fas fa-globe"></i><span>{{lang.translate('Languages')}} </span>

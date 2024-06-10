@@ -12,8 +12,24 @@ use Shared\simple_html_dom;
  */
 function render($template, $data, $responseType = 'html')
 {
+    $list = [];
+    $ar = (new \helper\langs\LangsAr)->get();
+    $en = (new \helper\langs\LangsEn)->get();
+    // $en = (new helper\Lang('english'))->load();
+    $i=0;
+    foreach ($ar as $key => $value) {
+        $_key = strtolower(str_replace([' ', '/', '&', '?','؟' , '@', '#', '$', '%', '(', ')', '-', '='], '_', $key)) ;
+        $list[$i]=[];
+        $list[$i]['code'] = $_key;
+        $list[$i]['translation']['english'] = $en[$key] ?? translate($_key);
+        $list[$i]['translation']['arabic'] = $value;
+        $s= (new \Medians\Languages\Infrastructure\TranslationRepository)->storeItems($list[$i]);
 
+        $i = $i+1;
+    }
+    
     $app = new \config\APP;
+    
 
     /**
      * Check if response is required in JSON
@@ -72,7 +88,6 @@ function render($template, $data, $responseType = 'html')
     $data['app']->customer = $app->customer_auth();
     $data['app']->setting = $setting;
     $data['template'] = $setting['template'] ?? 'default';
-    $data['app']->currency = $app->currency();
     $data['menu'] = $app->menu();
     $data['langs'] = $languages;
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
@@ -80,6 +95,9 @@ function render($template, $data, $responseType = 'html')
     $data['lang'] = new helper\Lang($_SESSION['lang']);
     $data['lang_json'] = (new helper\Lang($_SESSION['lang']))->load();
     $data['lang_key'] = substr($_SESSION['lang'],0,2);
+    $data['app']->isMobileDevice = isMobileDevice();
+    $data['specializations'] = (new \Medians\Specializations\Infrastructure\SpecializationRepository())->get_root();
+
     return $data;
   }
 
@@ -104,12 +122,12 @@ function Page404()
  * @param Object $twig, Object $app 
  * @return Page not found template 
  */
-function errorPage($data)
+function errorPage($data, $title = 'Error')
 {
     $app = new \config\APP;
     $settings = $app->SystemSetting();
     echo $app->template()->render('views/front/'.$settings['template'].'/error.html.twig', [
-        'title' => 'Error',
+        'title' => $title,
         'msg' => $data,
         'template'  => $setting['template'] ?? 'default',
         'app' => $app
@@ -251,3 +269,26 @@ function sanitizeInput($input) {
         return str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
     }
 }
+
+
+
+/**
+ * Detect if user is using 
+ * Mobile / Desktop device
+ */
+function isMobileDevice() {
+    $userAgent = $_SERVER['HTTP_USER_AGENT'];
+    
+    $mobileKeywords = array(
+        'Mobile', 'Android', 'Silk/', 'Kindle', 'BlackBerry', 'Opera Mini', 'Opera Mobi'
+    );
+    
+    foreach ($mobileKeywords as $keyword) {
+        if (stripos($userAgent, $keyword) !== false) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+

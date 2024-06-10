@@ -113,7 +113,7 @@ class MediaRepository
 				break;
 			
 			default:
-				return ['png', 'jpg', 'jpeg', 'bmp', 'svg']; 
+				return ['png', 'jpg', 'jpeg', 'bmp', 'svg', 'webp']; 
 				break;
 		}
 	}
@@ -140,6 +140,29 @@ class MediaRepository
 
         return $fileName;
     }
+
+
+	
+
+	public function handleManualUploaded()
+    {
+        try {
+
+			$path = $_SERVER['DOCUMENT_ROOT'].'/uploads/images/*';
+			foreach (glob($path) as $key => $value) 
+			{
+				$store = MediaUpload::addItem(str_replace($_SERVER['DOCUMENT_ROOT'], '', $value));
+			}
+
+        } catch (FileException $e) {
+        	return $e->getMessage();
+        }
+
+
+        return $fileName;
+    }
+
+
 
 	public function validate($type, $ext)
 	{

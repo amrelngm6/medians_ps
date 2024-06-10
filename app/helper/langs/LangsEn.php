@@ -127,7 +127,7 @@ class LangsEn
 			,'THANKS_FOR_LIKE' => 'Thanks for Like'
 			,'DISLIKED' => 'Removed from favourites'
 			,'LIKEED' => 'Already liked'
-			,'PAYMENT_METHODS' => 'Payment Methods'
+			,'PAYMENT_METHODS' => 'Choose payment method'
 			,'DEPOSITE_METHODS' => 'Choose payment method to deposite'
 			,'DOWNLOAD' => 'Download'
 			,'DOWNLOADS' => 'Downloads/Purchases'
@@ -385,8 +385,8 @@ class LangsEn
 			,'EMAIL_NOT_FOUND' => 'This Email address not found'
 			,'EMAIL_NOT_VALID' => 'This Email address not valid'
 			,'EMAIL_EMPTY' => 'Email field is required'
-			,'NAME_FOUND' => 'Name field already found'
-			,'NAME_EMPTY' => 'Name field is required'
+			,'NAME_FOUND' => 'Username field already found'
+			,'NAME_EMPTY' => 'Username field is required'
 			,'PASSWORD_SHORT' => 'Password is too short, Min characters '
 			,'PASSWORD_EMPTY' => 'Password missed, Min characters '
 			,'TITLE_EMPTY' => 'Title field is required '
@@ -466,7 +466,7 @@ class LangsEn
 			
 			,'SIGNUP_DONE_MSG' => 'You can login after reviewing your profile.'
 			,'ABOUT' => 'About'
-			,'CONTACT' => 'Contact'
+			,'CONTACT' => 'Contact Us'
 			,'AR' => 'Arabic'
 			,'EN' => 'English'
 			,'CHANGE_LANG' => 'Change Language'
@@ -659,7 +659,7 @@ class LangsEn
 			,'WELCOME' => 'Welcome '
 			,'BUSS_INFO' => 'Business info'
 
-
+			
 			,'DIRECTION' => 'Direction'
 			,'DIRECTIONS' => 'Directions'
 			,'BOOK' => 'Book'
@@ -667,7 +667,8 @@ class LangsEn
 			,'BOOK_NOW' => 'Book Now'
 			,'BOOKING_ID' => 'Booking ID '
 			,'BOOKING_INFO' => 'Booking information'
-			,'BOOKING_THANKS' => 'Thanks for booking offer from '
+			,'BOOKING_THANKS' => 'Thanks for choosing Bedaya services'
+			,'THANKS_TITLE' => 'Thanks for choosing Bedaya services'
 			,'BOOKING_DATE' => 'Booking date'
 			,'CHANGE_PICTURE' => 'Change picture'
 			,'LOCATION' => 'Location'
@@ -720,7 +721,7 @@ class LangsEn
 			,'ALL_CASES' => 'All cases'
 			,'BACK' => 'Back'
 			,'APPOINTMENTS' => 'Appointments'
-			,'ONLINE_CONSULTATION' => 'Online consultation'
+			,'ONLINE_CONSULTATION' => 'Online Consultation'
 			,'ONLINE_CONSULTING' => 'Online Consulting'
 			,'TEST_RESULT' => 'Test result'
 			,'TEST_RESULTS' => 'Test results'
@@ -728,7 +729,7 @@ class LangsEn
 			,'BOOKING_DATE' => 'Booking date'
 			,'FILES_EXTENSIONS' => 'Files extensions'
 			,'ADD_NEW_DOCUMENT' => 'Add new document'
-			,'BOOKING_NOTE' => "Thanks for booking with us, we'll contact you ASAP." 
+			,'BOOKING_NOTE' => "We'll contact you ASAP." 
 			,'WITH' => 'with'
 			,'OF' => 'of'
 			,'FOR' => 'for'
@@ -797,7 +798,7 @@ class LangsEn
 			,'NATIONALITY' => 'Nationality'
 			,'LONGITUDE' => 'Longitude'
 			,'LATITUDE' => 'Latitude'
-			,'OFFERS' => 'Offers'
+			,'OFFERS' => 'Treatment Plans'
 			,'TALK_TO_EXPERTS_INTRO' => 'Have a question? talk to our experts now and we will answer all your questions'
 			,'CHAT_WITH_US' => 'Chat with us'
 			,'VIEW_ALL_DOCTORS' => 'View all doctors'
@@ -825,8 +826,9 @@ class LangsEn
 			,'HISTORY' => 'Log History'
 			,'UPCOMING_APPOINTMENTS' => 'Upcoming appointments'
 			,'HOSTPITAL_STORY' => 'Hospital story'
-			,'OUR_DOCTORS' => 'Our doctors'
-			,'INTERNATIONAL_PATIENTS' => 'International patients'
+			,'OUR_DOCTORS' => 'Our Doctors'
+			,'about_bedaya' => 'About Bedaya'
+			,'INTERNATIONAL_PATIENTS' => 'International Patients'
 			,'MEDIA_PRESS' => 'Media and press'
 			,'UPCOMING_EVENTS' => 'Upcoming events'
 			,'MORE_NEW' => 'More of our news…'
@@ -845,6 +847,8 @@ class LangsEn
 			,'CALCULATOR_MSG' => 'Wondering, `when will i get my period ?` Our easy tracking tool helps map out your cycle.'
 			,'GO_HOME' => 'Go to homepage'
 			,'BACK_HOME' => 'Back home'
+			,'offer_content' => 'Treatment plan content'
+			
 			,'ALL_TIMES_SET' => 'All times are set automatically upon current location'
 			,'PAYMENT_METHOD' => 'Payment method'
 			,'CURRENT_ZONE' => 'Current time zone'
@@ -921,23 +925,11 @@ class LangsEn
 			,'Invoice_notes' => 'Invoice notes'
 			,'third_step' => 'Third step'
 			,'please_add_your_devices_first' => 'Please add your devices first'
-			,'editor_help' => 'At the top left of each section click on EDIT button and after editing click on SAVE'
-			,'editor notes' => 'To edit Links or Images ( <a> / <img> ) tags use right-click at your mouse'
-			,'Pickup locations description' => 'This list includes all pickup locations'
-			,'Routes description' => 'List of routes with its pickup locations'
-			,'RouteLocations' => 'Pickup Locations'
-			,'Remaining Plan Days' => 'Days remaining until your plan requires update'
-			,'Trips description' => 'List of the active Trips list.'
-			,'Before Create driver note' => 'When you create new driver you should make sure that you have the right <b>Email</b>. <br />Because the generated password will be sent to him'
-			,'Drivers applicants note' => 'You can enable or disable your business from receiving <b>applcants as drivers</b>. <br />You can manage it from Business Setting'
-			,'upgrade_notification_note' => 'We will send you a notification upon Subscription expiration '
-			,'users applicants note' => 'This list of the users who requested to join our routes. Once you review their info and approve the request, they would be able to pay for the subscribed package'
-			,'RESET_PASSWORD_MSG' => 'Type your email, and we will send you confirmation code'
-			,'SETTING_COMMISSION_NOTE' => 'Comission at online payment when consumer pay to business for Taxi trips and subscriptions'
-			,'empty_data' => 'There is no data available to display'
-
-
-			,'COPYRIGHTS' => 'Copyrights are reserved'
+			,'online_consultation_block_title' => 'Online Consultation. Effective conversations with our doctors wherever you are'
+			,'online_consultation_block_text' => 'If you are unable to get out of the house or you live in a foreign country, do not worry. We are now providing online consultation service via the Internet, through which you can speak with a specialist doctor, discuss all the details, and obtain the appropriate online medical advice.'
+			,'Successful team' => 'Our Doctors'
+	
+			,'COPYRIGHTS' => 'Copyrights are reserved Bedaya Hospital'
 		);
 	
 
@@ -949,7 +941,7 @@ class LangsEn
 	}
 
 
-	public static function translate($langkey)
+	public static function __($langkey)
 	{
 		$LANG_ARRAY = array_change_key_case(LangsEn::get(), CASE_LOWER);
 

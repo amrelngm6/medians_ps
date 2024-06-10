@@ -1,32 +1,37 @@
-{% set header_menu = header_menu %}
-{% set footer_menu1 = footer_menu1 %}
-{% set footer_menu2 = footer_menu2 %}
-{% include 'views/front/' ~ template ~ '/includes/head.html.twig' %}
-{% include 'views/front/' ~ template ~ '/includes/header.html.twig' %}
-
-{% if page %}
-{% if page.class_name and page.class_name == 'Category' %}
-{% include 'views/front/' ~ template ~ '/templates/category.html.twig' %}
-{% elseif page.class_name == 'Product' and page.product_fields.template == 'modern' %}
-{% include 'views/front/' ~ template ~ '/templates/modern_product.html.twig' %}
-{% elseif page.class_name == 'Product' and page.product_fields.template == 'default' %}
-{% include 'views/front/' ~ template ~ '/templates/modern_product.html.twig' %}
-{% else %}
-{{app.renderTemplate(page.lang_content.content ?? '').render( {'lang':lang, 'page': page }  )|raw}}
+{% set hasindex = 2 %}
+{% include 'views/front/default/includes/header.html.twig' %}
+{% if item.homepage == 0 %}
+{% if item.order != 3 %}
+<div class="w-full cyan-bg pb-6 lg:pt-20 relative ">
+    <div class="w-full overflow-hidden h-full absolute bottom-0 left-0">
+        <img loading="lazy" alt="{{app.settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+    </div>
+    <div class="container mx-auto relative pt-8">
+        <h1 class="text-2xl mx-auto w-auto text-center font-bold text-white">{{item.content.title}}</h1>
+        {% if item.content.short %}<p class="text-center w-full text-white">{{item.content.short|raw}}</p>{% endif %}
+    </div>
+</div>
 {% endif %}
 {% endif %}
+<div class="blog-content ">
+    <div class="mx-auto ">
+        {{app.renderTemplate(item.content.content, item).render( {'item':item,  'hasindex':4, 'app':app, 'lang':lang, 'doctors': doctors, 'specializations': specializations, 'all_stories':all_stories}  )|raw}}
+    </div>
+</div>
+{% include 'views/front/default/includes/navbar.html.twig' %} 
 
-    
-<!-- Footer -->
-{% include 'views/front/' ~ template ~ '/includes/footer.html.twig' %}
 
-<script src="/src/front_assets/js/bootstrap.min.js"></script>
-<script src="/src/front_assets/js/owl.carousel.min.js"></script>
-<!-- fancybox -->
-<script src="/src/front_assets/js/jquery.fancybox.min.js"></script>
-<script src="/src/front_assets/js/slick.min.js"></script>
-<script src="/src/front_assets/js/main.js"></script>
+<style>
+.blog-content section.kedit > .keditable > h3
+{
+    color: #fff
+}
+.blog-content section.kedit > .keditable > p
+{
+}
+.list-icon li [
+    margin: 0 0 5px 0
+]
+</style>
 
-</body>
-
-</html>
+{% include 'views/front/default/includes/footer.html.twig' %}
