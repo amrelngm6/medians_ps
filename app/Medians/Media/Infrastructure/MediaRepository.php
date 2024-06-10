@@ -131,7 +131,7 @@ class MediaRepository
         $fileName = $safeFilename.'.'.$file->guessExtension();
 		$newPath = $this->_dir.$fileName;
 		$newWebpPath = $this->_dir.$safeFilename.'.webp';
-		$store = MediaUpload::addItem($newPath, $type);
+		$store = MediaUpload::addItem(is_file($newWebpPath) ? $newWebpPath : $newPath, $type);
 
         try {
             $moved = $file->move($this->dir, $fileName);
