@@ -4,6 +4,7 @@ namespace Medians\Blog\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Views\Domain\View;
+use Medians\Doctors\Domain\Doctor;
 
 
 class Blog extends CustomModel
@@ -70,6 +71,11 @@ class Blog extends CustomModel
 	public function category()
 	{
 		return $this->hasOne(Category::getClass(), 'category_id', 'category_id')->with('content');
+	}
+
+	public function author()
+	{
+		return $this->hasOne(Doctor::class, 'doctor_id', 'created_by');
 	}
 
 	public function custom_fields()
