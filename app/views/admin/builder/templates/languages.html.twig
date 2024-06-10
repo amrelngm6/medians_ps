@@ -70,10 +70,9 @@
 							<div class="koMenuContainer">
 								<script>var $defaultWidth = 351;</script>
 								<div class="koMenuTabs">
-
 									<ul class="nav" role="tablist">
 										<li>
-                                        {% for lng in app.Languages %}
+                                        {% for lng in app.Languages() %}
 											<a onClick="window.top.openLink('/admin/builder?item_type={{type}}&item_id={{item_id}}&lang={{lng.language_code}}')" href="/admin/builder/?item_type={{type}}&item_id={{item_id}}&lang={{lng.language_code}}" class="{{current_lang == lng.language_code ? 'active' : ''}}" data-toggle="tab"
 												data-bs-toggle="tab"><i class="fa fa-edit"></i> {{lng.name}}</a>
                                         {% endfor %}

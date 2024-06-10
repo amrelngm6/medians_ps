@@ -174,7 +174,7 @@ class BuilderController extends CustomController
 
 			$check = (new $item->item_type)->find($item->item_id);
 
-			$check->content = $item->lang_content;
+			$check->content = $check->lang_content = $item;
 				
 			return render('views/admin/builder/templates/languages.html.twig',['page'=>$check, 'type' => $type, 'item_id' => $itemId, 'current_lang' => $lang]);
 
