@@ -131,7 +131,7 @@ class MediaRepository
         $fileName = $safeFilename.'-'.uniqid().'.';
 		$newPath = $this->_dir.$fileName.$file->guessExtension();
 		$newWebpPath = $this->_dir.$fileName.'webp';
-		// $store = MediaUpload::addItem($newPath, $type);
+		$store = MediaUpload::addItem($newPath, $type);
 
         try {
             $moved = $file->move($this->dir, $fileName.$file->guessExtension());
@@ -143,7 +143,6 @@ class MediaRepository
         return $fileName;
     }
 
-
 	public function convertImageToWebP($inputImagePath, $outputImagePath) 
 	{
 		// Escape shell arguments to prevent injection
@@ -153,7 +152,7 @@ class MediaRepository
 
 		// Construct the FFmpeg command
 		$command = "$root/app/Shared/ffmpeg -i $inputImagePath -q:v 80 $outputImagePath";
-		error_log($command);
+
 		// Execute the command and capture the output and return status
 		exec($command, $output, $returnStatus);
 
