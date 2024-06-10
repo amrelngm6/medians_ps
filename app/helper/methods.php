@@ -115,7 +115,7 @@ function __($langkey = null)
  * Save from cyber attacks
  */
 function sanitizeInput($input) {
-    if (is_array($input) || is_object($input)) {
+    if (is_array($input)) {
         foreach ($input as $key => $value) {
             $input[$key] = sanitizeInput($value);
         }
