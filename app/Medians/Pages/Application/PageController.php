@@ -303,7 +303,6 @@ class PageController extends CustomController
     {
 		
         $pageContent = $this->find(urldecode($prefix));
-		return (new  \Medians\Pages\Application\PageController)->view_page($pageContent);
 
 		try {
 
