@@ -127,20 +127,20 @@ class MediaRepository
 		$this->validate($type, $file->guessExtension());
 
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $safeFilename = $this->slug($originalFilename);
-        $fileName = $safeFilename.'-'.uniqid().'.';
-		$newPath = $this->_dir.$fileName.$file->guessExtension();
-		$newWebpPath = $this->_dir.$fileName.'webp';
+        $safeFilename = $this->slug($originalFilename).'-'.uniqid();
+        $fileName = $safeFilename.'.'.$file->guessExtension();
+		$newPath = $this->_dir.$fileName;
+		$newWebpPath = $this->_dir.$safeFilename.'.webp';
 		$store = MediaUpload::addItem($newPath, $type);
 
         try {
-            $moved = $file->move($this->dir, $fileName.$file->guessExtension());
+            $moved = $file->move($this->dir, $fileName);
 			$moved ? $this->convertImageToWebP($newPath, $newWebpPath) : '';
         } catch (FileException $e) {
         	return $e->getMessage();
         }
 
-        return $fileName;
+        return $newWebpPath ?? $fileName;
     }
 
 	public function convertImageToWebP($inputImagePath, $outputImagePath) 
