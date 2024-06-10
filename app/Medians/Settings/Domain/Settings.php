@@ -12,14 +12,13 @@ class Settings extends CustomModel
 	/*
 	/ @var String
 	*/
-	protected $table = 'settings';
+	protected $table = 'setting';
 
 
 	protected $fillable = [
     	'code',
     	'value',
     	'model',
-    	'created_by',
 	];
 
 	// public $timestamps = false;
