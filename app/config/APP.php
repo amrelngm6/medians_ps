@@ -120,6 +120,15 @@ class APP
 	}
 
 	/**
+	 * Load all Offers 
+	 * return as Array
+	 */ 
+	public function offers()
+	{
+		return  (new \Medians\Offers\Infrastructure\OfferRepository())->get();
+	}
+
+	/**
 	 * Load languages
 	 */ 
 	public function Languages()
