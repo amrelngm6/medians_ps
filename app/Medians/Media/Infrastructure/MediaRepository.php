@@ -153,7 +153,7 @@ class MediaRepository
 
 		// Construct the FFmpeg command
 		$command = $_SERVER['DOCUMENT_ROOT']."/app/Shared/ffmpeg -i $inputImagePath -q:v 80 $outputImagePath";
-
+		error_log($command);
 		// Execute the command and capture the output and return status
 		exec($command, $output, $returnStatus);
 
