@@ -12,6 +12,7 @@ class NotificationController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
+	protected $app;
 	
 
 
