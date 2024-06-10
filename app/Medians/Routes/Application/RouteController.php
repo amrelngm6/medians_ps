@@ -129,7 +129,8 @@ class RouteController extends CustomController
 
 			// Administrator user id
         	$params['created_by'] = $this->app->auth()->id;
-        	
+        	$params['latitude'] = intval($params['latitude']) ?? 0;
+        	$params['longitude'] = intval($params['longitude']) ?? 0;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>__('Added'), 'reload'=>1)
@@ -152,6 +153,9 @@ class RouteController extends CustomController
 
         	$params['status'] = !empty($params['status']) ? $params['status'] : 0;
 
+        	$params['latitude'] = intval($params['latitude']) ?? 0;
+        	$params['longitude'] = intval($params['longitude']) ?? 0;
+			
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>__('Updated'), 'reload'=>1);
