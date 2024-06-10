@@ -129,6 +129,15 @@ class APP
 	}
 
 	/**
+	 * Load all technologies
+	 * return as Array
+	 */ 
+	public function technologies()
+	{
+		return  (new \Medians\Technologies\Infrastructure\TechnologyRepository())->get();
+	}
+
+	/**
 	 * Load languages
 	 */ 
 	public function Languages()
