@@ -280,6 +280,7 @@ class PageController extends CustomController
         	
 			$item = $this->repo->find($object->item_id);
 			$item->content = $object;
+			$settings = $this->app->SystemSetting();
 
             return render('views/front/'.($settings['template'] ?? 'default').'/page.html.twig', [
                 'page' => $item,
@@ -299,6 +300,31 @@ class PageController extends CustomController
     }
 
 	
+
+	/**
+	 * Front Search page 
+	 * @var Int
+	 */
+	public function search()
+	{
+		try {
+			$request = $this->app->request();
+
+			$settings = $this->app->SystemSetting();
+
+            return render('views/front/'.($settings['template'] ?? 'default').'/search_results.html.twig', [
+		        'search_articles' => (!$request->get('for') || $request->get('for') == 'blog') ? $this->blogRepo->search($request, 10) : [],
+		        'search_doctors' => (!$request->get('for') || $request->get('for') == 'doctor') ? $this->doctorRepo->search($request, 10) : [],
+		        'search_specs' => (!$request->get('for') || $request->get('for') == 'specialization') ? $this->specsRepo->search($request, 10) : [],
+		        'search_text' => $request->get('search'),
+		    ]);
+
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	} 
+
+
     /**
      * Sub-pages for frontend
      */
