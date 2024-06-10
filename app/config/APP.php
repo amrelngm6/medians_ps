@@ -290,14 +290,14 @@ class APP
 			
 			array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'customers'),
 
-	        array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'', 'sub'=>
+	        array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'blog', 'sub'=>
 	            [
 	                array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'', 'link'=>'admin/blog', 'component'=> 'data_table'),
 	                array('permission'=> 'Dashboard.index', 'title'=>translate('categories'),  'icon'=>'', 'link'=>'admin/categories', 'component'=> 'data_table'),
 	            ]
 	        ),
 
-	        array('permission'=> 'Dashboard.index', 'title'=>translate('Bookings'),  'icon'=>'calendar', 'link'=>'admin/blog', 'sub'=>
+	        array('permission'=> 'Dashboard.index', 'title'=>translate('Bookings'),  'icon'=>'calendar', 'link'=>'admin/booking', 'sub'=>
 	            [
 	                array('permission'=> 'Dashboard.index','title'=>translate('Bookings'),  'icon'=>'', 'link'=>'admin/bookings', 'component'=> 'data_table'),
 	                array('permission'=> 'Dashboard.index','title'=>translate('Offers'),  'icon'=>'', 'link'=>'admin/offers_bookings', 'component'=> 'data_table'),
@@ -358,26 +358,8 @@ class APP
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
 			
-			array( 'title'=>translate('Products'),  'icon'=>'wind', 'link'=>'#Products', 'sub'=>
-			[
-				array('permission'=>'Products.index', 'title'=>translate('Products'),  'icon'=>'user', 'link'=>'admin/products', 'component'=>'products'),
-				array('permission'=>'Categories.index', 'title'=>translate('Categories'),  'icon'=>'user', 'link'=>'admin/product_categories', 'component'=>'categories'),
-				array('permission'=>'Brands.index', 'title'=>translate('Brands'),  'icon'=>'user', 'link'=>'admin/brands', 'component'=>'data_table'),
-			]
-			),
-
 	        
 			array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'data_table'),
-			
-			array('title'=>translate('Orders'),  'icon'=>'shopping-bag', 'link'=>'#Orders', 'sub'=>
-			[
-				array('permission'=>'Orders.index', 'title'=>translate('Orders'),  'icon'=>'truck', 'link'=>'admin/orders', 'component'=>'orders'),
-				array('permission'=>'Orders.index', 'title'=>translate('New Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=new', 'component'=>'orders'),
-				array('permission'=>'Orders.index', 'title'=>translate('Completed Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=completed', 'component'=>'orders'),
-				array('permission'=>'Orders.index', 'title'=>translate('Cancelled Orders'),  'icon'=>'truck', 'link'=>'admin/orders?status=cancelled', 'component'=>'orders'),
-				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-			]
-			),
 			
 			array('title'=>translate('Newsletters'),  'icon'=>'send', 'link'=>'#newsletters', 'sub'=>
 			[
@@ -387,12 +369,31 @@ class APP
 			),
 			
 			
-			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
-			[
-				array('permission'=>'Payments.index', 'title'=>translate('Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
-				array('permission'=> 'PaymentMethods.index', 'title'=> translate('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
-			]
-			),
+	        array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'blog', 'sub'=>
+	            [
+	                array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'', 'link'=>'admin/blog', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index', 'title'=>translate('categories'),  'icon'=>'', 'link'=>'admin/categories', 'component'=> 'data_table'),
+	            ]
+	        ),
+
+	        array('permission'=> 'Dashboard.index', 'title'=>translate('Bookings'),  'icon'=>'calendar', 'link'=>'admin/booking', 'sub'=>
+	            [
+	                array('permission'=> 'Dashboard.index','title'=>translate('Bookings'),  'icon'=>'', 'link'=>'admin/bookings', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index','title'=>translate('Offers'),  'icon'=>'', 'link'=>'admin/offers_bookings', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index','title'=>translate('Online Consultation'),  'icon'=>'', 'link'=>'admin/consultation_bookings', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index','title'=>translate('Contact messages'),  'icon'=>'', 'link'=>'admin/contact_bookings', 'component'=> 'data_table'),
+	            ]
+	        ),
+
+
+			array('permission'=> 'Dashboard.index', 'title'=> translate('Specializations'),  'icon'=>'droplet', 'link'=>'admin/specialization', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('DOCTORS'),  'icon'=>'user', 'link'=>'admin/doctors', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('online_consultation'),  'icon'=>'cast', 'link'=>'admin/online_consultation', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('Offers'),  'icon'=>'box', 'link'=>'admin/offers', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('success stories'),  'icon'=>'award', 'link'=>'admin/success_stories', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('Technologies'),  'icon'=>'cloud-lightning', 'link'=>'admin/technologies', 'component'=>'data_table'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('story dates'),  'icon'=>'cast', 'link'=>'admin/story_date', 'component'=>'data_table'),
+			
 			
 			array( 'title'=>translate('Users'),  'icon'=>'tool', 'link'=>'#users', 'superadmin'=> true, 'sub'=>
 			[
@@ -410,7 +411,6 @@ class APP
 			array( 'title'=>translate('Management'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Reviews.index', 'title'=>translate('Reviews'),  'icon'=>'tool', 'link'=>'admin/reviews', 'component'=>'data_table'),
-				array('permission'=>'Currencies.index', 'title'=>translate('Currencies'),  'icon'=>'tool', 'link'=>'admin/currencies', 'component'=>'data_table'),
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				array('permission'=>'EmailTemplate.index', 'title'=>translate('Email Templates'),  'icon'=>'tag', 'link'=>'admin/email_templates', 'component'=>'email_templates'),
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'data_table'),
@@ -423,14 +423,6 @@ class APP
 			]
 			),
 			
-			array( 'title'=>translate('Shipping'),  'icon'=>'map', 'link'=>'#locations', 'superadmin'=> true, 'sub'=>
-			[
-				array('permission'=>'Shipping.index', 'title'=>translate('Shipping methods'),  'icon'=>'truck', 'link'=>'admin/shipping', 'component'=>'data_table'),
-				array('permission'=>'Country.index', 'title'=>translate('Countries'),  'icon'=>'tool', 'link'=>'admin/countries', 'component'=>'data_table'),
-				array('permission'=>'State.index', 'title'=>translate('States'),  'icon'=>'tag', 'link'=>'admin/states', 'component'=>'data_table'),
-				array('permission'=>'City.index', 'title'=>translate('Cities'),  'icon'=>'tag', 'link'=>'admin/cities', 'component'=>'data_table'),
-			]
-			),
 			array( 'title'=>translate('localization'),  'icon'=>'mic', 'link'=>'#localization', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Language.index', 'title'=>translate('Languages'),  'icon'=>'tag', 'link'=>'admin/languages', 'component'=>'data_table'),
