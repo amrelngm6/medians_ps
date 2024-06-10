@@ -126,6 +126,8 @@ function sanitizeInput($input) {
             $input->$key = sanitizeInput($value);
         }
         return $input;
+    } elseif (!$input) {
+        return $input;
     } else {
         // If input is a string, sanitize it
         return str_replace(["&lt;", "&quot", "&gt;", '$_', '$'], "",  $input ? htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'): $input);
