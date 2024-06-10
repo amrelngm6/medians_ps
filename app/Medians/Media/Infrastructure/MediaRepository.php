@@ -128,11 +128,14 @@ class MediaRepository
 
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slug($originalFilename);
-        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
-		$store = MediaUpload::addItem($this->_dir.$fileName, $type);
+        $fileName = $safeFilename.'-'.uniqid().'.';
+		$newPath = $this->_dir.$fileName.$file->guessExtension();
+		$newWebpPath = $this->_dir.$fileName.'webp';
+		$store = MediaUpload::addItem($newPath, $type);
 
         try {
             $file->move($this->dir, $fileName);
+			$this->convertImageToWebP($newPath, $newWebpPath);
         } catch (FileException $e) {
         	return $e->getMessage();
         }
@@ -142,7 +145,25 @@ class MediaRepository
     }
 
 
-	
+	public function convertImageToWebP($inputImagePath, $outputImagePath) 
+	{
+		// Escape shell arguments to prevent injection
+		$inputImagePath = escapeshellarg($inputImagePath);
+		$outputImagePath = escapeshellarg($outputImagePath);
+
+		// Construct the FFmpeg command
+		$command = $_SERVER['DOCUMENT_ROOT']."/app/Shared/ffmpeg -i $inputImagePath -q:v 80 $outputImagePath";
+
+		// Execute the command and capture the output and return status
+		exec($command, $output, $returnStatus);
+
+		// Check the return status
+		if ($returnStatus === 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public function handleManualUploaded()
     {
