@@ -39,13 +39,13 @@ class BlogRepository
 
 	public function find($id)
 	{
-		return Blog::with('content')->withSum('views','times')->find($id);
+		return Blog::with('content','author')->withSum('views','times')->find($id);
 	}
 
 	public function get($limit = 500, $lang = null)
 	{
 		
-		return Blog::with('user','content')->with(['category'=>function($q){
+		return Blog::with('user','author','content')->with(['category'=>function($q){
 			return $q->with('content');
 		}])->limit($limit)->orderBy('id', 'DESC')->get();
 	}
@@ -53,7 +53,7 @@ class BlogRepository
 	
 	public function getFront($limit = 100, $lang = null)
 	{
-		return Blog::with('user','content')
+		return Blog::with('user','author','content')
 		->whereHas('content', function($q){
 			return $q->where('content', '!=', '');
 		})
@@ -67,7 +67,7 @@ class BlogRepository
 
 	public function getByCategory($id, $limit = 100)
 	{
-		return Blog::with('content','user')
+		return Blog::with('content','author','user')
 		->whereHas('content', function($q){
 			return $q->where('content', '!=', '');
 		})
@@ -82,6 +82,7 @@ class BlogRepository
 		return Blog::whereHas('content', function($q){
 			return $q->where('content', '!=', '');
 		})
+		->with('author')
 		->where('status', 'on')
 		->where('category_id', $id)
 		->count();
@@ -89,7 +90,7 @@ class BlogRepository
 
 	public function paginateByCategory($id, $limit = 100, $offset = 0)
 	{
-		return Blog::with('content','user')
+		return Blog::with('content','user', 'author')
 		->whereHas('content', function($q){
 			return $q->where('content', '!=', '');
 		})
@@ -103,7 +104,7 @@ class BlogRepository
 
 	public function getFeatured($limit = 1)
 	{
-		return Blog::with('content','user')
+		return Blog::with('content','user', 'author')
 		->where('status', 'on')
 		->whereHas('content', function($q){
 			return $q->where('content', '!=', '');
@@ -118,6 +119,7 @@ class BlogRepository
 			, $title);
 		return str_replace(' ', '%', trim($title));
 	}
+
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search') ? $this->filterSearchTitle($request->get('search')) : '';
@@ -125,7 +127,7 @@ class BlogRepository
 			$q->where('title', 'LIKE', '%'.$title.'%');
 		})
 		->where('status', 'on')
-		->with('content','user')
+		->with('content','user', 'author')
 		->limit($limit)->orderBy('updated_at', 'DESC')
 		->get();
 
