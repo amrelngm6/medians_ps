@@ -150,9 +150,10 @@ class MediaRepository
 		// Escape shell arguments to prevent injection
 		$inputImagePath = escapeshellarg($inputImagePath);
 		$outputImagePath = escapeshellarg($outputImagePath);
+		$root = $_SERVER['DOCUMENT_ROOT'];
 
 		// Construct the FFmpeg command
-		$command = "{$_SERVER['DOCUMENT_ROOT']}/app/Shared/ffmpeg -i {$_SERVER['DOCUMENT_ROOT']}$inputImagePath -q:v 80 {$_SERVER['DOCUMENT_ROOT']}$outputImagePath";
+		$command = "$root/app/Shared/ffmpeg -i $root$inputImagePath -q:v 80 $root$outputImagePath";
 		error_log($command);
 		// Execute the command and capture the output and return status
 		exec($command, $output, $returnStatus);
