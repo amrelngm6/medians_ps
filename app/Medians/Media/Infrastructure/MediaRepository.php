@@ -140,7 +140,6 @@ class MediaRepository
         	return $e->getMessage();
         }
 
-
         return $fileName;
     }
 
@@ -148,12 +147,12 @@ class MediaRepository
 	public function convertImageToWebP($inputImagePath, $outputImagePath) 
 	{
 		// Escape shell arguments to prevent injection
-		$inputImagePath = escapeshellarg($inputImagePath);
-		$outputImagePath = escapeshellarg($outputImagePath);
 		$root = $_SERVER['DOCUMENT_ROOT'];
+		$inputImagePath = escapeshellarg($root.$inputImagePath);
+		$outputImagePath = escapeshellarg($root.$outputImagePath);
 
 		// Construct the FFmpeg command
-		$command = "$root/app/Shared/ffmpeg -i $root$inputImagePath -q:v 80 $root$outputImagePath";
+		$command = "$root/app/Shared/ffmpeg -i $inputImagePath -q:v 80 $outputImagePath";
 		error_log($command);
 		// Execute the command and capture the output and return status
 		exec($command, $output, $returnStatus);
