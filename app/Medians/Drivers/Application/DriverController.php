@@ -182,7 +182,7 @@ class DriverController extends CustomController
 		
 		$Auth = new \Medians\Auth\Application\AuthService;
 		$this->app = new \config\APP;
-		$request = $this->app->params();
+		$params = $this->app->params();
 		
 		$checkLogin = $this->repo->checkLogin($params->email, $Auth->encrypt($params->password));
 		
