@@ -12,6 +12,22 @@ use Shared\simple_html_dom;
  */
 function render($template, $data, $responseType = 'html')
 {
+    $list = [];
+    $ar = (new \helper\langs\LangsAr)->get();
+    $en = (new \helper\langs\LangsEn)->get();
+    // $en = (new helper\Lang('english'))->load();
+    $i=0;
+    foreach ($ar as $key => $value) {
+        $_key = strtolower(str_replace([' ', '/', '&', '?','؟' , '@', '#', '$', '%', '(', ')', '-', '='], '_', $key)) ;
+        $list[$i]=[];
+        $list[$i]['code'] = $_key;
+        $list[$i]['translation']['english'] = $en[$key] ?? translate($_key);
+        $list[$i]['translation']['arabic'] = $value;
+        $s= (new \Medians\Languages\Infrastructure\TranslationRepository)->storeItems($list[$i]);
+
+        $i = $i+1;
+    }
+    
     $app = new \config\APP;
     
 
@@ -32,15 +48,14 @@ function render($template, $data, $responseType = 'html')
     
     $path = isset($data['load_vue']) ? 'views/admin/vue.html.twig' : $template;
     $app = new \config\APP;
-    $data = $responseType == 'html' ? loadFrontConfig($template, $data) : loadConfig($template, $data);
+    $data = loadConfig($template, $data);
     $output =  $app->template()->render($path, $data);
 
+    $isFront ? file_put_contents($_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html', $output) : '';
     
     if ($responseType == 'html')
     {
         echo $output;
-        $isFront ? file_put_contents($_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html', $output) : '';
-        return;
     } else {
         return $output;
     }
@@ -53,6 +68,7 @@ function render($template, $data, $responseType = 'html')
   function loadConfig($template, $data)
   {
     
+
     try {
         
         $app = new \config\APP;
@@ -80,52 +96,10 @@ function render($template, $data, $responseType = 'html')
     $data['lang_json'] = (new helper\Lang($_SESSION['lang']))->load();
     $data['lang_key'] = substr($_SESSION['lang'],0,2);
     $data['app']->isMobileDevice = isMobileDevice();
+    $data['specializations'] = (new \Medians\Specializations\Infrastructure\SpecializationRepository())->get_root();
 
     return $data;
-}
-
-
-/**
- * Front render config
- */
-
- /**
-  * Load the main configuration in Array
-  */
-function loadFrontConfig($template, $data)
-{
-    
-    try {
-        
-        $app = new \config\APP;
-            
-        $setting = $app->SystemSetting();
-        $languages = $app->Languages();  
-        
-            
-    } catch (\Exception $e) {
-        echo ('CHECK DATABASE CONNECTION ');
-        die();
-    }
-    $app = new \config\APP;
-    $data['component'] = $template;
-    $data['app'] = $app;
-    $data['app']->auth = $app->auth();
-    // $data['app']->customer = $app->customer_auth();
-    $data['app']->setting = $setting;
-    $data['template'] = $setting['template'] ?? 'default';
-    $data['menu'] = $app->menu();
-    $data['langs'] = $languages;
-    $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
-    $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
-    $data['lang'] = new helper\Lang($_SESSION['lang']);
-    // $data['lang_json'] = (new helper\Lang($_SESSION['lang']))->load();
-    $data['lang_key'] = substr($_SESSION['lang'],0,2);
-    $data['app']->isMobileDevice = isMobileDevice();
-
-    return $data;
-}
-
+  }
 
 
 /**
