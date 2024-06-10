@@ -34,7 +34,7 @@ class SettingsRepository
 		try {
 			
 			$check = Settings::where('code', $code)->first();
-			return isset($check->value) ? $check->value : '';
+			return $check->value ?? '';
 		} catch (\Exception $e) {
     		throw new \Exception($e->getMessage(), 1);
 			
