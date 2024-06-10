@@ -137,6 +137,7 @@ class MediaRepository
 			$moved = $moved ? $this->convertImageToWebP($newPath, $newWebpPath) : '';
 			$store =  $moved ? MediaUpload::addItem($newPath, $type) : '';
         } catch (FileException $e) {
+			error_log($e->getMessage());
         	return $e->getMessage();
         }
 
