@@ -303,6 +303,7 @@ class PageController extends CustomController
     {
 		
         $pageContent = $this->find(urldecode($prefix));
+		return (new  \Medians\Pages\Application\PageController)->view_page($pageContent);
 
 		try {
 
@@ -318,7 +319,6 @@ class PageController extends CustomController
 		if (isset($pageContent->item_type))
 		{
 			$_SESSION['lang'] = $pageContent->lang;
-
 
 			switch ($pageContent->item_type) {
 				
