@@ -33,7 +33,6 @@
         </div>
     </div>
 
-
     <div class="blog-content container mx-auto">
 
         <div class="cairo mx-auto lg:block hidden pt-10 pb-4   purple-color font-semibold text-2xl mx-auto text-center w-72">
@@ -51,7 +50,7 @@
                             {% if item.content_item.content|raw is not empty %}
                             <a class="py-3 px-4 purple-bg text-white rounded-tl-lg rounded-br-lg" href="/{{item.content.prefix}}">{{lang.translate('Profile CV')}}</a>
                             {% endif %}
-                            <a class="py-3 px-4 cyan-bg purple-color hover:text-gray-500 mx-2 " href="/book/{{item.id}}">{{lang.translate('BOOK_NOW')}} </a>
+                            <a class="py-3 px-4 cyan-bg purple-color hover:text-gray-500 mx-2 " href="/doctor_booking/{{item.id}}">{{lang.translate('BOOK_NOW')}} </a>
                         </p>
                         <p class="text-sm text-white pt-4 ">
                             {{item.content.short|striptags|trim|raw}}

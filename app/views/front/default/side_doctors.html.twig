@@ -13,7 +13,7 @@
                                     {% if doctor.content_item.content|raw is not empty %}
                                     <a class="mx-auto py-3 px-4 purple-bg text-white rounded-lg  inline-block " href="/{{doctor.content.prefix}}">{{lang.translate('FULL_BIO')}} </a>
                                     {% endif %}
-                                    <a class="mx-auto py-3 px-4 cyan-bg purple-color font-semibold rounded-lg  inline-block " href="/book/{{doctor.id}}">{{lang.translate('BOOK_NOW')}} </a>
+                                    <a class="mx-auto py-3 px-4 cyan-bg purple-color font-semibold rounded-lg  inline-block " href="/doctor_booking/{{doctor.id}}">{{lang.translate('BOOK_NOW')}} </a>
                                 </div>
                             </div>
                             {% endfor %}
