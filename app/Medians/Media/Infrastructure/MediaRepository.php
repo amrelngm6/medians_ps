@@ -186,6 +186,29 @@ class MediaRepository
     }
 
 
+	public function convertManualUploaded()
+    {
+        try {
+
+			$path = $_SERVER['DOCUMENT_ROOT'].'/uploads/images/*';
+			foreach (glob($path) as $key => $value) 
+			{
+				$newPath = str_replace($_SERVER['DOCUMENT_ROOT'], '', $value);
+				$webP = str_replace(['.png', '.jpg', '.jpeg', '.bmp'], '.webp', $newPath);
+				if (!is_file($_SERVER['DOCUMENT_ROOT'].$webP) && $key < 10) {
+					$store = $this->convertImageToWebP($newPath, $webP);
+				}
+			}
+
+        } catch (FileException $e) {
+        	return $e->getMessage();
+        }
+
+
+        return $fileName;
+    }
+
+
 
 	public function validate($type, $ext)
 	{
