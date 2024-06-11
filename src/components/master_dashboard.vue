@@ -71,17 +71,11 @@
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-danger"  text_class="fs-4 text-white" value_class="text-white"  :title="translate('Normal Booking')" :value="content.bookings_count"></dashboard_card_white>
                     </div>
                     
-                    <div class="w-full gap-4 lg:flex">
+                    <div class="w-full ">
                         <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('Invoices of provider subscriptions')"></h4> 
-                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
+                            <h4 class="text-base lg:text-lg " v-text="translate('All bookings charts')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.bookings_charts">
                                 <dashboard_chart v-if="bookingCharts" :key="bookingCharts" :options="bookingCharts" /> 
-                            </div>
-                        </div>
-                        <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('Providers with most trips')"></h4> 
-                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.taxi_trips_charts">
-                                <dashboard_pie_chart v-if="merge_line_options" type="bar"  :key="merge_line_options" :options="merge_line_options" />
                             </div>
                         </div>
                     </div>
@@ -92,9 +86,9 @@
                         
                         <div class="w-full p-4">
                             <div class="w-full flex gap-2">
-                                <h4 class="w-full ml-4" v-text="translate('Top customers')"></h4>
+                                <h4 class="w-full ml-4" v-text="translate('Top Pages')"></h4>
                             </div>
-                            <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_customers_who_have_most_orders')"></p>
+                            <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top pages with high views')"></p>
                         </div>
                         <div class="card-body w-full">
                             <div class="w-full" v-if="pie_options">
@@ -106,8 +100,8 @@
                         
                         <div class="w-full p-4">
                             <div class="w-full flex ">
-                                <h4 class="w-full ml-4" v-text="translate('New subscriptions')"></h4>
-                                <a href="/admin/plan_subscriptions" class="w-20" v-text="translate('View all')"></a>
+                                <h4 class="w-full ml-4" v-text="translate('New articles')"></h4>
+                                <a href="/admin/blog" class="w-20" v-text="translate('View all')"></a>
                             </div>
                             <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest plan subscriptions')"></p>
                         </div>
@@ -117,9 +111,9 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th v-text="translate('User')"></th>
-                                                <th v-text="translate('subscription')"></th>
-                                                <th v-text="translate('Type')"></th>
+                                                <th v-text="translate('ID')"></th>
+                                                <th v-text="translate('Title')"></th>
+                                                <th v-text="translate('Category')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.plan_subscriptions"  :key="content.plan_subscriptions">
@@ -183,10 +177,18 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="w-full py-10">
+                    <h4 class="text-base lg:text-lg " v-text="translate('Filtered Bookings')"></h4> 
+                    <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.bookings_charts">
+                        <dashboard_pie_chart v-if="merge_line_options" type="bar"  :key="merge_line_options" :options="merge_line_options" />
+                    </div>
+                </div>
+
                 <div class="card  w-full  no-mobile">
                     <div class="w-full flex p-4">
-                        <h4 class="w-full " v-text="translate('Latest invoices')"></h4>
-                        <a href="/admin/invoices" class="w-20" v-text="translate('View all')"></a>
+                        <h4 class="w-full " v-text="translate('Contact forms')"></h4>
+                        <a href="/admin/contact_bookings" class="w-20" v-text="translate('View all')"></a>
                     </div>
                     <div class="card-body w-full">
                         <div class="w-full">
@@ -194,28 +196,22 @@
                                 <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                     <thead>
                                         <tr>
-                                            <th v-text="translate('User')"></th>
-                                            <th v-text="translate('Amount')"></th>
-                                            <th v-text="translate('Payment method')"></th>
-                                            <th v-text="translate('Code')"></th>
+                                            <th v-text="translate('Name')"></th>
+                                            <th v-text="translate('Mobile')"></th>
+                                            <th v-text="translate('Email')"></th>
+                                            <th v-text="translate('Message')"></th>
+                                            <th v-text="translate('Type')"></th>
                                             <th v-text="translate('date')"></th>
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        <tr :key="index" v-for="(invoice, index) in content.latest_invoices" >
-                                            <td>
-                                                <div v-if="invoice.user" class="flex gap-2">
-                                                    <img :src="invoice.user.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
-                                                    <div>
-                                                        <p class="m-0" v-text="invoice.user.name"></p>
-                                                        <small  v-if="invoice.user" class="text-xs" v-text="invoice.user.usertype"></small>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td v-text="currency.symbol + '' + invoice.total_amount"></td>
-                                            <td v-text="invoice.payment_method"></td>
-                                            <td v-text="invoice.code"></td>
-                                            <td v-text="dateTimeFormat(invoice.created_at)"></td>
+                                        <tr :key="index" v-for="(booking, index) in content.latest_bookings" >
+                                            <td v-text="booking.field.name ?? ''"></td>
+                                            <td v-text="(booking.field.mobile_key ?? '') + (booking.field.mobile ?? '')"></td>
+                                            <td v-text="booking.field.email ?? ''"></td>
+                                            <td v-text="booking.field.message ?? ''"></td>
+                                            <td v-text="booking.class ?? ''"></td>
+                                            <td v-text="dateTimeFormat(booking.created_at)"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -281,8 +277,8 @@ export default
         const switchDate = (start) =>
         {
             let filters = '&'
-            filters += 'start=' + start 
-            filters += '&end='
+            filters += 'start_date=' + start 
+            filters += '&end_date='
             filters += (start == 'yesterday') ? 'yesterday' : 'today';
 
             // Update active date filters
@@ -326,7 +322,7 @@ export default
 
             if (data)
             {
-                const colors = ref(['#7239ea','#f8285a','#17c653','#f1ed5c','#1e2129']);        
+                const colors = ref(['rgba(69,36,140, 1)','#77152d','rgba(69,140,36, 1)','#b4af0b','#1e2129']);        
 
                 bookingCharts.value  =  {
                     labels: content.value.bookings_charts.map(e => e ? e.label : null),
@@ -336,12 +332,12 @@ export default
                 };
                 
                 merge_line_options.value  =  {
-                    labels: content.value.bookings_charts.filter(item => item.label),
+                    labels: content.value.bookings_charts.map(e => e ? e.label : null),
                     datasets: [
-                        chartItem(content.value.bookings_charts.map(e => e ? e.class == 'Offer' : 0), translate('Offer'), colors[0]),
-                        chartItem(content.value.bookings_charts.map(e => e ? e.class == 'OnlineConsultation' : 0), translate('OnlineConsultation'), colors[0]),
-                        chartItem(content.value.bookings_charts.map(e => e ? e.class == 'Booking' : 0), translate('Booking'), colors[0]),
-                        chartItem(content.value.bookings_charts.map(e => e ? e.class == 'Contact' : 0), translate('Contact Msgs'), colors[0]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'Booking' ? e.y : 0), translate('Booking'), colors[0]),
+                        // chartItem(content.value.bookings_charts.map(e => e.class == 'Offer' ? e.y: 0), translate('Offer'), colors[1]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'OnlineConsultation' ? e.y : 0), translate('OnlineConsultation'), colors[2]),
+                        // chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
                     ]
                 };
 
