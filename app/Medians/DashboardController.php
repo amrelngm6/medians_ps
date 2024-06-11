@@ -167,7 +167,7 @@ class DashboardController extends CustomController
         $data['offers_bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Offer'])->count();
         $data['onlineconsultation_bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'OnlineConsultation'])->count();
         // $data['top_products'] = [];
-        // $data['top_customers'] = [];
+        $data['top_pages'] = [];
         // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         // $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         // $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
