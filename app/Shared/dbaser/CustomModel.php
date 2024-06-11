@@ -19,7 +19,7 @@ class CustomModel extends Model
 	public function getId()
 	{
 		$k = $this->getPrimaryKey();
-		return isset($this->$l) ? $this->$l : 0; 
+		return isset($this->$k) ? $this->$k : 0; 
 	}
 
 	public function getPrimaryKey()
@@ -120,7 +120,7 @@ class CustomModel extends Model
 
 	public function addView()
 	{
-		$view = View::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->id, 'date'=> date('Y-m-d')]);
+		$view = View::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'date'=> date('Y-m-d')]);
 		$view->update(['session'=>$this->sessionGuest(), 'times'=>($view->times ? $view->times : 0)+1]);
 	}
 

@@ -375,6 +375,10 @@ class PageController extends CustomController
 	{
 		if (isset($pageContent->item_type))
 		{
+			$model = new $pageContent->item_type;
+			$PK = $model->getPrimaryKey();
+			$model->$PK = $pageContent->item_id; 
+			$model->addView();
 			$_SESSION['lang'] = $pageContent->lang;
 
 			switch ($pageContent->item_type) {
