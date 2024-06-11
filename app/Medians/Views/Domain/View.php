@@ -20,6 +20,7 @@ class View extends CustomModel
     	'item_id',
     	'session',
     	'times',
+    	'date',
 	];
 
 }

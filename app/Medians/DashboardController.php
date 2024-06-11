@@ -13,7 +13,7 @@ class DashboardController extends CustomController
 	protected $app;
 
 	public  $contentRepo;
-	public  $HelpMessageRepository;
+	public  $BookingRepository;
 
 	public $start;
 	public $end;
@@ -27,7 +27,6 @@ class DashboardController extends CustomController
 
 		$this->contentRepo = new Content\Infrastructure\ContentRepository();
 		$this->BookingRepository = new Bookings\Infrastructure\BookingRepository();
-		$this->CustomerRepository = new Customers\Infrastructure\CustomerRepository();
 
 		
 		$setting = $this->app->SystemSetting();
@@ -162,6 +161,11 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
+        $data['latest_bookings'] = $this->BookingRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        $data['bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Booking'])->count();
+        $data['doctors_bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Contact'])->count();
+        $data['offers_bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Offer'])->count();
+        $data['onlineconsultation_bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'OnlineConsultation'])->count();
         // $data['top_products'] = [];
         // $data['top_customers'] = [];
         // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);

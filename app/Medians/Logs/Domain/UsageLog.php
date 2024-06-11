@@ -22,6 +22,7 @@ class UsageLog extends CustomModel
     	'model_type',
     	'action',
     	'data',
+    	'date',
 	];
 
 	public static function addItem($model, $action, $updatedFields = null)
@@ -43,6 +44,7 @@ class UsageLog extends CustomModel
 			$data['user_type'] = $userpk ? $user::class : '';
 			$data['user_id'] = $userpk ? $user->$userpk : 0;
 			$data['action'] = $action;
+			$data['date'] = date('Y-m-d');
 			$data['data'] = $updatedFields ?? json_encode(json_decode($model));
 			$save = UsageLog::create($data);
 			return $save;

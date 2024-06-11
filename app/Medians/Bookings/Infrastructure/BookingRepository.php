@@ -47,6 +47,13 @@ class BookingRepository
 	}
 
 
+	public function allEventsByDate($params)
+	{
+		$query = Booking::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+
 
 
 
