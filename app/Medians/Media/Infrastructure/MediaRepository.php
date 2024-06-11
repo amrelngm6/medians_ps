@@ -202,6 +202,7 @@ class MediaRepository
 
     	if (is_file($filepath))
     	{
+			MediaUpload::where('path', $file)->delete();
     		return unlink($filepath);
     	}
     }
