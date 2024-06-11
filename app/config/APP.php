@@ -372,7 +372,7 @@ class APP
 	 */
 	public function superAdminMenu()
 	{
-		return $this->adminMenu();
+		// return $this->adminMenu();
 		$data = array(
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
