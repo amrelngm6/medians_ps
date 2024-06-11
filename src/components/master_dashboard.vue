@@ -75,7 +75,7 @@
                         <div class="w-full">
                             <h4 class="text-base lg:text-lg " v-text="translate('Invoices of provider subscriptions')"></h4> 
                             <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.trips_charts">
-                                <dashboard_chart v-if="invoicesCharts" :key="invoicesCharts" :options="invoicesCharts" /> 
+                                <dashboard_chart v-if="bookingCharts" :key="bookingCharts" :options="bookingCharts" /> 
                             </div>
                         </div>
                         <div class="w-full">
@@ -314,7 +314,7 @@ export default
         const optionsbar = ref();
 
         
-        const invoicesCharts = ref([]);
+        const bookingCharts = ref([]);
         const labels = ref([]);
         const route_data = ref([]);
         const taxi_data = ref([]);
@@ -328,18 +328,20 @@ export default
             {
                 const colors = ref(['#7239ea','#f8285a','#17c653','#f1ed5c','#1e2129']);        
 
-                invoicesCharts.value  =  {
-                    labels: content.value.invoices_charts.map(e => e ? e.label : null),
+                bookingCharts.value  =  {
+                    labels: content.value.bookings_charts.map(e => e ? e.label : null),
                     datasets: [
-                        chartItem(content.value.invoices_charts.map(e => e ? e.y : null), translate('Invoices'), colors[0]),
+                        chartItem(content.value.bookings_charts.map(e => e ? e.y : null), translate('Bookings'), colors[0]),
                     ]
                 };
                 
                 merge_line_options.value  =  {
-                    labels: content.value.top_products.filter(item => item.label),
+                    labels: content.value.bookings_charts.filter(item => item.label),
                     datasets: [
-                        chartItem(content.value.top_products.map(e => e ? e.taxi_trips.length : 0), translate('Taxi Trips'), colors[0]),
-                        chartItem(content.value.top_products.map(e => e ? e.trips.length : 0), translate('Routes Trips'), colors[1]),
+                        chartItem(content.value.bookings_charts.map(e => e ? e.class == 'Offer' : 0), translate('Offer'), colors[0]),
+                        chartItem(content.value.bookings_charts.map(e => e ? e.class == 'OnlineConsultation' : 0), translate('OnlineConsultation'), colors[0]),
+                        chartItem(content.value.bookings_charts.map(e => e ? e.class == 'Booking' : 0), translate('Booking'), colors[0]),
+                        chartItem(content.value.bookings_charts.map(e => e ? e.class == 'Contact' : 0), translate('Contact Msgs'), colors[0]),
                     ]
                 };
 
@@ -445,7 +447,7 @@ export default
         }
         
         return {
-            invoicesCharts,
+            bookingCharts,
             handleSelectedDate,
             switchDate,
             optionsbar,
