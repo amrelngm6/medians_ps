@@ -10,13 +10,11 @@ class DashboardController extends CustomController
 	/**
 	* @var Object
 	*/
+	protected $app;
+
 	public  $contentRepo;
 	public  $HelpMessageRepository;
-	public  $InvoiceRepository;
-	public  $TransactionRepository;
-	public  $CustomerRepository;
 
-	protected $app;
 	public $start;
 	public $end;
 	public $month_first;
@@ -28,7 +26,7 @@ class DashboardController extends CustomController
 		$user = $this->app->auth();
 
 		$this->contentRepo = new Content\Infrastructure\ContentRepository();
-		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository();
+		$this->BookingRepository = new Bookings\Infrastructure\BookingRepository();
 		$this->CustomerRepository = new Customers\Infrastructure\CustomerRepository();
 
 		
@@ -141,7 +139,7 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
-        // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
+        $data['bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'type' => 'Booking'])->count();
         // $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         // $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
         // $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();

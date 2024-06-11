@@ -39,33 +39,13 @@ class BookingRepository
 		return Booking::where('class', $type)->with('content','user','custom_fields', 'consultation' , 'offer')->limit($limit)->orderBy('updated_at', 'DESC')->get();
 	}
 
-	public function similar($item, $limit = 3)
+	
+	public function eventsByDate($params)
 	{
-		if (empty($item->content->title))
-			return null;
-		
-		$title = str_replace(' ', '%', $item->content->title);
-		return Booking::whereHas('content', function($q) use ($title){
-			$q->where('title', 'LIKE', '%'.$title.'%')->orWhere('content', 'LIKE', '%'.$title.'%');
-		})
-		->where('id', '!=', $item->id)
-		->with('content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
+		$query = Booking::where('class', $params['class'])->whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
 	}
 
-	public function get_root($limit = 100)
-	{
-		$lang = translate('lang');
-		return Booking::where('parent_id', '0')
-		->with(['childs'=>function($q)  use ($lang) {
-			$q->with(['content'=>function($q) use ($lang)
-			{
-				$q->where('lang', $lang);
-			}]);
-		}])
-		->with('content','user')
-		->where('id','!=','1')
-		->limit($limit)->orderBy('updated_at', 'DESC')->get();
-	}
 
 
 
