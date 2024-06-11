@@ -31,6 +31,7 @@ class MediaController extends CustomController
 		$this->app = new \config\APP;
 		
 		// $this->repo->handleManualUploaded();
+		$this->repo->convertManualUploaded();
 		
 		$user = $this->app->auth();
 
