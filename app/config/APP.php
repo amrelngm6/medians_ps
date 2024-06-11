@@ -306,14 +306,15 @@ class APP
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
 			
-			array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'customers'),
+			// array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'customers'),
 
-	        array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'blog', 'sub'=>
-	            [
-	                array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'', 'link'=>'admin/blog', 'component'=> 'data_table'),
-	                array('permission'=> 'Dashboard.index', 'title'=>translate('categories'),  'icon'=>'', 'link'=>'admin/categories', 'component'=> 'data_table'),
-	            ]
-	        ),
+	        // array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'blog', 'sub'=>
+	        //     [
+	        //         array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'', 'link'=>'admin/blog', 'component'=> 'data_table'),
+	        //         array('permission'=> 'Dashboard.index', 'title'=>translate('categories'),  'icon'=>'', 'link'=>'admin/categories', 'component'=> 'data_table'),
+	        //     ]
+	        // ),
+			array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'admin/blog', 'component'=> 'data_table'),
 
 	        array('permission'=> 'Dashboard.index', 'title'=>translate('Bookings'),  'icon'=>'calendar', 'link'=>'admin/booking', 'sub'=>
 	            [
@@ -376,15 +377,16 @@ class APP
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
 			
+			array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'admin/blog', 'component'=> 'data_table'),
 	        
-			array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'data_table'),
+			// array('permission'=>'Customers.index', 'title'=>translate('Customers'),  'icon'=>'users', 'link'=>'admin/customers', 'component'=>'data_table'),
 			
-			array('title'=>translate('Newsletters'),  'icon'=>'send', 'link'=>'#newsletters', 'sub'=>
-			[
-				array('permission'=>'Newsletters.index', 'title'=>translate('newsletters'),  'icon'=>'truck', 'link'=>'admin/newsletters', 'component'=>'data_table'),
-				array('permission'=>'Subscribers.index', 'title'=>translate('Subscribers'),  'icon'=>'truck', 'link'=>'admin/newsletter_subscribers', 'component'=>'data_table'),
-			]
-			),
+			// array('title'=>translate('Newsletters'),  'icon'=>'send', 'link'=>'#newsletters', 'sub'=>
+			// [
+			// 	array('permission'=>'Newsletters.index', 'title'=>translate('newsletters'),  'icon'=>'truck', 'link'=>'admin/newsletters', 'component'=>'data_table'),
+			// 	array('permission'=>'Subscribers.index', 'title'=>translate('Subscribers'),  'icon'=>'truck', 'link'=>'admin/newsletter_subscribers', 'component'=>'data_table'),
+			// ]
+			// ),
 			
 			
 	        array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'blog', 'sub'=>
