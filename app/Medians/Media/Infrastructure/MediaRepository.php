@@ -131,16 +131,16 @@ class MediaRepository
         $fileName = $safeFilename.'.'.$file->guessExtension();
 		$newPath = $this->_dir.$fileName;
 		$newWebpPath = $this->_dir.$safeFilename.'.webp';
+		$save = MediaUpload::addItem($newWebpPath, $type);
 
         try {
-            $moved = $file->move($this->dir, $fileName);
+			
+            $file->move($this->dir, $fileName);
+			$this->convertImageToWebP($newPath, $newWebpPath);
+
         } catch (FileException $e) {
         	return $e->getMessage();
         }
-
-		$move = $this->convertImageToWebP($newPath, $newWebpPath);
-
-		$save = MediaUpload::addItem($newWebpPath, $type);
 
 		return $newWebpPath ?? $fileName;
     }
