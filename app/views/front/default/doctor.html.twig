@@ -47,7 +47,7 @@
                                 <img loading="lazy" src="/stream?image={{item.picture}}" style="top:-100px" class="rounded-full p-1 border-purple-800 border-1 w-56 h-56 mx-auto left-0 right-0 absolute" alt="Doctor" />
 
                                 <h2 class="text-xl pb-2 font-bold purple-color" >{{item.content_item.title}}</h2>
-                                <p class="text-lg pb-10 font-bold cyan-color" >{{lang.translate('lang') == 'en' ? item.field.short_name_en : item.field.short_name_ar}}</p>
+                                <p class="text-lg pb-10 font-bold cyan-color" >{{lang.translate('lang') == 'english' ? item.field.short_name_en : item.field.short_name_ar}}</p>
 
                                 <a class="mx-auto py-3 px-4 cyan-bg purple-color rounded-lg  inline-block font-semibold " href="/doctor_booking/{{item.id}}">{{lang.translate('book_now')}} </a>
                             </div>
