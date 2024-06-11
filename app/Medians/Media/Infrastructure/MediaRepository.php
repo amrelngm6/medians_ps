@@ -200,9 +200,9 @@ class MediaRepository
 
     	$filepath = $_SERVER['DOCUMENT_ROOT'].$file;
 
+		$remove = MediaUpload::where('path', $file)->delete();
     	if (is_file($filepath))
     	{
-			MediaUpload::where('path', $file)->delete();
     		return unlink($filepath);
     	}
     }
