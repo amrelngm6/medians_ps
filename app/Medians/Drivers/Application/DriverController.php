@@ -517,8 +517,8 @@ class DriverController extends CustomController
 	{
 		$image = file_get_contents($url);
 		if ($image !== false) {
-			file_put_contents($_SERVER['DOCUMENT_ROOT']. $localPath, $image);
-			return $localPath; 
+			$set = file_put_contents($_SERVER['DOCUMENT_ROOT']. $localPath, $image);
+			return $set ? $localPath : null; 
 		}
 	}
 }
