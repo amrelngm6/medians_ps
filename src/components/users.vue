@@ -22,7 +22,6 @@
                                 </div>
                                 <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{user.first_name}} {{user.last_name}}</a>
                                 <div class="fw-semibold text-gray-500 mb-2" v-text="user.email"></div>
-                                <div class="fw-semibold text-gray-500 mb-6" v-if="user.business" v-text="user.business.business_name"></div>
                                 
                                 <div class="w-full flex gap-4">
                                     

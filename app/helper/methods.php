@@ -57,20 +57,18 @@ function render($template, $data, $responseType = 'html')
         
         $app = new \config\APP;
             
-        $business_setting = $app->BusinessSettings();
         $setting = $app->SystemSetting();
         $languages = $app->Languages();  
         
             
     } catch (\Exception $e) {
-        echo ('CHECK DATABASE CONNECTION ');
+        echo ('CHECK DATABASE CONNECTION '. $e->getMessage());
         die();
     }
     $app = new \config\APP;
     $data['component'] = $template;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
-    $data['app']->business_setting = $business_setting;
     $data['app']->setting = $setting;
     $data['app']->currency = $app->currency();
     $data['menu'] = $app->menu();
@@ -98,20 +96,23 @@ function Page404()
     ]);
 }
 
+
 /**
  * Page not found 
  * @param Object $twig, Object $app 
  * @return Page not found template 
  */
-function errorPage($data)
+function errorPage($data, $title = 'Error')
 {
     $app = new \config\APP;
     echo $app->template()->render('views/front/error.html.twig', [
-        'title' => 'Error',
+        'title' => $title,
         'msg' => $data,
+        'template'  => $setting['template'] ?? 'default',
         'app' => $app
     ]);
 }
+
 
 
 /**

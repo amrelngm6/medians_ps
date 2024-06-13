@@ -68,34 +68,16 @@
                                 <div class="d-flex align-items-center me-5 me-xl-13">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-30px symbol-circle me-3">                                                   
-                                        <img :src="business_setting['logo'] ?? '/uploads/images/default_logo.png'" class="" alt="">                                                    
+                                        <img :src="setting['logo'] ?? '/uploads/images/default_logo.png'" class="" alt="">                                                    
                                     </div>
                                     <!--end::Symbol--> 
                                     
-                                    <!--begin::Info-->
-                                    <div v-if="auth.business" class="m-0">                            
-                                        <span class="fw-semibold text-gray-500 d-block fs-8" v-text="translate('Business')"></span>
-                                        <a href="" class="fw-bold text-gray-800 text-hover-primary fs-7" v-text="auth.business.business_name ?? ''"></a>
-                                    </div>
-                                    <!--end::Info-->
                                 </div>                    
                                 <!--end::Item-->  
                             </div>
                         </div>
                         <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/2.svg">
 
-                        </div>
-                        <div class="mb-6">
-                            <div class="d-flex">
-                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
-                                    <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.end_date"></span>                                
-                                    <div class="fw-semibold text-gray-500" v-text="translate('Renewal date')"></div>
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
-                                    <span class="fs-6 text-gray-700 fw-bold" v-text="auth.business.subscription.plan_name ?? ''"></span>                               
-                                    <div class="fw-semibold text-gray-500" v-text="translate('Plan')"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,7 +86,7 @@
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-dark" text_class="fs-4 text-white" value_class="text-white" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-info" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Withdrawals requests')" :value="content.withdrawals_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-success" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Driver Applicants')" :value="content.driver_applicant_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-danger" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Business Applicants')" :value="content.business_applicant_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-danger" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Business Applicants')" :value="content.student_applicant_count"></dashboard_card_white>
                     </div>
                     
                     <div class="w-full gap-4 lg:flex">
@@ -456,7 +438,7 @@ export default
         'lang',
         'setting',
         'system_setting',
-        'business_setting',
+        'setting',
         'conf',
         'path',
         'auth',

@@ -5,7 +5,7 @@ namespace Medians\Events\Domain;
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
-use Medians\Businesses\Domain\Business;
+
 
 class Event extends CustomModel
 {
@@ -18,7 +18,7 @@ class Event extends CustomModel
     protected $primaryKey = 'event_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'title',
 		'description',
 		'picture',
@@ -52,10 +52,7 @@ class Event extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 	
 	
 }

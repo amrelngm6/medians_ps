@@ -18,7 +18,6 @@ class Gallery extends CustomModel
     protected $primaryKey = 'gallery_id';
 
 	protected $fillable = [
-    	'business_id',
 		'picture',
     	'status',
     	'created_by',

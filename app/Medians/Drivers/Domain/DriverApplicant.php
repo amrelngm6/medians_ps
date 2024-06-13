@@ -5,7 +5,7 @@ namespace Medians\Drivers\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Businesses\Domain\Business;
+
 
 class DriverApplicant extends CustomModel
 {
@@ -18,7 +18,7 @@ class DriverApplicant extends CustomModel
     protected $primaryKey = 'applicant_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'driver_id',
 		'message',
 		'status',
@@ -30,10 +30,7 @@ class DriverApplicant extends CustomModel
 		return $this->fillable;
 	}
 
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 
 	public function driver() 
 	{
@@ -49,7 +46,5 @@ class DriverApplicant extends CustomModel
 	
     public function receiverAsUser()
     {
-		$model =  $this->with('business')->find($this->applicant_id);
-		return isset($model->business->owner) ?  $model->business->owner : null;
     }
 }

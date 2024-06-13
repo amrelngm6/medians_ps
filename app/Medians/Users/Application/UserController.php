@@ -8,11 +8,8 @@ use Medians\Roles\Infrastructure\RoleRepository;
 use Medians\Vehicles\Infrastructure\VehicleRepository;
 use Medians\Drivers\Infrastructure\DriverRepository;
 use Medians\Trips\Infrastructure\TripRepository;
-use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 use Medians\Routes\Infrastructure\RouteRepository;
 use Medians\Invoices\Infrastructure\InvoiceRepository;
-use Medians\Wallets\Infrastructure\BusinessWalletRepository;
-use Medians\Wallets\Infrastructure\BusinessWithdrawalRepository;
 
 
 class UserController extends CustomController
@@ -26,7 +23,6 @@ class UserController extends CustomController
 
 	protected $app;
 	protected $rolesRepo;
-	protected $planSubscriptionRepo;
 
 
 	function __construct()
@@ -34,7 +30,6 @@ class UserController extends CustomController
 		$this->app = new \config\APP;
 		$this->repo = new UserRepository();
 		$this->rolesRepo = new RoleRepository();
-		$this->planSubscriptionRepo = new PlanSubscriptionRepository();
 	}
 
 
@@ -94,7 +89,7 @@ class UserController extends CustomController
 		return render('users', [
 	        'title' => translate('Users'),
 			'load_vue'=> true,
-			'roles' =>   $user->role_id == 1 ? $this->rolesRepo->getWithUsers() : $this->rolesRepo->getWithBusinessUsers($user),
+			'roles' =>  $this->rolesRepo->getWithUsers($user),
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
 	    ]);
@@ -109,38 +104,33 @@ class UserController extends CustomController
 	{
 		
 		$user = $this->app->auth();
-		$invoicesRepo = new InvoiceRepository($user->business);
-		$businessWalletRepo = new BusinessWalletRepository();
-		$businessWithdrawalRepo = new BusinessWithdrawalRepository();
+		$invoicesRepo = new InvoiceRepository();
 
 		return render('profile', [
 			'load_vue'=> true,
 	        'title' => translate('Users'),
 			'user' =>   $user,
-            'stats' => $this->getStats($user->business),
+            'stats' => $this->getStats(),
 	        'overview' => $this->overview(),
 	        'fillable' => $this->fillable(),
 	        'invoices' => $invoicesRepo->getUserInvoices($user->id),
-	        'subscriptions' => isset($user->business) ? $this->planSubscriptionRepo->getByBusiness($user->business->business_id) : [],
-	        'wallet' => isset($user->business) ? $businessWalletRepo->getBusinessWallet($user->business->business_id) : null,
-	        'business_withdrawals' => isset($user->business) ? $businessWithdrawalRepo->getBusinessWithdrawals($user->business->business_id) : null,
 	    ]);
 	} 
 
 	
 	
-	public function getStats($business) 
+	public function getStats() 
 	{	
 
 		$data = [];
 
-        $driverRepo = new DriverRepository($business);
+        $driverRepo = new DriverRepository();
         $data['drivers_count'] = count($driverRepo->get(null));
-        $vehicleRepo = new VehicleRepository($business);
+        $vehicleRepo = new VehicleRepository();
         $data['vehicles_count'] = count($vehicleRepo->get(null));
-        $routesRepo = new RouteRepository($business);
+        $routesRepo = new RouteRepository();
         $data['routes_count'] = count($routesRepo->get(null));
-		$tripsRepo = new TripRepository($business);
+		$tripsRepo = new TripRepository();
         $data['trips_count'] = count($tripsRepo->get(null));
 
 		return $data;

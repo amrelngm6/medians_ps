@@ -5,7 +5,7 @@ namespace Medians\Help\Domain;
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
-use Medians\Businesses\Domain\Business;
+
 
 class HelpMessage extends CustomModel
 {
@@ -18,7 +18,7 @@ class HelpMessage extends CustomModel
     protected $primaryKey = 'message_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'user_id',
 		'user_type',
 		'title',
@@ -53,10 +53,7 @@ class HelpMessage extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 	
 	
     public function user() {
@@ -85,8 +82,6 @@ class HelpMessage extends CustomModel
 
 	public function receiverAsUser() 
 	{
-		$item =  $this->with('business')->find($this->message_id);
-		return isset($model->business->owner) ?  $model->business->owner : null;
 	}
 
 	

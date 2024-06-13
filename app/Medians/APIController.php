@@ -72,30 +72,9 @@ class APIController extends CustomController
 			switch ($request->get('type')) 
 			{
 
-				case 'Payment.paypal_payment_confirmation':
-					$return = (new Payments\Application\PaymentController())->confirmPayPalPlanPayment();
-					break;
-
-				case 'Payment.get_started_validate_pagadito':
-					$return = (new Users\Application\GetStartedController())->validatePagaditoPayment();
-					break;
-
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
 					break;
-
-				case 'User.get_started_save_business':
-					$return = (new Users\Application\GetStartedController())->saveBusiness();
-					break;
-
-				case 'User.get_started_save_plan':
-					$return = (new Users\Application\GetStartedController())->saveSelectedPlan();
-					break;
-
-				case 'User.get_started_save_free_plan':
-					$return = (new Users\Application\GetStartedController())->saveFreePlan();
-					break;
-
 
 				case 'Student.create':
 					$return = (new Students\Application\StudentController())->store();
@@ -146,19 +125,6 @@ class APIController extends CustomController
 					$return =  (new Vacations\Application\VacationController())->store(); 
 					break;
 					
-				case 'Company.create':
-				case 'School.create':
-					$return =  (new Businesses\Application\BusinessController())->store(); 
-					break;
-					
-				case 'Plan.create':
-					$return =  (new Plans\Application\PlanController())->store(); 
-					break;
-				
-				case 'PlanFeature.create':
-					$return =  (new Plans\Application\PlanFeatureController())->store(); 
-					break;
-				
 				case 'Employee.create':
 					$return =  (new Customers\Application\EmployeeController())->store(); 
 					break;
@@ -193,10 +159,7 @@ class APIController extends CustomController
 					$return = (new Trips\Application\TaxiTripController)->store();
 					break;
 
-				case 'BusinessWithdrawal.create':
-					$return = (new Wallets\Application\BusinessWithdrawalController)->store();
-					break;
-			
+		
 				case 'CollectedCash.create':
 					$return = (new Wallets\Application\CollectedCashController)->store();
 					break;
@@ -309,20 +272,6 @@ class APIController extends CustomController
 				$controller =  new Roles\Application\RoleController; 
 				break;			
 
-			case 'Business.update':
-			case 'School.update':
-			case 'Company.update':
-				$controller =  new Businesses\Application\BusinessController; 
-				break;			
-				
-			case 'Plan.update':
-				$controller =  new Plans\Application\PlanController; 
-				break;
-			
-			case 'PlanFeature.update':
-				$controller =  new Plans\Application\PlanFeatureController; 
-				break;
-			
 			case 'Employee.update':
 				$controller =  new Customers\Application\EmployeeController; 
 				break;
@@ -371,18 +320,10 @@ class APIController extends CustomController
 				$controller = new Drivers\Application\DriverApplicantController;
 				break;
 			
-			case 'BusinessApplicant.update':
-				$controller = new Customers\Application\BusinessApplicantController;
+			case 'StudentApplicant.update':
+				$controller = new Customers\Application\StudentApplicantController;
 				break;
 			
-			case 'PlanSubscription.update':
-				$controller = new Plans\Application\PlanSubscriptionController;
-				break;
-			
-			case 'BusinessWithdrawal.update':
-				$controller = new Wallets\Application\BusinessWithdrawalController;
-				break;
-		
 			case 'Withdrawal.update':
 				$controller = new Wallets\Application\WithdrawalController;
 				break;
@@ -477,19 +418,6 @@ class APIController extends CustomController
 					return response((new Events\Application\EventController())->delete());
 					break;
 			
-				case 'School.delete':
-				case 'Company.delete':
-					return response((new Businesses\Application\BusinessController())->delete());
-					break;
-			
-				case 'Plan.delete':
-					return response((new Plans\Application\PlanController())->delete());
-					break;
-			
-				case 'PlanFeature.delete':
-					return response((new Plans\Application\PlanFeatureController())->delete());
-					break;
-			
 				case 'Employee.delete':
 					return response((new Customers\Application\EmployeeController())->delete());
 					break;
@@ -524,12 +452,8 @@ class APIController extends CustomController
 					return response((new Trips\Application\TaxiTripController())->delete());
 					break;
 
-				case 'BusinessApplicant.delete':
-					return response((new Customers\Application\BusinessApplicantController())->delete());
-					break;
-	
-				case 'BusinessWithdrawal.delete':
-					return response((new Wallets\Application\BusinessWithdrawalController())->delete());
+				case 'StudentApplicant.delete':
+					return response((new Customers\Application\StudentApplicantController())->delete());
 					break;
 	
 				case 'NewsletterSubscriber.delete':

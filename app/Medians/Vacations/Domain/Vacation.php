@@ -2,7 +2,7 @@
 
 namespace Medians\Vacations\Domain;
 
-use Medians\Businesses\Domain\Business;
+
 use Shared\dbaser\CustomModel;
 
 
@@ -17,7 +17,7 @@ class Vacation extends CustomModel
     protected $primaryKey = 'vacation_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'notes',
 		'date',
 		'user_id',
@@ -28,10 +28,7 @@ class Vacation extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 	
 
 	

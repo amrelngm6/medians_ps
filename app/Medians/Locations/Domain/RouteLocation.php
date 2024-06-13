@@ -6,7 +6,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Students\Domain\Student;
 use Medians\Customers\Domain\Parents;
 use Medians\Routes\Domain\Route;
-use Medians\Businesses\Domain\Business;
+
 use Medians\Customers\Domain\Employee;
 use Medians\Vacations\Domain\Vacation;
 
@@ -22,7 +22,7 @@ class RouteLocation extends CustomModel
     protected $primaryKey = 'location_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'model_type',
 		'model_id',
 		'route_id',
@@ -106,10 +106,7 @@ class RouteLocation extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 
 	public function parent() 
 	{
@@ -147,8 +144,6 @@ class RouteLocation extends CustomModel
 
 	public function receiverAsUser() 
 	{
-		$model =  $this->with('business')->find($this->location_id);
-		return isset($model->business->owner) ?  $model->business->owner : null;
 	}
 
 }

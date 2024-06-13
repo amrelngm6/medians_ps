@@ -242,21 +242,8 @@ class MobileAPIController extends CustomController
 				$return =  (new Trips\Application\TaxiTripController())->endTrip(); 
 				break;
 
-			case 'load_schools':
-			case 'load_schools':
-				$return = (new Businesses\Application\BusinessController)->loadSchools();
-				break;
-
-			case 'load_companies':
-				$return = (new Businesses\Application\BusinessController)->loadCompanies();
-				break;
-
-			case 'load_business':
-				$return = (new Businesses\Application\BusinessController)->loadBusiness();
-				break;
-				
 			case 'student_applicants':
-				$return =  (new Customers\Application\BusinessApplicantController())->loadStudentApplicants(); 
+				$return =  (new Customers\Application\StudentApplicantController())->loadStudentApplicants(); 
 				break;
 				
 			case 'Parent.pending_subscription':
@@ -267,8 +254,8 @@ class MobileAPIController extends CustomController
 				$return =  (new Packages\Application\PackageSubscriptionController())->getSubscription(); 
 				break;
 				
-			case 'business_packages':
-				$return = (new Packages\Application\PackageController)->load_business_packages();
+			case 'packages':
+				$return = (new Packages\Application\PackageController)->load_packages();
 				break;
 			
 			case 'student_vacations':
@@ -321,8 +308,8 @@ class MobileAPIController extends CustomController
 					$return =  (new Drivers\Application\DriverApplicantController())->store(); 
 					break;
 					
-				case 'BusinessApplicant.create':
-					$return =  (new Customers\Application\BusinessApplicantController())->store(); 
+				case 'StudentApplicant.create':
+					$return =  (new Customers\Application\StudentApplicantController())->store(); 
 					break;					
 					
 				case 'HelpMessage.create':

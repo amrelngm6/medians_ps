@@ -10,18 +10,16 @@ use Medians\Trips\Domain\TripTrack;
 class VehicleRepository 
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business;
 
-	function __construct($business)
+
+	function __construct()
 	{
-		$this->business = $business;
+		
 
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
 	}
 
 
@@ -29,12 +27,12 @@ class VehicleRepository
 
 	public function find($id)
 	{
-		return Vehicle::with('type')->where('business_id', $this->business_id)->find($id);
+		return Vehicle::with('type')->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Vehicle::with('type')->where('business_id', $this->business_id)->limit($limit)->get();
+		return Vehicle::with('type')->limit($limit)->get();
 	}
 
 
@@ -44,11 +42,6 @@ class VehicleRepository
 	public function store($data) 
 	{
 
-		$permission = 'Vehicle.count';
-		if (count($this->get()) == $this->business->subscription->features[$permission])
-		{
-			return throw new \Exception(translate('Access limit exceeded'), 1);
-		}
 
 		$Model = new Vehicle();
 		
@@ -76,7 +69,7 @@ class VehicleRepository
     public function update($data)
     {
 
-		$Object = Vehicle::where('business_id', $this->business_id)->find($data['vehicle_id']);
+		$Object = Vehicle::find($data['vehicle_id']);
 		
 		// Return the  object with the new data
     	$update = $Object->update( (array) $data);
@@ -101,7 +94,7 @@ class VehicleRepository
 	{
 		try {
 			
-			$delete = Vehicle::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = Vehicle::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

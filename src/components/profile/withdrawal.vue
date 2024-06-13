@@ -100,15 +100,6 @@
                                 <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2"
                                     v-text="translate('Wallet balance')"></span>
                             </div>
-                            <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6"
-                                v-if="auth.business">
-                                <span class="fs-2x fw-bold text-gray-800 lh-1" v-if="auth.business.subscription">
-                                    <span class="counted"
-                                        v-text="auth.business.subscription.is_paid ? system_setting.comission_paid_plan : system_setting.comission_free_plan"></span>%
-                                </span>
-                                <span class="fs-6 fw-semibold text-gray-500 d-block lh-1 pt-2"
-                                    v-text="translate('Business Commisiion')"></span>
-                            </div>
                             <div class="border border-dashed border-gray-300 w-125px rounded my-3 p-4 me-6">
                                 <span class="fs-2x fw-bold text-gray-800 lh-1">
                                     <span v-text="currency.symbol"></span>
@@ -131,7 +122,7 @@
                     <h2 class="w-full" v-text="translate('Withdrawal requests')"></h2>
                 </div>
             </div>
-            <div class="card-body pt-2" v-if="business_withdrawals">
+            <div class="card-body pt-2" v-if="withdrawals">
                 <table id="kt_customer_details_invoices_table_1"
                     class="table align-middle table-row-dashed fs-6 fw-bold gs-0 gy-4 p-0 m-0">
                     <thead class="border-bottom border-gray-200 fs-7 text-uppercase fw-bold">
@@ -144,7 +135,7 @@
                         </tr>
                     </thead>
                     <tbody class="fs-6 fw-semibold text-gray-600">
-                        <tr v-for="withdrawal in business_withdrawals">
+                        <tr v-for="withdrawal in withdrawals">
                             <td v-text="withdrawal.payment_method"></td>
                             <td class="text-success" v-text="currency.symbol + '' + withdrawal.amount"></td>
                             <td><span class="badge badge-light-warning" v-text="withdrawal.status"></span></td>
@@ -249,12 +240,12 @@ export default {
         'lang',
         'setting',
         'system_setting',
-        'business_setting',
+        'setting',
         'conf',
         'auth',
         'item',
         'wallet',
-        'business_withdrawals',
+        'withdrawals',
         'currency'
     ]
 };

@@ -26,7 +26,6 @@ class InvoiceItem extends CustomModel
 	*/
 	public $fillable = [
 		'invoice_id'	
-		,'business_id'	
 		,'item_id'	
 		,'item_type'	
 		,'subtotal'	
@@ -58,10 +57,7 @@ class InvoiceItem extends CustomModel
         return $this->morphTo();
     }
 
-	public function business()
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');
-	}
+	
 
 
 }

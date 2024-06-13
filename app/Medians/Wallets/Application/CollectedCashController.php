@@ -24,8 +24,8 @@ class CollectedCashController extends CustomController
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
 
-		$this->repo = new CollectedCashRepository($user->business);
-		$this->walletRepo = new WalletRepository($user->business);
+		$this->repo = new CollectedCashRepository();
+		$this->walletRepo = new WalletRepository();
 	}
 
 
@@ -97,7 +97,6 @@ class CollectedCashController extends CustomController
 		
         try {	
 
-			$params['business_id'] = $user->business->business_id;
 			$params['created_by'] = $user->id;
 			$params['date'] = date('Y-m-d');
 

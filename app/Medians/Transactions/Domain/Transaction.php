@@ -28,7 +28,6 @@ class Transaction extends CustomModel
 	public $fillable = [
 		'transaction_id'	
 		,'invoice_id'
-		,'business_id'	
 		,'model_id'	
 		,'model_type'	
 		,'item_id'	
@@ -68,10 +67,7 @@ class Transaction extends CustomModel
         return $this->morphTo();
     }
 
-	public function business()
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');
-	}
+	
 
 	public function invoice()
 	{

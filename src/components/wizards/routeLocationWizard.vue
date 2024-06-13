@@ -509,12 +509,12 @@ export default
             getUserLocation();
 
             const startPlaceChanged = async () => {
-                let result = start_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, start_placeSearch.value, props.business_setting.country) : ''
+                let result = start_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, start_placeSearch.value, props.setting.country) : ''
                 places.value = result.predictions;
             }
 
             const endPlaceChanged = async () => {
-                let result = end_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, end_placeSearch.value, props.business_setting.country) : ''
+                let result = end_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, end_placeSearch.value, props.setting.country) : ''
                 places.value = result.predictions;
             }
 
@@ -679,7 +679,6 @@ export default
             'conf',
             'path',
             'system_setting',
-            'business_setting',
             'setting',
             'item',
             'userslist',

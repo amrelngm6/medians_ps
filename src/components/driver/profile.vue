@@ -93,8 +93,6 @@
                     
                     <account_tab  v-if="activeTab == 'account'" :overview="content.overview" :item="activeItem" :currency="currency"/>
                    
-                    <info_tab :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem"  :currency="currency"/>
-
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" :currency="currency"/>
 
                     <withdrawal_tab :conf="conf" :auth="auth" v-if="activeTab == 'wallet'" :withdrawals="content.withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" :currency="currency" />
@@ -246,7 +244,7 @@ export default {
         'lang',
         'setting',
         'system_setting',
-        'business_setting',
+        'setting',
         'conf',
         'auth',
         'currency'

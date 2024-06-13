@@ -22,12 +22,12 @@
         <taxi_trip_wizard @callback="showWizard = false" :active_tab="defaultTab" :conf="conf" :currency="currency"
                 v-if="showWizard && activeItem.usertype" :usertype="activeItem.usertype"
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
                 
         <taxi_trip_track_wizard @callback="showTrackWizard = false" :conf="conf" :currency="currency"
                 v-if="showTrackWizard && activeItem.usertype"  :key="showTrackWizard" 
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
         <usertype_picker :alias="translate('Need taxi trip')" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
         
@@ -284,7 +284,7 @@ export default
     props: [
         'path',
         'lang',
-        'business_setting',
+        'setting',
         'system_setting',
         'conf',
         'auth',

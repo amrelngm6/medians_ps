@@ -32,12 +32,11 @@ class RouteController extends CustomController
 
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
-		$user->business = isset($user->business) ? $user->business : null;
 
-		$this->repo = new RouteRepository($user->business);
-		$this->supervisorRepo = new SuperVisorRepository($user->business);
-		$this->vehicleRepo = new VehicleRepository($user->business);
-		$this->driverRepo = new DriverRepository($user->business);
+		$this->repo = new RouteRepository();
+		$this->supervisorRepo = new SuperVisorRepository();
+		$this->vehicleRepo = new VehicleRepository();
+		$this->driverRepo = new DriverRepository();
 	}
 
 
@@ -135,17 +134,15 @@ class RouteController extends CustomController
 	}
 
 	/**
-	 * get Business Routes
+	 * get Routes
 	 */
-	public function getBusinessRoutes()
+	public function getRoutes()
 	{
 		$user = $this->app->auth();		
 
-		$businessId = $this->app->request()->get('business_id');
-
 		if(empty($user)) {return null;}
 
-		$data =  $this->repo->getBusinessRoutes($businessId);
+		$data =  $this->repo->getRoutes();
 		echo  json_encode($data);
 	}
 
@@ -162,7 +159,6 @@ class RouteController extends CustomController
 
 			// Administrator user id
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
-        	$params['business_id'] = $user->business->business_id;
         	$params['created_by'] = $user->id;
 
 			try {

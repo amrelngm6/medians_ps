@@ -11,17 +11,15 @@ class VacationRepository
 {
 
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business;
 
-	function __construct($business)
+
+	function __construct()
 	{
-		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
+		
 	}
 
 
@@ -33,7 +31,7 @@ class VacationRepository
 
 	public function get($limit = 100)
 	{
-		return Vacation::where('business_id', $this->business_id)->with('user')->limit($limit)->get();
+		return Vacation::with('user')->limit($limit)->get();
 	}
 	
 
@@ -101,7 +99,7 @@ class VacationRepository
 	{
 		try {
 			
-			$delete = Route::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = Route::find($id)->delete();
 
 			return true;
 

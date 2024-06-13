@@ -12,17 +12,15 @@ class RouteRepository
 {
 
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business;
 
-	function __construct($business)
+
+	function __construct()
 	{
-		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
+		
 	}
 
 
@@ -34,7 +32,7 @@ class RouteRepository
 
 	public function get($limit = 100)
 	{
-		return Route::where('business_id', $this->business_id)->with('route_locations', 'position', 'supervisor', 'vehicle', 'driver')->limit($limit)->get();
+		return Route::with('route_locations', 'position', 'supervisor', 'vehicle', 'driver')->limit($limit)->get();
 	}
 	
 	public function getRouteForTrip($route_id)
@@ -61,18 +59,16 @@ class RouteRepository
 
 	public function getDriverRoute($driver_id)
 	{
-		return Route::where('business_id', $this->business_id)
-		->where('driver_id', $driver_id)
+		return Route::where('driver_id', $driver_id)
 		->where('status', 'on')
 		->with('route_locations','position', 'vehicle')
 		->first();
 	}
 
 	
-	public function getBusinessRoutes($businessId)
+	public function getRoutes()
 	{
-		return Route::where('business_id', $businessId)
-		->where('status', 'on')
+		return Route::where('status', 'on')
 		->with('route_locations','position', 'vehicle')
 		->get();
 	}
@@ -100,13 +96,6 @@ class RouteRepository
 	*/
 	public function store($data) 
 	{
-
-		$permission = 'Route.count';
-		
-		if (Route::where('business_id', $data['business_id'])->count() == $this->business->subscription->features[$permission])
-		{
-			return throw new \Exception(json_encode($this->business->subscription->features) . translate('Access limit exceeded'), 1);
-		}
 
 		$Model = new Route();
 		
@@ -136,7 +125,7 @@ class RouteRepository
     public function update($data)
     {
 
-		$Object = Route::where('business_id', $this->business_id)->find($data['route_id']);
+		$Object = Route::find($data['route_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -159,7 +148,7 @@ class RouteRepository
 	{
 		try {
 			
-			$delete = Route::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = Route::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);
@@ -222,7 +211,6 @@ class RouteRepository
 		{
 			
 			$data->route_id = $id;	
-			$data->business_id = $this->business_id;	
 			
 			$dataArray = [];
 			foreach ($data as $key => $value) 

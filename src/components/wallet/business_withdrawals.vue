@@ -1,6 +1,6 @@
 <template>
     <div class="w-full " >
-        <withdrawal_wizard :currency="currency" @callback="showWizard = false" :item="activeItem" :business_setting="business_setting" :system_setting="system_setting" :auth="auth" :conf="conf" v-if="showWizard" />
+        <withdrawal_wizard :currency="currency" @callback="showWizard = false" :item="activeItem" :setting="setting" :system_setting="system_setting" :auth="auth" :conf="conf" v-if="showWizard" />
 
         <div v-if="!showWizard" class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
             <h1 class="font-bold text-lg w-full" v-text="content.title"></h1>
@@ -86,12 +86,6 @@
                 alternating
                 class="align-middle fs-6 gy-5 table table-row-dashed px-6" :body-text-direction="translate('is_rtl')" fixed-checkbox v-if="content.columns" :headers="content.columns" :items="content.items" >
 
-                <template #item-business="item">
-                    <div class="flex gap-2" v-if="item.business" >
-                        <img :src="item.business.logo" class="w-8 h-8 rounded-full" />
-                        <span class="py-2" v-text="item.business.business_name"></span>
-                    </div>
-                </template>
 
                 <template #item-amount="item">
                     <span class="py-2" v-text="currency.symbol+''+item.amount"></span>
@@ -119,7 +113,7 @@ import {ref} from 'vue';
 import {translate, handleGetRequest, deleteByKey} from '@/utils.vue';
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
-import withdrawal_wizard from '@/components/wizards/businessWithdrawalWizard.vue';
+import withdrawal_wizard from '@/components/wizards/withdrawalWizard.vue';
     
 export default
 {

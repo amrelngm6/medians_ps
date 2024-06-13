@@ -24,7 +24,7 @@ class TripController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new TripRepository($this->app->auth()->business);
+		$this->repo = new TripRepository();
 		$this->userRepo = new UserRepository();
 	}
 

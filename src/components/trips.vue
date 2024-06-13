@@ -18,7 +18,7 @@
         <trip_wizard @callback="showWizard = false" :conf="conf"
                 v-if="showWizard"  :active_tab="defaultTab"
                 :userslist="usersList" :key="showWizard" :vehicles="content.vehicles" :drivers="content.drivers"
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
         <div  v-if="!showWizard && !showOptions && content && !showTrip " class=" w-full relative">
 
@@ -253,7 +253,7 @@ export default
     props: [
         'path',
         'lang',
-        'business_setting',
+        'setting',
         'system_setting',
         'conf',
         'auth',

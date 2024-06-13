@@ -23,8 +23,8 @@ class VehicleTypeController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		$this->repo = new VehicleTypeRepository($this->app->auth()->business);
-		$this->vehicleRepo = new VehicleRepository($this->app->auth()->business);
+		$this->repo = new VehicleTypeRepository();
+		$this->vehicleRepo = new VehicleRepository();
 
     }
 
@@ -102,7 +102,6 @@ class VehicleTypeController extends CustomController
 
 			try {
 
-				$params['business_id'] = $this->app->auth()->business->business_id;
                 $params['status'] = !empty($params['status']) ? 'on' : null;
 
 				$this->validate($params);

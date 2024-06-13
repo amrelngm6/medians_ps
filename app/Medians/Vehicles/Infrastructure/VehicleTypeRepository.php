@@ -9,18 +9,16 @@ use Medians\CustomFields\Domain\CustomField;
 class VehicleTypeRepository 
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business;
 
-	function __construct($business)
+
+	function __construct()
 	{
-		$this->business = $business;
+		
 
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
 	}
 
 
@@ -28,17 +26,17 @@ class VehicleTypeRepository
 
 	public function find($id)
 	{
-		return VehicleType::where('business_id', $this->business_id)->find($id);
+		return VehicleType::find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return VehicleType::where('business_id', $this->business_id)->limit($limit)->get();
+		return VehicleType::limit($limit)->get();
 	}
 
 	public function getActive($limit = 100)
 	{
-		return VehicleType::where('status', 'on')->where('business_id', $this->business_id)->limit($limit)->get();
+		return VehicleType::where('status', 'on')->limit($limit)->get();
 	}
 
 
@@ -75,7 +73,7 @@ class VehicleTypeRepository
     public function update($data)
     {
 
-		$Object = VehicleType::where('business_id', $this->business_id)->find($data['type_id']);
+		$Object = VehicleType::find($data['type_id']);
 		
 		// Return the  object with the new data
     	$update = $Object->update( (array) $data);
@@ -97,7 +95,7 @@ class VehicleTypeRepository
 	{
 		try {
 			
-			$delete = VehicleType::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = VehicleType::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

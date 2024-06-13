@@ -5,17 +5,17 @@
             <subscription_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'employee'" :usertype="activeItem.usertype"
                 :userslist="content.employees" :key="showWizard" :packages="content.packages"
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
             <subscription_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'supervisor'" :usertype="activeItem.usertype"
                 :userslist="content.supervisors" :key="showWizard" :packages="content.packages"
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
             <subscription_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'student'" :usertype="activeItem.usertype"
                 :userslist="content.students" :key="showWizard" :packages="content.packages"
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
             <usertype_picker :alias="translate('Subscribe to package')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
 
@@ -236,7 +236,7 @@ export default
         'path',
         'lang',
         'system_setting',
-        'business_setting',
+        'setting',
         'setting',
         'conf',
         'auth',

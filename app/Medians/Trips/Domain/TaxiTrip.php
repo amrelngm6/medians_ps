@@ -9,7 +9,7 @@ use Medians\Drivers\Domain\Driver;
 use Medians\Customers\Domain\Parents;
 use Medians\Students\Domain\Student;
 use Medians\Employees\Domain\Employee;
-use Medians\Businesses\Domain\Business;
+
 use Medians\Transactions\Domain\Transaction;
 
 
@@ -24,7 +24,7 @@ class TaxiTrip extends CustomModel
     protected $primaryKey = 'trip_id';
 	
 		public $fillable = [
-			'business_id',
+	
 			'driver_id',
 			'vehicle_id',
 			'model_id',
@@ -77,10 +77,7 @@ class TaxiTrip extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 	
 	/**
 	 * Relations with onother Models
@@ -184,8 +181,6 @@ class TaxiTrip extends CustomModel
 	
     public function receiverAsUser()
     {
-		$model =  $this->with('business')->find($this->trip_id);
-		return isset($model->business->owner) ?  $model->business->owner : null;
     }
 
 }

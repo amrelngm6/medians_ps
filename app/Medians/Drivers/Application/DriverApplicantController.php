@@ -29,8 +29,8 @@ class DriverApplicantController extends CustomController
 		$user = $this->app->auth();
 
 		$this->userRepo = new UserRepository();
-		$this->repo = new DriverApplicantRepository(isset($user->business) ? $user->business : null);
-		$this->driverRepo = new DriverRepository(isset($user->business) ? $user->business : null);
+		$this->repo = new DriverApplicantRepository();
+		$this->driverRepo = new DriverRepository();
 	}
 
 
@@ -160,29 +160,6 @@ class DriverApplicantController extends CustomController
 
 			$check = $this->repo->getDriver($params['driver_id']);
 			
-			if (!empty($check->business_id)) {
-				
-				/** Get current session */
-				$user = $this->app->auth();
-
-				/**
-				 * Check if driver already exists
-				 * Or if the application has been updated before
-				 */
-				if ($check->business_id == $user->business->business_id)
-				{
-					return ['error' => translate('Driver already in your team')];
-				}
-				
-				/**
-				 * Check if driver already 
-				 * working with another business
-				 */
-				if ($check->business_id != $user->business->business_id)
-				{
-					return ['error' => translate('Driver working at another business')];
-				}
-			}
 
 		} catch (\Exception $e) {
 			return ['error'=>$e->getMessage()];
@@ -198,17 +175,7 @@ class DriverApplicantController extends CustomController
 	{
 		try {
 			
-			/**
-			 * Allow update if duplicated
-			 */
-			$check = $this->repo->checkDuplicate($params['business_id'], $params['driver_id']);
 			
-			/**
-			 * Check if applied already exists
-			 */
-			return (!empty($check->business_id)) 
-				? ['error' => translate('Already applied to this business')]
-				: null;
 
 		} catch (\Exception $e) {
 			return ['error'=>$e->getMessage()];

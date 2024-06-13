@@ -31,10 +31,10 @@ class VacationController extends CustomController
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
 
-		$this->repo = new VacationRepository($user->business);
-		$this->supervisorRepo = new SuperVisorRepository($user->business);
-		$this->vehicleRepo = new VehicleRepository($user->business);
-		$this->driverRepo = new DriverRepository($user->business);
+		$this->repo = new VacationRepository();
+		$this->supervisorRepo = new SuperVisorRepository();
+		$this->vehicleRepo = new VehicleRepository();
+		$this->driverRepo = new DriverRepository();
 	}
 
 

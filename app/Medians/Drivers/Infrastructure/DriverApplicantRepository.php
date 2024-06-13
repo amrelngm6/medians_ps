@@ -14,18 +14,16 @@ class DriverApplicantRepository
 {
 
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business;
 
-	function __construct($business)
+
+	function __construct()
 	{
-		$this->business = $business;
+		
 
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
 	}
 
 
@@ -38,7 +36,7 @@ class DriverApplicantRepository
 	public function get($limit = 100)
 	{
 		return DriverApplicant::with('driver')
-		->where('business_id', $this->business_id)
+		
 		->limit($limit)
 		->orderBy('applicant_id', 'DESC')
 		->get();
@@ -46,12 +44,12 @@ class DriverApplicantRepository
 
 	public function getAll($limit = 100)
 	{
-		return DriverApplicant::where('business_id', $this->business_id)->limit($limit)->orderBy('applicant_id', 'DESC')->get();
+		return DriverApplicant::limit($limit)->orderBy('applicant_id', 'DESC')->get();
 	}
 
-	public function checkDuplicate($businessId, $driverId)
+	public function checkDuplicate($driverId)
 	{
-		return DriverApplicant::where('business_id', $businessId)->where('driver_id', $driverId)->first();
+		return DriverApplicant::where('driver_id', $driverId)->first();
 	}
 
 	public function getDriver($driverId)
@@ -90,32 +88,11 @@ class DriverApplicantRepository
     public function update($params)
     {
 
-		$Object = DriverApplicant::where('business_id', $this->business_id)->find($params['applicant_id']);
+		$Object = DriverApplicant::find($params['applicant_id']);
 		
 		
 		// Return the  object with the new data
     	$Object->update( (array) $params);
-
-		(strtolower($params['status']) == 'approved') ? $this->updateDriverBusiness($params) : null;
-
-    	return $Object;
-
-    }
-
-    /**
-     * Update Lead
-     */
-    public function updateDriverBusiness($params)
-    {
-
-		$Object = Driver::find($params['driver_id']);
-		
-		$data = [];
-		$data['business_id'] = $this->business_id;
-
-
-		// Return the  object with the new data
-    	$Object->update( (array) $data);
 
     	return $Object;
 
@@ -131,7 +108,7 @@ class DriverApplicantRepository
 	{
 		try {
 			
-			$delete = DriverApplicant::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = DriverApplicant::find($id)->delete();
 
 			return true;
 

@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <driver_applicant_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard"  :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" :conf="conf" />
+            <driver_applicant_wizard @callback="showWizard=false" v-if="showWizard" :key="showWizard"  :system_setting="system_setting" :item="activeItem" :setting="setting" :conf="conf" />
             
             <div class=" " v-if="!showWizard && content.items && !content.items.length ">
                 <div class="card">
@@ -200,7 +200,7 @@ export default
         
         const  startPlaceChanged = async () =>
         {
-            let result = start_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, start_placeSearch.value, props.business_setting.country) : ''
+            let result = start_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, start_placeSearch.value, props.setting.country) : ''
             places.value = result.predictions;
         }
 
@@ -318,7 +318,7 @@ export default
         'path',
         'lang',
         'system_setting',
-        'business_setting',
+        'setting',
         'setting',
         'conf',
         'auth',

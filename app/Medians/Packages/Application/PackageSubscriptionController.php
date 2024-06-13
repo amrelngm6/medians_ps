@@ -31,11 +31,11 @@ class PackageSubscriptionController extends CustomController
 	function __construct()
 	{
         $this->app = new \config\APP;   
-		$this->repo = new PackageSubscriptionRepository($this->app->auth()->business);
-		$this->packageRepo = new PackageRepository($this->app->auth()->business);
-		$this->studentRepo = new StudentRepository($this->app->auth()->business);
-		$this->supervisorRepo = new SuperVisorRepository($this->app->auth()->business);
-		$this->employeeRepo = new EmployeeRepository($this->app->auth()->business);
+		$this->repo = new PackageSubscriptionRepository();
+		$this->packageRepo = new PackageRepository();
+		$this->studentRepo = new StudentRepository();
+		$this->supervisorRepo = new SuperVisorRepository();
+		$this->employeeRepo = new EmployeeRepository();
 	}
 
 
@@ -110,7 +110,6 @@ class PackageSubscriptionController extends CustomController
         try {
         	
 			$params['payment_status'] = (isset($params['is_paid']) && $params['is_paid'] != 'false') ? 'paid' : 'unpaid';
-			$params['business_id'] = $user->business->business_id;
 			$params['created_by'] = $user->id;
             
 			return ($this->repo->store($params))

@@ -6,8 +6,6 @@ use \Shared\dbaser\CustomController;
 use Medians\Users\Application\GetStartedController;
 
 use Medians\Invoices\Infrastructure\InvoiceRepository;
-use Medians\Plans\Infrastructure\PlanRepository;
-use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 
 class InvoiceController extends CustomController
 {
@@ -17,7 +15,6 @@ class InvoiceController extends CustomController
 	*/
 	protected $repo;
 	protected $app;
-	protected $planRepo;
 
 
 
@@ -26,9 +23,8 @@ class InvoiceController extends CustomController
         $this->app = new \config\APP;
 		
 		$user = $this->app->auth();
-		$this->repo = new InvoiceRepository(isset($user->business) ? $user->business : null);
+		$this->repo = new InvoiceRepository();
 
-		$this->planRepo = new PlanRepository();
 	}
 
 
@@ -84,7 +80,6 @@ class InvoiceController extends CustomController
 		$params = $this->app->params();
 
         try {
-        	$params['business_id'] = $this->app->business->business_id;
         	
             return ($this->repo->store($params))
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)

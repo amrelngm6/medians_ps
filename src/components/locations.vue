@@ -5,17 +5,17 @@
             <location_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'employee'" :usertype="activeItem.usertype"
                 :routes="content.routes" :userslist="content.employees" :key="showWizard"
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
             <location_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'supervisor'" :usertype="activeItem.usertype"
                 :routes="content.routes" :userslist="content.supervisors" :key="showWizard"
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
             <location_wizard @callback="showWizard = false" :currency="currency"
                 v-if="showWizard && activeItem.usertype == 'student'" :usertype="activeItem.usertype"
                 :routes="content.routes" :userslist="content.students" :key="showWizard"
-                :system_setting="system_setting" :item="activeItem" :business_setting="business_setting" />
+                :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
 
             <usertype_picker :alias="translate('Pickup location')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
@@ -201,7 +201,7 @@ export default
             }
 
             const startPlaceChanged = async () => {
-                let result = start_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, start_placeSearch.value, props.business_setting.country) : ''
+                let result = start_placeSearch.value.length > 3 ? await findPlaces(props.system_setting.google_map_api, start_placeSearch.value, props.setting.country) : ''
                 places.value = result.predictions;
             }
 
@@ -289,7 +289,6 @@ export default
             'path',
             'lang',
             'system_setting',
-            'business_setting',
             'setting',
             'conf',
             'auth',

@@ -13,15 +13,13 @@ use Medians\Users\Domain\User;
 class HelpMessageRepository 
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
 
-	function __construct($business)
+	function __construct()
 	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
 	}
 
 
@@ -32,7 +30,7 @@ class HelpMessageRepository
 
 	public function get($limit = 100)
 	{
-		return HelpMessage::where('business_id', $this->business_id)->with('comments')->with('user')->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::with('comments')->with('user')->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 
 	public function loadDriverMessages($user, $limit = 100)
@@ -47,12 +45,12 @@ class HelpMessageRepository
 
 	public function load($limit = 100)
 	{
-		return HelpMessage::where('business_id', $this->business_id)->with('user','comments' )->limit($limit)->orderBy('message_id', 'DESC')->get();
+		return HelpMessage::with('user','comments' )->limit($limit)->orderBy('message_id', 'DESC')->get();
 	}
 	
 	public function eventsByDate($params)
 	{
-		$query = HelpMessage::where('business_id', $this->business_id)->whereBetween('created_at', [$params['start'], $params['end']]);
+		$query = HelpMessage::whereBetween('created_at', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -79,7 +77,6 @@ class HelpMessageRepository
 		$Model = new HelpMessage();
 
 		$data['user_type'] = Driver::class;
-		$data['business_id'] = $data['business_id'] ?? null;
 		
 		foreach ($data as $key => $value) 
 		{
@@ -105,7 +102,6 @@ class HelpMessageRepository
 		$Model = new HelpMessage();
 
 		$data['user_type'] = Parents::class;
-		$data['business_id'] = $data['business_id'] ?? null;
 		
 		foreach ($data as $key => $value) 
 		{
@@ -202,7 +198,7 @@ class HelpMessageRepository
     public function update($data)
     {
 
-		$Object = HelpMessage::where('business_id', $this->business_id)->find($data['message_id']);
+		$Object = HelpMessage::find($data['message_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -224,7 +220,7 @@ class HelpMessageRepository
 	{
 		try {
 			
-			$delete = HelpMessage::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = HelpMessage::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

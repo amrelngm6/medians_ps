@@ -22,7 +22,7 @@ class WalletController extends CustomController
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
 
-		$this->repo = new WalletRepository($user->business);
+		$this->repo = new WalletRepository();
 	}
 
 
@@ -36,7 +36,6 @@ class WalletController extends CustomController
 	{
 		return [
             [ 'value'=> "wallet_id", 'text'=> "#"],
-            [ 'value'=> "business", 'text'=> translate('Business')],
             [ 'value'=> "credit_balance", 'text'=> translate('Credit balance'), 'sortable'=> true ],
             [ 'value'=> "debit_balance", 'text'=> translate('Debit balance'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('Status') ],
@@ -69,7 +68,7 @@ class WalletController extends CustomController
 		
 		try {
 
-			return render('business_wallets', [
+			return render('wallets', [
 		        'load_vue' => true,
 		        'title' => translate('Wallets'),
 		        'columns' => $this->columns(),

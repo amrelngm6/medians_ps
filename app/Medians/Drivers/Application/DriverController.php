@@ -36,8 +36,8 @@ class DriverController extends CustomController
 		$user = $this->app->auth();
 
 		$this->userRepo = new UserRepository();
-		$this->repo = new DriverRepository(isset($user->business) ? $user->business : null);
-		$this->vehicleRepo = new VehicleRepository(isset($user->business) ? $user->business : null);
+		$this->repo = new DriverRepository();
+		$this->vehicleRepo = new VehicleRepository();
 	}
 
 
@@ -110,19 +110,19 @@ class DriverController extends CustomController
 			return null;
 		}
 
-		$invoicesRepo = new InvoiceRepository($user->business);
+		$invoicesRepo = new InvoiceRepository();
 		$WalletRepo = new WalletRepository();
-		$WithdrawalRepo = new WithdrawalRepository($user->business);
-		$collectCashRepo = new CollectedCashRepository($user->business);
-		$tripsRepo = new TripRepository($user->business);
-		$taxiTripsRepo = new TaxiTripRepository($user->business);
+		$WithdrawalRepo = new WithdrawalRepository();
+		$collectCashRepo = new CollectedCashRepository();
+		$tripsRepo = new TripRepository();
+		$taxiTripsRepo = new TaxiTripRepository();
 		$wallet = $WalletRepo->driverWallet($driver->driver_id);
 
 		return render('driver_page', [
 			'load_vue'=> true,
 			'title' => translate('Driver profile'),
 			'driver' =>   $driver,
-			'stats' => $this->getStats($driver, $user->business),
+			'stats' => $this->getStats($driver),
 			'overview' => $this->overview($driver),
 			'fillable' => $this->fillable(),
 			'collected_cash' => isset($wallet->wallet_id) ? $collectCashRepo->getCollectedCash($wallet->wallet_id) : [],
@@ -136,14 +136,14 @@ class DriverController extends CustomController
 	} 
 
 
-	public function getStats($driver, $business) 
+	public function getStats($driver) 
 	{	
 
 		$data = [];
 
-		$tripsRepo = new TripRepository($business);
+		$tripsRepo = new TripRepository();
         $data['trips_count'] = count($tripsRepo->getDriverTrips($driver->driver_id, 999999));
-		$taxiTripsRepo = new TaxiTripRepository($business);
+		$taxiTripsRepo = new TaxiTripRepository();
         $data['taxi_trips_count'] = count($taxiTripsRepo->getDriverTaxiTrips($driver->driver_id, 999999));
 
 		return $data;
@@ -178,7 +178,6 @@ class DriverController extends CustomController
 				return $this->validate($params);
 
 			$user = $this->app->auth();
-			$params['business_id'] = $user->business->business_id;
         	$params['created_by'] = $user->id;
         	
 			try {

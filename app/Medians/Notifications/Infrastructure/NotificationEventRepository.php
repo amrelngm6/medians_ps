@@ -103,8 +103,6 @@ class NotificationEventRepository
 	public function loadModels()
 	{
 		return [
-			'Business' => \Medians\Businesses\Domain\Business::class,
-			'PlanSubscription' => \Medians\Plans\Domain\PlanSubscription::class,
 			'RouteLocation' => \Medians\Locations\Domain\RouteLocation::class,
 			'Student' => \Medians\Students\Domain\Student::class,
 			'Customer' => \Medians\Customers\Domain\Customer::class,

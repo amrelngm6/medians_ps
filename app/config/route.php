@@ -57,7 +57,7 @@ RouteHandler::post('/mobile_api', \Medians\MobileAPIController::class.'@handle')
 RouteHandler::get('/mobile_api/(:all)', \Medians\MobileAPIController::class.'@handle');
 RouteHandler::get('/route/(:all)', \Medians\Routes\Application\RouteController::class.'@getRoute');
 RouteHandler::get('/driver_routes', \Medians\Routes\Application\RouteController::class.'@getDriverRoutes');
-RouteHandler::get('/business_routes', \Medians\Routes\Application\RouteController::class.'@getBusinessRoutes');
+RouteHandler::get('/get_routes', \Medians\Routes\Application\RouteController::class.'@getRoutes');
 RouteHandler::get('/parent/(:all)', \Medians\Customers\Application\ParentController::class.'@checkParent');
 RouteHandler::get('/get_parent', \Medians\Customers\Application\ParentController::class.'@getParent');
 RouteHandler::get('/driver/(:all)', \Medians\Drivers\Application\DriverController::class.'@getDriver');
@@ -169,9 +169,9 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/driver_applicants', Medians\Drivers\Application\DriverApplicantController::class.'@index');
 
     /**
-    * @return Business Applicants
+    * @return Student Applicants
     */
-    RouteHandler::get('/admin/business_applicants', Medians\Customers\Application\BusinessApplicantController::class.'@index');
+    RouteHandler::get('/admin/student_applicants', Medians\Customers\Application\StudentApplicantController::class.'@index');
 
     /** @return Routes */
     RouteHandler::get('/admin/routes', Medians\Routes\Application\RouteController::class.'@index');
@@ -218,12 +218,8 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/get_started', Medians\Users\Application\GetStartedController::class.'@get_started');
 
 
-    /**
-    * @return Business settings
-    */
-    RouteHandler::get('/admin/settings', \Medians\Settings\Application\SettingsController::class.'@index');
 
-    /** @return Plan employees */
+    /** @return employees */
     RouteHandler::get('/admin/employees', Medians\Customers\Application\EmployeeController::class.'@index');
 
     /** @return Taxi trips */
@@ -241,10 +237,10 @@ if(!empty($app->auth()))
     /** @return Wallets */
     RouteHandler::get('/admin/wallets', Medians\Wallets\Application\WalletController::class.'@index');
 
-    /** @return Business Withdrawals */
+    /** @return Withdrawals */
     RouteHandler::get('/admin/withdrawals', Medians\Wallets\Application\WithdrawalController::class.'@index');
 
-    /** @return Business Collected cash */
+    /** @return Collected cash */
     RouteHandler::get('/admin/collected_cash', Medians\Wallets\Application\CollectedCashController::class.'@index');
 
     /** @return Gallery */
@@ -286,34 +282,11 @@ if(!empty($app->auth()))
     /** @return roles */
     RouteHandler::get('/admin/roles', Medians\Roles\Application\RoleController::class.'@index');
 
-    /** @return Plans */
-    RouteHandler::get('/admin/plans', Medians\Plans\Application\PlanController::class.'@index');
-
-    /** @return Plan Feature */
-    RouteHandler::get('/admin/plan_features', Medians\Plans\Application\PlanFeatureController::class.'@index');
-
-    /** @return Plan subscriptions */
-    RouteHandler::get('/admin/plan_subscriptions', Medians\Plans\Application\PlanSubscriptionController::class.'@index');
-
-    /** @return Payments */
-    RouteHandler::get('/admin/payments', Medians\Payments\Application\PaymentController::class.'@index');
-
-    /** @return companies */
-    RouteHandler::get('/admin/companies', Medians\Businesses\Application\BusinessController::class.'@companies');
-
-    /** @return schools */
-    RouteHandler::get('/admin/schools', Medians\Businesses\Application\BusinessController::class.'@schools');
-
-    /** @return Business Withdrawals */
-    RouteHandler::get('/admin/business_withdrawals', Medians\Wallets\Application\BusinessWithdrawalController::class.'@index');
-
-    /** @return Business Wallets */
-    RouteHandler::get('/admin/business_wallets', Medians\Wallets\Application\BusinessWalletController::class.'@index');
-
-    /** @return Business Languages */
+    
+    /** @return  Languages */
     RouteHandler::get('/admin/languages', Medians\Languages\Application\LanguageController::class.'@index');
 
-    /** @return Business Translations */
+    /** @return  Translations */
     RouteHandler::get('/admin/translations', Medians\Languages\Application\TranslationController::class.'@index');
 
     /** @return Subscriber */

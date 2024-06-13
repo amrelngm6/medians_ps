@@ -31,8 +31,6 @@ class APP
 
 	public $currentPage;
 
-	public $business_setting;
-
 	public $capsule;
 
 	public $session;
@@ -82,14 +80,6 @@ class APP
 	}
 
 
-	/**
-	 * Load all setting for a Business 
-	 * return as Array
-	 */ 
-	public function BusinessSettings()
-	{
-		return  (new \Medians\Settings\Application\SettingsController())->getAll();
-	}
 
 	/**
 	 * Load Sysetem Settings
@@ -243,12 +233,90 @@ class APP
 		$data = array(
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'dashboard'),
-			array( 'title'=>translate('Businesses'),  'icon'=>'wind', 'link'=>'#businesses', 'sub'=>
+			
+			array('title'=>translate('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
 			[
-				array('permission'=>'Companies.index', 'title'=>translate('Companies'),  'icon'=>'user', 'link'=>'admin/companies', 'component'=>'companies'),
-				array('permission'=>'Schools.index', 'title'=>translate('Schools'),  'icon'=>'user', 'link'=>'admin/schools', 'component'=>'schools'),
+				array('permission'=>'Parents.index', 'title'=>translate('Parents'),  'icon'=>'user', 'link'=>'admin/parents', 'component'=>'parents'),
+				array('permission'=>'Students.index', 'title'=>translate('Students'),  'icon'=>'user', 'link'=>'admin/students', 'component'=>'students'),
+				array('permission'=>'Employees.index', 'title'=>translate('Employees'),  'icon'=>'user', 'link'=>'admin/employees', 'component'=>'employees'),
 			]
 			),
+			
+			array('title'=>translate('Crew'),  'icon'=>'users', 'link'=>'#crew', 'sub'=>
+			[
+				array('permission'=>'Drivers.index', 'title'=>translate('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
+				array('permission'=>'SuperVisors.index', 'title'=>translate('Supervisors'),  'icon'=>'users', 'link'=>'admin/supervisors', 'component'=>'supervisors'),
+			]
+			),
+
+			array('title'=>translate('Routes'),  'icon'=>'map', 'link'=>'#route', 'sub'=>
+			[
+				array('permission'=>'Routes.index', 'title'=>translate('Routes'),  'icon'=>'map', 'link'=>'admin/routes', 'component'=>'routes'),
+				array('permission'=>'RouteLocations.index', 'title'=>translate('Locations'),  'icon'=>'map', 'link'=>'admin/locations', 'component'=>'locations'),
+				]
+			),
+			
+			array('title'=>translate('Trips'),  'icon'=>'map-pin', 'link'=>'#TaxiTrips', 'sub'=>
+			[
+				array('permission'=>'Trips.index', 'title'=>translate('Route trips'),  'icon'=>'map-pin', 'link'=>'admin/trips', 'component'=>'trips'),
+				array('permission'=>'TaxiTrips.index', 'title'=>translate('Taxi Trips'),  'icon'=>'map', 'link'=>'admin/taxi_trips', 'component'=>'taxi_trips'),
+			]
+			),
+
+			array('title'=>translate('Vehicles'),  'icon'=>'truck', 'link'=>'#vehicles', 'sub'=>
+			[
+				array('permission'=>'Vehicles.index', 'title'=>translate('Vehicles'),  'icon'=>'truck', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
+				array('permission'=>'VehicleTypes.index', 'title'=>translate('Vehicle Types'),  'icon'=>'truck', 'link'=>'admin/vehicle_types', 'component'=>'vehicle_types'),
+			]
+			),
+			array('title'=>translate('Applicants'),  'icon'=>'file', 'link'=>'#applicants', 'sub'=>
+			[
+				array('permission'=>'DriverApplicants.index', 'title'=>translate('Driver applicants'),  'icon'=>'users', 'link'=>'admin/driver_applicants', 'component'=>'data_table'),
+				array('permission'=>'StudentApplicants.index', 'title'=>translate('Students applicants'),  'icon'=>'credit-card', 'link'=>'admin/student_applicants', 'component'=>'data_table'),
+			]
+			),
+			
+			array('title'=>translate('Subscriptions'),  'icon'=>'cloud-lightning', 'link'=>'#packages', 'sub'=>
+			[
+				array('permission'=>'Packages.index', 'title'=>translate('Manage Packages'),  'icon'=>'credit-card', 'link'=>'admin/packages', 'component'=>'packages'),
+				array('permission'=>'PackageSubscriptions.index', 'title'=>translate('Subscriptions'),  'icon'=>'credit-card', 'link'=>'admin/package_subscriptions', 'component'=>'package_subscriptions'),
+				array('permission'=>'Vacations.index', 'title'=>translate('Vacations'),  'icon'=>'user', 'link'=>'admin/vacations', 'component'=>'vacations')
+			]
+			),
+			
+
+			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
+			[
+				array('permission'=> 'Transaction.index', 'title'=> translate('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
+				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
+				array('permission'=> 'Withdrawals.index', 'title'=> translate('Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/withdrawals', 'component'=>'withdrawals'),
+				array('permission'=> 'Wallets.index', 'title'=> translate('Wallets'), 'icon'=>'credit-card', 'link'=>'admin/wallets', 'component'=>'wallets'),
+				array('permission'=> 'CollectedCash.index', 'title'=> translate('collected_cash'), 'icon'=>'credit-card', 'link'=>'admin/collected_cash', 'component'=>'collected_cash'),
+				]
+			),
+			array( 'title'=>translate('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
+			[
+				array('permission'=>'Gallery.index', 'title'=>translate('Gallery'),  'icon'=>'tool', 'link'=>'admin/gallery', 'component'=>'gallery'),
+				array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+			]
+			),
+			array('permission'=>'Dashboard.index', 'title'=> translate('Logout'),  'icon'=>'log-out', 'link'=>'logout'),
+		);
+
+		return $data;
+	}
+	
+	/**
+	 * Return Superadmin menu
+	 * List of side menu
+	 */
+	public function superAdminMenu()
+	{
+		
+		$data = array(
+			
+			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
+			
 			
 			array('title'=>translate('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
 			[
@@ -288,71 +356,13 @@ class APP
 			array('title'=>translate('Applicants'),  'icon'=>'file', 'link'=>'#applicants', 'sub'=>
 			[
 				array('permission'=>'DriverApplicants.index', 'title'=>translate('Driver applicants'),  'icon'=>'users', 'link'=>'admin/driver_applicants', 'component'=>'driver_applicants'),
-				array('permission'=>'BusinessApplicants.index', 'title'=>translate('Business applicants'),  'icon'=>'credit-card', 'link'=>'admin/business_applicants', 'component'=>'business_applicants'),
+				array('permission'=>'StudentApplicants.index', 'title'=>translate('Students applicants'),  'icon'=>'credit-card', 'link'=>'admin/student_applicants', 'component'=>'student_applicants'),
 			]
 			),
-			
-			array('title'=>translate('Subscriptions'),  'icon'=>'cloud-lightning', 'link'=>'#packages', 'sub'=>
-			[
-				array('permission'=>'Packages.index', 'title'=>translate('Manage Packages'),  'icon'=>'credit-card', 'link'=>'admin/packages', 'component'=>'packages'),
-				array('permission'=>'PackageSubscriptions.index', 'title'=>translate('Subscriptions'),  'icon'=>'credit-card', 'link'=>'admin/package_subscriptions', 'component'=>'package_subscriptions'),
-				array('permission'=>'Vacations.index', 'title'=>translate('Vacations'),  'icon'=>'user', 'link'=>'admin/vacations', 'component'=>'vacations')
-			]
-			),
-			
 
 			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
 			[
-				array('permission'=> 'Transaction.index', 'title'=> translate('Transactions'), 'icon'=>'credit-card', 'link'=>'admin/transactions', 'component'=>'transactions'),
 				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-				array('permission'=> 'Withdrawals.index', 'title'=> translate('Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/withdrawals', 'component'=>'withdrawals'),
-				array('permission'=> 'CollectedCash.index', 'title'=> translate('collected_cash'), 'icon'=>'credit-card', 'link'=>'admin/collected_cash', 'component'=>'collected_cash'),
-				]
-			),
-			array( 'title'=>translate('Management'),  'icon'=>'tool', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
-			[
-				array('permission'=>'Gallery.index', 'title'=>translate('Gallery'),  'icon'=>'tool', 'link'=>'admin/gallery', 'component'=>'gallery'),
-				array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
-				array('permission'=> 'Settings.index', 'title'=> translate('Business Settings'),  'icon'=>'tool', 'link'=>'admin/settings', 'component'=>'settings'),
-			]
-			),
-			array('permission'=>'Dashboard.index', 'title'=> translate('Logout'),  'icon'=>'log-out', 'link'=>'logout'),
-		);
-
-		return $data;
-	}
-	
-	/**
-	 * Return Superadmin menu
-	 * List of side menu
-	 */
-	public function superAdminMenu()
-	{
-		
-		$data = array(
-			
-			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
-			array( 'title'=>translate('Businesses'),  'icon'=>'wind', 'link'=>'#businesses', 'sub'=>
-			[
-				array('permission'=>'Companies.index', 'title'=>translate('Companies'),  'icon'=>'user', 'link'=>'admin/companies', 'component'=>'companies'),
-				array('permission'=>'Schools.index', 'title'=>translate('Schools'),  'icon'=>'user', 'link'=>'admin/schools', 'component'=>'schools'),
-			]
-			),
-						
-			array( 'title'=>translate('Plans'),  'icon'=>'check-circle', 'link'=>'#plan', 'sub'=>
-			[
-				array('permission'=>'Plans.index', 'title'=>translate('Plans'),  'icon'=>'tool', 'link'=>'admin/plans', 'component'=>'plans'),
-				array('permission'=>'PlanFeatures.index', 'title'=>translate('Plan features'),  'icon'=>'tool', 'link'=>'admin/plan_features', 'component'=>'plan_features'),
-				array('permission'=>'PlanSubscriptions.index', 'title'=>translate('Plan subscriptions'),  'icon'=>'tool', 'link'=>'admin/plan_subscriptions', 'component'=>'plan_subscriptions'),
-			]
-			),
-			
-			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
-			[
-				array('permission'=>'Payments.index', 'title'=>translate('Plan Payments'),  'icon'=>'tool', 'link'=>'admin/payments', 'component'=>'payments'),
-				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-				array('permission'=>'BusinessWallets.index', 'title'=>translate('Business Wallets'),  'icon'=>'help-circle', 'link'=>'admin/business_wallets', 'component'=>'business_wallets'),
-				array('permission'=> 'BusinessWithdrawals.index', 'title'=> translate('Business Withdrawals'), 'icon'=>'credit-card', 'link'=>'admin/business_withdrawals', 'component'=>'business_withdrawals'),
 				array('permission'=> 'PaymentMethods.index', 'title'=> translate('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
 			]
 			),

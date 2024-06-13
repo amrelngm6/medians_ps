@@ -8,7 +8,7 @@ use Medians\Locations\Domain\RouteLocation;
 use Medians\Trips\Domain\TripLocation;
 use Medians\Students\Domain\Student;
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Businesses\Domain\Business;
+
 use Medians\Wallets\Domain\Wallet;
 
 class Parents extends Customer
@@ -56,10 +56,7 @@ class Parents extends Customer
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 
 	public function trip_route_location() 
 	{

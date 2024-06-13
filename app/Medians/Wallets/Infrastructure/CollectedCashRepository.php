@@ -14,31 +14,24 @@ class CollectedCashRepository
 {
 
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
 	
-	function __construct($business = null)
-	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : 0;
-	}
-
+	
 	public function find($id)
 	{
-		return CollectedCash::with('business')->find($id);
+		return CollectedCash::find($id);
 	}
 
 	public function getCollectedCash($id)
 	{
-		return CollectedCash::where('business_id', $this->business_id)->with('business')->with(['wallet'=>function($q) {
+		return CollectedCash::with(['wallet'=>function($q) {
             return $q->with('user');
         }])->where('wallet_id', $id)->get();
 	}
 
 	public function get($params, $limit = 1000)
 	{
-		$check = CollectedCash::where('business_id', $this->business_id)->with('business')->with(['wallet'=>function($q) {
+		$check = CollectedCash::with(['wallet'=>function($q) {
             return $q->with('user');
         }]);
 
@@ -53,7 +46,7 @@ class CollectedCashRepository
 	
 	public function totalCompletedAmount($params)
 	{
-		$check = CollectedCash::where('business_id', $this->business_id)->selectRaw('ROUND(SUM(amount), 2) as total_amount');
+		$check = CollectedCash::selectRaw('ROUND(SUM(amount), 2) as total_amount');
         if (isset($params['start_date']))
         {
             $check = $check->whereBetween('date', [$params['start_date'], $params['end_date']]);

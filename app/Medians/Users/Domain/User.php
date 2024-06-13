@@ -8,7 +8,7 @@ use Medians\Drivers\Domain\Driver;
 use Medians\Roles\Domain\Role;
 use Medians\Roles\Domain\Permission;
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Businesses\Domain\Business;
+
 
 class User extends CustomModel
 {
@@ -106,10 +106,6 @@ class User extends CustomModel
         return $this->hasOne(CustomField::class, 'model_id', 'id')->where('model_type', User::class);
 	}
 
-	public function business()
-	{
-        return $this->hasOne(Business::class, 'user_id', 'id')->with('subscription');
-	}
 
     public function custom_fields()
     {

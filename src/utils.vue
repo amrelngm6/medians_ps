@@ -172,14 +172,6 @@ export function checkAccess (auth)
     if (!auth)
         return false;
 
-    if (!auth.business)
-        return false;
-    
-    if (!auth.business.subscription)
-        return false;
-    
-    if (auth.business.subscription.is_expired)
-        return false;
 
     return true;
 }
@@ -204,10 +196,6 @@ export function handleAccess (response)
 
     } else if (response && (response.error || response.success) && response.result) {
         response ? showAlert(response.result, 3000) : null;
-        if (response.result == 'Access limit exceeded')
-        {
-            showAlert(translate('Upgrade plan now'), 5000);
-        }
     } else {
         response ? showAlert(response.error, 3000) : null;
     }

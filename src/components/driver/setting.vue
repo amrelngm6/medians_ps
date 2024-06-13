@@ -60,7 +60,7 @@ export default {
         'lang',
         'setting',
         'system_setting',
-        'business_setting',
+        'setting',
         'conf',
         'auth',
         'item',

@@ -22,7 +22,7 @@ class HelpMessageController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new HelpMessageRepository	($this->app->auth()->business);
+		$this->repo = new HelpMessageRepository	();
 	}
 
 
@@ -95,7 +95,6 @@ class HelpMessageController extends CustomController
         try {	
 
 			$user = $this->app->auth();
-			$params['business_id'] = $user->business->business_id;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
@@ -194,7 +193,6 @@ class HelpMessageController extends CustomController
 			$user = $this->app->auth();
 
 			$params['user_id'] = $user->driver_id;
-			$params['business_id'] = isset($user->business->business_id) ? $user->business->business_id : 0;
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('THNKS_MSG'), 'reload'=>1)

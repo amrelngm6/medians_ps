@@ -17,7 +17,7 @@
                     <div @click="checkMobileMenu()" v-if="auth" class="w-full flex overflow-auto" >
                         <div class="w-full" v-if="checkAccess()">
                             <transition  :duration="1000">
-                                <component @callback="switchTab" class="pt-8 px-1 min-h-400px" ref="activeTab" :business_setting="business_setting" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :setting="setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent" :currency="currency"></component>
+                                <component @callback="switchTab" class="pt-8 px-1 min-h-400px" ref="activeTab" :setting="setting" :types-list="typesList"  :key="activeTab" :path="activeTab" :system_setting="system_setting" :lang="lang" :conf="conf" :auth="auth" :is="activeComponent" :currency="currency"></component>
                             </transition>
                         </div>
                         <div class="w-full" v-if="!checkAccess() && !loader">
@@ -54,7 +54,6 @@ const events = defineAsyncComponent(() => import('@/components/datatable_pages/e
 const parents = defineAsyncComponent(() => import('@/components/datatable_pages/parents.vue') );
 const companies = defineAsyncComponent(() => import('@/components/datatable_pages/companies.vue') );
 const schools = defineAsyncComponent(() => import('@/components/datatable_pages/schools.vue') );
-const plan_features = defineAsyncComponent(() => import('@/components/datatable_pages/plan_features.vue') );
 const employees = defineAsyncComponent(() => import('@/components/datatable_pages/employees.vue') );
 const vehicle_types = defineAsyncComponent(() => import('@/components/datatable_pages/vehicle_types.vue') );
 const supervisors = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
@@ -81,15 +80,7 @@ const locations = defineAsyncComponent(() => import('@/components/locations.vue'
 
 const users = defineAsyncComponent(() => import('@/components/users.vue') );
 
-const plans = defineAsyncComponent(() => import('@/components/plans.vue') );
-
-const plan_subscriptions = defineAsyncComponent(() => import('@/components/plan_subscriptions.vue') );
-
-
 const pages = defineAsyncComponent(() => import('@/components/pages.vue') );
-
-const payments = defineAsyncComponent(() => import('@/components/payments.vue') );
-
 
 const taxi_trips = defineAsyncComponent(() => import('@/components/taxi_trips.vue') );
 
@@ -107,7 +98,7 @@ const package_subscriptions = defineAsyncComponent(() => import('@/components/pa
 
 const driver_applicants = defineAsyncComponent(() => import('@/components/driver_applicants.vue') );
 
-const business_applicants = defineAsyncComponent(() => import('@/components/business_applicants.vue') );
+const student_applicants = defineAsyncComponent(() => import('@/components/student_applicants.vue') );
 
 const transactions = defineAsyncComponent(() => import('@/components/transactions.vue') );
 
@@ -116,10 +107,6 @@ const invoices = defineAsyncComponent(() => import('@/components/invoices.vue') 
 const vacations = defineAsyncComponent(() => import('@/components/vacations.vue') );
 
 const wallets = defineAsyncComponent(() => import('@/components/wallet/wallets.vue') );
-
-const business_wallets = defineAsyncComponent(() => import('@/components/wallet/business_wallets.vue') );
-
-const business_withdrawals = defineAsyncComponent(() => import('@/components/wallet/business_withdrawals.vue') );
 
 const withdrawals = defineAsyncComponent(() => import('@/components/wallet/withdrawals.vue') );
 
@@ -162,11 +149,7 @@ export default {
         users,
         schools,
         companies,
-        plans,
-        plan_features,
-        plan_subscriptions,
         employees,
-        payments,
         pages,
         packages,
         app_settings,
@@ -176,13 +159,11 @@ export default {
         package_subscriptions,
         supervisors,
         driver_applicants,
-        business_applicants,
+        student_applicants,
         transactions,
         invoices,
         vacations,
         wallets,
-        business_wallets,
-        business_withdrawals,
         withdrawals,
         driver_page,
         collected_cash,
@@ -214,7 +195,7 @@ export default {
             currency: {},
             setting: {},
             system_setting: {},
-            business_setting: {},
+            setting: {},
             conf: {},
             url: '/',
             main_menu: [],
@@ -274,15 +255,6 @@ export default {
           if (!this.auth)
             return false;
 
-          if (!this.auth.business)
-            return false;
-          
-          if (!this.auth.business.subscription)
-            return false;
-          
-          if (this.auth.business.subscription.is_expired)
-            return false;
-
           return true;
         },
 
@@ -339,7 +311,7 @@ export default {
                 this.main_menu = response.menu ?? {};
                 this.setting = app.setting ?? {};
                 this.system_setting = app.setting ?? {};
-                this.business_setting = app.business_setting ?? {};
+                this.setting = app.setting ?? {};
                 this.conf = app['CONF'] ?? {};
                 this.activeComponent = response.component ?? this.defaultPage();
                 this.currency = app.currency ?? {};

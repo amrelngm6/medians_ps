@@ -9,7 +9,7 @@ use Medians\Drivers\Domain\Driver;
 use Medians\Customers\Domain\Parents;
 use Medians\Customers\Domain\SuperVisor;
 use Medians\Students\Domain\Student;
-use Medians\Businesses\Domain\Business;
+
 
 
 class Trip extends CustomModel
@@ -23,7 +23,7 @@ class Trip extends CustomModel
     protected $primaryKey = 'trip_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'driver_id',
 		'vehicle_id',
 		'route_id',
@@ -58,10 +58,7 @@ class Trip extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 
 	
 	public function route() 

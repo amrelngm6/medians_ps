@@ -24,7 +24,7 @@ class Notification extends CustomModel
 
 
 	protected $fillable = [
-		'business_id',
+
 		'receiver_type',
 		'receiver_id',
 		'event_id',

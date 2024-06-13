@@ -6,7 +6,7 @@ namespace Medians\Invoices\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
-use Medians\Businesses\Domain\Business;
+
 use Medians\Students\Domain\Student;
 use Medians\Branches\Domain\Branch;
 use Medians\Packages\Domain\PackageSubscription;
@@ -28,8 +28,7 @@ class Invoice extends CustomModel
 	* @var Array
 	*/
 	public $fillable = [
-		'business_id'
-		,'code'	
+		'code'	
 		,'user_id'	
 		,'user_type'	
 		,'payment_method'	
@@ -64,11 +63,7 @@ class Invoice extends CustomModel
         return $this->morphTo();
     }
 
-	public function business()
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');
-	}
-
+	
 	public function items()
 	{
 		return $this->hasMany(InvoiceItem::class, 'invoice_id', 'invoice_id')->with('item');

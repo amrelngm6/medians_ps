@@ -25,8 +25,8 @@ class WithdrawalController extends CustomController
 		$this->app = new \config\APP;
 		$user = $this->app->auth();
 
-		$this->repo = new WithdrawalRepository($user->business);
-		$this->walletRepo = new WalletRepository($user->business);
+		$this->repo = new WithdrawalRepository();
+		$this->walletRepo = new WalletRepository();
 	}
 
 
@@ -40,7 +40,6 @@ class WithdrawalController extends CustomController
 	{
 		return [
             [ 'value'=> "withdrawal_id", 'text'=> "#"],
-            [ 'value'=> "business.business_name", 'text'=> translate('Business'), 'sortable'=> true ],
             [ 'value'=> "amount", 'text'=> translate('Amount'), 'sortable'=> true ],
             [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
             [ 'value'=> "due_date", 'text'=> translate('Due Date'), 'sortable'=> true ],
@@ -78,7 +77,7 @@ class WithdrawalController extends CustomController
 
 			return render('withdrawals', [
 		        'load_vue' => true,
-		        'title' => translate('Business Withdrawals'),
+		        'title' => translate('Withdrawals'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get($params),

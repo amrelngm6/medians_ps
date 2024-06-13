@@ -13,17 +13,15 @@ use Medians\Packages\Infrastructure\PackageSubscriptionRepository;
 class StudentRepository 
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
 	protected $routeLocationRepository ;
 
-	function __construct($business)
+	function __construct()
 	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
-		$this->routeLocationRepository = new RouteLocationRepository($business);
+		
+		$this->routeLocationRepository = new RouteLocationRepository();
 	}
 
 	public function getClassName()
@@ -38,7 +36,7 @@ class StudentRepository
 
 	public function get($limit = 100)
 	{
-		return Student::where('business_id', $this->business_id)->with('route_location','parent','route')->limit($limit)->orderBy('student_id', 'DESC')->get();
+		return Student::with('route_location','parent','route')->limit($limit)->orderBy('student_id', 'DESC')->get();
 	}
 
 	public function findWithLocations($student_id, $parent_id)
@@ -103,7 +101,7 @@ class StudentRepository
 	{
 		try {
 			
-			$delete = Student::find($id)->update(['business_id' => 0]);
+			$delete = Student::find($id)->delete();
 
 			return true;
 

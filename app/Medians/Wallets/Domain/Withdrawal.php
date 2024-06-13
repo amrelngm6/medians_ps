@@ -3,7 +3,7 @@
 namespace Medians\Wallets\Domain;
 
 use Shared\dbaser\CustomModel;
-use Medians\Businesses\Domain\Business;
+
 use Medians\CustomFields\Domain\CustomField;
 
 
@@ -19,7 +19,7 @@ class Withdrawal extends CustomModel
 	
 	public $fillable = [
 		'amount',
-		'business_id',
+
 		'wallet_id',
 		'user_id',
 		'user_type',
@@ -27,7 +27,7 @@ class Withdrawal extends CustomModel
 		'due_date',
 		'payment_method',
 		'status',
-		'business_notes',
+		'notes',
 		'user_notes',
 	];
 
@@ -47,10 +47,7 @@ class Withdrawal extends CustomModel
         return $this->morphTo();
     }
 
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 
 	public function wallet() 
 	{

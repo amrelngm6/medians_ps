@@ -21,7 +21,7 @@ class EmployeeController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new EmployeeRepository($this->app->auth()->business);
+		$this->repo = new EmployeeRepository();
 	}
 
 
@@ -40,7 +40,6 @@ class EmployeeController extends CustomController
             [ 'value'=> "picture", 'text'=> translate('picture'), 'sortable'=>true ],
             [ 'value'=> "email", 'text'=> translate('Email'), 'sortable'=> true ],
             [ 'value'=> "mobile", 'text'=> translate('Mobile'), 'sortable'=> false ],
-            [ 'value'=> "business.business_name", 'text'=> translate('business'), 'sortable'=> true ],
 			['value'=>'edit', 'text'=>translate('Edit')],
 			['value'=>'delete', 'text'=>translate('Delete')],
         ];
@@ -232,7 +231,6 @@ class EmployeeController extends CustomController
 
         	$user = $this->app->auth();
         	$params['created_by'] = $user->id;
-        	$params['business_id'] = $user->business->business_id;
         	
 			$checkEmail = $this->repo->findByEmail($params['email']);
 			

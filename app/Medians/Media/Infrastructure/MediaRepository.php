@@ -30,7 +30,7 @@ class MediaRepository
 
 		$this->setDir($type);
 
-		return $this->fetchBusinessMedia($type, $user);
+		return $this->fetchMedia($type, $user);
 	}
 
 
@@ -81,10 +81,10 @@ class MediaRepository
 	}
 
 
-	public function fetchBusinessMedia($type, $user)
+	public function fetchMedia($type, $user)
 	{
 		$data = [];
-		$items = MediaUpload::where('business_id', isset($user->business->business_id) ? $user->business->business_id : '0')->get();
+		$items = MediaUpload::get();
 		foreach ($items as $key => $value) 
 		{
 			$ext = explode('.', $value->path);

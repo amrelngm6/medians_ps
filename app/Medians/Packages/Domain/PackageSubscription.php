@@ -3,8 +3,8 @@
 namespace Medians\Packages\Domain;
 
 use Shared\dbaser\CustomModel;
-use Medians\Businesses\Domain\Business;
-use Medians\Customers\Domain\BusinessApplicant;
+
+use Medians\Customers\Domain\StudentApplicant;
 
 /**
  * Subscription class database queries
@@ -20,7 +20,6 @@ class PackageSubscription extends CustomModel
     protected $primaryKey = 'subscription_id';
 
 	protected $fillable = [
-    	'business_id',
     	'package_id',
 		'model_id',
 		'model_type',
@@ -51,11 +50,6 @@ class PackageSubscription extends CustomModel
 		return strtolower(end($parts));
 	}
 
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id')->withCount('routes', 'locations', 'drivers');	
-	}
-
     public function model()
     {
         return $this->morphTo();
@@ -68,7 +62,7 @@ class PackageSubscription extends CustomModel
 
     public function applicant()
     {
-        return $this->hasOne(BusinessApplicant::class, 'subscription_id', 'subscription_id');
+        return $this->hasOne(StudentApplicant::class, 'subscription_id', 'subscription_id');
     }
 
 }

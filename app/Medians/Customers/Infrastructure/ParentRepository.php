@@ -10,15 +10,13 @@ use Medians\Mail\Application\MailService;
 class ParentRepository  extends CustomerRepository
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
 
-	function __construct($business)
+	function __construct()
 	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
 	}
 
 
@@ -34,7 +32,7 @@ class ParentRepository  extends CustomerRepository
 
 	public function get($limit = 100)
 	{
-		return Parents::where('business_id', $this->business_id)->where('model', Parents::class)->with('route_location', 'students', 'wallet')->limit($limit)->get();
+		return Parents::where('model', Parents::class)->with('route_location', 'students', 'wallet')->limit($limit)->get();
 	}
 
 	public function checkLogin($email, $password)

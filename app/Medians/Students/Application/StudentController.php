@@ -24,8 +24,8 @@ class StudentController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new StudentRepository($this->app->auth()->business);
-		$this->parentRepo = new ParentRepository($this->app->auth()->business);
+		$this->repo = new StudentRepository();
+		$this->parentRepo = new ParentRepository();
 	}
 
 
@@ -143,7 +143,6 @@ class StudentController extends CustomController
 	        	return array('result'=>$e->getMessage(), 'error'=>1);
 			}
 
-        	$params['business_id'] = $this->app->auth()->business->business_id;
         	$params['created_by'] = $this->app->auth()->id;
         	$params['status'] = isset($params['status']) ? 'on' : 0;
 

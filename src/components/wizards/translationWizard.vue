@@ -184,7 +184,6 @@ export default
             'conf',
             'path',
             'system_setting',
-            'business_setting',
             'setting',
             'item',
             'languages',

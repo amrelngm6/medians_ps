@@ -2,7 +2,7 @@
 
 namespace Medians\Wallets\Domain;
 
-use Medians\Businesses\Domain\Business;
+
 use Shared\dbaser\CustomModel;
 
 

@@ -6,8 +6,6 @@ use \Shared\dbaser\CustomController;
 use Medians\Users\Application\GetStartedController;
 
 use Medians\Transactions\Infrastructure\TransactionRepository;
-use Medians\Plans\Infrastructure\PlanRepository;
-use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 
 class TransactionController extends CustomController
 {
@@ -17,7 +15,6 @@ class TransactionController extends CustomController
 	*/
 	protected $repo;
 	protected $app;
-	protected $planRepo;
 
 
 
@@ -26,9 +23,8 @@ class TransactionController extends CustomController
         $this->app = new \config\APP;
 		
 		$user = $this->app->auth();
-		$this->repo = new TransactionRepository(isset($user->business) ? $user->business : null);
+		$this->repo = new TransactionRepository();
 
-		$this->planRepo = new PlanRepository();
 	}
 
 
@@ -167,8 +163,6 @@ class TransactionController extends CustomController
 
 			$saveTransaction = $paymentService->storeSubscriptionTransaction($params, $addInvoice); 
 			
-			$updateStudentBusiness = $paymentService->updateStudentBusiness($params ); 
-
 			$savedSubscription = $paymentService->updatePackageSubscription($params); 
 
 			$updateRouteLocation = $paymentService->updateRouteLocation($params); 

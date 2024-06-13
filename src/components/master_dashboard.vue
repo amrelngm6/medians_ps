@@ -17,7 +17,6 @@
         </div>
 
         <!-- <dashboard_chart v-if="content.trips_charts" :key="content" :content="content.trips_charts" :title="translate('Route trips')" />  -->
-        <!-- <dashboard_chart v-if="content.top_businesses" :key="content" :content="content" :title="translate('top_businesses')" />  -->
 
         <div class="block w-full overflow-x-auto py-2">
             <div v-if="lang &&  setting" class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
@@ -69,7 +68,7 @@
                 <div class="">
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
                         <dashboard_card_white  icon="/uploads/img/booking-unpaid.png" classes="bg-dark" text_class="fs-4 text-white" value_class="text-white" :title="translate('Invoices')" :value="content.invoices_count"></dashboard_card_white>
-                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-info" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Businesses')" :value="content.businesses_count"></dashboard_card_white>
+                        <dashboard_card_white  icon="/uploads/img/booking-paid.png" classes="bg-info" text_class="fs-4 text-white" value_class="text-white"  :title="translate('Businesses')" :value="content.students_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/booking_income.png" classes="bg-success"  text_class="" value_class="text-white"  :title="translate('Customers')" :value="content.customers_count"></dashboard_card_white>
                         <dashboard_card_white  icon="/uploads/img/products_icome.png" classes="bg-danger"  text_class="fs-4 text-white" value_class="text-white"  :title="translate('Help messages')" :value="content.help_messages_count"></dashboard_card_white>
                     </div>
@@ -94,17 +93,10 @@
                     <div class="card mb-0 w-full lg:w-1/3">
                         
                         <div class="w-full p-4">
-                            <div class="w-full flex gap-2">
-                                <h4 class="w-full ml-4" v-text="translate('Top businesses')"></h4>
-                                <a href="/admin/companies" class="w-24" v-text="translate('Companies')"></a>
-                                <a href="/admin/schools" class="w-24" v-text="translate('Schools')"></a>
-                            </div>
-                            <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top_businesses_who_have_most_route_locations')"></p>
+
                         </div>
                         <div class="card-body w-full">
-                            <div class="w-full" v-if="content.top_businesses">
-                                <dashboard_pie_chart v-if="pie_options" type="pie"  :key="pie_options" :options="pie_options" />
-                            </div>
+
                         </div>
                     </div>
                     <div class="card w-full lg:w-1/3 lg:mb-0">
@@ -134,7 +126,6 @@
                                                         <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(subscription.user.picture ?? '/uploads/images/default_profile.png')" />
                                                         <div class="text-left">
                                                             <p class="m-0" v-text="subscription.user.name"></p>
-                                                            <p class="m-0" v-text="subscription.user.business ? subscription.user.business.business_name : ''"></p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -324,7 +315,6 @@ export default
         const labels = ref([]);
         const route_data = ref([]);
         const taxi_data = ref([]);
-        const top_businesses = ref([]);
         /**
          * Set charts based on their values type
          */ 
@@ -398,40 +388,6 @@ export default
             return preLabels.value;
         }
 
-        const filterTaxiTripsCharts =  async (items) => {
-            console.log(items)
-            const preLabels = ref([])
-            if (items) {
-                for (let i = 0; i < items.length; i++)  {
-                    preLabels.value[i] = items[i].taxi_trips ? items[i].taxi_trips.length : false;
-                }
-            }
-            return preLabels.value;
-        }
-
-        const filterTripsCharts =  async (business) => {
-            console.log(items)
-            const preLabels = ref([])
-            if (items) {
-                for (let i = 0; i < items.length; i++)  {
-                    preLabels.value[i] = items[i].trips ? items[i].trips.length : false;
-                }
-            }
-            return preLabels.value;
-        }
-
-        const filterData =  async (label, list) => 
-        {
-
-            for (let i = 0; i < list.length; i++)  {
-                const trip = list[i];
-                if (trip.label == label && list[i].y)
-                {
-                    return  trip.y;
-                }
-            }
-            
-        }
 
         const dateValue = ref({
             startDate: "",

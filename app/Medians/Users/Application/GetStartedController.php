@@ -2,9 +2,6 @@
 
 namespace Medians\Users\Application;
 
-use Medians\Businesses\Infrastructure\BusinessRepository;
-use Medians\Plans\Infrastructure\PlanRepository;
-use Medians\Plans\Infrastructure\PlanSubscriptionRepository;
 use Medians\Settings\Infrastructure\SettingsRepository;
 
 
@@ -15,8 +12,6 @@ class GetStartedController
 	/*
 	/ @var new CustomerRepository
 	*/
-	private $businessRepo;
-
 	protected $app;
 
 	public $planRepo;
@@ -28,12 +23,6 @@ class GetStartedController
 	function __construct()
 	{
 		$this->app = new \config\APP;		
-
-		$this->businessRepo = new BusinessRepository();
-
-		$this->planSubscriptionRepo = new PlanSubscriptionRepository();
-
-		$this->planRepo = new PlanRepository();
 
 		$this->settingRepo = new SettingsRepository(null);
 		
@@ -61,45 +50,9 @@ class GetStartedController
 	/**
 	*  Store setting for new user
 	*/
-	public function store_setting($business) 
+	public function store_setting() 
 	{
-		$user = $this->app->auth();
 
-		$params = [
-			[
-				'code' => 'logo',
-				'value' => '/uploads/img/letters/'.strtolower(substr($user->first_name, 0, 1)).'.png'
-			],
-			[
-				'code' => 'currency',
-				'value' => 'USD'
-			],
-			[
-				'code' => 'allow_applicants',
-				'value' => 'on'
-			],
-			[
-				'code' => 'allow_taxi_trip',
-				'value' => 'on'
-			],
-			[
-				'code' => 'email',
-				'value' => $user->email
-			],
-			[
-				'code' => 'lang',
-				'value' => $this->app->lang ?? $this->app->default_lang
-			]
-		];
-
-		foreach ($params as $row) 
-		{
-			$row['business_id'] = $business->business_id;
-			$row['created_by'] = $user->id;
-			$store = $this->settingRepo->store($row);
-		}
-
-		return $store;
 	}
 
 

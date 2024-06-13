@@ -13,47 +13,44 @@ class RouteLocationRepository
 {
 
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business ;
 
-	function __construct($business)
+	function __construct()
 	{
-		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
+		
 	}
 
 
 	public function find($id)
 	{
-		return RouteLocation::where('business_id', $this->business_id)->find($id);
+		return RouteLocation::find($id);
 	}
 
 	public function findByStudent($id)
 	{
-		return RouteLocation::where('business_id', $this->business_id)->where('model_type', Student::class)->where('model_id',$id)->first();
+		return RouteLocation::where('model_type', Student::class)->where('model_id',$id)->first();
 	}
 
 	public function get($limit = 100)
 	{
 		return RouteLocation::with('route','model')
-		->where('business_id', $this->business_id)->limit($limit)->orderBy('location_id','DESC')->get();
+		->limit($limit)->orderBy('location_id','DESC')->get();
 	}
 
 	public function eventsByDate($params)
 	{
 		return RouteLocation::whereBetween('created_at', [$params['start'], $params['end']])
-		->where('business_id', $this->business_id)
+		
 		->orderBy('location_id','DESC');
 
 	}
 
 	public function getRouteStudents($route_id)
 	{
-		return RouteLocation::where('business_id', $this->business_id)->whereDoesntHave('',function($q){
+		return RouteLocation::whereDoesntHave('',function($q){
 			return $q;
 		})
 		->where('route_id', $route_id)->get();
@@ -122,7 +119,7 @@ class RouteLocationRepository
 			
 			$data['model_type'] = $this->handleClassType($data['usertype']);
 
-			$Object = RouteLocation::where('business_id', $this->business_id)->find($data['location_id']);
+			$Object = RouteLocation::find($data['location_id']);
 				
 			foreach ($data as $key => $value) 
 			{
@@ -155,7 +152,7 @@ class RouteLocationRepository
 	{
 		try {
 			
-			$delete = RouteLocation::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = RouteLocation::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

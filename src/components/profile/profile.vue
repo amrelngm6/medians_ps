@@ -39,33 +39,8 @@
                         </div>
                         <div class="d-flex flex-wrap flex-stack">
                             <div class="d-flex flex-column flex-grow-1 pe-8">
-                                <div class="d-flex flex-wrap" v-if="activeItem.business && content">
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="fs-2 fw-bold" v-text="activeItem.business.subscription.plan_name"></div>
-                                        </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Plan')"></div>
-                                    </div>
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.drivers_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/</div>
-                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Driver')"></div>
-                                            </div>
-                                        </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Drivers')"></div>
-                                    </div>
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                        <div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="fs-2 fw-bold" v-text="content.stats.vehicles_count"></div>
-                                                <div class="fs-6 fw-bold px-1" >/</div>
-                                                <div class="fs-6 fw-bold" v-if="activeItem.business.subscription" v-text="checkFeatureLimit(activeItem.business.subscription.plan_features, 'Vehicle')"></div>
-                                            </div>
-                                        </div>
-                                        <div class="fw-semibold fs-6 text-gray-500" v-text="translate('Vehicles')"></div>
-                                    </div>
+                                <div class="d-flex flex-wrap" v-if="activeItem && content">
+                                
                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                         
                                         <div>
@@ -106,73 +81,12 @@
 
                     <invoices_tab :currency="currency" :conf="conf" v-if="activeTab == 'invoices'" :invoices="content.invoices" :item="activeItem" :system_setting="system_setting" />
                     
-                    <info_tab :currency="currency"  :conf="conf" v-if="activeTab == 'business_info'" :overview="content.overview" :item="activeItem"  />
-
                     <setting_tab :conf="conf" v-if="activeTab == 'settings'" :fillable="content.fillable" :item="activeItem"  :system_setting="system_setting" />
 
-                    <withdrawal_tab :currency="currency" :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :business_withdrawals="content.business_withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
-                    
+                    <withdrawal_tab :currency="currency" :conf="conf" :auth="auth" v-if="activeTab == 'withdrawal'" :withdrawals="content.withdrawals" :wallet="content.wallet"  :system_setting="system_setting" :item="activeItem" />
 
                 </div>  
-
-                <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-300px mb-10 order-1 order-lg-2" v-if="activeItem.business">
-                    <div class="card card-flush mb-0" data-kt-sticky="true" data-kt-sticky-name="subscription-summary" data-kt-sticky-offset="{default: false, lg: '200px'}" data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto" data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
-                        <div class="card-header">
-                            <div class="card-title"><h2 v-text="translate('Summary')"></h2></div>
-                        </div>
-                        <div class="card-body pt-0 fs-6">
-                            <div class="mb-7">
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-60px symbol-circle me-3">
-                                        <img alt="Pic" :src="activeItem.picture ?? '/uploads/images/default_profile.png'">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2" v-text="activeItem.name"></a>
-                                        <a href="#" class="fw-semibold text-gray-600 text-hover-primary" v-text="activeItem.email"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="separator separator-dashed mb-7"></div>
-                            <div class="mb-7" v-if="activeItem.business && activeItem.business.subscription">
-                                <h5 class="mb-4" v-text="translate('Plan')"></h5>
-                                <div class="mb-0">
-                                    <span class="text-lg me-2" v-text="activeItem.business.subscription.plan_name"></span>
-                                    <span class="fw-semibold text-gray-600" v-text="currency.symbol +''+ (activeItem.business.subscription.plan ? (cost() + '' + ' /'+ activeItem.business.subscription.type) : '')"></span>
-                                </div>
-                            </div>
-                            <!--end::Section-->
-                            <div class="separator separator-dashed mb-7"></div>
-                            <div class="mb-7" v-if="activeItem.business ">
-                                <h5 class="mb-4" v-text="translate('Business')"></h5>
-                                <div class="mb-4 fs-bold" v-text="activeItem.business.business_name"></div>
-                            </div>
-                            <!--end::Section-->
-
-                            <div class="separator separator-dashed mb-7"></div>
-
-                            <div class="mb-10" v-if="activeItem.business && activeItem.business.subscription">
-                                <h5 class="mb-4" v-text="translate('Subscription Details')"></h5>
-                                <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2">
-                                    <tbody>
-                                        <tr class="">
-                                        <td class="text-gray-500" v-text="translate('Subscription ID')"></td>
-                                        <td class="text-gray-800" v-text="activeItem.business.subscription.subscription_id"></td>
-                                    </tr>
-                                    </tbody>
-                                    <tbody><tr class="">
-                                        <td class="text-gray-500" v-text="translate('Upcoming renewal')"></td>
-                                        <td class="text-gray-800" v-text="activeItem.business.subscription.end_date"></td>
-                                    </tr>
-                                </tbody></table>
-                            </div>
-                            <div class="mb-0">
-                                <a href="javascript:;" class="btn btn-primary" id="kt_subscriptions_create_button" v-text="translate('Cancel Subscription')"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-
             
         </div>
         <side-form-update @callback="closeSide" :conf="conf" model="User.update" :item="activeItem"
@@ -228,8 +142,6 @@ export default {
         const tabsList = ref([
             { title: translate('Account'), link: 'account' },
             { title: translate('Settings'), link: 'settings' },
-            { title: translate('Business info'), link: 'business_info' },
-            { title: translate('Subscriptions'), link: 'subscriptions' },
             { title: translate('Invoices'), link: 'invoices' },
             { title: translate('Withdrawal'), link: 'withdrawal' },
         ]);
@@ -262,22 +174,10 @@ export default {
         }
 
         const checkRole = (role_id, tab) => {
-            
-            if (role_id == 1 && (tab == 'business_info' || tab == 'subscriptions' || tab == 'invoices' || tab == 'withdrawal')) 
-                return false
-
             return true;
         }
 
 
-        const cost = () => 
-        {
-            if ( activeItem.value.business && activeItem.value.business.subscription && activeItem.value.business.subscription.plan )
-            {
-                return  activeItem.value.business.subscription.type == 'monthly' ? activeItem.value.business.subscription.plan.monthly_cost : activeItem.value.business.subscription.plan.yearly_cost;
-            }
-            return 0;
-        }
 
         const checkFeatureLimit = (features, code) => 
         {
@@ -303,7 +203,6 @@ export default {
         
         return {
             checkFeatureLimit,
-            cost,
             url,
             showAddSide,
             showEditSide,
@@ -327,7 +226,7 @@ export default {
         'lang',
         'setting',
         'system_setting',
-        'business_setting',
+        'setting',
         'conf',
         'auth',
         'currency'

@@ -18,7 +18,7 @@ class PackageTransaction extends CustomModel
     protected $primaryKey = 'package_transactions_id';
 
 	protected $fillable = [
-		'business_id',
+
     	'subscription_id',
     	'package_id',
 		'model_id',

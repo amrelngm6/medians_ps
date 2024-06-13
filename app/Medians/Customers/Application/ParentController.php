@@ -24,7 +24,7 @@ class ParentController extends CustomController
 
 		$user = $this->app->auth();
 
-		$this->repo = new ParentRepository(isset($user->business) ? $user->business : null);
+		$this->repo = new ParentRepository();
 	}
 
 
@@ -112,7 +112,6 @@ class ParentController extends CustomController
 				return $this->validate($params);
 
         	$params['created_by'] = $this->app->auth()->id;
-        	$params['business_id'] = $this->app->auth()->business->business_id;
         	
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)

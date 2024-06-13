@@ -9,25 +9,23 @@ use Medians\Mail\Application\MailService;
 class EmployeeRepository extends CustomerRepository
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	function __construct($business)
+	function __construct()
 	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
 	}
 
 	public function get($limit = 100)
 	{
-		return Employee::where('model', Employee::class)->where('business_id', $this->business_id)->with('route_location', 'business')->limit($limit)->get();
+		return Employee::where('model', Employee::class)->with('route_location')->limit($limit)->get();
 	}
 
 
 	public function getEmployee($employee_id)
 	{
-		return Employee::where('model', Employee::class)->where('business_id', $this->business_id)->find($employee_id);
+		return Employee::where('model', Employee::class)->find($employee_id);
 	}
 
 
@@ -100,7 +98,7 @@ class EmployeeRepository extends CustomerRepository
     public function update($data)
     {
 
-		$Object = Employee::where('business_id', $this->business_id)->find($data['customer_id']);
+		$Object = Employee::find($data['customer_id']);
 		
 		if ($this->validateEmail($data['email'], $data['customer_id']))
 		{
@@ -155,7 +153,7 @@ class EmployeeRepository extends CustomerRepository
 	{
 		try {
 			
-			$delete = Employee::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = Employee::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

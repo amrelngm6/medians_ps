@@ -38,12 +38,12 @@ class TaxiTripController extends CustomController
 
 		$user = $this->app->auth();
 
-		$this->repo = new TaxiTripRepository(isset($user->business) ? $user->business : null);
-		$this->employeeRepo = new EmployeeRepository(isset($user->business) ? $user->business : null);
-		$this->supervisorRepo = new SuperVisorRepository(isset($user->business) ? $user->business : null);
-		$this->parentRepo = new ParentRepository(isset($user->business) ? $user->business : null);
-		$this->vehicleRepo = new VehicleRepository(isset($user->business) ? $user->business : null);
-		$this->driverRepo = new DriverRepository(isset($user->business) ? $user->business : null);
+		$this->repo = new TaxiTripRepository();
+		$this->employeeRepo = new EmployeeRepository();
+		$this->supervisorRepo = new SuperVisorRepository();
+		$this->parentRepo = new ParentRepository();
+		$this->vehicleRepo = new VehicleRepository();
+		$this->driverRepo = new DriverRepository();
 	}
 
 
@@ -112,7 +112,6 @@ class TaxiTripController extends CustomController
         try {	
 
         	$params['created_by'] = $user->id;
-        	$params['business_id'] = $user->business->business_id;
 
 			$returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)

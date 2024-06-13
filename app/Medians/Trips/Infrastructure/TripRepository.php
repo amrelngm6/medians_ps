@@ -15,24 +15,22 @@ class TripRepository
 {
 
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 	
 	protected $routeRepo;
 
-	function __construct($business)
+	function __construct()
 	{
 		
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
-		$this->routeRepo = new RouteRepository($business);
+		
+		$this->routeRepo = new RouteRepository();
 	}
 
 
 	public function find($id)
 	{
-		return Trip::where('business_id', $this->business_id)->find($id);
+		return Trip::find($id);
 	}
 
 	public function findLocation($id)
@@ -47,7 +45,7 @@ class TripRepository
 
 	public function getParentTrip($trip_id, $parent_id)
 	{
-		return Trip::where('business_id', $this->business_id)->with('locations',  'driver', 'vehicle', 'route')
+		return Trip::with('locations',  'driver', 'vehicle', 'route')
 		->with([
 			'locatiobs' => function($q) use ($parent_id){
 				return $q->with('location')->where('model_type', Student::class)->whereHas('model', function($q) use ($parent_id){
@@ -83,15 +81,14 @@ class TripRepository
 		return Trip::with(['locations'=> function($q){
 			$q->with('model');
 		}])
-		->where('business_id', $this->business_id)
+		
 		->with('driver', 'vehicle')
 		->where('driver_id', $id)->orderBy('trip_id','DESC')->limit($limit)->get();
 	}
 
 	public function getActiveDriverTrip($driver_id)
 	{
-		return Trip::where('business_id', $this->business_id)
-		->with('route','driver','vehicle','supervisor')
+		return Trip::with('route','driver','vehicle','supervisor')
 		->with(['locations'=> function($q){
 			$q->with('model');
 		}])
@@ -129,13 +126,13 @@ class TripRepository
 	
 	public function get($limit = 100)
 	{
-		return Trip::where('business_id', $this->business_id)->withCount('moving_locations')->withCount('locations')->with('route', 'locations',  'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
+		return Trip::withCount('moving_locations')->withCount('locations')->with('route', 'locations',  'waiting_locations', 'driver', 'vehicle')->orderBy('trip_id', 'DESC')->limit($limit)->get();
 	}
 
 	
 	public function eventsByDate($params)
 	{
-		$query = Trip::where('business_id', $this->business_id)->whereBetween('date', [$params['start'], $params['end']]);
+		$query = Trip::whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -143,7 +140,7 @@ class TripRepository
 	{
 		
 		$check = Trip::with('locations',  'driver', 'vehicle', 'route','supervisor')
-		->where('business_id', $this->business_id)
+		
 		->withCount('moving_locations')->withCount('locations');
 
 		if (!empty($params["start_date"]))
@@ -156,8 +153,7 @@ class TripRepository
 
 	public function allEventsByDate($params)
 	{
-		$query = Trip::where('business_id', $this->business_id)
-		->whereBetween('date', [$params['start'], $params['end']]);
+		$query = Trip::whereBetween('date', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -169,13 +165,12 @@ class TripRepository
 
 	
 	/**
-	* Find By Business between two days 
+	* Find between two days 
 	*/
 	public function getByDateCharts($params )
 	{
 
-	  	$check = Trip::where('business_id', $this->business_id)
-		->whereBetween('date' , [$params['start'] , $params['end']])
+	  	$check = Trip::whereBetween('date' , [$params['start'] , $params['end']])
 		->selectRaw('COUNT(*) as y, date as label');
 
   		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
@@ -188,8 +183,7 @@ class TripRepository
 	public function getAllByDateCharts($params )
 	{
 
-	  	$check = Trip::where('business_id', $this->business_id)
-		->whereBetween('date' , [$params['start'] , $params['end']])
+	  	$check = Trip::whereBetween('date' , [$params['start'] , $params['end']])
 		->selectRaw('COUNT(*) as y, date as label');
 
   		return $check->groupBy('date')->orderBy('date', 'ASC')->get();
@@ -248,7 +242,7 @@ class TripRepository
     public function update($data)
     {
 
-		$Object = Trip::where('business_id', $this->business_id)->find($data['trip_id']);
+		$Object = Trip::find($data['trip_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -267,7 +261,7 @@ class TripRepository
 	{
 		try {
 			
-			$delete = Trip::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = Trip::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);
@@ -300,7 +294,6 @@ class TripRepository
 			return null;
 
 		$data['date'] =  date('Y-m-d');
-		$data['business_id'] =  $this->business_id;
 		$data['route_id'] =  $route->route_id;
 		$data['driver_id'] =  $route->driver_id;
 		$data['vehicle_id'] =  $route->vehicle_id;
@@ -346,7 +339,6 @@ class TripRepository
 		if (empty($trip->trip_id))
 			return null;
 
-		$data['business_id'] =  $this->business_id;
 		$data['trip_id'] =  $trip->trip_id;
 		$data['model_id'] =  $tripLocation->model_id;
 		$data['model_type'] =  $tripLocation->model_type;

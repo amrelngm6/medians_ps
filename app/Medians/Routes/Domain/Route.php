@@ -7,7 +7,7 @@ use Medians\Locations\Domain\RouteLocation;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Drivers\Domain\Driver;
 use Medians\Customers\Domain\SuperVisor;
-use Medians\Businesses\Domain\Business;
+
 use Shared\dbaser\CustomModel;
 
 
@@ -22,7 +22,7 @@ class Route extends CustomModel
     protected $primaryKey = 'route_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'route_name',
 		'description',
 		'morning_trip_time',
@@ -47,10 +47,7 @@ class Route extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 	
 	public function trip() 
 	{

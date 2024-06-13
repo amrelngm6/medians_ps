@@ -15,17 +15,15 @@ class PackageSubscriptionRepository
 {
 
 	
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business ;
+	
 
-	function __construct($business)
+	function __construct()
 	{
-		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
+		
 	}
 
 	/**
@@ -34,7 +32,7 @@ class PackageSubscriptionRepository
 	public function find($id) 
 	{
 
-		return PackageSubscription::with('model','package', 'business','applicant')->find($id);
+		return PackageSubscription::with('model','package', 'applicant')->find($id);
 	}
 
 	/**
@@ -42,7 +40,7 @@ class PackageSubscriptionRepository
 	*/
 	public function get($params = null) 
 	{
-		return PackageSubscription::with('model','package','applicant')->where('business_id', $this->business_id)->get();
+		return PackageSubscription::with('model','package','applicant')->get();
 	}
 
 	/**
@@ -59,15 +57,14 @@ class PackageSubscriptionRepository
 		->whereHas('applicant', function($q) use  ($parentId) {
 			return $q->where('status', 'approved');
 		})
-		->with('model','package', 'business','applicant')
+		->with('model','package', 'applicant')
 		->first();
 	}
 
 	
 	public function eventsByDate($params)
 	{
-		$query = PackageSubscription::where('business_id', $this->business_id)
-		->whereBetween('created_at', [$params['start'], $params['end']]);
+		$query = PackageSubscription::whereBetween('created_at', [$params['start'], $params['end']]);
 		return $query;
 	}
 	
@@ -144,7 +141,7 @@ class PackageSubscriptionRepository
 	{
 		try {
 			
-			return PackageSubscription::where('business_id', $this->business_id)->find($id)->delete();
+			return PackageSubscription::find($id)->delete();
 
 		} catch (\Exception $e) {
 
@@ -166,7 +163,6 @@ class PackageSubscriptionRepository
 
 			if (isset($check->payment_status) && $check->payment_status == 'unpaid')
 			{
-				$check->model->update(['business_id'=>null]);
 				return PackageSubscription::find($subscriptionId)->delete();
 			}
 

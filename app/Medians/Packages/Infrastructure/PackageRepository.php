@@ -12,17 +12,13 @@ class PackageRepository
 {
 
 	
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business ;
-
-	function __construct($business)
+	function __construct()
 	{
-		$this->business = $business;
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
+		
 	}
 
 	/**
@@ -39,19 +35,11 @@ class PackageRepository
 	*/
 	public function get($params = null) 
 	{
-		return Package::where('business_id', $this->business_id)->get();
+		return Package::get();
 	}
 
 
 	
-	/**
-	* Find items by `params` 
-	*/
-	public function loadByBusiness($business_id) 
-	{
-		return Package::where('business_id', $business_id)->get();
-	}
-
 
 	/**
 	* Save item to database
@@ -81,7 +69,7 @@ class PackageRepository
     public function update($data)
     {
 
-		$Object = Package::where('business_id', $this->business_id)->find($data['package_id']);
+		$Object = Package::find($data['package_id']);
 		
 		// Return the Model object with the new data
     	$Object->update( (array) $data);
@@ -100,7 +88,7 @@ class PackageRepository
 	{
 		try {
 			
-			return Package::where('business_id', $this->business_id)->find($id)->delete();
+			return Package::find($id)->delete();
 
 		} catch (\Exception $e) {
 

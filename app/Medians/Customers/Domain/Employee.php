@@ -7,7 +7,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Locations\Domain\RouteLocation;
 use Medians\Trips\Domain\TripLocation;
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Businesses\Domain\Business;
+
 
 class Employee extends Customer
 {
@@ -48,10 +48,7 @@ class Employee extends Customer
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 	
 	public function trip_route_location() 
 	{

@@ -195,7 +195,7 @@ export default
         'path',
         'lang',
         'system_setting',
-        'business_setting',
+        'setting',
         'setting',
         'conf',
         'auth',

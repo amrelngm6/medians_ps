@@ -18,8 +18,8 @@
                             <div class="flex-lg-row-fluid me-xl-18 mb-10 mb-xl-0">
                                 <div class="mt-n1">
                                     <div class="d-flex flex-stack pb-10" >
-                                        <a href="#" v-if="business_setting">
-                                            <img alt="Logo" class="w-250px" :src="business_setting['logo'] ?? system_setting.logo">
+                                        <a href="#" v-if="setting">
+                                            <img alt="Logo" class="w-250px" :src="setting['logo'] ?? system_setting.logo">
                                         </a>
                                     </div>
                                     <div class="m-0">
@@ -85,16 +85,8 @@
                                                 <div class="fw-semibold fs-7 text-gray-600 mb-1" v-text="translate('Issued By')"></div>
                                                 
 
-                                                <!--end::Text-->
-                                                <div class="flex gap-2" v-if="business_setting && activeItem.business">
-                                                    <img :src="business_setting.logo" class="w-10 h-10" />
-                                                    <div class="fw-bold fs-6 text-gray-800">
-                                                        <div class="text-gray-800" v-text="activeItem.business.name"></div>
-                                                    </div>
-                                                </div>
-
                                                 <!--end::Description-->
-                                                <div class="fw-semibold fs-7 text-gray-600"  v-if="business_setting" v-text="business_setting.address"></div>
+                                                <div class="fw-semibold fs-7 text-gray-600"  v-if="setting" v-text="setting.address"></div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Col-->
@@ -309,7 +301,7 @@ export default
             const fillable = ref([props.usertype, 'Package', 'Subscription', 'Confirm']);
             const searchText = ref('');
 
-            console.log(props.business_setting);
+            console.log(props.setting);
 
             if (props.item) {
                 activeItem.value = props.item
@@ -448,7 +440,6 @@ export default
             'conf',
             'path',
             'system_setting',
-            'business_setting',
             'item',
             'userslist',
             'usertype',

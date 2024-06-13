@@ -21,7 +21,7 @@ class SuperVisorController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new SuperVisorRepository($this->app->auth()->business);
+		$this->repo = new SuperVisorRepository();
 	}
 
 
@@ -107,7 +107,6 @@ class SuperVisorController extends CustomController
 
         	$user = $this->app->auth();
         	$params['created_by'] = $user->id;
-        	$params['business_id'] = $user->business->business_id;
         	$params['status'] = !empty($params['status']) ? 'on' : null;
         	
 			$checkEmail = $this->repo->findByEmail($params['email']);

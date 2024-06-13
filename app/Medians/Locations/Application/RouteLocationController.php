@@ -33,11 +33,11 @@ class RouteLocationController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new RouteLocationRepository($this->app->auth()->business);
-		$this->routeRepo = new RouteRepository($this->app->auth()->business);
-		$this->studentRepo = new StudentRepository($this->app->auth()->business);
-		$this->employeeRepo = new EmployeeRepository($this->app->auth()->business);
-		$this->supervisorRepo = new SuperVisorRepository($this->app->auth()->business);
+		$this->repo = new RouteLocationRepository();
+		$this->routeRepo = new RouteRepository();
+		$this->studentRepo = new StudentRepository();
+		$this->employeeRepo = new EmployeeRepository();
+		$this->supervisorRepo = new SuperVisorRepository();
 	}
 
 
@@ -49,7 +49,6 @@ class RouteLocationController extends CustomController
 	 */ 
 	public function columns( ) 
 	{	
-		$type = $this->app->auth()->business->type;
 
 		return [
             [ 'value'=> "location_id", 'text'=> "#"],
@@ -155,8 +154,6 @@ class RouteLocationController extends CustomController
         try {	
 
         	$params['created_by'] = $this->app->auth()->id;
-        	$params['business_id'] = $this->app->auth()->business->business_id;
-
         	$params['status'] = $this->checkboxValue($params, 'status');
         	$params['saturday'] = $this->checkboxValue($params, 'saturday');
         	$params['sunday'] = $this->checkboxValue($params, 'sunday');

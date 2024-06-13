@@ -146,7 +146,7 @@ export default
         const load = () => {
             handleGetRequest( url ).then(response=> {
                 content.value = JSON.parse(JSON.stringify(response))
-                item.value = content.value.business_setting
+                item.value = content.value.setting
             });
         }
         

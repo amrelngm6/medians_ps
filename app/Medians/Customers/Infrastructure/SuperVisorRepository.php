@@ -9,25 +9,23 @@ use Medians\Mail\Application\MailService;
 class SuperVisorRepository extends CustomerRepository
 {
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	function __construct($business)
+	function __construct()
 	{
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
 	}
 
 	public function get($limit = 100)
 	{
-		return SuperVisor::where('model', SuperVisor::class)->where('business_id', $this->business_id)->limit($limit)->get();
+		return SuperVisor::where('model', SuperVisor::class)->limit($limit)->get();
 	}
 
 
 	public function getSuperVisor($supervisor_id)
 	{
-		return SuperVisor::where('model', SuperVisor::class)->where('business_id', $this->business_id)->find($supervisor_id);
+		return SuperVisor::where('model', SuperVisor::class)->find($supervisor_id);
 	}
 
 
@@ -100,7 +98,7 @@ class SuperVisorRepository extends CustomerRepository
     public function update($data)
     {
 
-		$Object = SuperVisor::where('business_id', $this->business_id)->find($data['supervisor_id']);
+		$Object = SuperVisor::find($data['supervisor_id']);
 		
 		if ($this->validateEmail($data['email'], $data['supervisor_id']))
 		{
@@ -151,7 +149,7 @@ class SuperVisorRepository extends CustomerRepository
 	{
 		try {
 			
-			$delete = SuperVisor::where('business_id', $this->business_id)->find($id)->delete();
+			$delete = SuperVisor::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);

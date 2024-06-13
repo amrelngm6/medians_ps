@@ -50,14 +50,6 @@ export default {
 
         activeItem.value = props.item;
 
-        const calcDaysWidth = () => {
-            let subscription = activeItem.value.business.subscription
-
-            if (subscription.plan.type == 'paid')
-            {
-                return (subscription.past_days / subscription.total_days) * 100 ;
-            }
-        }
         const upgradePlan = () => 
         {
             window.location.href = props.conf.url+'admin/get_started';
@@ -65,7 +57,6 @@ export default {
 
         return {
             upgradePlan,
-            calcDaysWidth,
             activeItem,
             translate,
         };
@@ -76,7 +67,7 @@ export default {
         'lang',
         'setting',
         'system_setting',
-        'business_setting',
+        'setting',
         'conf',
         'auth',
         'item',

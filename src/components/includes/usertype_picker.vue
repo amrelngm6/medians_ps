@@ -11,7 +11,7 @@
                 <div class="text-center pb-15 px-5">
                     <div class="relative mx-auto max-w-6xl py-4">
                         <div class="w-full flex gap-10">
-                            <div class="w-full" v-if="auth && auth.business.type == 'school'" @click="disable_students ? null : setType('parents')">
+                            <div class="w-full" v-if="auth " @click="disable_students ? null : setType('parents')">
                                 <input type="radio" class="btn-check" value="parents"
                                     :checked="activeItem.usertype == 'parents' ? true : false"
                                     name="payment_type" />
@@ -93,7 +93,7 @@ export default
         'path',
         'lang',
         'system_setting',
-        'business_setting',
+        'setting',
         'setting',
         'conf',
         'auth',

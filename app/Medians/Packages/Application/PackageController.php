@@ -21,7 +21,7 @@ class PackageController extends CustomController
 	{
 		$this->app = new \config\APP;
 
-		$this->repo = new PackageRepository($this->app->auth()->business);
+		$this->repo = new PackageRepository();
 	}
 
 
@@ -101,7 +101,6 @@ class PackageController extends CustomController
         	$user = $this->app->auth();
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
-			$params['business_id'] = $user->business->business_id;
 			$params['created_by'] = $user->id;
             
 			return ($this->repo->store($params))
@@ -177,15 +176,14 @@ class PackageController extends CustomController
 	/**
 	 * Load taxi trip for Driver
 	 */
-	public function load_business_packages()
+	public function load_packages()
 	{
 		$user = $this->app->auth();
 
 		if (empty($user)) { return null; }
 		
-		$businessId = $this->app->request()->get('business_id');
 
-		return $this->repo->loadByBusiness($businessId);
+		return $this->repo->get();
 
 	}
 

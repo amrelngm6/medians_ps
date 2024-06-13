@@ -3,7 +3,7 @@
         
         <div  v-if="content " class=" w-full relative">
             
-            <package_wizard :currency="currency" @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :business_setting="business_setting" :conf="conf" ></package_wizard>
+            <package_wizard :currency="currency" @callback="showWizard=false" v-if="showWizard" :key="showWizard" :item="activeItem" :setting="setting" :conf="conf" ></package_wizard>
             
             <div class=" " v-if="!showWizard && content.items && !content.items.length ">
                 <div class="card">
@@ -182,7 +182,7 @@ export default
         'path',
         'lang',
         'system_setting',
-        'business_setting',
+        'setting',
         'setting',
         'conf',
         'auth',

@@ -14,17 +14,17 @@ class UserRepository
 
 	public function find($id)
 	{
-		return User::with('Role','business')->find($id);
+		return User::with('Role')->find($id);
 	}
 
 	public function findItem($id)
 	{
-		return User::with('Role','business')->find($id);
+		return User::with('Role')->find($id);
 	}
 
 	public function findByEmail($email)
 	{
-		return User::with('Role','business')->where('email', $email)->first();
+		return User::with('Role')->where('email', $email)->first();
 	}
 
 	public function findByActivationCode($code)
@@ -36,7 +36,7 @@ class UserRepository
 
 	public function findByToken($token, $code = 'API_token')
 	{
-		return User::with('custom_fields','business')->whereHas('custom_fields', function($q) use ($token, $code) {
+		return User::with('custom_fields')->whereHas('custom_fields', function($q) use ($token, $code) {
 			$q->where('code',$code)->where('value',$token);
 		})->first();
 
@@ -71,18 +71,18 @@ class UserRepository
 
 	public function get($limit = 100)
 	{
-		return User::with('Role','business')->limit($limit)->get();
+		return User::with('Role')->limit($limit)->get();
 	}
 
 
 	public function getAll()
 	{
-		return User::with('Role','business')->get();
+		return User::with('Role')->get();
 	}
 
 	public function getModerators()
 	{
-		return User::where('role_id', '>', 3)->with('Role','business')->get();
+		return User::where('role_id', '>', 3)->with('Role')->get();
 	}
 
 

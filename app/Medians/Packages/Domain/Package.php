@@ -18,7 +18,6 @@ class Package extends CustomModel
     protected $primaryKey = 'package_id';
 
 	protected $fillable = [
-    	'business_id',
 		'name',
 		'description',
 		'single_cost_month',

@@ -10,7 +10,7 @@ use Medians\Trips\Domain\Trip;
 use Medians\Trips\Domain\TripLocation;
 use Medians\Help\Domain\HelpMessage;
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Businesses\Domain\Business;
+
 use Medians\Wallets\Domain\Wallet;
 
 class Driver extends CustomModel
@@ -24,7 +24,7 @@ class Driver extends CustomModel
     protected $primaryKey = 'driver_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'first_name',
 		'last_name',
 		'email',
@@ -78,10 +78,7 @@ class Driver extends CustomModel
     	return str_replace('/images/', '/thumbnails/', str_replace(['.png','.jpg','.jpeg'],'.webp', $this->picture));
 	}
 
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 
 	public function vehicle() 
 	{
@@ -161,8 +158,8 @@ class Driver extends CustomModel
 	
     public function receiverAsUser()
     {
-		$model =  $this->with('business')->find($this->applicant_id);
-		return isset($model->business->owner) ?  $model->business->owner : null;
+		$model =  $this->find($this->applicant_id);
+		return isset($model) ?  $model : null;
     }
 	
 

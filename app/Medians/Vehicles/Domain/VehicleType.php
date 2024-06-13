@@ -4,7 +4,7 @@ namespace Medians\Vehicles\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Routes\Domain\Route;
-use Medians\Businesses\Domain\Business;
+
 
 
 class VehicleType extends CustomModel
@@ -18,7 +18,7 @@ class VehicleType extends CustomModel
     protected $primaryKey = 'type_id';
 	
 	public $fillable = [
-		'business_id',
+
 		'name',
 		'status',
 		'created_by'
@@ -28,10 +28,7 @@ class VehicleType extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 
 
 	public function vehicles() 

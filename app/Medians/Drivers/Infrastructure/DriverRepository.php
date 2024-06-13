@@ -14,18 +14,16 @@ class DriverRepository
 {
 
 
-	/**
-	 * Business id
-	 */ 
-	protected $business_id ;
+	 
+	
 
-	protected $business;
 
-	function __construct($business)
+
+	function __construct()
 	{
-		$this->business = $business;
+		
 
-		$this->business_id = isset($business->business_id) ? $business->business_id : null;
+		
 	}
 
 
@@ -36,29 +34,29 @@ class DriverRepository
 
 	public function getDriver($id)
 	{
-		return Driver::where('business_id', $this->business_id)->with('trip','wallet')->with(['last_trips'=>function($q){
+		return Driver::with('trip','wallet')->with(['last_trips'=>function($q){
 			return $q->limit(3);
 		}])->find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Driver::where('business_id', $this->business_id)->limit($limit)->orderBy('driver_id', 'DESC')->get();
+		return Driver::limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 
 	public function getActive($limit = 100)
 	{
-		return Driver::where('business_id', $this->business_id)->where('status', 'on')->limit($limit)->with('vehicle')->orderBy('driver_id', 'DESC')->get();
+		return Driver::where('status', 'on')->limit($limit)->with('vehicle')->orderBy('driver_id', 'DESC')->get();
 	}
 
 	public function getAll($limit = 100)
 	{
-		return Driver::where('business_id', $this->business_id)->with('last_trips','help_messages')->withCount('total_pickups')->limit($limit)->orderBy('driver_id', 'DESC')->get();
+		return Driver::with('last_trips','help_messages')->withCount('total_pickups')->limit($limit)->orderBy('driver_id', 'DESC')->get();
 	}
 
 	public function topDrivers($limit = 100)
 	{
-		return Driver::where('business_id', $this->business_id)->withCount('last_trips')->having('last_trips_count', '>', 0)->orderBy('last_trips_count', 'DESC')->limit($limit)->get();
+		return Driver::withCount('last_trips')->having('last_trips_count', '>', 0)->orderBy('last_trips_count', 'DESC')->limit($limit)->get();
 	}
 
 	
@@ -68,7 +66,7 @@ class DriverRepository
 	public function mostTrips($params, $limit = 5)
 	{
 
-		return  Driver::where('business_id', $this->business_id)->withCount(['last_trips as y'=>function($q)use($params){
+		return  Driver::withCount(['last_trips as y'=>function($q)use($params){
 			if (isset($params['start']))
 			{
 				$q->whereBetween('start_time' , [$params['start'] , $params['end']]);
@@ -190,12 +188,6 @@ class DriverRepository
 	public function store($data) 
 	{
 
-		$permission = 'Driver.count';
-		if (count($this->get()) == $this->business->subscription->features[$permission])
-		{
-			return throw new \Exception(translate('Access limit exceeded'), 1);
-		}
-
 		$Model = new Driver();
 		
 		$Auth = new \Medians\Auth\Application\AuthService;
@@ -239,8 +231,6 @@ class DriverRepository
 			}
 		}		
 		
-		$data['business_id'] = 0;
-
 		// Return the  object with the new data
     	return  Driver::create($dataArray);
     }
@@ -263,23 +253,6 @@ class DriverRepository
 
     }
     	
-    /**
-     * Update Lead
-     */
-    public function updateDriverBusiness($data)
-    {
-
-		$Object = Driver::find($data['driver_id']);
-		
-		$data['business_id'] = $this->business_id;
-
-		// Return the  object with the new data
-    	$Object->update( (array) $data);
-
-    	return $Object;
-
-    }
-
 
 	/**
 	* Delete item to database
@@ -292,9 +265,9 @@ class DriverRepository
 			
 			/**
 			 * Soft-Delete
-			 * Remove relation between the business and the Driver
+			 * Remove the Driver
 			 */
-			$delete = Driver::where('business_id', $this->business_id)->find($id)->update(['business_id'=> 0]);
+			$delete = Driver::find($id)->delete();
 
 			return true;
 

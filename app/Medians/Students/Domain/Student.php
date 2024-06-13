@@ -8,7 +8,7 @@ use Medians\Locations\Domain\RouteLocation;
 use Medians\Customers\Domain\Parents;
 use Medians\Routes\Domain\Route;
 use Medians\Trips\Domain\TripLocation;
-use Medians\Businesses\Domain\Business;
+
 use Medians\Packages\Domain\PackageSubscription;
 use Medians\CustomFields\Domain\CustomField;
 
@@ -24,7 +24,7 @@ class Student extends CustomModel
 	
 	public $fillable = [
 		'parent_id',
-		'business_id',
+
 		'name',
 		'mobile',
 		'picture',
@@ -71,14 +71,11 @@ class Student extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-	public function business() 
-	{
-		return $this->hasOne(Business::class, 'business_id', 'business_id');	
-	}
+	
 
 	public function subscription() 
 	{
-		return $this->morphOne(PackageSubscription::class, 'model')->with('package','business','applicant')->orderBy('created_at','DESC');	
+		return $this->morphOne(PackageSubscription::class, 'model')->with('package','applicant')->orderBy('created_at','DESC');	
 	}
 
 	public function trips() 
