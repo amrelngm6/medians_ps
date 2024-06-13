@@ -389,12 +389,12 @@ class APP
 			// ),
 			
 			
-	        array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'blog', 'sub'=>
-	            [
-	                array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'', 'link'=>'admin/blog', 'component'=> 'data_table'),
-	                array('permission'=> 'Dashboard.index', 'title'=>translate('categories'),  'icon'=>'', 'link'=>'admin/categories', 'component'=> 'data_table'),
-	            ]
-	        ),
+	        // array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'edit-3', 'link'=>'blog', 'sub'=>
+	        //     [
+	        //         array('permission'=> 'Dashboard.index', 'title'=>translate('Blog'),  'icon'=>'', 'link'=>'admin/blog', 'component'=> 'data_table'),
+	        //         array('permission'=> 'Dashboard.index', 'title'=>translate('categories'),  'icon'=>'', 'link'=>'admin/categories', 'component'=> 'data_table'),
+	        //     ]
+	        // ),
 
 	        array('permission'=> 'Dashboard.index', 'title'=>translate('Bookings'),  'icon'=>'calendar', 'link'=>'admin/booking', 'sub'=>
 	            [
