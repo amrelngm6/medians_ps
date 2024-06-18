@@ -91,12 +91,14 @@ class StudentController extends CustomController
 		
 		try {
 			
-		    return render('students', [
+		    return render('data_table', [
 		        'load_vue' => true,
 		        'title' => translate('Students list'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+				'object_name' => 'Student',
+				'object_key'  => 'student_id'
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

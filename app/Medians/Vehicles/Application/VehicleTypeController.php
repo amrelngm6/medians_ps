@@ -77,13 +77,15 @@ class VehicleTypeController extends CustomController
 		
 		try {
 			
-		    return render('vehicle_types', [
+		    return render('data_table', [
 		        'load_vue' => true,
 		        'title' => translate('Vehicle types'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
 		        'types' => $this->vehicleRepo->get(),
+				'object_name' => 'VehicleType',
+				'object_key'  => 'type_id'
 		    ]);
 
         } catch (\Exception $e) {
