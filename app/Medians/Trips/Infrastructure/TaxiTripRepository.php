@@ -151,7 +151,8 @@ class TaxiTripRepository
 	public function filterData($data)
 	{
         $Model = new TaxiTrip;
-		print_r($data);
+		print_r($data['model']);
+		print_r(json_decode($data['model']));
         $data['model_type'] = $data['model']['model'] ?? $this->handleClassType($data['usertype']);
 
 		$dataArray = [];
