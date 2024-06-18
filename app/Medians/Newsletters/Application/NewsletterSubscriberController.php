@@ -71,14 +71,17 @@ class NewsletterSubscriberController extends CustomController
 		
 		try 
 		{
-		    return render('newsletter_subscribers', 
+		    return render('data_table', 
 			[
 		        'load_vue' => true,
 		        'title' => translate('Newsletter subscribers'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-				'no_create' => true
+				'no_create' => true,
+				'object_name' => 'NewsletterSubscriber',
+				'object_key'  => 'subscriber_id'
+				
 		    ]);
 			
 		} catch (\Exception $e) {

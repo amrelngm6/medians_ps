@@ -50,13 +50,8 @@ const get_started = defineAsyncComponent(() => import('@/components/wizards/get-
 
 // Default data table pages
 const events = defineAsyncComponent(() => import('@/components/datatable_pages/events.vue') );
-const parents = defineAsyncComponent(() => import('@/components/datatable_pages/parents.vue') );
-const companies = defineAsyncComponent(() => import('@/components/datatable_pages/companies.vue') );
-const schools = defineAsyncComponent(() => import('@/components/datatable_pages/schools.vue') );
 const employees = defineAsyncComponent(() => import('@/components/datatable_pages/employees.vue') );
-const vehicle_types = defineAsyncComponent(() => import('@/components/datatable_pages/vehicle_types.vue') );
 const supervisors = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
-const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
 const languages = defineAsyncComponent(() => import('@/components/datatable_pages/languages.vue') );
 const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/gallery.vue') );
 const newsletter_subscribers = defineAsyncComponent(() => import('@/components/datatable_pages/newsletter_subscribers.vue') );
@@ -134,9 +129,6 @@ export default {
         master_dashboard,
         trips,
         taxi_trips,
-        vehicles,
-        vehicle_types,
-        parents,
         drivers,
         roles,
         routes,
