@@ -63,6 +63,7 @@ const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/
 const newsletter_subscribers = defineAsyncComponent(() => import('@/components/datatable_pages/newsletter_subscribers.vue') );
 const notifications = defineAsyncComponent(() => import('@/components/datatable_pages/notifications.vue') );
 const email_templates = defineAsyncComponent(() => import('@/components/email_templates.vue') );
+const data_table = defineAsyncComponent(() => import('@/components/datatable_pages/data_table_page.vue') );
 
 
 const drivers = defineAsyncComponent(() => import('@/components/driver/drivers.vue') );
@@ -127,6 +128,7 @@ const menus = defineAsyncComponent(() => import('@/components/menus.vue') );
 export default {
     name: 'app',
     components: {
+        data_table,
         SideMenu,
         navbar,
         dashboard,

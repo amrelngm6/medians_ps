@@ -60,25 +60,48 @@
                             <img :src="item.logo" class="w-8 h-8 rounded-full" />
                         </template>
 
+                        <template #item-business="item">
+                            <div class="flex gap-2" v-if="item.business" >
+                                <img :src="item.business.logo" class="w-8 h-8 rounded-full" />
+                                <span class="py-2" v-text="item.business.business_name"></span>
+                            </div>
+                        </template>
+
+                        <template #item-item="item">
+                            <div class="flex gap-2" v-if="item.item" >
+                                <img :src="item.item.picture" class="w-8 h-8 rounded-full" />
+                                <span class="py-2" v-text="item.item.lang_content.title ?? ''"></span>
+                            </div>
+                        </template>
 
                         <template #item-user="item">
                             <div class="flex gap-2" v-if="item.user" >
-                                <img :src="item.user.logo" picture="w-8 h-8 rounded-full" />
-                                <span class="py-2" v-text="item.user.name"></span>
+                                <img :src="item.user.picture" class="w-8 h-8 rounded-full" /> <span class="py-2" v-text="item.user.name"></span>
+                            </div>
+                        </template>
+                        <template #item-customer="item">
+                            <div class="flex gap-2" v-if="item.customer" >
+                                <img :src="item.customer.picture" class="w-8 h-8 rounded-full" /> <span class="py-2" v-text="item.customer.name"></span>
                             </div>
                         </template>
                         
-                        <template #item-students="item">
+                        <template #item-customers="item">
                             
                             <div class="w-full h-8 relative flex">
-                                <div  v-for="(student, i) in item.students" :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
-                                    <img v-if="i < 3" :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(student && student.picture) ? student.picture : '/uploads/images/default_profile.png'" /> 
+                                <div  v-for="(customer, i) in item.customers" :style="'left: '+(20 * i)+'px'" class="rounded-full w-8 h-8 left-0 top-0 absolute" >
+                                    <img v-if="i < 3" :key="i" class="rounded-full w-8 h-8 rounded-[50px] border-2 border-purple-800" :src="(customer && customer.picture) ? customer.picture : 'https://via.placeholder.com/37x37'" /> 
                                 </div>
-                                <span class="flex absolute pt-2" :style="'left: '+((20 * (item.students.length < 3 ? item.students.length : 3) ) + 20)+'px'"> <route_icon /><span class="font-semibold  px-1" v-if="item.students" v-text="item.students.length"></span></span>
+                                <span class="flex absolute pt-2" :style="'left: '+((20 * (item.customers.length < 3 ? item.customers.length : 3) ) + 20)+'px'"> <route_icon /><span class="font-semibold  px-1" v-if="item.customers" v-text="item.customers.length"></span></span>
                             </div>
                             
                         </template>
 
+
+                        <template #item-builder="item">
+                            <button class="p-2  hover:text-gray-600 text-purple" @click="handleAction('builder', item)">
+                                <vue-feather class="w-5" type="edit"></vue-feather>
+                            </button>
+                        </template>
 
                         <template #item-edit="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
@@ -185,6 +208,12 @@ export default
                     showEditSide.value = true; 
                     break;  
 
+                case 'builder':
+                    var key = content.value.object_key ?? props.object_key ;
+                    var name = content.value.object_name ?? props.object_name ;
+                    window.open(props.conf.url+'admin/builder?lang='+((data.content ? data.content.lang : null) ?? props.langs[0].language_code)+'&item_type='+name+'&item_id='+(data[key] ?? 0), '_blank').focus();
+                    break;  
+
                 case 'delete':
                     var name = content.value.object_name ?? props.object_name ;
                     var key = content.value.object_key ?? props.object_key ;
@@ -212,7 +241,7 @@ export default
     },
     props: [
         'path',
-        'lang',
+        'langs',
         'setting',
         'conf',
         'auth',
