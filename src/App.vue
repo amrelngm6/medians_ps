@@ -54,7 +54,6 @@ const employees = defineAsyncComponent(() => import('@/components/datatable_page
 const supervisors = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
 const languages = defineAsyncComponent(() => import('@/components/datatable_pages/languages.vue') );
 const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/gallery.vue') );
-const newsletter_subscribers = defineAsyncComponent(() => import('@/components/datatable_pages/newsletter_subscribers.vue') );
 const notifications = defineAsyncComponent(() => import('@/components/datatable_pages/notifications.vue') );
 const email_templates = defineAsyncComponent(() => import('@/components/email_templates.vue') );
 const data_table = defineAsyncComponent(() => import('@/components/datatable_pages/data_table_page.vue') );
@@ -161,7 +160,6 @@ export default {
         collected_cash,
         languages,
         translations,
-        newsletter_subscribers,
         contact_forms,
         gallery,
         menus,
