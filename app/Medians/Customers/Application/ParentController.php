@@ -86,12 +86,14 @@ class ParentController extends CustomController
 		
 		try {
 			
-		    return render('parents', [
+		    return render('data_table', [
 		        'load_vue' => true,
 		        'title' => translate('Parents list'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+				'object_name' => 'Parents',
+				'object_key'  => 'customer_id'
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);

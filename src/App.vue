@@ -49,7 +49,6 @@ import {translate, handleAccess, handleRequest, handleGetRequest, showAlert} fro
 const get_started = defineAsyncComponent(() => import('@/components/wizards/get-started.vue') );
 
 // Default data table pages
-const students = defineAsyncComponent(() => import('@/components/datatable_pages/students.vue') );
 const events = defineAsyncComponent(() => import('@/components/datatable_pages/events.vue') );
 const parents = defineAsyncComponent(() => import('@/components/datatable_pages/parents.vue') );
 const companies = defineAsyncComponent(() => import('@/components/datatable_pages/companies.vue') );
@@ -137,7 +136,6 @@ export default {
         taxi_trips,
         vehicles,
         vehicle_types,
-        students,
         parents,
         drivers,
         roles,
