@@ -77,12 +77,15 @@ class EventController extends CustomController
 		
 		try {
 			
-		    return render('events', [
+		    return render('data_table', 
+			[
 		        'load_vue' => true,
 		        'title' => translate('Events'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+				'object_name' => 'Event',
+				'object_key' => 'event_id'
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
