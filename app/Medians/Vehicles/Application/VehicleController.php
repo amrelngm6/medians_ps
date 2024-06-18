@@ -86,13 +86,16 @@ class VehicleController extends CustomController
 		
 		try {
 			
-		    return render('vehicles', [
+		    return render('data_table', [
 		        'load_vue' => true,
 		        'title' => translate('Vehicles'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
 		        'types' => ['car', 'bus'],
+				'object_name' => 'Vehicle',
+				'object_key'  => 'vehicle_id'
+
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
