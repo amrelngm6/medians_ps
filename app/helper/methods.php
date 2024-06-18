@@ -211,14 +211,20 @@ function sanitizeInput($input) {
     if (!$input)
         return;
     
-    if (is_array($input) || is_object($input)) {
-        // If input is an array, sanitize each element recursively
+    if (is_object($input)) {
         foreach ($input as $key => $value) {
-            $input[$key] = is_array($value) ? sanitizeInput($value) : (sanitizeInput($value) ?? '');
+            $input->$key = $value ? sanitizeInput($value) : '';
         }
         return $input;
+    } else if (is_array($input) ) {
+        foreach ($input as $key => $value) {
+            $input[$key] = $value ? sanitizeInput($value) : '';
+        }
+        return $input;
+    } else if (gettype($input) =='string' && in_array(substr($input,0,1), ['{', '['])   ) {
+        return sanitizeInput(json_decode($input));
     } else {
-        // If input is a string, sanitize it
         return str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
     }
+    
 }
