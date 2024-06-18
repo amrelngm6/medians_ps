@@ -151,8 +151,8 @@ class TaxiTripRepository
 	public function filterData($data)
 	{
         $Model = new TaxiTrip;
-
-        $data['model_type'] = $this->handleClassType($data['usertype']);
+		print_r($data);
+        $data['model_type'] = $data['model']['model'] ?? $this->handleClassType($data['usertype']);
 
 		$dataArray = [];
 		foreach ($data as $key => $value) 
@@ -178,7 +178,7 @@ class TaxiTripRepository
 		if (strtolower($data) == 'supervisor')
 			return SuperVisor::class;
 
-		if (strtolower($data) == 'parent')
+		if (strtolower($data) == 'parent' )
 			return Parents::class;
 
 	}
