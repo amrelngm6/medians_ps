@@ -165,8 +165,6 @@ class TransactionController extends CustomController
 			
 			$savedSubscription = $paymentService->updatePackageSubscription($params); 
 
-			$updateRouteLocation = $paymentService->updateRouteLocation($params); 
-
 			return (isset($saveTransaction->invoice_id))
 			? array('success'=>true,  'result'=>translate('PAYMENT_MADE_SECCUESS'))
 			: array('error'=>$saveTransaction['error']);

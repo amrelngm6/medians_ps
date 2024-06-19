@@ -30,7 +30,7 @@ class PaymentService
 	{
 		try {
 
-			$this->transactionRepo = new TransactionRepository($params['business']);
+			$this->transactionRepo = new TransactionRepository();
 
 			$packageSubscriptionClass = new \Medians\Packages\Domain\PackageSubscription;
 
@@ -57,7 +57,7 @@ class PaymentService
 	{
 		try {
 
-			$this->transactionRepo = new TransactionRepository($params['business']);
+			$this->transactionRepo = new TransactionRepository();
 
 			$TaxiTrip = new \Medians\Trips\Domain\TaxiTrip;
 
@@ -79,50 +79,12 @@ class PaymentService
 	}
 
 
-	public function updateRouteLocation($params)
-	{
-		try {
-
-			$class = new Student;
-
-			$routeLocationClass = new \Medians\Locations\Domain\RouteLocation;
-			
-			$updateRouteLocationClass = $routeLocationClass->where('model_id', $params['student_id'])->where('model_type', $class::class)->update(['business_id' => $params['business']->business_id]);
-
-			return array('success'=>$updateRouteLocationClass);
-
-		} catch (\Throwable $th) {
-			return array('error'=>$th->getMessage());
-		}
-	}
-
-
-	
-	public function updateStudentBusiness($params)
-	{
-		try {
-
-			$this->transactionRepo = new TransactionRepository($params['business']);
-
-			$class = new Student;
-
-			$updateStudent = $class->find($params['student_id']);
-
-			$update = $updateStudent->update(['business_id' => $this->transactionRepo->business_id]);
-
-			return true;
-
-		} catch (\Throwable $th) {
-			return array('error'=>$th->getMessage());
-		}
-	}
-
 
 	public function updatePackageSubscription($params)
 	{
 		try {
 			
-			$this->packageSubscriptionRepo = new PackageSubscriptionRepository($params['business']);
+			$this->packageSubscriptionRepo = new PackageSubscriptionRepository();
 			
 			$packageSubscription = $this->packageSubscriptionRepo->update((array) $params['subscription']);
 
@@ -139,7 +101,7 @@ class PaymentService
 	{
 		try {
 			
-			$taxiTripRepo = new \Medians\Trips\Infrastructure\TaxiTripRepository($params['business']);
+			$taxiTripRepo = new \Medians\Trips\Infrastructure\TaxiTripRepository();
 			
 			$tripData = (array) $params['trip'];
 			$check = $taxiTripRepo->find($tripData['trip_id']);
@@ -158,12 +120,11 @@ class PaymentService
 	{
 		try {
 			
-			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository($params['business']);
+			$invoiceRepo = new \Medians\Invoices\Infrastructure\InvoiceRepository();
 			
 			$invoiceInfo = (array) $params['invoice'];
 
 			$data = array();
-			$data['business_id'] = $params['business']->business_id;
 			$data['code'] = $invoiceRepo->generateCode();
 			$data['user_id'] = $params['user_id'];
 			$data['user_type'] = Customer::class;
@@ -194,8 +155,6 @@ class PaymentService
 			{
 				return $this->updateDriverWalletDebit($params, $invoice);
 			}
-			
-			return $this->updateBusinessWallet($params, $invoice);
 
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
@@ -203,30 +162,6 @@ class PaymentService
 		
 	}
 	
-	
-	public function updateBusinessWallet($params, $invoice)
-	{
-		try {
-
-			if ($params['payment_method'] == 'cash')
-			{
-				return;
-			}
-
-			$walletRepo = new \Medians\Wallets\Infrastructure\BusinessWalletRepository();
-			
-			$check = $walletRepo->getBusinessWallet($invoice->business_id);
-			$data = array();
-			$commission = $this->handleBusinessCommission($invoice);
-			$data['credit_balance'] = isset($check->credit_balance) ? ($check->credit_balance + ($invoice->total_amount - $commission)) : ($invoice->total_amount - $commission);
-
-			return isset($check->wallet_id) ? $check->update($data) : null;
-
-		} catch (\Throwable $th) {
-			return array('error'=>$th->getMessage());
-		}
-		
-	}
 	
 	/**
 	 * Update driver wallet when the payment in Cash only
@@ -280,27 +215,13 @@ class PaymentService
 		} catch (\Throwable $th) {
 			return array('error'=>$th->getMessage());
 		}
-		
-	}
-	
-	public function handleCommission($invoice) 
-	{
-		$setting = (new \config\APP)->SystemSetting();
-		$business = (new \Medians\Businesses\Infrastructure\BusinessRepository())->find($invoice->business_id);
-		
-		return (isset($business->subscription) && $business->subscription->is_paid) 
-		? ($invoice->total_amount * ($setting['comission_paid_plan'] / 100))
-		: ($invoice->total_amount * ($setting['comission_free_plan'] / 100));
-
 	}
 	
 	public function handleDriverCommission($invoice) 
 	{
-		$setting = (new \Medians\Settings\Application\SettingsController)->getBusinessSettings($invoice->business_id);
-		
-		return isset($setting['driver_commission']) 
-		? ($invoice->total_amount * ($setting['driver_commission'] / 100))
-		: 0;
+		// return isset($setting['driver_commission']) 
+		// ? ($invoice->total_amount * ($setting['driver_commission'] / 100))
+		// : 0;
 
 	}
 
