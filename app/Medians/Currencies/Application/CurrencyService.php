@@ -89,7 +89,7 @@ class CurrencyService
     
 	public function checkAPI($from, $to, $setting)
 	{
-		$currencyApi = new \CurrencyApi\CurrencyApi\CurrencyApiClient($stting['currency_converter_api']);
+		$currencyApi = new \CurrencyApi\CurrencyApi\CurrencyApiClient($setting['currency_converter_api']);
 		return $currencyApi->latest([
 			'base_currency' => $from,
 			'currencies' => $to,
