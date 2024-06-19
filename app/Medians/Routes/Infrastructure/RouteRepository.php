@@ -199,7 +199,7 @@ class RouteRepository
 
 		RoutePosition::where('route_id', $id)->delete();
 
-		$data = json_decode($data);
+		$data = is_object($data) ? $data : json_decode($data);
 
 		$Model = new RoutePosition;
 		
