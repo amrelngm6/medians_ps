@@ -69,7 +69,7 @@ class RouteRepository
 	public function getRoutes()
 	{
 		return Route::where('status', 'on')
-		->with('route_locations','position', 'vehicle')
+		->with('route_locations','position', 'vehicle', 'driver')
 		->get();
 	}
 
