@@ -77,6 +77,13 @@ class AppSettingsController extends CustomController
 				[ 'key'=> "twitter_redirect_link", 'title'=> translate('Twitter Redirect callback'), 'help_text'=> translate('Redirect should be scheme like (mediansparents://callback)'), 'fillable'=> true, 'column_type'=>'text' ],
             ],
 			
+			'Firebase '=> [	
+				[ 'key'=> "firebase_api_key", 'title'=> translate('Login with Google'), 'help_text'=>translate('Firebase API Key'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "firebase_app_id", 'title'=> translate('Login with Twitter'), 'help_text'=>translate('Firebase APP ID'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "firebase_sender_id", 'title'=> translate('Twitter Redirect callback'), 'help_text'=> translate('Firebase Sender ID'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "firebase_project_id", 'title'=> translate('Twitter Redirect callback'), 'help_text'=> translate('Firebase Project ID'), 'fillable'=> true, 'column_type'=>'text' ],
+            ],
+			
         ];
 	}
 
