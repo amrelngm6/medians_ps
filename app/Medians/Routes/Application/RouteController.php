@@ -140,7 +140,7 @@ class RouteController extends CustomController
 	{
 		$user = $this->app->auth();		
 
-		if(empty($user)) {return null;}
+		// if(empty($user)) {return null;}
 
 		$data =  $this->repo->getRoutes();
 		echo  json_encode($data);
