@@ -52,6 +52,9 @@ class AppSettingsController extends CustomController
 			
 			'Home Screen layout'=> [	
 				[ 'key'=> "show_profile_block", 'title'=> translate('Show Profile'), 'help_text'=>translate('Show/Hide the Profile block at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "show_active_trip_block", 'title'=> translate('Show Active Trip'), 'help_text'=>translate('Show/Hide the Active Trip block at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "show_upcoming_trip_block", 'title'=> translate('Show Upcoming Trip'), 'help_text'=>translate('Show/Hide the Upcoming Trip block at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "show_active_trip_block", 'title'=> translate('Show Upcoming Trip'), 'help_text'=>translate('Show/Hide the Upcoming Trip block at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
             ],
 
 			'Header'=> [
