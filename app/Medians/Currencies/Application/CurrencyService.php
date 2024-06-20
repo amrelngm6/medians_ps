@@ -29,7 +29,7 @@ class CurrencyService
 		try {
 
             $result = $this->repo->load($currencyCode);
-            $stting = $this->app->SystemSetting();
+            $setting = $this->app->SystemSetting();
 
             if ($result->last_check == date('Y-m-d'))
             {
@@ -37,7 +37,7 @@ class CurrencyService
                 
             } else {
                 
-                $response = $this->checkAPI($setting['currency'], $currencyCode, $stting);
+                $response = $this->checkAPI($setting['currency'], $currencyCode, $setting);
 
                 $data = [
                     'code' => $currencyCode,
