@@ -36,12 +36,7 @@ class MobileAPIController extends CustomController
 		$request = $this->app->request();
 		$model = empty($model) ? $request->get('model') : $model;
 
-		try {
-			
-			$params = $this->app->params();
-		} catch (\Throwable $th) {
-			error_log($th->getMessage(), "File : {$th->getFile()}: {$th->getLine()} ");
-		}
+		$params = $this->app->params();
 
 		switch ($model) 
 		{
