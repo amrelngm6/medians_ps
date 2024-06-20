@@ -138,7 +138,9 @@ class RouteController extends CustomController
 	 */
 	public function getRoutes()
 	{
-		$user = $this->app->auth();		
+		$user = $this->app->auth();	
+		
+		print_r($user);
 
 		// if(empty($user)) {return null;}
 
