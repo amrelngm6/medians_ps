@@ -181,6 +181,7 @@ class RouteHandler {
       }
 		} catch (\Throwable $th) {
       echo !empty($_POST) ? $th->getMessage() : '';
+      error_log($th->getMessage(), "File : {$th->getFile()}: {$th->getLine()} ");
       return empty($_POST) ? errorPage($th->getMessage(), "File : {$th->getFile()}: {$th->getLine()} ") : '';
 		}
   }
