@@ -52,8 +52,6 @@ class AppSettingsController extends CustomController
 			
 			'Home Screen layout'=> [	
 				[ 'key'=> "show_profile_block", 'title'=> translate('Show Profile'), 'help_text'=>translate('Show/Hide the Profile block at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "login_with_twitter", 'title'=> translate('Login with Twitter'), 'help_text'=>translate('Let users login & signup using their Twitter (X) account'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "twitter_redirect_link", 'title'=> translate('Twitter Redirect callback'), 'help_text'=> translate('Redirect should be scheme like (mediansparents://callback)'), 'fillable'=> true, 'column_type'=>'text' ],
             ],
 
 			'Header'=> [
