@@ -57,6 +57,7 @@ class AppSettingsController extends CustomController
 				[ 'key'=> "show_routes_slider", 'title'=> translate('Show Routes slider'), 'help_text'=>translate('Show/Hide the Routes list as Slider at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "show_trips_history", 'title'=> translate('Show Old Trips'), 'help_text'=>translate('Show/Hide the Previous Routes Trips list as Slider at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 				[ 'key'=> "show_taxi_trips_history", 'title'=> translate('Show Taxi Trips'), 'help_text'=>translate('Show/Hide the Previous Taxi Trips list as Slider at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+				[ 'key'=> "show_help_block", 'title'=> translate('Show Help Block'), 'help_text'=>translate('Show/Hide the Help Block at the Homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ],
             ],
 
 			'Header'=> [
