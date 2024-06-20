@@ -122,7 +122,6 @@ class PaymentMethodRepository
 					}
 
 				} catch (\Throwable $th) {
-					error_log($th->getMessage());
 				}
 				
 			}

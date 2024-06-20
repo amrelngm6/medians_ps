@@ -208,29 +208,24 @@ function scrapeAndExtractSections($url)
  * Save from cyber attacks
  */
 function sanitizeInput($input) {
-    try {
 
-
-        if (!$input)
-            return;
-        
-        if (is_object($input)) {
-            foreach ($input as $key => $value) {
-                $input->$key = $value ? sanitizeInput($value) : '';
-            }
-            return $input;
-        } else if (is_array($input) ) {
-            foreach ($input as $key => $value) {
-                $input[$key] = $value ? sanitizeInput($value) : '';
-            }
-            return $input;
-        } else if (gettype($input) =='string' && in_array(substr($input,0,1), ['{', '['])   ) {
-            return sanitizeInput(json_decode($input));
-        } else {
-            return str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    if (!$input)
+        return;
+    
+    if (is_object($input)) {
+        foreach ($input as $key => $value) {
+            $input->$key = $value ? sanitizeInput($value) : '';
         }
-    } catch (\Throwable $th) {
-        error_log($th->getMessage(), "File : {$th->getFile()}: {$th->getLine()} ");
+        return $input;
+    } else if (is_array($input) ) {
+        foreach ($input as $key => $value) {
+            $input[$key] = $value ? sanitizeInput($value) : '';
+        }
+        return $input;
+    } else if (gettype($input) =='string' && in_array(substr($input,0,1), ['{', '['])   ) {
+        return sanitizeInput(json_decode($input));
+    } else {
+        return str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
     }
 
     

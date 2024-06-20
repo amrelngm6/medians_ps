@@ -40,7 +40,7 @@ class MediaUpload extends CustomModel
 			return $save;
 
 		} catch (\Throwable $th) {
-			return error_log($th->getMessage());
+			return $th->getMessage();
 		}
 	}
 

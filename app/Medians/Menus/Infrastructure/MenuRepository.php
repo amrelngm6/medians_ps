@@ -120,7 +120,6 @@ class MenuRepository
 					}
 
 				} catch (\Throwable $th) {
-					error_log($th->getMessage());
 				}
 				
 			}
