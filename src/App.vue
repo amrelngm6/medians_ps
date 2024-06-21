@@ -138,8 +138,6 @@ export default {
         notifications,
         notifications_events,
         users,
-        schools,
-        companies,
         employees,
         pages,
         packages,
