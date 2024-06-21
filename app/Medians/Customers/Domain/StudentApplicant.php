@@ -19,6 +19,7 @@ class StudentApplicant extends CustomModel
 	
 	public $fillable = [
 		'subscription_id',
+		'route_id',
 		'model_id',
 		'model_type',
 		'message',
