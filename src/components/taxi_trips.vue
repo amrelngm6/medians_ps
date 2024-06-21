@@ -29,7 +29,7 @@
                 v-if="showTrackWizard && activeItem.usertype"  :key="showTrackWizard" 
                 :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
-        <usertype_picker :alias="translate('Need taxi trip')" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
+        <usertype_picker :alias="translate('Need taxi trip')" :disable_supervisor="true" :disable_student="true"   v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
         
         <div  v-if="!showWizard && !showOptions && !showTrackWizard && content " class=" w-full relative">
 

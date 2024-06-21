@@ -18,7 +18,7 @@
                 :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
 
-            <usertype_picker :alias="translate('Pickup location')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
+            <usertype_picker :alias="translate('Pickup location')" :disable_parents="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
 
             <div class=" " v-if="!showWizard && !showOptions && content.items && !content.items.length">
                 <div class="card">

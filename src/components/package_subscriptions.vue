@@ -17,7 +17,7 @@
                 :userslist="content.students" :key="showWizard" :packages="content.packages"
                 :system_setting="system_setting" :item="activeItem" :setting="setting" />
 
-            <usertype_picker :alias="translate('Subscribe to package')" :disable_students="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
+            <usertype_picker :alias="translate('Subscribe to package')" :disable_parents="true" :disable_supervisor="true" v-if="!showWizard && showOptions" :key="showOptions" :auth="auth" :item="activeItem" @callback="setType" />
 
             <div class=" " v-if="!showWizard && !showOptions && content.items && !content.items.length ">
                 <div class="card">
