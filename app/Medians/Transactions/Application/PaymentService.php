@@ -26,7 +26,7 @@ class PaymentService
 	}
 
 
-	public function storeSubscriptionTransaction($params, $invoice, $user)
+	public function storeSubscriptionTransaction($params, $invoice)
 	{
 		try {
 
