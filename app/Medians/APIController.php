@@ -320,6 +320,7 @@ class APIController extends CustomController
 				$controller = new Drivers\Application\DriverApplicantController;
 				break;
 			
+			case 'BusinessApplicant.update':
 			case 'StudentApplicant.update':
 				$controller = new Customers\Application\StudentApplicantController;
 				break;
@@ -452,6 +453,7 @@ class APIController extends CustomController
 					return response((new Trips\Application\TaxiTripController())->delete());
 					break;
 
+				case 'BusinessApplicant.delete':
 				case 'StudentApplicant.delete':
 					return response((new Customers\Application\StudentApplicantController())->delete());
 					break;
