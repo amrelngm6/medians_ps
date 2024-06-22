@@ -241,7 +241,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('applicant_id', data, 'BusinessApplicant.delete');
+                    deleteByKey('applicant_id', data, 'StudentApplicant.delete');
                     break;  
                     
                 case 'close':

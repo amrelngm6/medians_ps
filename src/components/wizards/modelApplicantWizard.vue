@@ -185,7 +185,7 @@ export default
                     d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
                     params.append('params[' + k + ']', d)
                 }
-                params.append('type', 'BusinessApplicant.update' )
+                params.append('type', 'StudentApplicant.update' )
                 handleRequest(params, '/api/update').then(response => {
                     loader.value = false;
                     handleAccess(response)

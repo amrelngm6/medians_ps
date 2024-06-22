@@ -111,13 +111,13 @@ class StudentApplicantRepository
     /**
      * Update Lead
      */
-    public function update($data)
+    public function update($params)
     {
 
-		$Object = StudentApplicant::find($data['applicant_id']);
+		$Object = StudentApplicant::find($params['applicant_id']);
 		
 		// Return the  object with the new data
-    	$Object->update( (array) $data);
+    	$Object->update( (array) $params);
 
 		if (strtolower($params['status']) == 'approved')
 		{
