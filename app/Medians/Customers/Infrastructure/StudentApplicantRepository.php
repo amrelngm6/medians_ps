@@ -4,6 +4,7 @@ namespace Medians\Customers\Infrastructure;
 
 use Medians\Students\Domain\Student;
 use Medians\Customers\Domain\StudentApplicant;
+use Medians\Locations\Domain\RouteLocation;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Packages\Domain\PackageSubscription;
 
@@ -118,6 +119,11 @@ class StudentApplicantRepository
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
+		if ($params['status'] == 'approved')
+		{
+			$this->updateStudent($params);
+		}
+
     	return $Object;
 
     }
@@ -145,21 +151,40 @@ class StudentApplicantRepository
 
 
     /**
-     * Update Lead
+     * Update Student Transfer Status
      */
     public function updateStudent($params)
     {
 
 		$Object = Student::find($params['model_id']);
 		
+		$data = ['transfer_status' => 'Approved'];
+
+		// Return the  object with the new data
+    	$Object = $Object->update( (array) $data);
+
+		// Update Location status
+		$updateLocation = $this->updateLocation($params);
+
+    	return $Object;
+
+    }
+
+    /**
+     * Update Lead
+     */
+    public function updateLocation($params)
+    {
+
+		$Object = RouteLocation::where('model_type', Student::class)->where('model_id', $params['model_id'])->first();
+		
 		$data = [];
-		$data['transfer_status'] = 'Approved';
+		$data['status'] = 'on';
 
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
     	return $Object;
-
     }
 
 
