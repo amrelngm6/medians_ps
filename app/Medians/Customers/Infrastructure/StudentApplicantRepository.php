@@ -119,7 +119,7 @@ class StudentApplicantRepository
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
-		if ($params['status'] == 'approved')
+		if (strtolower($params['status']) == 'approved')
 		{
 			$this->updateStudent($params);
 		}
