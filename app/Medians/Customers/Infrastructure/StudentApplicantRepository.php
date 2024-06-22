@@ -180,6 +180,7 @@ class StudentApplicantRepository
 		
 		$data = [];
 		$data['status'] = 'on';
+		$data['route_id'] = $params['route_id'];
 
 		// Return the  object with the new data
     	$Object->update( (array) $data);
