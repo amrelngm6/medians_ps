@@ -191,7 +191,7 @@ class GetStartedController
 		$payload = file_get_contents('php://input');
 		// $data = json_decode($payload, true);
 		$token = $_GET['token'];
-		// file_put_contents('webhook_log.txt', print_r($data, true), FILE_APPEND);
+		file_put_contents('webhook_log.txt', print_r($data, true), FILE_APPEND);
 		
 		try {
 			
