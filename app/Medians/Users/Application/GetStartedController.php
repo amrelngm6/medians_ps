@@ -188,10 +188,10 @@ class GetStartedController
 		$api_key = $setting['pagadito_wsk'];
 		
 		// Transaction details (typically, you'd get these from a POST request)
-		$payload = file_get_contents('php://input');
+		// $payload = file_get_contents('php://input');
 		// $data = json_decode($payload, true);
 		$token = $_GET['token'];
-		file_put_contents('webhook_log.txt', print_r($data, true), FILE_APPEND);
+		file_put_contents('webhook_log.txt', print_r($_GET, true), FILE_APPEND);
 		
 		try {
 			
