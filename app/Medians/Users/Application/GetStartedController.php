@@ -195,7 +195,6 @@ class GetStartedController
 		
 		try {
 			
-			
 			// Decode JSON response
 			$pagadito = new Pagadito($setting['pagadito_uid'], $setting['pagadito_wsk']);
 			$pagadito->mode_sandbox_on();
