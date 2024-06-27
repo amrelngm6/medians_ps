@@ -226,6 +226,7 @@ class GetStartedController
 
 			// Return response as JSON
 			// header('Content-Type: application/json');
+			file_put_contents('webhook_response_log.txt', print_r($response_data, true), FILE_APPEND);
 			return response(json_encode($response_data));
 
 		} catch (\Throwable $th) {
