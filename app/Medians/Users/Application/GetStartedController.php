@@ -227,7 +227,7 @@ class GetStartedController
 		}
 	}
 	
-	public function validatePagaditoPayment()
+	public function initiatePagaditoPayment()
 	{
 		$app = new \config\APP;
 		$setting = $app->SystemSetting();
@@ -245,7 +245,6 @@ class GetStartedController
 		$url_cancel = $params['url_cancel'];
 
 		try {
-			
 			
 			// Decode JSON response
 			$pagadito = new Pagadito($setting['pagadito_uid'], $setting['pagadito_wsk']);
