@@ -184,7 +184,7 @@ class GetStartedController
 		// Transaction details (typically, you'd get these from a POST request)
 		$payload = file_get_contents('php://input');
 		// $data = json_decode($payload, true);
-		$token = $_GET['token'];
+		$token = $_POST['token'] ?? null;
 		error_log($payload);
 		
 		try {
