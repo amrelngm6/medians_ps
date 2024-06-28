@@ -800,7 +800,7 @@ export default
                         {
                             window.open(data.url);
                             var  interval = setInterval(() => {
-                                verifyPaystackPayment(reference);
+                                verifyPagaditoPayment(reference);
                             }, 5000);
                         }
                         console.error(data);
@@ -815,16 +815,16 @@ export default
 
             const verifyPagaditoPayment = async (reference)  =>  
             {
-                const response = await axios.get("https://api.paystack.co/transaction/verify/"+reference,{
-                        headers: {
-                            'Authorization': 'Bearer '+props.setting.paystack_secret_key,
-                            'Content-Type': 'application/json'
-                        }});
+                // const response = await axios.get("https://api.paystack.co/transaction/verify/"+reference,{
+                //         headers: {
+                //             'Authorization': 'Bearer '+props.setting.paystack_secret_key,
+                //             'Content-Type': 'application/json'
+                //         }});
                 
-                if (response.data.data.status == 'success')
-                {
-                    return validateOrderPayment(response.data.data, response.data.data.id);
-                }
+                // if (response.data.data.status == 'success')
+                // {
+                //     return validateOrderPayment(response.data.data, response.data.data.id);
+                // }
             }
 
 
