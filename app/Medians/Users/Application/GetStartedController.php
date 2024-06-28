@@ -172,6 +172,7 @@ class GetStartedController
 
 	public function validatePagaditoPaymentWebhook()
 	{
+		error_log('webhook');
 		
 		$app = new \config\APP;
 		$setting = $app->SystemSetting();
@@ -184,7 +185,7 @@ class GetStartedController
 		// $payload = file_get_contents('php://input');
 		// $data = json_decode($payload, true);
 		$token = $_GET['token'];
-		file_put_contents('webhook_log.txt', print_r($_GET, true), FILE_APPEND);
+		error_log(json_encode($response_data));
 		
 		try {
 			
