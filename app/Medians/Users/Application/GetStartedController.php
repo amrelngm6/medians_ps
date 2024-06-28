@@ -283,7 +283,7 @@ class GetStartedController
 			return $response_data;
 
 		} catch (\Throwable $th) {
-			error_log($response_data);
+			error_log($th->getMessage());
 			echo json_encode(['error' => $th->getMessage()]);
 		}
 	}
