@@ -278,12 +278,11 @@ class GetStartedController
 			}
 
 			// Return response as JSON
-			// header('Content-Type: application/json');
-			error_log(json_encode($response_data));
-			return $response_data;
+			echo json_encode($response_data);
 
+			return;
+			
 		} catch (\Throwable $th) {
-			error_log('Catch');
 			error_log($th->getMessage());
 			echo json_encode(['error' => $th->getMessage()]);
 		}
