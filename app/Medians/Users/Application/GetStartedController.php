@@ -182,10 +182,10 @@ class GetStartedController
 		$api_key = $setting['pagadito_wsk'];
 		
 		// Transaction details (typically, you'd get these from a POST request)
-		// $payload = file_get_contents('php://input');
+		$payload = file_get_contents('php://input');
 		// $data = json_decode($payload, true);
 		$token = $_GET['token'];
-		error_log(json_encode($response_data));
+		error_log($payload);
 		
 		try {
 			
