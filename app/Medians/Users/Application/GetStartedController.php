@@ -187,6 +187,15 @@ class GetStartedController
 		$token = $_POST['token'] ?? null;
 		error_log($payload);
 		
+		if ($data['status'] == 'REGISTERED')
+		{
+			error_log('Register payment');
+		}
+		
+		if ($data['status'] == 'COMPLETED')
+		{
+			error_log('Complete payment');
+		}
 		
 		try {
 			
@@ -203,6 +212,7 @@ class GetStartedController
 						$response_data = [
 							'url' => $status,
 						];
+						
 					} else {
 						$response_data = [
 							'error' => 'Transaction execution failed: ' . $pagadito->get_rs_code() . ' - ' . $pagadito->get_rs_message(),
