@@ -185,18 +185,10 @@ class GetStartedController
 		$payload = file_get_contents('php://input');
 		$data = json_decode($payload, true);
 		$token = $data['resource']['token'] ?? null;
+		$url_product = $data['resource']['items_list'][0]['url_product'] ?? null;
 		error_log($payload);
-		
-		if ($data['resource']['status'] == 'REGISTERED')
-		{
-			error_log('Register payment');
-		}
-		
-		if ($data['resource']['status'] == 'COMPLETED')
-		{
-			error_log('Complete payment');
-		}
-		
+
+
 		try {
 			
 			// Decode JSON response
@@ -213,6 +205,21 @@ class GetStartedController
 							'url' => $status,
 						];
 						
+						if ($status == 'COMPLETED' && $url_product)
+						{
+							$item = explode( '_', $url_product);
+
+							switch ($url_product) {
+								case 'trip':
+									$trip = TaxiTrip::find(end($item));
+									$data = ['code' => 'pagadito_token','value' => $token, 'model_type' => TaxiTrip::class, 'model_id'=> end($item)];
+									$code = CustomField::firstOrCreate($data);
+									break;
+									
+								case 'subscription':
+									break;
+							}
+						}
 					} else {
 						$response_data = [
 							'error' => 'Transaction execution failed: ' . $pagadito->get_rs_code() . ' - ' . $pagadito->get_rs_message(),
