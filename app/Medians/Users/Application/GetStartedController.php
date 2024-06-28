@@ -183,9 +183,10 @@ class GetStartedController
 		
 		// Transaction details (typically, you'd get these from a POST request)
 		$payload = file_get_contents('php://input');
-		// $data = json_decode($payload, true);
+		$data = json_decode($payload, true);
 		$token = $_POST['token'] ?? null;
 		error_log($payload);
+		
 		
 		try {
 			
@@ -240,6 +241,7 @@ class GetStartedController
 
 		// Transaction details (typically, you'd get these from a POST request)
 		$params = $app->params();
+		$url_product = $params['item_type'].'_'.$params['item_id'];
 		$amount = $params['amount'];
 		$currency = $params['currency'];
 		$description = $params['description'];
@@ -257,7 +259,7 @@ class GetStartedController
 				if ($pagadito->connect()) {
 					// Create transaction
 
-					$pagadito->add_detail(1, $description, $amount);
+					$pagadito->add_detail(1, $description, $amount, $url_product);
 					
 					if ($response = $pagadito->exec_trans($amount, $description, $currency, $url_ok, $url_cancel)) {
 						$response_data = [
