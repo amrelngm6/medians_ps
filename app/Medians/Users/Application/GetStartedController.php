@@ -187,12 +187,12 @@ class GetStartedController
 		$token = $_POST['token'] ?? null;
 		error_log($payload);
 		
-		if ($data['status'] == 'REGISTERED')
+		if ($data['resource']['status'] == 'REGISTERED')
 		{
 			error_log('Register payment');
 		}
 		
-		if ($data['status'] == 'COMPLETED')
+		if ($data['resource']['status'] == 'COMPLETED')
 		{
 			error_log('Complete payment');
 		}
