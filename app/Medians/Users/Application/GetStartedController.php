@@ -2,8 +2,6 @@
 
 namespace Medians\Users\Application;
 
-use Medians\Settings\Infrastructure\SettingsRepository;
-
 
 class GetStartedController 
 {
@@ -18,14 +16,9 @@ class GetStartedController
 	
 	public $planSubscriptionRepo;
 
-	public $settingRepo;
-
 	function __construct()
 	{
 		$this->app = new \config\APP;		
-
-		$this->settingRepo = new SettingsRepository(null);
-		
 	}
 
 
