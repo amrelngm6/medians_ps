@@ -184,7 +184,7 @@ class GetStartedController
 		// Transaction details (typically, you'd get these from a POST request)
 		$payload = file_get_contents('php://input');
 		$data = json_decode($payload, true);
-		$token = $_POST['token'] ?? null;
+		$token = $data['resource']['token'] ?? null;
 		error_log($payload);
 		
 		if ($data['resource']['status'] == 'REGISTERED')
