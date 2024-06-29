@@ -46,7 +46,7 @@ class PagaditoService
 						{
 							$item = explode( '_', $url_product);
 
-							switch (end($item)) {
+							switch ($item[0]) {
 								case 'trip':
 									$data = ['code' => 'pagadito_token','value' => $token, 'model_type' => TaxiTrip::class, 'model_id'=> end($item)];
 									$code = CustomField::firstOrCreate($data);
