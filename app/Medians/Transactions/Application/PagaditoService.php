@@ -1,34 +1,13 @@
 <?php
 
 namespace Medians\Transactions\Application;
-use \Shared\dbaser\CustomController;
 
-use Medians\Packages\Infrastructure\PackageSubscriptionRepository;
-use Medians\Payments\Infrastructure\PaymentRepository;
-use Medians\Transactions\Infrastructure\TransactionRepository;
-use Medians\Students\Domain\Student;
-use Medians\Customers\Domain\Customer;
 use Medians\Trips\Domain\TaxiTrip;
 use Medians\CustomFields\Domain\CustomField;
 
 class PagaditoService
 {
 
-	
-	public $payment_method;
-	public $packageSubscriptionRepo;
-	public $transactionRepo;
-	
-
-	function __construct($payment_method)
-	{
-
-		$this->payment_method = $payment_method;
-		
-	}
-
-    
-    
 	
 	public function validatePagaditoPaymentWebhook()
 	{
@@ -166,7 +145,5 @@ class PagaditoService
 			echo json_encode(['error' => $th->getMessage()]);
 		}
 	}
-
-
 
 }
