@@ -9,6 +9,7 @@ use Medians\Transactions\Infrastructure\TransactionRepository;
 use Medians\Students\Domain\Student;
 use Medians\Customers\Domain\Customer;
 use Medians\Trips\Domain\TaxiTrip;
+use Medians\CustomFields\Domain\CustomField;
 
 class PaymentService
 {
