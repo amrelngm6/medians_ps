@@ -84,8 +84,8 @@ RouteHandler::post('/reset-password-code', \Medians\Auth\Application\AuthService
  * Load sub-pages
  */
 RouteHandler::get('/page/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
-RouteHandler::post('/pagadito/validate_payment', \Medians\Users\Application\GetStartedController::class.'@validatePagaditoPaymentWebhook'); 
-RouteHandler::post('/pagadito/initiate_payment', \Medians\Users\Application\GetStartedController::class.'@initiatePagaditoPayment'); 
+RouteHandler::post('/pagadito/validate_payment', \Medians\Transactions\Application\PaymentService::class.'@validatePagaditoPaymentWebhook'); 
+RouteHandler::post('/pagadito/initiate_payment', \Medians\Transactions\Application\PaymentService::class.'@initiatePagaditoPayment'); 
 
 /**
 * Restricted access requests 
@@ -216,7 +216,7 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/supervisors', Medians\Customers\Application\SuperVisorController::class.'@index');
 
     /** @return Get-started */
-    RouteHandler::get('/admin/get_started', Medians\Users\Application\GetStartedController::class.'@get_started');
+    // RouteHandler::get('/admin/get_started', Medians\Users\Application\GetStartedController::class.'@get_started');
 
 
 
