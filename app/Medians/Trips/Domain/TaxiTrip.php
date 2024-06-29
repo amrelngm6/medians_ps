@@ -3,6 +3,7 @@
 namespace Medians\Trips\Domain;
 
 use Shared\dbaser\CustomModel;
+use Medians\CustomFields\Domain\CustomField;
 use Medians\Routes\Domain\Route;
 use Medians\Vehicles\Domain\Vehicle;
 use Medians\Drivers\Domain\Driver;
@@ -46,9 +47,17 @@ class TaxiTrip extends CustomModel
 	];
 
 
-	public $appends = ['distance', 'usertype', 'time','name', 'duration'];
+	public $appends = ['distance', 'usertype', 'time','name', 'duration', 'field'];
 
-	
+	public function getFieldAttribute()
+	{
+		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+	}
+
+	public function custom_fields()
+	{
+		return $this->morphMany(CustomField::class, 'model');
+	}
 	public function getNameAttribute() {
 		return 'Taxi Trip #'.$this->trip_id;
 	}

@@ -73,7 +73,6 @@ class PagaditoService
 			}
 
 			// Return response as JSON
-			// header('Content-Type: application/json');
 			error_log(json_encode($response_data));
 			// return response(json_encode($response_data));
 
@@ -144,5 +143,6 @@ class PagaditoService
 			echo json_encode(['error' => $th->getMessage()]);
 		}
 	}
+
 
 }
