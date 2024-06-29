@@ -84,8 +84,8 @@ RouteHandler::post('/reset-password-code', \Medians\Auth\Application\AuthService
  * Load sub-pages
  */
 RouteHandler::get('/page/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
-RouteHandler::post('/pagadito/validate_payment', \Medians\Transactions\Application\PaymentService::class.'@validatePagaditoPaymentWebhook'); 
-RouteHandler::post('/pagadito/initiate_payment', \Medians\Transactions\Application\PaymentService::class.'@initiatePagaditoPayment'); 
+RouteHandler::post('/pagadito/validate_payment', \Medians\Transactions\Application\PagaditoService::class.'@validatePagaditoPaymentWebhook'); 
+RouteHandler::post('/pagadito/initiate_payment', \Medians\Transactions\Application\PagaditoService::class.'@initiatePagaditoPayment'); 
 
 /**
 * Restricted access requests 
