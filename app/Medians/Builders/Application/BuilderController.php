@@ -90,8 +90,7 @@ class BuilderController extends CustomController
 					$type = Blog::class;
 					break;
 			}
-			echo $type;
-			print_r($type);
+			
 			if (class_exists($type))
 			{
 
