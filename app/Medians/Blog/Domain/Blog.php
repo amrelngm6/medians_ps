@@ -4,6 +4,7 @@ namespace Medians\Blog\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Views\Domain\View;
+use Medians\CustomFields\Domain\CustomField;
 use Medians\Doctors\Domain\Doctor;
 
 
@@ -80,7 +81,7 @@ class Blog extends CustomModel
 
 	public function custom_fields()
 	{
-		return $this->morphMany(CustomFields::class, 'model');
+		return $this->morphMany(CustomField::class, 'model');
 	}
 
 	public function content()
