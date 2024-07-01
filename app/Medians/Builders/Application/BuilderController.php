@@ -303,9 +303,8 @@ class BuilderController extends CustomController
 	public function new_get()
 	{
 		try {
-			$request = $this->app->request();
 
-			render('views/admin/builder/templates/new.html.twig',[]);
+			return render('views/admin/builder/templates/new.html.twig',[]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
