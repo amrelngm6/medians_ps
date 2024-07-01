@@ -90,9 +90,10 @@ class BuilderController extends CustomController
 					$type = Blog::class;
 					break;
 			}
-			
+			echo $type;
 			if (class_exists($type))
 			{
+				print_r($type);
 
 				$lang = \Medians\Languages\Infrastructure\Language::where('status', 'on')->where('language_code', $lang)->first();
 				
