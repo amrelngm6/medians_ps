@@ -125,7 +125,7 @@ class DoctorRepository
 			}
 		}		
 
-		$data['title'] = isset($data['content']['en']['title']) ? $data['content']['en']['title'] : ($data['title'] ?? '');
+		$data['title'] = $data['title'] ?? '';
 
 		// Return the FBUserInfo object with the new data
     	$Object = Doctor::create($dataArray);

@@ -21,15 +21,15 @@
 
                         <label v-if="column.withLabel" class="text-lg pt-3 block" v-text="column.title"></label>
                         
-                        <input v-if="column.column_type == 'hidden'" :name="'params['+column.key+']'" type="hidden" v-model="column.default">
+                        <input v-if="column.column_type == 'hidden'" :name="handleName(column)"  type="hidden" v-model="column.default">
                         
-                        <input :required="column.required" v-if="isInput(column.column_type)" :name="'params['+column.key+']'"  autocomplete="off" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title">
+                        <input :required="column.required" v-if="isInput(column.column_type)" :name="handleName(column)"   autocomplete="off" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title">
 
-                        <input v-if="column.column_type == 'password'" autocomplete="off" :name="'params['+column.key+']'" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title">
+                        <input v-if="column.column_type == 'password'" autocomplete="off" :name="handleName(column)"  :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title">
 
-                        <textarea  :required="column.required"  v-if="column.column_type == 'textarea'" :name="'params['+column.key+']'" rows="4" class="mt-3 form-control form-control-solid" :placeholder="column.title"></textarea>
+                        <textarea  :required="column.required"  v-if="column.column_type == 'textarea'" :name="handleName(column)"  rows="4" class="mt-3 form-control form-control-solid" :placeholder="column.title"></textarea>
 
-                        <select :required="column.required"  :name="'params['+column.key+']'" :type="column.column_type" class="form-control form-control-solid" v-if="column.data && column.column_type == 'select'"  :placeholder="column.title">
+                        <select :required="column.required"  :name="handleName(column)"  :type="column.column_type" class="form-control form-control-solid" v-if="column.data && column.column_type == 'select'"  :placeholder="column.title">
                             <option value="0" v-if="!column.required" v-text="translate('-- Choose') +' '+ column.title"></option>
                             <option v-for="option in column.data" :value="option[column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
                         </select>
@@ -38,12 +38,12 @@
                             <span :for="column.key" class="block" v-text="column.title"></span>
                             <span :class="!column.active ? 'bg-gray-200' : 'bg-red-400'" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: column.active ? '16px' : 0}"></a></span>
                             <span v-if="!column.without_text" v-text="column.active ? translate('Active') : translate('Pending')" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
-                            <input v-model="column.active"  type="checkbox" class="hidden" :name="'params['+column.key+']'" />
+                            <input v-model="column.active"  type="checkbox" class="hidden" :name="handleName(column)"  />
                         </div>
                         
-                        <vue-medialibrary-field :key="item" v-if="column.column_type == 'file'" :name="'params['+column.key+']'" :filepath="null" :api_url="conf.url"></vue-medialibrary-field>
+                        <vue-medialibrary-field :key="item" v-if="column.column_type == 'file'" :name="handleName(column)"  :filepath="null" :api_url="conf.url"></vue-medialibrary-field>
 
-                        <vue-medialibrary-field :key="item" v-if="column.column_type == 'picture' " :name="'params['+column.key+']'" :filepath="null"  :api_url="conf.url"></vue-medialibrary-field>
+                        <vue-medialibrary-field :key="item" v-if="column.column_type == 'picture' " :name="handleName(column)"  :filepath="null"  :api_url="conf.url"></vue-medialibrary-field>
                     </div>
 
                 </div>
@@ -57,7 +57,7 @@
 import close_icon from '@/components/svgs/Close.vue';
 import field from '@/components/includes/Field.vue';
 import form_field from '@/components/includes/form_field.vue';
-import { translate } from '@/utils.vue';
+import { translate, handleName } from '@/utils.vue';
 
 
 export default 
@@ -106,6 +106,10 @@ export default
         translate(i)
         {
             return translate(i);
+        },
+        handleName(i)
+        {
+            return handleName(i);
         }
      
     }

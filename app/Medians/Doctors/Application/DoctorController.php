@@ -186,7 +186,7 @@ class DoctorController extends CustomController
 	public function validate($params) 
 	{
 
-		if (empty($params['content']['ar']['title']))
+		if (empty($params['title']))
 		{
         	throw new \Exception(json_encode(array('result'=>translate('NAME_required'), 'error'=>1)), 1);
 		}
