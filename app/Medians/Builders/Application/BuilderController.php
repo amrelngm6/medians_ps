@@ -90,7 +90,7 @@ class BuilderController extends CustomController
 					$type = Blog::class;
 					break;
 			}
-			echo $type;
+
 			if (class_exists($type))
 			{
 				print_r($type);
@@ -99,7 +99,7 @@ class BuilderController extends CustomController
 				
 				$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
 
-				$save = $pageRepo->storeLang(['item_type' => $type::class, 'title'=>''] , $lang->lang, $item_id);
+				$save = $pageRepo->storeLang(['item_type' => $type, 'title'=>'.'] , $lang->lang, $itemId);
 				
 				return $save;
 			}
