@@ -82,9 +82,17 @@ class BuilderController extends CustomController
 	{
 		try 
 		{
+			switch (strtolower($type)) {
+				case 'doctor':
+					$type = Doctor::class;
+					break;
+				case 'blog':
+					$type = Blog::class;
+					break;
+			}
 			echo $type;
-			print_r($type::class);
-			if (class_exists($type::class))
+			print_r($type);
+			if (class_exists($type))
 			{
 
 				$lang = \Medians\Languages\Infrastructure\Language::where('status', 'on')->where('language_code', $lang)->first();
