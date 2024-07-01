@@ -83,7 +83,7 @@ class BuilderController extends CustomController
 		try 
 		{
 			echo $type;
-			print_r((new $type)::class);
+			print_r($type::class);
 			if (class_exists($type::class))
 			{
 
