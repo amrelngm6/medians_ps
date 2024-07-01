@@ -1458,6 +1458,8 @@
                     </span>
                     <small class="koTools_itemBottom"></small>
                 </a>
+				{% endif %}
+				{% if canCreate %}
                 <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/new')" class="koLeftButton" id="koMenuItem_settings">
                     <small class="koTools_itemTop"></small>
                     <span class="koLeftButtonHolder">
