@@ -93,13 +93,13 @@ class BuilderController extends CustomController
 
 			if (class_exists($type))
 			{
-				print_r($type);
 
 				$lang = \Medians\Languages\Infrastructure\Language::where('status', 'on')->where('language_code', $lang)->first();
 				
 				$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
 
 				$save = $pageRepo->storeLang(['item_type' => $type, 'title'=>'.'] , $lang->lang, $itemId);
+				print_r($save);
 				
 				return $save;
 			}

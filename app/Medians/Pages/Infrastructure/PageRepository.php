@@ -145,6 +145,7 @@ class PageRepository
 		$fields['item_type'] = $fields['item_type'] ?? Page::class;	
 		$fields['item_id'] = $page_id;	
 		$fields['lang'] = $lang;	
+		print_r($fields);
 		
 		$Model = Content::firstOrCreate($fields);
 		if ($Model->wasRecentlyCreated)
