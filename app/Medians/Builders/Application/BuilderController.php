@@ -39,17 +39,6 @@ class BuilderController extends CustomController
 	 */ 
 	public function index()
 	{
-		// $hook = new \Medians\Hooks\Domain\Hook;
-		// $hooks = $hook->where('plugin', 'content')->get();
-
-		// foreach ($hooks as $key => $object) 
-		// {
-		// 	$content = unserialize($object->content);
-		// 	$this->repo->store([
-		// 		'content'=> $content,
-		// 		'category' => 'Hooks' 
-		// 	]);
-		// }
 		try {
 			
 			$request = $this->app->request();
@@ -61,14 +50,8 @@ class BuilderController extends CustomController
 			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type ) ?? $this->contentRepo->find($itemId );
 			
 			$check = (new $item->item_type)->find($item->item_id);
-
-			if ($check) {
-				$check->content = $check->lang_content = $item;
-			} else {
-				$check = (object)[];
-				$check->content = $item;
-				$check->lang_content = $item;
-			}
+			
+			(isset($check->page_id) && !$check->lang_content) ? $this->contentRepo->handleMissingContent($check, $lang) : null;
 
 			return render('views/admin/builder/index.html.twig', [
 				'page' => $check->lang_content ?? $item, 
