@@ -39,7 +39,17 @@ class BuilderController extends CustomController
 	 */ 
 	public function index()
 	{
+		// $hook = new \Medians\Hooks\Domain\Hook;
+		// $hooks = $hook->where('plugin', 'content')->get();
 
+		// foreach ($hooks as $key => $object) 
+		// {
+		// 	$content = unserialize($object->content);
+		// 	$this->repo->store([
+		// 		'content'=> $content,
+		// 		'category' => 'Hooks' 
+		// 	]);
+		// }
 		try {
 			
 			$request = $this->app->request();
