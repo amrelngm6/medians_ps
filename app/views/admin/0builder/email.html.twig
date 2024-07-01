@@ -2,7 +2,6 @@
 <html lang="en" class="ko_Theme inAdminMode">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,12 +23,8 @@
     <link href="/assets?asset=/src/builder/css/live.css" type="text/css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Jost:200,400,700|Roboto:200,400,700&amp;subset=latin-ext&amp;display=swap" rel="stylesheet" type="text/css" />
     <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script><![endif]-->
-    <style>:root{--ui-color-accent: #179BD7;--ui-color-accent-75: rgba(23,155,215,0.7);--ui-color-accent-50: rgba(23,155,215,0.5);--ui-color-accent-25: rgba(23,155,215,0.25);--ui-color-accent-light: rgba(23,155,215,0.1);
-	{# --ui-color-stripes-accent:repeating-linear-gradient( -45deg,#005f9b,#179BD7 20px,#005f9b 20px,#005f9b 50px,#179BD7 50px,#179BD7 65px); #}
-	--ui-color-stripes-accent:repeating-linear-gradient( to right, #ef326f,  #fe6c4e);
-	--ui-color-leftmenu:#293A4A;
-	}
-	</style>
+    <style>:root{--ui-color-accent: #179BD7;--ui-color-accent-75: rgba(23,155,215,0.7);--ui-color-accent-50: rgba(23,155,215,0.5);--ui-color-accent-25: rgba(23,155,215,0.25);--ui-color-accent-light: rgba(23,155,215,0.1);--ui-color-stripes-accent:repeating-linear-gradient(
+	-45deg,#005f9b,#179BD7 20px,#005f9b 20px,#005f9b 50px,#179BD7 50px,#179BD7 65px);--ui-color-leftmenu:#293A4A;}</style>
     <script src="/assets?asset=/src/builder/js/jquery-ui.js"></script>
     <script src="/assets?asset=/src/builder/js/jquery.ui.touch-punch.min.js"></script>
     <script src="/assets?asset=/src/builder/js/jBox.all.min.js"></script>
@@ -54,7 +49,7 @@
         <div id="k_spinnerImage" style="background-image:url(/uploads/img/medians-logo.png);background-size:60px;" data-title="Please wait..."></div>
     </div>
     <div id="website" class=" skiptranslate">
-        {% include 'views/admin/builder/templates/base.html' %}
+        {% include 'views/admin/builder/templates/email_base.html' %}
     </div>
     <a id="scrollToTop" href="javascript:void(null)"><i class="fa fa-fw fa-arrow-up"></i></a>
     <script>var koSiteName="Company Name";jQuery(function(){setTimeout(function(){
@@ -78,14 +73,13 @@
     <script>
     var subpagesList = "<ul data-menu='1'><li></li></ul>";
 	function openLink(l){window.location.href= l;}
-	function reload(){console.log('loading'); window.location.reload();}
     </script>
     <script type="text/javascript" src="/src/builder/assets/js/assets.js"></script>
-	<script>
-	var blockUri =  koContentBlocks;
-	var configUpdateType = "configUpdate";
-	</script>
-
+    <script>
+	var blockUri =  koContentEmailBlocks;
+	var configUpdateType = "configEmailUpdate";
+	templateId = "{{email_template.template_id}}";
+    </script>
     <script type="text/javascript" src="/src/builder/assets/js/admin.js"></script>
     <style>
         .keditable:not(:focus):before {
@@ -1270,7 +1264,9 @@
 				}
 			</script>
     <style>
-        
+        body.koMenuActive:not(.mobileMenuOpen_Body) {
+					margin-left: 100px
+				}
 
 				.koLeftMenu {
 					opacity: 0;
@@ -1385,7 +1381,7 @@
 				}
 
 				.koLeftLogo:before {
-					display:none;
+
 					content: ' ';
 					position: absolute;
 					width: 0;
@@ -1433,15 +1429,7 @@
                     <small class="koTools_itemBottom"></small>
                 </a>
 				
-                <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/meta?prefix={{page.prefix}}')" class="koLeftButton" id="koMenuItem_settings">
-                    <small class="koTools_itemTop"></small>
-                    <span class="koLeftButtonHolder">
-                        <i class="fas fa-cogs"></i><span>Data & SEO</span>
-                    </span>
-                    <small class="koTools_itemBottom"></small>
-                </a>
-				
-				<a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/languages?type=page&lang={{current_lang}}&item_id={{item.page_id}}')" class="koLeftButton" id="koMenuItem_settings">
+                <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/languages?type=email&item_id={{page.item_id}}')" class="koLeftButton" id="koMenuItem_settings">
                     <small class="koTools_itemTop"></small>
                     <span class="koLeftButtonHolder">
                         <i class="fas fa-globe"></i><span>{{lang.translate('Languages')}} </span>
@@ -1449,22 +1437,6 @@
                     <small class="koTools_itemBottom"></small>
                 </a>
 				
-				{% if canScrab %}
-                <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/scrab')" class="koLeftButton" id="koMenuItem_settings">
-                    <small class="koTools_itemTop"></small>
-                    <span class="koLeftButtonHolder">
-                        <i class="fas fa-cogs"></i><span>Scrab</span>
-                    </span>
-                    <small class="koTools_itemBottom"></small>
-                </a>
-                <a href="javascript:void(null)" onclick="window.top.koMainFrame(null,'/admin/builder/new')" class="koLeftButton" id="koMenuItem_settings">
-                    <small class="koTools_itemTop"></small>
-                    <span class="koLeftButtonHolder">
-                        <i class="fas fa-cogs"></i><span>Create block</span>
-                    </span>
-                    <small class="koTools_itemBottom"></small>
-                </a>
-				{% endif %}
             </div>
             <div class="koLeftMenuBottom">
                 <div class="koLeftMenuItems">
@@ -1506,7 +1478,7 @@
 		    <a href="javascript:void(null)" class="koBottomButton d-none" id="koBottomButton_draftModeLoading" data-balloon="Please wait" data-balloon-pos="upright"> <span class="badge badge-light koDemo_toolbarButton" style="font-size:14px;color:var(--ui-color-accent)">
 		            <div class="spinner-border spinner-border-sm"> </div>
 		        </span> </a>
-		    <a href="/page/{{page.prefix}}" class="koBottomButton" target="_blank"> <i class="fas fa-eye"> </i> <span> Preview</span> </a>
+		    <a href="/admin/builder/template_preview?prefix={{page.prefix}}" class="koBottomButton" target="_blank"> <i class="fas fa-eye"> </i> <span> Preview</span> </a>
 
 		    <div class="float-right">
 		        <a href="javascript:void(null)" class="koBottomButton" onclick="jQuery('#koLeftMenu').removeClass('activeBottomMenu')"> <i class="fas fa-chevron-left"> </i> <span> Hide</span> </a>
@@ -2946,15 +2918,11 @@
                             </select>
                             <script>
                                 function koLinkSettingsSection(){
-
-								if(jQuery('#k_linkSection').val()!=""){
-									
-									document.querySelector('#'+jQuery('#k_linkSection').val()).scrollIntoView({behavior:'smooth'});
+									if(jQuery('#k_linkSection').val()!=""){
+										document.querySelector('#'+jQuery('#k_linkSection').val()).scrollIntoView({behavior:'smooth'});
+									}
 								}
-
-							}
-							
-						</script>
+							</script>
                         </div>
                     </div>
                     <div class="koMenuSeparator my-2"></div>
@@ -7918,7 +7886,7 @@ function refreshFManager(){
 		jQuery.ajax({
 		 type: "POST",
 		 url: "/admin/builder",
-		 data: "supermode=insertContent&id="+encodeURIComponent(opt)+"&pname="+encodeURIComponent(dopt),
+		 data: "supermode=insertEmailContent&id="+encodeURIComponent(opt)+"&pname="+encodeURIComponent(dopt),
 		 success: function(data){
 
          	if(loginFirst(data))return;
