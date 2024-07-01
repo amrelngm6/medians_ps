@@ -53,7 +53,7 @@ class BuilderController extends CustomController
 			
 			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type ) ?? $this->contentRepo->find($itemId );
 			
-			$check = (new $item->item_type)->find($item->item_id);
+			$check = isset($item->item_type) ? (new $item->item_type)->find($item->item_id) : null;
 
 			(empty($check->content)) ? $this->handleMissingContent($type, $itemId, $lang) : null;
 
