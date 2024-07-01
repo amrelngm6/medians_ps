@@ -8,6 +8,10 @@ use Medians\Builders\Infrastructure\BuilderRepository;
 use Medians\Templates\Infrastructure\EmailTemplateRepository;
 use Medians\Content\Infrastructure\ContentRepository;
 use Medians\Pages\Infrastructure\PageRepository;
+use Medians\Doctors\Domain\Doctor;
+use Medians\Blog\Domain\Blog;
+use Medians\OnlineConsolutations\Domain\OnlineConsolutation;
+use Medians\Offers\Domain\Offer;
 
 
 class BuilderController extends CustomController 
@@ -43,15 +47,15 @@ class BuilderController extends CustomController
 			
 			$request = $this->app->request();
 
-			$lang = $request->get('lang') ? $request->get('lang') : $this->app->setLang()->lang;
-			$type = $request->get('item_type') ? $request->get('item_type') : 'Page';
+			$lang = $request->get('lang') ?? $this->app->setLang()->lang;
+			$type = $request->get('item_type') ?? 'Page';
 			$itemId = $request->get('item_id') ?? $request->get('prefix');
 			
 			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type ) ?? $this->contentRepo->find($itemId );
 			
 			$check = (new $item->item_type)->find($item->item_id);
-			
-			(isset($check->page_id) && !$check->lang_content) ? $this->contentRepo->handleMissingContent($check, $lang) : null;
+
+			(isset($check->item_id) && !$check->content) ? $this->handleMissingContent($type, $itemId, $lang) : null;
 
 			return render('views/admin/builder/index.html.twig', [
 				'page' => $check->lang_content ?? $item, 
@@ -72,16 +76,21 @@ class BuilderController extends CustomController
 	}
 
 
-	public function handleMissingContent($itemContent, $lang)
+	public function handleMissingContent($type, $itemId, $lang)
 	{
 		try 
 		{
-			$lang = \Medians\Languages\Infrastructure\Language::where('status', 'on')->where('language_code', $lang)->first();
-			
-			$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
-			$save = $pageRepo->storeLang(['item_type' => $itemContent->item_type, 'title'=>$page->title] , $lang->lang, $page->item_id);
-			
-			return $save;
+			if (class_exists($type::class))
+			{
+
+				$lang = \Medians\Languages\Infrastructure\Language::where('status', 'on')->where('language_code', $lang)->first();
+				
+				$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
+
+				$save = $pageRepo->storeLang(['item_type' => $type::class, 'title'=>''] , $lang->lang, $item_id);
+				
+				return $save;
+			}
 
 		} catch (\Throwable $th) {
 
