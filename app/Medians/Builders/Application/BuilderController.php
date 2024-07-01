@@ -100,7 +100,7 @@ class BuilderController extends CustomController
 				
 				$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
 
-				$save = $pageRepo->storeLang(['item_type' => $type, 'title'=>'.'] , $lang->lang, $itemId);
+				$save = $pageRepo->storeLang(['item_type' => $type, 'title'=>'.'] , $lang->language_code, $itemId);
 				print_r($save);
 				
 				return $save;
