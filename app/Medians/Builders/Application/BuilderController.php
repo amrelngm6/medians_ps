@@ -304,9 +304,9 @@ class BuilderController extends CustomController
 	{
 		try {
 			$request = $this->app->request();
-			$check = $this->contentRepo->find($request->get('prefix'));
 
-			render('views/admin/builder/templates/new.html.twig',[]);
+			return render('views/admin/builder/templates/new.html.twig',[]);
+
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
 		}
