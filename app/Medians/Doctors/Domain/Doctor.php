@@ -3,6 +3,7 @@
 namespace Medians\Doctors\Domain;
 
 use Shared\dbaser\CustomModel;
+use Medians\CustomFields\Domain\CustomField;
 
 
 class Doctor extends CustomModel
@@ -48,7 +49,7 @@ class Doctor extends CustomModel
 
 	public function custom_fields()
 	{
-		return $this->morphMany(CustomFields::class, 'model');
+		return $this->morphMany(CustomField::class, 'model');
 	}
 
 	public function content()
