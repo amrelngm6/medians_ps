@@ -12,6 +12,7 @@ use Medians\Doctors\Domain\Doctor;
 use Medians\Blog\Domain\Blog;
 use Medians\OnlineConsolutations\Domain\OnlineConsolutation;
 use Medians\Offers\Domain\Offer;
+use Medians\Languages\Infrastructure\Language;
 
 
 class BuilderController extends CustomController 
@@ -95,13 +96,9 @@ class BuilderController extends CustomController
 			{
 				print_r($type);
 
-				print_r($lang);
-				$language = \Medians\Languages\Infrastructure\Language::where('status', 'on')->where('language_code', $lang)->first();
-				print_r($language);
-				
 				$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
 
-				$save = $pageRepo->storeLang(['item_type' => $type, 'title'=>'.'] , $language->language_code, $itemId);
+				$save = $pageRepo->storeLang(['item_type' => $type, 'title'=>'.'] , $lang, $itemId);
 				print_r($save);
 				
 				return $save;
