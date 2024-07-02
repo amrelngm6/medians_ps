@@ -53,11 +53,9 @@ class BuilderController extends CustomController
 			$itemId = $request->get('item_id') ?? $request->get('prefix');
 			
 			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type ) ?? $this->contentRepo->find($itemId );
-			print_r($item);
 			
 			$check = isset($item->item_type) ? (new $item->item_type)->find($item->item_id) : null;
 
-			print_r($check);
 			(empty($check->content)) ? $this->handleMissingContent($type, $itemId, $lang) : null;
 
 			return render('views/admin/builder/index.html.twig', [
@@ -94,12 +92,10 @@ class BuilderController extends CustomController
 
 			if (class_exists($type))
 			{
-				print_r($type);
 
 				$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
 
 				$save = $pageRepo->storeLang(['item_type' => $type, 'title'=>'.'] , $lang, $itemId);
-				print_r($save);
 				
 				return $save;
 			}
