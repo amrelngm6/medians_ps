@@ -2898,6 +2898,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: flex;
   }
 
+  .lg\:hidden {
+    display: none;
+  }
+
   .lg\:w-\[46\%\] {
     width: 46%;
   }
