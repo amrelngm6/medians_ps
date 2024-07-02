@@ -99,7 +99,7 @@
 
                         <template #item-builder="item">
                             <button class="p-2  hover:text-gray-600 text-purple" @click="handleAction('builder', item)">
-                                <vue-feather class="w-5" type="edit"></vue-feather>
+                                <vue-feather class="w-5" type="edit-3"></vue-feather>
                             </button>
                         </template>
 
