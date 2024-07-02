@@ -27,6 +27,7 @@ class InvoiceRepository
 		return Invoice::with('user', 'items', 'order')->find($invoice_id);
 	}
 
+	
 	/**
 	* Find items by `params` 
 	*/
