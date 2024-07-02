@@ -12,6 +12,7 @@ class TechnologyController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
+	public $app;
 
 	
 
