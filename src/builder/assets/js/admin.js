@@ -4494,24 +4494,26 @@ function blockZeroPadding() {
 }
 function koSliderInit(e, a, t) {
     console.log("#" + e + "_slider")
-    console.log()
     console.log(jQuery("#" + e + "_slider"))
     // if ($("#" + e + "_slider .ui-slider-handle").length > 0) $("#" + e + "_slider").slider("destroy");
-    if (!$("#" + e + "_slider").length)
-        return;
-    
-    jQuery("#" + e + "_slider").slider({
-        min: 0,
-        max: 300,
-        value: a,
-        step: 10,
-        slide: function (a, i) {
-            $("#" + e).text(i.value + "px");
-            $("#" + keditBlockId).css(t, i.value);
-            if ($("#" + keditBlockId).hasClass("p-0")) $("#" + keditBlockId).removeClass("p-0");
-        },
-    });
-    $("#" + e).text($("#" + e + "_slider").slider("value") + "px");
+    if (jQuery("#" + e + "_slider").length)
+    {
+        var $j = jQuery.noConflict();
+            // $("#" + e + "_slider").slider();
+        $("#" + e + "_slider").slider({
+        //     min: 0,
+        //     max: 300,
+        //     value: a,
+        //     step: 10,
+            slide: function (a, i) {
+                $("#" + e).text(i.value + "px");
+                $("#" + keditBlockId).css(t, i.value);
+                if ($("#" + keditBlockId).hasClass("p-0")) $("#" + keditBlockId).removeClass("p-0");
+            },
+        });
+        $("#" + e).text($("#" + e + "_slider").slider("value") + "px");
+    }
+
 }
 jQuery.fn.outerHTML = function () {
     return jQuery("<div />").append(this.eq(0).clone()).html();
@@ -6488,8 +6490,11 @@ $(function () {
     $("#koColorSelections select").change(function () {
         cc_Generate();
     });
-    $(".jBoxTooltip").jBox("Tooltip", { theme: "TooltipBorder", zIndex: "704401", animation: "zoomIn" });
-    $(".jBoxTooltipRight").jBox("Tooltip", { theme: "TooltipBorder", zIndex: "704401", animation: "move", position: { x: "right", y: "center" }, outside: "x" });
+
+    if (jQuery('.jBoxTooltip').length) {
+        $(".jBoxTooltip").jBox("Tooltip", { theme: "TooltipBorder", zIndex: "704401", animation: "zoomIn" });
+        $(".jBoxTooltipRight").jBox("Tooltip", { theme: "TooltipBorder", zIndex: "704401", animation: "move", position: { x: "right", y: "center" }, outside: "x" });
+    }
     $("#footerContent").attr("data-label", langPhrase.footerLabel);
     $(document).on("click", ".spinner-group button", function () {
         var a = $(this),
