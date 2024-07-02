@@ -139,6 +139,8 @@ class PageRepository
 
 	public function storeLang($fields, $lang, $page_id )
 	{
+		print_r('storeLang');
+
 		$checkPrefix = isset($fields['prefix']) ? $fields['prefix'] : Content::generatePrefix($fields['title']);	
 		$prefix = Content::where('prefix',$checkPrefix)->first() ? $checkPrefix.rand(999, 999999) : $checkPrefix;
 
