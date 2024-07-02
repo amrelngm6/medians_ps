@@ -40,8 +40,8 @@ class DoctorController extends CustomController
 	{
 		return [
             [ 'value'=> "id", 'text'=> "#"],
-            [ 'value'=> "title", 'text'=> translate('Name'), 'sortable'=> true ],
             [ 'value'=> "picture", 'text'=> translate('picture'), 'sortable'=> false ],
+            [ 'value'=> "title", 'text'=> translate('Name'), 'sortable'=> true ],
             [ 'value'=> "builder", 'text'=> translate('Page Builder'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
