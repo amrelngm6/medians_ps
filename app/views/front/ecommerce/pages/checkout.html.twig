@@ -47,7 +47,7 @@
                 </div>
                     
         </div>
-    <div class="w-full flex  pt-6 gap-20" x-data="{shippings: {{shipping_list}},activeShipping: {{shipping_list.first().shipping_id}}, indexShipping:0}" >
+    <div class="w-full lg:flex   pt-6 gap-20" x-data="{shippings: {{shipping_list}},activeShipping: {{shipping_list.first().shipping_id}}, indexShipping:0}" >
     
         <div class="w-full pb-6" >
             <form class="action ajax-form w-full" action="{{app.CONF.url}}front_api/create" method="POST" id="checkout-form">
