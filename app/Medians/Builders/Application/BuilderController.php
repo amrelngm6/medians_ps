@@ -97,7 +97,7 @@ class BuilderController extends CustomController
 
 				print_r($lang);
 				$language = \Medians\Languages\Infrastructure\Language::where('status', 'on')->where('language_code', $lang)->first();
-				print_r($lang);
+				print_r($language);
 				
 				$pageRepo = new \Medians\Pages\Infrastructure\PageRepository;
 
