@@ -2,6 +2,7 @@
 
 namespace Medians\Transactions\Application;
 
+use Medians\Packages\Domain\PackageSubscription;
 use Medians\Trips\Domain\TaxiTrip;
 use Medians\CustomFields\Domain\CustomField;
 
@@ -53,6 +54,8 @@ class PagaditoService
 									break;
 									
 								case 'subscription':
+									$data = ['code' => 'pagadito_token','value' => $token, 'model_type' => PackageSubscription::class, 'model_id'=> end($item)];
+									$code = CustomField::firstOrCreate($data);
 									break;
 							}
 						}

@@ -5,6 +5,7 @@ namespace Medians\Packages\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\Customers\Domain\StudentApplicant;
+use Medians\CustomFields\Domain\CustomField;
 
 /**
  * Subscription class database queries
@@ -33,7 +34,18 @@ class PackageSubscription extends CustomModel
     	'created_by',
 	];
 
-    public $appends = ['is_paid','usertype','name'];
+    public $appends = ['is_paid','usertype','name', 'field'];
+
+    
+	public function getFieldAttribute()
+	{
+		return !empty($this->custom_fields) ? array_column($this->custom_fields->toArray(), 'value', 'code') : [];
+	}
+
+	public function custom_fields()
+	{
+		return $this->morphMany(CustomField::class, 'model');
+	}
 
     public function getNameAttribute()
     {
