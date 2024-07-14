@@ -353,10 +353,6 @@ class MobileAPIController extends CustomController
 	                $return = (new Wallets\Application\WithdrawalController())->create(); 
 	                break;
 						
-	            case 'Country.create':
-	                $return = (new Locations\Application\CountryController())->create(); 
-	                break;
-						
 			}
 
 			echo json_encode($return);

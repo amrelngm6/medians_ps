@@ -187,6 +187,10 @@ class APIController extends CustomController
 				case 'EmailTemplate.create':
 					$return = (new Templates\Application\EmailTemplateController())->store(); 
 					break;
+					
+				case 'Country.create':
+					$return = (new Locations\Application\CountryController())->create(); 
+					break;
 	
 			}
 
