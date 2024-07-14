@@ -67,6 +67,7 @@ function render($template, $data, $responseType = 'html')
         die();
     }
 
+    $data['lang_header'] = $request->headers->get('lang');
     $data['lang'] = new helper\Lang($request->headers->get('lang') ?? $_SESSION['lang']);
     $data['lang_json'] = (new helper\Lang($request->headers->get('lang') ?? $_SESSION['lang']))->load();
     $data['lang_key'] = substr($request->headers->get('lang') ?? $_SESSION['lang'],0,2);
