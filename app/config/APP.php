@@ -406,6 +406,7 @@ class APP
 			[
 				array('permission'=>'Language.index', 'title'=>translate('Languages'),  'icon'=>'tag', 'link'=>'admin/languages', 'component'=>'languages'),
 				array('permission'=>'Translation.index', 'title'=>translate('Translations'),  'icon'=>'tag', 'link'=>'admin/translations', 'component'=>'translations'),
+				array('permission'=>'Locations.index', 'title'=>translate('Locations'),  'icon'=>'tag', 'link'=>'admin/locations', 'component'=>'data_table'),
 			]
 			),
 			array( 'title'=>translate('Settings'),  'icon'=>'tool', 'link'=>'#setting', 'superadmin'=> true, 'sub'=>

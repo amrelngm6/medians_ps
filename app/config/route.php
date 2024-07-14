@@ -219,7 +219,6 @@ if(!empty($app->auth()))
     // RouteHandler::get('/admin/get_started', Medians\Users\Application\GetStartedController::class.'@get_started');
 
 
-
     /** @return employees */
     RouteHandler::get('/admin/employees', Medians\Customers\Application\EmployeeController::class.'@index');
 
@@ -246,6 +245,9 @@ if(!empty($app->auth()))
 
     /** @return Gallery */
     RouteHandler::get('/admin/gallery', Medians\Gallery\Application\GalleryController::class.'@index');
+
+    /** @return Countries */
+    RouteHandler::get('/admin/countries', Medians\Locations\Application\CountryController::class.'@index');
 
 
 
