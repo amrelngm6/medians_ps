@@ -189,7 +189,7 @@ class APIController extends CustomController
 					break;
 					
 				case 'Country.create':
-					$return = (new Locations\Application\CountryController())->create(); 
+					$return = (new Locations\Application\CountryController())->store(); 
 					break;
 	
 			}
