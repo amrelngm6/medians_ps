@@ -60,6 +60,7 @@ class APP
 		if (!empty($this->request()->headers->get('lang')))
 		{
 			$_SESSION['site_lang'] = $this->request()->headers->get('lang');
+			$_SESSION['lang'] = $this->request()->headers->get('lang');
 		}
 
 		if (isset($_SERVER['HTTP_REFERER']))
