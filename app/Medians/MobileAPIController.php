@@ -277,6 +277,10 @@ class MobileAPIController extends CustomController
 			case 'Driver.change_language':
 				$return = (new Drivers\Application\DriverController)->change_language();
 				break;
+				
+			case 'load_languages':
+				$return = (new Languages\Application\LanguageController)->getAll();
+				break;
 		}
 		
 		echo json_encode($return);
