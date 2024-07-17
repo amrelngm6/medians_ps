@@ -279,7 +279,7 @@ class TripController extends CustomController
 
 	public function createTrip()
 	{
-		$params = json_decode($this->app->params());
+		$params = $this->app->params();
 
         try 
 		{
