@@ -90,7 +90,7 @@ class CountryController extends CustomController
 
 	public function getAll() 
 	{
-		return $this->repo->get();
+		return $this->repo->getActive();
 	}
 
 

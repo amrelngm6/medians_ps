@@ -15,12 +15,12 @@ class CountryRepository
 
 	public function get($limit = 100)
 	{
-		return Country::limit($limit)->orderBy('name','DESC')->get();
+		return Country::limit($limit)->orderBy('name','ASC')->get();
 	}
 
 	public function getActive($limit = 100)
 	{
-		return Country::with('states')->orderBy('name','DESC')->get();
+		return Country::with('states')->orderBy('name','ASC')->get();
 	}
 
 
