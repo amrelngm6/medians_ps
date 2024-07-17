@@ -137,6 +137,7 @@ class AppSettingsController extends CustomController
 			[ 'key'=> "cash_payment", 'title'=> translate('Cash payment'), 'help_text'=>translate('Allow the users to pay for the taxi trips and subscriptions in cash, the balance would be added to the Driver debit balance'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 			[ 'key'=> "paypal_payment", 'title'=> translate('PayPal payment'), 'help_text'=>translate('Allow the users to pay for the taxi trips and subscriptions in PayPal'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 			[ 'key'=> "paystack_payment", 'title'=> translate('PayStack payment'), 'help_text'=>translate('Allow the users to pay for the taxi trips and subscriptions in PayStack'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			[ 'key'=> "pagadito_payment", 'title'=> translate('Pagadito payment'), 'help_text'=>translate('Allow the users to pay for the taxi trips and subscriptions in Pagadito'), 'fillable'=> true, 'column_type'=>'checkbox' ],
 		];
 
 		$list['Home Screen layout'][] = 
