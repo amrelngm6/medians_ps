@@ -95,6 +95,11 @@ class AppSettingsController extends CustomController
 				[ 'key'=> "firebase_project_id", 'title'=> translate('Firebase Project ID'), 'fillable'=> true, 'column_type'=>'text' ],
             ],
 			
+			'Timers'=> [	
+				[ 'key'=> "map_reload_timer", 'title'=>translate('Timer for MAP reloading'), 'help_text'=>translate('Reload the Map route every X seconds'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "home_reload_timer", 'title'=>translate('Timer for Home reloading'), 'help_text'=>translate('Reload the Home screen data every X seconds'), 'fillable'=> true, 'column_type'=>'number' ],
+            ],
+			
         ];
 	}
 
