@@ -51,6 +51,7 @@ class DashboardController extends CustomController
 		$this->StudentApplicantRepository = new Customers\Infrastructure\StudentApplicantRepository();
 		$this->InvoiceRepository = new Invoices\Infrastructure\InvoiceRepository();
 		$this->TransactionRepository = new Transactions\Infrastructure\TransactionRepository();
+		$this->PackageSubscriptionRepository = new Packages\Infrastructure\PackageSubscriptionRepository();
 
 		
 		$setting = $this->app->SystemSetting();
