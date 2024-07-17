@@ -201,7 +201,6 @@ class DriverController extends CustomController
 	{
 		
 		$params = $this->app->params();
-		$params = (array)   is_array($params) ?  $params : json_decode($params);
 
         try {
 
