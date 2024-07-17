@@ -1,5 +1,6 @@
 /node_modules
 /vendor
+/newtheme
 /uploads/files
 /uploads/bugs
 /src/tailwind
