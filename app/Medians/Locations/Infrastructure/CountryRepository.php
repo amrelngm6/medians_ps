@@ -15,7 +15,7 @@ class CountryRepository
 
 	public function get($limit = 100)
 	{
-		return Country::limit($limit)->orderBy('name','ASC')->get();
+		return Country::limit($limit)->orderBy('id','ASC')->get();
 	}
 
 	public function getActive($limit = 100)
