@@ -20,7 +20,7 @@ class CountryRepository
 
 	public function getActive($limit = 100)
 	{
-		return Country::with('states')->orderBy('name','ASC')->get();
+		return Country::where('status', 'on')->orderBy('name','ASC')->get();
 	}
 
 
