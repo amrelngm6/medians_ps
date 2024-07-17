@@ -88,6 +88,13 @@ class CountryController extends CustomController
 	}
 
 
+	public function getAll() 
+	{
+		return $this->repo->get();
+	}
+
+
+
 	public function store() 
 	{
 		$params = $this->app->params();

@@ -281,6 +281,10 @@ class MobileAPIController extends CustomController
 			case 'load_languages':
 				$return = (new Languages\Application\LanguageController)->getAll();
 				break;
+				
+			case 'load_countries':
+				$return = (new Locations\Application\CountryController)->getAll();
+				break;
 
 		}
 		
