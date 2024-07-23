@@ -220,8 +220,8 @@ class APIController extends CustomController
                 $controller =  new Settings\Application\AppSettingsController; 
 				break;
 
-			case 'Student.update':
-				$controller = new Students\Application\StudentController;
+			case 'Lead.update':
+				$controller = new Customers\Application\LeadController;
 				break;
 
 			case 'Driver.update':
