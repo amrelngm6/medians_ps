@@ -307,20 +307,6 @@ class APP
 			
 			array('permission'=>'Leads.index', 'title'=>translate('Leads'),  'icon'=>'user', 'link'=>'admin/leads', 'component'=>'parents'),
 
-			array('title'=>translate('Routes'),  'icon'=>'map', 'link'=>'#route', 'sub'=>
-			[
-				array('permission'=>'Routes.index', 'title'=>translate('Routes'),  'icon'=>'map', 'link'=>'admin/routes', 'component'=>'routes'),
-				array('permission'=>'RouteLocations.index', 'title'=>translate('Locations'),  'icon'=>'map', 'link'=>'admin/locations', 'component'=>'locations'),
-				]
-			),
-			
-			array('title'=>translate('Trips'),  'icon'=>'map-pin', 'link'=>'#TaxiTrips', 'sub'=>
-			[
-				array('permission'=>'Trips.index', 'title'=>translate('Route trips'),  'icon'=>'map-pin', 'link'=>'admin/trips', 'component'=>'trips'),
-				array('permission'=>'TaxiTrips.index', 'title'=>translate('Taxi Trips'),  'icon'=>'map', 'link'=>'admin/taxi_trips', 'component'=>'taxi_trips'),
-			]
-			),
-
 			array( 'title'=>translate('Users'),  'icon'=>'tool', 'link'=>'#users', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'User.index', 'title'=>translate('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
