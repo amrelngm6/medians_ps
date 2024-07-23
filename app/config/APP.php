@@ -321,73 +321,33 @@ class APP
 			]
 			),
 
-			array('title'=>translate('Vehicles'),  'icon'=>'truck', 'link'=>'#vehicles', 'sub'=>
-			[
-				array('permission'=>'Vehicles.index', 'title'=>translate('Vehicles'),  'icon'=>'truck', 'link'=>'admin/vehicles', 'component'=>'vehicles'),
-				array('permission'=>'VehicleTypes.index', 'title'=>translate('Vehicle Types'),  'icon'=>'truck', 'link'=>'admin/vehicle_types', 'component'=>'vehicle_types'),
-			]
-			),
-			array('title'=>translate('Applicants'),  'icon'=>'file', 'link'=>'#applicants', 'sub'=>
-			[
-				array('permission'=>'DriverApplicants.index', 'title'=>translate('Driver applicants'),  'icon'=>'users', 'link'=>'admin/driver_applicants', 'component'=>'driver_applicants'),
-				array('permission'=>'StudentApplicants.index', 'title'=>translate('Students applicants'),  'icon'=>'credit-card', 'link'=>'admin/student_applicants', 'component'=>'student_applicants'),
-			]
-			),
-
-			array('title'=>translate('Subscriptions'),  'icon'=>'cloud-lightning', 'link'=>'#packages', 'sub'=>
-			[
-				array('permission'=>'Packages.index', 'title'=>translate('Manage Packages'),  'icon'=>'credit-card', 'link'=>'admin/packages', 'component'=>'packages'),
-				array('permission'=>'PackageSubscriptions.index', 'title'=>translate('Subscriptions'),  'icon'=>'credit-card', 'link'=>'admin/package_subscriptions', 'component'=>'package_subscriptions'),
-			]
-			),
-			array('title'=>translate('Finance'),  'icon'=>'credit-card', 'link'=>'#finance', 'sub'=>
-			[
-				array('permission'=> 'Invoice.index', 'title'=> translate('Invoices'), 'icon'=>'credit-card', 'link'=>'admin/invoices', 'component'=>'invoices'),
-				array('permission'=> 'PaymentMethods.index', 'title'=> translate('Payment methods'), 'icon'=>'credit-card', 'link'=>'admin/payment_methods', 'component'=>'payment_methods'),
-			]
-			),
-			
 			array( 'title'=>translate('Users'),  'icon'=>'tool', 'link'=>'#users', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'User.index', 'title'=>translate('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
 				array('permission'=> 'Roles.index', 'title'=> translate('ROLES MANAEGMENT'),  'icon'=>'tool', 'link'=>'admin/roles', 'component'=>'roles'),
 			]
 			),
-			array( 'title'=>translate('Frontend'),  'icon'=>'airplay', 'link'=>'#frontend', 'superadmin'=> true, 'sub'=>
-			[
-				array('permission'=>'Pages.index', 'title'=>translate('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'pages'),
-				array('permission'=>'SiteSettings.index', 'title'=>translate('Frontend settings'),  'icon'=>'tool', 'link'=>'admin/site_settings', 'component'=>'system_settings'),
-				array('permission'=>'Menus.index', 'title'=>translate('Menus'),  'icon'=>'tool', 'link'=>'admin/menus', 'component'=>'menus'),
-			]
-			),
+		
 			array( 'title'=>translate('Management'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				array('permission'=>'EmailTemplate.index', 'title'=>translate('Email Templates'),  'icon'=>'tag', 'link'=>'admin/email_templates', 'component'=>'email_templates'),
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
-				array('permission'=>'NewsletterSubscriber.index', 'title'=>translate('newsletter_subscribers'),  'icon'=>'tag', 'link'=>'admin/newsletter_subscribers', 'component'=>'newsletter_subscribers'),
-				array('permission'=>'Vacations.index', 'title'=>translate('Vacations'),  'icon'=>'user', 'link'=>'admin/vacations', 'component'=>'vacations')
 			]
 			),
-			array( 'title'=>translate('Support'),  'icon'=>'help-circle', 'link'=>'#support', 'superadmin'=> true, 'sub'=>
-			[
-				array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
-				array('permission'=>'ContactForm.index', 'title'=>translate('Forms messages'),  'icon'=>'tag', 'link'=>'admin/contact_forms', 'component'=>'contact_forms'),
-			]
-			),
+
+			array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+
 			array( 'title'=>translate('localization'),  'icon'=>'mic', 'link'=>'#localization', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Language.index', 'title'=>translate('Languages'),  'icon'=>'tag', 'link'=>'admin/languages', 'component'=>'languages'),
 				array('permission'=>'Translation.index', 'title'=>translate('Translations'),  'icon'=>'tag', 'link'=>'admin/translations', 'component'=>'translations'),
-				array('permission'=>'Countries.index', 'title'=>translate('Countries'),  'icon'=>'tag', 'link'=>'admin/countries', 'component'=>'data_table'),
 			]
 			),
 			array( 'title'=>translate('Settings'),  'icon'=>'tool', 'link'=>'#setting', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=> 'SystemSettings.index', 'title'=> translate('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
-				array('permission'=> 'SystemSettings.index', 'title'=> translate('Payment settings'),  'icon'=>'tool', 'link'=>'admin/payment_settings', 'component'=>'system_settings'),
-				array('permission'=> 'DriverAppSetting.index', 'title'=> translate('Driver APP Settings'),  'icon'=>'tool', 'link'=>'admin/app_settings', 'component'=>'app_settings'),
-				array('permission'=> 'ParentAppSettings.index', 'title'=> translate('Parent APP Settings'),  'icon'=>'tool', 'link'=>'admin/parent_app_settings', 'component'=>'parent_app_settings'),
+				array('permission'=> 'AppSettings.index', 'title'=> translate('APP Settings'),  'icon'=>'tool', 'link'=>'admin/parent_app_settings', 'component'=>'parent_app_settings'),
 			]
 			),
 			
