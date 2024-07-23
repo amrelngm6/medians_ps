@@ -25,9 +25,4 @@ class SystemSettings extends CustomModel
 	// public $timestamps = false;
 
 
-	public function currency()
-	{
-		return $this->hasOne(Currency::class, 'code', 'value');
-	}
-
 }

@@ -11,14 +11,14 @@ use Medians\CustomFields\Domain\CustomField;
 
 use Medians\Wallets\Domain\Wallet;
 
-class Parents extends Customer
+class Lead extends Customer
 {
 
 	public $appends = ['parent_name', 'parent_id','field','usertype'];
 
 	public function getUsertypeAttribute()
 	{
-		return 'parents';
+		return 'Lead';
 	}
 
 
@@ -96,14 +96,14 @@ class Parents extends Customer
 	public function insertCustomField($code, $value)
 	{
 		$delete = CustomField::where('code', $code)
-		->where('model_type', Parents::class)
+		->where('model_type', Lead::class)
 		->where('model_id', $this->customer_id)
 		->delete();
 
     	// Insert activation code 
 		$fillable = [
 			'code'=>$code,
-			'model_type'=>Parents::class, 
+			'model_type'=>Lead::class, 
 			'model_id'=>$this->customer_id, 
 			'value'=>$value
 		];

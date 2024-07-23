@@ -3,9 +3,9 @@ namespace Medians\Customers\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Customers\Infrastructure\EmployeeRepository;
+use Medians\Customers\Infrastructure\LeadRepository;
 
-class EmployeeController extends CustomController 
+class LeadController extends CustomController 
 {
 
 	/**
@@ -21,7 +21,7 @@ class EmployeeController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new EmployeeRepository();
+		$this->repo = new LeadRepository();
 	}
 
 
@@ -82,12 +82,14 @@ class EmployeeController extends CustomController
 		
 		try {
 			
-		    return render('employees', [
+		    return render('data_table', [
 		        'load_vue' => true,
-		        'title' => translate('Employees list'),
+		        'title' => translate('Leads list'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+				'object_name' => 'Lead',
+				'object_key'  => 'lead_id'
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -97,12 +99,12 @@ class EmployeeController extends CustomController
 
 
 	/**
-	 * Employee Login through Mobile API
+	 * Lead Login through Mobile API
 	 */
 	public function login()
 	{
 		$Auth = new \Medians\Auth\Application\AuthService;
-		$repo = new \Medians\Employees\Infrastructure\EmployeeRepository;
+		$repo = new \Medians\Leads\Infrastructure\LeadRepository;
 
 		$this->app = new \config\APP;
 		$request = $this->app->request();
@@ -111,17 +113,17 @@ class EmployeeController extends CustomController
 
 		$checkLogin = $repo->checkLogin($params->email, $Auth->encrypt($params->password));
 		
-		if (empty($checkLogin->employee_id)) {
+		if (empty($checkLogin->lead_id)) {
 			return ['error'=> translate("User credentials not valid")]; 
 		}
 		
-		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->employee_id);
+		$token = $Auth->encrypt(strtotime(date('YmdHis')).$checkLogin->lead_id);
 		$generateToken = $checkLogin->insertCustomField('API_token', $token);
 
 		return 
 		[
 			'success'=>true, 
-			'employee_id'=> isset($checkLogin->employee_id) ? $checkLogin->employee_id : null, 
+			'lead_id'=> isset($checkLogin->lead_id) ? $checkLogin->lead_id : null, 
 			'token'=>$generateToken->value
 		];
 	}  
@@ -175,7 +177,7 @@ class EmployeeController extends CustomController
         try {
 			
 			$check = $this->repo->resetChangePassword($params);
-            return isset($check->employee_id)
+            return isset($check->lead_id)
 			 ? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
 			 : array('error'=>$check, 'result'=>translate('Error'));
 
@@ -209,10 +211,10 @@ class EmployeeController extends CustomController
 
         try {
 			
-			$params['employee_id'] = $this->app->auth()->employee_id;
+			$params['lead_id'] = $this->app->auth()->lead_id;
 
 			$check = $this->repo->changePassword($params);
-            return isset($check->employee_id)
+            return isset($check->lead_id)
 			 ? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
 			 : array('error'=>$check, 'result'=>translate('Error'));
 
@@ -277,10 +279,10 @@ class EmployeeController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['employee_id']);
+        	$check = $this->repo->find($params['lead_id']);
 
 
-            if ($this->repo->delete($params['employee_id']))
+            if ($this->repo->delete($params['lead_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
@@ -295,24 +297,24 @@ class EmployeeController extends CustomController
 
 
 	/**
-	 * get Employee
+	 * get Lead
 	 */
-	public function getEmployee()
+	public function getLeads()
 	{
 		$this->app = new \config\APP;
 
-		$data =  $this->repo->getEmployee($this->app->auth()->employee_id);
+		$data =  $this->repo->getLeads();
 
 		echo  json_encode($data);
 	}
 
 
 	/**
-	 * get Employee
+	 * get Lead
 	 */
-	public function checkEmployee($id)
+	public function checkLead($id)
 	{
-		$data =  $this->repo->getEmployee($id);
+		$data =  $this->repo->getLead($id);
 
 		echo  json_encode($data);
 	}

@@ -11,20 +11,8 @@ class DashboardController extends CustomController
 	* @var Object
 	*/
 	public  $contentRepo;
-	public  $TripRepository;
-	public  $TaxiTripRepository;
-	public  $RouteRepository;
-	public  $DriverRepository;
-	public  $DriverApplicantRepository;
-	public  $RouteLocationRepository;
-	public  $VehicleRepository;
-	public  $StudentRepository;
 	public  $HelpMessageRepository;
-	public  $InvoiceRepository;
-	public  $TransactionRepository;
-	public  $PackageSubscriptionRepository;
 	public  $CustomerRepository;
-	public  $StudentApplicantRepository;
 
 	protected $app;
 	public $start;
@@ -38,20 +26,8 @@ class DashboardController extends CustomController
 		$user = $this->app->auth();
 
 		$this->contentRepo = new Content\Infrastructure\ContentRepository();
-		$this->TripRepository = new Trips\Infrastructure\TripRepository();
-		$this->TaxiTripRepository = new Trips\Infrastructure\TaxiTripRepository();
-		$this->VehicleRepository = new Vehicles\Infrastructure\VehicleRepository();
-		$this->RouteRepository = new Routes\Infrastructure\RouteRepository();
-		$this->DriverRepository = new Drivers\Infrastructure\DriverRepository();
-		$this->DriverApplicantRepository = new Drivers\Infrastructure\DriverApplicantRepository();
-		$this->RouteLocationRepository = new Locations\Infrastructure\RouteLocationRepository();
-		$this->StudentRepository = new Students\Infrastructure\StudentRepository();
 		$this->HelpMessageRepository = new Help\Infrastructure\HelpMessageRepository();
 		$this->CustomerRepository = new Customers\Infrastructure\CustomerRepository();
-		$this->StudentApplicantRepository = new Customers\Infrastructure\StudentApplicantRepository();
-		$this->InvoiceRepository = new Invoices\Infrastructure\InvoiceRepository();
-		$this->TransactionRepository = new Transactions\Infrastructure\TransactionRepository();
-		$this->PackageSubscriptionRepository = new Packages\Infrastructure\PackageSubscriptionRepository();
 
 		
 		$setting = $this->app->SystemSetting();
@@ -110,18 +86,12 @@ class DashboardController extends CustomController
 
 		try {
 
-			$trips_charts = $this->TripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
-			$taxi_trips_charts = $this->TaxiTripRepository->getAllByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
-			$applicants = $this->StudentApplicantRepository->get(5);
 
 			$counts = $this->loadCounts();
 
 			$array = [
 	            'title' => 'Dashboard',
 		        'load_vue' => true,
-				'trips_charts'=>$trips_charts,
-				'taxi_trips_charts'=>$taxi_trips_charts,
-				'applicants'=>$applicants,
 				'start'=>$this->start,
 				'end'=>$this->end,
 	        ];
@@ -146,18 +116,11 @@ class DashboardController extends CustomController
 
 		try {
 
-			$trips_charts = $this->TripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
-			$taxi_trips_charts = $this->TaxiTripRepository->masterByDateCharts(['start'=>$this->start, 'end'=>$this->end]);
-			$applicants = $this->StudentApplicantRepository->get(5);
-
 			$counts = $this->loadMasterCounts();
 
 			$array = [
 	            'title' => 'Master Dashboard',
 		        'load_vue' => true,
-				'trips_charts'=>$trips_charts,
-				'taxi_trips_charts'=>$taxi_trips_charts,
-				'applicants'=>$applicants,
 	        ];
 
 			return array_merge($counts, $array);
@@ -177,27 +140,8 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
-        $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        $data['taxi_trips_count'] = $this->TaxiTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['route_locations_count'] = $this->RouteLocationRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['student_applicant_count'] = $this->StudentApplicantRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['drivers_count'] = $this->DriverRepository->get()->count();
-        $data['routes_count'] = $this->RouteRepository->get()->count();
-        $data['vehicles_count'] = $this->VehicleRepository->get()->count();
-        $data['top_drivers'] = $this->DriverRepository->mostTrips(5);
-        $data['top_drivers_list'] = $this->DriverRepository->topDrivers(5);
-        $data['latest_subscriptions'] = $this->PackageSubscriptionRepository->get(5);
-        $data['driver_applicants'] = $this->DriverApplicantRepository->get(5);
+        // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         $data['latest_help_messages'] = $this->HelpMessageRepository->load(5);
-        $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['total_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->sum('total_amount');
-        $data['payment_methods_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('SUM(total_amount) as value, payment_method')->groupBy('payment_method')->get();
-        $data['latest_invoices'] = $this->InvoiceRepository->get(5);
-        $data['latest_transactions'] = $this->TransactionRepository->get(5);
-        $data['transactions_count'] = $this->TransactionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['subscriptions_count'] = $this->PackageSubscriptionRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
 
         return $data;
 
@@ -212,16 +156,9 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
-        $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        $data['taxi_trips_count'] = $this->TaxiTripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['total_trips_count'] = $this->TripRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
+        // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
-        $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        $data['latest_invoices'] = $this->InvoiceRepository->get(5);
-		$data['invoices_charts'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('date as label, COUNT(*) as y')->having('y', '>', 0)->orderBy('y', 'desc')->groupBy('label')->get();
-		$data['total_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->sum('total_amount');
-        $data['payment_methods_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('SUM(total_amount) as value, payment_method')->groupBy('payment_method')->get();
         
         return $data;
 

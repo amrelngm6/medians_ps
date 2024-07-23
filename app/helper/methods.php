@@ -75,7 +75,6 @@ function render($template, $data, $responseType = 'html')
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
     $data['app']->setting = $setting;
-    $data['app']->currency = $app->currency();
     $data['menu'] = $app->menu();
     $data['langs'] = $languages;
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');

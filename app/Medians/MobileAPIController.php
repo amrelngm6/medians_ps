@@ -56,15 +56,6 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Settings\Application\SystemSettingsController())->getAll();
 				break;
 
-			case 'main_currency':
-				$return = (new \Medians\Currencies\Infrastructure\CurrencyRepository())->mainCurrency();
-				break;
-
-			case 'load_currency':
-				$return = (new \Medians\Currencies\Application\CurrencyService())->getCurrency($request->get('code'));
-				break;
-
-
 			case 'help_messages':
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessages();
 				break;
@@ -73,69 +64,10 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessage();
 				break;
 					
-			case 'parent_help_messages':
-				$return = (new \Medians\Help\Application\HelpMessageController())->loadParentHelpMessages();
+			case 'leads':
+				$return = (new \Medians\Customers\Application\leadsController())->get();
 				break;
 
-			case 'Route.start_trip':
-				$return = (new \Medians\Trips\Application\TripController())->createTrip();
-				break;
-
-			case 'Route.active_trip':
-				$return = (new \Medians\Trips\Application\TripController())->getActiveTrip();
-				break;
-
-			case 'Trip.update_location':
-				$return = (new \Medians\Trips\Application\TripController())->updateLocation();
-				break;
-
-			case 'Trip.alarm_location':
-				$return = (new \Medians\Trips\Application\TripController())->createAlarm();
-				break;
-
-			case 'Route.end_trip':
-				$return = (new \Medians\Trips\Application\TripController())->endTrip();
-				break;
-
-			case 'update_pickup':
-				$return = (new \Medians\Trips\Infrastructure\TripRepository())->updateTripPickup($params);
-				break;
-
-			case 'trips':
-				$return = (new \Medians\Trips\Application\TripController())->loadTrips();
-				break;
-			
-			case 'student_trips':
-				$return = (new \Medians\Trips\Application\TripController())->loadStudentTrips($params);
-				break;
-
-			case 'parent_trips':
-				$return = (new \Medians\Trips\Application\TripController())->loadParentTrips($params);
-				break;
-
-			case 'Vehicle.update':
-				$return =  (new Vehicles\Application\VehicleController())->updateLocation($params); 
-				break;
-
-			case 'Parent.signup':
-				$return =  (new Customers\Application\ParentController())->signup(); 
-				break;
-
-			case 'Driver.signup':
-				$return =  (new Drivers\Application\DriverController())->signup(); 
-				break;
-			
-			case 'Parent.login':
-				$return =  (new Customers\Application\ParentController())->login(); 
-				break;
-			
-			case 'Parent.loginWithGoogle':
-				$return =  (new Customers\Application\ParentController())->loginWithGoogle(); 
-				break;
-			
-			case 'Parent.loginWithTwitter':
-				$return =  (new Customers\Application\ParentController())->loginWithTwitter(); 
-				break;
 
 			case 'Driver.login':
 				$return =  (new Drivers\Application\DriverController())->login(); 
@@ -149,133 +81,12 @@ class MobileAPIController extends CustomController
 				$return =  (new Drivers\Application\DriverController())->loginWithTwitter(); 
 				break;
 
-			case 'getDriver':
-				$return =  (new Drivers\Application\DriverController())->getDriver($request->get('driver_id')); 
-				break;
-
-			case 'Parent.resetPassword':
-				$return =  (new Customers\Application\ParentController())->resetPassword(); 
-				break;
-
-			case 'Driver.resetPassword':
-				$return =  (new Drivers\Application\DriverController())->resetPassword(); 
-				break;
-			
 			case 'notifications':
 				$return =  (new Notifications\Application\NotificationController())->loadLatestMobileNotifications(); 
 				break;
 
-			case 'student_pickup':
-				$return =  (new Locations\Application\RouteLocationController())->loadPickup(); 
-				break;
-				
-			case 'student_locations':
-				$return =  (new Students\Application\StudentController())->loadLocations(); 
-				break;
-				
-			case 'Student.get_student':
-				$return =  (new Students\Application\StudentController())->loadStudent(); 
-				break;
-				
-			case 'Student.upload_picture':
-				$return =  (new Students\Application\StudentController())->uploadPicture(); 
-				break;
-				
-			case 'Parent.upload_picture':
-				$return =  (new Customers\Application\ParentController())->uploadPicture(); 
-				break;
-				
-			case 'Driver.upload_picture':
-				$return =  (new Drivers\Application\DriverController())->uploadPicture(); 
-				break;
-				
-			case 'Parent.changePassword':
-				$return =  (new Customers\Application\ParentController())->changePassword(); 
-				break;
-				
-			case 'Parents.getActiveParentTrip':
-				$return =  (new Trips\Application\TripController())->getActiveParentTrip(); 
-				break;
-				
-				
-			case 'Parent.resetChangePassword':
-				$return =  (new Customers\Application\ParentController())->resetChangePassword(); 
-				break;
-				
-			case 'Driver.resetChangePassword':
-				$return =  (new Drivers\Application\DriverController())->resetChangePassword(); 
-				break;
-				
-			case 'Driver.changePassword':
-				$return =  (new Drivers\Application\DriverController())->changePassword(); 
-				break;
-				
-			case 'Driver.getActiveDriverTrip':
-				$return =  (new Trips\Application\TripController())->getActiveDriverTrip(); 
-				break;
-				
-			case 'Parents.create_trip':
-				$return =  (new Trips\Application\TaxiTripController())->createTrip(); 
-				break;
-				
-			case 'TaxiTrip.add_transaction':
-				$return = (new Transactions\Application\TransactionController())->addTripTransaction(); 
-				break;
-				
-			case 'Parent.taxi_trips':
-				$return =  (new Trips\Application\TaxiTripController())->parentTaxiTrips(); 
-				break;
-				
-			case 'Driver.taxi_trips':
-				$return =  (new Trips\Application\TaxiTripController())->driverTaxiTrips(); 
-				break;
-
-			case 'Parents.cancel_trip':
-				$return =  (new Trips\Application\TaxiTripController())->cancelTrip(); 
-				break;
-				
-			case 'Driver.start_trip':
-				$return =  (new Trips\Application\TaxiTripController())->startTrip(); 
-				break;
-				
-			case 'Driver.end_trip':
-				$return =  (new Trips\Application\TaxiTripController())->endTrip(); 
-				break;
-
-			case 'student_applicants':
-				$return =  (new Customers\Application\StudentApplicantController())->loadStudentApplicants(); 
-				break;
-				
-			case 'Parent.pending_subscription':
-				$return =  (new Packages\Application\PackageSubscriptionController())->loadPendingStudentsSubscription(); 
-				break;
-
-			case 'get_subscription':
-				$return =  (new Packages\Application\PackageSubscriptionController())->getSubscription(); 
-				break;
-				
-			case 'packages':
-				$return = (new Packages\Application\PackageController)->load_packages();
-				break;
-			
-			case 'student_vacations':
-				$return = (new Vacations\Application\VacationController)->load_student_vacations();
-				break;
-			
-			case 'withdrawals':
-				$return = (new Wallets\Application\WithdrawalController)->getWithdrawals();
-				break;
-			
-			case 'collected_cash':
-				$return = (new Wallets\Application\CollectedCashController)->getCollectedCash();
-				break;
-				
-			case 'payment_methods':
-				$return = (new PaymentMethods\Application\PaymentMethodController)->load();
-				break;
-				
-			case 'Driver.change_language':
-				$return = (new Drivers\Application\DriverController)->change_language();
+			case 'Lead.upload_picture':
+				$return =  (new Customers\Application\LeadController())->uploadPicture(); 
 				break;
 				
 			case 'load_languages':

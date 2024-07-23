@@ -2,11 +2,11 @@
 
 namespace Medians\Customers\Infrastructure;
 
-use Medians\Customers\Domain\Employee;
+use Medians\Customers\Domain\Lead;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Mail\Application\MailService;
 
-class EmployeeRepository extends CustomerRepository
+class LeadRepository extends CustomerRepository
 {
 
 	 
@@ -19,13 +19,13 @@ class EmployeeRepository extends CustomerRepository
 
 	public function get($limit = 100)
 	{
-		return Employee::where('model', Employee::class)->with('route_location')->limit($limit)->get();
+		return Lead::limit($limit)->get();
 	}
 
 
-	public function getEmployee($employee_id)
+	public function getLead($lead_id)
 	{
-		return Employee::where('model', Employee::class)->find($employee_id);
+		return Lead::find($lead_id);
 	}
 
 
@@ -35,24 +35,24 @@ class EmployeeRepository extends CustomerRepository
 	public function resetPassword($data) 
 	{
 
-		$Model = new Employee();
+		$Model = new Lead();
 		
 		$findByEmail = $this->findByEmail($data['email']);
 
 		if (empty($findByEmail))
 			return translate('User not found');
 		
-		$deleteOld = CustomField::where('model_type', Employee::class)->where('model_id', $findByEmail->employee_id)->where('code', 'reset_token')->delete();
+		$deleteOld = CustomField::where('model_type', Lead::class)->where('model_id', $findByEmail->lead_id)->where('code', 'reset_token')->delete();
 		
 		$fields = [];
-		$fields['model_type'] = Employee::class;	
-		$fields['model_id'] = $findByEmail->employee_id;	
+		$fields['model_type'] = Lead::class;	
+		$fields['model_id'] = $findByEmail->lead_id;	
 		$fields['code'] = 'reset_token';	
 		$fields['value'] = $this->randomPassword();
 
 		$Model = CustomField::create($fields);
 		
-		$sendMail = new MailService($findByEmail->email, $findByEmail->employee_name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
+		$sendMail = new MailService($findByEmail->email, $findByEmail->name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
 		$sendMail->sendMail();
 
 		return  1;
@@ -67,12 +67,8 @@ class EmployeeRepository extends CustomerRepository
 	public function store($data) 
 	{
 
-		$Model = new Employee();
+		$Model = new Lead();
 		
-		$Auth = new \Medians\Auth\Application\AuthService;
-		$data['generated_password'] = $this->randomPassword();
-		$data['password'] = $Auth->encrypt($data['generated_password']);
-		$data['model'] = $Model::class;
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $Model->getFields()))
@@ -83,7 +79,7 @@ class EmployeeRepository extends CustomerRepository
 		
 
 		// Return the  object with the new data
-    	$Object = Employee::create($dataArray);
+    	$Object = Lead::create($dataArray);
 
     	// Store Custom fields
 		if (isset($data['field']))
@@ -98,7 +94,7 @@ class EmployeeRepository extends CustomerRepository
     public function update($data)
     {
 
-		$Object = Employee::find($data['customer_id']);
+		$Object = Lead::find($data['customer_id']);
 		
 		if ($this->validateEmail($data['email'], $data['customer_id']))
 		{
@@ -125,7 +121,7 @@ class EmployeeRepository extends CustomerRepository
     {
 		$Auth = new \Medians\Auth\Application\AuthService;
 
-		$Object = Employee::find($data['employee_id']);
+		$Object = Lead::find($data['lead_id']);
 		
 		$current = $Auth->encrypt($data['current_password']);
 
@@ -153,7 +149,7 @@ class EmployeeRepository extends CustomerRepository
 	{
 		try {
 			
-			$delete = Employee::find($id)->delete();
+			$delete = Lead::find($id)->delete();
 
 			if ($delete){
 				$this->storeCustomFields(null, $id);
@@ -180,13 +176,13 @@ class EmployeeRepository extends CustomerRepository
 			foreach ($data as $key => $value)
 			{
 				$fields = [];
-				$fields['model_type'] = Employee::class;	
+				$fields['model_type'] = Lead::class;	
 				$fields['model_id'] = $id;	
 				$fields['code'] = $key;	
 
 				if (is_array($value))
 				{
-					CustomField::where('model_type', Employee::class)->where('code',$key)->where('model_id', $id)->delete();
+					CustomField::where('model_type', Lead::class)->where('code',$key)->where('model_id', $id)->delete();
 					foreach ($value as $k => $v) {
 						$Model = CustomField::firstOrCreate($fields);
 						$Model->update(['value'=>$v]);

@@ -97,8 +97,8 @@ class APIController extends CustomController
 					$return = (new Locations\Application\RouteLocationController())->store();
 					break;
 
-				case 'Parents.create':
-					return response((new Customers\Application\ParentController())->store());
+				case 'Lead.create':
+					return response((new Customers\Application\LeadController())->store());
 					break;
 
 				case 'HelpMessage.create':

@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Medians\Settings\Infrastructure\SettingsRepository;
-use Medians\Currencies\Infrastructure\CurrencyRepository;
 
 use \Medians\Auth\Application\AuthService;
 
@@ -36,8 +35,6 @@ class APP
 	public $session;
 	
 	public $setting;
-
-	public $currency;
 
 
 	function __construct()
@@ -88,7 +85,6 @@ class APP
 	public function SystemSetting()
 	{
 		$output = (new \Medians\Settings\Application\SystemSettingsController())->getAll();
-		$_SESSION['currency'] = isset($output['currency']) ? $output['currency'] : null;
 		return $output;
 	}
 
@@ -100,16 +96,7 @@ class APP
 		$output = (new \Medians\Languages\Application\LanguageController())->getAll();
 		return $output;
 	}
-
-	/**
-	 * Load currency
-	 */ 
-	public function currency()
-	{
-		$this->currency = (new CurrencyRepository)->load($_SESSION['currency']);
-		return $this->currency;
-	}
-
+	
 
 	/**
 	 * Get setting value by code 
@@ -318,21 +305,7 @@ class APP
 			
 			array('permission'=> 'Dashboard.index', 'title'=>translate('Dashboard'), 'icon'=>'airplay', 'link'=>'dashboard', 'component'=>'master_dashboard'),
 			
-			
-			array('title'=>translate('Customers'),  'icon'=>'user', 'link'=>'#customers', 'sub'=>
-			[
-				array('permission'=>'Parents.index', 'title'=>translate('Parents'),  'icon'=>'user', 'link'=>'admin/parents', 'component'=>'parents'),
-				array('permission'=>'Students.index', 'title'=>translate('Students'),  'icon'=>'user', 'link'=>'admin/students', 'component'=>'students'),
-				array('permission'=>'Employees.index', 'title'=>translate('Employees'),  'icon'=>'user', 'link'=>'admin/employees', 'component'=>'employees'),
-			]
-			),
-			
-			array('title'=>translate('Crew'),  'icon'=>'users', 'link'=>'#crew', 'sub'=>
-			[
-				array('permission'=>'Drivers.index', 'title'=>translate('Drivers'),  'icon'=>'users', 'link'=>'admin/drivers', 'component'=>'drivers'),
-				array('permission'=>'SuperVisors.index', 'title'=>translate('Supervisors'),  'icon'=>'users', 'link'=>'admin/supervisors', 'component'=>'supervisors'),
-			]
-			),
+			array('permission'=>'Leads.index', 'title'=>translate('Leads'),  'icon'=>'user', 'link'=>'admin/leads', 'component'=>'parents'),
 
 			array('title'=>translate('Routes'),  'icon'=>'map', 'link'=>'#route', 'sub'=>
 			[
