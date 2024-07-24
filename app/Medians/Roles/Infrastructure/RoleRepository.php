@@ -24,9 +24,7 @@ class RoleRepository
 	
 	public function getWithUsers($limit = 100)
 	{
-		return Role::with(['users'=>function($q){
-			return $q;
-		}])->limit($limit)->get();
+		return Role::with('users')->limit($limit)->get();
 	}
 
 

@@ -228,26 +228,10 @@ class APIController extends CustomController
 				$controller = new Drivers\Application\DriverController;
 				break;
 
-			case 'Route.update':
-				$controller = new Routes\Application\RouteController;
-				break;
-
-			case 'Vehicle.update':
-				$controller = new Vehicles\Application\VehicleController;
-				break;
-
-			case 'RouteLocation.update':
-				$controller = new Locations\Application\RouteLocationController;
-				break;
-
 			case 'HelpMessage.update':
 				$controller =  new Help\Application\HelpMessageController;
 				break;
 	
-			case 'Parents.update':
-				$controller = new Customers\Application\ParentController;
-				break;
-
             case 'Settings.update':
                 $controller = new Settings\Application\SettingsController; 
                 break;
@@ -260,30 +244,10 @@ class APIController extends CustomController
                 $controller =  new Notifications\Application\NotificationEventController; 
                 break;
 
-            case 'Vehicle.update':
-                $controller =  new Vehicles\Application\VehicleController; 
-                break;
-
-            case 'Event.update':
-				$controller = new Events\Application\EventController;
-                break;
-
-            case 'Vacation.update':
-				$controller = new Vacations\Application\VacationController;
-                break;
-
 			case 'Role.update':
 				$controller =  new Roles\Application\RoleController; 
 				break;			
 
-			case 'Employee.update':
-				$controller =  new Customers\Application\EmployeeController; 
-				break;
-			
-			case 'Page.update':
-				$controller =  new Pages\Application\PageController; 
-				break;
-			
 			case 'Role.updatePermissions':
 				return (new Roles\Application\RoleController)->updatePermissions(); 
 				break;
@@ -292,65 +256,12 @@ class APIController extends CustomController
 				return (new Users\Application\UserController())->updateStatus();
 				break;
 	
-			case 'Package.update':
-				$controller = new Packages\Application\PackageController;
-				break;
-			
-			case 'PaymentMethod.update':
-				$controller = new PaymentMethods\Application\PaymentMethodController;
-				break;
-			
-			case 'PackageSubscription.update':
-				$controller = new Packages\Application\PackageSubscriptionController;
-				break;
-			
-			case 'VehicleType.update':
-				$controller = new Vehicles\Application\VehicleTypeController;
-				break;
-			
-			case 'SuperVisor.update':
-				$controller = new Customers\Application\SuperVisorController;
-				break;
-			
-			case 'TaxiTrip.update':
-				$controller = new Trips\Application\TaxiTripController;
-				break;
-				
-			case 'Trip.update':
-				$controller = new Trips\Application\TripController;
-				break;
-			
-			case 'DriverApplicant.update':
-				$controller = new Drivers\Application\DriverApplicantController;
-				break;
-			
-			case 'BusinessApplicant.update':
-			case 'StudentApplicant.update':
-				$controller = new Customers\Application\StudentApplicantController;
-				break;
-			
-			case 'Withdrawal.update':
-				$controller = new Wallets\Application\WithdrawalController;
-				break;
-		
-			case 'Currency.update':
-				$controller = new Currencies\Application\CurrencyService;
-				break;
-				
 			case 'Language.update':
 				$controller = new Languages\Application\LanguageController;
 				break;
 				
 			case 'Translation.update':
 				$controller = new Languages\Application\TranslationController; 
-				break;
-			
-			case 'Gallery.update':
-				$controller = new Gallery\Application\GalleryController; 
-				break;
-			
-			case 'Menu.update':
-				$controller = new Menus\Application\MenuController; 
 				break;
 	
 			case 'EmailTemplate.update':
