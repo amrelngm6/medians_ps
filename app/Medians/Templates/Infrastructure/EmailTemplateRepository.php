@@ -77,7 +77,7 @@ class EmailTemplateRepository
     	
 	
     /**
-     * Update Lead
+     * Update item
      */
     public function update($data)
     {

@@ -47,7 +47,6 @@ class AuthService
 	function __construct()
 	{
 		$this->repo = new \Medians\Users\Infrastructure\UserRepository();
-		$this->parentRepo = new \Medians\Customers\Infrastructure\ParentRepository(null);
 	}
  
 

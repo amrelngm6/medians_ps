@@ -56,7 +56,7 @@ class ContactFormRepository
 
     	
     /**
-     * Update Lead
+     * Update Form
      */
     public function update($data)
     {

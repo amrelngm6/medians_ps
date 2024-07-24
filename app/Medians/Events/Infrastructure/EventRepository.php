@@ -53,7 +53,7 @@ class EventRepository
     	
 
     /**
-     * Update Lead
+     * Update Event
      */
     public function update($data)
     {

@@ -44,7 +44,7 @@ class RoleRepository
     }
     	
     /**
-     * Update Lead
+     * Update item
      */
     public function update($data)
     {

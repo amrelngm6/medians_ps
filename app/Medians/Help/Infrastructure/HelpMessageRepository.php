@@ -193,7 +193,7 @@ class HelpMessageRepository
     }
     	
     /**
-     * Update Lead
+     * Update Message
      */
     public function update($data)
     {

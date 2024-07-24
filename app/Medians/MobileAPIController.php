@@ -65,7 +65,7 @@ class MobileAPIController extends CustomController
 				break;
 					
 			case 'leads':
-				$return = (new \Medians\Customers\Application\leadsController())->get();
+				$return = (new \Medians\Leads\Application\LeadController())->get();
 				break;
 
 
@@ -86,7 +86,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Lead.upload_picture':
-				$return =  (new Customers\Application\LeadController())->uploadPicture(); 
+				$return =  (new Leads\Application\LeadController())->uploadPicture(); 
 				break;
 				
 			case 'load_languages':

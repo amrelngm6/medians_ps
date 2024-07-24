@@ -51,7 +51,7 @@ class LanguageRepository
 
     	
     /**
-     * Update Lead
+     * Update Language
      */
     public function update($data)
     {

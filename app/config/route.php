@@ -129,7 +129,7 @@ if(!empty($app->auth()))
     /**
     * @return Leads
     */
-    RouteHandler::get('/admin/leads', Medians\Customers\Application\LeadController::class.'@index');
+    RouteHandler::get('/admin/leads', Medians\Leads\Application\LeadController::class.'@index');
 
     /** @return help messages */
     RouteHandler::get('/admin/help_messages', Medians\Help\Application\HelpMessageController::class.'@index');

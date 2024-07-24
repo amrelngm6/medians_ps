@@ -180,7 +180,7 @@ class RouteHandler {
         call_user_func(self::$error_callback);
       }
 		} catch (\Throwable $th) {
-      echo !empty($_POST) ? $th->getMessage() : '';
+      echo !empty($_POST) ? json_encode(['error'=> $th->getMessage()]) : '';
       error_log($th->getMessage(). " File : {$th->getFile()}: {$th->getLine()} ");
       return empty($_POST) ? errorPage($th->getMessage(), "File : {$th->getFile()}: {$th->getLine()} ") : '';
 		}

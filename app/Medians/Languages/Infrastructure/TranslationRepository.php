@@ -103,7 +103,7 @@ class TranslationRepository
 
     	
     /**
-     * Update Lead
+     * Update Item
      */
     public function update($data)
     {

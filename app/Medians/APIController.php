@@ -98,7 +98,7 @@ class APIController extends CustomController
 					break;
 
 				case 'Lead.create':
-					return response((new Customers\Application\LeadController())->store());
+					return response((new Leads\Application\LeadController())->store());
 					break;
 
 				case 'HelpMessage.create':
@@ -221,7 +221,7 @@ class APIController extends CustomController
 				break;
 
 			case 'Lead.update':
-				$controller = new Customers\Application\LeadController;
+				$controller = new Leads\Application\LeadController;
 				break;
 
 			case 'Driver.update':
