@@ -96,8 +96,7 @@ class AppSettingsController extends CustomController
             ],
 			
 			'Timers'=> [	
-				[ 'key'=> "map_reload_timer", 'title'=>translate('Timer for MAP reloading'), 'help_text'=>translate('Reload the Map route every X seconds'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "home_reload_timer", 'title'=>translate('Timer for Home reloading'), 'help_text'=>translate('Reload the Home screen data every X seconds'), 'fillable'=> true, 'column_type'=>'number' ],
+				[ 'key'=> "auto_call_timer", 'title'=>translate('Timer for calls'), 'help_text'=>translate('Auto Call the next lead after X seconds'), 'fillable'=> true, 'column_type'=>'number' ],
             ],
 			
         ];
@@ -138,20 +137,6 @@ class AppSettingsController extends CustomController
 	{
 		$list = $this->fillable();
 		
-		$list['payment_methods'] = [
-			[ 'key'=> "cash_payment", 'title'=> translate('Cash payment'), 'help_text'=>translate('Allow the users to pay for the taxi trips and subscriptions in cash, the balance would be added to the Driver debit balance'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-			[ 'key'=> "paypal_payment", 'title'=> translate('PayPal payment'), 'help_text'=>translate('Allow the users to pay for the taxi trips and subscriptions in PayPal'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-			[ 'key'=> "paystack_payment", 'title'=> translate('PayStack payment'), 'help_text'=>translate('Allow the users to pay for the taxi trips and subscriptions in PayStack'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-			[ 'key'=> "pagadito_payment", 'title'=> translate('Pagadito payment'), 'help_text'=>translate('Allow the users to pay for the taxi trips and subscriptions in Pagadito'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-		];
-
-		$list['Home Screen layout'][] = 
-		[ 'key'=> "show_students_list_block", 'title'=> translate('Show Students list'), 'help_text'=>translate('Show slider for all students at the homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ];
-		$list['Home Screen layout'][] = 
-		[ 'key'=> "show_add_student_block", 'title'=> translate('Show Add New Student'), 'help_text'=>translate('Show/Hide  Add new student block at the homepage'), 'fillable'=> true, 'column_type'=>'checkbox' ];
-		$list['Home Screen layout'][] = 
-			[ 'key'=> "show_pending_student", 'title'=> translate('Show pending student'), 'help_text'=>translate('Show/Hide  complete information block of pending student who has required incomplete information'), 'fillable'=> true, 'column_type'=>'checkbox' ];
-
 		return $list;
 	}
 
