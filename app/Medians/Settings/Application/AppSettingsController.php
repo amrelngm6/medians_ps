@@ -126,20 +126,12 @@ class AppSettingsController extends CustomController
 	{
 		return render('parent_app_settings', [
             'load_vue' => true,
-            'app_type' => 'Parent',
-            'app_setting' => $this->getAll('Parent'),
-            'fillable' => $this->parent_fillable(),
-            'title' => translate('Parents app Settings'),
+            'app_type' => 'Agent',
+            'app_setting' => $this->getAll('Agent'),
+            'fillable' => $this->fillable(),
+            'title' => translate('Agents app Settings'),
 	    ]);
 	} 
-
-	public function parent_fillable() 
-	{
-		$list = $this->fillable();
-		
-		return $list;
-	}
-
 
     /**
      * Get APP Settings 
