@@ -25,6 +25,8 @@ class Lead extends CustomModel
     	'picture',
     	'birth_date',
     	'mobile',
+    	'whatsapp',
+    	'job_title',
     	'status',
 	];
 
