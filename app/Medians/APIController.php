@@ -76,26 +76,10 @@ class APIController extends CustomController
 					$return = (new Users\Application\UserController())->store();
 					break;
 
-				case 'Student.create':
-					$return = (new Students\Application\StudentController())->store();
+				case 'Agent.create':
+					$return = (new Customers\Application\AgentController())->store();
 					break;
 
-				case 'Driver.create':
-					$return = (new Drivers\Application\DriverController())->store();
-					break;
-
-				case 'Route.create':
-					$return = (new Routes\Application\RouteController())->store();
-					break;
-
-				case 'Vehicle.create':
-					$return = (new Vehicles\Application\VehicleController())->store();
-					break;
-					break;
-
-				case 'RouteLocation.create':
-					$return = (new Locations\Application\RouteLocationController())->store();
-					break;
 
 				case 'Lead.create':
 					return response((new Leads\Application\LeadController())->store());
@@ -107,10 +91,6 @@ class APIController extends CustomController
 
 				case 'HelpMessage.create':
 					return response((new Help\Application\HelpMessageController())->store());
-					break;
-		
-				case 'Event.create':
-					$return = (new Events\Application\EventController())->store();
 					break;
 
 	            case 'NotificationEvent.create':
@@ -124,50 +104,7 @@ class APIController extends CustomController
 				case 'HelpMessageComment.create':
 					$return =  (new Help\Application\HelpMessageController())->storeComment(); 
 					break;
-	
-				case 'Vacation.create':
-					$return =  (new Vacations\Application\VacationController())->store(); 
-					break;
-					
-				case 'Employee.create':
-					$return =  (new Customers\Application\EmployeeController())->store(); 
-					break;
-				
-				case 'Page.create':
-					$return =  (new Pages\Application\PageController())->store(); 
-					break;
-
 		
-				case 'Package.create':
-					$return = (new Packages\Application\PackageController)->store();
-					break;
-		
-		
-				case 'PaymentMethod.create':
-					$return = (new PaymentMethods\Application\PaymentMethodController)->store();
-					break;
-		
-				case 'PackageSubscription.create':
-					$return = (new Packages\Application\PackageSubscriptionController)->store();
-					break;
-		
-				case 'VehicleType.create':
-					$return = (new Vehicles\Application\VehicleTypeController)->store();
-					break;
-		
-				case 'SuperVisor.create':
-					$return = (new Customers\Application\SuperVisorController)->store();
-					break;
-		
-				case 'TaxiTrip.create':
-					$return = (new Trips\Application\TaxiTripController)->store();
-					break;
-
-		
-				case 'CollectedCash.create':
-					$return = (new Wallets\Application\CollectedCashController)->store();
-					break;
-			
 				case 'Language.create':
 					$return = (new Languages\Application\LanguageController)->store();
 					break;
@@ -176,18 +113,6 @@ class APIController extends CustomController
 					$return = (new Languages\Application\TranslationController())->store(); 
 					break;
 					
-				case 'NewsletterSubscriber.create':
-					$return = (new Newsletters\Application\NewsletterSubscriberController())->store(); 
-					break;
-	
-				case 'ContactForm.create':
-					$return = (new Forms\Application\ContactFormController())->store(); 
-					break;
-	
-				case 'Gallery.create':
-					$return = (new Gallery\Application\GalleryController())->store(); 
-					break;
-	
 				case 'EmailTemplate.create':
 					$return = (new Templates\Application\EmailTemplateController())->store(); 
 					break;
@@ -222,6 +147,10 @@ class APIController extends CustomController
 
 			case 'AppSettings.update':
                 $controller =  new Settings\Application\AppSettingsController; 
+				break;
+
+			case 'Agent.update':
+				$controller = new Customers\Application\AgentController;
 				break;
 
 			case 'Lead.update':

@@ -136,6 +136,11 @@ if(!empty($app->auth()))
     */
     RouteHandler::get('/admin/leads', Medians\Leads\Application\LeadController::class.'@index');
 
+    /**
+    * @return Agent
+    */
+    RouteHandler::get('/admin/agents', Medians\Customers\Application\AgentController::class.'@index');
+
     /** @return help messages */
     RouteHandler::get('/admin/help_messages', Medians\Help\Application\HelpMessageController::class.'@index');
 
