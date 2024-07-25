@@ -101,6 +101,10 @@ class APIController extends CustomController
 					return response((new Leads\Application\LeadController())->store());
 					break;
 
+				case 'Campaign.create':
+					return response((new Campaigns\Application\CampaignController())->store());
+					break;
+
 				case 'HelpMessage.create':
 					return response((new Help\Application\HelpMessageController())->store());
 					break;
@@ -222,6 +226,10 @@ class APIController extends CustomController
 
 			case 'Lead.update':
 				$controller = new Leads\Application\LeadController;
+				break;
+				
+			case 'Campaign.update':
+				$controller = new Campaigns\Application\CampaignController;
 				break;
 
 			case 'Driver.update':
