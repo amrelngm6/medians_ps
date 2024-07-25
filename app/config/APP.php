@@ -307,6 +307,8 @@ class APP
 			
 			array('permission'=>'Leads.index', 'title'=>translate('Leads'),  'icon'=>'user', 'link'=>'admin/leads', 'component'=>'data_table'),
 
+			array('permission'=>'Campaigns.index', 'title'=>translate('Campaigns'),  'icon'=>'layers', 'link'=>'admin/campaigns', 'component'=>'data_table'),
+
 			array( 'title'=>translate('Users'),  'icon'=>'tool', 'link'=>'#users', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'User.index', 'title'=>translate('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
