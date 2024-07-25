@@ -56,7 +56,7 @@ class CampaignController extends CustomController
 
 		return [
             [ 'key'=> "campaign_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
-            [ 'key'=> "title", 'title'=> translate('title'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
+            [ 'key'=> "name", 'title'=> translate('name'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
             [ 'key'=> "description", 'title'=> translate('Content'),  'fillable'=> true, 'column_type'=>'textarea','required'=>true ],
             [ 'key'=> "start_date", 'title'=> translate('Start date'),  'fillable'=> true, 'column_type'=>'date' ],
             [ 'key'=> "end_date", 'title'=> translate('End date'),  'fillable'=> true, 'column_type'=>'date' ],
