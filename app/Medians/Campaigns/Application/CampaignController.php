@@ -37,9 +37,10 @@ class CampaignController extends CustomController
 
 		return [
             [ 'value'=> "campaign_id", 'text'=> "#"],
-            [ 'value'=> "title", 'text'=> translate('Title'), 'sortable'=> true ],
+            [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
-            [ 'value'=> "date", 'text'=> translate('date'), 'sortable'=> true ],
+            [ 'value'=> "start_date", 'text'=> translate('Start date'), 'sortable'=> true ],
+            [ 'value'=> "end_date", 'text'=> translate('End date'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
             [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
