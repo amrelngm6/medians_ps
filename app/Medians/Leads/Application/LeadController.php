@@ -54,12 +54,12 @@ class LeadController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "id", 'title'=> translate('id'), 'fillable'=> true, 'column_type'=>'hidden' ],
+            [ 'key'=> "lead_id", 'title'=> translate('id'), 'fillable'=> true, 'column_type'=>'hidden' ],
             // [ 'key'=> "picture", 'title'=> translate('picture'), 'fillable'=> true, 'column_type'=>'file' ],
             [ 'key'=> "name", 'title'=> translate('name'), 'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
             [ 'key'=> "mobile", 'title'=> translate('mobile'), 'fillable'=> true, 'column_type'=>'phone' ],
-            [ 'key'=> "whatsapp", 'title'=> translate('country'), 'fillable'=> true, 'column_type'=>'phone' ],
-            [ 'key'=> "job_title", 'title'=> translate('country'), 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "whatsapp", 'title'=> translate('WhatsApp number'), 'fillable'=> true, 'column_type'=>'phone' ],
+            [ 'key'=> "job_title", 'title'=> translate('Job'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "country", 'title'=> translate('country'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "email", 'title'=> translate('email'), 'fillable'=> true, 'column_type'=>'email', 'required'=>true  ],
             [ 'key'=> "status", 'title'=> translate('status'), 'fillable'=> true, 'column_type'=>'checkbox' ],

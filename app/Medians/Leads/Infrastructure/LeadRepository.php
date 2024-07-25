@@ -67,11 +67,6 @@ class LeadRepository
 
 		$Object = Lead::find($data['lead_id']);
 		
-		if ($this->validateEmail($data['email'], $data['lead_id']))
-		{
-			return throw new \Exception(translate('Email found'), 1);
-		}
-
 		// Return the  object with the new data
     	$Object->update( (array) $data);
 
