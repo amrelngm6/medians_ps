@@ -127,6 +127,11 @@ if(!empty($app->auth()))
     
 
     /**
+    * @return Campaigns
+    */
+    RouteHandler::get('/admin/campaigns', Medians\Campaigns\Application\CampaignController::class.'@index');
+
+    /**
     * @return Leads
     */
     RouteHandler::get('/admin/leads', Medians\Leads\Application\LeadController::class.'@index');
