@@ -189,14 +189,9 @@ class LeadController extends CustomController
 	        	return  $this->validateUpdate($params);
 			}			
 
-			if (empty($params['password']))
-			{
-				unset($params['password']);
-			}
-
 			$update = $this->repo->update($params);
 
-        	return isset($update->id) 
+        	return isset($update->lead_id) 
            	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
         	: array('error'=> $update );
 
@@ -217,7 +212,7 @@ class LeadController extends CustomController
 
 			$update = $this->repo->updateStatus($params);
 
-        	echo json_encode( isset($update->id) 
+        	echo json_encode( isset($update->lead_id) 
            	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
         	: array('error'=> $update ));
 
