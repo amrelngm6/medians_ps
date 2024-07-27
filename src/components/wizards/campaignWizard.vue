@@ -350,8 +350,10 @@ export default
             const showModal = ref(false);
 
             const handleLeads = () => {
-                activeTab.value = 'Leads';
-                loadLeads();
+                setTimeout(() => {
+                    loadLeads();
+                    activeTab.value = 'Leads';
+                }, 2000);
             }
             return {
                 loadLeads,
