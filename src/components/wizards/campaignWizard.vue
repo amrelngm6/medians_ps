@@ -355,22 +355,22 @@ export default
     };
 </script>
 <style lang="css">
-  #csv-table {
+  .card table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-  #csv-table td, #csv-table th {
+  .card table td, .card table th {
     border: 1px solid #ddd;
     padding: 8px;
   }
   
-  #csv-table tr:nth-child(even){background-color: #f2f2f2;}
+  .card table tr:nth-child(even){background-color: #f2f2f2;}
   
-  #csv-table tr:hover {background-color: #ddd;}
+  .card table tr:hover {background-color: #ddd;}
   
-  #csv-table th {
+  .card table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
