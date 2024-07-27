@@ -50,7 +50,7 @@ class LeadRepository
 		
 
 		// Return the  object with the new data
-    	$Object = Lead::create($dataArray);
+    	$Object = Lead::firstOrCreate($dataArray);
 
     	// Store Custom fields
 		if (isset($data['field']))
