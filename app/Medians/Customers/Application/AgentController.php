@@ -41,7 +41,6 @@ class AgentController extends CustomController
             [ 'value'=> "customer_id", 'text'=> "#"],
             [ 'value'=> "name", 'text'=> translate('Name'), 'sortable'=> true ],
             [ 'value'=> "picture", 'text'=> translate('picture'), 'sortable'=>true ],
-            [ 'value'=> "students", 'text'=> translate('Students'), 'sortable'=> true ],
             [ 'value'=> "email", 'text'=> translate('Email'), 'sortable'=> true ],
             [ 'value'=> "gender", 'text'=> translate('Gender'), 'sortable'=> true ],
             [ 'value'=> "mobile", 'text'=> translate('Mobile'), 'sortable'=> false ],
