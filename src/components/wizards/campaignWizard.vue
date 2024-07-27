@@ -1,16 +1,7 @@
 <template>
     <div class="w-full flex overflow-auto">
         <div class=" w-full relative">
-            <vue-csv-import
-                v-model="csv"
-                :fields="{name: {required: false, label: 'Name'}, age: {required: true, label: 'Age'}}"
-            >
-                <vue-csv-toggle-headers></vue-csv-toggle-headers>
-                <vue-csv-errors></vue-csv-errors>
-                <vue-csv-input></vue-csv-input>
-                <vue-csv-submit></vue-csv-submit>
-                <vue-csv-table-map></vue-csv-table-map>
-            </vue-csv-import>
+            
             
         <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
             <!--begin::Modal dialog-->
@@ -109,38 +100,23 @@
                         <div class="" v-if="activeTab == 'Fields'" :key="activeTab">
                             <div class="card-body pt-0">
                                 <div class="settings-form">
-                                    <div class="max-w-xl mb-6 mx-auto">
-
-                                        <div
-                                            class="notice d-flex bg-blue-100 rounded border-primary border border-dashed rounded-3 p-6">
-                                            <div class="d-flex flex-stack flex-grow-1 ">
-                                                <div class=" fw-semibold">
-                                                    <h4 class="text-gray-900 fw-bold"
-                                                        v-text="translate('Withdrawal required fields ')"></h4>
-                                                    <div class="fs-6 text-gray-700 "
-                                                        v-text="translate('Create the required fields that the users should fill when using this Gateway as withdraw request')">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <hr class="opacity-10 my-4" />
-                                        <div class="flex w-full">
-                                            <a v-text="translate('add_new')" @click="addField()" href="javascript:;" class="text-white btn btn-primary er fs-6 px-4 py-2" ></a>
-                                        </div>
-                                        <div class="w-full mb-6 " v-if="activeItem.fields">
-                                            <div class="w-full mb-6 mx-auto flex gap-4" v-for="(field, key) in activeItem.fields">
-                                                <label v-if="activeItem.fields[key]" @click="switchField(field, key)" class="cursor-pointer w-full col-form-label required fw-semibold fs-6">
-                                                    <p v-text="field.title" class="fw-bold fs-4"></p>
-                                                    <span v-text="field.code"></span>
-                                                </label>
-                                                <vue-feather type="edit" class="h-25px w-40px cursor-pointer "  @click="switchField(field, key)"  />
-                                                <vue-feather type="delete" class="h-25px w-40px text-danger cursor-pointer "  @click="(activeItem.fields.splice(key, 1))"  />
-                                            </div>
-                                                
-                                        </div>
-
-                                    </div>
+                                    
+                                    <vue-csv-import
+                v-model="csv"
+                :fields="{
+                    name: {required: false, label: 'Name'}, 
+                    mobile: {required: false, label: 'Phone number'}, 
+                    whatsapp: {required: false, label: 'Whatsapp'}, 
+                    job_title: {required: false, label: 'job_title'}, 
+                    email: {required: false, label: 'Email'}, 
+                }"
+            >
+                <vue-csv-toggle-headers></vue-csv-toggle-headers>
+                <vue-csv-errors></vue-csv-errors>
+                <vue-csv-input></vue-csv-input>
+                <vue-csv-submit></vue-csv-submit>
+                <vue-csv-table-map></vue-csv-table-map>
+            </vue-csv-import>
                                 </div>
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
