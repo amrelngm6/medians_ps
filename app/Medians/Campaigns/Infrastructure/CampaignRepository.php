@@ -26,7 +26,9 @@ class CampaignRepository
 	{
 		return Lead::whereHas('campaignLead', function($q) use ($campaignId) {
 			$q->where('campaign_id', $campaignId);
-		})->get();
+		})
+		->with('campaignLead')
+		->get();
 	}
 
 

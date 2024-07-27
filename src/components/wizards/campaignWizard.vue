@@ -168,7 +168,9 @@
                                             <td v-text="lead.job_title"></td>
                                             <td v-text="lead.email"></td>
                                             <td >
-
+                                                <select>
+                                                    <option v-for="agent in agents" :selected="agent_id == lead.agent_id" v-text="agent.name" :value="agent.agent_id"></option>
+                                                </select>
                                             </td>
                                         </tr>
                                     </tbody>
