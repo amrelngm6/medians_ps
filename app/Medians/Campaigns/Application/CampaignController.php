@@ -191,15 +191,23 @@ class CampaignController extends CustomController
 	
 	public function addLeads($data)
 	{
+		$params = $this->app->params();
+
+		print_r($params);
+		
 		$leadRepo = new \Medians\Leads\Infrastructure\LeadRepository;
         try 
 		{
 			$row = [];
+			$campaignLeadRow = [];
 			foreach ($data as $key => $leadRow) 
 			{
 				$leadRow['name'] = $leadRow['full_name']; 
 				$leadRow['mobile'] = $leadRow['phone_number'];
 				$lead = $leadRepo->store($leadRow);
+				$campaignLeadRow = [
+					'campaign_id' => ''
+				];
 				$addCampaignLead = $this->repo->storeLead($lead);
 			}
 
