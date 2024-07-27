@@ -410,3 +410,6 @@ export default
     padding-bottom: 12px;
     text-align: left;
     background-color: #4CAF50;
+    color: white;
+}
+</style>
