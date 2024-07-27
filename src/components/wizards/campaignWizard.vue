@@ -123,29 +123,29 @@
                                     </div>
                                 </div>
                                 <p class="text-center mt-10">
-                                    <vue-csv-submit @click="activeTab = 'Picture'" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"  url="/api/addCampaignLeads" :config="{params:{campaign_id: item.campaign_id}}" v-slot="{submit, mappedCsv}">
+                                    <vue-csv-submit @click="handleLeads" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"  url="/api/addCampaignLeads" :config="{params:{campaign_id: item.campaign_id}}" v-slot="{submit, mappedCsv}">
                                         <!-- <button @click.prevent="submit" >{{ translate('Next') }}</button> -->
                                         
                                         <a href="javascript:;"
                                         class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                        @click="activeTab = 'Picture'" v-text="translate('Next')"></a>
+                                        v-text="translate('Next')"></a>
                                     </vue-csv-submit>
                                 </p>
                             </vue-csv-import>
 
                         </div>
 
-                        <div class="" v-if="activeTab == 'Picture'" :key="activeTab">
+                        <div class="" v-if="activeTab == 'Leads'" :key="activeTab">
                             
                             <div class="text-center mb-13">
-                                <h1 class="mb-3" v-text="translate('Change logo')"></h1>
+                                <h1 class="mb-3" v-text="translate('Assign the leads')"></h1>
 
                                 <div class="text-gray-400 font-semibold "
-                                    v-text="translate('Set payment method picture')"></div>
+                                    v-text="translate('Choose the agent for each lead')"></div>
+
+                                    
                             </div>
                             
-                            <vue-medialibrary-field class="max-w-xl mx-auto":key="activeItem" @input="setPicture" :filepath="activeItem.picture ?? '/uploads/image/default_profile.png'" :api_url="conf.url"></vue-medialibrary-field>
-
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                     @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
@@ -276,7 +276,7 @@ export default
             const activeItem = ref({});
             const activeTab = ref('Info');
             const content = ref({});
-            const fillable = ref(['Info', 'Fields' , 'Confirm']);
+            const fillable = ref(['Info', 'Fields', 'Leads', 'Confirm']);
 
             if (props.item) {
                 activeItem.value = props.item
