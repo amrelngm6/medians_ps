@@ -199,7 +199,7 @@ class CampaignController extends CustomController
 			{
 				$leadRow['name'] = $leadRow['full_name']; 
 				$leadRow['mobile'] = $leadRow['phone_number'];
-				$lead = $leadRow->store($leadRow);
+				$lead = $leadRepo->store($leadRow);
 				$addCampaignLead = $this->repo->storeLead($lead);
 			}
 
