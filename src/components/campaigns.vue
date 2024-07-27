@@ -1,6 +1,6 @@
 <template>
     <div class="w-full flex overflow-auto" >
-        <campaign_wizard :item="activeItem" :system_setting="system_setting" :conf="conf" :auth="auth" v-if="showWizard" @callback="showWizard = false" />
+        <campaign_wizard :item="activeItem" :system_setting="system_setting" :conf="conf" :auth="auth" :agents="content.agents" v-if="showWizard" @callback="showWizard = false" />
         <div  v-if="content && !showWizard" class=" w-full relative">
             
             <div class=" " v-if="content.items && !content.items.length ">

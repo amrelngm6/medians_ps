@@ -382,7 +382,7 @@ export default
             'system_setting',
             'setting',
             'item',
-            'drivers',
+            'agents',
             'vehicles',
         ],
 
