@@ -79,7 +79,7 @@ class CampaignController extends CustomController
 		
 		try {
 			
-		    return render('data_table', 
+		    return render('campaigns', 
 			[
 		        'load_vue' => true,
 		        'title' => translate('Campaigns'),
