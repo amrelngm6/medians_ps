@@ -123,9 +123,12 @@
                                         <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
                                     </div>
                                 </div>
-                                <p class="text-center mt-10"><a href="javascript:;"
-                                        class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                        @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
+                                <p class="text-center mt-10">
+                                    
+                                    <vue-csv-submit url="/api/addCampaignLeads" v-slot="{submit, mappedCsv}">
+                                        <button @click.prevent="submit" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Confirm'" v-text="translate('Next')"></button>
+                                    </vue-csv-submit>
+                                </p>
                             </vue-csv-import>
 
                         </div>
