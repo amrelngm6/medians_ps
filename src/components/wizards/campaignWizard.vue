@@ -115,7 +115,7 @@
                 <vue-csv-input v-slot="{file, change}"></vue-csv-input>
                 <vue-csv-submit url="/saveCSV"></vue-csv-submit>
                 <div class="py-5 text-lg">
-                    <vue-csv-toggle-headers v-slot="{hasHeaders, toggle}">
+                    <vue-csv-toggle-headers checkboxAttributes="{}" v-slot="{hasHeaders, toggle}">
                         <button @click.prevent="toggle" v-text="translate('Show/Hide Headers')"></button>
                     </vue-csv-toggle-headers>
                 </div>
