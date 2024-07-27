@@ -51,6 +51,9 @@ class APIController extends CustomController
 			case 'load_config':
 				$return = loadConfig($request->get('component'), []);
 				break;
+			case 'addCampaignLeads':
+				$return = ['hola'];
+				break;
 		}
 
 		echo json_encode($return);
