@@ -1,66 +1,67 @@
 <template>
     <div class="w-full flex overflow-auto">
         <div class=" w-full relative">
-            
-            
-        <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
-            <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
-                <!--begin::Modal content-->
-                <div class="modal-content" data-select2-id="select2-data-133-wj88">
-                    <!--begin::Modal header-->
-                    <div class="modal-header">
-                        <!--begin::Modal title-->
-                        <h2 class="fw-bold" v-text="translate('Field details')"></h2>
 
-                    </div>
 
-                    <div class="modal-body mx-5 mx-xl-15 my-7"   v-if="activeItem.fields[activeField]">
-                        <div class="w-full row">
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                v-text="translate('Field title')"></label>
-                            <input :required="true" autocomplete="off" 
-                                class="form-control form-control-solid"
-                                :placeholder="translate('Title of the field')" type="text"
-                                v-model="activeItem.fields[activeField].title">
-                        </div>
-                        
-                        <div class="w-full row">
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                v-text="translate('Field code')"></label>
-                            <input :required="true" autocomplete="off" 
-                                class="form-control form-control-solid"
-                                :placeholder="translate('Code of the field')" type="text"
-                                v-model="activeItem.fields[activeField].code">
-                        </div>
-                        
-                        <div class="w-full row">
-                            <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                v-text="translate('Field type')"></label>
-                            <select 
-                                class="form-control form-control-solid"
-                                :placeholder="translate('Type of the field')" type="number"
-                                v-model="activeItem.fields[activeField].type">
-                                <option value="text" v-text="translate('Text')"></option>
-                                <option value="number" v-text="translate('Number')"></option>
-                                <option value="email" v-text="translate('Email')"></option>
-                                <option value="phone" v-text="translate('Phone')"></option>
-                                <option value="textarea" v-text="translate('Textarea')"></option>
-                            </select>
-                        </div>
-                        
-                        <div class="text-center">
-                            <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3" v-text="translate('Discard')" @click="showModal = false"></button>
+            <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1"
+                aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance"
+                style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
+                    <!--begin::Modal content-->
+                    <div class="modal-content" data-select2-id="select2-data-133-wj88">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2 class="fw-bold" v-text="translate('Field details')"></h2>
 
-                            <button @click="showModal = false" type="submit" id="kt_modal_adjust_balance_submit" class="btn btn-primary">
-                                <span class="indicator-label" v-text="translate('Submit')"></span>
-                            </button>
+                        </div>
+
+                        <div class="modal-body mx-5 mx-xl-15 my-7" v-if="activeItem.fields[activeField]">
+                            <div class="w-full row">
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                    v-text="translate('Field title')"></label>
+                                <input :required="true" autocomplete="off" class="form-control form-control-solid"
+                                    :placeholder="translate('Title of the field')" type="text"
+                                    v-model="activeItem.fields[activeField].title">
+                            </div>
+
+                            <div class="w-full row">
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                    v-text="translate('Field code')"></label>
+                                <input :required="true" autocomplete="off" class="form-control form-control-solid"
+                                    :placeholder="translate('Code of the field')" type="text"
+                                    v-model="activeItem.fields[activeField].code">
+                            </div>
+
+                            <div class="w-full row">
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                    v-text="translate('Field type')"></label>
+                                <select class="form-control form-control-solid"
+                                    :placeholder="translate('Type of the field')" type="number"
+                                    v-model="activeItem.fields[activeField].type">
+                                    <option value="text" v-text="translate('Text')"></option>
+                                    <option value="number" v-text="translate('Number')"></option>
+                                    <option value="email" v-text="translate('Email')"></option>
+                                    <option value="phone" v-text="translate('Phone')"></option>
+                                    <option value="textarea" v-text="translate('Textarea')"></option>
+                                </select>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3"
+                                    v-text="translate('Discard')" @click="showModal = false"></button>
+
+                                <button @click="showModal = false" type="submit" id="kt_modal_adjust_balance_submit"
+                                    class="btn btn-primary">
+                                    <span class="indicator-label" v-text="translate('Submit')"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-            
+
 
             <close_icon class="absolute top-4 right-4 z-10 cursor-pointer" @click="back" />
             <div class=" card w-full py-10">
@@ -68,7 +69,8 @@
                     <div class="stepper-nav justify-content-center py-2 mb-10">
                         <div class="stepper-item " v-for="row in fillable" @click="activeTab = row">
                             <h3 :class="activeTab == row ? 'text-danger border-danger' : 'text-gray-400 border-transparent'"
-                                class="cursor-pointer pb-3 px-2 stepper-title text-md border-b " v-text="translate(row)"></h3>
+                                class="cursor-pointer pb-3 px-2 stepper-title text-md border-b "
+                                v-text="translate(row)"></h3>
                         </div>
                     </div>
                     <div class="w-full">
@@ -79,16 +81,17 @@
 
                                         <input name="params[payment_method_id]" type="hidden">
 
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
-                                            v-text="translate('Name')"></label>
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                            :for="'input' + i" v-text="translate('Name')"></label>
                                         <input :required="true" autocomplete="off" name="params[name]"
-                                            class="form-control form-control-solid" :placeholder="translate('Payment method name')"
-                                            v-model="activeItem.name">
+                                            class="form-control form-control-solid"
+                                            :placeholder="translate('Payment method name')" v-model="activeItem.name">
                                         <hr class="block mt-6 my-2 opacity-10" />
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6" :for="'input' + i"
-                                            v-text="translate('Description')"></label>
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+                                            :for="'input' + i" v-text="translate('Description')"></label>
                                         <textarea :required="true" autocomplete="off" name="params[description]"
-                                            class="form-control form-control-solid" :placeholder="translate('Description')"
+                                            class="form-control form-control-solid"
+                                            :placeholder="translate('Description')"
                                             v-model="activeItem.description"> </textarea>
                                     </div>
                                 </div>
@@ -98,37 +101,40 @@
                                     @click="activeTab = 'Fields'" v-text="translate('Next')"></a></p>
                         </div>
                         <div class="" v-if="activeTab == 'Fields'" :key="activeTab">
-                            
-                            <vue-csv-import
-                                v-model="csv"
-                                :fields="{
-                                    name: {required: false, label: 'Full_Name'}, 
-                                    mobile: {required: false, label: 'Phone_Number'}, 
-                                    whatsapp: {required: false, label: 'Whatsapp'}, 
-                                    job_title: {required: false, label: 'Job_Title'}, 
-                                    email: {required: false, label: 'Email'}, 
-                                }"
-                            >
+
+                            <vue-csv-import v-model="csv" :fields="{
+                name: { required: false, label: 'Full_Name' },
+                mobile: { required: false, label: 'Phone_Number' },
+                whatsapp: { required: false, label: 'Whatsapp' },
+                job_title: { required: false, label: 'Job_Title' },
+                email: { required: false, label: 'Email' },
+            }">
                                 <div class="card-body pt-0">
                                     <div class="settings-form">
-                                        
+
                                         <vue-csv-errors></vue-csv-errors>
-                                        <vue-csv-input v-slot="{file, change}"></vue-csv-input>
+                                        <vue-csv-input v-slot="{ file, change }"></vue-csv-input>
                                         <div class="py-5 text-lg">
-                                            <vue-csv-toggle-headers  v-slot="{hasHeaders, toggle}">
-                                                <button @click.prevent="toggle" v-text="translate('Show/Hide Headers')"></button>
+                                            <vue-csv-toggle-headers v-slot="{ hasHeaders, toggle }">
+                                                <button @click.prevent="toggle"
+                                                    v-text="translate('Show/Hide Headers')"></button>
                                             </vue-csv-toggle-headers>
                                         </div>
-                                        <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
+                                        <vue-csv-table-map autoMatch="true"
+                                            autoMatchIgnoreCase="true"></vue-csv-table-map>
                                     </div>
                                 </div>
                                 <p class="text-center mt-10">
-                                    <vue-csv-submit @click="handleLeads" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"  url="/api/addCampaignLeads" :config="{params:{campaign_id: item.campaign_id}}" v-slot="{submit, mappedCsv}">
-                                        <!-- <button @click.prevent="submit" >{{ translate('Next') }}</button> -->
-                                        
-                                        <a href="javascript:;"
+                                    <vue-csv-submit @click="handleLeads"
                                         class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                        v-text="translate('Next')"></a>
+                                        url="/api/addCampaignLeads"
+                                        :config="{ params: { campaign_id: item.campaign_id } }"
+                                        v-slot="{ submit, mappedCsv }">
+                                        <!-- <button @click.prevent="submit" >{{ translate('Next') }}</button> -->
+
+                                        <a href="javascript:;"
+                                            class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
+                                            v-text="translate('Next')"></a>
                                     </vue-csv-submit>
                                 </p>
                             </vue-csv-import>
@@ -136,16 +142,37 @@
                         </div>
 
                         <div class="" v-if="activeTab == 'Leads'" :key="activeTab">
-                            
+
                             <div class="text-center mb-13">
                                 <h1 class="mb-3" v-text="translate('Assign the leads')"></h1>
 
                                 <div class="text-gray-400 font-semibold "
                                     v-text="translate('Choose the agent for each lead')"></div>
 
-                                    
+                                <table>
+                                    <thead>
+                                        <thead>
+                                            <tr>
+                                                <td v-text="translate('Whatsapp')"></td>
+                                                <td v-text="translate('Full name')"></td>
+                                                <td v-text="translate('Phone number')"></td>
+                                                <td v-text="translate('Job title')"></td>
+                                                <td v-text="translate('Email')"></td>
+                                            </tr>
+                                        </thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="lead in campaignLeads">
+                                            <td v-text="lead.whatsapp"></td>
+                                            <td v-text="lead.name"></td>
+                                            <td v-text="lead.mobile"></td>
+                                            <td v-text="lead.job_title"></td>
+                                            <td v-text="lead.email"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            
+
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
                                     @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
@@ -153,29 +180,31 @@
                         <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
 
                             <div class="max-w-6xl mx-auto">
-                                
+
                                 <div class="max-w-xl mx-auto gap-10">
                                     <div class="w-full flex">
                                         <div class="w-full">
                                             <div class="card-header border-0 flex gap-4">
-                                                <div class="card-title gap-4"> 
+                                                <div class="card-title gap-4">
                                                     <img class="w-10 h-10 rounded-full" :src="activeItem.picture" />
-                                                    <h2 v-text="activeItem.name"></h2> 
+                                                    <h2 v-text="activeItem.name"></h2>
                                                 </div>
                                             </div>
 
                                             <div class="card-body py-0">
-                                                <div class="fs-5 fw-semibold text-gray-500 mb-4" v-text="activeItem.description"></div>
+                                                <div class="fs-5 fw-semibold text-gray-500 mb-4"
+                                                    v-text="activeItem.description"></div>
                                             </div>
                                         </div>
                                         <div class="mx-auto pt-4">
 
                                             <label class=" flex gap-2 cursor-pointer">
                                                 <form_field class="flex-end" :item="activeItem"
-                                                    :column="{ key: 'status', title: translate('Status'), column_type: 'checkbox', hide_text:true }">
+                                                    :column="{ key: 'status', title: translate('Status'), column_type: 'checkbox', hide_text: true }">
                                                 </form_field>
                                                 <div class="pt-3">
-                                                    <span class="badge badge-light fw-bold me-auto px-4 py-3" v-text="!activeItem.status ? 'Pending' : 'Active'"></span>
+                                                    <span class="badge badge-light fw-bold me-auto px-4 py-3"
+                                                        v-text="!activeItem.status ? 'Pending' : 'Active'"></span>
                                                 </div>
                                             </label>
                                         </div>
@@ -248,7 +277,7 @@ import editable_map_location from '@/components/includes/editable_map_location.v
 import route_map from '@/components/maps/route_map.vue';
 import field from '@/components/includes/Field.vue';
 
-import {VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors, VueCsvImport,VueCsvTableMap, VueCsvImportPlugin} from 'vue-csv-import';
+import { VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors, VueCsvImport, VueCsvTableMap, VueCsvImportPlugin } from 'vue-csv-import';
 
 
 export default
@@ -277,13 +306,15 @@ export default
             const activeTab = ref('Info');
             const content = ref({});
             const fillable = ref(['Info', 'Fields', 'Leads', 'Confirm']);
+            const campaignLeads = ref([]);
 
             if (props.item) {
                 activeItem.value = props.item
             }
 
             const loadLeads = () => {
-                handleGetRequest('/api/loadCampaignLeads?campaign_id='+props.item.campaign_id).then(response => {
+                handleGetRequest('/api/loadCampaignLeads?campaign_id=' + props.item.campaign_id).then(response => {
+                    campaignLeads = response;
                     console.log(response);
                 })
             }
@@ -294,7 +325,7 @@ export default
 
 
             const progressWidth = () => {
-                let requiredData = ['name', 'description',  'double_cost_month', 'double_cost_quarter', 'double_cost_year', 'status'];
+                let requiredData = ['name', 'description', 'double_cost_month', 'double_cost_quarter', 'double_cost_year', 'status'];
 
                 return getProgressWidth(requiredData, activeItem);
             }
@@ -305,20 +336,19 @@ export default
                 showModal.value = true
             }
             const addField = () => {
-                if (!activeItem.value.fields)
-                {
-                    activeItem.value.fields = [{'title': ''}];
+                if (!activeItem.value.fields) {
+                    activeItem.value.fields = [{ 'title': '' }];
                 } else {
-                    activeItem.value.fields.push({'title':''})
+                    activeItem.value.fields.push({ 'title': '' })
                 }
-                
+
                 activeField.value = activeItem.value.fields.length - 1;
                 showModal.value = true
             }
 
             const activeField = ref(0);
             const showModal = ref(false);
-            
+
             const handleLeads = () => {
                 activeTab.value = 'Leads';
                 loadLeads();
@@ -355,26 +385,31 @@ export default
     };
 </script>
 <style lang="css">
-  .card table {
+.card table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-  }
-  
-  .card table td, .card table th {
+}
+
+.card table td,
+.card table th {
     border: 1px solid #ddd;
     padding: 8px;
-  }
-  
-  .card table tr:nth-child(even){background-color: #f2f2f2;}
-  
-  .card table tr:hover {background-color: #ddd;}
-  
-  .card table th {
+}
+
+.card table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.card table tr:hover {
+    background-color: #ddd;
+}
+
+.card table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #4CAF50;
     color: white;
-  }
-  </style>
+}
+</style>
