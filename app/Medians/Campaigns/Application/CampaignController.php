@@ -134,9 +134,9 @@ class CampaignController extends CustomController
 	 */
 	public function loadLeads()
 	{
-		$params = $this->app->params();
+		$campaignId = $this->app->request()->get('campaign_id');
 
-		return $this->repo->getLeads($params['campaign_id']);
+		return $this->repo->getLeads($campaignId);
 	}  
 
 	
