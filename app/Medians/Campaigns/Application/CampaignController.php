@@ -193,8 +193,8 @@ class CampaignController extends CustomController
 	{
 		$params = $this->app->params();
 
-		print_r($params);
-		
+		print_r($_GET['campaign_id']);
+
 		$leadRepo = new \Medians\Leads\Infrastructure\LeadRepository;
         try 
 		{
@@ -206,7 +206,8 @@ class CampaignController extends CustomController
 				$leadRow['mobile'] = $leadRow['phone_number'];
 				$lead = $leadRepo->store($leadRow);
 				$campaignLeadRow = [
-					'campaign_id' => ''
+					'campaign_id' => $_GET['campaign_id'],
+					'lead_id' => $lead->lead_id,
 				];
 				$addCampaignLead = $this->repo->storeLead($lead);
 			}
