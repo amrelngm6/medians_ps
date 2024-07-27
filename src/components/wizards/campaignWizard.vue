@@ -115,7 +115,7 @@
                 <vue-csv-errors></vue-csv-errors>
                 <vue-csv-input></vue-csv-input>
                 <vue-csv-submit></vue-csv-submit>
-                <vue-csv-table-map></vue-csv-table-map>
+                <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
             </vue-csv-import>
                                 </div>
                             </div>
