@@ -168,7 +168,7 @@
                                             <td v-text="lead.job_title"></td>
                                             <td v-text="lead.email"></td>
                                             <td >
-                                                
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -307,7 +307,7 @@ export default
             const activeItem = ref({});
             const activeTab = ref('Info');
             const content = ref({});
-            const fillable = ref(['Info', 'Fields', 'Leads', 'Confirm']);
+            const fillable = ref(['Info', 'Fields', 'Confirm']);
             const campaignLeads = ref([]);
 
             if (props.item) {
