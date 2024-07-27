@@ -3,6 +3,7 @@
 namespace Medians\Campaigns\Infrastructure;
 
 use Medians\Campaigns\Domain\Campaign;
+use Medians\Campaigns\Domain\CampaignLead;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Drivers\Domain\Driver;
 use Medians\Users\Domain\User;
@@ -47,6 +48,29 @@ class CampaignRepository
 
 		// Return the  object with the new data
     	$Object = Campaign::create($dataArray);
+
+    	return $Object;
+    }
+    	
+
+	/**
+	* Save item to database
+	*/
+	public function storeLead($data) 
+	{
+
+		$Model = new CampaignLead();
+
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+
+		// Return the  object with the new data
+    	$Object = CampaignLead::create($dataArray);
 
     	return $Object;
     }
