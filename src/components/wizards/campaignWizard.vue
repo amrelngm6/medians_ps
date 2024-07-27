@@ -2,20 +2,21 @@
     <div class="w-full flex overflow-auto">
         <div class=" w-full relative">
             <vue-csv-import
-        v-model="csv"
-        :fields="{
-            name: {
-                required: false,
-                label: 'Name'
-            },
-            age: {
-                required: true,
-                label: 'Age'
-            }
-        }"
-    >
-        <!-- Other Components -->
-    </vue-csv-import>
+                v-model="csv"
+                :fields="{
+                    name: {
+                        required: false,
+                        label: 'Name'
+                    },
+                    age: {
+                        required: true,
+                        label: 'Age'
+                    }
+                }"
+            >
+            <vue-csv-input name="file"></vue-csv-input>
+                <!-- Other Components -->
+            </vue-csv-import>
             
         <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
             <!--begin::Modal dialog-->
