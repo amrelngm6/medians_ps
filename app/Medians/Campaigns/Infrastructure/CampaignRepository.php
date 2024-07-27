@@ -26,8 +26,7 @@ class CampaignRepository
 	{
 		return Lead::whereHas('campaignLead', function($q) use ($campaignId) {
 			$q->where('campaign_id', $campaignId);
-		})->limit($limit)
-		->get();
+		})->get();
 	}
 
 
