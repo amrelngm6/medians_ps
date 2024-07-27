@@ -151,15 +151,11 @@
 
                                 <table>
                                     <thead>
-                                        <thead>
-                                            <tr>
-                                                <td v-text="translate('Whatsapp')"></td>
-                                                <td v-text="translate('Full name')"></td>
-                                                <td v-text="translate('Phone number')"></td>
-                                                <td v-text="translate('Job title')"></td>
-                                                <td v-text="translate('Email')"></td>
-                                            </tr>
-                                        </thead>
+                                        <th v-text="translate('Whatsapp')"></th>
+                                        <th v-text="translate('Full name')"></th>
+                                        <th v-text="translate('Phone number')"></th>
+                                        <th v-text="translate('Job title')"></th>
+                                        <th v-text="translate('Email')"></th>
                                     </thead>
                                     <tbody>
                                         <tr v-for="lead in campaignLeads">
