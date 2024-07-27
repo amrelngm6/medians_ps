@@ -102,25 +102,25 @@
                                 <div class="settings-form">
                                     
                                     <vue-csv-import
-                v-model="csv"
-                :fields="{
-                    name: {required: false, label: 'Full_Name'}, 
-                    mobile: {required: false, label: 'Phone_Number'}, 
-                    whatsapp: {required: false, label: 'Whatsapp'}, 
-                    job_title: {required: false, label: 'Job_Title'}, 
-                    email: {required: false, label: 'Email'}, 
-                }"
-                >
-                <vue-csv-errors></vue-csv-errors>
-                <vue-csv-input v-slot="{file, change}"></vue-csv-input>
-                <vue-csv-submit url="/saveCSV"></vue-csv-submit>
-                <div class="py-5 text-lg">
-                    <vue-csv-toggle-headers checkboxAttributes="{}" v-slot="{hasHeaders, toggle}">
-                        <button @click.prevent="toggle" v-text="translate('Show/Hide Headers')"></button>
-                    </vue-csv-toggle-headers>
-                </div>
-                <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
-            </vue-csv-import>
+                                        v-model="csv"
+                                        :fields="{
+                                            name: {required: false, label: 'Full_Name'}, 
+                                            mobile: {required: false, label: 'Phone_Number'}, 
+                                            whatsapp: {required: false, label: 'Whatsapp'}, 
+                                            job_title: {required: false, label: 'Job_Title'}, 
+                                            email: {required: false, label: 'Email'}, 
+                                        }"
+                                        >
+                                        <vue-csv-errors></vue-csv-errors>
+                                        <vue-csv-input v-slot="{file, change}"></vue-csv-input>
+                                        <vue-csv-submit url="/saveCSV"></vue-csv-submit>
+                                        <div class="py-5 text-lg">
+                                            <vue-csv-toggle-headers  v-slot="{hasHeaders, toggle}">
+                                                <button @click.prevent="toggle" v-text="translate('Show/Hide Headers')"></button>
+                                            </vue-csv-toggle-headers>
+                                        </div>
+                                    </vue-csv-import>
+                                    <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
                                 </div>
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
