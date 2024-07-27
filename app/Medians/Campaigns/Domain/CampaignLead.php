@@ -31,9 +31,4 @@ class CampaignLead extends CustomModel
 		return $this->fillable;
 	}
 	
-	public function campaignLead()
-	{
-		$this->hasOne(CampaignLead::class, 'campaign_id', 'campaign_id');
-	}
-	
 }
