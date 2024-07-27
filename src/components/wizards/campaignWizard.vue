@@ -151,11 +151,14 @@
 
                                 <table>
                                     <thead>
-                                        <th v-text="translate('Whatsapp')"></th>
-                                        <th v-text="translate('Full name')"></th>
-                                        <th v-text="translate('Phone number')"></th>
-                                        <th v-text="translate('Job title')"></th>
-                                        <th v-text="translate('Email')"></th>
+                                        <tr>
+
+                                            <th v-text="translate('Whatsapp')"></th>
+                                            <th v-text="translate('Full name')"></th>
+                                            <th v-text="translate('Phone number')"></th>
+                                            <th v-text="translate('Job title')"></th>
+                                            <th v-text="translate('Email')"></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="lead in campaignLeads">
