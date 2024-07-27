@@ -69,7 +69,7 @@ class CampaignRepository
 		}		
 
 		// Return the  object with the new data
-    	$Object = CampaignLead::create($dataArray);
+    	$Object = CampaignLead::firstOrCreate($dataArray);
 
     	return $Object;
     }
