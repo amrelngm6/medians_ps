@@ -114,9 +114,11 @@
                 <vue-csv-errors></vue-csv-errors>
                 <vue-csv-input v-slot="{file, change}"></vue-csv-input>
                 <vue-csv-submit url="/saveCSV"></vue-csv-submit>
-                <vue-csv-toggle-headers v-slot="{hasHeaders, toggle}">
-                    <button @click.prevent="toggle">Has Headers</button>
-                </vue-csv-toggle-headers>
+                <div class="pull-right float-right">
+                    <vue-csv-toggle-headers v-slot="{hasHeaders, toggle}">
+                        <button @click.prevent="toggle">Has Headers</button>
+                    </vue-csv-toggle-headers>
+                </div>
                 <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
             </vue-csv-import>
                                 </div>
