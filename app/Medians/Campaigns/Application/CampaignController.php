@@ -197,7 +197,8 @@ class CampaignController extends CustomController
 			$row = [];
 			foreach ($data as $key => $leadRow) 
 			{
-				$leadRow = ['name' => $leadRow['full_name'], 'mobile' => $leadRow['phone_number']];
+				$leadRow['name'] = $leadRow['full_name']; 
+				$leadRepo['mobile'] = $leadRow['phone_number'];
 				$lead = $leadRepo->store($leadRow);
 				$addCampaignLead = $this->repo->storeLead($lead);
 			}
