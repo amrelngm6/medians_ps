@@ -283,9 +283,7 @@ export default
             }
 
             const savePaymentMethod = () => {
-                var params = new URLSearchParams();
-                params.append('type', 'PaymentMethod.' + type)
-                handleGetRequest('/api/loadCampaignLeads').then(response => {
+                handleGetRequest('/api/loadCampaignLeads?campaign_id='+props.item.campaign_id).then(response => {
                     console.log(response);
                 })
             }

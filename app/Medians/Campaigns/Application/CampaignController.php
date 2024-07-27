@@ -120,14 +120,23 @@ class CampaignController extends CustomController
 	}
 
 	/**
-	 * Load latest notifications at mobile
+	 * Load latest campaigns
 	 * 
 	 */
 	public function loadCampaigns()
 	{
-		$this->app = new \config\APP;
 
-		return $this->repo->loadDriverMessages($this->app->auth(), 100);
+	}  
+
+	/**
+	 * Load latest Leads
+	 * 
+	 */
+	public function loadLeads()
+	{
+		$params = $this->app->params();
+
+		return $this->repo->getLeads($params['campaign_id']);
 	}  
 
 	

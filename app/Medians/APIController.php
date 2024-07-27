@@ -57,6 +57,10 @@ class APIController extends CustomController
 				$data = array_values(json_decode($request_body, true));
 				$return = (new  Campaigns\Application\CampaignController)->addLeads($data[0]);
 				break;
+
+			case 'loadCampaignLeads':
+				$return = (new  Campaigns\Application\CampaignController)->loadLeads();
+				break;
 		}
 
 		echo json_encode($return);
