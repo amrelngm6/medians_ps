@@ -161,10 +161,6 @@ class APIController extends CustomController
 				$controller = new Campaigns\Application\CampaignController;
 				break;
 
-			case 'Driver.update':
-				$controller = new Drivers\Application\DriverController;
-				break;
-
 			case 'HelpMessage.update':
 				$controller =  new Help\Application\HelpMessageController;
 				break;
@@ -231,28 +227,8 @@ class APIController extends CustomController
 					return response((new Users\Application\UserController())->delete());
 					break;
 
-				case 'Driver.delete':
-					return response((new Drivers\Application\DriverController())->delete());
-					break;
-
-				case 'Parents.delete':
-					return response((new Customers\Application\ParentController())->delete());
-					break;
-
-				case 'Route.delete':
-					return response((new Routes\Application\RouteController())->delete());
-					break;
-
-				case 'RouteLocation.delete':
-					return response((new Locations\Application\RouteLocationController())->delete());
-					break;
-
-				case 'Student.delete':
-					return response((new Students\Application\StudentController())->delete());
-					break;
-
-				case 'Vehicle.delete':
-					return response((new Vehicles\Application\VehicleController())->delete());
+				case 'Agent.delete':
+					return response((new Customers\Application\AgentController())->delete());
 					break;
 
 				case 'HelpMessage.delete':
@@ -271,57 +247,6 @@ class APIController extends CustomController
 					return response((new Events\Application\EventController())->delete());
 					break;
 			
-				case 'Employee.delete':
-					return response((new Customers\Application\EmployeeController())->delete());
-					break;
-					break;
-			
-				case 'Page.delete':
-					return response((new Pages\Application\PageController())->delete());
-					break;
-		
-				case 'Package.delete':
-					return response((new Packages\Application\PackageController())->delete());
-					break;
-			
-			
-				case 'PaymentMethod.delete':
-					return response((new PaymentMethods\Application\PaymentMethodController())->delete());
-					break;
-			
-				case 'PackageSubscription.delete':
-					return response((new Packages\Application\PackageSubscriptionController())->delete());
-					break;
-			
-				case 'VehicleType.delete':
-					return response((new Vehicles\Application\VehicleTypeController())->delete());
-					break;
-			
-				case 'SuperVisor.delete':
-					return response((new Customers\Application\SuperVisorController())->delete());
-					break;
-			
-				case 'TaxiTrip.delete':
-					return response((new Trips\Application\TaxiTripController())->delete());
-					break;
-
-				case 'BusinessApplicant.delete':
-				case 'StudentApplicant.delete':
-					return response((new Customers\Application\StudentApplicantController())->delete());
-					break;
-	
-				case 'NewsletterSubscriber.delete':
-					return response((new Newsletters\Application\NewsletterSubscriberController())->delete());
-					break;
-	
-				case 'ContactForm.delete':
-					return response((new Forms\Application\ContactFormController())->delete());
-					break;
-	
-				case 'Gallery.delete':
-					return response((new Gallery\Application\GalleryController())->delete());
-					break;
-					
 				case 'Language.delete':
 					return response((new Languages\Application\LanguageController())->delete());
 					break;
