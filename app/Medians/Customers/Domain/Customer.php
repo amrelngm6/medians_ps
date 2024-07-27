@@ -27,6 +27,7 @@ class Customer extends CustomModel
 		'birth_date',
 		'generated_password',
 		'password',
+		'model',
 		'status'
 	];
 
