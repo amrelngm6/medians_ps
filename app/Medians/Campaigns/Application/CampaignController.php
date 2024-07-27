@@ -188,4 +188,25 @@ class CampaignController extends CustomController
 	}
 
 
+	
+	public function addLeads($data)
+	{
+		$leadRepo = new \Medians\Leads\Infrastructure\LeadRepository;
+        try 
+		{
+			foreach ($data as $key => $leadRow) 
+			{
+				$lead = $leadRepo->store($leadRow);
+			}
+
+            if ($this->repo->addLeads($lead))
+            {
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
+            }
+
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request", 1);
+        }
+	}
+
 }

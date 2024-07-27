@@ -52,9 +52,10 @@ class APIController extends CustomController
 				$return = loadConfig($request->get('component'), []);
 				break;
 			case 'addCampaignLeads':
+				
 				$request_body = file_get_contents('php://input');
 				$data = array_values(json_decode($request_body, true));
-				$return = $data[0];
+				$return = (new  Campaigns\Application\CampaignController)->addLeads($data[0]);
 				break;
 		}
 
