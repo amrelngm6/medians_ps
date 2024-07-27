@@ -53,9 +53,8 @@ class APIController extends CustomController
 				break;
 			case 'addCampaignLeads':
 				$request_body = file_get_contents('php://input');
-				$data = json_decode($request_body, true);
-				print_r(array_values($data));
-				$return = $data;
+				$data = array_values(json_decode($request_body, true));
+				$return = $data[0];
 				break;
 		}
 
