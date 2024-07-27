@@ -8,6 +8,7 @@
                 <vue-csv-toggle-headers></vue-csv-toggle-headers>
                 <vue-csv-errors></vue-csv-errors>
                 <vue-csv-input></vue-csv-input>
+                <vue-csv-submit></vue-csv-submit>
                 <vue-csv-table-map></vue-csv-table-map>
             </vue-csv-import>
             
@@ -260,7 +261,7 @@ import editable_map_location from '@/components/includes/editable_map_location.v
 import route_map from '@/components/maps/route_map.vue';
 import field from '@/components/includes/Field.vue';
 
-import {VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors, VueCsvImport} from 'vue-csv-import';
+import {VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors, VueCsvImport,VueCsvTableMap, VueCsvImportPlugin} from 'vue-csv-import';
 
 
 export default
@@ -268,7 +269,7 @@ export default
         components: {
             'vue-medialibrary-field': field,
             'datatabble': Vue3EasyDataTable,
-            VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors, VueCsvImport,
+            VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors, VueCsvImport, VueCsvTableMap, VueCsvImportPlugin,
             SideFormCreate,
             SideFormUpdate,
             maps,
