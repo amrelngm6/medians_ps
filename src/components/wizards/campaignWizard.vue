@@ -378,3 +378,27 @@ export default
 
     };
 </script>
+<style lang="css">
+  #csv-table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #csv-table td, #csv-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #csv-table tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #csv-table tr:hover {background-color: #ddd;}
+  
+  #csv-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+  </style>
