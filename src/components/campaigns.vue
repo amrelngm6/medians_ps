@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <div class="card-px text-center pt-15 pb-15">
                             <h2 class="fs-2x fw-bold mb-0" v-text="content.title"></h2>
-                            <p class="text-gray-400 fs-4 font-semibold py-7" v-text="translate('Add your first Payment method using this below wizard')"></p>
+                            <p class="text-gray-400 fs-4 font-semibold py-7" v-text="translate('Add your first Campaign using this below wizard')"></p>
                             <a v-text="translate('add_new')" @click="showAddSide = true, activeItem = {}" href="javascript:;" class="text-white btn btn-primary er fs-6 px-8 py-4" ></a>
                         </div>
 
@@ -48,9 +48,9 @@
                 </div>
             </main>
     
-            <side_form_create ref="activeFormCreate" @callback="closeSide" :auth="auth" :conf="conf" :model="'PaymentMethod.create'" :columns="content.fillable"  class="col-md-3" v-if="showAddSide && !showWizard"  />
+            <side_form_create ref="activeFormCreate" @callback="closeSide" :auth="auth" :conf="conf" :model="'Campaign.create'" :columns="content.fillable"  class="col-md-3" v-if="showAddSide && !showWizard"  />
                 
-            <!-- <side_form_update ref="activeFormUpdate" @callback="closeSide" :key="activeItem" :auth="auth" :conf="conf" :model="'PaymentMethod.update'" :item="activeItem" :model_id="activeItem.payment_method_id" index="payment_method_id"  :columns="content.fillable"  class="col-md-3"  v-if="showWizard && !showAddSide" /> -->
+            <!-- <side_form_update ref="activeFormUpdate" @callback="closeSide" :key="activeItem" :auth="auth" :conf="conf" :model="'Campaign.update'" :item="activeItem" :model_id="activeItem.payment_method_id" index="payment_method_id"  :columns="content.fillable"  class="col-md-3"  v-if="showWizard && !showAddSide" /> -->
             
         </div>
     </div>
@@ -100,7 +100,7 @@ export default
         tooltip,
         payment_wizard
     },
-    name:'PaymentMethods',
+    name:'Campaigns',
     setup(props) {
 
         const url =  props.conf.url+props.path+'?load=json';
@@ -142,7 +142,7 @@ export default
                     break;  
 
                 case 'delete':
-                    deleteByKey('payment_method_id', data, 'PaymentMethod.delete');
+                    deleteByKey('campaign_id', data, 'Campaign.delete');
                     break;  
 
                     
