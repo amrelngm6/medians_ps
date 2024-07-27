@@ -152,12 +152,12 @@
                                 <table>
                                     <thead>
                                         <tr>
-
                                             <th v-text="translate('Whatsapp')"></th>
                                             <th v-text="translate('Full name')"></th>
                                             <th v-text="translate('Phone number')"></th>
                                             <th v-text="translate('Job title')"></th>
                                             <th v-text="translate('Email')"></th>
+                                            <th v-text="translate('Agent')"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -167,6 +167,9 @@
                                             <td v-text="lead.mobile"></td>
                                             <td v-text="lead.job_title"></td>
                                             <td v-text="lead.email"></td>
+                                            <td >
+                                                
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
