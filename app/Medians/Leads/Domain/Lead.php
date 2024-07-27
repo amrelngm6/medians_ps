@@ -47,7 +47,7 @@ class Lead extends CustomModel
 	
 	public function campaignLead()
 	{
-		$this->hasOne(CampaignLead::class, 'lead_id', 'lead_id');
+		return $this->hasOne(CampaignLead::class, 'lead_id', 'lead_id');
 	}
 
 
