@@ -4,6 +4,7 @@ namespace Medians\Campaigns\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\Campaigns\Infrastructure\CampaignRepository;
+use Medians\Customers\Infrastructure\AgentRepository;
 
 class CampaignController extends CustomController 
 {
@@ -12,6 +13,8 @@ class CampaignController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
+
+	protected $agentRepo;
 
 	protected $app;
 
@@ -22,7 +25,8 @@ class CampaignController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new CampaignRepository	();
+		$this->repo = new CampaignRepository();
+		$this->agentRepo = new AgentRepository();
 	}
 
 
@@ -86,6 +90,7 @@ class CampaignController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+		        'agents' => $this->agentRepo->get(),
 				'object_name' => 'Campaign',
 				'object_key' => 'campaign_id'
 		    ]);
