@@ -5,7 +5,7 @@ namespace Medians\Campaigns\Infrastructure;
 use Medians\Campaigns\Domain\Campaign;
 use Medians\Campaigns\Domain\CampaignLead;
 use Medians\CustomFields\Domain\CustomField;
-use Medians\Drivers\Domain\Driver;
+use Medians\Leads\Domain\Lead;
 use Medians\Users\Domain\User;
 
 
@@ -20,6 +20,14 @@ class CampaignRepository
 	public function get($limit = 100)
 	{
 		return Campaign::limit($limit)->orderBy('campaign_id', 'DESC')->get();
+	}
+
+	public function getLeads($campaignId)
+	{
+		return Lead::whereHas('campaignLead', function($q) use ($campaignId) {
+			$q->where('campaign_id', $campaignId);
+		})->limit($limit)
+		->get();
 	}
 
 

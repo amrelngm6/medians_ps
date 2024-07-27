@@ -5,6 +5,7 @@ namespace Medians\Leads\Domain;
 use Shared\dbaser\CustomModel;
 
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Campaigns\Domain\CampaignLead;
 
 
 class Lead extends CustomModel
@@ -41,6 +42,12 @@ class Lead extends CustomModel
 	public function hasToken()
 	{
         return $this->hasOne(CustomField::class, 'model_id', 'id')->where('model_type', User::class);
+	}
+
+	
+	public function campaignLead()
+	{
+		$this->hasOne(CampaignLead::class, 'lead_id', 'lead_id');
 	}
 
 
