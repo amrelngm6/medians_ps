@@ -58,7 +58,6 @@ class CampaignRepository
 	*/
 	public function storeLead($data) 
 	{
-		print_r($data);
 		$Model = new CampaignLead();
 
 		foreach ($data as $key => $value) 

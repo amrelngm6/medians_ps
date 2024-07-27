@@ -193,8 +193,6 @@ class CampaignController extends CustomController
 	{
 		$params = $this->app->params();
 
-		print_r($_GET['campaign_id']);
-
 		$leadRepo = new \Medians\Leads\Infrastructure\LeadRepository;
         try 
 		{
