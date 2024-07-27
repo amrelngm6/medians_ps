@@ -92,7 +92,7 @@ class AgentController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-				'object_name' => 'Agents',
+				'object_name' => 'Agent',
 				'object_key'  => 'customer_id'
 		    ]);
 		} catch (\Exception $e) {
