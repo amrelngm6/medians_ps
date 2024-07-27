@@ -124,7 +124,7 @@
                                 </div>
                                 <p class="text-center mt-10">
                                     
-                                    <vue-csv-submit class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"  url="/api/addCampaignLeads" :config="{params:{customParam: '1'}}" v-slot="{submit, mappedCsv}">
+                                    <vue-csv-submit class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"  url="/api/addCampaignLeads" :config="{params:{campaign_id: item.campaign_id}}" v-slot="{submit, mappedCsv}">
                                         <button @click.prevent="submit" >{{ translate('Next') }}</button>
                                     </vue-csv-submit>
                                 </p>
