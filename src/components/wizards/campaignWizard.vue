@@ -252,11 +252,15 @@ import editable_map_location from '@/components/includes/editable_map_location.v
 import route_map from '@/components/maps/route_map.vue';
 import field from '@/components/includes/Field.vue';
 
+import {VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors, VueCsvImport} from 'vue-csv-import';
+
+
 export default
     {
         components: {
             'vue-medialibrary-field': field,
             'datatabble': Vue3EasyDataTable,
+            VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors, VueCsvImport,
             SideFormCreate,
             SideFormUpdate,
             maps,
