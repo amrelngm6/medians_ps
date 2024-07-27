@@ -7,7 +7,7 @@ use Medians\Users\Domain\User;
 use Medians\Drivers\Domain\Driver;
 
 
-class Campaign extends CustomModel
+class CampaignLead extends CustomModel
 {
 
 	/*
