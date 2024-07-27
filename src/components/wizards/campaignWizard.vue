@@ -8,7 +8,7 @@
                 <vue-csv-toggle-headers></vue-csv-toggle-headers>
                 <vue-csv-errors></vue-csv-errors>
                 <vue-csv-input></vue-csv-input>
-                <vue-csv-map></vue-csv-map>
+                <vue-csv-table-map></vue-csv-table-map>
             </vue-csv-import>
             
         <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1" aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance" style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
