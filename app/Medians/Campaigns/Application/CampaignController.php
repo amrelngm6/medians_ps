@@ -209,7 +209,7 @@ class CampaignController extends CustomController
 					'campaign_id' => $_GET['campaign_id'],
 					'lead_id' => $lead->lead_id,
 				];
-				$addCampaignLead = $this->repo->storeLead($lead);
+				$addCampaignLead = $this->repo->storeLead($campaignLeadRow);
 			}
 
             if ($addCampaignLead)
