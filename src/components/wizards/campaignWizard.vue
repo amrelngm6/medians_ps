@@ -114,7 +114,6 @@
                                         
                                         <vue-csv-errors></vue-csv-errors>
                                         <vue-csv-input v-slot="{file, change}"></vue-csv-input>
-                                        <vue-csv-submit url="/saveCSV"></vue-csv-submit>
                                         <div class="py-5 text-lg">
                                             <vue-csv-toggle-headers  v-slot="{hasHeaders, toggle}">
                                                 <button @click.prevent="toggle" v-text="translate('Show/Hide Headers')"></button>
@@ -125,7 +124,7 @@
                                 </div>
                                 <p class="text-center mt-10">
                                     
-                                    <vue-csv-submit class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"  url="/api/addCampaignLeads" v-slot="{submit, mappedCsv}">
+                                    <vue-csv-submit class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"  url="/api/addCampaignLeads" :config="{params:{customParam: '1'}}" v-slot="{submit, mappedCsv}">
                                         <button @click.prevent="submit" >{{ translate('Next') }}</button>
                                     </vue-csv-submit>
                                 </p>
