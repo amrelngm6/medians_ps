@@ -104,8 +104,8 @@
                                     <vue-csv-import
                 v-model="csv"
                 :fields="{
-                    full_name: {required: false, label: 'Name'}, 
-                    phone_number: {required: false, label: 'Phone number'}, 
+                    name: {required: false, label: 'full_name'}, 
+                    mobile: {required: false, label: 'phone_number'}, 
                     whatsapp: {required: false, label: 'Whatsapp'}, 
                     job_title: {required: false, label: 'job_title'}, 
                     email: {required: false, label: 'Email'}, 
