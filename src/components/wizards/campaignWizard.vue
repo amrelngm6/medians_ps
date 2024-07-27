@@ -282,7 +282,7 @@ export default
                 activeItem.value = props.item
             }
 
-            const savePaymentMethod = () => {
+            const loadLeads = () => {
                 handleGetRequest('/api/loadCampaignLeads?campaign_id='+props.item.campaign_id).then(response => {
                     console.log(response);
                 })
@@ -321,9 +321,10 @@ export default
             
             const handleLeads = () => {
                 activeTab.value = 'Leads';
-                load
+                loadLeads();
             }
             return {
+                loadLeads,
                 handleLeads,
                 showModal,
                 switchField,
