@@ -98,19 +98,20 @@
                                     @click="activeTab = 'Fields'" v-text="translate('Next')"></a></p>
                         </div>
                         <div class="" v-if="activeTab == 'Fields'" :key="activeTab">
-                            <div class="card-body pt-0">
-                                <div class="settings-form">
-                                    
-                                    <vue-csv-import
-                                        v-model="csv"
-                                        :fields="{
-                                            name: {required: false, label: 'Full_Name'}, 
-                                            mobile: {required: false, label: 'Phone_Number'}, 
-                                            whatsapp: {required: false, label: 'Whatsapp'}, 
-                                            job_title: {required: false, label: 'Job_Title'}, 
-                                            email: {required: false, label: 'Email'}, 
-                                        }"
-                                        >
+                            
+                            <vue-csv-import
+                                v-model="csv"
+                                :fields="{
+                                    name: {required: false, label: 'Full_Name'}, 
+                                    mobile: {required: false, label: 'Phone_Number'}, 
+                                    whatsapp: {required: false, label: 'Whatsapp'}, 
+                                    job_title: {required: false, label: 'Job_Title'}, 
+                                    email: {required: false, label: 'Email'}, 
+                                }"
+                            >
+                                <div class="card-body pt-0">
+                                    <div class="settings-form">
+                                        
                                         <vue-csv-errors></vue-csv-errors>
                                         <vue-csv-input v-slot="{file, change}"></vue-csv-input>
                                         <vue-csv-submit url="/saveCSV"></vue-csv-submit>
@@ -119,13 +120,14 @@
                                                 <button @click.prevent="toggle" v-text="translate('Show/Hide Headers')"></button>
                                             </vue-csv-toggle-headers>
                                         </div>
-                                    </vue-csv-import>
-                                    <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
+                                        <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
+                                    </div>
                                 </div>
-                            </div>
-                            <p class="text-center mt-10"><a href="javascript:;"
-                                    class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="activeTab = 'Picture'" v-text="translate('Next')"></a></p>
+                                <p class="text-center mt-10"><a href="javascript:;"
+                                        class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
+                                        @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
+                            </vue-csv-import>
+
                         </div>
 
                         <div class="" v-if="activeTab == 'Picture'" :key="activeTab">
