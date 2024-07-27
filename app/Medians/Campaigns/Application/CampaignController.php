@@ -197,15 +197,16 @@ class CampaignController extends CustomController
 			foreach ($data as $key => $leadRow) 
 			{
 				$lead = $leadRepo->store($leadRow);
+				$addCampaignLead = $this->repo->addLead($lead);
 			}
 
-            if ($this->repo->addLeads($lead))
+            if ($addCampaignLead)
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
 
         } catch (\Exception $e) {
-        	throw new \Exception("Error Processing Request", 1);
+        	throw new \Exception("Error Processing Request ". $e->getMessage(), 1);
         }
 	}
 
