@@ -228,7 +228,7 @@ import 'vue3-easy-data-table/dist/style.css';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 
 import { defineAsyncComponent, ref } from 'vue';
-import { translate, getProgressWidth, handleRequest, deleteByKey, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails } from '@/utils.vue';
+import { translate, getProgressWidth, handleRequest, deleteByKey, showAlert, handleAccess, getPositionAddress, findPlaces, getPlaceDetails, handleGetRequest } from '@/utils.vue';
 
 const maps = defineAsyncComponent(() =>
     import('@/components/includes/map.vue')
@@ -284,19 +284,9 @@ export default
 
             const savePaymentMethod = () => {
                 var params = new URLSearchParams();
-                let array = JSON.parse(JSON.stringify(activeItem.value));
-                let keys = Object.keys(array)
-                let k, d, value = '';
-                for (let i = 0; i < keys.length; i++) {
-                    k = keys[i]
-                    d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
-                    params.append('params[' + k + ']', d)
-                }
-
-                let type = array.payment_method_id > 0 ? 'update' : 'create';
                 params.append('type', 'PaymentMethod.' + type)
-                handleRequest(params, '/api/' + type).then(response => {
-                    handleAccess(response)
+                handleGetRequest('/api/loadCampaignLeads').then(response => {
+                    console.log(response);
                 })
             }
 
@@ -331,12 +321,12 @@ export default
             const activeField = ref(0);
             const showModal = ref(false);
             
-            const setPicture = (a) => {
-                console.log(a)
-                activeItem.value.picture = a.value;
+            const handleLeads = () => {
+                activeTab.value = 'Leads';
+                load
             }
             return {
-                setPicture,
+                handleLeads,
                 showModal,
                 switchField,
                 addField,

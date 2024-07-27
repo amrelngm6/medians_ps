@@ -51,8 +51,8 @@ class APIController extends CustomController
 			case 'load_config':
 				$return = loadConfig($request->get('component'), []);
 				break;
+
 			case 'addCampaignLeads':
-				
 				$request_body = file_get_contents('php://input');
 				$data = array_values(json_decode($request_body, true));
 				$return = (new  Campaigns\Application\CampaignController)->addLeads($data[0]);
