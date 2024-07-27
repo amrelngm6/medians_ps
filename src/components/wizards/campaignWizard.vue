@@ -314,7 +314,7 @@ export default
 
             const loadLeads = () => {
                 handleGetRequest('/api/loadCampaignLeads?campaign_id=' + props.item.campaign_id).then(response => {
-                    campaignLeads = response;
+                    campaignLeads.value = response;
                     console.log(response);
                 })
             }
