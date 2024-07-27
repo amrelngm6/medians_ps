@@ -110,9 +110,10 @@
                     job_title: {required: false, label: 'Job_Title'}, 
                     email: {required: false, label: 'Email'}, 
                 }"
-            >
+                >
+                <vue-csv-toggle-headers  v-slot="{hasHeaders, toggle}"></vue-csv-toggle-headers>
                 <vue-csv-errors></vue-csv-errors>
-                <vue-csv-input  v-slot="{file, change}"></vue-csv-input>
+                <vue-csv-input v-slot="{file, change}"></vue-csv-input>
                 <vue-csv-submit url="/saveCSV"></vue-csv-submit>
                 <vue-csv-table-map autoMatch="true" autoMatchIgnoreCase="true"></vue-csv-table-map>
             </vue-csv-import>
