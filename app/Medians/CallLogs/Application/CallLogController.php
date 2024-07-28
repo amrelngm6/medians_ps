@@ -1,11 +1,11 @@
 <?php
-namespace Medians\Campaigns\Application;
+namespace Medians\CallLogs\Application;
 
 use Shared\dbaser\CustomController;
 
-use Medians\Campaigns\Infrastructure\CampaignRepository;
+use Medians\CallLogs\Infrastructure\CallLogRepository;
 
-class CampaignController extends CustomController 
+class CallLogController extends CustomController 
 {
 
 	/**
@@ -22,7 +22,7 @@ class CampaignController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new CampaignRepository	();
+		$this->repo = new CallLogRepository	();
 	}
 
 
@@ -36,7 +36,7 @@ class CampaignController extends CustomController
 	{
 
 		return [
-            [ 'value'=> "campaign_id", 'text'=> "#"],
+            [ 'value'=> "call_log_id", 'text'=> "#"],
             [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "start_date", 'text'=> translate('Start date'), 'sortable'=> true ],
@@ -56,7 +56,7 @@ class CampaignController extends CustomController
 	{
 
 		return [
-            [ 'key'=> "campaign_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
+            [ 'key'=> "call_log_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
             [ 'key'=> "name", 'title'=> translate('name'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
             [ 'key'=> "description", 'title'=> translate('Content'),  'fillable'=> true, 'column_type'=>'textarea','required'=>true ],
             [ 'key'=> "start_date", 'title'=> translate('Start date'),  'fillable'=> true, 'column_type'=>'date' ],
@@ -82,12 +82,12 @@ class CampaignController extends CustomController
 		    return render('data_table', 
 			[
 		        'load_vue' => true,
-		        'title' => translate('Campaigns'),
+		        'title' => translate('CallLogs'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
-				'object_name' => 'Campaign',
-				'object_key' => 'campaign_id'
+				'object_name' => 'CallLog',
+				'object_key' => 'call_log_id'
 		    ]);
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
@@ -170,10 +170,10 @@ class CampaignController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['campaign_id']);
+        	$check = $this->repo->find($params['call_log_id']);
 
 
-            if ($this->repo->delete($params['campaign_id']))
+            if ($this->repo->delete($params['call_log_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }
