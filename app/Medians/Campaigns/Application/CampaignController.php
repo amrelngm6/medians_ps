@@ -154,7 +154,7 @@ class CampaignController extends CustomController
 
         	$params['status'] = !empty($params['status']) ? $params['status'] : null;
 
-            if ($this->repo->update($params) && !$this->addLeads($params['campaign_leads']))
+            if ($this->repo->update($params) && !$this->addLeads($params['campaign_leads'], $params['campaign_id']))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
@@ -203,7 +203,7 @@ class CampaignController extends CustomController
 
 
 	
-	public function addLeads($data)
+	public function addLeads($data, $campaignId)
 	{
 
 		print_r($data);
@@ -214,11 +214,11 @@ class CampaignController extends CustomController
 			$campaignLeadRow = [];
 			foreach ($data as $key => $leadRow) 
 			{
-				$leadRow['name'] = $leadRow['full_name']; 
-				$leadRow['mobile'] = $leadRow['phone_number'];
+				$leadRow['name'] = $leadRow['full_name'] ?? ($leadRow['name'] ?? ''); 
+				$leadRow['mobile'] = $leadRow['phone_number'] ?? ($leadRow['mobile'] ?? '');
 				$lead = $leadRepo->store($leadRow);
 				$campaignLeadRow = [
-					'campaign_id' => $_GET['campaign_id'],
+					'campaign_id' => $campaignId,
 					'lead_id' => $lead->lead_id,
 				];
 				$addCampaignLead = $this->repo->storeLead($campaignLeadRow);
