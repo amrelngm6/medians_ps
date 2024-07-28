@@ -257,6 +257,7 @@ class APP
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
 				array('permission'=>'EmailTemplate.index', 'title'=>translate('Email Templates'),  'icon'=>'tag', 'link'=>'admin/email_templates', 'component'=>'email_templates'),
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'events'),
+				array('permission'=>'StatusList.index', 'title'=>translate('Status List'),  'icon'=>'tag', 'link'=>'admin/status_list', 'component'=>'data_table'),
 			]
 			),
 

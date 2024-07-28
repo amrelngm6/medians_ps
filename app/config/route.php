@@ -132,6 +132,11 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/campaigns', Medians\Campaigns\Application\CampaignController::class.'@index');
 
     /**
+    * @return Status List
+    */
+    RouteHandler::get('/admin/status_list', Medians\StatusList\Application\StatusController::class.'@index');
+
+    /**
     * @return Leads
     */
     RouteHandler::get('/admin/leads', Medians\Leads\Application\LeadController::class.'@index');
