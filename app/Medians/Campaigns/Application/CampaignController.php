@@ -144,6 +144,17 @@ class CampaignController extends CustomController
 		return $this->repo->getLeads($campaignId);
 	}  
 
+	/**
+	 * Load latest Leads
+	 * 
+	 */
+	public function getByAgent()
+	{
+		$user = $this->app->auth();
+
+		return $this->repo->getByAgent($user->customer_id);
+	}  
+
 	
 
 	public function update()

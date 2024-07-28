@@ -64,10 +64,13 @@ class MobileAPIController extends CustomController
 				$return = (new \Medians\Help\Application\HelpMessageController())->loadHelpMessage();
 				break;
 					
-			case 'leads':
-				$return = (new \Medians\Leads\Application\LeadController())->get();
+			case 'agent_leads':
+				$return = (new \Medians\Leads\Application\LeadController())->getByAgent();
 				break;
-
+					
+			case 'agent_campaigns':
+				$return = (new \Medians\Campaigns\Application\CampaignController())->getByAgent();
+				break;
 
 			case 'Agent.login':
 				$return =  (new Customers\Application\AgentController())->login(); 

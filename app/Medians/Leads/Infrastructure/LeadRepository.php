@@ -23,6 +23,18 @@ class LeadRepository
 	}
 
 
+	public function getByAgent($agentId , $campaignId)
+	{
+		return Lead::whereHas('campaingLead', function($q) use ($agentId, $campaignId) {
+			return $q->where('agent_id', $agentId)->where('campaign_id', $campaignId);
+		})
+		->with(['campaignLeads'=> function ($q) use ($agentId, $campaignId) {
+			return $q->where('agent_id', $agentId)->where('campaign_id', $campaignId);
+		}])
+		->get();
+	}
+
+
 	public function find($lead_id)
 	{
 		return Lead::find($lead_id);

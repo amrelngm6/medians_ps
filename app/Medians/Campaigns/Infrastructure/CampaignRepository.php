@@ -22,6 +22,13 @@ class CampaignRepository
 		return Campaign::limit($limit)->orderBy('campaign_id', 'DESC')->get();
 	}
 
+	public function getByAgent($agentId)
+	{
+		return Campaign::whereHas('leads', function($q) use ($agentId) {
+			return $q->where('agent_id', $agentId);
+		})->get();
+	}
+
 	public function getLeads($campaignId)
 	{
 		return Lead::whereHas('campaignLead', function($q) use ($campaignId) {

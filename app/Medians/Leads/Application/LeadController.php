@@ -222,6 +222,15 @@ class LeadController extends CustomController
 	}
 
 
+	/**
+	 * Get leads by agent
+	 */
+	public function getByAgent()
+	{
+		$lead = $this->app->auth();
+		
+		return $this->repo->getByAgent($lead->customer_id);
+	}
 
 
 }
