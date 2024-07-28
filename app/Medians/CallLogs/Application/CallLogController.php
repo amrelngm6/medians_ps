@@ -111,7 +111,6 @@ class CallLogController extends CustomController
 
 			$lead = $this->leadRepo->findByMobile($params['mobile']);
 			$params['lead_id'] = $lead->lead_id ?? 0;
-			$params['time'] = date('Y-m-d H:i:s', $params['time']);
 			$returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
@@ -135,7 +134,6 @@ class CallLogController extends CustomController
 			$response = null;
 			foreach ($params as $key => $value) {
 				$value = (array) $value;
-				$value['time'] = date('Y-m-d H:i:s', $value['time']);
 				$lead = $this->leadRepo->findByMobile($value['mobile']);
 				$value['lead_id'] = $lead->lead_id ?? 0;
 				$response = $this->repo->store($value);
