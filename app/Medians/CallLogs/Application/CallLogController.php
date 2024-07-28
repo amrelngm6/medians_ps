@@ -109,9 +109,10 @@ class CallLogController extends CustomController
 
         try {	
 
-			$lead = $this->leadRepo->findByMobile($value['mobile']);
+			$lead = $this->leadRepo->findByMobile($params['mobile']);
 			$params['lead_id'] = $lead->lead_id ?? 0;
-            $returnData = (!empty($this->repo->store($params))) 
+			$params['time'] = date('Y-m-d H:i:s', $params['time']);
+			$returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
