@@ -134,7 +134,8 @@ class CallLogController extends CustomController
 			foreach ($params as $key => $value) {
 				$value = (array) $value;
 				$value['time'] = date('Y-m-d H:i:s', $value['time']);
-				$value['lead_id'] = $value['lead_id'] ?? $this->leadRepo->findByMobile($value['mobile'])->lead_id;
+				$lead = $this->leadRepo->findByMobile($value['mobile']);
+				$value['lead_id'] = $lead->lead_id ?? 0;
 				$response = $this->repo->store($value);
 			}
 
