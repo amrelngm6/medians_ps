@@ -335,7 +335,7 @@ export default
                 setTimeout(() => {
                     loadLeads();
                     activeTab.value = 'Leads';
-                    showLoader.value = true;
+                    showLoader.value = false;
                 }, 1500);
             }
             loadLeads();
