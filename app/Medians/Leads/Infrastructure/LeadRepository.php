@@ -24,7 +24,7 @@ class LeadRepository
 
 	public function findByMobile($mobile)
 	{
-		return Lead::where('mobile', $mobile)->find();
+		return Lead::where('mobile', $mobile)->first();
 	}
 
 
