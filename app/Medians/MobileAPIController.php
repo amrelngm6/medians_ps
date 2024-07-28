@@ -80,6 +80,10 @@ class MobileAPIController extends CustomController
 				$return =  (new Campaigns\Application\CampaignController())->updateLeadCall(); 
 				break;
 
+			case 'Agent.addLeadCall':
+				$return =  (new CallLogs\Application\CallLogController())->store(); 
+				break;
+
 			case 'Driver.loginWithTwitter':
 				$return =  (new Drivers\Application\DriverController())->loginWithTwitter(); 
 				break;

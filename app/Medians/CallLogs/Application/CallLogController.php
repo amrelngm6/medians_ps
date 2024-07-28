@@ -106,8 +106,6 @@ class CampaignController extends CustomController
 
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;        	
-
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
@@ -122,16 +120,14 @@ class CampaignController extends CustomController
 	
 
 
-	public function storeCall() 
+	public function addLeadCall() 
 	{
 
 		$params = $this->app->params();
 
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;        	
-
-            $returnData = (!empty($this->repo->storeCall($params))) 
+            $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
