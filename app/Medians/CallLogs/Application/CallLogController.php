@@ -119,7 +119,7 @@ class CallLogController extends CustomController
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
-			if ($params['lead_id'])
+			if ($value['lead_id'] > 0)
 			{
 				$campaignLead = $this->campaignRepo->getByLeadAgent($params['lead_id'], $user->customer_id);
 				$campaignLead->update(['status'=>$params['status']]);
@@ -149,7 +149,7 @@ class CallLogController extends CustomController
 				$value['lead_id'] = $lead->lead_id ?? 0;
 				$response = $this->repo->store($value);
 
-				if ($value['lead_id'])
+				if ($value['lead_id'] > 0)
 				{
 					$campaignLead = $this->campaignRepo->getByLeadAgent($value['lead_id'], $user->customer_id);
 					$campaignLead->update(['status'=>$value['status']]);
