@@ -22,7 +22,8 @@ class Status extends CustomModel
 		'title',
 		'value',
 		'sort',
-		'model'
+		'model',
+		'icon'
 	];
 
 
