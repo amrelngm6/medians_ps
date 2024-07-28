@@ -132,7 +132,9 @@ class CallLogController extends CustomController
         try {	
 			$response = null;
 			foreach ($params as $key => $value) {
-				$response = $this->repo->store((array) $value);
+				$value = (array) $value;
+				$value['lead_id'] = $value['lead_id'] ?? $this->leadRepo->findByMobile($value['mobile'])->lead_id;
+				$response = $this->repo->store($value);
 			}
 
 			return $response;
