@@ -120,17 +120,18 @@ class CampaignController extends CustomController
 	
 
 
-	public function addLeadCall() 
+	public function storeLog() 
 	{
 
 		$params = $this->app->params();
 
         try {	
+			$response = null;
+			foreach ($params as $key => $value) {
+				$response = $this->repo->store($value);
+			}
 
-            $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
-
+			return $response;
         } catch (Exception $e) {
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
