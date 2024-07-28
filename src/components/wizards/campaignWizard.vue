@@ -59,8 +59,8 @@
                                             <vue-csv-input class="w-full" v-slot="{ file, change }"></vue-csv-input>
                                             <div class="py-5 text-lg" >
                                                 <vue-csv-toggle-headers v-slot="{ hasHeaders, toggle }">
-                                                    <button @click.prevent="toggle"
-                                                        v-text="translate('File has Headers')"></button>
+                                                    <checkbox />
+                                                    <button @click.prevent="toggle" v-text="translate('File has Headers')"></button>
                                                 </vue-csv-toggle-headers>
                                             </div>
                                         </div>
