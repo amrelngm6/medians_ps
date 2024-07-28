@@ -97,6 +97,14 @@ class StatusController extends CustomController
 	}
 
 
+
+	/**
+	 * Load status list
+	 */
+	public function get()
+	{
+		return $this->repo->get();
+	}
 	
 
 

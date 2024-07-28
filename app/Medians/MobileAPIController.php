@@ -47,6 +47,10 @@ class MobileAPIController extends CustomController
 			case 'load_config':
 				$return = loadConfig(null, []);
 				break;
+		
+			case 'load_status_list':
+				$return = (new StatusList\Application\StatusController())->get(); 
+				break;
 
 			case 'app_settings':
 				$return = (new \Medians\Settings\Application\AppSettingsController())->loadSetting();
