@@ -221,9 +221,9 @@
                                         <div class="card-body py-0">
                                             <div class=" w-full ">
                                                 <div
-                                                    class="border border-dashed border-gray-300  rounded my-4 p-4 ">
+                                                    class="border border-dashed border-gray-300  rounded p-4 ">
                                                     
-                                                    <div v-for="agent in agents" class="d-flex flex-stack">  
+                                                    <div v-for="agent in agents" class="d-flex flex-stack my-4 ">  
                                                         <div class="symbol symbol-40px me-5">
                                                             <img :src="agent.picture" class="h-50 align-self-center" alt="">                         
                                                         </div>
