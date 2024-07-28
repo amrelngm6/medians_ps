@@ -152,26 +152,27 @@
                                 <table>
                                     <thead>
                                         <tr>
+                                            <th v-text="translate('Agent')"></th>
                                             <th v-text="translate('Whatsapp')"></th>
                                             <th v-text="translate('Full name')"></th>
                                             <th v-text="translate('Phone number')"></th>
                                             <th v-text="translate('Job title')"></th>
                                             <th v-text="translate('Email')"></th>
-                                            <th v-text="translate('Agent')"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="lead in campaignLeads">
-                                            <td v-text="lead.whatsapp"></td>
-                                            <td v-text="lead.name"></td>
-                                            <td v-text="lead.mobile"></td>
-                                            <td v-text="lead.job_title"></td>
-                                            <td v-text="lead.email"></td>
+                                            
                                             <td >
                                                 <select v-if="lead.campaign_lead" v-model="lead.campaign_lead.agent_id">
                                                     <option v-for="agent in agents" :selected="agent_id == lead.campaign_lead.agent_id" v-text="agent.name" :value="agent.agent_id"></option>
                                                 </select>
                                             </td>
+                                            <td v-text="lead.whatsapp"></td>
+                                            <td v-text="lead.name"></td>
+                                            <td v-text="lead.mobile"></td>
+                                            <td v-text="lead.job_title"></td>
+                                            <td v-text="lead.email"></td>
                                         </tr>
                                     </tbody>
                                 </table>
