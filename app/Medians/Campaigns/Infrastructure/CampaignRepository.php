@@ -24,7 +24,7 @@ class CampaignRepository
 
 	public function getByAgent($agentId)
 	{
-		return Campaign::whereHas('leads', function($q) use ($agentId) {
+		return Campaign::with('leads')->whereHas('leads', function($q) use ($agentId) {
 			return $q->where('agent_id', $agentId);
 		})->get();
 	}
