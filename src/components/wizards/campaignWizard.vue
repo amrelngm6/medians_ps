@@ -55,12 +55,14 @@
                                     <div class="settings-form">
 
                                         <vue-csv-errors></vue-csv-errors>
-                                        <vue-csv-input v-slot="{ file, change }"></vue-csv-input>
-                                        <div class="py-5 text-lg" v-if="showHeaderOption">
-                                            <vue-csv-toggle-headers v-slot="{ hasHeaders, toggle }">
-                                                <button @click.prevent="toggle"
-                                                    v-text="translate('Show/Hide Headers')"></button>
-                                            </vue-csv-toggle-headers>
+                                        <div class="w-full flex ">
+                                            <vue-csv-input class="w-full" v-slot="{ file, change }"></vue-csv-input>
+                                            <div class="py-5 text-lg" >
+                                                <vue-csv-toggle-headers v-slot="{ hasHeaders, toggle }">
+                                                    <button @click.prevent="toggle"
+                                                        v-text="translate('File has Headers')"></button>
+                                                </vue-csv-toggle-headers>
+                                            </div>
                                         </div>
                                         <vue-csv-table-map autoMatch="true"
                                             autoMatchIgnoreCase="true"></vue-csv-table-map>
