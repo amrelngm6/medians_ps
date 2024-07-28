@@ -22,7 +22,7 @@ class CallLog extends CustomModel
 		'lead_id',
 		'mobile',
 		'agent_id',
-		'time',
+		'date',
 		'duration',
 		'type',
 		'status',
