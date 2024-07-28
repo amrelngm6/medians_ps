@@ -111,8 +111,8 @@ class AppSettingsController extends CustomController
 	{
 		return render('app_settings', [
             'load_vue' => true,
-            'app_type' => 'Agents',
-            'app_setting' => $this->getAll('Agents'),
+            'app_type' => 'Agent',
+            'app_setting' => $this->getAll('Agent'),
             'fillable' => $this->fillable(),
             'title' => translate('Agents app Settings'),
 	    ]);
