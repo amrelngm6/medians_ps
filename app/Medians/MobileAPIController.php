@@ -77,7 +77,7 @@ class MobileAPIController extends CustomController
 				break;
 
 			case 'Agent.updateLeadCall':
-				$return =  (new Customers\Application\AgentController())->updateLeadCall(); 
+				$return =  (new Campaigns\Application\CampaignController())->updateLeadCall(); 
 				break;
 
 			case 'Driver.loginWithTwitter':
