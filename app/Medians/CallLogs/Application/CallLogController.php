@@ -132,7 +132,7 @@ class CallLogController extends CustomController
         try {	
 			$response = null;
 			foreach ($params as $key => $value) {
-				$response = $this->repo->store($value);
+				$response = $this->repo->store((array) $value);
 			}
 
 			return $response;

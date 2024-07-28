@@ -76,12 +76,13 @@ class MobileAPIController extends CustomController
 				$return =  (new Customers\Application\AgentController())->login(); 
 				break;
 
-			case 'Agent.updateCallLog':
-				$return =  (new CallLogs\Application\CallLogController())->storeLog(); 
-				break;
 
 			case 'Agent.updateLeadCall':
 				$return =  (new Campaigns\Application\CampaignController())->updateLeadCall(); 
+				break;
+				
+			case 'Agent.updateCallLog':
+				$return =  (new CallLogs\Application\CallLogController())->storeLog(); 
 				break;
 
 			case 'Agent.addLeadCall':
