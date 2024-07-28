@@ -241,7 +241,7 @@ class CampaignController extends CustomController
 		{
 			foreach ($data as $key => $leadRow) 
 			{
-				$addCampaignLead = $this->repo->updateLead($leadRow->campaign_lead);
+				$addCampaignLead = $this->repo->updateLead((array) $leadRow->campaign_lead);
 			}
 
 			if ($addCampaignLead)
