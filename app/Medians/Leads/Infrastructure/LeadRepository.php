@@ -25,7 +25,7 @@ class LeadRepository
 
 	public function getByAgent($agentId , $campaignId)
 	{
-		return Lead::whereHas('campaingLead', function($q) use ($agentId, $campaignId) {
+		return Lead::whereHas('campaignLeads', function($q) use ($agentId, $campaignId) {
 			return $q->where('agent_id', $agentId)->where('campaign_id', $campaignId);
 		})
 		->with(['campaignLeads'=> function ($q) use ($agentId, $campaignId) {
