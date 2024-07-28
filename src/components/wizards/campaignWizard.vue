@@ -1,67 +1,9 @@
 <template>
     <div class="w-full flex overflow-auto">
         <div class=" w-full relative">
-
-
-            <div class="modal fade show" v-if="showModal" :key="showModal" id="kt_modal_adjust_balance" tabindex="-1"
-                aria-modal="true" role="dialog" data-select2-id="select2-data-kt_modal_adjust_balance"
-                style="background: rgba(0,0,0,.5);display: block;z-index: 9999;">
-                <!--begin::Modal dialog-->
-                <div class="modal-dialog modal-dialog-centered mw-650px" data-select2-id="select2-data-134-3oj8">
-                    <!--begin::Modal content-->
-                    <div class="modal-content" data-select2-id="select2-data-133-wj88">
-                        <!--begin::Modal header-->
-                        <div class="modal-header">
-                            <!--begin::Modal title-->
-                            <h2 class="fw-bold" v-text="translate('Field details')"></h2>
-
-                        </div>
-
-                        <div class="modal-body mx-5 mx-xl-15 my-7" v-if="activeItem.fields[activeField]">
-                            <div class="w-full row">
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                    v-text="translate('Field title')"></label>
-                                <input :required="true" autocomplete="off" class="form-control form-control-solid"
-                                    :placeholder="translate('Title of the field')" type="text"
-                                    v-model="activeItem.fields[activeField].title">
-                            </div>
-
-                            <div class="w-full row">
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                    v-text="translate('Field code')"></label>
-                                <input :required="true" autocomplete="off" class="form-control form-control-solid"
-                                    :placeholder="translate('Code of the field')" type="text"
-                                    v-model="activeItem.fields[activeField].code">
-                            </div>
-
-                            <div class="w-full row">
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-                                    v-text="translate('Field type')"></label>
-                                <select class="form-control form-control-solid"
-                                    :placeholder="translate('Type of the field')" type="number"
-                                    v-model="activeItem.fields[activeField].type">
-                                    <option value="text" v-text="translate('Text')"></option>
-                                    <option value="number" v-text="translate('Number')"></option>
-                                    <option value="email" v-text="translate('Email')"></option>
-                                    <option value="phone" v-text="translate('Phone')"></option>
-                                    <option value="textarea" v-text="translate('Textarea')"></option>
-                                </select>
-                            </div>
-
-                            <div class="text-center">
-                                <button type="reset" id="kt_modal_adjust_balance_cancel" class="btn btn-light me-3"
-                                    v-text="translate('Discard')" @click="showModal = false"></button>
-
-                                <button @click="showModal = false" type="submit" id="kt_modal_adjust_balance_submit"
-                                    class="btn btn-primary">
-                                    <span class="indicator-label" v-text="translate('Submit')"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div v-if="showLoader" class="bg-white fixed w-full h-full top-0 left-0" style="z-index:99999; opacity: .9;">
+                <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
             </div>
-
 
             <close_icon class="absolute top-4 right-4 z-10 cursor-pointer" @click="back" />
             <div class=" card w-full py-10">
@@ -103,18 +45,18 @@
                         <div class="" v-if="activeTab == 'Fields'" :key="activeTab">
 
                             <vue-csv-import v-model="csv" :fields="{
-                name: { required: false, label: 'Full_Name' },
-                mobile: { required: false, label: 'Phone_Number' },
-                whatsapp: { required: false, label: 'Whatsapp' },
-                job_title: { required: false, label: 'Job_Title' },
-                email: { required: false, label: 'Email' },
-            }">
+                                    name: { required: false, label: 'Full_Name' },
+                                    mobile: { required: false, label: 'Phone_Number' },
+                                    whatsapp: { required: false, label: 'Whatsapp' },
+                                    job_title: { required: false, label: 'Job_Title' },
+                                    email: { required: false, label: 'Email' },
+                                }">
                                 <div class="card-body pt-0">
                                     <div class="settings-form">
 
                                         <vue-csv-errors></vue-csv-errors>
                                         <vue-csv-input v-slot="{ file, change }"></vue-csv-input>
-                                        <div class="py-5 text-lg">
+                                        <div class="py-5 text-lg" v-if="showHeaderOption">
                                             <vue-csv-toggle-headers v-slot="{ hasHeaders, toggle }">
                                                 <button @click.prevent="toggle"
                                                     v-text="translate('Show/Hide Headers')"></button>
@@ -322,6 +264,8 @@ export default
             const content = ref({});
             const fillable = ref(['Info', 'Fields', 'Leads', 'Confirm']);
             const campaignLeads = ref([]);
+            const showLoader = ref(false);
+            const showHeaderOption = ref(false);
 
             if (props.item) {
                 activeItem.value = props.item
@@ -384,10 +328,13 @@ export default
             const showModal = ref(false);
 
             const handleLeads = () => {
+                showHeaderOption.value = true;
+                showLoader.value = true;
                 setTimeout(() => {
                     loadLeads();
                     activeTab.value = 'Leads';
-                }, 2000);
+                    showLoader.value = true;
+                }, 1500);
             }
             loadLeads();
 
@@ -408,11 +355,13 @@ export default
                 countLeads,
                 loadLeads,
                 handleLeads,
-                showModal,
                 switchField,
                 addField,
                 activeField,
                 progressWidth,
+                showModal,
+                showHeaderOption,
+                showLoader,
                 showEditSide,
                 content,
                 fillable,
