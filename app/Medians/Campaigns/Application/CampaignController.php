@@ -245,7 +245,10 @@ class CampaignController extends CustomController
 				$addCampaignLead = $this->repo->storeLead($campaignLeadRow);
 			}
 
-			return null;
+			if ($addCampaignLead)
+			{
+				return null;
+			}
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request ". $e->getMessage(), 1);
