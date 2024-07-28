@@ -348,7 +348,7 @@ export default
                 }
 
                 params.append('type', 'Campaign.update')
-                params.append('params[campaign_leads]', JSON.stringify(campaignLeads))
+                params.append('params[campaign_leads]', JSON.stringify(campaignLeads.value))
                 handleRequest(params, '/api/update').then(response => {
                     handleAccess(response)
                 })
