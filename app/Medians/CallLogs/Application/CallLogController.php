@@ -93,6 +93,7 @@ class CallLogController extends CustomController
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
 		        'items' => $this->repo->get(),
+		        'no_create' => true,
 				'object_name' => 'CallLog',
 				'object_key' => 'call_log_id'
 		    ]);

@@ -26,6 +26,7 @@ class CallLog extends CustomModel
 		'time',
 		'duration',
 		'type',
+		'notes',
 	];
 
 
