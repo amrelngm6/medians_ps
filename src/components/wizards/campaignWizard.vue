@@ -349,7 +349,7 @@ export default
 
                 params.append('type', 'Campaign.update')
                 params.append('params[campaign_leads]', JSON.stringify(campaignLeads))
-                handleRequest(params, '/api/' + type).then(response => {
+                handleRequest(params, '/api/update').then(response => {
                     handleAccess(response)
                 })
             }
