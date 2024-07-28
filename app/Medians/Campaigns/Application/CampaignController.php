@@ -154,7 +154,7 @@ class CampaignController extends CustomController
 
         	$params['status'] = !empty($params['status']) ? $params['status'] : null;
 
-            if ($this->repo->update($params) && !$this->updateLeads($params['campaign_leads'], $params['campaign_id']))
+            if ($this->repo->update($params) && $this->updateLeads($params['campaign_leads'], $params['campaign_id']))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
@@ -241,13 +241,12 @@ class CampaignController extends CustomController
 		{
 			foreach ($data as $key => $leadRow) 
 			{
-				$campaignLeadRow = (array) $leadRow->campaign_lead;
-				$addCampaignLead = $this->repo->storeLead($campaignLeadRow);
+				$addCampaignLead = $this->repo->updateLead($leadRow->campaign_lead);
 			}
 
 			if ($addCampaignLead)
 			{
-				return null;
+				return true;
 			}
 
         } catch (\Exception $e) {

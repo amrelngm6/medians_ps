@@ -99,6 +99,21 @@ class CampaignRepository
 
     }
 
+    /**
+     * Update Campaign Lead
+     */
+    public function updateLead($data)
+    {
+
+		$Object = CampaignLead::find($data['campaign_lead_id']);
+		
+		// Return the  object with the new data
+    	$Object->update( (array) $data);
+
+    	return $Object;
+
+    }
+
 
 	/**
 	* Delete item to database
