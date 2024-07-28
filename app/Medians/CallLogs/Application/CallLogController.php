@@ -119,16 +119,28 @@ class CampaignController extends CustomController
 		return $returnData;
 	}
 
-	/**
-	 * Load latest notifications at mobile
-	 * 
-	 */
-	public function loadCampaigns()
-	{
-		$this->app = new \config\APP;
+	
 
-		return $this->repo->loadDriverMessages($this->app->auth(), 100);
-	}  
+
+	public function storeCall() 
+	{
+
+		$params = $this->app->params();
+
+        try {	
+
+        	$params['created_by'] = $this->app->auth()->id;        	
+
+            $returnData = (!empty($this->repo->storeCall($params))) 
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+        } catch (Exception $e) {
+        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
+        }
+
+		return $returnData;
+	}
 
 	
 
@@ -179,11 +191,6 @@ class CampaignController extends CustomController
 
 	public function validate($params) 
 	{
-
-		if (empty($params['content']['ar']['title']))
-		{
-        	throw new \Exception(json_encode(array('result'=>translate('NAME_EMPTY'), 'error'=>1)), 1);
-		}
 
 	}
 

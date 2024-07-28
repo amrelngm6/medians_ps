@@ -1,30 +1,30 @@
 <?php
 
-namespace Medians\Campaigns\Infrastructure;
+namespace Medians\CallLogs\Infrastructure;
 
-use Medians\Campaigns\Domain\Campaign;
+use Medians\CallLogs\Domain\CallLog;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Drivers\Domain\Driver;
 use Medians\Users\Domain\User;
 
 
-class CampaignRepository 
+class CallLogRepository 
 {
 
 	public function find($id)
 	{
-		return Campaign::find($id);
+		return CallLog::find($id);
 	}
 
 	public function get($limit = 100)
 	{
-		return Campaign::limit($limit)->orderBy('campaign_id', 'DESC')->get();
+		return CallLog::limit($limit)->orderBy('campaign_id', 'DESC')->get();
 	}
 
 
 	public function getByDate($params)
 	{
-		$query = Campaign::whereBetween('created_at', [$params['start'], $params['end']]);
+		$query = CallLog::whereBetween('created_at', [$params['start'], $params['end']]);
 		return $query;
 	}
 
@@ -35,7 +35,7 @@ class CampaignRepository
 	public function store($data) 
 	{
 
-		$Model = new Campaign();
+		$Model = new CallLog();
 
 		foreach ($data as $key => $value) 
 		{
@@ -46,19 +46,19 @@ class CampaignRepository
 		}		
 
 		// Return the  object with the new data
-    	$Object = Campaign::firstOrCreate($dataArray);
+    	$Object = CallLog::firstOrCreate($dataArray);
 
     	return $Object;
     }
     	
 
     /**
-     * Update Campaign
+     * Update CallLog
      */
     public function update($data)
     {
 
-		$Object = Campaign::find($data['campaign_id']);
+		$Object = CallLog::find($data['campaign_id']);
 		
 		// Return the  object with the new data
     	$Object->update( (array) $data);
@@ -77,7 +77,7 @@ class CampaignRepository
 	{
 		try {
 			
-			$delete = Campaign::find($id)->delete();
+			$delete = CallLog::find($id)->delete();
 
 			return true;
 

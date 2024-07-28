@@ -19,12 +19,13 @@ class CallLog extends CustomModel
 	
 	public $fillable = [
 
-		'name',
-		'description',
-		'start_date',
-		'end_date',
+		'lead_id',
+		'mobile',
+		'agent_id',
+		'time',
+		'duration',
+		'type',
 		'status',
-		'created_by',
 	];
 
 
