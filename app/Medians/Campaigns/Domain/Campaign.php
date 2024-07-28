@@ -36,7 +36,7 @@ class Campaign extends CustomModel
 	
 	public function leads()
 	{
-		return $this->hasOne(CampaignLead::class, 'campaign_id', 'campaign_id');
+		return $this->hasMany(CampaignLead::class, 'campaign_id', 'campaign_id');
 	}
 
 	
