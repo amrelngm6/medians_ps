@@ -69,8 +69,8 @@ class MobileAPIController extends CustomController
 				break;
 
 
-			case 'Driver.login':
-				$return =  (new Drivers\Application\DriverController())->login(); 
+			case 'Agent.login':
+				$return =  (new Customers\Application\AgentController())->login(); 
 				break;
 
 			case 'Driver.loginWithGoogle':

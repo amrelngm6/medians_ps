@@ -485,10 +485,10 @@ class AuthService
 	public function checkAPISession($token = null, $userType = null) 
 	{
 				
-		$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository(null);
 		
 		switch ($userType) {
 			case 'Driver':
+				$this->driverRepo = new \Medians\Drivers\Infrastructure\DriverRepository(null);
 				return $this->driverRepo->findByToken($token);
 				break;
 				
