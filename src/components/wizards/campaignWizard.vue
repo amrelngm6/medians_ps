@@ -254,7 +254,7 @@
                             </div>
                             <p class="text-center mt-10"><a href="javascript:;"
                                     class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger"
-                                    @click="savePaymentMethod" v-text="translate('Submit')"></a></p>
+                                    @click="saveCampaign" v-text="translate('Submit')"></a></p>
                         </div>
                     </div>
                 </div>
@@ -335,6 +335,25 @@ export default
                 })
             }
 
+            
+            const saveCampaign = () => {
+                var params = new URLSearchParams();
+                let array = JSON.parse(JSON.stringify(activeItem.value));
+                let keys = Object.keys(array)
+                let k, d, value = '';
+                for (let i = 0; i < keys.length; i++) {
+                    k = keys[i]
+                    d = typeof array[k] === 'object' ? JSON.stringify(array[k]) : array[k]
+                    params.append('params[' + k + ']', d)
+                }
+
+                params.append('type', 'Campaign.update')
+                params.append('params[campaign_leads]', JSON.stringify(campaignLeads))
+                handleRequest(params, '/api/' + type).then(response => {
+                    handleAccess(response)
+                })
+            }
+
             const back = () => {
                 emit('callback');
             }
@@ -385,6 +404,7 @@ export default
             }
 
             return {
+                saveCampaign,
                 countLeads,
                 loadLeads,
                 handleLeads,
