@@ -76,8 +76,8 @@ class MobileAPIController extends CustomController
 				$return =  (new Customers\Application\AgentController())->login(); 
 				break;
 
-			case 'Driver.loginWithGoogle':
-				$return =  (new Drivers\Application\DriverController())->loginWithGoogle(); 
+			case 'Agent.updateLeadCall':
+				$return =  (new Customers\Application\AgentController())->updateLeadCall(); 
 				break;
 
 			case 'Driver.loginWithTwitter':
