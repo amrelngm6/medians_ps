@@ -32,10 +32,10 @@ class CampaignRepository
 	}
 
 	
-	public function getByLead($agentId)
+	public function getByLeadAgent($leadId,  $agentId)
 	{
 		return CampaignLead::where('agent_id', $agentId)
-		->where('lead_id', $lead_id)
+		->where('lead_id', $leadId)
 		->orderBy('created_at', 'DESC')
 		->first();
 	}

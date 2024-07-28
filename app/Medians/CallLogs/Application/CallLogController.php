@@ -119,6 +119,12 @@ class CallLogController extends CustomController
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
+			if ($params['lead_id'])
+			{
+				$campaignLead = $this->campaignRepo->getByLeadAgent($params['lead_id'], $user->customer_id);
+				$campaignLead->update(['status'=>$params['status']]);
+			}
+
         } catch (Exception $e) {
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
@@ -133,6 +139,7 @@ class CallLogController extends CustomController
 	{
 
 		$params = $this->app->params();
+		$user = $this->app->auth();
 
         try {	
 			$response = null;
@@ -144,7 +151,8 @@ class CallLogController extends CustomController
 
 				if ($value['lead_id'])
 				{
-					$this->campaignRepo->find();
+					$campaignLead = $this->campaignRepo->getByLeadAgent($value['lead_id'], $user->customer_id);
+					$campaignLead->update(['status'=>$value['status']]);
 				}
 			}
 
