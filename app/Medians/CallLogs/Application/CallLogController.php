@@ -5,6 +5,7 @@ use Shared\dbaser\CustomController;
 
 use Medians\CallLogs\Infrastructure\CallLogRepository;
 use Medians\Leads\Infrastructure\LeadRepository;
+use Medians\Campaigns\Infrastructure\CampaignRepository;
 
 class CallLogController extends CustomController 
 {
@@ -17,6 +18,8 @@ class CallLogController extends CustomController
 	protected $app;
 	
 	protected $leadRepo;
+
+	protected $campaignRepo;
 	
 
 	function __construct()
@@ -24,8 +27,9 @@ class CallLogController extends CustomController
 
 		$this->app = new \config\APP;
 
-		$this->repo = new CallLogRepository	();
-		$this->leadRepo = new LeadRepository	();
+		$this->repo = new CallLogRepository();
+		$this->leadRepo = new LeadRepository();
+		$this->campaignRepo = new CampaignRepository();
 	}
 
 
@@ -137,6 +141,11 @@ class CallLogController extends CustomController
 				$lead = $this->leadRepo->findByMobile($value['mobile']);
 				$value['lead_id'] = $lead->lead_id ?? 0;
 				$response = $this->repo->store($value);
+
+				if ($value['lead_id'])
+				{
+					$this->campaignRepo->find();
+				}
 			}
 
 			return $response;

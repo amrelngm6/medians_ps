@@ -31,6 +31,16 @@ class CampaignRepository
 		->get();
 	}
 
+	
+	public function getByLead($agentId)
+	{
+		return CampaignLead::where('agent_id', $agentId)
+		->where('lead_id', $lead_id)
+		->orderBy('created_at', 'DESC')
+		->first();
+	}
+
+	
 	public function getLeads($campaignId)
 	{
 		return Lead::whereHas('campaignLead', function($q) use ($campaignId) {
