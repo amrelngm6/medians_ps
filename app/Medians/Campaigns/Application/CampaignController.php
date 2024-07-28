@@ -154,7 +154,7 @@ class CampaignController extends CustomController
 
         	$params['status'] = !empty($params['status']) ? $params['status'] : null;
 
-            if ($this->repo->update($params) && !$this->addLeads($params['campaign_leads'], $params['campaign_id']))
+            if ($this->repo->update($params) && !$this->updateLeads($params['campaign_leads'], $params['campaign_id']))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
@@ -206,7 +206,6 @@ class CampaignController extends CustomController
 	public function addLeads($data, $campaignId)
 	{
 
-		print_r($data);
 		$leadRepo = new \Medians\Leads\Infrastructure\LeadRepository;
         try 
 		{
@@ -228,6 +227,25 @@ class CampaignController extends CustomController
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
+
+        } catch (\Exception $e) {
+        	throw new \Exception("Error Processing Request ". $e->getMessage(), 1);
+        }
+	}
+	
+
+	public function updateLeads($data, $campaignId)
+	{
+		$leadRepo = new \Medians\Leads\Infrastructure\LeadRepository;
+        try 
+		{
+			foreach ($data as $key => $leadRow) 
+			{
+				$campaignLeadRow = (array) $leadRow->campaign_lead;
+				$addCampaignLead = $this->repo->storeLead($campaignLeadRow);
+			}
+
+			return null;
 
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request ". $e->getMessage(), 1);
