@@ -219,33 +219,31 @@
 
                                     <div class="card mb-6 mb-xl-9 bg-inverse-success">
                                         <div class="card-body py-0">
-                                            <div class="d-flex flex-wrap flex-stack mb-5">
-                                                <div class="d-flex ">
-                                                    <div
-                                                        class="border border-dashed border-gray-300 w-150px rounded my-3 p-4 me-6">
-                                                        
-                                                        <div v-for="agent in agents" class="d-flex flex-stack">  
-                                                            <div class="symbol symbol-40px me-5">
-                                                                <img :src="agent.picture" class="h-50 align-self-center" alt="">                         
-                                                            </div>
-                                                            <div class="d-flex align-items-center flex-row-fluid flex-wrap">
-                                                                <div class="flex-grow-1 me-2">
-                                                                    <a href="javascript:;" class="text-gray-800 text-hover-primary fs-6 fw-bold" v-text="agent.name"></a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7" v-text="translate('Assigned leads')"></span>
-                                                                </div>
-                                                                <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="countLeads(agent.agent_id)"></a>
-                                                            </div>
+                                            <div class=" w-full ">
+                                                <div
+                                                    class="border border-dashed border-gray-300  rounded my-4 p-4 ">
+                                                    
+                                                    <div v-for="agent in agents" class="d-flex flex-stack">  
+                                                        <div class="symbol symbol-40px me-5">
+                                                            <img :src="agent.picture" class="h-50 align-self-center" alt="">                         
                                                         </div>
-                                                        <span  class="fs-1 fw-bold text-gray-800 lh-1">
-                                                            <span class="counted"
-                                                                v-text="campaignLeads ? campaignLeads.length : 0"></span>
-                                                            <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
-                                                                v-text="translate('Total Leads')"></span>
-                                                        </span>
-
+                                                        <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                                            <div class="flex-grow-1 me-2">
+                                                                <a href="javascript:;" class="text-gray-800 text-hover-primary fs-6 fw-bold" v-text="agent.name"></a>
+                                                                <span class="text-muted fw-semibold d-block fs-7" v-text="translate('Assigned leads')"></span>
+                                                            </div>
+                                                            <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="countLeads(agent.agent_id)"></a>
+                                                        </div>
                                                     </div>
+                                                    <span  class="fs-1 fw-bold text-gray-800 lh-1">
+                                                        <span class="counted"
+                                                            v-text="campaignLeads ? campaignLeads.length : 0"></span>
+                                                        <span class="fs-6 fw-semibold text-muted d-block lh-1 pt-2"
+                                                            v-text="translate('Total Leads')"></span>
+                                                    </span>
 
                                                 </div>
+
                                             </div>
 
                                         </div>
