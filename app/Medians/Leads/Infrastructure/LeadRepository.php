@@ -22,6 +22,11 @@ class LeadRepository
 		return Lead::limit($limit)->get();
 	}
 
+	public function findByMobile($mobile)
+	{
+		return Lead::where('mobile', $mobile)->find();
+	}
+
 
 	public function getByAgent($agentId , $campaignId)
 	{

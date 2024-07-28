@@ -4,6 +4,7 @@ namespace Medians\CallLogs\Application;
 use Shared\dbaser\CustomController;
 
 use Medians\CallLogs\Infrastructure\CallLogRepository;
+use Medians\Leads\Infrastructure\LeadRepository;
 
 class CallLogController extends CustomController 
 {
@@ -12,9 +13,10 @@ class CallLogController extends CustomController
 	* @var Object
 	*/
 	protected $repo;
-
+	
 	protected $app;
-
+	
+	protected $leadRepo;
 	
 
 	function __construct()
@@ -23,6 +25,7 @@ class CallLogController extends CustomController
 		$this->app = new \config\APP;
 
 		$this->repo = new CallLogRepository	();
+		$this->leadRepo = new LeadRepository	();
 	}
 
 
@@ -106,6 +109,7 @@ class CallLogController extends CustomController
 
         try {	
 
+			$params['lead_id'] = $params['lead_id'] ?? $this->leadRepo->findByMobile($params['mobile'])->lead_id;
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
@@ -171,7 +175,6 @@ class CallLogController extends CustomController
         try {
 
         	$check = $this->repo->find($params['call_log_id']);
-
 
             if ($this->repo->delete($params['call_log_id']))
             {
