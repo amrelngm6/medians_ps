@@ -321,7 +321,7 @@ export default
             const activeItem = ref({});
             const activeTab = ref('Info');
             const content = ref({});
-            const fillable = ref(['Info', 'Fields', 'Confirm']);
+            const fillable = ref(['Info', 'Fields', 'Leads', 'Confirm']);
             const campaignLeads = ref([]);
 
             if (props.item) {
