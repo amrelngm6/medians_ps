@@ -229,7 +229,7 @@ class LeadController extends CustomController
 	{
 		$lead = $this->app->auth();
 		
-		return $this->repo->getByAgent($lead->customer_id);
+		return $this->repo->getByAgent($lead->customer_id, $_GET['campaign_id']);
 	}
 
 
