@@ -271,7 +271,7 @@ class APP
 			array( 'title'=>translate('Settings'),  'icon'=>'tool', 'link'=>'#setting', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=> 'SystemSettings.index', 'title'=> translate('System Settings'),  'icon'=>'tool', 'link'=>'admin/system_settings', 'component'=>'system_settings'),
-				array('permission'=> 'AppSettings.index', 'title'=> translate('APP Settings'),  'icon'=>'tool', 'link'=>'admin/parent_app_settings', 'component'=>'parent_app_settings'),
+				array('permission'=> 'AppSettings.index', 'title'=> translate('APP Settings'),  'icon'=>'tool', 'link'=>'admin/app_settings', 'component'=>'parent_app_settings'),
 			]
 			),
 			
