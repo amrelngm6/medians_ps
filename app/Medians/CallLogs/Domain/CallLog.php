@@ -23,6 +23,7 @@ class CallLog extends CustomModel
 		'mobile',
 		'agent_id',
 		'date',
+		'time',
 		'duration',
 		'type',
 		'status',
