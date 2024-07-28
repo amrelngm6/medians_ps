@@ -373,7 +373,21 @@ export default
                     activeTab.value = 'Leads';
                 }, 2000);
             }
+            
+            const countLeads = (agentId) => {
+                let count = 0;
+                for (let i = 0; i < campaignLeads.value.length; i++) {
+                    const element = campaignLeads.value[i];
+                    if (element && element.campaign_lead  && agentId == element.campaign_lead.agent_id)
+                    {
+                           count += 1;
+                    }
+                }
+                return count;
+            }
+
             return {
+                countLeads,
                 loadLeads,
                 handleLeads,
                 showModal,
