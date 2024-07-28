@@ -165,7 +165,7 @@
                                             
                                             <td >
                                                 <select v-if="lead.campaign_lead" v-model="lead.campaign_lead.agent_id">
-                                                    <option v-for="agent in agents" :selected="agent_id == lead.campaign_lead.agent_id" v-text="agent.name" :value="agent.agent_id"></option>
+                                                    <option v-for="agent in agents" v-text="agent.name" :value="agent.agent_id"></option>
                                                 </select>
                                             </td>
                                             <td v-text="lead.whatsapp"></td>
