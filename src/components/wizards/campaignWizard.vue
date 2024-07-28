@@ -232,7 +232,7 @@
                                                                 <a href="javascript:;" class="text-gray-800 text-hover-primary fs-6 fw-bold" v-text="agent.name"></a>
                                                                 <span class="text-muted fw-semibold d-block fs-7" v-text="translate('Assigned leads')"></span>
                                                             </div>
-                                                            <a href="javascript:;" class="btn btn-sm btn-light fs-8 fw-bold" v-text="countLeads(agent.agent_id)"></a>
+                                                            <a href="javascript:;" class="btn btn-sm btn-light text-lg fw-bold" v-text="countLeads(agent.agent_id)"></a>
                                                         </div>
                                                     </div>
                                                     <span  class="fs-1 fw-bold text-gray-800 lh-1">
