@@ -61,7 +61,7 @@ class StatusController extends CustomController
             [ 'key'=> "title", 'title'=> translate('title'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
             [ 'key'=> "value", 'title'=> translate('value'),  'fillable'=> true, 'column_type'=>'text','required'=>true ],
             [ 'key'=> "sort", 'title'=> translate('sort'),  'fillable'=> true, 'column_type'=>'number','required'=>true ],
-            [ 'key'=> "model", 'title'=> translate('model'),  'fillable'=> true, 'column_type'=>'text','disabled'=>true ],
+            [ 'key'=> "model", 'title'=> translate('model'),  'fillable'=> false, 'column_type'=>'text','disabled'=>true ],
         ];
 	}
 
