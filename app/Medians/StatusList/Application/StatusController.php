@@ -41,8 +41,8 @@ class StatusController extends CustomController
 
 		return [
             [ 'value'=> "status_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
-            [ 'value'=> "code", 'text'=> translate('code'), 'sortable'=> true ],
+            [ 'value'=> "title", 'text'=> translate('title'), 'sortable'=> true ],
+            [ 'value'=> "value", 'text'=> translate('value'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
             [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
@@ -58,8 +58,10 @@ class StatusController extends CustomController
 	{
 		return [
             [ 'key'=> "status_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> translate('name'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
-            [ 'key'=> "code", 'title'=> translate('code'),  'fillable'=> true, 'column_type'=>'text','required'=>true ],
+            [ 'key'=> "title", 'title'=> translate('title'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
+            [ 'key'=> "value", 'title'=> translate('value'),  'fillable'=> true, 'column_type'=>'text','required'=>true ],
+            [ 'key'=> "sort", 'title'=> translate('sort'),  'fillable'=> true, 'column_type'=>'number','required'=>true ],
+            [ 'key'=> "model", 'title'=> translate('model'),  'fillable'=> true, 'column_type'=>'text','disabled'=>true ],
         ];
 	}
 

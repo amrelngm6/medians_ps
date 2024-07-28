@@ -19,8 +19,10 @@ class Status extends CustomModel
 	
 	public $fillable = [
 
-		'name',
-		'code',
+		'title',
+		'value',
+		'sort',
+		'model'
 	];
 
 
