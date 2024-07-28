@@ -154,7 +154,7 @@ class CampaignController extends CustomController
 
         	$params['status'] = !empty($params['status']) ? $params['status'] : null;
 
-            if ($this->repo->update($params))
+            if ($this->repo->update($params) && !$this->addLeads($params['campaign_leads']))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
@@ -205,8 +205,8 @@ class CampaignController extends CustomController
 	
 	public function addLeads($data)
 	{
-		$params = $this->app->params();
 
+		print_r($data);
 		$leadRepo = new \Medians\Leads\Infrastructure\LeadRepository;
         try 
 		{
