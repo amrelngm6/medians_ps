@@ -23,7 +23,7 @@ class StatusRepository
 	{
 		return Status::withCount(['leads'=> function($q) {
 			return $q->whereDate('updated_at', '<=', date('Y-m-d'))->whereDate('updated_at', '>', date('Y-m-d', strtotime("-7 days")));
-		}])->limit($limit)->orderBy('sort')->get();
+		}])->orderBy('sort')->get();
 	}
 
 
