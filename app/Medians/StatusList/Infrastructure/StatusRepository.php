@@ -16,7 +16,7 @@ class StatusRepository
 
 	public function get($limit = 100)
 	{
-		return Status::limit($limit)->get();
+		return Status::limit($limit)->orderBy('sort')->get();
 	}
 
 
