@@ -23,7 +23,7 @@ class StatusRepository
 	{
 		return Status::withCount('leads')
 		// whereHas('leads')
-		->orderBy('sort')->get();
+		->get();
 	}
 
 
