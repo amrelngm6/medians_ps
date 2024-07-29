@@ -122,6 +122,7 @@ class NotificationEventRepository
 		return [
 			'User' => \Medians\Users\Domain\User::class,
 			'Agent' => \Medians\Customers\Domain\Agent::class,
+			'Customer' => \Medians\Customers\Domain\Customer::class,
 		];
 	}   
 }

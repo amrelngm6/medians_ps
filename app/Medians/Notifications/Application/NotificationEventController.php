@@ -172,6 +172,7 @@ class NotificationEventController extends CustomController
 
         try {
         	$params['created_by'] = $this->app->auth()->id;
+        	$params['status'] = isset($params['status']) ? 'on' : null;
             return ($this->repo->store($params))
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
             : array('success'=>0, 'result'=>translate('Error'), 'error'=>1);
