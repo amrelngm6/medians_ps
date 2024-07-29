@@ -5,6 +5,7 @@ namespace Medians\Campaigns\Domain;
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
 use Medians\Leads\Domain\Lead;
+use Medians\Customers\Domain\Agent;
 
 
 class CampaignLead extends CustomModel
@@ -35,6 +36,11 @@ class CampaignLead extends CustomModel
 	public function lead()
 	{
 		return $this->hasOne(Lead::class, 'lead_id', 'lead_id');
+	}
+
+	public function agent()
+	{
+		return $this->hasOne(Agent::class, 'customer_id', 'agent_id');
 	}
 
 	public function campaign()
