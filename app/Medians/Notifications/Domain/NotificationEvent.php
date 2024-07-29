@@ -117,7 +117,7 @@ class NotificationEvent extends CustomModel
 
 	public function validateUserType($event, $user)
 	{
-		return $user->model == $event->receiver_model ? $user : null;
+		return $user->model == $event->receiver_model ? $user : $user;
 	}
 	
 
