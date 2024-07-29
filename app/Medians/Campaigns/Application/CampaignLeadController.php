@@ -47,7 +47,7 @@ class CampaignLeadController extends CustomController
             [ 'value'=> "campaign.name", 'text'=> translate('campaign'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "notes", 'text'=> translate('notes'), 'sortable'=> true ],
-            // [ 'value'=> "edit", 'text'=> translate('edit')  ],
+            [ 'value'=> "edit", 'text'=> translate('edit')  ],
             [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
 	}
@@ -66,6 +66,9 @@ class CampaignLeadController extends CustomController
             [ 'key'=> "name", 'title'=> translate('name'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
 			['key'=> "campaign_id", 'title'=> translate('Campaign'), 'help_text' => translate('Change Campaign'),'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name',  'required'=> true, 
 				'data'=> $this->repo->get()
+			],
+            ['key'=> "agent_id", 'title'=> translate('Agent'), 'help_text' => translate('Change Agent'),'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name',  'required'=> true, 
+				'data'=> $this->agentRepo->get()
 			],
             [ 'key'=> "status", 'title'=> translate('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
         ];
