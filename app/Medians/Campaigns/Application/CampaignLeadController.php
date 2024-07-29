@@ -70,7 +70,6 @@ class CampaignLeadController extends CustomController
             ['key'=> "agent_id", 'title'=> translate('Agent'), 'help_text' => translate('Change Agent'),'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name',  'required'=> true, 
 				'data'=> $this->agentRepo->get()
 			],
-            [ 'key'=> "status", 'title'=> translate('status'),  'fillable'=>true, 'column_type'=>'checkbox' ],
         ];
 	}
 
