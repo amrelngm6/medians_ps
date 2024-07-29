@@ -22,7 +22,7 @@ class StatusRepository
 	public function getLastWeekLeads()
 	{
 		return Status::with(['leads'=> function($q) {
-			return $q->whereDate('create', '<=', date('Y-m-d'))->whereDate('create', '<=', date('Y-m-d', strtotime("-7 days")));
+			return $q->whereDate('created_at', '<=', date('Y-m-d'))->whereDate('created_at', '<=', date('Y-m-d', strtotime("-7 days")));
 		}])->limit($limit)->orderBy('sort')->get();
 	}
 
