@@ -19,10 +19,10 @@ class StatusRepository
 		return Status::limit($limit)->orderBy('sort')->get();
 	}
 
-	public function getLastWeekLeads()
+	public function getLastWeekLeads($agentId)
 	{
-		return Status::withCount(['leads'=> function ($q) {
-			return $q->whereDate('updated_at', '>', date('Y-m-d', strtotime("-7 day")));
+		return Status::withCount(['leads'=> function ($q) use ($agentId) {
+			return $q->where('agent_id', $agentId)->whereDate('updated_at', '>', date('Y-m-d', strtotime("-7 day")));
 		}])
 		->get();
 	}
