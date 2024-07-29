@@ -208,7 +208,7 @@ class NotificationEvent extends CustomModel
 	
 		} catch (\Throwable $th) {
 			
-			error_log($th->getMessage);
+			error_log($th->getMessage());
 		}
 	}
 }
