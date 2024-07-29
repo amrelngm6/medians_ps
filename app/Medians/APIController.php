@@ -63,7 +63,7 @@ class APIController extends CustomController
 				break;
 
 			case 'StatusWeekLeads':
-				$return = (new  Status\Application\StatusController)->getWeekLeads();
+				$return = (new  StatusList\Application\StatusController)->getWeekLeads();
 				break;
 		}
 
