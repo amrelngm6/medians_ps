@@ -44,7 +44,7 @@ class CallLog extends CustomModel
 
 	public function agent()
 	{
-		return $this->hasOne(Agent::class, 'agent_id', 'agent_id');
+		return $this->hasOne(Agent::class, 'customer_id', 'agent_id');
 	}
 
 	
