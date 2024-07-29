@@ -142,6 +142,11 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/call_logs', Medians\CallLogs\Application\CallLogController::class.'@index');
 
     /**
+    * @return Cammpaign Leads
+    */
+    RouteHandler::get('/admin/campaign_leads', Medians\Campaigns\Application\CampaignLeadController::class.'@index');
+
+    /**
     * @return Leads
     */
     RouteHandler::get('/admin/leads', Medians\Leads\Application\LeadController::class.'@index');
