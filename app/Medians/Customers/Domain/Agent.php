@@ -83,5 +83,9 @@ class Agent extends Customer
 
 	}  
 
+	public function receiverAsCustomer() 
+	{
+		return $this;
+	}
 
 }
