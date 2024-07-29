@@ -43,6 +43,7 @@ class CampaignLeadController extends CustomController
             [ 'value'=> "campaign_lead_id", 'text'=> "#"],
             [ 'value'=> "lead.name", 'text'=> translate('name'), 'sortable'=> true ],
             [ 'value'=> "lead.mobile", 'text'=> translate('Mobile'), 'sortable'=> true ],
+            [ 'value'=> "agent.name", 'text'=> translate('agent'), 'sortable'=> true ],
             [ 'value'=> "campaign.name", 'text'=> translate('campaign'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "notes", 'text'=> translate('notes'), 'sortable'=> true ],
