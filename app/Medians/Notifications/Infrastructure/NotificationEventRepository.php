@@ -132,10 +132,7 @@ class NotificationEventRepository
 	{
 		return [
 			'User' => \Medians\Users\Domain\User::class,
-			'Driver' => \Medians\Drivers\Domain\Driver::class,
-			'Parents' => \Medians\Customers\Domain\Parents::class,
-			'Employee' => \Medians\Customers\Domain\Employee::class,
-			'SuperVisor' => \Medians\Customers\Domain\SuperVisor::class,
+			'Agent' => \Medians\Customers\Domain\Agent::class,
 		];
 	}   
 }
