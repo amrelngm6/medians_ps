@@ -91,11 +91,12 @@ class NotificationEventController extends CustomController
 			[ 'key'=> "action_field", 'title'=> translate('Action field'), 'help_text' => translate('You can choose specified field to listen for updates or leave empty to apply on all fields'),'fillable'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "action_value", 'title'=> translate('Action value'), 'help_text' => translate('You can choose specified value to listen for updated field or leave empty to apply on any change'), 'fillable'=> true, 'column_type'=>'text' ],
             [ 'key'=> "subject", 'title'=> translate('subject'), 'fillable'=> true, 'column_type'=>'text', 'required'=> true ],
-			[ 'key'=> "template_id", 'title'=> translate('Email template'), 'help_text' => translate('You can manage the templates from the Email Template page'),'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 
-				'data'=> $this->emailTemplatesRepo->get()
-			],
+			// [ 'key'=> "template_id", 'title'=> translate('Email template'), 'help_text' => translate('You can manage the templates from the Email Template page'),'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title',  'required'=> true, 
+			// 	'data'=> $this->emailTemplatesRepo->get()
+			// ],
             [ 'key'=> "body_text", 'title'=> translate('Notification text'),  'help_text' => translate('This text used for mobile APP nofitications'), 'fillable'=> true, 'column_type'=>'textarea', 'required'=> true ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "template_id", 'title'=> translate('Template'), 'fillable'=> true, 'column_type'=>'number' ],
         ];
 	}
 
