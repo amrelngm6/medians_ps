@@ -95,6 +95,7 @@ class CampaignRepository
 	{
 		$Model = new CampaignLead();
 
+		$data['status'] = $data['status'] ?? '';
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $Model->getFields()))
