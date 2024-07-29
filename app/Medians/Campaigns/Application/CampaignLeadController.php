@@ -63,7 +63,7 @@ class CampaignLeadController extends CustomController
 
 		return [
             [ 'key'=> "campaign_lead_id", 'title'=> "", 'fillable'=>true, 'column_type'=>'hidden'],
-            [ 'key'=> "name", 'title'=> translate('name'),  'fillable'=> true, 'column_type'=>'text', 'required'=>true ],
+            [ 'key'=> "lead.name", 'title'=> translate('Lead'),  'disabled'=> true, 'column_type'=>'text'  ],
 			['key'=> "campaign_id", 'title'=> translate('Campaign'), 'help_text' => translate('Change Campaign'),'withLabel'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name',  'required'=> true, 
 				'data'=> $this->repo->get()
 			],
