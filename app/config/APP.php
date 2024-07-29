@@ -250,6 +250,7 @@ class APP
 				array('permission'=>'CampaignLeads.index', 'title'=>translate('Campaign leads'),  'icon'=>'layers', 'link'=>'admin/campaign_leads', 'component'=>'data_table'),
 			]
 			),
+			array('permission'=>'CallLog.index', 'title'=>translate('Call Logs'),  'icon'=>'phone-call', 'link'=>'admin/call_logs', 'component'=>'data_table'),
 		
 			array( 'title'=>translate('Users'),  'icon'=>'tool', 'link'=>'#users', 'superadmin'=> true, 'sub'=>
 			[
