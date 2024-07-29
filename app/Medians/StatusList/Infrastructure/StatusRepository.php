@@ -21,14 +21,14 @@ class StatusRepository
 
 	public function getLastWeekLeads()
 	{
-		return Status::where("select `status_list`.*, 
-    (select count(*) 
-     from `campaign_leads` 
-     where `status_list`.`value` COLLATE utf8_unicode_ci = `campaign_leads`.`status` COLLATE utf8_unicode_ci 
-       and date(`updated_at`) <= '2024-07-29' 
-       and date(`updated_at`) > '2024-07-22') as `leads_count` 
-from `status_list` 
-order by `sort` asc")->get();
+		return Status::whereCount("select `status_list`.*, 
+						(select count(*) 
+						from `campaign_leads` 
+						where `status_list`.`value` COLLATE utf8_unicode_ci = `campaign_leads`.`status` COLLATE utf8_unicode_ci 
+						and date(`updated_at`) <= '2024-07-29' 
+						and date(`updated_at`) > '2024-07-22') as `leads_count` 
+					from `status_list` 
+					order by `sort` asc")->get();
 	}
 
 
