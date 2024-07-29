@@ -224,10 +224,6 @@ class MobileAPIController extends CustomController
 				$return =  (new Notifications\Application\NotificationController())->update(); 
 				break;
 
-			case 'Status.update':
-				$return = (new StatusList\Application\StatusController())->update(); 
-				break;
-
 		}
 
 		echo json_encode($return);

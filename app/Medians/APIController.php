@@ -214,6 +214,10 @@ class APIController extends CustomController
 			case 'EmailTemplate.update':
 				$controller = new Templates\Application\EmailTemplateController; 
 				break;
+
+			case 'Status.update':
+				$return = (new StatusList\Application\StatusController())->update(); 
+				break;
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
