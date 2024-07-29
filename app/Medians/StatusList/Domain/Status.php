@@ -34,7 +34,7 @@ class Status extends CustomModel
 	
 	public function leads()
 	{
-		return $this->hasMany(CampaignLead::class, 'status', 'value');
+		return $this->hasOne(CampaignLead::class, 'status', 'value');
 	}
 	
 }
