@@ -130,6 +130,7 @@ class NotificationEvent extends CustomModel
 	public function filterReceivers($event, $model)
 	{	
 
+		error_log($event);
 		switch ($event->receiver_model) 
 		{
 			case Agent::class:
@@ -139,6 +140,10 @@ class NotificationEvent extends CustomModel
 				
 			case User::class:
 				return method_exists($model, 'receiverAsUser') ? [$model->receiverAsUser()] : null;
+				break;
+
+			default:
+				return $model;
 				break;
 			
 		}
