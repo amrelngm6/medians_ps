@@ -247,7 +247,7 @@ class APP
 			array( 'title'=>translate('Campaigns'),  'icon'=>'layers', 'link'=>'#Campaigns', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Campaigns.index', 'title'=>translate('Campaigns'),  'icon'=>'layers', 'link'=>'admin/campaigns', 'component'=>'campaigns'),
-				array('permission'=>'CampaignLeads.index', 'title'=>translate('Campaign leads'),  'icon'=>'layers', 'link'=>'admin/campaign_lead', 'component'=>'data_table'),
+				array('permission'=>'CampaignLeads.index', 'title'=>translate('Campaign leads'),  'icon'=>'layers', 'link'=>'admin/campaign_leads', 'component'=>'data_table'),
 			]
 			),
 		
