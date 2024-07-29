@@ -185,10 +185,6 @@ class NotificationEvent extends CustomModel
     	$app = new \config\APP;
     	$params = [];
 
-		error_log(json_encode($event));
-		error_log(json_encode($model));
-		error_log(json_encode($receiver));
-
     	/**
     	 * Get short name for the class to use as index
 		 * Append the model as paramater to render the content
@@ -196,6 +192,8 @@ class NotificationEvent extends CustomModel
 		 */ 
 		try {
 			
+			$params['model'] = $model;
+			$params['receiver'] = $receiver;
 			try {
 				
 				$templateRepo = new \Medians\Templates\Infrastructure\EmailTemplateRepository;
@@ -206,8 +204,6 @@ class NotificationEvent extends CustomModel
 				$event->body = $app->renderTemplate($event->body_text)->render($params) ;
 			}
 
-			$params['model'] = $model;
-			$params['receiver'] = $receiver;
 			$event->subject = $app->renderTemplate($event->subject)->render($params);
 			$event->body_text = $app->renderTemplate($event->body_text)->render($params);
 			return Notification::storeEventNotification($event, $model, $receiver);
