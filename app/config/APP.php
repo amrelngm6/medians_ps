@@ -244,12 +244,6 @@ class APP
 
 			array('permission'=>'Agents.index', 'title'=>translate('Agents'),  'icon'=>'users', 'link'=>'admin/agents', 'component'=>'data_table'),
 
-			array( 'title'=>translate('Users'),  'icon'=>'tool', 'link'=>'#users', 'superadmin'=> true, 'sub'=>
-			[
-				array('permission'=>'User.index', 'title'=>translate('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
-				array('permission'=> 'Roles.index', 'title'=> translate('ROLES MANAEGMENT'),  'icon'=>'tool', 'link'=>'admin/roles', 'component'=>'roles'),
-			]
-			),
 			array( 'title'=>translate('Campaigns'),  'icon'=>'layers', 'link'=>'#Campaigns', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Campaigns.index', 'title'=>translate('Campaigns'),  'icon'=>'layers', 'link'=>'admin/campaigns', 'component'=>'campaigns'),
@@ -257,6 +251,12 @@ class APP
 			]
 			),
 		
+			array( 'title'=>translate('Users'),  'icon'=>'tool', 'link'=>'#users', 'superadmin'=> true, 'sub'=>
+			[
+				array('permission'=>'User.index', 'title'=>translate('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
+				array('permission'=> 'Roles.index', 'title'=> translate('ROLES MANAEGMENT'),  'icon'=>'tool', 'link'=>'admin/roles', 'component'=>'roles'),
+			]
+			),
 			array( 'title'=>translate('Management'),  'icon'=>'target', 'link'=>'#management', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'NotificationEvent.index', 'title'=>translate('notifications_events'),  'icon'=>'tool', 'link'=>'admin/notifications_events', 'component'=>'notifications_events'),
