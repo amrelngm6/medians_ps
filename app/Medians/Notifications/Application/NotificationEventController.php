@@ -200,6 +200,7 @@ class NotificationEventController extends CustomController
 
         try {
 
+        	$params['status'] = isset($params['status']) ? 'on' : null;
 
            	$returnData =  ($this->repo->update($params))
            	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
