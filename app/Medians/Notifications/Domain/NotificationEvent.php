@@ -204,11 +204,11 @@ class NotificationEvent extends CustomModel
 			$event->body = isset($template->content->content) ? $app->renderTemplate($template->content->content)->render($params) : '';
 			$event->subject = $app->renderTemplate($event->subject)->render($params);
 			$event->body_text = $app->renderTemplate($event->body_text)->render($params);
+			return Notification::storeEventNotification($event, $model, $receiver);
 	
 		} catch (\Throwable $th) {
 			
 			error_log($th->getMessage);
 		}
-    	return Notification::storeEventNotification($event, $model, $receiver);
 	}
 }
