@@ -4,7 +4,7 @@ namespace Medians\Campaigns\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
-use Medians\Drivers\Domain\Driver;
+use Medians\Leads\Domain\Lead;
 
 
 class CampaignLead extends CustomModel
@@ -32,4 +32,9 @@ class CampaignLead extends CustomModel
 		return $this->fillable;
 	}
 	
+	public function lead()
+	{
+		return $this->hasOne(Lead::class, 'lead_id', 'lead_id');
+	}
+
 }

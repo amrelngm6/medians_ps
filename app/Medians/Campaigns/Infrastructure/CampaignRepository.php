@@ -43,7 +43,7 @@ class CampaignRepository
 	
 	public function getCampaignLeads($limit = 1000)
 	{
-		return CampaignLead::orderBy('created_at', 'DESC')
+		return CampaignLead::with('lead')->orderBy('created_at', 'DESC')
 		->get();
 	}
 
