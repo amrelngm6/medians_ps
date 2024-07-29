@@ -148,7 +148,7 @@ class Notification extends CustomModel
 
 		$send = $sendMail->sendMail();
 
-		$id = ($notification->receiver_type == Driver::class) ? "Driver-".$notification->receiver_id : "Parent-".$notification->receiver_id;
+		$id =  "Agent-".$notification->receiver_id;
 		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($id);
 		return  $sendOneSignalNotification->sendNotification($notification->subject, $notification->body_text);
 

@@ -135,13 +135,7 @@ class NotificationEvent extends CustomModel
 	{	
 		switch ($event->receiver_model) 
 		{
-			case Driver::class:
-				return method_exists($model, 'receiverAsDriver') ? [$model->receiverAsDriver()] : null;
-				break;
-				
-				case Employee::class:
-				case SuperVisor::class:
-				case Parents::class:
+			case Agent::class:
 				return method_exists($model, 'receiverAsCustomer') ? [$this->validateUserType($event, $model->receiverAsCustomer())] : null;
 				break;
 				
