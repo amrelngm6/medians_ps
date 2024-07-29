@@ -133,7 +133,8 @@ class NotificationEvent extends CustomModel
 		switch ($event->receiver_model) 
 		{
 			case Agent::class:
-				return method_exists($model, 'receiverAsCustomer') ? [$this->validateUserType($event, $model->receiverAsCustomer())] : null;
+				return $model;
+				// return method_exists($model, 'receiverAsCustomer') ? [$this->validateUserType($event, $model->receiverAsCustomer())] : null;
 				break;
 				
 			case User::class:
