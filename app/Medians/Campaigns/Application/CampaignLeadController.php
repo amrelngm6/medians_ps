@@ -109,21 +109,6 @@ class CampaignLeadController extends CustomController
 	public function store() 
 	{
 
-		$params = $this->app->params();
-
-        try {	
-
-        	$params['created_by'] = $this->app->auth()->id;        	
-
-            $returnData = (!empty($this->repo->store($params))) 
-            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
-            : array('success'=>0, 'result'=>'Error', 'error'=>1);
-
-        } catch (Exception $e) {
-        	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
-        }
-
-		return $returnData;
 	}
 
 
@@ -133,9 +118,9 @@ class CampaignLeadController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : null;
+        	unset($params['status']);
 
-            if ($this->repo->update($params) && $this->updateLeads($params['campaign_leads'], $params['campaign_id']))
+            if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
@@ -156,10 +141,10 @@ class CampaignLeadController extends CustomController
 
         try {
 
-        	$check = $this->repo->find($params['campaign_id']);
+        	$check = $this->repo->find($params['campaign_lead_id']);
 
 
-            if ($this->repo->delete($params['campaign_id']))
+            if ($this->repo->delete($params['campaign_lead_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }

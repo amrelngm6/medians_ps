@@ -218,6 +218,10 @@ class APIController extends CustomController
 			case 'Status.update':
 				$controller = new StatusList\Application\StatusController; 
 				break;
+
+			case 'CampaignLead.update':
+				$controller = new Campaigns\Application\CampaignLeadController; 
+				break;
 		}
 
 		return response(isset($controller) ? json_encode($controller->update()) : []);
