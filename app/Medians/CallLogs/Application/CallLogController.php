@@ -50,7 +50,7 @@ class CallLogController extends CustomController
             [ 'value'=> "time", 'text'=> translate('Time'), 'sortable'=> true ],
             [ 'value'=> "duration", 'text'=> translate('Duration'), 'sortable'=> true ],
             [ 'value'=> "type", 'text'=> translate('Type'), 'sortable'=> true ],
-            [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "notes", 'text'=> translate('notes'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
             [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];
