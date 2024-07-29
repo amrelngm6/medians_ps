@@ -22,7 +22,7 @@ class StatusRepository
 	public function getLastWeekLeads()
 	{
 		return Status::whereHas('leads',  function($q) {
-			return $q->whereBetween('updated_at', [date('Y-m-d'), date('Y-m-d', strtotime("-7 days"))]);
+			return $q->whereBetween('updated_at', 'IN', [date('Y-m-d'), date('Y-m-d', strtotime("-7 days"))]);
 		})
 		// ->withCount('leads')
 		->orderBy('sort')->get();
