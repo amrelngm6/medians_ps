@@ -41,7 +41,8 @@ class CampaignLeadController extends CustomController
 
 		return [
             [ 'value'=> "campaign_lead_id", 'text'=> "#"],
-            [ 'value'=> "campaign.name", 'text'=> translate('name'), 'sortable'=> true ],
+            [ 'value'=> "lead.name", 'text'=> translate('name'), 'sortable'=> true ],
+            [ 'value'=> "campaign.name", 'text'=> translate('campaign'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
             [ 'value'=> "delete", 'text'=> translate('delete')  ],
