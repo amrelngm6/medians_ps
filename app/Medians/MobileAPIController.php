@@ -212,8 +212,8 @@ class MobileAPIController extends CustomController
                 $return = (new Users\Application\UserController())->update(); 
                 break;
 
-            case 'Parent.update':
-				$return = (new Customers\Application\ParentController())->updateMobile(); 
+            case 'Agent.update':
+				$return = (new Customers\Application\AgentController())->updateMobile(); 
                 break;
 
             case 'Driver.update':
@@ -224,24 +224,8 @@ class MobileAPIController extends CustomController
 				$return =  (new Notifications\Application\NotificationController())->update(); 
 				break;
 
-			case 'Student.updateStudentInfo':
-				$return =  (new Students\Application\StudentController())->updateStudentInfo(); 
-				break;
-
-			case 'RouteLocation.update':
-				$return =  (new Locations\Application\RouteLocationController())->updateDays(); 
-				break;
-
-			case 'Vacation.update':
-				$return = (new Vacations\Application\VacationController())->update_student_vacation(); 
-				break;
-
-			case 'Wallet.update':
-				$return = (new Wallets\Application\WalletController())->update_wallet(); 
-				break;
-
-			case 'Withdrawal.update':
-				$return = (new Wallets\Application\WithdrawalController())->update_wallet(); 
+			case 'Status.update':
+				$return = (new StatusList\Application\StatusController())->update(); 
 				break;
 
 		}
