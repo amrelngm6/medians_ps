@@ -158,10 +158,11 @@ class NotificationEvent extends CustomModel
 	 */
 	public function renderNotification($event, $model)
 	{
-		error_log($event);
 
 		try {
 			$receivers = $this->filterReceivers($event, $model);
+			error_log(json_encode($event));
+			error_log(json_encode($receivers));
 
 			if (!$receivers)
 				return null;
