@@ -21,7 +21,7 @@ class StatusRepository
 
 	public function getLastWeekLeads()
 	{
-		return Status::withCount('leads')
+		return Status::with('leads')
 		// whereHas('leads')
 		->get();
 	}
