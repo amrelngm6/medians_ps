@@ -24,7 +24,7 @@ class StatusRepository
 		return Status::whereHas('leads',  function($q) {
 			return $q->whereDate('updated_at', '<=', date('Y-m-d'))->whereDate('updated_at', '>', date('Y-m-d', strtotime("-7 days")));
 		})
-		->withCount('leads')
+		// ->withCount('leads')
 		->orderBy('sort')->get();
 	}
 
