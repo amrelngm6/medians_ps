@@ -4,7 +4,7 @@ namespace Medians\StatusList\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
-use Medians\Drivers\Domain\Driver;
+use Medians\Campaigns\Domain\CampaignLead;
 
 
 class Status extends CustomModel
@@ -32,5 +32,9 @@ class Status extends CustomModel
 		return $this->fillable;
 	}
 	
+	public function campaign()
+	{
+		return $this->hasOne(CampaignLead::class, 'status', 'value');
+	}
 	
 }
