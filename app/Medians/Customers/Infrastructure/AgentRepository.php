@@ -81,9 +81,9 @@ class AgentRepository  extends CustomerRepository
 		$Model = CustomField::create($fields);
 		
 		$sendMail = new MailService($findByEmail->email, $findByEmail->name, 'Your token for reset password', "Here is the attached code \n\n ".$fields['value']);
-		$sendMail->sendMail();
+		$send  = $sendMail->sendMail();
 
-		return  1;
+		return  ($send);
     }
     	
 
