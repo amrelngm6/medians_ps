@@ -44,10 +44,13 @@ class CallLogController extends CustomController
 
 		return [
             [ 'value'=> "call_log_id", 'text'=> "#"],
-            [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
+            [ 'value'=> "lead.name", 'text'=> translate('Lead'), 'sortable'=> true ],
+            [ 'value'=> "agent.name", 'text'=> translate('Agent'), 'sortable'=> true ],
+            [ 'value'=> "date", 'text'=> translate('Date'), 'sortable'=> true ],
+            [ 'value'=> "time", 'text'=> translate('Time'), 'sortable'=> true ],
+            [ 'value'=> "duration", 'text'=> translate('Duration'), 'sortable'=> true ],
+            [ 'value'=> "type", 'text'=> translate('Type'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
-            [ 'value'=> "start_date", 'text'=> translate('Start date'), 'sortable'=> true ],
-            [ 'value'=> "end_date", 'text'=> translate('End date'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
             [ 'value'=> "delete", 'text'=> translate('delete')  ],
         ];

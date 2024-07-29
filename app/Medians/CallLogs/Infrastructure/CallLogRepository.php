@@ -16,9 +16,9 @@ class CallLogRepository
 		return CallLog::find($id);
 	}
 
-	public function get($limit = 100)
+	public function get($limit = 1000)
 	{
-		return CallLog::limit($limit)->orderBy('created_at', 'DESC')->get();
+		return CallLog::with('lead', 'agent')->limit($limit)->orderBy('created_at', 'DESC')->get();
 	}
 
 
