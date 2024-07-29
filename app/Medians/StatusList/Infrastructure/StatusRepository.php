@@ -19,6 +19,11 @@ class StatusRepository
 		return Status::limit($limit)->orderBy('sort')->get();
 	}
 
+	public function getWithLeads($startData, $endData)
+	{
+		return Status::with('leads')->limit($limit)->orderBy('sort')->get();
+	}
+
 
 
 	/**

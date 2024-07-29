@@ -32,7 +32,7 @@ class Status extends CustomModel
 		return $this->fillable;
 	}
 	
-	public function campaign()
+	public function leads()
 	{
 		return $this->hasOne(CampaignLead::class, 'status', 'value');
 	}
