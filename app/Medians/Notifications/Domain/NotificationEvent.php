@@ -205,6 +205,7 @@ class NotificationEvent extends CustomModel
 			} catch (\Throwable $th) {
 				$event->body = isset($template->content->content) ? $app->renderTemplate($event->body_text)->render($params) : '';
 			}
+			
 			$params['model'] = $model;
 			$params['receiver'] = $receiver;
 			$event->subject = $app->renderTemplate($event->subject)->render($params);
