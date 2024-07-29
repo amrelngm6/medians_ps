@@ -165,9 +165,6 @@ class NotificationEvent extends CustomModel
 			if (!$receivers)
 				return null;
 			
-			error_log(json_encode($event));
-			error_log(json_encode($receivers));
-	
 			foreach ($receivers as $key => $receiver) 
 			{
 				if ($receiver)
@@ -187,6 +184,10 @@ class NotificationEvent extends CustomModel
 	{
     	$app = new \config\APP;
     	$params = [];
+
+		error_log(json_encode($event));
+		error_log(json_encode($model));
+		error_log(json_encode($receiver));
 
     	/**
     	 * Get short name for the class to use as index
