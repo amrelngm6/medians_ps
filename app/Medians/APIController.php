@@ -272,6 +272,10 @@ class APIController extends CustomController
 				case 'EmailTemplate.delete':
 					return response((new Templates\Application\EmailTemplateController())->delete());
 					break;
+					
+				case 'Status.delete':
+					return response((new StatusList\Application\StatusController())->delete());
+					break;
 	
 			}
 
