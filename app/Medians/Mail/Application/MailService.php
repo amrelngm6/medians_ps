@@ -70,11 +70,13 @@ class MailService
 		    $mail->Subject = $this->subject;
 		    $mail->Body    = render('views/email/email.html.twig',['msg'=> $this->body], null);
 
-		    $mail->send();
+		    $send = $mail->send();
+		    error_log($send."  sending status ");
 
 		    return true;
 
 		} catch (Exception $e) {
+		    error_log("Message could not be sent. Mailer Error". $mail->ErrorInfo);
 		    return translate("Message could not be sent. Mailer Error"). $mail->ErrorInfo;
 		}
 	}
