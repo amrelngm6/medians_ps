@@ -6,11 +6,7 @@ use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
 use Medians\Customers\Domain\Customer;
-use Medians\Drivers\Domain\Driver;
-use Medians\Customers\Domain\Parents;
-use Medians\Customers\Domain\Employee;
-use Medians\Customers\Domain\SuperVisor;
-use Medians\Students\Domain\Student;
+use Medians\Customers\Domain\Agent;
 use Medians\Templates\Domain\EmailTemplate;
 
 /**
