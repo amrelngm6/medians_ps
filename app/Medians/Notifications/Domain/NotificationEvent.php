@@ -164,7 +164,10 @@ class NotificationEvent extends CustomModel
 
 			if (!$receivers)
 				return null;
-
+			
+			error_log(json_encode($event));
+			error_log(json_encode($receivers));
+	
 			foreach ($receivers as $key => $receiver) 
 			{
 				if ($receiver)
