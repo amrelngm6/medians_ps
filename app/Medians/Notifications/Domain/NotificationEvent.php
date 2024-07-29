@@ -130,7 +130,6 @@ class NotificationEvent extends CustomModel
 	public function filterReceivers($event, $model)
 	{	
 
-		error_log($event);
 		switch ($event->receiver_model) 
 		{
 			case Agent::class:
@@ -159,6 +158,8 @@ class NotificationEvent extends CustomModel
 	 */
 	public function renderNotification($event, $model)
 	{
+		error_log($event);
+
 		try {
 			$receivers = $this->filterReceivers($event, $model);
 
