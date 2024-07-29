@@ -133,9 +133,9 @@ class StatusController extends CustomController
 	 * Load latest statuss
 	 * 
 	 */
-	public function loadStatusList()
+	public function getWeekLeads()
 	{
-
+		return $this->repo->getLastWeekLeads();
 	}  
 
 	

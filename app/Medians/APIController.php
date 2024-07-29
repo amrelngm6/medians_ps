@@ -61,6 +61,10 @@ class APIController extends CustomController
 			case 'loadCampaignLeads':
 				$return = (new  Campaigns\Application\CampaignController)->loadLeads();
 				break;
+
+			case 'StatusWeekLeads':
+				$return = (new  Status\Application\StatusController)->getWeekLeads();
+				break;
 		}
 
 		echo json_encode($return);

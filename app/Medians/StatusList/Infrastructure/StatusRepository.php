@@ -19,9 +19,11 @@ class StatusRepository
 		return Status::limit($limit)->orderBy('sort')->get();
 	}
 
-	public function getWithLeads($startData, $endData)
+	public function getLastWeekLeads()
 	{
-		return Status::with('leads')->limit($limit)->orderBy('sort')->get();
+		return Status::with(['leads'=> function($q) {
+			return $q->whereDate('create', '<=', date('Y-m-d'))->whereDate('create', '<=', date('Y-m-d', strtotime("-7 days")));
+		}])->limit($limit)->orderBy('sort')->get();
 	}
 
 
