@@ -78,7 +78,7 @@ class NotificationEvent extends CustomModel
 	{
 
 		$events = json_decode(NotificationEvent:: where('action',$action)->where('model',get_class($model))->get());
-
+		error_log(json_encode($events));
 		foreach ($events as $event) 
 		{
 			$event = $this->renderNotification($event, $model);
@@ -129,6 +129,8 @@ class NotificationEvent extends CustomModel
 	 */
 	public function filterReceivers($event, $model)
 	{	
+		error_log(json_encode($event));
+
 		switch ($event->receiver_model) 
 		{
 			case Agent::class:
