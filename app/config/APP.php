@@ -241,7 +241,6 @@ class APP
 			
 			array('permission'=>'Leads.index', 'title'=>translate('Leads'),  'icon'=>'user', 'link'=>'admin/leads', 'component'=>'data_table'),
 
-			array('permission'=>'Campaigns.index', 'title'=>translate('Campaigns'),  'icon'=>'layers', 'link'=>'admin/campaigns', 'component'=>'campaigns'),
 
 			array('permission'=>'Agents.index', 'title'=>translate('Agents'),  'icon'=>'users', 'link'=>'admin/agents', 'component'=>'data_table'),
 
@@ -249,6 +248,12 @@ class APP
 			[
 				array('permission'=>'User.index', 'title'=>translate('Users'),  'icon'=>'users', 'link'=>'admin/users', 'component'=>'users'),
 				array('permission'=> 'Roles.index', 'title'=> translate('ROLES MANAEGMENT'),  'icon'=>'tool', 'link'=>'admin/roles', 'component'=>'roles'),
+			]
+			),
+			array( 'title'=>translate('Campaigns'),  'icon'=>'layers', 'link'=>'#Campaigns', 'superadmin'=> true, 'sub'=>
+			[
+				array('permission'=>'Campaigns.index', 'title'=>translate('Campaigns'),  'icon'=>'layers', 'link'=>'admin/campaigns', 'component'=>'campaigns'),
+				array('permission'=>'CampaignLeads.index', 'title'=>translate('Campaign leads'),  'icon'=>'layers', 'link'=>'admin/campaign_lead', 'component'=>'data_table'),
 			]
 			),
 		
