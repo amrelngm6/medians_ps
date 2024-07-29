@@ -169,11 +169,11 @@ class NotificationEvent extends CustomModel
 			{
 				if ($receiver)
 				{
-					$this->saveNotification($event, $model, $receiver);
+					$save = $this->saveNotification($event, $model, $receiver);
 				}
 			}
 
-			return true;
+			return isset($save);
 			
 		} catch (\Throwable $th) {
 			return null;
