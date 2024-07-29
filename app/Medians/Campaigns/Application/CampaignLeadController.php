@@ -120,7 +120,7 @@ class CampaignLeadController extends CustomController
 
         	unset($params['status']);
 
-            if ($this->repo->update($params))
+            if ($this->repo->updateLead($params))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
@@ -144,7 +144,7 @@ class CampaignLeadController extends CustomController
         	$check = $this->repo->find($params['campaign_lead_id']);
 
 
-            if ($this->repo->delete($params['campaign_lead_id']))
+            if ($this->repo->deleteLead($params['campaign_lead_id']))
             {
                 return json_encode(array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1));
             }

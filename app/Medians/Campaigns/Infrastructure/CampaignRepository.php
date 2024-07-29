@@ -161,6 +161,26 @@ class CampaignRepository
 		}
 	}
 
+	/**
+	* Delete item to database
+	*
+	* @Returns Boolen
+	*/
+	public function deleteLead($id) 
+	{
+		try {
+			
+			$delete = CampaignLead::find($id)->delete();
+
+			return true;
+
+		} catch (\Exception $e) {
+
+			throw new \Exception("Error Processing Request " . $e->getMessage(), 1);
+			
+		}
+	}
+
 
  
 }
