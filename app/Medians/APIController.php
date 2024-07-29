@@ -216,7 +216,7 @@ class APIController extends CustomController
 				break;
 
 			case 'Status.update':
-				$return = (new StatusList\Application\StatusController())->update(); 
+				$controller = new StatusList\Application\StatusController; 
 				break;
 		}
 
