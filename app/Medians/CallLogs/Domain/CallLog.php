@@ -4,7 +4,8 @@ namespace Medians\CallLogs\Domain;
 
 use Shared\dbaser\CustomModel;
 use Medians\Users\Domain\User;
-use Medians\Drivers\Domain\Driver;
+use Medians\Customers\Domain\Agent;
+use Medians\Leads\Domain\Lead;
 
 
 class CallLog extends CustomModel
@@ -36,5 +37,15 @@ class CallLog extends CustomModel
 	}
 	
 	
+	public function lead()
+	{
+		return $this->hasOne(Lead::class, 'lead_id', 'lead_id');
+	}
+
+	public function agent()
+	{
+		return $this->hasOne(Agent::class, 'agent_id', 'agent_id');
+	}
+
 	
 }
