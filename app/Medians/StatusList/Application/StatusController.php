@@ -135,7 +135,8 @@ class StatusController extends CustomController
 	 */
 	public function getWeekLeads()
 	{
-		return $this->repo->getLastWeekLeads();
+		$user = $this->app->auth();
+		return $this->repo->getLastWeekLeads($user->customer_id);
 	}  
 
 	
