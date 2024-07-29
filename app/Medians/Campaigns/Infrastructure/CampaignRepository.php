@@ -41,6 +41,13 @@ class CampaignRepository
 	}
 
 	
+	public function getCampaignLeads($limit = 1000)
+	{
+		return CampaignLead::orderBy('created_at', 'DESC')
+		->get();
+	}
+
+	
 	public function getLeads($campaignId)
 	{
 		return Lead::whereHas('campaignLead', function($q) use ($campaignId) {

@@ -84,7 +84,7 @@ class CampaignLeadController extends CustomController
 		        'title' => translate('Campaign Leads'),
 		        'columns' => $this->columns(),
 		        'fillable' => $this->fillable(),
-		        'items' => $this->repo->get(),
+		        'items' => $this->repo->getCampaignLeads(),
 		        'agents' => $this->agentRepo->get(),
 				'object_name' => 'CampaignLead',
 				'object_key' => 'campaign_lead_id'

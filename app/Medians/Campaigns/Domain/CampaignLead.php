@@ -22,6 +22,7 @@ class CampaignLead extends CustomModel
 		'lead_id',
 		'agent_id',
 		'status',
+		'notes',
 		'created_by',
 	];
 

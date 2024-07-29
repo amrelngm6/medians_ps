@@ -214,10 +214,4 @@ class CallLogController extends CustomController
 
 	}
 
-	public function validate($params) 
-	{
-
-	}
-
-
 }
