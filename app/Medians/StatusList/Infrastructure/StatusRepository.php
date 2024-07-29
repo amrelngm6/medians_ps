@@ -22,9 +22,8 @@ class StatusRepository
 	public function getLastWeekLeads()
 	{
 		return Status::withCount(['leads'=> function ($q) {
-			return $q->whereDate('updated_at', '>', date('Y-m-d', strtotime("-1 day")));
+			return $q->whereDate('updated_at', '>', date('Y-m-d', strtotime("-7 day")));
 		}])
-		// whereHas('leads')
 		->get();
 	}
 
