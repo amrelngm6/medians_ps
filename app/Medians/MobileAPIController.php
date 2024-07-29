@@ -116,6 +116,10 @@ class MobileAPIController extends CustomController
 			case 'Agent.resetPassword':
 				$return =  (new Customers\Application\AgentController())->resetPassword(); 
 				break;
+
+			case 'Agent.resetChangePassword':
+				$return =  (new Customers\Application\AgentController())->resetChangePassword(); 
+				break;
 		}
 		
 		echo json_encode($return);
