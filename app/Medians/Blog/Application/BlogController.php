@@ -73,7 +73,7 @@ class BlogController extends CustomController
             [ 'key'=> "id", 'title'=> "#", 'column_type'=>'hidden'],
 			
 			[ 'key'=> "created_by", 'title'=> translate('Author'), 
-				'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key' => 'id', 'required'=>true, 'withLabel'=>true, 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key' => 'id', 'required'=>false, 'withLabel'=>true, 
 				'data' => $this->doctorRepo->get()
 			],
 			[ 'key'=> "author_name", 'title'=> translate('Author name'), 'fillable'=> true, 'custom_field'=>true, 'column_type'=>'text' ],
