@@ -335,7 +335,7 @@ export default
                     labels: content.value.bookings_charts.map(e => e ? e.label : null),
                     datasets: [
                         chartItem(content.value.bookings_charts.map(e => e.class == 'Booking' ? e.y : 0), translate('Booking'), colors[0]),
-                        // chartItem(content.value.bookings_charts.map(e => e.class == 'Offer' ? e.y: 0), translate('Offer'), colors[1]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'Doctor' ? e.y: 0), translate('Doctor'), colors[1]),
                         chartItem(content.value.bookings_charts.map(e => e.class == 'OnlineConsultation' ? e.y : 0), translate('OnlineConsultation'), colors[2]),
                         // chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
                     ]
