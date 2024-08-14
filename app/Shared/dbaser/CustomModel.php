@@ -9,6 +9,7 @@ use Medians\Content\Domain\Content;
 use Medians\Views\Domain\View;
 use Medians\Notifications\Domain\NotificationEvent;
 use Medians\Logs\Domain\UsageLog;
+use GeoIp2\Database\Reader;
 
 use \config\APP;
 
@@ -125,6 +126,26 @@ class CustomModel extends Model
 
 	public function addView()
 	{
+		try {
+		
+			$reader = new Reader($_SERVER['DOCUMENT_ROOT']. '/uploads/geolite2-country.mmdb');
+
+			// Get the IP address of the visitor
+			$ip = $_SERVER['REMOTE_ADDR'];
+
+			try {
+				$record = $reader->country($ip);
+				$country = $record->country->name; // This will give you the country name
+				echo "Visitor country: " . $country;
+			} catch (Exception $e) {
+				echo "Could not determine country: " . $e->getMessage();
+			}
+
+			
+		} catch (\Throwable $th) {
+			
+		}
+
 		$view = View::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'date'=> date('Y-m-d')]);
 		$view->update(['session'=>$this->sessionGuest(), 'times'=>($view->times ? $view->times : 0)+1]);
 	}
