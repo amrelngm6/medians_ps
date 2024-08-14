@@ -137,6 +137,7 @@ class CustomModel extends Model
 			try {
 				$record = $reader->country($ip);
 				$country = $record->country->name; // This will give you the country name
+				error_log(json_encode($record->location));
 				// echo "Visitor country: " . $country;
 			} catch (Exception $e) {
 			}
