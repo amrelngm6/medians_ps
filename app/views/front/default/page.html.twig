@@ -15,7 +15,7 @@
 {% endif %}
 <div class="blog-content ">
     <div class="mx-auto ">
-        {{app.renderTemplate(item.content.content, item).render( {'item':item,  'hasindex':4, 'app':app, 'lang':lang, 'doctors': doctors, 'specializations': specializations, 'all_stories':all_stories}  )|raw}}
+        {{app.renderTemplate(item.content.content, item).render( {'item':item,  'hasindex':4, 'app':app, 'lang':lang, 'doctors': doctors, 'specializations': specializations, 'all_stories':all_stories, 'all_technologies': all_technologies}  )|raw}}
     </div>
 </div>
 {% include 'views/front/default/includes/navbar.html.twig' %} 
