@@ -55,7 +55,7 @@ export default
                     for (let i = 0; i < content.value.visits_list.length; i++) {
                         const element2 = content.value.visits_list[i];
                         const id = getId(projects.value, element2);
-                        events.value.push({ id: i+1, resourceId: id, startDate: formatCustomTime(element2.created_at, 'YYYY-MM-DD HH'), endDate: formatCustomTime(element2.updated_at, 'YYYY-MM-DD HH'), name: (element2 && element2.item) ? formatCustomTime(element2.created_at, 'HH:mm a ')+element2.item.title : ''},)
+                        events.value.push({ id: i+1, resourceId: id, startDate: formatCustomTime(element2.created_at, 'YYYY-MM-DD'), endDate: formatCustomTime(element2.updated_at, 'YYYY-MM-DD'), name: (element2 && element2.item) ? formatCustomTime(element2.created_at, 'HH:mm a ')+element2.item.title : ''},)
                     }
                 }
             });
