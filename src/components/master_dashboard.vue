@@ -364,7 +364,7 @@ export default
                 projects.value = [];
                 for (let i = 0; i < content.value.visits_ip_list.length; i++) {
                     const element = content.value.visits_ip_list[i];
-                    projects.value.push({ id: element.ip, title: element.ip, color: '#f39c12' })
+                    projects.value.push({ id: i+1, title: element.ip, color: '#f39c12' })
                 }
 
                 console.log(projects.value)
@@ -372,11 +372,20 @@ export default
                 events.value = [];
                 for (let i = 0; i < content.value.visits_list.length; i++) {
                     const element = content.value.visits_list[i];
-                    events.value.push({ id: i+1, resourceId: element.ip, startDate: element.created_at, endDate: element.updated_at, title: element.item.item.title ?? '', description: '' },)
+                    const id = getId(projects.value, element.ip);
+                    events.value.push({ id: i+1, resourceId: id, startDate: element.created_at, endDate: element.updated_at, title: (element.item && element.item.item) ? element.item.item.title : '', description: '' },)
                 }
                 console.log(events.value)
             }
 
+        }
+
+        const getId = (events, ip ) => {
+            for (let i = 0; i < events.length; i++) {
+                const element = events[i];
+                if (element.title == ip)
+                    return element.id; 
+            }
         }
         
         const chartItem = (value, title, color ) => {
