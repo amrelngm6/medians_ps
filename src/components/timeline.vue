@@ -17,7 +17,7 @@ export default
     components:{
         Timeline
     },
-    name:'timeline',
+    name:'timeline_page',
     setup(props) {
 
         const projects = ref();

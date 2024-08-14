@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <timeline_page :path="path" :conf="conf"  ></timeline_page>
+        <TimelinePage :path="path" :conf="conf"  ></TimelinePage>
 
         <div class="block w-full overflow-x-auto py-2">
             <div class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
@@ -225,7 +225,7 @@ import dashboard_pie_chart from '@/components/includes/dashboard_pie_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest, formatDateTime, formatCustomTime, formatCustomTimeMinute} from '@/utils.vue';
-import { timeline_page } from "@/components/timeline.vue";
+import TimelinePage from "@/components/timeline.vue";
 import "@teej/vue-timeline/dist/style.css";
 
 import MapChart from 'vue-map-chart'
@@ -244,7 +244,7 @@ export default
         AgChartsVue,
         VueTailwindDatepicker,
         MapChart,
-        timeline_page
+        TimelinePage
     },
     name:'categories',
     setup(props) {
