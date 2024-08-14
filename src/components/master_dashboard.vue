@@ -121,7 +121,7 @@
                                                         <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(item.picture ?? '/uploads/images/default_profile.png')" />
                                                     </div>
                                                 </td>
-                                                <td v-text="item.item.title ?? ''"></td>
+                                                <td v-text="item && item.item ? item.item.title : ''"></td>
                                                 <td v-text="item.times"></td>
                                             </tr>
                                         </tbody>
