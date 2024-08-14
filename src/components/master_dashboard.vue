@@ -76,10 +76,10 @@
                                 
                                 <MapChart
                                     :countryData="content.visits_countries"
-                                    highColor="#ff0000"
-                                    lowColor="#aaaaaa"
-                                    countryStrokeColor="#909090"
-                                    defaultCountryFillColor="#dadada"
+                                    highColor="#0c9ba4"
+                                    lowColor="#b4dddf"
+                                    countryStrokeColor="#eee"
+                                    defaultCountryFillColor="#dbdfe9"
                                     /> 
                             </div>
                         </div>
