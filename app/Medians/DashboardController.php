@@ -4,6 +4,7 @@ namespace Medians;
 
 use \Shared\dbaser\CustomController;
 use \Medians\Views\Domain\View;
+use \Medians\Visits\Domain\Visit;
 
 class DashboardController extends CustomController
 {
@@ -168,6 +169,7 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
+        $data['visits_countries'] = Visit::totalVisits($this->start, $this->end)->with('item')->orderBy('updated_at', 'desc')->groupBy('iso_code')->limit(10)->get();
         $data['latest_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('updated_at', 'desc')->limit(5)->get();
         $data['top_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('times', 'desc')->limit(5)->get();
         $data['total_visits'] = View::totalViews($this->start, $this->end)->sum('times');

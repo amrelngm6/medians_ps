@@ -203,7 +203,7 @@
         </div>
          
         <MapChart
-            :countryData="{'US': 4, 'CA': 7, 'GB': 8, 'IE': 14, 'ES': 21}"
+            :countryData="content.visits_countries"
             highColor="#ff0000"
             lowColor="#aaaaaa"
             countryStrokeColor="#909090"

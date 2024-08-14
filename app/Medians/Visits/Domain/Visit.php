@@ -37,4 +37,9 @@ class Visit extends CustomModel
 		return $this->morphTo();
 	}
 
+	public static function totalVisits($start, $end)
+	{
+		return View::whereBetween('date', [$start, $end]);
+	}
+
 }
