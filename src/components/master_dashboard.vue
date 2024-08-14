@@ -224,7 +224,7 @@ import dashboard_chart from '@/components/includes/dashboard_chart.vue';
 import dashboard_pie_chart from '@/components/includes/dashboard_pie_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
-import {translate, handleGetRequest} from '@/utils.vue';
+import {translate, handleGetRequest, formatDateTime} from '@/utils.vue';
 import { Timeline } from "@teej/vue-timeline";
 import "@teej/vue-timeline/dist/style.css";
 
@@ -373,7 +373,7 @@ export default
                 for (let i = 0; i < content.value.visits_list.length; i++) {
                     const element = content.value.visits_list[i];
                     const id = getId(projects.value, element.ip);
-                    events.value.push({ id: i+1, resourceId: id, startDate: element.created_at, endDate: element.updated_at, title: (element.item && element.item.item) ? element.item.item.title : '', description: '' },)
+                    events.value.push({ id: i+1, resourceId: id, startDate: formatDateTime(element.created_at), endDate: formatDateTime(element.updated_at), title: (element.item && element.item.item) ? element.item.item.title : '', description: '' },)
                 }
                 console.log(events.value)
             }
