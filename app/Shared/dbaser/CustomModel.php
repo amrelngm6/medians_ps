@@ -136,14 +136,11 @@ class CustomModel extends Model
 			try {
 				$record = $reader->country($ip);
 				$country = $record->country->name; // This will give you the country name
-				echo "Visitor country: " . $country;
+				// echo "Visitor country: " . $country;
 			} catch (Exception $e) {
-				echo "Could not determine country: " . $e->getMessage();
 			}
 
-			
 		} catch (\Throwable $th) {
-			
 		}
 
 		$view = View::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'date'=> date('Y-m-d')]);
