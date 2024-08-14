@@ -98,7 +98,7 @@
                         
                         <div class="w-full p-4">
                             <div class="w-full flex ">
-                                <h4 class="w-full ml-4" v-text="translate('New articles')"></h4>
+                                <h4 class="w-full ml-4" v-text="translate('Top pages articles')"></h4>
                                 <a href="/admin/blog" class="w-20" v-text="translate('View all')"></a>
                             </div>
                             <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest plan subscriptions')"></p>
@@ -111,22 +111,18 @@
                                             <tr>
                                                 <th v-text="translate('ID')"></th>
                                                 <th v-text="translate('Title')"></th>
-                                                <th v-text="translate('Category')"></th>
+                                                <th v-text="translate('Views')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.plan_subscriptions"  :key="content.plan_subscriptions">
-                                            <tr :key="index" v-for="(subscription, index) in content.plan_subscriptions"  >
+                                            <tr :key="index" v-for="(item, index) in content.top_visits"  >
                                                 <td>
-                                                    <div class="flex gap-4 w-full" v-if="subscription && subscription.user">
-                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(subscription.user.picture ?? '/uploads/images/default_profile.png')" />
-                                                        <div class="text-left">
-                                                            <p class="m-0" v-text="subscription.user.name"></p>
-                                                            <p class="m-0" v-text="subscription.user.business ? subscription.user.business.business_name : ''"></p>
-                                                        </div>
+                                                    <div class="flex gap-4 w-full" v-if="item && item.item">
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(item.picture ?? '/uploads/images/default_profile.png')" />
                                                     </div>
                                                 </td>
-                                                <td v-text="subscription.plan_name ?? ''"></td>
-                                                <td v-text="subscription.type"></td>
+                                                <td v-text="item.item.title ?? ''"></td>
+                                                <td v-text="item.times"></td>
                                             </tr>
                                         </tbody>
                                     </table>
