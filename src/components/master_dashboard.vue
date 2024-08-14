@@ -265,10 +265,10 @@ export default
         ]);
 
         const events = ref( [
-            { id: 1, resourceId: 1, start: '2024-08-10', end: '2024-08-12', title: 'Initial Design', description: 'Started designing the new home page.' },
-            { id: 2, resourceId: 1, start: '2024-08-13', end: '2024-08-15', title: 'Design Review', description: 'Reviewed the home page design with the team.' },
-            { id: 3, resourceId: 2, start: '2024-08-11', end: '2024-08-14', title: 'Market Research', description: 'Conducted research for the new product.' },
-            { id: 4, resourceId: 3, start: '2024-08-12', end: '2024-08-14', title: 'Checkout Flow Improvements', description: 'Improved the checkout flow based on user feedback.' },
+            { id: 1, resourceId: 1, startDate: '2024-08-10', endDate: '2024-08-12', title: 'Initial Design', description: 'Started designing the new home page.' },
+            { id: 2, resourceId: 1, startDate: '2024-08-13', endDate: '2024-08-15', title: 'Design Review', description: 'Reviewed the home page design with the team.' },
+            { id: 3, resourceId: 2, startDate: '2024-08-11', endDate: '2024-08-14', title: 'Market Research', description: 'Conducted research for the new product.' },
+            { id: 4, resourceId: 3, startDate: '2024-08-12', endDate: '2024-08-14', title: 'Checkout Flow Improvements', description: 'Improved the checkout flow based on user feedback.' },
         ]);
         
         const load = (path) =>
