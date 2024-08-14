@@ -127,12 +127,13 @@ class CustomModel extends Model
 
 	public function addView()
 	{
+		$ip = $_SERVER['REMOTE_ADDR'];
+
 		try {
 		
 			$reader = new Reader($_SERVER['DOCUMENT_ROOT']. '/uploads/geolite2-country.mmdb');
 
 			// Get the IP address of the visitor
-			$ip = $_SERVER['REMOTE_ADDR'];
 			error_log($ip);
 
 			try {
@@ -143,7 +144,8 @@ class CustomModel extends Model
 			}
 
 		} catch (\Throwable $th) {
-			error_log('$ip');
+			error_log($ip);
+			error_log($th->getMessage());
 		}
 
 		$view = View::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'date'=> date('Y-m-d')]);
