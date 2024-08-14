@@ -209,7 +209,8 @@
             </div>
         </div>
         <!-- <Timeline :resources="projects" :events="tasks" /> -->
-        <Timeline :items="events" />
+        <Timeline :resources="projects" :events="events" />
+
 
 
         
@@ -257,14 +258,18 @@ export default
         const content = ref({});
 
         const activeDate = ref();
-        const events = ref( [
-            { date: '2024-08-10', title: 'Visited Home Page', content: 'User landed on the home page.' },
-            { date: '2024-08-11', title: 'Visited Products Page', content: 'User navigated to the products page.' },
-            { date: '2024-08-12', title: 'Viewed Product Details', content: 'User viewed details of Product X.' },
-            { date: '2024-08-13', title: 'Checked Out', content: 'User proceeded to checkout.' },
-            { date: '2024-08-14', title: 'Order Completed', content: 'User completed the purchase.' },
+        const projects = ref( [
+            { id: 1, title: 'Home Page Redesign', color: '#f39c12' },
+            { id: 2, title: 'New Product Launch', color: '#3498db' },
+            { id: 3, title: 'Checkout Improvement', color: '#2ecc71' },
         ]);
 
+        const events = ref( [
+            { id: 1, resourceId: 1, start: '2024-08-10', end: '2024-08-12', title: 'Initial Design', description: 'Started designing the new home page.' },
+            { id: 2, resourceId: 1, start: '2024-08-13', end: '2024-08-15', title: 'Design Review', description: 'Reviewed the home page design with the team.' },
+            { id: 3, resourceId: 2, start: '2024-08-11', end: '2024-08-14', title: 'Market Research', description: 'Conducted research for the new product.' },
+            { id: 4, resourceId: 3, start: '2024-08-12', end: '2024-08-14', title: 'Checkout Flow Improvements', description: 'Improved the checkout flow based on user feedback.' },
+        ]);
         
         const load = (path) =>
         {
@@ -386,6 +391,8 @@ export default
         }
         
         return {
+            projects,
+            events,
             bookingCharts,
             handleSelectedDate,
             switchDate,
