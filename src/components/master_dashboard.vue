@@ -145,24 +145,20 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th v-text="translate('name')"></th>
-                                                <th v-text="translate('title')"></th>
-                                                <th v-text="translate('date')"></th>
+                                                <th v-text="translate('ID')"></th>
+                                                <th v-text="translate('Title')"></th>
+                                                <th v-text="translate('Views')"></th>
                                             </tr>
                                         </thead>
-                                        <tbody >
-                                            <tr :key="index" v-for="(message, index) in content.latest_help_messages" >
+                                        <tbody v-if="content.latest_visits"  :key="content.latest_visits">
+                                            <tr :key="index" v-for="(item, index) in content.latest_visits"  >
                                                 <td>
-                                                    <div v-if="message.user" class="flex gap-2">
-                                                        <img :src="message.user.picture ?? '/uploads/images/default_profile.png'" width="40" height="40" class="w-10 h-10 rounded" />
-                                                        <div>
-                                                            <p class="m-0" v-text="message.user.name"></p>
-                                                            <span class="text-xs"v-text="message.user.usertype"></span>
-                                                        </div>
+                                                    <div class="flex gap-4 w-full" v-if="item && item.item">
+                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(item.picture ?? '/uploads/images/default_profile.png')" />
                                                     </div>
                                                 </td>
-                                                <td class="text-red-500" v-text="message.title"></td>
-                                                <td v-text="dateFormat(message.created_at)"></td>
+                                                <td v-text="item && item.item ? item.item.title : ''"></td>
+                                                <td v-text="item.times"></td>
                                             </tr>
                                         </tbody>
                                     </table>
