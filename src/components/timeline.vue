@@ -22,6 +22,7 @@ export default
 
         const projects = ref();
         const events = ref();
+        const content = ref();
 
         const getId = (projects, ip ) => {
             for (let i = 0; i < projects.length; i++) {
