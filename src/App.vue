@@ -80,6 +80,8 @@ const categories = defineAsyncComponent(() => import('@/components/categories/in
 
 const notifications_events = defineAsyncComponent(() => import('@/components/notifications_events.vue') );
 
+const timeline = defineAsyncComponent(() => import('@/components/timeline.vue') );
+
 
 
 
@@ -109,6 +111,7 @@ export default {
         menus,
         email_templates,
         notifications_events,
+        timeline,
         get_started,
         translate,
         'help_messages':HelpMessages,
