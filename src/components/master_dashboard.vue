@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <timeline :resources="projects" :events="events" ></timeline>
+        <timeline :resources="cotent.visits_ip_list" :events="events" ></timeline>
 
         <div class="block w-full overflow-x-auto py-2">
             <div class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
@@ -258,11 +258,7 @@ export default
         const content = ref({});
 
         const activeDate = ref();
-        const projects = ref( [
-            { id: 1, title: 'Home Page Redesign', color: '#f39c12' },
-            { id: 2, title: 'New Product Launch', color: '#3498db' },
-            { id: 3, title: 'Checkout Improvement', color: '#2ecc71' },
-        ]);
+        const projects = ref( );
 
         const events = ref( [
             { id: 1, resourceId: 1, startDate: '2024-08-10', endDate: '2024-08-12', title: 'Initial Design', description: 'Started designing the new home page.' },
@@ -361,6 +357,13 @@ export default
                 };
 
             };
+
+            projects.value = [];
+            for (let i = 0; i < content.value.visits_ip_list.length; i++) {
+                const element = content.value.visits_ip_list[i];
+                projects.value.push({ id: i+1, title: element.ip, color: '#f39c12' })
+            }
+            console.log(projects.value)
         }
         
         const chartItem = (value, title, color ) => {
