@@ -224,7 +224,9 @@ import dashboard_pie_chart from '@/components/includes/dashboard_pie_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest} from '@/utils.vue';
-import VueTimeline  from 'vue-timeline';
+import { Timeline } from "@teej/vue-timeline";
+import "@teej/vue-timeline/dist/style.css";
+
 import MapChart from 'vue-map-chart'
 
 import { AgChartsVue } from 'ag-charts-vue3';
@@ -241,7 +243,7 @@ export default
         AgChartsVue,
         VueTailwindDatepicker,
         MapChart,
-        VueTimeline
+        Timeline
     },
     name:'categories',
     setup(props) {
