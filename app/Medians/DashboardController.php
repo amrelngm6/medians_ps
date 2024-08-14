@@ -14,6 +14,7 @@ class DashboardController extends CustomController
 
 	public  $contentRepo;
 	public  $BookingRepository;
+	public  $DoctorRepo;
 
 	public $start;
 	public $end;
@@ -27,6 +28,7 @@ class DashboardController extends CustomController
 		$user = $this->app->auth();
 
 		$this->contentRepo = new Content\Infrastructure\ContentRepository();
+		$this->DoctorRepo = new Doctors\Infrastructure\DoctorRepository();
 		$this->BookingRepository = new Bookings\Infrastructure\BookingRepository();
 
 		
@@ -165,6 +167,7 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
+        $data['doctors_count'] = $this->DoctorRepo->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->orderBy('id', 'desc')->limit(10)->get();
         $data['latest_bookings'] = $this->BookingRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->orderBy('id', 'desc')->limit(10)->get();
         $data['bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Booking'])->count();
         $data['doctors_bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Doctor'])->count();

@@ -23,10 +23,10 @@ class DoctorRepository
 	function __construct()
 	{
 		$this->app = new \config\APP;
-		foreach ($this->get(100) as $key => $value) 
-		{
+		// foreach ($this->get(100) as $key => $value) 
+		// {
 			// (new \Medians\Media\Infrastructure\MediaRepository)->resize($value->picture, 72, 80);
-		}
+		// }
 	}
 
 
