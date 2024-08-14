@@ -28,8 +28,7 @@ RouteHandler::get('/stream', \Medians\Media\Application\MediaController::class.'
 
 /** @return send_message */
 RouteHandler::post('/send_message', Medians\Help\Application\HelpMessageController::class.'@store');
-RouteHandler::get('/دكتور-مني-شعبان', \Medians\Doctors\Application\DoctorController::class.'@list'); 
-RouteHandler::get('/استشارات-اونلاين/(:num)', \Medians\OnlineConsultations\Application\OnlineConsultationController::class.'@page');
+RouteHandler::get('/online-consultation/(:num)', \Medians\OnlineConsultations\Application\OnlineConsultationController::class.'@page');
 RouteHandler::get('/%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%88%D9%86%D9%84%D8%A7%D9%8A%D9%86/(:num)', \Medians\OnlineConsultations\Application\OnlineConsultationController::class.'@page');
 RouteHandler::get('/%D8%AF%D9%83%D8%AA%D9%88%D8%B1-%D9%85%D9%86%D9%8A-%D8%B4%D8%B9%D8%A8%D8%A7%D9%86', \Medians\Doctors\Application\DoctorController::class.'@list'); 
 RouteHandler::get('/doctors', \Medians\Doctors\Application\DoctorController::class.'@list'); 
