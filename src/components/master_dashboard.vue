@@ -15,7 +15,6 @@
                 </div>
             </div>
         </div>
-        <TimelinePage :path="path" :conf="conf" :key="startDate" ></TimelinePage>
 
         <div class="block w-full overflow-x-auto py-2">
             <div class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
