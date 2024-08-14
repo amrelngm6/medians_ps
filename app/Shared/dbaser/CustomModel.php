@@ -143,6 +143,7 @@ class CustomModel extends Model
 			}
 
 		} catch (\Throwable $th) {
+			error_log('$ip');
 		}
 
 		$view = View::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'date'=> date('Y-m-d')]);
