@@ -373,7 +373,7 @@ export default
                 for (let i = 0; i < content.value.visits_list.length; i++) {
                     const element = content.value.visits_list[i];
                     const id = getId(projects.value, element.ip);
-                    events.value.push({ id: i+1, resourceId: id, startDate: formatDateTime(element.created_at), endDate: formatDateTime(element.updated_at), title: (element.item && element.item.item) ? element.item.item.title : '', description: '' },)
+                    events.value.push({ id: i+1, resourceId: id, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD HH:mm:ss'), endDate: formatCustomTime(element.updated_at, 'YYYY-MM-DD HH:mm:ss'), title: (element.item && element.item.item) ? element.item.item.title : '', description: '' },)
                 }
                 console.log(events.value)
             }
