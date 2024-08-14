@@ -168,6 +168,7 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
+        $data['latest_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('updated_at', 'desc')->limit(10)->get();
         $data['top_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('times', 'desc')->limit(10)->get();
         $data['total_visits'] = View::totalViews($this->start, $this->end)->sum('times');
         $data['doctors_count'] = $this->DoctorRepo->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->orderBy('id', 'desc')->limit(10)->get();
