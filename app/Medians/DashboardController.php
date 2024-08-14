@@ -169,7 +169,7 @@ class DashboardController extends CustomController
 		$data = [];
 
         $data['top_visits'] = View::totalViews($this->start, $this->end)->orderBy('times', 'desc')->limit(10)->get();
-        $data['total_visits'] = View::totalViews($this->start, $this->end)->count();
+        $data['total_visits'] = View::totalViews($this->start, $this->end)->sum('times');
         $data['doctors_count'] = $this->DoctorRepo->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->orderBy('id', 'desc')->limit(10)->get();
         $data['latest_bookings'] = $this->BookingRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->orderBy('id', 'desc')->limit(10)->get();
         $data['bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Booking'])->count();
