@@ -137,6 +137,7 @@ class CustomModel extends Model
 			try {
 				$record = $reader->country($ip);
 				$country = $record->country->name; // This will give you the country name
+				$isoCode = $record->country->isoCode; // This will give you the country name
 				// echo "Visitor country: " . $country;
 			} catch (Exception $e) {
 			}
@@ -147,7 +148,7 @@ class CustomModel extends Model
 		$view = View::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'date'=> date('Y-m-d')]);
 		$view->update(['session'=>$this->sessionGuest(), 'times'=>($view->times ? $view->times : 0)+1]);
 
-		$view = Visit::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'country'=> $country ?? '', 'ip'=> $ip, 'date'=> date('Y-m-d'), 'created_at'=> date('Y-m-d H:i:s'), 'updated_at'=> date('Y-m-d H:i:s')]);
+		$view = Visit::firstOrCreate(['item_type'=>get_class($this), 'iso_code' => $isoCode ?? '', 'item_id'=>$this->getId(), 'country'=> $country ?? '', 'ip'=> $ip, 'date'=> date('Y-m-d'), 'created_at'=> date('Y-m-d H:i:s'), 'updated_at'=> date('Y-m-d H:i:s')]);
 
 	}
 

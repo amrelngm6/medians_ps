@@ -19,6 +19,7 @@ class Visit extends CustomModel
     	'item_type',
     	'item_id',
     	'ip',
+		'iso_code',
     	'date',
     	'country',
 	];
