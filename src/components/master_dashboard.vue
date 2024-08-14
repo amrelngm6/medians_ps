@@ -367,13 +367,14 @@ export default
                     projects.value.push({ id: element.ip, title: element.ip, color: '#f39c12' })
                 }
 
+                console.log(projects.value)
                 
                 events.value = [];
                 for (let i = 0; i < content.value.visits_list.length; i++) {
                     const element = content.value.visits_list[i];
-                    projects.value.push({ id: i+1, resourceId: element.ip, startDate: element.created_at, endDate: element.updated_at, title: element.item.item.title ?? '', description: '' },)
+                    events.value.push({ id: i+1, resourceId: element.ip, startDate: element.created_at, endDate: element.updated_at, title: element.item.item.title ?? '', description: '' },)
                 }
-                console.log(projects.value)
+                console.log(events.value)
             }
 
         }
