@@ -7,6 +7,7 @@ use \Illuminate\Database\Eloquent\Model;
 use Medians\Users\Domain\User;
 use Medians\Content\Domain\Content;
 use Medians\Views\Domain\View;
+use Medians\Visits\Domain\Visit;
 use Medians\Notifications\Domain\NotificationEvent;
 use Medians\Logs\Domain\UsageLog;
 use GeoIp2\Database\Reader;
@@ -145,6 +146,9 @@ class CustomModel extends Model
 
 		$view = View::firstOrCreate(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'date'=> date('Y-m-d')]);
 		$view->update(['session'=>$this->sessionGuest(), 'times'=>($view->times ? $view->times : 0)+1]);
+
+		$view = Visit::create(['item_type'=>get_class($this), 'item_id'=>$this->getId(), 'ip'=> $ip, 'date'=> date('Y-m-d')]);
+
 	}
 
 
