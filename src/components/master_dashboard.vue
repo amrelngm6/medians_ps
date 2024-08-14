@@ -109,18 +109,14 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th v-text="translate('ID')"></th>
+                                                <th v-text="translate('Type')"></th>
                                                 <th v-text="translate('Title')"></th>
                                                 <th v-text="translate('Views')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.top_visits"  :key="content.top_visits">
                                             <tr :key="index" v-for="(item, index) in content.top_visits"  >
-                                                <td>
-                                                    <div class="flex gap-4 w-full" v-if="item && item.item">
-                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(item.picture ?? '/uploads/images/default_profile.png')" />
-                                                    </div>
-                                                </td>
+                                                <td v-text="item.class"></td>
                                                 <td v-text="item && item.item && item.item.title ? item.item.title : item.class"></td>
                                                 <td v-text="item.times"></td>
                                             </tr>
@@ -145,18 +141,14 @@
                                     <table class="w-full table table-striped table-nowrap custom-table mb-0 datatable">
                                         <thead>
                                             <tr>
-                                                <th v-text="translate('ID')"></th>
+                                                <th v-text="translate('Type')"></th>
                                                 <th v-text="translate('Title')"></th>
                                                 <th v-text="translate('Views')"></th>
                                             </tr>
                                         </thead>
                                         <tbody v-if="content.latest_visits"  :key="content.latest_visits">
                                             <tr :key="index" v-for="(item, index) in content.latest_visits"  >
-                                                <td>
-                                                    <div class="flex gap-4 w-full" v-if="item && item.item">
-                                                        <img width="48" height="48" class="h-10 w-10 rounded-full" :src="'/app/image.php?w=50&h=50&src='+(item.picture ?? '/uploads/images/default_profile.png')" />
-                                                    </div>
-                                                </td>
+                                                <td v-text="item.class"></td>
                                                 <td v-text="item && item.item && item.item.title ? item.item.title : item.class"></td>
                                                 <td v-text="item.times"></td>
                                             </tr>
