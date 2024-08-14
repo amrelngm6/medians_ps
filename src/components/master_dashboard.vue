@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <timeline_page :content="content" :key="content" ></timeline_page>
+        <timeline_page :path="path" :conf="conf"  ></timeline_page>
 
         <div class="block w-full overflow-x-auto py-2">
             <div class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >

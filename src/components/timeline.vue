@@ -37,24 +37,28 @@ export default
         
 
 
-        if (props.content.value.visits_ip_list)
-        {
 
-            projects.value = [];
-            for (let i = 0; i < content.value.visits_ip_list.length; i++) {
-                const element = content.value.visits_ip_list[i];
-                projects.value.push({ id: i+1, name: element.ip, color: '#f39c12' })
-            }
-
+        handleGetRequest( props.conf.url+props.path+'?start_date='+event.startDate+'&end_date='+event.endDate+'&load=json' ).then(response=> {
+            content.value = JSON.parse(JSON.stringify(response))
             
-            events.value = [];
-            for (let i = 0; i < content.value.visits_list.length; i++) {
-                const element = content.value.visits_list[i];
-                const id = getId(projects.value, element.ip);
-                events.value.push({ id: i+1, resourceId: id, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD'), endDate: formatCustomTime(element.updated_at, 'YYYY-MM-DD'), name: (element && element.item) ? element.item.title : 'test'},)
-            }
-        }
+            if (content.value.visits_ip_list)
+            {
 
+                projects.value = [];
+                for (let i = 0; i < content.value.visits_ip_list.length; i++) {
+                    const element = content.value.visits_ip_list[i];
+                    projects.value.push({ id: i+1, name: element.ip, color: '#f39c12' })
+                }
+
+                
+                events.value = [];
+                for (let i = 0; i < content.value.visits_list.length; i++) {
+                    const element = content.value.visits_list[i];
+                    const id = getId(projects.value, element.ip);
+                    events.value.push({ id: i+1, resourceId: id, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD'), endDate: formatCustomTime(element.updated_at, 'YYYY-MM-DD'), name: (element && element.item) ? element.item.title : 'test'},)
+                }
+            }
+        });
         
         return {
             projects,
@@ -64,7 +68,8 @@ export default
         }
     },
     props: [
-        'content'
+        'conf',
+        'path'
     ]
 };
 </script>
