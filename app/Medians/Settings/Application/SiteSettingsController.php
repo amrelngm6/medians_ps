@@ -59,18 +59,18 @@ class SiteSettingsController extends CustomController
 	            [ 'key'=> "dark_logo", 'title'=> translate('Dark logo'), 'fillable'=>true, 'column_type'=>'file' ],
 	            [ 'key'=> "about_picture", 'title'=> translate('About us section picture'), 'help_text', 'fillable'=>true, 'column_type'=>'file' ],
 			],			
-			'styles'=> [	
-				[ 'key'=> "header", 'title'=> translate('Header'), 
-					'help_text' => translate('Choose the Header style for Frontend pages'),
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['header'=>'header1','title'=>'Header 1'], ['header'=>'header2','title'=>'Header 2']]  
-				],
-				[ 'key'=> "footer", 'title'=> translate('Footer'), 
-					'help_text' => translate('Choose the footer style for Frontend pages'),
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
-					'data' => [['footer'=>'footer1','title'=>'Footer 1'], ['footer'=>'footer2','title'=>'Footer 2']]  
-				],
-			],
+			// 'styles'=> [	
+			// 	[ 'key'=> "header", 'title'=> translate('Header'), 
+			// 		'help_text' => translate('Choose the Header style for Frontend pages'),
+			// 		'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
+			// 		'data' => [['header'=>'header1','title'=>'Header 1'], ['header'=>'header2','title'=>'Header 2']]  
+			// 	],
+			// 	[ 'key'=> "footer", 'title'=> translate('Footer'), 
+			// 		'help_text' => translate('Choose the footer style for Frontend pages'),
+			// 		'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 
+			// 		'data' => [['footer'=>'footer1','title'=>'Footer 1'], ['footer'=>'footer2','title'=>'Footer 2']]  
+			// 	],
+			// ],
 			'fonts'=> [	
 				
 				[ 'key'=> "head_font", 'title'=> translate('Headers font'),  'help_text' => translate('Choose the font style for Headlines elements'),
@@ -90,19 +90,22 @@ class SiteSettingsController extends CustomController
 			
 			'social_media'=> [	
 				[ 'key'=> "facebook_link", 'title'=> translate('Facebook link'), 'help_text'=>translate('This links used for view at your frontend footer'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "twitter_link", 'title'=> translate('Twitter link'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "youtube_link", 'title'=> translate('YouTube link'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "instagram_link", 'title'=> translate('Instagram link'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "youtube_link", 'title'=> translate('YouTube link'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "linkedin_link", 'title'=> translate('Linkedin link'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "snapchat_link", 'title'=> translate('Snapchat link'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "twitter_link", 'title'=> translate('Twitter link'), 'fillable'=> true, 'column_type'=>'text' ],
+				[ 'key'=> "tiktok_link", 'title'=> translate('TikTok link'), 'fillable'=> true, 'column_type'=>'text' ],
 			],
 			
-			'options'=> [	
-				[ 'key'=> "allow_guest_checkout", 'title'=> translate('Allow Guest Checkout'), 'help_text'=>translate('Allow guests to complete checkout without signup'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-			],
+			// 'options'=> [	
+			// 	[ 'key'=> "allow_guest_checkout", 'title'=> translate('Allow Guest Checkout'), 'help_text'=>translate('Allow guests to complete checkout without signup'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			// ],
 			
-			'layout_options'=> [	
-				[ 'key'=> "show_newsletter_form", 'title'=> translate('Show newsletter at footer'), 'help_text'=>translate('Show newsletter form at footer to allow users to subscribe'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "category_products_count", 'title'=> translate('Category page products limit'), 'help_text'=>translate('Show x products at category page as first load and each page'), 'fillable'=> true, 'column_type'=>'number' ],
-			],
+			// 'layout_options'=> [	
+			// 	[ 'key'=> "show_newsletter_form", 'title'=> translate('Show newsletter at footer'), 'help_text'=>translate('Show newsletter form at footer to allow users to subscribe'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+			// 	[ 'key'=> "category_products_count", 'title'=> translate('Category page products limit'), 'help_text'=>translate('Show x products at category page as first load and each page'), 'fillable'=> true, 'column_type'=>'number' ],
+			// ],
 					
         ];
 	}
