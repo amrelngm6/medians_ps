@@ -400,6 +400,7 @@ class APP
 	            [
 	                array('permission'=> 'Dashboard.index','title'=>translate('Bookings'),  'icon'=>'', 'link'=>'admin/bookings', 'component'=> 'data_table'),
 	                array('permission'=> 'Dashboard.index','title'=>translate('Offers'),  'icon'=>'', 'link'=>'admin/offers_bookings', 'component'=> 'data_table'),
+	                array('permission'=> 'Dashboard.index','title'=>translate('Doctors'),  'icon'=>'', 'link'=>'admin/doctor_bookings', 'component'=> 'data_table'),
 	                array('permission'=> 'Dashboard.index','title'=>translate('Online Consultation'),  'icon'=>'', 'link'=>'admin/consultation_bookings', 'component'=> 'data_table'),
 	                array('permission'=> 'Dashboard.index','title'=>translate('Contact messages'),  'icon'=>'', 'link'=>'admin/contact_bookings', 'component'=> 'data_table'),
 	            ]
@@ -436,12 +437,12 @@ class APP
 				array('permission'=>'Event.index', 'title'=>translate('Events'),  'icon'=>'tag', 'link'=>'admin/events', 'component'=>'data_table'),
 			]
 			),
-			array( 'title'=>translate('Support'),  'icon'=>'help-circle', 'link'=>'#support', 'superadmin'=> true, 'sub'=>
-			[
-				array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
-				array('permission'=>'ContactForm.index', 'title'=>translate('Forms messages'),  'icon'=>'tag', 'link'=>'admin/contact_forms', 'component'=>'contact_forms'),
-			]
-			),
+			// array( 'title'=>translate('Support'),  'icon'=>'help-circle', 'link'=>'#support', 'superadmin'=> true, 'sub'=>
+			// [
+				// array('permission'=>'HelpMessage.index', 'title'=>translate('Help Messages'),  'icon'=>'help-circle', 'link'=>'admin/help_messages', 'component'=>'help_messages'),
+				// array('permission'=>'ContactForm.index', 'title'=>translate('Forms messages'),  'icon'=>'tag', 'link'=>'admin/contact_forms', 'component'=>'contact_forms'),
+			// ]
+			// ),
 			
 			array( 'title'=>translate('localization'),  'icon'=>'mic', 'link'=>'#localization', 'superadmin'=> true, 'sub'=>
 			[

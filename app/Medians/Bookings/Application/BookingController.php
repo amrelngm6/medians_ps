@@ -156,6 +156,26 @@ class BookingController extends CustomController
 	 * @param \Twig\Environment $twig
 	 * 
 	 */ 
+	public function index_doctor() 
+	{
+		
+		try {
+			
+		    return $this->index('Doctor');
+
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+			
+		}
+	}
+
+	/**
+	 * Admin index items
+	 * 
+	 * @param Silex\Application $app
+	 * @param \Twig\Environment $twig
+	 * 
+	 */ 
 	public function index_contact() 
 	{
 		

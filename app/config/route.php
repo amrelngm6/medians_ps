@@ -260,6 +260,7 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/offers_bookings', \Medians\Bookings\Application\BookingController::class.'@index_offers');
     RouteHandler::get('/admin/consultation_bookings', \Medians\Bookings\Application\BookingController::class.'@index_consultation');
     RouteHandler::get('/admin/contact_bookings', \Medians\Bookings\Application\BookingController::class.'@index_contact');
+    RouteHandler::get('/admin/doctor_bookings', \Medians\Bookings\Application\BookingController::class.'@index_doctor');
     
     
 
