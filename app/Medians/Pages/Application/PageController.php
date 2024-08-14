@@ -417,7 +417,7 @@ class PageController extends CustomController
 			}
 		}
 
-		return errorPage(translate('Page not found'), '404 page');
+		return errorPage(translate('Page not found'), 'Page 404');
 		return throw new \Exception(translate('Page not found'), 1);
 		
 	}
