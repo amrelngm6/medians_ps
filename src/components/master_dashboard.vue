@@ -226,7 +226,7 @@ import dashboard_center_squares from '@/components/includes/dashboard_center_squ
 import {translate, handleGetRequest} from '@/utils.vue';
 import MapChart from 'vue-map-chart'
 // import { Timeline } from "@teej/vue-timeline";
-import Timeline  from 'vue-timeline';
+import VueTimeline  from 'vue-timeline';
 
 import { AgChartsVue } from 'ag-charts-vue3';
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
@@ -242,7 +242,7 @@ export default
         AgChartsVue,
         VueTailwindDatepicker,
         MapChart,
-        Timeline
+        VueTimeline
     },
     name:'categories',
     setup(props) {
