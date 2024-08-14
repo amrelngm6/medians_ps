@@ -84,7 +84,7 @@
                         
                         <div class="w-full p-4">
                             <div class="w-full flex gap-2">
-                                <h4 class="w-full ml-4" v-text="translate('Top Pages')"></h4>
+                                <h4 class="w-full ml-4" v-text="translate('Pages charts')"></h4>
                             </div>
                             <p class="text-sm text-gray-500 px-4 mb-6" v-text="translate('top pages with high views')"></p>
                         </div>
@@ -99,7 +99,6 @@
                         <div class="w-full p-4">
                             <div class="w-full flex ">
                                 <h4 class="w-full ml-4" v-text="translate('Top pages')"></h4>
-                                <a href="/admin/blog" class="w-20" v-text="translate('View all')"></a>
                             </div>
                             <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Top pages by views')"></p>
                         </div>
@@ -131,7 +130,6 @@
                         <div class="w-full p-4">
                             <div class="w-full flex ">
                                 <h4 class="w-full ml-4" v-text="translate('Latest pages')"></h4>
-                                <a href="/admin/pages" class="w-20" v-text="translate('View all')"></a>
                             </div>
                             <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest viewed pages')"></p>
                         </div>
