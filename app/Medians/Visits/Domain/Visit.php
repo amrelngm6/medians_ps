@@ -39,7 +39,7 @@ class Visit extends CustomModel
 
 	public static function totalVisits($start, $end)
 	{
-		return View::whereBetween('date', [$start, $end]);
+		return Visit::whereBetween('date', [$start, $end]);
 	}
 
 }
