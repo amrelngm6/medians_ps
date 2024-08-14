@@ -133,6 +133,7 @@ class CustomModel extends Model
 
 			// Get the IP address of the visitor
 			$ip = $_SERVER['REMOTE_ADDR'];
+			error_log($ip);
 
 			try {
 				$record = $reader->country($ip);
