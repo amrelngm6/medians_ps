@@ -20,6 +20,7 @@ class Visit extends CustomModel
     	'item_id',
     	'ip',
     	'date',
+    	'country',
 	];
 
 	public $appends = ['class'];
