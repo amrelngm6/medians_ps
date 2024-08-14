@@ -171,7 +171,7 @@ class DashboardController extends CustomController
         // $data['top_products'] = [];
         // $data['top_pages'] = View::where();
         $data['bookings_charts_sql'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label')->toSql();
-        $data['bookings_charts'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label')->get();
+        $data['bookings_charts'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label','class')->get();
         // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
         // $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
         // $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
