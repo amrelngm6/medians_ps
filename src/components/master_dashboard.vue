@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <timeline :resources="cotent.visits_ip_list" :events="events" ></timeline>
+        <timeline :resources="content.visits_ip_list" :events="events" ></timeline>
 
         <div class="block w-full overflow-x-auto py-2">
             <div class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
