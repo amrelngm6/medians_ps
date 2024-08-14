@@ -310,9 +310,9 @@ export default
 
         const optionsbar = ref();
 
-        const getId = (events, ip ) => {
-            for (let i = 0; i < events.length; i++) {
-                const element = events[i];
+        const getId = (projects, ip ) => {
+            for (let i = 0; i < projects.length; i++) {
+                const element = projects[i];
                 if (element.title == ip) {
                     return element.id; 
                 }
