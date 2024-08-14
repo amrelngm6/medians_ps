@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <timeline v-if="events && events.length" :resources="projects" :events="events" :key="events" ></timeline>
+        <timeline_page :content="content" :key="content" ></timeline_page>
 
         <div class="block w-full overflow-x-auto py-2">
             <div class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
@@ -225,7 +225,7 @@ import dashboard_pie_chart from '@/components/includes/dashboard_pie_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest, formatDateTime, formatCustomTime, formatCustomTimeMinute} from '@/utils.vue';
-import { Timeline } from "@teej/vue-timeline";
+import { timeline_page } from "@/components/timeline.vue";
 import "@teej/vue-timeline/dist/style.css";
 
 import MapChart from 'vue-map-chart'
@@ -244,7 +244,7 @@ export default
         AgChartsVue,
         VueTailwindDatepicker,
         MapChart,
-        Timeline
+        timeline_page
     },
     name:'categories',
     setup(props) {
@@ -309,17 +309,6 @@ export default
 
 
         const optionsbar = ref();
-
-        const getId = (projects, ip ) => {
-            for (let i = 0; i < projects.length; i++) {
-                const element = projects[i];
-                if (element.name == ip) {
-                    return element.id; 
-                }
-            }
-            return 0
-        }
-        
         
         
         const bookingCharts = ref([]);
@@ -363,26 +352,6 @@ export default
                 };
 
             };
-
-            if (content.value.visits_ip_list)
-            {
-
-                projects.value = [];
-                for (let i = 0; i < content.value.visits_ip_list.length; i++) {
-                    const element = content.value.visits_ip_list[i];
-                    projects.value.push({ id: i+1, name: element.ip, color: '#f39c12' })
-                }
-
-                console.log(projects.value)
-                
-                events.value = [];
-                for (let i = 0; i < content.value.visits_list.length; i++) {
-                    const element = content.value.visits_list[i];
-                    const id = getId(projects.value, element.ip);
-                    events.value.push({ id: i+1, resourceId: id, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD'), endDate: formatCustomTime(element.updated_at, 'YYYY-MM-DD'), name: (element && element.item) ? element.item.title : 'test'},)
-                }
-                console.log(events.value)
-            }
 
         }
 
