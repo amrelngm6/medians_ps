@@ -30,7 +30,6 @@ RouteHandler::get('/stream', \Medians\Media\Application\MediaController::class.'
 RouteHandler::post('/send_message', Medians\Help\Application\HelpMessageController::class.'@store');
 RouteHandler::get('/doctors', \Medians\Doctors\Application\DoctorController::class.'@list'); 
 RouteHandler::get('/doctors/', \Medians\Doctors\Application\DoctorController::class.'@list'); 
-RouteHandler::get('/دكتور-مني-شعبان', \Medians\Doctors\Application\DoctorController::class.'@list'); 
 RouteHandler::get('/doctor_booking/(:all)', \Medians\Bookings\Application\BookingController::class.'@doctor_booking'); 
 RouteHandler::get('/book/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
 RouteHandler::get('/bookings/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
@@ -357,6 +356,7 @@ RouteHandler::get('/logout', function ()
  */
 RouteHandler::get('/(:all)/(:all)', \Medians\Pages\Application\PageController::class.'@sub_page'); 
 RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
+RouteHandler::get('/دكتور-مني-شعبان', \Medians\Doctors\Application\DoctorController::class.'@list'); 
 
 
 return $app->run();
