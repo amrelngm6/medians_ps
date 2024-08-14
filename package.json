@@ -10,6 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@amcharts/amcharts5": "^5.10.1",
     "@coreui/vue-chartjs": "^3.0.0",
     "@everapi/currencyapi-js": "^1.0.6",
     "@paypal/paypal-js": "^8.0.0",
