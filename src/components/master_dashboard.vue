@@ -201,6 +201,14 @@
                 </div>
             </div>
         </div>
+         
+        <MapChart
+            :countryData="{'US': 4, 'CA': 7, 'GB': 8, 'IE': 14, 'ES': 21}"
+            highColor="#ff0000"
+            lowColor="#aaaaaa"
+            countryStrokeColor="#909090"
+            defaultCountryFillColor="#dadada"
+            />
     </div>
 </template>
 <script>
@@ -212,6 +220,7 @@ import dashboard_pie_chart from '@/components/includes/dashboard_pie_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest} from '@/utils.vue';
+import MapChart from 'vue-map-chart'
 
 import { AgChartsVue } from 'ag-charts-vue3';
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
@@ -225,7 +234,8 @@ export default
         dashboard_chart,
         dashboard_pie_chart,
         AgChartsVue,
-        VueTailwindDatepicker
+        VueTailwindDatepicker,
+        MapChart
     },
     name:'categories',
     setup(props) {
