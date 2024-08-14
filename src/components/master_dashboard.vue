@@ -98,10 +98,10 @@
                         
                         <div class="w-full p-4">
                             <div class="w-full flex ">
-                                <h4 class="w-full ml-4" v-text="translate('Top pages articles')"></h4>
+                                <h4 class="w-full ml-4" v-text="translate('Top pages')"></h4>
                                 <a href="/admin/blog" class="w-20" v-text="translate('View all')"></a>
                             </div>
-                            <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest plan subscriptions')"></p>
+                            <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Top pages by views')"></p>
                         </div>
                         <div class="card-body w-full">
                             <div class="w-full ">
@@ -114,7 +114,7 @@
                                                 <th v-text="translate('Views')"></th>
                                             </tr>
                                         </thead>
-                                        <tbody v-if="content.plan_subscriptions"  :key="content.plan_subscriptions">
+                                        <tbody v-if="content.top_visits"  :key="content.top_visits">
                                             <tr :key="index" v-for="(item, index) in content.top_visits"  >
                                                 <td>
                                                     <div class="flex gap-4 w-full" v-if="item && item.item">
@@ -134,10 +134,10 @@
                         
                         <div class="w-full p-4">
                             <div class="w-full flex ">
-                                <h4 class="w-full ml-4" v-text="translate('Latest help messages')"></h4>
-                                <a href="/admin/help_messages" class="w-20" v-text="translate('View all')"></a>
+                                <h4 class="w-full ml-4" v-text="translate('Latest pages')"></h4>
+                                <a href="/admin/pages" class="w-20" v-text="translate('View all')"></a>
                             </div>
-                            <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest tickets & help messages sent by users')"></p>
+                            <p class="text-sm text-gray-500 px-4 mb-2" v-text="translate('Latest viewed pages')"></p>
                         </div>
                         <div class="card-body w-full">
                             <div class="w-full">
