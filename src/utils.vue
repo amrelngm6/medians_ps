@@ -21,7 +21,7 @@ export function formatCustomTime(date, format = 'HH:mm a') {
 }
 
 export function formatCustomTimeMinute(date, format = 'HH:mm a') {
-  return moment(date).add(60, 'seconds').format(format);
+  return moment(date).add(1, 'days').format(format);
 }
 
 export function durationMonthsDate(date, value) {
