@@ -301,10 +301,6 @@ export default
 
         
         const bookingCharts = ref([]);
-        const labels = ref([]);
-        const route_data = ref([]);
-        const taxi_data = ref([]);
-        const top_customers = ref([]);
         /**
          * Set charts based on their values type
          */ 
