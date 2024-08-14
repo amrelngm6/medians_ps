@@ -258,14 +258,9 @@ export default
         const content = ref({});
 
         const activeDate = ref();
-        const projects = ref( );
+        const projects = ref( [] );
 
-        const events = ref( [
-            { id: 1, resourceId: 1, startDate: '2024-08-10', endDate: '2024-08-12', title: 'Initial Design', description: 'Started designing the new home page.' },
-            { id: 2, resourceId: 1, startDate: '2024-08-13', endDate: '2024-08-15', title: 'Design Review', description: 'Reviewed the home page design with the team.' },
-            { id: 3, resourceId: 2, startDate: '2024-08-11', endDate: '2024-08-14', title: 'Market Research', description: 'Conducted research for the new product.' },
-            { id: 4, resourceId: 3, startDate: '2024-08-12', endDate: '2024-08-14', title: 'Checkout Flow Improvements', description: 'Improved the checkout flow based on user feedback.' },
-        ]);
+        const events = ref( []);
         
         const load = (path) =>
         {
@@ -383,7 +378,7 @@ export default
                 for (let i = 0; i < content.value.visits_list.length; i++) {
                     const element = content.value.visits_list[i];
                     const id = getId(projects.value, element.ip);
-                    events.value.push({ id: i+1, resourceId: i+1, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD HH:mm:ss'), endDate: formatCustomTimeMinute(element.updated_at, 'YYYY-MM-DD HH:mm:ss'), title: (element.item && element.item.item) ? element.item.item.title : 'test', description: 'dom' },)
+                    events.value.push({ id: i+1, resourceId: i+1, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD HH:mm:ss'), endDate: formatCustomTimeMinute(element.updated_at, 'YYYY-MM-DD HH:mm:ss'), title: (element && element.item) ? element.item.title : 'test', description: 'dom' },)
                 }
                 console.log(events.value)
             }
