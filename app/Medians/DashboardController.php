@@ -34,7 +34,7 @@ class DashboardController extends CustomController
 		$defaultStart = isset($setting['default_dashboard_start_date']) ? date('Y-'. $setting['default_dashboard_start_date']) : date('Y-m-d');
 		$this->start = $this->app->request()->get('start_date') ? date('Y-m-d', strtotime($this->app->request()->get('start_date'))) : $defaultStart;
 		$this->end = $this->app->request()->get('end_date') ? date('Y-m-d', strtotime($this->app->request()->get('end_date'))) : date('Y-m-d');
-		$this->end = date('Y-m-d', strtotime('+1 day', $this->end));
+		$this->end = date('Y-m-d', strtotime($this->end. ' + 1 days'));
 
 		$durationDays = (new \DateTime($this->end))->diff(new \DateTime($this->start));
 		$this->durationDays = $durationDays->d + ($durationDays->m); 
