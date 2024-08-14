@@ -357,64 +357,6 @@ export default
             };
         }
 
-        const filterLabels =  async () => {
-            const preLabels = ref([])
-            for (let i = 0; i < content.value.trips_charts.length; i++)  {
-                preLabels.value[i] = content.value.trips_charts[i].label;
-            }
-            for (let i = 0; i < content.value.taxi_trips_charts.length; i++)  {
-                const privateElement = content.value.taxi_trips_charts[i];
-                if (!preLabels.value.find((element) => element == privateElement.label))
-                {
-                    preLabels.value[i+content.value.trips_charts.length] = privateElement.label;
-                }
-            }
-            return preLabels.value;
-        }
-
-        const filterTripsLabels =  async (items) => {
-            const preLabels = ref([])
-            for (let i = 0; i < items.length; i++)  {
-                preLabels.value[i] = items[i].label;
-            }
-            return preLabels.value;
-        }
-
-        const filterTaxiTripsCharts =  async (items) => {
-            console.log(items)
-            const preLabels = ref([])
-            if (items) {
-                for (let i = 0; i < items.length; i++)  {
-                    preLabels.value[i] = items[i].taxi_trips ? items[i].taxi_trips.length : false;
-                }
-            }
-            return preLabels.value;
-        }
-
-        const filterTripsCharts =  async (business) => {
-            console.log(items)
-            const preLabels = ref([])
-            if (items) {
-                for (let i = 0; i < items.length; i++)  {
-                    preLabels.value[i] = items[i].trips ? items[i].trips.length : false;
-                }
-            }
-            return preLabels.value;
-        }
-
-        const filterData =  async (label, list) => 
-        {
-
-            for (let i = 0; i < list.length; i++)  {
-                const trip = list[i];
-                if (trip.label == label && list[i].y)
-                {
-                    return  trip.y;
-                }
-            }
-            
-        }
-
         const dateValue = ref({
             startDate: "",
             endDate: "",
