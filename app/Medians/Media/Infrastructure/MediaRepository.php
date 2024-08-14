@@ -205,7 +205,7 @@ class MediaRepository
         }
 
 
-        return $fileName;
+        return $store ?? null;
     }
 
 
