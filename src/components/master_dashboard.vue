@@ -224,9 +224,8 @@ import dashboard_pie_chart from '@/components/includes/dashboard_pie_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest} from '@/utils.vue';
-import MapChart from 'vue-map-chart'
-// import { Timeline } from "@teej/vue-timeline";
 import VueTimeline  from 'vue-timeline';
+import MapChart from 'vue-map-chart'
 
 import { AgChartsVue } from 'ag-charts-vue3';
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
