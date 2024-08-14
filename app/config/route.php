@@ -263,6 +263,7 @@ if(!empty($app->auth()))
     RouteHandler::get('/admin/doctor_bookings', \Medians\Bookings\Application\BookingController::class.'@index_doctor');
     
     
+    RouteHandler::get('/admin/visits', \Medians\Visits\Application\VisitController::class.'@index');
 
     /**
     * @return System settings
