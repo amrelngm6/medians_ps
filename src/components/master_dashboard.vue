@@ -208,7 +208,11 @@
                 </div>
             </div>
         </div>
-         
+        <!-- <Timeline :resources="projects" :events="tasks" /> -->
+        <Timeline :items="events" />
+
+
+        
     </div>
 </template>
 <script>
@@ -221,7 +225,9 @@ import dashboard_card_white from '@/components/includes/dashboard_card_white.vue
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
 import {translate, handleGetRequest} from '@/utils.vue';
 import MapChart from 'vue-map-chart'
-import HorizontalTimeline from '@needahouse/vue-horizontal-timeline-component/src/vue-horizontal-timeline-component.vue'
+// import { Timeline } from "@teej/vue-timeline";
+import "@teej/vue-timeline/dist/style.css";
+import { Timeline } from 'vue-timeline';
 
 import { AgChartsVue } from 'ag-charts-vue3';
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
@@ -237,7 +243,7 @@ export default
         AgChartsVue,
         VueTailwindDatepicker,
         MapChart,
-        HorizontalTimeline
+        Timeline
     },
     name:'categories',
     setup(props) {
@@ -251,6 +257,13 @@ export default
         const content = ref({});
 
         const activeDate = ref();
+        const events = ref( [
+            { date: '2024-08-10', title: 'Visited Home Page', content: 'User landed on the home page.' },
+            { date: '2024-08-11', title: 'Visited Products Page', content: 'User navigated to the products page.' },
+            { date: '2024-08-12', title: 'Viewed Product Details', content: 'User viewed details of Product X.' },
+            { date: '2024-08-13', title: 'Checked Out', content: 'User proceeded to checkout.' },
+            { date: '2024-08-14', title: 'Order Completed', content: 'User completed the purchase.' },
+        ]);
 
         
         const load = (path) =>
