@@ -315,6 +315,18 @@ export default
 
         const optionsbar = ref();
 
+        const getId = (events, ip ) => {
+            for (let i = 0; i < events.length; i++) {
+                const element = events[i];
+                if (element.title == ip) {
+                    console.log(element)
+                    return element.id; 
+                }
+            }
+            console.log("Empty")
+        }
+        
+        
         
         const bookingCharts = ref([]);
         /**
@@ -380,18 +392,6 @@ export default
 
         }
 
-        const getId = (events, ip ) => {
-            for (let i = 0; i < events.length; i++) {
-                const element = events[i];
-                if (element.title == ip) {
-                    console.log(element)
-                    return element.id; 
-                }
-            }
-            console.log("Empty")
-
-        }
-        
         const chartItem = (value, title, color ) => {
             return {
                 label: title,
