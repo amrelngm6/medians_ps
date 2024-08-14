@@ -312,7 +312,7 @@ export default
 
             if (data)
             {
-                const colors = ref(['rgba(69,36,140, 1)','rgba(69,46,240, 1)','rgba(69,140,36, 1)','rgba(59,36,180, 1)','rgba(180,36,59, 1)']);        
+                const colors = ref(['rgba(69,36,140, 1)','rgba(69,46,240, 1)','rgba(69,140,36, 1)','rgba(19,36,180, 1)','rgba(180,36,59, 1)']);        
 
                 bookingCharts.value  =  {
                     labels: content.value.bookings_charts.map(e => e ? e.label : null),
