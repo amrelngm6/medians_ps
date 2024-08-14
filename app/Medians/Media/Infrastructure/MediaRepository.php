@@ -157,7 +157,7 @@ class MediaRepository
 		// $command = "ffmpeg -i $inputImagePath -q:v 80 $outputImagePath";
 
 		// Execute the command and capture the output and return status
-		shell_exec($command, $output, $returnStatus);
+		exec($command, $output, $returnStatus);
 
 		// Check the return status
 		if ($returnStatus === 0) {
