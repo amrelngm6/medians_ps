@@ -369,7 +369,7 @@ export default
                 projects.value = [];
                 for (let i = 0; i < content.value.visits_ip_list.length; i++) {
                     const element = content.value.visits_ip_list[i];
-                    projects.value.push({ id: i+1, title: element.ip ?? 'test', color: '#f39c12' })
+                    projects.value.push({ id: i+1, title: 'test', color: '#f39c12' })
                 }
 
                 console.log(projects.value)
