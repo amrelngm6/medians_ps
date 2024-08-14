@@ -229,13 +229,13 @@ class OnlineConsultationController extends CustomController
 	 * Front page 
 	 * @var Int
 	 */
-	public function page($pageContent=null)
+	public function page($pageNum)
 	{
 
 		try {
 			
-			$item = $this->repo->find($pageContent->item_id);
-			$item->addView();
+			$item = $this->repo->find($pageNum);
+			// $item->addView();
 			$settings = $this->app->SystemSetting();
 
 			return render('views/front/'.($settings['template'] ?? 'default').'/online_consultation.html.twig', [
