@@ -27,7 +27,7 @@ export default
         const getId = (projects, element ) => {
             for (let i = 0; i < projects.length; i++) {
                 const element = projects[i];
-                if (element.name == element.ip+" " +element.iso_code) {
+                if (element.ip == element.ip) {
                     return element.id; 
                 }
             }
@@ -47,7 +47,7 @@ export default
                     projects.value = [];
                     for (let i = 0; i < content.value.visits_ip_list.length; i++) {
                         const element = content.value.visits_ip_list[i];
-                        projects.value.push({ id: i+1, name: element.ip+" "+element.iso_code, color: '#f39c12' })
+                        projects.value.push({ id: i+1, ip: element.ip, name: element.ip+" "+element.iso_code, color: '#f39c12' })
                     }
 
                     
