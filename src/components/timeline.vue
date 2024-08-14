@@ -53,8 +53,8 @@ export default
                     
                     events.value = [];
                     for (let i = 0; i < content.value.visits_list.length; i++) {
-                        const element2 = content.value.visits_list[i];
-                        const id = getId(projects.value, element2);
+                        const element = content.value.visits_list[i];
+                        const id = getId(projects.value, element);
                         events.value.push({ id: i+1, resourceId: id, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD'), endDate: formatCustomTime(element.updated_at, 'YYYY-MM-DD'), name: (element && element.item) ? element.item.title : 'test'},)
                     }
                 }
