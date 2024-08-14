@@ -344,6 +344,7 @@ export default
                         chartItem(content.value.bookings_charts.map(e => e.class == 'Doctor' ? e.y: 0), translate('Doctor'), colors[1]),
                         chartItem(content.value.bookings_charts.map(e => e.class == 'OnlineConsultation' ? e.y : 0), translate('OnlineConsultation'), colors[2]),
                         chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'Offers' ? e.y : 0), translate('Offers'), colors[4]),
                     ]
                 };
 
