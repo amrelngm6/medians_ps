@@ -1,6 +1,6 @@
 {% set hasindex = 2 %}
 {% include 'views/front/default/includes/header.html.twig' %}
-{% if item.homepage == 0 %}
+{% if (item.homepage == '' or item.homepage == 0)  %}
 {% if item.order != 3 %}
 <div class="w-full cyan-bg pb-6 lg:pt-20 relative ">
     <div class="w-full overflow-hidden h-full absolute bottom-0 left-0">
