@@ -71,9 +71,16 @@
                     
                     <div class="w-full ">
                         <div class="w-full">
-                            <h4 class="text-base lg:text-lg " v-text="translate('All bookings charts')"></h4> 
-                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.bookings_charts">
-                                <dashboard_chart v-if="bookingCharts" :key="bookingCharts" :options="bookingCharts" /> 
+                            <h4 class="text-base lg:text-lg " v-text="translate('Visitors by country')"></h4> 
+                            <div class="w-full bg-white p-4 mb-4 rounded-lg" v-if="content.visits_countries">
+                                
+                                <MapChart
+                                    :countryData="content.visits_countries"
+                                    highColor="#ff0000"
+                                    lowColor="#aaaaaa"
+                                    countryStrokeColor="#909090"
+                                    defaultCountryFillColor="#dadada"
+                                    /> 
                             </div>
                         </div>
                     </div>
@@ -202,13 +209,6 @@
             </div>
         </div>
          
-        <MapChart
-            :countryData="content.visits_countries"
-            highColor="#ff0000"
-            lowColor="#aaaaaa"
-            countryStrokeColor="#909090"
-            defaultCountryFillColor="#dadada"
-            />
     </div>
 </template>
 <script>
