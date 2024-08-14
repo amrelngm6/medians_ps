@@ -65,10 +65,10 @@ class SystemSettingsController extends CustomController
 				],	
 			],	
 			
-			'wallets'=> [	
-				[ 'key'=> "comission_free_plan", 'help_text'=> translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "comission_paid_plan", 'help_text'=>translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
-			],
+			// 'wallets'=> [	
+			// 	[ 'key'=> "comission_free_plan", 'help_text'=> translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for free plan subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+			// 	[ 'key'=> "comission_paid_plan", 'help_text'=>translate('SETTING_COMMISSION_NOTE'), 'title'=> translate('Commission for paid subscribers'), 'fillable'=> true, 'column_type'=>'number' ],
+			// ],
 			
 			'smtp'=> [	
 				[ 'key'=> "smtp_sender", 'title'=> translate('smtp_sender'), 'fillable'=> true, 'column_type'=>'text' ],
