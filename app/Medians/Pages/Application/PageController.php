@@ -320,8 +320,7 @@ class PageController extends CustomController
 		    ]);
 
 		} catch (\Exception $e) {
-			return Page404();
-			throw new \Exception(, 1);
+			throw new \Exception($e->getMessage(), 1);
 		}
 	} 
 
@@ -419,6 +418,7 @@ class PageController extends CustomController
 		}
 
 		return Page404();
+		return throw new \Exception(translate('Page not found'), 1);
 		
 	}
     
