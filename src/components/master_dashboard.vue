@@ -358,19 +358,24 @@ export default
 
             };
 
-            projects.value = [];
-            for (let i = 0; i < content.value.visits_ip_list.length; i++) {
-                const element = content.value.visits_ip_list[i];
-                projects.value.push({ id: element.ip, title: element.ip, color: '#f39c12' })
+            if (content.value.visits_ip_list)
+            {
+
+                projects.value = [];
+                for (let i = 0; i < content.value.visits_ip_list.length; i++) {
+                    const element = content.value.visits_ip_list[i];
+                    projects.value.push({ id: element.ip, title: element.ip, color: '#f39c12' })
+                }
+
+                
+                events.value = [];
+                for (let i = 0; i < content.value.visits_list.length; i++) {
+                    const element = content.value.visits_list[i];
+                    projects.value.push({ id: i+1, resourceId: element.ip, startDate: element.created_at, endDate: element.updated_at, title: element.item.item.title ?? '', description: '' },)
+                }
+                console.log(projects.value)
             }
 
-            
-            events.value = [];
-            for (let i = 0; i < content.value.visits_list.length; i++) {
-                const element = content.value.visits_list[i];
-                projects.value.push({ id: i+1, resourceId: element.ip, startDate: element.created_at, endDate: element.updated_at, title: element.item.item.title ?? '', description: '' },)
-            }
-            console.log(projects.value)
         }
         
         const chartItem = (value, title, color ) => {
