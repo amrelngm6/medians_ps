@@ -224,7 +224,7 @@ import dashboard_chart from '@/components/includes/dashboard_chart.vue';
 import dashboard_pie_chart from '@/components/includes/dashboard_pie_chart.vue';
 import dashboard_card_white from '@/components/includes/dashboard_card_white.vue';
 import dashboard_center_squares from '@/components/includes/dashboard_center_squares.vue';
-import {translate, handleGetRequest, formatDateTime, formatCustomTime} from '@/utils.vue';
+import {translate, handleGetRequest, formatDateTime, formatCustomTime, formatCustomTimeMinute} from '@/utils.vue';
 import { Timeline } from "@teej/vue-timeline";
 import "@teej/vue-timeline/dist/style.css";
 
@@ -319,11 +319,9 @@ export default
             for (let i = 0; i < events.length; i++) {
                 const element = events[i];
                 if (element.title == ip) {
-                    console.log(element)
                     return element.id; 
                 }
             }
-            console.log("Empty")
         }
         
         
@@ -385,7 +383,7 @@ export default
                 for (let i = 0; i < content.value.visits_list.length; i++) {
                     const element = content.value.visits_list[i];
                     const id = getId(projects.value, element.ip);
-                    events.value.push({ id: i+1, resourceId: i+1, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD HH:mm:ss'), endDate: formatCustomTime(element.updated_at, 'YYYY-MM-DD HH:mm:ss'), title: (element.item && element.item.item) ? element.item.item.title : 'test', description: 'dom' },)
+                    events.value.push({ id: i+1, resourceId: i+1, startDate: formatCustomTime(element.created_at, 'YYYY-MM-DD HH:mm:ss'), endDate: formatCustomTimeMinute(element.updated_at, 'YYYY-MM-DD HH:mm:ss'), title: (element.item && element.item.item) ? element.item.item.title : 'test', description: 'dom' },)
                 }
                 console.log(events.value)
             }

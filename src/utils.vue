@@ -20,6 +20,10 @@ export function formatCustomTime(date, format = 'HH:mm a') {
   return moment(date).format(format);
 }
 
+export function formatCustomTimeMinute(date, format = 'HH:mm a') {
+  return moment(date).add(60, 'seconds').format(format);
+}
+
 export function durationMonthsDate(date, value) {
     
     return moment(date).add(value, 'months').format("YYYY-MM-DD");
