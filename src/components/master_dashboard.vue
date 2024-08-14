@@ -388,6 +388,8 @@ export default
                     return element.id; 
                 }
             }
+            console.log("Empty")
+
         }
         
         const chartItem = (value, title, color ) => {
