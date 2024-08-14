@@ -82,6 +82,7 @@ function render($template, $data, $responseType = 'html')
     $data['lang_key'] = substr($_SESSION['lang'],0,2);
     $data['app']->isMobileDevice = isMobileDevice();
     $data['specializations'] = (new \Medians\Specializations\Infrastructure\SpecializationRepository())->get_root();
+    $data['all_technologies'] = (new \Medians\Technologies\Infrastructure\TechnologyRepository())->get();
 
     return $data;
   }
