@@ -91,6 +91,11 @@ class CustomModel extends Model
 	{
 		return $this->hasOne(User::class, 'id', 'created_by');
 	}
+	
+	public function views()
+	{
+		return $this->morphOne(View::class, 'item');
+	}
 
 	public function content()
 	{
@@ -179,6 +184,8 @@ class CustomModel extends Model
 
     }  
 
+
+	
 }
 
 
