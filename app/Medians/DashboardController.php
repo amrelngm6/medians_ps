@@ -5,6 +5,7 @@ namespace Medians;
 use \Shared\dbaser\CustomController;
 use \Medians\Views\Domain\View;
 use \Medians\Visits\Domain\Visit;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class DashboardController extends CustomController
 {
