@@ -24,6 +24,12 @@ class View extends CustomModel
 	];
 
 
+
+	public function item()
+	{
+		return $this->morphTo();
+	}
+	
 	public static function itemViews($item, $item_id, $start, $end)
 	{
 		return View::where('item_type', get_class($item))->where('item_id', $item_id)->whereBetween('date', [$start, $end])->count();
