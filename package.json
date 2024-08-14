@@ -13,6 +13,7 @@
     "@amcharts/amcharts5": "^5.10.1",
     "@coreui/vue-chartjs": "^3.0.0",
     "@everapi/currencyapi-js": "^1.0.6",
+    "@needahouse/vue-horizontal-timeline-component": "^2.1.0",
     "@paypal/paypal-js": "^8.0.0",
     "@vueform/multiselect": "^2.6.6",
     "ag-charts-vue3": "^9.0.1",
