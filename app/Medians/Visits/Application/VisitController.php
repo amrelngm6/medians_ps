@@ -37,7 +37,7 @@ class VisitController extends CustomController
 		    return render('timeline', [
 		        'load_vue' => true,
 		        'title' => translate('Visitors timeline'),
-				'visits_list' => Visit::totalVisits(date('Y-m-d', strtotime(' -7 days ')), date('Y-m-d', strtotime(' +1 days ')))->with('item')->orderBy('updated_at', 'desc')->limit(100)->get(),
+				'visits_list' => Visit::totalVisits(date('Y-m-d', strtotime(' -7 days ')), date('Y-m-d', strtotime(' +1 days ')))->with('item')->orderBy('updated_at', 'desc')->limit(500)->get(),
 				'visits_ip_list' => Visit::totalVisits(date('Y-m-d', strtotime(' -7 days ')), date('Y-m-d', strtotime(' +1 days ')))->select('*', DB::raw('count(*) as total'))->with('item')->orderBy('total', 'DESC')->orderBy('updated_at', 'desc')->groupBy('ip')->limit(50)->get()
 		    ]);
 
