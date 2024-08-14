@@ -24,12 +24,12 @@ class View extends CustomModel
 	];
 
 
-	public function itemViews($item, $item_id, $start, $end)
+	public static function itemViews($item, $item_id, $start, $end)
 	{
 		return View::where('item_type', get_class($item))->where('item_id', $item_id)->whereBetween('date', [$params['start'], $params['end']])->count();
 	}
 
-	public function totalViews($start, $end)
+	public static function totalViews($start, $end)
 	{
 		return View::whereBetween('date', [$params['start'], $params['end']]);
 	}
