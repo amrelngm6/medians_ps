@@ -107,6 +107,14 @@ class DoctorRepository
 	}
 
 
+	
+	public function allEventsByDate($params)
+	{
+		$query = Doctor::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+
 
 
 	/**
