@@ -170,6 +170,7 @@ class DashboardController extends CustomController
 	{
 		$data = [];
 
+        $data['visits_countries'] = Visit::totalVisits($this->start, $this->end)->with('item')->select('*', DB::raw('count(*) as total'))->limit(100)->get();
         $data['visits_countries'] = array_column(Visit::totalVisits($this->start, $this->end)->select('iso_code', DB::raw('count(*) as total'))->orderBy('updated_at', 'desc')->groupBy('iso_code')->limit(50)->get()->toArray(), 'total', 'iso_code');
         $data['latest_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('updated_at', 'desc')->limit(5)->get();
         $data['top_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('times', 'desc')->limit(5)->get();
@@ -181,18 +182,8 @@ class DashboardController extends CustomController
         $data['contacts_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Contact'])->count();
         $data['offers_bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'Offers'])->count();
         $data['onlineconsultation_bookings_count'] = $this->BookingRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end, 'class' => 'OnlineConsultation'])->count();
-        // $data['top_products'] = [];
-        // $data['top_pages'] = View::where();
         $data['bookings_charts_sql'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label')->toSql();
         $data['bookings_charts'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label','class')->get();
-        // $data['customers_count'] = $this->CustomerRepository->masterByDateCount(['start'=>$this->start, 'end'=>$this->end]);
-        // $data['help_messages_count'] = $this->HelpMessageRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        // $data['latest_help_messages'] = $this->HelpMessageRepository->allEventsByDate(['start'=>$this->start,'end'=>$this->end], 5);
-        // $data['invoices_count'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->count();
-        // $data['latest_invoices'] = $this->InvoiceRepository->get(5);
-		// $data['invoices_charts'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('date as label, COUNT(*) as y')->having('y', '>', 0)->orderBy('y', 'desc')->groupBy('label')->get();
-		// $data['total_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->sum('total_amount');
-        // $data['payment_methods_invoices_amount'] = $this->InvoiceRepository->eventsByDate(['start'=>$this->start, 'end'=>$this->end])->selectRaw('SUM(total_amount) as value, payment_method')->groupBy('payment_method')->get();
         
         return $data;
 
