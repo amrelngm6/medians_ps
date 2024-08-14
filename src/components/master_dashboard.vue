@@ -15,6 +15,7 @@
                 </div>
             </div>
         </div>
+        <Timeline :resources="projects" :events="events" />
 
         <div class="block w-full overflow-x-auto py-2">
             <div class="w-full overflow-y-auto overflow-x-hidden px-2 mt-6" >
@@ -209,7 +210,6 @@
             </div>
         </div>
         <!-- <Timeline :resources="projects" :events="tasks" /> -->
-        <Timeline :resources="projects" :events="events" />
 
 
 
