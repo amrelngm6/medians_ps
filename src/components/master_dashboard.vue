@@ -383,8 +383,10 @@ export default
         const getId = (events, ip ) => {
             for (let i = 0; i < events.length; i++) {
                 const element = events[i];
-                if (element.title == ip)
+                if (element.title == ip) {
+                    console.log(element)
                     return element.id; 
+                }
             }
         }
         
