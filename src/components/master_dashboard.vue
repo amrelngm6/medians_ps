@@ -312,7 +312,7 @@ export default
 
             if (data)
             {
-                const colors = ref(['rgba(69,36,140, 1)','rgba(69,46,240, 1)','rgba(69,140,36, 1)','#b4af0b','#1e2129']);        
+                const colors = ref(['rgba(69,36,140, 1)','rgba(69,46,240, 1)','rgba(69,140,36, 1)','rgba(69,36,140, 1)','#1e2129']);        
 
                 bookingCharts.value  =  {
                     labels: content.value.bookings_charts.map(e => e ? e.label : null),
@@ -327,7 +327,7 @@ export default
                         chartItem(content.value.bookings_charts.map(e => e.class == 'Booking' ? e.y : 0), translate('Booking'), colors[0]),
                         chartItem(content.value.bookings_charts.map(e => e.class == 'Doctor' ? e.y: 0), translate('Doctor'), colors[1]),
                         chartItem(content.value.bookings_charts.map(e => e.class == 'OnlineConsultation' ? e.y : 0), translate('OnlineConsultation'), colors[2]),
-                        // chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
                     ]
                 };
 
