@@ -217,7 +217,7 @@ class UserController extends CustomController
 	public function updateStatus() 
 	{
 
-		$params = $this->app->params();
+		$params = (array) $this->app->params();
 
 		try {
 
