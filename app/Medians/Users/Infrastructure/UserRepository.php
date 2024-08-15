@@ -128,7 +128,7 @@ class UserRepository
 			
 			$Object = User::find($data['id']);
 			
-    		$update = $Object->update(['active'=> 'on']);	
+    		$update = $Object->update(['active'=>$data['active'] ?? null]);	
 
     		return $Object;	
 
