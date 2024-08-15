@@ -46,7 +46,7 @@ class UserController extends CustomController
             [ 'key'=> "email", 'title'=> translate('email'), 'fillable'=> true, 'column_type'=>'email', 'required'=>true  ],
             [ 'key'=> "phone", 'title'=> translate('phone'), 'fillable'=> true, 'column_type'=>'phone' ],
             [ 'key'=> "password", 'title'=> translate('password'), 'fillable'=> true, 'column_type'=>'password' ],
-            [ 'key'=> "active", 'title'=> translate('status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "active", 'title'=> translate('status'), 'fillable'=> true, 'column_type'=>'hidden' ],
 
         ];
 	}
