@@ -18,9 +18,9 @@ use \Medians\Auth\Application\GuestAuthService;
 class APP 
 {
 
-	public $default_lang = 'english';
+	public $default_lang = 'arabic';
 
-	public $lang_code = 'english';
+	public $lang_code = 'arabic';
 
 	public $lang;
 
