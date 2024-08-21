@@ -237,14 +237,14 @@ class BlogRepository
 	*/
 	public function storeContent($data, $id) 
 	{
-		Content::where('model_type', Blog::class)->where('model_id', $id)->delete();
+		Content::where('item_type', Blog::class)->where('item_id', $id)->delete();
 		if ($data)
 		{
 			foreach ($data as $key => $value)
 			{
 				$fields = $value;
-				$fields['model_type'] = Blog::class;	
-				$fields['model_id'] = $id;	
+				$fields['item_type'] = Blog::class;	
+				$fields['item_id'] = $id;	
 				$fields['lang'] = $key;	
 				$fields['prefix'] = isset($value['prefix']) ? $value['prefix'] : Content::generatePrefix($value['title']);	
 				$fields['created_by'] = $this->app->auth()->id;
