@@ -469,6 +469,10 @@ class APIController extends CustomController
 					return response((new Countries\Application\CityController())->delete());
 					break;
 			
+				case 'Blog.delete':
+					return response((new Blog\Application\BlogController())->delete());
+					break;
+			
 			}
 
 		} catch (Exception $e) {

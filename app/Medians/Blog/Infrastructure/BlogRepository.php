@@ -172,7 +172,7 @@ class BlogRepository
     	$Object->update($dataArray);
 
     	// Store languages content
-    	$this->storeContent($data['content'], $Object->id);
+    	// $this->storeContent($data['content'], $Object->id);
 
     	// Store Custom fields
     	$this->storeCustomFields($data['field'], $Object->id);
@@ -192,8 +192,8 @@ class BlogRepository
 		// Return the FBUserInfo object with the new data
     	$Object->update( (array) $data);
 
-    	// Store languages content
-    	!empty($data['content']) ? $this->storeContent($data['content'], $data['id']) : '';
+    	// // Store languages content
+    	// !empty($data['content']) ? $this->storeContent($data['content'], $data['id']) : '';
 
     	// Store Custom fields
     	!empty($data['field']) ? $this->storeCustomFields($data['field'], $data['id']) : '';
