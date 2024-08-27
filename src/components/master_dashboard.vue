@@ -307,6 +307,23 @@ export default
         }
 
 
+        const groupBy = (array, key) => {
+            return array.reduce((result, currentValue) => {
+                // Get the value of the key to group by
+                const groupKey = currentValue[key];
+                
+                // If the group doesn't exist, create it
+                if (!result[groupKey]) {
+                    result[groupKey] = [];
+                }
+                
+                // Add the current value to the group
+                result[groupKey].push(currentValue);
+                
+                return result;
+            }, {});
+        };
+
         const optionsbar = ref();
         
         
@@ -327,15 +344,22 @@ export default
                     ]
                 };
                 
+                let mixData = groupBy(content.value.bookings_charts, 'class') 
+                console.log(mixData);
+                console.log(Object.values(mixData).flat());
+
+                // [
+                    
+                //     chartItem(content.value.bookings_charts.map(e => e.class == 'Booking' ? e.y : 0), translate('Booking'), colors[0]),
+                //     chartItem(content.value.bookings_charts.map(e => e.class == 'Doctor' ? e.y: 0), translate('Doctor'), colors[1]),
+                //     chartItem(content.value.bookings_charts.map(e => e.class == 'OnlineConsultation' ? e.y : 0), translate('OnlineConsultation'), colors[2]),
+                //     chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
+                //     chartItem(content.value.bookings_charts.map(e => e.class == 'Offers' ? e.y : 0), translate('Offers'), colors[4]),
+                // ];
+
                 merge_line_options.value  =  {
                     labels: content.value.bookings_charts.map(e => e ? e.label : null),
-                    datasets: [
-                        chartItem(content.value.bookings_charts.map(e => e.class == 'Booking' ? e.y : 0), translate('Booking'), colors[0]),
-                        chartItem(content.value.bookings_charts.map(e => e.class == 'Doctor' ? e.y: 0), translate('Doctor'), colors[1]),
-                        chartItem(content.value.bookings_charts.map(e => e.class == 'OnlineConsultation' ? e.y : 0), translate('OnlineConsultation'), colors[2]),
-                        chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
-                        chartItem(content.value.bookings_charts.map(e => e.class == 'Offers' ? e.y : 0), translate('Offers'), colors[4]),
-                    ]
+                    datasets: mixData.filter((e)=>  e != null)
                 };
 
                 
