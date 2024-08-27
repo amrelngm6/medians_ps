@@ -150,8 +150,6 @@ class BlogController extends CustomController
 
         try {	
 
-        	$params['created_by'] = $this->app->auth()->id;
-
         	$params['content'] = ['arabic'=>['title'=>$params['title'], 'content'=>' '], 'english'=>['title'=>$params['title'], 'content'=>' ']];
         	
 			$params['status'] = !empty($params['status']) ? 'on' : 0;
