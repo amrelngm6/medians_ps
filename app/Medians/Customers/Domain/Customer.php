@@ -15,7 +15,7 @@ class Customer extends CustomModel
 	*/
 	protected $table = 'customers';
 
-	protected $primaryKey = 'customer_id';
+	// protected $primaryKey = 'customer_id';
 
 	public $fillable = [
 		'name',

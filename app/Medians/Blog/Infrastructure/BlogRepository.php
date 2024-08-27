@@ -172,7 +172,7 @@ class BlogRepository
     	$Object->update($dataArray);
 
     	// Store languages content
-    	// $this->storeContent($data['content'], $Object->id);
+    	$this->storeContent($data['content'], $Object->id);
 
     	// Store Custom fields
     	$this->storeCustomFields($data['field'], $Object->id);
@@ -229,7 +229,7 @@ class BlogRepository
 	}
 
 
-
+	
 
 
 	/**
