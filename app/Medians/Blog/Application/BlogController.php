@@ -53,6 +53,7 @@ class BlogController extends CustomController
 		return [
             [ 'value'=> "id", 'text'=> "#"],
             [ 'value'=> "content.title", 'text'=> translate('Title'), 'sortable'=> true ],
+            [ 'value'=> "category.name", 'text'=> translate('Category'), 'sortable'=> true ],
             [ 'value'=> "builder", 'text'=> translate('Page Builder'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
