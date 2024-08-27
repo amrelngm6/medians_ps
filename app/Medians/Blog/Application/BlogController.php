@@ -77,6 +77,10 @@ class BlogController extends CustomController
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key' => 'id', 'required'=>false, 'withLabel'=>true, 
 				'data' => $this->doctorRepo->get()
 			],
+			[ 'key'=> "category_id", 'title'=> translate('Category'), 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'column_key' => 'category_id', 'required'=>false, 'withLabel'=>true, 
+				'data' => $this->categoryRepo->get()
+			],
 			[ 'key'=> "picture", 'title'=> translate('picture'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
 
