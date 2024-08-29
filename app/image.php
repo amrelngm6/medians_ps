@@ -520,7 +520,7 @@ class timthumb {
 		$mimeType = $sData['mime'];
 
 		$this->debug(3, "Mime type of image is $mimeType");
-		if(! preg_match('/^image\/(?:gif|jpg|jpeg|png)$/i', $mimeType)){
+		if(! preg_match('/^image\/(?:gif|jpg|jpeg|png|webp)$/i', $mimeType)){
 			return $this->error("The image being resized is not a valid gif, jpg or png.");
 		}
 
