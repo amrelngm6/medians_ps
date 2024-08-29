@@ -51,7 +51,7 @@
                         <div class="lg:w-8/12 w-full bg-white border-1 border border-gray-100 rounded-lg  p-2 mb-10" >
                             <h1 class="text-xl purple-color font-bold mb-4">{{item.content.title}}</h1>
                             <hr class="pb-2" />
-                            <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <span class="font-bold">{{item.author.content.title ?? item.field.author_name}}</span> </p>
+                            <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <a href="/{{item.author.content.prefix}}" class="font-bold">{{item.author.content.title ?? item.field.author_name}}</a> </p>
                             <p class="lg:text-base text-sm flex gap-2"><span>{{lang.translate('released_at')}}:{{item.update_date}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.views_sum_times}}</span></p>
                             <img alt="{{item.content.title}}" width="800" height="532" src="/stream?image={{item.picture}}" class="w-full" />
                             <div id="certificates" class="mt-10 relative mb-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
