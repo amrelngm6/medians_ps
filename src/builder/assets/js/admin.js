@@ -3966,7 +3966,10 @@ function koLinkSettings() {
         e.html(c);
     }
     console.log(e)
-    // e.editableLinks();
+    if (typeof e.editableLinks !== "undefined")
+    {
+        e.editableLinks();
+    }
     k_EditSave("norefresh");
     koMenuLoading("saved");
     koMenuClose();
