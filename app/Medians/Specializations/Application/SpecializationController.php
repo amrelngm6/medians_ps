@@ -92,7 +92,7 @@ class SpecializationController extends CustomController
 			'title' => translate('Specializations'),
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
-			'items' => $this->repo->get(),
+			'items' => $this->repo->getAll(),
 			'object_name' => 'Specialization',
 			'object_key' => 'id',
 		]);
