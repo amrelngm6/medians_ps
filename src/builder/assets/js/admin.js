@@ -3965,7 +3965,8 @@ function koLinkSettings() {
         }
         e.html(c);
     }
-    e.editableLinks();
+    console.log(e)
+    // e.editableLinks();
     k_EditSave("norefresh");
     koMenuLoading("saved");
     koMenuClose();
