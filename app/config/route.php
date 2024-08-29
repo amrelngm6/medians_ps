@@ -361,6 +361,7 @@ RouteHandler::get('/logout', function ()
  */
 RouteHandler::get('/(:all)/(:all)', \Medians\Pages\Application\PageController::class.'@sub_page'); 
 RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
+RouteHandler::get('/(:all)/', \Medians\Pages\Application\PageController::class.'@page'); 
 
 
 return $app->run();
