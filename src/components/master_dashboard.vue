@@ -335,7 +335,8 @@ export default
 
             if (data)
             {
-                const colors = ref(['rgba(233,94,210, 1)','rgba(69,46,240, 1)','rgba(240,234,46, 1)','rgba(19,180,173, 1)','rgba(201,61,84, 1)']);        
+                const colors = ref(['rgba(114,57,234, 1)','rgba(23,198,83, 1)','rgba(248,40,90, 1)','rgba(246,192,0, 1)','rgba(30,33,41, 1)']);        
+                // const colors = ref(['rgba(233,94,210, 1)','rgba(69,46,240, 1)','rgba(240,234,46, 1)','rgba(19,180,173, 1)','rgba(201,61,84, 1)']);        
 
                 bookingCharts.value  =  {
                     labels: content.value.bookings_charts.map(e => e ? e.label : null),
@@ -344,22 +345,18 @@ export default
                     ]
                 };
                 
-                let mixData = groupBy(content.value.bookings_charts, 'class') 
-                console.log(mixData);
-                console.log(Object.values(mixData).flat());
-
-                // [
-                    
-                //     chartItem(content.value.bookings_charts.map(e => e.class == 'Booking' ? e.y : 0), translate('Booking'), colors[0]),
-                //     chartItem(content.value.bookings_charts.map(e => e.class == 'Doctor' ? e.y: 0), translate('Doctor'), colors[1]),
-                //     chartItem(content.value.bookings_charts.map(e => e.class == 'OnlineConsultation' ? e.y : 0), translate('OnlineConsultation'), colors[2]),
-                //     chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
-                //     chartItem(content.value.bookings_charts.map(e => e.class == 'Offers' ? e.y : 0), translate('Offers'), colors[4]),
-                // ];
+                
 
                 merge_line_options.value  =  {
                     labels: content.value.bookings_charts.map(e => e ? e.label : null),
-                    datasets: mixData.filter((e)=>  e != null)
+                    datasets: [
+                    
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'Booking' ? e.y : 0), translate('Booking'), colors[0]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'Doctor' ? e.y: 0), translate('Doctor'), colors[1]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'OnlineConsultation' ? e.y : 0), translate('OnlineConsultation'), colors[2]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'Contact' ? e.y : 0), translate('Contact Msgs'), colors[3]),
+                        chartItem(content.value.bookings_charts.map(e => e.class == 'Offers' ? e.y : 0), translate('Offers'), colors[4]),
+                    ]
                 };
 
                 

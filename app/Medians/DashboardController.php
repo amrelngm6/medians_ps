@@ -172,7 +172,7 @@ class DashboardController extends CustomController
 
         $data['visits_countries'] = array_column(Visit::totalVisits($this->start, $this->end)->select('iso_code', DB::raw('count(*) as total'))->orderBy('updated_at', 'desc')->groupBy('iso_code')->get()->toArray(), 'total', 'iso_code');
         $data['latest_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('updated_at', 'desc')->limit(5)->get();
-        $data['top_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('times', 'desc')->limit(5)->get();
+        $data['top_visits'] = View::totalViews($this->start, $this->end)->with('item')->orderBy('times', 'desc')->groupBy('item_id')->limit(5)->get();
         $data['total_visits'] = View::totalViews($this->start, $this->end)->sum('times');
         $data['doctors_count'] = $this->DoctorRepo->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->orderBy('id', 'desc')->limit(10)->get();
         $data['latest_bookings'] = $this->BookingRepository->allEventsByDate(['start'=>$this->start, 'end'=>$this->end])->orderBy('id', 'desc')->limit(10)->get();
