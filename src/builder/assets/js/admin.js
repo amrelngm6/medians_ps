@@ -3965,6 +3965,7 @@ function koLinkSettings() {
         }
         e.html(c);
     }
+    console.log(inlineEditLink)
     console.log(e)
     if (typeof e.editableLinks !== "undefined")
     {
