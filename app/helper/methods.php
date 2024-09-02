@@ -272,6 +272,8 @@ function curLng()
  * Save from cyber attacks
  */
 function sanitizeInput($input) {
+    global $app;
+
     if (is_object($input)) {
         foreach ($input as $key => $value) {
             $input->$key = $value ? sanitizeInput($value) : '';
@@ -285,9 +287,10 @@ function sanitizeInput($input) {
     } else if (gettype($input) =='string' && in_array(substr($input,0,1), ['{', '['])   ) {
         return sanitizeInput(json_decode($input));
     } else {
-        return str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+        return isset($app->auth()->id) ? $input : str_replace(["&lt;", "&quot", "&gt;"], "",  htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
     }
 }
+
 
 
 

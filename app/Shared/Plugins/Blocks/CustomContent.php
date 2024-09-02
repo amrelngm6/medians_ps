@@ -58,8 +58,6 @@ class CustomContent
      */
     public function update($data, $Object)
     {
-		print_r($data);
-		return ;
 		$clear = CustomField::where('model_id', $Object->id)->where('model_type', Hook::class)->delete();
 
 		if ($data) {
