@@ -1,7 +1,6 @@
 {% include 'views/front/default/includes/header.html.twig' %}
-{% include 'views/front/default/includes/navbar.html.twig' %}
 
-    <div class="w-full py-2 cyan-bg relative ">
+    <div class="w-full py-2 cyan-bg relative pt-20">
         <div class="w-full overflow-hidden h-full cyan-bg absolute top-0 left-0">
             <img loading="lazy" alt="{{lang.translate('SPECIALIZATIONS')}}" alt="{{app.sitename}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
             <img loading="lazy" alt="{{lang.translate('SPECIALIZATIONS')}}" src="/stream?image=/uploads/img/circles-bg.webp" class="absolute left-0 bottom-0 w-full" style="opacity: .3;" />
@@ -129,4 +128,6 @@
 
     })
 </script>
+{% include 'views/front/default/includes/navbar.html.twig' %}
+
 {% include 'views/front/default/includes/footer.html.twig' %}
