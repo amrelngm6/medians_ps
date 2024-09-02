@@ -60,20 +60,20 @@ class HookController extends CustomController
 	public function index() 
 	{
 
-		$items = $this->repo->get();
+		// $items = $this->repo->get();
 
-		foreach ($items as $key => $value) {
-			$newContent1 = str_replace(['\r\n', '\"'], ['
-			 ', '"'], $value->content) ;
+		// foreach ($items as $key => $value) {
+			// $newContent1 = str_replace(['\r\n', '\"'], ['
+			//  ', '"'], $value->content) ;
 
-			$newContent = str_replace('539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=800&amp;w=800', '539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=100&amp;w=100', $newContent1);
+			// $newContent = str_replace('539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=800&amp;w=800', '539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=100&amp;w=100', $newContent1);
 			// $value->content = $newContent;
 			// $update = $value->save(); 
 			
-			$update = $value->hookPlugin()->update(['content'=>$newContent], $value);
+			// $update = $value->hookPlugin()->update(['content'=>$newContent], $value);
 
 			// print_r($update);
-		}
+		// }
 		return render('hooks', [
 			'load_vue'=> true,
 	        'title' => translate('Hooks list'),
