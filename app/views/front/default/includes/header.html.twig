@@ -102,7 +102,7 @@
                 <div class="gap-2 w-64 text-left flex">
                     <a href="tel:19483"  aria-label="hotline" title="hotline" class="text-lg px-2  font-normal ltr purple-color flex "><span class="w-8"><img src="/stream?image=/uploads/img/phone-call.webp" alt="hotline" width="24" height="24" /></span> 19483</a>
                     <a  aria-label="Search" title="Search" href="/search"><img loading="lazy" alt="{{app.Settings['sitename']}}"  width="24" height="28" src="/stream?image=/uploads/img/search-svgrepo-com.webp"></a>
-                    <a aria-label="switch lang" title="switch lang" href="/switch-lang/{{lang.translate('lang') == 'arabic' ? 'english' : 'arabic'}}"><img loading="lazy" alt="{{app.Settings['sitename']}}" width="24" height="24"  src="/stream?image=/uploads/img/lang{{lang.translate('lang')}}.webp"></a>
+                    <a aria-label="switch lang" title="switch lang" href="/switch-lang/{{lang.translate('lang') == 'arabic' ? 'english' : 'arabic'}}"><img loading="lazy" alt="{{app.Settings['sitename']}}" width="24" height="24"  src="/stream?image=/uploads/img/lang{{lang.translate('lang')|slice(0,2)}}.webp"></a>
                 </div>
             </div>
 
