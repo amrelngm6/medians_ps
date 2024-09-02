@@ -64,7 +64,7 @@ class HookController extends CustomController
 
 		foreach ($items as $key => $value) {
 			$newContent1 = str_replace(['\r\n', '\"'], ['
-			// ', '"'], $value->content) ;
+			 ', '"'], $value->content) ;
 
 			// $newContent = str_replace('', '', $newContent1);
 			// $value->content = $newContent;
