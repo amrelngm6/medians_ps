@@ -63,10 +63,10 @@ class HookController extends CustomController
 		$items = $this->repo->get();
 
 		foreach ($items as $key => $value) {
-			$newContent = str_replace(['\r\n', '\"'], ['
+			$newContent1 = str_replace(['\r\n', '\"'], ['
 			 ', '"'], $value->content) ;
 
-			// $newContent = str_replace('', '', $newContent1);
+			$newContent = str_replace('539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=800&amp;w=800', '539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=100&amp;w=100', $newContent1);
 			// $value->content = $newContent;
 			// $update = $value->save(); 
 			
