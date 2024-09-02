@@ -98,7 +98,7 @@
     setTimeout(function() {
       var gtmScript = document.createElement('script');
       gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=UA-89806532-4';
-      gtmScript.async = true;
+      gtmScript.defer = true;
       document.head.appendChild(gtmScript);
       
       setTimeout(function(){
@@ -137,5 +137,5 @@
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT59GXC"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+height="0" width="0" style="display:none;visibility:hidden" defer></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
