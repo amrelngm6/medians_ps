@@ -72,7 +72,7 @@ class HookController extends CustomController
 			
 			$update = $value->hookPlugin()->update(['content'=>$newContent], $value);
 
-			// print_r($update);
+			print_r($update);
 		}
 		return render('hooks', [
 			'load_vue'=> true,
