@@ -99,6 +99,7 @@ export default
 
         const editor = ClassicEditor;
         const editorConfig =  ref({
+            allowedContent:true,
             htmlSupport: {
                 allow: [
                     {
