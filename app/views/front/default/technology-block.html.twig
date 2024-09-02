@@ -8,24 +8,24 @@
                 <div  class="custom-scroll w-full overflow-auto item-content" style="max-height:300px; margin-bottom:30px" >
                     {{item.content.content|raw}}
                 </div>
-                <img class="show-mobile -mx-3 rounded-2xl " width="600" height="400" src="/app/image.php?w=600&h=400&img=img&src={{ item.picture }}" />
+                <img class="show-mobile -mx-3 rounded-2xl " width="600" height="400" src="/route/image.php?w=600&h=400&img=img&src={{ item.picture }}" />
                 <div class="flex gap-4">
-                    
-                    {% if lang.translate('lang') == 'english' %}
+
+                    {% if lang.__('lang') == 'en' %}
                         {% if  item.url_en %}
-                        <a href="{{item.url_en }}" class=" relative z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.translate('more_details')}}</a>
-                        {% endif %} 
-                    {% else %} 
+                        <a href="{{item.url_en }}" class=" relative z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.__('more_details')}}</a>
+                        {% endif %}
+                    {% else %}
                         {% if  item.url %}
-                        <a href="{{item.url }}" class=" relative z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.translate('more_details')}}</a>
-                        {% endif %} 
-                    {% endif %}  
+                        <a href="{{item.url }}" class=" relative z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.__('more_details')}}</a>
+                        {% endif %}
+                    {% endif %}
                     <ul class="">
                         {% if sub_list|length %}
                         {% for i in sub_list %}
                         {% if i %}
                         <li class="gap gap-4 flex pb-2 mb-2 ">
-                            <span class="elementor-icon-list-text"> 
+                            <span class="elementor-icon-list-text">
                                 {{i}}
                             </span>
                         </li>
@@ -40,6 +40,8 @@
             {% set len3 = item.picture[-4:] %}
             {{len3}} 
             <img class="hide-mobile -mx-3 rounded-2xl " width="600" height="400" src="{{len3 == 'webp' ? '' : '/app/image.php?w=600&h=400&img=img&src='}}{{ item.picture }}" />
+
+            {# <img class="hide-mobile -mx-3 rounded-2xl " width="600" height="400" src="/route/image.php?w=600&h=400&img=img&src={{ item.picture }}" /> #}
         </div>
     </div>
     <hr class="container mx-auto" />
@@ -52,5 +54,4 @@ body .list-icon li
 {
     margin:0;
 }
-
 </style>
