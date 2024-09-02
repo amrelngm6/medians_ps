@@ -20,10 +20,6 @@ export function formatCustomTime(date, format = 'HH:mm a') {
   return moment(date).format(format);
 }
 
-export function formatCustomTimeMinute(date, format = 'HH:mm a') {
-  return moment(date).add(1, 'days').format(format);
-}
-
 export function durationMonthsDate(date, value) {
     
     return moment(date).add(value, 'months').format("YYYY-MM-DD");
@@ -307,7 +303,7 @@ export function handleName (column)
 export function handleValue (column, item) 
 {
     let subKeys = column.key.split(".")
-    return  (column && column.custom_field) ?  (item.field ? item.field[column.key] : (item[subKeys[0]][subKeys[1]] ?? '')) : (item[column.key]);
+    return  (column && column.custom_field) ?  (item.field ? item.field[column.key] : (item[subKeys[0]][subKeys[1]] ?? '')) : (item ? item[column.key] : null);
 }
 
 
@@ -329,6 +325,7 @@ export function isInput (val)
     }
     return false;
 }
+
 
 export function getProgressWidth  (requiredData = [], activeItem)  
 {
