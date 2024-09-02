@@ -1,5 +1,85 @@
 
-    <div class="{{headerPosition ? headerPosition : 'lg-fixed ' }} lg:py-4 z-index9 head w-full fixed-on-scroll" style="z-index: 99999;">
+    <div class="{{headerPosition ? headerPosition : 'lg-fixed ' }} top-0 lg:py-4 z-index9 head w-full fixed-on-scroll" style="z-index: 99999;">
+        <div class="container mx-auto  flex ">
+            <div class="bg-white lg:my-2 flex lg:rounded-lg w-full">
+                <div class="flex w-full gap-3">
+                    <a id="show-menu" title="Show menu" class="lg:hidden  pt-4 mt-1 px-2" href="javascript:;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="15" viewBox="0 0 22 15">
+                            <g id="Menu_Dashes" data-name="Menu Dashes" transform="translate(-1332.67 5847.643)">
+                                <g id="Rectangle_74" data-name="Rectangle 74" transform="translate(1332.67 -5847.643)" fill="#463f3f" stroke="#707070" stroke-width="1">
+                                    <rect width="22" height="3" stroke="none" />
+                                    <rect x="0.5" y="0.5" width="21" height="2" fill="none" />
+                                </g>
+                                <g id="Rectangle_75" data-name="Rectangle 75" transform="translate(1332.67 -5841.643)" fill="#463f3f" stroke="#707070" stroke-width="1">
+                                    <rect width="22" height="3" stroke="none" />
+                                    <rect x="0.5" y="0.5" width="21" height="2" fill="none" />
+                                </g>
+                                <g id="Rectangle_76" data-name="Rectangle 76" transform="translate(1332.67 -5835.643)" fill="#463f3f" stroke="#707070" stroke-width="1">
+                                    <rect width="22" height="3" stroke="none" />
+                                    <rect x="0.5" y="0.5" width="21" height="2" fill="none" />
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                    <a aria-label="Logo" title="Logo" class="p-1 lg:p-3 pb-1 mt-0 lg:mt-auto" href="{{app.CONF.url}}"><img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/logo.webp" width="95" height="50"  /></a>
+                    <ul class="lg:flex  hidden gap-1 h-full font-semibold purple-color">
+                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/"><span class="block pt-8">{{lang.translate('home')}}</span></a></li>
+                        
+                        <li class="has-sub-menu h-full relative">
+                            <a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('About_Bedaya')}}</span></a>
+                            <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
+                            {% include 'views/front/default/includes/about_dropmenu.html.twig' %}
+                            </ul>
+                        </li>
+                        {% for item in specializations  %}
+                        {% if item.id == 2 %}
+                        <li class="has-sub-menu h-full relative">
+                            <a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{item.content.prefix}}"><span class="block pt-8">{{lang.translate(item.content.title)}}</span></a>
+                            <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
+                                {% for child_item in item.childs|sort((a, b) => a.sort <=> b.sort) %}
+                                <li class="py-1"><a href="/{{child_item.content.prefix}}">{{lang.translate(child_item.content.title)}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+
+                        <li class="has-sub-menu h-full relative">
+                            <a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('specializations')}}</span></a>
+                            <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
+                                {% for item in specializations|sort((a, b) => a.sort <=> b.sort)  %}
+                                {% if item.id != 2 %}
+                                <li class="py-1 has-sub-menu h-full relative {{item.id}}">
+                                    <a href="/{{item.content.prefix}}">{{item.content.title}}</a>
+
+                                    {% if item.childs %}
+                                    <ul class="text-sm sub-menu w-48 absolute top-18 right-40 bg-white p-6">
+                                        {% for child_item in item.childs  %}
+                                        <li class="py-1"><a href="/{{child_item.content.prefix}}">{{child_item.content.title}}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+
+                            </ul>
+                        </li>
+                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{lang.translate('lang') == 'arabic' ? 'قصص-نجاح-حقن-مجهرى' : 'icsi-success-stories'}}"><span class="block pt-8">{{lang.translate('success stories')}}</span></a></li>
+
+                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/blog"><span class="block pt-8">{{lang.translate('blog')}}</span></a></li>
+                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{lang.translate('lang') == 'arabic' ? 'contact' : 'contactus'}}"><span class="block pt-8">{{lang.translate('Contact')}}</span></a></li>
+                    </ul>
+                </div>
+                <div class="p-1 lg:py-4 lg:px-4  flex gap-3  ">
+                    <a href="tel:19483" class="text-lg px-1 lg:px-2 my-1 pt-2 font-normal ltr purple-color flex "><span class="w-8"><img src="/stream?image=/uploads/img/phone-call.webp" alt="hotline" width="24" height="24" /></span> 19483</a>
+                    <a style="white-space:nowrap" href="/{{lang.translate('lang') == 'arabic' ? 'الحجز' : 'booking'}}" class="hide-mobile rounded-lg px-4 my-1 pt-2 cyan-bg font-bold">{{lang.translate('BOOK_NOW')}}</a>
+                    <a aria-label="Search" title="Search"  href="/search" class="hide-mobile text-center lg:w-8 w-8 pb-2 pt-3 px-1"><img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/search-svgrepo-com.webp" width="34" height="40" /></a>
+                    <a aria-label="switch lang" title="switch lang" href="/switch-lang/{{lang.translate('lang') == 'arabic' ? 'english' : 'arabic'}}" class="text-center lg:w-8 w-8 pb-2 pt-3 px-1 "><img loading="lazy" width="36" height="36" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/lang{{lang.translate('lang')|slice(0,2)}}.webp" /></a>
+                </div>
+            </div>
+        </div>
+
         <div id="mobile-menu" class="fixed z-10 top-0 left-0 h-screen main-mobile-menu lg:hidden bg-white py-4 px-4 w-full z-90 ">
             <div class="flex">
                 <div class="w-full flex gap-3 pb-3">
@@ -91,6 +171,8 @@
             </div>
         </div>
     </div>
+
+
     <footer class="w-full footer-bg relative">
         <img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-10 w-full " style="opacity: .08;" />
         <div class="mx-auto container py-10 px-2 lg:px-0 relative"  style="z-index:99">
