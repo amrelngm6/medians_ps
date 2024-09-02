@@ -140,7 +140,7 @@ class BlogRepository
 
 		return Blog::whereHas('content', function($q) use ($title){
 			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
+				$q->where('content', 'LIKE', '%'.$i.'%');
 			}
 		})
 		->with(['content'=> function($q) use ($title){
