@@ -34,15 +34,8 @@ class CustomContent
 		return [
             
 			'basic'=> [	
-				[ 'key'=> "content", 'title'=> translate('CSontent') , 'help_text'=> translate('This content will be replaced with the Shortcode'), 'fillable'=> true,  'column_type'=>'editor' ],
+				[ 'key'=> "content", 'title'=> translate('Content') , 'help_text'=> translate('This content will be replaced with the Shortcode'), 'fillable'=> true,  'column_type'=>'editor' ],
 			],	
-            
-			'responsive'=> [	
-				[ 'key'=> "mobile_view_limit", 'title'=> translate('Mobile view items limit') , 'help_text'=> translate('Max number of products to view at the slider wrapper for Mobile view'), 'fillable'=> true, 'required'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "tablet_view_limit", 'title'=> translate('Tablet view items limit') , 'help_text'=> translate('Max number of products to view at the slider wrapper for Tablet view'), 'fillable'=> true, 'required'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "desktop_view_limit", 'title'=> translate('Desktop view items limit') , 'help_text'=> translate('Max number of products to view at the slider wrapper for desktop view'), 'fillable'=> true, 'required'=> true, 'column_type'=>'number' ],
-			],	
-            
 			
         ];
 	}
@@ -65,7 +58,8 @@ class CustomContent
      */
     public function update($data, $Object)
     {
-		
+		print_r($data);
+		return ;
 		$clear = CustomField::where('model_id', $Object->id)->where('model_type', Hook::class)->delete();
 
 		if ($data) {
@@ -99,7 +93,6 @@ class CustomContent
 		try {
 			
 			$hook = $this->hookRepo->find($params['id']);
-			
 			// $params['categories_ids'] = json_decode($hook->field['categories']);
 			// $params['limit'] = json_decode($hook->field['products_limit'] ?? '');
 

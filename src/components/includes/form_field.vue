@@ -99,6 +99,16 @@ export default
 
         const editor = ClassicEditor;
         const editorConfig =  ref({
+            htmlSupport: {
+                allow: [
+                    {
+                    name: /.*/, // Allow all HTML elements
+                    attributes: true, // Allow all attributes
+                    classes: true, // Allow all classes
+                    styles: true // Allow all styles
+                    }
+                ]
+            },
             plugins: [ Bold, Essentials, Italic, Mention, Paragraph,  Undo, Heading, Link, List, Image, Font,Table, TableToolbar  ],
             toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', 'heading', 'fontSize', 'fontColor' ,'link','insertTable',  'bulletedList', 'numberedList' ],
         });
