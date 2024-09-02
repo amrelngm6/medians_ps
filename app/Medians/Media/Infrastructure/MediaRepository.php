@@ -240,6 +240,8 @@ class MediaRepository
     	{
 			shell_exec($_SERVER['DOCUMENT_ROOT'].'/app/Shared/ffmpeg -i '.$filepath.' -vf scale="'.$w.':'.$h.'" '.$output);
     	}
+
+		return str_replace($_SERVER['DOCUMENT_ROOT'], '', $output);
     }
 
     public static function slug($value)
