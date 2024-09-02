@@ -39,7 +39,12 @@
                                 {% endfor %}
 
                             {% else %}
-                            <img width="800" height="530" src="{{item.picture[-4:] == 'webp' ? '/stream?image=' : '/app/image.php?w=600&h=400&img=img&src='}}{{item.picture}}" alt="{{item.content.title}}"  />
+                            {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?image=' : '/app/image.php?w=800&img=img&src=' %}
+                            <img width="800" height="530" src="{{pictureURL}}{{item.picture}}" 
+                            {% if item.picture[-4:] == 'webp' %}
+                            srcset="/app/image.php?w=400&img=img&src={{item.picture}} 480w, /app/image.php?w=800&img=img&src={{item.picture}} 1200w" sizes="(max-width: 600px) 480px, 1200px"
+                            {% endif %}
+                             alt="{{item.content.title}}"  />
                             <div class="relative bg-green-100 py-6 px-4 mt-10 ">
                                 <span class="block w-full text-lg font-bold pb-2 purple-color"> {{lang.translate('content table')}} </span>
                                 <hr class="border-gray-400 my-4" />
