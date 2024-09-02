@@ -37,8 +37,8 @@
             </div>
         </div>
         <div class="w-full pt-10 ">
-        
-            <img class="hide-mobile -mx-3 rounded-2xl " width="600" height="400" src="/app/image.php?w=600&h=400&img=img&src={{ item.picture }}" />
+            {% set len3 = item.picture[-4:] %}
+            <img class="hide-mobile -mx-3 rounded-2xl " width="600" height="400" src="{{len3 == 'webp' ? '' : '/app/image.php?w=600&h=400&img=img&src='}}{{ item.picture }}" />
         </div>
     </div>
     <hr class="container mx-auto" />
