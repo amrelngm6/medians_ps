@@ -93,23 +93,6 @@
 </script> #}
 
 
-<script>
-  window.addEventListener('load', function() {
-      var gtmScript = document.createElement('script');
-      gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=UA-89806532-4';
-      gtmScript.defer = true;
-      document.head.appendChild(gtmScript);
-      
-      setTimeout(function(){
-        
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-89806532-4');
-      }, 500);
-        
-  });
-</script>
 
 
 {# <script>
