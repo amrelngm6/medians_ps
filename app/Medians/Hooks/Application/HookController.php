@@ -63,7 +63,7 @@ class HookController extends CustomController
 		$items = $this->repo->get();
 
 		foreach ($items as $key => $value) {
-			$newContent1 = str_replace(['\r\n', '\"'], ['
+			$newContent = str_replace(['\r\n', '\"'], ['
 			 ', '"'], $value->content) ;
 
 			// $newContent = str_replace('', '', $newContent1);
@@ -72,7 +72,7 @@ class HookController extends CustomController
 			
 			$update = $value->hookPlugin()->update(['content'=>$newContent], $value);
 
-			print_r($update);
+			// print_r($update);
 		}
 		return render('hooks', [
 			'load_vue'=> true,
