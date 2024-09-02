@@ -324,6 +324,12 @@ if(!empty($app->auth()))
     /** @return Templates */
     RouteHandler::get('/admin/templates', Medians\Templates\Application\WebTemplateController::class.'@index');
 
+    /** @return Hooks */
+    RouteHandler::get('/admin/hooks', \Medians\Hooks\Application\HookController::class.'@index');
+    RouteHandler::get('/admin/hooks/(:all)', \Medians\Hooks\Application\HookController::class.'@hook');
+
+    /** @return Plugins */
+    RouteHandler::get('/admin/plugins', \Medians\Plugins\Application\PluginController::class.'@index');
 
 
     /**

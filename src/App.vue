@@ -82,12 +82,20 @@ const notifications_events = defineAsyncComponent(() => import('@/components/not
 
 const timeline = defineAsyncComponent(() => import('@/components/timeline.vue') );
 
+const gallery = defineAsyncComponent(() => import('@/components/gallery/index.vue') );
+
+const hooks = defineAsyncComponent(() => import('@/components/hooks/index.vue') );
+
+const plugins = defineAsyncComponent(() => import('@/components/plugins/index.vue') );
 
 
 
 export default {
     name: 'app',
     components: {
+        gallery,
+        hooks,
+        plugins,
         products,
         categories,
         data_table,
