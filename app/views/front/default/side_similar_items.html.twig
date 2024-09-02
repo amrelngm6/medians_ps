@@ -5,7 +5,7 @@
                             {% endif %}
                             {% for similar_item in similar_articles %}
                             <div class="relative border-1 border border-gray-100 gap-3 bg-white rounded-lg my-6 p-2 flex pt-4 ">
-                                <a class="p-1 border-purple-800 border-1 w-40  mt-4 " href="href="/{{similar_item.content.prefix}}""><img loading="lazy" src="/stream?image={{similar_item.photo}}" class="rounded-full w-24 h-24 " alt="Doctor" width="88" height="88" /></a>
+                                <a class="p-1 border-purple-800 border-1 w-40  mt-4 " href="href="/{{similar_item.content.prefix}}""><img loading="lazy" src="/stream?thumbnail=true&image={{similar_item.photo}}" class="rounded-full w-24 h-24 " alt="Doctor" width="88" height="88" /></a>
                                 <div class="w-full ">
                                     <h3 class="mb-2"><a class="text-base pb-1 font-bold purple-color" href="/{{similar_item.content.prefix}}">{{similar_item.content.title}} </a></h3>
                                     <p class="text-sm  font-bold cyan-color">{{similar_item.category.content.title}}</p>
