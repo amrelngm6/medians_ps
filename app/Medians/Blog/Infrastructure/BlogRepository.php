@@ -143,9 +143,14 @@ class BlogRepository
 				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
 			}
 		})
+		->with(['content'=> function($q) use ($title){
+			foreach (explode('%', $title) as $i) {
+				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
+			}
+		}])
 		->where('id', '!=', $model->id)
 		->where('status', 'on')
-		->with('category', 'content','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
+		->with('category','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
 	}
 
 
