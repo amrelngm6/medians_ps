@@ -349,7 +349,7 @@ class BlogRepository
 		return '
 		<div class="video-center show-modal-iframe relative" data-youtube-link="'.$video_id.'">
 			<div class="iframe-container">
-				<iframe  class="w-full lazy-iframe" height="460" data-src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0" allowfullscreen></iframe>
+				<iframe  class="w-full lazy-iframe" title="Bedaya video" height="460" data-src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 		';
