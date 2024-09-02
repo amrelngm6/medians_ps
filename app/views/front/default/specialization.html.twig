@@ -39,7 +39,7 @@
                                 {% endfor %}
 
                             {% else %}
-                            {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?image=' : '/app/image.php?w=800&img=img&src=' %}
+                            {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?thumbnail=800&image=' : '/app/image.php?w=800&img=img&src=' %}
                             <img width="800" height="530" src="{{pictureURL}}{{item.picture}}" 
                             {% if item.picture[-4:] != 'webp' %}
                             srcset="/app/image.php?w=400&img=img&src={{item.picture}} 480w, /app/image.php?w=800&img=img&src={{item.picture}} 1200w" sizes="(max-width: 600px) 480px, 1200px"
