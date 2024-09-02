@@ -150,7 +150,7 @@ class BlogRepository
 		}])
 		->where('id', '!=', $model->id)
 		->where('status', 'on')
-		->with('category','user')->limit($limit)->orderBy('updated_at', 'DESC')->get();
+		->with('category','user')->limit($limit)->inRandomOrder()->get();
 	}
 
 
