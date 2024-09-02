@@ -145,7 +145,7 @@ class BlogRepository
 		})
 		->with(['content'=> function($q) use ($title){
 			foreach (explode('%', $title) as $i) {
-				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%');
+				$q->where('title', 'LIKE', '%'.$i.'%')->orWhere('content', 'LIKE', '%'.$i.'%')->where('lang', translate('lang'));
 			}
 		}])
 		->where('id', '!=', $model->id)
