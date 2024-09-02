@@ -29,11 +29,11 @@ function render($template, $data, $responseType = 'html')
         echo  $app->template()->render('views/admin/vue.html.twig', ['component' => $template, 'app'=>$app]); return;
     }
 
-    $cacheFile = $_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html';
-    if (file_exists($cacheFile))
-    {
-        echo file_get_contents($cacheFile); return;
-    }
+    // $cacheFile = $_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html';
+    // if (file_exists($cacheFile))
+    // {
+    //     echo file_get_contents($cacheFile); return;
+    // }
 
     /**
      * Response will be override only
