@@ -38,6 +38,7 @@
         </div>
         <div class="w-full pt-10 ">
             {% set len3 = item.picture[-4:] %}
+            {{len3}}
             <img class="hide-mobile -mx-3 rounded-2xl " width="600" height="400" src="{{len3 == 'webp' ? '' : '/app/image.php?w=600&h=400&img=img&src='}}{{ item.picture }}" />
         </div>
     </div>
