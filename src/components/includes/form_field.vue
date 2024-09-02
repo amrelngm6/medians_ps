@@ -40,7 +40,7 @@
         
         <vue-medialibrary-field :key="item" v-if="column.column_type == 'file' || column.column_type == 'picture' "  :name="handleName(column)" :filepath="item[column.key]" :api_url="conf.url"></vue-medialibrary-field>
 
-        <ckeditor v-model="activeItem.content_langs[language.language_code].short"
+        <ckeditor v-model="item[column.key]" v-if="column.column_type == 'editor'"
                 :editor="editor" :config="editorConfig" />
 
     </div>

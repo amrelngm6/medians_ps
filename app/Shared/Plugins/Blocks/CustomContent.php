@@ -34,17 +34,9 @@ class CustomContent
 		return [
             
 			'basic'=> [	
-				[ 'key'=> "content", 'title'=> translate('Subtitle') , 'help_text'=> translate('This content will be replaced with the Shortcode'), 'fillable'=> true,  'column_type'=>'editor' ],
+				[ 'key'=> "content", 'title'=> translate('CSontent') , 'help_text'=> translate('This content will be replaced with the Shortcode'), 'fillable'=> true,  'column_type'=>'editor' ],
 			],	
             
-			'styles'=> [	
-				
-				[ 'key'=> "container_style", 'title'=> translate('Container style'), 'help_text'=> translate('Select style of the Container'),
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'column_key'=>'container_style', 
-					'data' => [["name"=> "Boxed", "container_style"=>"container"], ["name"=>"Full width", "container_style"=> "w-full"]]  
-				],
-				[ 'key'=> "show_scrollbar", 'title'=> translate('Show scrollbar') , 'help_text'=> translate('Show Scrollbar at the bottom of the  products'), 'fillable'=> true, 'required'=> true, 'column_type'=>'checkbox' ],
-			],
 			'responsive'=> [	
 				[ 'key'=> "mobile_view_limit", 'title'=> translate('Mobile view items limit') , 'help_text'=> translate('Max number of products to view at the slider wrapper for Mobile view'), 'fillable'=> true, 'required'=> true, 'column_type'=>'number' ],
 				[ 'key'=> "tablet_view_limit", 'title'=> translate('Tablet view items limit') , 'help_text'=> translate('Max number of products to view at the slider wrapper for Tablet view'), 'fillable'=> true, 'required'=> true, 'column_type'=>'number' ],
