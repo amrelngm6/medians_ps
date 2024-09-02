@@ -5,12 +5,6 @@
 
         <div v-if="content" class=" w-full relative">
 
-            <div class=" " v-if="showWizard">
-                <plugin_wizard :currency="currency" :langs="langs"
-                    @callback="() => { activeItem = null; showWizard = false }" :conf="conf" :auth="auth"
-                    :item="activeItem" :path="path + '/' + (activeItem.id ? activeItem.id : 'new')"
-                    :system_setting="system_setting" :setting="setting" />
-            </div>
 
             <main class=" flex-1 overflow-x-hidden overflow-y-auto  w-full relative"
                 v-if="content.items && !showWizard">
@@ -90,14 +84,12 @@ const form_field = defineAsyncComponent(() =>
 );
 
 import tooltip from '@/components/includes/tooltip.vue';
-const plugin_wizard = defineAsyncComponent(() => import('@/components/plugins/plugin_wizard.vue'));
 
 
 export default
     {
         components: {
             'datatabble': Vue3EasyDataTable,
-            plugin_wizard,
             delete_icon,
             car_icon,
             form_field,
