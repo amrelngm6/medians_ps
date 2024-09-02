@@ -167,12 +167,6 @@ import color_picker from '@/components/includes/color-picker.vue';
 
 
 
-import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Link, List, Table, TableToolbar, Image, Undo, Heading, Font } from 'ckeditor5';
-import { Ckeditor } from '@ckeditor/ckeditor5-vue';
-
-import 'ckeditor5/ckeditor5.css';
-
-
 export default
     {
         components: {
@@ -181,7 +175,6 @@ export default
             color_picker,
             static_field,
             select_field,
-            Ckeditor,
             close_icon,
             delete_icon,
             form_field,
