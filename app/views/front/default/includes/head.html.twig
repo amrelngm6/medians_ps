@@ -95,7 +95,6 @@
 
 <script>
   window.addEventListener('load', function() {
-    setTimeout(function() {
       var gtmScript = document.createElement('script');
       gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=UA-89806532-4';
       gtmScript.defer = true;
@@ -109,7 +108,6 @@
         gtag('config', 'UA-89806532-4');
       }, 500);
         
-    }, 1000); // Delay of 3000 milliseconds (3 seconds)
   });
 </script>
 
