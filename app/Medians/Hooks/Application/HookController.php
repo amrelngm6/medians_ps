@@ -60,19 +60,19 @@ class HookController extends CustomController
 	public function index() 
 	{
 
-		// $items = $this->repo->get();
+		$items = $this->repo->get();
 
-		// foreach ($items as $key => $value) {
-			// $newContent = str_replace(['\r\n', '\"'], ['
-			// ', '"'], $value->content) ;
+		foreach ($items as $key => $value) {
+			$newContent = str_replace(['\r\n', '\"'], ['
+			', '"'], $value->content) ;
 
 			// $value->content = $newContent;
 			// $update = $value->save(); 
 			
-			// $update = $value->hookPlugin()->update(['content'=>$newContent], $value);
+			$update = $value->hookPlugin()->update(['content'=>$newContent], $value);
 
 			// print_r($update);
-		// }
+		}
 		return render('hooks', [
 			'load_vue'=> true,
 	        'title' => translate('Hooks list'),
