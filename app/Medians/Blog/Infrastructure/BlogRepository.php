@@ -300,7 +300,8 @@ class BlogRepository
 				$id = $hooks[2][$key];
 
 				$hook = Hook::find($id);
-				$hookContent = unserialize($hook->content)['content'];
+				$unserialize = unserialize($hook->content);
+				$hookContent = $unserialize['content'] ?? $hook->field['content'];
 
 				$postContent = str_replace($codeToReplace, $hookContent, $postContent);
 				
@@ -349,7 +350,7 @@ class BlogRepository
 		return '
 		<div class="video-center show-modal-iframe relative" data-youtube-link="'.$video_id.'">
 			<div class="iframe-container">
-				<iframe  class="w-full lazy-iframe" title="Bedaya video" height="460" data-src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0" allowfullscreen></iframe>
+				<iframe  class="w-full lazy-iframe" title="Bedaya Youtube Video" height="460" data-src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 		';
