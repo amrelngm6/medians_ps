@@ -95,7 +95,7 @@ class PluginController extends CustomController
 
         try {
 
-        	$params['status'] = !empty($params['status']) ? $params['status'] : null;
+        	$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);

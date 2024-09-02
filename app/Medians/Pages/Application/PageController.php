@@ -287,7 +287,6 @@ class PageController extends CustomController
                 'page' => $item,
 		        'item' => $item,
 				'specializations' => $this->specsRepo->get_root(),
-				// 'story_dates' => $this->storyDateRepo->get(),
 				'stories' => $this->storyRepo->get(3),
 				'all_stories' => $this->storyRepo->get(),
 				'doctors' => $this->doctorRepo->getHome(3),
@@ -295,6 +294,37 @@ class PageController extends CustomController
 				'all_technologies' => $this->technologyRepo->get(),
             ]);
             
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+    }
+
+	
+    /**
+     * Sub-pages for frontend
+     */
+    public function cache_page($object)
+    {
+
+		try {
+        	
+			$item = $this->repo->find($object->item_id);
+			$item->content = $object;
+
+            $content = render('views/front/default/page.html.twig', [
+                'page' => $item,
+		        'item' => $item,
+				'specializations' => $this->specsRepo->get_root(),
+				'stories' => $this->storyRepo->get(3),
+				'all_stories' => $this->storyRepo->get(),
+				'doctors' => $this->doctorRepo->getHome(3),
+				'blog' => $this->blogRepo->getFront(3),
+				'all_technologies' => $this->technologyRepo->get(),
+            ], '');
+			
+			$cacheFile = $_SERVER['DOCUMENT_ROOT'].'/app/cache/_'. $object->prefix. '.html';
+			file_put_contents($cacheFile,$content);
+
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
 		}

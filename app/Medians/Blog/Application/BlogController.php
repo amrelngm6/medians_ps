@@ -332,4 +332,35 @@ class BlogController extends CustomController
 		}
 	} 
 
+
+	
+	/**
+	 * Cache page 
+	 * @var Int
+	 */
+	public function cache_page($contentObject)
+	{
+
+		try {
+			
+			$item = $this->repo->find($contentObject->item_id);
+
+			$content = render('views/front/default/article.html.twig', [
+		        'item' => $this->repo->filterShortCode($item),
+		        'similar_items' => $this->specsRepo->similar($item, 3),
+		        'similar_articles' => $this->repo->similar($item, 3),
+		        'offers' => $this->offersRepo->random(1),
+		        'stories' => $this->storiesRepo->random(1),
+				'specializations' => $this->specsRepo->get_root(),
+				'noindex' => (count(array_filter(explode('/', $_SERVER['REQUEST_URI']))) > 1) ? true : false
+		    ], '');
+
+			$cacheFile = $_SERVER['DOCUMENT_ROOT'].'/app/cache/_'. $object->prefix. '.html';
+			file_put_contents($cacheFile,$content);
+
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	} 
+
 }

@@ -187,6 +187,10 @@ class APIController extends CustomController
 					$return = (new Templates\Application\WebTemplateController)->store();
 					break;
 					
+				case 'Hook.create':
+					$return = (new Hooks\Application\HookController)->store();
+					break;
+	
 				// case 'StoryDates.create':
 				// 	$return = (new StoryDates\Application\StoryDateController)->store();
 				// 	break;
@@ -365,6 +369,14 @@ class APIController extends CustomController
 			case 'Order.update':
 				$controller = new Orders\Application\OrderController; 
 				break;
+
+			case 'Plugin.update':
+				$controller = new Plugins\Application\PluginController; 
+				break;
+
+			case 'Hook.update':
+				$controller = new Hooks\Application\HookController; 
+				break;
 			
 		}
 
@@ -472,7 +484,11 @@ class APIController extends CustomController
 				case 'Blog.delete':
 					return response((new Blog\Application\BlogController())->delete());
 					break;
-			
+
+				case 'Hook.delete':
+					return response((new Hooks\Application\HookController())->delete());
+					break;
+
 			}
 
 		} catch (Exception $e) {

@@ -12,10 +12,9 @@ use Shared\simple_html_dom;
  */
 function render($template, $data, $responseType = 'html')
 {
-    
+
     $app = new \config\APP;
     
-
     /**
      * Check if response is required in JSON
      */  
@@ -25,6 +24,17 @@ function render($template, $data, $responseType = 'html')
         return true;
     }
 
+    if (isset($data['load_vue']))
+    {
+        echo  $app->template()->render('views/admin/vue.html.twig', ['component' => $template, 'app'=>$app]); return;
+    }
+
+    $cacheFile = $_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html';
+    if (file_exists($cacheFile))
+    {
+        echo file_get_contents($cacheFile); return;
+    }
+
     /**
      * Response will be override only
      * In case the system works In Vue APP
@@ -32,11 +42,9 @@ function render($template, $data, $responseType = 'html')
     $isFront = strpos($template, 'front/');
     
     $path = isset($data['load_vue']) ? 'views/admin/vue.html.twig' : $template;
-    $app = new \config\APP;
     $data = loadConfig($template, $data);
     $output =  $app->template()->render($path, $data);
 
-    $isFront ? file_put_contents($_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html', $output) : '';
     
     if ($responseType == 'html')
     {
@@ -44,6 +52,31 @@ function render($template, $data, $responseType = 'html')
     } else {
         return $output;
     }
+ } 
+
+
+/** 
+ * Render Plugin function
+ * @param String twig file path
+ * @param [] List of data
+ */
+function renderPlugin($template, $data)
+{
+
+    global $app;
+
+    /**
+     * Response will be override only
+     * In case the system works In Vue APP
+     */ 
+    
+    // $data = loadConfig($template, $data);
+    $data['app'] = $app;
+    $data['lang'] = new helper\Lang($_SESSION['lang']);
+    // $data = loadConfig($template, $data);
+    $output =  $app->template()->render($template, $data);
+
+    return $output;
  } 
 
 
@@ -61,11 +94,11 @@ function render($template, $data, $responseType = 'html')
         $setting = $app->SystemSetting();
         $languages = $app->Languages();  
         
-            
     } catch (\Exception $e) {
         echo ('CHECK DATABASE CONNECTION ');
         die();
     }
+
     $app = new \config\APP;
     $data['component'] = $template;
     $data['app'] = $app;

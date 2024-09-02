@@ -8,11 +8,13 @@ use Medians\Builders\Infrastructure\BuilderRepository;
 use Medians\Templates\Infrastructure\EmailTemplateRepository;
 use Medians\Content\Infrastructure\ContentRepository;
 use Medians\Pages\Infrastructure\PageRepository;
-use Medians\Doctors\Domain\Doctor;
-use Medians\Blog\Domain\Blog;
 use Medians\OnlineConsolutations\Domain\OnlineConsolutation;
 use Medians\Offers\Domain\Offer;
 use Medians\Languages\Infrastructure\Language;
+use Medians\Doctors\Domain\Doctor;
+use Medians\Blog\Domain\Blog;
+use Medians\Pages\Domain\Page;
+use Medians\Specializations\Domain\Specialization;
 
 
 class BuilderController extends CustomController 
@@ -233,8 +235,37 @@ class BuilderController extends CustomController
 		$check->content = str_replace('data-src', 'src', $contentJSON->contentArea);
 		$check->update(['content' => $check->content]);
 		echo $check->content;
+
+		return $this->handleCache($check);
+		
 	}
 
+	public function handleCache($object)
+	{
+		$cacheFile = $_SERVER['DOCUMENT_ROOT'].'/app/cache/_'. $object->prefix. '.html';
+
+		switch ($object->item_type) {
+			case Doctor::class:
+				# code...
+				break;
+			
+			case Blog::class:
+				(new \Medians\Blog\Application\BlogController)->cache_page($object);
+				break;
+			
+			case Page::class:
+				(new \Medians\Pages\Application\PageController)->cache_page($object);
+				break;
+			
+			case Specialization::class:
+				# code...
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+	}
 
 
 

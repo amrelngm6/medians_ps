@@ -1,11 +1,7 @@
 <template>
     <div class="w-full flex overflow-auto">
 
-        
-
         <div v-if="content" class=" w-full relative">
-
-
             <main class=" flex-1 overflow-x-hidden overflow-y-auto  w-full relative"
                 v-if="content.items && !showWizard">
                 <div class="px-4 mb-6 py-4 rounded-lg shadow-md bg-white dark:bg-gray-700 flex w-full">
@@ -108,11 +104,9 @@ export default
             const searchValue = ref("");
             const searchField = ref("#");
 
-
             const closeSide = () => {
                 showEditSide.value = false;
             }
-
 
             const load = () => {
                 handleGetRequest(url).then(response => {
@@ -128,7 +122,6 @@ export default
                 activeItem.value = {};
                 showWizard.value = true;
             }
-
 
             const setStatus = (plugin) => {
                 var params = new URLSearchParams();
