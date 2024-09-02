@@ -2,7 +2,7 @@
 {% include 'views/front/default/includes/header.html.twig' %}
 {% if (item.homepage == '' or item.homepage == 0)  %}
 {% if item.order != 3 %}
-<div class="w-full cyan-bg lg:pb-4 pt-6 lg:pt-20 relative ">
+<div class="w-full cyan-bg pb-4 pt-6 lg:pt-20 relative ">
     <div class="w-full overflow-hidden h-full absolute bottom-0 left-0">
         <img loading="lazy" alt="{{app.settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
     </div>
