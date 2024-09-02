@@ -1,7 +1,7 @@
 <template>
     <div class="w-full" v-if="column" >
         
-        <input v-if="column && column.column_type == 'hidden'" :name="handleName(column)" type="hidden" :value="handleValue(column, item)">
+        <input v-if="column && column.column_type == 'hidden'" :name="handleName(column)" :value="handleValue(column, item)" type="hidden" >
 
         <input @change="changed(item[column.key])"  :required="column.required" :disabled="column.disabled" v-if="isInput(column.column_type)" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title" :value="handleValue(column, item)">
     
@@ -40,6 +40,9 @@
         
         <vue-medialibrary-field :key="item" v-if="column.column_type == 'file' || column.column_type == 'picture' "  :name="handleName(column)" :filepath="item[column.key]" :api_url="conf.url"></vue-medialibrary-field>
 
+        <ckeditor v-model="activeItem.content_langs[language.language_code].short"
+                :editor="editor" :config="editorConfig" />
+
     </div>
 </template>
 <script>
@@ -50,11 +53,19 @@ import { translate, handleGetRequest, handleName, handleValue, isInput, setActiv
 import Multiselect from '@vueform/multiselect'
 import {ref} from 'vue'
 
+
+import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Link, List, Table, TableToolbar, Image, Undo, Heading, Font } from 'ckeditor5';
+import { Ckeditor } from '@ckeditor/ckeditor5-vue';
+
+import 'ckeditor5/ckeditor5.css';
+
+
 export default 
 {
     components: {
         'vue-medialibrary-field': field,
         close_icon,
+        Ckeditor,
         Multiselect 
     },
 
@@ -86,7 +97,16 @@ export default
             multipleValue.value = props.item[props.column.key] ? props.item[props.column.key].map(e => e[props.column.column_key]) : [];
 
 
+        const editor = ClassicEditor;
+        const editorConfig =  ref({
+            plugins: [ Bold, Essentials, Italic, Mention, Paragraph,  Undo, Heading, Link, List, Image, Font,Table, TableToolbar  ],
+            toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', 'heading', 'fontSize', 'fontColor' ,'link','insertTable',  'bulletedList', 'numberedList' ],
+        });
+        
+        
         return {
+            editor,
+            editorConfig,
             file: '',
             multipleValue,
             isInput,

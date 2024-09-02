@@ -7,7 +7,7 @@ use Medians\CustomFields\Domain\CustomField;
 use Medians\Hooks\Domain\Hook;
 
 
-class ProductsGrid 
+class CustomContent 
 {
 
 	
@@ -34,12 +34,7 @@ class ProductsGrid
 		return [
             
 			'basic'=> [	
-				[ 'key'=> "subtitle", 'title'=> translate('Subtitle') , 'help_text'=> translate('This text appear below the Hook title'), 'fillable'=> true,  'column_type'=>'text' ],
-				[ 'key'=> "products_limit", 'title'=> translate('Max number') , 'help_text'=> translate('Max number of loaded products'), 'fillable'=> true, 'required'=> true, 'column_type'=>'number' ],
-				[ 'key'=> "categories", 'title'=> translate('Categories'), 'help_text'=> translate('Select categories to display products from'),
-					'sortable'=> true, 'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'column_key'=>'category_id', 'multiple' => true,
-					'data' => $this->categoryRepo->getActive()  
-				],	
+				[ 'key'=> "content", 'title'=> translate('Subtitle') , 'help_text'=> translate('This content will be replaced with the Shortcode'), 'fillable'=> true,  'column_type'=>'editor' ],
 			],	
             
 			'styles'=> [	
