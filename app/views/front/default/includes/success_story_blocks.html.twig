@@ -12,7 +12,7 @@
                         </div>
                         <div style="bottom: -95px;" class="w-full absolute right-0 left-0 bottom-0 w-30  mx-auto">
                             <div data-youtube-link="{{item.field.video_link}}" class="rounded-full border-4 border border-white  bg-white w-28 mx-auto show-modal-iframe ">
-                                <img loading="lazy" alt="{{lang.translate('lang') == 'arabic' ? item.field.short_name_ar :  item.field.short_name}}" src="/app/image.php?w=110&h=110&src={{item.thumbnail()}}" class="w-28 h-28 rounded-full" />
+                                <img loading="lazy" alt="{{lang.translate('lang') == 'arabic' ? item.field.short_name_ar :  item.field.short_name}}" src="{{item.thumbnail()[-4:] == 'webp' ? '/stream?image=' : '/app/image.php?w=110&h=110&src='}}{{item.thumbnail()}}" class="w-28 h-28 rounded-full" />
                             </div>
                             <a data-youtube-link="{{item.field.video_link}}" class="show-modal-iframe block mx-auto text-center w-64 font-semibold purple-color" href="javascript:;"><span>{{lang.translate('lang') == 'arabic' ? item.field.short_name_ar :  item.field.short_name}}</span></a>
                         </div>
