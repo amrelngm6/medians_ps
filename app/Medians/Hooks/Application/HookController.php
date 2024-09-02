@@ -63,13 +63,13 @@ class HookController extends CustomController
 		$items = $this->repo->get();
 
 		foreach ($items as $key => $value) {
-			// $newContent = str_replace(['\r\n', '\"'], ['
-			// ', '"'], $value->content) ;
+			$newContent = str_replace(['\r\n', '\"'], ['
+			', '"'], $value->content) ;
 
 			// $value->content = $newContent;
 			// $update = $value->save(); 
 			
-			// $update = $value->hookPlugin()->update(['content'=>$newContent], $value);
+			$update = $value->hookPlugin()->update(['content'=>$newContent], $value);
 
 			// print_r($update);
 		}
