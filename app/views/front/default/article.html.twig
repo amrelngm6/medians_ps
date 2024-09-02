@@ -52,7 +52,15 @@
                             <hr class="pb-2" />
                             <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <a href="/{{item.author.content.prefix}}" class="font-bold">{{item.author.content.title ?? item.field.author_name}}</a> </p>
                             <p class="lg:text-base text-sm flex gap-2"><span>{{lang.translate('released_at')}}:{{item.update_date}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.views_sum_times}}</span></p>
-                            <img alt="{{item.content.title}}" width="800" height="532" src="/stream?image={{item.picture}}" class="w-full" />
+
+                            {# <img alt="{{item.content.title}}" width="800" height="532" src="/stream?thumbnail=800&image={{item.picture}}" class="w-full" /> #}
+                            {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?thumbnail=800&image=' : '/app/image.php?w=800&img=img&src=' %}
+                            <img width="800" height="530" src="{{pictureURL}}{{item.picture}}" 
+                            {% if item.picture[-4:] != 'webp' %}
+                            srcset="/app/image.php?w=400&img=img&src={{item.picture}} 480w, /app/image.php?w=800&img=img&src={{item.picture}} 1200w" sizes="(max-width: 600px) 480px, 1200px"
+                            {% endif %}
+                             alt="{{item.content.title}}"  />
+
                             <div id="certificates" class="mt-10 relative mb-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
                                 <img loading="lazy"  alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
                                 <div class="relative">
