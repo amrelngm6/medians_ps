@@ -422,6 +422,9 @@ class APP
 				array('permission'=> 'Roles.index', 'title'=> translate('ROLES MANAEGMENT'),  'icon'=>'tool', 'link'=>'admin/roles', 'component'=>'roles'),
 			]
 			),
+
+			array('permission'=> 'Hooks.index', 'title'=> translate('Hooks'),  'icon'=>'table', 'link'=>'admin/Hooks', 'component'=>'hooks'),
+
 			array( 'title'=>translate('Frontend'),  'icon'=>'airplay', 'link'=>'#frontend', 'superadmin'=> true, 'sub'=>
 			[
 				array('permission'=>'Pages.index', 'title'=>translate('Front Pages'),  'icon'=>'tool', 'link'=>'admin/pages', 'component'=>'data_table'),
