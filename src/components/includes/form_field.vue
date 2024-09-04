@@ -103,10 +103,10 @@ export default
             htmlSupport: {
                 allow: [
                     {
-                    name: 'div', // Allow all HTML elements
-                    attributes: true, // Allow all attributes
-                    classes: true, // Allow all classes
-                    styles: true // Allow all styles
+                        name: /.*/,
+                        attributes: true,
+                        classes: true,
+                        styles: true
                     }
                 ]
             },
