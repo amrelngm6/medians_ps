@@ -47,7 +47,7 @@
                         </div>
                         <div class="w-full lg:w-4/12">
                             <div class="relative border-1 border border-gray-100 text-center bg-white rounded-lg pt-36 pb-6">
-                                <img src="/stream?thumbnail=200&image={{item.picture}}" style="top:-100px" class="rounded-full p-1 border-purple-800 border-1 w-56 h-56 mx-auto left-0 right-0 absolute" alt="Doctor" />
+                                <img src="/stream?thumbnail=200&image={{item.picture}}" style="top:-100px" class="rounded-full p-1 border-purple-800 border-1 w-56 h-56 mx-auto left-0 right-0 absolute" alt="{{item.content_item.title}}" />
 
                                 <h2 class="text-xl pb-2 font-bold purple-color" >{{item.content_item.title}}</h2>
                                 <p class="text-lg pb-10 font-bold cyan-color" >{{lang.translate('lang') == 'english' ? item.field.short_name_en : item.field.short_name_ar}}</p>
