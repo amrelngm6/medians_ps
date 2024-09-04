@@ -66,7 +66,7 @@ class HookController extends CustomController
 			$newContent1 = str_replace(['\r\n', '\"'], ['
 			//  ', '"'], $value->content) ;
 
-			$newContent = str_replace('539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=800&amp;w=800', '539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=58&amp;w=50', $newContent1);
+			$newContent = str_replace('route/image.php?src=539448005_1663855665_1507594184.jpg&amp;img=pic&amp;h=800&amp;w=800', 'stream?image=/uploads/images/539448005_1663855665_1507594184.jpg&amp;thumbnail=50', $newContent1);
 			$newContent = str_replace('<img class="rounded-circle"', '<img alt="Bedaya" class="rounded-circle"', $newContent);
 			// $value->content = $newContent;
 			// $update = $value->save(); 
