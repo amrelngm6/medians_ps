@@ -26,7 +26,7 @@ function render($template, $data, $responseType = 'html')
 
     if (isset($data['load_vue']))
     {
-        echo  $app->template()->render('views/admin/vue.html.twig', ['component' => $template, 'app'=>$app]); return;
+        echo  $app->template()->render('views/admin/vue.html.twig', ['component' => $template, 'lang' => new helper\Lang($_SESSION['lang']), 'app'=>$app]); return;
     }
 
     // $cacheFile = $_SERVER['DOCUMENT_ROOT'].'/app/cache/'. (str_replace('/', '_', $app->currentPage)). '.html';
