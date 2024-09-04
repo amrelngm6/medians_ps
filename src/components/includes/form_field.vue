@@ -54,7 +54,7 @@ import Multiselect from '@vueform/multiselect'
 import {ref} from 'vue'
 
 
-import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Link, List, Table, TableToolbar, Image, ImageInsert, Undo, Heading, Font } from 'ckeditor5';
+import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Link, List, Table, TableToolbar, GeneralHtmlSupport, Image, ImageInsert, Undo, Heading, Font } from 'ckeditor5';
 import { Ckeditor } from '@ckeditor/ckeditor5-vue';
 
 import 'ckeditor5/ckeditor5.css';
@@ -110,7 +110,7 @@ export default
                     }
                 ]
             },
-            plugins: [ Bold, Essentials, Italic, Mention, Paragraph,  Undo, Heading, Link, List, Image, ImageInsert, Font,Table, TableToolbar  ],
+            plugins: [ Bold, Essentials, Italic, Mention, Paragraph,  Undo, Heading, Link, List, Image, ImageInsert, Font,Table, TableToolbar, GeneralHtmlSupport  ],
             toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', 'heading', 'fontSize', 'fontColor' ,'link','insertImage', 'insertTable', 'bulletedList', 'numberedList' ],
         });
         
