@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="w-full pt-10 ">
-            <img class="hide-mobile -mx-3 rounded-2xl " width="600" height="400" src="{{item.picture[-4:] == 'webp' ? '/stream?image=' : '/app/image.php?w=600&h=400&img=img&src='}}{{ item.picture }}" />
+            <img class="hide-mobile -mx-3 rounded-2xl " width="600" height="400" src="/stream?thumbnail=600&image={{ item.picture }}" />
 
             {# <img class="hide-mobile -mx-3 rounded-2xl " width="600" height="400" src="/route/image.php?w=600&h=400&img=img&src={{ item.picture }}" /> #}
         </div>
