@@ -14,8 +14,8 @@
                         <div class="overflow-auto lg:w-8/12 w-full mb-32  bg-white border-1 border border-gray-100 rounded-lg lg:p-10 p-2">
          
 
-                            <img loading="lazy" src="/stream?image={{item.picture}}" alt="Doctor" class="w-full" />
-                                    {% if item.content_item.content is not empty %}
+                            <img  src="/stream?image={{item.picture}}" alt="Doctor" class="w-full" />
+                            {% if item.content_item.content is not empty %}
                             <div id="brief"  class="relative my-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
                                 <img loading="lazy" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
                                 
@@ -40,12 +40,12 @@
 
                                 </div>
                             </div>
-                                    {% endif %}
+                            {% endif %}
 
                         </div>
                         <div class="w-full lg:w-4/12">
                             <div class="relative border-1 border border-gray-100 text-center bg-white rounded-lg pt-36 pb-6">
-                                <img loading="lazy" src="/stream?image={{item.picture}}" style="top:-100px" class="rounded-full p-1 border-purple-800 border-1 w-56 h-56 mx-auto left-0 right-0 absolute" alt="Doctor" />
+                                <img src="/stream?image={{item.picture}}" style="top:-100px" class="rounded-full p-1 border-purple-800 border-1 w-56 h-56 mx-auto left-0 right-0 absolute" alt="Doctor" />
 
                                 <h2 class="text-xl pb-2 font-bold purple-color" >{{item.content_item.title}}</h2>
                                 <p class="text-lg pb-10 font-bold cyan-color" >{{lang.translate('lang') == 'english' ? item.field.short_name_en : item.field.short_name_ar}}</p>
