@@ -54,10 +54,11 @@
                             <p class="lg:text-base text-sm flex gap-2"><span>{{lang.translate('released_at')}}:{{item.update_date}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.views_sum_times}}</span></p>
 
                             {# <img alt="{{item.content.title}}" width="800" height="532" src="/stream?thumbnail=800&image={{item.picture}}" class="w-full" /> #}
-                            {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?thumbnail=800&image=' : '/app/image.php?w=800&img=img&src=' %}
+                            {# {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?thumbnail=800&image=' : '/app/image.php?w=800&img=img&src=' %} #}
+                            {% set pictureURL = '/stream?thumbnail=800&image=' %}
                             <img width="800" height="530" src="{{pictureURL}}{{item.picture}}" 
                             {% if item.picture[-4:] != 'webp' %}
-                            srcset="/app/image.php?w=400&img=img&src={{item.picture}} 480w, /app/image.php?w=800&img=img&src={{item.picture}} 1200w" sizes="(max-width: 600px) 480px, 1200px"
+                            srcset="/stream?thumbnail=400&image={{item.picture}} 480w, /stream?thumbnail=900&image={{item.picture}} 1200w" sizes="(max-width: 600px) 480px, 1200px"
                             {% endif %}
                              alt="{{item.content.title}}"  />
 
