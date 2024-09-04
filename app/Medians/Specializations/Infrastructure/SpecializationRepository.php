@@ -59,7 +59,7 @@ class SpecializationRepository
 		$return = Specialization::whereHas('content', function($q) use ($title){
 			$q->where('title', 'LIKE', '%'.$title.'%');
 		})
-		->where('status', 'on')
+		// ->where('status', 'on')
 		->with('content','user')->limit($limit)->orderBy('updated_at', 'DESC')
 		->get();
 
