@@ -423,7 +423,7 @@ class APP
 			]
 			),
 
-			array('permission'=> 'Hooks.index', 'title'=> translate('Hooks'),  'icon'=>'table', 'link'=>'admin/Hooks', 'component'=>'hooks'),
+			array('permission'=> 'Hooks.index', 'title'=> translate('Hooks'),  'icon'=>'table', 'link'=>'admin/hooks', 'component'=>'hooks'),
 
 			array( 'title'=>translate('Frontend'),  'icon'=>'airplay', 'link'=>'#frontend', 'superadmin'=> true, 'sub'=>
 			[
