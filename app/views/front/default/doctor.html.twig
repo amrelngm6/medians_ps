@@ -16,14 +16,14 @@
 
                             <img  src="/stream?thumbnail=800&image={{item.picture}}" 
                             srcset="/stream?thumbnail=400&image={{item.picture}} 480w, /stream?thumbnail=800&image={{item.picture}} 1200w" sizes="(max-width: 600px) 480px, 1200px"
-                            alt="Doctor" class="w-full" />
+                            alt="{{item.content_item.title}}" class="w-full" />
                             {% if item.content_item.content is not empty %}
                             <div id="brief"  class="relative my-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
-                                <img loading="lazy" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+                                <img loading="lazy" alt="BG" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
                                 
                             {% if item.content_item.short|raw is not empty %}
                             <div id="brief"  class="relative my-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
-                                <img loading="lazy" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+                                <img loading="lazy" alt="BG"  src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
                                 
                                 <div class="relative">
                                     <span class="block w-full text-lg font-bold pb-2 purple-color">{{lang.translate('summary')}}</span>
