@@ -110,8 +110,8 @@ export default
                     }
                 ]
             },
-            plugins: [ FullPage, Bold, Essentials, Italic, Mention, Paragraph,  Undo, Heading, Link, List, Image, Font,Table, TableToolbar, GeneralHtmlSupport  ],
-            toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', 'heading', 'fontSize', 'fontColor' ,'link','insertImage', 'insertTable', 'bulletedList', 'numberedList' ],
+            plugins: [ SourceEditing, Bold, Essentials, Italic, Mention, Paragraph,  Undo, Heading, Link, List, Image, Font,Table, TableToolbar, GeneralHtmlSupport  ],
+            toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', 'heading', 'fontSize', 'fontColor' ,'link','insertImage', 'insertTable', 'sourceEditing', 'bulletedList', 'numberedList' ],
         });
         
         
