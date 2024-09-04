@@ -14,7 +14,9 @@
                         <div class="overflow-auto lg:w-8/12 w-full mb-32  bg-white border-1 border border-gray-100 rounded-lg lg:p-10 p-2">
          
 
-                            <img  src="/stream?image={{item.picture}}" alt="Doctor" class="w-full" />
+                            <img  src="/stream?thumbnail=800&image={{item.picture}}" 
+                            srcset="/stream?thumbnail=400&image={{item.picture}} 480w, /stream?thumbnail=800&image={{item.picture}} 1200w" sizes="(max-width: 600px) 480px, 1200px"
+                            alt="Doctor" class="w-full" />
                             {% if item.content_item.content is not empty %}
                             <div id="brief"  class="relative my-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
                                 <img loading="lazy" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
