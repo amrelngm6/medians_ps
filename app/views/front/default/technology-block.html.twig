@@ -12,11 +12,11 @@
                 <div class="flex gap-4">
                     
                     {% if lang.translate('lang') == 'english' %}
-                        {% if  item.url_en %}
+                        {% if  item.url_en|length > 0 %}
                         <a href="{{item.url_en }}" class=" relative z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.translate('more_details')}}</a>
                         {% endif %} 
                     {% else %} 
-                        {% if  item.url %}
+                        {% if  item.url|length > 0 %}
                         <a href="{{item.url }}" class=" relative z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.translate('more_details')}}</a>
                         {% endif %} 
                     {% endif %}  
