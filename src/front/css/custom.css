@@ -662,3 +662,7 @@ body .wapp-side-icon {
 {
     color: #4f276f;
 }
+body.Ltr .list-icon li::before {
+    right: auto;
+    left: 0;
+}
