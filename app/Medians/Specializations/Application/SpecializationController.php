@@ -7,6 +7,7 @@ use Medians\Specializations\Infrastructure\SpecializationRepository;
 use Medians\Blog\Infrastructure\BlogRepository;
 use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Stories\Infrastructure\StoryRepository;
+use Medians\Doctors\Infrastructure\DoctorRepository;
 
 
 class SpecializationController extends CustomController 
@@ -20,6 +21,7 @@ class SpecializationController extends CustomController
 	protected $blogRepo;
 	protected $storiesRepo;
 	protected $categoryRepo;
+	protected $doctorRepo;
 
 	
 
@@ -32,6 +34,7 @@ class SpecializationController extends CustomController
 		$this->blogRepo = new BlogRepository();
 		$this->storiesRepo = new StoryRepository();
 		$this->categoryRepo = new CategoryRepository();
+		$this->doctorRepo = new DoctorRepository();
 	}
 
 
@@ -69,8 +72,15 @@ class SpecializationController extends CustomController
 			],
             [ 'key'=> "sorting", 'title'=> translate('sorting'), 'fillable'=>true,  'column_type'=>'number' ],
             [ 'key'=> "sorting_ar", 'title'=> translate('Sorting AR'), 'fillable'=>true,  'column_type'=>'number' ],
-			[ 'key'=> "picture", 'title'=> translate('picture'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
+			
+			[ 'key'=> "inserted_by", 'title'=> translate('Author'), 
+				'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key' => 'id', 'required'=>false, 'withLabel'=>true, 
+				'data' => $this->doctorRepo->get()
+			],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
+
+			[ 'key'=> "picture", 'title'=> translate('picture'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
+
 
         ];
 	}

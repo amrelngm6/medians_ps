@@ -5,6 +5,7 @@ namespace Medians\Specializations\Domain;
 use Shared\dbaser\CustomModel;
 use Medians\Views\Domain\View;
 use Medians\Content\Domain\Content;
+use Medians\Doctors\Domain\Doctor;
 
 
 class Specialization extends CustomModel
@@ -77,6 +78,12 @@ class Specialization extends CustomModel
 	public function views()
 	{
 		return $this->morphMany(View::class, 'item');
+	}
+
+	
+	public function author()
+	{
+		return $this->hasOne(Doctor::class, 'id', 'inserted_by');
 	}
 
 }
