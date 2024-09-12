@@ -17,6 +17,9 @@
                         <div class="lg:w-8/12 w-full bg-white border-1 border border-gray-100 rounded-lg px-4" id="article-content">
                             <h1 class="text-xl purple-color font-bold mb-4">{{item.content.title}}</h1>
                             <hr class="pb-2" />
+                            {% if item.author.title %}
+                            <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <a href="/{{item.author.content.prefix}}" class="font-bold">{{item.author.title}}</a> </p>
+                            {% endif  %}
                             <p class="lg:text-base text-sm flex gap-2"><span>{{lang.translate('released_at')}}:{{item.updated_at | date('M, d Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.views_sum_times}}</span></p>
 
                             {% if item.childs|length %}
