@@ -47,7 +47,8 @@ class SpecializationController extends CustomController
 		return [
             [ 'value'=> "id", 'text'=> "#"],
             [ 'value'=> "content.title", 'text'=> translate('Title'), 'sortable'=> true ],
-            [ 'value'=> "sorting", 'text'=> translate('status'), 'sortable'=> true ],
+            [ 'value'=> "author.name", 'text'=> translate('Author'), 'sortable'=> true ],
+            [ 'value'=> "sorting", 'text'=> translate('Sort'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
             [ 'value'=> "builder", 'text'=> translate('Page Builder'), 'sortable'=> true ],
             [ 'value'=> "edit", 'text'=> translate('edit')  ],
