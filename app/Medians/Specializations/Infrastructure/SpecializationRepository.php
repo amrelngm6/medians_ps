@@ -33,7 +33,7 @@ class SpecializationRepository
  
 	public function get($limit = 100)
 	{
-		return Specialization::with('content','user','parent')
+		return Specialization::with('content','author','parent')
 		->withCount('childs')
 		->limit($limit)
 		->where('status', 'on')
@@ -42,7 +42,7 @@ class SpecializationRepository
 
 	public function getAll($limit = 100)
 	{
-		return Specialization::with('content','user','parent')
+		return Specialization::with('content','author','parent')
 		->withCount('childs')
 		->limit($limit)
 		->get();
