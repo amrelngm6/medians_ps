@@ -667,3 +667,149 @@ body.Ltr .list-icon li::before {
     right: auto;
     left: 0;
 }
+
+.week-title {
+    text-align: left;
+    width:100%
+}
+.rtl .week-title {
+    text-align: right;
+}
+.week-date {
+    float:right
+}
+.rtl .week-date {
+    float:left
+}
+#babyProgression {
+	position: relative;
+	max-height: 400px;
+	width: 100%;
+	max-width: 100%;
+	min-height: 100px;
+}
+.maskLine {
+	transition: d 310ms;
+}
+.maskLine:nth-of-type(2) {
+	transition: d 300ms;
+}
+.controls {
+	position: relative;
+}
+.slider {
+	position: relative;
+	display: block;
+	max-height: 600px;
+    z-index: 9
+}
+#scaleSlider {
+    direction: ltr;
+	position: relative;
+	max-width: 100%;
+	cursor: pointer;
+}
+.controls .weeks {
+	display: flex;
+	height: 45px;
+    gap: 10px;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.controls .weeks > button {
+	cursor: pointer;
+	background: none;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	flex: 1;
+	margin: 0px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	font-family: "Roboto", sans-serif;
+	font-weight: bold;
+}
+.controls .weeks > button:hover,
+.controls .weeks > button:focus,
+.controls .weeks > button:active {
+	border: 1px solid #fff;
+	color: #1A6AC9;
+}
+.controls .weeks > button > span {
+	font-weight: 100;
+	font-size: 1em;
+}
+.daysSection {
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+	position: relative;
+	bottom: 10px;
+	left: 50%;
+	transform: translate(-50%);
+	color: rgba(255, 255, 255, 0.8);
+}
+.days {
+	font-size: 1.5em;
+	font-weight: 600;
+}
+.dateSection {
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+	position: relative;
+	top: 10px;
+	left: 50%;
+	transform: translate(-50%);
+	color: rgba(255, 255, 255, 0.8);
+}
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	cursor: pointer;
+	outline: none;
+	overflow: hidden;
+	border-radius: 25px;
+}
+
+/* Track: webkit browsers */
+input[type="range"]::-webkit-slider-runnable-track {
+	height: 25px;
+	background: rgb(50, 0, 108);
+	border-radius: 25px;
+}
+
+/* Track: Mozilla Firefox */
+input[type="range"]::-moz-range-track {
+	height: 25px;
+	background: rgb(50, 0, 108);
+	border-radius: 25px;
+}
+
+/* Thumb: webkit */
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 25px;
+	width: 25px;
+	background-color: #a020f0;
+	border-radius: 50%;
+	border: 1px solid #a020f0;
+	box-shadow: -407px 0 0 400px rgb(100, 0, 180);
+}
+
+/* Thumb: Firefox */
+input[type="range"]::-moz-range-thumb {
+	height: 25px;
+	width: 25px;
+	background-color: #a020f0;
+	border-radius: 50%;
+	border: 1px solid #a020f0;
+	box-shadow: -407px 0 0 400px rgb(100, 0, 180);
+}
+
+@media (max-width: 640px) {
+    .controls .weeks {
+        display:none
+    }
+}

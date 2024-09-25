@@ -94,6 +94,11 @@ class Blog extends CustomModel
 		return $this->morphMany(View::class, 'item');
 	}
 
+	public function totalviews()
+	{
+		return $this->morphMany(View::class, 'item')->sum('times');
+	}
+
 
 	public function thumbnail() 
 	{

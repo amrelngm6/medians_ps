@@ -20,7 +20,7 @@
                             {% if item.author.title %}
                             <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <a href="/{{item.author.content.prefix}}" class="font-bold">{{item.author.content.title}}</a> </p>
                             {% endif  %}
-                            <p class="lg:text-base text-sm flex gap-2"><span>{{lang.translate('released_at')}}:{{item.updated_at | date('M, d Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.views_sum_times}}</span></p>
+                            <p class="lg:text-base text-sm flex gap-2"><span class="hide-mobile">{{lang.translate('released_at')}}:{{item.created_at|date('M d, Y')}}</span> • <span class=" ">{{lang.translate('Updated at')}}: {{item.updated_at|date('M d, Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.totalviews()}}</span></p>
 
                             {% if item.childs|length %}
                             <h2 class="text-xl purple-color font-bold mb-4">{{lang.translate('Sub-categories')}}</h1>

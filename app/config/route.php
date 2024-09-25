@@ -48,6 +48,8 @@ RouteHandler::get('/booking_confirm/booking', \Medians\Bookings\Application\Book
 RouteHandler::get('/booking_confirm/online_consultation', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
 RouteHandler::get('/booking_confirm/offers', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
 RouteHandler::get('/booking_confirm/contact', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
+RouteHandler::get('/calculator', \Medians\Pages\Application\PageController::class.'@calculator'); 
+RouteHandler::get('/ovulation-calculator', \Medians\Pages\Application\PageController::class.'@ovulationCalculator'); 
 
 
 // Front API GET requests

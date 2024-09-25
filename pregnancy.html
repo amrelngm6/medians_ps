@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Pregnancy Calculator</h2>
+<label for="lastPeriod">First Day of Last Period:</label>
+<input type="date" id="lastPeriod" required>
+
+<label for="cycleLength">Period Cycle Length (days):</label>
+<input type="number" id="cycleLength" required>
+
+<button onclick="calculateDueDate()">Calculate Due Date</button>
+
+<div class="result" id="result"></div>
+
+<script>
+function calculateDueDate() {
+    const lastPeriod = new Date(document.getElementById('lastPeriod').value);
+    const cycleLength = parseInt(document.getElementById('cycleLength').value);
+
+    if (isNaN(lastPeriod) || isNaN(cycleLength)) {
+        document.getElementById('result').innerText = "Please fill in all fields.";
+        return;
+    }
+
+    // Calculate estimated ovulation date (14 days after the last period)
+    const ovulationDate = new Date(lastPeriod);
+    ovulationDate.setDate(lastPeriod.getDate() + 14);
+
+    // Calculate estimated due date (40 weeks from last period)
+    const dueDate = new Date(lastPeriod);
+    dueDate.setDate(lastPeriod.getDate() + 280); // 280 days for 40 weeks
+
+    document.getElementById('result').innerHTML = `
+        <p><strong>Estimated Ovulation Date:</strong> ${ovulationDate.toLocaleDateString()}</p>
+        <p><strong>Estimated Due Date:</strong> ${dueDate.toLocaleDateString()}</p>
+    `;
+}
+</script>
+
+</body>
+</html>

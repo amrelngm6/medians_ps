@@ -81,6 +81,11 @@ class Specialization extends CustomModel
 	}
 
 	
+	public function totalviews()
+	{
+		return $this->morphMany(View::class, 'item')->sum('times');
+	}
+	
 	public function author()
 	{
 		return $this->hasOne(Doctor::class, 'id', 'inserted_by');

@@ -1,0 +1,226 @@
+{% include 'views/front/default/includes/header.html.twig' %}
+
+
+<div class="w-full cyan-bg pb-6 pt-24 relative ">
+    <div class="w-full overflow-hidden h-full absolute bottom-0 left-0">        
+        <img loading="lazy"  alt="{{app.settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+    </div>
+    <div class="container mx-auto relative pt-4">
+        <h1 class="text-2xl mx-auto w-auto text-center font-bold text-white" >{{lang.translate('OVULATION_CALCULATOR')}}</h1>
+    </div>
+</div>
+
+
+			<div class="w-full p-2 pb-20">
+				<div class="lg:pt-20">
+					<div class="mb-6 lg:mb-16">
+						<h6 class="text-lg text-center font-medium text-indigo-600 mb-2 lg:text-left">
+							{{lang.translate('OVULATION Week Expectation')}}
+						</h6>
+						<h2 class="text-4xl text-center font-bold text-gray-900 leading-[3.25rem] mb-5 lg:text-left">
+							{{lang.translate('Expected birth range week for OVULATION')}}
+						</h2>
+					</div>
+                    
+                    <div class="w-full flex">
+                        
+
+                        <div class="container mx-auto">
+                        
+                            <div class="w-full  ">
+                                <div class="max-w-lg mx-auto">
+        
+                                    <input type="hidden" id="dueDate" >
+                                    <input type="hidden" id="activeWeek" value="1" >
+
+                                    <div class=" items-center ltr lg:pt-10 bg-white   lg:h-40 ">
+                                        <div class="lg:flex gap-2 ">
+                                            <div class="w-full border border-1 border-gray-200 rounded-lg p-4">
+                                                <p class="text-lg text-center">{{lang.translate('First day of Last Period')}}</p>
+                                                <hr class="opacity-50 mb-4" />
+                                                <input type="date" id="lastPeriodDate" value="{{"now"|date('Y-m-d')}}" max="{{"now"|date('Y-m-d')}}" min="{{"now"|date_modify('-50 days')|date('Y-m-d')}}" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="{{lang.translate('Last period date')}}" name="params[date]">
+                                            </div>
+                                            <div class="w-full border border-1 border-gray-200 rounded-lg p-4">
+                                                <p class="text-lg text-center">{{lang.translate('Period cycle days')}}</p>
+                                                <hr class="opacity-50 mb-4" />
+                                                <input type="number" id="cycleLength" value="28" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="{{lang.translate('Last period date')}}" name="params[date]">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="estimated-date" class="hidden w-full py-20" >
+                                        <div  class="lg:flex shadow rounded-lg border  border-gray-400 " >
+                                            
+                                            <div class="lg:bg-white  w-full  lg:w-11/12 xl:w-full px-1 bg-purple-800 py-5 lg:px-2 lg:py-2 tracking-wide">
+                                                <div class="text-white lg:text-gray-700 font-medium text-sm  px-2">
+                                                    {{lang.translate("ovulation week")}}
+                                                </div>
+                                                <div class="font-semibold text-white lg:text-gray-800 text-xl  px-2" id="results">
+                                                </div>
+
+                                                <div class="text-white lg:text-gray-600 font-medium text-md pt-1  px-2" >
+                                                {{lang.translate('Estimated ovulation week')}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+				</div>
+			</div>
+
+ <script>
+
+const today = (new Date()).toLocaleDateString();
+const dateInput = document.getElementById("lastPeriodDate");
+const dueDateInput = document.getElementById("dueDate");
+const cycleLength = document.getElementById('cycleLength');
+
+initCalculator()
+
+// Once the date changed
+dateInput.addEventListener("change", handleDate);
+cycleLength.addEventListener("change", handleDate);
+
+
+
+function initCalculator ()
+{
+    
+    const lastPeriod = new Date(dateInput.value);
+
+    // Calculate estimated ovulation date (14 days after the last period)
+    const ovulationDate = new Date(lastPeriod);
+    ovulationDate.setDate(lastPeriod.getDate() + (cycleLength.value - 14));
+
+    dueDateInput.value = ovulationDate.toLocaleDateString() 
+
+    customDate(lastPeriod, dueDateInput)
+
+
+    const dd = daysUntil(ovulationDate);
+    const daysText = dd > 0 ? dd : 7;
+    handleDateText()
+}
+
+
+
+function handleDateText()
+{
+    
+    const lmpDate = new Date(dateInput.value);
+
+    // Add 260 days (40 weeks) to estimate the due date
+    const estimatedDueDate = new Date(dueDateInput.value);
+
+    // Find the start of the birth week (previous Monday)
+    const startOfBirthWeek = new Date(estimatedDueDate);
+    startOfBirthWeek.setDate(estimatedDueDate.getDate() - estimatedDueDate.getDay() + 1); // Monday
+
+    // Find the end of the birth week (Sunday)
+    const endOfBirthWeek = new Date(startOfBirthWeek);
+    endOfBirthWeek.setDate(startOfBirthWeek.getDate() + 6); // Sunday
+
+    // Format the result for readability
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const startWeekFormatted = startOfBirthWeek.toLocaleDateString(undefined, options);
+    const endWeekFormatted = endOfBirthWeek.toLocaleDateString(undefined, options);
+    
+    // Display the results
+    const resultsDiv = document.getElementById('results');
+
+    resultsDiv.innerHTML = ` ${startWeekFormatted} - ${endWeekFormatted}`;
+
+}
+
+
+function customDate (start , end) {
+    
+    const lmpDate = new Date(start);
+
+    // Add 260 days (40 weeks) to estimate the due date
+    const estimatedDueDate = new Date(start);
+
+    // Find the start of the birth week (previous Monday)
+    const startOfBirthWeek = new Date(estimatedDueDate);
+    startOfBirthWeek.setDate(estimatedDueDate.getDate() - estimatedDueDate.getDay() + 1); // Monday
+
+    // Find the end of the birth week (Sunday)
+    const endOfBirthWeek = new Date(startOfBirthWeek);
+    endOfBirthWeek.setDate(startOfBirthWeek.getDate() + 6); // Sunday
+
+    // Format the result for readability
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const startWeekFormatted = startOfBirthWeek.toLocaleDateString(undefined, options);
+    const endWeekFormatted = endOfBirthWeek.toLocaleDateString(undefined, options);
+    
+    
+    var i = 0;
+    const date = new Date(dateInput.value);
+    const endDate = new Date(dateInput.value);
+    while (i < 40 ) {
+        i++;
+        date.setDate(date.getDate() + 7)
+        endDate.setDate(date.getDate() + 7)
+        jQuery('#week-date-'+i).html(date.toLocaleDateString(undefined, options) +" "+ endDate.toLocaleDateString(undefined, options))
+    }
+
+    return {start: startWeekFormatted, end: endWeekFormatted}
+}
+ 
+function daysUntil(date) {
+	let targetDate;
+	if (typeof date === "string") {
+		const [year, month, day] = date.split("-").map(Number);
+		targetDate = new Date(year, month - 1, day);
+	} else if (date instanceof Date) {
+		targetDate = date;
+	} else {
+		throw new Error(
+			"Invalid date format. Please provide a Date object or a string in YYYY-MM-DD format."
+		);
+	}
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+	const timeDiff = targetDate - today;
+	const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    	
+    return daysDiff;
+}
+
+function handleDate() {
+    localStorage.setItem("savedlastPeriodDate", dateInput.value);
+    initCalculator()
+    jQuery('#estimated-date').removeClass('hidden')
+}
+
+function weeksBetween(d1, d2) {
+    return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<style >
+
+</style>
+
+
+{% include 'views/front/default/includes/navbar.html.twig' %}
+
+{% include 'views/front/default/includes/footer.html.twig' %}
+

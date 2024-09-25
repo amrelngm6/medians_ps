@@ -80,7 +80,6 @@ class DoctorRepository
 		->get();
 		// ->toSql();
 
-		// print_r($return);
 		return $return;
 	}
 
