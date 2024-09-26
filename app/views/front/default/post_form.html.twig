@@ -1,0 +1,76 @@
+{% include 'views/front/default/includes/header.html.twig' %}
+{% include 'views/front/default/includes/navbar.html.twig' %}
+<div class="w-full cyan-bg pb-6 pt-20 relative ">
+    <div class="w-full overflow-hidden h-full absolute bottom-0 left-0">
+        <img loading="lazy" alt="{{app.settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+    </div>
+    <div class="container mx-auto relative pt-8">
+        <h1 class="text-2xl mx-auto w-auto text-center font-bold text-white">{{lang.translate('Add new Question')}}</h1>
+    </div>
+</div>
+
+<hr />
+<div class="bg-gray-100 relative">
+    <img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0  w-full " style="top:100px; opacity: .3;" />
+    <form action="/submit/booking" id="booking-form" class="max-w-xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <input type="hidden" name="params[itemid]" value="{{item.id}}">
+        <input type="hidden" name="params[class]" value="OnlineConsultation">
+        <input type="hidden" name="params[status]" value="new">
+        <h4 class="pb-2 text-lg w-full flex gap-2"><span class="w-64">{{lang.translate('Question information')}}</span> <hr class="w-full mt-4 border-blue-300" /></h4> 
+
+        <div class="bg-white overflow-hidden sm:rounded-lg relative ">
+            <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                <dl class="sm:divide-y sm:divide-gray-200">
+                    <div class=" sm:py-4 sm:px-6">
+                        <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                            <p>{{lang.translate('Title')}}</p>
+                            <input required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="{{lang.translate('Question Title')}}" name="params[custom_field][name]">
+                        </dt>
+                    </div>
+                    <div class="gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
+                    
+                        <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                            <p>{{lang.translate('Details')}}</p>
+                            <textarea required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-details"  placeholder="{{lang.translate('Question details')}}" name="params[custom_field][name]"></textarea>
+                        </dt>
+                    </div>
+                </dl>
+            </div>
+            
+        </div>
+        <h4 class="pt-4 text-lg w-full flex gap-2"><span class="w-64">{{lang.translate('Your information')}}</span> <hr class="w-full mt-4 border-blue-300" /></h4> 
+        <div class=" bg-white overflow-hidden sm:rounded-lg relative ">
+            <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                <dl class="sm:divide-y sm:divide-gray-200">
+                    <div class=" sm:py-4 sm:px-6">
+                        <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                            <p>{{lang.translate('Name')}}</p>
+                            <input required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="{{lang.translate('ENTER_FULLNAME')}}" name="params[custom_field][name]">
+                        </dt>
+                    </div>
+                    <div class="gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
+                    
+                        <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                            <p>{{lang.translate('Email')}}</p>
+                            <input type="email" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="text" placeholder="{{lang.translate('ENTER_Email')}}" name="params[custom_field][email]">
+                        </dt>
+                        <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                            <p>{{lang.translate('Mobile')}}</p>
+                            <div class="flex ltr">
+                                <input type="hidden" name="params[custom_field][mobile_country]" id="countrieslist-code" value="EG">
+                                <select class="w-20 bg-gray-200 text-gray-700 border border-gray-200 rounded  " name="params[custom_field][mobile_key]" id="countrieslist"></select>
+                                <input required="" maxlength="11" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-mobile" type="tel" placeholder="{{lang.translate('Mobile number')}}" name="params[custom_field][mobile]">
+                            </div>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {{lang.translate('Send')}}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% include 'views/front/default/includes/footer.html.twig' %}

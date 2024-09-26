@@ -381,6 +381,34 @@ class PageController extends CustomController
     }
 
 	
+
+    /**
+     * Sub-pages for frontend
+     */
+    public function forum_post()
+    {
+
+		try {
+        	
+			$settings = $this->app->SystemSetting();
+
+            return render('views/front/'.($settings['template'] ?? 'default').'/post_form.html.twig', [
+                'page' => $item,
+		        'item' => $item,
+				'specializations' => $this->specsRepo->get_root(),
+				'stories' => $this->storyRepo->get(3),
+				'all_stories' => $this->storyRepo->get(),
+				'doctors' => $this->doctorRepo->getHome(3),
+				'blog' => $this->blogRepo->getFront(3),
+				'all_technologies' => $this->technologyRepo->get(),
+            ]);
+            
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+    }
+
+	
     /**
      * Sub-pages for frontend
      */
