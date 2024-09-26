@@ -826,7 +826,7 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 6px;
    
     width: 120px;
-    top: 100%;
+    top: 105%;
     left: 50%;
     margin-left: -60px;
     

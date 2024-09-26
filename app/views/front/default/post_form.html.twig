@@ -69,11 +69,13 @@
             <p class="p-2 px-6">{{lang.translate('SELECT_REPLY_PLATFORM')}}</p>
             <div class="px-4 py-3 text-right sm:px-6">
                 <div class=" flex justify-center items-center gap gap-3">
-                    <label onclick="(function(){ return jQuery('.whatspp-label').find('img').toggleClass('border-purple-600'); })();return false;" class="whatspp-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
+                    <label onclick="(function(){ return jQuery('.whatspp-label').find('img').toggleClass('border-purple-600'); })();return false;" class="relative  whatspp-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
+                        <span class="tooltiptext text-sm">WhatsAPP</span>
                         <input type="checkbox" class="hidden" name="params[custom_field][whatsapp_contact]" value="whatsapp">
                         <img loading="lazy" src="/src/front_assets/svg/whatsapp.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">
                     </label>
-                    <label onclick="(function(){ return jQuery('.email-label').find('img').toggleClass('border-purple-600'); })();return false;" class="email-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
+                    <label onclick="(function(){ return jQuery('.email-label').find('img').toggleClass('border-purple-600'); })();return false;" class="relative email-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
+                        <span class="tooltiptext text-sm">{{lang.translate('Email')}}</span>
                         <input type="checkbox" class="hidden" name="params[custom_field][email_contact]" value="email">
                         <img loading="lazy" src="/src/front_assets/svg/mail.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">
                     </label>
