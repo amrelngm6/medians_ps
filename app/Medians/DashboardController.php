@@ -242,7 +242,8 @@ class DashboardController extends CustomController
 
 		if (empty($prefix))
 		{
-			echo $app->redirect('/'); 
+			$prefix = $lang == 'english' ? 'en' : $prefix;
+			echo $app->redirect('/'.$prefix); 
 			return true;
 		}
 
