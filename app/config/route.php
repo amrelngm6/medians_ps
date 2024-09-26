@@ -50,6 +50,7 @@ RouteHandler::get('/booking_confirm/offers', \Medians\Bookings\Application\Booki
 RouteHandler::get('/booking_confirm/contact', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
 RouteHandler::get('/calculator', \Medians\Pages\Application\PageController::class.'@calculator'); 
 RouteHandler::get('/ovulation-calculator', \Medians\Pages\Application\PageController::class.'@ovulationCalculator'); 
+RouteHandler::get('/forum', \Medians\Pages\Application\PageController::class.'@forum'); 
 
 
 // Front API GET requests
