@@ -420,7 +420,7 @@ class PageController extends CustomController
 			$item = $this->repo->find($object->item_id);
 			$item->content = $object;
 
-            $content = render('views/front/default/page.html.twig', [
+            return render('views/front/'.($settings['template'] ?? 'default').'/page.html.twig', [
                 'page' => $item,
 		        'item' => $item,
 				'specializations' => $this->specsRepo->get_root(),
