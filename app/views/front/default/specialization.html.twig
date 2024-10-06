@@ -20,7 +20,7 @@
                             {% if item.author.title %}
                             <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <a href="/{{item.author.content.prefix}}" class="font-bold">{{item.author.content.title}}</a> </p>
                             {% endif  %}
-                            <p class="lg:text-base text-sm flex gap-2"><span class="hide-mobile">{{lang.translate('released_at')}}:{{item.created_at|date('M d, Y')}}</span> • <span class=" ">{{lang.translate('Updated at')}}: {{item.updated_at|date('M d, Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.totalviews()}}</span></p>
+                            <p class="lg:text-base text-sm flex gap-2"><span class="hide-mobile">{{lang.translate('released_at')}}:{{item.created_at|date('M d, Y')}}</span> • <span class=" ">{{lang.translate('Updated at')}}: {{item.content.updated_at|date('M d, Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.totalviews()}}</span></p>
 
                             {% if item.childs|length %}
                             <h2 class="text-xl purple-color font-bold mb-4">{{lang.translate('Sub-categories')}}</h1>
@@ -33,7 +33,7 @@
                                     <div class="blog-item-content lg:w-7/12">
                                         <div class="py-2 lg:py-6 lg:pr-6 lg:px-10 px-2">
 
-                                            <a href="/{{similar_item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{similar_item.updated_at | date('M, d Y')}}</a>
+                                            <a href="/{{similar_item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{similar_item.content.updated_at | date('M, d Y')}}</a>
                                             <a href="/{{similar_item.content.prefix}}" class="lg:py-4 py-2 block font-bold purple-color lg:text-xl md:text-lg text-base">{{similar_item.content.title}}</a>
                                             <p class=" font-semibold text-gray-600 lg:text-base text-sm">{{similar_item.content.content |striptags|slice(0, 100) }}</p>
                                         </div>

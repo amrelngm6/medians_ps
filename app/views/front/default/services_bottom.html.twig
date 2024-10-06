@@ -20,7 +20,7 @@
                     </div>
                     <div class="blog-item-content lg:w-7/12">
                         <div class="py-2 lg:py-6 lg:pr-6 lg:px-10 px-2">
-                                <a href="{{item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{item.updated_at|date('M, d Y')}}</a>
+                                <a href="{{item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{item.content.updated_at|date('M, d Y')}}</a>
                             <a href="{{item.content.prefix}}" class="lg:py-4 py-2 block font-bold purple-color lg:text-xl md:text-lg text-lg">{{item.content.title}}</a>
                             <p class=" font-semibold text-gray-600 lg:text-base text-sm">{{item.content.content|striptags|raw|slice(0, 200)|raw}}.. <a class="text-gray-400 " href="{{item.content.prefix}}">{{lang.translate('more')}}</a> </p>
                         </div>
