@@ -1,7 +1,7 @@
                 {% for item in doctors %}
                 <div class=" relative custom-scroll-item">
                     <div style="top:-15px" class="absolute z-10 right-0 left-0 top-0 w-20 rounded-full border-4 border border-white mx-auto bg-white">
-                        <img loading="lazy" alt="{{item.content.title}}" src="/app/image.php?w=110&h=110&src={{item.thumbnail()}}" class="w-20 h-20 rounded-full" />
+                        <img loading="lazy" alt="{{item.content.title}}" src="/stream?thumbnail=110&image={{item.thumbnail()}}" class="w-20 h-20 rounded-full" />
                     </div>
                     <div class="relative rounded-tl-2xl rounded-br-2xl m-2 mx-4 bg-white lg:py-10 lg:px-6 py-10 px-2 pb-6">
                         <a href="{{item.content.prefix}}" class="block text-center pt-6 pb-2 w-full text-xl text-gray-800 font-semibold">{{item.content.title}}</a>
