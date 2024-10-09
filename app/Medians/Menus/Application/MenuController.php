@@ -101,7 +101,6 @@ class MenuController extends CustomController
 
         try {
 
-			$params['items'] = json_decode($params['items']);
 
            	$returnData =  ($this->repo->update($params))
            	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>false)

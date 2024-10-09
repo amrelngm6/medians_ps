@@ -404,9 +404,9 @@
     -moz-box-shadow: 6px 6px 0px 0px rgba(230,230,230,0.75);
   }
   .solutions:hover, .blog-style:hover, .digital-marketing:hover {
-    box-shadow: 8px 8px 0px 0px rgba(255,83,83,1);
-    -webkit-box-shadow: 8px 8px 0px 0px rgba(255,83,83,1);
-    -moz-box-shadow: 8px 8px 0px 0px rgba(255,83,83,1);
+    box-shadow: 8px 8px 0px 0px rgba(255,193,7,1);
+    -webkit-box-shadow: 8px 8px 0px 0px rgba(255,193,7,1);
+    -moz-box-shadow: 8px 8px 0px 0px rgba(255,193,7,1);
 	}
   .intelligent-text i, .video i {
     margin-top: 20px;

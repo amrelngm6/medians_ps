@@ -291,10 +291,15 @@ export function handleTabName (index)
 {
     return translate(index.replace('_', ' ').toUpperCase());
 }
-
 export function handleName (column) 
 {
     return  (column && column.custom_field) ? 'params[field]['+column.key+']' : 'params['+column.key+']';
+}
+
+export function handleValue (column, item) 
+{
+    let subKeys = column.key.split(".")
+    return  (column && column.custom_field) ?  (item.field ? item.field[column.key] : (item[subKeys[0]][subKeys[1]] ?? '')) : (item[column.key]);
 }
 
 

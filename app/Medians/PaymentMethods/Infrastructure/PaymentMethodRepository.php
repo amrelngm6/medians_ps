@@ -27,7 +27,7 @@ class PaymentMethodRepository
 	*/
 	public function get($params = null) 
 	{
-		return PaymentMethod::with('fields')->groupBy('code')->get();
+		return PaymentMethod::with('fields')->get();
 	}
 
 
