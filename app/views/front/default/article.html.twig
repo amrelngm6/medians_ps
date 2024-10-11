@@ -53,7 +53,7 @@
                             {% if item.author.title %}
                             <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <a href="/{{item.author.content.prefix}}" class="font-bold">{{item.author.content.title ?? item.field.author_name}}</a> </p>
                             {% endif %}
-                            <p class="lg:text-base text-sm flex gap-2"><span class="hide-mobile">{{lang.translate('released_at')}}:{{item.created_at|date('M d, Y')}}</span> • <span class=" ">{{lang.translate('Updated at')}}: {{item.content.updated_at|date('M d, Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.totalviews()}}</span></p>
+                            <p class="lg:text-base text-sm flex gap-2"><span class="hide-mobile">{{lang.translate('released_at')}}:{{item.content.created_at|date('M d, Y')}}</span> • <span class=" ">{{lang.translate('Updated at')}}: {{item.content.updated_at|date('M d, Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.totalviews()}}</span></p>
 
                             {# <img alt="{{item.content.title}}" width="800" height="532" src="/stream?thumbnail=800&image={{item.picture}}" class="w-full" /> #}
                             {# {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?thumbnail=800&image=' : '/app/image.php?w=800&img=img&src=' %} #}
