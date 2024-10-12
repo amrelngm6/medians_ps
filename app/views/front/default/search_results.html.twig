@@ -40,7 +40,7 @@
                 {% include 'views/front/default/includes/search_result_section.html.twig' %}
             {% endif %}
 
-            {% if serch_articles|length < 1 and search_doctors|length < 1 and search_specs|length < 1  %}
+            {% if search_articles|length < 1 and search_doctors|length < 1 and search_specs|length < 1  %}
             <div class="text-lg text-center mb-20 py-10">{{lang.translate('EMPTY_RESULT')}}</div>
             {% endif %}
 
