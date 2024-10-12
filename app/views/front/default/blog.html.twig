@@ -50,7 +50,7 @@
         <div class="custom-scroll-container mb-10 custom-scroll relative z-10 overflow-x-auto">
             <div style="min-width: {{ 460 * items|length}}px; "   class="custom-scroll-list w-full flex gap-3 gap px-1 ">
                 {% for item in search_items %}
-                <div style="min-width:250px; max-width: 500px" class="relative custom-scroll-item w-full lg:h-full h-auto my-2 rounded-xl overflow-hidden">
+                <div style="min-width:250px; max-width: 400px" class="relative custom-scroll-item w-full lg:h-full h-auto my-2 rounded-xl overflow-hidden">
                     <a href="/{{item.content.prefix}}"><img width="350" height="232" src="/stream?image={{item.picture}}" alt="{{item.content.title}}" class="rounded-lg w-full h-64" /></a>  
                     <div class="shadow w-full h-full left-0 top-0 absolute z-10 rounder-lg"></div>
                     <div class="w-full absolute  left-0 bottom-8 hover:bottom-10 px-8 z-20">
