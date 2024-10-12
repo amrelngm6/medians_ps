@@ -242,7 +242,7 @@ class DoctorController extends CustomController
 
 		    // return  render('login', [
 			return render('views/front/'.($settings['template'] ?? 'default').'/doctors.html.twig', [
-		        'items' => $this->repo->get(12),
+		        'items' => $this->repo->get(20),
 		        'specializations' => $this->specsRepo->get(),
 		    ]);
 
