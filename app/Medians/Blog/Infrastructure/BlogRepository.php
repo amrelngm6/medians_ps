@@ -119,7 +119,7 @@ class BlogRepository
 			, $title);
 		return str_replace(' ', '%', trim($title));
 	}
-
+ 
 	public function search($request, $limit = 20)
 	{
 		$title = $request->get('search') ? $this->filterSearchTitle($request->get('search')) : '';
