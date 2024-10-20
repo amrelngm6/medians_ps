@@ -114,8 +114,8 @@ class BlogRepository
 	public function filterSearchTitle($title)
 	{
 		$title = str_replace(
-			[ 'اسباب' ,'اسماعيل','افراز','مجهرى','تاخر','اهم','المجهرى',  'أ','', 'ا',"ى","ة",'ه']
-			, ['أسباب',"إسماعيل",'إفراز','مجهري','تأخر','أهم','المجهري',  ' ',' ',' ',' ',' ']
+			[  'أ', 'ا',"ى",'ي',"ة",'ه']
+			,  '%'
 			, $title);
 		return str_replace(' ', '%', trim($title));
 	}
