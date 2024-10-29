@@ -39,7 +39,7 @@
                             {title: 28, value: 168},
                             {title: 24, value: 140},
                             {title: 20, value: 112},
-                            {title: 16, value: 184},
+                            {title: 16, value: 84},
                             {title: 12, value: 56},
                             {title: 8, value: 28},
                             {title: 4, value: 1}
@@ -76,26 +76,7 @@
 
 						<input type="hidden" id="dueDate">
 						<input type="hidden" id="activeWeek" value="1">
-
-						<div class=" items-center ltr lg:pt-10 bg-white   lg:h-40 ">
-							<div class="lg:flex gap-2 ">
-								<div class="w-full border border-1 border-gray-200 rounded-lg p-4">
-									<p class="text-lg text-center">{{lang.translate('First day of Last Period')}}</p>
-									<hr class="opacity-50 mb-4"/>
-									<input type="date" id="lastPeriodDate" value="{{"now"|date('Y-m-d')}}" min="{{"now"|date_modify('-280 days')|date('Y-m-d')}}" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="{{lang.translate('Last period date')}}" name="params[date]">
-								</div>
-								<div class="w-full border border-1 border-gray-200 rounded-lg p-4">
-									<p class="text-lg text-center">{{lang.translate('Period cycle days')}}</p>
-									<hr class="opacity-50 mb-4"/>
-									<input type="number" id="cycleLength" value="28" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="{{lang.translate('Last period date')}}" name="params[date]">
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<div class="w-full">
-
-						<div id="estimated-date" class="hidden w-full">
+<div id="estimated-date" class="hidden w-full">
 							<div class="lg:flex shadow rounded-lg border  border-gray-400 ">
 
 								<div class="lg:bg-white  w-full  lg:w-11/12 xl:w-full px-1 bg-purple-800 py-5 lg:px-2 lg:py-2 tracking-wide">
@@ -118,7 +99,23 @@
 							</div>
 						</div>
 
+						<div class=" items-center ltr bg-white   lg:h-40 ">
+							<div class="lg:flex gap-2 ">
+								<div class="w-full border border-1 border-gray-200 rounded-lg p-4">
+									<p class="text-lg text-center">{{lang.translate('First day of Last Period')}}</p>
+									<hr class="opacity-50 mb-4"/>
+									<input type="date" id="lastPeriodDate" value="{{"now"|date('Y-m-d')}}" min="{{"now"|date_modify('-280 days')|date('Y-m-d')}}" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="{{lang.translate('Last period date')}}" name="params[date]">
+								</div>
+								<div class="w-full border border-1 border-gray-200 rounded-lg p-4">
+									<p class="text-lg text-center">{{lang.translate('Period cycle days')}}</p>
+									<hr class="opacity-50 mb-4"/>
+									<input type="number" id="cycleLength" value="28" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="{{lang.translate('Last period date')}}" name="params[date]">
+								</div>
+							</div>
+						</div>
 
+					</div>
+					<div class="w-full">
 						<svg viewbox="0 0 100 100" id="babyProgression">
 							<path d="M 36 62.8 C 14 94 45 98 59 98 C 79 98 83 77 83 64 C 80 26 63 4 43 4 C 18 4 14 29 28 47 C 34 55 36.6 59.2 36 60.9 Z"/>
 							<g fill="#A020F0" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5">
