@@ -143,7 +143,7 @@ class DoctorController extends CustomController
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>0);
             }
         
 
