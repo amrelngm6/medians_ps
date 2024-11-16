@@ -1,0 +1,251 @@
+{% include 'views/front/default/includes/header.html.twig' %}
+
+
+<div class="w-full cyan-bg pb-6 pt-24 relative ">
+	<div class="w-full overflow-hidden h-full absolute bottom-0 left-0">
+		<img loading="lazy" alt="{{app.settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;"/>
+	</div>
+	<div class="container mx-auto relative pt-4">
+		<h1 class="text-2xl mx-auto w-auto text-center font-bold text-white">{{lang.translate('Customers Questions')}}</h1>
+	</div>
+</div>
+
+
+<div class="w-full bg-gray-100 mx-auto pt-10 pb-4">
+	<div class="container lg:flex gap-10  mx-auto  ">
+
+		<div class="w-full flex gap-4">
+			<div class="lg:flex gap-4">
+				<div class="pt-2">{{lang.translate('Category')}}
+				</div>
+				<div>
+					<select class="appearance-none block w-40 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-spec" name="params[custom_field][specialization]">
+						<option value="أمراض الذكورة">أمراض الذكورة</option>
+						<option value="أمراض النساء والولادة">أمراض النساء والولادة</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="lg:flex gap-4">
+				<div class="pt-2 w-24">{{lang.translate('Filter by')}}
+				</div>
+				<div>
+
+					<select class="appearance-none block w-40 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-spec" name="params[custom_field][specialization]">
+						<option value="">{{lang.translate('New first')}}
+						</option>
+						<option value="">{{lang.translate('Old first')}}
+						</option>
+						<option value="">{{lang.translate('Most views')}}
+						</option>
+						<option value="">{{lang.translate('Trending')}}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="lg:w-1/3 text-left">
+			<a class="w-auto mx-auto py-3 px-4 purple-bg text-white rounded-lg  inline-block flex gap-2" href="/new-forum-post"><img src="/src/front_assets/svg/add-post.svg" class="w-6"/>
+				<span class=" text-lg">{{lang.translate('Add New Question')}}</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+
+<div class="container mx-auto  pt-10 pb-20 gap-10 lg:flex ">
+
+	<div class="w-full rounded-2xl pt-6 flex-col justify-start items-start gap-10 inline-flex">
+
+		<div class="w-full flex-col justify-start items-start gap-10 inline-flex  p-4  ">
+			<div class="w-full flex-col justify-start items-start gap-2.5 flex">
+				<div class="mt-2 justify-start items-start gap-2.5 inline-flex">
+					<div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
+						<div class=" font-normal text-sm leading-none">{{item.category.name ?? lang.translate('IVF')}}</div>
+					</div>
+				</div>
+                <div class="w-full flex ">
+    				<div class="w-full pt-1 text-xl font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.title ?? 'ماهي الاسباب التي يلجأ فيها الاطباء لطفل الانبوب؟'}}</div>
+                    <div class="justify-start gap-10 flex">
+                        <div class="flex gap-1 text-sm font-normal relative">
+                            <span class="tooltiptext">{{lang.translate('Views')}}</span>
+                            <span class="pt-2">{{item ? item.totalviews|length : 1}}</span>
+                            <img src="/src/front_assets/svg/views.svg" width="40"/></div>
+                        <div class="flex gap-1 text-sm font-normal relative">
+                            <span class="tooltiptext">{{lang.translate('Comments')}}</span>
+                            <span class="pt-2">{{item ? item.comments|length : 1}}</span>
+                            <img src="/src/front_assets/svg/comments.svg" width="40"/></div>
+                        <div class="flex gap-1 text-sm font-normal relative">
+                            <span class="tooltiptext">{{lang.translate('Shares')}}</span>
+                            <span class="pt-2">{{item ? item.shares|length : 1}}</span>
+                            <img src="/src/front_assets/svg/shares.svg" width="36"/></div>
+                    </div>
+                </div>
+			</div>
+			<div class="flex w-full">
+				<div class="w-full justify-start items-center gap-2 inline-flex">
+					<div class=" relative flex">
+						<img class="w-10 h-10 relative rounded-full" src="https://bedayahospitals.com/stream?thumbnail=50&image=/uploads/images/DR_Ismael_Aboul_Foutouh-66f1340bdc364.webp"/>
+					</div>
+					<div class=" justify-between items-center flex">
+						<div class="flex-col justify-start items-start inline-flex">
+							<div class="justify-start items-center gap-1 inline-flex">
+								<div class=" text-sm font-semibold text-gray-500">{{item.doctor.name ?? 'أستاذ دكتور إسماعيل أبو الفتوح'}}</div>
+							</div>
+							<div class=" text-sm  pt-1 font-normal leading-none text-gray-800">{{lang.translate('Answered by')}}</div>
+						</div>
+					</div>
+
+				</div>
+                
+			</div>
+            <div class="w-full rounded-lg shadow-md p-4 pt-10 ">
+                <p>ماهي الاسباب التي يلجأ فيها الاطباء لطفل الانبوب؟</p>
+            </div>
+
+            <div class="w-full ">
+
+                <h4 class="pt-4 text-lg w-full flex gap-2"><span class="flex-none">{{lang.translate('Comments')}}</span> <hr class="w-full mt-4 border-blue-300" /></h4> 
+                <div class=" bg-white overflow-hidden sm:rounded-lg relative ">
+                    <div class="py-5 sm:p-0">
+                        <dl class="sm:divide-y sm:divide-gray-200">
+                            <div class="lg:px-0  gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
+                                <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                                    <p>{{lang.translate('Name')}}</p>
+                                    <input required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="{{lang.translate('ENTER_FULLNAME')}}" name="params[custom_field][name]">
+                                </dt>
+                                <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                                    {# <p>{{lang.translate('Name')}}</p> #}
+                                    <p class="">{{lang.translate('يرجي اختيار طريقة استلام الاشعارات عند الرد علي تعليقك')}}</p>
+                                    <div class="lg:px-0 text-right sm:px-6">
+                                        <div class=" flex  gap gap-5">
+                                            <label onclick="(function(){ return jQuery('.whatspp-label').find('img').toggleClass('border-purple-600'); })();return false;" class="relative  whatspp-label inline-flex items-center  cursor-pointer bg-green-600">
+                                                <span class="tooltiptext text-sm">WhatsAPP</span>
+                                                <input type="checkbox" class="hidden" name="params[custom_field][whatsapp_contact]" value="whatsapp">
+                                                <img loading="lazy" src="/src/front_assets/svg/whatsapp.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">
+                                            </label>
+                                            <label onclick="(function(){ return jQuery('.email-label').find('img').toggleClass('border-purple-600'); })();return false;" class="relative email-label inline-flex items-center cursor-pointer bg-green-600">
+                                                <span class="tooltiptext text-sm">{{lang.translate('Email')}}</span>
+                                                <input type="checkbox" class="hidden" name="params[custom_field][email_contact]" value="email">
+                                                <img loading="lazy" src="/src/front_assets/svg/mail.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </dt>
+                            </div>
+                            <div class="lg:px-0  gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
+                            
+                                <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                                    <p>{{lang.translate('Email')}}</p>
+                                    <input type="email" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="text" placeholder="{{lang.translate('ENTER_Email')}}" name="params[custom_field][email]">
+                                </dt>
+                                <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                                    <p>{{lang.translate('Mobile')}}</p>
+                                    <div class="flex ltr">
+                                        <input type="hidden" name="params[custom_field][mobile_country]" id="countrieslist-code" value="EG">
+                                        <select class="w-20 bg-gray-200 text-gray-700 border border-gray-200 rounded  " name="params[custom_field][mobile_key]" id="countrieslist"></select>
+                                        <input required="" maxlength="11" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-mobile" type="tel" placeholder="{{lang.translate('Mobile number')}}" name="params[custom_field][mobile]">
+                                    </div>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                    
+                    
+                    <div class="lg:px-0 py-3 sm:px-6">
+                        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white cyan-bg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{lang.translate('Send')}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-full ">
+            
+                <h3>{{lang.translate('Related articles')}}</h3>
+            
+                <div class=" mb-10 w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
+                    <div class=" flex-col justify-start items-start gap-2.5 flex">
+                        <div class="mt-2 justify-start items-start gap-2.5 inline-flex">
+                            <div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
+                                <div class=" font-normal text-sm leading-none">{{item.category.name ?? lang.translate('IVF')}}</div>
+                            </div>
+                        </div>
+                        <div class="pt-1 text-lg font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.title ?? 'ماهي الاسباب التي يلجأ فيها الاطباء لطفل الانبوب؟'}}</div>
+                    </div>
+                    <div class="flex w-full">
+                        <div class="w-full justify-start items-center gap-2 inline-flex">
+                            <div class=" relative flex">
+                                <img class="w-10 h-10 relative rounded-full" src="https://bedayahospitals.com/stream?thumbnail=50&image=/uploads/images/DR_Ismael_Aboul_Foutouh-66f1340bdc364.webp"/>
+                            </div>
+                            <div class=" justify-between items-center flex">
+                                <div class="flex-col justify-start items-start inline-flex">
+                                    <div class="justify-start items-center gap-1 inline-flex">
+                                        <div class=" text-sm font-semibold text-gray-500">{{item.doctor.name ?? 'أستاذ دكتور إسماعيل أبو الفتوح'}}</div>
+                                    </div>
+                                    <div class=" text-sm  pt-1 font-normal leading-none text-gray-800">{{lang.translate('Answered by')}}</div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                            <div class="justify-start gap-10 flex">
+                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Views')}}</span><span class="pt-2">{{item ? item.totalviews|length : 1}}</span> <img src="/src/front_assets/svg/views.svg" width="40" /></div>
+                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Comments')}}</span><span class="pt-2">{{item ? item.comments|length : 1}}</span> <img src="/src/front_assets/svg/comments.svg" width="40" /></div>
+                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Shares')}}</span><span class="pt-2">{{item ? item.shares|length : 1}}</span> <img src="/src/front_assets/svg/shares.svg" width="36" /></div>
+                            </div>
+                    </div>
+                </div>
+                <div class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
+                    <div class=" flex-col justify-start items-start gap-2.5 flex">
+                        <div class="mt-2 justify-start items-start gap-2.5 inline-flex">
+                            <div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
+                                <div class=" font-normal text-sm leading-none ">{{item.category.name ?? lang.translate('IVF')}}</div>
+                            </div>
+                        </div>
+                        <div class="pt-1 text-lg font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.title ?? 'عندى دوالى فى الخصيتين من الونع الاول والثانى ونسبة الحيوانات المنوية 6.5 مليون ونسبة التشوهات مرتفعة وهناك بطى فى الحركة ولا يوجد تشوهات'}}</div>
+                    </div>
+                    <div class="flex w-full">
+                        <div class="w-full justify-start items-center gap-2 inline-flex">
+                            <div class="w-10 h-10 relative flex">
+                                <img class="w-10 h-10  relative rounded-full" src="https://bedayahospitals.com/stream?thumbnail=50&h=50&image=/uploads/images/Dr._Maged_Adel-650812e108bc3.jpg"/>
+                            </div>
+                            <div class=" justify-between items-center flex">
+                                <div class="flex-col justify-start items-start inline-flex">
+                                    <div class="justify-start items-center gap-1 inline-flex">
+                                        <div class=" text-sm font-semibold text-gray-500">{{item.doctor.name ?? 'أ.د ماجد عادل عزيز'}}</div>
+                                    </div>
+                                    <div class=" text-sm pt-1 font-normal leading-none text-gray-800" >{{lang.translate('Answered by')}}</div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                            <div class="justify-start gap-10 flex">
+                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Views')}}</span><span class="pt-2">{{item ? item.totalviews|length : 1}}</span> <img src="/src/front_assets/svg/views.svg" width="40" /></div>
+                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Comments')}}</span><span class="pt-2">{{item ? item.comments|length : 1}}</span> <img src="/src/front_assets/svg/comments.svg" width="40" /></div>
+                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Shares')}}</span><span class="pt-2">{{item ? item.shares|length : 1}}</span> <img src="/src/front_assets/svg/shares.svg" width="36" /></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+	</div>
+	<div style="" class=" z-10 lg:w-1/3 relative px-2">
+		<div class="w-full bg-white h-full left-0 relative">
+
+			{% include 'views/front/default/side_offers.html.twig' %}
+
+			{% include 'views/front/default/side_articles.html.twig' %}
+
+			{% include 'views/front/default/side_success_stories.html.twig' %}
+
+			{% set similar = doctors %}
+			{% include 'views/front/default/side_doctors.html.twig' %}
+
+		</div>
+	</div>
+</div>
+
+{% include 'views/front/default/includes/navbar.html.twig' %}
+
+{% include 'views/front/default/includes/footer.html.twig' %}

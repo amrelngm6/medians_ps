@@ -365,8 +365,6 @@ class PageController extends CustomController
 			$settings = $this->app->SystemSetting();
 
             return render('views/front/'.($settings['template'] ?? 'default').'/forum.html.twig', [
-                'page' => $item,
-		        'item' => $item,
 				'specializations' => $this->specsRepo->get_root(),
 				'stories' => $this->storyRepo->get(3),
 				'all_stories' => $this->storyRepo->get(),
@@ -385,7 +383,34 @@ class PageController extends CustomController
     /**
      * Sub-pages for frontend
      */
-    public function forum_post()
+    public function forum_post($id = 0)
+    {
+
+		try {
+        	
+			$settings = $this->app->SystemSetting();
+
+            return render('views/front/'.($settings['template'] ?? 'default').'/forum_post.html.twig', [
+                'page' => $this->repo->find($id),
+				'specializations' => $this->specsRepo->get_root(),
+				'stories' => $this->storyRepo->get(3),
+				'all_stories' => $this->storyRepo->get(),
+				'doctors' => $this->doctorRepo->getHome(3),
+				'blog' => $this->blogRepo->getFront(3),
+				'all_technologies' => $this->technologyRepo->get(),
+            ]);
+            
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+    }
+
+	
+
+    /**
+     * Sub-pages for frontend
+     */
+    public function forum_post_form()
     {
 
 		try {

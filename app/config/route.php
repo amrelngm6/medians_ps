@@ -51,7 +51,8 @@ RouteHandler::get('/booking_confirm/contact', \Medians\Bookings\Application\Book
 RouteHandler::get('/calculator', \Medians\Pages\Application\PageController::class.'@calculator'); 
 RouteHandler::get('/ovulation-calculator', \Medians\Pages\Application\PageController::class.'@ovulationCalculator'); 
 RouteHandler::get('/forum', \Medians\Pages\Application\PageController::class.'@forum'); 
-RouteHandler::get('/new-forum-post', \Medians\Pages\Application\PageController::class.'@forum_post'); 
+RouteHandler::get('/forum-post/(:all)', \Medians\Pages\Application\PageController::class.'@forum_post'); 
+RouteHandler::get('/new-forum-post', \Medians\Pages\Application\PageController::class.'@forum_post_form'); 
 
 
 // Front API GET requests
