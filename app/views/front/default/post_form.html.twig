@@ -67,12 +67,12 @@
             <p class="p-2 px-6">{{lang.translate('SELECT_REPLY_PLATFORM')}}</p>
             <div class="px-4 py-3 text-right sm:px-6">
                 <div class=" flex justify-center items-center gap gap-3">
-                    <label for="whatsapp_contact" onclick="(function(){ return jQuery('.whatspp-label').find('img').toggleClass('border-purple-600'); })();return false;" class="relative  whatspp-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
+                    <label for="whatsapp_contact" onclick="(function(){  jQuery('.whatspp-label').find('img').toggleClass('border-purple-600'); jQuery('#whatsapp_contact').attr('checked', !jQuery('#whatsapp_contact').attr('checked')); })();return false;" class="relative  whatspp-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
                         <span class="tooltiptext text-sm">WhatsAPP</span>
                         <input id="whatsapp_contact" type="checkbox" class="hidden" name="params[whatsapp_contact]" value="whatsapp">
                         <img loading="lazy" src="/src/front_assets/svg/whatsapp.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">
                     </label>
-                    <label for="email_contact" onclick="(function(){ return jQuery('.email-label').find('img').toggleClass('border-purple-600'); })();return false;" class="relative email-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
+                    <label for="email_contact" onclick="(function(){  jQuery('.email-label').find('img').toggleClass('border-purple-600'); jQuery('#email_contact').attr('checked', !jQuery('#email_contact').attr('checked')); })();return false;" class="relative email-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
                         <span class="tooltiptext text-sm">{{lang.translate('Email')}}</span>
                         <input id="email_contact" type="checkbox" class="hidden" name="params[email_contact]" value="email">
                         <img loading="lazy" src="/src/front_assets/svg/mail.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">

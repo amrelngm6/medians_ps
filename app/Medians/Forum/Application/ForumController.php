@@ -9,6 +9,7 @@ use Medians\Categories\Infrastructure\CategoryRepository;
 use Medians\Offers\Infrastructure\OfferRepository;
 use Medians\Stories\Infrastructure\StoryRepository;
 use Medians\Doctors\Infrastructure\DoctorRepository;
+use Medians\Blog\Infrastructure\BlogRepository;
 
 use \libphonenumber\PhoneNumberUtil;
 use \libphonenumber\PhoneNumberFormat;
@@ -23,6 +24,7 @@ class ForumController extends CustomController
 	*/
 	protected $app;
 	protected $repo;
+	protected $blogRepo;
 	protected $specsRepo;
 	protected $doctorRepo;
 	protected $categoryRepo;
@@ -37,6 +39,7 @@ class ForumController extends CustomController
 		$this->app = new \config\APP;
 
 		$this->repo = new ForumRepository();
+		$this->blogRepo = new BlogRepository();
 		$this->specsRepo = new SpecializationRepository();
 		$this->categoryRepo = new CategoryRepository();
 		$this->offersRepo = new OfferRepository();
@@ -164,7 +167,7 @@ class ForumController extends CustomController
 			$params['customer_phone'] = !empty($params['customer_phone']) ? 'on' : 0;
 			$params['contact_phone'] = !empty($params['contact_phone']) ? 'on' : 0;
 			$params['contact_email'] = !empty($params['contact_email']) ? 'on' : 0;
-			$params['status'] = !empty($params['status']) ? 'on' : 0;
+			$params['status'] = 0;
         	
         	$this->validate($params);
 
@@ -325,12 +328,10 @@ class ForumController extends CustomController
 			$settings = $this->app->SystemSetting();
 
             return render('views/front/'.($settings['template'] ?? 'default').'/forum.html.twig', [
+				'items' => $this->repo->get(),
 				'specializations' => $this->specsRepo->get_root(),
-				'stories' => $this->storyRepo->get(3),
-				'all_stories' => $this->storyRepo->get(),
 				'doctors' => $this->doctorRepo->getHome(3),
 				'blog' => $this->blogRepo->getFront(3),
-				'all_technologies' => $this->technologyRepo->get(),
             ]);
             
 		} catch (\Exception $e) {
