@@ -35,21 +35,7 @@ class FrontAPIController extends CustomController
 
 		$type = $this->app->request()->get('type');
 		$return = [];
-		switch ($type) 
-		{
-			case 'load_products':
-				return (new Products\Application\ProductController)->load_products();
-				break;
-			case 'search_products':
-				return (new Products\Application\ProductController)->search_products();
-				break;
-			case 'quick-search':
-				return (new Products\Application\ProductController)->quick_search_products();
-				break;
-			case 'load_side_cart':
-				return (new Cart\Application\CartController)->sideCart();
-				break;
-		}
+		
 
 		$return = isset($controller) ? $controller->find($this->app->request()->get('id')) : $return;
 
@@ -69,50 +55,6 @@ class FrontAPIController extends CustomController
 		try {
 				
 			$return = [];
-			switch ($request->get('type')) 
-			{
-					
-				case 'HelpMessage.create':
-					return printResponse((new Help\Application\HelpMessageController())->store());
-					break;
-					
-				case 'Cart.create':
-					return printResponse((new Cart\Application\CartController())->store());
-					break;
-	
-				case 'Wishlist.create':
-					return printResponse((new Cart\Application\WishlistController())->store());
-					break;
-	
-				case 'Compare.create':
-					return printResponse((new Cart\Application\CompareController())->store());
-					break;
-		
-				case 'Order.create':
-					return printResponse((new Orders\Application\OrderController())->store());
-					break;
-	
-				case 'HelpMessageComment.create':
-					$return =  (new Help\Application\HelpMessageController())->storeComment(); 
-					break;
-					
-				case 'Subscriber.create':
-					$return = (new Newsletters\Application\SubscriberController)->store();
-					break;
-					
-				case 'Customer.create':
-					$return = (new Customers\Application\CustomerController)->store();
-					break;
-					
-				case 'Review.create':
-					$return = (new Reviews\Application\ReviewController)->store();
-					break;
-		
-				case 'Transaction.verify':
-					$return = (new Transactions\Application\TransactionController)->verifyTransaction();
-					break;
-		
-			}
 
 			return printResponse(json_encode($return));
 
@@ -129,33 +71,6 @@ class FrontAPIController extends CustomController
 	{
 		$app = new \config\APP;
 		$request = $app->request();
-
-		switch ($request->get('type')) 
-		{
-			
-				
-			case 'HelpMessage.update':
-				$controller =  new Help\Application\HelpMessageController;
-				break;
-
-			case 'Subscriber.update':
-				$controller = new Newsletters\Application\SubscriberController;
-				break;
-			
-			case 'Customer.changePassword':
-				return  (new Auth\Application\CustomerAuthService)->changePassword();
-				break;
-			
-			case 'Customer.update':
-				$controller = new Customers\Application\CustomerController;
-				break;
-			
-			case 'Order.update':
-				$controller = new Orders\Application\OrderController;
-				break;
-			
-
-		}
 
 		return printResponse(isset($controller) ? json_encode($controller->update()) : []);
 	} 
@@ -174,37 +89,7 @@ class FrontAPIController extends CustomController
 
 		try {
 			
-			$return = [];
-			switch ($request->get('type')) 
-			{
-
-				case 'HelpMessage.delete':
-					return printResponse((new Help\Application\HelpMessageController())->delete());
-					break;
-
-				case 'Subscriber.delete':
-					return printResponse((new Newsletters\Application\SubscriberController())->delete());
-					break;
 			
-				case 'Cart.delete':
-					return printResponse((new Cart\Application\CartController())->delete());
-					break;
-			
-				case 'Wishlist.delete':
-					return printResponse((new Cart\Application\WishlistController())->delete());
-					break;
-
-				case 'Compare.delete':
-					return printResponse((new Cart\Application\CompareController())->delete());
-					break;
-
-				case 'Review.delete':
-					return printResponse((new Reviews\Application\ReviewController())->delete());
-					break;
-			
-			
-			}
-
 		} catch (Exception $e) {
 			throw new Exception("Error Processing Request", 1);
 					

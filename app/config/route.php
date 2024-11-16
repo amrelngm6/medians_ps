@@ -37,6 +37,9 @@ RouteHandler::get('/doctor_booking/(:all)', \Medians\Bookings\Application\Bookin
 RouteHandler::get('/book/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
 RouteHandler::get('/bookings/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
 RouteHandler::post('/submit/(:all)', \Medians\FrontendController::class.'@form_submit'); 
+
+RouteHandler::post('/forum/store', \Medians\Forum\Application\ForumController::class.'@store'); 
+
 RouteHandler::get('/blog', \Medians\Blog\Application\BlogController::class.'@list'); 
 RouteHandler::get('/blog/', \Medians\Blog\Application\BlogController::class.'@list'); 
 RouteHandler::get('/offer_booking/(:all)', \Medians\Offers\Application\OfferController::class.'@page'); 
@@ -50,9 +53,9 @@ RouteHandler::get('/booking_confirm/offers', \Medians\Bookings\Application\Booki
 RouteHandler::get('/booking_confirm/contact', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
 RouteHandler::get('/calculator', \Medians\Pages\Application\PageController::class.'@calculator'); 
 RouteHandler::get('/ovulation-calculator', \Medians\Pages\Application\PageController::class.'@ovulationCalculator'); 
-RouteHandler::get('/forum', \Medians\Pages\Application\PageController::class.'@forum'); 
-RouteHandler::get('/forum-post/(:all)', \Medians\Pages\Application\PageController::class.'@forum_post'); 
-RouteHandler::get('/new-forum-post', \Medians\Pages\Application\PageController::class.'@forum_post_form'); 
+RouteHandler::get('/forum', \Medians\Forum\Application\ForumController::class.'@list'); 
+RouteHandler::get('/forum-post/(:all)', \Medians\Forum\Application\ForumController::class.'@page'); 
+RouteHandler::get('/new-forum-post', \Medians\Forum\Application\ForumController::class.'@forum_post_form'); 
 
 
 // Front API GET requests
