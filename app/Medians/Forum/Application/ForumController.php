@@ -162,11 +162,8 @@ class ForumController extends CustomController
 
         try {	
 
-			$params['customer_name'] = !empty($params['customer_name']) ? 'on' : 0;
-			$params['customer_email'] = !empty($params['customer_email']) ? 'on' : 0;
-			$params['customer_phone'] = !empty($params['customer_phone']) ? 'on' : 0;
-			$params['contact_phone'] = !empty($params['contact_phone']) ? 'on' : 0;
-			$params['contact_email'] = !empty($params['contact_email']) ? 'on' : 0;
+			$params['whatsapp_contact'] = !empty($params['whatsapp_contact']) ? 'on' : 0;
+			$params['email_contact'] = !empty($params['email_contact']) ? 'on' : 0;
 			$params['status'] = 0;
         	
         	$this->validate($params);
@@ -179,7 +176,7 @@ class ForumController extends CustomController
         	throw new Exception(json_encode(array('result'=>$e->getMessage(), 'error'=>1)), 1);
         }
 
-		return $returnData;
+		return response($returnData);
 	}
 
 
@@ -234,16 +231,16 @@ class ForumController extends CustomController
 				
 
 		try {
-					
-			// Create an instance of PhoneNumberUtil
-			$phoneNumberUtil = PhoneNumberUtil::getInstance();
-
-			$number = $params['mobile_key'] . $params['mobile'];
 
 			if (empty($params['customer_phone']))
 			{
 				throw new \Exception(translate("Mobile is required"), 1);
 			}
+
+			// Create an instance of PhoneNumberUtil
+			$phoneNumberUtil = PhoneNumberUtil::getInstance();
+
+			$number = $params['mobile_key'] . $params['customer_phone'];
 			
 			// Parse the phone number
 			$phoneNumber = $phoneNumberUtil->parse($number, $params['mobile_country']);
@@ -263,7 +260,7 @@ class ForumController extends CustomController
 			}
 
 		} catch (\Exception $e) {
-        	throw new \Exception($e->getMessage(), 1);
+        	throw new \Exception($phoneNumber.'1 -- '.$e->getMessage(), 1);
 		}
 
 	}
@@ -298,6 +295,12 @@ class ForumController extends CustomController
 		try {
 			
 			$item = $this->repo->find($contentObject->item_id);
+
+			if (empty($item))
+			{
+				return errorPage('Post not found');
+			}
+			
 			$item->addView();
 			$settings = $this->app->SystemSetting();
 

@@ -24,8 +24,8 @@ class Forum extends CustomModel
 		'customer_name', 
 		'customer_email', 
 		'customer_phone', 
-		'contact_phone', 
-		'contact_email', 
+		'whatsapp_contact', 
+		'email_contact', 
 		'status', 
 	];
 

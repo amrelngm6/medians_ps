@@ -165,9 +165,12 @@ jQuery(document).ready(function (e) {
 			}
 		}
 	});
-
+	
+	
+	var CountriesList = [];
 	jQuery.get( "/src/assets/countries.json", function( data ) {
 		
+		CountriesList = data;
 		// data.sort((a, b) => a.dial_code.localeCompare(b.dial_code));
 		var newdata = '';
 
@@ -175,16 +178,21 @@ jQuery(document).ready(function (e) {
 		$('#countrieslist').empty();
 		
 		let selected;
-		for (let i = 0; i < data.length; i++) {
-			selected = data[i].code == 'EG' ? 'selected' : '';
-			newdata += '<option value="'+data[i].dial_code+'" '+selected+' >'+data[i].name +" "+ data[i].dial_code   +'</option>' ;
+		for (let i = 0; i < CountriesList.length; i++) {
+			selected = CountriesList[i].code == 'EG' ? 'selected' : '';
+			newdata += '<option value="'+CountriesList[i].dial_code+'" '+selected+' >'+CountriesList[i].name +" "+ CountriesList[i].dial_code   +'</option>' ;
 		}
 
 		$('#countrieslist').html(newdata);
 	});
 
 	jQuery('body').on('change', '#countrieslist', function(e){
-		jQuery('#countrieslist-code').val(e.target.value);
+		
+		for (let i = 0; i < CountriesList.length; i++) {
+			if (CountriesList[i].dial_code == e.target.value) {
+				jQuery('#countrieslist-code').val(CountriesList[i].code);
+			}
+		}
 	});
 		
 	jQuery('body').on('scroll', function(){
