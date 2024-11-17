@@ -16,8 +16,8 @@
 
         <div class="w-full flex gap-4 pt-3">
             <p class=" lg:py-2 flex gap-2 font-normal  font-bold cyan-color text-sm">
-            <a class="font-bold cyan-color" href="/">الرئيسية </a> | 
-            <a class="font-bold cyan-color" href="/forum">اسئلة عملاؤنا </span> | <span class="font-bold purple-color">ماهي الاسباب التي يلجأ فيها الاطباء لطفل الانبوب؟</span></p>
+            <a class="font-bold cyan-color" href="/">{{lang.translate('homepage')}}  </a> | 
+            <a class="font-bold cyan-color" href="/forum">{{lang.translate('Forum')}} </a> | <span class="font-bold purple-color truncate">{{item.title}}</span></p>
         </div>
 		<div class="lg:w-1/3 text-left">
 			<a class="inline-block mx-auto py-3 px-4 purple-bg text-white rounded-lg" href="/new-forum-post">
@@ -37,38 +37,37 @@
 
 		<div class="w-full flex-col justify-start items-start gap-10 inline-flex  p-4  ">
 			<div class="w-full flex-col justify-start items-start gap-2.5 flex">
-				<div class="mt-2 justify-start items-start gap-2.5 inline-flex">
-					<div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
-						<div class=" font-normal text-sm leading-none">{{item.category.name ?? lang.translate('IVF')}}</div>
-					</div>
-				</div>
                 <div class="w-full flex ">
-    				<div class="w-full pt-1 text-xl font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.title ?? 'ماهي الاسباب التي يلجأ فيها الاطباء لطفل الانبوب؟'}}</div>
-                    <div class="justify-start gap-10 flex">
+
+                    <div class="w-full mt-2 justify-start items-start gap-2.5 inline-flex">
+                        <div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
+                            <div class=" font-normal text-sm leading-none">{{item.category.name ?? lang.translate('IVF')}}</div>
+                        </div>
+                    </div>
+                    <div class="justify-start gap-10 flex ">
                         <div class="flex gap-1 text-sm font-normal relative">
                             <span class="tooltiptext">{{lang.translate('Views')}}</span>
-                            <span class="pt-2">{{item ? item.totalviews|length : 1}}</span>
+                            <span class="pt-2">{{item.views_sum_times}}</span>
                             <img src="/src/front_assets/svg/views.svg" width="40"/></div>
                         <div class="flex gap-1 text-sm font-normal relative">
                             <span class="tooltiptext">{{lang.translate('Comments')}}</span>
                             <span class="pt-2">{{item ? item.comments|length : 1}}</span>
                             <img src="/src/front_assets/svg/comments.svg" width="40"/></div>
-                        <div class="flex gap-1 text-sm font-normal relative">
-                            <span class="tooltiptext">{{lang.translate('Shares')}}</span>
-                            <span class="pt-2">{{item ? item.shares|length : 1}}</span>
-                            <img src="/src/front_assets/svg/shares.svg" width="36"/></div>
                     </div>
                 </div>
+
+                <div class="w-full pt-1 text-xl font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.title}}</div>
+
 			</div>
 			<div class="flex w-full">
 				<div class="w-full justify-start items-center gap-2 inline-flex">
 					<div class=" relative flex">
-						<img class="w-10 h-10 relative rounded-full" src="https://bedayahospitals.com/stream?thumbnail=50&image=/uploads/images/DR_Ismael_Aboul_Foutouh-66f1340bdc364.webp"/>
+						<img class="w-10 h-10 relative rounded-full" src="{{item.doctor.picture}}"/>
 					</div>
 					<div class=" justify-between items-center flex">
 						<div class="flex-col justify-start items-start inline-flex">
 							<div class="justify-start items-center gap-1 inline-flex">
-								<div class=" text-sm font-semibold text-gray-500">{{item.doctor.name ?? 'أستاذ دكتور إسماعيل أبو الفتوح'}}</div>
+								<div class=" text-sm font-semibold text-gray-500">{{item.doctor.title}}</div>
 							</div>
 							<div class=" text-sm  pt-1 font-normal leading-none text-gray-800">{{lang.translate('Answered by')}}</div>
 						</div>
@@ -78,21 +77,42 @@
                 
 			</div>
             <div class="w-full rounded-lg shadow-md p-4 pt-10 ">
-                <p>ماهي الاسباب التي يلجأ فيها الاطباء لطفل الانبوب؟</p>
+                <p>{{item.content}}</p>
             </div>
 
             <div class="w-full ">
 
                 <h4 class="pt-4 text-lg w-full flex gap-2"><span class="flex-none">{{lang.translate('Comments')}}</span> <hr class="w-full mt-4 border-blue-300" /></h4> 
+                
+                {% if item.comments|length < 1 %}                
+                <div class="w-full rounded-lg shadow-md p-4 pt-10 ">
+                    <p>{{ lang.translate('No comments yet')}}</p>
+                </div>
+                {% else %}                
+                {% for comment in item.comments %}
+                <div class="w-full rounded-lg shadow-md p-4 mt-10 ">
+                    <div class="w-full flex">   
+                        <h6 class="w-full">{{lang.translate('Sent by')}} : {{comment.user_name}}</h6>
+                        <span class="pt-2 flex-none text-gray-600">{{item.date}} </span>
+                    </div>
+                    <p>{{ comment.content}}</p>
+                </div>
+                {% endfor %}                
+                {% endif %}                
+            </div>
+
+            <div class="w-full ">
+
+                <h4 class="pt-4 text-lg w-full flex gap-2"><span class="flex-none">{{lang.translate('Add comment')}}</span> <hr class="w-full mt-4 border-blue-300" /></h4> 
                 <div class=" bg-white overflow-hidden sm:rounded-lg relative ">
                     <div class="py-5 sm:p-0">
                         <dl class="sm:divide-y sm:divide-gray-200">
                             <div class="lg:px-0  gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
-                                <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                                <dd class="w-full mt-1  text-gray-900 sm:mt-0 ">
                                     <p>{{lang.translate('Name')}}</p>
                                     <input required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="{{lang.translate('ENTER_FULLNAME')}}" name="params[custom_field][name]">
                                 </dt>
-                                <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                                <dd class="w-full mt-1  text-gray-900 sm:mt-0 ">
                                     {# <p>{{lang.translate('Name')}}</p> #}
                                     <p class="">{{lang.translate('يرجي اختيار طريقة استلام الاشعارات عند الرد علي تعليقك')}}</p>
                                     <div class="lg:px-0 text-right sm:px-6">
@@ -131,7 +151,7 @@
                     
                     
                     <div class="lg:px-0 py-3 sm:px-6">
-                        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white cyan-bg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm  font-medium rounded-md text-white cyan-bg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             {{lang.translate('Send')}}
                         </button>
                     </div>
@@ -142,68 +162,6 @@
             
                 <h3>{{lang.translate('Related articles')}}</h3>
             
-                <div class=" mb-10 w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
-                    <div class=" flex-col justify-start items-start gap-2.5 flex">
-                        <div class="mt-2 justify-start items-start gap-2.5 inline-flex">
-                            <div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
-                                <div class=" font-normal text-sm leading-none">{{item.category.name ?? lang.translate('IVF')}}</div>
-                            </div>
-                        </div>
-                        <div class="pt-1 text-lg font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.title ?? 'ماهي الاسباب التي يلجأ فيها الاطباء لطفل الانبوب؟'}}</div>
-                    </div>
-                    <div class="flex w-full">
-                        <div class="w-full justify-start items-center gap-2 inline-flex">
-                            <div class=" relative flex">
-                                <img class="w-10 h-10 relative rounded-full" src="https://bedayahospitals.com/stream?thumbnail=50&image=/uploads/images/DR_Ismael_Aboul_Foutouh-66f1340bdc364.webp"/>
-                            </div>
-                            <div class=" justify-between items-center flex">
-                                <div class="flex-col justify-start items-start inline-flex">
-                                    <div class="justify-start items-center gap-1 inline-flex">
-                                        <div class=" text-sm font-semibold text-gray-500">{{item.doctor.name ?? 'أستاذ دكتور إسماعيل أبو الفتوح'}}</div>
-                                    </div>
-                                    <div class=" text-sm  pt-1 font-normal leading-none text-gray-800">{{lang.translate('Answered by')}}</div>
-                                </div>
-                            </div>
-                        
-                        </div>
-                            <div class="justify-start gap-10 flex">
-                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Views')}}</span><span class="pt-2">{{item ? item.totalviews|length : 1}}</span> <img src="/src/front_assets/svg/views.svg" width="40" /></div>
-                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Comments')}}</span><span class="pt-2">{{item ? item.comments|length : 1}}</span> <img src="/src/front_assets/svg/comments.svg" width="40" /></div>
-                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Shares')}}</span><span class="pt-2">{{item ? item.shares|length : 1}}</span> <img src="/src/front_assets/svg/shares.svg" width="36" /></div>
-                            </div>
-                    </div>
-                </div>
-                <div class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
-                    <div class=" flex-col justify-start items-start gap-2.5 flex">
-                        <div class="mt-2 justify-start items-start gap-2.5 inline-flex">
-                            <div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
-                                <div class=" font-normal text-sm leading-none ">{{item.category.name ?? lang.translate('IVF')}}</div>
-                            </div>
-                        </div>
-                        <div class="pt-1 text-lg font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.title ?? 'عندى دوالى فى الخصيتين من الونع الاول والثانى ونسبة الحيوانات المنوية 6.5 مليون ونسبة التشوهات مرتفعة وهناك بطى فى الحركة ولا يوجد تشوهات'}}</div>
-                    </div>
-                    <div class="flex w-full">
-                        <div class="w-full justify-start items-center gap-2 inline-flex">
-                            <div class="w-10 h-10 relative flex">
-                                <img class="w-10 h-10  relative rounded-full" src="https://bedayahospitals.com/stream?thumbnail=50&h=50&image=/uploads/images/Dr._Maged_Adel-650812e108bc3.jpg"/>
-                            </div>
-                            <div class=" justify-between items-center flex">
-                                <div class="flex-col justify-start items-start inline-flex">
-                                    <div class="justify-start items-center gap-1 inline-flex">
-                                        <div class=" text-sm font-semibold text-gray-500">{{item.doctor.name ?? 'أ.د ماجد عادل عزيز'}}</div>
-                                    </div>
-                                    <div class=" text-sm pt-1 font-normal leading-none text-gray-800" >{{lang.translate('Answered by')}}</div>
-                                </div>
-                            </div>
-                        
-                        </div>
-                            <div class="justify-start gap-10 flex">
-                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Views')}}</span><span class="pt-2">{{item ? item.totalviews|length : 1}}</span> <img src="/src/front_assets/svg/views.svg" width="40" /></div>
-                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Comments')}}</span><span class="pt-2">{{item ? item.comments|length : 1}}</span> <img src="/src/front_assets/svg/comments.svg" width="40" /></div>
-                                <div class="flex gap-1 text-sm font-normal relative"><span class="tooltiptext">{{lang.translate('Shares')}}</span><span class="pt-2">{{item ? item.shares|length : 1}}</span> <img src="/src/front_assets/svg/shares.svg" width="36" /></div>
-                            </div>
-                    </div>
-                </div>
             </div>
 		</div>
 

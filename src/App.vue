@@ -88,11 +88,14 @@ const hooks = defineAsyncComponent(() => import('@/components/hooks/index.vue') 
 
 const plugins = defineAsyncComponent(() => import('@/components/plugins/index.vue') );
 
+const forum = defineAsyncComponent(() => import('@/components/forum/index.vue') );
+
 
 
 export default {
     name: 'app',
     components: {
+        forum,
         gallery,
         hooks,
         plugins,

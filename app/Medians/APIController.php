@@ -113,6 +113,10 @@ class APIController extends CustomController
 					$return =  (new Help\Application\HelpMessageController())->storeComment(); 
 					break;
 				
+				case 'ForumComment.create':
+					$return =  (new Forum\Application\ForumController())->storeComment(); 
+					break;
+				
 				case 'Page.create':
 					$return =  (new Pages\Application\PageController())->store(); 
 					break;
@@ -376,6 +380,10 @@ class APIController extends CustomController
 
 			case 'Hook.update':
 				$controller = new Hooks\Application\HookController; 
+				break;
+
+			case 'Forum.update':
+				$controller = new Forum\Application\ForumController; 
 				break;
 			
 		}

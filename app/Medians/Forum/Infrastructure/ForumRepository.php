@@ -3,6 +3,7 @@
 namespace Medians\Forum\Infrastructure;
 
 use Medians\Forum\Domain\Forum;
+use Medians\Forum\Domain\ForumComment;
 use Medians\Hooks\Domain\Hook;
 use Medians\Content\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
@@ -34,31 +35,18 @@ class ForumRepository
 
 	public function find($id)
 	{
-		return Forum::with('content','author')->withSum('views','times')->find($id);
+		return Forum::with('category','doctor','category','comments')->withSum('views','times')->find($id);
 	}
 
 	public function get($limit = 500, $lang = null)
 	{
 		
-		return Forum::with('user','author','content')->with(['category'=>function($q){
+		return Forum::with('doctor','category','comments')->withSum('views','times')->with(['category'=>function($q){
 			return $q->with('content');
 		}])->limit($limit)->orderBy('id', 'DESC')->get();
 	}
 
 	
-	public function getFront($limit = 100, $lang = null)
-	{
-		return Forum::with('user','author','content')
-		->whereHas('content', function($q){
-			return $q->where('content', '!=', '');
-		})
-		->with(['category'=>function($q){
-			return $q->with('content');
-		}])->limit($limit)
-		->where('status', 'on')
-		->orderBy('id', 'DESC')->get();
-	}
-
 
 	public function getByCategory($id, $limit = 100)
 	{
@@ -97,13 +85,26 @@ class ForumRepository
 		->get();
 	}
 
+	public function paginate($limit = 10, $offset = 0)
+	{
+		$items = Forum::with('category','doctor','category','comments')->withSum('views','times')
+		->where('status', 'on');
+
+		$count = $items->count();
+		
+		$items->limit($limit)
+		->offset($offset)
+		->orderBy('id', 'DESC');
+
+		return ['count'=> $count, 'items'=> $items->get()];
+		
+	}
+
 	public function getFeatured($limit = 1)
 	{
-		return Forum::with('content','user', 'author')
+		return Forum::with('category','docto')
 		->where('status', 'on')
-		->whereHas('content', function($q){
-			return $q->where('content', '!=', '');
-		})->orderBy('updated_at', 'DESC')->first();
+		->orderBy('updated_at', 'DESC')->first();
 	}
 
 	public function filterSearchTitle($title)
@@ -169,14 +170,14 @@ class ForumRepository
 		}		
 
 		// Return the FBUserInfo object with the new data
-    	$Object = Forum::create($dataArray);
-    	$Object->update($dataArray);
+    	$Object = Forum::firstOrCreate($dataArray);
+    	// $Object->update($dataArray);
 
     	// Store languages content
-    	$this->storeContent($data['content'], $Object->id);
+    	// $this->storeContent($data['content'], $Object->id);
 
     	// Store Custom fields
-    	$this->storeCustomFields($data['field'], $Object->id);
+    	// $this->storeCustomFields($data['field'], $Object->id);
 
     	return $Object;
     }
@@ -232,6 +233,30 @@ class ForumRepository
 
 	
 
+	/**
+	* Save Comment from Admin / Agent
+	*/
+	public function storeUserComment($data) 
+	{
+
+		$Model = new ForumComment();
+
+		$data['user_type'] = User::class;
+		
+		foreach ($data as $key => $value) 
+		{
+			if (in_array($key, $Model->getFields()))
+			{
+				$dataArray[$key] = $value;
+			}
+		}		
+		
+		// Return the  object with the new data
+    	$Object = ForumComment::create($dataArray);
+
+    	return $Object;
+    }
+    	
 
 	/**
 	* Save related models to database

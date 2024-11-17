@@ -6,6 +6,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Views\Domain\View;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Doctors\Domain\Doctor;
+use Medians\Categories\Domain\Category;
 
 
 class Forum extends CustomModel
@@ -36,7 +37,7 @@ class Forum extends CustomModel
 
 	public function getTitleAttribute() 
 	{
-		return !empty($this->content->title) ? $this->content->title : '';
+		return $this->subject;
 	}
 
 	public function getCategoryNameAttribute() 
@@ -46,7 +47,7 @@ class Forum extends CustomModel
 
 	public function getDateAttribute() : ?String
 	{
-		return date('Y-m-d', strtotime($this->created_at));
+		return date('M, d Y', strtotime($this->created_at));
 	}
 	
 	public function getUpdateDateAttribute() 
@@ -67,12 +68,12 @@ class Forum extends CustomModel
 
 	public function category()
 	{
-		return $this->hasOne(Category::getClass(), 'category_id', 'category_id')->with('content');
+		return $this->hasOne(Category::class, 'category_id', 'category_id');
 	}
 
-	public function author()
+	public function doctor()
 	{
-		return $this->hasOne(Doctor::class, 'id', 'created_by');
+		return $this->hasOne(Doctor::class, 'id', 'doctor_id');
 	}
 
 	public function custom_fields()
@@ -80,9 +81,10 @@ class Forum extends CustomModel
 		return $this->morphMany(CustomField::class, 'model');
 	}
 
-	public function content()
+
+	public function comments()
 	{
-		return $this->morphOne(Content::class, 'item')->where('lang', translate('lang'));
+		return $this->hasMany(ForumComment::class, 'item_id', 'id');
 	}
 
 	public function views()
@@ -92,7 +94,7 @@ class Forum extends CustomModel
 
 	public function totalviews()
 	{
-		return $this->morphMany(View::class, 'item')->sum('times');
+		return $this->morphMany(View::class, 'item');
 	}
 
 

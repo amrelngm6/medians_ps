@@ -230,6 +230,8 @@ if(!empty($app->auth()))
     /** @return Get-started */
     RouteHandler::get('/admin/get_started', Medians\Users\Application\GetStartedController::class.'@get_started');
 
+    RouteHandler::get('/admin/forum', Medians\Forum\Application\ForumController::class.'@index');
+
 
     /**
     * @return Business settings

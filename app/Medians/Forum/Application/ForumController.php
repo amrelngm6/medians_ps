@@ -106,13 +106,15 @@ class ForumController extends CustomController
 	public function index() 
 	{
 		
-		return render('data_table', 
+		return render('forum', 
 		[
 			'load_vue' => true,
 			'title' => translate('Forum'),
 			'columns' => $this->columns(),
 			'fillable' => $this->fillable(),
 			'items' => $this->repo->get(),
+			'doctors' => $this->doctorRepo->getHome(100),
+			'categories' => $this->specsRepo->get(),
 			'object_name' => 'Forum',
 			'object_key' => 'id',
 		]);
@@ -265,6 +267,29 @@ class ForumController extends CustomController
 
 	}
 
+	
+	public function storeComment() 
+	{
+		$params = $this->app->params();
+
+        try {	
+
+        	$params['user_id'] = $this->app->auth()->id;        	
+
+            $returnData = (!empty($this->repo->storeUserComment($params))) 
+            ? array('success'=>1, 'result'=>translate('Added'))
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+        } catch (Exception $e) {
+        	return array('error'=>$e->getMessage());
+        }
+
+		return $returnData;
+	}
+
+	
+	
+
 
 	
     /**
@@ -289,12 +314,12 @@ class ForumController extends CustomController
 	 * Front page 
 	 * @var Int
 	 */
-	public function page($contentObject)
+	public function page($id)
 	{
 
 		try {
 			
-			$item = $this->repo->find($contentObject->item_id);
+			$item = $this->repo->find($id);
 
 			if (empty($item))
 			{
@@ -305,7 +330,7 @@ class ForumController extends CustomController
 			$settings = $this->app->SystemSetting();
 
 			return render('views/front/'.($settings['template'] ?? 'default').'/forum_post.html.twig', [
-		        'item' => $this->repo->filterShortCode($item),
+		        'item' => $item,
 		        'similar_items' => $this->specsRepo->similar($item, 3),
 		        'similar_articles' => $this->repo->similar($item, 3),
 		        'offers' => $this->offersRepo->random(1),
@@ -331,7 +356,7 @@ class ForumController extends CustomController
 			$settings = $this->app->SystemSetting();
 
             return render('views/front/'.($settings['template'] ?? 'default').'/forum.html.twig', [
-				'items' => $this->repo->get(),
+				'items' => $this->repo->paginate(),
 				'specializations' => $this->specsRepo->get_root(),
 				'doctors' => $this->doctorRepo->getHome(3),
 				'blog' => $this->blogRepo->getFront(3),
