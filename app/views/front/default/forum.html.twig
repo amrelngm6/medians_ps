@@ -59,7 +59,7 @@
 <div class="container mx-auto  pt-10 pb-20 gap-10 lg:flex ">
 
 	<div class="w-full rounded-2xl pt-6 flex-col justify-start items-start gap-10 inline-flex">
-		{% for item in items.items %}
+		{% for item in items %}
 
 			<div class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
 				<div class=" flex-col justify-start items-start gap-2.5 flex">
@@ -100,13 +100,21 @@
 		{% endfor %}
 
 
-		<div class="py-4 flex mx-auto text-center w-96">
-			<span class="w-full"></span>
-			<span class="p-4 text-center font-bold cyan-color">1</span>
-			<a href="?page=1" class="p-4 text-center text-gray-600 font-semibold ">2</a>
-			<a href="?page=1" class="p-4 text-center text-gray-600 font-semibold ">3</a>
-			<span class="w-full"></span>
-		</div>
+        <hr class="pb-2" />
+        {% if pages|length %}
+        <div class="py-4 flex mx-auto text-center w-96">
+            <span class="w-full"></span>
+            {% for page in pages %}
+                {% if loop.index == current_page %} 
+                <span class="p-4 text-center font-bold cyan-color">{{loop.index}}</span> 
+                {% else %} 
+                <a href="?page={{loop.index}}" class="p-4 text-center text-gray-600 font-semibold ">{{loop.index}}</a> 
+                {% endif %} 
+            {% endfor %}
+            <span class="w-full"></span>
+        </div>
+        {% endif %}
+        
 
 	</div>
 	<div style="" class=" z-10 lg:w-1/3 relative px-2 pt-6">

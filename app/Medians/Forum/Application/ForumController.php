@@ -337,6 +337,7 @@ class ForumController extends CustomController
 		        'stories' => $this->storiesRepo->random(1),
 				'specializations' => $this->specsRepo->get_root(),
 				'noindex' => (count(array_filter(explode('/', $_SERVER['REQUEST_URI']))) > 1) ? true : false
+
 		    ]);
 
 		} catch (\Exception $e) {
@@ -349,17 +350,26 @@ class ForumController extends CustomController
 	 */
 	public function list()
 	{
-		$request =  $this->app->request();
-
+		
 		try {
-        	
+			
+			$request =  $this->app->request();
 			$settings = $this->app->SystemSetting();
+			
+			$currentPage = $request->get('page') ? $request->get('page') : 1;
+			$offset = $currentPage > 1 ? $currentPage * 10 : 0;
+			$paginate = $this->repo->paginate(10, $offset);
 
-            return render('views/front/'.($settings['template'] ?? 'default').'/forum.html.twig', [
-				'items' => $this->repo->paginate(),
+			$pages = (Int) floatval($paginate['count'] / 10);
+
+			return render('views/front/'.($settings['template'] ?? 'default').'/forum.html.twig', [
+				'items' => $paginate['items'],
+				'count' => $paginate['count'],
 				'specializations' => $this->specsRepo->get_root(),
 				'doctors' => $this->doctorRepo->getHome(3),
 				'blog' => $this->blogRepo->getFront(3),
+				'pages' => array_fill(0,$pages,[]),
+				'currentPage' => $currentPage,
             ]);
             
 		} catch (\Exception $e) {
