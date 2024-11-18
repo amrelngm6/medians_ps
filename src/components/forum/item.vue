@@ -77,10 +77,10 @@
                                                                     v-text="comment.user_name"></span>
                                                                 <small class="text-muted" v-text="comment.date"></small>
                                                                 
-                                                                <div class="py-4 flex gap gap-2 cursor-pointer" >
+                                                                <label class="py-4 flex gap gap-2 cursor-pointer" >
                                                                     <span :class="comment.status == 'on' ? 'bg-gray-200' : 'bg-red-400'" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: comment.status == 'on' ? '16px' : 0}"></a></span>
                                                                     <input :value="''" :checked="comment.status == 'on' ? false : true" @change="setCommentStatus(comment)"  type="checkbox" class="hidden" />
-                                                                </div>
+                                                                </label>
                                                                 
                                                             </h5>
                                                             <p class="text-muted" v-text="comment.content"></p>
