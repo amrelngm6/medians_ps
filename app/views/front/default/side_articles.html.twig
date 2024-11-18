@@ -1,6 +1,9 @@
                             {% if blog|length > 0 %}
-                            <div class="cyan-gradient45 rounded-lg py-2  pl-40 pr-6 purple-color font-semibold text-lg  ">
-                                <a class="text-white " href="/blog">{{lang.translate('Useful Articles')}} <span class="mx-4 text-sm">{{lang.translate('readmore')}}  </span></a>
+                            <div class="cyan-gradient45 rounded-lg py-2 w-full  pl-40 pr-6 purple-color font-semibold text-lg  ">
+                                <a class="text-white flex w-full" href="/blog"> 
+                                    <span>{{lang.translate('Useful Articles')}}</span>
+                                    <span class="mx-4 text-sm">{{lang.translate('readmore')}}  </span>
+                                </a>
 
                             </div>
                             {% endif %}
