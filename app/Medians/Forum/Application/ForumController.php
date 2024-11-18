@@ -313,7 +313,7 @@ class ForumController extends CustomController
         try {	
 			
             $returnData = (!empty($this->repo->updateCommentStatus($params))) 
-            ? array('success'=>1, 'result'=>translate('Added'))
+            ? array('success'=>1, 'result'=>translate('Updated successfully'))
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {
