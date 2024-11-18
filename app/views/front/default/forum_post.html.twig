@@ -105,7 +105,7 @@
 
                 <h4 class="pt-4 text-lg w-full flex gap-2"><span class="flex-none">{{lang.translate('Add comment')}}</span> <hr class="w-full mt-4 border-blue-300" /></h4> 
                 <div class=" bg-white overflow-hidden sm:rounded-lg relative ">
-                    <form id="comment-form" action="/submit_forum_comment" class="py-5 sm:p-0">
+                    <form id="comment-form" action="/submit_forum_comment" class="action form py-5 sm:p-0">
                         <input name="params[item_id]" value="{{item.id}}" type="hidden"  />
                         <dl class="sm:divide-y sm:divide-gray-200">
                             <div class="lg:px-0  gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
@@ -156,14 +156,15 @@
                                 </dd>
                             </div>
                         </dl>
+                    
+                    
+                        <div class="lg:px-0 py-3 sm:px-6">
+                            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm  font-medium rounded-md text-white cyan-bg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                {{lang.translate('Send')}}
+                            </button>
+                        </div>
                     </form>
-                    
-                    
-                    <div class="lg:px-0 py-3 sm:px-6">
-                        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm  font-medium rounded-md text-white cyan-bg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{lang.translate('Send')}}
-                        </button>
-                    </div>
+
                 </div>
             </div>
             
