@@ -368,7 +368,7 @@ class ForumController extends CustomController
 			return render('views/front/'.($settings['template'] ?? 'default').'/forum_post.html.twig', [
 		        'item' => $item,
 		        'similar_items' => $this->specsRepo->similar($item, 3),
-		        'similar_articles' => $this->repo->similar($item, 3),
+		        'similar' => $this->repo->similar($item, 3),
 		        'offers' => $this->offersRepo->random(1),
 		        'stories' => $this->storiesRepo->random(1),
 				'specializations' => $this->specsRepo->get_root(),

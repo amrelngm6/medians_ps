@@ -171,7 +171,44 @@
             <div class="w-full ">
             
                 <h3>{{lang.translate('Related articles')}}</h3>
-            
+                {% for related in item.similar %}
+                <div class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
+				<div class=" flex-col justify-start items-start gap-2.5 flex">
+					<div class="mt-2 justify-start items-start gap-2.5 inline-flex">
+						<div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
+							<div class=" font-normal text-sm leading-none">{{item.category.content.title}}</div>
+						</div>
+					</div>
+					<a href="/forum-post/{{item.id}}" class="pt-1 text-lg font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.subject}}</a>
+				</div>
+				<div class="flex w-full">
+					<div class="w-full justify-start items-center gap-2 inline-flex">
+						<div class=" relative flex">
+							<img class="w-10 h-10 relative rounded-full" src="{{item.doctor.picture}}"/>
+						</div>
+						<div class=" justify-between items-center flex">
+							<div class="flex-col justify-start items-start inline-flex">
+								<div class="justify-start items-center gap-1 inline-flex">
+									<div class=" text-sm font-semibold text-gray-500">{{item.doctor.content.title}}</div>
+								</div>
+								<div class=" text-sm  pt-1 font-normal leading-none text-gray-800">{{lang.translate('Answered by')}}</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="justify-start gap-10 flex">
+						<div class="flex gap-1 text-sm font-normal relative">
+							<span class="tooltiptext">{{lang.translate('Views')}}</span>
+							<span class="pt-2">{{item.views_sum_times}}</span>
+							<img src="/src/front_assets/svg/views.svg" width="40"/></div>
+						<div class="flex gap-1 text-sm font-normal relative">
+							<span class="tooltiptext">{{lang.translate('Comments')}}</span>
+							<span class="pt-2">{{item.comments|length}}</span>
+							<img src="/src/front_assets/svg/comments.svg" width="40"/></div>
+					</div>
+				</div>
+			</div>
+                {% endfor %}
             </div>
 		</div>
 
