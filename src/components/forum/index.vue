@@ -34,27 +34,6 @@
                                 <!--end::Heading-->
 
                                 <!--begin::posts List-->
-                                <div class="w-full " v-if="content.disable" v-for="post in content.items">
-                                    <!--begin::post-->
-                                    <div class="d-flex mb-10 gap-4" v-if="post.status == activeStatus" >
-                                        <!--begin::Symbol-->
-                                        <vue-feather type="bell" class="mt-5"></vue-feather>
-
-                                        <div class="d-flex flex-column " @click="activeItem = post, showEditSide = true" >
-                                            <!--begin::Content-->
-                                            <div class="d-flex align-items-center mb-2">
-                                                <a  href="javascript:;" class="font-semibold text-gray-800 text-hover-primary fs-4 me-3 " v-text="post.customer_name"></a>
-                                                <span class="truncate max-w-sm badge badge-light my-1 bg-gray-100" v-text="post.subject"></span>
-                                                <span class="badge badge-light mx-2 my-1 text-white" :class="{'bg-primary': post.status == 'on', 'bg-danger':post.status == '0'}" v-text="post.status"></span>
-                                            </div>
-                                            <span class="truncate  text-muted fw-semibold fs-6" v-text="post.content"></span>
-                                        </div>
-                                        <!--end::Section-->
-                                    </div>
-                                    <!--end::post-->
-                                </div>
-                                <!--end::posts List-->
-
                                 <div v-for="post in content.items" class="w-full">
                                     <div v-if="post.status == activeStatus" @click="activeItem = post, showEditSide = true" class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
                                         <div class=" flex-col justify-start items-start gap-2.5 flex">
@@ -93,6 +72,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--end::posts List-->
                             </div>
                             <!--end::posts-->
                         </div>
@@ -111,7 +91,7 @@
                                     <!--begin::Info-->
                                     <div class="d-flex flex-column cursor-pointer "
                                         @click="switchStatus(statusItem.status)" >
-                                        <h5 class="" :class="statusItem.status == activeStatus ? 'text-gray-800' : 'text-gray-500'" v-text="statusItem.text"></h5>
+                                        <h5 class="" :class="statusItem.status == activeStatus ? 'text-danger' : 'text-gray-500'" v-text="statusItem.text"></h5>
 
                                         <!--begin::Section-->
                                         <!-- <div class="fw-semibold"> -->
