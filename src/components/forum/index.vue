@@ -66,7 +66,7 @@
                                                     <img :src="'/src/front_assets/svg/views.svg'" width="40"></div>
                                                 <div class="flex gap-1 text-sm mx-2 font-normal relative items-center">
                                                     <span class="tooltiptext"  v-text="translate('Comments')"></span>
-                                                    <span class="pt-2" v-text="post.comments.lenght"></span>
+                                                    <span class="pt-2" v-text="post.comments.length"></span>
                                                     <img :src="'/src/front_assets/svg/comments.svg'" width="40"></div>
                                             </div>
                                         </div>
