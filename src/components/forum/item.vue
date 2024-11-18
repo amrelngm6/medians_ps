@@ -259,6 +259,7 @@ export default
             }
 
             return {
+                setCommentStatus,
                 translate,
                 emit,
                 close
