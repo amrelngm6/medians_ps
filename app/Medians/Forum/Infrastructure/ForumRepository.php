@@ -134,7 +134,7 @@ class ForumRepository
 	public function getWithFilter($params)
 	{
 
-			$model = Forum::where('status', 'on');
+			$model = Forum::where('status', 'on')->withSum('views','times');
 
 			if (!empty($params['title']))
 			{
@@ -145,7 +145,7 @@ class ForumRepository
 			{
 				switch ($params['sort_by']) {
 					case 'best':
-						$model = $model->withSum('views','times')->orderBy('views_sum_times','DESC');
+						$model = $model->orderBy('views_sum_times','DESC');
 						break;
 						
 					case 'old':
