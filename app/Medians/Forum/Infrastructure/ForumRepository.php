@@ -134,56 +134,56 @@ class ForumRepository
 	public function getWithFilter($params)
 	{
 
-			$model = Forum::where('status', 'on')->withSum('views','times');
+		$model = Forum::where('status', 'on')->withSum('views','times');
 
-			if (!empty($params['title']))
-			{
-				$model = $model->where('subject', 'LIKE', '%'.$params['title'].'%');
+		if (!empty($params['title']))
+		{
+			$model = $model->where('subject', 'LIKE', '%'.$params['title'].'%');
+		}
+
+		if (!empty($params['sort_by']))
+		{
+			switch ($params['sort_by']) {
+				case 'best':
+					$model = $model->withCount('comments')->orderBy('views_sum_times','DESC')->orderBy('comments_count','DESC');
+					break;
+
+				case 'trending':
+					$model = $model->orderBy('views_sum_times','DESC');
+					break;
+					
+				case 'old':
+					$model = $model->orderBy('id','ASC');
+					break;
+					
+				case 'new':
+					$model = $model->orderBy('id','DESC');
+					break;
 			}
+		} else {
+			$model = $model->orderBy('id','DESC');
+		}
 
-			if (!empty($params['sort_by']))
-			{
-				switch ($params['sort_by']) {
-					case 'best':
-						$model = $model->withCount('comments')->orderBy('views_sum_times','DESC')->orderBy('comments_count','DESC');
-						break;
-
-					case 'trending':
-						$model = $model->orderBy('views_sum_times','DESC');
-						break;
-						
-					case 'old':
-						$model = $model->orderBy('id','ASC');
-						break;
-						
-					case 'new':
-						$model = $model->orderBy('id','DESC');
-						break;
-				}
-			} else {
-				$model = $model->orderBy('id','DESC');
+		if (!empty($params['date']))
+		{
+			switch (strtolower($params['date'])) {
+				case 'day':
+				case 'week':
+				case 'month':
+				case 'year':
+					$model = $model->whereBetween('created_at', [ date('Y-m-d', strtotime("-1 ".$params['date'])) , date('Y-m-d')]);
+					break;
+					
+				default:
+					$model = $model->orderBy('id','DESC');
+					break;
 			}
+		}
 
-			if (!empty($params['date']))
-			{
-				switch (strtolower($params['date'])) {
-					case 'day':
-					case 'week':
-					case 'month':
-					case 'year':
-						$model = $model->whereBetween('created_at', [ date('Y-m-d', strtotime("-1 ".$params['date'])) , date('Y-m-d')]);
-						break;
-						
-					default:
-						$model = $model->orderBy('id','DESC');
-						break;
-				}
-			}
+		$totalCount = $model->count();
 
-			$totalCount = $model->count();
-
-			$offset = (($params['limit'] ?? 1) * (!empty($params['page']) ? floatval( $params['page'] - 1)  : 0));
-			return ['count' => $totalCount, 'items'=>$model->offset($offset)->limit(floatval($params['limit'] ?? 4))->get()];
+		$offset = (($params['limit'] ?? 1) * (!empty($params['page']) ? floatval( $params['page'] - 1)  : 0));
+		return ['count' => $totalCount, 'items'=>$model->offset($offset)->limit(floatval($params['limit'] ?? 4))->get()];
 	}
  
 	
