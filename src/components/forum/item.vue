@@ -136,7 +136,7 @@
                     <!--end card-->
                 </div>
                 <!--end col-->
-                <div class="col-xxl-3 col-lg-4">
+                <div class="">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title mb-0" v-text="translate('Ticket Details')"></h5>
@@ -155,7 +155,7 @@
                                                 <td class="py-2">#<a target="_blank" :href="'/forum-post/'+item.id" v-text="item.id"></a> </td>
                                             </tr>
                                             <tr>
-                                                <td class="fw-medium py-2 " v-text="translate('Assigned Doctor')"></td>
+                                                <td class="fw-medium py-2 w-32" v-text="translate('Assigned Doctor')"></td>
                                                 <td id="t-client" class="py-2">
                                                     <select v-model="item.doctor_id" name="params[doctor_id]"
                                                         class="form-control form-control-solid border border-gray-600">
