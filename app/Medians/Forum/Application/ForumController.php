@@ -390,11 +390,12 @@ class ForumController extends CustomController
 		try {
 			
 			$request =  $this->app->request();
+			$params =  $this->app->params();
 			$settings = $this->app->SystemSetting();
 			
 			$currentPage = $request->get('page') ? $request->get('page') : 1;
-			$offset = $currentPage > 1 ? $currentPage * 10 : 0;
-			$paginate = $this->repo->paginate(10, $offset);
+			$params['limit'] = 10;
+			$paginate = $this->repo->getWithFilter($params);
 
 			$pages = (Int) floatval($paginate['count'] / 10);
 

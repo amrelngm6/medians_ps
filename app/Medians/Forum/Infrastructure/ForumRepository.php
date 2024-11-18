@@ -116,41 +116,62 @@ class ForumRepository
 		return str_replace(' ', '%', trim($title));
 	}
  
-	public function search($request, $limit = 20)
+	
+	/**
+	 * Load items with filters
+	 */
+	public function getWithFilter($params)
 	{
-		$title = $request->get('search') ? $this->filterSearchTitle($request->get('search')) : '';
-		$return = Forum::whereHas('content', function($q) use ($title){
-			$q->where('title', 'LIKE', '%'.$title.'%');
-		})
-		->where('status', 'on')
-		->with('content','user', 'author')
-		->limit($limit)->orderBy('updated_at', 'DESC')
-		->get();
 
-		return $return;
-	}
+			$model = Forum::where('status', 'on');
 
-	public function similar($model, $limit = 3)
-	{
-		$title = str_replace([' ','-'], '%', $model->content->title);
-
-		return Forum::whereHas('content', function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('content', 'LIKE', '%'.$i.'%')->where("content", '!=', "")->where('lang', translate('lang'));
+			if (!empty($params['title']))
+			{
+				$model = $model->where('subject', 'LIKE', '%'.$params['title'].'%');
 			}
-		})
-		->with(['content'=> function($q) use ($title){
-			foreach (explode('%', $title) as $i) {
-				$q->where('content', 'LIKE', '%'.$i.'%')->where('lang', translate('lang'))->where("content", '!=', "");
-				// $q->where('title', 'LIKE', '%'.$i.'%')->where("content", '!=', "")->orWhere('content', 'LIKE', '%'.$i.'%')->where("content", '!=', "")->where('lang', translate('lang'));
+
+			if (!empty($params['sort_by']))
+			{
+				switch ($params['sort_by']) {
+					case 'best':
+						$model = $model->withCount('views')->orderBy('views_count','DESC');
+						break;
+						
+					case 'old':
+						$model = $model->orderBy('id','ASC');
+						break;
+						
+					case 'new':
+						$model = $model->orderBy('id','DESC');
+						break;
+				}
+			} else {
+				$model = $model->orderBy('id','DESC');
 			}
-		}])
-		->where('id', '!=', $model->id)
-		->where('status', 'on')
-		->with('category','user')->limit($limit)->inRandomOrder()->get();
+
+			if (!empty($params['date']))
+			{
+				switch (strtolower($params['date'])) {
+					case 'day':
+					case 'week':
+					case 'month':
+					case 'year':
+						$model = $model->whereBetween('created_at', [ date('Y-m-d', strtotime("-1 ".$params['date'])) , date('Y-m-d')]);
+						break;
+						
+					default:
+						$model = $model->orderBy('id','DESC');
+						break;
+				}
+			}
+
+			$totalCount = $model->count();
+
+			$offset = (($params['limit'] ?? 1) * (!empty($params['page']) ? floatval( $params['page'] - 1)  : 0));
+			return ['count' => $totalCount, 'items'=>$model->offset($offset)->limit(floatval($params['limit'] ?? 4))->get()];
 	}
-
-
+ 
+	
 
 
 	/**
