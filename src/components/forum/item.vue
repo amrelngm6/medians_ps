@@ -78,7 +78,7 @@
                                                                 <small class="text-muted" v-text="comment.date"></small>
                                                                 
                                                                 <div @click="comment.status = comment.status == 'on' ? 0 : 'on'" class="py-4 flex gap gap-2 cursor-pointer" >
-                                                                    <span :class="comment.status != 'on' ? 'bg-gray-200' : 'bg-red-400'" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: comment.status == 'on' ? '16px' : 0}"></a></span>
+                                                                    <span :class="comment.status != 'on' ? 'bg-gray-200' : 'bg-red-400'" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8 border border-1 border-danger-subtle" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4 " :style="{left: comment.status == 'on' ? '16px' : 0}"></a></span>
                                                                     <input value="on" :checked="comment.status == 'on'" @change="setCommentStatus(comment)"  type="checkbox" class="hidden" />
                                                                 </div>
                                                                 
