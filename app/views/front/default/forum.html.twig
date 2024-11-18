@@ -26,13 +26,14 @@
 				<div class="pt-2 w-24">{{lang.translate('Filter by')}}</div>
 				<div>
 					<select  class="appearance-none block w-40 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-spec" name="params[sort_by]">
-						<option value="new">{{lang.translate('New first')}}
-						</option>
-						<option value="old">{{lang.translate('Old first')}}
-						</option>
-						<option value="best">{{lang.translate('Most views')}}
-						</option>
-						<option value="trending">{{lang.translate('Trending')}}</option>
+                        {% for i in [
+                            {title:lang.translate('New first'), val: 'new'},
+                            {title:lang.translate('Old first'), val: 'old'},
+                            {title:lang.translate('Most views'), val: 'best'},
+                            {title:lang.translate('Trending'), val: 'trending'},
+                        ] %}
+						<option value="{{i.val}}" {% if i.val == app.params.sort_by %} selected {% endif %} >{{i.title}}</option>
+                        {% endfor %}
 					</select>
 				</div>
 			</div>
