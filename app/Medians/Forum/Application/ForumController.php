@@ -367,8 +367,8 @@ class ForumController extends CustomController
 
 			return render('views/front/'.($settings['template'] ?? 'default').'/forum_post.html.twig', [
 		        'item' => $item,
-				'blog' => $this->blogRepo->getFront(3),
 		        'similar_items' => $this->repo->similar($item, 3),
+				'blog' => $this->blogRepo->getFront(3),
 		        'offers' => $this->offersRepo->random(1),
 		        'stories' => $this->storiesRepo->random(1),
 				'specializations' => $this->specsRepo->get_root(),
@@ -403,9 +403,11 @@ class ForumController extends CustomController
 			return render('views/front/'.($settings['template'] ?? 'default').'/forum.html.twig', [
 				'items' => $paginate['items'],
 				'count' => $paginate['count'],
+				'blog' => $this->blogRepo->getFront(3),
+		        'offers' => $this->offersRepo->random(1),
+		        'stories' => $this->storiesRepo->random(1),
 				'specializations' => $this->specsRepo->get_root(),
 				'doctors' => $this->doctorRepo->getHome(1),
-				'blog' => $this->blogRepo->getFront(3),
 				'pages' => array_fill(0,$pages,[]),
 				'currentPage' => $currentPage,
             ]);
