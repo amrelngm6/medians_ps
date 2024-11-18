@@ -59,7 +59,7 @@
                                                 </div>
 
                                             </div>
-                                            <div class="justify-start gap-10 flex items-center">
+                                            <div class="justify-start gap-10 flex items-center p-2">
                                                 <div class="flex gap-1 text-sm mx-2 font-normal relative items-center">
                                                     <span class="tooltiptext" v-text="translate('Views')"></span>
                                                     <span class="pt-2" v-text="post.views_sum_times"></span>
