@@ -35,7 +35,7 @@
 
                                 <!--begin::posts List-->
                                 <div v-for="post in content.items" class="w-full">
-                                    <div v-if="post.status == activeStatus" @click="activeItem = post, showEditSide = true" class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
+                                    <div v-if="post.status == activeStatus" @click="activeItem = post, showEditSide = true" class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white mb-4">
                                         <div class=" flex-col justify-start items-start gap-2.5 flex">
                                             <div class="mt-2 justify-start items-start gap-2.5 inline-flex">
                                                 <div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
