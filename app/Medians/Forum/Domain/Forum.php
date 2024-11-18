@@ -6,7 +6,7 @@ use Shared\dbaser\CustomModel;
 use Medians\Views\Domain\View;
 use Medians\CustomFields\Domain\CustomField;
 use Medians\Doctors\Domain\Doctor;
-use Medians\Categories\Domain\Category;
+use Medians\Specializations\Domain\Specialization;
 
 
 class Forum extends CustomModel
