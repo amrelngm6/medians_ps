@@ -14,8 +14,6 @@ class ForumComment extends CustomModel
 	*/
 	protected $table = 'forum_comments';
 
-    protected $primaryKey = 'comment_id';
-	
 	public $fillable = [
 		'user_name',
 		'user_email',
