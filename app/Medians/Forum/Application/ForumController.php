@@ -320,7 +320,7 @@ class ForumController extends CustomController
         	return array('error'=>$e->getMessage());
         }
 
-		return $returnData;
+		return response($returnData);
 	}
 
 	
