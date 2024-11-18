@@ -145,7 +145,7 @@ class ForumRepository
 			{
 				switch ($params['sort_by']) {
 					case 'best':
-						$model = $model->withCount('views')->orderBy('views_count','DESC');
+						$model = $model->withSum('views','times')->orderBy('views_sum_times','DESC');
 						break;
 						
 					case 'old':
