@@ -144,7 +144,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="fw-medium py-2 " v-text="translate('ID')"></td>
-                                                <td class="py-2">#<a  :href="'/forum_post/'+item.id" v-text="item.id"></a> </td>
+                                                <td class="py-2">#<a target="_blank" :href="'/forum-post/'+item.id" v-text="item.id"></a> </td>
                                             </tr>
                                             <tr>
                                                 <td class="fw-medium py-2 " v-text="translate('Assigned Doctor')"></td>

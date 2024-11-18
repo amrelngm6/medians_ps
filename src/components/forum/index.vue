@@ -16,7 +16,7 @@
                             <!--begin::posts-->
                             <div class="mb-0">
                                 <!--begin::Search form-->
-                                <form method="post" action="#" class="form mb-15">
+                                <form method="post" action="#" v-if="content.showSearchForm" class="form mb-15">
                                     <!--begin::Input wrapper-->
                                     <div class="position-relative">
                                         <i

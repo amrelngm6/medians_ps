@@ -170,7 +170,7 @@ class ForumRepository
 		}		
 
 		// Return the FBUserInfo object with the new data
-    	$Object = Forum::firstOrCreate($dataArray);
+    	$Object = Forum::create($dataArray);
     	// $Object->update($dataArray);
 
     	// Store languages content
