@@ -39,7 +39,7 @@
                                         <div class=" flex-col justify-start items-start gap-2.5 flex">
                                             <div class="mt-2 justify-start items-start gap-2.5 inline-flex">
                                                 <div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
-                                                    <div class=" font-normal text-sm leading-none" v-text="post.category_name"></div>
+                                                    <div class=" font-normal text-sm leading-none" v-text="post.category ? post.category.title : ''"></div>
                                                 </div>
                                             </div>
                                             <a href="javascript:;"  class="pt-1 text-lg font-semibold leading-relaxed purple-color hover:text-gray-500" v-text="post.subject"></a>
