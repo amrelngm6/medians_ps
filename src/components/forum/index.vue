@@ -34,7 +34,7 @@
                                 <!--end::Heading-->
 
                                 <!--begin::posts List-->
-                                <div v-for="post in content.items" class="w-full">
+                                <div v-for="post in content.items" class="w-full ">
                                     <div v-if="post.status == activeStatus" @click="activeItem = post, showEditSide = true" class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white mb-4">
                                         <div class=" flex-col justify-start items-start gap-2.5 flex">
                                             <div class="mt-2 justify-start items-start gap-2.5 inline-flex">
@@ -59,7 +59,7 @@
                                                 </div>
 
                                             </div>
-                                            <div class="justify-start gap-10 flex items-center p-2">
+                                            <div class="justify-start gap-10 flex items-center p-2 flex-none">
                                                 <div class="flex gap-1 text-sm mx-2 font-normal relative items-center">
                                                     <span class="tooltiptext" v-text="translate('Views')"></span>
                                                     <span class="pt-2" v-text="post.views_sum_times"></span>
