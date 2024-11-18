@@ -37,6 +37,7 @@ RouteHandler::get('/doctor_booking/(:all)', \Medians\Bookings\Application\Bookin
 RouteHandler::get('/book/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
 RouteHandler::get('/bookings/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
 RouteHandler::post('/submit/(:all)', \Medians\FrontendController::class.'@form_submit'); 
+RouteHandler::post('/submit_forum_comment', \Medians\FrontendController::class.'@storeCustomerComment'); 
 
 RouteHandler::post('/forum/store', \Medians\Forum\Application\ForumController::class.'@store'); 
 
