@@ -195,10 +195,6 @@ jQuery(document).ready(function (e) {
 		}
 	});
 		
-	jQuery('body').on('scroll', function(){
-		alert(1)
-	});
-
 
 });
 
