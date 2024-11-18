@@ -402,7 +402,7 @@ class ForumController extends CustomController
 				'items' => $paginate['items'],
 				'count' => $paginate['count'],
 				'specializations' => $this->specsRepo->get_root(),
-				'doctors' => $this->doctorRepo->getHome(3),
+				'doctors' => $this->doctorRepo->getHome(1),
 				'blog' => $this->blogRepo->getFront(3),
 				'pages' => array_fill(0,$pages,[]),
 				'currentPage' => $currentPage,
