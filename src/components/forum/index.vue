@@ -85,7 +85,7 @@
                                 <!--begin::status-list-->
                                 <div class="d-flex align-items-center mb-10 gap-2 " v-for="statusItem in statusList">
                                     <!--begin::Icon-->
-                                    <vue-feather  :type="statusItem.icon"></vue-feather>
+                                    <vue-feather class="w-6 pb-2" :type="statusItem.icon"></vue-feather>
                                     <!--end::Icon-->
 
                                     <!--begin::Info-->
