@@ -145,6 +145,10 @@ class ForumRepository
 			{
 				switch ($params['sort_by']) {
 					case 'best':
+						$model = $model->withCount('comments')->orderBy('views_sum_times','DESC')->orderBy('comments_count','DESC');
+						break;
+
+					case 'trending':
 						$model = $model->orderBy('views_sum_times','DESC');
 						break;
 						
