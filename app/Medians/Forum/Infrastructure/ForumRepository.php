@@ -117,6 +117,17 @@ class ForumRepository
 	}
  
 	
+	public function similar($model, $limit = 3)
+	{
+		$title = str_replace([' ','-'], '%', $model->subject);
+
+		return Forum::where('subject', 'LIKE', '%'.$title.'%')
+		->where('id', '!=', $model->id)
+		->where('status', 'on')
+		->with('category','doctor','comments')->limit($limit)->inRandomOrder()->get();
+	}
+
+
 	/**
 	 * Load items with filters
 	 */
