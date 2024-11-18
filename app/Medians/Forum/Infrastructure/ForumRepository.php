@@ -241,8 +241,6 @@ class ForumRepository
 
 		$Model = new ForumComment();
 
-		$data['user_type'] = User::class;
-		
 		foreach ($data as $key => $value) 
 		{
 			if (in_array($key, $Model->getFields()))
@@ -253,6 +251,24 @@ class ForumRepository
 		
 		// Return the  object with the new data
     	$Object = ForumComment::create($dataArray);
+    	// $Object = ForumComment::firstOrCreate($dataArray);
+
+    	return $Object;
+    }
+    	
+	
+
+	/**
+	* Save Comment from Admin / Agent
+	*/
+	public function updateCommentStatus($data) 
+	{
+
+		$Object = ForumComment::find($data['id']);
+
+		// Return the  object with the new data
+    	$update = $Object->update($data);
+    	// $Object = ForumComment::firstOrCreate($dataArray);
 
     	return $Object;
     }

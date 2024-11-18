@@ -123,4 +123,11 @@ class FrontendController extends CustomController
 
 		// echo (new \config\APP)->redirect($_SERVER['HTTP_REFERER']);
 	}
+	
+
+	public function storeCustomerComment() 
+	{
+		$forumController = new Forum\Application\ForumController;	
+		return $forumController->storeCustomerComment();
+	}
 }	

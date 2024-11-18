@@ -385,6 +385,10 @@ class APIController extends CustomController
 			case 'Forum.update':
 				$controller = new Forum\Application\ForumController; 
 				break;
+
+			case 'ForumComment.update':
+				return (new Forum\Application\ForumController())->updateCommentStatus();
+				break;
 			
 		}
 

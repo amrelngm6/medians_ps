@@ -289,6 +289,42 @@ class ForumController extends CustomController
 
 	
 	
+	public function storeCustomerComment() 
+	{
+		$params = $this->app->params();
+
+        try {	
+			
+            $returnData = (!empty($this->repo->storeUserComment($params))) 
+            ? array('success'=>1, 'result'=>translate('Added'))
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+        } catch (Exception $e) {
+        	return array('error'=>$e->getMessage());
+        }
+
+		return $returnData;
+	}
+	
+	public function updateCommentStatus() 
+	{
+		$params = $this->app->params();
+
+        try {	
+			
+            $returnData = (!empty($this->repo->updateCommentStatus($params))) 
+            ? array('success'=>1, 'result'=>translate('Added'))
+            : array('success'=>0, 'result'=>'Error', 'error'=>1);
+
+        } catch (Exception $e) {
+        	return array('error'=>$e->getMessage());
+        }
+
+		return $returnData;
+	}
+
+	
+	
 
 
 	

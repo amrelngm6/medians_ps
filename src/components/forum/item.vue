@@ -76,6 +76,13 @@
                                                             <h5 class="fs-13 flex gap-2"><span
                                                                     v-text="comment.user_name"></span>
                                                                 <small class="text-muted" v-text="comment.date"></small>
+                                                                
+                                                                <div class="py-4 flex gap gap-2 cursor-pointer" >
+                                                                    <span :class="comment.status == 'on' ? 'bg-gray-200' : 'bg-red-400'" class="mx-2 mt-1 bg-red-400 block h-4 relative rounded-full w-8" style="direction: ltr;" ><a class="absolute bg-white block h-4 relative right-0 rounded-full w-4" :style="{left: item[column.key] ? '16px' : 0}"></a></span>
+                                                                    <span  v-text="comment.status == 'on' ? translate('Active') : translate('Pending')" v-if="!column.hide_text" class=" font-semibold inline-flex items-center px-2 py-1 rounded-full text-xs font-medium "></span>
+                                                                    <input :value="''" :checked="comment.status == 'on' ? false : true" @change="setCommentStatus(comment)"  type="checkbox" class="hidden" />
+                                                                </div>
+                                                                
                                                             </h5>
                                                             <p class="text-muted" v-text="comment.content"></p>
                                                         </div>
@@ -235,6 +242,17 @@ export default
                 params.append('type', 'HelpMessage.close')
                 params.append('params[message_id]', props.item.message_id)
                 params.append('params[status]', 'completed')
+                handleRequest(params, '/api/update').then(response => {
+                    showAlert(response.result)
+                })
+            }
+
+            const setCommentStatus = (comment) => {
+
+                var params = new URLSearchParams();
+                params.append('type', 'ForumComment.update')
+                params.append('params[id]', comment.id)
+                params.append('params[status]', comment.status ?? 0)
                 handleRequest(params, '/api/update').then(response => {
                     showAlert(response.result)
                 })
