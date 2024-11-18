@@ -153,12 +153,6 @@ export default
                 activeStatus.value = option
             }
 
-            const showDetails = (item) => {
-                showEditSide.value = true;
-                activeItem.value = item;
-            }
-
-
             /**
              * Handle actions from datatable buttons
              * Called From 'dataTableActions' component
@@ -197,7 +191,6 @@ export default
                 activeItem,
                 closeMessage,
                 switchStatus,
-                showDetails,
                 showAddSide,
                 showEditSide,
                 activeStatus,
