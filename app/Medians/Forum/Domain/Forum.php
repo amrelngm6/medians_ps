@@ -68,7 +68,7 @@ class Forum extends CustomModel
 
 	public function category()
 	{
-		return $this->hasOne(Category::class, 'category_id', 'category_id');
+		return $this->hasOne(Specialization::class, 'id', 'category_id');
 	}
 
 	public function doctor()
