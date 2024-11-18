@@ -372,6 +372,7 @@ class ForumController extends CustomController
 		        'offers' => $this->offersRepo->random(1),
 		        'stories' => $this->storiesRepo->random(1),
 				'specializations' => $this->specsRepo->get_root(),
+				'doctors' => $this->doctorRepo->getHome(1),
 				'noindex' => (count(array_filter(explode('/', $_SERVER['REQUEST_URI']))) > 1) ? true : false
 
 		    ]);
