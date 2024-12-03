@@ -503,6 +503,7 @@ class PageController extends CustomController
 			return $this->handlePageObject($pageContent);
            
 		} catch (\Exception $e) {
+			print_r($pageContent);
 			throw new \Exception($e->getMessage(), 1);
 		}
     }
