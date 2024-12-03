@@ -61,7 +61,7 @@ class BuilderController extends CustomController
 			(empty($check->content)) ? $this->handleMissingContent($type, $itemId, $lang) : null;
 
 			return render('views/admin/builder/index.html.twig', [
-				'page' => $check->lang_content ?? $item, 
+				'page' => $item ?? $check->lang_content, 
 				'item' => $check,
 				'current_lang' => $lang,
 				'isEmpty' => $item->content == null,
