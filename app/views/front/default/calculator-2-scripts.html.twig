@@ -3,19 +3,13 @@
 const today = (new Date()).toLocaleDateString();
 const dateInput = document.getElementById("lastPeriodDate");
 const dueDateInput = document.getElementById("dueDate");
-const activeWeek = document.getElementById("activeWeek");
 const cycleLength = document.getElementById('cycleLength');
-const slider = document.getElementById("animationSlider");
-const scaleSlider = document.getElementById("scaleSlider");
 
 initCalculator()
 
 // Once the date changed
 dateInput.addEventListener("change", handleDate);
 cycleLength.addEventListener("change", handleDate);
-scaleSlider.addEventListener("input", (event) => {
-	handleScaleChangeScale(event.target.value);
-});
 
 
 
@@ -28,20 +22,14 @@ function initCalculator ()
     const ovulationDate = new Date(lastPeriod);
     ovulationDate.setDate(lastPeriod.getDate() + (cycleLength.value - 14));
 
-    // Calculate estimated due date (40 weeks from last period)
-    const dueDate = new Date(lastPeriod);
-    const adjustedDueDate = 280 - (cycleLength.value - 28); // Adjusting due date based on cycle length
-    dueDate.setDate(lastPeriod.getDate() + adjustedDueDate);
-    
-    dueDateInput.value = dueDate.toLocaleDateString() 
+    dueDateInput.value = ovulationDate.toLocaleDateString() 
+
+    customDate(lastPeriod, dueDateInput)
 
 
-
-    const dd = daysUntil(dueDate);
+    const dd = daysUntil(ovulationDate);
     const daysText = dd > 0 ? dd : 7;
-    scaleSlider.value = (252 - parseInt(daysText))
     handleDateText()
-    handleScaleChangeScale((252 - parseInt(daysText)))
 }
 
 
@@ -75,9 +63,27 @@ function handleDateText()
 }
 
 
-function customDate () {
-        
+function customDate (start , end) {
+    
+    const lmpDate = new Date(start);
+
+    // Add 260 days (40 weeks) to estimate the due date
+    const estimatedDueDate = new Date(start);
+
+    // Find the start of the birth week (previous Monday)
+    const startOfBirthWeek = new Date(estimatedDueDate);
+    startOfBirthWeek.setDate(estimatedDueDate.getDate() - estimatedDueDate.getDay() + 1); // Monday
+
+    // Find the end of the birth week (Sunday)
+    const endOfBirthWeek = new Date(startOfBirthWeek);
+    endOfBirthWeek.setDate(startOfBirthWeek.getDate() + 6); // Sunday
+
+    // Format the result for readability
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const startWeekFormatted = startOfBirthWeek.toLocaleDateString(undefined, options);
+    const endWeekFormatted = endOfBirthWeek.toLocaleDateString(undefined, options);
+    
+    
     var i = 0;
     const date = new Date(dateInput.value);
     const endDate = new Date(dateInput.value);
@@ -85,9 +91,10 @@ function customDate () {
         i++;
         date.setDate(date.getDate() + 7)
         endDate.setDate(date.getDate() + 7)
-        jQuery('#week-date-'+i).html(date.toLocaleDateString(undefined, options) +" - "+ endDate.toLocaleDateString(undefined, options))
+        jQuery('#week-date-'+i).html(date.toLocaleDateString(undefined, options) +" "+ endDate.toLocaleDateString(undefined, options))
     }
 
+    return {start: startWeekFormatted, end: endWeekFormatted}
 }
  
 function daysUntil(date) {
@@ -110,16 +117,9 @@ function daysUntil(date) {
     return daysDiff;
 }
 
-function setProgress(num) {
-	scaleSlider.value = num;
-	handleScaleChangeScale(num);
-
-}
-
 function handleDate() {
     localStorage.setItem("savedlastPeriodDate", dateInput.value);
     initCalculator()
-    customDate()
     jQuery('#estimated-date').removeClass('hidden')
 }
 
@@ -129,39 +129,10 @@ function weeksBetween(d1, d2) {
 
 
 
-// Function to handle slider change
-function handleScaleChangeScale(val) {
-    activeWeek.value =  parseInt((val - (cycleLength.value - 28 )) / 7) + 4
-    jQuery('.accordion').addClass('hidden')
-    jQuery('#accordion-'+activeWeek.value).removeClass('hidden')
-	const animations = document.querySelectorAll("#babyProgression animate");
-    const percentage = val / 252;
 
-	// Change baby animations
-	animations.forEach((animation) => {
-		const duration = parseFloat(animation.getAttribute("dur")) || 50;
-		// Calculate the target time
-		let targetTime = duration * percentage;
-		if (targetTime == 0) {
-			targetTime = 0.01;
-		}
-		if (targetTime == 100) {
-			targetTime = 99.9;
-		}
-		console.log(targetTime)
-		if (targetTime < 1 )
-		{
-			jQuery('path.head,path.bodyHead,path.body,path.arm,path.eyeEar').addClass('hidden')
-		} else {
-			jQuery('path.head,path.bodyHead,path.body,path.arm,path.eyeEar').removeClass('hidden')
-		}
-		// Set the current time of the animation
-		animation.ownerSVGElement.setCurrentTime(targetTime);
-		// Freeze the animation
-		animation.beginElementAt(-targetTime);
-		animation.ownerSVGElement.pauseAnimations();
-	});
-    
-}
+
+
+
+
 
 </script>
