@@ -51,11 +51,11 @@
                                 </div>
                                 <span class="flex absolute pt-2" :style="'left: '+((20 * (item.images.length < 3 ? item.images.length : 3) ) + 20)+'px'"> <span class="font-semibold  px-1" v-if="item.images" v-text="item.images.length"></span></span>
                             </div>
-                        </template>
+                        </template> 
 
 
                         <template #item-short_code="item">
-                            <span>[plugin_shortcode id='{{ item.id }}'  ]</span>
+                            <span>[--@plugin=content --@id={{ item.id }} --]</span>
                         </template>
                         <template #item-path="item">
                             <a v-if="item.lang_content" :href="conf.url+item.lang_content.prefix" target="_blank" class="w-8 h-8 rounded-full" v-text="item.lang_content.prefix" ></a>
