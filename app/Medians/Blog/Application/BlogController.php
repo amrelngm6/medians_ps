@@ -51,7 +51,7 @@ class BlogController extends CustomController
 	public function columns( ) 
 	{
 		return [
-            [ 'value'=> "id", 'text'=> "#"],
+            [ 'value'=> "id", 'text'=> "#", 'sortable'=> true ],
             [ 'value'=> "content.title", 'text'=> translate('Title'), 'sortable'=> true ],
             [ 'value'=> "category.name", 'text'=> translate('Category'), 'sortable'=> true ],
             [ 'value'=> "builder", 'text'=> translate('Page Builder'), 'sortable'=> true ],
