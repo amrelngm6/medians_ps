@@ -157,7 +157,7 @@ class ForumController extends CustomController
 	}
 
 
-	public function store() 
+	public function saveNew() 
 	{
 
 		$params = $this->app->request()->get('params');
