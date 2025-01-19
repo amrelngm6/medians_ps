@@ -14,6 +14,7 @@ initCalculator()
 dateInput.addEventListener("change", handleDate);
 cycleLength.addEventListener("change", handleDate);
 scaleSlider.addEventListener("input", (event) => {
+    jQuery('#babyProgressionParent').removeClass('hidden')
 	handleScaleChangeScale(event.target.value);
 });
 
@@ -21,7 +22,6 @@ scaleSlider.addEventListener("input", (event) => {
 
 function initCalculator ()
 {
-    
     const lastPeriod = new Date(dateInput.value);
 
     // Calculate estimated ovulation date (14 days after the last period)
@@ -47,8 +47,7 @@ function initCalculator ()
 
 
 function handleDateText()
-{
-    
+{    
     const lmpDate = new Date(dateInput.value);
 
     // Add 260 days (40 weeks) to estimate the due date
@@ -119,8 +118,10 @@ function setProgress(num) {
 function handleDate() {
     localStorage.setItem("savedlastPeriodDate", dateInput.value);
     initCalculator()
+    handleScaleChangeScale(scaleSlider.value)
     customDate()
     jQuery('#estimated-date').removeClass('hidden')
+    jQuery('#babyProgressionParent').removeClass('hidden')
 }
 
 function weeksBetween(d1, d2) {
@@ -148,7 +149,6 @@ function handleScaleChangeScale(val) {
 		if (targetTime == 100) {
 			targetTime = 99.9;
 		}
-		console.log(targetTime)
 		if (targetTime < 1 )
 		{
 			jQuery('path.head,path.bodyHead,path.body,path.arm,path.eyeEar').addClass('hidden')
