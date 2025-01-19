@@ -39,7 +39,7 @@ RouteHandler::get('/bookings/(:all)', \Medians\Bookings\Application\BookingContr
 RouteHandler::post('/submit/(:all)', \Medians\FrontendController::class.'@form_submit'); 
 RouteHandler::post('/submit_forum_comment', \Medians\FrontendController::class.'@storeCustomerComment'); 
 
-RouteHandler::post('/forum/store', \Medians\Forum\Application\ForumController::class.'@store'); 
+RouteHandler::post('/forum_store', \Medians\Forum\Application\ForumController::class.'@store'); 
 
 RouteHandler::get('/blog', \Medians\Blog\Application\BlogController::class.'@list'); 
 RouteHandler::get('/blog/', \Medians\Blog\Application\BlogController::class.'@list'); 
