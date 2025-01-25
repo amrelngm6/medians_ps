@@ -100,7 +100,7 @@
                             <form action="/api/update" method="POST" data-refresh="1" id="post-reply-form"
                                 class="action my-2 rounded-lg  pb-2">
                                 <input name="type" type="hidden" value="Forum.update">
-                                <input name="params[item_id]" type="hidden" :value="item.id">
+                                <input name="params[id]" type="hidden" :value="item.id">
 
                                 <div class="row g-3">
                                     <div class="col-lg-12">
