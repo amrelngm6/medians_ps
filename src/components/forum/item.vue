@@ -106,9 +106,9 @@
                                 <div class="row g-3">
                                     <div class="col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label fs-1 fw-bold" v-text="translate('Doctor Reply')"></label>
-                                        <textarea name="params[reply]" class="border border-gray-400 form-control bg-light border-light"
-                                            id="exampleFormControlTextarea1" rows="3" v-model="item.relpy" :placeholder="translate('Doctor Reply in details')"></textarea>
-                                        <form_field :column='{column_type: "editor", key: "reply"}' :model="item"  :item="item" :conf="conf"></form_field>
+                                        <!-- <textarea name="params[reply]" class="border border-gray-400 form-control bg-light border-light"
+                                            id="exampleFormControlTextarea1" rows="3" v-model="item.relpy" :placeholder="translate('Doctor Reply in details')"></textarea> -->
+                                        <form_field @callback="handleReply" :column='{column_type: "editor", key: "reply"}' :model="item"  :item="item" :conf="conf"></form_field>
 
                                     </div>
                                     <div class="col-lg-12 text-end mt-4">
@@ -290,7 +290,12 @@ export default
                 })
             }
 
+            const handleReply = (model) => {
+                item.value = model.value;
+            }
+
             return {
+                handleReply,
                 showCommentForm,
                 setCommentStatus,
                 translate,
