@@ -101,6 +101,7 @@
                                 class="action my-2 rounded-lg  pb-2">
                                 <input name="type" type="hidden" value="Forum.update">
                                 <input name="params[id]" type="hidden" :value="item.id">
+                                <input name="params[status]" type="hidden" :value="item.status">
 
                                 <div class="row g-3">
                                     <div class="col-lg-12">
