@@ -107,7 +107,9 @@
                                     <div class="col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label fs-1 fw-bold" v-text="translate('Doctor Reply')"></label>
                                         <textarea name="params[reply]" class="border border-gray-400 form-control bg-light border-light"
-                                            id="exampleFormControlTextarea1" rows="3" v-model="item.relpy" placeholder="Enter comments"></textarea>
+                                            id="exampleFormControlTextarea1" rows="3" v-model="item.relpy" :placeholder="translate('Doctor Reply in details')"></textarea>
+                                        <form_field :column='{column_type: "editor", key: "reply"}' :model="item"  :item="item" :conf="conf"></form_field>
+
                                     </div>
                                     <div class="col-lg-12 text-end mt-4">
                                         <button type="submit" class="btn btn-primary" v-text="translate('Send')"></button>
@@ -245,10 +247,14 @@
 <script>
 import { translate, handleGetRequest, handleRequest, showAlert } from '@/utils.vue';
 
+const form_field = defineAsyncComponent(() =>
+  import('@/components/includes/form_field.vue')
+);
+
 export default
     {
         components: {
-            translate
+            form_field,
         },
         emits: ['callback'],
         setup(props, { emit }) {
