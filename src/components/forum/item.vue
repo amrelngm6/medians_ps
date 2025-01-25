@@ -245,7 +245,8 @@
     </div>
 </template>
 <script>
-import { translate, handleGetRequest, defineAsyncComponent, handleRequest, showAlert } from '@/utils.vue';
+import { defineAsyncComponent } from 'vue';
+import { translate, handleGetRequest, handleRequest, showAlert } from '@/utils.vue';
 
 const form_field = defineAsyncComponent(() =>
   import('@/components/includes/form_field.vue')
