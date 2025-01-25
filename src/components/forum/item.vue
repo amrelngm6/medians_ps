@@ -95,7 +95,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="/api/create" method="POST" data-refresh="1" id="add-comment-form"
+
+                            
+                            <form action="/api/update" method="POST" data-refresh="1" id="post-reply-form"
+                                class="action my-2 rounded-lg  pb-2">
+                                <input name="type" type="hidden" value="Forum.update">
+                                <input name="params[item_id]" type="hidden" :value="item.id">
+
+                                <div class="row g-3">
+                                    <div class="col-lg-12">
+                                        <label for="exampleFormControlTextarea1" class="form-label" v-text="translate('Doctor Reply')"></label>
+                                        <textarea name="params[content]" class="form-control bg-light border-light"
+                                            id="exampleFormControlTextarea1" rows="3" placeholder="Enter comments"></textarea>
+                                    </div>
+                                    <div class="col-lg-12 text-end mt-4">
+                                        <button type="submit" class="btn btn-primary" v-text="translate('Send')"></button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form action="/api/create" method="POST" data-refresh="1" id="add-comment-form"  v-if="showCommentForm"
                                 class="action my-2 rounded-lg  pb-2">
                                 <input name="type" type="hidden" value="ForumComment.create">
                                 <input name="params[item_id]" type="hidden" :value="item.id">
@@ -233,6 +252,8 @@ export default
         emits: ['callback'],
         setup(props, { emit }) {
 
+            const showCommentForm = null;
+
             const close = () => {
 
                 if (!window.confirm(translate('confirm_close_ticket'))) {
@@ -262,6 +283,7 @@ export default
             }
 
             return {
+                showCommentForm,
                 setCommentStatus,
                 translate,
                 emit,

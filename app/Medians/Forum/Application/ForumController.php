@@ -197,10 +197,8 @@ class ForumController extends CustomController
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
             }
         
-
         } catch (\Exception $e) {
         	throw new \Exception("Error Processing Request", 1);
-        	
         }
 
 	}
@@ -297,7 +295,7 @@ class ForumController extends CustomController
         try {	
 			
             $returnData = (!empty($this->repo->storeUserComment($params))) 
-            ? array('success'=>1, 'result'=>translate('Added'))
+            ? array('success'=>1, 'title'=>translate('Added'), 'result'=> translate('It will be published after review'))
             : array('success'=>0, 'result'=>'Error', 'error'=>1);
 
         } catch (Exception $e) {

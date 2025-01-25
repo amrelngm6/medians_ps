@@ -20,6 +20,7 @@ class Forum extends CustomModel
 	public $fillable = [
 		'subject', 
 		'content', 
+		'reply', 
 		'doctor_id', 
 		'category_id', 
 		'customer_name', 

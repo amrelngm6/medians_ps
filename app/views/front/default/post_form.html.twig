@@ -64,7 +64,7 @@
                 </dl>
             </div>
             
-            <p class="p-2 px-6">{{lang.translate('SELECT_REPLY_PLATFORM')}}</p>
+            {# <p class="p-2 px-6">{{lang.translate('SELECT_REPLY_PLATFORM')}}</p>
             <div class="px-4 py-3 text-right sm:px-6">
                 <div class=" flex justify-center items-center gap gap-3">
                     <label for="whatsapp_contact" onclick="(function(){  jQuery('.whatspp-label').find('img').toggleClass('border-purple-600'); jQuery('#whatsapp_contact').attr('checked', !jQuery('#whatsapp_contact').attr('checked')); })();return false;" class="relative  whatspp-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
@@ -74,11 +74,13 @@
                     </label>
                     <label for="email_contact" onclick="(function(){  jQuery('.email-label').find('img').toggleClass('border-purple-600'); jQuery('#email_contact').attr('checked', !jQuery('#email_contact').attr('checked')); })();return false;" class="relative email-label inline-flex items-center mx-2 cursor-pointer bg-green-600">
                         <span class="tooltiptext text-sm">{{lang.translate('Email')}}</span>
-                        <input id="email_contact" type="checkbox" class="hidden" name="params[email_contact]" value="email">
                         <img loading="lazy" src="/src/front_assets/svg/mail.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">
                     </label>
                 </div>
-            </div>
+            </div> #}
+            
+            <p class="p-2 px-6">{{lang.translate('You will receive reply notifications by Email')}}</p>
+            <input id="email_contact" type="checkbox" class="hidden" name="params[email_contact]" checked value="email">
             
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

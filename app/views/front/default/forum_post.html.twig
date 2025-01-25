@@ -90,6 +90,7 @@
                 </div>
                 {% else %}                
                 {% for comment in item.comments %}
+                {% if comment.status == 'on' %}                
                 <div class="w-full rounded-lg shadow-md p-4 mt-10 ">
                     <div class="w-full flex">   
                         <h6 class="w-full">{{lang.translate('Sent by')}} : {{comment.user_name}}</h6>
@@ -97,6 +98,7 @@
                     </div>
                     <p>{{ comment.content}}</p>
                 </div>
+                {% endif %}                
                 {% endfor %}                
                 {% endif %}                
             </div>
@@ -112,32 +114,9 @@
                                 <dd class="w-full mt-1  text-gray-900 sm:mt-0 ">
                                     <p>{{lang.translate('Name')}}</p>
                                     <input required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="{{lang.translate('ENTER_FULLNAME')}}" name="params[user_name]">
+                                    <input type="checkbox" class="hidden" checked name="params[email_contact]" value="email">
                                 </dt>
-                                <dd class="w-full mt-1  text-gray-900 sm:mt-0 ">
-                                    {# <p>{{lang.translate('Name')}}</p> #}
-                                    <p class="">{{lang.translate('يرجي اختيار طريقة استلام الاشعارات عند الرد علي تعليقك')}}</p>
-                                    <div class="lg:px-0 text-right sm:px-6">
-                                        <div class=" flex  gap gap-5">
-                                            <label onclick="(function(){ return jQuery('.whatspp-label').find('img').toggleClass('border-purple-600'); })();return false;" class="relative  whatspp-label inline-flex items-center  cursor-pointer bg-green-600">
-                                                <span class="tooltiptext text-sm">WhatsAPP</span>
-                                                <input type="checkbox" class="hidden" name="params[whatsapp_contact]" value="whatsapp">
-                                                <img loading="lazy" src="/src/front_assets/svg/whatsapp.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">
-                                            </label>
-                                            <label onclick="(function(){ return jQuery('.email-label').find('img').toggleClass('border-purple-600'); })();return false;" class="relative email-label inline-flex items-center cursor-pointer bg-green-600">
-                                                <span class="tooltiptext text-sm">{{lang.translate('Email')}}</span>
-                                                <input type="checkbox" class="hidden" name="params[email_contact]" value="email">
-                                                <img loading="lazy" src="/src/front_assets/svg/mail.svg" class="border hover:border-gray-400  p-2" width="50" height="50" alt="whatsapp">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </dt>
-                            </div>
-                            <div class="lg:px-0  gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
-                            
-                                <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
-                                    <p>{{lang.translate('Email')}}</p>
-                                    <input type="email" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="text" placeholder="{{lang.translate('ENTER_Email')}}" name="params[user_email]">
-                                </dt>
+                                
                                 <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
                                     <p>{{lang.translate('Mobile')}}</p>
                                     <div class="flex ltr">
@@ -146,6 +125,17 @@
                                         <input required="" maxlength="11" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-mobile" type="tel" placeholder="{{lang.translate('Mobile number')}}" name="params[user_phone]">
                                     </div>
                                 </dd>
+                            </div>
+                            <div class="lg:px-0  gap-6 sm:flex sm:items-center sm:justify-between sm:py-4 sm:px-6">
+                            
+                                <dd class="w-full mt-1 text-sm text-gray-900 sm:mt-0 ">
+                                    <p>{{lang.translate('Email')}}</p>
+                                    <input type="email" required class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="text" placeholder="{{lang.translate('ENTER_Email')}}" name="params[user_email]">
+                                </dt>
+                            
+                                <dd class="w-full mt-10 text-sm text-gray-900  ">
+                                    <p>{{lang.translate('You will receive reply notifications by Email')}}</p>
+                                </dt>
                             </div>
                             <div class="lg:px-0  sm:py-4 sm:px-6">
                             
