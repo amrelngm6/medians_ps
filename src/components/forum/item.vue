@@ -104,8 +104,8 @@
 
                                 <div class="row g-3">
                                     <div class="col-lg-12">
-                                        <label for="exampleFormControlTextarea1" class="form-label" v-text="translate('Doctor Reply')"></label>
-                                        <textarea name="params[content]" class="form-control bg-light border-light"
+                                        <label for="exampleFormControlTextarea1" class="form-label fs-1 fw-bold" v-text="translate('Doctor Reply')"></label>
+                                        <textarea name="params[content]" class="border border-gray-400 form-control bg-light border-light"
                                             id="exampleFormControlTextarea1" rows="3" placeholder="Enter comments"></textarea>
                                     </div>
                                     <div class="col-lg-12 text-end mt-4">
