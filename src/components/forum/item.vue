@@ -107,7 +107,7 @@
                                     <div class="col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label fs-1 fw-bold" v-text="translate('Doctor Reply')"></label>
                                         <textarea name="params[reply]" class="border border-gray-400 form-control bg-light border-light"
-                                            id="exampleFormControlTextarea1" rows="3" placeholder="Enter comments"></textarea>
+                                            id="exampleFormControlTextarea1" rows="3" v-model="item.relpy" placeholder="Enter comments"></textarea>
                                     </div>
                                     <div class="col-lg-12 text-end mt-4">
                                         <button type="submit" class="btn btn-primary" v-text="translate('Send')"></button>
