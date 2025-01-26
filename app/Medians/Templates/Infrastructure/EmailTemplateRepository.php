@@ -133,9 +133,13 @@ class EmailTemplateRepository
 		$fields['item_type'] = EmailTemplate::class;	
 		$fields['item_id'] = $template_id;	
 		$fields['content'] = $content;	
-		$fields['lang'] = 'en';	
+		$fields['lang'] = 'english';	
 		
 		$Model = Content::firstOrCreate($fields);
+		
+		$fields['lang'] = 'arabic';	
+		$Model = Content::firstOrCreate($fields);
+
 
 		return $Model;
 	}
