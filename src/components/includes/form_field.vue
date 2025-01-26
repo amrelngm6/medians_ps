@@ -42,6 +42,7 @@
 
         <ckeditor v-model="item[column.key]" v-if="column.column_type == 'editor'"
                 :editor="editor" :config="editorConfig" />
+        <textarea :name="handleName(column)"  style="display: none;" v-model="item[column.key]" v-if="column.column_type == 'editor'"></textarea>
 
     </div>
 </template>
