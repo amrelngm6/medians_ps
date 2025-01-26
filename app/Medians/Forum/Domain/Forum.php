@@ -32,7 +32,7 @@ class Forum extends CustomModel
 	];
 
 
-	public $appends = ['title','category_name','date', 'update_date'];
+	public $appends = ['title','category_name','date', 'update_date', 'email', 'name', 'phone'];
 
 
 
