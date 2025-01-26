@@ -83,7 +83,7 @@ class MailService
 
 	public function sendWithMedians()
 	{
-		
+
 		$url = 'https://stream.mediansai.com/bedaya-sender.php'; // Replace with the PHP file URL
 		$data = [
 			'token' => 'bedaya-amr',
@@ -103,13 +103,6 @@ class MailService
 
 		// Execute the request and fetch response
 		$response = curl_exec($ch);
-
-		// Check for errors
-		if ($response === false) {
-			echo 'cURL Error: ' . curl_error($ch);
-		} else {
-			echo 'Response: ' . $response;
-		}
 
 		// Close cURL
 		curl_close($ch);
