@@ -60,12 +60,6 @@
                             <img :src="item.logo" class="w-8 h-8 rounded-full" />
                         </template>
 
-                        <template #item-business="item">
-                            <div class="flex gap-2" v-if="item.business" >
-                                <img :src="item.business.logo" class="w-8 h-8 rounded-full" />
-                                <span class="py-2" v-text="item.business.business_name"></span>
-                            </div>
-                        </template>
 
                         <template #item-item="item">
                             <div class="flex gap-2" v-if="item.item" >
@@ -96,13 +90,6 @@
                             
                         </template>
 
-
-                        <template #item-builder="item">
-                            <button class="p-2  hover:text-gray-600 text-purple" @click="handleAction('builder', item)">
-                                <vue-feather class="w-5" type="edit-3"></vue-feather>
-                            </button>
-                        </template>
-
                         <template #item-edit="item">
                             <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('edit', item)">
                                 <vue-feather class="w-5" type="edit"></vue-feather>
@@ -118,9 +105,9 @@
                 
             </main>
             
-            <side_form_create ref="activeFormCreate" @callback="closeSide" :auth="auth" :conf="conf" :model="(content.object_name ?? object_name)+'.create'" v-if="showAddSide && !showEditSide" :columns="content.fillable"  class="col-md-3" />
+            <side_form_create ref="activeFormCreate" @callback="closeSide" :auth="auth" :conf="conf" :model="(content.object_name ?? object_name)+'.create'" v-if="showAddSide && !showEditSide" :columns="content.fillable"  />
         
-            <side-form-update ref="activeFormUpdate" @callback="closeSide" :key="activeItem" :auth="auth" :conf="conf" :model="(content.object_name ?? object_name)+'.update'" v-if="showEditSide && !showAddSide" :item="activeItem" :model_id="activeItem[object_key]" :index="object_key"  :columns="content.fillable"  class="col-md-3" />
+            <side-form-update ref="activeFormUpdate" @callback="closeSide" :key="activeItem" :auth="auth" :conf="conf" :model="(content.object_name ?? object_name)+'.update'" v-if="showEditSide && !showAddSide" :item="activeItem" :model_id="activeItem[object_key]" :index="object_key"  :columns="content.fillable"  />
         </div> 
     </div>
 </template>
@@ -208,11 +195,6 @@ export default
                     showEditSide.value = true; 
                     break;  
 
-                case 'builder':
-                    var key = content.value.object_key ?? props.object_key ;
-                    var name = content.value.object_name ?? props.object_name ;
-                    window.open(props.conf.url+'admin/builder?lang='+((data.content ? data.content.lang : null) ?? props.langs[0].language_code)+'&item_type='+name+'&item_id='+(data[key] ?? 0), '_blank').focus();
-                    break;  
 
                 case 'delete':
                     var name = content.value.object_name ?? props.object_name ;

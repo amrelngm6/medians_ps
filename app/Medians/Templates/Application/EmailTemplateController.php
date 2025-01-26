@@ -35,7 +35,7 @@ class EmailTemplateController extends CustomController
             [ 'value'=> "template_id", 'text'=> "#"],
             [ 'value'=> "title", 'text'=> translate('Title'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('Status'), 'sortable'=> true ],
-			[ 'value'=> 'details', 'text'=>translate('Details')],
+			[ 'value'=> 'edit', 'text'=>translate('Edit')],
 			['value'=>'delete', 'text'=>translate('Delete')],
         ];
 	}
@@ -52,6 +52,7 @@ class EmailTemplateController extends CustomController
 		return [
             [ 'key'=> "template_id", 'title'=> "#", 'column_type'=>'hidden'],
             [ 'key'=> "title", 'title'=> translate('Title'), 'required'=>true, 'fillable'=> true, 'column_type'=>'text' ],
+            [ 'key'=> "content", 'title'=> translate('Content'), 'required'=>true, 'fillable'=> true, 'column_type'=>'editor' ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=> true, 'column_type'=>'checkbox' ],
         ];
 	}
@@ -70,7 +71,7 @@ class EmailTemplateController extends CustomController
 		
 		try {
 			
-		    return render('email_templates', [
+		    return render('data_table', [
 		        'load_vue' => true,
 		        'title' => translate('Templates'),
 		        'columns' => $this->columns(),
@@ -96,7 +97,6 @@ class EmailTemplateController extends CustomController
         try {	
 
         	$params['created_by'] = $this->app->auth()->id;
-        	$params['content'] = $this->handleLangs($params);
 
             $returnData = (!empty($this->repo->store($params))) 
             ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
@@ -113,16 +113,15 @@ class EmailTemplateController extends CustomController
 
 	public function update()
 	{
-		$params = $this->app->params();
+		$params = $this->app->request()->get('params');
 
         try {
 
         	$params['status'] = isset($params['status']) ? $params['status'] : null;
-        	$params['homepage'] = isset($params['homepage']) ? $params['homepage'] : null;
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>0);
             }
         
 
@@ -155,26 +154,8 @@ class EmailTemplateController extends CustomController
 
 	public function validate($params) 
 	{
-		if (empty($params['content']['en']['title']))
-		{
-        	throw new \Exception(json_encode(array('result'=>translate('NAME_EMPTY'), 'error'=>1)), 1);
-		}
 	}
 	
-
-	public function handleLangs($params) 
-	{
-		$langsRepo = new \Medians\Languages\Infrastructure\LanguageRepository();
-		$langs = $langsRepo->getActive();
-		$fields = [];
-		foreach ($langs as $row) 
-		{
-			$fields[$row->language_code] = ["title"=> $params['title']];
-		}
-		return $fields;	
-	}
-
-
 
     
     
