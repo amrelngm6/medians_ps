@@ -356,8 +356,7 @@ class ForumController extends CustomController
 			
 			$item = $this->repo->find($id);
 
-			if (empty($item))
-			{
+			if (empty($item) || empty($item->status)) {
 				return errorPage('Post not found');
 			}
 			

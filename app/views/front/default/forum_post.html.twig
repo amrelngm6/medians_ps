@@ -59,6 +59,11 @@
                 <div class="w-full pt-1 text-xl font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.title}}</div>
 
 			</div>
+            <div class="w-full rounded-lg shadow-md p-4 pt-10 ">
+                {{item.content|nl2br}}
+            </div>
+            
+            {% if item.doctor.id %}
 			<div class="flex w-full">
 				<div class="w-full justify-start items-center gap-2 inline-flex">
 					<a href="/{{item.doctor.content.prefix}}"  class=" relative flex">
@@ -72,14 +77,13 @@
 							<div class=" text-sm  pt-1 font-normal leading-none text-gray-800">{{lang.translate('Answered by')}}</div>
 						</div>
 					</div>
-
 				</div>
-                
 			</div>
-            <div class="w-full rounded-lg shadow-md p-4 pt-10 ">
-                <p>{{item.content}}</p>
-            </div>
-
+            
+            <div class="w-full pt-8 px-8 bg-blue-100 rounded-2xl ">
+                {{item.reply|raw}}
+			</div>
+            {% endif %}
             <div class="w-full ">
 
                 <h4 class="pt-4 text-lg w-full flex gap-2"><span class="flex-none">{{lang.translate('Comments')}}</span> <hr class="w-full mt-4 border-blue-300" /></h4> 
