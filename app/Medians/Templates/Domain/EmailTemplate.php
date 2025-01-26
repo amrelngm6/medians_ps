@@ -23,9 +23,15 @@ class EmailTemplate extends CustomModel
 		'status', 
 		'created_by', 
 	];
+	
+	public $appends = ['content'];
 
+	public function getContentAttribute()
+	{
+		return $this->email_content->content ?? '';
+	}
 
-	public function content()
+	public function email_content()
 	{
 		return $this->hasOne(Content::class, 'item_id', 'template_id')->where('item_type', EmailTemplate::class);
 	}

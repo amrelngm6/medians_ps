@@ -30,12 +30,12 @@ class EmailTemplateRepository
 
 	public function find($template_id, $prefix = null)
 	{
-		return EmailTemplate::with('content','langs_content')->find($template_id);
+		return EmailTemplate::with('email_content','langs_content')->find($template_id);
 	}
 
 	public function findByLang($template_id, $lang)
 	{
-		return EmailTemplate::with(['content'=>function ($q) use ($lang) {
+		return EmailTemplate::with(['email_content'=>function ($q) use ($lang) {
 			$q->where('lang', $lang);
 		}])->find($template_id);
 	}
@@ -43,7 +43,7 @@ class EmailTemplateRepository
 
 	public function get($limit = 100)
 	{
-		return EmailTemplate::with('content','langs_content')->limit($limit)->get();
+		return EmailTemplate::with('email_content','langs_content')->limit($limit)->get();
 	}
 
 
