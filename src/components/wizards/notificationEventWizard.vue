@@ -35,8 +35,36 @@
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                             <label v-text="fillable.model.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
-                                            <form_field @callback="(e)=> {activeItem = e}" class="flex-end" :item="activeItem" :column="fillable.model" />
+                                            <select :required="fillable.model.required" :disabled="fillable.model.disabled"  v-model="activeItem.model" :type="fillable.model.column_type" class="form-control form-control-solid"   :placeholder="fillable.model.title">
+                                                <option v-for="option in fillable.model.data" :value="option[ fillable.model.column_key ? fillable.model.column_key : fillable.model.key]" v-text="option[fillable.model.text_key]"></option>
+                                            </select>
                                             <span v-text="fillable.model.help_text" v-if="fillable.model.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <hr class="block mt-6 my-2 opacity-10" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Content'" v-text="translate('Next')"></a></p>
+                            </div>
+
+                            <div class="w-full  mx-auto" v-show="activeTab == 'Content'" :key="activeTab">
+                                <div class="card-body pt-0"  >
+                                    <div class="settings-form" >
+                                        <div class="max-w-xl mb-6 mx-auto row" >
+                                           
+                                            <label v-text="fillable.subject.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
+                                            <input :required="fillable.subject.required" autocomplete="off" v-model="activeItem.subject" :type="fillable.subject.column_type" class="form-control form-control-solid" :placeholder="fillable.subject.title">
+                                            <span v-text="fillable.subject.help_text" v-if="fillable.subject.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <hr class="block mt-6 my-2 opacity-10" />
+                                           
+                                            <label v-text="fillable.template_id.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.template_id" />
+                                            <span v-text="fillable.template_id.help_text" v-if="fillable.template_id.help_text" class="col-form-label required fw-semibold fs-5" ></span>
+                                            <hr class="block mt-6 my-2 opacity-10" />
+
+                                            <label v-text="fillable.body_text.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
+                                            <form_field class="flex-end" :item="activeItem" :column="fillable.body_text" />
+                                            <span v-text="fillable.body_text.help_text" v-if="fillable.body_text.help_text" class="col-form-label required fw-semibold fs-5" ></span>
                                             <hr class="block mt-6 my-2 opacity-10" />
 
                                         </div>
@@ -72,32 +100,6 @@
                                     </div>
                                 </div>
                                 <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
-                            </div>
-
-                            <div class="w-full  mx-auto" v-show="activeTab == 'Content'" :key="activeTab">
-                                <div class="card-body pt-0"  >
-                                    <div class="settings-form" >
-                                        <div class="max-w-xl mb-6 mx-auto row" >
-                                           
-                                            <label v-text="fillable.subject.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
-                                            <form_field class="flex-end" :item="activeItem" :column="fillable.subject" />
-                                            <span v-text="fillable.subject.help_text" v-if="fillable.subject.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <hr class="block mt-6 my-2 opacity-10" />
-                                           
-                                            <label v-text="fillable.template_id.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
-                                            <form_field class="flex-end" :item="activeItem" :column="fillable.template_id" />
-                                            <span v-text="fillable.template_id.help_text" v-if="fillable.template_id.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <hr class="block mt-6 my-2 opacity-10" />
-
-                                            <label v-text="fillable.body_text.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
-                                            <form_field class="flex-end" :item="activeItem" :column="fillable.body_text" />
-                                            <span v-text="fillable.body_text.help_text" v-if="fillable.body_text.help_text" class="col-form-label required fw-semibold fs-5" ></span>
-                                            <hr class="block mt-6 my-2 opacity-10" />
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Fields'" v-text="translate('Next')"></a></p>
                             </div>
 
                             <div class="w-full  mx-auto" v-show="activeTab == 'Confirm'" :key="activeTab">

@@ -3,7 +3,7 @@
         
         <input v-if="column && column.column_type == 'hidden'" :name="handleName(column)" :value="handleValue(column, item)" type="hidden" >
 
-        <input @change="changed(item[column.key])"  :required="column.required" :disabled="column.disabled" v-if="isInput(column.column_type)" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title" :value="handleValue(column, item)">
+        <input v-model="item[column.key]" @change="changed(item[column.key])"  :required="column.required" :disabled="column.disabled" v-if="isInput(column.column_type)" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title" :value="handleValue(column, item)">
     
         <input :required="column.required" :disabled="column.disabled" v-if="column.column_type == 'password'" autocomplete="off" :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid" :placeholder="column.title">
 
@@ -33,7 +33,7 @@
 
         <input v-if="column.multiple && column.data && column.column_type == 'select'" type="hidden" v-for="selected in  item[column.column_key]" :name="'params['+(column.column_key)+'][]'" :value="selected[column.column_key]" />
 
-        <select @change="changed(column.data[column.data.findIndex(e => e[column.key] == item[column.key])])" :required="column.required" :disabled="column.disabled" v-if="!column.multiple && column.data && column.column_type == 'select'" :value="handleValue(column, item)"  :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid"   :placeholder="column.title">
+        <select v-model="item[column.key]" @change="changed(column.data[column.data.findIndex(e => e[column.key] == item[column.key])])" :required="column.required" :disabled="column.disabled" v-if="!column.multiple && column.data && column.column_type == 'select'" :value="handleValue(column, item)"  :name="handleName(column)" :type="column.column_type" class="form-control form-control-solid"   :placeholder="column.title">
             <option value="0"  v-if="!column.required" v-text="translate('select') +' '+ column.title"></option>
             <option v-for="option in column.data" :value="option[ column.column_key ? column.column_key : column.key]" v-text="option[column.text_key]"></option>
         </select>
