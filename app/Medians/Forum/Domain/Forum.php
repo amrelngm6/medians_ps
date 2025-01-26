@@ -108,4 +108,14 @@ class Forum extends CustomModel
 
 
 
+	public function receiverAsCustomer() 
+	{
+		return $this;
+	}
+
+	public function receiverAsUser() 
+	{
+		return User::first();
+	}
+
 }

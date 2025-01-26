@@ -108,6 +108,8 @@ class NotificationEventRepository
 			'HelpMessage' => \Medians\Help\Domain\HelpMessage::class,
 			'Payment' => \Medians\Payments\Domain\Payment::class,
 			'HelpMessageComment' => \Medians\Help\Domain\HelpMessageComment::class,
+			'Forum' => \Medians\Forum\Domain\Forum::class,
+			'ForumComment' => \Medians\Forum\Domain\ForumComment::class,
 		];
 	}   
 

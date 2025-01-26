@@ -47,8 +47,8 @@ class ForumComment extends CustomModel
 	/**
 	 * Relations with onother Models
 	 */
-    public function message() {
-        return $this->hasOne(Forum::class, 'message_id', 'message_id');
+    public function post() {
+        return $this->hasOne(Forum::class, 'id', 'item_id');
     }
 
     public function user() {
@@ -63,11 +63,12 @@ class ForumComment extends CustomModel
 	
 	public function receiverAsCustomer() 
 	{
-		return $this->message->where('user_type', Customer::class)->user;
+		return $this->post;
 	}
 
 	public function receiverAsUser() 
 	{
+		return User::first();
 	}
 
 }
