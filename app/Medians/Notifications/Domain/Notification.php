@@ -145,7 +145,6 @@ class Notification extends CustomModel
 				
 			$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
 			
-			print_r($receiver->email);
 			$send = $sendMail->sendMail();
 			print_r($send);
 
