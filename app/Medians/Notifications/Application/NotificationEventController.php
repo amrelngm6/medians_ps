@@ -132,7 +132,7 @@ class NotificationEventController extends CustomController
 		foreach ($models as $i => $value) {
 			$data[$i] = [$key=>$value, 'title'=>$i] ;
 		}
-		return $data;
+		return array_values($data);
 	}  
 
 	public function groped_fillable()
@@ -154,7 +154,7 @@ class NotificationEventController extends CustomController
 		foreach ($models as $i => $value) {
 			$data[$i] = [$key=>$value, 'title'=>$i] ;
 		}
-		return $data;
+		return array_values($data);
 	}  
 
 
@@ -165,6 +165,7 @@ class NotificationEventController extends CustomController
 	*/
 	public function store() 
 	{	
+		return;
 		$this->app = new \config\APP;
         
 		$params = $this->app->params();
@@ -172,7 +173,7 @@ class NotificationEventController extends CustomController
         try {
         	$params['created_by'] = $this->app->auth()->id;
             return ($this->repo->store($params))
-            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>0)
             : array('success'=>0, 'result'=>translate('Error'), 'error'=>1);
 
 
@@ -200,7 +201,7 @@ class NotificationEventController extends CustomController
 
 
            	$returnData =  ($this->repo->update($params))
-           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1)
+           	? array('success'=>1, 'result'=>translate('Updated'), 'reload'=>0)
            	: array('error'=>'Not allowed');
 
 

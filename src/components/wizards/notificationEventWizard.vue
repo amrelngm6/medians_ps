@@ -19,7 +19,7 @@
                             
                             
 
-                            <div class="" v-if="activeTab == 'Info'" :key="activeTab">
+                            <div class="" v-show="activeTab == 'Info'" :key="activeTab">
                                 <div class="card-body pt-0"  >
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
@@ -45,7 +45,7 @@
                                 <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Fields'" v-text="translate('Next')"></a></p>
                             </div>
 
-                            <div class="" v-if="activeTab == 'Fields'" :key="activeTab">
+                            <div class="" v-show="activeTab == 'Fields'" :key="activeTab">
                                 <div class="card-body pt-0"  >
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
@@ -74,7 +74,7 @@
                                 <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Confirm'" v-text="translate('Next')"></a></p>
                             </div>
 
-                            <div class="w-full  mx-auto" v-if="activeTab == 'Content'" :key="activeTab">
+                            <div class="w-full  mx-auto" v-show="activeTab == 'Content'" :key="activeTab">
                                 <div class="card-body pt-0"  >
                                     <div class="settings-form" >
                                         <div class="max-w-xl mb-6 mx-auto row" >
@@ -100,7 +100,7 @@
                                 <p class="text-center mt-10"><a href="javascript:;" class="uppercase px-4 py-3 mx-2 text-center text-white rounded-lg bg-danger" @click="activeTab = 'Fields'" v-text="translate('Next')"></a></p>
                             </div>
 
-                            <div class="w-full  mx-auto" v-if="activeTab == 'Confirm'" :key="activeTab">
+                            <div class="w-full  mx-auto" v-show="activeTab == 'Confirm'" :key="activeTab">
                                 
                                 <div class="w-full flex gap-10">
                                     <div class="max-w-xl mb-6 mx-auto " >
