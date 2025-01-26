@@ -228,7 +228,7 @@ class NotificationEventController extends CustomController
         try {
 
            	return  ($this->repo->delete($params['id']))
-            ? array('success'=>1, 'result'=>translate('Added'), 'reload'=>1)
+            ? array('success'=>1, 'result'=>translate('Deleted'), 'reload'=>1)
            	: array('error'=>translate('Not allowed'));
 
 

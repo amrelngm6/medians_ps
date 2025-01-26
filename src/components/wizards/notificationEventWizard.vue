@@ -23,12 +23,14 @@
                                         <div class="max-w-xl mb-6 mx-auto row" >
                                             
                                             <label v-text="fillable.title.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
-                                            <form_field @callback="(e)=> {activeItem = e}" class="flex-end" :item="activeItem" :column="fillable.title" />
+                                            <input :required="fillable.title.required" autocomplete="off" v-model="activeItem.title" :type="fillable.title.column_type" class="form-control form-control-solid" :placeholder="fillable.title.title">
                                             <span v-text="fillable.title.help_text" v-if="fillable.title.help_text" class="col-form-label required fw-semibold fs-5" ></span>
                                             <hr class="block mt-6 my-2 opacity-10" />
                                             
                                             <label v-text="fillable.receiver_model.title" class="col-form-label required fw-semibold fs-4 fw-bold" ></label>
-                                            <form_field @callback="(e)=> {activeItem = e}" class="flex-end" :item="activeItem" :column="fillable.receiver_model" />
+                                            <select :required="fillable.receiver_model.required" :disabled="fillable.receiver_model.disabled"  v-model="activeItem.receiver_model" :type="fillable.receiver_model.column_type" class="form-control form-control-solid"   :placeholder="fillable.receiver_model.title">
+                                                <option v-for="option in fillable.receiver_model.data" :value="option[ fillable.receiver_model.column_key ? fillable.receiver_model.column_key : fillable.receiver_model.key]" v-text="option[fillable.receiver_model.text_key]"></option>
+                                            </select>
                                             <span v-text="fillable.receiver_model.help_text" v-if="fillable.receiver_model.help_text" class="col-form-label required fw-semibold fs-5" ></span>
                                             <hr class="block mt-6 my-2 opacity-10" />
 
