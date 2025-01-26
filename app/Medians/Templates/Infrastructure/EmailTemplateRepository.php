@@ -81,7 +81,7 @@ class EmailTemplateRepository
      */
     public function update($data)
     {
-
+		
 		$Object = EmailTemplate::find($data['template_id']);
 		
 		// Return the  object with the new data
@@ -89,6 +89,9 @@ class EmailTemplateRepository
 
 		// Store Custom fields
     	isset($data['field']) ? $this->storeFields($data['field'], $Object->template_id) : '';
+		
+    	// Store Lang content
+    	isset($data['content']) ? $this->storeContent($data['content'], $Object->template_id) : '';
 
     	return $Object;
 
@@ -122,40 +125,22 @@ class EmailTemplateRepository
 	/**
 	* Save related items to database
 	*/
-	public function storeContent($data, $template_id) 
+	public function storeContent($content, $template_id) 
 	{
 		Content::where('item_type', EmailTemplate::class)->where('item_id', $template_id)->delete();
-		if ($data)
-		{
-			foreach ($data as $key => $value)
-			{
-				$Model = $this->storeLang($value, $key, $template_id);
-			}
-	
-			return $Model;		
-		}
-	}
-
-
-	public function storeLang($fields, $key, $item_id )
-	{
-		$checkPrefix = isset($fields['prefix']) ? $fields['prefix'] : Content::generatePrefix($fields['title']);	
-		$prefix = Content::where('prefix',$checkPrefix)->first() ? $checkPrefix.rand(999, 999999) : $checkPrefix;
-
+		
+		$fields = array();
 		$fields['item_type'] = EmailTemplate::class;	
-		$fields['item_id'] = $item_id;	
-		$fields['lang'] = $key;	
+		$fields['item_id'] = $template_id;	
+		$fields['content'] = $content;	
+		$fields['lang'] = 'en';	
 		
 		$Model = Content::firstOrCreate($fields);
-		if ($Model->wasRecentlyCreated)
-		{
-			$fields['prefix'] =  $prefix;
-			$fields['created_by'] = $this->app->auth()->id;
-			$Model->update($fields);
-		}
 
 		return $Model;
 	}
+
+
 	/**
 	* Save related items to database
 	*/
