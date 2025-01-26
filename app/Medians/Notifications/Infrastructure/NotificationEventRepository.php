@@ -123,7 +123,7 @@ class NotificationEventRepository
 	{
 		return [
 			'User' => \Medians\Users\Domain\User::class,
-			'Customer' => \Medians\Customers\Domain\Customer::class,
+			'Forum Customer' => \Medians\Forum\Domain\Forum::class,
 		];
 	}   
 }

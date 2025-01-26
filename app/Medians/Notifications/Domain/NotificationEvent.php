@@ -6,6 +6,7 @@ use Shared\dbaser\CustomModel;
 
 use Medians\Users\Domain\User;
 use Medians\Customers\Domain\Customer;
+use Medians\Forum\Domain\Forum;
 use Medians\Templates\Domain\EmailTemplate;
 
 /**
@@ -78,6 +79,7 @@ class NotificationEvent extends CustomModel
 
 		$events = json_decode(NotificationEvent:: where('action',$action)->where('model',get_class($model))->get());
 
+
 		foreach ($events as $event) 
 		{
 			$event = $this->renderNotification($event, $model);
@@ -134,6 +136,10 @@ class NotificationEvent extends CustomModel
 				return method_exists($model, 'receiverAsCustomer') ? [$this->validateUserType($event, $model->receiverAsCustomer())] : null;
 				break;
 				
+			case Forum::class:
+				return [$model->receiverAsCustomer()];
+				break;
+				
 			case User::class:
 				return method_exists($model, 'receiverAsUser') ? [$model->receiverAsUser()] : null;
 				break;
@@ -152,6 +158,7 @@ class NotificationEvent extends CustomModel
 	public function renderNotification($event, $model)
 	{
 		try {
+
 			$receivers = $this->filterReceivers($event, $model);
 
 			if (!$receivers)

@@ -165,7 +165,7 @@ class NotificationEventController extends CustomController
 	*/
 	public function store() 
 	{	
-		return;
+
 		$this->app = new \config\APP;
         
 		$params = $this->app->params();
