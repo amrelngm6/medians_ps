@@ -141,14 +141,19 @@ class Notification extends CustomModel
 	 */
 	public function sendNotification(Notification $notification, $receiver)
 	{
-		
-		$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
+		try {
+				
+			$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
+			
+			$send = $sendMail->sendMail();
 
-		$send = $sendMail->sendMail();
-
-		$id = "Customer-".$notification->receiver_id;
-		$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($id);
-		return  $sendOneSignalNotification->sendNotification($notification->subject, $notification->body_text);
+			$id = "Customer-".$notification->receiver_id;
+			$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($id);
+			return $send ?  $sendOneSignalNotification->sendNotification($notification->subject, $notification->body_text) : '';
+			
+		} catch (\Throwable $th) {
+			throw new \Exception($th->getMessage(), 1);
+		}
 
 	}
 }

@@ -35,6 +35,21 @@ class Forum extends CustomModel
 	public $appends = ['title','category_name','date', 'update_date', 'email', 'name', 'phone'];
 
 
+	public function getNameAttribute() 
+	{
+		return $this->customer_name;
+	}
+
+	public function getEmailAttribute() 
+	{
+		return $this->customer_email;
+	}
+	
+	public function getPhoneAttribute() 
+	{
+		return $this->customer_phone;
+	}
+	
 
 	public function getTitleAttribute() 
 	{

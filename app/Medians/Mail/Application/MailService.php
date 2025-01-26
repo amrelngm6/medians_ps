@@ -71,6 +71,7 @@ class MailService
 		    $mail->Body    = render('views/email/email.html.twig',['msg'=> $this->body], null);
 
 		    $mail->send();
+			print_r($mail->ErrorInfo ?? 'Message has been sent');	
 			error_log($mail->ErrorInfo ?? 'Message has been sent');	
 
 		    return true;

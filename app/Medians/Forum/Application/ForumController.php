@@ -142,7 +142,6 @@ class ForumController extends CustomController
 	{
 		try {
 				
-				// print_r($this->repo->find($id));
 			return render('views/admin/blog/blog.html.twig', [
 		        'title' => translate('edit_blog'),
 		        'langs_list' => ['ar','en'],

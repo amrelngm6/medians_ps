@@ -73,7 +73,6 @@ class HookController extends CustomController
 			
 			// $update = $value->hookPlugin()->update(['content'=>$newContent], $value);
 
-			// print_r($update);
 		// }
 		
 		return render('hooks', [
@@ -98,7 +97,6 @@ class HookController extends CustomController
 		try {
 
 			$item = $this->repo->find($hook_id);
-			print_r(unserialize($item->content)['content']);
 			
 			if ($item->field)
 			{
