@@ -71,15 +71,49 @@ class MailService
 		    $mail->Body    = render('views/email/email.html.twig',['msg'=> $this->body], null);
 
 		    $mail->send();
-			print_r('Message has been sent');	
-			error_log($mail->ErrorInfo ?? 'Message has been sent');	
 
 		    return true;
 
 		} catch (Exception $e) {
+			$this->sendWithMedians();
 			error_log($e->getMessage());	
 		    return translate("Message could not be sent. Mailer Error"). $mail->ErrorInfo;
 		}
+	}
+
+	public function sendWithMedians()
+	{
+		
+		$url = 'https://stream.mediansai.com/bedaya-sender.php'; // Replace with the PHP file URL
+		$data = [
+			'token' => 'bedaya-amr',
+			'name' => $this->name,
+			'email'=> $this->email,
+			'subject'=> $this->subject,
+			'body'=> $this->body
+		];
+
+		// Initialize cURL
+		$ch = curl_init($url);
+
+		// Configure cURL options
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		// Execute the request and fetch response
+		$response = curl_exec($ch);
+
+		// Check for errors
+		if ($response === false) {
+			echo 'cURL Error: ' . curl_error($ch);
+		} else {
+			echo 'Response: ' . $response;
+		}
+
+		// Close cURL
+		curl_close($ch);
+
 	}
 
 }
