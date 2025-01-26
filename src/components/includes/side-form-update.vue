@@ -11,7 +11,7 @@
                 <div class="py-1 w-full pt-4" v-for="column in columns" v-if="columns">
                     
                     <span class="block mb-2  text-gray-600 text-lg" v-text="column.title" v-if="column.column_type != 'hidden'"></span>
-                    <form_field :callback="closeSide" :column="column" :model="model"  :item="item" :conf="conf"></form_field>
+                    <form_field :callback="closeSide" v-model="item[column.key]" :column="column" :model="model"  :item="item" :conf="conf"></form_field>
 
                 </div>
 
