@@ -202,7 +202,7 @@ export default
                     break;  
 
                 case 'builder':
-                    window.open(props.conf.url+'admin/builder?lang='+data.content.prefix)
+                    window.open(props.conf.url+'admin/builder?prefix='+data.content.prefix)
                     break;  
 
                 case 'delete':
