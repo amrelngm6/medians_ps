@@ -60,7 +60,13 @@
                             <img :src="item.logo" class="w-8 h-8 rounded-full" />
                         </template>
 
+                        <template #item-builder="item">
+                            <button v-if="!item.not_editable" class="p-2  hover:text-gray-600 text-purple" @click="handleAction('builder', item)">
+                                <vue-feather class="w-5" type="edit"></vue-feather>
+                            </button>
+                        </template>
 
+ 
                         <template #item-item="item">
                             <div class="flex gap-2" v-if="item.item" >
                                 <img :src="item.item.picture" class="w-8 h-8 rounded-full" />
@@ -195,6 +201,9 @@ export default
                     showEditSide.value = true; 
                     break;  
 
+                case 'builder':
+                    window.open(props.conf.url+'builder?prefix='+data.content.prefix)
+                    break;  
 
                 case 'delete':
                     var name = content.value.object_name ?? props.object_name ;
