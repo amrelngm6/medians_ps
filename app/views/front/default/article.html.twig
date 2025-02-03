@@ -7,7 +7,7 @@
         </div>
         <div class="container mx-auto relative px-1 ">
             <p class="text-sm lg:pb-2 flex gap-2 font-normal text-gray-600 lg:pt-10">
-                <a  class="text-white" href="/">{{lang.translate('homepage')}} </a> | <a  class="text-white" href="/blog">{{lang.translate('blog')}} </a> | <span class="text-white">{{item.content.title}}</span></p>
+                <a title="{{lang.translate('homepage')}}"  class="text-white" href="/">{{lang.translate('homepage')}} </a> | <a title="{{lang.translate('blog')}}"  class="text-white" href="/blog">{{lang.translate('blog')}} </a> | <span class="text-white">{{item.content.title}}</span></p>
                 
 
 <script type="application/ld+json">
@@ -51,7 +51,7 @@
                             <h1 class="text-xl purple-color font-bold mb-4">{{item.content.title}}</h1>
                             <hr class="pb-2" />
                             {% if item.author.title %}
-                            <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <a href="/{{item.author.content.prefix}}" class="font-bold">{{item.author.content.title ?? item.field.author_name}}</a> </p>
+                            <p class="lg:px-2 float-left lg:text-base text-xs"> <span>{{lang.translate('author')}} :</span> <a title="{{lang.translate('Consultation')}}" href="/{{item.author.content.prefix}}" class="font-bold">{{item.author.content.title ?? item.field.author_name}}</a> </p>
                             {% endif %}
                             <p class="lg:text-base text-sm flex gap-2"><span class="hide-mobile">{{lang.translate('released_at')}}:{{item.content.created_at|date('M d, Y')}}</span> • <span class=" ">{{lang.translate('Updated at')}}: {{item.content.updated_at|date('M d, Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.totalviews()}}</span></p>
 
@@ -119,48 +119,13 @@
 
 
             
-            c += link ? '<p><a href="#'+link+'">'+title+'</a></p>' : '<p><a href="#'+cLink+'">'+title+'</a></p>';
+            c += link ? '<p><a title="'+title+'" href="#'+link+'">'+title+'</a></p>' : '<p><a  title="'+title+'" href="#'+cLink+'">'+title+'</a></p>';
         }
         jQuery('#content-table').html(c)        
 
 
     })
     
-        /*
-            // Get references to HTML elements
-        const textToSpeak = document.getElementById('article-content');
-        const speakButton = document.getElementById('speakButton');
-
-        const message = new SpeechSynthesisUtterance();
-        message.text = textToSpeak.innerText;
-        console.log(speechSynthesis.getVoices())
-
-        // Event listener for the "Speak" button click
-        speakButton.addEventListener('click', () => {
-            console.log('clicked')
-
-            // Create a new SpeechSynthesisUtterance
-            console.log(speechSynthesis.getVoices()[1])
-
-            if (speechSynthesis.paused) {
-                console.log('paused');
-                speechSynthesis.speak(message);
-                return true;
-            }
-
-            console.log(speechSynthesis.speaking);
-            if (speechSynthesis.speaking) {
-                speechSynthesis.cancel(); 
-                console.log('speeking');
-                return true;
-            }
-            
-            speechSynthesis.speak(message);
-
-            // Use the speech synthesis API to speak the text
-        });
-
-        */
     </script>
 {% include 'views/front/default/includes/navbar.html.twig' %}
 

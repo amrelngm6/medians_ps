@@ -7,9 +7,8 @@
         </div>
         <div class="container mx-auto relative px-1 ">
             <p class="text-sm lg:pb-2 flex gap-2 font-normal text-gray-600 lg:pt-10">
-            <a class="text-white" href="/">{{lang.translate('homepage')}} </a> | 
+            <a title="{{lang.translate('homepage')}}" class="text-white" href="/">{{lang.translate('homepage')}} </a> | 
             <span class="text-white">{{lang.translate('SPECIALIZATIONS')}} </span> | <span class="text-white">{{item.content.title}}</span></p>
-
 
             <div class="mx-auto w-full relative z-10 mb-8 " >
                 <div class="relative top-0  left-0 right-0 px-0 pt-2 pb-6  ">
@@ -33,8 +32,8 @@
                                     <div class="blog-item-content lg:w-7/12">
                                         <div class="py-2 lg:py-6 lg:pr-6 lg:px-10 px-2">
 
-                                            <a href="/{{similar_item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{similar_item.content.updated_at | date('M, d Y')}}</a>
-                                            <a href="/{{similar_item.content.prefix}}" class="lg:py-4 py-2 block font-bold purple-color lg:text-xl md:text-lg text-base">{{similar_item.content.title}}</a>
+                                            <a title="{{similar_item.content.title}}" href="/{{similar_item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{similar_item.content.updated_at | date('M, d Y')}}</a>
+                                            <a title="{{similar_item.content.title}}" href="/{{similar_item.content.prefix}}" class="lg:py-4 py-2 block font-bold purple-color lg:text-xl md:text-lg text-base">{{similar_item.content.title}}</a>
                                             <p class=" font-semibold text-gray-600 lg:text-base text-sm">{{similar_item.content.content |striptags|slice(0, 100) }}</p>
                                         </div>
                                     </div>
@@ -127,7 +126,7 @@
                 cLink = 'tag-'+(Math.random() * 1000);   
                 $(h2[b]).attr('id', cLink)
             }
-            c += link ? '<p><a href="#'+link+'">'+title+'</a></p>' : '<p><a href="#'+cLink+'">'+title+'</a></p>';
+            c += link ? '<p><a title="'+title+'" href="#'+link+'">'+title+'</a></p>' : '<p><a title="'+title+'" href="#'+cLink+'">'+title+'</a></p>';
         }
         jQuery('#content-table').html(c)        
     })

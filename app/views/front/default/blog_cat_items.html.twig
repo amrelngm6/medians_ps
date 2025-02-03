@@ -2,7 +2,7 @@
         <div class="container mx-auto relative z-10  px-1">
         
             <div class="title-gradient rounded-lg py-2 mt-12 my-2 pl-40 pr-6 purple-color font-semibold text-xl " style="width: max-content;">
-                <a href="{{cat.content.prefix}}">{{catTitle}}</a>
+                <a title="{{catTitle}}" href="{{cat.content.prefix}}">{{catTitle}}</a>
             </div>
 
             <div class="custom-scroll-container custom-scroll container grid mx-auto relative z-10 " >
@@ -14,8 +14,8 @@
                         </div>
                         <div class="blog-item-content lg:w-7/12">
                             <div class="py-2 lg:py-6 lg:pr-6 lg:px-10 px-2">
-                                <a href="{{item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{item.update_date}}</a>
-                                <a href="{{item.content.prefix}}" class="py-2 block font-bold purple-color lg:text-xl text-base">{{item.content.title}}</a>
+                                <a title="{{item.content.title}}" href="{{item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{item.update_date}}</a>
+                                <a title="{{item.content.title}}" href="{{item.content.prefix}}" class="py-2 block font-bold purple-color lg:text-xl text-base">{{item.content.title}}</a>
                                 <p class=" font-semibold text-gray-600 lg:text-base text-sm">{{item.content.content|striptags|raw|slice(0,180)|raw}}</p>
                             </div>
                         </div>
@@ -24,6 +24,6 @@
                 </div>
             </div>
 
-            <a href="/{{cat.content.prefix}}" class="text-center mx-auto w-40 block font-semibold">{{lang.translate('show More')}}</a>
+            <a title="{{cat.content.title}}" href="/{{cat.content.prefix}}" class="text-center mx-auto w-40 block font-semibold">{{lang.translate('show More')}}</a>
 
         </div>

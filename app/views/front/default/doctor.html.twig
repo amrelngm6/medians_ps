@@ -52,7 +52,7 @@
                                 <h2 class="text-xl pb-2 font-bold purple-color" >{{item.content_item.title}}</h2>
                                 <p class="text-lg pb-10 font-bold cyan-color" >{{lang.translate('lang') == 'english' ? item.field.short_name_en : item.field.short_name_ar}}</p>
 
-                                <a class="mx-auto py-3 px-4 cyan-bg purple-color rounded-lg  inline-block font-semibold " href="/doctor_booking/{{item.id}}">{{lang.translate('book_now')}} </a>
+                                <a title="{{item.content.title}}" class="mx-auto py-3 px-4 cyan-bg purple-color rounded-lg  inline-block font-semibold " href="/doctor_booking/{{item.id}}">{{lang.translate('book_now')}} </a>
                             </div>
                             <br />
                             <br />
@@ -89,7 +89,7 @@
 
 
             
-            c += link ? '<p><a href="#'+link+'">'+title+'</a></p>' : '<p><a href="#'+cLink+'">'+title+'</a></p>';
+            c += link ? '<p><a title="'+title+'" href="#'+link+'">'+title+'</a></p>' : '<p><a title="'+title+'" href="#'+cLink+'">'+title+'</a></p>';
         }
         jQuery('#content-table').html(c)        
 

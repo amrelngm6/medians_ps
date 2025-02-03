@@ -16,11 +16,11 @@
 
         <div class="w-full lg:flex hidden gap-4 pt-3">
             <p class=" lg:py-2 flex gap-2 font-normal  font-bold cyan-color text-sm">
-            <a class="font-bold cyan-color" href="/">{{lang.translate('homepage')}}  </a> | 
-            <a class="font-bold cyan-color" href="/forum">{{lang.translate('Forum')}} </a> | <span class="font-bold purple-color truncate">{{item.title}}</span></p>
+            <a title="{{lang.translate('Homepage')}}" class="font-bold cyan-color" href="/">{{lang.translate('homepage')}}  </a> | 
+            <a title="{{lang.translate('Forum')}}" class="font-bold cyan-color" href="/forum">{{lang.translate('Forum')}} </a> | <span class="font-bold purple-color truncate">{{item.title}}</span></p>
         </div>
 		<div class="lg:w-1/3 text-center">
-			<a class="inline-block mx-auto py-3 px-4 purple-bg text-white rounded-lg" href="/new-forum-post">
+			<a  title="{{lang.translate('Add New Question')}}" class="inline-block mx-auto py-3 px-4 purple-bg text-white rounded-lg" href="/new-forum-post">
                 <span class="flex gap-4">
                     <img src="/src/front_assets/svg/add-post.svg" class="w-6 inline-block"/>
                     <span class=" ">{{lang.translate('Add New Question')}}</span>
@@ -41,7 +41,7 @@
 
                     <div class="lg:w-full mt-2 justify-start items-start gap-2.5 inline-flex">
                         <div class="px-2.5 py-1 bg-blue-100 rounded-lg justify-center items-center gap-2.5 flex">
-                            <a href="/{{item.category.content.prefix}}" class=" font-normal text-sm leading-none text-gray-800   ">{{item.category.content.title}}</a>
+                            <a title="{{lang.translate('Add New Question')}}" href="/{{item.category.content.prefix}}" class=" font-normal text-sm leading-none text-gray-800   ">{{item.category.content.title}}</a>
                         </div>
                     </div>
                     <div class="justify-start gap-10 flex ">
@@ -66,13 +66,13 @@
             {% if item.doctor_id %}
 			<div class="flex w-full">
 				<div class="w-full justify-start items-center gap-2 inline-flex">
-					<a href="/{{item.doctor.content.prefix}}"  class=" relative flex">
+					<a  title="{{item.doctor.content.title}}" href="/{{item.doctor.content.prefix}}"  class=" relative flex">
 						<img class="w-10 h-10 relative rounded-full" src="{{item.doctor.picture}}"/>
 					</a>
 					<div class=" justify-between items-center flex">
 						<div class="flex-col justify-start items-start inline-flex">
 							<div class="justify-start items-center gap-1 inline-flex">
-								<a href="/{{item.doctor.content.prefix}}"  class=" text-sm font-semibold text-gray-500">{{item.doctor.content.title}}</a>
+								<a title="{{item.doctor.content.title}}" href="/{{item.doctor.content.prefix}}"  class=" text-sm font-semibold text-gray-500">{{item.doctor.content.title}}</a>
 							</div>
 							<div class=" text-sm  pt-1 font-normal leading-none text-gray-800">{{lang.translate('Answered by')}}</div>
 						</div>
@@ -173,7 +173,7 @@
 							<div class=" font-normal text-sm leading-none">{{item.category.content.title}}</div>
 						</div>
 					</div>
-					<a href="/forum-post/{{item.id}}" class="pt-1 text-lg font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.subject}}</a>
+					<a title="{{item.subject}}" href="/forum-post/{{item.id}}" class="pt-1 text-lg font-semibold leading-relaxed purple-color hover:text-gray-500">{{item.subject}}</a>
 				</div>
 				<div class="flex w-full">
 					<div class="lg:w-full justify-start items-center gap-2 inline-flex">

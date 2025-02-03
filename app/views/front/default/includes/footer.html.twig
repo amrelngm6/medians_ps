@@ -26,7 +26,7 @@
                         <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/"><span class="block pt-8">{{lang.translate('home')}}</span></a></li>
                         
                         <li class="has-sub-menu h-full relative">
-                            <a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('About_Bedaya')}}</span></a>
+                            <a title="{{lang.translate('About bedaya')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('About_Bedaya')}}</span></a>
                             <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
                             {% include 'views/front/default/includes/about_dropmenu.html.twig' %}
                             </ul>
@@ -34,10 +34,10 @@
                         {% for item in specializations  %}
                         {% if item.id == 2 %}
                         <li class="has-sub-menu h-full relative">
-                            <a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{item.content.prefix}}"><span class="block pt-8">{{lang.translate(item.content.title)}}</span></a>
+                            <a title="{{item.content.title}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{item.content.prefix}}"><span class="block pt-8">{{lang.translate(item.content.title)}}</span></a>
                             <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
                                 {% for child_item in item.childs|sort((a, b) => a.sort <=> b.sort) %}
-                                <li class="py-1"><a href="/{{child_item.content.prefix}}">{{lang.translate(child_item.content.title)}}</a></li>
+                                <li class="py-1"><a title="{{child_item.content.title}}" href="/{{child_item.content.prefix}}">{{lang.translate(child_item.content.title)}}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
@@ -45,7 +45,7 @@
                         {% endfor %}
 
                         <li class="has-sub-menu h-full relative">
-                            <a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('specializations')}}</span></a>
+                            <a title="{{lang.translate('specializations')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('specializations')}}</span></a>
                             <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
                                 {% for item in specializations|sort((a, b) => a.sort <=> b.sort)  %}
                                 {% if item.id != 2 %}
@@ -66,17 +66,17 @@
                             </ul>
                         </li>
 
-                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/doctors"><span class="block pt-8">{{lang.translate('our Doctors')}}</span></a></li>
-                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{lang.translate('lang') == 'arabic' ? 'قصص-نجاح-حقن-مجهرى' : 'icsi-success-stories'}}"><span class="block pt-8">{{lang.translate('success stories')}}</span></a></li>
-                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/blog"><span class="block pt-8">{{lang.translate('blog')}}</span></a></li>
-                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{lang.translate('lang') == 'arabic' ? 'contact' : 'contactus'}}"><span class="block pt-8">{{lang.translate('Contact')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('our Doctors')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/doctors"><span class="block pt-8">{{lang.translate('our Doctors')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('Success stories')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{lang.translate('lang') == 'arabic' ? 'قصص-نجاح-حقن-مجهرى' : 'icsi-success-stories'}}"><span class="block pt-8">{{lang.translate('success stories')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('Blog')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/blog"><span class="block pt-8">{{lang.translate('blog')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('Contact us')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/{{lang.translate('lang') == 'arabic' ? 'contact' : 'contactus'}}"><span class="block pt-8">{{lang.translate('Contact')}}</span></a></li>
                     </ul>
                 </div>
                 <div class="p-1 lg:py-4 lg:px-4  flex gap-3  ">
-                    <a href="tel:19483" class="text-lg px-1 lg:px-2 my-1 pt-2 font-normal ltr purple-color flex "><span class="w-8"><img src="/stream?image=/uploads/img/phone-call.webp" alt="hotline" width="24" height="24" /></span> 19483</a>
-                    <a style="white-space:nowrap" href="/{{lang.translate('lang') == 'arabic' ? 'الحجز' : 'booking'}}" class="hide-mobile w-24 rounded-lg px-4 my-1 pt-2 cyan-bg font-bold">{{lang.translate('BOOK_NOW')}}</a>
-                    <a aria-label="Search" title="Search"  href="/search" class="hide-mobile text-center lg:w-8 w-8 pb-2 pt-3 px-1"><img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/search-svgrepo-com.webp" width="34" height="40" /></a>
-                    <a aria-label="switch lang" title="switch lang" href="/switch-lang/{{lang.translate('lang') == 'arabic' ? 'english' : 'arabic'}}" class="text-center lg:w-8 w-8 pb-2 pt-3 px-1 "><img loading="lazy" width="36" height="36" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/lang{{lang.translate('lang')|slice(0,2)}}.webp" /></a>
+                    <a title="{{lang.translate('Call us')}}" href="tel:19483" class="text-lg px-1 lg:px-2 my-1 pt-2 font-normal ltr purple-color flex "><span class="w-8"><img src="/stream?image=/uploads/img/phone-call.webp" alt="hotline" width="24" height="24" /></span> 19483</a>
+                    <a title="{{lang.translate('Book now')}}" style="white-space:nowrap" href="/{{lang.translate('lang') == 'arabic' ? 'الحجز' : 'booking'}}" class="hide-mobile w-24 rounded-lg px-4 my-1 pt-2 cyan-bg font-bold">{{lang.translate('BOOK_NOW')}}</a>
+                    <a aria-label="Search" title="{{lang.translate('Search')}}"  href="/search" class="hide-mobile text-center lg:w-8 w-8 pb-2 pt-3 px-1"><img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/search-svgrepo-com.webp" width="34" height="40" /></a>
+                    <a aria-label="switch lang" title="{{lang.translate('switch lang')}}" href="/switch-lang/{{lang.translate('lang') == 'arabic' ? 'english' : 'arabic'}}" class="text-center lg:w-8 w-8 pb-2 pt-3 px-1 "><img loading="lazy" width="36" height="36" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/lang{{lang.translate('lang')|slice(0,2)}}.webp" /></a>
                 </div>
             </div>
         </div>
@@ -191,7 +191,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto" width="24.917" height="35.501" viewBox="0 0 24.917 35.501">
                                     <path id="pin" d="M12.417.25A12.108,12.108,0,0,1,21.25,3.875a11.908,11.908,0,0,1,3.667,8.792,16.988,16.988,0,0,1-1.292,5.958,34.589,34.589,0,0,1-3.125,6.25q-1.833,2.875-3.667,5.417T13.75,34.334l-1.333,1.417q-.5-.5-1.333-1.5T8.126,30.376Q6,27.5,4.334,24.793a38.083,38.083,0,0,1-3-6.126,16.842,16.842,0,0,1-1.333-6A11.972,11.972,0,0,1,3.625,3.875,11.972,11.972,0,0,1,12.417.25Zm0,16.833a4.4,4.4,0,0,0,3.167-1.292,4.33,4.33,0,0,0,0-6.25A4.389,4.389,0,0,0,12.417,8.25,4.411,4.411,0,0,0,8,12.667a4.409,4.409,0,0,0,4.417,4.416Z" transform="translate(0 -0.25)" fill="#36d3eb" /></svg>
                             </div>
-                            <a class="text-white font-semibold" href="#!">{{lang.translate('Dokki')}}
+                            <a  title="{{lang.translate('Dokki')}}" class="text-white font-semibold" href="#!">{{lang.translate('Dokki')}}
                                 <span class="block text-gray-300 text-base font-normal">{{lang.translate('MAIN_ADDRESS')}}</span>
                             </a>
                         </li>
@@ -266,10 +266,9 @@
                 <div class="w-full ">
                     <p class="py-6 font-bold pb-2 block text-white">{{lang.translate('important links')}}</p>
                     <ul class="block text-white ">
-                        <li class="py-1"><a href="/contact">{{lang.translate('contact us')}}</a></li>
-                        <li class="py-1"><a href="/{{lang.translate('lang') == 'arabic' ? 'حساب-فترة-الحمل' : 'pregnancy-calculator'}}">{{lang.translate('Pregnancy period Calculator')}}</a></li>
-                        <li class="py-1"><a href="/{{lang.translate('lang') == 'arabic' ? 'حساب-فترة-التبويض' : 'ovulation-calculator'}}">{{lang.translate('OVULATION_CALCULATOR')}}</a></li>
-                        
+                        <li class="py-1"><a  title="{{lang.translate('Contact us')}}" href="/contact">{{lang.translate('contact us')}}</a></li>
+                        <li class="py-1"><a  title="{{lang.translate('Pregnancy period Calculator')}}" href="/{{lang.translate('lang') == 'arabic' ? 'حساب-فترة-الحمل' : 'pregnancy-calculator'}}">{{lang.translate('Pregnancy period Calculator')}}</a></li>
+                        <li class="py-1"><a  title="{{lang.translate('OVULATION_CALCULATOR')}}" href="/{{lang.translate('lang') == 'arabic' ? 'حساب-فترة-التبويض' : 'ovulation-calculator'}}">{{lang.translate('OVULATION_CALCULATOR')}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -324,7 +323,7 @@
     <link rel="preload" href="/assets?asset=/src/front/fontawesome/css/all.min.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets?asset=/src/front/fontawesome/css/all.min.css"></noscript>
 
-    <a href="https://wa.me/201225368744" target="_blank"> 
+    <a  title="{{lang.translate('WhatsApp Chat')}}"  href="https://wa.me/201225368744" target="_blank"> 
         <img loading="lazy" alt="whatsapp" src="https://www.bedayahospitals.com/library/WhatsApp.svg.png" class="fixed wapp-side-icon ">
     </a>
 </body>
