@@ -103,6 +103,11 @@ class Forum extends CustomModel
 		return $this->hasMany(ForumComment::class, 'item_id', 'id');
 	}
 
+	public function active_comments()
+	{
+		return $this->hasMany(ForumComment::class, 'item_id', 'id')->where('status', 'on');
+	}
+
 	public function views()
 	{
 		return $this->morphMany(View::class, 'item');
