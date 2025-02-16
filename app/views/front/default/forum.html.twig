@@ -55,7 +55,7 @@
 
 <div class="container mx-auto  pt-10 pb-20 gap-10 lg:flex ">
 
-	<div class="w-full rounded-2xl pt-6 flex-col justify-start items-start gap-10 inline-flex overflow-hidden">
+	<div class="w-full rounded-2xl pt-6 px-4 flex-col justify-start items-start gap-10 inline-flex overflow-hidden">
 		{% for item in items %}
 
 			<div class="w-full flex-col justify-start items-start gap-10 inline-flex bg-gray-100 p-4 rounded-lg shadow-md bg-white">
@@ -91,22 +91,6 @@
 							<span class="tooltiptext">{{lang.translate('Comments')}}</span>
 							<span class="pt-2">{{item.comments|length}}</span>
 							<img src="/src/front_assets/svg/comments.svg" width="40"/></div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="flex w-full">
-				<div class="w-full justify-start items-center gap-2 inline-flex">
-					<a  title="{{item.doctor.content.title}}" href="/{{item.doctor.content.prefix}}"  class=" relative flex">
-						<img class="w-10 h-10 relative rounded-full" src="{{item.doctor.picture}}"/>
-					</a>
-					<div class=" justify-between items-center flex">
-						<div class="flex-col justify-start items-start inline-flex">
-							<div class="justify-start items-center gap-1 inline-flex">
-								<a title="{{item.doctor.content.title}}" href="/{{item.doctor.content.prefix}}"  class=" text-sm font-semibold text-gray-500">{{item.doctor.content.title}}</a>
-							</div>
-							<div class=" text-sm  pt-1 font-normal leading-none text-gray-800">{{lang.translate('Answered by')}}</div>
-						</div>
 					</div>
 				</div>
 			</div>
