@@ -15,26 +15,28 @@
 	<div class="container lg:flex gap-10  mx-auto  ">
 
 		<form action="" class="w-full lg:flex gap-4 p-4">
-			<div class="lg:flex gap-4">
-				<div class="pt-2">{{lang.translate('Search')}}</div>
-				<div>
-					<input  class="appearance-none block w-40 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="item-title" name="params[title]" />
+			<div class="lg:flex gap-4 flex">
+				<div class="lg:flex gap-4">
+					<div class="pt-2">{{lang.translate('Search')}}</div>
+					<div>
+						<input  class="appearance-none block w-40 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="item-title" name="params[title]" />
+					</div>
 				</div>
-			</div>
 
-			<div class="lg:flex gap-4">
-				<div class="pt-2 w-24">{{lang.translate('Filter by')}}</div>
-				<div>
-					<select  class="appearance-none block w-40 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-spec" name="params[sort_by]">
-                        {% for i in [
-                            {title:lang.translate('New first'), val: 'new'},
-                            {title:lang.translate('Old first'), val: 'old'},
-                            {title:lang.translate('Most views'), val: 'best'},
-                            {title:lang.translate('Trending'), val: 'trending'},
-                        ] %}
-						<option value="{{i.val}}" {% if i.val == app.params.sort_by %} selected {% endif %} >{{i.title}}</option>
-                        {% endfor %}
-					</select>
+				<div class="lg:flex gap-4">
+					<div class="pt-2 w-24">{{lang.translate('Filter by')}}</div>
+					<div>
+						<select  class="appearance-none block w-40 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="customer-spec" name="params[sort_by]">
+							{% for i in [
+								{title:lang.translate('New first'), val: 'new'},
+								{title:lang.translate('Old first'), val: 'old'},
+								{title:lang.translate('Most views'), val: 'best'},
+								{title:lang.translate('Trending'), val: 'trending'},
+							] %}
+							<option value="{{i.val}}" {% if i.val == app.params.sort_by %} selected {% endif %} >{{i.title}}</option>
+							{% endfor %}
+						</select>
+					</div>
 				</div>
 			</div>
 			<div class="">
