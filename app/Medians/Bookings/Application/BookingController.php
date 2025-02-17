@@ -50,6 +50,7 @@ class BookingController extends CustomController
             [ 'value'=> "date", 'text'=> translate('date'), 'sortable'=> true ],
             [ 'value'=> "name", 'text'=> translate('name'), 'sortable'=> true ],
             [ 'value'=> "full_mobile", 'text'=> translate('mobile'), 'sortable'=> true ],
+            [ 'value'=> "field.mobile_country", 'text'=> translate('Country'), 'sortable'=> true ],
             [ 'value'=> "email", 'text'=> translate('email'), 'sortable'=> true ],
             [ 'value'=> "class", 'text'=> translate('class'), 'sortable'=> true ],
             [ 'value'=> "status", 'text'=> translate('status'), 'sortable'=> true ],
