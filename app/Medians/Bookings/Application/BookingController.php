@@ -70,7 +70,7 @@ class BookingController extends CustomController
 			[ 'key'=> "name", 'title'=> translate('name'),  'disabled'=> true, 'column_type'=>'text' ],
 			[ 'key'=> "email", 'title'=> translate('email'),  'disabled'=> true, 'column_type'=>'text' ],
             [ 'key'=> "mobile", 'title'=> translate('mobile'),  'disabled'=> true, 'custom_field'=>true, 'column_type'=>'phone' ],
-            [ 'key'=> "field.mobile_country", 'title'=> translate('Country'), 'disabled'=> true, 'fillable'=>true, 'custom_field'=>true, 'column_type'=>'text' ],
+            [ 'key'=> "mobile_country", 'title'=> translate('Country'), 'disabled'=> true, 'fillable'=>true, 'custom_field'=>true, 'column_type'=>'text' ],
             [ 'key'=> "mobile_key", 'title'=> translate('Country code'),'disabled'=> true,  'fillable'=>true, 'custom_field'=>true, 'column_type'=>'text' ],
             [ 'key'=> "specialization", 'title'=> translate('specialization'), 'disabled'=>true, 'custom_field'=>true, 'column_type'=>'text' ],
 			[ 'key'=> "offer.title", 'title'=> translate('Plan'), 'disabled'=> true, 'column_type'=>'text' ],
