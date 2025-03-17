@@ -20,6 +20,7 @@ class Blog extends CustomModel
 		'category_id', 
 		'picture', 
 		'status', 
+		'noindex', 
 		'created_by'
 	];
 

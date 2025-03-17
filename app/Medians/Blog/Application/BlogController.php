@@ -84,6 +84,7 @@ class BlogController extends CustomController
 			],
 			[ 'key'=> "picture", 'title'=> translate('picture'), 'required'=>true, 'fillable'=> true, 'column_type'=>'picture' ],
             [ 'key'=> "status", 'title'=> translate('Status'), 'fillable'=>true, 'column_type'=>'checkbox' ],
+            [ 'key'=> "noindex", 'title'=> translate('Disable index'), 'fillable'=>true, 'column_type'=>'checkbox' ],
 
         ];
 	}
