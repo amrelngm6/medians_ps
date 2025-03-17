@@ -102,6 +102,11 @@
                     </div>
                     <p>{{ comment.content}}</p>
                 </div>
+                {% if comment.reply %}                
+                <div class="w-full pt-8 px-8 bg-blue-100 rounded-2xl ">
+                    {{item.reply|raw}}
+                </div>
+                {% endif %}                
                 {% endif %}                
                 {% endfor %}                
                 {% endif %}                
