@@ -87,6 +87,22 @@
                                                             </h5>
                                                             <p class="text-muted" v-text="comment.content"></p>
                                                         </div>
+                                                        <form action="/api/update" method="POST" data-refresh="1" id="comment-reply-form"
+                                                            class="action my-2 rounded-lg  pb-2" >
+                                                            <input name="type" type="hidden" value="ForumComment.update">
+                                                            <input name="params[id]" type="hidden" :value="comment.id">
+
+                                                            <div class="row g-3">
+                                                                <div class="col-lg-12">
+                                                                    <label for="exampleFormControlTextarea1" class="form-label fs-1 fw-bold" v-text="translate('Doctor Reply')"></label>
+                                                                    <form_field @callback="handleReply" :column='{column_type: "editor", key: "reply"}' :model="comment"  :item="comment" :conf="conf"></form_field>
+                                                                </div>
+                                                                <div class="col-lg-12 text-end mt-4">
+                                                                    <button type="submit" class="btn btn-primary" v-text="translate('Send')"></button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        
                                                     </div>
 
                                                 </div>
@@ -107,10 +123,7 @@
                                 <div class="row g-3">
                                     <div class="col-lg-12">
                                         <label for="exampleFormControlTextarea1" class="form-label fs-1 fw-bold" v-text="translate('Doctor Reply')"></label>
-                                        <!-- <textarea name="params[reply]" class="border border-gray-400 form-control bg-light border-light"
-                                            id="exampleFormControlTextarea1" rows="3" v-model="item.relpy" :placeholder="translate('Doctor Reply in details')"></textarea> -->
                                         <form_field @callback="handleReply" :column='{column_type: "editor", key: "reply"}' :model="item"  :item="item" :conf="conf"></form_field>
-
                                     </div>
                                     <div class="col-lg-12 text-end mt-4">
                                         <button type="submit" class="btn btn-primary" v-text="translate('Send')"></button>

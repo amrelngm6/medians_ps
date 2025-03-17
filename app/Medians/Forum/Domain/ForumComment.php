@@ -20,6 +20,7 @@ class ForumComment extends CustomModel
 		'user_phone',
 		'item_id',
 		'content',
+		'reply',
 		'status',
 	];
 	
