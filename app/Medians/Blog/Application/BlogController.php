@@ -181,10 +181,11 @@ class BlogController extends CustomController
         try {
 
         	$params['status'] = !empty($params['status']) ? 'on' : 0;
+        	$params['noindex'] = !empty($params['noindex']) ? 1 : 0;
 
             if ($this->repo->update($params))
             {
-                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
+                return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>0);
             }
         
 
