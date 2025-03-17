@@ -71,7 +71,7 @@
                                             <div class="simplebar-content-wrapper" tabindex="0" role="region"
                                                 aria-label="scrollable content">
                                                 <div class="simplebar-content">
-                                                    <div class="flex gap-2 mb-4" v-for="comment in item.comments">
+                                                    <div class=" gap-2 mb-4" v-for="comment in item.comments">
                                                         <div class="flex-grow-1 ms-3" v-if="comment.user_name">
                                                             <h5 class="fs-13 flex gap-2">
                                                                 <span class="flex-none "
