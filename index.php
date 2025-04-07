@@ -1,6 +1,5 @@
 <?php
-
-error_reporting(0); 
+ error_reporting(0); 
 // error_reporting(E_ALL); 
 session_start(); 
 date_default_timezone_set('Africa/Cairo');
