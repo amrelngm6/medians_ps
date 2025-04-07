@@ -50,6 +50,7 @@ $capsule->addConnection([
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 $capsule->connection()->enableQueryLog();
+$capsule->getConnection()->statement("SET SESSION sql_mode = ''");
 
 
 /**
