@@ -48,7 +48,12 @@ class DoctorRepository
 
 	public function getHome($limit = 100)
 	{
-		return Doctor::with('content','user')->where('status', '!=', '0')->limit($limit)->orderBy('id', 'ASC')->get();
+		return Doctor::with('content','user')
+		->where('status', '!=', '0')
+		->whereHas('content', function($q){
+			return $q->where('content', '!=', '');
+		})
+		->limit($limit)->orderBy('id', 'ASC')->get();
 	}
 
 	public function get($limit = 100)
