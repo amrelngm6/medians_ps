@@ -204,7 +204,7 @@
                                             <tr :key="index" v-for="(post, index) in content.latest_forum_posts">
                                                 <td v-text="post.id ?? ''"></td>
                                                 <td>
-                                                    <span @click="activeItem = post, showEditForum = true"  v-text="post.title ?? ''"></span>
+                                                    <span class="cursor-pointer" @click="activeItem = post, showEditForum = true"  v-text="post.title ?? ''"></span>
                                                     <span :class="post.status ? 'bg-success' : 'bg-danger'" class="w-2 h-2 rounded inline-block mx-1"></span>
                                                 </td>
                                                 <td v-text="post.name ?? ''"></td>
@@ -241,7 +241,7 @@
                                         <tbody>
                                             <tr :key="i" v-for="(comment, i) in content.latest_forum_comments">
                                                 <td v-text="comment.id ?? ''"></td>
-                                                <td @click="activeItem = comment.post, showEditForum = true"  v-text="comment.content ?? ''"></td>
+                                                <td class="cursor-pointer" @click="activeItem = comment.post, showEditForum = true"  v-text="comment.content ?? ''"></td>
                                                 <td v-text="comment.user_name ?? ''"></td>
                                                 <td v-text="comment.user_phone ?? ''"></td>
                                                 <td v-text="comment.reply ?? ''"></td>
