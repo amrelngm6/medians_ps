@@ -153,6 +153,10 @@ RouteHandler::post('/en/submit/(:all)', \Medians\FrontendController::class.'@for
 RouteHandler::post('/en/submit_forum_comment', \Medians\FrontendController::class.'@storeCustomerComment'); 
 
 
+RouteHandler::get('/en/forum', \Medians\Forum\Application\ForumController::class.'@list'); 
+RouteHandler::get('/en/forum-post/(:all)', \Medians\Forum\Application\ForumController::class.'@page'); 
+RouteHandler::get('/en/new-forum-post', \Medians\Forum\Application\ForumController::class.'@forum_post_form'); 
+
 
 /**
 * Restricted access requests 
