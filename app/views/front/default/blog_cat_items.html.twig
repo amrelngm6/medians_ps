@@ -14,8 +14,8 @@
                         </div>
                         <div class="blog-item-content lg:w-7/12">
                             <div class="py-2 lg:py-6 lg:pr-6 lg:px-10 px-2">
-                                <a title="{{item.content.title}}" href="{{item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{item.update_date}}</a>
-                                <a title="{{item.content.title}}" href="{{item.content.prefix}}" class="py-2 block font-bold purple-color lg:text-xl text-base">{{item.content.title}}</a>
+                                <a title="{{item.content.title}}" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}{{item.content.prefix}}" class="block  font-semibold text-sm cyan-color">{{item.update_date}}</a>
+                                <a title="{{item.content.title}}" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}{{item.content.prefix}}" class="py-2 block font-bold purple-color lg:text-xl text-base">{{item.content.title}}</a>
                                 <p class=" font-semibold text-gray-600 lg:text-base text-sm">{{item.content.content|striptags|raw|slice(0,180)|raw}}</p>
                             </div>
                         </div>

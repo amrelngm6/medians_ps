@@ -18,7 +18,7 @@
                                             <ul class="{% if spec_item.id != item.parent_id %} hidden {% endif %}  sub-content text-gray-500 w-full px-7 block text-lg">
                                             {% for child_spec_item in spec_item.childs %}
                                             <li class="w-full block my-3 gap gap-4 font-bold text-lg">
-                                                <a title="{{child_spec_item.content.title}}" class="{% if child_spec_item.id == item.id %} purple-color {% endif %} w-full block my-3 gap gap-4 font-bold text-lg" href="{{child_spec_item.content.prefix}}" >
+                                                <a title="{{child_spec_item.content.title}}" class="{% if child_spec_item.id == item.id %} purple-color {% endif %} w-full block my-3 gap gap-4 font-bold text-lg" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}{{child_spec_item.content.prefix}}" >
                                                     <span>{{child_spec_item.content.title}} </span>
                                                 </a>
                                             </li>

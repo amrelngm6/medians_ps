@@ -2,6 +2,6 @@
                 <img loading="lazy" src="/stream?thumbnail=400&image={{item.thumbnail() ?? item.picture}}" alt="{{item.content.title}}" class="rounded-lg w-full h-64" />  
                 <div class="shadow w-full h-full left-0 top-0 absolute z-10 rounder-lg"></div>
                 <div class="w-full absolute  left-0 bottom-8 hover:bottom-10 px-8 z-20">
-                    <a  title="{{item.content.title}}" href="/{{item.content.prefix}}" class="text-white text-xl font-bold">{{item.content.title}}</a>
+                    <a  title="{{item.content.title}}" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}{{item.content.prefix}}" class="text-white text-xl font-bold">{{item.content.title}}</a>
                 </div>
             </div>

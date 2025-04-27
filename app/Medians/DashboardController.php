@@ -259,7 +259,7 @@ class DashboardController extends CustomController
 		$object = $this->contentRepo->find(urldecode($prefix));
 		if (empty($object)){
 
-			$langKey = $lang == 'english' ? 'en/' : '';
+			$langKey = ($lang == 'english' ? 'en/' : '');
 			echo $app->redirect('/'.$langKey.$prefix); 
 			return true;
 		}
@@ -274,7 +274,7 @@ class DashboardController extends CustomController
 		$redirectRequest = $app->request()->get('redirect') ?? ($lang == 'english' ? ('en/'.$newPrefix) : null);
 		$redirect = !empty($redirectRequest) ? $redirectRequest : $newPrefix;
 		// die($prefix.' '.$redirect);
-		echo $app->redirect($app->CONF['url'].$redirect);
+		echo $app->redirect(str_replace('//', '/', $app->CONF['url'].$redirect));
 
 	}
 }
