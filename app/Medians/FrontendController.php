@@ -101,7 +101,7 @@ class FrontendController extends CustomController
 			return null;
 		}
 
-		$prefix = str_replace($this->app->CONF['url'], '', $_SERVER['HTTP_REFERER']);
+		$prefix = str_replace([$this->app->CONF['url'], $this->app->CONF['url'].'/en'], '', $_SERVER['HTTP_REFERER']);
 
 		if (empty($prefix))
 		{

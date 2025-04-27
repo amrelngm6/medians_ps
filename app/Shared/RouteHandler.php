@@ -66,6 +66,11 @@ class RouteHandler {
       $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
       $method = $_SERVER['REQUEST_METHOD'];
 
+      if (str_contains($uri, '/en/')){
+				$_SESSION['site_lang'] = 'english';
+				$_SESSION['lang'] = 'english';
+      }
+
       $searches = array_keys(static::$patterns);
       $replaces = array_values(static::$patterns);
 

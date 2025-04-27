@@ -301,7 +301,8 @@ class ForumController extends CustomController
         	return array('error'=>$e->getMessage());
         }
 
-		return response($returnData);
+		echo json_encode($returnData);
+		return;
 	}
 	
 	public function updateCommentStatus() 

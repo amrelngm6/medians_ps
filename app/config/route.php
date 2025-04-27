@@ -126,6 +126,34 @@ RouteHandler::post('/customer/confirm', \Medians\Auth\Application\CustomerAuthSe
 RouteHandler::post('/customer/reset-password', \Medians\Auth\Application\CustomerAuthService::class.'@userResetPassword');
 RouteHandler::post('/customer/reset-password-code', \Medians\Auth\Application\CustomerAuthService::class.'@resetChangePassword');
 
+
+
+RouteHandler::get('/en/blog', \Medians\Blog\Application\BlogController::class.'@list'); 
+RouteHandler::get('/en/blog/', \Medians\Blog\Application\BlogController::class.'@list'); 
+RouteHandler::get('/en/offer_booking/(:all)', \Medians\Offers\Application\OfferController::class.'@page'); 
+RouteHandler::get('/en/search', \Medians\Pages\Application\PageController::class.'@search'); 
+RouteHandler::get('/en/search/', \Medians\Pages\Application\PageController::class.'@search'); 
+RouteHandler::get('/en/technologies', \Medians\Technologies\Application\TechnologyController::class.'@list'); 
+RouteHandler::get('/en/technologies/(:all)', \Medians\Technologies\Application\TechnologyController::class.'@item'); 
+RouteHandler::get('/en/booking_confirm/booking', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
+RouteHandler::get('/en/booking_confirm/online_consultation', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
+RouteHandler::get('/en/booking_confirm/offers', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
+RouteHandler::get('/en/booking_confirm/contact', \Medians\Bookings\Application\BookingController::class.'@thanks_page'); 
+
+
+/** @return send_message */
+RouteHandler::post('/send_message', Medians\Help\Application\HelpMessageController::class.'@store');
+RouteHandler::get('/en/online-consultation/(:num)', \Medians\OnlineConsultations\Application\OnlineConsultationController::class.'@page');
+RouteHandler::get('/en/doctors', \Medians\Doctors\Application\DoctorController::class.'@list'); 
+RouteHandler::get('/en/doctors/', \Medians\Doctors\Application\DoctorController::class.'@list'); 
+RouteHandler::get('/en/doctor_booking/(:all)', \Medians\Bookings\Application\BookingController::class.'@doctor_booking'); 
+RouteHandler::get('/en/book/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
+RouteHandler::get('/en/bookings/(:all)', \Medians\Bookings\Application\BookingController::class.'@page'); 
+RouteHandler::post('/en/submit/(:all)', \Medians\FrontendController::class.'@form_submit'); 
+RouteHandler::post('/en/submit_forum_comment', \Medians\FrontendController::class.'@storeCustomerComment'); 
+
+
+
 /**
 * Restricted access requests 
 */
@@ -373,13 +401,22 @@ RouteHandler::get('/logout', function ()
 });
 
 
+
+
+RouteHandler::get('/en/(:all)/(:all)', \Medians\Pages\Application\PageController::class.'@sub_page'); 
+RouteHandler::get('/en/(:all)/', \Medians\Pages\Application\PageController::class.'@page'); 
+RouteHandler::get('/en/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
+RouteHandler::get('/en', \Medians\Pages\Application\PageController::class.'@homepage');
+
+
+
+
 /**
  * Load sub-pages
  */
 RouteHandler::get('/(:all)/(:all)', \Medians\Pages\Application\PageController::class.'@sub_page'); 
 RouteHandler::get('/(:all)/', \Medians\Pages\Application\PageController::class.'@page'); 
 RouteHandler::get('/(:all)', \Medians\Pages\Application\PageController::class.'@page'); 
-
 
 return $app->run();
 

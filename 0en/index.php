@@ -1,5 +1,9 @@
 <?php
 
+include ('../index.php');
+
+return;
+
 // error_reporting(0); 
 error_reporting(E_ALL); 
 session_start(); 
@@ -26,11 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 // Check if installed or redirect to installation 
-file_exists(__DIR__.'/app/config/database.php') 
-    ?  require_once __DIR__.'/app/config/database.php' 
+file_exists(dirname(__DIR__).'/app/config/database.php') 
+    ?  require_once dirname(__DIR__).'/app/config/database.php' 
     : header('Location: ./installer/index.php');
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once dirname(__DIR__).'/vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -60,14 +64,14 @@ $capsule->getConnection()->statement("SET SESSION sql_mode = ''");
  * All Objects inside that folder would be called
  */ 
 spl_autoload_register(function ($name) {
-    $name2 = str_replace('\\', '/', __DIR__.'/app/'.$name.'.php');
+    $name2 = str_replace('\\', '/', dirname(__DIR__).'/app/'.$name.'.php');
     is_file($name2) ? include ($name2) : '';
 });
 
 
 
-include('app/helper/methods.php');
-include('app/config/route.php');
+include(dirname(__DIR__).'/app/helper/methods.php');
+include(__DIR__.'/en_route.php');
 $capsule->getConnection()->disconnect();
 
 
