@@ -303,7 +303,7 @@
         </div>
         <!-- <Timeline :resources="projects" :events="tasks" /> -->
 
-        <div class="bg-white fixed right-0 top-20 w-full z-10 overflow-auto" style="max-width: calc(100vw - 300px); max-height: calc(100vh - 55px)">
+        <div class="bg-white fixed top-20 w-full z-10 overflow-auto" style="max-width: calc(100vw - 300px); max-height: calc(100vh - 55px)">
             <item_details :item="activeItem" v-if="showEditForum && content" :doctors="content.doctors" :categories="content.categories" ref="activeForumPost" @callback="closeMessage" />
         </div>
 
