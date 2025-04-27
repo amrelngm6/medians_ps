@@ -274,7 +274,7 @@ class DashboardController extends CustomController
 		$redirectRequest = $app->request()->get('redirect') ?? ($lang == 'english' ? ('en/'.$newPrefix) : null);
 		$redirect = !empty($redirectRequest) ? $redirectRequest : $newPrefix;
 		// die($prefix.' '.$redirect);
-		echo $app->redirect(str_replace('//', '/', $app->CONF['url'].$redirect));
+		echo $app->redirect('/'.$redirect);
 
 	}
 }
