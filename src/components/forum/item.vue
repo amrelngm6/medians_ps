@@ -85,16 +85,16 @@
                                                                 </div>
                                                                 
                                                             </h5>
-                                                            <p class="text-muted" v-text="comment.content"></p>
+                                                            <p class="text-muted fs-2 text-secondary fw-bold" v-text="comment.content"></p>
                                                         </div>
                                                         <form action="/api/update" method="POST" data-refresh="1" id="comment-reply-form"
-                                                            class="action my-2 rounded-lg  pb-2" >
+                                                            class="action my-2 rounded-lg  pb-2 ms-3" >
                                                             <input name="type" type="hidden" value="ForumComment.update">
                                                             <input name="params[id]" type="hidden" :value="comment.id">
 
                                                             <div class="row g-3">
                                                                 <div class="col-lg-12">
-                                                                    <label for="exampleFormControlTextarea1" class="form-label fs-1 fw-bold" v-text="translate('Doctor Reply')"></label>
+                                                                    <label for="exampleFormControlTextarea1" class="form-label fs-4 fw-bold" v-text="translate('Doctor Reply')"></label>
                                                                     <form_field @callback="handleReply" :column='{column_type: "editor", key: "reply"}' :model="comment"  :item="comment" :conf="conf"></form_field>
                                                                 </div>
                                                                 <div class="col-lg-12 text-end mt-4">

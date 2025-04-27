@@ -128,6 +128,23 @@ class ForumRepository
 	}
 
 
+	public function allEventsByDate($params)
+	{
+		$query = Forum::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+
+	public function allCommentsByDate($params)
+	{
+		$query = ForumComment::whereBetween('created_at', [$params['start'], $params['end']]);
+		return $query;
+	}
+
+
+
+
+
 	/**
 	 * Load items with filters
 	 */

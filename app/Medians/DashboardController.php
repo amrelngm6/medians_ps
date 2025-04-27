@@ -16,8 +16,10 @@ class DashboardController extends CustomController
 	protected $app;
 
 	public  $contentRepo;
+	public  $specsRepo;
 	public  $BookingRepository;
 	public  $DoctorRepo;
+	public  $ForumRepository;
 
 	public $start;
 	public $end;
@@ -31,8 +33,10 @@ class DashboardController extends CustomController
 		$user = $this->app->auth();
 
 		$this->contentRepo = new Content\Infrastructure\ContentRepository();
+		$this->specsRepo = new Specializations\Infrastructure\SpecializationRepository();
 		$this->DoctorRepo = new Doctors\Infrastructure\DoctorRepository();
 		$this->BookingRepository = new Bookings\Infrastructure\BookingRepository();
+		$this->ForumRepository = new Forum\Infrastructure\ForumRepository();
 
 		
 		$setting = $this->app->SystemSetting();
@@ -184,6 +188,12 @@ class DashboardController extends CustomController
         $data['bookings_charts_sql'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label')->toSql();
         $data['bookings_charts'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label','class')->get();
         
+        $data['latest_forum_posts'] = $this->ForumRepository->allEventsByDate(['start'=>'2025-01-01', 'end'=>$this->end])->with('comments')->orderBy('status', 'desc')->limit(5)->get();
+        $data['latest_forum_comments'] = $this->ForumRepository->allCommentsByDate(['start'=>'2025-01-01', 'end'=>$this->end])->with(['post'=>function($q){ $q->with('comments');}])->orderBy('status', 'desc')->limit(5)->get();
+
+		$data['doctors'] = $this->DoctorRepo->getHome(100);
+		$data['categories'] = $this->specsRepo->get();
+
         return $data;
 
 	}  
