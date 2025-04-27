@@ -246,7 +246,6 @@ class DashboardController extends CustomController
 			echo $app->redirect('/'.$prefix); 
 			return true;
 		}
-
 		$object = $this->contentRepo->find(urldecode($prefix));
 		if (empty($object)){
 
@@ -258,14 +257,14 @@ class DashboardController extends CustomController
 
 		$item = $this->contentRepo->switch_lang($object, $lang);
 
-		$newPrefix = isset($item->prefix) ? "/$item->prefix" : $_SERVER['HTTP_REFERER'];
+		$newPrefix = isset($item->prefix) ? "$item->prefix" : $_SERVER['HTTP_REFERER'];
 
 		$_SESSION['site_lang'] = in_array($lang, $languages) ? $lang : 'arabic';
 
-		$redirectRequest = $app->request()->get('redirect') ?? ($lang == 'english' ? 'en/' : null);
-		$redirect = !empty($redirectRequest) ? $app->CONF['url'].$redirectRequest : $newPrefix;
-
-		echo $app->redirect($redirect);
+		$redirectRequest = $app->request()->get('redirect') ?? ($lang == 'english' ? ('en/'.$newPrefix) : null);
+		$redirect = !empty($redirectRequest) ? $redirectRequest : $newPrefix;
+		// die($prefix.' '.$redirect);
+		echo $app->redirect($app->CONF['url'].$redirect);
 
 	}
 }
