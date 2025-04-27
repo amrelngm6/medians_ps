@@ -9,7 +9,7 @@
         </div>
         <div class="mx-2 text-white cyan-bg rounded-xl p-6 ">
 
-            <a style=" margin: 0 40px; {{lang.translate('lang') == 'arabic' ? 'left' : 'right'}}: 0px; " href="/offer_booking/{{item.id }}" class="pull-{{lang.translate('lang') == 'arabic' ? 'left' : 'right'}} absolute z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.translate('more_details')}}</a>
+            <a style=" margin: 0 40px; {{lang.translate('lang') == 'arabic' ? 'left' : 'right'}}: 0px; " href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}offer_booking/{{item.id }}" class="pull-{{lang.translate('lang') == 'arabic' ? 'left' : 'right'}} absolute z-10 hover:bg-gray-800 purple-bg py-3 px-4 rounded-lg text-white">{{lang.translate('more_details')}}</a>
             
             <div class="w-full overflow-auto custom-scroll" style="height:200px">
             {{item.content.content|raw}}

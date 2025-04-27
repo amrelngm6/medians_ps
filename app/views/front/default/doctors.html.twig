@@ -44,13 +44,13 @@
                 <div class="shadow w-full h-full left-0 top-0 absolute z-10 rounder-lg"></div>
                 <div class="block-overlay-hover w-full absolute  left-0 bottom-8 hover:bottom-10 px-8 z-20">
                     <div class="bottom-8 relative">
-                        <a title="{{item.content.title}}" href="{{item.content.prefix}}" class="text-white text-xl font-bold">{{item.content.title}}</a>
+                        <a title="{{item.content.title}}" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}{{item.content.prefix}}" class="text-white text-xl font-bold">{{item.content.title}}</a>
                         <p class="text-sm text-white "> {{lang.translate('lang') == 'english' ? item.field.short_name : item.field.short_name_ar}} </p>
                         <p class="text-sm text-white pt-2 gap-3 gap font-semibold">
                             {% if item.content_item.content|raw is not empty %}
-                            <a title="{{item.content.title}}" class="py-3 px-4 purple-bg text-white rounded-tl-lg rounded-br-lg" href="/{{item.content.prefix}}">{{lang.translate('Profile CV')}}</a>
+                            <a title="{{item.content.title}}" class="py-3 px-4 purple-bg text-white rounded-tl-lg rounded-br-lg" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}{{item.content.prefix}}">{{lang.translate('Profile CV')}}</a>
                             {% endif %}
-                            <a title="{{lang.translate('BOOK_NOW')}}" class="py-3 px-4 cyan-bg purple-color hover:text-gray-500 mx-2 " href="/doctor_booking/{{item.id}}">{{lang.translate('BOOK_NOW')}} </a>
+                            <a title="{{lang.translate('BOOK_NOW')}}" class="py-3 px-4 cyan-bg purple-color hover:text-gray-500 mx-2 " href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}doctor_booking/{{item.id}}">{{lang.translate('BOOK_NOW')}} </a>
                         </p>
                         <p class="text-sm text-white pt-4 ">
                             {{item.content.short|striptags|trim|raw}}

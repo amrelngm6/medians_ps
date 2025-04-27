@@ -1,7 +1,7 @@
 
                             {% if similar|length %}
                             <div class="cyan-gradient45 rounded-lg py-2 mt-10 pr-6 purple-color font-semibold text-lg  " >
-                                <a href="/doctors" class="text-white">{{lang.translate('VIEW_ALL_DOCTORS')}}</a>
+                                <a href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}doctors" class="text-white">{{lang.translate('VIEW_ALL_DOCTORS')}}</a>
                             </div>
                             {% endif %}
                             {% for doctor in similar %}
@@ -11,9 +11,9 @@
                                 <p class="text-base pb-10 font-bold cyan-color px-6" >{{lang.translate('lang') == 'english' ? doctor.field.short_name_en : doctor.field.short_name_ar}}</p>
                                 <div class=" w-full text-center gap-6">
                                     {% if doctor.content_item.content|raw is not empty %}
-                                    <a title="{{doctor.content.title}}" class="mx-auto py-3 px-4 purple-bg text-white rounded-lg  inline-block " href="/{{doctor.content.prefix}}">{{lang.translate('FULL_BIO')}} </a>
+                                    <a title="{{doctor.content.title}}" class="mx-auto py-3 px-4 purple-bg text-white rounded-lg  inline-block " href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}{{doctor.content.prefix}}">{{lang.translate('FULL_BIO')}} </a>
                                     {% endif %}
-                                    <a title="{{lang.translate('Book now')}}" class="mx-auto py-3 px-4 cyan-bg purple-color font-semibold rounded-lg  inline-block " href="/doctor_booking/{{doctor.id}}">{{lang.translate('BOOK_NOW')}} </a>
+                                    <a title="{{lang.translate('Book now')}}" class="mx-auto py-3 px-4 cyan-bg purple-color font-semibold rounded-lg  inline-block " href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}doctor_booking/{{doctor.id}}">{{lang.translate('BOOK_NOW')}} </a>
                                 </div>
                             </div>
                             {% endfor %}
