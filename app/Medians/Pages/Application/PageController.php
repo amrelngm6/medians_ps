@@ -499,6 +499,13 @@ class PageController extends CustomController
         $pageContent = $this->find(urldecode($prefix));
 
 		try {
+			if (isset($pageContent->lang) && $pageContent->lang == 'english')
+			{
+				if (!str_contains($_SERVER['REQUEST_URI'], 'en/'))
+				{
+					header('Location: /en'.$_SERVER['REQUEST_URI']);
+				}
+			}
 
 			return $this->handlePageObject($pageContent);
            
