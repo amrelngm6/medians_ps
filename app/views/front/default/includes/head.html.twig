@@ -5,9 +5,7 @@
 {% set segments = app.request.pathInfo|split('/') %}
 {% if (segments|length > 2) and (segments[1] != 'en') %}
     <meta name="robots" content="noindex,nofollow">
-{% elseif noindex %}
-    <meta name="robots" content="noindex,nofollow">
-{% elseif app.request.get('lang') %}
+{% elseif noindex or app.request.get('lang') %}
     <meta name="robots" content="noindex,nofollow">
 {% else %}
     <meta name="robots" content="index,follow">
