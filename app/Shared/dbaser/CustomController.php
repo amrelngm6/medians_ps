@@ -21,6 +21,8 @@ class CustomController
         $arr = explode('/', $_SERVER['REQUEST_URI']);
         if (count(array_filter($arr)) > 1 && !empty($arr[1] != 'en')) {
             return true;
+        } elseif (isset($_GET['lang'])) {
+            return false;
         } else {
             return $item->noindex ?? false;
         }
