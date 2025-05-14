@@ -203,8 +203,11 @@ class SpecializationController extends CustomController
 			// $item->addView();
 			$settings = $this->app->SystemSetting();
 
+			$requestUri = explode('/', $_SERVER['REQUEST_URI']);
+
 			return render('views/front/'.($settings['template'] ?? 'default').'/specialization.html.twig', [
-				'noindex' => (count(array_filter(explode('/', $_SERVER['REQUEST_URI']))) > 1) ? true : false,
+
+				'noindex' => $this->filterHeadIndexMeta($item),
 		        'item' => $this->repo->filterShortCode($item),
 				'specializations' => $this->repo->get_root(),
 		        'stories' => $this->storiesRepo->random(1),

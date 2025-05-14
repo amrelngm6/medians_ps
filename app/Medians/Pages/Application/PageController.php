@@ -226,7 +226,16 @@ class PageController extends CustomController
      * Homepage for frontend
      */
     public function homepage()
-    {
+    {	
+        $arr = explode('/', $_SERVER['REQUEST_URI']);
+		if (isset($arr[1]) && $arr[1] == 'en')
+		{
+			$_SESSION['site_lang'] = 'english';
+			$_SESSION['lang'] = 'english';
+		} else {
+			$_SESSION['site_lang'] = 'arabic';
+			$_SESSION['lang'] = 'arabic';
+		}
 		
         $page = $this->repo->homepage();
 
