@@ -390,4 +390,15 @@ class BlogRepository
 		
 		return '/stream?image=/uploads/thumbnails/video.webp';
 	}
+
+
+	public function getByContent($content, $lang = null)
+	{
+		return Blog::with('user','author','content')
+		->whereHas('content', function($q) use ($content, $lang){
+			$q->where('content', 'LIKE', $content.'%');
+		})
+		->where('status', 'on')
+		->orderBy('id', 'DESC')->get();
+	}
 }
