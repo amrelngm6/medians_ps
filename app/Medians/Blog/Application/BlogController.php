@@ -99,16 +99,6 @@ class BlogController extends CustomController
 	 */
 	public function index() 
 	{
-		// Get all items that content filed starting with '<p>'
-		$items = $this->repo->getByContent('<p>', 'english');
-
-
-		// Update the content by adding <section class="kedit"> at the beginning of each item
-		foreach ($items as $item) {
-			$newcontent = '<section class="kedit">' . $item->content->content .'</section>';
-			$item->content->content = $newcontent;
-			$item->content->save();
-		}
 		
 		return render('data_table', 
 		[
