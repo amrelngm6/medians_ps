@@ -63,12 +63,12 @@ class Forum extends CustomModel
 
 	public function getDateAttribute() : ?String
 	{
-		return date('M, d Y', strtotime($this->created_at));
+		return date('M d', strtotime($this->created_at));
 	}
 	
 	public function getUpdateDateAttribute() 
 	{
-		return isset($this->updated_at) ? date('M, d Y', strtotime($this->updated_at)) : '';
+		return isset($this->updated_at) ? date('M d', strtotime($this->updated_at)) : '';
 	}
 
 

@@ -24,8 +24,14 @@ class ForumComment extends CustomModel
 		'status',
 	];
 	
-	public $appends = ['date', 'short_date'];
-	
+	public $appends = ['date', 'short_date', 'email'];
+
+	public function getEmailAttribute() 
+	{
+		return $this->user_email;
+	}
+
+
 	public function getShortDateAttribute()
 	{
 		$date = date('Y-m-d', strtotime($this->created_at));
@@ -41,7 +47,7 @@ class ForumComment extends CustomModel
 
 	public function getDateAttribute()
 	{
-		return date('Y-m-d H:i', strtotime($this->created_at));
+		return date('M d, H:i', strtotime($this->created_at));
 	}
 
 	
@@ -64,7 +70,7 @@ class ForumComment extends CustomModel
 	
 	public function receiverAsCustomer() 
 	{
-		return $this->post;
+		return $this;
 	}
 
 	public function receiverAsUser() 

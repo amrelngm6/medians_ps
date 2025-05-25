@@ -56,6 +56,12 @@ class DashboardController extends CustomController
 	 */
 	public function index()
 	{
+		// $Notification =  \Medians\Notifications\Domain\Notification::with('receiver')->find(58);
+		// if ($Notification) {
+		// 	$Notification->status = 'read';
+		// 	$Notification->sendNotification($Notification, $Notification->receiver);
+		// }		
+		
 		try {
 			
 			$user = $this->app->auth();
@@ -188,8 +194,8 @@ class DashboardController extends CustomController
         $data['bookings_charts_sql'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label')->toSql();
         $data['bookings_charts'] = $this->BookingRepository->allEventsByDate((['start'=>$this->start, 'end'=>$this->end]))->selectRaw('DATE(created_at) as label, class, COUNT(*) as y')->having('y', '>', 0)->orderBy('label', 'desc')->groupBy('label','class')->get();
         
-        $data['latest_forum_posts'] = $this->ForumRepository->allEventsByDate(['start'=>'2025-01-01', 'end'=>$this->end])->with('comments')->orderBy('status', 'desc')->limit(5)->get();
-        $data['latest_forum_comments'] = $this->ForumRepository->allCommentsByDate(['start'=>'2025-01-01', 'end'=>$this->end])->with(['post'=>function($q){ $q->with('comments');}])->orderBy('status', 'desc')->limit(5)->get();
+        $data['latest_forum_posts'] = $this->ForumRepository->allEventsByDate(['start'=>'2025-01-01', 'end'=>$this->end])->with('comments')->orderBy('id', 'desc')->limit(5)->get();
+        $data['latest_forum_comments'] = $this->ForumRepository->allCommentsByDate(['start'=>'2025-01-01', 'end'=>$this->end])->with(['post'=>function($q){ $q->with('comments');}])->orderBy('id', 'desc')->limit(5)->get();
 
 		$data['doctors'] = $this->DoctorRepo->getHome(100);
 		$data['categories'] = $this->specsRepo->get();

@@ -90,6 +90,11 @@ class Notification extends CustomModel
 	{
 		return $this->hasOne(User::class, 'id', 'receiver_id');
 	}
+	
+	public function receiver()
+	{
+		return $this->morphTo();
+	}
 
 
 
@@ -146,7 +151,6 @@ class Notification extends CustomModel
 			$sendMail = new MailService($receiver->email, $receiver->name, $notification->subject, $notification->body);
 			
 			$send = $sendMail->sendMail();
-
 
 			$id = "Customer-".$notification->receiver_id;
 			$sendOneSignalNotification = new \Shared\OneSignal\OneSignalService($id);
