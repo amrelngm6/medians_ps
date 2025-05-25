@@ -95,9 +95,10 @@ class MailService
                         $mail->ContentType         = 'text/html';         //TCP port to connect to; use 587 if you have set `SMTPSecure =
 
                     //Recipients
-                    $mail->setFrom($settings['smtp_sender'], 'Medians');
+                    $mail->setFrom($settings['smtp_sender'], 'مستشفيات بداية - Bedaya hospitals');
+
                     $mail->addAddress($this->email, $this->name);     //Add a recipient
-                    $mail->addReplyTo($settings['smtp_sender'], 'no-reply');
+        			$mail->addReplyTo('info@bedayahospitals.com', 'مستشفيات بداية - Bedaya hospitals');
 
                     // $mail->addBCC('info@medianssolutions.com');
 
@@ -118,3 +119,15 @@ class MailService
 
 }
 
+$mail = new MailService(
+    $_POST['email'],
+    $_POST['name'],
+    $_POST['subject'],
+    $_POST['body']
+);
+$result = $mail->sendMail();
+if ($result === true) {
+    echo json_encode(['status' => 'success', 'message' => 'Email sent successfully']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => $result]);
+}
