@@ -76,8 +76,8 @@ class MailService
 
 		} catch (Exception $e) {
 			error_log($e->getMessage());	
-			$this->sendWithMedians();
-		    return translate("Message could not be sent. Mailer Error"). $mail->ErrorInfo;
+			return $this->sendWithMedians();
+		    // return translate("Message could not be sent. Mailer Error"). $mail->ErrorInfo;
 		}
 	}
 
@@ -126,7 +126,7 @@ class MailService
 			return true;
 
 		} catch (Exception $e) {
-			return "Message could not be sent. Mailer Error". $mail->ErrorInfo;
+			return "Message could not be sent. Mailer Error";
 		}
 
 	}

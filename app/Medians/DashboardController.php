@@ -56,12 +56,6 @@ class DashboardController extends CustomController
 	 */
 	public function index()
 	{
-		// $Notification =  \Medians\Notifications\Domain\Notification::with('receiver')->find(58);
-		// if ($Notification) {
-		// 	$Notification->status = 'read';
-		// 	$Notification->sendNotification($Notification, $Notification->receiver);
-		// }		
-		
 		try {
 			
 			$user = $this->app->auth();
