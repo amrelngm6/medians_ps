@@ -186,7 +186,7 @@ class BuilderController extends CustomController
 
 			$lang = $request->get('lang') ? $request->get('lang') : $this->app->setLang()->lang;
 			$type = $request->get('item_type') ? $request->get('item_type') : 'Page';
-			$itemId = $request->get('item_id') ?? 0;
+			$itemId = $request->get('item_id') ?? $request->get('prefix');
 			
 			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type ) ?? $this->contentRepo->find($itemId );
 			
