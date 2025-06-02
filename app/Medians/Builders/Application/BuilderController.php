@@ -190,6 +190,7 @@ class BuilderController extends CustomController
 			
 			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type );
 
+			print_r($item);	
 			$check = (new $item->item_type)->find($item->item_id);
 
 			$check->content = $check->lang_content = $item;
