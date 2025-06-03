@@ -52,10 +52,15 @@ class BuilderController extends CustomController
 
 			$lang = $request->get('lang') ?? $this->app->setLang()->lang;
 			$type = $request->get('item_type') ?? 'Page';
-			$itemId = $request->get('item_id') ?? $request->get('prefix');
+			$itemId = $request->get('item_id');
 			
-			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type ) ?? $this->contentRepo->find($itemId );
-
+			if ($request->get('prefix'))
+			{
+				$item = $this->contentRepo->find($request->get('prefix'));
+			} else {
+				$item = $this->contentRepo->findItemByLang($itemId, $lang );
+			}
+			
 			$check = isset($item->item_type) ? (new $item->item_type)->find($item->item_id) : null;
 
 			(empty($check->content)) ? $this->handleMissingContent($type, $itemId, $lang) : null;
@@ -68,7 +73,7 @@ class BuilderController extends CustomController
 				'canScrab' => true,
 				'canCreate' => true,
 				'type' => $type,
-				'item_id' => $itemId,
+				'item_id' => $item->item_id,
 			]);
 
 		} catch (\Exception $e) {
@@ -185,16 +190,16 @@ class BuilderController extends CustomController
 			}
 
 			$lang = $request->get('lang') ? $request->get('lang') : $this->app->setLang()->lang;
-			$type = $request->get('item_type') ? $request->get('item_type') : 'Page';
+			$type = $request->get('item_type') ?? 'Page';
 			$itemId = $request->get('item_id') ?? $request->get('prefix');
 			
-			$item = $this->contentRepo->findItemByLang($itemId, $lang, $type ) ?? $this->contentRepo->find($itemId );
+			$item = $this->contentRepo->findItemByLang($itemId, $lang ) ?? $this->contentRepo->find($itemId );
 			
 			$check = isset($item->item_type) ? (new $item->item_type)->find($item->item_id) : null;
 
 			$check->content = $check->lang_content = $item;
 				
-			return render('views/admin/builder/templates/languages.html.twig',['page'=>$check, 'type' => $type, 'item_id' => $itemId, 'current_lang' => $lang]);
+			return render('views/admin/builder/templates/languages.html.twig',['page'=>$check, 'type' => $type, 'item_id' => $item->item_id , 'current_lang' => $lang]);
 
 		} catch (\Exception $e) {
 			throw new \Exception($e->getMessage(), 1);
