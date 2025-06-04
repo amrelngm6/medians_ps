@@ -69,7 +69,7 @@ class BuilderController extends CustomController
 				'page' => $item ?? $check->lang_content, 
 				'item' => $check,
 				'current_lang' => $lang,
-				'isEmpty' => $item->content == null,
+				'isEmpty' => trim($item->content) == null,
 				'canScrab' => true,
 				'canCreate' => true,
 				'type' => $type,

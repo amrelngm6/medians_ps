@@ -18,11 +18,14 @@
 
     {{precode|raw}}
     {% if isEmpty %}
-    
+    <div class="kedit" id="kpg_8324900">    
+        <p>REPLACE THIS WITH YOUR CONTENT</p>
     {% else %}
     {{page.content|raw}}
     {% endif%}
-
+    {% if isEmpty %}
+    </div>
+    {% endif%}
     {{postcode|raw}}
 </main>
 
