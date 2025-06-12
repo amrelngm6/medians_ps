@@ -45,7 +45,7 @@ class ContentRepository
 
 	public function findItemByLang($page_id, $lang, $type = 'Medians')
 	{
-		return Content::where('item_id', $page_id)->where('item_type', 'LIKE', '%'.$type.'%')->where('lang', $lang)->first();
+		return Content::where('item_id', $page_id)->where('item_type', $type)->where('lang', $lang)->first();
 	}
 
 	public function switch_lang($item, $lang)
