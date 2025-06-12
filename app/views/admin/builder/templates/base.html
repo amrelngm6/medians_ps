@@ -22,7 +22,7 @@
         <p>REPLACE THIS WITH YOUR CONTENT</p>
     {% else %}
         {% if page.content|trim starts with '<p' %}
-    <section id="kedit_{{ "now"|date("U") ~ random(1000, 9999) }}" class="kedit" data-padding="0-0" style="padding-top:0px;padding-bottom:0px">
+<section id="kedit_{{ "now"|date("U") ~ random(1000, 9999) }}" class="kedit" data-padding="0-0" style="padding-top:0px;padding-bottom:0px">
                 <div class="keditable keditable-auto">
                 {{page.content|raw}}
             </div></section>
