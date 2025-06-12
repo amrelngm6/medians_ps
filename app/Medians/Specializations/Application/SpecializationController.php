@@ -212,6 +212,7 @@ class SpecializationController extends CustomController
 				'specializations' => $this->repo->get_root(),
 		        'stories' => $this->storiesRepo->random(1),
 		        'similar_articles' => $this->blogRepo->similar($item, 3),
+				'ogType' => 'article',
 		    ]);
 
 		} catch (\Exception $e) {

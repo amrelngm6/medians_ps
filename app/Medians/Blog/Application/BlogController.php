@@ -252,6 +252,7 @@ class BlogController extends CustomController
 		        'stories' => $this->storiesRepo->random(1),
 				'specializations' => $this->specsRepo->get_root(),
 				'noindex' => $this->filterHeadIndexMeta($item),
+				'ogType' => 'article',
 		    ]);
 
 		} catch (\Exception $e) {
