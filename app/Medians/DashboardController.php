@@ -268,7 +268,10 @@ class DashboardController extends CustomController
 		$item = $this->contentRepo->switch_lang($object, $lang);
 
 		$newPrefix = isset($item->prefix) ? "$item->prefix" : $_SERVER['HTTP_REFERER'];
-
+		if ($newPrefix == 'الرئيسية') {
+			echo $app->redirect('/');
+			return;
+		}
 		$_SESSION['site_lang'] = in_array($lang, $languages) ? $lang : 'arabic';
 
 		$redirectRequest = $app->request()->get('redirect') ?? ($lang == 'english' ? ('en/'.$newPrefix) : null);
