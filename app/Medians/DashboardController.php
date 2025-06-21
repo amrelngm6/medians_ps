@@ -274,6 +274,10 @@ class DashboardController extends CustomController
 		}
 		$_SESSION['site_lang'] = in_array($lang, $languages) ? $lang : 'arabic';
 
+		if ($newPrefix == 'en') {
+			$newPrefix = '';
+		}
+
 		$redirectRequest = $app->request()->get('redirect') ?? ($lang == 'english' ? ('en/'.$newPrefix) : null);
 		$redirect = !empty($redirectRequest) ? $redirectRequest : $newPrefix;
 		// die($prefix.' '.$redirect);
