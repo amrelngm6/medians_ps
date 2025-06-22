@@ -130,4 +130,30 @@ class FrontendController extends CustomController
 		$forumController = new Forum\Application\ForumController;	
 		return $forumController->storeCustomerComment();
 	}
+
+
+	
+    /**
+     * videos for frontend
+     */
+    public function videos()
+    {	
+		
+
+		$settings = $this->app->SystemSetting();
+
+		try {
+			
+            return render('views/front/'.($settings['template'] ?? 'default').'/videos.html.twig', [
+                'title' => translate('Homepage'),
+                'page' => $page,
+                'item' => $page,
+	        	'headerPosition'=> 'lg-fixed',
+            ]);
+            
+		} catch (\Exception $e) {
+			
+			throw new \Exception($e->getMessage(), 1);
+		}
+    }
 }	

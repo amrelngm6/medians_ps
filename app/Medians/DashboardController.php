@@ -272,6 +272,7 @@ class DashboardController extends CustomController
 			echo $app->redirect('/');
 			return;
 		}
+		
 		$_SESSION['site_lang'] = in_array($lang, $languages) ? $lang : 'arabic';
 
 		if ($newPrefix == 'en') {

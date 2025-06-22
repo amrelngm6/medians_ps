@@ -70,6 +70,7 @@ RouteHandler::post('/front_api/delete', \Medians\FrontAPIController::class.'@del
  * Switch the language 
  */ 
 RouteHandler::get('/switch-lang/(:all)', \Medians\DashboardController::class.'@switchLang');
+RouteHandler::get('/videos', \Medians\FrontendController::class.'@videos');
 
 /**
  * Authentication
