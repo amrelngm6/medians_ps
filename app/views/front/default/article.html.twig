@@ -65,7 +65,7 @@
                                 <source media="(width >= 800px)" srcset="/stream?thumbnail=800&image={{item.picture}}" />
                                 <source media="(width >= 600px)" srcset="/stream?thumbnail=600&image={{item.picture}}" />
                                 {% endif %}
-                                <img alt="{{item.content.title}}" src="/stream?thumbnail=900&image={{item.picture}}"  />
+                                <img fetchpriority="high" alt="{{item.content.title}}" src="/stream?thumbnail=900&image={{item.picture}}"  />
                             </picture>
 
                             <div id="certificates" class="mt-10 relative mb-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
