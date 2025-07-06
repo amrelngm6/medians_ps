@@ -10,7 +10,13 @@
                     {% for item in catItemsList %}
                     <div class=" relative custom-scroll-item blog-main-item lg:flex block w-full ">
                         <div class="blog-item-img lg:w-5/12">
-                            <img width="350" height="232" loading="lazy" src="/stream?image={{item.thumbnail()}}" class="rounded-lg rounded w-full my-2 lg:my-4" alt="{{item.content.title}}">
+                        
+                            <picture>
+                                <source media="(width < 600px)" srcset="/stream?thumbnail=400&image={{item.picture}}" />
+                                <source media="(width >= 600px)" srcset="/stream?thumbnail=600&image={{item.picture}}" />
+                                <img fetchpriority="high" alt="{{item.content.title}}" src="/stream?thumbnail=600&image={{item.picture}}"  class="rounded-lg rounded w-full my-2 lg:my-4" />
+                            </picture>
+                            
                         </div>
                         <div class="blog-item-content lg:w-7/12">
                             <div class="py-2 lg:py-6 lg:pr-6 lg:px-10 px-2">

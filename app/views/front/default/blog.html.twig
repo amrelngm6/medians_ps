@@ -74,7 +74,12 @@
         <div class="container mx-auto"  >
             <div class="blog-main-item lg:flex block w-full">
                 <div class="blog-item-img lg:w-5/12">
-                    <img width="533" height="355" src="/stream?image={{first_item.picture}}" class="rounded-lg rounded w-full my-10 lg:my-10 max-w-full" alt="{{first_item.content.title}}">
+                    <picture>
+                        <source media="(width < 600px)" srcset="/stream?thumbnail=400&image={{first_item.picture}}" />
+                        <source media="(width >= 600px)" srcset="/stream?thumbnail=600&image={{first_item.picture}}" />
+                        <img fetchpriority="high" alt="{{first_item.content.title}}" src="/stream?thumbnail=600&image={{first_item.picture}}"  />
+                    </picture>
+
                 </div>
                 <div class="blog-item-content lg:w-7/12">
                     <div class=" lg:pt-10 lg:pr-10 lg:px-20 px-2">
@@ -100,7 +105,13 @@
             <div style="min-width: {{ 360 * items|length}}px;"   class="custom-scroll-list w-full flex gap-3 gap px-1 overflow-x-auto">
                 {% for item in items %}
                 <div class="relative custom-scroll-item w-full lg:h-full h-auto my-2 rounded-xl overflow-hidden">
-                    <img width="350" height="232" loading="lazy" src="/stream?image={{item.picture}}" alt="{{item.content.title}}" class="rounded-lg w-full h-64" />  
+                
+                    <picture>
+                        <source media="(width < 600px)" srcset="/stream?thumbnail=400&image={{item.picture}}" />
+                        <source media="(width >= 600px)" srcset="/stream?thumbnail=600&image={{item.picture}}" />
+                        <img fetchpriority="high" alt="{{item.content.title}}" src="/stream?thumbnail=600&image={{item.picture}}"  class="rounded-lg w-full h-64" />
+                    </picture>
+                     
                     <div class="shadow w-full h-full left-0 top-0 absolute z-10 rounder-lg"></div>
                     <div class="w-full absolute  left-0 bottom-8 hover:bottom-10 px-8 z-20">
                         <a  title="{{item.content.title}}" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}{{item.content.prefix}}" class="text-white text-xl font-bold">{{item.content.title}}</a>

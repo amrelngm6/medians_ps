@@ -60,11 +60,9 @@
                             {% set pictureURL = '/stream?thumbnail=800&image=' %}
                             
                             <picture>
-                                {% if item.picture[-4:] != 'webp' %}
                                 <source media="(width < 600px)" srcset="/stream?thumbnail=400&image={{item.picture}}" />
                                 <source media="(width >= 800px)" srcset="/stream?thumbnail=800&image={{item.picture}}" />
                                 <source media="(width >= 600px)" srcset="/stream?thumbnail=600&image={{item.picture}}" />
-                                {% endif %}
                                 <img fetchpriority="high" alt="{{item.content.title}}" src="/stream?thumbnail=900&image={{item.picture}}"  />
                             </picture>
 
