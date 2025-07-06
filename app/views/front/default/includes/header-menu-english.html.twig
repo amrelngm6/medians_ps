@@ -22,10 +22,10 @@
                     </a>
                     <a aria-label="Logo" title="Logo" class="p-1 lg:p-3 pb-1 mt-0 lg:mt-auto" href="/en"><img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/logo.webp" width="95" height="50"  /></a>
                     <ul class="lg:flex  hidden gap-1 h-full font-semibold purple-color">
-                        <li class="h-full"><a class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/en"><span class="block pt-8">{{lang.translate('home')}}</span></a></li>
+                        <li class="h-full"><a class="block px-1 h-full  hover:bg-blue-100 purple-color" href="/en"><span class="block pt-8">{{lang.translate('home')}}</span></a></li>
                         
                         <li class="has-sub-menu h-full relative">
-                            <a title="{{lang.translate('About bedaya')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('About_Bedaya')}}</span></a>
+                            <a title="{{lang.translate('About bedaya')}}" class="block px-1 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('About_Bedaya')}}</span></a>
                             <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
                             {% include 'views/front/default/includes/about_dropmenu.html.twig' %}
                             </ul>
@@ -33,7 +33,7 @@
                         {% for item in specializations  %}
                         {% if item.id == 2 %}
                         <li class="has-sub-menu h-full relative">
-                            <a title="{{item.content.title}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/en/{{item.content.prefix}}"><span class="block pt-8">{{lang.translate(item.content.title)}}</span></a>
+                            <a title="{{item.content.title}}" class="block px-1 h-full  hover:bg-blue-100 purple-color" href="/en/{{item.content.prefix}}"><span class="block pt-8">{{lang.translate(item.content.title)}}</span></a>
                             <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
                                 {% for child_item in item.childs|sort((a, b) => a.sort <=> b.sort) %}
                                 <li class="py-1"><a title="{{child_item.content.title}}" href="/en/{{child_item.content.prefix}}">{{lang.translate(child_item.content.title)}}</a></li>
@@ -44,7 +44,7 @@
                         {% endfor %}
 
                         <li class="has-sub-menu h-full relative">
-                            <a title="{{lang.translate('specializations')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('specializations')}}</span></a>
+                            <a title="{{lang.translate('specializations')}}" class="block px-1 h-full  hover:bg-blue-100 purple-color" href="javascript:;"><span class="block pt-8">{{lang.translate('specializations')}}</span></a>
                             <ul class="text-sm sub-menu w-48 absolute top-18 right-0 bg-white p-6 mt-4">
                                 {% for item in specializations|sort((a, b) => a.sort <=> b.sort)  %}
                                 {% if item.id != 2 %}
@@ -65,10 +65,11 @@
                             </ul>
                         </li>
 
-                        <li class="h-full"><a title="{{lang.translate('our Doctors')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/en/doctors"><span class="block pt-8">{{lang.translate('our Doctors')}}</span></a></li>
-                        <li class="h-full"><a title="{{lang.translate('Success stories')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/en/icsi-success-stories"><span class="block pt-8">{{lang.translate('success stories')}}</span></a></li>
-                        <li class="h-full"><a title="{{lang.translate('Blog')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/en/blog"><span class="block pt-8">{{lang.translate('blog')}}</span></a></li>
-                        <li class="h-full"><a title="{{lang.translate('Contact us')}}" class="block px-2 h-full  hover:bg-blue-100 purple-color" href="/en/contactus"><span class="block pt-8">{{lang.translate('Contact')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('our Doctors')}}" class="block px-1 h-full  hover:bg-blue-100 purple-color" href="/en/doctors"><span class="block pt-8">{{lang.translate('our Doctors')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('Success stories')}}" class="block px-1 h-full  hover:bg-blue-100 purple-color" href="/en/icsi-success-stories"><span class="block pt-8">{{lang.translate('success stories')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('Blog')}}" class="block px-1 h-full  hover:bg-blue-100 purple-color" href="/en/blog"><span class="block pt-8">{{lang.translate('blog')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('Ask-us')}}" class="block px-1 h-full  hover:bg-blue-100 purple-color" href="/forum"><span class="block pt-8">{{lang.translate('Ask-us')}}</span></a></li>
+                        <li class="h-full"><a title="{{lang.translate('Contact us')}}" class="block px-1 h-full  hover:bg-blue-100 purple-color" href="/en/contactus"><span class="block pt-8">{{lang.translate('Contact')}}</span></a></li>
                     </ul>
                 </div>
                 <div class="p-1 lg:py-4 lg:px-4  flex gap-3  ">
