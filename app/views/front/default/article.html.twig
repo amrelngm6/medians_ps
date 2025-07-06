@@ -58,11 +58,15 @@
                             {# <img alt="{{item.content.title}}" width="800" height="532" src="/stream?thumbnail=800&image={{item.picture}}" class="w-full" /> #}
                             {# {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?thumbnail=800&image=' : '/app/image.php?w=800&img=img&src=' %} #}
                             {% set pictureURL = '/stream?thumbnail=800&image=' %}
-                            <img width="800" height="530" src="{{pictureURL}}{{item.picture}}" 
-                            {% if item.picture[-4:] != 'webp' %}
-                            srcset="/stream?thumbnail=400&image={{item.picture}} 480w, /stream?thumbnail=900&image={{item.picture}} 1200w" sizes="(max-width: 600px) 480px, 1200px"
-                            {% endif %}
-                             alt="{{item.content.title}}"  />
+                            
+                            <picture>
+                                {% if item.picture[-4:] != 'webp' %}
+                                <source media="(width < 600px)" srcset="/stream?thumbnail=400&image={{item.picture}}" />
+                                <source media="(width >= 800px)" srcset="/stream?thumbnail=800&image={{item.picture}}" />
+                                <source media="(width >= 600px)" srcset="/stream?thumbnail=600&image={{item.picture}}" />
+                                {% endif %}
+                                <img alt="{{item.content.title}}" src="/stream?thumbnail=900&image={{item.picture}}"  />
+                            </picture>
 
                             <div id="certificates" class="mt-10 relative mb-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
                                 <img loading="lazy"  alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
