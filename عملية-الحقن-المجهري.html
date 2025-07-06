@@ -240,10 +240,11 @@
                                     2020</span> • <span class=" ">اخر تحديث: Jun 01, 2025</span> • <span
                                     class=" hide-mobile">المشاهدات: 74668</span></p>
 
-                            <img width="800" height="530"
-                                src="/stream?thumbnail=800&amp;image=/uploads/images/637574244_27724096_1682423391.jpg"
-                                srcset="/stream?thumbnail=480&image=/uploads/images/637574244_27724096_1682423391.jpg 480w, /stream?thumbnail=600&image=/uploads/images/637574244_27724096_1682423391.jpg 640w, /stream?thumbnail=900&image=/uploads/images/637574244_27724096_1682423391.jpg 1200w"
-                                sizes="(width <= 600px) 480px, (width <= 1200px) 640px, 1200px" alt="الحقن المجهري" />
+                                <picture>
+                                    <source media="(width < 600px)" srcset="/stream?thumbnail=400&amp;image=/uploads/images/637574244_27724096_1682423391.jpg" />
+                                    <source media="(width >= 600px)" srcset="/stream?thumbnail=600&amp;image=/uploads/images/637574244_27724096_1682423391.jpg" />
+                                    <img alt="الحقن المجهري" src="/stream?thumbnail=900&amp;image=/uploads/images/637574244_27724096_1682423391.jpg"  />
+                                </picture>
                             <div class="relative bg-green-100 py-6 px-4 mt-10 ">
                                 <span class="block w-full text-lg font-bold pb-2 purple-color"> جدول المحتوي </span>
                                 <hr class="border-gray-400 my-4" />
