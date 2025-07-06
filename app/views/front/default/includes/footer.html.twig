@@ -1,7 +1,13 @@
 {% include 'views/front/default/includes/header-menu-'~ lang.translate('lang') ~'.html.twig' %}
 
 <footer class="w-full footer-bg relative">
-	<img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-10 w-full " style="opacity: .08;"/>
+ 
+	<picture>
+		<source media="(width < 600px)" srcset="/stream?thumbnail=400&amp;image=/uploads/img/light-network.webp" />
+		<source media="(width >= 800px)" srcset="/stream?thumbnail=800&amp;image=/uploads/img/light-network.webp" />
+		<source media="(width >= 600px)" srcset="/stream?thumbnail=600&amp;image=/uploads/img/light-network.webp" />
+		<img alt="{{app.settings['sitename']}}" src="/stream?thumbnail=900&amp;image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+	</picture>  
 	<div class="mx-auto container py-10 px-2 lg:px-0 relative" style="z-index:99">
 		<div class="flex w-full">
 			<div class="w-full">

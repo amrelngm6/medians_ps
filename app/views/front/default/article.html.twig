@@ -69,7 +69,14 @@
                             </picture>
 
                             <div id="certificates" class="mt-10 relative mb-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
-                                <img loading="lazy"  alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+                                                
+                                <picture>
+                                    <source media="(width < 600px)" srcset="/stream?thumbnail=400&amp;image=/uploads/img/light-network.webp" />
+                                    <source media="(width >= 800px)" srcset="/stream?thumbnail=800&amp;image=/uploads/img/light-network.webp" />
+                                    <source media="(width >= 600px)" srcset="/stream?thumbnail=600&amp;image=/uploads/img/light-network.webp" />
+                                    <img alt="{{app.settings['sitename']}}" src="/stream?thumbnail=900&amp;image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+                                </picture>  
+
                                 <div class="relative">
                                     <span class="block w-full text-lg font-bold pb-2 purple-color"> {{lang.translate('content table')}} </span>
                                     <hr class="border-gray-400 my-4" />

@@ -2,8 +2,13 @@
         <!-- {{item.content.content}} -->
 
     <div class="w-full cyan-bg pb-6 pt-2 relative ">
-        <div class="w-full overflow-hidden h-full absolute bottom-0 left-0">        
-            <img loading="lazy"  alt="{{app.settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+        <div class="w-full overflow-hidden h-full absolute bottom-0 left-0">     
+            <picture>
+                <source media="(width < 600px)" srcset="/stream?thumbnail=400&amp;image=/uploads/img/light-network.webp" />
+                <source media="(width >= 800px)" srcset="/stream?thumbnail=800&amp;image=/uploads/img/light-network.webp" />
+                <source media="(width >= 600px)" srcset="/stream?thumbnail=600&amp;image=/uploads/img/light-network.webp" />
+                <img alt="{{app.settings['sitename']}}" src="/stream?thumbnail=900&amp;image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+            </picture>   
         </div>
         <div class="container mx-auto relative">
             <h1 class="text-2xl mx-auto w-auto text-center font-bold text-white" >{{item.content.title}}</h1>
@@ -34,8 +39,6 @@
         </div>
 
         <div class="container mx-auto relative">
-            <img loading="lazy" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-10 w-full " style="opacity: .08;" />
-                
             <div class="cairo mx-auto  py-2 mt-12 purple-color font-semibold text-2xl mx-auto text-center lg:w-6/12">
                 بداية هى من أوائل المستشفيات المتخصصه لعلاج حالات العقم وتأخر الحمل في مصر والشرق الأوسط
                 <span class="mx-auto my-4 w-20 border border-b-1  border-gray-300 block"></span>

@@ -109,8 +109,13 @@
 
 
             <div class="mobile-menu relative " >
-                <img alt="{{app.Settings['sitename']}}" 
-                src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .5;" />
+             
+                <picture>
+                    <source media="(width < 600px)" srcset="/stream?thumbnail=400&amp;image=/uploads/img/light-network.webp" />
+                    <source media="(width >= 800px)" srcset="/stream?thumbnail=800&amp;image=/uploads/img/light-network.webp" />
+                    <source media="(width >= 600px)" srcset="/stream?thumbnail=600&amp;image=/uploads/img/light-network.webp" />
+                    <img alt="{{app.settings['sitename']}}" src="/stream?thumbnail=900&amp;image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .5;" />
+                </picture>  
                 <ul class="relative font-semibold py-2">
                     <li class="py-1 "><a href="/en">{{lang.translate('homepage')}}</a></li>
                     <li class="py-1 flex">
