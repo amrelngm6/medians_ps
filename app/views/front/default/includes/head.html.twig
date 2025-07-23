@@ -3,8 +3,8 @@
 
 <head>
 {% set segments = app.request.pathInfo|split('/') %}
-{% if (segments|length > 3) and (segments[1] != 'en') %}
-    {# <meta name="robots" content="noindex,nofollow"> #}
+{% if (item.content.content == '') %}
+    <meta name="robots" content="noindex,nofollow">
 {% elseif noindex or app.request.get('lang') %}
     <meta name="robots" content="noindex,nofollow">
 {% else %}
