@@ -7,8 +7,8 @@
     <meta name="robots" content="noindex,nofollow">
 {% elseif noindex or app.request.get('lang') %}
     <meta name="robots" content="noindex,nofollow">
-{% else %}
-    <meta name="robots" content="index,follow">
+{% else %}    
+<meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 {% endif %}
     <meta charset='utf-8'>
     <meta content='ie=edge' http-equiv='x-ua-compatible'>
@@ -24,6 +24,8 @@
     <meta property='og:title' content="{{item.content.title ? item.content.title : app.setting('sitename')}}">
     <meta property='og:image' content='https://www.bedayahospitals.com/app/image.php?src=1253926083_1828277228_581308477.jpg&img=pic&w=800'>
     <meta property='og:description' content="{{item.content.seo_desc ? item.content.seo_desc : app.setting('seo_desc')}}">
+    <meta property='og:site_name' content='Bedaya Hospitals'>
+    <meta property='og:locale' content='ar_EG'>
     <!-- Twitter -->
     <meta property='twitter:card' content='summary_large_image'>
     <meta property='twitter:title' content="{{item.content.title ? item.content.title : app.setting('sitename')}}">
@@ -31,6 +33,11 @@
     <meta property='twitter:description' content="{{item.content.seo_desc ? item.content.seo_desc : app.setting('seo_desc')}}">
     
     <meta name="msapplication-config" content="none"/>
+
+    <!-- DNS Prefetch and Preconnect for Performance -->
+    <link rel="preload" rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preload" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" rel="dns-prefetch" href="//www.google-analytics.com">
 
     <link rel="mask-icon" sizes="any" href="https://www.bedayahospitals.com/uploads/img/logo.svg" color="#FFCC04">
 
@@ -49,6 +56,12 @@
     <link rel="mask-icon" href="https://www.bedayahospitals.com/uploads/img/logo.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    
+    <meta name="application-name" content="Bedaya hospitals - مستشفي بداية">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Bedaya hospitals - مستشفي بداية">
 
     <!-- CSS -->
     <link href='/assets?asset=/src/front/css/tailwind.min.css' rel='stylesheet'>
