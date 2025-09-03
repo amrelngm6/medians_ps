@@ -261,6 +261,9 @@ if(!empty($app->auth()))
     /** @return Specialization */
     RouteHandler::get('/admin/specialization', \Medians\Specializations\Application\SpecializationController::class.'@index');
 
+    /** @return Specialization */
+    RouteHandler::get('/admin/medicines', \Medians\Medicines\Application\MedicineController::class.'@index');
+
     /** @return Get-started */
     RouteHandler::get('/admin/get_started', Medians\Users\Application\GetStartedController::class.'@get_started');
 

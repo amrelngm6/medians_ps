@@ -567,6 +567,10 @@ class PageController extends CustomController
 				case \Medians\Specializations\Domain\Specialization::class:
 					return (new  \Medians\Specializations\Application\SpecializationController)->page($pageContent);
 					break;
+
+				case \Medians\Medicines\Domain\Medicine::class:
+					return (new  \Medians\Medicines\Application\MedicineController)->page($pageContent);
+					break;
 				
 				case \Medians\Doctors\Domain\Doctor::class:
 					return (new  \Medians\Doctors\Application\DoctorController)->page($pageContent);

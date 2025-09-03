@@ -174,6 +174,10 @@ class APIController extends CustomController
 				case 'Specialization.create':
 					$return = (new Specializations\Application\SpecializationController)->store();
 					break;
+
+				case 'Medicine.create':
+					$return = (new Medicines\Application\MedicineController)->store();
+					break;
 					
 				case 'Newsletter.create':
 					$return = (new Newsletters\Application\NewsletterController)->store();
@@ -315,6 +319,10 @@ class APIController extends CustomController
 				
 			case 'Specialization.update':
 				$controller = new Specializations\Application\SpecializationController;
+				break;
+
+			case 'Medicine.update':
+				$controller = new Medicines\Application\MedicineController;
 				break;
 
 			case 'Newsletter.update':
@@ -475,6 +483,10 @@ class APIController extends CustomController
 			
 				case 'Product.delete':
 					return response((new Products\Application\ProductController())->delete());
+					break;
+
+				case 'Medicine.delete':
+					return response((new Medicines\Application\MedicineController())->delete());
 					break;
 			
 				case 'WebTemplate.delete':
