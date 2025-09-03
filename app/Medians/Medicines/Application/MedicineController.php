@@ -66,13 +66,13 @@ class MedicineController extends CustomController
 
 		return [
             [ 'key'=> "id", 'title'=> "#", 'column_type'=>'hidden'],
+			[ 'key'=> "title", 'title'=> translate('Title'), 'fillable'=> true,'column_type'=>'text' ],
 			[ 'key'=> "category_id", 'title'=> translate('Category'), 
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'name', 'column_key' => 'category_id', 'required'=>false, 'withLabel'=>true, 
 				'data' => $this->categoryRepo->get()
 			],
-            [ 'key'=> "sorting", 'title'=> translate('sorting'), 'fillable'=>true,  'column_type'=>'number' ],
-            [ 'key'=> "sorting_ar", 'title'=> translate('Sorting AR'), 'fillable'=>true,  'column_type'=>'number' ],
-			
+            // [ 'key'=> "sorting", 'title'=> translate('sorting'), 'fillable'=>true,  'column_type'=>'number' ],
+            // [ 'key'=> "sorting_ar", 'title'=> translate('Sorting AR'), 'fillable'=>true,  'column_type'=>'number' ],
 			[ 'key'=> "inserted_by", 'title'=> translate('Author'), 
 				'fillable'=> true, 'column_type'=>'select','text_key'=>'title', 'column_key' => 'id', 'required'=>false, 'withLabel'=>true, 
 				'data' => $this->doctorRepo->get()
