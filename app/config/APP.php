@@ -326,6 +326,7 @@ class APP
 	        ),
 
 
+			array('permission'=> 'Dashboard.index', 'title'=> translate('Medicines'),  'icon'=>'bill', 'link'=>'admin/medicines', 'component'=>'data_table'),
 			array('permission'=> 'Dashboard.index', 'title'=> translate('Specializations'),  'icon'=>'droplet', 'link'=>'admin/specialization', 'component'=>'data_table'),
 			array('permission'=> 'Dashboard.index', 'title'=> translate('DOCTORS'),  'icon'=>'user', 'link'=>'admin/doctors', 'component'=>'data_table'),
 			array('permission'=> 'Dashboard.index', 'title'=> translate('online_consultation'),  'icon'=>'cast', 'link'=>'admin/online_consultation', 'component'=>'data_table'),
@@ -408,6 +409,7 @@ class APP
 
 
 			array('permission'=> 'Dashboard.index', 'title'=> translate('Forum'),  'icon'=>'share-2', 'link'=>'admin/forum', 'component'=>'forum'),
+			array('permission'=> 'Dashboard.index', 'title'=> translate('Medicines'),  'icon'=>'coffee', 'link'=>'admin/medicines', 'component'=>'data_table'),
 			array('permission'=> 'Dashboard.index', 'title'=> translate('Specializations'),  'icon'=>'droplet', 'link'=>'admin/specialization', 'component'=>'data_table'),
 			array('permission'=> 'Dashboard.index', 'title'=> translate('DOCTORS'),  'icon'=>'user', 'link'=>'admin/doctors', 'component'=>'data_table'),
 			array('permission'=> 'Dashboard.index', 'title'=> translate('online_consultation'),  'icon'=>'cast', 'link'=>'admin/online_consultation', 'component'=>'data_table'),
