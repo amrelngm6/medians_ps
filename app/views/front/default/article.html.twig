@@ -1,49 +1,12 @@
 {% include 'views/front/default/includes/header.html.twig' %}
 
     <div class="w-full  cyan-bg relative pb-10 pt-20">
-        <div class="w-full overflow-hidden h-full cyan-bg absolute top-0 left-0">
-            {# <img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" /> #}
-            {# <img loading="lazy" alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/circles-bg.webp" class="absolute left-0 bottom-0 w-full" style="opacity: .3;" /> #}
-        </div>
         <div class="container mx-auto relative px-1 ">
             <p class="text-sm lg:pb-2 flex gap-2 font-normal text-gray-600 lg:pt-10">
-                <a title="{{lang.translate('homepage')}}"  class="text-white" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}">{{lang.translate('homepage')}} </a> | <a title="{{lang.translate('blog')}}"  class="text-white" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}blog">{{lang.translate('blog')}} </a> | <span class="text-white">{{item.content.title}}</span></p>
-                
-
-<script type="application/ld+json">
-[ 
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "{{lang.translate('Homepage')}}",
-      "item": "{{app.CONF.url}}"
-    },{
-      "@type": "ListItem",
-      "position": 2,
-      "name": "{{lang.translate('Blog')}}",
-      "item": "{{app.CONF.url}}blog"
-    },{
-      "@type": "ListItem",
-      "position": 3,
-      "name": "{{item.content.title}}"
-    }]
-  }
-]
-</script>
-<script type="application/ld+json">
-{{item.content.short|raw}}
-</script>
-
-<script type="application/ld+json">
-{{item.content.seo_tag|raw}}
-</script>
-
-<script type="application/ld+json">
-  {{item.content.seo_video|raw}}
-</script>
+                <a title="{{lang.translate('homepage')}}"  class="text-white" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}">{{lang.translate('homepage')}} </a> 
+                | <a title="{{lang.translate('blog')}}"  class="text-white" href="/{{lang.translate('lang') == 'english' ? 'en/' : ''}}blog">{{lang.translate('blog')}} </a> 
+                | <span class="text-white">{{item.content.title}}</span>
+            </p>
             <div class="mx-auto w-full relative z-10 mb-8 ">
                 <div class="relative top-0  left-0 right-0 px-0 pt-2 pb-6">
                     <div class="lg:flex block w-full  gap-3 gap">
@@ -55,8 +18,6 @@
                             {% endif %}
                             <p class="lg:text-base text-sm flex gap-2"><span class="hide-mobile">{{lang.translate('released_at')}}:{{item.content.created_at|date('M d, Y')}}</span> • <span class=" ">{{lang.translate('Updated at')}}: {{item.content.updated_at|date('M d, Y')}}</span> • <span class=" hide-mobile">{{lang.translate('views')}}: {{item.totalviews()}}</span></p>
 
-                            {# <img alt="{{item.content.title}}" width="800" height="532" src="/stream?thumbnail=800&image={{item.picture}}" class="w-full" /> #}
-                            {# {% set pictureURL = item.picture[-4:] == 'webp' ? '/stream?thumbnail=800&image=' : '/app/image.php?w=800&img=img&src=' %} #}
                             {% set pictureURL = '/stream?thumbnail=800&image=' %}
                             
                             <picture>
@@ -69,10 +30,10 @@
                             <div id="certificates" class="mt-10 relative mb-6 p-6 lightcyan-bg  rounded-lg overflow-hidden">
                                                 
                                 <picture>
-                                    <source media="(width < 600px)" srcset="/stream?thumbnail=400&amp;image=/uploads/img/light-network.webp" />
-                                    <source media="(width >= 800px)" srcset="/stream?thumbnail=800&amp;image=/uploads/img/light-network.webp" />
-                                    <source media="(width >= 600px)" srcset="/stream?thumbnail=600&amp;image=/uploads/img/light-network.webp" />
-                                    <img alt="{{app.settings['sitename']}}" src="/stream?thumbnail=900&amp;image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
+                                    <source media="(width < 600px)" srcset="/stream?thumbnail=400&image=/uploads/img/light-network.webp" />
+                                    <source media="(width >= 800px)" srcset="/stream?thumbnail=800&image=/uploads/img/light-network.webp" />
+                                    <source media="(width >= 600px)" srcset="/stream?thumbnail=600&image=/uploads/img/light-network.webp" />
+                                    <img alt="{{app.settings['sitename']}}" src="/stream?thumbnail=900&image=/uploads/img/light-network.webp" class="absolute left-0 top-0 w-full" style="opacity: .3;" />
                                 </picture>  
 
                                 <div class="relative">
@@ -89,9 +50,7 @@
                         <div class="w-full lg:w-4/12">
                             <div class="lg:px-0 px-1">
                                 {% include 'views/front/default/side_offers.html.twig' %}
-    
                                 {# include 'views/front/default/side_similar_items.html.twig' #}
-
                                 {% include 'views/front/default/side_success_stories.html.twig' %}
                             </div>
                         </div>
@@ -101,7 +60,6 @@
         </div>
     </div>
 
-    {# <button style=" right: 17px;bottom: 135px; z-index:999"  class="fixed rounded-full bg-white p-2"><svg fill="#000000" height="35px" width="35px" version="1.1" id="speakButton" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve" class="cursor-pointer"> <g> <path d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z"/> <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"/> </g> </svg></button> #}
     <div class="relative w-full overflow-hidden px-1">
         <img loading="lazy"  alt="{{app.Settings['sitename']}}" src="/stream?image=/uploads/img/circles-bg.webp" class="absolute left-0 top-0 w-full" style="opacity: 0.05;" />
         <div class="container mx-auto relative z-10">
@@ -110,9 +68,8 @@
     </div>
 
     <script>
-    
     jQuery(document).ready(function(){
-    var parent = document.getElementById("article-content"),
+        var parent = document.getElementById("article-content"),
         h2 = parent.getElementsByTagName("h2"),
         a = h2.length,
         b, link, title,
@@ -125,16 +82,10 @@
                 cLink = 'tag-'+(Math.random() * 1000);   
                 $(h2[b]).attr('id', cLink)
             }
-
-
-            
             c += link ? '<p><a title="'+title+'" href="#'+link+'">'+title+'</a></p>' : '<p><a  title="'+title+'" href="#'+cLink+'">'+title+'</a></p>';
         }
         jQuery('#content-table').html(c)        
-
-
     })
-    
     </script>
 {% include 'views/front/default/includes/navbar.html.twig' %}
 

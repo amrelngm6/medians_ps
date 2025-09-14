@@ -1,4 +1,6 @@
 <?php
+$time_start = microtime(true);
+
 
 error_reporting(0); 
 // error_reporting(E_ALL); 
@@ -69,6 +71,8 @@ spl_autoload_register(function ($name) {
 include('app/helper/methods.php');
 include('app/config/route.php');
 $capsule->getConnection()->disconnect();
-
+$time_end = microtime(true);
+$execution_time = ($time_end - $time_start);
+echo '<!-- Page generated in '.$execution_time.' seconds. -->';
 
 

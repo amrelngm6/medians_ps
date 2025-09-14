@@ -9,11 +9,14 @@ class Lang
 	public $lang;
 	
 	public $repo;
+
+	private $translations = [];
 	
-	function __construct($lang)
+	function __construct($lang, $langs = null)
 	{
 		$this->lang = $lang ?? 'english';
 		$this->repo = new TranslationRepository();
+		$this->translations = $langs ?? include(__DIR__.'/langs/'.$lang.'.php');
 	}
 
 	public function load()
@@ -21,7 +24,7 @@ class Lang
 		switch ($this->lang) 
 		{
 			default:
-				return array_column($this->repo->findByLang($this->lang), 'value', 'code');
+				return $this->translations;
 				break;
 		}
 	}
@@ -29,9 +32,8 @@ class Lang
 	
 	public function translate($langkey)
 	{
-		$check = $this->repo->findByCodeLang($langkey, $this->lang);
-		return  isset($check->value) ? $check->value : ucfirst(str_replace('_', ' ', $langkey));
-
+		if ($langkey == 'lang') return $this->lang;
+		return $this->translations[$langkey] ?? ucfirst(str_replace('_', ' ', $langkey));
 	}
 
 }

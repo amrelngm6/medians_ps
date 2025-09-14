@@ -2,6 +2,7 @@
 
 $app = new \config\APP;
 $app->setLang();
+$langsList = include(__DIR__.'/langs/'.$lang.'.php');
 
 use Shared\simple_html_dom;
 
@@ -63,7 +64,7 @@ function render($template, $data, $responseType = 'html')
 function renderPlugin($template, $data)
 {
 
-    global $app;
+    global $app, $langsList;
 
     /**
      * Response will be override only
@@ -72,7 +73,7 @@ function renderPlugin($template, $data)
     
     // $data = loadConfig($template, $data);
     $data['app'] = $app;
-    $data['lang'] = new helper\Lang($_SESSION['lang']);
+    $data['lang'] = new helper\Lang($_SESSION['lang'], $langsList);
     // $data = loadConfig($template, $data);
     $output =  $app->template()->render($template, $data);
 
@@ -85,37 +86,37 @@ function renderPlugin($template, $data)
   */
   function loadConfig($template, $data)
   {
-    
+    global $langsList, $app;
 
     try {
-        
-        $app = new \config\APP;
             
         $setting = $app->SystemSetting();
         $languages = $app->Languages();  
-        
+        $isFront = strpos($template, 'front/');
+
     } catch (\Exception $e) {
         echo ('CHECK DATABASE CONNECTION ');
         die();
     }
+    
+    $langObject = new helper\Lang($_SESSION['lang'], $lanmgs);
 
     $app = new \config\APP;
     $data['component'] = $template;
     $data['app'] = $app;
     $data['app']->auth = $app->auth();
-    $data['app']->customer = $app->customer_auth();
     $data['app']->setting = $setting;
     $data['template'] = $setting['template'] ?? 'default';
     $data['menu'] = $app->menu();
     $data['langs'] = $languages;
     $data['startdate'] = !empty($app->request()->get('start')) ? $app->request()->get('start') : date('Y-m-d');
     $data['enddate'] = !empty($app->request()->get('end')) ? $app->request()->get('end') : date('Y-m-d');
-    $data['lang'] = new helper\Lang($_SESSION['lang']);
-    $data['lang_json'] = (new helper\Lang($_SESSION['lang']))->load();
+    $data['lang'] = $langObject;
+    $data['lang_json'] = $isFront ? [] :  $langObject->load();
     $data['lang_key'] = substr($_SESSION['lang'],0,2);
-    $data['app']->isMobileDevice = isMobileDevice();
-    $data['specializations'] = (new \Medians\Specializations\Infrastructure\SpecializationRepository())->get_root();
-    $data['all_technologies'] = (new \Medians\Technologies\Infrastructure\TechnologyRepository())->get();
+    $data['app']->isMobileDevice =  isMobileDevice();
+    $data['specializations'] =  (new \Medians\Specializations\Infrastructure\SpecializationRepository())->get_root();
+    $data['all_technologies'] =  (new \Medians\Technologies\Infrastructure\TechnologyRepository())->get();
 
     return $data;
   }

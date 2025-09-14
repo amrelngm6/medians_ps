@@ -109,9 +109,6 @@ class MedicineController extends CustomController
 	}
 
 
-
-
-
 	public function store() 
 	{
 
