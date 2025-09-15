@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Reviews Widget</title>
+    <link rel="stylesheet" href="google-reviews-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="reviews-widget-container">
+        <!-- Header Section -->
+        <div class="reviews-header">
+            <div class="reviews-logo">
+                <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" class="google-logo">
+            </div>
+            <div class="reviews-summary">
+                <div class="rating-overview flex">
+                    <div class="rating-score">4.8</div>
+                    <div>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="total-reviews">55 مراجعة Google</div>
+                    </div>
+                </div>
+                <button class="write-review-btn">
+                    <i class="fas fa-edit"></i>
+                    كتابة مراجعة
+                </button>
+            </div>
+        </div>
+
+        <!-- Reviews Carousel -->
+        <div class="reviews-carousel">
+            <button class="carousel-btn prev-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="reviews-container" id="reviewsContainer">
+                <!-- Review Card 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="https://lh3.googleusercontent.com/a/default-user=s40-c" alt="Abdullah Sabry" class="reviewer-avatar">
+                            <div class="reviewer-details">
+                                <h4 class="reviewer-name">Abdullah Sabry</h4>
+                                <div class="review-date">2024.01.04</div>
+                            </div>
+                        </div>
+                        <div class="google-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>ebb&tide شركة ممتزة في مجال التسويق بالاستراتجيات والتصاميم الهندسية</p>
+                    </div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="https://lh3.googleusercontent.com/a/default-user=s40-c" alt="Hany Galal" class="reviewer-avatar">
+                            <div class="reviewer-details">
+                                <h4 class="reviewer-name">Hany Galal</h4>
+                                <div class="review-date">2024.01.23</div>
+                            </div>
+                        </div>
+                        <div class="google-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>Experienced with digital marketing and website development company. Decent workspace and great...</p>
+                    </div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="https://lh3.googleusercontent.com/a/default-user=s40-c" alt="Basem Mohamed" class="reviewer-avatar">
+                            <div class="reviewer-details">
+                                <h4 class="reviewer-name">Basem Mohamed</h4>
+                                <div class="review-date">2023.12.31</div>
+                            </div>
+                        </div>
+                        <div class="google-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>مستشفى ممتاز جداً والخدمة رائعة. الأطباء محترفون والتعامل راقي. أنصح بشدة بالتعامل معهم.</p>
+                    </div>
+                </div>
+
+                <!-- Review Card 4 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="https://lh3.googleusercontent.com/a/default-user=s40-c" alt="Sarah Ahmed" class="reviewer-avatar">
+                            <div class="reviewer-details">
+                                <h4 class="reviewer-name">Sarah Ahmed</h4>
+                                <div class="review-date">2024.02.15</div>
+                            </div>
+                        </div>
+                        <div class="google-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>تجربة رائعة مع مستشفى بداية. الدكاترة والممرضين كانوا في منتهى اللطف والاحترافية. أشكركم جداً.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-btn next-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators" id="indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+        </div>
+    </div>
+
+    <script src="google-reviews-script.js"></script>
+</body>
+</html>
