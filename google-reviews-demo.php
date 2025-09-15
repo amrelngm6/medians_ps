@@ -14,10 +14,14 @@ class GoogleReviewsFetcher {
     private $place_id;
     private $cache_duration = 3600; // 1 hour cache
     private $cache_dir = 'cache/';
+    private $enable_cache;
+    private $sort_by_latest;
     
-    public function __construct($api_key, $place_id) {
+    public function __construct($api_key, $place_id, $enable_cache = true, $sort_by_latest = true) {
         $this->api_key = $api_key;
         $this->place_id = $place_id;
+        $this->enable_cache = $enable_cache;
+        $this->sort_by_latest = $sort_by_latest;
         
         // Create cache directory if it doesn't exist
         if (!is_dir($this->cache_dir)) {
@@ -32,11 +36,14 @@ class GoogleReviewsFetcher {
      */
     public function getReviews($limit = 5) {
         $cache_file = $this->cache_dir . 'reviews_' . $this->place_id . '.json';
+        
         // Check if cached data exists and is still valid
-        if (file_exists($cache_file) && (time() - filemtime($cache_file)) < $this->cache_duration) {
+        if ($this->enable_cache && file_exists($cache_file) && (time() - filemtime($cache_file)) < $this->cache_duration) {
             $cached_data = json_decode(file_get_contents($cache_file), true);
             if ($cached_data && isset($cached_data['reviews'])) {
-                return array_slice($cached_data['reviews'], 0, $limit);
+                // Apply sorting to cached reviews as well
+                $sorted_reviews = $this->sortReviewsByLatest($cached_data['reviews']);
+                return array_slice($sorted_reviews, 0, $limit);
             }
         }
         
@@ -44,9 +51,15 @@ class GoogleReviewsFetcher {
         $reviews_data = $this->fetchFromAPI();
         
         if ($reviews_data) {
+            // Sort reviews by latest if enabled
+            $sorted_reviews = $this->sortReviewsByLatest($reviews_data['reviews']);
+            
+            // Update the reviews data with sorted reviews
+            $reviews_data['reviews'] = $sorted_reviews;
+            
             // Cache the data
             file_put_contents($cache_file, json_encode($reviews_data));
-            return array_slice($reviews_data['reviews'], 0, $limit);
+            return array_slice($sorted_reviews, 0, $limit);
         }
         
         return [];
@@ -58,10 +71,11 @@ class GoogleReviewsFetcher {
      */
     private function fetchFromAPI() {
             // Build the URL
-        $fields = urlencode('name,rating,reviews');  // can add more: formatted_address, opening_hours, etc.
+        $fields = urlencode('name,rating,reviews,user_ratings_total');  // can add more: formatted_address, opening_hours, etc.
         $url = "https://maps.googleapis.com/maps/api/place/details/json"
             . "?place_id=" . urlencode($this->place_id)
-            . "&language=" . urlencode('en')
+            . "&language=" . urlencode('ar')
+            . "&reviews_sort=newest"
             . "&key=" . urlencode($this->api_key);
 
         // Use cURL to fetch
@@ -81,7 +95,6 @@ class GoogleReviewsFetcher {
 
         // Decode JSON
         $data = json_decode($response, true);
-        print_r($data); 
         if (!isset($data['status'])) {
             // Unexpected response
 
@@ -103,6 +116,7 @@ class GoogleReviewsFetcher {
         $business = [
             'name' => $result['name'] ?? '',
             'rating' => $result['rating'] ?? null,
+            'total_ratings' => $result['user_ratings_total'] ?? 0
             // add more fields if you requested them
         ];
 
@@ -111,41 +125,25 @@ class GoogleReviewsFetcher {
             'reviews' => $reviews,
         ];
         
-        $url = "https://maps.googleapis.com/maps/api/place/details/json?" . http_build_query([
-            'place_id' => $this->place_id,
-            'fields' => 'name,rating,user_ratings_total,reviews',
-            'key' => $this->api_key,
-            'language' => 'en'
-        ]);
-        
-        $curl = curl_init();
-        curl_setopt_array($curl, [
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 10,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; GoogleReviewsFetcher/1.0)'
-        ]);
-        
-        $response = curl_exec($curl);
-        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
-        
-        if ($http_code === 200 && $response) {
-            $data = json_decode($response, true);
-            print_r($data);
-            if ($data && $data['status'] === 'OK' && isset($data['result']['reviews'])) {
-                return [
-                    'name' => $data['result']['name'] ?? '',
-                    'rating' => $data['result']['rating'] ?? 0,
-                    'total_ratings' => $data['result']['user_ratings_total'] ?? 0,
-                    'reviews' => $this->formatReviews($data['result']['reviews'])
-                ];
-            }
+    }
+    
+    /**
+     * Sort reviews by timestamp (latest first)
+     * @param array $reviews Reviews array
+     * @return array Sorted reviews
+     */
+    private function sortReviewsByLatest($reviews) {
+        if (!$this->sort_by_latest) {
+            return $reviews;
         }
         
-        return false;
+        usort($reviews, function($a, $b) {
+            $timeA = $a['time'] ?? 0;
+            $timeB = $b['time'] ?? 0;
+            return $timeB - $timeA; // Sort descending (latest first)
+        });
+        
+        return $reviews;
     }
     
     /**
@@ -179,19 +177,14 @@ class GoogleReviewsFetcher {
     public function getBusinessInfo() {
         $cache_file = $this->cache_dir . 'business_' . $this->place_id . '.json';
         
-        if (file_exists($cache_file) && (time() - filemtime($cache_file)) < $this->cache_duration) {
+        if ($this->enable_cache && file_exists($cache_file) && (time() - filemtime($cache_file)) < $this->cache_duration) {
             return json_decode(file_get_contents($cache_file), true);
         }
         
         $data = $this->fetchFromAPI();
         if ($data) {
-            $business_info = [
-                'name' => $data['name'],
-                'rating' => $data['rating'],
-                'total_ratings' => $data['total_ratings']
-            ];
-            file_put_contents($cache_file, json_encode($business_info));
-            return $business_info;
+            file_put_contents($cache_file, json_encode($data['business']));
+            return $data['business'];
         }
         
         return null;
@@ -317,11 +310,12 @@ try {
         'api_key' => 'AIzaSyCIW3yu0NLwlAROWKLR-LEbMT9L2lfL__o', // Get from Google Cloud Console
         'place_id' => 'ChIJ2Yn3-SlBWBQR172kjd-DzdU', // Find using Google Place ID Finder
         'reviews_to_show' => 5,
-        'enable_cache' => true
+        'enable_cache' => false, // Set to false to always get latest reviews
+        'sort_by_latest' => true // Sort reviews by latest first
     ];
     
     // Initialize the reviews fetcher
-    $reviews_fetcher = new GoogleReviewsFetcher($config['api_key'], $config['place_id']);
+    $reviews_fetcher = new GoogleReviewsFetcher($config['api_key'], $config['place_id'], $config['enable_cache'], $config['sort_by_latest']);
     
     // Method 1: Get reviews as array
     $reviews = $reviews_fetcher->getReviews($config['reviews_to_show']);
@@ -359,16 +353,23 @@ CSS Styles to include in your stylesheet:
             </div>
             <div class="reviews-summary">
                 <div class="rating-overview flex">
-                    <div class="rating-score">4.8</div>
+                    <div class="rating-score"><?php echo number_format($business_info['rating'], 1) ?> </div>
                     <div>
                         <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <?php
+                            $rating = $business_info['rating'] ?? 0;
+                            for ($i = 1; $i <= 5; $i++) {
+                                if ($i <= floor($rating)) {
+                                    echo '<i class="fas fa-star"></i>';
+                                } elseif ($i - 0.5 <= $rating) {
+                                    echo '<i class="fas fa-star-half-alt"></i>';
+                                } else {
+                                    echo '<i class="far fa-star"></i>';
+                                }
+                            }
+                            ?>
                         </div>
-                        <div class="total-reviews">55 مراجعة Google</div>
+                        <div class="total-reviews"><?php echo $business_info['total_ratings']; ?> مراجعة Google</div>
                     </div>
                 </div>
                 <a target="_blank" style="text-decoration: none;" href="https://admin.trustindex.io/api/googleWriteReview?place-id=ChIJ2Yn3-SlBWBQR172kjd-DzdU" class="write-review-btn">
@@ -401,6 +402,7 @@ CSS Styles to include in your stylesheet:
             <span class="indicator" data-slide="1"></span>
             <span class="indicator" data-slide="2"></span>
             <span class="indicator" data-slide="3"></span>
+            <span class="indicator" data-slide="4"></span>
         </div>
     </div>
 
