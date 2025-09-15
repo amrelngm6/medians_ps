@@ -256,7 +256,7 @@
     }
     
     .reviews-header {
-        flex-direction: column;
+        /* flex-direction: column; */
         gap: 16px;
         padding: 20px;
         text-align: center;
@@ -275,6 +275,7 @@
     .review-card {
         min-width: 280px;
         padding: 20px;
+        margin-right: 103px;
     }
     
     .carousel-btn {
@@ -304,6 +305,7 @@
     .review-card {
         min-width: 260px;
         padding: 16px;
+        margin-right: 80px;
     }
     
     .carousel-btn {
