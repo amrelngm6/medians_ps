@@ -51,7 +51,7 @@
 .rating-score {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #1a73e8;
+    color: #0399a8;
     line-height: 1;
     padding: 10px 10px 0 0 ;
 }
@@ -73,7 +73,7 @@
 }
 
 .write-review-btn {
-    background: #1a73e8;
+    background: #0399a8;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -122,8 +122,8 @@
 
 .carousel-btn:hover {
     background: #f8f9fa;
-    border-color: #1a73e8;
-    color: #1a73e8;
+    border-color: #0399a8;
+    color: #0399a8;
     transform: translateY(-50%) scale(1.05);
 }
 
@@ -157,7 +157,7 @@
 .review-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    border-color: #1a73e8;
+    border-color: #0399a8;
 }
 
 .review-header {
@@ -240,7 +240,7 @@
 }
 
 .indicator.active {
-    background: #1a73e8;
+    background: #0399a8;
     transform: scale(1.2);
 }
 
@@ -347,6 +347,6 @@
 .carousel-btn:focus,
 .indicator:focus,
 .write-review-btn:focus {
-    outline: 2px solid #1a73e8;
+    outline: 2px solid #0399a8;
     outline-offset: 2px;
 }
