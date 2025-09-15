@@ -74,7 +74,7 @@ class GoogleReviewsFetcher {
         $fields = urlencode('name,rating,reviews,user_ratings_total');  // can add more: formatted_address, opening_hours, etc.
         $url = "https://maps.googleapis.com/maps/api/place/details/json"
             . "?place_id=" . urlencode($this->place_id)
-            . "&language=" . urlencode('ar')
+            . "&language=" . urlencode($_GET['lang'] ?? 'ar')
             . "&reviews_sort=newest"
             . "&key=" . urlencode($this->api_key);
 
