@@ -81,4 +81,21 @@ class HookRepository
 		}
 	}
 
+	/**
+	 * Render Shortcode in content
+	 */
+	public function renderShortCode($id, $codeToReplace, $postContent)
+	{
+		$hook = Hook::find($id);
+
+		if ($hook->plugin == 'google_reviews')
+		{
+			return $hook->plugin_class::view(['id' => $id]);
+		}
+
+		$unserialize = unserialize($hook->content);
+		$hookContent = $unserialize['content'] ?? $hook->field['content'];
+		return str_replace($codeToReplace, $hookContent, $postContent);
+	}
+
 }

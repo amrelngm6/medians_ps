@@ -304,13 +304,8 @@ class BlogRepository
 			{
 				$codeToReplace = $hooks[0][$key];
 				$id = $hooks[2][$key];
-
-				$hook = Hook::find($id);
-				$unserialize = unserialize($hook->content);
-				$hookContent = $unserialize['content'] ?? $hook->field['content'];
-
-				$postContent = str_replace($codeToReplace, $hookContent, $postContent);
 				
+				$postContent = $this->hookRepo->renderShortCode($id, $codeToReplace, $postContent);
 			}
 		}
 
@@ -324,8 +319,6 @@ class BlogRepository
 				$videoContent = $this->videoContent($video, $model);
 				$output = str_replace($matches[0][$k] , $videoContent, $output); 
 			}
-
-			
 		}
 		
 

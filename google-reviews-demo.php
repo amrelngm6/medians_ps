@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 /**
  * Google Reviews Fetcher - PHP Class to load reviews from Google Places API
  * 
@@ -12,7 +13,7 @@ class GoogleReviewsFetcher {
     
     private $api_key;
     private $place_id;
-    private $cache_duration = 3600; // 1 hour cache
+    private $cache_duration = 7200; // 2 hours cache
     private $cache_dir = 'cache/';
     private $enable_cache;
     private $sort_by_latest;
@@ -102,7 +103,7 @@ class GoogleReviewsFetcher {
         }
         if ($data['status'] !== 'OK') {
             // Can log $data['error_message'] if needed
-            error_log("Google Places API error: " . ($data['error_message'] ?? $data['status']));
+            echo("Google Places API error: " . ($data['error_message'] ?? $data['status']));
             return false;
         }
 
@@ -308,9 +309,10 @@ try {
     // Configuration
     $config = [
         'api_key' => 'AIzaSyCIW3yu0NLwlAROWKLR-LEbMT9L2lfL__o', // Get from Google Cloud Console
+        // 'api_key' => 'AIzaSyDpKvPAHDTK0cmOIqPZW29JJ4QaWvfU-9g', // Get from Google Cloud Console
         'place_id' => 'ChIJ2Yn3-SlBWBQR172kjd-DzdU', // Find using Google Place ID Finder
         'reviews_to_show' => 5,
-        'enable_cache' => false, // Set to false to always get latest reviews
+        'enable_cache' => true, // Set to false to always get latest reviews
         'sort_by_latest' => true // Sort reviews by latest first
     ];
     
@@ -353,7 +355,7 @@ CSS Styles to include in your stylesheet:
             </div>
             <div class="reviews-summary">
                 <div class="rating-overview flex">
-                    <div class="rating-score"><?php echo number_format($business_info['rating'], 1) ?> </div>
+                    <div class="rating-score"><?php echo number_format($business_info['rating'] ?? 0, 1) ?> </div>
                     <div>
                         <div class="rating-stars">
                             <?php
@@ -369,7 +371,7 @@ CSS Styles to include in your stylesheet:
                             }
                             ?>
                         </div>
-                        <div class="total-reviews"><?php echo $business_info['total_ratings']; ?> مراجعة Google</div>
+                        <div class="total-reviews"><?php echo $business_info['total_ratings'] ?? ''; ?> مراجعة Google</div>
                     </div>
                 </div>
                 <a target="_blank" style="text-decoration: none;" href="https://admin.trustindex.io/api/googleWriteReview?place-id=ChIJ2Yn3-SlBWBQR172kjd-DzdU" class="write-review-btn">
@@ -407,5 +409,78 @@ CSS Styles to include in your stylesheet:
     </div>
 
     <script src="google-reviews-script.js"></script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "IVF Hospital Customer Reviews",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "MedicalProcedure",
+          "name": "In Vitro Fertilization (IVF)",
+          "url": "https://www.yourhospital.com/services/ivf"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "A. Patient"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "reviewBody": "The care and compassion at this hospital for my IVF journey were incredible. The doctors and nurses were supportive every step of the way."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "MedicalProcedure",
+          "name": "Embryo Transfer",
+          "url": "https://www.yourhospital.com/services/ivf-embryo-transfer"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "B. Patient"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "reviewBody": "The embryo transfer procedure was seamless. The staff made me feel so comfortable and informed. Highly recommend this hospital."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "MedicalOrganization",
+          "name": "Your IVF Hospital Name",
+          "url": "https://www.yourhospital.com/"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "C. Patient"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "reviewBody": "From the first consultation to my positive result, the entire team at this hospital was amazing. I am so grateful for their expertise."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>

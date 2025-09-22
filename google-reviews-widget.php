@@ -2,36 +2,7 @@
 // Google Reviews Widget Component
 // You can include this file in your existing pages
 
-$googleReviews = [
-    [
-        'name' => 'Ra Sa',
-        'date' => '2024.01.04',
-        'rating' => 5,
-        'text' => 'بشكر مستشفى بدايه ودكتور اسماعيل ابو الفتوح علي المعامله الحسنه وحسن الاستقبال وجوده الفحوصات المقدمه من المستشفي وكل الفريق والدكتور مريحين جدا في المعامله',
-        'avatar' => 'https://lh3.googleusercontent.com/a/default-user=s40-c'
-    ],
-    [
-        'name' => 'ysra mohammed',
-        'date' => '2024.01.23',
-        'rating' => 5,
-        'text' => 'حقيقه انا بشكر جدا مستشفى بداية حقيقي تجربة ممتازة جدا وبشكر دكتورة منى شعبان علي التعامل الحلو وعلي لطافتها معايا شكرا يا دكتورة وربنا يوفقك ويسعدك يارب ❤️',
-        'avatar' => 'https://lh3.googleusercontent.com/a/default-user=s40-c'
-    ],
-    [
-        'name' => 'Nevissa Ely',
-        'date' => '2023.12.31',
-        'rating' => 5,
-        'text' => 'انا من موريتانيا جيت للمستشفي من يومين ماشاء الله عليهم كل اللي سمعتو عنهم طلع حقيقي من نظافة و حسن المعاملة من الاطباء والممرضين والمستوي العالي للمستشفي',
-        'avatar' => 'https://lh3.googleusercontent.com/a/default-user=s40-c'
-    ],
-    [
-        'name' => 'نهال عبد القادر',
-        'date' => '2024.02.15',
-        'rating' => 5,
-        'text' => 'الحمد لله ربنا رزقنا في مستشفى بدايه بعد تأخر حمل 5سنوات في السودان في مستشفي بدايه من اول محاولة تم الحمل وبشكر دكتور إسماعيل وجميع العاملين في مستشفى بدايه',
-        'avatar' => 'https://lh3.googleusercontent.com/a/default-user=s40-c'
-    ]
-];
+$googleReviews = [];
 
 $averageRating = 4.8;
 $totalReviews = 55;
