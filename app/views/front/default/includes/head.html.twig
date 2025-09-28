@@ -86,7 +86,6 @@
   }
 ]
 </script>
-{% endif %}
 {% if  item.content.short %}
 <script type="application/ld+json">
 {{item.content.short|raw}}
@@ -102,6 +101,7 @@
 <script type="application/ld+json">
   [ {{item.content.seo_video|raw}} ]
 </script>
+{% endif %}
 {% endif %}
 
 {% if segments[1] != 'admin' %}
