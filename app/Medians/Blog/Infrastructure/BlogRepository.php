@@ -6,6 +6,7 @@ use Medians\Blog\Domain\Blog;
 use Medians\Hooks\Domain\Hook;
 use Medians\Blog\Domain\Content;
 use Medians\CustomFields\Domain\CustomField;
+use Medians\Hooks\Infrastructure\HookRepository;
 
 
 class BlogRepository 
@@ -297,6 +298,8 @@ class BlogRepository
 		$postContent = $model->content->content;
 
 		$hooks = $this->_plugins_shortcode_filter($postContent);
+
+		$this->hookRepo = new HookRepository();
 		
 		if (!empty($hooks[2][0])) {
 			
