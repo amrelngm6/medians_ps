@@ -1,5 +1,32 @@
 {% include 'views/front/default/includes/header.html.twig' %}
 
+    <script type="application/ld+json"> [{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{lang.translate('Homepage')}}",
+        "item": "{{app.CONF.url}}"
+        },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{item.content.title}}"
+        }]
+    }]
+    </script>
+    <script type="application/ld+json">
+    {{item.content.short|raw}}
+    </script>
+
+    <script type="application/ld+json">
+    {{item.content.seo_tag|raw}}
+    </script>
+
+    <script type="application/ld+json">
+    [ {{item.content.seo_video|raw}} ]
+    </script>
+
     <div class="w-full  cyan-bg relative pb-10 pt-20">
         <div class="container mx-auto relative px-1 ">
             <p class="text-sm lg:pb-2 flex gap-2 font-normal text-gray-600 lg:pt-10">
@@ -70,35 +97,6 @@
         </div>
     </div>
 
-    <script type="application/ld+json">
-    [ 
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "{{lang.translate('Homepage')}}",
-        "item": "{{app.CONF.url}}"
-        },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "{{item.content.title}}"
-        }]
-    }
-    ]
-    </script>
-    <script type="application/ld+json">
-    {{item.content.short|raw}}
-    </script>
-
-    <script type="application/ld+json">
-    {{item.content.seo_tag|raw}}
-    </script>
-
-    <script type="application/ld+json">
-    [ {{item.content.seo_video|raw}} ]
-    </script>
 
     <div class="relative w-full overflow-hidden px-1">
         <img loading="lazy"  alt="{{lang.translate('SPECIALIZATIONS')}}" src="/stream?image=/uploads/img/circles-bg.webp" class="absolute left-0 top-0 w-full" style="opacity: 0.05;" />
