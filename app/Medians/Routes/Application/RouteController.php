@@ -164,11 +164,11 @@ class RouteController extends CustomController
 				return array('error'=>translate('You are not authorized to add new routes, Please contact the administrator'));
 			}
 
-			if (empty($params['name'])) {
+			if (empty($params['route_name'])) {
 				return array('error'=>translate('Please enter route name'));
 			}
 
-			if (empty($params['start_latitude']) || empty($params['start_longitude']) || empty($params['end_latitude']) || empty($params['end_longitude'])) {
+			if (empty($params['position'])) {
 				return array('error'=>translate('Please set route start and end location'));
 			}
 
