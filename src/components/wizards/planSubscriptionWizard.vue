@@ -286,7 +286,6 @@ const form_field = defineAsyncComponent(() =>
     import('@/components/includes/form_field.vue')
 );
 import editable_map_location from '@/components/includes/editable_map_location.vue';
-import route_map from '@/components/maps/route_map.vue';
 
 export default
     {
@@ -301,7 +300,7 @@ export default
             route_icon,
             form_field,
             editable_map_location,
-            route_map
+            
         },
         name: 'PlanSubscriptions',
         emits: ['callback'],

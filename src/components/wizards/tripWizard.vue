@@ -101,7 +101,7 @@
                                                 </div>
                                             </div>
                                             <div class=" w-full">
-                                                <trip_map :system_setting="system_setting" :trip="activeItem" :conf="conf"
+                                                <trip_map :system_setting="system_setting" :setting="system_setting" :trip="activeItem" :conf="conf"
                                                     :key="activeItem" :waypoints="activeItem.locations"
                                                     >
                                                 </trip_map>

@@ -229,7 +229,7 @@
                             
                             <div class="w-full flex gap-10">
                                 <div class="w-full">
-                                    <route_map @markerclicked="markerClicked" class="rounded-xl shadow-md mx-4" :system_setting="system_setting" :conf="conf" :route="activeItem"  ></route_map>
+                                    <route_map @markerclicked="markerClicked" class="rounded-xl shadow-md mx-4" :system_setting="system_setting ?? setting" :conf="conf" :route="activeItem"  ></route_map>
                                 </div>
                                 <div class="w-full">
                                     <hr class="block mt-6 my-2 opacity-10" />
