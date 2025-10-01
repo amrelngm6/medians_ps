@@ -213,9 +213,14 @@ class RouteRepository
 		$data = json_decode($data);
 
 		$Model = new RoutePosition;
-		
-		$save = $capsule->getConnection()->insert("INSERT INTO ".$Model->getTable()." (start_location, end_location) VALUES (POINT({$data->start_latitude}, {$data->start_longitude}), POINT({$data->end_latitude}, {$data->end_longitude}))");
-		
+
+		$startLat = $data->start_latitude ?? '0';
+		$startLong = $data->start_longitude ?? '0';
+		$endLat = $data->end_latitude ?? '0';
+		$endLong = $data->end_longitude ?? '0';
+
+		$save = $capsule->getConnection()->insert("INSERT INTO ".$Model->getTable()." (start_location, end_location) VALUES (POINT({$startLat}, {$startLong}), POINT({$endLat}, {$endLong}))");
+
 		$insertedId = $capsule->getConnection()->getPdo()->lastInsertId();
 
 		if ($data)
