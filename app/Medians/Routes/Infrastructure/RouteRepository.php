@@ -208,6 +208,8 @@ class RouteRepository
 	{
 		global $capsule;
 
+		
+
 		RoutePosition::where('route_id', $id)->delete();
 
 		$data = json_decode($data);
