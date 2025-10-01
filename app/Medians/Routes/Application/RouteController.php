@@ -199,8 +199,8 @@ class RouteController extends CustomController
             }
 
         } catch (\Exception $e) {
+        	return array('error'=>'Please try again later');
         	return array('error'=>$e->getMessage());
-        	
         }
 
 	}
