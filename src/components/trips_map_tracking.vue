@@ -12,7 +12,18 @@
             <img class="m-auto w-500px" :src="'/uploads/loader.gif'" />
         </div>
         <div class="w-full relative">
-            <div class="card w-full py-10">
+            <div class="card w-full py-10" v-if="!trips || (trips && trips.length < 1)">
+                <div class="text-center p-10">
+                    <h3 class="text-lg font-bold mb-4" v-text="translate('No active trips found')"></h3>
+                    <p class="text-gray-600" v-text="translate('There are currently no active trips to display. Please check back later.')"></p>
+                    
+                    <div class="text-center py-10 px-5">
+                        <img :src="'/uploads/img/start-wizard.png'" alt="" class="mx-auto mw-100 h-200px h-sm-325px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card w-full py-10" v-if="trips && trips.length > 0">
                 <!-- Multi-trips map showing all active trips -->
                 <multi_trips_map  
                     :conf="conf"
