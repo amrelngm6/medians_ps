@@ -42,6 +42,7 @@ import navbar from '@/components/navbar.vue';
 import dashboard from '@/components/dashboard.vue'; 
 import master_dashboard from '@/components/master_dashboard.vue'; 
 import trips from '@/components/trips.vue'; 
+import trips_map_tracking from '@/components/trips_map_tracking.vue'; 
 import HelpMessages from '@/components/help_messages.vue'; 
 import notifications_events from '@/components/notifications_events.vue'; 
 import {translate, handleAccess, handleRequest, handleGetRequest, showAlert} from '@/utils.vue';
@@ -58,7 +59,7 @@ const plan_features = defineAsyncComponent(() => import('@/components/datatable_
 const employees = defineAsyncComponent(() => import('@/components/datatable_pages/employees.vue') );
 const vehicle_types = defineAsyncComponent(() => import('@/components/datatable_pages/vehicle_types.vue') );
 const supervisors = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
-const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages/supervisors.vue') );
+const vehicles = defineAsyncComponent(() => import('@/components/datatable_pages/vehicles.vue') );
 const languages = defineAsyncComponent(() => import('@/components/datatable_pages/languages.vue') );
 const gallery = defineAsyncComponent(() => import('@/components/datatable_pages/gallery.vue') );
 const newsletter_subscribers = defineAsyncComponent(() => import('@/components/datatable_pages/newsletter_subscribers.vue') );
@@ -129,7 +130,6 @@ const collected_cash = defineAsyncComponent(() => import('@/components/wallet/co
 
 const translations = defineAsyncComponent(() => import('@/components/translations.vue') );
 
-
 const contact_forms = defineAsyncComponent(() => import('@/components/contact_forms.vue') );
 
 const menus = defineAsyncComponent(() => import('@/components/menus.vue') );
@@ -145,6 +145,7 @@ export default {
         dashboard,
         master_dashboard,
         trips,
+        trips_map_tracking,
         taxi_trips,
         vehicles,
         vehicle_types,

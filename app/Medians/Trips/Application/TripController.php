@@ -77,6 +77,22 @@ class TripController extends CustomController
 		}
 	}
 
+	/**
+	 * All active trips 
+	 */
+	 public function activeTrips() 
+	 {
+		try {
+		    return render('trips_map_tracking', [
+		        'load_vue' => true,
+		        'title' => translate('Trips tracking'),
+		        'items' => $this->repo->getActiveTrips(),
+		    ]);
+		} catch (\Exception $e) {
+			throw new \Exception($e->getMessage(), 1);
+		}
+	 }
+
 	public function store() 
 	{
 

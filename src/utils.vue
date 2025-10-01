@@ -28,7 +28,7 @@ export function durationMonthsDate(date, value) {
 
 export function remove(item, type) {
             
-    if (!window.confirm(translate('confirm_delete')))
+    if (!window.confirm(this.__('confirm_delete')))
     {
         return null;
     }
@@ -141,14 +141,19 @@ export function translate(i) {
     // Access the root Vue instance
     if (!currentInstance || !i)
         return i;
-    
-    const rootVue = currentInstance.root.data;
-    let key = i.toLowerCase().replaceAll(' ', '_');
-    let k = i.replaceAll('_', ' ');
-    let un_key = k.charAt(0).toUpperCase() + k.slice(1);
 
-    let lang = rootVue.lang;
-    return lang[key] ? lang[key] : un_key;
+    try {
+        i = i.toString();
+        const rootVue = currentInstance.root.data;
+        let key = i.toLowerCase().replaceAll(' ', '_');
+        let k = i.replaceAll('_', ' ');
+        let un_key = k.charAt(0).toUpperCase() + k.slice(1);
+
+        let lang = rootVue.lang;
+        return lang[key] ? lang[key] : un_key;
+    } catch (error) {
+        return i;
+    }
 }
 
 export function showAlert(response,duration = 3000)

@@ -62,11 +62,6 @@ class PaymentSettingsController extends CustomController
 				[ 'key'=> "paystack_secret_key", 'title'=> translate('PayStack secret key'), 'help_text'=>translate('Get your Live / Test code from PayStack https://dashboard.paystack.com/#/settings/developers'), 'fillable'=> true, 'column_type'=>'text' ],
 				[ 'key'=> "currency_converter_api", 'title'=> translate('Currency converter API'), 'help_text'=> translate('Important required if you want to enable paystack payment from CurrencyAPI https://app.currencyapi.com/api-keys'),'fillable'=> true, 'required'=> true, 'column_type'=>'text' ],
 			],
-			'pagadito'=> [
-				[ 'key'=> "pagadito_payment", 'title'=> translate('Allow Paymment  with pagadito'), 'help_text'=>translate('Allow Business users to pay with pagadito for plan subscriptions'), 'fillable'=> true, 'column_type'=>'checkbox' ],
-				[ 'key'=> "pagadito_uid", 'title'=> translate('PayStack UID'), 'help_text'=>translate('Get your Live / Test code from Pagadito https://sandbox.pagadito.com/index.php?mod=usuarios&hac=cnfc'), 'fillable'=> true, 'column_type'=>'text' ],
-				[ 'key'=> "pagadito_wsk", 'title'=> translate('PayStack WSK'), 'help_text'=>'', 'fillable'=> true, 'column_type'=>'text' ],
-			],
 					
         ];
 	}

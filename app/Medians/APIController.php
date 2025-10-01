@@ -76,10 +76,6 @@ class APIController extends CustomController
 					$return = (new Payments\Application\PaymentController())->confirmPayPalPlanPayment();
 					break;
 
-				case 'Payment.get_started_validate_pagadito':
-					$return = (new Users\Application\GetStartedController())->validatePagaditoPayment();
-					break;
-
 				case 'User.create':
 					$return = (new Users\Application\UserController())->store();
 					break;
@@ -95,7 +91,6 @@ class APIController extends CustomController
 				case 'User.get_started_save_free_plan':
 					$return = (new Users\Application\GetStartedController())->saveFreePlan();
 					break;
-
 
 				case 'Student.create':
 					$return = (new Students\Application\StudentController())->store();

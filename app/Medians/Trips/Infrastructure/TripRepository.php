@@ -78,6 +78,16 @@ class TripRepository
 		->withCount('moving_locations')->withCount('waiting_locations')->first();
 	}
 
+
+	public function getActiveTrips()
+	{
+		return Trip::with('driver', 'vehicle', 'route')
+		->where('business_id', $this->business_id)
+		->where('status', 'started')
+		->withCount('moving_locations')->withCount('waiting_locations')
+		->get();
+	}
+
 	public function getDriverTrips($id, $limit = 10)
 	{
 		return Trip::with(['locations'=> function($q){

@@ -1,6 +1,6 @@
 <template>
   <div class="w-full overflow-auto">
-    <GoogleMap v-if="mapCenter" :api-key="system_setting.google_map_api" ref="map" :center="mapCenter"
+    <GoogleMap v-if="mapCenter" :api-key="setting.google_map_api" ref="map" :center="mapCenter"
       :key="`${mapCenter.lat},${mapCenter.lng}`" :options="{
         zoomControl: true,
         mapTypeControl: true,
@@ -201,6 +201,6 @@ export default {
       polylineOptions,
     };
   },
-  props: ['system_setting', 'trip', 'conf','waypoints', 'center'],
+  props: ['system_setting', 'setting', 'trip', 'conf','waypoints', 'center'],
 };
 </script>
