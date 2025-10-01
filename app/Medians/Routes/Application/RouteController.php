@@ -168,6 +168,10 @@ class RouteController extends CustomController
 				return array('error'=>translate('Please enter route name'));
 			}
 
+			if (empty($params['start_latitude']) || empty($params['start_longitude']) || empty($params['end_latitude']) || empty($params['end_longitude'])) {
+				return array('error'=>translate('Please set route start and end location'));
+			}
+
 			// Administrator user id
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
         	$params['business_id'] = $user->business->business_id;
