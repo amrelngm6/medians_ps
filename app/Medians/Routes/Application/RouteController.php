@@ -228,7 +228,7 @@ class RouteController extends CustomController
 
 			$locations = json_decode($params['route_locations'], true);
 
-			if (empty($position) && !empty($locations)) {
+			if (empty($position->start_latitude) && !empty($locations)) {
 				$position = $locations[0] ?? null;
 				$params['position'] = $position;
 			}
