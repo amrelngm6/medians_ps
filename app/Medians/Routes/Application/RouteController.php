@@ -220,10 +220,6 @@ class RouteController extends CustomController
 				return array('error'=>translate('You are not authorized to add new routes, Please contact the administrator'));
 			}
 
-			if (empty($params['route_name'])) {
-				return array('error'=>translate('Please enter route name'));
-			}
-			
 			try {
 				
 				if (empty($params['position'])) {
@@ -251,6 +247,10 @@ class RouteController extends CustomController
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 
+			if (empty($params['route_name'])) {
+				return array('error'=>translate('Please enter route name'));
+			}
+			
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
