@@ -219,26 +219,19 @@ class RouteController extends CustomController
 			if (empty($user->business->business_id) || $user->business->business_id != $params['business_id']) {
 				return array('error'=>translate('You are not authorized to add new routes, Please contact the administrator'));
 			}
-
-			try {
-				
-				if (empty($params['position'])) {
-					return array('error'=>translate('Please set route start and end location'));
-				}
-				
-				$position = json_decode($params['position']);
-
-				$locations = json_decode($params['route_locations']);
-				print_r($locations);
-
-				if (empty($position) && !empty($params['route_locations'])) {
-					$position = json_decode($params['route_locations'])[0] ?? null;
-					$params['position'] = json_encode($position);
-				}
-
-			} catch (\Throwable $th) {
-				print_r($th->getMessage());
+			
+			if (empty($params['position'])) {
 				return array('error'=>translate('Please set route start and end location'));
+			}
+			
+			$position = json_decode($params['position']);
+
+			$locations = json_decode($params['route_locations']);
+			print_r($locations);
+
+			if (empty($position) && !empty($params['route_locations'])) {
+				$position = json_decode($params['route_locations'])[0] ?? null;
+				$params['position'] = json_encode($position);
 			}
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
