@@ -154,34 +154,18 @@ class RouteController extends CustomController
 	public function store() 
 	{	
 
-		$params = $this->app->params();
+		$params = $this->app->request()->get('params');
 
         try {	
 			
 			$user = $this->app->auth();
 
-			if (empty($user->business)) {
+			if (empty($user->business) || $user->business->business_id != $params['business_id']) {
 				return array('error'=>translate('You are not authorized to add new routes, Please contact the administrator'));
 			}
 
 			if (empty($params['route_name'])) {
 				return array('error'=>translate('Please enter route name'));
-			}
-
-			try {
-				
-				if (empty($params['position'])) {
-					return array('error'=>translate('Please set route start and end location'));
-				}
-				
-				$position = json_decode($params['position']);
-
-				if (empty($position) && !empty($params['route_locations'])) {
-					$params['position'] = json_decode($params['route_locations'])[0] ?? null;
-				}
-
-			} catch (\Throwable $th) {
-				return array('error'=>translate('Please set route start and end location'));
 			}
 
 			// Administrator user id
@@ -216,6 +200,10 @@ class RouteController extends CustomController
         try {
 			$user = $this->app->auth();
 
+			if (empty($params['route_name'])) {
+				return array('error'=>translate('Please enter route name'));
+			}
+			
 			if (empty($user->business->business_id) || $user->business->business_id != $params['business_id']) {
 				return array('error'=>translate('You are not authorized to add new routes, Please contact the administrator'));
 			}
@@ -225,7 +213,6 @@ class RouteController extends CustomController
 			}
 			
 			$position = json_decode($params['position']);
-
 			$locations = json_decode($params['route_locations'], true);
 
 			if (empty($position->start_latitude) && !empty($locations)) {
@@ -235,10 +222,6 @@ class RouteController extends CustomController
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 
-			if (empty($params['route_name'])) {
-				return array('error'=>translate('Please enter route name'));
-			}
-			
             if ($this->repo->update($params))
             {
                 return array('success'=>1, 'result'=>translate('Updated'), 'reload'=>1);
