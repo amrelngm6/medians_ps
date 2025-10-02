@@ -219,14 +219,14 @@ class RouteController extends CustomController
 			if (empty($user->business->business_id) || $user->business->business_id != $params['business_id']) {
 				return array('error'=>translate('You are not authorized to add new routes, Please contact the administrator'));
 			}
-			
+
 			if (empty($params['position'])) {
 				return array('error'=>translate('Please set route start and end location'));
 			}
 			
 			$position = json_decode($params['position']);
 
-			$locations = json_decode($params['route_locations']);
+			$locations = json_decode($params['route_locations'], true);
 			print_r($locations);
 
 			if (empty($position) && !empty($params['route_locations'])) {
