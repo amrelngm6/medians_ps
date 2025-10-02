@@ -22,6 +22,9 @@ define('ALLOW_DELETE', true);
 define('ALLOW_INLINE_EDIT', true);
 define('ALLOW_SQL_QUERIES', true);
 
+
+
+// Return configuration as an array
 return [
     'database' => [
         'host' => DB_HOST,
