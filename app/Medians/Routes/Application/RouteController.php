@@ -230,16 +230,12 @@ class RouteController extends CustomController
 
 			if (empty($position->start_latitude) && !empty($locations)) {
 				$position = $locations[0] ?? null;
-				$params['position'] = $position;
+				$params['position'] = json_encode($position);
 			}
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 
 			if (empty($params['route_name'])) {
-			print_r($position);
-			print_r($locations);
-			print_r($params);
-
 				return array('error'=>translate('Please enter route name'));
 			}
 			
