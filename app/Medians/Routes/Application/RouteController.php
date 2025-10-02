@@ -233,15 +233,11 @@ class RouteController extends CustomController
 
 				if (empty($position) && !empty($params['route_locations'])) {
 					$position = json_decode($params['route_locations'])[0] ?? null;
-					$positionArray = (array) $position;
-					$positionArray['start_latitude'] = $position->start_latitude ?? '0';
-					$positionArray['start_longitude'] = $position->start_longitude ?? '0';
-					$positionArray['end_latitude'] = $position->end_latitude ?? '0';
-					$positionArray['end_longitude'] = $position->end_longitude ?? '0';
-					$params['position'] = json_encode( (object) $positionArray);
+					$params['position'] = json_encode($position);
 				}
 
 			} catch (\Throwable $th) {
+				print_r($th->getMessage());
 				return array('error'=>translate('Please set route start and end location'));
 			}
 
