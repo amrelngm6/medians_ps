@@ -236,6 +236,7 @@ class RouteController extends CustomController
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
 
 			if (empty($params['route_name'])) {
+			print_r($position);
 			print_r($locations);
 			print_r($params);
 
