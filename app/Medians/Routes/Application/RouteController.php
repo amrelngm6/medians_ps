@@ -177,7 +177,7 @@ class RouteController extends CustomController
 				$position = json_decode($params['position']);
 
 				if (empty($position) && !empty($params['route_locations'])) {
-					$params['position'] = json_decode($params['route_locations']);
+					$params['position'] = json_decode($params['route_locations'])[0] ?? null;
 				}
 
 			} catch (\Throwable $th) {
