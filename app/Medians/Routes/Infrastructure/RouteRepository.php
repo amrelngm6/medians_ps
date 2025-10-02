@@ -219,7 +219,10 @@ class RouteRepository
 		$endLat = $data->end_latitude ?? '0';
 		$endLong = $data->end_longitude ?? '0';
 
-		$save = $capsule->getConnection()->insert("INSERT INTO ".$Model->getTable()." (start_location, end_location) VALUES (POINT({$startLat}, {$startLong}), POINT({$endLat}, {$endLong}))");
+		$statement = "INSERT INTO ".$Model->getTable()." (start_location, end_location) VALUES (POINT({$startLat}, {$startLong}), POINT({$endLat}, {$endLong}))";
+
+		print_r($statement);
+		$save = $capsule->getConnection()->insert($statement);
 
 		$insertedId = $capsule->getConnection()->getPdo()->lastInsertId();
 
