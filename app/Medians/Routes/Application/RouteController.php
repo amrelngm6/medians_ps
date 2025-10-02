@@ -222,8 +222,24 @@ class RouteController extends CustomController
 				return array('error'=>translate('You are not authorized to add new routes, Please contact the administrator'));
 			}
 
-			if (empty($params['name'])) {
+			if (empty($params['route_name'])) {
 				return array('error'=>translate('Please enter route name'));
+			}
+			
+			try {
+				
+				if (empty($params['position'])) {
+					return array('error'=>translate('Please set route start and end location'));
+				}
+				
+				$position = json_decode($params['position']);
+
+				if (empty($position) && !empty($params['route_locations'])) {
+					$params['position'] = json_decode($params['route_locations'])[0] ?? null;
+				}
+
+			} catch (\Throwable $th) {
+				return array('error'=>translate('Please set route start and end location'));
 			}
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
