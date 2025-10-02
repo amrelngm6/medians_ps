@@ -168,7 +168,19 @@ class RouteController extends CustomController
 				return array('error'=>translate('Please enter route name'));
 			}
 
-			if (empty($params['position'])) {
+			try {
+				
+				if (empty($params['position'])) {
+					return array('error'=>translate('Please set route start and end location'));
+				}
+				
+				$position = json_decode($params['position']);
+
+				if (empty($position) && !empty($params['route_locations'])) {
+					$params['position'] = json_decode($params['route_locations']);
+				}
+
+			} catch (\Throwable $th) {
 				return array('error'=>translate('Please set route start and end location'));
 			}
 
