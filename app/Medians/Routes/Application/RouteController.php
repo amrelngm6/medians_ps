@@ -217,8 +217,6 @@ class RouteController extends CustomController
 			$user = $this->app->auth();
 
 			if (empty($user->business->business_id) || $user->business->business_id != $params['business_id']) {
-				print_r($user);
-				print_r($params);
 				return array('error'=>translate('You are not authorized to add new routes, Please contact the administrator'));
 			}
 
