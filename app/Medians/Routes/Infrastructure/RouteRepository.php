@@ -207,7 +207,6 @@ class RouteRepository
 	public function storeRoutePosition($data, $id) 
 	{
 		global $capsule;
-		print_r($data);
 
 		RoutePosition::where('route_id', $id)->delete();
 
