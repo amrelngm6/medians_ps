@@ -230,7 +230,7 @@ class RouteController extends CustomController
 
 			if (empty($position) && !empty($locations)) {
 				$position = $locations[0] ?? null;
-				$params['position'] = json_encode($position);
+				$params['position'] = $position;
 			}
 
 			$params['status'] = (isset($params['status']) && $params['status'] != 'false') ? 'on' : null;
