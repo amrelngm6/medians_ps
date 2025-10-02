@@ -211,7 +211,9 @@ class RouteController extends CustomController
 	public function update()
 	{
 
-		$params = $this->app->params();
+		$params = $this->app->request()->all();
+
+		return $params;
 
         try {
 			$user = $this->app->auth();
