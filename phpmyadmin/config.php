@@ -6,8 +6,8 @@
 
 // Database connection settings
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'fpjjkpte_quatre');
+define('DB_PASS', 'quatre@2024');
 define('DB_CHARSET', 'utf8mb4');
 
 // Application settings
